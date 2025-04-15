@@ -27,7 +27,9 @@ impl NSPersistentCloudKitContainer {
             &self,
             metadata: &NSArray<CKShareMetadata>,
             persistent_store: &NSPersistentStore,
-            completion: Option<&block2::Block<dyn Fn(*mut NSArray<CKShareMetadata>, *mut NSError)>>,
+            completion: Option<
+                &block2::DynBlock<dyn Fn(*mut NSArray<CKShareMetadata>, *mut NSError)>,
+            >,
         );
 
         #[cfg(all(
@@ -41,7 +43,7 @@ impl NSPersistentCloudKitContainer {
             &self,
             zone_id: &CKRecordZoneID,
             persistent_store: Option<&NSPersistentStore>,
-            completion: Option<&block2::Block<dyn Fn(*mut CKRecordZoneID, *mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(*mut CKRecordZoneID, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -55,7 +57,7 @@ impl NSPersistentCloudKitContainer {
             &self,
             share: &CKShare,
             persistent_store: &NSPersistentStore,
-            completion: Option<&block2::Block<dyn Fn(*mut CKShare, *mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(*mut CKShare, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -69,7 +71,7 @@ impl NSPersistentCloudKitContainer {
             &self,
             lookup_infos: &NSArray<CKUserIdentityLookupInfo>,
             persistent_store: &NSPersistentStore,
-            completion: &block2::Block<dyn Fn(*mut NSArray<CKShareParticipant>, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSArray<CKShareParticipant>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "NSManagedObjectID", feature = "objc2-cloud-kit"))]
@@ -100,7 +102,7 @@ impl NSPersistentCloudKitContainer {
             &self,
             managed_objects: &NSArray<NSManagedObject>,
             share: Option<&CKShare>,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(*mut NSSet<NSManagedObjectID>, *mut CKShare, *mut CKContainer, *mut NSError),
             >,
         );

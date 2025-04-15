@@ -100,7 +100,7 @@ extern_protocol!(
         unsafe fn handleSaveProfileInCar_completion(
             &self,
             intent: &INSaveProfileInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSaveProfileInCarIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSaveProfileInCarIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -127,7 +127,7 @@ extern_protocol!(
         unsafe fn confirmSaveProfileInCar_completion(
             &self,
             intent: &INSaveProfileInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSaveProfileInCarIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSaveProfileInCarIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -154,7 +154,7 @@ extern_protocol!(
         unsafe fn resolveProfileNumberForSaveProfileInCar_withCompletion(
             &self,
             intent: &INSaveProfileInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -169,7 +169,7 @@ extern_protocol!(
         unsafe fn resolveProfileNameForSaveProfileInCar_withCompletion(
             &self,
             intent: &INSaveProfileInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
         );
     }
 );

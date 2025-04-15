@@ -685,7 +685,7 @@ impl NSCalendar {
             start: &NSDate,
             comps: &NSDateComponents,
             opts: NSCalendarOptions,
-            block: &block2::Block<dyn Fn(*mut NSDate, Bool, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(*mut NSDate, Bool, NonNull<Bool>) + '_>,
         );
 
         #[cfg(feature = "NSDate")]

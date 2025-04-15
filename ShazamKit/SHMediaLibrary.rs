@@ -58,7 +58,7 @@ impl SHMediaLibrary {
         pub unsafe fn addMediaItems_completionHandler(
             &self,
             media_items: &NSArray<SHMediaItem>,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[deprecated = "Use SHLibrary instead"]

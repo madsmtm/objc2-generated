@@ -486,7 +486,7 @@ impl SCNNode {
         #[unsafe(method_family = none)]
         pub unsafe fn childNodesPassingTest(
             &self,
-            predicate: &block2::Block<dyn Fn(NonNull<SCNNode>, NonNull<Bool>) -> Bool + '_>,
+            predicate: &block2::DynBlock<dyn Fn(NonNull<SCNNode>, NonNull<Bool>) -> Bool + '_>,
         ) -> Retained<NSArray<SCNNode>>;
 
         #[cfg(feature = "block2")]
@@ -499,7 +499,7 @@ impl SCNNode {
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateChildNodesUsingBlock(
             &self,
-            block: &block2::Block<dyn Fn(NonNull<SCNNode>, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NonNull<SCNNode>, NonNull<Bool>) + '_>,
         );
 
         #[cfg(feature = "block2")]
@@ -512,7 +512,7 @@ impl SCNNode {
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateHierarchyUsingBlock(
             &self,
-            block: &block2::Block<dyn Fn(NonNull<SCNNode>, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NonNull<SCNNode>, NonNull<Bool>) + '_>,
         );
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]

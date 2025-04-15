@@ -58,7 +58,7 @@ impl CPTextButton {
             this: Allocated<Self>,
             title: &NSString,
             text_style: CPTextButtonStyle,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPTextButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPTextButton>)>>,
         ) -> Retained<Self>;
 
         /// A custom title to display for this button, displayed only in templates that allow for custom titles.

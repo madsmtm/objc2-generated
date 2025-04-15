@@ -13,7 +13,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructurecompletionhandler?language=objc)
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "block2"))]
 pub type MPSAccelerationStructureCompletionHandler =
-    *mut block2::Block<dyn Fn(*mut MPSAccelerationStructure)>;
+    *mut block2::DynBlock<dyn Fn(*mut MPSAccelerationStructure)>;
 
 /// Options describing how an acceleration structure will be used
 ///

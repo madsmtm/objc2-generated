@@ -98,7 +98,7 @@ extern_protocol!(
         unsafe fn handleAnswerCall_completion(
             &self,
             intent: &INAnswerCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INAnswerCallIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INAnswerCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -124,7 +124,7 @@ extern_protocol!(
         unsafe fn confirmAnswerCall_completion(
             &self,
             intent: &INAnswerCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INAnswerCallIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INAnswerCallIntentResponse>)>,
         );
     }
 );

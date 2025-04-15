@@ -106,7 +106,7 @@ impl PHPhotoLibrary {
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationForAccessLevel_handler(
             access_level: PHAccessLevel,
-            handler: &block2::Block<dyn Fn(PHAuthorizationStatus)>,
+            handler: &block2::DynBlock<dyn Fn(PHAuthorizationStatus)>,
         );
 
         /// Deprecated and replaced by authorizationStatusForAccessLevel:, will return
@@ -120,7 +120,9 @@ impl PHPhotoLibrary {
         #[deprecated]
         #[unsafe(method(requestAuthorization:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestAuthorization(handler: &block2::Block<dyn Fn(PHAuthorizationStatus)>);
+        pub unsafe fn requestAuthorization(
+            handler: &block2::DynBlock<dyn Fn(PHAuthorizationStatus)>,
+        );
 
         #[unsafe(method(unavailabilityReason))]
         #[unsafe(method_family = none)]
@@ -146,7 +148,7 @@ impl PHPhotoLibrary {
         pub unsafe fn performChanges_completionHandler(
             &self,
             change_block: dispatch_block_t,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(feature = "dispatch2")]

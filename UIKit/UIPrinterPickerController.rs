@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UIPrinterPickerCompletionHandler =
-    *mut block2::Block<dyn Fn(NonNull<UIPrinterPickerController>, Bool, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<UIPrinterPickerController>, Bool, *mut NSError)>;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercontrollerdelegate?language=objc)

@@ -260,7 +260,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionoutputhandler?language=objc)
 #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
 pub type VTCompressionOutputHandler =
-    *mut block2::Block<dyn Fn(OSStatus, VTEncodeInfoFlags, *mut CMSampleBuffer)>;
+    *mut block2::DynBlock<dyn Fn(OSStatus, VTEncodeInfoFlags, *mut CMSampleBuffer)>;
 
 extern "C-unwind" {
     /// Call this function to present frames to the compression session.

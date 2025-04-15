@@ -50,7 +50,7 @@ impl NSAppearance {
         #[unsafe(method_family = none)]
         pub unsafe fn performAsCurrentDrawingAppearance(
             &self,
-            block: &block2::Block<dyn Fn() + '_>,
+            block: &block2::DynBlock<dyn Fn() + '_>,
         );
 
         #[unsafe(method(appearanceNamed:))]

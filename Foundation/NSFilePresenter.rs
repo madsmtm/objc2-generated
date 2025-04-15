@@ -31,7 +31,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn relinquishPresentedItemToReader(
             &self,
-            reader: &block2::Block<dyn Fn(*mut block2::Block<dyn Fn()>)>,
+            reader: &block2::DynBlock<dyn Fn(*mut block2::DynBlock<dyn Fn()>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -40,7 +40,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn relinquishPresentedItemToWriter(
             &self,
-            writer: &block2::Block<dyn Fn(*mut block2::Block<dyn Fn()>)>,
+            writer: &block2::DynBlock<dyn Fn(*mut block2::DynBlock<dyn Fn()>)>,
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
@@ -49,7 +49,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn savePresentedItemChangesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
@@ -58,7 +58,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
@@ -67,7 +67,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn accommodatePresentedItemEvictionWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "NSURL")]
@@ -123,7 +123,7 @@ extern_protocol!(
         unsafe fn accommodatePresentedSubitemDeletionAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "NSURL")]

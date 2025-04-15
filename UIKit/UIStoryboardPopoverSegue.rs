@@ -46,7 +46,7 @@ impl UIStoryboardPopoverSegue {
             identifier: Option<&NSString>,
             source: &UIViewController,
             destination: &UIViewController,
-            perform_handler: &block2::Block<dyn Fn()>,
+            perform_handler: &block2::DynBlock<dyn Fn()>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]

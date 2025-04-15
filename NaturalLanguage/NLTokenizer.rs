@@ -106,7 +106,7 @@ impl NLTokenizer {
         pub unsafe fn enumerateTokensInRange_usingBlock(
             &self,
             range: NSRange,
-            block: &block2::Block<dyn Fn(NSRange, NLTokenizerAttributes, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NSRange, NLTokenizerAttributes, NonNull<Bool>) + '_>,
         );
     );
 }

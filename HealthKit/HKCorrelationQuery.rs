@@ -75,7 +75,7 @@ impl HKCorrelationQuery {
             correlation_type: &HKCorrelationType,
             predicate: Option<&NSPredicate>,
             sample_predicates: Option<&NSDictionary<HKSampleType, NSPredicate>>,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<HKCorrelationQuery>, *mut NSArray<HKCorrelation>, *mut NSError),
             >,
         ) -> Retained<Self>;

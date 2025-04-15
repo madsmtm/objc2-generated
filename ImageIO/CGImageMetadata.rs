@@ -849,7 +849,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatagblock?language=objc)
 #[cfg(feature = "block2")]
 pub type CGImageMetadataTagBlock =
-    *mut block2::Block<dyn Fn(NonNull<CFString>, NonNull<CGImageMetadataTag>) -> bool>;
+    *mut block2::DynBlock<dyn Fn(NonNull<CFString>, NonNull<CGImageMetadataTag>) -> bool>;
 
 extern "C-unwind" {
     /// Executes a given block using each tag in the metadata

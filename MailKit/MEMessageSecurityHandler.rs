@@ -76,7 +76,7 @@ extern_protocol!(
         unsafe fn primaryActionClickedForMessageContext_completionHandler(
             &self,
             context: &NSData,
-            completion_handler: &block2::Block<dyn Fn(*mut MEExtensionViewController)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut MEExtensionViewController)>,
         );
     }
 );

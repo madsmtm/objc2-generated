@@ -83,7 +83,7 @@ unsafe impl RefEncode for PHImageRequestOptionsResizeMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetimageprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PHAssetImageProgressHandler =
-    *mut block2::Block<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
+    *mut block2::DynBlock<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptions?language=objc)
@@ -310,7 +310,7 @@ unsafe impl RefEncode for PHVideoRequestOptionsDeliveryMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetvideoprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PHAssetVideoProgressHandler =
-    *mut block2::Block<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
+    *mut block2::DynBlock<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptions?language=objc)
@@ -451,7 +451,7 @@ impl PHImageManager {
             target_size: CGSize,
             content_mode: PHImageContentMode,
             options: Option<&PHImageRequestOptions>,
-            result_handler: &block2::Block<dyn Fn(*mut NSImage, *mut NSDictionary)>,
+            result_handler: &block2::DynBlock<dyn Fn(*mut NSImage, *mut NSDictionary)>,
         ) -> PHImageRequestID;
 
         #[unsafe(method(cancelImageRequest:))]
@@ -475,7 +475,7 @@ impl PHImageManager {
             target_size: CGSize,
             content_mode: PHImageContentMode,
             options: Option<&PHLivePhotoRequestOptions>,
-            result_handler: &block2::Block<dyn Fn(*mut PHLivePhoto, *mut NSDictionary)>,
+            result_handler: &block2::DynBlock<dyn Fn(*mut PHLivePhoto, *mut NSDictionary)>,
         ) -> PHImageRequestID;
 
         #[cfg(all(
@@ -490,7 +490,7 @@ impl PHImageManager {
             &self,
             asset: &PHAsset,
             options: Option<&PHVideoRequestOptions>,
-            result_handler: &block2::Block<dyn Fn(*mut AVPlayerItem, *mut NSDictionary)>,
+            result_handler: &block2::DynBlock<dyn Fn(*mut AVPlayerItem, *mut NSDictionary)>,
         ) -> PHImageRequestID;
 
         #[cfg(all(
@@ -506,7 +506,7 @@ impl PHImageManager {
             asset: &PHAsset,
             options: Option<&PHVideoRequestOptions>,
             export_preset: &NSString,
-            result_handler: &block2::Block<dyn Fn(*mut AVAssetExportSession, *mut NSDictionary)>,
+            result_handler: &block2::DynBlock<dyn Fn(*mut AVAssetExportSession, *mut NSDictionary)>,
         ) -> PHImageRequestID;
 
         #[cfg(all(
@@ -521,7 +521,7 @@ impl PHImageManager {
             &self,
             asset: &PHAsset,
             options: Option<&PHVideoRequestOptions>,
-            result_handler: &block2::Block<
+            result_handler: &block2::DynBlock<
                 dyn Fn(*mut AVAsset, *mut AVAudioMix, *mut NSDictionary),
             >,
         ) -> PHImageRequestID;

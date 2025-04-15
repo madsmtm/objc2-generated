@@ -47,7 +47,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn addLogHandler(
             &self,
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(*mut NSString, *mut NSString, MTLLogLevel, NonNull<NSString>),
             >,
         );

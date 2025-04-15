@@ -18,7 +18,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
-            handler: &block2::Block<dyn Fn(NonNull<NSError>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<NSError>)>,
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
@@ -27,7 +27,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
             &self,
-            handler: &block2::Block<dyn Fn(NonNull<NSError>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<NSError>)>,
         ) -> Retained<AnyObject>;
     }
 );
@@ -137,7 +137,7 @@ impl NSXPCConnection {
         #[unsafe(method_family = none)]
         pub unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
-            handler: &block2::Block<dyn Fn(NonNull<NSError>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<NSError>)>,
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
@@ -145,13 +145,13 @@ impl NSXPCConnection {
         #[unsafe(method_family = none)]
         pub unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
             &self,
-            handler: &block2::Block<dyn Fn(NonNull<NSError>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<NSError>)>,
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(interruptionHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn interruptionHandler(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn interruptionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`interruptionHandler`][Self::interruptionHandler].
@@ -159,13 +159,13 @@ impl NSXPCConnection {
         #[unsafe(method_family = none)]
         pub unsafe fn setInterruptionHandler(
             &self,
-            interruption_handler: Option<&block2::Block<dyn Fn()>>,
+            interruption_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(invalidationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidationHandler(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn invalidationHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`invalidationHandler`][Self::invalidationHandler].
@@ -173,7 +173,7 @@ impl NSXPCConnection {
         #[unsafe(method_family = none)]
         pub unsafe fn setInvalidationHandler(
             &self,
-            invalidation_handler: Option<&block2::Block<dyn Fn()>>,
+            invalidation_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[unsafe(method(resume))]
@@ -214,7 +214,7 @@ impl NSXPCConnection {
         #[cfg(feature = "block2")]
         #[unsafe(method(scheduleSendBarrierBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scheduleSendBarrierBlock(&self, block: &block2::Block<dyn Fn()>);
+        pub unsafe fn scheduleSendBarrierBlock(&self, block: &block2::DynBlock<dyn Fn()>);
 
         #[cfg(feature = "NSString")]
         /// Sets the code signing requirement for this connection. If the requirement is malformed, an exception is thrown. If new messages do not match the requirement, the connection is invalidated. It is recommended to set this before calling `resume`, as it is an XPC error to call it more than once.

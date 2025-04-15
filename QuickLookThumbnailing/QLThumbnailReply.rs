@@ -63,7 +63,7 @@ impl QLThumbnailReply {
         #[unsafe(method_family = none)]
         pub unsafe fn replyWithContextSize_drawingBlock(
             context_size: CGSize,
-            drawing_block: &block2::Block<dyn Fn(NonNull<CGContext>) -> Bool>,
+            drawing_block: &block2::DynBlock<dyn Fn(NonNull<CGContext>) -> Bool>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
@@ -83,7 +83,7 @@ impl QLThumbnailReply {
         #[unsafe(method_family = none)]
         pub unsafe fn replyWithContextSize_currentContextDrawingBlock(
             context_size: CGSize,
-            drawing_block: &block2::Block<dyn Fn() -> Bool>,
+            drawing_block: &block2::DynBlock<dyn Fn() -> Bool>,
         ) -> Retained<Self>;
 
         /// You can create a reply object with a file URL of an image that will be used as the thumbnail.

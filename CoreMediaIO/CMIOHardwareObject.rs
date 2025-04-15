@@ -125,7 +125,7 @@ pub type CMIOObjectPropertyListenerProc = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectpropertylistenerblock?language=objc)
 #[cfg(feature = "block2")]
 pub type CMIOObjectPropertyListenerBlock =
-    *mut block2::Block<dyn Fn(u32, *mut CMIOObjectPropertyAddress)>;
+    *mut block2::DynBlock<dyn Fn(u32, *mut CMIOObjectPropertyAddress)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyscopeglobal?language=objc)
 pub const kCMIOObjectPropertyScopeGlobal: c_uint = 0x676c6f62;

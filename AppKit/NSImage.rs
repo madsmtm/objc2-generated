@@ -219,7 +219,7 @@ impl NSImage {
         pub unsafe fn imageWithSize_flipped_drawingHandler(
             size: NSSize,
             drawing_handler_should_be_called_with_flipped_context: bool,
-            drawing_handler: &block2::Block<dyn Fn(NSRect) -> Bool>,
+            drawing_handler: &block2::DynBlock<dyn Fn(NSRect) -> Bool>,
         ) -> Retained<Self>;
 
         #[unsafe(method(size))]

@@ -29,8 +29,8 @@ impl MLUpdateProgressHandlers {
         pub unsafe fn initForEvents_progressHandler_completionHandler(
             this: Allocated<Self>,
             interested_events: MLUpdateProgressEvent,
-            progress_handler: Option<&block2::Block<dyn Fn(NonNull<MLUpdateContext>)>>,
-            completion_handler: &block2::Block<dyn Fn(NonNull<MLUpdateContext>)>,
+            progress_handler: Option<&block2::DynBlock<dyn Fn(NonNull<MLUpdateContext>)>>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<MLUpdateContext>)>,
         ) -> Retained<Self>;
 
         #[unsafe(method(init))]

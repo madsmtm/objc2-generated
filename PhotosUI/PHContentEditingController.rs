@@ -37,7 +37,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn finishContentEditingWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut PHContentEditingOutput)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut PHContentEditingOutput)>,
         );
 
         #[unsafe(method(cancelContentEditing))]

@@ -95,7 +95,7 @@ unsafe impl RefEncode for UICollectionViewSelfSizingInvalidation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutinteractivetransitioncompletion?language=objc)
 #[cfg(feature = "block2")]
 pub type UICollectionViewLayoutInteractiveTransitionCompletion =
-    *mut block2::Block<dyn Fn(Bool, Bool)>;
+    *mut block2::DynBlock<dyn Fn(Bool, Bool)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewfocusupdatecontext?language=objc)
@@ -1327,7 +1327,7 @@ impl UICollectionView {
             &self,
             layout: &UICollectionViewLayout,
             animated: bool,
-            completion: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(all(
@@ -1500,8 +1500,8 @@ impl UICollectionView {
         #[unsafe(method_family = none)]
         pub unsafe fn performBatchUpdates_completion(
             &self,
-            updates: Option<&block2::Block<dyn Fn() + '_>>,
-            completion: Option<&block2::Block<dyn Fn(Bool)>>,
+            updates: Option<&block2::DynBlock<dyn Fn() + '_>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[unsafe(method(beginInteractiveMovementForItemAtIndexPath:))]
@@ -2066,7 +2066,7 @@ impl UICollectionViewPlaceholder {
         #[unsafe(method_family = none)]
         pub unsafe fn cellUpdateHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<UICollectionViewCell>)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<UICollectionViewCell>)>;
 
         #[cfg(all(
             feature = "UICollectionViewCell",
@@ -2079,7 +2079,7 @@ impl UICollectionViewPlaceholder {
         #[unsafe(method_family = none)]
         pub unsafe fn setCellUpdateHandler(
             &self,
-            cell_update_handler: Option<&block2::Block<dyn Fn(NonNull<UICollectionViewCell>)>>,
+            cell_update_handler: Option<&block2::DynBlock<dyn Fn(NonNull<UICollectionViewCell>)>>,
         );
     );
 }
@@ -2108,7 +2108,9 @@ impl UICollectionViewDropPlaceholder {
         #[unsafe(method_family = none)]
         pub unsafe fn previewParametersProvider(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<UICollectionViewCell>) -> *mut UIDragPreviewParameters>;
+        ) -> *mut block2::DynBlock<
+            dyn Fn(NonNull<UICollectionViewCell>) -> *mut UIDragPreviewParameters,
+        >;
 
         #[cfg(all(
             feature = "UICollectionViewCell",
@@ -2124,7 +2126,7 @@ impl UICollectionViewDropPlaceholder {
         pub unsafe fn setPreviewParametersProvider(
             &self,
             preview_parameters_provider: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(NonNull<UICollectionViewCell>) -> *mut UIDragPreviewParameters,
                 >,
             >,
@@ -2188,7 +2190,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn commitInsertionWithDataSourceUpdates(
             &self,
-            data_source_updates: &block2::Block<dyn Fn(NonNull<NSIndexPath>) + '_>,
+            data_source_updates: &block2::DynBlock<dyn Fn(NonNull<NSIndexPath>) + '_>,
         ) -> bool;
 
         #[unsafe(method(deletePlaceholder))]

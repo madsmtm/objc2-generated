@@ -126,12 +126,12 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizerbuffercallback?language=objc)
 #[cfg(all(feature = "AVAudioBuffer", feature = "block2"))]
-pub type AVSpeechSynthesizerBufferCallback = *mut block2::Block<dyn Fn(NonNull<AVAudioBuffer>)>;
+pub type AVSpeechSynthesizerBufferCallback = *mut block2::DynBlock<dyn Fn(NonNull<AVAudioBuffer>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizermarkercallback?language=objc)
 #[cfg(feature = "block2")]
 pub type AVSpeechSynthesizerMarkerCallback =
-    *mut block2::Block<dyn Fn(NonNull<NSArray<AVSpeechSynthesisMarker>>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<AVSpeechSynthesisMarker>>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesispersonalvoiceauthorizationstatus?language=objc)
 // NS_ENUM
@@ -582,7 +582,7 @@ impl AVSpeechSynthesizer {
         #[unsafe(method(requestPersonalVoiceAuthorizationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestPersonalVoiceAuthorizationWithCompletionHandler(
-            handler: &block2::Block<dyn Fn(AVSpeechSynthesisPersonalVoiceAuthorizationStatus)>,
+            handler: &block2::DynBlock<dyn Fn(AVSpeechSynthesisPersonalVoiceAuthorizationStatus)>,
         );
 
         /// Returns your app's current authorization to use personal voices.

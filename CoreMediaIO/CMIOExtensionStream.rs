@@ -574,7 +574,7 @@ impl CMIOExtensionStream {
         pub unsafe fn consumeSampleBufferFromClient_completionHandler(
             &self,
             client: &CMIOExtensionClient,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(
                     *mut CMSampleBuffer,
                     u64,

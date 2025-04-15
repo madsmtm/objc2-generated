@@ -450,7 +450,7 @@ extern "C-unwind" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_key_update_complete_t?language=objc)
 #[cfg(feature = "block2")]
-pub type sec_protocol_key_update_complete_t = *mut block2::Block<dyn Fn()>;
+pub type sec_protocol_key_update_complete_t = *mut block2::DynBlock<dyn Fn()>;
 
 /// sec_protocol_key_update_t
 ///
@@ -466,7 +466,7 @@ pub type sec_protocol_key_update_complete_t = *mut block2::Block<dyn Fn()>;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_key_update_t?language=objc)
 #[cfg(all(feature = "SecProtocolMetadata", feature = "block2"))]
 pub type sec_protocol_key_update_t =
-    *mut block2::Block<dyn Fn(sec_protocol_metadata_t, sec_protocol_key_update_complete_t)>;
+    *mut block2::DynBlock<dyn Fn(sec_protocol_metadata_t, sec_protocol_key_update_complete_t)>;
 
 /// sec_protocol_challenge_complete_t
 ///
@@ -481,7 +481,7 @@ pub type sec_protocol_key_update_t =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_challenge_complete_t?language=objc)
 #[cfg(all(feature = "SecProtocolTypes", feature = "block2"))]
-pub type sec_protocol_challenge_complete_t = *mut block2::Block<dyn Fn(sec_identity_t)>;
+pub type sec_protocol_challenge_complete_t = *mut block2::DynBlock<dyn Fn(sec_identity_t)>;
 
 /// sec_protocol_challenge_t
 ///
@@ -501,7 +501,7 @@ pub type sec_protocol_challenge_complete_t = *mut block2::Block<dyn Fn(sec_ident
     feature = "block2"
 ))]
 pub type sec_protocol_challenge_t =
-    *mut block2::Block<dyn Fn(sec_protocol_metadata_t, sec_protocol_challenge_complete_t)>;
+    *mut block2::DynBlock<dyn Fn(sec_protocol_metadata_t, sec_protocol_challenge_complete_t)>;
 
 /// sec_protocol_verify_complete_t
 ///
@@ -513,7 +513,7 @@ pub type sec_protocol_challenge_t =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_verify_complete_t?language=objc)
 #[cfg(feature = "block2")]
-pub type sec_protocol_verify_complete_t = *mut block2::Block<dyn Fn(bool)>;
+pub type sec_protocol_verify_complete_t = *mut block2::DynBlock<dyn Fn(bool)>;
 
 /// sec_protocol_verify_t
 ///
@@ -537,6 +537,6 @@ pub type sec_protocol_verify_complete_t = *mut block2::Block<dyn Fn(bool)>;
     feature = "SecProtocolTypes",
     feature = "block2"
 ))]
-pub type sec_protocol_verify_t = *mut block2::Block<
+pub type sec_protocol_verify_t = *mut block2::DynBlock<
     dyn Fn(sec_protocol_metadata_t, sec_trust_t, sec_protocol_verify_complete_t),
 >;

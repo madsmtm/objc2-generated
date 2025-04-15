@@ -53,7 +53,7 @@ impl CPGridButton {
             this: Allocated<Self>,
             title_variants: &NSArray<NSString>,
             image: &UIImage,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPGridButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPGridButton>)>>,
         ) -> Retained<Self>;
 
         /// A Boolean value indicating whether the button is enabled.

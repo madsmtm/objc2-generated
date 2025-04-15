@@ -25,7 +25,7 @@ impl ASSettingsHelper {
         #[unsafe(method(openCredentialProviderAppSettingsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openCredentialProviderAppSettingsWithCompletionHandler(
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -33,7 +33,7 @@ impl ASSettingsHelper {
         #[unsafe(method(openVerificationCodeAppSettingsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openVerificationCodeAppSettingsWithCompletionHandler(
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -44,7 +44,7 @@ impl ASSettingsHelper {
         #[unsafe(method(requestToTurnOnCredentialProviderExtensionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestToTurnOnCredentialProviderExtensionWithCompletionHandler(
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
 
         #[unsafe(method(init))]

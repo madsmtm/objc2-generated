@@ -206,7 +206,7 @@ unsafe impl RefEncode for UITableViewCellDragState {
     feature = "block2"
 ))]
 pub type UITableViewCellConfigurationUpdateHandler =
-    *mut block2::Block<dyn Fn(NonNull<UITableViewCell>, NonNull<UICellConfigurationState>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<UITableViewCell>, NonNull<UICellConfigurationState>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell?language=objc)

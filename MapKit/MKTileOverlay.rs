@@ -142,7 +142,7 @@ impl MKTileOverlay {
         pub unsafe fn loadTileAtPath_result(
             &self,
             path: MKTileOverlayPath,
-            result: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            result: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
     );
 }

@@ -41,7 +41,7 @@ impl TVDigitEntryViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn entryCompletionHandler(
             &self,
-        ) -> NonNull<block2::Block<dyn Fn(NonNull<NSString>)>>;
+        ) -> NonNull<block2::DynBlock<dyn Fn(NonNull<NSString>)>>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`entryCompletionHandler`][Self::entryCompletionHandler].
@@ -49,7 +49,7 @@ impl TVDigitEntryViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn setEntryCompletionHandler(
             &self,
-            entry_completion_handler: &block2::Block<dyn Fn(NonNull<NSString>)>,
+            entry_completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSString>)>,
         );
 
         /// The title text.

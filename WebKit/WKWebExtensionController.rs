@@ -192,7 +192,9 @@ impl WKWebExtensionController {
         pub unsafe fn fetchDataRecordsOfTypes_completionHandler(
             &self,
             data_types: &NSSet<WKWebExtensionDataType>,
-            completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<WKWebExtensionDataRecord>>)>,
+            completion_handler: &block2::DynBlock<
+                dyn Fn(NonNull<NSArray<WKWebExtensionDataRecord>>),
+            >,
         );
 
         #[cfg(all(
@@ -216,7 +218,7 @@ impl WKWebExtensionController {
             &self,
             data_types: &NSSet<WKWebExtensionDataType>,
             extension_context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<dyn Fn(*mut WKWebExtensionDataRecord)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut WKWebExtensionDataRecord)>,
         );
 
         #[cfg(all(
@@ -237,7 +239,7 @@ impl WKWebExtensionController {
             &self,
             data_types: &NSSet<WKWebExtensionDataType>,
             data_records: &NSArray<WKWebExtensionDataRecord>,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(feature = "WKWebExtensionWindow")]

@@ -53,7 +53,7 @@ impl CLKWatchFaceLibrary {
         pub unsafe fn addWatchFaceAtURL_completionHandler(
             &self,
             file_url: &NSURL,
-            handler: &block2::Block<dyn Fn(*mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

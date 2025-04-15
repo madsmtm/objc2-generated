@@ -149,7 +149,7 @@ impl UIDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn openWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -157,7 +157,7 @@ impl UIDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn closeWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[unsafe(method(loadFromContents:ofType:error:_))]
@@ -222,7 +222,7 @@ impl UIDocument {
             &self,
             url: &NSURL,
             save_operation: UIDocumentSaveOperation,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -230,7 +230,7 @@ impl UIDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn autosaveWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[unsafe(method(savingFileType))]
@@ -282,7 +282,7 @@ impl UIDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn performAsynchronousFileAccessUsingBlock(
             &self,
-            block: &block2::Block<dyn Fn()>,
+            block: &block2::DynBlock<dyn Fn()>,
         );
 
         #[unsafe(method(handleError:userInteractionPermitted:))]
@@ -307,7 +307,7 @@ impl UIDocument {
         pub unsafe fn revertToContentsOfURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
     );
 }

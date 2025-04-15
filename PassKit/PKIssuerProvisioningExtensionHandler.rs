@@ -23,7 +23,7 @@ impl PKIssuerProvisioningExtensionHandler {
         #[unsafe(method_family = none)]
         pub unsafe fn statusWithCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(NonNull<PKIssuerProvisioningExtensionStatus>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<PKIssuerProvisioningExtensionStatus>)>,
         );
 
         #[cfg(all(feature = "PKIssuerProvisioningExtensionPassEntry", feature = "block2"))]
@@ -31,7 +31,7 @@ impl PKIssuerProvisioningExtensionHandler {
         #[unsafe(method_family = none)]
         pub unsafe fn passEntriesWithCompletion(
             &self,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<NSArray<PKIssuerProvisioningExtensionPassEntry>>),
             >,
         );
@@ -41,7 +41,7 @@ impl PKIssuerProvisioningExtensionHandler {
         #[unsafe(method_family = none)]
         pub unsafe fn remotePassEntriesWithCompletion(
             &self,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<NSArray<PKIssuerProvisioningExtensionPassEntry>>),
             >,
         );
@@ -56,7 +56,7 @@ impl PKIssuerProvisioningExtensionHandler {
             certificates: &NSArray<NSData>,
             nonce: &NSData,
             nonce_signature: &NSData,
-            completion: &block2::Block<dyn Fn(*mut PKAddPaymentPassRequest)>,
+            completion: &block2::DynBlock<dyn Fn(*mut PKAddPaymentPassRequest)>,
         );
     );
 }

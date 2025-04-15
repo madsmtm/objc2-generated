@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsnapshotcompletionhandler?language=objc)
 #[cfg(all(feature = "MKMapSnapshot", feature = "block2"))]
 pub type MKMapSnapshotCompletionHandler =
-    *mut block2::Block<dyn Fn(*mut MKMapSnapshot, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut MKMapSnapshot, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter?language=objc)

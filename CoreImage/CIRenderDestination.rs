@@ -84,7 +84,7 @@ impl CIRenderDestination {
             height: NSUInteger,
             pixel_format: MTLPixelFormat,
             command_buffer: Option<&ProtocolObject<dyn MTLCommandBuffer>>,
-            block: Option<&block2::Block<dyn Fn() -> NonNull<ProtocolObject<dyn MTLTexture>>>>,
+            block: Option<&block2::DynBlock<dyn Fn() -> NonNull<ProtocolObject<dyn MTLTexture>>>>,
         ) -> Retained<Self>;
 
         #[unsafe(method(initWithGLTexture:target:width:height:))]

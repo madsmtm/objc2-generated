@@ -226,7 +226,7 @@ impl UITab {
             image: Option<&UIImage>,
             identifier: &NSString,
             view_controller_provider: Option<
-                &block2::Block<dyn Fn(NonNull<UITab>) -> NonNull<UIViewController>>,
+                &block2::DynBlock<dyn Fn(NonNull<UITab>) -> NonNull<UIViewController>>,
             >,
         ) -> Retained<Self>;
 

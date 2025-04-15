@@ -116,7 +116,7 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_t?language=objc)
 #[cfg(feature = "block2")]
-pub type dispatch_block_t = *mut block2::Block<dyn Fn()>;
+pub type dispatch_block_t = *mut block2::DynBlock<dyn Fn()>;
 
 extern "C" {
     /// Increment the reference count of a dispatch object.
@@ -382,7 +382,7 @@ extern "C" {
     pub fn dispatch_apply(
         iterations: usize,
         queue: Option<&DispatchQueue>,
-        block: &block2::Block<dyn Fn(usize)>,
+        block: &block2::DynBlock<dyn Fn(usize)>,
     );
 }
 
@@ -2862,7 +2862,7 @@ pub unsafe extern "C" fn dispatch_data_create_subrange(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_applier_t?language=objc)
 #[cfg(feature = "block2")]
 pub type dispatch_data_applier_t =
-    *mut block2::Block<dyn Fn(NonNull<DispatchData>, usize, NonNull<c_void>, usize) -> bool>;
+    *mut block2::DynBlock<dyn Fn(NonNull<DispatchData>, usize, NonNull<c_void>, usize) -> bool>;
 
 extern "C" {
     /// Traverse the memory regions represented by the specified dispatch data object
@@ -2973,7 +2973,7 @@ extern "C" {
         fd: dispatch_fd_t,
         length: usize,
         queue: &DispatchQueue,
-        handler: &block2::Block<dyn Fn(NonNull<DispatchData>, c_int)>,
+        handler: &block2::DynBlock<dyn Fn(NonNull<DispatchData>, c_int)>,
     );
 }
 
@@ -3014,7 +3014,7 @@ extern "C" {
         fd: dispatch_fd_t,
         data: &DispatchData,
         queue: &DispatchQueue,
-        handler: &block2::Block<dyn Fn(*mut DispatchData, c_int)>,
+        handler: &block2::DynBlock<dyn Fn(*mut DispatchData, c_int)>,
     );
 }
 
@@ -3052,14 +3052,14 @@ pub unsafe extern "C" fn dispatch_io_create(
     r#type: dispatch_io_type_t,
     fd: dispatch_fd_t,
     queue: &DispatchQueue,
-    cleanup_handler: &block2::Block<dyn Fn(c_int)>,
+    cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
 ) -> DispatchRetained<DispatchIO> {
     extern "C" {
         fn dispatch_io_create(
             r#type: dispatch_io_type_t,
             fd: dispatch_fd_t,
             queue: &DispatchQueue,
-            cleanup_handler: &block2::Block<dyn Fn(c_int)>,
+            cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
         ) -> Option<NonNull<DispatchIO>>;
     }
     let ret = unsafe { dispatch_io_create(r#type, fd, queue, cleanup_handler) };
@@ -3107,7 +3107,7 @@ pub unsafe extern "C" fn dispatch_io_create_with_path(
     oflag: c_int,
     mode: libc::mode_t,
     queue: &DispatchQueue,
-    cleanup_handler: &block2::Block<dyn Fn(c_int)>,
+    cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
 ) -> DispatchRetained<DispatchIO> {
     extern "C" {
         fn dispatch_io_create_with_path(
@@ -3116,7 +3116,7 @@ pub unsafe extern "C" fn dispatch_io_create_with_path(
             oflag: c_int,
             mode: libc::mode_t,
             queue: &DispatchQueue,
-            cleanup_handler: &block2::Block<dyn Fn(c_int)>,
+            cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
         ) -> Option<NonNull<DispatchIO>>;
     }
     let ret =
@@ -3165,14 +3165,14 @@ pub unsafe extern "C" fn dispatch_io_create_with_io(
     r#type: dispatch_io_type_t,
     io: &DispatchIO,
     queue: &DispatchQueue,
-    cleanup_handler: &block2::Block<dyn Fn(c_int)>,
+    cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
 ) -> DispatchRetained<DispatchIO> {
     extern "C" {
         fn dispatch_io_create_with_io(
             r#type: dispatch_io_type_t,
             io: &DispatchIO,
             queue: &DispatchQueue,
-            cleanup_handler: &block2::Block<dyn Fn(c_int)>,
+            cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
         ) -> Option<NonNull<DispatchIO>>;
     }
     let ret = unsafe { dispatch_io_create_with_io(r#type, io, queue, cleanup_handler) };
@@ -3191,7 +3191,7 @@ pub unsafe extern "C" fn dispatch_io_create_with_io(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_handler_t?language=objc)
 #[cfg(feature = "block2")]
-pub type dispatch_io_handler_t = *mut block2::Block<dyn Fn(bool, *mut DispatchData, c_int)>;
+pub type dispatch_io_handler_t = *mut block2::DynBlock<dyn Fn(bool, *mut DispatchData, c_int)>;
 
 extern "C" {
     /// Schedule a read operation for asynchronous execution on the specified I/O

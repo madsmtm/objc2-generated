@@ -15,7 +15,7 @@ pub static PHInvalidAssetResourceDataRequestID: PHAssetResourceDataRequestID = 0
 
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceprogresshandler?language=objc)
 #[cfg(feature = "block2")]
-pub type PHAssetResourceProgressHandler = *mut block2::Block<dyn Fn(c_double)>;
+pub type PHAssetResourceProgressHandler = *mut block2::DynBlock<dyn Fn(c_double)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcerequestoptions?language=objc)
@@ -91,8 +91,8 @@ impl PHAssetResourceManager {
             &self,
             resource: &PHAssetResource,
             options: Option<&PHAssetResourceRequestOptions>,
-            handler: &block2::Block<dyn Fn(NonNull<NSData>)>,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<NSData>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         ) -> PHAssetResourceDataRequestID;
 
         #[cfg(all(feature = "PHAssetResource", feature = "block2"))]
@@ -103,7 +103,7 @@ impl PHAssetResourceManager {
             resource: &PHAssetResource,
             file_url: &NSURL,
             options: Option<&PHAssetResourceRequestOptions>,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[unsafe(method(cancelDataRequest:))]

@@ -63,7 +63,7 @@ impl AVCaptureSystemExposureBiasSlider {
         pub unsafe fn initWithDevice_action(
             this: Allocated<Self>,
             device: &AVCaptureDevice,
-            action: &block2::Block<dyn Fn(c_float)>,
+            action: &block2::DynBlock<dyn Fn(c_float)>,
         ) -> Retained<Self>;
     );
 }

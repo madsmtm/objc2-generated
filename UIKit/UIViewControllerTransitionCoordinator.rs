@@ -106,14 +106,14 @@ extern_protocol!(
         unsafe fn animateAlongsideTransition_completion(
             &self,
             animation: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>,
                     ),
                 >,
             >,
             completion: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>,
                     ),
@@ -128,14 +128,14 @@ extern_protocol!(
             &self,
             view: Option<&UIView>,
             animation: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>,
                     ),
                 >,
             >,
             completion: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>,
                     ),
@@ -149,7 +149,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn notifyWhenInteractionEndsUsingBlock(
             &self,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>),
             >,
         );
@@ -159,7 +159,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn notifyWhenInteractionChangesUsingBlock(
             &self,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(NonNull<ProtocolObject<dyn UIViewControllerTransitionCoordinatorContext>>),
             >,
         );

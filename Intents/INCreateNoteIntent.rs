@@ -105,7 +105,7 @@ extern_protocol!(
         unsafe fn handleCreateNote_completion(
             &self,
             intent: &INCreateNoteIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INCreateNoteIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INCreateNoteIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -131,7 +131,7 @@ extern_protocol!(
         unsafe fn confirmCreateNote_completion(
             &self,
             intent: &INCreateNoteIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INCreateNoteIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INCreateNoteIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -157,7 +157,7 @@ extern_protocol!(
         unsafe fn resolveTitleForCreateNote_withCompletion(
             &self,
             intent: &INCreateNoteIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -172,7 +172,7 @@ extern_protocol!(
         unsafe fn resolveContentForCreateNote_withCompletion(
             &self,
             intent: &INCreateNoteIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INNoteContentResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INNoteContentResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -187,7 +187,7 @@ extern_protocol!(
         unsafe fn resolveGroupNameForCreateNote_withCompletion(
             &self,
             intent: &INCreateNoteIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
     }
 );

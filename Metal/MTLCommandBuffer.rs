@@ -308,7 +308,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLCommandBufferHandler =
-    *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn MTLCommandBuffer>>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTLCommandBuffer>>)>;
 
 /// MTLDispatchType Describes how a command encoder will execute dispatched work.
 ///

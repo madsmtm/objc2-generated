@@ -419,7 +419,7 @@ impl UIControl {
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateEventHandlers(
             &self,
-            iterator: &block2::Block<
+            iterator: &block2::DynBlock<
                 dyn Fn(*mut UIAction, *mut AnyObject, Option<Sel>, UIControlEvents, NonNull<Bool>)
                     + '_,
             >,

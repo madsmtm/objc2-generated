@@ -131,7 +131,7 @@ unsafe impl RefEncode for AUParameterAutomationEvent {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterobserver?language=objc)
 #[cfg(feature = "block2")]
-pub type AUParameterObserver = *mut block2::Block<dyn Fn(AUParameterAddress, AUValue)>;
+pub type AUParameterObserver = *mut block2::DynBlock<dyn Fn(AUParameterAddress, AUValue)>;
 
 /// A block called to record parameter changes as automation events.
 ///
@@ -144,7 +144,7 @@ pub type AUParameterObserver = *mut block2::Block<dyn Fn(AUParameterAddress, AUV
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterrecordingobserver?language=objc)
 #[cfg(feature = "block2")]
 pub type AUParameterRecordingObserver =
-    *mut block2::Block<dyn Fn(NSInteger, NonNull<AURecordedParameterEvent>)>;
+    *mut block2::DynBlock<dyn Fn(NSInteger, NonNull<AURecordedParameterEvent>)>;
 
 /// A block called to record parameter changes as automation events.
 ///
@@ -157,7 +157,7 @@ pub type AUParameterRecordingObserver =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationobserver?language=objc)
 #[cfg(feature = "block2")]
 pub type AUParameterAutomationObserver =
-    *mut block2::Block<dyn Fn(NSInteger, NonNull<AUParameterAutomationEvent>)>;
+    *mut block2::DynBlock<dyn Fn(NSInteger, NonNull<AUParameterAutomationEvent>)>;
 
 /// A token representing an installed AUParameterObserver, AUParameterRecordingObserver,
 /// or AUParameterAutomationObserver.

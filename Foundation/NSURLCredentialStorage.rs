@@ -187,7 +187,7 @@ impl NSURLCredentialStorage {
             &self,
             protection_space: &NSURLProtectionSpace,
             task: &NSURLSessionTask,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSDictionary<NSString, NSURLCredential>),
             >,
         );
@@ -235,7 +235,7 @@ impl NSURLCredentialStorage {
             &self,
             space: &NSURLProtectionSpace,
             task: &NSURLSessionTask,
-            completion_handler: &block2::Block<dyn Fn(*mut NSURLCredential)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSURLCredential)>,
         );
 
         #[cfg(all(

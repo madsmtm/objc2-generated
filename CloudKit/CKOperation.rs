@@ -69,7 +69,8 @@ impl CKOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[unsafe(method(longLivedOperationWasPersistedBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn longLivedOperationWasPersistedBlock(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn longLivedOperationWasPersistedBlock(&self)
+            -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`longLivedOperationWasPersistedBlock`][Self::longLivedOperationWasPersistedBlock].
@@ -77,7 +78,7 @@ impl CKOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setLongLivedOperationWasPersistedBlock(
             &self,
-            long_lived_operation_was_persisted_block: Option<&block2::Block<dyn Fn()>>,
+            long_lived_operation_was_persisted_block: Option<&block2::DynBlock<dyn Fn()>>,
         );
     );
 }

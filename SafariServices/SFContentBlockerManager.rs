@@ -23,7 +23,7 @@ impl SFContentBlockerManager {
         #[unsafe(method_family = none)]
         pub unsafe fn reloadContentBlockerWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "SFContentBlockerState", feature = "block2"))]
@@ -31,7 +31,7 @@ impl SFContentBlockerManager {
         #[unsafe(method_family = none)]
         pub unsafe fn getStateOfContentBlockerWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &block2::Block<dyn Fn(*mut SFContentBlockerState, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SFContentBlockerState, *mut NSError)>,
         );
     );
 }

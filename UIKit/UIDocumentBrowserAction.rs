@@ -54,7 +54,7 @@ impl UIDocumentBrowserAction {
             identifier: &NSString,
             localized_title: &NSString,
             availability: UIDocumentBrowserActionAvailability,
-            handler: &block2::Block<dyn Fn(NonNull<NSArray<NSURL>>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSURL>>)>,
         ) -> Retained<Self>;
 
         #[unsafe(method(identifier))]

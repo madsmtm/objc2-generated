@@ -472,7 +472,7 @@ impl MPMediaItemArtwork {
         pub unsafe fn initWithBoundsSize_requestHandler(
             this: Allocated<Self>,
             bounds_size: CGSize,
-            request_handler: &block2::Block<dyn Fn(CGSize) -> NonNull<NSImage>>,
+            request_handler: &block2::DynBlock<dyn Fn(CGSize) -> NonNull<NSImage>>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]

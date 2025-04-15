@@ -127,7 +127,7 @@ impl HMService {
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -156,7 +156,7 @@ impl HMService {
         pub unsafe fn updateAssociatedServiceType_completionHandler(
             &self,
             service_type: Option<&NSString>,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[deprecated = "HMService objects are created by their parent container objects. Directly creating them is not supported."]

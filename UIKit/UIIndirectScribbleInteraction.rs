@@ -84,7 +84,7 @@ extern_protocol!(
             &self,
             interaction: &UIIndirectScribbleInteraction,
             rect: CGRect,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<UIScribbleElementIdentifier>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<UIScribbleElementIdentifier>>)>,
         );
 
         /// Asks the delegate if an element is currently focused, according to the internal state of the interaction's view.
@@ -141,7 +141,7 @@ extern_protocol!(
             interaction: &UIIndirectScribbleInteraction,
             element_identifier: &UIScribbleElementIdentifier,
             focus_reference_point: CGPoint,
-            completion: &block2::Block<dyn Fn(*mut UIResponder)>,
+            completion: &block2::DynBlock<dyn Fn(*mut UIResponder)>,
         );
 
         /// Allow the delegate to delay focusing an element. Normally, Scribble will focus the element as soon as the user begins writing, but if you return YES from this callback, it will wait until the user makes a brief pause. This is useful in cases where the element's frame will shift or transform when becoming focused, which can be disruptive to a user trying to handwrite into it.

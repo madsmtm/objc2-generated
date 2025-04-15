@@ -384,7 +384,7 @@ extern_protocol!(
             &self,
             list_template: &CPListTemplate,
             item: &CPListItem,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
     }
 );

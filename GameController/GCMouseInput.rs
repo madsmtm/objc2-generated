@@ -17,7 +17,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousemoved?language=objc)
 #[cfg(all(feature = "GCPhysicalInputProfile", feature = "block2"))]
-pub type GCMouseMoved = *mut block2::Block<dyn Fn(NonNull<GCMouseInput>, c_float, c_float)>;
+pub type GCMouseMoved = *mut block2::DynBlock<dyn Fn(NonNull<GCMouseInput>, c_float, c_float)>;
 
 extern_class!(
     /// Mouse profile that represent a physical mouse object with two axis cursor, two axis scroll,

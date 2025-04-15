@@ -18,7 +18,7 @@ extern_protocol!(
         unsafe fn getTimelineEndDateForComplication_withHandler(
             &self,
             complication: &CLKComplication,
-            handler: &block2::Block<dyn Fn(*mut NSDate)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSDate)>,
         );
 
         #[cfg(all(
@@ -33,7 +33,7 @@ extern_protocol!(
         unsafe fn getPrivacyBehaviorForComplication_withHandler(
             &self,
             complication: &CLKComplication,
-            handler: &block2::Block<dyn Fn(CLKComplicationPrivacyBehavior)>,
+            handler: &block2::DynBlock<dyn Fn(CLKComplicationPrivacyBehavior)>,
         );
 
         #[cfg(all(
@@ -48,7 +48,7 @@ extern_protocol!(
         unsafe fn getTimelineAnimationBehaviorForComplication_withHandler(
             &self,
             complication: &CLKComplication,
-            handler: &block2::Block<dyn Fn(CLKComplicationTimelineAnimationBehavior)>,
+            handler: &block2::DynBlock<dyn Fn(CLKComplicationTimelineAnimationBehavior)>,
         );
 
         #[cfg(all(
@@ -63,7 +63,7 @@ extern_protocol!(
         unsafe fn getAlwaysOnTemplateForComplication_withHandler(
             &self,
             complication: &CLKComplication,
-            handler: &block2::Block<dyn Fn(*mut CLKComplicationTemplate)>,
+            handler: &block2::DynBlock<dyn Fn(*mut CLKComplicationTemplate)>,
         );
 
         #[cfg(all(
@@ -77,7 +77,7 @@ extern_protocol!(
         unsafe fn getCurrentTimelineEntryForComplication_withHandler(
             &self,
             complication: &CLKComplication,
-            handler: &block2::Block<dyn Fn(*mut CLKComplicationTimelineEntry)>,
+            handler: &block2::DynBlock<dyn Fn(*mut CLKComplicationTimelineEntry)>,
         );
 
         #[cfg(all(
@@ -94,7 +94,7 @@ extern_protocol!(
             complication: &CLKComplication,
             date: &NSDate,
             limit: NSUInteger,
-            handler: &block2::Block<dyn Fn(*mut NSArray<CLKComplicationTimelineEntry>)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSArray<CLKComplicationTimelineEntry>)>,
         );
 
         #[cfg(all(
@@ -109,7 +109,7 @@ extern_protocol!(
         unsafe fn getLocalizableSampleTemplateForComplication_withHandler(
             &self,
             complication: &CLKComplication,
-            handler: &block2::Block<dyn Fn(*mut CLKComplicationTemplate)>,
+            handler: &block2::DynBlock<dyn Fn(*mut CLKComplicationTemplate)>,
         );
 
         #[cfg(all(feature = "CLKComplicationDescriptor", feature = "block2"))]
@@ -119,7 +119,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn getComplicationDescriptorsWithHandler(
             &self,
-            handler: &block2::Block<dyn Fn(NonNull<NSArray<CLKComplicationDescriptor>>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<CLKComplicationDescriptor>>)>,
         );
 
         #[cfg(feature = "CLKComplicationDescriptor")]
@@ -152,7 +152,7 @@ extern_protocol!(
         unsafe fn getPlaceholderTemplateForComplication_withHandler(
             &self,
             complication: &CLKComplication,
-            handler: &block2::Block<dyn Fn(*mut CLKComplicationTemplate)>,
+            handler: &block2::DynBlock<dyn Fn(*mut CLKComplicationTemplate)>,
         );
 
         #[cfg(all(
@@ -167,7 +167,7 @@ extern_protocol!(
         unsafe fn getSupportedTimeTravelDirectionsForComplication_withHandler(
             &self,
             complication: &CLKComplication,
-            handler: &block2::Block<dyn Fn(CLKComplicationTimeTravelDirections)>,
+            handler: &block2::DynBlock<dyn Fn(CLKComplicationTimeTravelDirections)>,
         );
 
         #[cfg(all(feature = "CLKComplication", feature = "block2"))]
@@ -178,7 +178,7 @@ extern_protocol!(
         unsafe fn getTimelineStartDateForComplication_withHandler(
             &self,
             complication: &CLKComplication,
-            handler: &block2::Block<dyn Fn(*mut NSDate)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSDate)>,
         );
 
         #[cfg(all(
@@ -195,7 +195,7 @@ extern_protocol!(
             complication: &CLKComplication,
             date: &NSDate,
             limit: NSUInteger,
-            handler: &block2::Block<dyn Fn(*mut NSArray<CLKComplicationTimelineEntry>)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSArray<CLKComplicationTimelineEntry>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -205,7 +205,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn getNextRequestedUpdateDateWithHandler(
             &self,
-            handler: &block2::Block<dyn Fn(*mut NSDate)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSDate)>,
         );
 
         #[deprecated = "Use WKRefreshBackgroundTask instead"]

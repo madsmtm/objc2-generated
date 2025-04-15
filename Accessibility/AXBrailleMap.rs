@@ -87,7 +87,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn accessibilityBrailleMapRenderer(
             &self,
-        ) -> NonNull<block2::Block<dyn Fn(NonNull<AXBrailleMap>)>>;
+        ) -> NonNull<block2::DynBlock<dyn Fn(NonNull<AXBrailleMap>)>>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityBrailleMapRenderer`][Self::accessibilityBrailleMapRenderer].
@@ -96,7 +96,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityBrailleMapRenderer(
             &self,
-            accessibility_braille_map_renderer: &block2::Block<dyn Fn(NonNull<AXBrailleMap>)>,
+            accessibility_braille_map_renderer: &block2::DynBlock<dyn Fn(NonNull<AXBrailleMap>)>,
         );
     }
 );

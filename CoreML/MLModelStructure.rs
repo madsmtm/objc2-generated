@@ -62,7 +62,7 @@ impl MLModelStructure {
         #[unsafe(method_family = none)]
         pub unsafe fn loadContentsOfURL_completionHandler(
             url: &NSURL,
-            handler: &block2::Block<dyn Fn(*mut MLModelStructure, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut MLModelStructure, *mut NSError)>,
         );
 
         #[cfg(all(feature = "MLModelAsset", feature = "block2"))]
@@ -76,7 +76,7 @@ impl MLModelStructure {
         #[unsafe(method_family = none)]
         pub unsafe fn loadModelAsset_completionHandler(
             asset: &MLModelAsset,
-            handler: &block2::Block<dyn Fn(*mut MLModelStructure, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut MLModelStructure, *mut NSError)>,
         );
 
         #[cfg(feature = "MLModelStructureNeuralNetwork")]

@@ -78,7 +78,7 @@ impl WKWebExtensionMessagePort {
         #[unsafe(method_family = none)]
         pub unsafe fn messageHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(*mut AnyObject, *mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(*mut AnyObject, *mut NSError)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`messageHandler`][Self::messageHandler].
@@ -86,7 +86,7 @@ impl WKWebExtensionMessagePort {
         #[unsafe(method_family = none)]
         pub unsafe fn setMessageHandler(
             &self,
-            message_handler: Option<&block2::Block<dyn Fn(*mut AnyObject, *mut NSError)>>,
+            message_handler: Option<&block2::DynBlock<dyn Fn(*mut AnyObject, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -95,7 +95,7 @@ impl WKWebExtensionMessagePort {
         /// An optional block to be invoked when the port disconnects, taking an optional error that indicates if the disconnection was caused by an error.
         #[unsafe(method(disconnectHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn disconnectHandler(&self) -> *mut block2::Block<dyn Fn(*mut NSError)>;
+        pub unsafe fn disconnectHandler(&self) -> *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`disconnectHandler`][Self::disconnectHandler].
@@ -103,7 +103,7 @@ impl WKWebExtensionMessagePort {
         #[unsafe(method_family = none)]
         pub unsafe fn setDisconnectHandler(
             &self,
-            disconnect_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            disconnect_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         /// Indicates whether the message port is disconnected.
@@ -124,7 +124,7 @@ impl WKWebExtensionMessagePort {
         pub unsafe fn sendMessage_completionHandler(
             &self,
             message: Option<&AnyObject>,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         /// Disconnects the port, terminating all further messages.

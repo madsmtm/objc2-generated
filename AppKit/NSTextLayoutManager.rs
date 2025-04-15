@@ -219,7 +219,7 @@ impl NSTextLayoutManager {
             &self,
             location: Option<&ProtocolObject<dyn NSTextLocation>>,
             options: NSTextLayoutFragmentEnumerationOptions,
-            block: &block2::Block<dyn Fn(NonNull<NSTextLayoutFragment>) -> Bool + '_>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSTextLayoutFragment>) -> Bool + '_>,
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(feature = "NSTextSelection")]
@@ -254,7 +254,7 @@ impl NSTextLayoutManager {
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
             reverse: bool,
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(
                         NonNull<NSTextLayoutManager>,
                         NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
@@ -302,7 +302,9 @@ impl NSTextLayoutManager {
         #[unsafe(method_family = none)]
         pub unsafe fn renderingAttributesValidator(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<NSTextLayoutManager>, NonNull<NSTextLayoutFragment>)>;
+        ) -> *mut block2::DynBlock<
+            dyn Fn(NonNull<NSTextLayoutManager>, NonNull<NSTextLayoutFragment>),
+        >;
 
         #[cfg(all(feature = "NSTextLayoutFragment", feature = "block2"))]
         /// Setter for [`renderingAttributesValidator`][Self::renderingAttributesValidator].
@@ -311,7 +313,9 @@ impl NSTextLayoutManager {
         pub unsafe fn setRenderingAttributesValidator(
             &self,
             rendering_attributes_validator: Option<
-                &block2::Block<dyn Fn(NonNull<NSTextLayoutManager>, NonNull<NSTextLayoutFragment>)>,
+                &block2::DynBlock<
+                    dyn Fn(NonNull<NSTextLayoutManager>, NonNull<NSTextLayoutFragment>),
+                >,
             >,
         );
 
@@ -342,7 +346,7 @@ impl NSTextLayoutManager {
             text_range: &NSTextRange,
             r#type: NSTextLayoutManagerSegmentType,
             options: NSTextLayoutManagerSegmentOptions,
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(*mut NSTextRange, CGRect, CGFloat, NonNull<NSTextContainer>) -> Bool + '_,
             >,
         );

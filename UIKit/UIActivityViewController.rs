@@ -32,12 +32,12 @@ unsafe impl RefEncode for UIActivitySectionTypes {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontrollercompletionhandler?language=objc)
 #[cfg(all(feature = "UIActivity", feature = "block2"))]
 pub type UIActivityViewControllerCompletionHandler =
-    *mut block2::Block<dyn Fn(*mut UIActivityType, Bool)>;
+    *mut block2::DynBlock<dyn Fn(*mut UIActivityType, Bool)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontrollercompletionwithitemshandler?language=objc)
 #[cfg(all(feature = "UIActivity", feature = "block2"))]
 pub type UIActivityViewControllerCompletionWithItemsHandler =
-    *mut block2::Block<dyn Fn(*mut UIActivityType, Bool, *mut NSArray, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut UIActivityType, Bool, *mut NSArray, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller?language=objc)

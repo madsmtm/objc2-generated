@@ -463,7 +463,7 @@ impl AVPlayer {
         pub unsafe fn seekToDate_completionHandler(
             &self,
             date: &NSDate,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
 
         #[cfg(feature = "objc2-core-media")]
@@ -510,7 +510,7 @@ impl AVPlayer {
         pub unsafe fn seekToTime_completionHandler(
             &self,
             time: CMTime,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -533,7 +533,7 @@ impl AVPlayer {
             time: CMTime,
             tolerance_before: CMTime,
             tolerance_after: CMTime,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
     );
 }
@@ -616,7 +616,7 @@ impl AVPlayer {
         pub unsafe fn prerollAtRate_completionHandler(
             &self,
             rate: c_float,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         /// Cancel any pending preroll requests and invoke the corresponding completion handlers if present.
@@ -675,7 +675,7 @@ impl AVPlayer {
             &self,
             interval: CMTime,
             queue: Option<&DispatchQueue>,
-            block: &block2::Block<dyn Fn(CMTime)>,
+            block: &block2::DynBlock<dyn Fn(CMTime)>,
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -699,7 +699,7 @@ impl AVPlayer {
             &self,
             times: &NSArray<NSValue>,
             queue: Option<&DispatchQueue>,
-            block: &block2::Block<dyn Fn()>,
+            block: &block2::DynBlock<dyn Fn()>,
         ) -> Retained<AnyObject>;
 
         /// Cancels a previously registered time observer.

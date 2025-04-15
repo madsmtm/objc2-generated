@@ -128,7 +128,7 @@ impl GKMatch {
         #[unsafe(method_family = none)]
         pub unsafe fn chooseBestHostingPlayerWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut GKPlayer)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut GKPlayer)>,
         );
 
         #[cfg(feature = "block2")]
@@ -140,7 +140,7 @@ impl GKMatch {
         #[unsafe(method_family = none)]
         pub unsafe fn rematchWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut GKMatch, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut GKMatch, *mut NSError)>>,
         );
 
         #[cfg(feature = "GKVoiceChat")]
@@ -266,7 +266,7 @@ impl GKMatch {
         #[unsafe(method_family = none)]
         pub unsafe fn chooseBestHostPlayerWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSString)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSString)>,
         );
 
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**

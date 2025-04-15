@@ -69,7 +69,7 @@ impl AVCaptureSystemZoomSlider {
         pub unsafe fn initWithDevice_action(
             this: Allocated<Self>,
             device: &AVCaptureDevice,
-            action: &block2::Block<dyn Fn(CGFloat)>,
+            action: &block2::DynBlock<dyn Fn(CGFloat)>,
         ) -> Retained<Self>;
     );
 }

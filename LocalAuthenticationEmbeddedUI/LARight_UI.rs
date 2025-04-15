@@ -36,7 +36,7 @@ pub unsafe trait LARightUI: ClassType + Sized + private_LARightUI::Sealed {
             &self,
             localized_reason: &NSString,
             presentation_context: &LAPresentationContext,
-            handler: &block2::Block<dyn Fn(*mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

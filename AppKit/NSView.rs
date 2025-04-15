@@ -1451,7 +1451,7 @@ impl NSView {
             attr_string: Option<&NSAttributedString>,
             target_range: NSRange,
             options: Option<&NSDictionary<NSDefinitionOptionKey, AnyObject>>,
-            origin_provider: Option<&block2::Block<dyn Fn(NSRange) -> NSPoint>>,
+            origin_provider: Option<&block2::DynBlock<dyn Fn(NSRange) -> NSPoint>>,
         );
     );
 }

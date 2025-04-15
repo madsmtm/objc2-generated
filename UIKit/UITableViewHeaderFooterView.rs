@@ -19,7 +19,7 @@ use crate::*;
     feature = "UIViewConfigurationState",
     feature = "block2"
 ))]
-pub type UITableViewHeaderFooterViewConfigurationUpdateHandler = *mut block2::Block<
+pub type UITableViewHeaderFooterViewConfigurationUpdateHandler = *mut block2::DynBlock<
     dyn Fn(NonNull<UITableViewHeaderFooterView>, NonNull<UIViewConfigurationState>),
 >;
 

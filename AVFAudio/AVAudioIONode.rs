@@ -41,7 +41,7 @@ use crate::*;
     feature = "objc2-core-audio-types"
 ))]
 pub type AVAudioIONodeInputBlock =
-    *mut block2::Block<dyn Fn(AVAudioFrameCount) -> *const AudioBufferList>;
+    *mut block2::DynBlock<dyn Fn(AVAudioFrameCount) -> *const AudioBufferList>;
 
 /// Types of speech activity events.
 ///
@@ -348,7 +348,7 @@ impl AVAudioInputNode {
         pub unsafe fn setMutedSpeechActivityEventListener(
             &self,
             listener_block: Option<
-                &block2::Block<dyn Fn(AVAudioVoiceProcessingSpeechActivityEvent)>,
+                &block2::DynBlock<dyn Fn(AVAudioVoiceProcessingSpeechActivityEvent)>,
             >,
         ) -> bool;
 

@@ -33,7 +33,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             payment: &PKPayment,
-            completion: &block2::Block<dyn Fn(NonNull<PKPaymentAuthorizationResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<PKPaymentAuthorizationResult>)>,
             mtm: MainThreadMarker,
         );
 
@@ -46,7 +46,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             payment: &PKPayment,
-            completion: &block2::Block<dyn Fn(PKPaymentAuthorizationStatus)>,
+            completion: &block2::DynBlock<dyn Fn(PKPaymentAuthorizationStatus)>,
         );
 
         #[optional]
@@ -65,7 +65,7 @@ extern_protocol!(
         unsafe fn paymentAuthorizationController_didRequestMerchantSessionUpdate(
             &self,
             controller: &PKPaymentAuthorizationController,
-            handler: &block2::Block<dyn Fn(NonNull<PKPaymentRequestMerchantSessionUpdate>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<PKPaymentRequestMerchantSessionUpdate>)>,
             mtm: MainThreadMarker,
         );
 
@@ -77,7 +77,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             coupon_code: &NSString,
-            completion: &block2::Block<dyn Fn(NonNull<PKPaymentRequestCouponCodeUpdate>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<PKPaymentRequestCouponCodeUpdate>)>,
             mtm: MainThreadMarker,
         );
 
@@ -94,7 +94,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             shipping_method: &PKShippingMethod,
-            completion: &block2::Block<dyn Fn(NonNull<PKPaymentRequestShippingMethodUpdate>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<PKPaymentRequestShippingMethodUpdate>)>,
             mtm: MainThreadMarker,
         );
 
@@ -110,7 +110,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             contact: &PKContact,
-            completion: &block2::Block<dyn Fn(NonNull<PKPaymentRequestShippingContactUpdate>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<PKPaymentRequestShippingContactUpdate>)>,
             mtm: MainThreadMarker,
         );
 
@@ -126,7 +126,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             payment_method: &PKPaymentMethod,
-            completion: &block2::Block<dyn Fn(NonNull<PKPaymentRequestPaymentMethodUpdate>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<PKPaymentRequestPaymentMethodUpdate>)>,
             mtm: MainThreadMarker,
         );
 
@@ -144,7 +144,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             shipping_method: &PKShippingMethod,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(PKPaymentAuthorizationStatus, NonNull<NSArray<PKPaymentSummaryItem>>),
             >,
         );
@@ -164,7 +164,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             contact: &PKContact,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(
                     PKPaymentAuthorizationStatus,
                     NonNull<NSArray<PKShippingMethod>>,
@@ -186,7 +186,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationController,
             payment_method: &PKPaymentMethod,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<PKPaymentSummaryItem>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<PKPaymentSummaryItem>>)>,
         );
 
         #[cfg(feature = "objc2-app-kit")]
@@ -259,13 +259,13 @@ impl PKPaymentAuthorizationController {
         #[unsafe(method_family = none)]
         pub unsafe fn presentWithCompletion(
             &self,
-            completion: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(dismissWithCompletion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dismissWithCompletion(&self, completion: Option<&block2::Block<dyn Fn()>>);
+        pub unsafe fn dismissWithCompletion(&self, completion: Option<&block2::DynBlock<dyn Fn()>>);
 
         #[unsafe(method(supportsDisbursements))]
         #[unsafe(method_family = none)]

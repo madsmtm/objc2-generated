@@ -485,7 +485,7 @@ impl AVPlayerItem {
         pub unsafe fn seekToTime_completionHandler(
             &self,
             time: CMTime,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -512,7 +512,7 @@ impl AVPlayerItem {
             time: CMTime,
             tolerance_before: CMTime,
             tolerance_after: CMTime,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         /// Cancel any pending seek requests and invoke the corresponding completion handlers if present.
@@ -550,7 +550,7 @@ impl AVPlayerItem {
         pub unsafe fn seekToDate_completionHandler(
             &self,
             date: &NSDate,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         ) -> bool;
 
         /// Moves player's current item's current time forward or backward by the specified number of steps.

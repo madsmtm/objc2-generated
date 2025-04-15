@@ -125,13 +125,13 @@ unsafe impl RefEncode for UIGuidedAccessAccessibilityFeature {
 pub unsafe extern "C-unwind" fn UIGuidedAccessConfigureAccessibilityFeatures(
     features: UIGuidedAccessAccessibilityFeature,
     enabled: bool,
-    completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+    completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
 ) {
     extern "C-unwind" {
         fn UIGuidedAccessConfigureAccessibilityFeatures(
             features: UIGuidedAccessAccessibilityFeature,
             enabled: Bool,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
     }
     unsafe {

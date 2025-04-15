@@ -79,7 +79,7 @@ impl CKFetchRecordsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordProgressBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, c_double)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordID>, c_double)>;
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordProgressBlock`][Self::perRecordProgressBlock].
@@ -88,7 +88,7 @@ impl CKFetchRecordsOperation {
         pub unsafe fn setPerRecordProgressBlock(
             &self,
             per_record_progress_block: Option<
-                &block2::Block<dyn Fn(NonNull<CKRecordID>, c_double)>,
+                &block2::DynBlock<dyn Fn(NonNull<CKRecordID>, c_double)>,
             >,
         );
 
@@ -104,7 +104,7 @@ impl CKFetchRecordsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordCompletionBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(*mut CKRecord, *mut CKRecordID, *mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(*mut CKRecord, *mut CKRecordID, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordCompletionBlock`][Self::perRecordCompletionBlock].
@@ -113,7 +113,7 @@ impl CKFetchRecordsOperation {
         pub unsafe fn setPerRecordCompletionBlock(
             &self,
             per_record_completion_block: Option<
-                &block2::Block<dyn Fn(*mut CKRecord, *mut CKRecordID, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut CKRecord, *mut CKRecordID, *mut NSError)>,
             >,
         );
 
@@ -141,7 +141,7 @@ impl CKFetchRecordsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordsCompletionBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(*mut NSDictionary<CKRecordID, CKRecord>, *mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(*mut NSDictionary<CKRecordID, CKRecord>, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`fetchRecordsCompletionBlock`][Self::fetchRecordsCompletionBlock].
@@ -150,7 +150,7 @@ impl CKFetchRecordsOperation {
         pub unsafe fn setFetchRecordsCompletionBlock(
             &self,
             fetch_records_completion_block: Option<
-                &block2::Block<dyn Fn(*mut NSDictionary<CKRecordID, CKRecord>, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut NSDictionary<CKRecordID, CKRecord>, *mut NSError)>,
             >,
         );
     );

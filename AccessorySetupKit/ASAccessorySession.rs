@@ -56,7 +56,7 @@ impl ASAccessorySession {
         #[unsafe(method_family = none)]
         pub unsafe fn showPickerWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "ASPickerDisplayItem", feature = "block2"))]
@@ -75,7 +75,7 @@ impl ASAccessorySession {
         pub unsafe fn showPickerForDisplayItems_completionHandler(
             &self,
             display_items: &NSArray<ASPickerDisplayItem>,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -92,7 +92,7 @@ impl ASAccessorySession {
             &self,
             accessory: &ASAccessory,
             settings: &ASAccessorySettings,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "ASAccessory", feature = "block2"))]
@@ -102,7 +102,7 @@ impl ASAccessorySession {
         pub unsafe fn failAuthorization_completionHandler(
             &self,
             accessory: &ASAccessory,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "ASAccessory", feature = "block2"))]
@@ -118,7 +118,7 @@ impl ASAccessorySession {
         pub unsafe fn removeAccessory_completionHandler(
             &self,
             accessory: &ASAccessory,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "ASAccessory", feature = "block2"))]
@@ -138,7 +138,7 @@ impl ASAccessorySession {
             &self,
             accessory: &ASAccessory,
             rename_options: ASAccessoryRenameOptions,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

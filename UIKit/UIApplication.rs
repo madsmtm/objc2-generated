@@ -270,7 +270,7 @@ impl UIApplication {
             &self,
             url: &NSURL,
             options: &NSDictionary<UIApplicationOpenExternalURLOptionsKey, AnyObject>,
-            completion: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "UIEvent")]
@@ -373,7 +373,7 @@ impl UIApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn beginBackgroundTaskWithExpirationHandler(
             &self,
-            handler: Option<&block2::Block<dyn Fn()>>,
+            handler: Option<&block2::DynBlock<dyn Fn()>>,
         ) -> UIBackgroundTaskIdentifier;
 
         #[cfg(feature = "block2")]
@@ -382,7 +382,7 @@ impl UIApplication {
         pub unsafe fn beginBackgroundTaskWithName_expirationHandler(
             &self,
             task_name: Option<&NSString>,
-            handler: Option<&block2::Block<dyn Fn()>>,
+            handler: Option<&block2::DynBlock<dyn Fn()>>,
         ) -> UIBackgroundTaskIdentifier;
 
         #[unsafe(method(endBackgroundTask:))]
@@ -450,7 +450,7 @@ impl UIApplication {
         pub unsafe fn activateSceneSessionForRequest_errorHandler(
             &self,
             request: &UISceneSessionActivationRequest,
-            error_handler: Option<&block2::Block<dyn Fn(NonNull<NSError>)>>,
+            error_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSError>)>>,
         );
 
         #[cfg(all(
@@ -466,7 +466,7 @@ impl UIApplication {
             scene_session: Option<&UISceneSession>,
             user_activity: Option<&NSUserActivity>,
             options: Option<&UISceneActivationRequestOptions>,
-            error_handler: Option<&block2::Block<dyn Fn(NonNull<NSError>)>>,
+            error_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSError>)>>,
         );
 
         #[cfg(all(
@@ -480,7 +480,7 @@ impl UIApplication {
             &self,
             scene_session: &UISceneSession,
             options: Option<&UISceneDestructionRequestOptions>,
-            error_handler: Option<&block2::Block<dyn Fn(NonNull<NSError>)>>,
+            error_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSError>)>>,
         );
 
         #[cfg(feature = "UISceneSession")]
@@ -662,7 +662,7 @@ impl UIApplication {
         pub unsafe fn setAlternateIconName_completionHandler(
             &self,
             alternate_icon_name: Option<&NSString>,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[unsafe(method(alternateIconName))]
@@ -1008,7 +1008,7 @@ extern_protocol!(
             application: &UIApplication,
             identifier: Option<&NSString>,
             notification: &UILocalNotification,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
@@ -1022,7 +1022,7 @@ extern_protocol!(
             identifier: Option<&NSString>,
             user_info: &NSDictionary,
             response_info: &NSDictionary,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
@@ -1035,7 +1035,7 @@ extern_protocol!(
             application: &UIApplication,
             identifier: Option<&NSString>,
             user_info: &NSDictionary,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(
@@ -1053,7 +1053,7 @@ extern_protocol!(
             identifier: Option<&NSString>,
             notification: &UILocalNotification,
             response_info: &NSDictionary,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
@@ -1067,7 +1067,7 @@ extern_protocol!(
             &self,
             application: &UIApplication,
             user_info: &NSDictionary,
-            completion_handler: &block2::Block<dyn Fn(UIBackgroundFetchResult)>,
+            completion_handler: &block2::DynBlock<dyn Fn(UIBackgroundFetchResult)>,
         );
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
@@ -1079,7 +1079,7 @@ extern_protocol!(
         unsafe fn application_performFetchWithCompletionHandler(
             &self,
             application: &UIApplication,
-            completion_handler: &block2::Block<dyn Fn(UIBackgroundFetchResult)>,
+            completion_handler: &block2::DynBlock<dyn Fn(UIBackgroundFetchResult)>,
         );
 
         #[cfg(all(
@@ -1094,7 +1094,7 @@ extern_protocol!(
             &self,
             application: &UIApplication,
             shortcut_item: &UIApplicationShortcutItem,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
@@ -1105,7 +1105,7 @@ extern_protocol!(
             &self,
             application: &UIApplication,
             identifier: &NSString,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
@@ -1116,7 +1116,7 @@ extern_protocol!(
             &self,
             application: &UIApplication,
             user_info: Option<&NSDictionary>,
-            reply: &block2::Block<dyn Fn(*mut NSDictionary)>,
+            reply: &block2::DynBlock<dyn Fn(*mut NSDictionary)>,
         );
 
         #[cfg(feature = "UIResponder")]
@@ -1282,7 +1282,7 @@ extern_protocol!(
             &self,
             application: &UIApplication,
             user_activity: &NSUserActivity,
-            restoration_handler: &block2::Block<
+            restoration_handler: &block2::DynBlock<
                 dyn Fn(*mut NSArray<ProtocolObject<dyn UIUserActivityRestoring>>),
             >,
         ) -> bool;
@@ -1431,7 +1431,7 @@ impl UIApplication {
         pub unsafe fn setKeepAliveTimeout_handler(
             &self,
             timeout: NSTimeInterval,
-            keep_alive_handler: Option<&block2::Block<dyn Fn()>>,
+            keep_alive_handler: Option<&block2::DynBlock<dyn Fn()>>,
         ) -> bool;
 
         #[deprecated = "Please use PushKit for VoIP applications instead of calling this method"]

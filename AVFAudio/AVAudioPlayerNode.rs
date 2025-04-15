@@ -100,7 +100,7 @@ unsafe impl RefEncode for AVAudioPlayerNodeCompletionCallbackType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type AVAudioPlayerNodeCompletionHandler =
-    *mut block2::Block<dyn Fn(AVAudioPlayerNodeCompletionCallbackType)>;
+    *mut block2::DynBlock<dyn Fn(AVAudioPlayerNodeCompletionCallbackType)>;
 
 extern_class!(
     /// Play buffers or segments of audio files.

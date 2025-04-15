@@ -320,7 +320,7 @@ impl HKWorkoutSession {
         #[unsafe(method_family = none)]
         pub unsafe fn startMirroringToCompanionDeviceWithCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -334,7 +334,7 @@ impl HKWorkoutSession {
         #[unsafe(method_family = none)]
         pub unsafe fn stopMirroringToCompanionDeviceWithCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -352,7 +352,7 @@ impl HKWorkoutSession {
         pub unsafe fn sendDataToRemoteWorkoutSession_completion(
             &self,
             data: &NSData,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
     );
 }

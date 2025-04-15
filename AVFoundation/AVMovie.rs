@@ -345,7 +345,7 @@ impl AVMovie {
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<dyn Fn(*mut AVMovieTrack, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut AVMovieTrack, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -386,7 +386,7 @@ impl AVMovie {
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<dyn Fn(*mut NSArray<AVMovieTrack>, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<AVMovieTrack>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -427,7 +427,7 @@ impl AVMovie {
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<dyn Fn(*mut NSArray<AVMovieTrack>, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<AVMovieTrack>, *mut NSError)>,
         );
     );
 }
@@ -1009,7 +1009,7 @@ impl AVMutableMovie {
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<dyn Fn(*mut AVMutableMovieTrack, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut AVMutableMovieTrack, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -1049,7 +1049,7 @@ impl AVMutableMovie {
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSArray<AVMutableMovieTrack>, *mut NSError),
             >,
         );
@@ -1091,7 +1091,7 @@ impl AVMutableMovie {
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSArray<AVMutableMovieTrack>, *mut NSError),
             >,
         );
@@ -1362,7 +1362,9 @@ impl AVFragmentedMovie {
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<dyn Fn(*mut AVFragmentedMovieTrack, *mut NSError)>,
+            completion_handler: &block2::DynBlock<
+                dyn Fn(*mut AVFragmentedMovieTrack, *mut NSError),
+            >,
         );
 
         #[cfg(all(
@@ -1403,7 +1405,7 @@ impl AVFragmentedMovie {
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSArray<AVFragmentedMovieTrack>, *mut NSError),
             >,
         );
@@ -1446,7 +1448,7 @@ impl AVFragmentedMovie {
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSArray<AVFragmentedMovieTrack>, *mut NSError),
             >,
         );

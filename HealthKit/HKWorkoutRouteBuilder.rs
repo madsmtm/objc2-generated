@@ -74,7 +74,7 @@ impl HKWorkoutRouteBuilder {
         pub unsafe fn insertRouteData_completion(
             &self,
             route_data: &NSArray<CLLocation>,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -96,7 +96,7 @@ impl HKWorkoutRouteBuilder {
         pub unsafe fn addMetadata_completion(
             &self,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -132,7 +132,7 @@ impl HKWorkoutRouteBuilder {
             &self,
             workout: &HKWorkout,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: &block2::Block<dyn Fn(*mut HKWorkoutRoute, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut HKWorkoutRoute, *mut NSError)>,
         );
     );
 }

@@ -204,7 +204,7 @@ unsafe impl RefEncode for AVAudioConverterOutputStatus {
     feature = "AVAudioTypes",
     feature = "block2"
 ))]
-pub type AVAudioConverterInputBlock = *mut block2::Block<
+pub type AVAudioConverterInputBlock = *mut block2::DynBlock<
     dyn Fn(AVAudioPacketCount, NonNull<AVAudioConverterInputStatus>) -> *mut AVAudioBuffer,
 >;
 

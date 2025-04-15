@@ -141,7 +141,7 @@ impl NLContextualEmbedding {
         #[unsafe(method_family = none)]
         pub unsafe fn requestEmbeddingAssetsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NLContextualEmbeddingAssetsResult, *mut NSError),
             >,
         );
@@ -191,7 +191,9 @@ impl NLContextualEmbeddingResult {
         pub unsafe fn enumerateTokenVectorsInRange_usingBlock(
             &self,
             range: NSRange,
-            block: &block2::Block<dyn Fn(NonNull<NSArray<NSNumber>>, NSRange, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<
+                dyn Fn(NonNull<NSArray<NSNumber>>, NSRange, NonNull<Bool>) + '_,
+            >,
         );
 
         #[unsafe(method(tokenVectorAtIndex:tokenRange:))]

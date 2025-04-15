@@ -52,7 +52,7 @@ impl MDLMeshBufferMap {
         pub unsafe fn initWithBytes_deallocator(
             this: Allocated<Self>,
             bytes: NonNull<c_void>,
-            deallocator: Option<&block2::Block<dyn Fn()>>,
+            deallocator: Option<&block2::DynBlock<dyn Fn()>>,
         ) -> Retained<Self>;
 
         /// Mutable pointer to data in a MDLMeshBuffer object.

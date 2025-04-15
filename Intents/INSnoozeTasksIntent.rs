@@ -104,7 +104,7 @@ extern_protocol!(
         unsafe fn handleSnoozeTasks_completion(
             &self,
             intent: &INSnoozeTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSnoozeTasksIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSnoozeTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -130,7 +130,7 @@ extern_protocol!(
         unsafe fn confirmSnoozeTasks_completion(
             &self,
             intent: &INSnoozeTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSnoozeTasksIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSnoozeTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -157,7 +157,9 @@ extern_protocol!(
         unsafe fn resolveTasksForSnoozeTasks_withCompletion(
             &self,
             intent: &INSnoozeTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<INSnoozeTasksTaskResolutionResult>>)>,
+            completion: &block2::DynBlock<
+                dyn Fn(NonNull<NSArray<INSnoozeTasksTaskResolutionResult>>),
+            >,
         );
 
         #[cfg(all(
@@ -172,7 +174,7 @@ extern_protocol!(
         unsafe fn resolveNextTriggerTimeForSnoozeTasks_withCompletion(
             &self,
             intent: &INSnoozeTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
     }
 );

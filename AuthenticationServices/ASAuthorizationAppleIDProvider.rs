@@ -85,7 +85,7 @@ impl ASAuthorizationAppleIDProvider {
         pub unsafe fn getCredentialStateForUserID_completion(
             &self,
             user_id: &NSString,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(ASAuthorizationAppleIDProviderCredentialState, *mut NSError),
             >,
         );

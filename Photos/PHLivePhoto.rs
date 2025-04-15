@@ -80,7 +80,7 @@ impl PHLivePhoto {
             image: Option<&NSImage>,
             target_size: CGSize,
             content_mode: PHImageContentMode,
-            result_handler: &block2::Block<dyn Fn(*mut PHLivePhoto, NonNull<NSDictionary>)>,
+            result_handler: &block2::DynBlock<dyn Fn(*mut PHLivePhoto, NonNull<NSDictionary>)>,
         ) -> PHLivePhotoRequestID;
 
         /// Cancels the loading of a PHLivePhoto. The request's completion handler will be called.

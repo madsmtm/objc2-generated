@@ -175,7 +175,7 @@ impl CSSearchQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn foundItemsHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<NSArray<CSSearchableItem>>)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSArray<CSSearchableItem>>)>;
 
         #[cfg(all(feature = "CSSearchableItem", feature = "block2"))]
         /// Setter for [`foundItemsHandler`][Self::foundItemsHandler].
@@ -183,13 +183,15 @@ impl CSSearchQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn setFoundItemsHandler(
             &self,
-            found_items_handler: Option<&block2::Block<dyn Fn(NonNull<NSArray<CSSearchableItem>>)>>,
+            found_items_handler: Option<
+                &block2::DynBlock<dyn Fn(NonNull<NSArray<CSSearchableItem>>)>,
+            >,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionHandler(&self) -> *mut block2::Block<dyn Fn(*mut NSError)>;
+        pub unsafe fn completionHandler(&self) -> *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
@@ -197,7 +199,7 @@ impl CSSearchQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[unsafe(method(protectionClasses))]

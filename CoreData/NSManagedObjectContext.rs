@@ -150,12 +150,12 @@ impl NSManagedObjectContext {
         #[cfg(feature = "block2")]
         #[unsafe(method(performBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performBlock(&self, block: &block2::Block<dyn Fn()>);
+        pub unsafe fn performBlock(&self, block: &block2::DynBlock<dyn Fn()>);
 
         #[cfg(feature = "block2")]
         #[unsafe(method(performBlockAndWait:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performBlockAndWait(&self, block: &block2::Block<dyn Fn() + '_>);
+        pub unsafe fn performBlockAndWait(&self, block: &block2::DynBlock<dyn Fn() + '_>);
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
         #[unsafe(method(persistentStoreCoordinator))]

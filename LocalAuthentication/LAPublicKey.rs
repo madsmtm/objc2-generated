@@ -30,7 +30,7 @@ impl LAPublicKey {
         #[unsafe(method_family = none)]
         pub unsafe fn exportBytesWithCompletion(
             &self,
-            handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-security"))]
@@ -49,7 +49,7 @@ impl LAPublicKey {
             &self,
             data: &NSData,
             algorithm: &SecKeyAlgorithm,
-            handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-security")]
@@ -80,7 +80,7 @@ impl LAPublicKey {
             signed_data: &NSData,
             signature: &NSData,
             algorithm: &SecKeyAlgorithm,
-            handler: &block2::Block<dyn Fn(*mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "objc2-security")]

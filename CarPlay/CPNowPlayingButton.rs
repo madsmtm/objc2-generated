@@ -51,7 +51,7 @@ impl CPNowPlayingButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPNowPlayingButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPNowPlayingButton>)>>,
         ) -> Retained<Self>;
 
         /// A Boolean value indicating whether the button is enabled.
@@ -128,7 +128,7 @@ impl CPNowPlayingShuffleButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPNowPlayingButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPNowPlayingButton>)>>,
         ) -> Retained<Self>;
     );
 }
@@ -175,7 +175,7 @@ impl CPNowPlayingAddToLibraryButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPNowPlayingButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPNowPlayingButton>)>>,
         ) -> Retained<Self>;
     );
 }
@@ -224,7 +224,7 @@ impl CPNowPlayingMoreButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPNowPlayingButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPNowPlayingButton>)>>,
         ) -> Retained<Self>;
     );
 }
@@ -271,7 +271,7 @@ impl CPNowPlayingPlaybackRateButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPNowPlayingButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPNowPlayingButton>)>>,
         ) -> Retained<Self>;
     );
 }
@@ -318,7 +318,7 @@ impl CPNowPlayingRepeatButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPNowPlayingButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPNowPlayingButton>)>>,
         ) -> Retained<Self>;
     );
 }
@@ -356,7 +356,7 @@ impl CPNowPlayingImageButton {
         pub unsafe fn initWithImage_handler(
             this: Allocated<Self>,
             image: &UIImage,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPNowPlayingButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPNowPlayingButton>)>>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-ui-kit")]
@@ -392,7 +392,7 @@ impl CPNowPlayingImageButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPNowPlayingButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPNowPlayingButton>)>>,
         ) -> Retained<Self>;
     );
 }

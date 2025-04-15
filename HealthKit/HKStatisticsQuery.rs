@@ -35,7 +35,7 @@ impl HKStatisticsQuery {
             quantity_type: &HKQuantityType,
             quantity_sample_predicate: Option<&NSPredicate>,
             options: HKStatisticsOptions,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(NonNull<HKStatisticsQuery>, *mut HKStatistics, *mut NSError),
             >,
         ) -> Retained<Self>;

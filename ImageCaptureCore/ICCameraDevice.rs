@@ -317,10 +317,10 @@ impl ICCameraDevice {
         pub unsafe fn requestDeleteFiles_deleteFailed_completion(
             &self,
             files: &NSArray<ICCameraItem>,
-            delete_failed: &block2::Block<
+            delete_failed: &block2::DynBlock<
                 dyn Fn(NonNull<NSDictionary<ICDeleteError, ICCameraItem>>),
             >,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<NSDictionary<ICDeleteResult, NSArray<ICCameraItem>>>, *mut NSError),
             >,
         ) -> Option<Retained<NSProgress>>;
@@ -394,7 +394,7 @@ impl ICCameraDevice {
         /// As an alternative to setting up an object to handle PTP event packets, a handler can be set.  The handler will always be called in place of the delegate if non-nil.  If the handler is not present, the delegate will be called if present. It is guaranteed only one of the methods will be called if both are implemented.
         #[unsafe(method(ptpEventHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn ptpEventHandler(&self) -> NonNull<block2::Block<dyn Fn(NonNull<NSData>)>>;
+        pub unsafe fn ptpEventHandler(&self) -> NonNull<block2::DynBlock<dyn Fn(NonNull<NSData>)>>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`ptpEventHandler`][Self::ptpEventHandler].
@@ -402,7 +402,7 @@ impl ICCameraDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn setPtpEventHandler(
             &self,
-            ptp_event_handler: &block2::Block<dyn Fn(NonNull<NSData>)>,
+            ptp_event_handler: &block2::DynBlock<dyn Fn(NonNull<NSData>)>,
         );
 
         /// This method asynchronously sends a PTP command to a camera.
@@ -429,7 +429,7 @@ impl ICCameraDevice {
             &self,
             ptp_command: &NSData,
             ptp_data: Option<&NSData>,
-            completion: &block2::Block<dyn Fn(NonNull<NSData>, NonNull<NSData>, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSData>, NonNull<NSData>, *mut NSError)>,
         );
     );
 }

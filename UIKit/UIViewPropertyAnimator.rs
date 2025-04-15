@@ -116,7 +116,7 @@ impl UIViewPropertyAnimator {
             this: Allocated<Self>,
             duration: NSTimeInterval,
             curve: UIViewAnimationCurve,
-            animations: Option<&block2::Block<dyn Fn()>>,
+            animations: Option<&block2::DynBlock<dyn Fn()>>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
@@ -127,7 +127,7 @@ impl UIViewPropertyAnimator {
             duration: NSTimeInterval,
             point1: CGPoint,
             point2: CGPoint,
-            animations: Option<&block2::Block<dyn Fn()>>,
+            animations: Option<&block2::DynBlock<dyn Fn()>>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
@@ -137,7 +137,7 @@ impl UIViewPropertyAnimator {
             this: Allocated<Self>,
             duration: NSTimeInterval,
             ratio: CGFloat,
-            animations: Option<&block2::Block<dyn Fn()>>,
+            animations: Option<&block2::DynBlock<dyn Fn()>>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIView", feature = "UIViewAnimating", feature = "block2"))]
@@ -161,8 +161,8 @@ impl UIViewPropertyAnimator {
             duration: NSTimeInterval,
             delay: NSTimeInterval,
             options: UIViewAnimationOptions,
-            animations: &block2::Block<dyn Fn()>,
-            completion: Option<&block2::Block<dyn Fn(UIViewAnimatingPosition)>>,
+            animations: &block2::DynBlock<dyn Fn()>,
+            completion: Option<&block2::DynBlock<dyn Fn(UIViewAnimatingPosition)>>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
@@ -175,7 +175,7 @@ impl UIViewPropertyAnimator {
         #[unsafe(method_family = none)]
         pub unsafe fn addAnimations_delayFactor(
             &self,
-            animation: &block2::Block<dyn Fn()>,
+            animation: &block2::DynBlock<dyn Fn()>,
             delay_factor: CGFloat,
         );
 
@@ -189,14 +189,14 @@ impl UIViewPropertyAnimator {
         /// are no animation blocks, will start the animator in a transient paused state.
         #[unsafe(method(addAnimations:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addAnimations(&self, animation: &block2::Block<dyn Fn()>);
+        pub unsafe fn addAnimations(&self, animation: &block2::DynBlock<dyn Fn()>);
 
         #[cfg(all(feature = "UIViewAnimating", feature = "block2"))]
         #[unsafe(method(addCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(UIViewAnimatingPosition)>,
+            completion: &block2::DynBlock<dyn Fn(UIViewAnimatingPosition)>,
         );
 
         #[cfg(all(feature = "UITimingCurveProvider", feature = "objc2-core-foundation"))]

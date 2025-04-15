@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagedrawingactions?language=objc)
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsImageDrawingActions =
-    *mut block2::Block<dyn Fn(NonNull<UIGraphicsImageRendererContext>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<UIGraphicsImageRendererContext>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformatrange?language=objc)
 // NS_ENUM

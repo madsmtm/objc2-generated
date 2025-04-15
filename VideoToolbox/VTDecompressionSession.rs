@@ -251,7 +251,7 @@ extern "C-unwind" {
     feature = "objc2-core-video"
 ))]
 pub type VTDecompressionOutputHandler =
-    *mut block2::Block<dyn Fn(OSStatus, VTDecodeInfoFlags, *mut CVImageBuffer, CMTime, CMTime)>;
+    *mut block2::DynBlock<dyn Fn(OSStatus, VTDecodeInfoFlags, *mut CVImageBuffer, CMTime, CMTime)>;
 
 extern "C-unwind" {
     /// Decompresses a video frame.
@@ -477,7 +477,7 @@ extern "C-unwind" {
     feature = "objc2-core-media",
     feature = "objc2-core-video"
 ))]
-pub type VTDecompressionMultiImageCapableOutputHandler = *mut block2::Block<
+pub type VTDecompressionMultiImageCapableOutputHandler = *mut block2::DynBlock<
     dyn Fn(
         OSStatus,
         VTDecodeInfoFlags,

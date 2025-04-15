@@ -295,7 +295,7 @@ impl LAContext {
             &self,
             policy: LAPolicy,
             localized_reason: &NSString,
-            reply: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            reply: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         /// Invalidates the context.
@@ -404,7 +404,7 @@ impl LAContext {
             access_control: &SecAccessControl,
             operation: LAAccessControlOperation,
             localized_reason: &NSString,
-            reply: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            reply: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         /// Fallback button title.

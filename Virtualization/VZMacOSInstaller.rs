@@ -130,7 +130,7 @@ impl VZMacOSInstaller {
         #[unsafe(method_family = none)]
         pub unsafe fn installWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         /// An NSProgress object that can be used to observe or cancel installation.

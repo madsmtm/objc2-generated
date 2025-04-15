@@ -169,12 +169,12 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadercallback?language=objc)
 #[cfg(feature = "block2")]
 pub type MTKTextureLoaderCallback =
-    *mut block2::Block<dyn Fn(*mut ProtocolObject<dyn MTLTexture>, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLTexture>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderarraycallback?language=objc)
 #[cfg(feature = "block2")]
 pub type MTKTextureLoaderArrayCallback =
-    *mut block2::Block<dyn Fn(NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>, *mut NSError)>;
 
 extern_class!(
     /// Load Metal textures from files with the device specified at initialization

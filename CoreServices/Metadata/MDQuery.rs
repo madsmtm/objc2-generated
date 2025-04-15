@@ -1048,7 +1048,7 @@ extern "C-unwind" {
     pub fn MDQuerySetSortComparatorBlock(
         query: &MDQuery,
         comparator: Option<
-            &block2::Block<dyn Fn(*mut *const CFType, *mut *const CFType) -> CFComparisonResult>,
+            &block2::DynBlock<dyn Fn(*mut *const CFType, *mut *const CFType) -> CFComparisonResult>,
         >,
     );
 }

@@ -90,7 +90,7 @@ extern_protocol!(
             advertiser: &MCNearbyServiceAdvertiser,
             peer_id: &MCPeerID,
             context: Option<&NSData>,
-            invitation_handler: &block2::Block<dyn Fn(Bool, *mut MCSession)>,
+            invitation_handler: &block2::DynBlock<dyn Fn(Bool, *mut MCSession)>,
         );
 
         #[optional]

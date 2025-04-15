@@ -131,7 +131,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "SecProtocolTypes", feature = "block2"))]
     pub fn sec_protocol_metadata_access_peer_certificate_chain(
         metadata: sec_protocol_metadata_t,
-        handler: &block2::Block<dyn Fn(sec_certificate_t)>,
+        handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
     ) -> bool;
 }
 
@@ -150,7 +150,7 @@ extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn sec_protocol_metadata_access_supported_signature_algorithms(
         metadata: sec_protocol_metadata_t,
-        handler: &block2::Block<dyn Fn(u16)>,
+        handler: &block2::DynBlock<dyn Fn(u16)>,
     ) -> bool;
 }
 

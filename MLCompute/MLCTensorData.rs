@@ -99,7 +99,7 @@ impl MLCTensorData {
         pub unsafe fn dataWithBytesNoCopy_length_deallocator(
             bytes: NonNull<c_void>,
             length: NSUInteger,
-            deallocator: &block2::Block<dyn Fn(NonNull<c_void>, NSUInteger)>,
+            deallocator: &block2::DynBlock<dyn Fn(NonNull<c_void>, NSUInteger)>,
         ) -> Retained<Self>;
     );
 }

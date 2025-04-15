@@ -253,7 +253,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn currentSyncAnchorWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSFileProviderSyncAnchor)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderSyncAnchor)>,
         );
     }
 );

@@ -42,7 +42,7 @@ impl CLMonitorConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn eventHandler(
             &self,
-        ) -> NonNull<block2::Block<dyn Fn(NonNull<CLMonitor>, NonNull<CLMonitoringEvent>)>>;
+        ) -> NonNull<block2::DynBlock<dyn Fn(NonNull<CLMonitor>, NonNull<CLMonitoringEvent>)>>;
 
         #[cfg(all(
             feature = "CLMonitor",
@@ -55,7 +55,9 @@ impl CLMonitorConfiguration {
         pub unsafe fn configWithMonitorName_queue_eventHandler(
             name: &NSString,
             queue: &DispatchQueue,
-            event_handler: &block2::Block<dyn Fn(NonNull<CLMonitor>, NonNull<CLMonitoringEvent>)>,
+            event_handler: &block2::DynBlock<
+                dyn Fn(NonNull<CLMonitor>, NonNull<CLMonitoringEvent>),
+            >,
         ) -> Retained<CLMonitorConfiguration>;
     );
 }

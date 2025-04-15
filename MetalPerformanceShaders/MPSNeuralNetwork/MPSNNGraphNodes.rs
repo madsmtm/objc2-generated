@@ -587,7 +587,7 @@ impl MPSNNArithmeticGradientStateNode {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsgradientnodeblock?language=objc)
 #[cfg(feature = "block2")]
-pub type MPSGradientNodeBlock = *mut block2::Block<
+pub type MPSGradientNodeBlock = *mut block2::DynBlock<
     dyn Fn(
         NonNull<MPSNNFilterNode>,
         NonNull<MPSNNFilterNode>,

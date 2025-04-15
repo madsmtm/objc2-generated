@@ -92,7 +92,7 @@ impl MPRemoteCommand {
         #[unsafe(method_family = none)]
         pub unsafe fn addTargetWithHandler(
             &self,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(NonNull<MPRemoteCommandEvent>) -> MPRemoteCommandHandlerStatus,
             >,
         ) -> Retained<AnyObject>;

@@ -117,7 +117,7 @@ unsafe impl RefEncode for CGDisplayStreamFrameStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframeavailablehandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-io-surface"))]
 #[cfg(not(target_os = "watchos"))]
-pub type CGDisplayStreamFrameAvailableHandler = *mut block2::Block<
+pub type CGDisplayStreamFrameAvailableHandler = *mut block2::DynBlock<
     dyn Fn(CGDisplayStreamFrameStatus, u64, *mut IOSurfaceRef, *const CGDisplayStreamUpdate),
 >;
 

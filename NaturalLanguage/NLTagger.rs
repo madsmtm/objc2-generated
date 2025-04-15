@@ -132,7 +132,7 @@ impl NLTagger {
             unit: NLTokenUnit,
             scheme: &NLTagScheme,
             options: NLTaggerOptions,
-            block: &block2::Block<dyn Fn(*mut NLTag, NSRange, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(*mut NLTag, NSRange, NonNull<Bool>) + '_>,
         );
 
         #[cfg(all(feature = "NLTagScheme", feature = "NLTokenizer"))]
@@ -219,7 +219,7 @@ impl NLTagger {
         pub unsafe fn requestAssetsForLanguage_tagScheme_completionHandler(
             language: &NLLanguage,
             tag_scheme: &NLTagScheme,
-            completion_handler: &block2::Block<dyn Fn(NLTaggerAssetsResult, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NLTaggerAssetsResult, *mut NSError)>,
         );
     );
 }

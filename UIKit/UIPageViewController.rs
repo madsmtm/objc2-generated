@@ -235,7 +235,7 @@ impl UIPageViewController {
             view_controllers: Option<&NSArray<UIViewController>>,
             direction: UIPageViewControllerNavigationDirection,
             animated: bool,
-            completion: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
     );
 }

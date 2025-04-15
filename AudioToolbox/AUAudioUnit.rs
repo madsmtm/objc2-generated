@@ -88,7 +88,7 @@ unsafe impl RefEncode for AUAudioUnitBusType {
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AURenderPullInputBlock = *mut block2::Block<
+pub type AURenderPullInputBlock = *mut block2::DynBlock<
     dyn Fn(
         NonNull<AudioUnitRenderActionFlags>,
         NonNull<AudioTimeStamp>,
@@ -134,7 +134,7 @@ pub type AURenderPullInputBlock = *mut block2::Block<
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AURenderBlock = *mut block2::Block<
+pub type AURenderBlock = *mut block2::DynBlock<
     dyn Fn(
         NonNull<AudioUnitRenderActionFlags>,
         NonNull<AudioTimeStamp>,
@@ -159,7 +159,7 @@ pub type AURenderBlock = *mut block2::Block<
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AURenderObserver = *mut block2::Block<
+pub type AURenderObserver = *mut block2::DynBlock<
     dyn Fn(AudioUnitRenderActionFlags, NonNull<AudioTimeStamp>, AUAudioFrameCount, NSInteger),
 >;
 
@@ -189,8 +189,9 @@ pub type AURenderObserver = *mut block2::Block<
     feature = "AudioUnitProperties",
     feature = "block2"
 ))]
-pub type AUScheduleParameterBlock =
-    *mut block2::Block<dyn Fn(AUEventSampleTime, AUAudioFrameCount, AUParameterAddress, AUValue)>;
+pub type AUScheduleParameterBlock = *mut block2::DynBlock<
+    dyn Fn(AUEventSampleTime, AUAudioFrameCount, AUParameterAddress, AUValue),
+>;
 
 /// Block to schedule MIDI events.
 ///
@@ -209,7 +210,7 @@ pub type AUScheduleParameterBlock =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auschedulemidieventblock?language=objc)
 #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
 pub type AUScheduleMIDIEventBlock =
-    *mut block2::Block<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>)>;
+    *mut block2::DynBlock<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>)>;
 
 /// Block to provide MIDI output events to the host.
 ///
@@ -225,7 +226,7 @@ pub type AUScheduleMIDIEventBlock =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputeventblock?language=objc)
 #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
 pub type AUMIDIOutputEventBlock =
-    *mut block2::Block<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>) -> OSStatus>;
+    *mut block2::DynBlock<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>) -> OSStatus>;
 
 /// Block by which hosts provide musical tempo, time signature, and beat position.
 ///
@@ -253,7 +254,7 @@ pub type AUMIDIOutputEventBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostmusicalcontextblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AUHostMusicalContextBlock = *mut block2::Block<
+pub type AUHostMusicalContextBlock = *mut block2::DynBlock<
     dyn Fn(
         *mut c_double,
         *mut c_double,
@@ -278,7 +279,7 @@ pub type AUHostMusicalContextBlock = *mut block2::Block<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidiciprofilechangedblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-midi"))]
 pub type AUMIDICIProfileChangedBlock =
-    *mut block2::Block<dyn Fn(u8, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool)>;
+    *mut block2::DynBlock<dyn Fn(u8, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool)>;
 
 /// Flags describing the host's transport state.
 ///
@@ -339,7 +340,7 @@ unsafe impl RefEncode for AUHostTransportStateFlags {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AUHostTransportStateBlock = *mut block2::Block<
+pub type AUHostTransportStateBlock = *mut block2::DynBlock<
     dyn Fn(*mut AUHostTransportStateFlags, *mut c_double, *mut c_double, *mut c_double) -> Bool,
 >;
 
@@ -437,7 +438,7 @@ impl AUAudioUnit {
         pub unsafe fn instantiateWithComponentDescription_options_completionHandler(
             component_description: AudioComponentDescription,
             options: AudioComponentInstantiationOptions,
-            completion_handler: &block2::Block<dyn Fn(*mut AUAudioUnit, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut AUAudioUnit, *mut NSError)>,
         );
 
         #[cfg(feature = "AudioComponent")]
@@ -1396,7 +1397,7 @@ impl AUAudioUnit {
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AUInputHandler = *mut block2::Block<
+pub type AUInputHandler = *mut block2::DynBlock<
     dyn Fn(
         NonNull<AudioUnitRenderActionFlags>,
         NonNull<AudioTimeStamp>,
@@ -1872,7 +1873,8 @@ impl AUAudioUnitPreset {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/callhostblock?language=objc)
 #[cfg(feature = "block2")]
-pub type CallHostBlock = *mut block2::Block<dyn Fn(NonNull<NSDictionary>) -> NonNull<NSDictionary>>;
+pub type CallHostBlock =
+    *mut block2::DynBlock<dyn Fn(NonNull<NSDictionary>) -> NonNull<NSDictionary>>;
 
 extern_protocol!(
     /// The protocol which objects returned from `[AUAudioUnit messageChannelFor:]` have to conform to.

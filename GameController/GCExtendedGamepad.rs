@@ -22,7 +22,7 @@ use crate::*;
     feature = "block2"
 ))]
 pub type GCExtendedGamepadValueChangedHandler =
-    *mut block2::Block<dyn Fn(NonNull<GCExtendedGamepad>, NonNull<GCControllerElement>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<GCExtendedGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad?language=objc)

@@ -236,34 +236,35 @@ impl AUParameterTree {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueobserver?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
-pub type AUImplementorValueObserver = *mut block2::Block<dyn Fn(NonNull<AUParameter>, AUValue)>;
+pub type AUImplementorValueObserver = *mut block2::DynBlock<dyn Fn(NonNull<AUParameter>, AUValue)>;
 
 /// A block called to fetch an AUParameter's current value from the AUAudioUnit implementation.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueprovider?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
-pub type AUImplementorValueProvider = *mut block2::Block<dyn Fn(NonNull<AUParameter>) -> AUValue>;
+pub type AUImplementorValueProvider =
+    *mut block2::DynBlock<dyn Fn(NonNull<AUParameter>) -> AUValue>;
 
 /// A block called to convert an AUParameter's value to a string.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorstringfromvaluecallback?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorStringFromValueCallback =
-    *mut block2::Block<dyn Fn(NonNull<AUParameter>, *const AUValue) -> NonNull<NSString>>;
+    *mut block2::DynBlock<dyn Fn(NonNull<AUParameter>, *const AUValue) -> NonNull<NSString>>;
 
 /// A block called to convert a string to an AUParameter's value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvaluefromstringcallback?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorValueFromStringCallback =
-    *mut block2::Block<dyn Fn(NonNull<AUParameter>, NonNull<NSString>) -> AUValue>;
+    *mut block2::DynBlock<dyn Fn(NonNull<AUParameter>, NonNull<NSString>) -> AUValue>;
 
 /// A block called to return a group or parameter's localized display name, abbreviated to the requested length.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementordisplaynamewithlengthcallback?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorDisplayNameWithLengthCallback =
-    *mut block2::Block<dyn Fn(NonNull<AUParameterNode>, NSInteger) -> NonNull<NSString>>;
+    *mut block2::DynBlock<dyn Fn(NonNull<AUParameterNode>, NSInteger) -> NonNull<NSString>>;
 
 /// AUParameterNodeImplementation.
 /// Aspects of AUParameterNode of interest only to AUAudioUnit subclassers.

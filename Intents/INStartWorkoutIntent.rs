@@ -119,7 +119,7 @@ extern_protocol!(
         unsafe fn handleStartWorkout_completion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStartWorkoutIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStartWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -145,7 +145,7 @@ extern_protocol!(
         unsafe fn confirmStartWorkout_completion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStartWorkoutIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStartWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -171,7 +171,7 @@ extern_protocol!(
         unsafe fn resolveWorkoutNameForStartWorkout_withCompletion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -186,7 +186,7 @@ extern_protocol!(
         unsafe fn resolveGoalValueForStartWorkout_withCompletion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INDoubleResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INDoubleResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -201,7 +201,7 @@ extern_protocol!(
         unsafe fn resolveWorkoutGoalUnitTypeForStartWorkout_withCompletion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INWorkoutGoalUnitTypeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INWorkoutGoalUnitTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -216,7 +216,7 @@ extern_protocol!(
         unsafe fn resolveWorkoutLocationTypeForStartWorkout_withCompletion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INWorkoutLocationTypeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INWorkoutLocationTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -231,7 +231,7 @@ extern_protocol!(
         unsafe fn resolveIsOpenEndedForStartWorkout_withCompletion(
             &self,
             intent: &INStartWorkoutIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
         );
     }
 );

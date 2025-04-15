@@ -79,7 +79,7 @@ impl EPDeveloperTool {
         #[unsafe(method_family = none)]
         pub unsafe fn requestDeveloperToolAccessWithCompletionHandler(
             &self,
-            handler: &block2::Block<dyn Fn(Bool)>,
+            handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
     );
 }

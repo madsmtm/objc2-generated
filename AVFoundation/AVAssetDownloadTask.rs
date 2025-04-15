@@ -715,7 +715,7 @@ impl AVAssetDownloadURLSession {
         pub unsafe fn dataTaskWithRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSData>, NonNull<NSURLResponse>, NonNull<NSError>),
             >,
         ) -> Retained<NSURLSessionDataTask>;
@@ -726,7 +726,7 @@ impl AVAssetDownloadURLSession {
         pub unsafe fn dataTaskWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSData>, NonNull<NSURLResponse>, NonNull<NSError>),
             >,
         ) -> Retained<NSURLSessionDataTask>;
@@ -738,7 +738,7 @@ impl AVAssetDownloadURLSession {
             &self,
             request: &NSURLRequest,
             file_url: &NSURL,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSData>, NonNull<NSURLResponse>, NonNull<NSError>),
             >,
         ) -> Retained<NSURLSessionUploadTask>;
@@ -750,7 +750,7 @@ impl AVAssetDownloadURLSession {
             &self,
             request: &NSURLRequest,
             body_data: Option<&NSData>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSData>, NonNull<NSURLResponse>, NonNull<NSError>),
             >,
         ) -> Retained<NSURLSessionUploadTask>;
@@ -761,7 +761,7 @@ impl AVAssetDownloadURLSession {
         pub unsafe fn downloadTaskWithRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSURL>, NonNull<NSURLResponse>, NonNull<NSError>),
             >,
         ) -> Retained<NSURLSessionDownloadTask>;
@@ -772,7 +772,7 @@ impl AVAssetDownloadURLSession {
         pub unsafe fn downloadTaskWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSURL>, NonNull<NSURLResponse>, NonNull<NSError>),
             >,
         ) -> Retained<NSURLSessionDownloadTask>;
@@ -783,7 +783,7 @@ impl AVAssetDownloadURLSession {
         pub unsafe fn downloadTaskWithResumeData_completionHandler(
             &self,
             resume_data: &NSData,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSURL>, NonNull<NSURLResponse>, NonNull<NSError>),
             >,
         ) -> Retained<NSURLSessionDownloadTask>;

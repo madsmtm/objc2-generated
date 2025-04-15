@@ -54,7 +54,7 @@ impl UIActivityItemsConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn metadataProvider(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(NonNull<UIActivityItemsConfigurationMetadataKey>) -> *mut AnyObject,
         >;
 
@@ -65,7 +65,7 @@ impl UIActivityItemsConfiguration {
         pub unsafe fn setMetadataProvider(
             &self,
             metadata_provider: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(NonNull<UIActivityItemsConfigurationMetadataKey>) -> *mut AnyObject,
                 >,
             >,
@@ -76,7 +76,7 @@ impl UIActivityItemsConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn perItemMetadataProvider(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(NSInteger, NonNull<UIActivityItemsConfigurationMetadataKey>) -> *mut AnyObject,
         >;
 
@@ -87,7 +87,7 @@ impl UIActivityItemsConfiguration {
         pub unsafe fn setPerItemMetadataProvider(
             &self,
             per_item_metadata_provider: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NSInteger,
                         NonNull<UIActivityItemsConfigurationMetadataKey>,
@@ -105,7 +105,7 @@ impl UIActivityItemsConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn previewProvider(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(
                 NSInteger,
                 NonNull<UIActivityItemsConfigurationPreviewIntent>,
@@ -124,7 +124,7 @@ impl UIActivityItemsConfiguration {
         pub unsafe fn setPreviewProvider(
             &self,
             preview_provider: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NSInteger,
                         NonNull<UIActivityItemsConfigurationPreviewIntent>,
@@ -139,7 +139,7 @@ impl UIActivityItemsConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn applicationActivitiesProvider(
             &self,
-        ) -> *mut block2::Block<dyn Fn() -> NonNull<NSArray<UIActivity>>>;
+        ) -> *mut block2::DynBlock<dyn Fn() -> NonNull<NSArray<UIActivity>>>;
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         /// Setter for [`applicationActivitiesProvider`][Self::applicationActivitiesProvider].
@@ -148,7 +148,7 @@ impl UIActivityItemsConfiguration {
         pub unsafe fn setApplicationActivitiesProvider(
             &self,
             application_activities_provider: Option<
-                &block2::Block<dyn Fn() -> NonNull<NSArray<UIActivity>>>,
+                &block2::DynBlock<dyn Fn() -> NonNull<NSArray<UIActivity>>>,
             >,
         );
 

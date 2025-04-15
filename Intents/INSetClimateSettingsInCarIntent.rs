@@ -171,7 +171,7 @@ extern_protocol!(
         unsafe fn handleSetClimateSettingsInCar_completion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSetClimateSettingsInCarIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSetClimateSettingsInCarIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -198,7 +198,7 @@ extern_protocol!(
         unsafe fn confirmSetClimateSettingsInCar_completion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSetClimateSettingsInCarIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSetClimateSettingsInCarIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -225,7 +225,7 @@ extern_protocol!(
         unsafe fn resolveEnableFanForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -241,7 +241,7 @@ extern_protocol!(
         unsafe fn resolveEnableAirConditionerForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -257,7 +257,7 @@ extern_protocol!(
         unsafe fn resolveEnableClimateControlForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -273,7 +273,7 @@ extern_protocol!(
         unsafe fn resolveEnableAutoModeForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -289,7 +289,7 @@ extern_protocol!(
         unsafe fn resolveAirCirculationModeForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INCarAirCirculationModeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INCarAirCirculationModeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -305,7 +305,7 @@ extern_protocol!(
         unsafe fn resolveFanSpeedIndexForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -321,7 +321,7 @@ extern_protocol!(
         unsafe fn resolveFanSpeedPercentageForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INDoubleResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INDoubleResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -337,7 +337,7 @@ extern_protocol!(
         unsafe fn resolveRelativeFanSpeedSettingForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INRelativeSettingResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INRelativeSettingResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -353,7 +353,7 @@ extern_protocol!(
         unsafe fn resolveTemperatureForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INTemperatureResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INTemperatureResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -369,7 +369,7 @@ extern_protocol!(
         unsafe fn resolveRelativeTemperatureSettingForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INRelativeSettingResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INRelativeSettingResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -385,7 +385,7 @@ extern_protocol!(
         unsafe fn resolveClimateZoneForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INCarSeatResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INCarSeatResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -400,7 +400,7 @@ extern_protocol!(
         unsafe fn resolveCarNameForSetClimateSettingsInCar_withCompletion(
             &self,
             intent: &INSetClimateSettingsInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
     }
 );

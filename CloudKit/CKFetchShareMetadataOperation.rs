@@ -99,7 +99,7 @@ impl CKFetchShareMetadataOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perShareMetadataBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<NSURL>, *mut CKShareMetadata, *mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSURL>, *mut CKShareMetadata, *mut NSError)>;
 
         #[cfg(all(feature = "CKShareMetadata", feature = "block2"))]
         /// Setter for [`perShareMetadataBlock`][Self::perShareMetadataBlock].
@@ -108,7 +108,7 @@ impl CKFetchShareMetadataOperation {
         pub unsafe fn setPerShareMetadataBlock(
             &self,
             per_share_metadata_block: Option<
-                &block2::Block<dyn Fn(NonNull<NSURL>, *mut CKShareMetadata, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(NonNull<NSURL>, *mut CKShareMetadata, *mut NSError)>,
             >,
         );
 
@@ -135,7 +135,7 @@ impl CKFetchShareMetadataOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareMetadataCompletionBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`fetchShareMetadataCompletionBlock`][Self::fetchShareMetadataCompletionBlock].
@@ -143,7 +143,7 @@ impl CKFetchShareMetadataOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchShareMetadataCompletionBlock(
             &self,
-            fetch_share_metadata_completion_block: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            fetch_share_metadata_completion_block: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
     );
 }

@@ -129,7 +129,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleeventblock?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNParticleEventBlock =
-    *mut block2::Block<dyn Fn(NonNull<NonNull<c_void>>, NonNull<usize>, *mut u32, NSInteger)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<NonNull<c_void>>, NonNull<usize>, *mut u32, NSInteger)>;
 
 /// Parameter `data`: array of particle properties data stripes, ordered by the given NSArray of properties name in [- handleEvent:forProperties:withBlock:]
 ///
@@ -160,7 +160,7 @@ pub type SCNParticleEventBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SCNParticleModifierBlock = *mut block2::Block<
+pub type SCNParticleModifierBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<NonNull<c_void>>, NonNull<usize>, NSInteger, NSInteger, c_float),
 >;
 

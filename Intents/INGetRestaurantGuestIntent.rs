@@ -76,7 +76,7 @@ extern_protocol!(
         unsafe fn handleGetRestaurantGuest_completion(
             &self,
             intent: &INGetRestaurantGuestIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INGetRestaurantGuestIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INGetRestaurantGuestIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -102,7 +102,7 @@ extern_protocol!(
         unsafe fn confirmGetRestaurantGuest_completion(
             &self,
             guest_intent: &INGetRestaurantGuestIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INGetRestaurantGuestIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INGetRestaurantGuestIntentResponse>)>,
         );
     }
 );

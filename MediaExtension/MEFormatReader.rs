@@ -179,7 +179,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn loadFileInfoWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut MEFileInfo, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut MEFileInfo, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
@@ -196,7 +196,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn loadMetadataWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSArray<AVMetadataItem>, *mut NSError)>,
+            completion_handler: &block2::DynBlock<
+                dyn Fn(*mut NSArray<AVMetadataItem>, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -213,7 +215,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn loadTrackReadersWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSArray<ProtocolObject<dyn METrackReader>>, *mut NSError),
             >,
         );
@@ -233,7 +235,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn parseAdditionalFragmentsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(MEFormatReaderParseAdditionalFragmentsStatus, *mut NSError),
             >,
         );
@@ -325,7 +327,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn loadTrackInfoWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut METrackInfo, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut METrackInfo, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -345,7 +347,7 @@ extern_protocol!(
         unsafe fn generateSampleCursorAtPresentationTimeStamp_completionHandler(
             &self,
             presentation_time_stamp: CMTime,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut ProtocolObject<dyn MESampleCursor>, *mut NSError),
             >,
         );
@@ -364,7 +366,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn generateSampleCursorAtFirstSampleInDecodeOrderWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut ProtocolObject<dyn MESampleCursor>, *mut NSError),
             >,
         );
@@ -383,7 +385,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn generateSampleCursorAtLastSampleInDecodeOrderWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut ProtocolObject<dyn MESampleCursor>, *mut NSError),
             >,
         );
@@ -403,7 +405,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn loadUneditedDurationWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(CMTime, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(CMTime, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -421,7 +423,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn loadTotalSampleDataLengthWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(i64, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(i64, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -437,7 +439,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn loadEstimatedDataRateWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(f32, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(f32, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
@@ -455,7 +457,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn loadMetadataWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSArray<AVMetadataItem>, *mut NSError)>,
+            completion_handler: &block2::DynBlock<
+                dyn Fn(*mut NSArray<AVMetadataItem>, *mut NSError),
+            >,
         );
     }
 );
@@ -702,7 +706,7 @@ extern_protocol!(
         unsafe fn stepInDecodeOrderByCount_completionHandler(
             &self,
             step_count: i64,
-            completion_handler: &block2::Block<dyn Fn(i64, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(i64, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -725,7 +729,7 @@ extern_protocol!(
         unsafe fn stepInPresentationOrderByCount_completionHandler(
             &self,
             step_count: i64,
-            completion_handler: &block2::Block<dyn Fn(i64, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(i64, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -747,7 +751,7 @@ extern_protocol!(
         unsafe fn stepByDecodeTime_completionHandler(
             &self,
             delta_decode_time: CMTime,
-            completion_handler: &block2::Block<dyn Fn(CMTime, Bool, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(CMTime, Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -769,7 +773,7 @@ extern_protocol!(
         unsafe fn stepByPresentationTime_completionHandler(
             &self,
             delta_presentation_time: CMTime,
-            completion_handler: &block2::Block<dyn Fn(CMTime, Bool, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(CMTime, Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-av-foundation")]
@@ -930,7 +934,7 @@ extern_protocol!(
         unsafe fn loadSampleBufferContainingSamplesToEndCursor_completionHandler(
             &self,
             end_sample_cursor: Option<&ProtocolObject<dyn MESampleCursor>>,
-            completion_handler: &block2::Block<dyn Fn(*mut CMSampleBuffer, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut CMSampleBuffer, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -949,7 +953,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn loadPostDecodeProcessingMetadataWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSDictionary<NSString, AnyObject>, *mut NSError),
             >,
         );
@@ -1425,7 +1429,7 @@ impl MEByteSource {
             length: usize,
             offset: i64,
             dest: NonNull<c_void>,
-            completion_handler: &block2::Block<dyn Fn(usize, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(usize, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1448,7 +1452,7 @@ impl MEByteSource {
             &self,
             length: usize,
             offset: i64,
-            completion_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         /// Reads bytes from an MEByteSource synchronously into a buffer.

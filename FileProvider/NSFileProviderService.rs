@@ -77,7 +77,7 @@ impl NSFileProviderManager {
             &self,
             service_name: &NSFileProviderServiceName,
             item_identifier: &NSFileProviderItemIdentifier,
-            completion_handler: &block2::Block<dyn Fn(*mut NSFileProviderService, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileProviderService, *mut NSError)>,
         );
     );
 }

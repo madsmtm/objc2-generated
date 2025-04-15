@@ -28,7 +28,7 @@ impl GKAchievement {
         #[unsafe(method_family = none)]
         pub unsafe fn loadAchievementsWithCompletionHandler(
             completion_handler: Option<
-                &block2::Block<dyn Fn(*mut NSArray<GKAchievement>, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut NSArray<GKAchievement>, *mut NSError)>,
             >,
         );
 
@@ -40,7 +40,7 @@ impl GKAchievement {
         #[unsafe(method(resetAchievementsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetAchievementsWithCompletionHandler(
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         /// Designated initializer
@@ -71,7 +71,7 @@ impl GKAchievement {
         #[unsafe(method_family = none)]
         pub unsafe fn reportAchievements_withCompletionHandler(
             achievements: &NSArray<GKAchievement>,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         /// Achievement identifier
@@ -144,7 +144,7 @@ impl GKAchievement {
         #[unsafe(method_family = none)]
         pub unsafe fn reportAchievementWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[deprecated]

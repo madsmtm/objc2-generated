@@ -64,7 +64,9 @@ impl UIDragItem {
         /// To hide the preview, set `previewProvider` to a block that returns nil.
         #[unsafe(method(previewProvider))]
         #[unsafe(method_family = none)]
-        pub unsafe fn previewProvider(&self) -> *mut block2::Block<dyn Fn() -> *mut UIDragPreview>;
+        pub unsafe fn previewProvider(
+            &self,
+        ) -> *mut block2::DynBlock<dyn Fn() -> *mut UIDragPreview>;
 
         #[cfg(all(feature = "UIDragPreview", feature = "block2"))]
         /// Setter for [`previewProvider`][Self::previewProvider].
@@ -72,7 +74,7 @@ impl UIDragItem {
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewProvider(
             &self,
-            preview_provider: Option<&block2::Block<dyn Fn() -> *mut UIDragPreview>>,
+            preview_provider: Option<&block2::DynBlock<dyn Fn() -> *mut UIDragPreview>>,
         );
 
         /// Requests for the drop preview to be updated if an active drop animation is in progress, and can handle updates.

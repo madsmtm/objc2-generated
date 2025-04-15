@@ -47,8 +47,8 @@ impl BERenderingProcess {
         #[unsafe(method(renderingProcessWithInterruptionHandler:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingProcessWithInterruptionHandler_completion(
-            interruption_handler: &block2::Block<dyn Fn()>,
-            completion: &block2::Block<dyn Fn(*mut BERenderingProcess, *mut NSError)>,
+            interruption_handler: &block2::DynBlock<dyn Fn()>,
+            completion: &block2::DynBlock<dyn Fn(*mut BERenderingProcess, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -65,8 +65,8 @@ impl BERenderingProcess {
         #[unsafe(method_family = none)]
         pub unsafe fn renderingProcessWithBundleID_interruptionHandler_completion(
             bundle_id: &NSString,
-            interruption_handler: &block2::Block<dyn Fn()>,
-            completion: &block2::Block<dyn Fn(*mut BERenderingProcess, *mut NSError)>,
+            interruption_handler: &block2::DynBlock<dyn Fn()>,
+            completion: &block2::DynBlock<dyn Fn(*mut BERenderingProcess, *mut NSError)>,
         );
 
         /// Stops the extension process.

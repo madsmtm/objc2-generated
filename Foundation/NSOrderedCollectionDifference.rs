@@ -116,7 +116,7 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn differenceByTransformingChangesWithBlock(
             &self,
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(
                         NonNull<NSOrderedCollectionChange<ObjectType>>,
                     ) -> NonNull<NSOrderedCollectionChange<AnyObject>>

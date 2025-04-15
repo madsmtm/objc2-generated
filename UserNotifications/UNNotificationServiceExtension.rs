@@ -27,7 +27,7 @@ impl UNNotificationServiceExtension {
         pub unsafe fn didReceiveNotificationRequest_withContentHandler(
             &self,
             request: &UNNotificationRequest,
-            content_handler: &block2::Block<dyn Fn(NonNull<UNNotificationContent>)>,
+            content_handler: &block2::DynBlock<dyn Fn(NonNull<UNNotificationContent>)>,
         );
 
         #[unsafe(method(serviceExtensionTimeWillExpire))]

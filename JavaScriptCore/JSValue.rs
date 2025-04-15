@@ -196,7 +196,7 @@ impl JSValue {
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNewPromiseInContext_fromExecutor(
             context: Option<&JSContext>,
-            callback: Option<&block2::Block<dyn Fn(*mut JSValue, *mut JSValue)>>,
+            callback: Option<&block2::DynBlock<dyn Fn(*mut JSValue, *mut JSValue)>>,
         ) -> Option<Retained<JSValue>>;
 
         #[cfg(feature = "JSContext")]

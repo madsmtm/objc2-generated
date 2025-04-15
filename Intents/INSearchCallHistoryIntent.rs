@@ -127,7 +127,7 @@ extern_protocol!(
         unsafe fn handleSearchCallHistory_completion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSearchCallHistoryIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchCallHistoryIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -154,7 +154,7 @@ extern_protocol!(
         unsafe fn confirmSearchCallHistory_completion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSearchCallHistoryIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchCallHistoryIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -181,7 +181,7 @@ extern_protocol!(
         unsafe fn resolveCallTypeForSearchCallHistory_withCompletion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INCallRecordTypeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INCallRecordTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -197,7 +197,7 @@ extern_protocol!(
         unsafe fn resolveDateCreatedForSearchCallHistory_withCompletion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -213,7 +213,7 @@ extern_protocol!(
         unsafe fn resolveRecipientForSearchCallHistory_withCompletion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INPersonResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INPersonResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -228,7 +228,7 @@ extern_protocol!(
         unsafe fn resolveCallTypesForSearchCallHistory_withCompletion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INCallRecordTypeOptionsResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INCallRecordTypeOptionsResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -243,7 +243,7 @@ extern_protocol!(
         unsafe fn resolveUnseenForSearchCallHistory_withCompletion(
             &self,
             intent: &INSearchCallHistoryIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
         );
     }
 );

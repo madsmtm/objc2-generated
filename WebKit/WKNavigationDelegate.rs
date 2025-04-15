@@ -88,7 +88,7 @@ extern_protocol!(
             &self,
             web_view: &WKWebView,
             navigation_action: &WKNavigationAction,
-            decision_handler: &block2::Block<dyn Fn(WKNavigationActionPolicy)>,
+            decision_handler: &block2::DynBlock<dyn Fn(WKNavigationActionPolicy)>,
         );
 
         #[cfg(all(
@@ -123,7 +123,7 @@ extern_protocol!(
             web_view: &WKWebView,
             navigation_action: &WKNavigationAction,
             preferences: &WKWebpagePreferences,
-            decision_handler: &block2::Block<
+            decision_handler: &block2::DynBlock<
                 dyn Fn(WKNavigationActionPolicy, NonNull<WKWebpagePreferences>),
             >,
         );
@@ -154,7 +154,7 @@ extern_protocol!(
             &self,
             web_view: &WKWebView,
             navigation_response: &WKNavigationResponse,
-            decision_handler: &block2::Block<dyn Fn(WKNavigationResponsePolicy)>,
+            decision_handler: &block2::DynBlock<dyn Fn(WKNavigationResponsePolicy)>,
         );
 
         #[cfg(all(
@@ -308,7 +308,7 @@ extern_protocol!(
             &self,
             web_view: &WKWebView,
             challenge: &NSURLAuthenticationChallenge,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NSURLSessionAuthChallengeDisposition, *mut NSURLCredential),
             >,
         );
@@ -339,7 +339,7 @@ extern_protocol!(
             &self,
             web_view: &WKWebView,
             challenge: &NSURLAuthenticationChallenge,
-            decision_handler: &block2::Block<dyn Fn(Bool)>,
+            decision_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
 
         #[cfg(all(
@@ -391,7 +391,7 @@ extern_protocol!(
             web_view: &WKWebView,
             back_forward_list_item: &WKBackForwardListItem,
             will_use_instant_back: bool,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
     }
 );

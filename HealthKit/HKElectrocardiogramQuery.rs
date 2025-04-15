@@ -101,7 +101,7 @@ impl HKElectrocardiogramQuery {
         pub unsafe fn initWithElectrocardiogram_dataHandler(
             this: Allocated<Self>,
             electrocardiogram: &HKElectrocardiogram,
-            data_handler: &block2::Block<
+            data_handler: &block2::DynBlock<
                 dyn Fn(
                     NonNull<HKElectrocardiogramQuery>,
                     *mut HKElectrocardiogramVoltageMeasurement,

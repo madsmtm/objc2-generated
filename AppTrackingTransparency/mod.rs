@@ -167,7 +167,7 @@ impl ATTrackingManager {
         #[unsafe(method(requestTrackingAuthorizationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestTrackingAuthorizationWithCompletionHandler(
-            completion: &block2::Block<dyn Fn(ATTrackingManagerAuthorizationStatus)>,
+            completion: &block2::DynBlock<dyn Fn(ATTrackingManagerAuthorizationStatus)>,
         );
 
         #[unsafe(method(new))]

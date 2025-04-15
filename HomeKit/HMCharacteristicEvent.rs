@@ -100,7 +100,7 @@ impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
         pub unsafe fn updateTriggerValue_completionHandler(
             &self,
             trigger_value: Option<&TriggerValueType>,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

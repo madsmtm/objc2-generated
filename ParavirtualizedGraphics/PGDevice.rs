@@ -45,7 +45,7 @@ pub type PGPhysicalMemoryRange_t = PGPhysicalMemoryRange_s;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgraiseinterrupt?language=objc)
 #[cfg(feature = "block2")]
-pub type PGRaiseInterrupt = *mut block2::Block<dyn Fn(u32)>;
+pub type PGRaiseInterrupt = *mut block2::DynBlock<dyn Fn(u32)>;
 
 /// A block that will be invoked by the device client code when a trace handler fires.  The device client code should watch the memory identified
 /// by each installed trace range and notify the device when the memory has been changed.  The client is encouraged to coalesce the handling of these notifications
@@ -59,7 +59,7 @@ pub type PGRaiseInterrupt = *mut block2::Block<dyn Fn(u32)>;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgtracerangehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type PGTraceRangeHandler = *mut block2::Block<dyn Fn(NonNull<PGPhysicalMemoryRange_t>)>;
+pub type PGTraceRangeHandler = *mut block2::DynBlock<dyn Fn(NonNull<PGPhysicalMemoryRange_t>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdevicedescriptor?language=objc)

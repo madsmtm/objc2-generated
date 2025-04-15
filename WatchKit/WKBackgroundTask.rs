@@ -50,7 +50,7 @@ impl WKRefreshBackgroundTask {
         /// ```
         #[unsafe(method(expirationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expirationHandler(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn expirationHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`expirationHandler`][Self::expirationHandler].
@@ -58,7 +58,7 @@ impl WKRefreshBackgroundTask {
         #[unsafe(method_family = none)]
         pub unsafe fn setExpirationHandler(
             &self,
-            expiration_handler: Option<&block2::Block<dyn Fn()>>,
+            expiration_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[deprecated = "Use -setTaskCompletedWithSnapshot: instead, pass NO to duplicate existing behavior"]
@@ -330,7 +330,7 @@ impl WKExtension {
             &self,
             preferred_fire_date: &NSDate,
             user_info: Option<&AnyObject /* NSSecureCoding+ NSObjectProtocol */>,
-            scheduled_completion: &block2::Block<dyn Fn(*mut NSError)>,
+            scheduled_completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -340,7 +340,7 @@ impl WKExtension {
             &self,
             preferred_fire_date: &NSDate,
             user_info: Option<&AnyObject /* NSSecureCoding+ NSObjectProtocol */>,
-            scheduled_completion: &block2::Block<dyn Fn(*mut NSError)>,
+            scheduled_completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }
@@ -356,7 +356,7 @@ impl WKApplication {
             &self,
             preferred_fire_date: &NSDate,
             user_info: Option<&AnyObject /* NSSecureCoding+ NSObjectProtocol */>,
-            scheduled_completion: &block2::Block<dyn Fn(*mut NSError)>,
+            scheduled_completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -366,7 +366,7 @@ impl WKApplication {
             &self,
             preferred_fire_date: &NSDate,
             user_info: Option<&AnyObject /* NSSecureCoding+ NSObjectProtocol */>,
-            scheduled_completion: &block2::Block<dyn Fn(*mut NSError)>,
+            scheduled_completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

@@ -84,7 +84,7 @@ impl SFSpeechLanguageModel {
             asset: &NSURL,
             client_identifier: &NSString,
             configuration: &SFSpeechLanguageModelConfiguration,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -95,7 +95,7 @@ impl SFSpeechLanguageModel {
             client_identifier: &NSString,
             configuration: &SFSpeechLanguageModelConfiguration,
             ignores_cache: bool,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

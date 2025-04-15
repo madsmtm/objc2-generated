@@ -51,7 +51,7 @@ impl BGTask {
         /// allocated time.
         #[unsafe(method(expirationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expirationHandler(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn expirationHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`expirationHandler`][Self::expirationHandler].
@@ -59,7 +59,7 @@ impl BGTask {
         #[unsafe(method_family = none)]
         pub unsafe fn setExpirationHandler(
             &self,
-            expiration_handler: Option<&block2::Block<dyn Fn()>>,
+            expiration_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[unsafe(method(init))]

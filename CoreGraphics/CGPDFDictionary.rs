@@ -125,7 +125,7 @@ extern "C-unwind" {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierblock?language=objc)
 #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
 pub type CGPDFDictionaryApplierBlock =
-    *mut block2::Block<dyn Fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
+    *mut block2::DynBlock<dyn Fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGPDFObject", feature = "block2"))]

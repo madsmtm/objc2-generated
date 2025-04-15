@@ -180,7 +180,7 @@ impl UICollectionReusableView {
     feature = "block2"
 ))]
 pub type UICollectionViewCellConfigurationUpdateHandler =
-    *mut block2::Block<dyn Fn(NonNull<UICollectionViewCell>, NonNull<UICellConfigurationState>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<UICollectionViewCell>, NonNull<UICellConfigurationState>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcell?language=objc)

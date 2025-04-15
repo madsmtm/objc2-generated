@@ -91,7 +91,7 @@ extern_protocol!(
         unsafe fn handleUnsendMessages_completion(
             &self,
             intent: &INUnsendMessagesIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INUnsendMessagesIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INUnsendMessagesIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -117,7 +117,7 @@ extern_protocol!(
         unsafe fn confirmUnsendMessages_completion(
             &self,
             intent: &INUnsendMessagesIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INUnsendMessagesIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INUnsendMessagesIntentResponse>)>,
         );
     }
 );

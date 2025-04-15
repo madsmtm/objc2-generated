@@ -99,7 +99,7 @@ extern_protocol!(
         unsafe fn handleSearchForMedia_completion(
             &self,
             intent: &INSearchForMediaIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSearchForMediaIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForMediaIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -125,7 +125,7 @@ extern_protocol!(
         unsafe fn confirmSearchForMedia_completion(
             &self,
             intent: &INSearchForMediaIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSearchForMediaIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForMediaIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -152,7 +152,7 @@ extern_protocol!(
         unsafe fn resolveMediaItemsForSearchForMedia_withCompletion(
             &self,
             intent: &INSearchForMediaIntent,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<NSArray<INSearchForMediaMediaItemResolutionResult>>),
             >,
         );

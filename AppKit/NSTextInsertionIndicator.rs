@@ -145,7 +145,7 @@ impl NSTextInsertionIndicator {
         /// During dictation the NSTextInsertionIndicator displays a glow effect by inserting a view below the text view. If an application needs to insert the view in a different way, the application can specify a block of code that will be called when the glow effect needs to be displayed.
         #[unsafe(method(effectsViewInserter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effectsViewInserter(&self) -> *mut block2::Block<dyn Fn(NonNull<NSView>)>;
+        pub unsafe fn effectsViewInserter(&self) -> *mut block2::DynBlock<dyn Fn(NonNull<NSView>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`effectsViewInserter`][Self::effectsViewInserter].
@@ -153,7 +153,7 @@ impl NSTextInsertionIndicator {
         #[unsafe(method_family = none)]
         pub unsafe fn setEffectsViewInserter(
             &self,
-            effects_view_inserter: Option<&block2::Block<dyn Fn(NonNull<NSView>)>>,
+            effects_view_inserter: Option<&block2::DynBlock<dyn Fn(NonNull<NSView>)>>,
         );
     );
 }

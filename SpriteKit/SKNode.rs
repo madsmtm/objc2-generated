@@ -432,7 +432,7 @@ impl SKNode {
         pub unsafe fn enumerateChildNodesWithName_usingBlock(
             &self,
             name: &NSString,
-            block: &block2::Block<dyn Fn(NonNull<SKNode>, NonNull<Bool>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<SKNode>, NonNull<Bool>)>,
         );
 
         /// Simplified shorthand for enumerateChildNodesWithName that returns an array of the matching nodes.
@@ -469,7 +469,7 @@ impl SKNode {
         pub unsafe fn runAction_completion(
             &self,
             action: &SKAction,
-            block: &block2::Block<dyn Fn()>,
+            block: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(feature = "SKAction")]

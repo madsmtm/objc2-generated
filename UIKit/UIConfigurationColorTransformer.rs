@@ -9,7 +9,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformer?language=objc)
 #[cfg(all(feature = "UIColor", feature = "block2"))]
 pub type UIConfigurationColorTransformer =
-    *mut block2::Block<dyn Fn(NonNull<UIColor>) -> NonNull<UIColor>>;
+    *mut block2::DynBlock<dyn Fn(NonNull<UIColor>) -> NonNull<UIColor>>;
 
 extern "C" {
     /// A color transformer that returns a grayscale version of the color.

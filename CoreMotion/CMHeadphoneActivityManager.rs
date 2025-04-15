@@ -30,7 +30,7 @@ unsafe impl RefEncode for CMHeadphoneActivityStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitystatushandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMHeadphoneActivityStatusHandler =
-    *mut block2::Block<dyn Fn(CMHeadphoneActivityStatus, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(CMHeadphoneActivityStatus, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivityhandler?language=objc)
 #[cfg(all(
@@ -39,7 +39,7 @@ pub type CMHeadphoneActivityStatusHandler =
     feature = "block2"
 ))]
 pub type CMHeadphoneActivityHandler =
-    *mut block2::Block<dyn Fn(*mut CMMotionActivity, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut CMMotionActivity, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager?language=objc)

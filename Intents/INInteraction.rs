@@ -98,14 +98,14 @@ impl INInteraction {
         #[unsafe(method_family = none)]
         pub unsafe fn donateInteractionWithCompletion(
             &self,
-            completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(deleteAllInteractionsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAllInteractionsWithCompletion(
-            completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -113,7 +113,7 @@ impl INInteraction {
         #[unsafe(method_family = none)]
         pub unsafe fn deleteInteractionsWithIdentifiers_completion(
             identifiers: &NSArray<NSString>,
-            completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -121,7 +121,7 @@ impl INInteraction {
         #[unsafe(method_family = none)]
         pub unsafe fn deleteInteractionsWithGroupIdentifier_completion(
             group_identifier: &NSString,
-            completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "INIntent")]

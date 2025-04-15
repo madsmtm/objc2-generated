@@ -137,7 +137,7 @@ extern_protocol!(
         unsafe fn handleSendMessage_completion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSendMessageIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSendMessageIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -163,7 +163,7 @@ extern_protocol!(
         unsafe fn confirmSendMessage_completion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSendMessageIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSendMessageIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -190,7 +190,7 @@ extern_protocol!(
         unsafe fn resolveRecipientsForSendMessage_withCompletion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
         );
 
         #[cfg(all(
@@ -206,7 +206,7 @@ extern_protocol!(
         unsafe fn resolveRecipientsForSendMessage_completion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<NSArray<INSendMessageRecipientResolutionResult>>),
             >,
         );
@@ -224,7 +224,7 @@ extern_protocol!(
         unsafe fn resolveGroupNameForSendMessage_withCompletion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -239,7 +239,7 @@ extern_protocol!(
         unsafe fn resolveOutgoingMessageTypeForSendMessage_withCompletion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INOutgoingMessageTypeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INOutgoingMessageTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -254,7 +254,7 @@ extern_protocol!(
         unsafe fn resolveContentForSendMessage_withCompletion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -269,7 +269,7 @@ extern_protocol!(
         unsafe fn resolveSpeakableGroupNameForSendMessage_withCompletion(
             &self,
             intent: &INSendMessageIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
     }
 );

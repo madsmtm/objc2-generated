@@ -81,7 +81,9 @@ impl VZVirtioSocketDevice {
         pub unsafe fn connectToPort_completionHandler(
             &self,
             port: u32,
-            completion_handler: &block2::Block<dyn Fn(*mut VZVirtioSocketConnection, *mut NSError)>,
+            completion_handler: &block2::DynBlock<
+                dyn Fn(*mut VZVirtioSocketConnection, *mut NSError),
+            >,
         );
     );
 }

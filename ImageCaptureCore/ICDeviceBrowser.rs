@@ -244,7 +244,7 @@ impl ICDeviceBrowser {
         #[unsafe(method_family = none)]
         pub unsafe fn requestContentsAuthorizationWithCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(NonNull<ICAuthorizationStatus>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<ICAuthorizationStatus>)>,
         );
 
         /// This property returns a constant indicating whether the app has permission to control the attached camera device.
@@ -258,7 +258,7 @@ impl ICDeviceBrowser {
         #[unsafe(method_family = none)]
         pub unsafe fn requestControlAuthorizationWithCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(NonNull<ICAuthorizationStatus>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<ICAuthorizationStatus>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -267,7 +267,7 @@ impl ICDeviceBrowser {
         #[unsafe(method_family = none)]
         pub unsafe fn resetContentsAuthorizationWithCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(NonNull<ICAuthorizationStatus>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<ICAuthorizationStatus>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -278,7 +278,7 @@ impl ICDeviceBrowser {
         #[unsafe(method_family = none)]
         pub unsafe fn resetControlAuthorizationWithCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(NonNull<ICAuthorizationStatus>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<ICAuthorizationStatus>)>,
         );
     );
 }

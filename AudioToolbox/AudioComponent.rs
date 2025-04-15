@@ -399,7 +399,7 @@ extern "C-unwind" {
     pub fn AudioComponentInstantiate(
         in_component: AudioComponent,
         in_options: AudioComponentInstantiationOptions,
-        in_completion_handler: &block2::Block<dyn Fn(AudioComponentInstance, OSStatus)>,
+        in_completion_handler: &block2::DynBlock<dyn Fn(AudioComponentInstance, OSStatus)>,
     );
 }
 
@@ -595,7 +595,7 @@ extern "C-unwind" {
     pub fn AudioComponentValidateWithResults(
         in_component: AudioComponent,
         in_validation_parameters: Option<&CFDictionary>,
-        in_completion_handler: &block2::Block<
+        in_completion_handler: &block2::DynBlock<
             dyn Fn(AudioComponentValidationResult, NonNull<CFDictionary>),
         >,
     ) -> OSStatus;

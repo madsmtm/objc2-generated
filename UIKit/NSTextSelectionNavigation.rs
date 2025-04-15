@@ -277,7 +277,7 @@ extern_protocol!(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
             options: NSStringEnumerationOptions,
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(*mut NSString, NonNull<NSTextRange>, *mut NSTextRange, NonNull<Bool>) + '_,
             >,
         );
@@ -327,7 +327,7 @@ extern_protocol!(
         unsafe fn enumerateCaretOffsetsInLineFragmentAtLocation_usingBlock(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(CGFloat, NonNull<ProtocolObject<dyn NSTextLocation>>, Bool, NonNull<Bool>)
                     + '_,
             >,
@@ -350,7 +350,7 @@ extern_protocol!(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
             reverse: bool,
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(NonNull<ProtocolObject<dyn NSTextLocation>>, NonNull<Bool>) + '_,
             >,
         );

@@ -29,7 +29,7 @@ impl GKNotificationBanner {
         pub unsafe fn showBannerWithTitle_message_completionHandler(
             title: Option<&NSString>,
             message: Option<&NSString>,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -40,7 +40,7 @@ impl GKNotificationBanner {
             title: Option<&NSString>,
             message: Option<&NSString>,
             duration: NSTimeInterval,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
     );
 }

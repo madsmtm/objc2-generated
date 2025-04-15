@@ -250,7 +250,7 @@ impl CXProvider {
             &self,
             uuid: &NSUUID,
             update: &CXCallUpdate,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "CXCallUpdate")]
@@ -293,7 +293,7 @@ impl CXProvider {
         #[unsafe(method_family = none)]
         pub unsafe fn reportNewIncomingVoIPPushPayload_completion(
             dictionary_payload: &NSDictionary,
-            completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "CXProviderConfiguration")]

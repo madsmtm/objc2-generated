@@ -57,7 +57,7 @@ impl GKLeaderboardSet {
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardSetsWithCompletionHandler(
             completion_handler: Option<
-                &block2::Block<dyn Fn(*mut NSArray<GKLeaderboardSet>, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut NSArray<GKLeaderboardSet>, *mut NSError)>,
             >,
         );
 
@@ -70,7 +70,7 @@ impl GKLeaderboardSet {
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithHandler(
             &self,
-            handler: &block2::Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
         );
     );
 }
@@ -102,7 +102,7 @@ impl GKLeaderboardSet {
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
             >,
         );
     );
@@ -117,7 +117,7 @@ impl GKLeaderboardSet {
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSImage, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSImage, *mut NSError)>>,
         );
     );
 }

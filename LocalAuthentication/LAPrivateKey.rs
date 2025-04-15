@@ -44,7 +44,7 @@ impl LAPrivateKey {
             &self,
             data: &NSData,
             algorithm: &SecKeyAlgorithm,
-            handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-security")]
@@ -73,7 +73,7 @@ impl LAPrivateKey {
             &self,
             data: &NSData,
             algorithm: &SecKeyAlgorithm,
-            handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-security")]
@@ -105,7 +105,7 @@ impl LAPrivateKey {
             public_key: &NSData,
             algorithm: &SecKeyAlgorithm,
             parameters: &NSDictionary,
-            handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-security")]

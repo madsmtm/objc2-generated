@@ -9,7 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmaltitudehandler?language=objc)
 #[cfg(all(feature = "CMAltitude", feature = "CMLogItem", feature = "block2"))]
-pub type CMAltitudeHandler = *mut block2::Block<dyn Fn(*mut CMAltitudeData, *mut NSError)>;
+pub type CMAltitudeHandler = *mut block2::DynBlock<dyn Fn(*mut CMAltitudeData, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmabsolutealtitudehandler?language=objc)
 #[cfg(all(
@@ -18,7 +18,7 @@ pub type CMAltitudeHandler = *mut block2::Block<dyn Fn(*mut CMAltitudeData, *mut
     feature = "block2"
 ))]
 pub type CMAbsoluteAltitudeHandler =
-    *mut block2::Block<dyn Fn(*mut CMAbsoluteAltitudeData, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut CMAbsoluteAltitudeData, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmaltimeter?language=objc)

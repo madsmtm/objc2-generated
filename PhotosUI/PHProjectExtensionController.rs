@@ -63,7 +63,7 @@ extern_protocol!(
             &self,
             extension_context: &PHProjectExtensionContext,
             project_info: &PHProjectInfo,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "PHProjectExtensionContext", feature = "block2"))]
@@ -73,7 +73,7 @@ extern_protocol!(
         unsafe fn resumeProjectWithExtensionContext_completion(
             &self,
             extension_context: &PHProjectExtensionContext,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -81,6 +81,9 @@ extern_protocol!(
         /// The receiver should persist any state data to using PHProjectChangeRequest, then call the completion handler.
         #[unsafe(method(finishProjectWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn finishProjectWithCompletionHandler(&self, completion: &block2::Block<dyn Fn()>);
+        unsafe fn finishProjectWithCompletionHandler(
+            &self,
+            completion: &block2::DynBlock<dyn Fn()>,
+        );
     }
 );

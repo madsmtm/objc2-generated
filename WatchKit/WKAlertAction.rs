@@ -31,7 +31,7 @@ unsafe impl RefEncode for WKAlertActionStyle {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertactionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type WKAlertActionHandler = *mut block2::Block<dyn Fn()>;
+pub type WKAlertActionHandler = *mut block2::DynBlock<dyn Fn()>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertaction?language=objc)

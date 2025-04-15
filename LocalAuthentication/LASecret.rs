@@ -28,7 +28,7 @@ impl LASecret {
         #[unsafe(method_family = none)]
         pub unsafe fn loadDataWithCompletion(
             &self,
-            handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         /// Clients cannot create

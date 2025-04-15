@@ -114,7 +114,7 @@ impl MLModel {
             input_features: &ProtocolObject<dyn MLFeatureProvider>,
             state: &MLState,
             options: &MLPredictionOptions,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut ProtocolObject<dyn MLFeatureProvider>, *mut NSError),
             >,
         );

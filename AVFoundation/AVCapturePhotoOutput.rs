@@ -216,7 +216,7 @@ impl AVCapturePhotoOutput {
         pub unsafe fn setPreparedPhotoSettingsArray_completionHandler(
             &self,
             prepared_photo_settings_array: &NSArray<AVCapturePhotoSettings>,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
         );
 
         /// An array of kCVPixelBufferPixelFormatTypeKey values that are currently supported by the receiver.

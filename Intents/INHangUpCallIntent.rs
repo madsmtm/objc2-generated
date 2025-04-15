@@ -91,7 +91,7 @@ extern_protocol!(
         unsafe fn handleHangUpCall_completion(
             &self,
             intent: &INHangUpCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INHangUpCallIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INHangUpCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -117,7 +117,7 @@ extern_protocol!(
         unsafe fn confirmHangUpCall_completion(
             &self,
             intent: &INHangUpCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INHangUpCallIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INHangUpCallIntentResponse>)>,
         );
     }
 );

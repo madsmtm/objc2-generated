@@ -108,7 +108,7 @@ impl TVUserManager {
             &self,
             current_settings: &NSDictionary<TVUserIdentifier, TVAppProfileDescriptor>,
             available_profiles: &NSArray<TVAppProfileDescriptor>,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<NSDictionary<TVUserIdentifier, TVAppProfileDescriptor>>),
             >,
         );
@@ -129,7 +129,7 @@ impl TVUserManager {
         pub unsafe fn shouldStorePreferenceForCurrentUserToProfile_completion(
             &self,
             profile: &TVAppProfileDescriptor,
-            completion: &block2::Block<dyn Fn(Bool)>,
+            completion: &block2::DynBlock<dyn Fn(Bool)>,
         );
     );
 }

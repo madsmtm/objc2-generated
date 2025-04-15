@@ -24,7 +24,7 @@ impl NSThread {
         #[cfg(feature = "block2")]
         #[unsafe(method(detachNewThreadWithBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detachNewThreadWithBlock(block: &block2::Block<dyn Fn()>);
+        pub unsafe fn detachNewThreadWithBlock(block: &block2::DynBlock<dyn Fn()>);
 
         #[unsafe(method(detachNewThreadSelector:toTarget:withObject:))]
         #[unsafe(method_family = none)]
@@ -145,7 +145,7 @@ impl NSThread {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBlock(
             this: Allocated<Self>,
-            block: &block2::Block<dyn Fn()>,
+            block: &block2::DynBlock<dyn Fn()>,
         ) -> Retained<Self>;
 
         #[unsafe(method(isExecuting))]

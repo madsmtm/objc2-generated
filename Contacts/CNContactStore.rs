@@ -116,7 +116,7 @@ impl CNContactStore {
         pub unsafe fn requestAccessForEntityType_completionHandler(
             &self,
             entity_type: CNEntityType,
-            completion_handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "CNContact")]
@@ -272,7 +272,7 @@ impl CNContactStore {
             &self,
             fetch_request: &CNContactFetchRequest,
             error: Option<&mut Option<Retained<NSError>>>,
-            block: &block2::Block<dyn Fn(NonNull<CNContact>, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NonNull<CNContact>, NonNull<Bool>) + '_>,
         ) -> bool;
 
         #[cfg(feature = "CNGroup")]

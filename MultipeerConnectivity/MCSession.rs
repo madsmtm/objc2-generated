@@ -129,7 +129,7 @@ impl MCSession {
             resource_url: &NSURL,
             resource_name: &NSString,
             peer_id: &MCPeerID,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         ) -> Option<Retained<NSProgress>>;
 
         #[cfg(feature = "MCPeerID")]
@@ -250,7 +250,7 @@ extern_protocol!(
             session: &MCSession,
             certificate: Option<&NSArray>,
             peer_id: &MCPeerID,
-            certificate_handler: &block2::Block<dyn Fn(Bool)>,
+            certificate_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
     }
 );
@@ -264,7 +264,7 @@ impl MCSession {
         pub unsafe fn nearbyConnectionDataForPeer_withCompletionHandler(
             &self,
             peer_id: &MCPeerID,
-            completion_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "MCPeerID")]

@@ -9,12 +9,12 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkinformationrequestcompletionblock?language=objc)
 #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
 pub type PKInformationRequestCompletionBlock =
-    *mut block2::Block<dyn Fn(NonNull<PKBarcodeEventMetadataResponse>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<PKBarcodeEventMetadataResponse>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksignaturerequestcompletionblock?language=objc)
 #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
 pub type PKSignatureRequestCompletionBlock =
-    *mut block2::Block<dyn Fn(NonNull<PKBarcodeEventSignatureResponse>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<PKBarcodeEventSignatureResponse>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentinformationeventextension?language=objc)
@@ -69,7 +69,7 @@ extern_protocol!(
         unsafe fn handleConfigurationRequest_completion(
             &self,
             configuration_request: &PKBarcodeEventConfigurationRequest,
-            completion: &block2::Block<dyn Fn()>,
+            completion: &block2::DynBlock<dyn Fn()>,
         );
     }
 );

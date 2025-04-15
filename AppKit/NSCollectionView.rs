@@ -752,8 +752,8 @@ impl NSCollectionView {
         #[unsafe(method_family = none)]
         pub unsafe fn performBatchUpdates_completionHandler(
             &self,
-            updates: Option<&block2::Block<dyn Fn() + '_>>,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            updates: Option<&block2::DynBlock<dyn Fn() + '_>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[unsafe(method(toggleSectionCollapse:))]
@@ -1331,7 +1331,7 @@ pub unsafe trait NSSetNSCollectionViewAdditions:
         unsafe fn enumerateIndexPathsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &block2::Block<dyn Fn(NonNull<NSIndexPath>, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSIndexPath>, NonNull<Bool>) + '_>,
         );
     );
 }

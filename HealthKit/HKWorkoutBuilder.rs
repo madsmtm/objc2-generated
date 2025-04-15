@@ -124,7 +124,7 @@ impl HKWorkoutBuilder {
         pub unsafe fn beginCollectionWithStartDate_completion(
             &self,
             start_date: &NSDate,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "block2"))]
@@ -146,7 +146,7 @@ impl HKWorkoutBuilder {
         pub unsafe fn addSamples_completion(
             &self,
             samples: &NSArray<HKSample>,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKWorkout", feature = "block2"))]
@@ -166,7 +166,7 @@ impl HKWorkoutBuilder {
         pub unsafe fn addWorkoutEvents_completion(
             &self,
             workout_events: &NSArray<HKWorkoutEvent>,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -187,7 +187,7 @@ impl HKWorkoutBuilder {
         pub unsafe fn addMetadata_completion(
             &self,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKWorkoutActivity", feature = "block2"))]
@@ -207,7 +207,7 @@ impl HKWorkoutBuilder {
         pub unsafe fn addWorkoutActivity_completion(
             &self,
             workout_activity: &HKWorkoutActivity,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -229,7 +229,7 @@ impl HKWorkoutBuilder {
             &self,
             uuid: &NSUUID,
             end_date: &NSDate,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -254,7 +254,7 @@ impl HKWorkoutBuilder {
             &self,
             uuid: &NSUUID,
             metadata: &NSDictionary<NSString, AnyObject>,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -271,7 +271,7 @@ impl HKWorkoutBuilder {
         pub unsafe fn endCollectionWithEndDate_completion(
             &self,
             end_date: &NSDate,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -291,7 +291,7 @@ impl HKWorkoutBuilder {
         #[unsafe(method_family = none)]
         pub unsafe fn finishWorkoutWithCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(*mut HKWorkout, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut HKWorkout, *mut NSError)>,
         );
 
         /// Finishes building the workout and discards the result instead of saving it. Samples that were added to

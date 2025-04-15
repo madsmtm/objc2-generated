@@ -74,7 +74,7 @@ impl FPUIActionExtensionContext {
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
             items: Option<&NSArray>,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         /// Cancels the action and returns the provided error.

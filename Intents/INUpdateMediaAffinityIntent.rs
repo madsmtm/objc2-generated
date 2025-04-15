@@ -109,7 +109,7 @@ extern_protocol!(
         unsafe fn handleUpdateMediaAffinity_completion(
             &self,
             intent: &INUpdateMediaAffinityIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INUpdateMediaAffinityIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INUpdateMediaAffinityIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -135,7 +135,7 @@ extern_protocol!(
         unsafe fn confirmUpdateMediaAffinity_completion(
             &self,
             intent: &INUpdateMediaAffinityIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INUpdateMediaAffinityIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INUpdateMediaAffinityIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -162,7 +162,7 @@ extern_protocol!(
         unsafe fn resolveMediaItemsForUpdateMediaAffinity_withCompletion(
             &self,
             intent: &INUpdateMediaAffinityIntent,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<NSArray<INUpdateMediaAffinityMediaItemResolutionResult>>),
             >,
         );
@@ -179,7 +179,7 @@ extern_protocol!(
         unsafe fn resolveAffinityTypeForUpdateMediaAffinity_withCompletion(
             &self,
             intent: &INUpdateMediaAffinityIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INMediaAffinityTypeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INMediaAffinityTypeResolutionResult>)>,
         );
     }
 );

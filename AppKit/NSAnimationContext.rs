@@ -25,15 +25,15 @@ impl NSAnimationContext {
         #[unsafe(method(runAnimationGroup:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runAnimationGroup_completionHandler(
-            changes: &block2::Block<dyn Fn(NonNull<NSAnimationContext>) + '_>,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            changes: &block2::DynBlock<dyn Fn(NonNull<NSAnimationContext>) + '_>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(runAnimationGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runAnimationGroup(
-            changes: &block2::Block<dyn Fn(NonNull<NSAnimationContext>) + '_>,
+            changes: &block2::DynBlock<dyn Fn(NonNull<NSAnimationContext>) + '_>,
         );
 
         #[unsafe(method(beginGrouping))]
@@ -73,7 +73,7 @@ impl NSAnimationContext {
         #[cfg(feature = "block2")]
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionHandler(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn completionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
@@ -81,7 +81,7 @@ impl NSAnimationContext {
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[unsafe(method(allowsImplicitAnimation))]

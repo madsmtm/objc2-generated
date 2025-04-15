@@ -64,7 +64,7 @@ impl CMFallDetectionManager {
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationWithHandler(
             &self,
-            handler: &block2::Block<dyn Fn(CMAuthorizationStatus)>,
+            handler: &block2::DynBlock<dyn Fn(CMAuthorizationStatus)>,
         );
     );
 }
@@ -115,7 +115,7 @@ extern_protocol!(
             &self,
             fall_detection_manager: &CMFallDetectionManager,
             event: &CMFallDetectionEvent,
-            handler: &block2::Block<dyn Fn()>,
+            handler: &block2::DynBlock<dyn Fn()>,
         );
 
         /// Update the delegate when the app's Fall Detection authorization status changes

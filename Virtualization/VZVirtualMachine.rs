@@ -286,7 +286,7 @@ impl VZVirtualMachine {
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "VZVirtualMachineStartOptions", feature = "block2"))]
@@ -305,7 +305,7 @@ impl VZVirtualMachine {
         pub unsafe fn startWithOptions_completionHandler(
             &self,
             options: &VZVirtualMachineStartOptions,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -323,7 +323,7 @@ impl VZVirtualMachine {
         #[unsafe(method_family = none)]
         pub unsafe fn stopWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -337,7 +337,7 @@ impl VZVirtualMachine {
         #[unsafe(method_family = none)]
         pub unsafe fn pauseWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -351,7 +351,7 @@ impl VZVirtualMachine {
         #[unsafe(method_family = none)]
         pub unsafe fn resumeWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -387,7 +387,7 @@ impl VZVirtualMachine {
         pub unsafe fn restoreMachineStateFromURL_completionHandler(
             &self,
             save_file_url: &NSURL,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -415,7 +415,7 @@ impl VZVirtualMachine {
         pub unsafe fn saveMachineStateToURL_completionHandler(
             &self,
             save_file_url: &NSURL,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         /// Request that the guest turns itself off.

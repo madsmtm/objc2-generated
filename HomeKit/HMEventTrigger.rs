@@ -167,7 +167,7 @@ impl HMEventTrigger {
         pub unsafe fn addEvent_completionHandler(
             &self,
             event: &HMEvent,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMEvent", feature = "block2"))]
@@ -186,7 +186,7 @@ impl HMEventTrigger {
         pub unsafe fn removeEvent_completionHandler(
             &self,
             event: &HMEvent,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMEvent", feature = "block2"))]
@@ -204,7 +204,7 @@ impl HMEventTrigger {
         pub unsafe fn updateEvents_completionHandler(
             &self,
             events: &NSArray<HMEvent>,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMEvent", feature = "block2"))]
@@ -222,7 +222,7 @@ impl HMEventTrigger {
         pub unsafe fn updateEndEvents_completionHandler(
             &self,
             end_events: &NSArray<HMEvent>,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -240,7 +240,7 @@ impl HMEventTrigger {
         pub unsafe fn updatePredicate_completionHandler(
             &self,
             predicate: Option<&NSPredicate>,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -258,7 +258,7 @@ impl HMEventTrigger {
         pub unsafe fn updateRecurrences_completionHandler(
             &self,
             recurrences: Option<&NSArray<NSDateComponents>>,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -276,7 +276,7 @@ impl HMEventTrigger {
         pub unsafe fn updateExecuteOnce_completionHandler(
             &self,
             execute_once: bool,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

@@ -75,7 +75,7 @@ impl TKTokenWatcher {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInsertionHandler(
             this: Allocated<Self>,
-            insertion_handler: &block2::Block<dyn Fn(NonNull<NSString>)>,
+            insertion_handler: &block2::DynBlock<dyn Fn(NonNull<NSString>)>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -88,7 +88,7 @@ impl TKTokenWatcher {
         #[unsafe(method_family = none)]
         pub unsafe fn setInsertionHandler(
             &self,
-            insertion_handler: &block2::Block<dyn Fn(NonNull<NSString>)>,
+            insertion_handler: &block2::DynBlock<dyn Fn(NonNull<NSString>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -103,7 +103,7 @@ impl TKTokenWatcher {
         #[unsafe(method_family = none)]
         pub unsafe fn addRemovalHandler_forTokenID(
             &self,
-            removal_handler: &block2::Block<dyn Fn(NonNull<NSString>)>,
+            removal_handler: &block2::DynBlock<dyn Fn(NonNull<NSString>)>,
             token_id: &NSString,
         );
 

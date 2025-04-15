@@ -89,7 +89,7 @@ impl HKDocumentQuery {
             limit: NSUInteger,
             sort_descriptors: Option<&NSArray<NSSortDescriptor>>,
             include_document_data: bool,
-            results_handler: &block2::Block<
+            results_handler: &block2::DynBlock<
                 dyn Fn(
                     NonNull<HKDocumentQuery>,
                     *mut NSArray<HKDocumentSample>,

@@ -27,7 +27,9 @@ impl TVTopShelfContentProvider {
         #[unsafe(method_family = none)]
         pub unsafe fn loadTopShelfContentWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut ProtocolObject<dyn TVTopShelfContent>)>,
+            completion_handler: &block2::DynBlock<
+                dyn Fn(*mut ProtocolObject<dyn TVTopShelfContent>),
+            >,
         );
 
         /// Can be called from an application or extension to tell the system that your Top Shelf content has changed.

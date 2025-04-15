@@ -323,7 +323,7 @@ extern_protocol!(
             &self,
             sample_buffer: &CMSampleBuffer,
             options: &MEDecodeFrameOptions,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut CVImageBuffer, MEDecodeFrameStatus, *mut NSError),
             >,
         );

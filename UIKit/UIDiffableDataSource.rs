@@ -243,7 +243,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UICollectionViewDiffableDataSourceCellProvider = *mut block2::Block<
+pub type UICollectionViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
     dyn Fn(
         NonNull<UICollectionView>,
         NonNull<NSIndexPath>,
@@ -260,7 +260,7 @@ pub type UICollectionViewDiffableDataSourceCellProvider = *mut block2::Block<
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UICollectionViewDiffableDataSourceSupplementaryViewProvider = *mut block2::Block<
+pub type UICollectionViewDiffableDataSourceSupplementaryViewProvider = *mut block2::DynBlock<
     dyn Fn(
         NonNull<UICollectionView>,
         NonNull<NSString>,
@@ -428,7 +428,7 @@ impl<SectionType: Message, ItemType: Message>
         #[unsafe(method_family = none)]
         pub unsafe fn canReorderItemHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<ItemType>) -> Bool>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<ItemType>) -> Bool>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`canReorderItemHandler`][Self::canReorderItemHandler].
@@ -436,7 +436,7 @@ impl<SectionType: Message, ItemType: Message>
         #[unsafe(method_family = none)]
         pub unsafe fn setCanReorderItemHandler(
             &self,
-            can_reorder_item_handler: Option<&block2::Block<dyn Fn(NonNull<ItemType>) -> Bool>>,
+            can_reorder_item_handler: Option<&block2::DynBlock<dyn Fn(NonNull<ItemType>) -> Bool>>,
         );
 
         #[cfg(feature = "block2")]
@@ -444,7 +444,7 @@ impl<SectionType: Message, ItemType: Message>
         #[unsafe(method_family = none)]
         pub unsafe fn willReorderHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(NonNull<NSDiffableDataSourceTransaction<SectionType, ItemType>>),
         >;
 
@@ -455,7 +455,7 @@ impl<SectionType: Message, ItemType: Message>
         pub unsafe fn setWillReorderHandler(
             &self,
             will_reorder_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(NonNull<NSDiffableDataSourceTransaction<SectionType, ItemType>>),
                 >,
             >,
@@ -466,7 +466,7 @@ impl<SectionType: Message, ItemType: Message>
         #[unsafe(method_family = none)]
         pub unsafe fn didReorderHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(NonNull<NSDiffableDataSourceTransaction<SectionType, ItemType>>),
         >;
 
@@ -477,7 +477,7 @@ impl<SectionType: Message, ItemType: Message>
         pub unsafe fn setDidReorderHandler(
             &self,
             did_reorder_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(NonNull<NSDiffableDataSourceTransaction<SectionType, ItemType>>),
                 >,
             >,
@@ -533,7 +533,7 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         #[unsafe(method_family = none)]
         pub unsafe fn shouldExpandItemHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<ItemType>) -> Bool>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<ItemType>) -> Bool>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`shouldExpandItemHandler`][Self::shouldExpandItemHandler].
@@ -541,14 +541,17 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldExpandItemHandler(
             &self,
-            should_expand_item_handler: Option<&block2::Block<dyn Fn(NonNull<ItemType>) -> Bool>>,
+            should_expand_item_handler: Option<
+                &block2::DynBlock<dyn Fn(NonNull<ItemType>) -> Bool>,
+            >,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(willExpandItemHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn willExpandItemHandler(&self)
-            -> *mut block2::Block<dyn Fn(NonNull<ItemType>)>;
+        pub unsafe fn willExpandItemHandler(
+            &self,
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<ItemType>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`willExpandItemHandler`][Self::willExpandItemHandler].
@@ -556,7 +559,7 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         #[unsafe(method_family = none)]
         pub unsafe fn setWillExpandItemHandler(
             &self,
-            will_expand_item_handler: Option<&block2::Block<dyn Fn(NonNull<ItemType>)>>,
+            will_expand_item_handler: Option<&block2::DynBlock<dyn Fn(NonNull<ItemType>)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -564,7 +567,7 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         #[unsafe(method_family = none)]
         pub unsafe fn shouldCollapseItemHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<ItemType>) -> Bool>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<ItemType>) -> Bool>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`shouldCollapseItemHandler`][Self::shouldCollapseItemHandler].
@@ -572,7 +575,9 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldCollapseItemHandler(
             &self,
-            should_collapse_item_handler: Option<&block2::Block<dyn Fn(NonNull<ItemType>) -> Bool>>,
+            should_collapse_item_handler: Option<
+                &block2::DynBlock<dyn Fn(NonNull<ItemType>) -> Bool>,
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -580,7 +585,7 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         #[unsafe(method_family = none)]
         pub unsafe fn willCollapseItemHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<ItemType>)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<ItemType>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`willCollapseItemHandler`][Self::willCollapseItemHandler].
@@ -588,7 +593,7 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         #[unsafe(method_family = none)]
         pub unsafe fn setWillCollapseItemHandler(
             &self,
-            will_collapse_item_handler: Option<&block2::Block<dyn Fn(NonNull<ItemType>)>>,
+            will_collapse_item_handler: Option<&block2::DynBlock<dyn Fn(NonNull<ItemType>)>>,
         );
 
         #[cfg(all(feature = "NSDiffableDataSourceSectionSnapshot", feature = "block2"))]
@@ -596,7 +601,7 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotForExpandingParentItemHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(
                 NonNull<ItemType>,
                 NonNull<NSDiffableDataSourceSectionSnapshot<ItemType>>,
@@ -610,7 +615,7 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         pub unsafe fn setSnapshotForExpandingParentItemHandler(
             &self,
             snapshot_for_expanding_parent_item_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<ItemType>,
                         NonNull<NSDiffableDataSourceSectionSnapshot<ItemType>>,
@@ -737,7 +742,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
             animating_differences: bool,
-            completion: Option<&block2::Block<dyn Fn()>>,
+            completion: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[unsafe(method(applySnapshotUsingReloadData:))]
@@ -753,7 +758,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         pub unsafe fn applySnapshotUsingReloadData_completion(
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
-            completion: Option<&block2::Block<dyn Fn()>>,
+            completion: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[unsafe(method(sectionIdentifierForIndex:))]
@@ -824,7 +829,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             snapshot: &NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>,
             section_identifier: &SectionIdentifierType,
             animating_differences: bool,
-            completion: Option<&block2::Block<dyn Fn()>>,
+            completion: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "NSDiffableDataSourceSectionSnapshot")]
@@ -862,7 +867,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UITableViewDiffableDataSourceCellProvider = *mut block2::Block<
+pub type UITableViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
     dyn Fn(NonNull<UITableView>, NonNull<NSIndexPath>, NonNull<AnyObject>) -> *mut UITableViewCell,
 >;
 
@@ -938,7 +943,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
             animating_differences: bool,
-            completion: Option<&block2::Block<dyn Fn()>>,
+            completion: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[unsafe(method(applySnapshotUsingReloadData:))]
@@ -954,7 +959,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         pub unsafe fn applySnapshotUsingReloadData_completion(
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
-            completion: Option<&block2::Block<dyn Fn()>>,
+            completion: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[unsafe(method(sectionIdentifierForIndex:))]

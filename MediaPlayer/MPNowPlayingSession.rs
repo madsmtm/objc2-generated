@@ -150,7 +150,7 @@ impl MPNowPlayingSession {
         #[unsafe(method_family = none)]
         pub unsafe fn becomeActiveIfPossibleWithCompletion(
             &self,
-            completion: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "objc2-av-foundation")]

@@ -93,7 +93,7 @@ extern_protocol!(
         unsafe fn handleGetCarLockStatus_completion(
             &self,
             intent: &INGetCarLockStatusIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INGetCarLockStatusIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INGetCarLockStatusIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -119,7 +119,7 @@ extern_protocol!(
         unsafe fn confirmGetCarLockStatus_completion(
             &self,
             intent: &INGetCarLockStatusIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INGetCarLockStatusIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INGetCarLockStatusIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -145,7 +145,7 @@ extern_protocol!(
         unsafe fn resolveCarNameForGetCarLockStatus_withCompletion(
             &self,
             intent: &INGetCarLockStatusIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
     }
 );

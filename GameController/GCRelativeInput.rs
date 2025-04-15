@@ -26,7 +26,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn deltaDidChangeHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(
                 NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
                 NonNull<ProtocolObject<dyn GCRelativeInput>>,
@@ -41,7 +41,7 @@ extern_protocol!(
         unsafe fn setDeltaDidChangeHandler(
             &self,
             delta_did_change_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
                         NonNull<ProtocolObject<dyn GCRelativeInput>>,

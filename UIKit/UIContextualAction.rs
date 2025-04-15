@@ -9,8 +9,8 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualactionhandler?language=objc)
 #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
-pub type UIContextualActionHandler = *mut block2::Block<
-    dyn Fn(NonNull<UIContextualAction>, NonNull<UIView>, NonNull<block2::Block<dyn Fn(Bool)>>),
+pub type UIContextualActionHandler = *mut block2::DynBlock<
+    dyn Fn(NonNull<UIContextualAction>, NonNull<UIView>, NonNull<block2::DynBlock<dyn Fn(Bool)>>),
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualactionstyle?language=objc)

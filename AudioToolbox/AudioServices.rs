@@ -105,7 +105,7 @@ extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn AudioServicesPlayAlertSoundWithCompletion(
         in_system_sound_id: SystemSoundID,
-        in_completion_block: Option<&block2::Block<dyn Fn()>>,
+        in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
     );
 }
 
@@ -122,7 +122,7 @@ extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn AudioServicesPlaySystemSoundWithCompletion(
         in_system_sound_id: SystemSoundID,
-        in_completion_block: Option<&block2::Block<dyn Fn()>>,
+        in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
     );
 }
 

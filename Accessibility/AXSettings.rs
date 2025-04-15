@@ -81,6 +81,6 @@ extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn AXOpenSettingsFeature(
         feature: AXSettingsFeature,
-        completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+        completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
     );
 }

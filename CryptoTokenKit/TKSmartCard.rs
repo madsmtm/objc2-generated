@@ -39,7 +39,7 @@ impl TKSmartCardSlotManager {
         pub unsafe fn getSlotWithName_reply(
             &self,
             name: &NSString,
-            reply: &block2::Block<dyn Fn(*mut TKSmartCardSlot)>,
+            reply: &block2::DynBlock<dyn Fn(*mut TKSmartCardSlot)>,
         );
 
         /// Gets SmartCard reader slot with specified name.  If reader slot with this name does not exist, returns nil.
@@ -494,7 +494,7 @@ impl TKSmartCardUserInteraction {
         /// Runs the interaction.
         #[unsafe(method(runWithReply:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runWithReply(&self, reply: &block2::Block<dyn Fn(Bool, *mut NSError)>);
+        pub unsafe fn runWithReply(&self, reply: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>);
 
         /// Attempts to cancel a running interaction. Note that for some interactions, this functionality might not be available.
         ///
@@ -822,7 +822,7 @@ impl TKSmartCard {
         #[unsafe(method_family = none)]
         pub unsafe fn beginSessionWithReply(
             &self,
-            reply: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            reply: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -838,7 +838,7 @@ impl TKSmartCard {
         pub unsafe fn transmitRequest_reply(
             &self,
             request: &NSData,
-            reply: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            reply: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         /// Terminates the transaction. If no transaction is pending any more, the connection will be closed if there is another session in the system waiting for the transaction.
@@ -969,7 +969,7 @@ impl TKSmartCard {
             p2: u8,
             request_data: Option<&NSData>,
             le: Option<&NSNumber>,
-            reply: &block2::Block<dyn Fn(*mut NSData, u16, *mut NSError)>,
+            reply: &block2::DynBlock<dyn Fn(*mut NSData, u16, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -985,7 +985,7 @@ impl TKSmartCard {
         pub unsafe fn inSessionWithError_executeBlock(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
-            block: &block2::Block<dyn Fn(*mut *mut NSError) -> Bool>,
+            block: &block2::DynBlock<dyn Fn(*mut *mut NSError) -> Bool>,
         ) -> bool;
 
         /// Transmits APDU to the card and returns response.

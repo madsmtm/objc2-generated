@@ -31,7 +31,7 @@ extern_protocol!(
         unsafe fn beginLoadingChildItemsAtIndexPath_completionHandler(
             &self,
             index_path: &NSIndexPath,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         /// Tells MediaPlayer whether the content provided by the data source supports
@@ -61,7 +61,7 @@ extern_protocol!(
         unsafe fn contentItemForIdentifier_completionHandler(
             &self,
             identifier: &NSString,
-            completion_handler: &block2::Block<dyn Fn(*mut MPContentItem, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut MPContentItem, *mut NSError)>,
         );
 
         /// Returns the number of child nodes at the specified index path. In a virtual

@@ -77,7 +77,7 @@ impl GKVoiceChat {
         #[unsafe(method_family = none)]
         pub unsafe fn playerVoiceChatStateDidChangeHandler(
             &self,
-        ) -> NonNull<block2::Block<dyn Fn(NonNull<GKPlayer>, GKVoiceChatPlayerState)>>;
+        ) -> NonNull<block2::DynBlock<dyn Fn(NonNull<GKPlayer>, GKVoiceChatPlayerState)>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Setter for [`playerVoiceChatStateDidChangeHandler`][Self::playerVoiceChatStateDidChangeHandler].
@@ -86,7 +86,7 @@ impl GKVoiceChat {
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayerVoiceChatStateDidChangeHandler(
             &self,
-            player_voice_chat_state_did_change_handler: &block2::Block<
+            player_voice_chat_state_did_change_handler: &block2::DynBlock<
                 dyn Fn(NonNull<GKPlayer>, GKVoiceChatPlayerState),
             >,
         );
@@ -153,7 +153,7 @@ impl GKVoiceChat {
         #[unsafe(method_family = none)]
         pub unsafe fn playerStateUpdateHandler(
             &self,
-        ) -> NonNull<block2::Block<dyn Fn(NonNull<NSString>, GKVoiceChatPlayerState)>>;
+        ) -> NonNull<block2::DynBlock<dyn Fn(NonNull<NSString>, GKVoiceChatPlayerState)>>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`playerStateUpdateHandler`][Self::playerStateUpdateHandler].
@@ -162,7 +162,7 @@ impl GKVoiceChat {
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayerStateUpdateHandler(
             &self,
-            player_state_update_handler: &block2::Block<
+            player_state_update_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSString>, GKVoiceChatPlayerState),
             >,
         );

@@ -93,7 +93,7 @@ extern_protocol!(
         unsafe fn handleGetCarPowerLevelStatus_completion(
             &self,
             intent: &INGetCarPowerLevelStatusIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INGetCarPowerLevelStatusIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INGetCarPowerLevelStatusIntentResponse>)>,
         );
 
         #[cfg(feature = "INIntent")]
@@ -138,7 +138,7 @@ extern_protocol!(
         unsafe fn confirmGetCarPowerLevelStatus_completion(
             &self,
             intent: &INGetCarPowerLevelStatusIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INGetCarPowerLevelStatusIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INGetCarPowerLevelStatusIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -164,7 +164,7 @@ extern_protocol!(
         unsafe fn resolveCarNameForGetCarPowerLevelStatus_withCompletion(
             &self,
             intent: &INGetCarPowerLevelStatusIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
     }
 );

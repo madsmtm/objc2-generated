@@ -130,7 +130,7 @@ extern_protocol!(
         unsafe fn handleStartCall_completion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStartCallIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStartCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -156,7 +156,7 @@ extern_protocol!(
         unsafe fn confirmStartCall_completion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStartCallIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStartCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -182,7 +182,7 @@ extern_protocol!(
         unsafe fn resolveCallRecordToCallBackForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INCallRecordResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INCallRecordResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -197,7 +197,7 @@ extern_protocol!(
         unsafe fn resolveDestinationTypeForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INCallDestinationTypeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INCallDestinationTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -213,7 +213,7 @@ extern_protocol!(
         unsafe fn resolveContactsForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<NSArray<INStartCallContactResolutionResult>>),
             >,
         );
@@ -231,7 +231,9 @@ extern_protocol!(
         unsafe fn resolveCallCapabilityForStartCall_withCompletion(
             &self,
             intent: &INStartCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStartCallCallCapabilityResolutionResult>)>,
+            completion: &block2::DynBlock<
+                dyn Fn(NonNull<INStartCallCallCapabilityResolutionResult>),
+            >,
         );
     }
 );

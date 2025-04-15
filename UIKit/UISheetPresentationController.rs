@@ -81,7 +81,7 @@ impl UISheetPresentationControllerDetent {
         #[unsafe(method_family = none)]
         pub unsafe fn customDetentWithIdentifier_resolver(
             identifier: Option<&UISheetPresentationControllerDetentIdentifier>,
-            resolver: &block2::Block<
+            resolver: &block2::DynBlock<
                 dyn Fn(
                     NonNull<
                         ProtocolObject<dyn UISheetPresentationControllerDetentResolutionContext>,
@@ -291,7 +291,7 @@ impl UISheetPresentationController {
         #[cfg(feature = "block2")]
         #[unsafe(method(animateChanges:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animateChanges(&self, changes: &block2::Block<dyn Fn() + '_>);
+        pub unsafe fn animateChanges(&self, changes: &block2::DynBlock<dyn Fn() + '_>);
     );
 }
 

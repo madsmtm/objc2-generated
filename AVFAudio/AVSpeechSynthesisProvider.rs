@@ -220,7 +220,7 @@ impl AVSpeechSynthesisProviderRequest {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideroutputblock?language=objc)
 #[cfg(all(feature = "AVSpeechSynthesis", feature = "block2"))]
-pub type AVSpeechSynthesisProviderOutputBlock = *mut block2::Block<
+pub type AVSpeechSynthesisProviderOutputBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<NSArray<AVSpeechSynthesisMarker>>, NonNull<AVSpeechSynthesisProviderRequest>),
 >;
 

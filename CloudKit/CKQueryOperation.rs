@@ -162,7 +162,8 @@ impl CKQueryOperation {
         #[deprecated = "Use recordMatchedBlock instead, which surfaces per-record errors"]
         #[unsafe(method(recordFetchedBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recordFetchedBlock(&self) -> *mut block2::Block<dyn Fn(NonNull<CKRecord>)>;
+        pub unsafe fn recordFetchedBlock(&self)
+            -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecord>)>;
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`recordFetchedBlock`][Self::recordFetchedBlock].
@@ -171,7 +172,7 @@ impl CKQueryOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordFetchedBlock(
             &self,
-            record_fetched_block: Option<&block2::Block<dyn Fn(NonNull<CKRecord>)>>,
+            record_fetched_block: Option<&block2::DynBlock<dyn Fn(NonNull<CKRecord>)>>,
         );
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
@@ -188,7 +189,7 @@ impl CKQueryOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn recordMatchedBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`recordMatchedBlock`][Self::recordMatchedBlock].
@@ -197,7 +198,7 @@ impl CKQueryOperation {
         pub unsafe fn setRecordMatchedBlock(
             &self,
             record_matched_block: Option<
-                &block2::Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>,
             >,
         );
 
@@ -224,7 +225,7 @@ impl CKQueryOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn queryCompletionBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(*mut CKQueryCursor, *mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(*mut CKQueryCursor, *mut NSError)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`queryCompletionBlock`][Self::queryCompletionBlock].
@@ -233,7 +234,7 @@ impl CKQueryOperation {
         pub unsafe fn setQueryCompletionBlock(
             &self,
             query_completion_block: Option<
-                &block2::Block<dyn Fn(*mut CKQueryCursor, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut CKQueryCursor, *mut NSError)>,
             >,
         );
     );

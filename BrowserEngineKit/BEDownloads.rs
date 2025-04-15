@@ -81,7 +81,7 @@ impl BEDownloadMonitor {
         pub unsafe fn useDownloadsFolderWithPlaceholderType_finalFileCreatedHandler(
             &self,
             r#type: Option<&UTType>,
-            final_file_created_handler: &block2::Block<dyn Fn(*mut BEDownloadMonitorLocation)>,
+            final_file_created_handler: &block2::DynBlock<dyn Fn(*mut BEDownloadMonitorLocation)>,
         );
 
         #[cfg(feature = "block2")]
@@ -89,7 +89,7 @@ impl BEDownloadMonitor {
         #[unsafe(method_family = none)]
         pub unsafe fn beginMonitoring(
             &self,
-            completion: &block2::Block<dyn Fn(*mut BEDownloadMonitorLocation, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut BEDownloadMonitorLocation, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -98,7 +98,7 @@ impl BEDownloadMonitor {
         pub unsafe fn resumeMonitoring_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[unsafe(method(identifier))]

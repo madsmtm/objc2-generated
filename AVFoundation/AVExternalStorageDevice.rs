@@ -137,7 +137,7 @@ impl AVExternalStorageDevice {
         /// The completion handler is called on an arbitrary dispatch queue. It is the client's responsibility to ensure that any UIKit-related updates are called on the main queue or main thread as a result.
         #[unsafe(method(requestAccessWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestAccessWithCompletionHandler(handler: &block2::Block<dyn Fn(Bool)>);
+        pub unsafe fn requestAccessWithCompletionHandler(handler: &block2::DynBlock<dyn Fn(Bool)>);
     );
 }
 

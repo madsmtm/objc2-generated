@@ -241,7 +241,7 @@ impl SCShareableContent {
         #[unsafe(method(getShareableContentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getShareableContentWithCompletionHandler(
-            completion_handler: &block2::Block<dyn Fn(*mut SCShareableContent, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -253,7 +253,7 @@ impl SCShareableContent {
         #[unsafe(method(getCurrentProcessShareableContentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCurrentProcessShareableContentWithCompletionHandler(
-            completion_handler: &block2::Block<dyn Fn(*mut SCShareableContent, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -271,7 +271,7 @@ impl SCShareableContent {
         pub unsafe fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnly_completionHandler(
             exclude_desktop_windows: bool,
             on_screen_windows_only: bool,
-            completion_handler: &block2::Block<dyn Fn(*mut SCShareableContent, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -289,7 +289,7 @@ impl SCShareableContent {
         pub unsafe fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnlyBelowWindow_completionHandler(
             exclude_desktop_windows: bool,
             window: &SCWindow,
-            completion_handler: &block2::Block<dyn Fn(*mut SCShareableContent, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -307,7 +307,7 @@ impl SCShareableContent {
         pub unsafe fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnlyAboveWindow_completionHandler(
             exclude_desktop_windows: bool,
             window: &SCWindow,
-            completion_handler: &block2::Block<dyn Fn(*mut SCShareableContent, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
         );
 
         #[cfg(feature = "SCStream")]

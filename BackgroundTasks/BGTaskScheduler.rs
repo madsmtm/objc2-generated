@@ -147,7 +147,7 @@ impl BGTaskScheduler {
             &self,
             identifier: &NSString,
             queue: Option<&DispatchQueue>,
-            launch_handler: &block2::Block<dyn Fn(NonNull<BGTask>)>,
+            launch_handler: &block2::DynBlock<dyn Fn(NonNull<BGTask>)>,
         ) -> bool;
 
         #[cfg(feature = "BGTaskRequest")]
@@ -201,7 +201,7 @@ impl BGTaskScheduler {
         #[unsafe(method_family = none)]
         pub unsafe fn getPendingTaskRequestsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<BGTaskRequest>>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<BGTaskRequest>>)>,
         );
     );
 }

@@ -218,7 +218,7 @@ impl NSError {
         pub unsafe fn setUserInfoValueProviderForDomain_provider(
             error_domain: &NSErrorDomain,
             provider: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(NonNull<NSError>, NonNull<NSErrorUserInfoKey>) -> *mut AnyObject,
                 >,
             >,
@@ -229,7 +229,7 @@ impl NSError {
         #[unsafe(method_family = none)]
         pub unsafe fn userInfoValueProviderForDomain(
             error_domain: &NSErrorDomain,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(NonNull<NSError>, NonNull<NSErrorUserInfoKey>) -> *mut AnyObject,
         >;
     );

@@ -70,4 +70,4 @@ pub type DDErrorOutType = *mut *mut NSError;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderrorhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type DDErrorHandler = *mut block2::Block<dyn Fn(*mut NSError)>;
+pub type DDErrorHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;

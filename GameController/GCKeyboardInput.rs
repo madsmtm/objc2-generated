@@ -25,7 +25,7 @@ use crate::*;
     feature = "block2",
     feature = "objc2-core-foundation"
 ))]
-pub type GCKeyboardValueChangedHandler = *mut block2::Block<
+pub type GCKeyboardValueChangedHandler = *mut block2::DynBlock<
     dyn Fn(NonNull<GCKeyboardInput>, NonNull<GCControllerButtonInput>, GCKeyCode, Bool),
 >;
 

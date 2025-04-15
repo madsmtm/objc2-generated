@@ -37,7 +37,7 @@ impl AVCaptureDeskViewApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn presentWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -56,7 +56,7 @@ impl AVCaptureDeskViewApplication {
         pub unsafe fn presentWithLaunchConfiguration_completionHandler(
             &self,
             launch_configuration: &AVCaptureDeskViewApplicationLaunchConfiguration,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
     );
 }

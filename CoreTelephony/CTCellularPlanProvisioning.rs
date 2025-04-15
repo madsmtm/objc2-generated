@@ -31,7 +31,7 @@ impl CTCellularPlanProvisioning {
         pub unsafe fn addPlanWith_completionHandler(
             &self,
             request: &CTCellularPlanProvisioningRequest,
-            completion_handler: &block2::Block<dyn Fn(CTCellularPlanProvisioningAddPlanResult)>,
+            completion_handler: &block2::DynBlock<dyn Fn(CTCellularPlanProvisioningAddPlanResult)>,
         );
     );
 }

@@ -16,7 +16,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraphcompletionhandler?language=objc)
 #[cfg(all(feature = "MPSCore", feature = "MPSImage", feature = "block2"))]
-pub type MPSNNGraphCompletionHandler = *mut block2::Block<dyn Fn(*mut MPSImage, *mut NSError)>;
+pub type MPSNNGraphCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut MPSImage, *mut NSError)>;
 
 extern_class!(
     /// Optimized representation of a graph of MPSNNImageNodes and MPSNNFilterNodes

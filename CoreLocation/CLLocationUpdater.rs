@@ -130,7 +130,7 @@ impl CLLocationUpdater {
         #[unsafe(method_family = none)]
         pub unsafe fn liveUpdaterWithQueue_handler(
             queue: &DispatchQueue,
-            handler: &block2::Block<dyn Fn(*mut CLUpdate)>,
+            handler: &block2::DynBlock<dyn Fn(*mut CLUpdate)>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -139,7 +139,7 @@ impl CLLocationUpdater {
         pub unsafe fn liveUpdaterWithConfiguration_queue_handler(
             configuration: CLLiveUpdateConfiguration,
             queue: &DispatchQueue,
-            handler: &block2::Block<dyn Fn(*mut CLUpdate)>,
+            handler: &block2::DynBlock<dyn Fn(*mut CLUpdate)>,
         ) -> Option<Retained<Self>>;
 
         #[unsafe(method(resume))]

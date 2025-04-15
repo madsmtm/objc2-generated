@@ -9,11 +9,12 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmstepqueryhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMStepQueryHandler = *mut block2::Block<dyn Fn(NSInteger, *mut NSError)>;
+pub type CMStepQueryHandler = *mut block2::DynBlock<dyn Fn(NSInteger, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmstepupdatehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMStepUpdateHandler = *mut block2::Block<dyn Fn(NSInteger, NonNull<NSDate>, *mut NSError)>;
+pub type CMStepUpdateHandler =
+    *mut block2::DynBlock<dyn Fn(NSInteger, NonNull<NSDate>, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmstepcounter?language=objc)

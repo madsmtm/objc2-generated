@@ -138,9 +138,9 @@ impl WCSession {
             &self,
             message: &NSDictionary<NSString, AnyObject>,
             reply_handler: Option<
-                &block2::Block<dyn Fn(NonNull<NSDictionary<NSString, AnyObject>>)>,
+                &block2::DynBlock<dyn Fn(NonNull<NSDictionary<NSString, AnyObject>>)>,
             >,
-            error_handler: Option<&block2::Block<dyn Fn(NonNull<NSError>)>>,
+            error_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSError>)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -150,8 +150,8 @@ impl WCSession {
         pub unsafe fn sendMessageData_replyHandler_errorHandler(
             &self,
             data: &NSData,
-            reply_handler: Option<&block2::Block<dyn Fn(NonNull<NSData>)>>,
-            error_handler: Option<&block2::Block<dyn Fn(NonNull<NSError>)>>,
+            reply_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSData>)>>,
+            error_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSError>)>>,
         );
 
         /// Setting the applicationContext is a way to transfer the latest state of an app. After updating the applicationContext, the system initiates the data transfer at an appropriate time, which can occur after the app exits. The counterpart app will receive a delegate callback on next launch if the applicationContext has successfully arrived. If there is no app context, it should be updated with an empty dictionary. The applicationContext dictionary can only accept the property list types.
@@ -292,7 +292,7 @@ extern_protocol!(
             &self,
             session: &WCSession,
             message: &NSDictionary<NSString, AnyObject>,
-            reply_handler: &block2::Block<dyn Fn(NonNull<NSDictionary<NSString, AnyObject>>)>,
+            reply_handler: &block2::DynBlock<dyn Fn(NonNull<NSDictionary<NSString, AnyObject>>)>,
         );
 
         /// Called on the delegate of the receiver. Will be called on startup if the incoming message data caused the receiver to launch.
@@ -310,7 +310,7 @@ extern_protocol!(
             &self,
             session: &WCSession,
             message_data: &NSData,
-            reply_handler: &block2::Block<dyn Fn(NonNull<NSData>)>,
+            reply_handler: &block2::DynBlock<dyn Fn(NonNull<NSData>)>,
         );
 
         /// Called on the delegate of the receiver. Will be called on startup if an applicationContext is available.

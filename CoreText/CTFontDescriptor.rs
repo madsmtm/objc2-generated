@@ -787,7 +787,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CTFontDescriptorProgressHandler =
-    *mut block2::Block<dyn Fn(CTFontDescriptorMatchingState, NonNull<CFDictionary>) -> bool>;
+    *mut block2::DynBlock<dyn Fn(CTFontDescriptorMatchingState, NonNull<CFDictionary>) -> bool>;
 
 extern "C-unwind" {
     #[cfg(feature = "block2")]

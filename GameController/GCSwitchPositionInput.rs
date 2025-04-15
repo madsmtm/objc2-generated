@@ -21,7 +21,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn positionDidChangeHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(
                 NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
                 NonNull<ProtocolObject<dyn GCSwitchPositionInput>>,
@@ -36,7 +36,7 @@ extern_protocol!(
         unsafe fn setPositionDidChangeHandler(
             &self,
             position_did_change_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
                         NonNull<ProtocolObject<dyn GCSwitchPositionInput>>,

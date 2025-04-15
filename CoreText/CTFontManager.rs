@@ -332,7 +332,7 @@ extern "C-unwind" {
         font_ur_ls: &CFArray,
         scope: CTFontManagerScope,
         enabled: bool,
-        registration_handler: Option<&block2::Block<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+        registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
     );
 }
 
@@ -352,7 +352,7 @@ extern "C-unwind" {
     pub fn CTFontManagerUnregisterFontURLs(
         font_ur_ls: &CFArray,
         scope: CTFontManagerScope,
-        registration_handler: Option<&block2::Block<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+        registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
     );
 }
 
@@ -378,7 +378,7 @@ extern "C-unwind" {
         font_descriptors: &CFArray,
         scope: CTFontManagerScope,
         enabled: bool,
-        registration_handler: Option<&block2::Block<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+        registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
     );
 }
 
@@ -397,7 +397,7 @@ extern "C-unwind" {
     pub fn CTFontManagerUnregisterFontDescriptors(
         font_descriptors: &CFArray,
         scope: CTFontManagerScope,
-        registration_handler: Option<&block2::Block<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+        registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
     );
 }
 
@@ -428,7 +428,7 @@ extern "C-unwind" {
         bundle: Option<&CFBundle>,
         scope: CTFontManagerScope,
         enabled: bool,
-        registration_handler: Option<&block2::Block<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+        registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
     );
 }
 
@@ -497,7 +497,7 @@ extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn CTFontManagerRequestFonts(
         font_descriptors: &CFArray,
-        completion_handler: &block2::Block<dyn Fn(NonNull<CFArray>)>,
+        completion_handler: &block2::DynBlock<dyn Fn(NonNull<CFArray>)>,
     );
 }
 
@@ -527,14 +527,14 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontManagerCreateFontRequestRunLoopSource(
     source_order: CFIndex,
-    create_matches_callback: &block2::Block<
+    create_matches_callback: &block2::DynBlock<
         dyn Fn(NonNull<CFDictionary>, libc::pid_t) -> NonNull<CFArray>,
     >,
 ) -> Option<CFRetained<CFRunLoopSource>> {
     extern "C-unwind" {
         fn CTFontManagerCreateFontRequestRunLoopSource(
             source_order: CFIndex,
-            create_matches_callback: &block2::Block<
+            create_matches_callback: &block2::DynBlock<
                 dyn Fn(NonNull<CFDictionary>, libc::pid_t) -> NonNull<CFArray>,
             >,
         ) -> Option<NonNull<CFRunLoopSource>>;

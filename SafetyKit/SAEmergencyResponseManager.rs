@@ -100,7 +100,7 @@ impl SAEmergencyResponseManager {
         pub unsafe fn dialVoiceCallToPhoneNumber_completionHandler(
             &self,
             phone_number: &NSString,
-            handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
     );
 }

@@ -370,7 +370,7 @@ impl NSSavePanel {
         pub unsafe fn beginSheetModalForWindow_completionHandler(
             &self,
             window: &NSWindow,
-            handler: &block2::Block<dyn Fn(NSModalResponse)>,
+            handler: &block2::DynBlock<dyn Fn(NSModalResponse)>,
         );
 
         #[cfg(all(feature = "NSApplication", feature = "block2"))]
@@ -379,7 +379,7 @@ impl NSSavePanel {
         #[unsafe(method_family = none)]
         pub unsafe fn beginWithCompletionHandler(
             &self,
-            handler: &block2::Block<dyn Fn(NSModalResponse)>,
+            handler: &block2::DynBlock<dyn Fn(NSModalResponse)>,
         );
 
         #[cfg(feature = "NSApplication")]

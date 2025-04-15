@@ -79,7 +79,7 @@ impl CPInterfaceController {
             &self,
             root_template: &CPTemplate,
             animated: bool,
-            completion: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "CPTemplate", feature = "block2"))]
@@ -97,7 +97,7 @@ impl CPInterfaceController {
             &self,
             template_to_push: &CPTemplate,
             animated: bool,
-            completion: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -109,7 +109,7 @@ impl CPInterfaceController {
         pub unsafe fn popTemplateAnimated_completion(
             &self,
             animated: bool,
-            completion: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -121,7 +121,7 @@ impl CPInterfaceController {
         pub unsafe fn popToRootTemplateAnimated_completion(
             &self,
             animated: bool,
-            completion: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "CPTemplate", feature = "block2"))]
@@ -138,7 +138,7 @@ impl CPInterfaceController {
             &self,
             target_template: &CPTemplate,
             animated: bool,
-            completion: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "CPTemplate", feature = "block2"))]
@@ -158,7 +158,7 @@ impl CPInterfaceController {
             &self,
             template_to_present: &CPTemplate,
             animated: bool,
-            completion: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -175,7 +175,7 @@ impl CPInterfaceController {
         pub unsafe fn dismissTemplateAnimated_completion(
             &self,
             animated: bool,
-            completion: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(feature = "CPTemplate")]

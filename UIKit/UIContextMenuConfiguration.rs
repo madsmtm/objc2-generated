@@ -40,7 +40,7 @@ unsafe impl RefEncode for UIContextMenuConfigurationElementOrder {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuactionprovider?language=objc)
 #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
 pub type UIContextMenuActionProvider =
-    *mut block2::Block<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>;
+    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>;
 
 /// Return a UIViewController to be displayed as this menu's preview component.
 ///
@@ -51,7 +51,7 @@ pub type UIContextMenuActionProvider =
     feature = "block2"
 ))]
 pub type UIContextMenuContentPreviewProvider =
-    *mut block2::Block<dyn Fn() -> *mut UIViewController>;
+    *mut block2::DynBlock<dyn Fn() -> *mut UIViewController>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuconfiguration?language=objc)

@@ -492,7 +492,7 @@ impl UIViewController {
             &self,
             view_controller_to_present: &UIViewController,
             flag: bool,
-            completion: Option<&block2::Block<dyn Fn()>>,
+            completion: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -501,7 +501,7 @@ impl UIViewController {
         pub unsafe fn dismissViewControllerAnimated_completion(
             &self,
             flag: bool,
-            completion: Option<&block2::Block<dyn Fn()>>,
+            completion: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[deprecated]
@@ -924,8 +924,8 @@ impl UIViewController {
             to_view_controller: &UIViewController,
             duration: NSTimeInterval,
             options: UIViewAnimationOptions,
-            animations: Option<&block2::Block<dyn Fn()>>,
-            completion: Option<&block2::Block<dyn Fn(Bool)>>,
+            animations: Option<&block2::DynBlock<dyn Fn()>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[unsafe(method(beginAppearanceTransition:animated:))]
@@ -1570,7 +1570,7 @@ impl UIPreviewAction {
         pub unsafe fn handler(
             &self,
         ) -> NonNull<
-            block2::Block<
+            block2::DynBlock<
                 dyn Fn(NonNull<ProtocolObject<dyn UIPreviewActionItem>>, NonNull<UIViewController>),
             >,
         >;
@@ -1581,7 +1581,7 @@ impl UIPreviewAction {
         pub unsafe fn actionWithTitle_style_handler(
             title: &NSString,
             style: UIPreviewActionStyle,
-            handler: &block2::Block<dyn Fn(NonNull<UIPreviewAction>, NonNull<UIViewController>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<UIPreviewAction>, NonNull<UIViewController>)>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
     );

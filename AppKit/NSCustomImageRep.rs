@@ -38,13 +38,13 @@ impl NSCustomImageRep {
             this: Allocated<Self>,
             size: NSSize,
             drawing_handler_should_be_called_with_flipped_context: bool,
-            drawing_handler: &block2::Block<dyn Fn(NSRect) -> Bool>,
+            drawing_handler: &block2::DynBlock<dyn Fn(NSRect) -> Bool>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(drawingHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawingHandler(&self) -> *mut block2::Block<dyn Fn(NSRect) -> Bool>;
+        pub unsafe fn drawingHandler(&self) -> *mut block2::DynBlock<dyn Fn(NSRect) -> Bool>;
 
         #[unsafe(method(initWithDrawSelector:delegate:))]
         #[unsafe(method_family = init)]

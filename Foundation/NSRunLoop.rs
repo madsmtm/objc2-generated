@@ -129,7 +129,7 @@ impl NSRunLoop {
         pub unsafe fn performInModes_block(
             &self,
             modes: &NSArray<NSRunLoopMode>,
-            block: &block2::Block<dyn Fn()>,
+            block: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -137,7 +137,7 @@ impl NSRunLoop {
         /// - parameter: block   The block to execute
         #[unsafe(method(performBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performBlock(&self, block: &block2::Block<dyn Fn()>);
+        pub unsafe fn performBlock(&self, block: &block2::DynBlock<dyn Fn()>);
     );
 }
 

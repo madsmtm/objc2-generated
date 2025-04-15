@@ -215,7 +215,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateKeysAndObjectsUsingBlock(
             &self,
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) + '_,
             >,
         );
@@ -226,7 +226,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         pub unsafe fn enumerateKeysAndObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) + '_,
             >,
         );
@@ -253,7 +253,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn keysOfEntriesPassingTest(
             &self,
-            predicate: &block2::Block<
+            predicate: &block2::DynBlock<
                 dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_,
             >,
         ) -> Retained<NSSet<KeyType>>;
@@ -264,7 +264,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         pub unsafe fn keysOfEntriesWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &block2::Block<
+            predicate: &block2::DynBlock<
                 dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_,
             >,
         ) -> Retained<NSSet<KeyType>>;

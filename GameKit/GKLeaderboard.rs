@@ -130,7 +130,9 @@ impl GKLeaderboard {
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithIDs_completionHandler(
             leaderboard_i_ds: Option<&NSArray<NSString>>,
-            completion_handler: &block2::Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
+            completion_handler: &block2::DynBlock<
+                dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError),
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -139,7 +141,7 @@ impl GKLeaderboard {
         #[unsafe(method_family = none)]
         pub unsafe fn loadPreviousOccurrenceWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut GKLeaderboard, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut GKLeaderboard, *mut NSError)>,
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
@@ -155,7 +157,7 @@ impl GKLeaderboard {
             context: NSUInteger,
             player: &GKPlayer,
             leaderboard_i_ds: &NSArray<NSString>,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
@@ -170,7 +172,7 @@ impl GKLeaderboard {
             score: NSInteger,
             context: NSUInteger,
             player: &GKPlayer,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "GKLeaderboardEntry", feature = "block2"))]
@@ -189,7 +191,7 @@ impl GKLeaderboard {
             player_scope: GKLeaderboardPlayerScope,
             time_scope: GKLeaderboardTimeScope,
             range: NSRange,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(
                     *mut GKLeaderboardEntry,
                     *mut NSArray<GKLeaderboardEntry>,
@@ -217,7 +219,7 @@ impl GKLeaderboard {
             &self,
             players: &NSArray<GKPlayer>,
             time_scope: GKLeaderboardTimeScope,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut GKLeaderboardEntry, *mut NSArray<GKLeaderboardEntry>, *mut NSError),
             >,
         );
@@ -252,7 +254,7 @@ impl GKLeaderboard {
         #[unsafe(method_family = none)]
         pub unsafe fn loadCategoriesWithCompletionHandler(
             completion_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(*mut NSArray<NSString>, *mut NSArray<NSString>, *mut NSError),
                 >,
             >,
@@ -264,7 +266,7 @@ impl GKLeaderboard {
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultLeaderboard_withCompletionHandler(
             leaderboard_identifier: Option<&NSString>,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[deprecated]
@@ -361,7 +363,9 @@ impl GKLeaderboard {
         #[unsafe(method_family = none)]
         pub unsafe fn loadScoresWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSArray<GKScore>, *mut NSError)>>,
+            completion_handler: Option<
+                &block2::DynBlock<dyn Fn(*mut NSArray<GKScore>, *mut NSError)>,
+            >,
         );
 
         #[cfg(feature = "block2")]
@@ -375,7 +379,7 @@ impl GKLeaderboard {
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             completion_handler: Option<
-                &block2::Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
             >,
         );
     );
@@ -390,7 +394,7 @@ impl GKLeaderboard {
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSImage, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSImage, *mut NSError)>>,
         );
     );
 }

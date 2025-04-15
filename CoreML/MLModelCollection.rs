@@ -61,7 +61,7 @@ impl MLModelCollection {
         #[unsafe(method_family = none)]
         pub unsafe fn beginAccessingModelCollectionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &block2::Block<dyn Fn(*mut MLModelCollection, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut MLModelCollection, *mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(feature = "block2")]
@@ -79,7 +79,7 @@ impl MLModelCollection {
         #[unsafe(method_family = none)]
         pub unsafe fn endAccessingModelCollectionWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[deprecated = "Use Background Assets or NSURLSession instead."]

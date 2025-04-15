@@ -46,7 +46,7 @@ impl RPBroadcastActivityController {
             point: CGPoint,
             window: Option<&NSWindow>,
             preferred_extension: Option<&NSString>,
-            handler: &block2::Block<dyn Fn(*mut RPBroadcastActivityController, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut RPBroadcastActivityController, *mut NSError)>,
         );
 
         /// Delegate that is notified when the activity view controller is complete.
@@ -150,7 +150,7 @@ impl RPBroadcastController {
         #[unsafe(method_family = none)]
         pub unsafe fn startBroadcastWithHandler(
             &self,
-            handler: &block2::Block<dyn Fn(*mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[unsafe(method(pauseBroadcast))]
@@ -166,7 +166,7 @@ impl RPBroadcastController {
         #[unsafe(method_family = none)]
         pub unsafe fn finishBroadcastWithHandler(
             &self,
-            handler: &block2::Block<dyn Fn(*mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

@@ -114,7 +114,7 @@ impl HMHomeManager {
         pub unsafe fn updatePrimaryHome_completionHandler(
             &self,
             home: &HMHome,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMHome", feature = "block2"))]
@@ -132,7 +132,7 @@ impl HMHomeManager {
         pub unsafe fn addHomeWithName_completionHandler(
             &self,
             home_name: &NSString,
-            completion: &block2::Block<dyn Fn(*mut HMHome, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut HMHome, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HMHome", feature = "block2"))]
@@ -150,7 +150,7 @@ impl HMHomeManager {
         pub unsafe fn removeHome_completionHandler(
             &self,
             home: &HMHome,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

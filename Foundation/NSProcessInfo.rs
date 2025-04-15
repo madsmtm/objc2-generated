@@ -262,7 +262,7 @@ impl NSProcessInfo {
             &self,
             options: NSActivityOptions,
             reason: &NSString,
-            block: &block2::Block<dyn Fn()>,
+            block: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
@@ -271,7 +271,7 @@ impl NSProcessInfo {
         pub unsafe fn performExpiringActivityWithReason_usingBlock(
             &self,
             reason: &NSString,
-            block: &block2::Block<dyn Fn(Bool)>,
+            block: &block2::DynBlock<dyn Fn(Bool)>,
         );
     );
 }

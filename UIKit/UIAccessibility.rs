@@ -37,71 +37,72 @@ pub unsafe extern "C-unwind" fn UIAccessibilityConvertPathToScreenCoordinates(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axboolreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXBoolReturnBlock = *mut block2::Block<dyn Fn() -> Bool>;
+pub type AXBoolReturnBlock = *mut block2::DynBlock<dyn Fn() -> Bool>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axstringreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXStringReturnBlock = *mut block2::Block<dyn Fn() -> *mut NSString>;
+pub type AXStringReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axstringarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXStringArrayReturnBlock = *mut block2::Block<dyn Fn() -> *mut NSArray<NSString>>;
+pub type AXStringArrayReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSArray<NSString>>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axattributedstringreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXAttributedStringReturnBlock = *mut block2::Block<dyn Fn() -> *mut NSAttributedString>;
+pub type AXAttributedStringReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSAttributedString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axattributedstringarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXAttributedStringArrayReturnBlock =
-    *mut block2::Block<dyn Fn() -> *mut NSArray<NSAttributedString>>;
+    *mut block2::DynBlock<dyn Fn() -> *mut NSArray<NSAttributedString>>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axrectreturnblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-pub type AXRectReturnBlock = *mut block2::Block<dyn Fn() -> CGRect>;
+pub type AXRectReturnBlock = *mut block2::DynBlock<dyn Fn() -> CGRect>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axpathreturnblock?language=objc)
 #[cfg(all(feature = "UIBezierPath", feature = "block2"))]
-pub type AXPathReturnBlock = *mut block2::Block<dyn Fn() -> *mut UIBezierPath>;
+pub type AXPathReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut UIBezierPath>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axpointreturnblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-pub type AXPointReturnBlock = *mut block2::Block<dyn Fn() -> CGPoint>;
+pub type AXPointReturnBlock = *mut block2::DynBlock<dyn Fn() -> CGPoint>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axobjectreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXObjectReturnBlock = *mut block2::Block<dyn Fn() -> *mut AnyObject>;
+pub type AXObjectReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut AnyObject>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXArrayReturnBlock = *mut block2::Block<dyn Fn() -> *mut NSArray>;
+pub type AXArrayReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSArray>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axvoidreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXVoidReturnBlock = *mut block2::Block<dyn Fn()>;
+pub type AXVoidReturnBlock = *mut block2::DynBlock<dyn Fn()>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axtraitsreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
-pub type AXTraitsReturnBlock = *mut block2::Block<dyn Fn() -> UIAccessibilityTraits>;
+pub type AXTraitsReturnBlock = *mut block2::DynBlock<dyn Fn() -> UIAccessibilityTraits>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axnavigationstylereturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXNavigationStyleReturnBlock =
-    *mut block2::Block<dyn Fn() -> UIAccessibilityNavigationStyle>;
+    *mut block2::DynBlock<dyn Fn() -> UIAccessibilityNavigationStyle>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcontainertypereturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
-pub type AXContainerTypeReturnBlock = *mut block2::Block<dyn Fn() -> UIAccessibilityContainerType>;
+pub type AXContainerTypeReturnBlock =
+    *mut block2::DynBlock<dyn Fn() -> UIAccessibilityContainerType>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axtextualcontextreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXTextualContextReturnBlock =
-    *mut block2::Block<dyn Fn() -> *mut UIAccessibilityTextualContext>;
+    *mut block2::DynBlock<dyn Fn() -> *mut UIAccessibilityTextualContext>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcustomactionsreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityCustomAction", feature = "block2"))]
 pub type AXCustomActionsReturnBlock =
-    *mut block2::Block<dyn Fn() -> *mut NSArray<UIAccessibilityCustomAction>>;
+    *mut block2::DynBlock<dyn Fn() -> *mut NSArray<UIAccessibilityCustomAction>>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axuitextinputreturnblock?language=objc)
 #[cfg(all(
@@ -110,7 +111,7 @@ pub type AXCustomActionsReturnBlock =
     feature = "block2"
 ))]
 pub type AXUITextInputReturnBlock =
-    *mut block2::Block<dyn Fn() -> *mut ProtocolObject<dyn UITextInput>>;
+    *mut block2::DynBlock<dyn Fn() -> *mut ProtocolObject<dyn UITextInput>>;
 
 mod private_NSObjectUIAccessibility {
     pub trait Sealed {}
@@ -772,7 +773,7 @@ pub unsafe trait NSObjectUIAccessibility:
         unsafe fn accessibilityExpandedStatusBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> *mut block2::Block<dyn Fn() -> UIAccessibilityExpandedStatus>;
+        ) -> *mut block2::DynBlock<dyn Fn() -> UIAccessibilityExpandedStatus>;
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityExpandedStatusBlock`][Self::accessibilityExpandedStatusBlock].
@@ -781,7 +782,7 @@ pub unsafe trait NSObjectUIAccessibility:
         unsafe fn setAccessibilityExpandedStatusBlock(
             &self,
             accessibility_expanded_status_block: Option<
-                &block2::Block<dyn Fn() -> UIAccessibilityExpandedStatus>,
+                &block2::DynBlock<dyn Fn() -> UIAccessibilityExpandedStatus>,
             >,
             mtm: MainThreadMarker,
         );
@@ -1698,12 +1699,12 @@ extern "C" {
 #[inline]
 pub unsafe extern "C-unwind" fn UIAccessibilityRequestGuidedAccessSession(
     enable: bool,
-    completion_handler: &block2::Block<dyn Fn(Bool)>,
+    completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
 ) {
     extern "C-unwind" {
         fn UIAccessibilityRequestGuidedAccessSession(
             enable: Bool,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
     }
     unsafe { UIAccessibilityRequestGuidedAccessSession(Bool::new(enable), completion_handler) }

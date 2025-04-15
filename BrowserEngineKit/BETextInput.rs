@@ -254,7 +254,7 @@ extern_protocol!(
         unsafe fn handleKeyEntry_withCompletionHandler(
             &self,
             entry: &BEKeyEntry,
-            completion_handler: &block2::Block<dyn Fn(NonNull<BEKeyEntry>, Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<BEKeyEntry>, Bool)>,
         );
 
         /// Indicates a transition in shift state
@@ -327,7 +327,7 @@ extern_protocol!(
             original_text: &NSString,
             replacement_text: &NSString,
             options: BETextReplacementOptions,
-            completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<UITextSelectionRect>>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<UITextSelectionRect>>)>,
         );
 
         #[cfg(all(feature = "BETextDocumentContext", feature = "block2"))]
@@ -337,7 +337,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn requestTextContextForAutocorrectionWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(NonNull<BETextDocumentContext>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<BETextDocumentContext>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -349,7 +349,7 @@ extern_protocol!(
         unsafe fn requestTextRectsForString_withCompletionHandler(
             &self,
             input: &NSString,
-            completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<UITextSelectionRect>>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<UITextSelectionRect>>)>,
         );
 
         /// Controls whether the edit menu is allowed to be presented or should be suppressed.
@@ -364,7 +364,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn requestPreferredArrowDirectionForEditMenuWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(UIEditMenuArrowDirection)>,
+            completion_handler: &block2::DynBlock<dyn Fn(UIEditMenuArrowDirection)>,
         );
 
         /// Invoked by the system when it is about to present an edit menu with an animator.
@@ -528,7 +528,7 @@ extern_protocol!(
             &self,
             point: CGPoint,
             granularity: UITextGranularity,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
@@ -539,7 +539,7 @@ extern_protocol!(
             &self,
             granularity: UITextGranularity,
             point: CGPoint,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
@@ -549,7 +549,7 @@ extern_protocol!(
         unsafe fn selectPositionAtPoint_completionHandler(
             &self,
             point: CGPoint,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(
@@ -565,7 +565,7 @@ extern_protocol!(
             &self,
             point: CGPoint,
             request: &BETextDocumentRequest,
-            completion_handler: &block2::Block<dyn Fn(NonNull<BETextDocumentContext>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<BETextDocumentContext>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -579,7 +579,7 @@ extern_protocol!(
         unsafe fn adjustSelectionByRange_completionHandler(
             &self,
             range: BEDirectionalTextRange,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         /// Adjusts the current selection by `offset` in character granularity units
@@ -598,7 +598,7 @@ extern_protocol!(
             &self,
             granularity: UITextGranularity,
             direction: UITextStorageDirection,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
@@ -614,7 +614,7 @@ extern_protocol!(
         unsafe fn selectTextForEditMenuWithLocationInView_completionHandler(
             &self,
             location_in_view: CGPoint,
-            completion_handler: &block2::Block<dyn Fn(Bool, *mut NSString, NSRange)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSString, NSRange)>,
         );
 
         /// String for the text that has been marked as part of an active input session
@@ -690,7 +690,7 @@ extern_protocol!(
         unsafe fn requestDocumentContext_completionHandler(
             &self,
             request: &BETextDocumentRequest,
-            completion_handler: &block2::Block<dyn Fn(NonNull<BETextDocumentContext>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<BETextDocumentContext>)>,
         );
 
         /// Indicates the system is about to insert the final dictation result.
@@ -743,7 +743,7 @@ extern_protocol!(
         unsafe fn insertTextPlaceholderWithSize_completionHandler(
             &self,
             size: CGSize,
-            completion_handler: &block2::Block<dyn Fn(NonNull<UITextPlaceholder>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<UITextPlaceholder>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -754,7 +754,7 @@ extern_protocol!(
             &self,
             placeholder: &UITextPlaceholder,
             will_insert_text: bool,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(feature = "BETextSuggestion")]

@@ -163,7 +163,7 @@ extern_protocol!(
         unsafe fn handleSearchForNotebookItems_completion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSearchForNotebookItemsIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForNotebookItemsIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -189,7 +189,7 @@ extern_protocol!(
         unsafe fn confirmSearchForNotebookItems_completion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSearchForNotebookItemsIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForNotebookItemsIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -215,7 +215,7 @@ extern_protocol!(
         unsafe fn resolveTitleForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -230,7 +230,7 @@ extern_protocol!(
         unsafe fn resolveContentForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -245,7 +245,7 @@ extern_protocol!(
         unsafe fn resolveItemTypeForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INNotebookItemTypeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INNotebookItemTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -260,7 +260,7 @@ extern_protocol!(
         unsafe fn resolveStatusForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INTaskStatusResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INTaskStatusResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -275,7 +275,7 @@ extern_protocol!(
         unsafe fn resolveLocationForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INPlacemarkResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -290,7 +290,7 @@ extern_protocol!(
         unsafe fn resolveLocationSearchTypeForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INLocationSearchTypeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INLocationSearchTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -305,7 +305,7 @@ extern_protocol!(
         unsafe fn resolveDateTimeForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -320,7 +320,7 @@ extern_protocol!(
         unsafe fn resolveDateSearchTypeForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INDateSearchTypeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INDateSearchTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -335,7 +335,7 @@ extern_protocol!(
         unsafe fn resolveTemporalEventTriggerTypesForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<INTemporalEventTriggerTypeOptionsResolutionResult>),
             >,
         );
@@ -352,7 +352,7 @@ extern_protocol!(
         unsafe fn resolveTaskPriorityForSearchForNotebookItems_withCompletion(
             &self,
             intent: &INSearchForNotebookItemsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INTaskPriorityResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INTaskPriorityResolutionResult>)>,
         );
     }
 );

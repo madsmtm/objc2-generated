@@ -183,7 +183,7 @@ impl AVSampleBufferAudioRenderer {
         pub unsafe fn flushFromSourceTime_completionHandler(
             &self,
             time: CMTime,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
     );
 }

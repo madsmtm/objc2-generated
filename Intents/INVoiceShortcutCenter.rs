@@ -45,7 +45,9 @@ impl INVoiceShortcutCenter {
         #[unsafe(method_family = none)]
         pub unsafe fn getAllVoiceShortcutsWithCompletion(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSArray<INVoiceShortcut>, *mut NSError)>,
+            completion_handler: &block2::DynBlock<
+                dyn Fn(*mut NSArray<INVoiceShortcut>, *mut NSError),
+            >,
         );
 
         #[cfg(all(feature = "INVoiceShortcut", feature = "block2"))]
@@ -55,7 +57,7 @@ impl INVoiceShortcutCenter {
         pub unsafe fn getVoiceShortcutWithIdentifier_completion(
             &self,
             identifier: &NSUUID,
-            completion_handler: &block2::Block<dyn Fn(*mut INVoiceShortcut, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut INVoiceShortcut, *mut NSError)>,
         );
 
         #[cfg(feature = "INShortcut")]

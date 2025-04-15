@@ -103,7 +103,7 @@ impl UIFindInteraction {
         #[unsafe(method_family = none)]
         pub unsafe fn optionsMenuProvider(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
         /// Setter for [`optionsMenuProvider`][Self::optionsMenuProvider].
@@ -112,7 +112,7 @@ impl UIFindInteraction {
         pub unsafe fn setOptionsMenuProvider(
             &self,
             options_menu_provider: Option<
-                &block2::Block<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>,
+                &block2::DynBlock<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>,
             >,
         );
 

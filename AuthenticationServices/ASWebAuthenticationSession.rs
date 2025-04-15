@@ -46,7 +46,7 @@ unsafe impl RefEncode for ASWebAuthenticationSessionErrorCode {
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessioncompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ASWebAuthenticationSessionCompletionHandler =
-    *mut block2::Block<dyn Fn(*mut NSURL, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut NSURL, *mut NSError)>;
 
 extern_class!(
     /// An ASWebAuthenticationSession object can be used to authenticate a user with a web service, even if the web service is run

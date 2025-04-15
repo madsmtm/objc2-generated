@@ -98,7 +98,7 @@ impl UIDocumentViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn openDocumentWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
 
         /// Notifies subclasses that the specified document was opened. This method will be called by the system after

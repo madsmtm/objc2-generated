@@ -321,8 +321,8 @@ impl GKRule {
         #[unsafe(method(ruleWithBlockPredicate:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ruleWithBlockPredicate_action(
-            predicate: &block2::Block<dyn Fn(NonNull<GKRuleSystem>) -> Bool>,
-            action: &block2::Block<dyn Fn(NonNull<GKRuleSystem>)>,
+            predicate: &block2::DynBlock<dyn Fn(NonNull<GKRuleSystem>) -> Bool>,
+            action: &block2::DynBlock<dyn Fn(NonNull<GKRuleSystem>)>,
         ) -> Retained<Self>;
     );
 }
@@ -409,8 +409,8 @@ impl GKNSPredicateRule {
         #[unsafe(method(ruleWithBlockPredicate:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ruleWithBlockPredicate_action(
-            predicate: &block2::Block<dyn Fn(NonNull<GKRuleSystem>) -> Bool>,
-            action: &block2::Block<dyn Fn(NonNull<GKRuleSystem>)>,
+            predicate: &block2::DynBlock<dyn Fn(NonNull<GKRuleSystem>) -> Bool>,
+            action: &block2::DynBlock<dyn Fn(NonNull<GKRuleSystem>)>,
         ) -> Retained<Self>;
     );
 }

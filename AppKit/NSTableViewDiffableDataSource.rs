@@ -15,7 +15,7 @@ use crate::*;
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSTableViewDiffableDataSourceCellProvider = *mut block2::Block<
+pub type NSTableViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
     dyn Fn(
         NonNull<NSTableView>,
         NonNull<NSTableColumn>,
@@ -33,7 +33,7 @@ pub type NSTableViewDiffableDataSourceCellProvider = *mut block2::Block<
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSTableViewDiffableDataSourceRowProvider = *mut block2::Block<
+pub type NSTableViewDiffableDataSourceRowProvider = *mut block2::DynBlock<
     dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSTableRowView>,
 >;
 
@@ -45,7 +45,7 @@ pub type NSTableViewDiffableDataSourceRowProvider = *mut block2::Block<
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider = *mut block2::Block<
+pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider = *mut block2::DynBlock<
     dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSView>,
 >;
 
@@ -121,7 +121,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
             animating_differences: bool,
-            completion: Option<&block2::Block<dyn Fn()>>,
+            completion: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[unsafe(method(itemIdentifierForRow:))]

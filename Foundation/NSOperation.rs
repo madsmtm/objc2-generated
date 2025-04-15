@@ -108,13 +108,16 @@ impl NSOperation {
         #[cfg(feature = "block2")]
         #[unsafe(method(completionBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionBlock(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn completionBlock(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionBlock`][Self::completionBlock].
         #[unsafe(method(setCompletionBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCompletionBlock(&self, completion_block: Option<&block2::Block<dyn Fn()>>);
+        pub unsafe fn setCompletionBlock(
+            &self,
+            completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+        );
 
         #[unsafe(method(waitUntilFinished))]
         #[unsafe(method_family = none)]
@@ -186,12 +189,13 @@ impl NSBlockOperation {
         #[cfg(feature = "block2")]
         #[unsafe(method(blockOperationWithBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn blockOperationWithBlock(block: &block2::Block<dyn Fn()>) -> Retained<Self>;
+        pub unsafe fn blockOperationWithBlock(block: &block2::DynBlock<dyn Fn()>)
+            -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(addExecutionBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addExecutionBlock(&self, block: &block2::Block<dyn Fn()>);
+        pub unsafe fn addExecutionBlock(&self, block: &block2::DynBlock<dyn Fn()>);
     );
 }
 
@@ -329,7 +333,7 @@ impl NSOperationQueue {
         #[cfg(feature = "block2")]
         #[unsafe(method(addOperationWithBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addOperationWithBlock(&self, block: &block2::Block<dyn Fn()>);
+        pub unsafe fn addOperationWithBlock(&self, block: &block2::DynBlock<dyn Fn()>);
 
         #[cfg(feature = "block2")]
         /// Parameter `barrier`: A block to execute
@@ -339,7 +343,7 @@ impl NSOperationQueue {
         /// `dispatch_barrier_async` function.
         #[unsafe(method(addBarrierBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addBarrierBlock(&self, barrier: &block2::Block<dyn Fn()>);
+        pub unsafe fn addBarrierBlock(&self, barrier: &block2::DynBlock<dyn Fn()>);
 
         #[unsafe(method(maxConcurrentOperationCount))]
         #[unsafe(method_family = none)]

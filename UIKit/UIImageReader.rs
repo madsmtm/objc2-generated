@@ -131,7 +131,7 @@ impl UIImageReader {
         pub unsafe fn imageWithContentsOfFileURL_completion(
             &self,
             url: &NSURL,
-            completion: &block2::Block<dyn Fn(*mut UIImage)>,
+            completion: &block2::DynBlock<dyn Fn(*mut UIImage)>,
         );
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
@@ -141,7 +141,7 @@ impl UIImageReader {
         pub unsafe fn imageWithData_completion(
             &self,
             data: &NSData,
-            completion: &block2::Block<dyn Fn(*mut UIImage)>,
+            completion: &block2::DynBlock<dyn Fn(*mut UIImage)>,
         );
     );
 }

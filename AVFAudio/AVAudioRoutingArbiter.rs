@@ -94,7 +94,7 @@ impl AVAudioRoutingArbiter {
         pub unsafe fn beginArbitrationWithCategory_completionHandler(
             &self,
             category: AVAudioRoutingArbitrationCategory,
-            handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         /// Stop participating in audio routing arbitration.

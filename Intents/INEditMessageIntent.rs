@@ -96,7 +96,7 @@ extern_protocol!(
         unsafe fn handleEditMessage_completion(
             &self,
             intent: &INEditMessageIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INEditMessageIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INEditMessageIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -122,7 +122,7 @@ extern_protocol!(
         unsafe fn confirmEditMessage_completion(
             &self,
             intent: &INEditMessageIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INEditMessageIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INEditMessageIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -148,7 +148,7 @@ extern_protocol!(
         unsafe fn resolveEditedContentForEditMessage_withCompletion(
             &self,
             intent: &INEditMessageIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
         );
     }
 );

@@ -93,7 +93,7 @@ extern_protocol!(
         unsafe fn handleEndWorkout_completion(
             &self,
             intent: &INEndWorkoutIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INEndWorkoutIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INEndWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -119,7 +119,7 @@ extern_protocol!(
         unsafe fn confirmEndWorkout_completion(
             &self,
             intent: &INEndWorkoutIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INEndWorkoutIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INEndWorkoutIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -145,7 +145,7 @@ extern_protocol!(
         unsafe fn resolveWorkoutNameForEndWorkout_withCompletion(
             &self,
             intent: &INEndWorkoutIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
     }
 );

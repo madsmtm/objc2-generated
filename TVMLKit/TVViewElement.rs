@@ -202,7 +202,7 @@ impl TVViewElement {
             can_bubble: bool,
             is_cancellable: bool,
             extra_info: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: Option<&block2::Block<dyn Fn(Bool, Bool)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool, Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -215,7 +215,7 @@ impl TVViewElement {
             can_bubble: bool,
             is_cancellable: bool,
             extra_info: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: Option<&block2::Block<dyn Fn(Bool, Bool)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool, Bool)>>,
         );
     );
 }

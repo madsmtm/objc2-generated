@@ -33,7 +33,7 @@ impl ILMessageFilterExtensionContext {
         #[unsafe(method_family = none)]
         pub unsafe fn deferQueryRequestToNetworkWithCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(*mut ILNetworkResponse, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut ILNetworkResponse, *mut NSError)>,
         );
     );
 }

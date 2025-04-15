@@ -349,14 +349,14 @@ impl MIDICIProfileState {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilechangedblock?language=objc)
 #[cfg(all(feature = "MIDIMessages", feature = "block2", feature = "objc2"))]
-pub type MIDICIProfileChangedBlock = *mut block2::Block<
+pub type MIDICIProfileChangedBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<MIDICISession>, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool),
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicisessiondisconnectblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2", feature = "objc2-foundation"))]
 pub type MIDICISessionDisconnectBlock =
-    *mut block2::Block<dyn Fn(NonNull<MIDICISession>, NonNull<NSError>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<MIDICISession>, NonNull<NSError>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilespecificdatablock?language=objc)
 #[cfg(all(
@@ -365,14 +365,14 @@ pub type MIDICISessionDisconnectBlock =
     feature = "objc2",
     feature = "objc2-foundation"
 ))]
-pub type MIDICIProfileSpecificDataBlock = *mut block2::Block<
+pub type MIDICIProfileSpecificDataBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<MIDICISession>, MIDIChannelNumber, NonNull<MIDICIProfile>, NonNull<NSData>),
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidiscoveryresponseblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2", feature = "objc2-foundation"))]
 pub type MIDICIDiscoveryResponseBlock =
-    *mut block2::Block<dyn Fn(NonNull<NSArray<MIDICIDiscoveredNode>>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<MIDICIDiscoveredNode>>)>;
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -402,7 +402,7 @@ impl MIDICISession {
         pub unsafe fn initWithDiscoveredNode_dataReadyHandler_disconnectHandler(
             this: Allocated<Self>,
             discovered_node: &MIDICIDiscoveredNode,
-            handler: &block2::Block<dyn Fn()>,
+            handler: &block2::DynBlock<dyn Fn()>,
             disconnect_handler: MIDICISessionDisconnectBlock,
         ) -> Retained<Self>;
 

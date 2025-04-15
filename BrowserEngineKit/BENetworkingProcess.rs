@@ -46,8 +46,8 @@ impl BENetworkingProcess {
         #[unsafe(method(networkProcessWithInterruptionHandler:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkProcessWithInterruptionHandler_completion(
-            interruption_handler: &block2::Block<dyn Fn()>,
-            completion: &block2::Block<dyn Fn(*mut BENetworkingProcess, *mut NSError)>,
+            interruption_handler: &block2::DynBlock<dyn Fn()>,
+            completion: &block2::DynBlock<dyn Fn(*mut BENetworkingProcess, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -64,8 +64,8 @@ impl BENetworkingProcess {
         #[unsafe(method_family = none)]
         pub unsafe fn networkProcessWithBundleID_interruptionHandler_completion(
             bundle_id: &NSString,
-            interruption_handler: &block2::Block<dyn Fn()>,
-            completion: &block2::Block<dyn Fn(*mut BENetworkingProcess, *mut NSError)>,
+            interruption_handler: &block2::DynBlock<dyn Fn()>,
+            completion: &block2::DynBlock<dyn Fn(*mut BENetworkingProcess, *mut NSError)>,
         );
 
         /// Stops the extension process.

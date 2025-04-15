@@ -54,7 +54,7 @@ impl NSPredicate {
         #[unsafe(method(predicateWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateWithBlock(
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(*mut AnyObject, *mut NSDictionary<NSString, AnyObject>) -> Bool,
             >,
         ) -> Retained<NSPredicate>;

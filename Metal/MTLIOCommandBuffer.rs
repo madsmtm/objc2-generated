@@ -34,7 +34,7 @@ unsafe impl RefEncode for MTLIOStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandbufferhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLIOCommandBufferHandler =
-    *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn MTLIOCommandBuffer>>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTLIOCommandBuffer>>)>;
 
 extern_protocol!(
     /// represents a list of IO commands for a queue to execute

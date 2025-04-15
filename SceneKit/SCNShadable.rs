@@ -63,7 +63,7 @@ extern_protocol!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferbindingblock?language=objc)
 #[cfg(all(feature = "SCNNode", feature = "SCNRenderer", feature = "block2"))]
-pub type SCNBufferBindingBlock = *mut block2::Block<
+pub type SCNBufferBindingBlock = *mut block2::DynBlock<
     dyn Fn(
         NonNull<ProtocolObject<dyn SCNBufferStream>>,
         NonNull<SCNNode>,
@@ -85,7 +85,7 @@ pub type SCNBufferBindingBlock = *mut block2::Block<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbindingblock?language=objc)
 #[cfg(all(feature = "SCNNode", feature = "SCNRenderer", feature = "block2"))]
 pub type SCNBindingBlock =
-    *mut block2::Block<dyn Fn(c_uint, c_uint, *mut SCNNode, NonNull<SCNRenderer>)>;
+    *mut block2::DynBlock<dyn Fn(c_uint, c_uint, *mut SCNNode, NonNull<SCNRenderer>)>;
 
 extern_protocol!(
     /// The SCNShadable protocol defines an object that is rendered with shaders.

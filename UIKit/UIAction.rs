@@ -35,7 +35,7 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionhandler?language=objc)
 #[cfg(all(feature = "UIMenuElement", feature = "block2"))]
-pub type UIActionHandler = *mut block2::Block<dyn Fn(NonNull<UIAction>)>;
+pub type UIActionHandler = *mut block2::DynBlock<dyn Fn(NonNull<UIAction>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction?language=objc)

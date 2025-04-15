@@ -129,7 +129,7 @@ extern_protocol!(
         unsafe fn handleTransferMoney_completion(
             &self,
             intent: &INTransferMoneyIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INTransferMoneyIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INTransferMoneyIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -156,7 +156,7 @@ extern_protocol!(
         unsafe fn confirmTransferMoney_completion(
             &self,
             intent: &INTransferMoneyIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INTransferMoneyIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INTransferMoneyIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -183,7 +183,7 @@ extern_protocol!(
         unsafe fn resolveFromAccountForTransferMoney_withCompletion(
             &self,
             intent: &INTransferMoneyIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INPaymentAccountResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INPaymentAccountResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -199,7 +199,7 @@ extern_protocol!(
         unsafe fn resolveToAccountForTransferMoney_withCompletion(
             &self,
             intent: &INTransferMoneyIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INPaymentAccountResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INPaymentAccountResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -215,7 +215,7 @@ extern_protocol!(
         unsafe fn resolveTransactionAmountForTransferMoney_withCompletion(
             &self,
             intent: &INTransferMoneyIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INPaymentAmountResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INPaymentAmountResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -231,7 +231,7 @@ extern_protocol!(
         unsafe fn resolveTransactionScheduledDateForTransferMoney_withCompletion(
             &self,
             intent: &INTransferMoneyIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -247,7 +247,7 @@ extern_protocol!(
         unsafe fn resolveTransactionNoteForTransferMoney_withCompletion(
             &self,
             intent: &INTransferMoneyIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
         );
     }
 );

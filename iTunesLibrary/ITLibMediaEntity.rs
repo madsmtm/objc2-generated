@@ -55,7 +55,7 @@ impl ITLibMediaEntity {
         pub unsafe fn enumerateValuesForProperties_usingBlock(
             &self,
             properties: Option<&NSSet<NSString>>,
-            block: &block2::Block<dyn Fn(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -75,7 +75,7 @@ impl ITLibMediaEntity {
         pub unsafe fn enumerateValuesExceptForProperties_usingBlock(
             &self,
             properties: Option<&NSSet<NSString>>,
-            block: &block2::Block<dyn Fn(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>)>,
         );
     );
 }

@@ -181,7 +181,7 @@ impl GKMatchRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn recipientResponseHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<GKPlayer>, GKInviteRecipientResponse)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<GKPlayer>, GKInviteRecipientResponse)>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Setter for [`recipientResponseHandler`][Self::recipientResponseHandler].
@@ -190,7 +190,7 @@ impl GKMatchRequest {
         pub unsafe fn setRecipientResponseHandler(
             &self,
             recipient_response_handler: Option<
-                &block2::Block<dyn Fn(NonNull<GKPlayer>, GKInviteRecipientResponse)>,
+                &block2::DynBlock<dyn Fn(NonNull<GKPlayer>, GKInviteRecipientResponse)>,
             >,
         );
 
@@ -200,7 +200,7 @@ impl GKMatchRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn inviteeResponseHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<NSString>, GKInviteeResponse)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSString>, GKInviteeResponse)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`inviteeResponseHandler`][Self::inviteeResponseHandler].
@@ -210,7 +210,7 @@ impl GKMatchRequest {
         pub unsafe fn setInviteeResponseHandler(
             &self,
             invitee_response_handler: Option<
-                &block2::Block<dyn Fn(NonNull<NSString>, GKInviteeResponse)>,
+                &block2::DynBlock<dyn Fn(NonNull<NSString>, GKInviteeResponse)>,
             >,
         );
 
@@ -445,7 +445,7 @@ impl GKMatchmaker {
         pub unsafe fn matchForInvite_completionHandler(
             &self,
             invite: &GKInvite,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut GKMatch, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut GKMatch, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "GKMatch", feature = "block2"))]
@@ -460,7 +460,7 @@ impl GKMatchmaker {
         pub unsafe fn findMatchForRequest_withCompletionHandler(
             &self,
             request: &GKMatchRequest,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut GKMatch, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut GKMatch, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
@@ -476,7 +476,7 @@ impl GKMatchmaker {
             &self,
             request: &GKMatchRequest,
             completion_handler: Option<
-                &block2::Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
             >,
         );
 
@@ -487,7 +487,7 @@ impl GKMatchmaker {
         pub unsafe fn findMatchedPlayers_withCompletionHandler(
             &self,
             request: &GKMatchRequest,
-            completion_handler: &block2::Block<dyn Fn(*mut GKMatchedPlayers, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut GKMatchedPlayers, *mut NSError)>,
         );
 
         #[cfg(all(feature = "GKMatch", feature = "block2"))]
@@ -501,7 +501,7 @@ impl GKMatchmaker {
             &self,
             r#match: &GKMatch,
             match_request: &GKMatchRequest,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         /// Cancel matchmaking and any pending invites
@@ -530,7 +530,7 @@ impl GKMatchmaker {
         pub unsafe fn queryPlayerGroupActivity_withCompletionHandler(
             &self,
             player_group: NSUInteger,
-            completion_handler: Option<&block2::Block<dyn Fn(NSInteger, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(NSInteger, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -541,7 +541,7 @@ impl GKMatchmaker {
         #[unsafe(method_family = none)]
         pub unsafe fn queryActivityWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(NSInteger, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(NSInteger, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -551,7 +551,7 @@ impl GKMatchmaker {
         pub unsafe fn queryQueueActivity_withCompletionHandler(
             &self,
             queue_name: &NSString,
-            completion_handler: Option<&block2::Block<dyn Fn(NSInteger, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(NSInteger, *mut NSError)>>,
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
@@ -560,7 +560,7 @@ impl GKMatchmaker {
         #[unsafe(method_family = none)]
         pub unsafe fn startBrowsingForNearbyPlayersWithHandler(
             &self,
-            reachable_handler: Option<&block2::Block<dyn Fn(NonNull<GKPlayer>, Bool)>>,
+            reachable_handler: Option<&block2::DynBlock<dyn Fn(NonNull<GKPlayer>, Bool)>>,
         );
 
         /// Stop browsing for nearby players.
@@ -574,7 +574,7 @@ impl GKMatchmaker {
         #[unsafe(method_family = none)]
         pub unsafe fn startGroupActivityWithPlayerHandler(
             &self,
-            handler: &block2::Block<dyn Fn(NonNull<GKPlayer>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<GKPlayer>)>,
         );
 
         /// End the group activity created by Game Center for your game, which was activated by the local player.
@@ -606,7 +606,7 @@ impl GKMatchmaker {
         #[unsafe(method_family = none)]
         pub unsafe fn inviteHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<GKInvite>, *mut NSArray)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<GKInvite>, *mut NSArray)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`inviteHandler`][Self::inviteHandler].
@@ -615,7 +615,7 @@ impl GKMatchmaker {
         #[unsafe(method_family = none)]
         pub unsafe fn setInviteHandler(
             &self,
-            invite_handler: Option<&block2::Block<dyn Fn(NonNull<GKInvite>, *mut NSArray)>>,
+            invite_handler: Option<&block2::DynBlock<dyn Fn(NonNull<GKInvite>, *mut NSArray)>>,
         );
     );
 }
@@ -630,7 +630,7 @@ impl GKMatchmaker {
         #[unsafe(method_family = none)]
         pub unsafe fn startBrowsingForNearbyPlayersWithReachableHandler(
             &self,
-            reachable_handler: Option<&block2::Block<dyn Fn(NonNull<NSString>, Bool)>>,
+            reachable_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSString>, Bool)>>,
         );
 
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
@@ -648,7 +648,7 @@ impl GKMatchmaker {
             &self,
             request: &GKMatchRequest,
             completion_handler: Option<
-                &block2::Block<dyn Fn(*mut NSArray<NSString>, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut NSArray<NSString>, *mut NSError)>,
             >,
         );
     );

@@ -187,7 +187,7 @@ impl NSFileManager {
             &self,
             url: &NSURL,
             mask: NSFileManagerUnmountOptions,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -624,7 +624,7 @@ impl NSFileManager {
             url: &NSURL,
             keys: Option<&NSArray<NSURLResourceKey>>,
             mask: NSDirectoryEnumerationOptions,
-            handler: Option<&block2::Block<dyn Fn(NonNull<NSURL>, NonNull<NSError>) -> Bool>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSURL>, NonNull<NSError>) -> Bool>>,
         ) -> Option<Retained<NSDirectoryEnumerator<NSURL>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
@@ -741,7 +741,7 @@ impl NSFileManager {
         pub unsafe fn getFileProviderServicesForItemAtURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(
                     *mut NSDictionary<NSFileProviderServiceName, NSFileProviderService>,
                     *mut NSError,
@@ -1056,7 +1056,7 @@ impl NSFileProviderService {
         #[unsafe(method_family = none)]
         pub unsafe fn getFileProviderConnectionWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSXPCConnection, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSXPCConnection, *mut NSError)>,
         );
 
         #[cfg(feature = "NSString")]

@@ -318,7 +318,7 @@ extern_protocol!(
             &self,
             view_controller: &GKMatchmakerViewController,
             recipient: &GKPlayer,
-            completion_handler: &block2::Block<dyn Fn(NonNull<GKMatchProperties>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<GKMatchProperties>)>,
         );
 
         #[cfg(feature = "objc2-app-kit")]

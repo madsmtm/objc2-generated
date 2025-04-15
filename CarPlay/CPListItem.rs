@@ -289,7 +289,7 @@ impl CPListItem {
         #[unsafe(method_family = none)]
         pub unsafe fn handler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, dispatch_block_t),
         >;
 
@@ -300,7 +300,7 @@ impl CPListItem {
         pub unsafe fn setHandler(
             &self,
             handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, dispatch_block_t),
                 >,
             >,

@@ -36,7 +36,7 @@ impl HKActivitySummaryQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(NonNull<HKActivitySummaryQuery>, *mut NSArray<HKActivitySummary>, *mut NSError),
         >;
 
@@ -47,7 +47,7 @@ impl HKActivitySummaryQuery {
         pub unsafe fn setUpdateHandler(
             &self,
             update_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<HKActivitySummaryQuery>,
                         *mut NSArray<HKActivitySummary>,
@@ -72,7 +72,7 @@ impl HKActivitySummaryQuery {
         pub unsafe fn initWithPredicate_resultsHandler(
             this: Allocated<Self>,
             predicate: Option<&NSPredicate>,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(
                     NonNull<HKActivitySummaryQuery>,
                     *mut NSArray<HKActivitySummary>,

@@ -193,7 +193,7 @@ impl SNAudioFileAnalyzer {
         #[unsafe(method_family = none)]
         pub unsafe fn analyzeWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
 
         /// Cancels any in-progress analysis of the audio file

@@ -43,7 +43,7 @@ impl SHSignatureGenerator {
         #[unsafe(method_family = none)]
         pub unsafe fn generateSignatureFromAsset_completionHandler(
             asset: &AVAsset,
-            completion_handler: &block2::Block<dyn Fn(*mut SHSignature, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SHSignature, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-avf-audio")]

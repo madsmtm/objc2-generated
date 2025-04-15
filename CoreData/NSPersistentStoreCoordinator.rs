@@ -330,7 +330,7 @@ impl NSPersistentStoreCoordinator {
         pub unsafe fn addPersistentStoreWithDescription_completionHandler(
             &self,
             store_description: &NSPersistentStoreDescription,
-            block: &block2::Block<dyn Fn(NonNull<NSPersistentStoreDescription>, *mut NSError)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSPersistentStoreDescription>, *mut NSError)>,
         );
 
         #[cfg(feature = "NSPersistentStore")]
@@ -460,12 +460,12 @@ impl NSPersistentStoreCoordinator {
         #[cfg(feature = "block2")]
         #[unsafe(method(performBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performBlock(&self, block: &block2::Block<dyn Fn()>);
+        pub unsafe fn performBlock(&self, block: &block2::DynBlock<dyn Fn()>);
 
         #[cfg(feature = "block2")]
         #[unsafe(method(performBlockAndWait:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performBlockAndWait(&self, block: &block2::Block<dyn Fn() + '_>);
+        pub unsafe fn performBlockAndWait(&self, block: &block2::DynBlock<dyn Fn() + '_>);
 
         #[cfg(feature = "NSPersistentHistoryToken")]
         #[unsafe(method(currentPersistentHistoryTokenFromStores:))]

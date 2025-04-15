@@ -81,7 +81,7 @@ impl DefaultRetained for MTLSharedEventListener {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedeventnotificationblock?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLSharedEventNotificationBlock =
-    *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn MTLSharedEvent>>, u64)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTLSharedEvent>>, u64)>;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedevent?language=objc)

@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinteractioncompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UIPrintInteractionCompletionHandler =
-    *mut block2::Block<dyn Fn(NonNull<UIPrintInteractionController>, Bool, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<UIPrintInteractionController>, Bool, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintercutterbehavior?language=objc)
 // NS_ENUM

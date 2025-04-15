@@ -115,7 +115,8 @@ impl CKFetchRecordChangesOperation {
         #[deprecated]
         #[unsafe(method(recordChangedBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recordChangedBlock(&self) -> *mut block2::Block<dyn Fn(NonNull<CKRecord>)>;
+        pub unsafe fn recordChangedBlock(&self)
+            -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecord>)>;
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`recordChangedBlock`][Self::recordChangedBlock].
@@ -124,7 +125,7 @@ impl CKFetchRecordChangesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordChangedBlock(
             &self,
-            record_changed_block: Option<&block2::Block<dyn Fn(NonNull<CKRecord>)>>,
+            record_changed_block: Option<&block2::DynBlock<dyn Fn(NonNull<CKRecord>)>>,
         );
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
@@ -137,7 +138,7 @@ impl CKFetchRecordChangesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn recordWithIDWasDeletedBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKRecordID>)>;
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`recordWithIDWasDeletedBlock`][Self::recordWithIDWasDeletedBlock].
@@ -146,7 +147,9 @@ impl CKFetchRecordChangesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordWithIDWasDeletedBlock(
             &self,
-            record_with_id_was_deleted_block: Option<&block2::Block<dyn Fn(NonNull<CKRecordID>)>>,
+            record_with_id_was_deleted_block: Option<
+                &block2::DynBlock<dyn Fn(NonNull<CKRecordID>)>,
+            >,
         );
 
         /// If true, then the server wasn't able to return all the changes in this response.
@@ -180,7 +183,7 @@ impl CKFetchRecordChangesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordChangesCompletionBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(*mut CKServerChangeToken, *mut NSData, *mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(*mut CKServerChangeToken, *mut NSData, *mut NSError)>;
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         /// Setter for [`fetchRecordChangesCompletionBlock`][Self::fetchRecordChangesCompletionBlock].
@@ -190,7 +193,7 @@ impl CKFetchRecordChangesOperation {
         pub unsafe fn setFetchRecordChangesCompletionBlock(
             &self,
             fetch_record_changes_completion_block: Option<
-                &block2::Block<dyn Fn(*mut CKServerChangeToken, *mut NSData, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut CKServerChangeToken, *mut NSData, *mut NSError)>,
             >,
         );
     );

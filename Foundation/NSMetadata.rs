@@ -163,7 +163,7 @@ impl NSMetadataQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateResultsUsingBlock(
             &self,
-            block: &block2::Block<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
@@ -172,7 +172,7 @@ impl NSMetadataQuery {
         pub unsafe fn enumerateResultsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &block2::Block<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[cfg(feature = "NSArray")]

@@ -681,7 +681,9 @@ extern_protocol!(
             &self,
             writing_tools_coordinator: &NSWritingToolsCoordinator,
             scope: NSWritingToolsCoordinatorContextScope,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<NSWritingToolsCoordinatorContext>>)>,
+            completion: &block2::DynBlock<
+                dyn Fn(NonNull<NSArray<NSWritingToolsCoordinatorContext>>),
+            >,
         );
 
         #[cfg(all(
@@ -752,7 +754,7 @@ extern_protocol!(
             replacement_text: &NSAttributedString,
             reason: NSWritingToolsCoordinatorTextReplacementReason,
             animation_parameters: Option<&NSWritingToolsCoordinatorAnimationParameters>,
-            completion: &block2::Block<dyn Fn(*mut NSAttributedString)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSAttributedString)>,
         );
 
         #[cfg(all(feature = "NSWritingToolsCoordinatorContext", feature = "block2"))]
@@ -785,7 +787,7 @@ extern_protocol!(
             writing_tools_coordinator: &NSWritingToolsCoordinator,
             ranges: &NSArray<NSValue>,
             context: &NSWritingToolsCoordinatorContext,
-            completion: &block2::Block<dyn Fn()>,
+            completion: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(
@@ -839,7 +841,7 @@ extern_protocol!(
             writing_tools_coordinator: &NSWritingToolsCoordinator,
             range: NSRange,
             context: &NSWritingToolsCoordinatorContext,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<NSBezierPath>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSBezierPath>>)>,
         );
 
         #[cfg(all(
@@ -892,7 +894,7 @@ extern_protocol!(
             writing_tools_coordinator: &NSWritingToolsCoordinator,
             range: NSRange,
             context: &NSWritingToolsCoordinatorContext,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<NSBezierPath>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSBezierPath>>)>,
         );
 
         #[cfg(all(feature = "NSWritingToolsCoordinatorContext", feature = "block2"))]
@@ -947,7 +949,7 @@ extern_protocol!(
             text_animation: NSWritingToolsCoordinatorTextAnimation,
             range: NSRange,
             context: &NSWritingToolsCoordinatorContext,
-            completion: &block2::Block<dyn Fn()>,
+            completion: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(feature = "NSWritingToolsCoordinatorContext", feature = "block2"))]
@@ -1005,7 +1007,7 @@ extern_protocol!(
             text_animation: NSWritingToolsCoordinatorTextAnimation,
             range: NSRange,
             context: &NSWritingToolsCoordinatorContext,
-            completion: &block2::Block<dyn Fn(*mut NSArray<NSTextPreview>)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSArray<NSTextPreview>)>,
         );
 
         #[cfg(all(feature = "NSWritingToolsCoordinatorContext", feature = "block2"))]
@@ -1053,7 +1055,7 @@ extern_protocol!(
             writing_tools_coordinator: &NSWritingToolsCoordinator,
             rect: NSRect,
             context: &NSWritingToolsCoordinatorContext,
-            completion: &block2::Block<dyn Fn(*mut NSTextPreview)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSTextPreview)>,
         );
 
         #[cfg(all(feature = "NSWritingToolsCoordinatorContext", feature = "block2"))]
@@ -1098,7 +1100,7 @@ extern_protocol!(
             text_animation: NSWritingToolsCoordinatorTextAnimation,
             range: NSRange,
             context: &NSWritingToolsCoordinatorContext,
-            completion: &block2::Block<dyn Fn()>,
+            completion: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(all(feature = "NSWritingToolsCoordinatorContext", feature = "block2"))]
@@ -1158,7 +1160,7 @@ extern_protocol!(
             writing_tools_coordinator: &NSWritingToolsCoordinator,
             range: NSRange,
             context: &NSWritingToolsCoordinatorContext,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<NSValue>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSValue>>)>,
         );
 
         #[cfg(all(
@@ -1206,7 +1208,7 @@ extern_protocol!(
             writing_tools_coordinator: &NSWritingToolsCoordinator,
             range: NSRange,
             context: &NSWritingToolsCoordinatorContext,
-            completion: &block2::Block<dyn Fn(NonNull<NSView>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSView>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1239,7 +1241,7 @@ extern_protocol!(
             &self,
             writing_tools_coordinator: &NSWritingToolsCoordinator,
             new_state: NSWritingToolsCoordinatorState,
-            completion: &block2::Block<dyn Fn()>,
+            completion: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -1293,7 +1295,7 @@ extern_protocol!(
             &self,
             writing_tools_coordinator: &NSWritingToolsCoordinator,
             point: NSPoint,
-            completion: &block2::Block<dyn Fn(NSRange, NonNull<NSUUID>)>,
+            completion: &block2::DynBlock<dyn Fn(NSRange, NonNull<NSUUID>)>,
         );
     }
 );

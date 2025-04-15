@@ -81,7 +81,7 @@ impl PHASESoundEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn prepareWithCompletion(
             &self,
-            handler: Option<&block2::Block<dyn Fn(PHASESoundEventPrepareHandlerReason)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(PHASESoundEventPrepareHandlerReason)>>,
         );
 
         #[cfg(all(feature = "PHASETypes", feature = "block2"))]
@@ -96,7 +96,7 @@ impl PHASESoundEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletion(
             &self,
-            handler: Option<&block2::Block<dyn Fn(PHASESoundEventStartHandlerReason)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(PHASESoundEventStartHandlerReason)>>,
         );
 
         #[cfg(all(feature = "PHASETypes", feature = "block2"))]
@@ -114,7 +114,7 @@ impl PHASESoundEvent {
         pub unsafe fn seekToTime_completion(
             &self,
             time: c_double,
-            handler: Option<&block2::Block<dyn Fn(PHASESoundEventSeekHandlerReason)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(PHASESoundEventSeekHandlerReason)>>,
         );
 
         /// Pause the sound event.

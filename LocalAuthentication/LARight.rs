@@ -112,7 +112,7 @@ impl LARight {
         pub unsafe fn authorizeWithLocalizedReason_completion(
             &self,
             localized_reason: &NSString,
-            handler: &block2::Block<dyn Fn(*mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -124,7 +124,7 @@ impl LARight {
         #[unsafe(method_family = none)]
         pub unsafe fn checkCanAuthorizeWithCompletion(
             &self,
-            handler: &block2::Block<dyn Fn(*mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -133,7 +133,7 @@ impl LARight {
         /// Parameter `handler`: Completion handler called after the right is deauthorized.
         #[unsafe(method(deauthorizeWithCompletion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deauthorizeWithCompletion(&self, handler: &block2::Block<dyn Fn()>);
+        pub unsafe fn deauthorizeWithCompletion(&self, handler: &block2::DynBlock<dyn Fn()>);
     );
 }
 

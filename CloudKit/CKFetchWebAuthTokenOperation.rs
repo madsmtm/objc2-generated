@@ -63,7 +63,7 @@ impl CKFetchWebAuthTokenOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchWebAuthTokenCompletionBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(*mut NSString, *mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`fetchWebAuthTokenCompletionBlock`][Self::fetchWebAuthTokenCompletionBlock].
@@ -72,7 +72,7 @@ impl CKFetchWebAuthTokenOperation {
         pub unsafe fn setFetchWebAuthTokenCompletionBlock(
             &self,
             fetch_web_auth_token_completion_block: Option<
-                &block2::Block<dyn Fn(*mut NSString, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>,
             >,
         );
     );

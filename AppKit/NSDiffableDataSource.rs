@@ -221,7 +221,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut block2::Block<
+pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut block2::DynBlock<
     dyn Fn(NonNull<NSCollectionView>, NonNull<NSString>, NonNull<NSIndexPath>) -> *mut NSView,
 >;
 

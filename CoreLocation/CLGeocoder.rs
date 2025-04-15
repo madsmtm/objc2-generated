@@ -13,7 +13,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clgeocodecompletionhandler?language=objc)
 #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
 pub type CLGeocodeCompletionHandler =
-    *mut block2::Block<dyn Fn(*mut NSArray<CLPlacemark>, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut NSArray<CLPlacemark>, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clgeocoder?language=objc)

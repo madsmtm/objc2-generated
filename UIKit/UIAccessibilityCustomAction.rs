@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomactionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UIAccessibilityCustomActionHandler =
-    *mut block2::Block<dyn Fn(NonNull<UIAccessibilityCustomAction>) -> Bool>;
+    *mut block2::DynBlock<dyn Fn(NonNull<UIAccessibilityCustomAction>) -> Bool>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomaction?language=objc)

@@ -156,7 +156,7 @@ unsafe impl RefEncode for GCQuaternion {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmotionvaluechangedhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type GCMotionValueChangedHandler = *mut block2::Block<dyn Fn(NonNull<GCMotion>)>;
+pub type GCMotionValueChangedHandler = *mut block2::DynBlock<dyn Fn(NonNull<GCMotion>)>;
 
 extern_class!(
     /// A profile for getting motion input from a controller that has the ability to measure acceleration

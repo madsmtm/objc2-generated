@@ -160,6 +160,6 @@ extern "C-unwind" {
     pub fn VTFrameSiloCallBlockForEachSampleBuffer(
         silo: &VTFrameSilo,
         time_range: CMTimeRange,
-        handler: &block2::Block<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus>,
+        handler: &block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus>,
     ) -> OSStatus;
 }

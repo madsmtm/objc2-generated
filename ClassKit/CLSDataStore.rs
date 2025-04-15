@@ -120,7 +120,7 @@ impl CLSDataStore {
         #[unsafe(method_family = none)]
         pub unsafe fn saveWithCompletion(
             &self,
-            completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         /// Complete all assigned actvities.
@@ -149,7 +149,7 @@ impl CLSDataStore {
         pub unsafe fn contextsMatchingPredicate_completion(
             &self,
             predicate: &NSPredicate,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<CLSContext>>, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<CLSContext>>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject", feature = "block2"))]
@@ -170,7 +170,7 @@ impl CLSDataStore {
         pub unsafe fn contextsMatchingIdentifierPath_completion(
             &self,
             identifier_path: &NSArray<NSString>,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<CLSContext>>, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<CLSContext>>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
@@ -192,7 +192,7 @@ impl CLSDataStore {
         pub unsafe fn fetchActivityForURL_completion(
             &self,
             url: &NSURL,
-            completion: &block2::Block<dyn Fn(*mut CLSActivity, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut CLSActivity, *mut NSError)>,
         );
     );
 }

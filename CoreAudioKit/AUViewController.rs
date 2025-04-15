@@ -194,7 +194,7 @@ pub unsafe trait AUAudioUnit_ViewController:
         #[unsafe(method_family = none)]
         unsafe fn requestViewControllerWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut AUViewControllerBase)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut AUViewControllerBase)>,
         );
 
         /// Parameter `availableViewConfigurations`: The list of all available view configurations supported by the host.

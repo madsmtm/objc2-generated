@@ -234,7 +234,7 @@ extern_protocol!(
             push_payload: &NSDictionary<NSString, AnyObject>,
             is_high_priority: bool,
             remaining_high_priority_budget: NSInteger,
-            completion: &block2::Block<dyn Fn()>,
+            completion: &block2::DynBlock<dyn Fn()>,
         );
     }
 );

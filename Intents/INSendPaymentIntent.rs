@@ -104,7 +104,7 @@ extern_protocol!(
         unsafe fn handleSendPayment_completion(
             &self,
             intent: &INSendPaymentIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSendPaymentIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSendPaymentIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -130,7 +130,7 @@ extern_protocol!(
         unsafe fn confirmSendPayment_completion(
             &self,
             intent: &INSendPaymentIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSendPaymentIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSendPaymentIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -157,7 +157,7 @@ extern_protocol!(
         unsafe fn resolvePayeeForSendPayment_withCompletion(
             &self,
             intent: &INSendPaymentIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INPersonResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INPersonResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -173,7 +173,7 @@ extern_protocol!(
         unsafe fn resolvePayeeForSendPayment_completion(
             &self,
             intent: &INSendPaymentIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSendPaymentPayeeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSendPaymentPayeeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -189,7 +189,7 @@ extern_protocol!(
         unsafe fn resolveCurrencyAmountForSendPayment_withCompletion(
             &self,
             intent: &INSendPaymentIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INCurrencyAmountResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INCurrencyAmountResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -205,7 +205,7 @@ extern_protocol!(
         unsafe fn resolveCurrencyAmountForSendPayment_completion(
             &self,
             intent: &INSendPaymentIntent,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<INSendPaymentCurrencyAmountResolutionResult>),
             >,
         );
@@ -222,7 +222,7 @@ extern_protocol!(
         unsafe fn resolveNoteForSendPayment_withCompletion(
             &self,
             intent: &INSendPaymentIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
         );
     }
 );

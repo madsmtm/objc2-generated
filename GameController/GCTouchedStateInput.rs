@@ -24,7 +24,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn touchedDidChangeHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(
                 NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
                 NonNull<ProtocolObject<dyn GCTouchedStateInput>>,
@@ -39,7 +39,7 @@ extern_protocol!(
         unsafe fn setTouchedDidChangeHandler(
             &self,
             touched_did_change_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
                         NonNull<ProtocolObject<dyn GCTouchedStateInput>>,

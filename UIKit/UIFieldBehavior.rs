@@ -289,7 +289,7 @@ impl UIFieldBehavior {
         #[unsafe(method(fieldWithEvaluationBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fieldWithEvaluationBlock(
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(
                     NonNull<UIFieldBehavior>,
                     CGPoint,

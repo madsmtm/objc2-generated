@@ -460,7 +460,7 @@ impl WKWebView {
         pub unsafe fn evaluateJavaScript_completionHandler(
             &self,
             java_script_string: &NSString,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut AnyObject, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut AnyObject, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -475,7 +475,7 @@ impl WKWebView {
             java_script_string: &NSString,
             frame: Option<&WKFrameInfo>,
             content_world: &WKContentWorld,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut AnyObject, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut AnyObject, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -491,7 +491,7 @@ impl WKWebView {
             arguments: Option<&NSDictionary<NSString, AnyObject>>,
             frame: Option<&WKFrameInfo>,
             content_world: &WKContentWorld,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut AnyObject, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut AnyObject, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -502,7 +502,7 @@ impl WKWebView {
         #[unsafe(method_family = none)]
         pub unsafe fn closeAllMediaPresentationsWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[deprecated]
@@ -518,7 +518,7 @@ impl WKWebView {
         #[unsafe(method_family = none)]
         pub unsafe fn pauseAllMediaPlaybackWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -527,7 +527,7 @@ impl WKWebView {
         #[unsafe(method_family = none)]
         pub unsafe fn pauseAllMediaPlayback(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -541,7 +541,7 @@ impl WKWebView {
         pub unsafe fn setAllMediaPlaybackSuspended_completionHandler(
             &self,
             suspended: bool,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -550,7 +550,7 @@ impl WKWebView {
         #[unsafe(method_family = none)]
         pub unsafe fn resumeAllMediaPlayback(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -559,7 +559,7 @@ impl WKWebView {
         #[unsafe(method_family = none)]
         pub unsafe fn suspendAllMediaPlayback(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -575,7 +575,7 @@ impl WKWebView {
         #[unsafe(method_family = none)]
         pub unsafe fn requestMediaPlaybackStateWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(WKMediaPlaybackState)>,
+            completion_handler: &block2::DynBlock<dyn Fn(WKMediaPlaybackState)>,
         );
 
         #[cfg(feature = "block2")]
@@ -584,7 +584,7 @@ impl WKWebView {
         #[unsafe(method_family = none)]
         pub unsafe fn requestMediaPlaybackState(
             &self,
-            completion_handler: &block2::Block<dyn Fn(WKMediaPlaybackState)>,
+            completion_handler: &block2::DynBlock<dyn Fn(WKMediaPlaybackState)>,
         );
 
         /// The state of camera capture on a web page.
@@ -628,7 +628,7 @@ impl WKWebView {
         pub unsafe fn setCameraCaptureState_completionHandler(
             &self,
             state: WKMediaCaptureState,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -646,7 +646,7 @@ impl WKWebView {
         pub unsafe fn setMicrophoneCaptureState_completionHandler(
             &self,
             state: WKMediaCaptureState,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(all(feature = "WKSnapshotConfiguration", feature = "block2"))]
@@ -655,7 +655,7 @@ impl WKWebView {
         pub unsafe fn takeSnapshotWithConfiguration_completionHandler(
             &self,
             snapshot_configuration: Option<&WKSnapshotConfiguration>,
-            completion_handler: &block2::Block<dyn Fn(*mut NSImage, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSImage, *mut NSError)>,
         );
 
         #[cfg(all(feature = "WKPDFConfiguration", feature = "block2"))]
@@ -674,7 +674,7 @@ impl WKWebView {
         pub unsafe fn createPDFWithConfiguration_completionHandler(
             &self,
             pdf_configuration: Option<&WKPDFConfiguration>,
-            completion_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -682,7 +682,7 @@ impl WKWebView {
         #[unsafe(method_family = none)]
         pub unsafe fn createWebArchiveDataWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
         /// A Boolean value indicating whether horizontal swipe gestures
@@ -775,7 +775,7 @@ impl WKWebView {
             &self,
             string: &NSString,
             configuration: Option<&WKFindConfiguration>,
-            completion_handler: &block2::Block<dyn Fn(NonNull<WKFindResult>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<WKFindResult>)>,
         );
 
         #[unsafe(method(handlesURLScheme:))]
@@ -788,7 +788,7 @@ impl WKWebView {
         pub unsafe fn startDownloadUsingRequest_completionHandler(
             &self,
             request: &NSURLRequest,
-            completion_handler: &block2::Block<dyn Fn(NonNull<WKDownload>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<WKDownload>)>,
         );
 
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
@@ -797,7 +797,7 @@ impl WKWebView {
         pub unsafe fn resumeDownloadFromResumeData_completionHandler(
             &self,
             resume_data: &NSData,
-            completion_handler: &block2::Block<dyn Fn(NonNull<WKDownload>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<WKDownload>)>,
         );
 
         #[unsafe(method(mediaType))]

@@ -42,7 +42,7 @@ impl SFSafariWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn getActiveTabWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut SFSafariTab)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SFSafariTab)>,
         );
 
         #[cfg(all(feature = "SFSafariTab", feature = "block2"))]
@@ -51,7 +51,7 @@ impl SFSafariWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn getAllTabsWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<SFSafariTab>>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<SFSafariTab>>)>,
         );
 
         #[cfg(all(feature = "SFSafariTab", feature = "block2"))]
@@ -62,7 +62,7 @@ impl SFSafariWindow {
             &self,
             url: &NSURL,
             activate_tab: bool,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut SFSafariTab)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut SFSafariTab)>>,
         );
 
         #[cfg(all(feature = "SFSafariToolbarItem", feature = "block2"))]
@@ -71,7 +71,7 @@ impl SFSafariWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn getToolbarItemWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut SFSafariToolbarItem)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SFSafariToolbarItem)>,
         );
 
         /// Closes this window.

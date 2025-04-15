@@ -52,10 +52,10 @@ impl NSFileProviderExtension {
             &self,
             item_identifiers: &NSArray<NSFileProviderItemIdentifier>,
             size: CGSize,
-            per_thumbnail_completion_handler: &block2::Block<
+            per_thumbnail_completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSFileProviderItemIdentifier>, *mut NSData, *mut NSError),
             >,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         ) -> Retained<NSProgress>;
     );
 }

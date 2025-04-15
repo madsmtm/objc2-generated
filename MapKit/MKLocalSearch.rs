@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompletionhandler?language=objc)
 #[cfg(all(feature = "MKLocalSearchResponse", feature = "block2"))]
 pub type MKLocalSearchCompletionHandler =
-    *mut block2::Block<dyn Fn(*mut MKLocalSearchResponse, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut MKLocalSearchResponse, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch?language=objc)

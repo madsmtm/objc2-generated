@@ -24,7 +24,7 @@ impl NSAccessibilityCustomAction {
         pub unsafe fn initWithName_handler(
             this: Allocated<Self>,
             name: &NSString,
-            handler: Option<&block2::Block<dyn Fn() -> Bool>>,
+            handler: Option<&block2::DynBlock<dyn Fn() -> Bool>>,
         ) -> Retained<Self>;
 
         #[unsafe(method(initWithName:target:selector:))]
@@ -48,13 +48,13 @@ impl NSAccessibilityCustomAction {
         #[cfg(feature = "block2")]
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handler(&self) -> *mut block2::Block<dyn Fn() -> Bool>;
+        pub unsafe fn handler(&self) -> *mut block2::DynBlock<dyn Fn() -> Bool>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`handler`][Self::handler].
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHandler(&self, handler: Option<&block2::Block<dyn Fn() -> Bool>>);
+        pub unsafe fn setHandler(&self, handler: Option<&block2::DynBlock<dyn Fn() -> Bool>>);
 
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]

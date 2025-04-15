@@ -38,7 +38,7 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickercompletion?language=objc)
 #[cfg(feature = "block2")]
-pub type EABluetoothAccessoryPickerCompletion = *mut block2::Block<dyn Fn(*mut NSError)>;
+pub type EABluetoothAccessoryPickerCompletion = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaaccessorydidconnectnotification?language=objc)

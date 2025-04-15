@@ -120,7 +120,7 @@ impl TKSmartCardATR {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
-            source: &block2::Block<dyn Fn() -> c_int>,
+            source: &block2::DynBlock<dyn Fn() -> c_int>,
         ) -> Option<Retained<Self>>;
 
         /// Full ATR as string of bytes

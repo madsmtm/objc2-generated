@@ -29,7 +29,7 @@ impl NSColorSampler {
         #[unsafe(method_family = none)]
         pub unsafe fn showSamplerWithSelectionHandler(
             &self,
-            selection_handler: &block2::Block<dyn Fn(*mut NSColor)>,
+            selection_handler: &block2::DynBlock<dyn Fn(*mut NSColor)>,
         );
     );
 }

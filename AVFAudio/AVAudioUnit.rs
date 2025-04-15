@@ -52,7 +52,7 @@ impl AVAudioUnit {
         pub unsafe fn instantiateWithComponentDescription_options_completionHandler(
             audio_component_description: AudioComponentDescription,
             options: AudioComponentInstantiationOptions,
-            completion_handler: &block2::Block<dyn Fn(*mut AVAudioUnit, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut AVAudioUnit, *mut NSError)>,
         );
 
         /// Load an audio unit preset.

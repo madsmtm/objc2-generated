@@ -57,7 +57,7 @@ impl SKProductStorePromotionController {
             &self,
             product: &SKProduct,
             completion_handler: Option<
-                &block2::Block<dyn Fn(SKProductStorePromotionVisibility, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(SKProductStorePromotionVisibility, *mut NSError)>,
             >,
         );
 
@@ -69,7 +69,7 @@ impl SKProductStorePromotionController {
             &self,
             promotion_visibility: SKProductStorePromotionVisibility,
             product: &SKProduct,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
@@ -79,7 +79,7 @@ impl SKProductStorePromotionController {
         pub unsafe fn fetchStorePromotionOrderWithCompletionHandler(
             &self,
             completion_handler: Option<
-                &block2::Block<dyn Fn(NonNull<NSArray<SKProduct>>, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(NonNull<NSArray<SKProduct>>, *mut NSError)>,
             >,
         );
 
@@ -90,7 +90,7 @@ impl SKProductStorePromotionController {
         pub unsafe fn updateStorePromotionOrder_completionHandler(
             &self,
             promotion_order: &NSArray<SKProduct>,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
     );
 }

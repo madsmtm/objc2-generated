@@ -45,7 +45,7 @@ impl CNScript {
             asset: &AVAsset,
             changes: Option<&CNScriptChanges>,
             progress: Option<&NSProgress>,
-            completion_handler: &block2::Block<dyn Fn(*mut CNScript, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut CNScript, *mut NSError)>,
         );
 
         /// Reload the cinematic script with optional changes applied, removing any previous changes made.

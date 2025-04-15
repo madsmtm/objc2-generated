@@ -672,7 +672,7 @@ impl NSLayoutManager {
         pub unsafe fn enumerateLineFragmentsForGlyphRange_usingBlock(
             &self,
             glyph_range: NSRange,
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(CGRect, CGRect, NonNull<NSTextContainer>, NSRange, NonNull<Bool>),
             >,
         );
@@ -689,7 +689,7 @@ impl NSLayoutManager {
             glyph_range: NSRange,
             selected_range: NSRange,
             text_container: &NSTextContainer,
-            block: &block2::Block<dyn Fn(CGRect, NonNull<Bool>)>,
+            block: &block2::DynBlock<dyn Fn(CGRect, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "objc2-core-foundation")]

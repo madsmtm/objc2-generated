@@ -17,7 +17,7 @@ extern_protocol!(
             &self,
             search_string: &NSString,
             result_limit: NSInteger,
-            handle_matched_items: &block2::Block<dyn Fn(NonNull<NSArray>)>,
+            handle_matched_items: &block2::DynBlock<dyn Fn(NonNull<NSArray>)>,
         );
 
         #[unsafe(method(localizedTitlesForItem:))]

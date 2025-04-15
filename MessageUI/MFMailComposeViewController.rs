@@ -319,7 +319,7 @@ impl MFMailComposeViewController {
         pub unsafe fn insertCollaborationItemProvider_completionHandler(
             &self,
             item_provider: &NSItemProvider,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
     );
 }

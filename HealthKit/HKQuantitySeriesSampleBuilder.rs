@@ -170,7 +170,7 @@ impl HKQuantitySeriesSampleBuilder {
             &self,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
             end_date: Option<&NSDate>,
-            completion: &block2::Block<dyn Fn(*mut NSArray<HKQuantitySample>, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSArray<HKQuantitySample>, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -213,7 +213,7 @@ impl HKQuantitySeriesSampleBuilder {
         pub unsafe fn finishSeriesWithMetadata_completion(
             &self,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: &block2::Block<dyn Fn(*mut NSArray<HKQuantitySample>, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSArray<HKQuantitySample>, *mut NSError)>,
         );
 
         /// Discards all previously inserted data and invalidates the series.

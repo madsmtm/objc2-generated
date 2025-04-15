@@ -57,7 +57,7 @@ impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationForPublicKeyCredentials(
             &self,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState),
             >,
         );
@@ -71,7 +71,7 @@ impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
         pub unsafe fn platformCredentialsForRelyingParty_completionHandler(
             &self,
             relying_party: &NSString,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSArray<ASAuthorizationWebBrowserPlatformPublicKeyCredential>>),
             >,
         );

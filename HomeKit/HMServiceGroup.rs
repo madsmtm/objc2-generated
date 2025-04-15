@@ -64,7 +64,7 @@ impl HMServiceGroup {
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMService", feature = "block2"))]
@@ -84,7 +84,7 @@ impl HMServiceGroup {
         pub unsafe fn addService_completionHandler(
             &self,
             service: &HMService,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMService", feature = "block2"))]
@@ -102,7 +102,7 @@ impl HMServiceGroup {
         pub unsafe fn removeService_completionHandler(
             &self,
             service: &HMService,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

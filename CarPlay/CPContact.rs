@@ -149,7 +149,7 @@ impl CPContactCallButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPButton>)>>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-ui-kit"))]
@@ -158,7 +158,7 @@ impl CPContactCallButton {
         pub unsafe fn initWithImage_handler(
             this: Allocated<Self>,
             image: &UIImage,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPButton>)>>,
         ) -> Retained<Self>;
     );
 }
@@ -242,7 +242,7 @@ impl CPContactMessageButton {
         pub unsafe fn initWithImage_handler(
             this: Allocated<Self>,
             image: &UIImage,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPButton>)>>,
         ) -> Retained<Self>;
 
         #[unsafe(method(new))]
@@ -278,7 +278,7 @@ impl CPContactDirectionsButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPButton>)>>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-ui-kit"))]
@@ -287,7 +287,7 @@ impl CPContactDirectionsButton {
         pub unsafe fn initWithImage_handler(
             this: Allocated<Self>,
             image: &UIImage,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPButton>)>>,
         ) -> Retained<Self>;
     );
 }

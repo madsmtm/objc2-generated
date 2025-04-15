@@ -196,7 +196,7 @@ impl AVCaptureSlider {
         pub unsafe fn setActionQueue_action(
             &self,
             action_queue: &DispatchQueue,
-            action: &block2::Block<dyn Fn(c_float)>,
+            action: &block2::DynBlock<dyn Fn(c_float)>,
         );
     );
 }

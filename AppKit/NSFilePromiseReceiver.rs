@@ -41,7 +41,7 @@ impl NSFilePromiseReceiver {
             destination_dir: &NSURL,
             options: &NSDictionary,
             operation_queue: &NSOperationQueue,
-            reader: &block2::Block<dyn Fn(NonNull<NSURL>, *mut NSError)>,
+            reader: &block2::DynBlock<dyn Fn(NonNull<NSURL>, *mut NSError)>,
         );
     );
 }

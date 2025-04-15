@@ -85,7 +85,7 @@ unsafe impl RefEncode for UICollectionLayoutListFooterMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistswipeactionsconfigurationprovider?language=objc)
 #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
 pub type UICollectionLayoutListSwipeActionsConfigurationProvider =
-    *mut block2::Block<dyn Fn(NonNull<NSIndexPath>) -> *mut UISwipeActionsConfiguration>;
+    *mut block2::DynBlock<dyn Fn(NonNull<NSIndexPath>) -> *mut UISwipeActionsConfiguration>;
 
 /// A block that is executed by list sections to provide granular control over separator appearance.
 ///
@@ -101,7 +101,7 @@ pub type UICollectionLayoutListSwipeActionsConfigurationProvider =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistitemseparatorhandler?language=objc)
 #[cfg(all(feature = "UIListSeparatorConfiguration", feature = "block2"))]
-pub type UICollectionLayoutListItemSeparatorHandler = *mut block2::Block<
+pub type UICollectionLayoutListItemSeparatorHandler = *mut block2::DynBlock<
     dyn Fn(
         NonNull<NSIndexPath>,
         NonNull<UIListSeparatorConfiguration>,

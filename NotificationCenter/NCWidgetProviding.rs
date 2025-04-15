@@ -40,7 +40,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn widgetPerformUpdateWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(NCUpdateResult)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NCUpdateResult)>,
         );
 
         #[deprecated = "Use WidgetKit instead. Today View extensions have been deprecated."]

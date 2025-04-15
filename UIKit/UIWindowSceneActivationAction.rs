@@ -20,7 +20,7 @@ use crate::*;
     feature = "UIWindowSceneActivationConfiguration",
     feature = "block2"
 ))]
-pub type UIWindowSceneActivationActionConfigurationProvider = *mut block2::Block<
+pub type UIWindowSceneActivationActionConfigurationProvider = *mut block2::DynBlock<
     dyn Fn(NonNull<UIWindowSceneActivationAction>) -> *mut UIWindowSceneActivationConfiguration,
 >;
 

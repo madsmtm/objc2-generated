@@ -107,7 +107,7 @@ extern_protocol!(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
             skip_interval: CMTime,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(feature = "AVPictureInPictureController")]

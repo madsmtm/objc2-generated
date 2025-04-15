@@ -245,8 +245,8 @@ impl TVApplicationController {
         #[unsafe(method_family = none)]
         pub unsafe fn evaluateInJavaScriptContext_completion(
             &self,
-            evaluation: &block2::Block<dyn Fn(NonNull<JSContext>)>,
-            completion: Option<&block2::Block<dyn Fn(Bool)>>,
+            evaluation: &block2::DynBlock<dyn Fn(NonNull<JSContext>)>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         /// Stops the application lifecycle. appController:didStopWithOptions: is

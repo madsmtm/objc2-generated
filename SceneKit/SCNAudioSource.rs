@@ -183,7 +183,7 @@ impl SCNAudioPlayer {
         /// This block is called when the playback starts in case a valid audio source is present.
         #[unsafe(method(willStartPlayback))]
         #[unsafe(method_family = none)]
-        pub unsafe fn willStartPlayback(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn willStartPlayback(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`willStartPlayback`][Self::willStartPlayback].
@@ -191,14 +191,14 @@ impl SCNAudioPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn setWillStartPlayback(
             &self,
-            will_start_playback: Option<&block2::Block<dyn Fn()>>,
+            will_start_playback: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
         /// This block is called when the playback stops in case a valid audio source is present.
         #[unsafe(method(didFinishPlayback))]
         #[unsafe(method_family = none)]
-        pub unsafe fn didFinishPlayback(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn didFinishPlayback(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`didFinishPlayback`][Self::didFinishPlayback].
@@ -206,7 +206,7 @@ impl SCNAudioPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn setDidFinishPlayback(
             &self,
-            did_finish_playback: Option<&block2::Block<dyn Fn()>>,
+            did_finish_playback: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "objc2-avf-audio")]

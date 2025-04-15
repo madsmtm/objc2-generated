@@ -105,7 +105,7 @@ extern_protocol!(
         unsafe fn handleAppendToNote_completion(
             &self,
             intent: &INAppendToNoteIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INAppendToNoteIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INAppendToNoteIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -132,7 +132,7 @@ extern_protocol!(
         unsafe fn confirmAppendToNote_completion(
             &self,
             intent: &INAppendToNoteIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INAppendToNoteIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INAppendToNoteIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -159,7 +159,7 @@ extern_protocol!(
         unsafe fn resolveTargetNoteForAppendToNote_withCompletion(
             &self,
             intent: &INAppendToNoteIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INNoteResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INNoteResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -175,7 +175,7 @@ extern_protocol!(
         unsafe fn resolveContentForAppendToNote_withCompletion(
             &self,
             intent: &INAppendToNoteIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INNoteContentResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INNoteContentResolutionResult>)>,
         );
     }
 );

@@ -286,7 +286,7 @@ impl NSFileHandle {
         #[unsafe(method_family = none)]
         pub unsafe fn readabilityHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<NSFileHandle>)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSFileHandle>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`readabilityHandler`][Self::readabilityHandler].
@@ -294,7 +294,7 @@ impl NSFileHandle {
         #[unsafe(method_family = none)]
         pub unsafe fn setReadabilityHandler(
             &self,
-            readability_handler: Option<&block2::Block<dyn Fn(NonNull<NSFileHandle>)>>,
+            readability_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSFileHandle>)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -302,7 +302,7 @@ impl NSFileHandle {
         #[unsafe(method_family = none)]
         pub unsafe fn writeabilityHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<NSFileHandle>)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSFileHandle>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`writeabilityHandler`][Self::writeabilityHandler].
@@ -310,7 +310,7 @@ impl NSFileHandle {
         #[unsafe(method_family = none)]
         pub unsafe fn setWriteabilityHandler(
             &self,
-            writeability_handler: Option<&block2::Block<dyn Fn(NonNull<NSFileHandle>)>>,
+            writeability_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSFileHandle>)>>,
         );
     );
 }

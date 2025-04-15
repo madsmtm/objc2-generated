@@ -323,7 +323,7 @@ unsafe impl RefEncode for SCNSceneSourceStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatushandler?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNSceneSourceStatusHandler =
-    *mut block2::Block<dyn Fn(c_float, SCNSceneSourceStatus, *mut NSError, NonNull<Bool>)>;
+    *mut block2::DynBlock<dyn Fn(c_float, SCNSceneSourceStatus, *mut NSError, NonNull<Bool>)>;
 
 extern_class!(
     /// SCNSceneSource objects, abstract the data-reading task. A scene source can read scene data from a URL or a NSData object.
@@ -475,7 +475,7 @@ impl SCNSceneSource {
         #[unsafe(method_family = none)]
         pub unsafe fn entriesPassingTest(
             &self,
-            predicate: &block2::Block<
+            predicate: &block2::DynBlock<
                 dyn Fn(NonNull<AnyObject>, NonNull<NSString>, NonNull<Bool>) -> Bool + '_,
             >,
         ) -> Retained<NSArray<AnyObject>>;

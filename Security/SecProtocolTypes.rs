@@ -349,7 +349,7 @@ extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn sec_identity_access_certificates(
         identity: sec_identity_t,
-        handler: &block2::Block<dyn Fn(sec_certificate_t)>,
+        handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
     ) -> bool;
 }
 

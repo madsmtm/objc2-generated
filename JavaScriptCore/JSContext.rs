@@ -188,7 +188,7 @@ impl JSContext {
         #[unsafe(method_family = none)]
         pub unsafe fn exceptionHandler(
             &self,
-        ) -> NonNull<block2::Block<dyn Fn(*mut JSContext, *mut JSValue)>>;
+        ) -> NonNull<block2::DynBlock<dyn Fn(*mut JSContext, *mut JSValue)>>;
 
         #[cfg(all(feature = "JSValue", feature = "block2"))]
         /// Setter for [`exceptionHandler`][Self::exceptionHandler].
@@ -196,7 +196,7 @@ impl JSContext {
         #[unsafe(method_family = none)]
         pub unsafe fn setExceptionHandler(
             &self,
-            exception_handler: Option<&block2::Block<dyn Fn(*mut JSContext, *mut JSValue)>>,
+            exception_handler: Option<&block2::DynBlock<dyn Fn(*mut JSContext, *mut JSValue)>>,
         );
 
         #[cfg(feature = "JSVirtualMachine")]

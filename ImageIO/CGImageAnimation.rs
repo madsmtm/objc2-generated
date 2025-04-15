@@ -56,7 +56,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourceanimationblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
 pub type CGImageSourceAnimationBlock =
-    *mut block2::Block<dyn Fn(usize, NonNull<CGImage>, NonNull<bool>)>;
+    *mut block2::DynBlock<dyn Fn(usize, NonNull<CGImage>, NonNull<bool>)>;
 
 extern "C-unwind" {
     /// Animate the sequence of images contained in the file at `url`. Currently supported image

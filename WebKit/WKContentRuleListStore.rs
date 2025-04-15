@@ -38,7 +38,7 @@ impl WKContentRuleListStore {
             identifier: Option<&NSString>,
             encoded_content_rule_list: Option<&NSString>,
             completion_handler: Option<
-                &block2::Block<dyn Fn(*mut WKContentRuleList, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut WKContentRuleList, *mut NSError)>,
             >,
         );
 
@@ -49,7 +49,7 @@ impl WKContentRuleListStore {
             &self,
             identifier: Option<&NSString>,
             completion_handler: Option<
-                &block2::Block<dyn Fn(*mut WKContentRuleList, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut WKContentRuleList, *mut NSError)>,
             >,
         );
 
@@ -59,7 +59,7 @@ impl WKContentRuleListStore {
         pub unsafe fn removeContentRuleListForIdentifier_completionHandler(
             &self,
             identifier: Option<&NSString>,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -67,7 +67,7 @@ impl WKContentRuleListStore {
         #[unsafe(method_family = none)]
         pub unsafe fn getAvailableContentRuleListIdentifiers(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSArray<NSString>)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSArray<NSString>)>>,
         );
     );
 }

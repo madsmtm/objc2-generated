@@ -94,7 +94,7 @@ extern_protocol!(
         unsafe fn screenshotService_generatePDFRepresentationWithCompletion(
             &self,
             screenshot_service: &UIScreenshotService,
-            completion_handler: &block2::Block<dyn Fn(*mut NSData, NSInteger, CGRect)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, NSInteger, CGRect)>,
         );
     }
 );

@@ -674,7 +674,7 @@ impl MDLMaterialPropertyNode {
             this: Allocated<Self>,
             inputs: &NSArray<MDLMaterialProperty>,
             outputs: &NSArray<MDLMaterialProperty>,
-            function: &block2::Block<dyn Fn(NonNull<MDLMaterialPropertyNode>)>,
+            function: &block2::DynBlock<dyn Fn(NonNull<MDLMaterialPropertyNode>)>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -682,7 +682,7 @@ impl MDLMaterialPropertyNode {
         #[unsafe(method_family = none)]
         pub unsafe fn evaluationFunction(
             &self,
-        ) -> NonNull<block2::Block<dyn Fn(NonNull<MDLMaterialPropertyNode>)>>;
+        ) -> NonNull<block2::DynBlock<dyn Fn(NonNull<MDLMaterialPropertyNode>)>>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`evaluationFunction`][Self::evaluationFunction].
@@ -690,7 +690,7 @@ impl MDLMaterialPropertyNode {
         #[unsafe(method_family = none)]
         pub unsafe fn setEvaluationFunction(
             &self,
-            evaluation_function: &block2::Block<dyn Fn(NonNull<MDLMaterialPropertyNode>)>,
+            evaluation_function: &block2::DynBlock<dyn Fn(NonNull<MDLMaterialPropertyNode>)>,
         );
 
         #[unsafe(method(inputs))]
@@ -766,7 +766,7 @@ impl MDLMaterialPropertyGraph {
             this: Allocated<Self>,
             inputs: &NSArray<MDLMaterialProperty>,
             outputs: &NSArray<MDLMaterialProperty>,
-            function: &block2::Block<dyn Fn(NonNull<MDLMaterialPropertyNode>)>,
+            function: &block2::DynBlock<dyn Fn(NonNull<MDLMaterialPropertyNode>)>,
         ) -> Retained<Self>;
     );
 }

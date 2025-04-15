@@ -177,7 +177,7 @@ extern_protocol!(
         unsafe fn handleSearchForMessages_completion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSearchForMessagesIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForMessagesIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -203,7 +203,7 @@ extern_protocol!(
         unsafe fn confirmSearchForMessages_completion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSearchForMessagesIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForMessagesIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -229,7 +229,7 @@ extern_protocol!(
         unsafe fn resolveRecipientsForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
         );
 
         #[cfg(all(
@@ -244,7 +244,7 @@ extern_protocol!(
         unsafe fn resolveSendersForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
         );
 
         #[cfg(all(
@@ -259,7 +259,9 @@ extern_protocol!(
         unsafe fn resolveAttributesForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INMessageAttributeOptionsResolutionResult>)>,
+            completion: &block2::DynBlock<
+                dyn Fn(NonNull<INMessageAttributeOptionsResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -274,7 +276,7 @@ extern_protocol!(
         unsafe fn resolveDateTimeRangeForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -290,7 +292,7 @@ extern_protocol!(
         unsafe fn resolveGroupNamesForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<INStringResolutionResult>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<INStringResolutionResult>>)>,
         );
 
         #[cfg(all(
@@ -305,7 +307,9 @@ extern_protocol!(
         unsafe fn resolveSpeakableGroupNamesForSearchForMessages_withCompletion(
             &self,
             intent: &INSearchForMessagesIntent,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<INSpeakableStringResolutionResult>>)>,
+            completion: &block2::DynBlock<
+                dyn Fn(NonNull<NSArray<INSpeakableStringResolutionResult>>),
+            >,
         );
     }
 );

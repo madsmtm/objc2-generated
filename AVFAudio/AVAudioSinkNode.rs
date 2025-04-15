@@ -29,7 +29,7 @@ use crate::*;
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AVAudioSinkNodeReceiverBlock = *mut block2::Block<
+pub type AVAudioSinkNodeReceiverBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<AudioTimeStamp>, AVAudioFrameCount, NonNull<AudioBufferList>) -> OSStatus,
 >;
 

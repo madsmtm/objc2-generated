@@ -147,7 +147,7 @@ impl APActivationPayload {
         pub unsafe fn confirmAcquiredInRegion_completionHandler(
             &self,
             region: &CLRegion,
-            completion_handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
     );
 }

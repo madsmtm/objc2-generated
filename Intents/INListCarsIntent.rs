@@ -80,7 +80,7 @@ extern_protocol!(
         unsafe fn handleListCars_completion(
             &self,
             intent: &INListCarsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INListCarsIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INListCarsIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -106,7 +106,7 @@ extern_protocol!(
         unsafe fn confirmListCars_completion(
             &self,
             intent: &INListCarsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INListCarsIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INListCarsIntentResponse>)>,
         );
     }
 );

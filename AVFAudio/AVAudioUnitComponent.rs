@@ -281,7 +281,7 @@ impl AVAudioUnitComponentManager {
         #[unsafe(method_family = none)]
         pub unsafe fn componentsPassingTest(
             &self,
-            test_handler: &block2::Block<
+            test_handler: &block2::DynBlock<
                 dyn Fn(NonNull<AVAudioUnitComponent>, NonNull<Bool>) -> Bool,
             >,
         ) -> Retained<NSArray<AVAudioUnitComponent>>;

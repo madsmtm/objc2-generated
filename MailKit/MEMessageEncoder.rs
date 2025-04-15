@@ -32,7 +32,7 @@ extern_protocol!(
             &self,
             message: &MEMessage,
             compose_context: &MEComposeContext,
-            completion_handler: &block2::Block<dyn Fn(NonNull<MEOutgoingMessageEncodingStatus>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<MEOutgoingMessageEncodingStatus>)>,
         );
 
         #[cfg(all(
@@ -61,7 +61,7 @@ extern_protocol!(
             &self,
             message: &MEMessage,
             compose_context: &MEComposeContext,
-            completion_handler: &block2::Block<dyn Fn(NonNull<MEMessageEncodingResult>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<MEMessageEncodingResult>)>,
         );
     }
 );

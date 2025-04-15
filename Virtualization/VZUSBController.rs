@@ -59,7 +59,7 @@ impl VZUSBController {
         pub unsafe fn attachDevice_completionHandler(
             &self,
             device: &ProtocolObject<dyn VZUSBDevice>,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "VZUSBDevice", feature = "block2"))]
@@ -83,7 +83,7 @@ impl VZUSBController {
         pub unsafe fn detachDevice_completionHandler(
             &self,
             device: &ProtocolObject<dyn VZUSBDevice>,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "VZUSBDevice")]

@@ -10,7 +10,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscopyallocator?language=objc)
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "block2"))]
-pub type MPSCopyAllocator = *mut block2::Block<
+pub type MPSCopyAllocator = *mut block2::DynBlock<
     dyn Fn(
         NonNull<MPSKernel>,
         NonNull<ProtocolObject<dyn MTLCommandBuffer>>,

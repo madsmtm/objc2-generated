@@ -29,7 +29,7 @@ unsafe impl RefEncode for NSBackgroundActivityResult {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbackgroundactivitycompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type NSBackgroundActivityCompletionHandler =
-    *mut block2::Block<dyn Fn(NSBackgroundActivityResult)>;
+    *mut block2::DynBlock<dyn Fn(NSBackgroundActivityResult)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler?language=objc)
@@ -102,7 +102,7 @@ impl NSBackgroundActivityScheduler {
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleWithBlock(
             &self,
-            block: &block2::Block<dyn Fn(NSBackgroundActivityCompletionHandler)>,
+            block: &block2::DynBlock<dyn Fn(NSBackgroundActivityCompletionHandler)>,
         );
 
         #[unsafe(method(invalidate))]

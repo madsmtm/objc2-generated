@@ -80,7 +80,7 @@ impl VTFrameProcessor {
         pub unsafe fn processWithParameters_completionHandler(
             &self,
             parameters: &ProtocolObject<dyn VTFrameProcessorParameters>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<ProtocolObject<dyn VTFrameProcessorParameters>>, *mut NSError),
             >,
         );

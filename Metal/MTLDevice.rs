@@ -88,7 +88,7 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type MTLDeviceNotificationHandler = *mut block2::Block<
+pub type MTLDeviceNotificationHandler = *mut block2::DynBlock<
     dyn Fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>),
 >;
 
@@ -506,16 +506,16 @@ pub type MTLAutoreleasedComputePipelineReflection = MTLComputePipelineReflection
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewlibrarycompletionhandler?language=objc)
 #[cfg(all(feature = "MTLLibrary", feature = "block2"))]
 pub type MTLNewLibraryCompletionHandler =
-    *mut block2::Block<dyn Fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatecompletionhandler?language=objc)
 #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
 pub type MTLNewRenderPipelineStateCompletionHandler =
-    *mut block2::Block<dyn Fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatewithreflectioncompletionhandler?language=objc)
 #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
-pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut block2::Block<
+pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut block2::DynBlock<
     dyn Fn(
         *mut ProtocolObject<dyn MTLRenderPipelineState>,
         *mut MTLRenderPipelineReflection,
@@ -526,11 +526,11 @@ pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut block2:
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatecompletionhandler?language=objc)
 #[cfg(all(feature = "MTLComputePipeline", feature = "block2"))]
 pub type MTLNewComputePipelineStateCompletionHandler =
-    *mut block2::Block<dyn Fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatewithreflectioncompletionhandler?language=objc)
 #[cfg(all(feature = "MTLComputePipeline", feature = "block2"))]
-pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2::Block<
+pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2::DynBlock<
     dyn Fn(
         *mut ProtocolObject<dyn MTLComputePipelineState>,
         *mut MTLComputePipelineReflection,
@@ -975,7 +975,7 @@ extern_protocol!(
             pointer: NonNull<c_void>,
             length: NSUInteger,
             options: MTLResourceOptions,
-            deallocator: Option<&block2::Block<dyn Fn(NonNull<c_void>, NSUInteger)>>,
+            deallocator: Option<&block2::DynBlock<dyn Fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(feature = "MTLDepthStencil")]

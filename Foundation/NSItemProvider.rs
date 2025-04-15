@@ -93,7 +93,7 @@ extern_protocol!(
         unsafe fn loadDataWithTypeIdentifier_forItemProviderCompletionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         ) -> Option<Retained<NSProgress>>;
     }
 );
@@ -119,7 +119,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidercompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
 pub type NSItemProviderCompletionHandler =
-    *mut block2::Block<dyn Fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderloadhandler?language=objc)
 #[cfg(all(
@@ -128,8 +128,9 @@ pub type NSItemProviderCompletionHandler =
     feature = "NSObject",
     feature = "block2"
 ))]
-pub type NSItemProviderLoadHandler =
-    *mut block2::Block<dyn Fn(NSItemProviderCompletionHandler, *const AnyClass, *mut NSDictionary)>;
+pub type NSItemProviderLoadHandler = *mut block2::DynBlock<
+    dyn Fn(NSItemProviderCompletionHandler, *const AnyClass, *mut NSDictionary),
+>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider?language=objc)
@@ -167,9 +168,9 @@ impl NSItemProvider {
             &self,
             type_identifier: &NSString,
             visibility: NSItemProviderRepresentationVisibility,
-            load_handler: &block2::Block<
+            load_handler: &block2::DynBlock<
                 dyn Fn(
-                    NonNull<block2::Block<dyn Fn(*mut NSData, *mut NSError)>>,
+                    NonNull<block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>>,
                 ) -> *mut NSProgress,
             >,
         );
@@ -188,9 +189,9 @@ impl NSItemProvider {
             type_identifier: &NSString,
             file_options: NSItemProviderFileOptions,
             visibility: NSItemProviderRepresentationVisibility,
-            load_handler: &block2::Block<
+            load_handler: &block2::DynBlock<
                 dyn Fn(
-                    NonNull<block2::Block<dyn Fn(*mut NSURL, Bool, *mut NSError)>>,
+                    NonNull<block2::DynBlock<dyn Fn(*mut NSURL, Bool, *mut NSError)>>,
                 ) -> *mut NSProgress,
             >,
         );
@@ -234,7 +235,7 @@ impl NSItemProvider {
         pub unsafe fn loadDataRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(
@@ -249,7 +250,7 @@ impl NSItemProvider {
         pub unsafe fn loadFileRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &block2::Block<dyn Fn(*mut NSURL, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSURL, *mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(
@@ -264,7 +265,7 @@ impl NSItemProvider {
         pub unsafe fn loadInPlaceFileRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
-            completion_handler: &block2::Block<dyn Fn(*mut NSURL, Bool, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSURL, Bool, *mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(feature = "NSString")]

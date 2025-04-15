@@ -353,7 +353,7 @@ impl CPMapTemplate {
         pub unsafe fn dismissNavigationAlertAnimated_completion(
             &self,
             animated: bool,
-            completion: &block2::Block<dyn Fn(Bool)>,
+            completion: &block2::DynBlock<dyn Fn(Bool)>,
         );
     );
 }

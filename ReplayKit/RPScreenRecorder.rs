@@ -68,7 +68,7 @@ impl RPScreenRecorder {
         pub unsafe fn startRecordingWithMicrophoneEnabled_handler(
             &self,
             microphone_enabled: bool,
-            handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -79,7 +79,7 @@ impl RPScreenRecorder {
         #[unsafe(method_family = none)]
         pub unsafe fn startRecordingWithHandler(
             &self,
-            handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(
@@ -95,7 +95,7 @@ impl RPScreenRecorder {
         #[unsafe(method_family = none)]
         pub unsafe fn stopRecordingWithHandler(
             &self,
-            handler: Option<&block2::Block<dyn Fn(*mut RPPreviewViewController, *mut NSError)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(*mut RPPreviewViewController, *mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -109,14 +109,14 @@ impl RPScreenRecorder {
         pub unsafe fn stopRecordingWithOutputURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
         /// Discards the current recording. This can only be called after the handler block in stopRecordingWithHandler: is executed.
         #[unsafe(method(discardRecordingWithHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn discardRecordingWithHandler(&self, handler: &block2::Block<dyn Fn()>);
+        pub unsafe fn discardRecordingWithHandler(&self, handler: &block2::DynBlock<dyn Fn()>);
 
         #[cfg(all(
             feature = "RPBroadcastExtension",
@@ -131,9 +131,11 @@ impl RPScreenRecorder {
         pub unsafe fn startCaptureWithHandler_completionHandler(
             &self,
             capture_handler: Option<
-                &block2::Block<dyn Fn(NonNull<CMSampleBuffer>, RPSampleBufferType, *mut NSError)>,
+                &block2::DynBlock<
+                    dyn Fn(NonNull<CMSampleBuffer>, RPSampleBufferType, *mut NSError),
+                >,
             >,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -144,7 +146,7 @@ impl RPScreenRecorder {
         #[unsafe(method_family = none)]
         pub unsafe fn stopCaptureWithHandler(
             &self,
-            handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -155,7 +157,7 @@ impl RPScreenRecorder {
         #[unsafe(method_family = none)]
         pub unsafe fn startClipBufferingWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -166,7 +168,7 @@ impl RPScreenRecorder {
         #[unsafe(method_family = none)]
         pub unsafe fn stopClipBufferingWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -183,7 +185,7 @@ impl RPScreenRecorder {
             &self,
             url: &NSURL,
             duration: NSTimeInterval,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[unsafe(method(delegate))]

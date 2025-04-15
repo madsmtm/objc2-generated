@@ -37,7 +37,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationViewController,
             payment: &PKPayment,
-            completion: &block2::Block<dyn Fn(NonNull<PKPaymentAuthorizationResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<PKPaymentAuthorizationResult>)>,
         );
 
         #[cfg(all(
@@ -66,7 +66,7 @@ extern_protocol!(
         unsafe fn paymentAuthorizationViewController_didRequestMerchantSessionUpdate(
             &self,
             controller: &PKPaymentAuthorizationViewController,
-            handler: &block2::Block<dyn Fn(NonNull<PKPaymentRequestMerchantSessionUpdate>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<PKPaymentRequestMerchantSessionUpdate>)>,
         );
 
         #[cfg(all(
@@ -83,7 +83,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationViewController,
             coupon_code: &NSString,
-            completion: &block2::Block<dyn Fn(NonNull<PKPaymentRequestCouponCodeUpdate>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<PKPaymentRequestCouponCodeUpdate>)>,
         );
 
         #[cfg(all(
@@ -102,7 +102,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationViewController,
             shipping_method: &PKShippingMethod,
-            completion: &block2::Block<dyn Fn(NonNull<PKPaymentRequestShippingMethodUpdate>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<PKPaymentRequestShippingMethodUpdate>)>,
         );
 
         #[cfg(all(
@@ -120,7 +120,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationViewController,
             contact: &PKContact,
-            completion: &block2::Block<dyn Fn(NonNull<PKPaymentRequestShippingContactUpdate>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<PKPaymentRequestShippingContactUpdate>)>,
         );
 
         #[cfg(all(
@@ -138,7 +138,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationViewController,
             payment_method: &PKPaymentMethod,
-            completion: &block2::Block<dyn Fn(NonNull<PKPaymentRequestPaymentMethodUpdate>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<PKPaymentRequestPaymentMethodUpdate>)>,
         );
 
         #[cfg(all(
@@ -157,7 +157,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationViewController,
             payment: &PKPayment,
-            completion: &block2::Block<dyn Fn(PKPaymentAuthorizationStatus)>,
+            completion: &block2::DynBlock<dyn Fn(PKPaymentAuthorizationStatus)>,
         );
 
         #[cfg(all(
@@ -177,7 +177,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationViewController,
             shipping_method: &PKShippingMethod,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(PKPaymentAuthorizationStatus, NonNull<NSArray<PKPaymentSummaryItem>>),
             >,
         );
@@ -200,7 +200,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationViewController,
             contact: &PKContact,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(
                     PKPaymentAuthorizationStatus,
                     NonNull<NSArray<PKShippingMethod>>,
@@ -225,7 +225,7 @@ extern_protocol!(
             &self,
             controller: &PKPaymentAuthorizationViewController,
             payment_method: &PKPaymentMethod,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<PKPaymentSummaryItem>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<PKPaymentSummaryItem>>)>,
         );
     }
 );

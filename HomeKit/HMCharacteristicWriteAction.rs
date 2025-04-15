@@ -80,7 +80,7 @@ impl<TargetValueType: Message> HMCharacteristicWriteAction<TargetValueType> {
         pub unsafe fn updateTargetValue_completionHandler(
             &self,
             target_value: &TargetValueType,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

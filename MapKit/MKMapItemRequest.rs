@@ -39,7 +39,7 @@ impl MKMapItemRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn getMapItemWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut MKMapItem, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut MKMapItem, *mut NSError)>,
         );
 
         #[unsafe(method(cancel))]

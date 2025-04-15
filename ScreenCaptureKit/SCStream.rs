@@ -919,7 +919,7 @@ impl SCStream {
         pub unsafe fn updateContentFilter_completionHandler(
             &self,
             content_filter: &SCContentFilter,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -935,7 +935,7 @@ impl SCStream {
         pub unsafe fn updateConfiguration_completionHandler(
             &self,
             stream_config: &SCStreamConfiguration,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -948,7 +948,7 @@ impl SCStream {
         #[unsafe(method_family = none)]
         pub unsafe fn startCaptureWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -961,7 +961,7 @@ impl SCStream {
         #[unsafe(method_family = none)]
         pub unsafe fn stopCaptureWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "SCRecordingOutput")]

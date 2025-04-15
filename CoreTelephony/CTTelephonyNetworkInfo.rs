@@ -142,7 +142,7 @@ impl CTTelephonyNetworkInfo {
         #[unsafe(method_family = none)]
         pub unsafe fn serviceSubscriberCellularProvidersDidUpdateNotifier(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<NSString>)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSString>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`serviceSubscriberCellularProvidersDidUpdateNotifier`][Self::serviceSubscriberCellularProvidersDidUpdateNotifier].
@@ -152,7 +152,7 @@ impl CTTelephonyNetworkInfo {
         pub unsafe fn setServiceSubscriberCellularProvidersDidUpdateNotifier(
             &self,
             service_subscriber_cellular_providers_did_update_notifier: Option<
-                &block2::Block<dyn Fn(NonNull<NSString>)>,
+                &block2::DynBlock<dyn Fn(NonNull<NSString>)>,
             >,
         );
 
@@ -162,7 +162,7 @@ impl CTTelephonyNetworkInfo {
         #[unsafe(method_family = none)]
         pub unsafe fn subscriberCellularProviderDidUpdateNotifier(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<CTCarrier>)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CTCarrier>)>;
 
         #[cfg(all(feature = "CTCarrier", feature = "block2"))]
         /// Setter for [`subscriberCellularProviderDidUpdateNotifier`][Self::subscriberCellularProviderDidUpdateNotifier].
@@ -172,7 +172,7 @@ impl CTTelephonyNetworkInfo {
         pub unsafe fn setSubscriberCellularProviderDidUpdateNotifier(
             &self,
             subscriber_cellular_provider_did_update_notifier: Option<
-                &block2::Block<dyn Fn(NonNull<CTCarrier>)>,
+                &block2::DynBlock<dyn Fn(NonNull<CTCarrier>)>,
             >,
         );
 

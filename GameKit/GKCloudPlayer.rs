@@ -29,7 +29,7 @@ impl GKCloudPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn getCurrentSignedInPlayerForContainer_completionHandler(
             container_name: Option<&NSString>,
-            handler: &block2::Block<dyn Fn(*mut GKCloudPlayer, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut GKCloudPlayer, *mut NSError)>,
         );
     );
 }

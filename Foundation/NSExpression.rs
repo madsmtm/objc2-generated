@@ -162,7 +162,7 @@ impl NSExpression {
         #[unsafe(method(expressionForBlock:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForBlock_arguments(
-            block: &block2::Block<
+            block: &block2::DynBlock<
                 dyn Fn(
                     *mut AnyObject,
                     NonNull<NSArray<NSExpression>>,
@@ -259,7 +259,7 @@ impl NSExpression {
         pub unsafe fn expressionBlock(
             &self,
         ) -> NonNull<
-            block2::Block<
+            block2::DynBlock<
                 dyn Fn(
                     *mut AnyObject,
                     NonNull<NSArray<NSExpression>>,

@@ -117,7 +117,7 @@ impl GKPlayer {
         pub unsafe fn loadPhotoForSize_withCompletionHandler(
             &self,
             size: GKPhotoSize,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSImage, *mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSImage, *mut NSError)>>,
         );
     );
 }
@@ -155,7 +155,7 @@ impl GKPlayer {
         pub unsafe fn loadPlayersForIdentifiers_withCompletionHandler(
             identifiers: &NSArray<NSString>,
             completion_handler: Option<
-                &block2::Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
             >,
         );
     );

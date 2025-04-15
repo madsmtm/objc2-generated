@@ -492,7 +492,7 @@ impl UIScrollView {
         #[unsafe(method_family = none)]
         pub unsafe fn withScrollIndicatorsShownForContentOffsetChanges(
             &self,
-            changes: &block2::Block<dyn Fn() + '_>,
+            changes: &block2::DynBlock<dyn Fn() + '_>,
         );
 
         #[unsafe(method(isTracking))]

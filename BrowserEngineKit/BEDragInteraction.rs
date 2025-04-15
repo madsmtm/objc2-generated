@@ -30,7 +30,7 @@ extern_protocol!(
             &self,
             drag_interaction: &BEDragInteraction,
             session: &ProtocolObject<dyn UIDragSession>,
-            completion: &block2::Block<dyn Fn() -> Bool>,
+            completion: &block2::DynBlock<dyn Fn() -> Bool>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
@@ -52,7 +52,7 @@ extern_protocol!(
             drag_interaction: &BEDragInteraction,
             session: &ProtocolObject<dyn UIDragSession>,
             point: CGPoint,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<UIDragItem>>) -> Bool>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<UIDragItem>>) -> Bool>,
         );
     }
 );

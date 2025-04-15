@@ -128,7 +128,7 @@ impl AVMetadataItem {
         pub unsafe fn loadValuesAsynchronouslyForKeys_completionHandler(
             &self,
             keys: &NSArray<NSString>,
-            handler: Option<&block2::Block<dyn Fn()>>,
+            handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
     );
 }
@@ -424,7 +424,7 @@ impl AVMetadataItem {
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemWithPropertiesOfMetadataItem_valueLoadingHandler(
             metadata_item: &AVMetadataItem,
-            handler: &block2::Block<dyn Fn(NonNull<AVMetadataItemValueRequest>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<AVMetadataItemValueRequest>)>,
         ) -> Retained<AVMetadataItem>;
     );
 }

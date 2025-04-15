@@ -63,7 +63,7 @@ impl WKHTTPCookieStore {
         #[unsafe(method_family = none)]
         pub unsafe fn getAllCookies(
             &self,
-            completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<NSHTTPCookie>>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSHTTPCookie>>)>,
         );
 
         #[cfg(feature = "block2")]
@@ -77,7 +77,7 @@ impl WKHTTPCookieStore {
         pub unsafe fn setCookie_completionHandler(
             &self,
             cookie: &NSHTTPCookie,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -89,7 +89,7 @@ impl WKHTTPCookieStore {
         pub unsafe fn deleteCookie_completionHandler(
             &self,
             cookie: &NSHTTPCookie,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         /// Adds a WKHTTPCookieStoreObserver object with the cookie store.
@@ -123,7 +123,7 @@ impl WKHTTPCookieStore {
         pub unsafe fn setCookiePolicy_completionHandler(
             &self,
             policy: WKCookiePolicy,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
@@ -134,7 +134,7 @@ impl WKHTTPCookieStore {
         #[unsafe(method_family = none)]
         pub unsafe fn getCookiePolicy(
             &self,
-            completion_handler: &block2::Block<dyn Fn(WKCookiePolicy)>,
+            completion_handler: &block2::DynBlock<dyn Fn(WKCookiePolicy)>,
         );
     );
 }

@@ -157,7 +157,7 @@ extern_protocol!(
         unsafe fn handleStartPhotoPlayback_completion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStartPhotoPlaybackIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStartPhotoPlaybackIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -184,7 +184,7 @@ extern_protocol!(
         unsafe fn confirmStartPhotoPlayback_completion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStartPhotoPlaybackIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStartPhotoPlaybackIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -211,7 +211,7 @@ extern_protocol!(
         unsafe fn resolveDateCreatedForStartPhotoPlayback_withCompletion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsRangeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -227,7 +227,7 @@ extern_protocol!(
         unsafe fn resolveLocationCreatedForStartPhotoPlayback_withCompletion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INPlacemarkResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INPlacemarkResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -243,7 +243,7 @@ extern_protocol!(
         unsafe fn resolveAlbumNameForStartPhotoPlayback_withCompletion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -259,7 +259,7 @@ extern_protocol!(
         unsafe fn resolvePeopleInPhotoForStartPhotoPlayback_withCompletion(
             &self,
             intent: &INStartPhotoPlaybackIntent,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
         );
     }
 );

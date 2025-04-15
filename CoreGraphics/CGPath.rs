@@ -492,7 +492,7 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathapplyblock?language=objc)
 #[cfg(feature = "block2")]
-pub type CGPathApplyBlock = *mut block2::Block<dyn Fn(NonNull<CGPathElement>)>;
+pub type CGPathApplyBlock = *mut block2::DynBlock<dyn Fn(NonNull<CGPathElement>)>;
 
 extern "C-unwind" {
     #[cfg(feature = "block2")]

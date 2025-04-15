@@ -343,7 +343,7 @@ extern_protocol!(
             registry: &PKPushRegistry,
             payload: &PKPushPayload,
             r#type: &PKPushType,
-            completion: &block2::Block<dyn Fn()>,
+            completion: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(feature = "PKDefines")]

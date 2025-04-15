@@ -23,7 +23,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsceneexportprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNSceneExportProgressHandler =
-    *mut block2::Block<dyn Fn(c_float, *mut NSError, NonNull<Bool>)>;
+    *mut block2::DynBlock<dyn Fn(c_float, *mut NSError, NonNull<Bool>)>;
 
 extern "C" {
     /// Specifies the final destination (as a NSURL) of the scene being exported.

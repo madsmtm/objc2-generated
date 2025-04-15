@@ -40,7 +40,7 @@ impl QLThumbnailGenerator {
         pub unsafe fn generateBestRepresentationForRequest_completionHandler(
             &self,
             request: &QLThumbnailGenerationRequest,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut QLThumbnailRepresentation, *mut NSError),
             >,
         );
@@ -64,7 +64,7 @@ impl QLThumbnailGenerator {
             &self,
             request: &QLThumbnailGenerationRequest,
             update_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         *mut QLThumbnailRepresentation,
                         QLThumbnailRepresentationType,
@@ -102,7 +102,7 @@ impl QLThumbnailGenerator {
             request: &QLThumbnailGenerationRequest,
             file_url: &NSURL,
             content_type: &UTType,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "QLThumbnailGenerationRequest", feature = "block2"))]
@@ -122,7 +122,7 @@ impl QLThumbnailGenerator {
             request: &QLThumbnailGenerationRequest,
             file_url: &NSURL,
             content_type: &NSString,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

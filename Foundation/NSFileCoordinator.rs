@@ -168,7 +168,7 @@ impl NSFileCoordinator {
             &self,
             intents: &NSArray<NSFileAccessIntent>,
             queue: &NSOperationQueue,
-            accessor: &block2::Block<dyn Fn(*mut NSError)>,
+            accessor: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
@@ -179,7 +179,7 @@ impl NSFileCoordinator {
             url: &NSURL,
             options: NSFileCoordinatorReadingOptions,
             out_error: Option<&mut Option<Retained<NSError>>>,
-            reader: &block2::Block<dyn Fn(NonNull<NSURL>) + '_>,
+            reader: &block2::DynBlock<dyn Fn(NonNull<NSURL>) + '_>,
         );
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
@@ -190,7 +190,7 @@ impl NSFileCoordinator {
             url: &NSURL,
             options: NSFileCoordinatorWritingOptions,
             out_error: Option<&mut Option<Retained<NSError>>>,
-            writer: &block2::Block<dyn Fn(NonNull<NSURL>) + '_>,
+            writer: &block2::DynBlock<dyn Fn(NonNull<NSURL>) + '_>,
         );
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
@@ -203,7 +203,7 @@ impl NSFileCoordinator {
             writing_url: &NSURL,
             writing_options: NSFileCoordinatorWritingOptions,
             out_error: Option<&mut Option<Retained<NSError>>>,
-            reader_writer: &block2::Block<dyn Fn(NonNull<NSURL>, NonNull<NSURL>) + '_>,
+            reader_writer: &block2::DynBlock<dyn Fn(NonNull<NSURL>, NonNull<NSURL>) + '_>,
         );
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
@@ -216,7 +216,7 @@ impl NSFileCoordinator {
             url2: &NSURL,
             options2: NSFileCoordinatorWritingOptions,
             out_error: Option<&mut Option<Retained<NSError>>>,
-            writer: &block2::Block<dyn Fn(NonNull<NSURL>, NonNull<NSURL>) + '_>,
+            writer: &block2::DynBlock<dyn Fn(NonNull<NSURL>, NonNull<NSURL>) + '_>,
         );
 
         #[cfg(all(
@@ -234,7 +234,7 @@ impl NSFileCoordinator {
             writing_ur_ls: &NSArray<NSURL>,
             writing_options: NSFileCoordinatorWritingOptions,
             out_error: Option<&mut Option<Retained<NSError>>>,
-            batch_accessor: &block2::Block<dyn Fn(NonNull<block2::Block<dyn Fn()>>) + '_>,
+            batch_accessor: &block2::DynBlock<dyn Fn(NonNull<block2::DynBlock<dyn Fn()>>) + '_>,
         );
 
         #[cfg(feature = "NSURL")]

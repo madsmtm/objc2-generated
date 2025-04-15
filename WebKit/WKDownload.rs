@@ -57,7 +57,7 @@ impl WKDownload {
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSData)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSData)>>,
         );
     );
 }

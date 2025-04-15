@@ -232,12 +232,12 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         #[unsafe(method(addAnimations:))]
         #[unsafe(method_family = none)]
-        unsafe fn addAnimations(&self, animations: &block2::Block<dyn Fn()>);
+        unsafe fn addAnimations(&self, animations: &block2::DynBlock<dyn Fn()>);
 
         #[cfg(feature = "block2")]
         #[unsafe(method(addCompletion:))]
         #[unsafe(method_family = none)]
-        unsafe fn addCompletion(&self, completion: &block2::Block<dyn Fn()>);
+        unsafe fn addCompletion(&self, completion: &block2::DynBlock<dyn Fn()>);
     }
 );
 

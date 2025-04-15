@@ -46,7 +46,7 @@ unsafe impl RefEncode for GCTouchState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpadhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerTouchpadHandler =
-    *mut block2::Block<dyn Fn(NonNull<GCControllerTouchpad>, c_float, c_float, c_float, Bool)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<GCControllerTouchpad>, c_float, c_float, c_float, Bool)>;
 
 extern_class!(
     /// A touchpad is a touch-based two axis input with a notion of "touch state". It keeps track of

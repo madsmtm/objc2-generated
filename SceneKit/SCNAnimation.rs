@@ -20,12 +20,13 @@ extern_protocol!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationdidstartblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SCNAnimationDidStartBlock =
-    *mut block2::Block<dyn Fn(NonNull<SCNAnimation>, NonNull<ProtocolObject<dyn SCNAnimatable>>)>;
+pub type SCNAnimationDidStartBlock = *mut block2::DynBlock<
+    dyn Fn(NonNull<SCNAnimation>, NonNull<ProtocolObject<dyn SCNAnimatable>>),
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationdidstopblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SCNAnimationDidStopBlock = *mut block2::Block<
+pub type SCNAnimationDidStopBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<SCNAnimation>, NonNull<ProtocolObject<dyn SCNAnimatable>>, Bool),
 >;
 
@@ -632,7 +633,7 @@ impl SCNAnimationPlayer {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationeventblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SCNAnimationEventBlock = *mut block2::Block<
+pub type SCNAnimationEventBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<ProtocolObject<dyn SCNAnimationProtocol>>, NonNull<AnyObject>, Bool),
 >;
 

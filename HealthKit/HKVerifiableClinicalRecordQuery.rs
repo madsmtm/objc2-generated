@@ -67,7 +67,7 @@ impl HKVerifiableClinicalRecordQuery {
             this: Allocated<Self>,
             record_types: &NSArray<NSString>,
             predicate: Option<&NSPredicate>,
-            results_handler: &block2::Block<
+            results_handler: &block2::DynBlock<
                 dyn Fn(
                     NonNull<HKVerifiableClinicalRecordQuery>,
                     *mut NSArray<HKVerifiableClinicalRecord>,
@@ -99,7 +99,7 @@ impl HKVerifiableClinicalRecordQuery {
             record_types: &NSArray<NSString>,
             source_types: &NSArray<HKVerifiableClinicalRecordSourceType>,
             predicate: Option<&NSPredicate>,
-            results_handler: &block2::Block<
+            results_handler: &block2::DynBlock<
                 dyn Fn(
                     NonNull<HKVerifiableClinicalRecordQuery>,
                     *mut NSArray<HKVerifiableClinicalRecord>,

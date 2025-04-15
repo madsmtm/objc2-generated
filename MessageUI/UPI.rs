@@ -35,7 +35,7 @@ impl MFMessageComposeViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn setUPIVerificationCodeSendCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(Bool)>,
+            completion: &block2::DynBlock<dyn Fn(Bool)>,
         );
     );
 }

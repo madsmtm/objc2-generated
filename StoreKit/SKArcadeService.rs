@@ -24,7 +24,7 @@ impl SKArcadeService {
         pub unsafe fn registerArcadeAppWithRandomFromLib_randomFromLibLength_resultHandler(
             random_from_lib: &NSData,
             random_from_lib_length: u32,
-            result_handler: &block2::Block<
+            result_handler: &block2::DynBlock<
                 dyn Fn(*mut NSData, u32, *mut NSData, u32, *mut NSError),
             >,
         );
@@ -34,7 +34,7 @@ impl SKArcadeService {
         #[unsafe(method_family = none)]
         pub unsafe fn arcadeSubscriptionStatusWithNonce_resultHandler(
             nonce: u64,
-            result_handler: &block2::Block<
+            result_handler: &block2::DynBlock<
                 dyn Fn(*mut NSData, u32, *mut NSData, u32, *mut NSError),
             >,
         );

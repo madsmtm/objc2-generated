@@ -102,7 +102,7 @@ impl STWebHistory {
         pub unsafe fn fetchHistoryDuringInterval_completionHandler(
             &self,
             interval: &NSDateInterval,
-            completion_handler: &block2::Block<dyn Fn(*mut NSSet<NSURL>, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSSet<NSURL>, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -112,7 +112,7 @@ impl STWebHistory {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllHistoryWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSSet<NSURL>, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSSet<NSURL>, *mut NSError)>,
         );
 
         /// Deletes all the web history for the URL you specify.

@@ -257,7 +257,7 @@ impl AVPlayerItemIntegratedTimeline {
             time: CMTime,
             tolerance_before: CMTime,
             tolerance_after: CMTime,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -273,7 +273,7 @@ impl AVPlayerItemIntegratedTimeline {
         pub unsafe fn seekToDate_completionHandler(
             &self,
             date: &NSDate,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
     );
 }
@@ -308,7 +308,7 @@ impl AVPlayerItemIntegratedTimeline {
             &self,
             interval: CMTime,
             queue: Option<&DispatchQueue>,
-            block: &block2::Block<dyn Fn(CMTime)>,
+            block: &block2::DynBlock<dyn Fn(CMTime)>,
         ) -> Retained<ProtocolObject<dyn AVPlayerItemIntegratedTimelineObserver>>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -331,7 +331,7 @@ impl AVPlayerItemIntegratedTimeline {
             segment: &AVPlayerItemSegment,
             offsets_into_segment: &NSArray,
             queue: Option<&DispatchQueue>,
-            block: &block2::Block<dyn Fn(Bool)>,
+            block: &block2::DynBlock<dyn Fn(Bool)>,
         ) -> Retained<ProtocolObject<dyn AVPlayerItemIntegratedTimelineObserver>>;
 
         /// Cancels a previously registered time observer.

@@ -147,7 +147,7 @@ impl UIPrinter {
         #[unsafe(method_family = none)]
         pub unsafe fn contactPrinter(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
     );
 }

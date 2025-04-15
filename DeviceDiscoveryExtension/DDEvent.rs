@@ -51,7 +51,7 @@ pub unsafe extern "C-unwind" fn DDEventTypeToString(in_value: DDEventType) -> Re
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/ddeventhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type DDEventHandler = *mut block2::Block<dyn Fn(NonNull<DDDeviceEvent>)>;
+pub type DDEventHandler = *mut block2::DynBlock<dyn Fn(NonNull<DDDeviceEvent>)>;
 
 extern_class!(
     /// Device-related event (e.g. found, lost).

@@ -44,7 +44,7 @@ impl UIViewControllerTransition {
         #[unsafe(method_family = none)]
         pub unsafe fn zoomWithOptions_sourceViewProvider(
             options: Option<&UIZoomTransitionOptions>,
-            source_view_provider: &block2::Block<
+            source_view_provider: &block2::DynBlock<
                 dyn Fn(NonNull<UIZoomTransitionSourceViewProviderContext>) -> *mut UIView,
             >,
         ) -> Retained<Self>;

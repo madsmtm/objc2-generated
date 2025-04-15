@@ -67,7 +67,7 @@ impl NSTimer {
         pub unsafe fn timerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
             repeats: bool,
-            block: &block2::Block<dyn Fn(NonNull<NSTimer>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSTimer>)>,
         ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "block2"))]
@@ -80,7 +80,7 @@ impl NSTimer {
         pub unsafe fn scheduledTimerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
             repeats: bool,
-            block: &block2::Block<dyn Fn(NonNull<NSTimer>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSTimer>)>,
         ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "block2"))]
@@ -96,7 +96,7 @@ impl NSTimer {
             date: &NSDate,
             interval: NSTimeInterval,
             repeats: bool,
-            block: &block2::Block<dyn Fn(NonNull<NSTimer>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSTimer>)>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]

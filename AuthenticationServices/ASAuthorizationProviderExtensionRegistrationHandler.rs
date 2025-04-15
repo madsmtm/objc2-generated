@@ -157,7 +157,9 @@ extern_protocol!(
             &self,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
             options: ASAuthorizationProviderExtensionRequestOptions,
-            completion: &block2::Block<dyn Fn(ASAuthorizationProviderExtensionRegistrationResult)>,
+            completion: &block2::DynBlock<
+                dyn Fn(ASAuthorizationProviderExtensionRegistrationResult),
+            >,
         );
 
         #[cfg(all(
@@ -183,7 +185,9 @@ extern_protocol!(
             user_name: Option<&NSString>,
             authentication_method: ASAuthorizationProviderExtensionAuthenticationMethod,
             options: ASAuthorizationProviderExtensionRequestOptions,
-            completion: &block2::Block<dyn Fn(ASAuthorizationProviderExtensionRegistrationResult)>,
+            completion: &block2::DynBlock<
+                dyn Fn(ASAuthorizationProviderExtensionRegistrationResult),
+            >,
         );
 
         /// Call to extension to free any resources used by the extension during registration. It will be called once after all current registration calls are complete.
@@ -254,7 +258,7 @@ extern_protocol!(
             key_type: ASAuthorizationProviderExtensionKeyType,
             new_key: &SecKey,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
-            completion: &block2::Block<dyn Fn(Bool)>,
+            completion: &block2::DynBlock<dyn Fn(Bool)>,
         );
     }
 );

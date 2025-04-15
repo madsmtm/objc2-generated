@@ -236,7 +236,7 @@ extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn MPSImageBatchIterate(
         batch: &MPSImageBatch,
-        iterator_block: &block2::Block<dyn Fn(NonNull<MPSImage>, NSUInteger) -> NSInteger>,
+        iterator_block: &block2::DynBlock<dyn Fn(NonNull<MPSImage>, NSUInteger) -> NSInteger>,
     ) -> NSInteger;
 }
 

@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostinteresthandler?language=objc)
 #[cfg(feature = "block2")]
 pub type IOUSBHostInterestHandler =
-    *mut block2::Block<dyn Fn(NonNull<IOUSBHostObject>, u32, *mut c_void)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<IOUSBHostObject>, u32, *mut c_void)>;
 
 extern_class!(
     /// The Abstract class IOUSBHostDevice and IOUSBHostInterface derive from.

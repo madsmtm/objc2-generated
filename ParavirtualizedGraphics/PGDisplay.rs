@@ -41,7 +41,7 @@ unsafe impl RefEncode for PGDisplayCoord_t {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaymodechangehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type PGDisplayModeChangeHandler = *mut block2::Block<dyn Fn(PGDisplayCoord_t, OSType)>;
+pub type PGDisplayModeChangeHandler = *mut block2::DynBlock<dyn Fn(PGDisplayCoord_t, OSType)>;
 
 /// A block that will be invoked to notify client of availability of new Guest compositor frame to be further processed.
 ///
@@ -49,7 +49,7 @@ pub type PGDisplayModeChangeHandler = *mut block2::Block<dyn Fn(PGDisplayCoord_t
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaynewframeeventhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type PGDisplayNewFrameEventHandler = *mut block2::Block<dyn Fn()>;
+pub type PGDisplayNewFrameEventHandler = *mut block2::DynBlock<dyn Fn()>;
 
 /// A block that will be invoked to handle cursor glyph updates.
 ///
@@ -60,7 +60,7 @@ pub type PGDisplayNewFrameEventHandler = *mut block2::Block<dyn Fn()>;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycursorglyphhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 pub type PGDisplayCursorGlyphHandler =
-    *mut block2::Block<dyn Fn(NonNull<NSBitmapImageRep>, PGDisplayCoord_t)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<NSBitmapImageRep>, PGDisplayCoord_t)>;
 
 /// A block that will be invoked to handle cursor show/hide updates.
 ///
@@ -68,13 +68,13 @@ pub type PGDisplayCursorGlyphHandler =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycursorshowhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type PGDisplayCursorShowHandler = *mut block2::Block<dyn Fn(Bool)>;
+pub type PGDisplayCursorShowHandler = *mut block2::DynBlock<dyn Fn(Bool)>;
 
 /// A block that will be invoked to handle cursor movement.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycursormovehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type PGDisplayCursorMoveHandler = *mut block2::Block<dyn Fn()>;
+pub type PGDisplayCursorMoveHandler = *mut block2::DynBlock<dyn Fn()>;
 
 extern_class!(
     /// Descriptor to facilitate creation of PGDisplay.

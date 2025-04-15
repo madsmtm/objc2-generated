@@ -58,7 +58,7 @@ unsafe impl RefEncode for SKActionTimingMode {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingfunction?language=objc)
 #[cfg(feature = "block2")]
-pub type SKActionTimingFunction = *mut block2::Block<dyn Fn(c_float) -> c_float>;
+pub type SKActionTimingFunction = *mut block2::DynBlock<dyn Fn(c_float) -> c_float>;
 
 extern_class!(
     /// An SKAction object is an action that is executed by a node in the scene.
@@ -932,7 +932,7 @@ impl SKAction {
         #[unsafe(method_family = none)]
         pub unsafe fn customActionWithDuration_actionBlock(
             duration: NSTimeInterval,
-            block: &block2::Block<dyn Fn(NonNull<SKNode>, CGFloat)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<SKNode>, CGFloat)>,
         ) -> Retained<SKAction>;
 
         /// Creates an action of the given name from an action file.

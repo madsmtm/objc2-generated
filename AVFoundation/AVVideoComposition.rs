@@ -111,7 +111,7 @@ impl AVVideoComposition {
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_completionHandler(
             asset: &AVAsset,
-            completion_handler: &block2::Block<dyn Fn(*mut AVVideoComposition, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut AVVideoComposition, *mut NSError)>,
         );
 
         #[cfg(feature = "AVVideoCompositing")]
@@ -240,7 +240,7 @@ impl AVVideoComposition {
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler(
             asset: &AVAsset,
-            applier: &block2::Block<dyn Fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
+            applier: &block2::DynBlock<dyn Fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
         ) -> Retained<AVVideoComposition>;
 
         #[cfg(all(
@@ -294,8 +294,8 @@ impl AVVideoComposition {
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler(
             asset: &AVAsset,
-            applier: &block2::Block<dyn Fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
-            completion_handler: &block2::Block<dyn Fn(*mut AVVideoComposition, *mut NSError)>,
+            applier: &block2::DynBlock<dyn Fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut AVVideoComposition, *mut NSError)>,
         );
     );
 }
@@ -370,7 +370,7 @@ impl AVMutableVideoComposition {
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_completionHandler(
             asset: &AVAsset,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut AVMutableVideoComposition, *mut NSError),
             >,
         );
@@ -425,7 +425,7 @@ impl AVMutableVideoComposition {
         pub unsafe fn videoCompositionWithPropertiesOfAsset_prototypeInstruction_completionHandler(
             asset: &AVAsset,
             prototype_instruction: &AVVideoCompositionInstruction,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut AVMutableVideoComposition, *mut NSError),
             >,
         );
@@ -637,7 +637,7 @@ impl AVMutableVideoComposition {
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler(
             asset: &AVAsset,
-            applier: &block2::Block<dyn Fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
+            applier: &block2::DynBlock<dyn Fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
         ) -> Retained<AVMutableVideoComposition>;
 
         #[cfg(all(
@@ -689,8 +689,8 @@ impl AVMutableVideoComposition {
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler(
             asset: &AVAsset,
-            applier: &block2::Block<dyn Fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
-            completion_handler: &block2::Block<
+            applier: &block2::DynBlock<dyn Fn(NonNull<AVAsynchronousCIImageFilteringRequest>)>,
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut AVMutableVideoComposition, *mut NSError),
             >,
         );
@@ -1178,7 +1178,7 @@ impl AVAsset {
         #[unsafe(method_family = none)]
         pub unsafe fn findUnusedTrackIDWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(CMPersistentTrackID, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(CMPersistentTrackID, *mut NSError)>,
         );
     );
 }
@@ -1230,7 +1230,7 @@ impl AVVideoComposition {
             asset: Option<&AVAsset>,
             time_range: CMTimeRange,
             validation_delegate: Option<&ProtocolObject<dyn AVVideoCompositionValidationHandling>>,
-            completion_handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "AVAssetTrack", feature = "objc2-core-media"))]

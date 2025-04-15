@@ -57,7 +57,7 @@ impl NSBatchInsertRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`dictionaryHandler`][Self::dictionaryHandler].
@@ -66,7 +66,9 @@ impl NSBatchInsertRequest {
         pub unsafe fn setDictionaryHandler(
             &self,
             dictionary_handler: Option<
-                &block2::Block<dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool>,
+                &block2::DynBlock<
+                    dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool,
+                >,
             >,
         );
 
@@ -75,7 +77,7 @@ impl NSBatchInsertRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn managedObjectHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<NSManagedObject>) -> Bool>;
 
         #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
         /// Setter for [`managedObjectHandler`][Self::managedObjectHandler].
@@ -84,7 +86,7 @@ impl NSBatchInsertRequest {
         pub unsafe fn setManagedObjectHandler(
             &self,
             managed_object_handler: Option<
-                &block2::Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>,
+                &block2::DynBlock<dyn Fn(NonNull<NSManagedObject>) -> Bool>,
             >,
         );
 
@@ -111,7 +113,7 @@ impl NSBatchInsertRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn batchInsertRequestWithEntityName_dictionaryHandler(
             entity_name: &NSString,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool,
             >,
         ) -> Retained<Self>;
@@ -121,7 +123,7 @@ impl NSBatchInsertRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn batchInsertRequestWithEntityName_managedObjectHandler(
             entity_name: &NSString,
-            handler: &block2::Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<NSManagedObject>) -> Bool>,
         ) -> Retained<Self>;
 
         #[deprecated]
@@ -152,7 +154,7 @@ impl NSBatchInsertRequest {
         pub unsafe fn initWithEntity_dictionaryHandler(
             this: Allocated<Self>,
             entity: &NSEntityDescription,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool,
             >,
         ) -> Retained<Self>;
@@ -167,7 +169,7 @@ impl NSBatchInsertRequest {
         pub unsafe fn initWithEntity_managedObjectHandler(
             this: Allocated<Self>,
             entity: &NSEntityDescription,
-            handler: &block2::Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<NSManagedObject>) -> Bool>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -176,7 +178,7 @@ impl NSBatchInsertRequest {
         pub unsafe fn initWithEntityName_dictionaryHandler(
             this: Allocated<Self>,
             entity_name: &NSString,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool,
             >,
         ) -> Retained<Self>;
@@ -187,7 +189,7 @@ impl NSBatchInsertRequest {
         pub unsafe fn initWithEntityName_managedObjectHandler(
             this: Allocated<Self>,
             entity_name: &NSString,
-            handler: &block2::Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<NSManagedObject>) -> Bool>,
         ) -> Retained<Self>;
     );
 }

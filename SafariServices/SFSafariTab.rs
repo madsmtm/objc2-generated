@@ -42,7 +42,7 @@ impl SFSafariTab {
         #[unsafe(method_family = none)]
         pub unsafe fn getActivePageWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut SFSafariPage)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SFSafariPage)>,
         );
 
         #[cfg(all(feature = "SFSafariPage", feature = "block2"))]
@@ -51,7 +51,7 @@ impl SFSafariTab {
         #[unsafe(method_family = none)]
         pub unsafe fn getPagesWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSArray<SFSafariPage>)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSArray<SFSafariPage>)>,
         );
 
         #[cfg(all(feature = "SFSafariWindow", feature = "block2"))]
@@ -60,7 +60,7 @@ impl SFSafariTab {
         #[unsafe(method_family = none)]
         pub unsafe fn getContainingWindowWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut SFSafariWindow)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SFSafariWindow)>,
         );
 
         #[cfg(feature = "block2")]
@@ -69,7 +69,7 @@ impl SFSafariTab {
         #[unsafe(method_family = none)]
         pub unsafe fn activateWithCompletionHandler(
             &self,
-            completion_handler: Option<&block2::Block<dyn Fn()>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         /// Navigates this tab to the given URL. The extension doesn't need permission to access the URL to navigate to it.

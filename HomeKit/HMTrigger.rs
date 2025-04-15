@@ -77,7 +77,7 @@ impl HMTrigger {
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMActionSet", feature = "block2"))]
@@ -95,7 +95,7 @@ impl HMTrigger {
         pub unsafe fn addActionSet_completionHandler(
             &self,
             action_set: &HMActionSet,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMActionSet", feature = "block2"))]
@@ -112,7 +112,7 @@ impl HMTrigger {
         pub unsafe fn removeActionSet_completionHandler(
             &self,
             action_set: &HMActionSet,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -137,7 +137,7 @@ impl HMTrigger {
         pub unsafe fn enable_completionHandler(
             &self,
             enable: bool,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

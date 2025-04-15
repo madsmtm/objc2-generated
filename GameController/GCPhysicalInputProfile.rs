@@ -56,7 +56,9 @@ impl GCPhysicalInputProfile {
         #[unsafe(method_family = none)]
         pub unsafe fn valueDidChangeHandler(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<GCPhysicalInputProfile>, NonNull<GCControllerElement>)>;
+        ) -> *mut block2::DynBlock<
+            dyn Fn(NonNull<GCPhysicalInputProfile>, NonNull<GCControllerElement>),
+        >;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
         /// Setter for [`valueDidChangeHandler`][Self::valueDidChangeHandler].
@@ -65,7 +67,7 @@ impl GCPhysicalInputProfile {
         pub unsafe fn setValueDidChangeHandler(
             &self,
             value_did_change_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(NonNull<GCPhysicalInputProfile>, NonNull<GCControllerElement>),
                 >,
             >,

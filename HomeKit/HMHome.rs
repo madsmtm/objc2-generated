@@ -102,7 +102,7 @@ impl HMHome {
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }
@@ -140,7 +140,7 @@ impl HMHome {
         pub unsafe fn addAccessory_completionHandler(
             &self,
             accessory: &HMAccessory,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMAccessory", feature = "block2"))]
@@ -158,7 +158,7 @@ impl HMHome {
         pub unsafe fn removeAccessory_completionHandler(
             &self,
             accessory: &HMAccessory,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMAccessory", feature = "HMRoom", feature = "block2"))]
@@ -184,7 +184,7 @@ impl HMHome {
             &self,
             accessory: &HMAccessory,
             room: &HMRoom,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "HMService")]
@@ -222,7 +222,7 @@ impl HMHome {
         pub unsafe fn unblockAccessory_completionHandler(
             &self,
             accessory: &HMAccessory,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -238,7 +238,7 @@ impl HMHome {
         #[unsafe(method_family = none)]
         pub unsafe fn addAndSetupAccessoriesWithCompletionHandler(
             &self,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -261,7 +261,7 @@ impl HMHome {
         pub unsafe fn addAndSetupAccessoriesWithPayload_completionHandler(
             &self,
             payload: &HMAccessorySetupPayload,
-            completion: &block2::Block<dyn Fn(*mut NSArray<HMAccessory>, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSArray<HMAccessory>, *mut NSError)>,
         );
 
         /// True if this home supports all of the requirements for adding a network router.
@@ -303,7 +303,7 @@ impl HMHome {
         #[unsafe(method_family = none)]
         pub unsafe fn manageUsersWithCompletionHandler(
             &self,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMUser", feature = "block2"))]
@@ -320,7 +320,7 @@ impl HMHome {
         #[unsafe(method_family = none)]
         pub unsafe fn addUserWithCompletionHandler(
             &self,
-            completion: &block2::Block<dyn Fn(*mut HMUser, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut HMUser, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HMUser", feature = "block2"))]
@@ -340,7 +340,7 @@ impl HMHome {
         pub unsafe fn removeUser_completionHandler(
             &self,
             user: &HMUser,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -383,7 +383,7 @@ impl HMHome {
         pub unsafe fn addRoomWithName_completionHandler(
             &self,
             room_name: &NSString,
-            completion: &block2::Block<dyn Fn(*mut HMRoom, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut HMRoom, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HMRoom", feature = "block2"))]
@@ -406,7 +406,7 @@ impl HMHome {
         pub unsafe fn removeRoom_completionHandler(
             &self,
             room: &HMRoom,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "HMRoom")]
@@ -446,7 +446,7 @@ impl HMHome {
         pub unsafe fn addZoneWithName_completionHandler(
             &self,
             zone_name: &NSString,
-            completion: &block2::Block<dyn Fn(*mut HMZone, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut HMZone, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HMZone", feature = "block2"))]
@@ -464,7 +464,7 @@ impl HMHome {
         pub unsafe fn removeZone_completionHandler(
             &self,
             zone: &HMZone,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }
@@ -494,7 +494,7 @@ impl HMHome {
         pub unsafe fn addServiceGroupWithName_completionHandler(
             &self,
             service_group_name: &NSString,
-            completion: &block2::Block<dyn Fn(*mut HMServiceGroup, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut HMServiceGroup, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HMServiceGroup", feature = "block2"))]
@@ -512,7 +512,7 @@ impl HMHome {
         pub unsafe fn removeServiceGroup_completionHandler(
             &self,
             group: &HMServiceGroup,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }
@@ -542,7 +542,7 @@ impl HMHome {
         pub unsafe fn addActionSetWithName_completionHandler(
             &self,
             action_set_name: &NSString,
-            completion: &block2::Block<dyn Fn(*mut HMActionSet, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut HMActionSet, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HMActionSet", feature = "block2"))]
@@ -560,7 +560,7 @@ impl HMHome {
         pub unsafe fn removeActionSet_completionHandler(
             &self,
             action_set: &HMActionSet,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMActionSet", feature = "block2"))]
@@ -578,7 +578,7 @@ impl HMHome {
         pub unsafe fn executeActionSet_completionHandler(
             &self,
             action_set: &HMActionSet,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "HMActionSet")]
@@ -631,7 +631,7 @@ impl HMHome {
         pub unsafe fn addTrigger_completionHandler(
             &self,
             trigger: &HMTrigger,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "HMTrigger", feature = "block2"))]
@@ -649,7 +649,7 @@ impl HMHome {
         pub unsafe fn removeTrigger_completionHandler(
             &self,
             trigger: &HMTrigger,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }
@@ -672,7 +672,7 @@ impl HMHome {
         #[unsafe(method_family = none)]
         pub unsafe fn matterControllerXPCConnectBlock(
             &self,
-        ) -> NonNull<block2::Block<dyn Fn() -> NonNull<NSXPCConnection>>>;
+        ) -> NonNull<block2::DynBlock<dyn Fn() -> NonNull<NSXPCConnection>>>;
 
         #[cfg(feature = "block2")]
         /// Block generating XPC connection on demand through which to access the Matter controller associated with this home.
@@ -681,7 +681,7 @@ impl HMHome {
         #[unsafe(method_family = none)]
         pub unsafe fn matterStartupParametersXPCConnectBlock(
             &self,
-        ) -> NonNull<block2::Block<dyn Fn() -> NonNull<NSXPCConnection>>>;
+        ) -> NonNull<block2::DynBlock<dyn Fn() -> NonNull<NSXPCConnection>>>;
     );
 }
 

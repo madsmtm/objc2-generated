@@ -34,7 +34,7 @@ impl MEExtensionManager {
         #[unsafe(method_family = none)]
         pub unsafe fn reloadContentBlockerWithIdentifier_completionHandler(
             identifier: &NSString,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -42,7 +42,7 @@ impl MEExtensionManager {
         #[unsafe(method(reloadVisibleMessagesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadVisibleMessagesWithCompletionHandler(
-            completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
     );
 }

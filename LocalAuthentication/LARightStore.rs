@@ -38,7 +38,7 @@ impl LARightStore {
         pub unsafe fn rightForIdentifier_completion(
             &self,
             identifier: &NSString,
-            handler: &block2::Block<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
         #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
@@ -55,7 +55,7 @@ impl LARightStore {
             &self,
             right: &LARight,
             identifier: &NSString,
-            handler: &block2::Block<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
         #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
@@ -75,7 +75,7 @@ impl LARightStore {
             right: &LARight,
             identifier: &NSString,
             secret: &NSData,
-            handler: &block2::Block<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut LAPersistedRight, *mut NSError)>,
         );
 
         #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
@@ -89,7 +89,7 @@ impl LARightStore {
         pub unsafe fn removeRight_completion(
             &self,
             right: &LAPersistedRight,
-            handler: &block2::Block<dyn Fn(*mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -104,7 +104,7 @@ impl LARightStore {
         pub unsafe fn removeRightForIdentifier_completion(
             &self,
             identifier: &NSString,
-            handler: &block2::Block<dyn Fn(*mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -115,7 +115,7 @@ impl LARightStore {
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllRightsWithCompletion(
             &self,
-            handler: &block2::Block<dyn Fn(*mut NSError)>,
+            handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         /// Clients should rely on the

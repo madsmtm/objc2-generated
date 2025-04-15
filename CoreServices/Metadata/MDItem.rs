@@ -209,7 +209,7 @@ extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn MDItemGetCacheFileDescriptors(
         items: Option<&CFArray>,
-        completion_handler: Option<&block2::Block<dyn Fn(*const CFArray)>>,
+        completion_handler: Option<&block2::DynBlock<dyn Fn(*const CFArray)>>,
     );
 }
 

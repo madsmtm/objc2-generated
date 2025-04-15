@@ -133,7 +133,7 @@ impl QLPreviewReply {
             this: Allocated<Self>,
             context_size: CGSize,
             is_bitmap: bool,
-            drawing_block: &block2::Block<
+            drawing_block: &block2::DynBlock<
                 dyn Fn(NonNull<CGContext>, NonNull<QLPreviewReply>, *mut *mut NSError) -> Bool,
             >,
         ) -> Retained<Self>;
@@ -165,7 +165,7 @@ impl QLPreviewReply {
             this: Allocated<Self>,
             content_type: &UTType,
             content_size: CGSize,
-            data_creation_block: &block2::Block<
+            data_creation_block: &block2::DynBlock<
                 dyn Fn(NonNull<QLPreviewReply>, *mut *mut NSError) -> *mut NSData,
             >,
         ) -> Retained<Self>;

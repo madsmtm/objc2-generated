@@ -126,7 +126,7 @@ impl CXCallDirectoryExtensionContext {
         #[unsafe(method_family = none)]
         pub unsafe fn completeRequestWithCompletionHandler(
             &self,
-            completion: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -135,7 +135,7 @@ impl CXCallDirectoryExtensionContext {
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
             items: Option<&NSArray>,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
     );
 }

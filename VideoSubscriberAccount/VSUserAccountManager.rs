@@ -50,7 +50,7 @@ impl VSUserAccountManager {
         pub unsafe fn updateUserAccount_completion(
             &self,
             account: &VSUserAccount,
-            completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(all(feature = "VSUserAccount", feature = "block2"))]
@@ -59,7 +59,7 @@ impl VSUserAccountManager {
         pub unsafe fn queryUserAccountsWithOptions_completion(
             &self,
             options: VSUserAccountQueryOptions,
-            completion: &block2::Block<dyn Fn(*mut NSArray<VSUserAccount>, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSArray<VSUserAccount>, *mut NSError)>,
         );
     );
 }

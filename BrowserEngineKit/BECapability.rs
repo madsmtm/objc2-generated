@@ -170,7 +170,7 @@ impl BEWebContentProcess {
             &self,
             capability: &BEProcessCapability,
             error: Option<&mut Option<Retained<NSError>>>,
-            invalidation_handler: &block2::Block<dyn Fn()>,
+            invalidation_handler: &block2::DynBlock<dyn Fn()>,
         ) -> Option<Retained<ProtocolObject<dyn BEProcessCapabilityGrant>>>;
     );
 }
@@ -218,7 +218,7 @@ impl BERenderingProcess {
             &self,
             capability: &BEProcessCapability,
             error: Option<&mut Option<Retained<NSError>>>,
-            invalidation_handler: &block2::Block<dyn Fn()>,
+            invalidation_handler: &block2::DynBlock<dyn Fn()>,
         ) -> Option<Retained<ProtocolObject<dyn BEProcessCapabilityGrant>>>;
     );
 }
@@ -266,7 +266,7 @@ impl BENetworkingProcess {
             &self,
             capability: &BEProcessCapability,
             error: Option<&mut Option<Retained<NSError>>>,
-            invalidation_handler: &block2::Block<dyn Fn()>,
+            invalidation_handler: &block2::DynBlock<dyn Fn()>,
         ) -> Option<Retained<ProtocolObject<dyn BEProcessCapabilityGrant>>>;
     );
 }

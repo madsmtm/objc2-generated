@@ -89,7 +89,7 @@ extern_protocol!(
             &self,
             user_content_controller: &WKUserContentController,
             message: &WKScriptMessage,
-            reply_handler: &block2::Block<dyn Fn(*mut AnyObject, *mut NSString)>,
+            reply_handler: &block2::DynBlock<dyn Fn(*mut AnyObject, *mut NSString)>,
         );
     }
 );

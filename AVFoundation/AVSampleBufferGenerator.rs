@@ -75,7 +75,7 @@ impl AVSampleBufferGenerator {
         #[unsafe(method_family = none)]
         pub unsafe fn notifyOfDataReadyForSampleBuffer_completionHandler(
             sbuf: &CMSampleBuffer,
-            completion_handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
     );
 }
@@ -275,7 +275,7 @@ impl AVSampleBufferGeneratorBatch {
         #[unsafe(method_family = none)]
         pub unsafe fn makeDataReadyWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         /// Attempt to cancel any I/O for this batch. The associated sample buffers will have their data ready handler invoked with an error.

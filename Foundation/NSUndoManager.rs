@@ -237,7 +237,7 @@ impl NSUndoManager {
         pub unsafe fn registerUndoWithTarget_handler(
             &self,
             target: &AnyObject,
-            undo_handler: &block2::Block<dyn Fn(NonNull<AnyObject>)>,
+            undo_handler: &block2::DynBlock<dyn Fn(NonNull<AnyObject>)>,
         );
 
         /// Sets whether the next undo or redo action is discardable.

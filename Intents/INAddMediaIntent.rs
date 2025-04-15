@@ -109,7 +109,7 @@ extern_protocol!(
         unsafe fn handleAddMedia_completion(
             &self,
             intent: &INAddMediaIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INAddMediaIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INAddMediaIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -135,7 +135,7 @@ extern_protocol!(
         unsafe fn confirmAddMedia_completion(
             &self,
             intent: &INAddMediaIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INAddMediaIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INAddMediaIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -162,7 +162,7 @@ extern_protocol!(
         unsafe fn resolveMediaItemsForAddMedia_withCompletion(
             &self,
             intent: &INAddMediaIntent,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<NSArray<INAddMediaMediaItemResolutionResult>>),
             >,
         );
@@ -180,7 +180,9 @@ extern_protocol!(
         unsafe fn resolveMediaDestinationForAddMedia_withCompletion(
             &self,
             intent: &INAddMediaIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INAddMediaMediaDestinationResolutionResult>)>,
+            completion: &block2::DynBlock<
+                dyn Fn(NonNull<INAddMediaMediaDestinationResolutionResult>),
+            >,
         );
     }
 );

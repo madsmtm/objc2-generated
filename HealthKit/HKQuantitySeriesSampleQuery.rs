@@ -101,7 +101,7 @@ impl HKQuantitySeriesSampleQuery {
             this: Allocated<Self>,
             quantity_type: &HKQuantityType,
             predicate: Option<&NSPredicate>,
-            quantity_handler: &block2::Block<
+            quantity_handler: &block2::DynBlock<
                 dyn Fn(
                     NonNull<HKQuantitySeriesSampleQuery>,
                     *mut HKQuantity,
@@ -126,7 +126,7 @@ impl HKQuantitySeriesSampleQuery {
         pub unsafe fn initWithSample_quantityHandler(
             this: Allocated<Self>,
             quantity_sample: &HKQuantitySample,
-            quantity_handler: &block2::Block<
+            quantity_handler: &block2::DynBlock<
                 dyn Fn(
                     NonNull<HKQuantitySeriesSampleQuery>,
                     *mut HKQuantity,

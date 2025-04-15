@@ -252,7 +252,7 @@ impl MLMultiArray {
             shape: &NSArray<NSNumber>,
             data_type: MLMultiArrayDataType,
             strides: &NSArray<NSNumber>,
-            deallocator: Option<&block2::Block<dyn Fn(NonNull<c_void>)>>,
+            deallocator: Option<&block2::DynBlock<dyn Fn(NonNull<c_void>)>>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-video")]
@@ -342,7 +342,7 @@ impl MLMultiArray {
         #[unsafe(method_family = none)]
         pub unsafe fn getBytesWithHandler(
             &self,
-            handler: &block2::Block<dyn Fn(NonNull<c_void>, NSInteger) + '_>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<c_void>, NSInteger) + '_>,
         );
 
         #[cfg(feature = "block2")]
@@ -375,7 +375,7 @@ impl MLMultiArray {
         #[unsafe(method_family = none)]
         pub unsafe fn getMutableBytesWithHandler(
             &self,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(NonNull<c_void>, NSInteger, NonNull<NSArray<NSNumber>>) + '_,
             >,
         );

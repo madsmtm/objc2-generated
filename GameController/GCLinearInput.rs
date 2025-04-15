@@ -27,7 +27,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn valueDidChangeHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(
                 NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
                 NonNull<ProtocolObject<dyn GCLinearInput>>,
@@ -42,7 +42,7 @@ extern_protocol!(
         unsafe fn setValueDidChangeHandler(
             &self,
             value_did_change_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<ProtocolObject<dyn GCPhysicalInputElement>>,
                         NonNull<ProtocolObject<dyn GCLinearInput>>,

@@ -139,7 +139,7 @@ extern_protocol!(
         unsafe fn session_annotateAddressesWithCompletionHandler(
             &self,
             session: &MEComposeSession,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSDictionary<MEEmailAddress, MEAddressAnnotation>>),
             >,
         );
@@ -155,7 +155,7 @@ extern_protocol!(
         unsafe fn session_canSendMessageWithCompletionHandler(
             &self,
             session: &MEComposeSession,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         /// Set Additional headers on outgoing mail message.

@@ -63,7 +63,9 @@ impl CKFetchSubscriptionsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perSubscriptionCompletionBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError)>;
+        ) -> *mut block2::DynBlock<
+            dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError),
+        >;
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`perSubscriptionCompletionBlock`][Self::perSubscriptionCompletionBlock].
@@ -72,7 +74,7 @@ impl CKFetchSubscriptionsOperation {
         pub unsafe fn setPerSubscriptionCompletionBlock(
             &self,
             per_subscription_completion_block: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError),
                 >,
             >,
@@ -102,7 +104,7 @@ impl CKFetchSubscriptionsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchSubscriptionCompletionBlock(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(*mut NSDictionary<CKSubscriptionID, CKSubscription>, *mut NSError),
         >;
 
@@ -113,7 +115,7 @@ impl CKFetchSubscriptionsOperation {
         pub unsafe fn setFetchSubscriptionCompletionBlock(
             &self,
             fetch_subscription_completion_block: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(*mut NSDictionary<CKSubscriptionID, CKSubscription>, *mut NSError),
                 >,
             >,

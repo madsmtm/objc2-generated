@@ -88,7 +88,7 @@ unsafe impl RefEncode for ENActivityFlags {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ENActivityHandler = *mut block2::Block<dyn Fn(ENActivityFlags)>;
+pub type ENActivityHandler = *mut block2::DynBlock<dyn Fn(ENActivityFlags)>;
 
 /// Invoked when getDiagnosisKeysWithCompletionHandler completes.
 /// If it completes successfully, keys will contain the Diagnosis Keys for this device and error will be nil.
@@ -97,7 +97,7 @@ pub type ENActivityHandler = *mut block2::Block<dyn Fn(ENActivityFlags)>;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetdiagnosiskeyshandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetDiagnosisKeysHandler =
-    *mut block2::Block<dyn Fn(*mut NSArray<ENTemporaryExposureKey>, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut NSArray<ENTemporaryExposureKey>, *mut NSError)>;
 
 /// Invoked when detecting exposures completes. It provides a summary of exposures.
 /// If it completes successfully, summary will contain a summary of exposures and error will be nil.
@@ -106,12 +106,12 @@ pub type ENGetDiagnosisKeysHandler =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endetectexposureshandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENDetectExposuresHandler =
-    *mut block2::Block<dyn Fn(*mut ENExposureDetectionSummary, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut ENExposureDetectionSummary, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosiskeysavailablehandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENDiagnosisKeysAvailableHandler =
-    *mut block2::Block<dyn Fn(NonNull<NSArray<ENTemporaryExposureKey>>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<ENTemporaryExposureKey>>)>;
 
 /// Invoked when getting exposures completes. It provides info about each exposure.
 /// If it completes successfully, exposures will contain info about each exposure and error will be nil.
@@ -120,7 +120,7 @@ pub type ENDiagnosisKeysAvailableHandler =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetexposureinfohandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetExposureInfoHandler =
-    *mut block2::Block<dyn Fn(*mut NSArray<ENExposureInfo>, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut NSArray<ENExposureInfo>, *mut NSError)>;
 
 /// Invoked when getExposureWindows completes. It provides info about each exposure window.
 /// If it completes successfully, exposureWindows will non-nil and error will be nil.
@@ -129,13 +129,13 @@ pub type ENGetExposureInfoHandler =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetexposurewindowshandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetExposureWindowsHandler =
-    *mut block2::Block<dyn Fn(*mut NSArray<ENExposureWindow>, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut NSArray<ENExposureWindow>, *mut NSError)>;
 
 /// Invoked when getUserTraveled completes.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetusertraveledhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ENGetUserTraveledHandler = *mut block2::Block<dyn Fn(Bool, *mut NSError)>;
+pub type ENGetUserTraveledHandler = *mut block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
 
 extern_class!(
     /// Manages Exposure Notification functionality.

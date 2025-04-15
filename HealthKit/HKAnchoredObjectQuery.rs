@@ -42,7 +42,7 @@ impl HKAnchoredObjectQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(
                 NonNull<HKAnchoredObjectQuery>,
                 *mut NSArray<HKSample>,
@@ -65,7 +65,7 @@ impl HKAnchoredObjectQuery {
         pub unsafe fn setUpdateHandler(
             &self,
             update_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<HKAnchoredObjectQuery>,
                         *mut NSArray<HKSample>,
@@ -112,7 +112,7 @@ impl HKAnchoredObjectQuery {
             predicate: Option<&NSPredicate>,
             anchor: Option<&HKQueryAnchor>,
             limit: NSUInteger,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(
                     NonNull<HKAnchoredObjectQuery>,
                     *mut NSArray<HKSample>,
@@ -138,7 +138,7 @@ impl HKAnchoredObjectQuery {
             predicate: Option<&NSPredicate>,
             anchor: NSUInteger,
             limit: NSUInteger,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(
                     NonNull<HKAnchoredObjectQuery>,
                     *mut NSArray<HKSample>,
@@ -181,7 +181,7 @@ impl HKAnchoredObjectQuery {
             query_descriptors: &NSArray<HKQueryDescriptor>,
             anchor: Option<&HKQueryAnchor>,
             limit: NSInteger,
-            handler: &block2::Block<
+            handler: &block2::DynBlock<
                 dyn Fn(
                     NonNull<HKAnchoredObjectQuery>,
                     *mut NSArray<HKSample>,

@@ -91,7 +91,7 @@ impl NSPersistentContainer {
         #[unsafe(method_family = none)]
         pub unsafe fn loadPersistentStoresWithCompletionHandler(
             &self,
-            block: &block2::Block<dyn Fn(NonNull<NSPersistentStoreDescription>, *mut NSError)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSPersistentStoreDescription>, *mut NSError)>,
         );
 
         #[cfg(feature = "NSManagedObjectContext")]
@@ -104,7 +104,7 @@ impl NSPersistentContainer {
         #[unsafe(method_family = none)]
         pub unsafe fn performBackgroundTask(
             &self,
-            block: &block2::Block<dyn Fn(NonNull<NSManagedObjectContext>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSManagedObjectContext>)>,
         );
     );
 }

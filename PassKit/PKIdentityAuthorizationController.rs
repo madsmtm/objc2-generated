@@ -28,7 +28,7 @@ impl PKIdentityAuthorizationController {
         pub unsafe fn checkCanRequestDocument_completion(
             &self,
             descriptor: &ProtocolObject<dyn PKIdentityDocumentDescriptor>,
-            completion: &block2::Block<dyn Fn(Bool)>,
+            completion: &block2::DynBlock<dyn Fn(Bool)>,
         );
 
         #[cfg(all(
@@ -50,7 +50,7 @@ impl PKIdentityAuthorizationController {
         pub unsafe fn requestDocument_completion(
             &self,
             request: &PKIdentityRequest,
-            completion: &block2::Block<dyn Fn(*mut PKIdentityDocument, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut PKIdentityDocument, *mut NSError)>,
         );
 
         /// If there is a request in progress through requestDocument, this will cancel that request

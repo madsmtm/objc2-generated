@@ -11,7 +11,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationtextattributestransformer?language=objc)
 #[cfg(feature = "block2")]
-pub type UIConfigurationTextAttributesTransformer = *mut block2::Block<
+pub type UIConfigurationTextAttributesTransformer = *mut block2::DynBlock<
     dyn Fn(
         NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
     ) -> NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,

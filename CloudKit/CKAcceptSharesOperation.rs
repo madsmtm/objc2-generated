@@ -62,7 +62,7 @@ impl CKAcceptSharesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perShareCompletionBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<CKShareMetadata>, *mut CKShare, *mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKShareMetadata>, *mut CKShare, *mut NSError)>;
 
         #[cfg(all(
             feature = "CKRecord",
@@ -76,7 +76,7 @@ impl CKAcceptSharesOperation {
         pub unsafe fn setPerShareCompletionBlock(
             &self,
             per_share_completion_block: Option<
-                &block2::Block<dyn Fn(NonNull<CKShareMetadata>, *mut CKShare, *mut NSError)>,
+                &block2::DynBlock<dyn Fn(NonNull<CKShareMetadata>, *mut CKShare, *mut NSError)>,
             >,
         );
 
@@ -103,7 +103,7 @@ impl CKAcceptSharesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn acceptSharesCompletionBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`acceptSharesCompletionBlock`][Self::acceptSharesCompletionBlock].
@@ -111,7 +111,7 @@ impl CKAcceptSharesOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setAcceptSharesCompletionBlock(
             &self,
-            accept_shares_completion_block: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            accept_shares_completion_block: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
     );
 }

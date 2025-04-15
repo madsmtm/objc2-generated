@@ -9,11 +9,12 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionshandler?language=objc)
 #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-pub type MKDirectionsHandler = *mut block2::Block<dyn Fn(*mut MKDirectionsResponse, *mut NSError)>;
+pub type MKDirectionsHandler =
+    *mut block2::DynBlock<dyn Fn(*mut MKDirectionsResponse, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mketahandler?language=objc)
 #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-pub type MKETAHandler = *mut block2::Block<dyn Fn(*mut MKETAResponse, *mut NSError)>;
+pub type MKETAHandler = *mut block2::DynBlock<dyn Fn(*mut MKETAResponse, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections?language=objc)

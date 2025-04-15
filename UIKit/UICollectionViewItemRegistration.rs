@@ -14,7 +14,7 @@ use crate::*;
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UICollectionViewCellRegistrationConfigurationHandler = *mut block2::Block<
+pub type UICollectionViewCellRegistrationConfigurationHandler = *mut block2::DynBlock<
     dyn Fn(NonNull<UICollectionViewCell>, NonNull<NSIndexPath>, NonNull<AnyObject>),
 >;
 
@@ -102,7 +102,7 @@ impl UICollectionViewCellRegistration {
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UICollectionViewSupplementaryRegistrationConfigurationHandler = *mut block2::Block<
+pub type UICollectionViewSupplementaryRegistrationConfigurationHandler = *mut block2::DynBlock<
     dyn Fn(NonNull<UICollectionReusableView>, NonNull<NSString>, NonNull<NSIndexPath>),
 >;
 

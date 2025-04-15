@@ -98,7 +98,7 @@ extern_protocol!(
         unsafe fn handleStartVideoCall_completion(
             &self,
             intent: &INStartVideoCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStartVideoCallIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStartVideoCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -125,7 +125,7 @@ extern_protocol!(
         unsafe fn confirmStartVideoCall_completion(
             &self,
             intent: &INStartVideoCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStartVideoCallIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStartVideoCallIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -152,7 +152,7 @@ extern_protocol!(
         unsafe fn resolveContactsForStartVideoCall_withCompletion(
             &self,
             intent: &INStartVideoCallIntent,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSArray<INPersonResolutionResult>>)>,
         );
     }
 );

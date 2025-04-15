@@ -98,7 +98,7 @@ extern_protocol!(
             controller: &WKWebExtensionController,
             configuration: &WKWebExtensionWindowConfiguration,
             extension_context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut ProtocolObject<dyn WKWebExtensionWindow>, *mut NSError),
             >,
         );
@@ -133,7 +133,7 @@ extern_protocol!(
             controller: &WKWebExtensionController,
             configuration: &WKWebExtensionTabConfiguration,
             extension_context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut ProtocolObject<dyn WKWebExtensionTab>, *mut NSError),
             >,
         );
@@ -162,7 +162,7 @@ extern_protocol!(
             &self,
             controller: &WKWebExtensionController,
             extension_context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -198,7 +198,7 @@ extern_protocol!(
             permissions: &NSSet<WKWebExtensionPermission>,
             tab: Option<&ProtocolObject<dyn WKWebExtensionTab>>,
             extension_context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSSet<WKWebExtensionPermission>>, *mut NSDate),
             >,
         );
@@ -235,7 +235,7 @@ extern_protocol!(
             urls: &NSSet<NSURL>,
             tab: Option<&ProtocolObject<dyn WKWebExtensionTab>>,
             extension_context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<dyn Fn(NonNull<NSSet<NSURL>>, *mut NSDate)>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSSet<NSURL>>, *mut NSDate)>,
         );
 
         #[cfg(all(
@@ -271,7 +271,7 @@ extern_protocol!(
             match_patterns: &NSSet<WKWebExtensionMatchPattern>,
             tab: Option<&ProtocolObject<dyn WKWebExtensionTab>>,
             extension_context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<NSSet<WKWebExtensionMatchPattern>>, *mut NSDate),
             >,
         );
@@ -329,7 +329,7 @@ extern_protocol!(
             controller: &WKWebExtensionController,
             action: &WKWebExtensionAction,
             context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(
@@ -364,7 +364,7 @@ extern_protocol!(
             message: &AnyObject,
             application_identifier: Option<&NSString>,
             extension_context: &WKWebExtensionContext,
-            reply_handler: &block2::Block<dyn Fn(*mut AnyObject, *mut NSError)>,
+            reply_handler: &block2::DynBlock<dyn Fn(*mut AnyObject, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -397,7 +397,7 @@ extern_protocol!(
             controller: &WKWebExtensionController,
             port: &WKWebExtensionMessagePort,
             extension_context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     }
 );

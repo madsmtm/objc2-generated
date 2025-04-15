@@ -555,7 +555,7 @@ impl UIImage {
         #[unsafe(method_family = none)]
         pub unsafe fn prepareForDisplayWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut UIImage)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut UIImage)>,
         );
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -572,7 +572,7 @@ impl UIImage {
         pub unsafe fn prepareThumbnailOfSize_completionHandler(
             &self,
             size: CGSize,
-            completion_handler: &block2::Block<dyn Fn(*mut UIImage)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut UIImage)>,
         );
 
         /// Indicates that this image is tagged for display of high dynamic range content.

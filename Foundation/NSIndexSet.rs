@@ -141,7 +141,7 @@ impl NSIndexSet {
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateIndexesUsingBlock(
             &self,
-            block: &block2::Block<dyn Fn(NSUInteger, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
@@ -150,7 +150,7 @@ impl NSIndexSet {
         pub unsafe fn enumerateIndexesWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &block2::Block<dyn Fn(NSUInteger, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange", feature = "block2"))]
@@ -160,7 +160,7 @@ impl NSIndexSet {
             &self,
             range: NSRange,
             opts: NSEnumerationOptions,
-            block: &block2::Block<dyn Fn(NSUInteger, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NSUInteger, NonNull<Bool>) + '_>,
         );
 
         #[cfg(feature = "block2")]
@@ -168,7 +168,7 @@ impl NSIndexSet {
         #[unsafe(method_family = none)]
         pub unsafe fn indexPassingTest(
             &self,
-            predicate: &block2::Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
+            predicate: &block2::DynBlock<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> NSUInteger;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
@@ -177,7 +177,7 @@ impl NSIndexSet {
         pub unsafe fn indexWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &block2::Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
+            predicate: &block2::DynBlock<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> NSUInteger;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange", feature = "block2"))]
@@ -187,7 +187,7 @@ impl NSIndexSet {
             &self,
             range: NSRange,
             opts: NSEnumerationOptions,
-            predicate: &block2::Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
+            predicate: &block2::DynBlock<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> NSUInteger;
 
         #[cfg(feature = "block2")]
@@ -195,7 +195,7 @@ impl NSIndexSet {
         #[unsafe(method_family = none)]
         pub unsafe fn indexesPassingTest(
             &self,
-            predicate: &block2::Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
+            predicate: &block2::DynBlock<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
@@ -204,7 +204,7 @@ impl NSIndexSet {
         pub unsafe fn indexesWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
-            predicate: &block2::Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
+            predicate: &block2::DynBlock<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange", feature = "block2"))]
@@ -214,7 +214,7 @@ impl NSIndexSet {
             &self,
             range: NSRange,
             opts: NSEnumerationOptions,
-            predicate: &block2::Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
+            predicate: &block2::DynBlock<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSRange", feature = "block2"))]
@@ -222,7 +222,7 @@ impl NSIndexSet {
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateRangesUsingBlock(
             &self,
-            block: &block2::Block<dyn Fn(NSRange, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NSRange, NonNull<Bool>) + '_>,
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange", feature = "block2"))]
@@ -231,7 +231,7 @@ impl NSIndexSet {
         pub unsafe fn enumerateRangesWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
-            block: &block2::Block<dyn Fn(NSRange, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NSRange, NonNull<Bool>) + '_>,
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange", feature = "block2"))]
@@ -241,7 +241,7 @@ impl NSIndexSet {
             &self,
             range: NSRange,
             opts: NSEnumerationOptions,
-            block: &block2::Block<dyn Fn(NSRange, NonNull<Bool>) + '_>,
+            block: &block2::DynBlock<dyn Fn(NSRange, NonNull<Bool>) + '_>,
         );
     );
 }

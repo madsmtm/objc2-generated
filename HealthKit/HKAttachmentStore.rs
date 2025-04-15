@@ -62,7 +62,7 @@ impl HKAttachmentStore {
             content_type: &UTType,
             url: &NSURL,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
-            completion: &block2::Block<dyn Fn(*mut HKAttachment, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut HKAttachment, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKAttachment", feature = "HKObject", feature = "block2"))]
@@ -79,7 +79,7 @@ impl HKAttachmentStore {
             &self,
             attachment: &HKAttachment,
             object: &HKObject,
-            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKAttachment", feature = "HKObject", feature = "block2"))]
@@ -93,7 +93,7 @@ impl HKAttachmentStore {
         pub unsafe fn getAttachmentsForObject_completion(
             &self,
             object: &HKObject,
-            completion: &block2::Block<dyn Fn(*mut NSArray<HKAttachment>, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSArray<HKAttachment>, *mut NSError)>,
         );
 
         #[cfg(all(feature = "HKAttachment", feature = "block2"))]
@@ -113,7 +113,7 @@ impl HKAttachmentStore {
         pub unsafe fn getDataForAttachment_completion(
             &self,
             attachment: &HKAttachment,
-            completion: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "HKAttachment", feature = "block2"))]
@@ -132,7 +132,7 @@ impl HKAttachmentStore {
         pub unsafe fn streamDataForAttachment_dataHandler(
             &self,
             attachment: &HKAttachment,
-            data_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError, Bool)>,
+            data_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError, Bool)>,
         ) -> Retained<NSProgress>;
     );
 }

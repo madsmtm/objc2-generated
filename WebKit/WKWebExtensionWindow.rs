@@ -147,7 +147,7 @@ extern_protocol!(
             &self,
             state: WKWebExtensionWindowState,
             context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "WKWebExtensionContext")]
@@ -224,7 +224,7 @@ extern_protocol!(
             &self,
             frame: CGRect,
             context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "WKWebExtensionContext", feature = "block2"))]
@@ -242,7 +242,7 @@ extern_protocol!(
         unsafe fn focusForWebExtensionContext_completionHandler(
             &self,
             context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "WKWebExtensionContext", feature = "block2"))]
@@ -260,7 +260,7 @@ extern_protocol!(
         unsafe fn closeForWebExtensionContext_completionHandler(
             &self,
             context: &WKWebExtensionContext,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     }
 );

@@ -973,7 +973,7 @@ impl NSEvent {
             options: NSEventSwipeTrackingOptions,
             min_dampen_threshold: CGFloat,
             max_dampen_threshold: CGFloat,
-            tracking_handler: &block2::Block<dyn Fn(CGFloat, NSEventPhase, Bool, NonNull<Bool>)>,
+            tracking_handler: &block2::DynBlock<dyn Fn(CGFloat, NSEventPhase, Bool, NonNull<Bool>)>,
         );
 
         #[unsafe(method(startPeriodicEventsAfterDelay:withPeriod:))]
@@ -1077,7 +1077,7 @@ impl NSEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn addGlobalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
-            block: &block2::Block<dyn Fn(NonNull<NSEvent>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSEvent>)>,
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
@@ -1085,7 +1085,7 @@ impl NSEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn addLocalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
-            block: &block2::Block<dyn Fn(NonNull<NSEvent>) -> *mut NSEvent>,
+            block: &block2::DynBlock<dyn Fn(NonNull<NSEvent>) -> *mut NSEvent>,
         ) -> Option<Retained<AnyObject>>;
 
         #[unsafe(method(removeMonitor:))]

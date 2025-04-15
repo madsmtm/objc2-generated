@@ -305,7 +305,7 @@ impl AVSampleBufferDisplayLayer {
         pub unsafe fn requestMediaDataWhenReadyOnQueue_usingBlock(
             &self,
             queue: &DispatchQueue,
-            block: &block2::Block<dyn Fn()>,
+            block: &block2::DynBlock<dyn Fn()>,
         );
 
         /// Cancels any current requestMediaDataWhenReadyOnQueue:usingBlock: call.

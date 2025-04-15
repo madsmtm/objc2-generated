@@ -404,7 +404,10 @@ impl AVAssetWriter {
         /// To guarantee that all sample buffers are successfully written, ensure all calls to -[AVAssetWriterInput appendSampleBuffer:] or -[AVAssetWriterInputPixelBufferAdaptor appendPixelBuffer:withPresentationTime:] have returned before invoking this method.
         #[unsafe(method(finishWritingWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn finishWritingWithCompletionHandler(&self, handler: &block2::Block<dyn Fn()>);
+        pub unsafe fn finishWritingWithCompletionHandler(
+            &self,
+            handler: &block2::DynBlock<dyn Fn()>,
+        );
     );
 }
 

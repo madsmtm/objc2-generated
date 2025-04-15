@@ -190,7 +190,7 @@ impl ARSession {
         #[unsafe(method_family = none)]
         pub unsafe fn getCurrentWorldMapWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn(*mut ARWorldMap, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut ARWorldMap, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -231,7 +231,7 @@ impl ARSession {
         pub unsafe fn trackedRaycast_updateHandler(
             &self,
             query: &ARRaycastQuery,
-            update_handler: &block2::Block<dyn Fn(NonNull<NSArray<ARRaycastResult>>)>,
+            update_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<ARRaycastResult>>)>,
         ) -> Option<Retained<ARTrackedRaycast>>;
 
         #[cfg(feature = "ARCollaborationData")]
@@ -261,7 +261,7 @@ impl ARSession {
         #[unsafe(method_family = none)]
         pub unsafe fn captureHighResolutionFrameWithCompletion(
             &self,
-            completion: &block2::Block<dyn Fn(*mut ARFrame, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut ARFrame, *mut NSError)>,
         );
     );
 }

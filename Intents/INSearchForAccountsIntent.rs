@@ -115,7 +115,7 @@ extern_protocol!(
         unsafe fn handleSearchForAccounts_completion(
             &self,
             intent: &INSearchForAccountsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSearchForAccountsIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForAccountsIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -141,7 +141,7 @@ extern_protocol!(
         unsafe fn confirmSearchForAccounts_completion(
             &self,
             intent: &INSearchForAccountsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSearchForAccountsIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSearchForAccountsIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -167,7 +167,7 @@ extern_protocol!(
         unsafe fn resolveAccountNicknameForSearchForAccounts_withCompletion(
             &self,
             intent: &INSearchForAccountsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -182,7 +182,7 @@ extern_protocol!(
         unsafe fn resolveAccountTypeForSearchForAccounts_withCompletion(
             &self,
             intent: &INSearchForAccountsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INAccountTypeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INAccountTypeResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -197,7 +197,7 @@ extern_protocol!(
         unsafe fn resolveOrganizationNameForSearchForAccounts_withCompletion(
             &self,
             intent: &INSearchForAccountsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -212,7 +212,7 @@ extern_protocol!(
         unsafe fn resolveRequestedBalanceTypeForSearchForAccounts_withCompletion(
             &self,
             intent: &INSearchForAccountsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INBalanceTypeResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INBalanceTypeResolutionResult>)>,
         );
     }
 );

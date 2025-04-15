@@ -123,7 +123,7 @@ extern_protocol!(
         unsafe fn handleAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INAddTasksIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INAddTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -149,7 +149,7 @@ extern_protocol!(
         unsafe fn confirmAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INAddTasksIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INAddTasksIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -176,7 +176,7 @@ extern_protocol!(
         unsafe fn resolveTargetTaskListForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INTaskListResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INTaskListResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -192,7 +192,9 @@ extern_protocol!(
         unsafe fn resolveTargetTaskListForAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INAddTasksTargetTaskListResolutionResult>)>,
+            completion: &block2::DynBlock<
+                dyn Fn(NonNull<INAddTasksTargetTaskListResolutionResult>),
+            >,
         );
 
         #[cfg(all(
@@ -207,7 +209,9 @@ extern_protocol!(
         unsafe fn resolveTaskTitlesForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<NSArray<INSpeakableStringResolutionResult>>)>,
+            completion: &block2::DynBlock<
+                dyn Fn(NonNull<NSArray<INSpeakableStringResolutionResult>>),
+            >,
         );
 
         #[cfg(all(
@@ -222,7 +226,7 @@ extern_protocol!(
         unsafe fn resolveSpatialEventTriggerForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpatialEventTriggerResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpatialEventTriggerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -238,7 +242,7 @@ extern_protocol!(
         unsafe fn resolveTemporalEventTriggerForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INTemporalEventTriggerResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INTemporalEventTriggerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -254,7 +258,7 @@ extern_protocol!(
         unsafe fn resolveTemporalEventTriggerForAddTasks_completion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<INAddTasksTemporalEventTriggerResolutionResult>),
             >,
         );
@@ -271,7 +275,7 @@ extern_protocol!(
         unsafe fn resolvePriorityForAddTasks_withCompletion(
             &self,
             intent: &INAddTasksIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INTaskPriorityResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INTaskPriorityResolutionResult>)>,
         );
     }
 );

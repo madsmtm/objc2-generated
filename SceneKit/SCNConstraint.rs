@@ -317,7 +317,7 @@ impl SCNTransformConstraint {
         #[unsafe(method_family = none)]
         pub unsafe fn transformConstraintInWorldSpace_withBlock(
             world: bool,
-            block: &block2::Block<dyn Fn(NonNull<SCNNode>, SCNMatrix4) -> SCNMatrix4>,
+            block: &block2::DynBlock<dyn Fn(NonNull<SCNNode>, SCNMatrix4) -> SCNMatrix4>,
         ) -> Retained<Self>;
 
         #[cfg(all(
@@ -337,7 +337,7 @@ impl SCNTransformConstraint {
         #[unsafe(method_family = none)]
         pub unsafe fn positionConstraintInWorldSpace_withBlock(
             world: bool,
-            block: &block2::Block<dyn Fn(NonNull<SCNNode>, SCNVector3) -> SCNVector3>,
+            block: &block2::DynBlock<dyn Fn(NonNull<SCNNode>, SCNVector3) -> SCNVector3>,
         ) -> Retained<Self>;
 
         #[cfg(all(
@@ -357,7 +357,7 @@ impl SCNTransformConstraint {
         #[unsafe(method_family = none)]
         pub unsafe fn orientationConstraintInWorldSpace_withBlock(
             world: bool,
-            block: &block2::Block<dyn Fn(NonNull<SCNNode>, SCNQuaternion) -> SCNQuaternion>,
+            block: &block2::DynBlock<dyn Fn(NonNull<SCNNode>, SCNQuaternion) -> SCNQuaternion>,
         ) -> Retained<Self>;
     );
 }

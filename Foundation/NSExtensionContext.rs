@@ -28,7 +28,7 @@ impl NSExtensionContext {
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
             items: Option<&NSArray>,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(feature = "NSError")]
@@ -42,7 +42,7 @@ impl NSExtensionContext {
         pub unsafe fn openURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
     );
 }

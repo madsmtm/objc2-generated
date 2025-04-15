@@ -99,7 +99,7 @@ impl VSAccountManager {
         pub unsafe fn checkAccessStatusWithOptions_completionHandler(
             &self,
             options: &NSDictionary<VSCheckAccessOption, AnyObject>,
-            completion_handler: &block2::Block<dyn Fn(VSAccountAccessStatus, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(VSAccountAccessStatus, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -124,7 +124,7 @@ impl VSAccountManager {
         pub unsafe fn enqueueAccountMetadataRequest_completionHandler(
             &self,
             request: &VSAccountMetadataRequest,
-            completion_handler: &block2::Block<dyn Fn(*mut VSAccountMetadata, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut VSAccountMetadata, *mut NSError)>,
         ) -> Retained<VSAccountManagerResult>;
     );
 }

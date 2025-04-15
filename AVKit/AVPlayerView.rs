@@ -417,7 +417,7 @@ impl AVPlayerView {
         #[unsafe(method_family = none)]
         pub unsafe fn beginTrimmingWithCompletionHandler(
             &self,
-            handler: Option<&block2::Block<dyn Fn(AVPlayerViewTrimResult)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(AVPlayerViewTrimResult)>>,
         );
     );
 }
@@ -538,7 +538,7 @@ extern_protocol!(
         unsafe fn playerView_restoreUserInterfaceForFullScreenExitWithCompletionHandler(
             &self,
             player_view: &AVPlayerView,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
     }
 );
@@ -615,7 +615,7 @@ extern_protocol!(
         unsafe fn playerView_restoreUserInterfaceForPictureInPictureStopWithCompletionHandler(
             &self,
             player_view: &AVPlayerView,
-            completion_handler: &block2::Block<dyn Fn(Bool)>,
+            completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
 
         #[cfg(feature = "objc2-app-kit")]

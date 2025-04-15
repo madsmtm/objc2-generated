@@ -93,7 +93,7 @@ impl UIAlertAction {
         pub unsafe fn actionWithTitle_style_handler(
             title: Option<&NSString>,
             style: UIAlertActionStyle,
-            handler: Option<&block2::Block<dyn Fn(NonNull<UIAlertAction>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<UIAlertAction>)>>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
@@ -210,7 +210,7 @@ impl UIAlertController {
         #[unsafe(method_family = none)]
         pub unsafe fn addTextFieldWithConfigurationHandler(
             &self,
-            configuration_handler: Option<&block2::Block<dyn Fn(NonNull<UITextField>)>>,
+            configuration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<UITextField>)>>,
         );
 
         #[cfg(all(feature = "UIControl", feature = "UITextField", feature = "UIView"))]

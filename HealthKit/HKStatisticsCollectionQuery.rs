@@ -45,7 +45,7 @@ impl HKStatisticsCollection {
             &self,
             start_date: &NSDate,
             end_date: &NSDate,
-            block: &block2::Block<dyn Fn(NonNull<HKStatistics>, NonNull<Bool>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<HKStatistics>, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "HKStatistics")]
@@ -114,7 +114,7 @@ impl HKStatisticsCollectionQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn initialResultsHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(NonNull<HKStatisticsCollectionQuery>, *mut HKStatisticsCollection, *mut NSError),
         >;
 
@@ -125,7 +125,7 @@ impl HKStatisticsCollectionQuery {
         pub unsafe fn setInitialResultsHandler(
             &self,
             initial_results_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<HKStatisticsCollectionQuery>,
                         *mut HKStatisticsCollection,
@@ -140,7 +140,7 @@ impl HKStatisticsCollectionQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn statisticsUpdateHandler(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(
                 NonNull<HKStatisticsCollectionQuery>,
                 *mut HKStatistics,
@@ -156,7 +156,7 @@ impl HKStatisticsCollectionQuery {
         pub unsafe fn setStatisticsUpdateHandler(
             &self,
             statistics_update_handler: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<HKStatisticsCollectionQuery>,
                         *mut HKStatistics,

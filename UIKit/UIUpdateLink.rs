@@ -57,7 +57,7 @@ impl UIUpdateLink {
         pub unsafe fn addActionToPhase_handler(
             &self,
             phase: &UIUpdateActionPhase,
-            handler: &block2::Block<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
         );
 
         #[cfg(feature = "UIUpdateActionPhase")]
@@ -160,7 +160,7 @@ impl UIUpdateLink {
         #[unsafe(method_family = none)]
         pub unsafe fn addActionWithHandler(
             &self,
-            handler: &block2::Block<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
         );
 
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
@@ -180,7 +180,7 @@ impl UIUpdateLink {
         #[unsafe(method_family = none)]
         pub unsafe fn updateLinkForWindowScene_actionHandler(
             window_scene: &UIWindowScene,
-            handler: &block2::Block<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
         ) -> Retained<UIUpdateLink>;
 
         #[cfg(all(
@@ -208,7 +208,7 @@ impl UIUpdateLink {
         #[unsafe(method_family = none)]
         pub unsafe fn updateLinkForView_actionHandler(
             view: &UIView,
-            handler: &block2::Block<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
+            handler: &block2::DynBlock<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
         ) -> Retained<UIUpdateLink>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]

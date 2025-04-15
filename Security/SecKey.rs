@@ -521,7 +521,7 @@ pub unsafe extern "C-unwind" fn SecKeyCreateFromData(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygeneratepairblock?language=objc)
 #[cfg(all(feature = "SecBase", feature = "block2"))]
 pub type SecKeyGeneratePairBlock =
-    *mut block2::Block<dyn Fn(NonNull<SecKey>, NonNull<SecKey>, NonNull<CFError>)>;
+    *mut block2::DynBlock<dyn Fn(NonNull<SecKey>, NonNull<SecKey>, NonNull<CFError>)>;
 
 /// Derives a symmetric key from a password.
 ///

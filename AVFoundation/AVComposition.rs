@@ -140,7 +140,7 @@ impl AVComposition {
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<dyn Fn(*mut AVCompositionTrack, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut AVCompositionTrack, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -180,7 +180,7 @@ impl AVComposition {
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSArray<AVCompositionTrack>, *mut NSError),
             >,
         );
@@ -222,7 +222,7 @@ impl AVComposition {
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSArray<AVCompositionTrack>, *mut NSError),
             >,
         );
@@ -386,7 +386,7 @@ impl AVMutableComposition {
             time_range: CMTimeRange,
             asset: &AVAsset,
             start_time: CMTime,
-            completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "objc2-core-media")]
@@ -529,7 +529,7 @@ impl AVMutableComposition {
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
             track_id: CMPersistentTrackID,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut AVMutableCompositionTrack, *mut NSError),
             >,
         );
@@ -571,7 +571,7 @@ impl AVMutableComposition {
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
             media_type: &AVMediaType,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSArray<AVMutableCompositionTrack>, *mut NSError),
             >,
         );
@@ -613,7 +613,7 @@ impl AVMutableComposition {
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
             media_characteristic: &AVMediaCharacteristic,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSArray<AVMutableCompositionTrack>, *mut NSError),
             >,
         );

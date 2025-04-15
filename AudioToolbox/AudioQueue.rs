@@ -441,7 +441,7 @@ unsafe impl RefEncode for AudioQueueChannelAssignment {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueoutputcallbackblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-audio-types"))]
 pub type AudioQueueOutputCallbackBlock =
-    *mut block2::Block<dyn Fn(AudioQueueRef, AudioQueueBufferRef)>;
+    *mut block2::DynBlock<dyn Fn(AudioQueueRef, AudioQueueBufferRef)>;
 
 /// Defines a pointer to a block that is called when a recording audio
 /// queue has finished filling a buffer.
@@ -467,7 +467,7 @@ pub type AudioQueueOutputCallbackBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueinputcallbackblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-audio-types"))]
-pub type AudioQueueInputCallbackBlock = *mut block2::Block<
+pub type AudioQueueInputCallbackBlock = *mut block2::DynBlock<
     dyn Fn(
         AudioQueueRef,
         AudioQueueBufferRef,

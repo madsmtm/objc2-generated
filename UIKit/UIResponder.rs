@@ -9,7 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributesconversionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type UITextAttributesConversionHandler = *mut block2::Block<
+pub type UITextAttributesConversionHandler = *mut block2::DynBlock<
     dyn Fn(
         NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
     ) -> NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,

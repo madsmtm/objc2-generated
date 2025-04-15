@@ -159,7 +159,7 @@ extern_protocol!(
         unsafe fn handleGetAvailableRestaurantReservationBookings_completion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingsIntent,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<INGetAvailableRestaurantReservationBookingsIntentResponse>),
             >,
         );
@@ -187,7 +187,7 @@ extern_protocol!(
         unsafe fn confirmGetAvailableRestaurantReservationBookings_completion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingsIntent,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(NonNull<INGetAvailableRestaurantReservationBookingsIntentResponse>),
             >,
         );
@@ -215,7 +215,7 @@ extern_protocol!(
         unsafe fn resolveRestaurantForGetAvailableRestaurantReservationBookings_withCompletion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INRestaurantResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INRestaurantResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -230,7 +230,7 @@ extern_protocol!(
         unsafe fn resolvePartySizeForGetAvailableRestaurantReservationBookings_withCompletion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -245,7 +245,7 @@ extern_protocol!(
         unsafe fn resolvePreferredBookingDateComponentsForGetAvailableRestaurantReservationBookings_withCompletion(
             &self,
             intent: &INGetAvailableRestaurantReservationBookingsIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INDateComponentsResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INDateComponentsResolutionResult>)>,
         );
     }
 );

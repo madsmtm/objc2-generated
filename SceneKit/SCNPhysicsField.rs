@@ -37,7 +37,7 @@ unsafe impl RefEncode for SCNPhysicsFieldScope {
     feature = "block2",
     feature = "objc2-core-foundation"
 ))]
-pub type SCNFieldForceEvaluator = *mut block2::Block<
+pub type SCNFieldForceEvaluator = *mut block2::DynBlock<
     dyn Fn(SCNVector3, SCNVector3, c_float, c_float, NSTimeInterval) -> SCNVector3,
 >;
 

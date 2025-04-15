@@ -2168,7 +2168,7 @@ cf_objc2_type!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiduserdevicesetreportblock?language=objc)
 #[cfg(all(feature = "block2", feature = "hid"))]
 pub type IOHIDUserDeviceSetReportBlock =
-    *mut block2::Block<dyn Fn(IOHIDReportType, u32, NonNull<u8>, CFIndex) -> IOReturn>;
+    *mut block2::DynBlock<dyn Fn(IOHIDReportType, u32, NonNull<u8>, CFIndex) -> IOReturn>;
 
 /// The type block used for IOHIDUserDevice get report calls.
 ///
@@ -2189,7 +2189,7 @@ pub type IOHIDUserDeviceSetReportBlock =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiduserdevicegetreportblock?language=objc)
 #[cfg(all(feature = "block2", feature = "hid"))]
 pub type IOHIDUserDeviceGetReportBlock =
-    *mut block2::Block<dyn Fn(IOHIDReportType, u32, NonNull<u8>, NonNull<CFIndex>) -> IOReturn>;
+    *mut block2::DynBlock<dyn Fn(IOHIDReportType, u32, NonNull<u8>, NonNull<CFIndex>) -> IOReturn>;
 
 /// Enumerator of IOHIDUserDeviceOptions to be passed in to
 /// IOHIDUserDeviceCreateWithOptions.

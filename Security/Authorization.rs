@@ -326,7 +326,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationasynccallback?language=objc)
 #[cfg(feature = "block2")]
 pub type AuthorizationAsyncCallback =
-    *mut block2::Block<dyn Fn(OSStatus, *mut AuthorizationRights)>;
+    *mut block2::DynBlock<dyn Fn(OSStatus, *mut AuthorizationRights)>;
 
 extern "C-unwind" {
     /// An asynchronous version of AuthorizationCopyRights.

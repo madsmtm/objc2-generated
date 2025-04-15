@@ -83,7 +83,7 @@ unsafe impl RefEncode for UIAccessibilityCustomSystemRotorType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotorsearch?language=objc)
 #[cfg(feature = "block2")]
-pub type UIAccessibilityCustomRotorSearch = *mut block2::Block<
+pub type UIAccessibilityCustomRotorSearch = *mut block2::DynBlock<
     dyn Fn(
         NonNull<UIAccessibilityCustomRotorSearchPredicate>,
     ) -> *mut UIAccessibilityCustomRotorItemResult,
@@ -92,7 +92,7 @@ pub type UIAccessibilityCustomRotorSearch = *mut block2::Block<
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcustomrotorsreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXCustomRotorsReturnBlock =
-    *mut block2::Block<dyn Fn() -> *mut NSArray<UIAccessibilityCustomRotor>>;
+    *mut block2::DynBlock<dyn Fn() -> *mut NSArray<UIAccessibilityCustomRotor>>;
 
 mod private_NSObjectUIAccessibilityCustomRotor {
     pub trait Sealed {}

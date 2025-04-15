@@ -469,7 +469,7 @@ impl NSScrubber {
         #[unsafe(method_family = none)]
         pub unsafe fn performSequentialBatchUpdates(
             &self,
-            update_block: &block2::Block<dyn Fn() + '_>,
+            update_block: &block2::DynBlock<dyn Fn() + '_>,
         );
 
         /// Inserts new items at the specified indexes. NSScrubber will request views for each new index from the

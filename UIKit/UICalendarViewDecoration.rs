@@ -72,7 +72,7 @@ impl UICalendarViewDecoration {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCustomViewProvider(
             this: Allocated<Self>,
-            custom_view_provider: &block2::Block<dyn Fn() -> NonNull<UIView>>,
+            custom_view_provider: &block2::DynBlock<dyn Fn() -> NonNull<UIView>>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIColor")]
@@ -112,7 +112,7 @@ impl UICalendarViewDecoration {
         #[unsafe(method(decorationWithCustomViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decorationWithCustomViewProvider(
-            custom_view_provider: &block2::Block<dyn Fn() -> NonNull<UIView>>,
+            custom_view_provider: &block2::DynBlock<dyn Fn() -> NonNull<UIView>>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
     );

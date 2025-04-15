@@ -33,7 +33,7 @@ impl ASCredentialProviderExtensionContext {
         pub unsafe fn completeRequestWithSelectedCredential_completionHandler(
             &self,
             credential: &ASPasswordCredential,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(all(feature = "ASPasskeyAssertionCredential", feature = "block2"))]
@@ -51,7 +51,7 @@ impl ASCredentialProviderExtensionContext {
         pub unsafe fn completeAssertionRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
             credential: &ASPasskeyAssertionCredential,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(all(feature = "ASPasskeyRegistrationCredential", feature = "block2"))]
@@ -69,7 +69,7 @@ impl ASCredentialProviderExtensionContext {
         pub unsafe fn completeRegistrationRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
             credential: &ASPasskeyRegistrationCredential,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         #[cfg(all(feature = "ASOneTimeCodeCredential", feature = "block2"))]
@@ -87,7 +87,7 @@ impl ASCredentialProviderExtensionContext {
         pub unsafe fn completeOneTimeCodeRequestWithSelectedCredential_completionHandler(
             &self,
             credential: &ASOneTimeCodeCredential,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         /// Complete the request to configure the extension.
@@ -103,7 +103,7 @@ impl ASCredentialProviderExtensionContext {
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
             items: Option<&NSArray>,
-            completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
         /// Cancels the request.

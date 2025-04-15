@@ -36,7 +36,7 @@ unsafe impl RefEncode for SLRequestMethod {
 /// [Apple's documentation](https://developer.apple.com/documentation/social/slrequesthandler?language=objc)
 #[cfg(feature = "block2")]
 pub type SLRequestHandler =
-    *mut block2::Block<dyn Fn(*mut NSData, *mut NSHTTPURLResponse, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut NSData, *mut NSHTTPURLResponse, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/social/slrequest?language=objc)

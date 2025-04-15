@@ -527,6 +527,6 @@ extern "C-unwind" {
     #[cfg(feature = "block2")]
     pub fn CTLineEnumerateCaretOffsets(
         line: &CTLine,
-        block: &block2::Block<dyn Fn(c_double, CFIndex, bool, NonNull<bool>)>,
+        block: &block2::DynBlock<dyn Fn(c_double, CFIndex, bool, NonNull<bool>)>,
     );
 }

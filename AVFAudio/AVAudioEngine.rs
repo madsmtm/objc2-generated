@@ -169,7 +169,7 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingMode {
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AVAudioEngineManualRenderingBlock = *mut block2::Block<
+pub type AVAudioEngineManualRenderingBlock = *mut block2::DynBlock<
     dyn Fn(
         AVAudioFrameCount,
         NonNull<AudioBufferList>,

@@ -50,7 +50,7 @@ impl CXCallDirectoryManager {
         pub unsafe fn reloadExtensionWithIdentifier_completionHandler(
             &self,
             identifier: &NSString,
-            completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
@@ -59,7 +59,7 @@ impl CXCallDirectoryManager {
         pub unsafe fn getEnabledStatusForExtensionWithIdentifier_completionHandler(
             &self,
             identifier: &NSString,
-            completion: &block2::Block<dyn Fn(CXCallDirectoryEnabledStatus, *mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(CXCallDirectoryEnabledStatus, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -67,7 +67,7 @@ impl CXCallDirectoryManager {
         #[unsafe(method_family = none)]
         pub unsafe fn openSettingsWithCompletionHandler(
             &self,
-            completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
     );
 }

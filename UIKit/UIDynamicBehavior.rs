@@ -145,13 +145,13 @@ impl UIDynamicBehavior {
         #[cfg(feature = "block2")]
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
-        pub unsafe fn action(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn action(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`action`][Self::action].
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAction(&self, action: Option<&block2::Block<dyn Fn()>>);
+        pub unsafe fn setAction(&self, action: Option<&block2::DynBlock<dyn Fn()>>);
 
         #[cfg(feature = "UIDynamicAnimator")]
         #[unsafe(method(willMoveToAnimator:))]

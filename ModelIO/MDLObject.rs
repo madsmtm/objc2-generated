@@ -137,7 +137,7 @@ impl MDLObject {
             &self,
             object_class: &AnyClass,
             root: &MDLObject,
-            block: &block2::Block<dyn Fn(NonNull<MDLObject>, NonNull<Bool>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<MDLObject>, NonNull<Bool>)>,
             stop_pointer: NonNull<Bool>,
         );
 

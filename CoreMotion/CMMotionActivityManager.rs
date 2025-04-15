@@ -13,7 +13,7 @@ use crate::*;
     feature = "CMMotionActivity",
     feature = "block2"
 ))]
-pub type CMMotionActivityHandler = *mut block2::Block<dyn Fn(*mut CMMotionActivity)>;
+pub type CMMotionActivityHandler = *mut block2::DynBlock<dyn Fn(*mut CMMotionActivity)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityqueryhandler?language=objc)
 #[cfg(all(
@@ -22,7 +22,7 @@ pub type CMMotionActivityHandler = *mut block2::Block<dyn Fn(*mut CMMotionActivi
     feature = "block2"
 ))]
 pub type CMMotionActivityQueryHandler =
-    *mut block2::Block<dyn Fn(*mut NSArray<CMMotionActivity>, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut NSArray<CMMotionActivity>, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivitymanager?language=objc)

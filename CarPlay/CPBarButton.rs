@@ -57,7 +57,7 @@ unsafe impl RefEncode for CPBarButtonType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttonhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CPBarButtonHandler = *mut block2::Block<dyn Fn(NonNull<CPBarButton>)>;
+pub type CPBarButtonHandler = *mut block2::DynBlock<dyn Fn(NonNull<CPBarButton>)>;
 
 extern_class!(
     /// A button for placement in a navigation bar.

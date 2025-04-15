@@ -80,7 +80,7 @@ extern_protocol!(
         unsafe fn handleGetRideStatus_completion(
             &self,
             intent: &INGetRideStatusIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INGetRideStatusIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INGetRideStatusIntentResponse>)>,
         );
 
         #[cfg(feature = "INIntent")]
@@ -120,7 +120,7 @@ extern_protocol!(
         unsafe fn confirmGetRideStatus_completion(
             &self,
             intent: &INGetRideStatusIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INGetRideStatusIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INGetRideStatusIntentResponse>)>,
         );
     }
 );

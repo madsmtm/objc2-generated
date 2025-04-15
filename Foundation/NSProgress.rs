@@ -23,12 +23,12 @@ pub type NSProgressFileOperationKind = NSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressunpublishinghandler?language=objc)
 #[cfg(feature = "block2")]
-pub type NSProgressUnpublishingHandler = *mut block2::Block<dyn Fn()>;
+pub type NSProgressUnpublishingHandler = *mut block2::DynBlock<dyn Fn()>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogresspublishinghandler?language=objc)
 #[cfg(feature = "block2")]
 pub type NSProgressPublishingHandler =
-    *mut block2::Block<dyn Fn(NonNull<NSProgress>) -> NSProgressUnpublishingHandler>;
+    *mut block2::DynBlock<dyn Fn(NonNull<NSProgress>) -> NSProgressUnpublishingHandler>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogress?language=objc)
@@ -84,7 +84,7 @@ impl NSProgress {
         pub unsafe fn performAsCurrentWithPendingUnitCount_usingBlock(
             &self,
             unit_count: i64,
-            work: &block2::Block<dyn Fn() + '_>,
+            work: &block2::DynBlock<dyn Fn() + '_>,
         );
 
         #[unsafe(method(resignCurrent))]
@@ -167,7 +167,7 @@ impl NSProgress {
         #[cfg(feature = "block2")]
         #[unsafe(method(cancellationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancellationHandler(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn cancellationHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`cancellationHandler`][Self::cancellationHandler].
@@ -175,30 +175,36 @@ impl NSProgress {
         #[unsafe(method_family = none)]
         pub unsafe fn setCancellationHandler(
             &self,
-            cancellation_handler: Option<&block2::Block<dyn Fn()>>,
+            cancellation_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(pausingHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pausingHandler(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn pausingHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`pausingHandler`][Self::pausingHandler].
         #[unsafe(method(setPausingHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPausingHandler(&self, pausing_handler: Option<&block2::Block<dyn Fn()>>);
+        pub unsafe fn setPausingHandler(
+            &self,
+            pausing_handler: Option<&block2::DynBlock<dyn Fn()>>,
+        );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(resumingHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resumingHandler(&self) -> *mut block2::Block<dyn Fn()>;
+        pub unsafe fn resumingHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`resumingHandler`][Self::resumingHandler].
         #[unsafe(method(setResumingHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setResumingHandler(&self, resuming_handler: Option<&block2::Block<dyn Fn()>>);
+        pub unsafe fn setResumingHandler(
+            &self,
+            resuming_handler: Option<&block2::DynBlock<dyn Fn()>>,
+        );
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(setUserInfoObject:forKey:))]

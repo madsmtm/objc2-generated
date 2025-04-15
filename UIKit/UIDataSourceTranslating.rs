@@ -43,7 +43,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn performUsingPresentationValues(
             &self,
-            actions_to_translate: &block2::Block<dyn Fn() + '_>,
+            actions_to_translate: &block2::DynBlock<dyn Fn() + '_>,
         );
     }
 );

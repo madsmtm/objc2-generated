@@ -113,7 +113,7 @@ extern_protocol!(
         unsafe fn handleSetProfileInCar_completion(
             &self,
             intent: &INSetProfileInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSetProfileInCarIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSetProfileInCarIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -140,7 +140,7 @@ extern_protocol!(
         unsafe fn confirmSetProfileInCar_completion(
             &self,
             intent: &INSetProfileInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSetProfileInCarIntentResponse>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSetProfileInCarIntentResponse>)>,
         );
 
         #[cfg(all(
@@ -167,7 +167,7 @@ extern_protocol!(
         unsafe fn resolveProfileNumberForSetProfileInCar_withCompletion(
             &self,
             intent: &INSetProfileInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INIntegerResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INIntegerResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -182,7 +182,7 @@ extern_protocol!(
         unsafe fn resolveProfileNameForSetProfileInCar_withCompletion(
             &self,
             intent: &INSetProfileInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -197,7 +197,7 @@ extern_protocol!(
         unsafe fn resolveCarNameForSetProfileInCar_withCompletion(
             &self,
             intent: &INSetProfileInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INSpeakableStringResolutionResult>)>,
         );
 
         #[cfg(all(
@@ -213,7 +213,7 @@ extern_protocol!(
         unsafe fn resolveDefaultProfileForSetProfileInCar_withCompletion(
             &self,
             intent: &INSetProfileInCarIntent,
-            completion: &block2::Block<dyn Fn(NonNull<INBooleanResolutionResult>)>,
+            completion: &block2::DynBlock<dyn Fn(NonNull<INBooleanResolutionResult>)>,
         );
     }
 );

@@ -164,7 +164,7 @@ impl WKExtendedRuntimeSession {
         #[unsafe(method(requestAutoLaunchAuthorizationStatusWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAutoLaunchAuthorizationStatusWithCompletion(
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(WKExtendedRuntimeSessionAutoLaunchAuthorizationStatus, *mut NSError),
             >,
         );
@@ -235,7 +235,9 @@ impl WKExtendedRuntimeSession {
         pub unsafe fn notifyUserWithHaptic_repeatHandler(
             &self,
             r#type: WKHapticType,
-            repeat_handler: Option<&block2::Block<dyn Fn(NonNull<WKHapticType>) -> NSTimeInterval>>,
+            repeat_handler: Option<
+                &block2::DynBlock<dyn Fn(NonNull<WKHapticType>) -> NSTimeInterval>,
+            >,
         );
     );
 }

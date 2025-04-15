@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphonedevicemotionhandler?language=objc)
 #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
 pub type CMHeadphoneDeviceMotionHandler =
-    *mut block2::Block<dyn Fn(*mut CMDeviceMotion, *mut NSError)>;
+    *mut block2::DynBlock<dyn Fn(*mut CMDeviceMotion, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager?language=objc)

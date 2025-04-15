@@ -13,7 +13,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikernelroicallback?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-pub type CIKernelROICallback = *mut block2::Block<dyn Fn(c_int, CGRect) -> CGRect>;
+pub type CIKernelROICallback = *mut block2::DynBlock<dyn Fn(c_int, CGRect) -> CGRect>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikernel?language=objc)

@@ -99,8 +99,10 @@ impl MPMusicPlayerApplicationController {
         #[unsafe(method_family = none)]
         pub unsafe fn performQueueTransaction_completionHandler(
             &self,
-            queue_transaction: &block2::Block<dyn Fn(NonNull<MPMusicPlayerControllerMutableQueue>)>,
-            completion_handler: &block2::Block<
+            queue_transaction: &block2::DynBlock<
+                dyn Fn(NonNull<MPMusicPlayerControllerMutableQueue>),
+            >,
+            completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<MPMusicPlayerControllerQueue>, *mut NSError),
             >,
         );

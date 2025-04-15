@@ -9,7 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type IOUSBHostCompletionHandler = *mut block2::Block<dyn Fn(IOReturn, NSUInteger)>;
+pub type IOUSBHostCompletionHandler = *mut block2::DynBlock<dyn Fn(IOReturn, NSUInteger)>;
 
 /// AbsoluteTime represented as a uint64_t.
 ///
@@ -184,7 +184,7 @@ unsafe impl RefEncode for IOUSBHostIsochronousTransaction {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronouscompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type IOUSBHostIsochronousCompletionHandler =
-    *mut block2::Block<dyn Fn(IOReturn, NonNull<IOUSBHostIsochronousFrame>)>;
+    *mut block2::DynBlock<dyn Fn(IOReturn, NonNull<IOUSBHostIsochronousFrame>)>;
 
 /// Isochronous IO completion handler.
 ///
@@ -195,7 +195,7 @@ pub type IOUSBHostIsochronousCompletionHandler =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransactioncompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type IOUSBHostIsochronousTransactionCompletionHandler =
-    *mut block2::Block<dyn Fn(IOReturn, NonNull<IOUSBHostIsochronousTransaction>)>;
+    *mut block2::DynBlock<dyn Fn(IOReturn, NonNull<IOUSBHostIsochronousTransaction>)>;
 
 extern "C" {
     /// NSErrorDomain for IOUSBHostFamily. Error codes are IOKit IOReturn codes.

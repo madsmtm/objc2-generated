@@ -106,7 +106,7 @@ impl PKStrokePath {
             &self,
             range: &PKFloatRange,
             distance_step: CGFloat,
-            block: &block2::Block<dyn Fn(NonNull<PKStrokePoint>, NonNull<Bool>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<PKStrokePoint>, NonNull<Bool>)>,
         );
 
         #[cfg(all(
@@ -130,7 +130,7 @@ impl PKStrokePath {
             &self,
             range: &PKFloatRange,
             time_step: NSTimeInterval,
-            block: &block2::Block<dyn Fn(NonNull<PKStrokePoint>, NonNull<Bool>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<PKStrokePoint>, NonNull<Bool>)>,
         );
 
         #[cfg(all(
@@ -155,7 +155,7 @@ impl PKStrokePath {
             &self,
             range: &PKFloatRange,
             parametric_step: CGFloat,
-            block: &block2::Block<dyn Fn(NonNull<PKStrokePoint>, NonNull<Bool>)>,
+            block: &block2::DynBlock<dyn Fn(NonNull<PKStrokePoint>, NonNull<Bool>)>,
         );
 
         #[cfg(feature = "objc2-core-foundation")]

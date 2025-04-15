@@ -66,7 +66,7 @@ impl HKSampleQuery {
             predicate: Option<&NSPredicate>,
             limit: NSUInteger,
             sort_descriptors: Option<&NSArray<NSSortDescriptor>>,
-            results_handler: &block2::Block<
+            results_handler: &block2::DynBlock<
                 dyn Fn(NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
             >,
         ) -> Retained<Self>;
@@ -95,7 +95,7 @@ impl HKSampleQuery {
             this: Allocated<Self>,
             query_descriptors: &NSArray<HKQueryDescriptor>,
             limit: NSInteger,
-            results_handler: &block2::Block<
+            results_handler: &block2::DynBlock<
                 dyn Fn(NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
             >,
         ) -> Retained<Self>;
@@ -128,7 +128,7 @@ impl HKSampleQuery {
             query_descriptors: &NSArray<HKQueryDescriptor>,
             limit: NSInteger,
             sort_descriptors: &NSArray<NSSortDescriptor>,
-            results_handler: &block2::Block<
+            results_handler: &block2::DynBlock<
                 dyn Fn(NonNull<HKSampleQuery>, *mut NSArray<HKSample>, *mut NSError),
             >,
         ) -> Retained<Self>;

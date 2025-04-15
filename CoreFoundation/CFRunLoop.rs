@@ -271,7 +271,7 @@ extern "C-unwind" {
     pub fn CFRunLoopPerformBlock(
         rl: &CFRunLoop,
         mode: Option<&CFType>,
-        block: Option<&block2::Block<dyn Fn()>>,
+        block: Option<&block2::DynBlock<dyn Fn()>>,
     );
 }
 
@@ -649,7 +649,7 @@ pub unsafe extern "C-unwind" fn CFRunLoopObserverCreateWithHandler(
     activities: CFOptionFlags,
     repeats: bool,
     order: CFIndex,
-    block: Option<&block2::Block<dyn Fn(*mut CFRunLoopObserver, CFRunLoopActivity)>>,
+    block: Option<&block2::DynBlock<dyn Fn(*mut CFRunLoopObserver, CFRunLoopActivity)>>,
 ) -> Option<CFRetained<CFRunLoopObserver>> {
     extern "C-unwind" {
         fn CFRunLoopObserverCreateWithHandler(
@@ -657,7 +657,7 @@ pub unsafe extern "C-unwind" fn CFRunLoopObserverCreateWithHandler(
             activities: CFOptionFlags,
             repeats: Boolean,
             order: CFIndex,
-            block: Option<&block2::Block<dyn Fn(*mut CFRunLoopObserver, CFRunLoopActivity)>>,
+            block: Option<&block2::DynBlock<dyn Fn(*mut CFRunLoopObserver, CFRunLoopActivity)>>,
         ) -> Option<NonNull<CFRunLoopObserver>>;
     }
     let ret = unsafe {
@@ -800,7 +800,7 @@ pub unsafe extern "C-unwind" fn CFRunLoopTimerCreateWithHandler(
     interval: CFTimeInterval,
     flags: CFOptionFlags,
     order: CFIndex,
-    block: Option<&block2::Block<dyn Fn(*mut CFRunLoopTimer)>>,
+    block: Option<&block2::DynBlock<dyn Fn(*mut CFRunLoopTimer)>>,
 ) -> Option<CFRetained<CFRunLoopTimer>> {
     extern "C-unwind" {
         fn CFRunLoopTimerCreateWithHandler(
@@ -809,7 +809,7 @@ pub unsafe extern "C-unwind" fn CFRunLoopTimerCreateWithHandler(
             interval: CFTimeInterval,
             flags: CFOptionFlags,
             order: CFIndex,
-            block: Option<&block2::Block<dyn Fn(*mut CFRunLoopTimer)>>,
+            block: Option<&block2::DynBlock<dyn Fn(*mut CFRunLoopTimer)>>,
         ) -> Option<NonNull<CFRunLoopTimer>>;
     }
     let ret = unsafe {

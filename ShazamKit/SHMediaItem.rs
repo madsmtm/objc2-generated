@@ -299,7 +299,7 @@ impl SHMediaItem {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchMediaItemWithShazamID_completionHandler(
             shazam_id: &NSString,
-            completion_handler: &block2::Block<dyn Fn(*mut SHMediaItem, *mut NSError)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut SHMediaItem, *mut NSError)>,
         );
 
         /// Retrieve a value using a known key

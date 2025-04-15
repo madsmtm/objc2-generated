@@ -426,7 +426,7 @@ impl NSURLCache {
         pub unsafe fn getCachedResponseForDataTask_completionHandler(
             &self,
             data_task: &NSURLSessionDataTask,
-            completion_handler: &block2::Block<dyn Fn(*mut NSCachedURLResponse)>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSCachedURLResponse)>,
         );
 
         #[cfg(feature = "NSURLSession")]

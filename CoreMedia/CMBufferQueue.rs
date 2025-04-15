@@ -73,7 +73,7 @@ pub type CMBufferGetTimeCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergettimehandler?language=objc)
 #[cfg(all(feature = "CMTime", feature = "block2"))]
-pub type CMBufferGetTimeHandler = *mut block2::Block<dyn Fn(NonNull<CMBuffer>) -> CMTime>;
+pub type CMBufferGetTimeHandler = *mut block2::DynBlock<dyn Fn(NonNull<CMBuffer>) -> CMTime>;
 
 /// Client callback that returns a Boolean from a CMBufferRef
 ///
@@ -89,7 +89,7 @@ pub type CMBufferGetBooleanCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetbooleanhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMBufferGetBooleanHandler = *mut block2::Block<dyn Fn(NonNull<CMBuffer>) -> Boolean>;
+pub type CMBufferGetBooleanHandler = *mut block2::DynBlock<dyn Fn(NonNull<CMBuffer>) -> Boolean>;
 
 /// Client callback that compares one CMBufferRef with another.
 ///
@@ -109,7 +109,7 @@ pub type CMBufferCompareCallback = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffercomparehandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMBufferCompareHandler =
-    *mut block2::Block<dyn Fn(NonNull<CMBuffer>, NonNull<CMBuffer>) -> CFComparisonResult>;
+    *mut block2::DynBlock<dyn Fn(NonNull<CMBuffer>, NonNull<CMBuffer>) -> CFComparisonResult>;
 
 /// Client callback that returns a size_t from a CMBufferRef
 ///
@@ -125,7 +125,7 @@ pub type CMBufferGetSizeCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetsizehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMBufferGetSizeHandler = *mut block2::Block<dyn Fn(NonNull<CMBuffer>) -> usize>;
+pub type CMBufferGetSizeHandler = *mut block2::DynBlock<dyn Fn(NonNull<CMBuffer>) -> usize>;
 
 /// Callbacks provided to CMBufferQueueCreate, for use by the queue in interrogating the buffers that it will see.
 ///
@@ -627,7 +627,7 @@ pub type CMBufferQueueTriggerCallback =
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbufferqueuetriggerhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMBufferQueueTriggerHandler = *mut block2::Block<dyn Fn(CMBufferQueueTriggerToken)>;
+pub type CMBufferQueueTriggerHandler = *mut block2::DynBlock<dyn Fn(CMBufferQueueTriggerToken)>;
 
 /// A condition to be associated with a CMBufferQueueTrigger.
 ///
@@ -805,7 +805,7 @@ pub type CMBufferValidationCallback = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffervalidationhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMBufferValidationHandler =
-    *mut block2::Block<dyn Fn(NonNull<CMBufferQueue>, NonNull<CMBuffer>) -> OSStatus>;
+    *mut block2::DynBlock<dyn Fn(NonNull<CMBufferQueue>, NonNull<CMBuffer>) -> OSStatus>;
 
 extern "C-unwind" {
     /// Sets a function that CMBufferQueueEnqueue will call to validate buffers before adding them to the queue.

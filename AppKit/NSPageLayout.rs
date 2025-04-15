@@ -70,7 +70,7 @@ impl NSPageLayout {
             &self,
             print_info: &NSPrintInfo,
             parent_window: &NSWindow,
-            handler: Option<&block2::Block<dyn Fn(NSPageLayoutResult)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NSPageLayoutResult)>>,
         );
 
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSWindow"))]

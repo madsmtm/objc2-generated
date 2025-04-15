@@ -33,7 +33,7 @@ impl CPMapButton {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandler(
             this: Allocated<Self>,
-            handler: Option<&block2::Block<dyn Fn(NonNull<CPMapButton>)>>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPMapButton>)>>,
         ) -> Retained<Self>;
 
         /// A Boolean value indicating whether the button is enabled.

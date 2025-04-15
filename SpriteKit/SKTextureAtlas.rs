@@ -48,7 +48,7 @@ impl SKTextureAtlas {
         #[unsafe(method_family = none)]
         pub unsafe fn preloadTextureAtlases_withCompletionHandler(
             texture_atlases: &NSArray<SKTextureAtlas>,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[cfg(feature = "block2")]
@@ -64,7 +64,7 @@ impl SKTextureAtlas {
         #[unsafe(method_family = none)]
         pub unsafe fn preloadTextureAtlasesNamed_withCompletionHandler(
             atlas_names: &NSArray<NSString>,
-            completion_handler: &block2::Block<
+            completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSError, NonNull<NSArray<SKTextureAtlas>>),
             >,
         );
@@ -75,7 +75,7 @@ impl SKTextureAtlas {
         #[unsafe(method_family = none)]
         pub unsafe fn preloadWithCompletionHandler(
             &self,
-            completion_handler: &block2::Block<dyn Fn()>,
+            completion_handler: &block2::DynBlock<dyn Fn()>,
         );
 
         #[unsafe(method(textureNames))]

@@ -87,7 +87,7 @@ impl HMLocationEvent {
         pub unsafe fn updateRegion_completionHandler(
             &self,
             region: &CLRegion,
-            completion: &block2::Block<dyn Fn(*mut NSError)>,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

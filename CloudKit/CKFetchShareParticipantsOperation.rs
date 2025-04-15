@@ -64,7 +64,7 @@ impl CKFetchShareParticipantsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn shareParticipantFetchedBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(NonNull<CKShareParticipant>)>;
+        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CKShareParticipant>)>;
 
         #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
         /// Setter for [`shareParticipantFetchedBlock`][Self::shareParticipantFetchedBlock].
@@ -74,7 +74,7 @@ impl CKFetchShareParticipantsOperation {
         pub unsafe fn setShareParticipantFetchedBlock(
             &self,
             share_participant_fetched_block: Option<
-                &block2::Block<dyn Fn(NonNull<CKShareParticipant>)>,
+                &block2::DynBlock<dyn Fn(NonNull<CKShareParticipant>)>,
             >,
         );
 
@@ -94,7 +94,7 @@ impl CKFetchShareParticipantsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn perShareParticipantCompletionBlock(
             &self,
-        ) -> *mut block2::Block<
+        ) -> *mut block2::DynBlock<
             dyn Fn(NonNull<CKUserIdentityLookupInfo>, *mut CKShareParticipant, *mut NSError),
         >;
 
@@ -109,7 +109,7 @@ impl CKFetchShareParticipantsOperation {
         pub unsafe fn setPerShareParticipantCompletionBlock(
             &self,
             per_share_participant_completion_block: Option<
-                &block2::Block<
+                &block2::DynBlock<
                     dyn Fn(
                         NonNull<CKUserIdentityLookupInfo>,
                         *mut CKShareParticipant,
@@ -142,7 +142,7 @@ impl CKFetchShareParticipantsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareParticipantsCompletionBlock(
             &self,
-        ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
+        ) -> *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`fetchShareParticipantsCompletionBlock`][Self::fetchShareParticipantsCompletionBlock].
@@ -150,7 +150,9 @@ impl CKFetchShareParticipantsOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchShareParticipantsCompletionBlock(
             &self,
-            fetch_share_participants_completion_block: Option<&block2::Block<dyn Fn(*mut NSError)>>,
+            fetch_share_participants_completion_block: Option<
+                &block2::DynBlock<dyn Fn(*mut NSError)>,
+            >,
         );
     );
 }

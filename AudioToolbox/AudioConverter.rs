@@ -271,7 +271,7 @@ extern "C-unwind" {
     pub fn AudioConverterPrepare(
         in_flags: u32,
         io_reserved: *mut c_void,
-        in_completion_block: Option<&block2::Block<dyn Fn(OSStatus)>>,
+        in_completion_block: Option<&block2::DynBlock<dyn Fn(OSStatus)>>,
     );
 }
 

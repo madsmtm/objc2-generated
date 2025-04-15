@@ -31,7 +31,7 @@ impl SKOverlayTransitionContext {
         /// Adds an animation that will be synchronized with an overlay's presentation/dismissal.
         #[unsafe(method(addAnimationBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addAnimationBlock(&self, block: &block2::Block<dyn Fn()>);
+        pub unsafe fn addAnimationBlock(&self, block: &block2::DynBlock<dyn Fn()>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(startFrame))]

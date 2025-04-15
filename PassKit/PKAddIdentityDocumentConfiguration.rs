@@ -181,7 +181,7 @@ impl PKAddIdentityDocumentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn configurationForMetadata_completion(
             metadata: &PKIdentityDocumentMetadata,
-            completion: &block2::Block<
+            completion: &block2::DynBlock<
                 dyn Fn(*mut PKAddIdentityDocumentConfiguration, *mut NSError),
             >,
         );
