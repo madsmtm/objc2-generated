@@ -395,8 +395,12 @@ pub extern "C-unwind" fn CFURLCopyHostName(an_url: &CFURL) -> Option<CFRetained<
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFURLGetPortNumber(an_url: &CFURL) -> i32;
+#[inline]
+pub extern "C-unwind" fn CFURLGetPortNumber(an_url: &CFURL) -> i32 {
+    extern "C-unwind" {
+        fn CFURLGetPortNumber(an_url: &CFURL) -> i32;
+    }
+    unsafe { CFURLGetPortNumber(an_url) }
 }
 
 #[inline]
