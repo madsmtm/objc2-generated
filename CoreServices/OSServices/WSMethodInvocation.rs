@@ -176,146 +176,197 @@ unsafe impl ConcreteType for WSMethodInvocation {
     }
 }
 
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn WSMethodInvocationCreate(
-    url: Option<&CFURL>,
-    method_name: Option<&CFString>,
-    protocol: Option<&CFString>,
-) -> Option<CFRetained<WSMethodInvocation>> {
-    extern "C-unwind" {
-        fn WSMethodInvocationCreate(
-            url: Option<&CFURL>,
-            method_name: Option<&CFString>,
-            protocol: Option<&CFString>,
-        ) -> Option<NonNull<WSMethodInvocation>>;
-    }
-    let ret = unsafe { WSMethodInvocationCreate(url, method_name, protocol) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn WSMethodInvocationCreateFromSerialization(
-    contract: Option<&CFData>,
-) -> Option<CFRetained<WSMethodInvocation>> {
-    extern "C-unwind" {
-        fn WSMethodInvocationCreateFromSerialization(
-            contract: Option<&CFData>,
-        ) -> Option<NonNull<WSMethodInvocation>>;
-    }
-    let ret = unsafe { WSMethodInvocationCreateFromSerialization(contract) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn WSMethodInvocationCopySerialization(
-    invocation: &WSMethodInvocation,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn WSMethodInvocationCopySerialization(
-            invocation: &WSMethodInvocation,
-        ) -> Option<NonNull<CFData>>;
-    }
-    let ret = unsafe { WSMethodInvocationCopySerialization(invocation) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-extern "C-unwind" {
+impl WSMethodInvocation {
     #[deprecated = "No longer supported"]
-    pub fn WSMethodInvocationSetParameters(
-        invocation: &WSMethodInvocation,
+    #[inline]
+    #[doc(alias = "WSMethodInvocationCreate")]
+    pub unsafe fn new(
+        url: Option<&CFURL>,
+        method_name: Option<&CFString>,
+        protocol: Option<&CFString>,
+    ) -> Option<CFRetained<WSMethodInvocation>> {
+        extern "C-unwind" {
+            fn WSMethodInvocationCreate(
+                url: Option<&CFURL>,
+                method_name: Option<&CFString>,
+                protocol: Option<&CFString>,
+            ) -> Option<NonNull<WSMethodInvocation>>;
+        }
+        let ret = unsafe { WSMethodInvocationCreate(url, method_name, protocol) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSMethodInvocationCreateFromSerialization")]
+    pub unsafe fn from_serialization(
+        contract: Option<&CFData>,
+    ) -> Option<CFRetained<WSMethodInvocation>> {
+        extern "C-unwind" {
+            fn WSMethodInvocationCreateFromSerialization(
+                contract: Option<&CFData>,
+            ) -> Option<NonNull<WSMethodInvocation>>;
+        }
+        let ret = unsafe { WSMethodInvocationCreateFromSerialization(contract) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSMethodInvocationCopySerialization")]
+    pub unsafe fn serialization(self: &WSMethodInvocation) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn WSMethodInvocationCopySerialization(
+                invocation: &WSMethodInvocation,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { WSMethodInvocationCopySerialization(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSMethodInvocationSetParameters")]
+    pub unsafe fn set_parameters(
+        self: &WSMethodInvocation,
         parameters: Option<&CFDictionary>,
         parameter_order: Option<&CFArray>,
-    );
-}
-
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn WSMethodInvocationCopyParameters(
-    invocation: &WSMethodInvocation,
-    parameter_order: *mut *const CFArray,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn WSMethodInvocationCopyParameters(
-            invocation: &WSMethodInvocation,
-            parameter_order: *mut *const CFArray,
-        ) -> Option<NonNull<CFDictionary>>;
+    ) {
+        extern "C-unwind" {
+            fn WSMethodInvocationSetParameters(
+                invocation: &WSMethodInvocation,
+                parameters: Option<&CFDictionary>,
+                parameter_order: Option<&CFArray>,
+            );
+        }
+        unsafe { WSMethodInvocationSetParameters(self, parameters, parameter_order) }
     }
-    let ret = unsafe { WSMethodInvocationCopyParameters(invocation, parameter_order) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn WSMethodInvocationSetProperty(
-        invocation: &WSMethodInvocation,
+    #[inline]
+    #[doc(alias = "WSMethodInvocationCopyParameters")]
+    pub unsafe fn parameters(
+        self: &WSMethodInvocation,
+        parameter_order: *mut *const CFArray,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn WSMethodInvocationCopyParameters(
+                invocation: &WSMethodInvocation,
+                parameter_order: *mut *const CFArray,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { WSMethodInvocationCopyParameters(self, parameter_order) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSMethodInvocationSetProperty")]
+    pub unsafe fn set_property(
+        self: &WSMethodInvocation,
         property_name: Option<&CFString>,
         property_value: Option<&CFType>,
-    );
-}
-
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn WSMethodInvocationCopyProperty(
-    invocation: &WSMethodInvocation,
-    property_name: Option<&CFString>,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn WSMethodInvocationCopyProperty(
-            invocation: &WSMethodInvocation,
-            property_name: Option<&CFString>,
-        ) -> Option<NonNull<CFType>>;
+    ) {
+        extern "C-unwind" {
+            fn WSMethodInvocationSetProperty(
+                invocation: &WSMethodInvocation,
+                property_name: Option<&CFString>,
+                property_value: Option<&CFType>,
+            );
+        }
+        unsafe { WSMethodInvocationSetProperty(self, property_name, property_value) }
     }
-    let ret = unsafe { WSMethodInvocationCopyProperty(invocation, property_name) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn WSMethodInvocationInvoke(
-    invocation: &WSMethodInvocation,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn WSMethodInvocationInvoke(
-            invocation: &WSMethodInvocation,
-        ) -> Option<NonNull<CFDictionary>>;
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSMethodInvocationCopyProperty")]
+    pub unsafe fn property(
+        self: &WSMethodInvocation,
+        property_name: Option<&CFString>,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn WSMethodInvocationCopyProperty(
+                invocation: &WSMethodInvocation,
+                property_name: Option<&CFString>,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { WSMethodInvocationCopyProperty(self, property_name) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { WSMethodInvocationInvoke(invocation) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSMethodInvocationInvoke")]
+    pub unsafe fn invoke(self: &WSMethodInvocation) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn WSMethodInvocationInvoke(
+                invocation: &WSMethodInvocation,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { WSMethodInvocationInvoke(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationcallbackprocptr?language=objc)
 pub type WSMethodInvocationCallBackProcPtr =
     Option<unsafe extern "C-unwind" fn(*mut WSMethodInvocation, *mut c_void, *const CFDictionary)>;
 
-extern "C-unwind" {
+impl WSMethodInvocation {
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
-    pub fn WSMethodInvocationSetCallBack(
-        invocation: &WSMethodInvocation,
+    #[inline]
+    #[doc(alias = "WSMethodInvocationSetCallBack")]
+    pub unsafe fn set_call_back(
+        self: &WSMethodInvocation,
         client_cb: WSMethodInvocationCallBackProcPtr,
         context: *mut WSClientContext,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn WSMethodInvocationSetCallBack(
+                invocation: &WSMethodInvocation,
+                client_cb: WSMethodInvocationCallBackProcPtr,
+                context: *mut WSClientContext,
+            );
+        }
+        unsafe { WSMethodInvocationSetCallBack(self, client_cb, context) }
+    }
 
-extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn WSMethodInvocationScheduleWithRunLoop(
-        invocation: &WSMethodInvocation,
+    #[inline]
+    #[doc(alias = "WSMethodInvocationScheduleWithRunLoop")]
+    pub unsafe fn schedule_with_run_loop(
+        self: &WSMethodInvocation,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn WSMethodInvocationScheduleWithRunLoop(
+                invocation: &WSMethodInvocation,
+                run_loop: Option<&CFRunLoop>,
+                run_loop_mode: Option<&CFString>,
+            );
+        }
+        unsafe { WSMethodInvocationScheduleWithRunLoop(self, run_loop, run_loop_mode) }
+    }
 
-extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn WSMethodInvocationUnscheduleFromRunLoop(
-        invocation: &WSMethodInvocation,
+    #[inline]
+    #[doc(alias = "WSMethodInvocationUnscheduleFromRunLoop")]
+    pub unsafe fn unschedule_from_run_loop(
+        self: &WSMethodInvocation,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
-    );
+    ) {
+        extern "C-unwind" {
+            fn WSMethodInvocationUnscheduleFromRunLoop(
+                invocation: &WSMethodInvocation,
+                run_loop: Option<&CFRunLoop>,
+                run_loop_mode: Option<&CFString>,
+            );
+        }
+        unsafe { WSMethodInvocationUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
+    }
 }
 
 #[deprecated = "No longer supported"]
@@ -339,15 +390,29 @@ pub type WSMethodInvocationSerializationProcPtr = Option<
     ) -> *const CFString,
 >;
 
-extern "C-unwind" {
+impl WSMethodInvocation {
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
-    pub fn WSMethodInvocationAddSerializationOverride(
-        invocation: &WSMethodInvocation,
+    #[inline]
+    #[doc(alias = "WSMethodInvocationAddSerializationOverride")]
+    pub unsafe fn add_serialization_override(
+        self: &WSMethodInvocation,
         obj_type: CFTypeID,
         serialization_proc: WSMethodInvocationSerializationProcPtr,
         context: *mut WSClientContext,
-    );
+    ) {
+        extern "C-unwind" {
+            fn WSMethodInvocationAddSerializationOverride(
+                invocation: &WSMethodInvocation,
+                obj_type: CFTypeID,
+                serialization_proc: WSMethodInvocationSerializationProcPtr,
+                context: *mut WSClientContext,
+            );
+        }
+        unsafe {
+            WSMethodInvocationAddSerializationOverride(self, obj_type, serialization_proc, context)
+        }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationdeserializationprocptr?language=objc)
@@ -360,9 +425,191 @@ pub type WSMethodInvocationDeserializationProcPtr = Option<
     ) -> *const CFType,
 >;
 
-extern "C-unwind" {
+impl WSMethodInvocation {
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSMethodInvocationAddDeserializationOverride")]
+    pub unsafe fn add_deserialization_override(
+        self: &WSMethodInvocation,
+        type_namespace: Option<&CFString>,
+        type_name: Option<&CFString>,
+        deserialization_proc: WSMethodInvocationDeserializationProcPtr,
+        context: *mut WSClientContext,
+    ) {
+        extern "C-unwind" {
+            fn WSMethodInvocationAddDeserializationOverride(
+                invocation: &WSMethodInvocation,
+                type_namespace: Option<&CFString>,
+                type_name: Option<&CFString>,
+                deserialization_proc: WSMethodInvocationDeserializationProcPtr,
+                context: *mut WSClientContext,
+            );
+        }
+        unsafe {
+            WSMethodInvocationAddDeserializationOverride(
+                self,
+                type_namespace,
+                type_name,
+                deserialization_proc,
+                context,
+            )
+        }
+    }
+}
+
+#[deprecated = "renamed to `WSMethodInvocation::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn WSMethodInvocationCreate(
+    url: Option<&CFURL>,
+    method_name: Option<&CFString>,
+    protocol: Option<&CFString>,
+) -> Option<CFRetained<WSMethodInvocation>> {
+    extern "C-unwind" {
+        fn WSMethodInvocationCreate(
+            url: Option<&CFURL>,
+            method_name: Option<&CFString>,
+            protocol: Option<&CFString>,
+        ) -> Option<NonNull<WSMethodInvocation>>;
+    }
+    let ret = unsafe { WSMethodInvocationCreate(url, method_name, protocol) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `WSMethodInvocation::from_serialization`"]
+#[inline]
+pub unsafe extern "C-unwind" fn WSMethodInvocationCreateFromSerialization(
+    contract: Option<&CFData>,
+) -> Option<CFRetained<WSMethodInvocation>> {
+    extern "C-unwind" {
+        fn WSMethodInvocationCreateFromSerialization(
+            contract: Option<&CFData>,
+        ) -> Option<NonNull<WSMethodInvocation>>;
+    }
+    let ret = unsafe { WSMethodInvocationCreateFromSerialization(contract) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `WSMethodInvocation::serialization`"]
+#[inline]
+pub unsafe extern "C-unwind" fn WSMethodInvocationCopySerialization(
+    invocation: &WSMethodInvocation,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn WSMethodInvocationCopySerialization(
+            invocation: &WSMethodInvocation,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { WSMethodInvocationCopySerialization(invocation) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `WSMethodInvocation::set_parameters`"]
+    pub fn WSMethodInvocationSetParameters(
+        invocation: &WSMethodInvocation,
+        parameters: Option<&CFDictionary>,
+        parameter_order: Option<&CFArray>,
+    );
+}
+
+#[deprecated = "renamed to `WSMethodInvocation::parameters`"]
+#[inline]
+pub unsafe extern "C-unwind" fn WSMethodInvocationCopyParameters(
+    invocation: &WSMethodInvocation,
+    parameter_order: *mut *const CFArray,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn WSMethodInvocationCopyParameters(
+            invocation: &WSMethodInvocation,
+            parameter_order: *mut *const CFArray,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { WSMethodInvocationCopyParameters(invocation, parameter_order) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `WSMethodInvocation::set_property`"]
+    pub fn WSMethodInvocationSetProperty(
+        invocation: &WSMethodInvocation,
+        property_name: Option<&CFString>,
+        property_value: Option<&CFType>,
+    );
+}
+
+#[deprecated = "renamed to `WSMethodInvocation::property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn WSMethodInvocationCopyProperty(
+    invocation: &WSMethodInvocation,
+    property_name: Option<&CFString>,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn WSMethodInvocationCopyProperty(
+            invocation: &WSMethodInvocation,
+            property_name: Option<&CFString>,
+        ) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { WSMethodInvocationCopyProperty(invocation, property_name) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `WSMethodInvocation::invoke`"]
+#[inline]
+pub unsafe extern "C-unwind" fn WSMethodInvocationInvoke(
+    invocation: &WSMethodInvocation,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn WSMethodInvocationInvoke(
+            invocation: &WSMethodInvocation,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { WSMethodInvocationInvoke(invocation) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "WSTypes")]
+    #[deprecated = "renamed to `WSMethodInvocation::set_call_back`"]
+    pub fn WSMethodInvocationSetCallBack(
+        invocation: &WSMethodInvocation,
+        client_cb: WSMethodInvocationCallBackProcPtr,
+        context: *mut WSClientContext,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `WSMethodInvocation::schedule_with_run_loop`"]
+    pub fn WSMethodInvocationScheduleWithRunLoop(
+        invocation: &WSMethodInvocation,
+        run_loop: Option<&CFRunLoop>,
+        run_loop_mode: Option<&CFString>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `WSMethodInvocation::unschedule_from_run_loop`"]
+    pub fn WSMethodInvocationUnscheduleFromRunLoop(
+        invocation: &WSMethodInvocation,
+        run_loop: Option<&CFRunLoop>,
+        run_loop_mode: Option<&CFString>,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "WSTypes")]
+    #[deprecated = "renamed to `WSMethodInvocation::add_serialization_override`"]
+    pub fn WSMethodInvocationAddSerializationOverride(
+        invocation: &WSMethodInvocation,
+        obj_type: CFTypeID,
+        serialization_proc: WSMethodInvocationSerializationProcPtr,
+        context: *mut WSClientContext,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "WSTypes")]
+    #[deprecated = "renamed to `WSMethodInvocation::add_deserialization_override`"]
     pub fn WSMethodInvocationAddDeserializationOverride(
         invocation: &WSMethodInvocation,
         type_namespace: Option<&CFString>,

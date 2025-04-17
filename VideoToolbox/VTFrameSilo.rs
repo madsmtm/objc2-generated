@@ -49,7 +49,7 @@ unsafe impl ConcreteType for VTFrameSilo {
     }
 }
 
-extern "C-unwind" {
+impl VTFrameSilo {
     /// Creates a VTFrameSilo object using a temporary file.
     ///
     /// The returned VTFrameSilo object may be used to gather frames produced by multi-pass encoding.
@@ -64,16 +64,27 @@ extern "C-unwind" {
     /// Parameter `frameSiloOut`: Points to a VTFrameSiloRef to receive the newly created object.
     /// Call CFRelease to release your retain on the created VTFrameSilo object when you are done with it.
     #[cfg(feature = "objc2-core-media")]
-    pub fn VTFrameSiloCreate(
+    #[inline]
+    #[doc(alias = "VTFrameSiloCreate")]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         file_url: Option<&CFURL>,
         time_range: CMTimeRange,
         options: Option<&CFDictionary>,
         frame_silo_out: NonNull<*mut VTFrameSilo>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTFrameSiloCreate(
+                allocator: Option<&CFAllocator>,
+                file_url: Option<&CFURL>,
+                time_range: CMTimeRange,
+                options: Option<&CFDictionary>,
+                frame_silo_out: NonNull<*mut VTFrameSilo>,
+            ) -> OSStatus;
+        }
+        unsafe { VTFrameSiloCreate(allocator, file_url, time_range, options, frame_silo_out) }
+    }
 
-extern "C-unwind" {
     /// Adds a sample buffer to a VTFrameSilo object.
     ///
     /// Within each pass, sample buffers must have strictly increasing decode timestamps.
@@ -84,13 +95,21 @@ extern "C-unwind" {
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeStampErr if an attempt is made to add a sample buffer with an inappropriate decode timestamp.
     #[cfg(feature = "objc2-core-media")]
-    pub fn VTFrameSiloAddSampleBuffer(
-        silo: &VTFrameSilo,
+    #[inline]
+    #[doc(alias = "VTFrameSiloAddSampleBuffer")]
+    pub unsafe fn add_sample_buffer(
+        self: &VTFrameSilo,
         sample_buffer: &CMSampleBuffer,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTFrameSiloAddSampleBuffer(
+                silo: &VTFrameSilo,
+                sample_buffer: &CMSampleBuffer,
+            ) -> OSStatus;
+        }
+        unsafe { VTFrameSiloAddSampleBuffer(self, sample_buffer) }
+    }
 
-extern "C-unwind" {
     /// Begins a new pass of samples to be added to a VTFrameSilo object.
     ///
     /// Previously-added sample buffers with decode timestamps within the time ranges will be deleted from the VTFrameSilo.
@@ -98,26 +117,43 @@ extern "C-unwind" {
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
     #[cfg(feature = "objc2-core-media")]
-    pub fn VTFrameSiloSetTimeRangesForNextPass(
-        silo: &VTFrameSilo,
+    #[inline]
+    #[doc(alias = "VTFrameSiloSetTimeRangesForNextPass")]
+    pub unsafe fn set_time_ranges_for_next_pass(
+        self: &VTFrameSilo,
         time_range_count: CMItemCount,
         time_range_array: NonNull<CMTimeRange>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTFrameSiloSetTimeRangesForNextPass(
+                silo: &VTFrameSilo,
+                time_range_count: CMItemCount,
+                time_range_array: NonNull<CMTimeRange>,
+            ) -> OSStatus;
+        }
+        unsafe { VTFrameSiloSetTimeRangesForNextPass(self, time_range_count, time_range_array) }
+    }
 
-extern "C-unwind" {
     /// Gets the progress of the current pass.
     ///
     /// Calculates the current progress based on the most recent sample buffer added and the current pass time ranges.
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
-    pub fn VTFrameSiloGetProgressOfCurrentPass(
-        silo: &VTFrameSilo,
+    #[inline]
+    #[doc(alias = "VTFrameSiloGetProgressOfCurrentPass")]
+    pub unsafe fn progress_of_current_pass(
+        self: &VTFrameSilo,
         progress_out: NonNull<f32>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTFrameSiloGetProgressOfCurrentPass(
+                silo: &VTFrameSilo,
+                progress_out: NonNull<f32>,
+            ) -> OSStatus;
+        }
+        unsafe { VTFrameSiloGetProgressOfCurrentPass(self, progress_out) }
+    }
 
-extern "C-unwind" {
     /// Retrieves sample buffers from a VTFrameSilo object.
     ///
     /// You call this function to retrieve sample buffers at the end of a multi-pass compression session.
@@ -133,15 +169,28 @@ extern "C-unwind" {
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
     /// Returns any nonzero status returned by the callback function.
     #[cfg(feature = "objc2-core-media")]
-    pub fn VTFrameSiloCallFunctionForEachSampleBuffer(
-        silo: &VTFrameSilo,
+    #[inline]
+    #[doc(alias = "VTFrameSiloCallFunctionForEachSampleBuffer")]
+    pub unsafe fn call_function_for_each_sample_buffer(
+        self: &VTFrameSilo,
         time_range: CMTimeRange,
         refcon: *mut c_void,
         callback: unsafe extern "C-unwind" fn(*mut c_void, NonNull<CMSampleBuffer>) -> OSStatus,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTFrameSiloCallFunctionForEachSampleBuffer(
+                silo: &VTFrameSilo,
+                time_range: CMTimeRange,
+                refcon: *mut c_void,
+                callback: unsafe extern "C-unwind" fn(
+                    *mut c_void,
+                    NonNull<CMSampleBuffer>,
+                ) -> OSStatus,
+            ) -> OSStatus;
+        }
+        unsafe { VTFrameSiloCallFunctionForEachSampleBuffer(self, time_range, refcon, callback) }
+    }
 
-extern "C-unwind" {
     /// Retrieves sample buffers from a VTFrameSilo object.
     ///
     /// You call this function to retrieve sample buffers at the end of a multi-pass compression session.
@@ -157,6 +206,77 @@ extern "C-unwind" {
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
     /// Returns any nonzero status returned by the handler block.
     #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+    #[inline]
+    #[doc(alias = "VTFrameSiloCallBlockForEachSampleBuffer")]
+    pub unsafe fn call_block_for_each_sample_buffer(
+        self: &VTFrameSilo,
+        time_range: CMTimeRange,
+        handler: &block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTFrameSiloCallBlockForEachSampleBuffer(
+                silo: &VTFrameSilo,
+                time_range: CMTimeRange,
+                handler: &block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus>,
+            ) -> OSStatus;
+        }
+        unsafe { VTFrameSiloCallBlockForEachSampleBuffer(self, time_range, handler) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-media")]
+    #[deprecated = "renamed to `VTFrameSilo::create`"]
+    pub fn VTFrameSiloCreate(
+        allocator: Option<&CFAllocator>,
+        file_url: Option<&CFURL>,
+        time_range: CMTimeRange,
+        options: Option<&CFDictionary>,
+        frame_silo_out: NonNull<*mut VTFrameSilo>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-media")]
+    #[deprecated = "renamed to `VTFrameSilo::add_sample_buffer`"]
+    pub fn VTFrameSiloAddSampleBuffer(
+        silo: &VTFrameSilo,
+        sample_buffer: &CMSampleBuffer,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-media")]
+    #[deprecated = "renamed to `VTFrameSilo::set_time_ranges_for_next_pass`"]
+    pub fn VTFrameSiloSetTimeRangesForNextPass(
+        silo: &VTFrameSilo,
+        time_range_count: CMItemCount,
+        time_range_array: NonNull<CMTimeRange>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTFrameSilo::progress_of_current_pass`"]
+    pub fn VTFrameSiloGetProgressOfCurrentPass(
+        silo: &VTFrameSilo,
+        progress_out: NonNull<f32>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-media")]
+    #[deprecated = "renamed to `VTFrameSilo::call_function_for_each_sample_buffer`"]
+    pub fn VTFrameSiloCallFunctionForEachSampleBuffer(
+        silo: &VTFrameSilo,
+        time_range: CMTimeRange,
+        refcon: *mut c_void,
+        callback: unsafe extern "C-unwind" fn(*mut c_void, NonNull<CMSampleBuffer>) -> OSStatus,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+    #[deprecated = "renamed to `VTFrameSilo::call_block_for_each_sample_buffer`"]
     pub fn VTFrameSiloCallBlockForEachSampleBuffer(
         silo: &VTFrameSilo,
         time_range: CMTimeRange,

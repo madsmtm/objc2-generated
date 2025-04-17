@@ -32,27 +32,79 @@ unsafe impl ConcreteType for ODSessionRef {
     }
 }
 
-/// Creates an ODSession object to be passed to ODNode functions
-///
-/// Creates an ODSession object to be passed to ODNode functions.
-///
-/// Parameter `allocator`: a memory allocator to use for this object
-///
-/// Parameter `options`: a CFDictionary of options associated with this ODSession.  This is typically NULL
-/// unless caller needs to proxy to another host.
-///
-/// If proxy is required then a dictionary with keys should be:
-/// Key                             Value
-/// kODSessionProxyAddress        CFString(hostname or IP)
-/// kODSessionProxyPort           CFNumber(IP port, should not be set as it will default)
-/// kODSessionProxyUsername       CFString(username)
-/// kODSessionProxyPassword       CFString(password)
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a valid ODSessionRef object or NULL if it cannot be created. Pass reference to CFErrorRef to
-/// get error details
+impl ODSessionRef {
+    /// Creates an ODSession object to be passed to ODNode functions
+    ///
+    /// Creates an ODSession object to be passed to ODNode functions.
+    ///
+    /// Parameter `allocator`: a memory allocator to use for this object
+    ///
+    /// Parameter `options`: a CFDictionary of options associated with this ODSession.  This is typically NULL
+    /// unless caller needs to proxy to another host.
+    ///
+    /// If proxy is required then a dictionary with keys should be:
+    /// Key                             Value
+    /// kODSessionProxyAddress        CFString(hostname or IP)
+    /// kODSessionProxyPort           CFNumber(IP port, should not be set as it will default)
+    /// kODSessionProxyUsername       CFString(username)
+    /// kODSessionProxyPassword       CFString(password)
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a valid ODSessionRef object or NULL if it cannot be created. Pass reference to CFErrorRef to
+    /// get error details
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODSessionCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        options: Option<&CFDictionary>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<ODSessionRef>> {
+        extern "C-unwind" {
+            fn ODSessionCreate(
+                allocator: Option<&CFAllocator>,
+                options: Option<&CFDictionary>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<ODSessionRef>>;
+        }
+        let ret = unsafe { ODSessionCreate(allocator, options, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the node names that are registered on this ODSession
+    ///
+    /// Returns the node names that are registered on this ODSession
+    ///
+    /// Parameter `allocator`: a memory allocator to use for this object
+    ///
+    /// Parameter `session`: an ODSessionRef, either kODSessionDefault or a valid ODSessionRef can be passed
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a valid CFArrayRef of node names that can be opened on the session reference
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODSessionCopyNodeNames")]
+    pub unsafe fn node_names(
+        allocator: Option<&CFAllocator>,
+        session: Option<&ODSessionRef>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn ODSessionCopyNodeNames(
+                allocator: Option<&CFAllocator>,
+                session: Option<&ODSessionRef>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { ODSessionCopyNodeNames(allocator, session, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
 #[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODSessionRef::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn ODSessionCreate(
     allocator: Option<&CFAllocator>,
@@ -70,18 +122,8 @@ pub unsafe extern "C-unwind" fn ODSessionCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the node names that are registered on this ODSession
-///
-/// Returns the node names that are registered on this ODSession
-///
-/// Parameter `allocator`: a memory allocator to use for this object
-///
-/// Parameter `session`: an ODSessionRef, either kODSessionDefault or a valid ODSessionRef can be passed
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a valid CFArrayRef of node names that can be opened on the session reference
 #[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODSessionRef::node_names`"]
 #[inline]
 pub unsafe extern "C-unwind" fn ODSessionCopyNodeNames(
     allocator: Option<&CFAllocator>,

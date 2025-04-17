@@ -42,7 +42,7 @@ unsafe impl RefEncode for cp_frame {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_t?language=objc)
 pub type cp_frame_t = *mut cp_frame;
 
-extern "C-unwind" {
+impl cp_frame {
     /// Returns the sequential index number of the specified frame.
     ///
     /// - Parameters:
@@ -53,10 +53,15 @@ extern "C-unwind" {
     /// The layer assigns a unique index number to each frame, starting at
     /// the first frame and incrementing the index by 1 for each new frame.
     #[cfg(feature = "cp_types")]
-    pub fn cp_frame_get_frame_index(frame: cp_frame_t) -> cp_layer_frame_index_t;
-}
+    #[inline]
+    #[doc(alias = "cp_frame_get_frame_index")]
+    pub unsafe fn get_frame_index(frame: cp_frame_t) -> cp_layer_frame_index_t {
+        extern "C-unwind" {
+            fn cp_frame_get_frame_index(frame: cp_frame_t) -> cp_layer_frame_index_t;
+        }
+        unsafe { cp_frame_get_frame_index(frame) }
+    }
 
-extern "C-unwind" {
     /// Computes and returns the predicted timing information for the specified frame.
     ///
     /// - Parameters:
@@ -78,10 +83,15 @@ extern "C-unwind" {
     /// of this function, or call ``cp_drawable_get_frame_timing`` to get
     /// the information from the drawable instead.
     #[cfg(feature = "frame_timing")]
-    pub fn cp_frame_predict_timing(frame: cp_frame_t) -> cp_frame_timing_t;
-}
+    #[inline]
+    #[doc(alias = "cp_frame_predict_timing")]
+    pub unsafe fn predict_timing(frame: cp_frame_t) -> cp_frame_timing_t {
+        extern "C-unwind" {
+            fn cp_frame_predict_timing(frame: cp_frame_t) -> cp_frame_timing_t;
+        }
+        unsafe { cp_frame_predict_timing(frame) }
+    }
 
-extern "C-unwind" {
     /// Returns the drawable type you use to retrieve the textures and
     /// drawing environment for the frame.
     ///
@@ -98,10 +108,15 @@ extern "C-unwind" {
     /// Note: This function isn't safe to be called concurrently. Always ensure a
     /// single thread call this function at a time.
     #[cfg(feature = "drawable")]
-    pub fn cp_frame_query_drawable(frame: cp_frame_t) -> cp_drawable_t;
-}
+    #[inline]
+    #[doc(alias = "cp_frame_query_drawable")]
+    pub unsafe fn query_drawable(frame: cp_frame_t) -> cp_drawable_t {
+        extern "C-unwind" {
+            fn cp_frame_query_drawable(frame: cp_frame_t) -> cp_drawable_t;
+        }
+        unsafe { cp_frame_query_drawable(frame) }
+    }
 
-extern "C-unwind" {
     /// Notifies the compositor that you started updating the app-specific
     /// content you need to render the frame.
     ///
@@ -120,10 +135,15 @@ extern "C-unwind" {
     /// time. Don't do any work that relies on the current pose information during
     /// the update phase. Instead, make any pose-related changes during the
     /// encoding phase.
-    pub fn cp_frame_start_update(frame: cp_frame_t);
-}
+    #[inline]
+    #[doc(alias = "cp_frame_start_update")]
+    pub unsafe fn start_update(frame: cp_frame_t) {
+        extern "C-unwind" {
+            fn cp_frame_start_update(frame: cp_frame_t);
+        }
+        unsafe { cp_frame_start_update(frame) }
+    }
 
-extern "C-unwind" {
     /// Notifies the compositor that you finished updating the app-specific
     /// content you need to render the frame.
     ///
@@ -142,10 +162,15 @@ extern "C-unwind" {
     /// time. Don't do any work that relies on the current pose information during
     /// the update phase. Instead, make any pose-related changes during the
     /// encoding phase.
-    pub fn cp_frame_end_update(frame: cp_frame_t);
-}
+    #[inline]
+    #[doc(alias = "cp_frame_end_update")]
+    pub unsafe fn end_update(frame: cp_frame_t) {
+        extern "C-unwind" {
+            fn cp_frame_end_update(frame: cp_frame_t);
+        }
+        unsafe { cp_frame_end_update(frame) }
+    }
 
-extern "C-unwind" {
     /// Notifies the compositor that you're ready to generate the
     /// GPU commands to render the specified frame.
     ///
@@ -160,10 +185,15 @@ extern "C-unwind" {
     /// for when to start the frame submission process. Those predictions help
     /// you schedule the encoding process at a more optimal time for the
     /// system.
-    pub fn cp_frame_start_submission(frame: cp_frame_t);
-}
+    #[inline]
+    #[doc(alias = "cp_frame_start_submission")]
+    pub unsafe fn start_submission(frame: cp_frame_t) {
+        extern "C-unwind" {
+            fn cp_frame_start_submission(frame: cp_frame_t);
+        }
+        unsafe { cp_frame_start_submission(frame) }
+    }
 
-extern "C-unwind" {
     /// Notifies the compositor that you finished generating the GPU
     /// commands to render the specified frame.
     ///
@@ -178,5 +208,50 @@ extern "C-unwind" {
     /// for when to start the frame submission process. Those predictions help
     /// you schedule the encoding process at a more optimal time for the
     /// system.
+    #[inline]
+    #[doc(alias = "cp_frame_end_submission")]
+    pub unsafe fn end_submission(frame: cp_frame_t) {
+        extern "C-unwind" {
+            fn cp_frame_end_submission(frame: cp_frame_t);
+        }
+        unsafe { cp_frame_end_submission(frame) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "cp_types")]
+    #[deprecated = "renamed to `cp_frame::get_frame_index`"]
+    pub fn cp_frame_get_frame_index(frame: cp_frame_t) -> cp_layer_frame_index_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "frame_timing")]
+    #[deprecated = "renamed to `cp_frame::predict_timing`"]
+    pub fn cp_frame_predict_timing(frame: cp_frame_t) -> cp_frame_timing_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "drawable")]
+    #[deprecated = "renamed to `cp_frame::query_drawable`"]
+    pub fn cp_frame_query_drawable(frame: cp_frame_t) -> cp_drawable_t;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_frame::start_update`"]
+    pub fn cp_frame_start_update(frame: cp_frame_t);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_frame::end_update`"]
+    pub fn cp_frame_end_update(frame: cp_frame_t);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_frame::start_submission`"]
+    pub fn cp_frame_start_submission(frame: cp_frame_t);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_frame::end_submission`"]
     pub fn cp_frame_end_submission(frame: cp_frame_t);
 }

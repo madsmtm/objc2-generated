@@ -274,7 +274,7 @@ unsafe impl RefEncode for SSLProtocol {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+impl sec_trust {
     /// Create an ARC-able `sec_trust_t` instance from a `SecTrustRef`.
     ///
     ///
@@ -283,28 +283,37 @@ extern "C-unwind" {
     ///
     /// Returns: a `sec_trust_t` instance.
     #[cfg(feature = "SecTrust")]
-    pub fn sec_trust_create(trust: &SecTrust) -> sec_trust_t;
-}
-
-/// Copy a retained reference to the underlying `SecTrustRef` instance.
-///
-///
-/// Parameter `trust`: A `sec_trust_t` instance.
-///
-///
-/// Returns: The underlying `SecTrustRef` instance.
-#[cfg(feature = "SecTrust")]
-#[inline]
-pub unsafe extern "C-unwind" fn sec_trust_copy_ref(trust: sec_trust_t) -> CFRetained<SecTrust> {
-    extern "C-unwind" {
-        fn sec_trust_copy_ref(trust: sec_trust_t) -> Option<NonNull<SecTrust>>;
+    #[inline]
+    #[doc(alias = "sec_trust_create")]
+    pub unsafe fn create(trust: &SecTrust) -> sec_trust_t {
+        extern "C-unwind" {
+            fn sec_trust_create(trust: &SecTrust) -> sec_trust_t;
+        }
+        unsafe { sec_trust_create(trust) }
     }
-    let ret = unsafe { sec_trust_copy_ref(trust) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
+
+    /// Copy a retained reference to the underlying `SecTrustRef` instance.
+    ///
+    ///
+    /// Parameter `trust`: A `sec_trust_t` instance.
+    ///
+    ///
+    /// Returns: The underlying `SecTrustRef` instance.
+    #[cfg(feature = "SecTrust")]
+    #[inline]
+    #[doc(alias = "sec_trust_copy_ref")]
+    pub unsafe fn copy_ref(trust: sec_trust_t) -> CFRetained<SecTrust> {
+        extern "C-unwind" {
+            fn sec_trust_copy_ref(trust: sec_trust_t) -> Option<NonNull<SecTrust>>;
+        }
+        let ret = unsafe { sec_trust_copy_ref(trust) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
 }
 
-extern "C-unwind" {
+impl sec_identity {
     /// Create an ARC-able `sec_identity_t` instance from a `SecIdentityRef`.
     ///
     ///
@@ -313,10 +322,15 @@ extern "C-unwind" {
     ///
     /// Returns: a `sec_identity_t` instance.
     #[cfg(feature = "SecBase")]
-    pub fn sec_identity_create(identity: &SecIdentity) -> sec_identity_t;
-}
+    #[inline]
+    #[doc(alias = "sec_identity_create")]
+    pub unsafe fn create(identity: &SecIdentity) -> sec_identity_t {
+        extern "C-unwind" {
+            fn sec_identity_create(identity: &SecIdentity) -> sec_identity_t;
+        }
+        unsafe { sec_identity_create(identity) }
+    }
 
-extern "C-unwind" {
     /// Create an ARC-able `sec_identity_t` instance from a `SecIdentityRef` and
     /// array of SecCertificateRef instances.
     ///
@@ -329,13 +343,21 @@ extern "C-unwind" {
     ///
     /// Returns: a `sec_identity_t` instance.
     #[cfg(feature = "SecBase")]
-    pub fn sec_identity_create_with_certificates(
+    #[inline]
+    #[doc(alias = "sec_identity_create_with_certificates")]
+    pub unsafe fn create_with_certificates(
         identity: &SecIdentity,
         certificates: &CFArray,
-    ) -> sec_identity_t;
-}
+    ) -> sec_identity_t {
+        extern "C-unwind" {
+            fn sec_identity_create_with_certificates(
+                identity: &SecIdentity,
+                certificates: &CFArray,
+            ) -> sec_identity_t;
+        }
+        unsafe { sec_identity_create_with_certificates(identity, certificates) }
+    }
 
-extern "C-unwind" {
     /// Access the certificates associated with the `sec_identity_t` instance.
     ///
     ///
@@ -347,20 +369,144 @@ extern "C-unwind" {
     ///
     /// Returns: Returns true if the peer certificates were accessible, false otherwise.
     #[cfg(feature = "block2")]
+    #[inline]
+    #[doc(alias = "sec_identity_access_certificates")]
+    pub unsafe fn access_certificates(
+        identity: sec_identity_t,
+        handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn sec_identity_access_certificates(
+                identity: sec_identity_t,
+                handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
+            ) -> bool;
+        }
+        unsafe { sec_identity_access_certificates(identity, handler) }
+    }
+
+    /// Copy a retained reference to the underlying `SecIdentityRef` instance.
+    ///
+    ///
+    /// Parameter `identity`: A `sec_identity_t` instance.
+    ///
+    ///
+    /// Returns: The underlying `SecIdentityRef` instance.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "sec_identity_copy_ref")]
+    pub unsafe fn copy_ref(identity: sec_identity_t) -> Option<CFRetained<SecIdentity>> {
+        extern "C-unwind" {
+            fn sec_identity_copy_ref(identity: sec_identity_t) -> Option<NonNull<SecIdentity>>;
+        }
+        let ret = unsafe { sec_identity_copy_ref(identity) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Copy a retained reference to the underlying `CFArrayRef` container of `SecCertificateRef` types.
+    ///
+    ///
+    /// Parameter `identity`: A `sec_identity_t` instance.
+    ///
+    ///
+    /// Returns: The underlying `CFArrayRef` container with `SecCertificateRef` instances.
+    #[inline]
+    #[doc(alias = "sec_identity_copy_certificates_ref")]
+    pub unsafe fn copy_certificates_ref(identity: sec_identity_t) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn sec_identity_copy_certificates_ref(
+                identity: sec_identity_t,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { sec_identity_copy_certificates_ref(identity) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+impl sec_certificate {
+    /// Create an ARC-able `sec_certificate_t` instance from a `SecCertificateRef`.
+    ///
+    ///
+    /// Parameter `certificate`: A `SecCertificateRef` instance.
+    ///
+    ///
+    /// Returns: a `sec_certificate_t` instance.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "sec_certificate_create")]
+    pub unsafe fn create(certificate: &SecCertificate) -> sec_certificate_t {
+        extern "C-unwind" {
+            fn sec_certificate_create(certificate: &SecCertificate) -> sec_certificate_t;
+        }
+        unsafe { sec_certificate_create(certificate) }
+    }
+
+    /// Copy a retained reference to the underlying `SecCertificateRef` instance.
+    ///
+    ///
+    /// Parameter `certificate`: A `sec_certificate_t` instance.
+    ///
+    ///
+    /// Returns: The underlying `SecCertificateRef` instance.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "sec_certificate_copy_ref")]
+    pub unsafe fn copy_ref(certificate: sec_certificate_t) -> CFRetained<SecCertificate> {
+        extern "C-unwind" {
+            fn sec_certificate_copy_ref(
+                certificate: sec_certificate_t,
+            ) -> Option<NonNull<SecCertificate>>;
+        }
+        let ret = unsafe { sec_certificate_copy_ref(certificate) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecTrust")]
+    #[deprecated = "renamed to `sec_trust::create`"]
+    pub fn sec_trust_create(trust: &SecTrust) -> sec_trust_t;
+}
+
+#[cfg(feature = "SecTrust")]
+#[deprecated = "renamed to `sec_trust::copy_ref`"]
+#[inline]
+pub unsafe extern "C-unwind" fn sec_trust_copy_ref(trust: sec_trust_t) -> CFRetained<SecTrust> {
+    extern "C-unwind" {
+        fn sec_trust_copy_ref(trust: sec_trust_t) -> Option<NonNull<SecTrust>>;
+    }
+    let ret = unsafe { sec_trust_copy_ref(trust) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `sec_identity::create`"]
+    pub fn sec_identity_create(identity: &SecIdentity) -> sec_identity_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `sec_identity::create_with_certificates`"]
+    pub fn sec_identity_create_with_certificates(
+        identity: &SecIdentity,
+        certificates: &CFArray,
+    ) -> sec_identity_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `sec_identity::access_certificates`"]
     pub fn sec_identity_access_certificates(
         identity: sec_identity_t,
         handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
     ) -> bool;
 }
 
-/// Copy a retained reference to the underlying `SecIdentityRef` instance.
-///
-///
-/// Parameter `identity`: A `sec_identity_t` instance.
-///
-///
-/// Returns: The underlying `SecIdentityRef` instance.
 #[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `sec_identity::copy_ref`"]
 #[inline]
 pub unsafe extern "C-unwind" fn sec_identity_copy_ref(
     identity: sec_identity_t,
@@ -372,13 +518,7 @@ pub unsafe extern "C-unwind" fn sec_identity_copy_ref(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Copy a retained reference to the underlying `CFArrayRef` container of `SecCertificateRef` types.
-///
-///
-/// Parameter `identity`: A `sec_identity_t` instance.
-///
-///
-/// Returns: The underlying `CFArrayRef` container with `SecCertificateRef` instances.
+#[deprecated = "renamed to `sec_identity::copy_certificates_ref`"]
 #[inline]
 pub unsafe extern "C-unwind" fn sec_identity_copy_certificates_ref(
     identity: sec_identity_t,
@@ -392,25 +532,13 @@ pub unsafe extern "C-unwind" fn sec_identity_copy_certificates_ref(
 }
 
 extern "C-unwind" {
-    /// Create an ARC-able `sec_certificate_t` instance from a `SecCertificateRef`.
-    ///
-    ///
-    /// Parameter `certificate`: A `SecCertificateRef` instance.
-    ///
-    ///
-    /// Returns: a `sec_certificate_t` instance.
     #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `sec_certificate::create`"]
     pub fn sec_certificate_create(certificate: &SecCertificate) -> sec_certificate_t;
 }
 
-/// Copy a retained reference to the underlying `SecCertificateRef` instance.
-///
-///
-/// Parameter `certificate`: A `sec_certificate_t` instance.
-///
-///
-/// Returns: The underlying `SecCertificateRef` instance.
 #[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `sec_certificate::copy_ref`"]
 #[inline]
 pub unsafe extern "C-unwind" fn sec_certificate_copy_ref(
     certificate: sec_certificate_t,

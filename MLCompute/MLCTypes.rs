@@ -975,7 +975,202 @@ unsafe impl RefEncode for MLCGradientClippingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Returns a textual description of the activation type, suitable for debugging.
+impl MLCActivationType {
+    /// Returns a textual description of the activation type, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCActivationTypeDebugDescription")]
+    pub unsafe fn debug_description(activation_type: MLCActivationType) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCActivationTypeDebugDescription(
+                activation_type: MLCActivationType,
+            ) -> *mut NSString;
+        }
+        let ret = unsafe { MLCActivationTypeDebugDescription(activation_type) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCArithmeticOperation {
+    /// Returns a textual description of the arithmetic operation, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCArithmeticOperationDebugDescription")]
+    pub unsafe fn debug_description(operation: MLCArithmeticOperation) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCArithmeticOperationDebugDescription(
+                operation: MLCArithmeticOperation,
+            ) -> *mut NSString;
+        }
+        let ret = unsafe { MLCArithmeticOperationDebugDescription(operation) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCPaddingPolicy {
+    /// Returns a textual description of the padding policy, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCPaddingPolicyDebugDescription")]
+    pub unsafe fn debug_description(padding_policy: MLCPaddingPolicy) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCPaddingPolicyDebugDescription(padding_policy: MLCPaddingPolicy) -> *mut NSString;
+        }
+        let ret = unsafe { MLCPaddingPolicyDebugDescription(padding_policy) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCLossType {
+    /// Returns a textual description of the loss type, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCLossTypeDebugDescription")]
+    pub unsafe fn debug_description(loss_type: MLCLossType) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCLossTypeDebugDescription(loss_type: MLCLossType) -> *mut NSString;
+        }
+        let ret = unsafe { MLCLossTypeDebugDescription(loss_type) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCReductionType {
+    /// Returns a textual description of the reduction type, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCReductionTypeDebugDescription")]
+    pub unsafe fn debug_description(reduction_type: MLCReductionType) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCReductionTypeDebugDescription(reduction_type: MLCReductionType) -> *mut NSString;
+        }
+        let ret = unsafe { MLCReductionTypeDebugDescription(reduction_type) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCPaddingType {
+    /// Returns a textual description of the padding type, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCPaddingTypeDebugDescription")]
+    pub unsafe fn debug_description(padding_type: MLCPaddingType) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCPaddingTypeDebugDescription(padding_type: MLCPaddingType) -> *mut NSString;
+        }
+        let ret = unsafe { MLCPaddingTypeDebugDescription(padding_type) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCConvolutionType {
+    /// Returns a textual description of the convolution type, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCConvolutionTypeDebugDescription")]
+    pub unsafe fn debug_description(convolution_type: MLCConvolutionType) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCConvolutionTypeDebugDescription(
+                convolution_type: MLCConvolutionType,
+            ) -> *mut NSString;
+        }
+        let ret = unsafe { MLCConvolutionTypeDebugDescription(convolution_type) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCPoolingType {
+    /// Returns a textual description of the pooling type, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCPoolingTypeDebugDescription")]
+    pub unsafe fn debug_description(pooling_type: MLCPoolingType) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCPoolingTypeDebugDescription(pooling_type: MLCPoolingType) -> *mut NSString;
+        }
+        let ret = unsafe { MLCPoolingTypeDebugDescription(pooling_type) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCSoftmaxOperation {
+    /// Returns a textual description of the softmax operation, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCSoftmaxOperationDebugDescription")]
+    pub unsafe fn debug_description(operation: MLCSoftmaxOperation) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCSoftmaxOperationDebugDescription(operation: MLCSoftmaxOperation)
+                -> *mut NSString;
+        }
+        let ret = unsafe { MLCSoftmaxOperationDebugDescription(operation) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCSampleMode {
+    /// Returns a textual description of the sample mode, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCSampleModeDebugDescription")]
+    pub unsafe fn debug_description(mode: MLCSampleMode) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCSampleModeDebugDescription(mode: MLCSampleMode) -> *mut NSString;
+        }
+        let ret = unsafe { MLCSampleModeDebugDescription(mode) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCLSTMResultMode {
+    /// Returns a textual description of the LSTM result mode, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCLSTMResultModeDebugDescription")]
+    pub unsafe fn debug_description(mode: MLCLSTMResultMode) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCLSTMResultModeDebugDescription(mode: MLCLSTMResultMode) -> *mut NSString;
+        }
+        let ret = unsafe { MLCLSTMResultModeDebugDescription(mode) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCComparisonOperation {
+    /// Returns a textual description of the comparison operation, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCComparisonOperationDebugDescription")]
+    pub unsafe fn debug_description(operation: MLCComparisonOperation) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCComparisonOperationDebugDescription(
+                operation: MLCComparisonOperation,
+            ) -> *mut NSString;
+        }
+        let ret = unsafe { MLCComparisonOperationDebugDescription(operation) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MLCGradientClippingType {
+    /// Returns a textual description of the gradient clipping type, suitable for debugging.
+    #[inline]
+    #[doc(alias = "MLCGradientClippingTypeDebugDescription")]
+    pub unsafe fn debug_description(
+        gradient_clipping_type: MLCGradientClippingType,
+    ) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn MLCGradientClippingTypeDebugDescription(
+                gradient_clipping_type: MLCGradientClippingType,
+            ) -> *mut NSString;
+        }
+        let ret = unsafe { MLCGradientClippingTypeDebugDescription(gradient_clipping_type) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+#[deprecated = "renamed to `MLCActivationType::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCActivationTypeDebugDescription(
     activation_type: MLCActivationType,
@@ -988,7 +1183,7 @@ pub unsafe extern "C-unwind" fn MLCActivationTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the arithmetic operation, suitable for debugging.
+#[deprecated = "renamed to `MLCArithmeticOperation::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCArithmeticOperationDebugDescription(
     operation: MLCArithmeticOperation,
@@ -1003,7 +1198,7 @@ pub unsafe extern "C-unwind" fn MLCArithmeticOperationDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the padding policy, suitable for debugging.
+#[deprecated = "renamed to `MLCPaddingPolicy::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCPaddingPolicyDebugDescription(
     padding_policy: MLCPaddingPolicy,
@@ -1016,7 +1211,7 @@ pub unsafe extern "C-unwind" fn MLCPaddingPolicyDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the loss type, suitable for debugging.
+#[deprecated = "renamed to `MLCLossType::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCLossTypeDebugDescription(
     loss_type: MLCLossType,
@@ -1029,7 +1224,7 @@ pub unsafe extern "C-unwind" fn MLCLossTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the reduction type, suitable for debugging.
+#[deprecated = "renamed to `MLCReductionType::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCReductionTypeDebugDescription(
     reduction_type: MLCReductionType,
@@ -1042,7 +1237,7 @@ pub unsafe extern "C-unwind" fn MLCReductionTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the padding type, suitable for debugging.
+#[deprecated = "renamed to `MLCPaddingType::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCPaddingTypeDebugDescription(
     padding_type: MLCPaddingType,
@@ -1055,7 +1250,7 @@ pub unsafe extern "C-unwind" fn MLCPaddingTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the convolution type, suitable for debugging.
+#[deprecated = "renamed to `MLCConvolutionType::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCConvolutionTypeDebugDescription(
     convolution_type: MLCConvolutionType,
@@ -1070,7 +1265,7 @@ pub unsafe extern "C-unwind" fn MLCConvolutionTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the pooling type, suitable for debugging.
+#[deprecated = "renamed to `MLCPoolingType::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCPoolingTypeDebugDescription(
     pooling_type: MLCPoolingType,
@@ -1083,7 +1278,7 @@ pub unsafe extern "C-unwind" fn MLCPoolingTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the softmax operation, suitable for debugging.
+#[deprecated = "renamed to `MLCSoftmaxOperation::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCSoftmaxOperationDebugDescription(
     operation: MLCSoftmaxOperation,
@@ -1096,7 +1291,7 @@ pub unsafe extern "C-unwind" fn MLCSoftmaxOperationDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the sample mode, suitable for debugging.
+#[deprecated = "renamed to `MLCSampleMode::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCSampleModeDebugDescription(
     mode: MLCSampleMode,
@@ -1109,7 +1304,7 @@ pub unsafe extern "C-unwind" fn MLCSampleModeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the LSTM result mode, suitable for debugging.
+#[deprecated = "renamed to `MLCLSTMResultMode::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCLSTMResultModeDebugDescription(
     mode: MLCLSTMResultMode,
@@ -1122,7 +1317,7 @@ pub unsafe extern "C-unwind" fn MLCLSTMResultModeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the comparison operation, suitable for debugging.
+#[deprecated = "renamed to `MLCComparisonOperation::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCComparisonOperationDebugDescription(
     operation: MLCComparisonOperation,
@@ -1137,7 +1332,7 @@ pub unsafe extern "C-unwind" fn MLCComparisonOperationDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Returns a textual description of the gradient clipping type, suitable for debugging.
+#[deprecated = "renamed to `MLCGradientClippingType::debug_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MLCGradientClippingTypeDebugDescription(
     gradient_clipping_type: MLCGradientClippingType,

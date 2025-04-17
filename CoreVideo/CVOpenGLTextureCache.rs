@@ -58,7 +58,7 @@ unsafe impl ConcreteType for CVOpenGLTextureCache {
     }
 }
 
-extern "C-unwind" {
+impl CVOpenGLTextureCache {
     /// Creates a CVOpenGLTexture object from an existing CVImageBuffer
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating the CVOpenGLTexture object.  May be NULL.
@@ -79,16 +79,35 @@ extern "C-unwind" {
         feature = "CVReturn"
     ))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLTextureCacheCreateTextureFromImage(
+    #[inline]
+    #[doc(alias = "CVOpenGLTextureCacheCreateTextureFromImage")]
+    pub unsafe fn create_texture_from_image(
         allocator: Option<&CFAllocator>,
         texture_cache: &CVOpenGLTextureCache,
         source_image: &CVImageBuffer,
         attributes: Option<&CFDictionary>,
         texture_out: NonNull<*mut CVOpenGLTexture>,
-    ) -> CVReturn;
-}
+    ) -> CVReturn {
+        extern "C-unwind" {
+            fn CVOpenGLTextureCacheCreateTextureFromImage(
+                allocator: Option<&CFAllocator>,
+                texture_cache: &CVOpenGLTextureCache,
+                source_image: &CVImageBuffer,
+                attributes: Option<&CFDictionary>,
+                texture_out: NonNull<*mut CVOpenGLTexture>,
+            ) -> CVReturn;
+        }
+        unsafe {
+            CVOpenGLTextureCacheCreateTextureFromImage(
+                allocator,
+                texture_cache,
+                source_image,
+                attributes,
+                texture_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Performs internal housekeeping/recycling operations
     ///
     /// This call must be made periodically to give the texture cache a chance to make OpenGL calls
@@ -101,5 +120,38 @@ extern "C-unwind" {
     /// Returns: Returns kCVReturnSuccess on success
     #[cfg(feature = "CVBase")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+    #[inline]
+    #[doc(alias = "CVOpenGLTextureCacheFlush")]
+    pub unsafe fn flush(self: &CVOpenGLTextureCache, options: CVOptionFlags) {
+        extern "C-unwind" {
+            fn CVOpenGLTextureCacheFlush(
+                texture_cache: &CVOpenGLTextureCache,
+                options: CVOptionFlags,
+            );
+        }
+        unsafe { CVOpenGLTextureCacheFlush(self, options) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CVBuffer",
+        feature = "CVImageBuffer",
+        feature = "CVOpenGLTexture",
+        feature = "CVReturn"
+    ))]
+    #[deprecated = "renamed to `CVOpenGLTextureCache::create_texture_from_image`"]
+    pub fn CVOpenGLTextureCacheCreateTextureFromImage(
+        allocator: Option<&CFAllocator>,
+        texture_cache: &CVOpenGLTextureCache,
+        source_image: &CVImageBuffer,
+        attributes: Option<&CFDictionary>,
+        texture_out: NonNull<*mut CVOpenGLTexture>,
+    ) -> CVReturn;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CVBase")]
+    #[deprecated = "renamed to `CVOpenGLTextureCache::flush`"]
     pub fn CVOpenGLTextureCacheFlush(texture_cache: &CVOpenGLTextureCache, options: CVOptionFlags);
 }

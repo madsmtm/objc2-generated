@@ -133,23 +133,26 @@ unsafe impl RefEncode for GCMicroGamepadSnapshotData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Fills out a snapshot from any compatible NSData source
-///
-///
-/// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
-#[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
-#[inline]
-pub unsafe extern "C-unwind" fn GCMicroGamepadSnapshotDataFromNSData(
-    snapshot_data: *mut GCMicroGamepadSnapshotData,
-    data: Option<&NSData>,
-) -> bool {
-    extern "C-unwind" {
-        fn GCMicroGamepadSnapshotDataFromNSData(
-            snapshot_data: *mut GCMicroGamepadSnapshotData,
-            data: Option<&NSData>,
-        ) -> Bool;
+impl GCMicroGamepadSnapshotData {
+    /// Fills out a snapshot from any compatible NSData source
+    ///
+    ///
+    /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
+    #[inline]
+    #[doc(alias = "GCMicroGamepadSnapshotDataFromNSData")]
+    pub unsafe fn from_ns_data(
+        snapshot_data: *mut GCMicroGamepadSnapshotData,
+        data: Option<&NSData>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn GCMicroGamepadSnapshotDataFromNSData(
+                snapshot_data: *mut GCMicroGamepadSnapshotData,
+                data: Option<&NSData>,
+            ) -> Bool;
+        }
+        unsafe { GCMicroGamepadSnapshotDataFromNSData(snapshot_data, data) }.as_bool()
     }
-    unsafe { GCMicroGamepadSnapshotDataFromNSData(snapshot_data, data) }.as_bool()
 }
 
 /// Creates an NSData object from a snapshot.
@@ -201,23 +204,26 @@ unsafe impl RefEncode for GCMicroGamepadSnapShotDataV100 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Fills out a v100 snapshot from any compatible NSData source
-///
-///
-/// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
-#[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
-#[inline]
-pub unsafe extern "C-unwind" fn GCMicroGamepadSnapShotDataV100FromNSData(
-    snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
-    data: Option<&NSData>,
-) -> bool {
-    extern "C-unwind" {
-        fn GCMicroGamepadSnapShotDataV100FromNSData(
-            snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
-            data: Option<&NSData>,
-        ) -> Bool;
+impl GCMicroGamepadSnapShotDataV100 {
+    /// Fills out a v100 snapshot from any compatible NSData source
+    ///
+    ///
+    /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
+    #[inline]
+    #[doc(alias = "GCMicroGamepadSnapShotDataV100FromNSData")]
+    pub unsafe fn from_ns_data(
+        snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
+        data: Option<&NSData>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn GCMicroGamepadSnapShotDataV100FromNSData(
+                snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
+                data: Option<&NSData>,
+            ) -> Bool;
+        }
+        unsafe { GCMicroGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
     }
-    unsafe { GCMicroGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
 }
 
 /// Creates an NSData object from a v100 snapshot.
@@ -237,4 +243,34 @@ pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapShotDataV100(
     }
     let ret = unsafe { NSDataFromGCMicroGamepadSnapShotDataV100(snapshot_data) };
     unsafe { Retained::retain_autoreleased(ret) }
+}
+
+#[deprecated = "renamed to `GCMicroGamepadSnapshotData::from_ns_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn GCMicroGamepadSnapshotDataFromNSData(
+    snapshot_data: *mut GCMicroGamepadSnapshotData,
+    data: Option<&NSData>,
+) -> bool {
+    extern "C-unwind" {
+        fn GCMicroGamepadSnapshotDataFromNSData(
+            snapshot_data: *mut GCMicroGamepadSnapshotData,
+            data: Option<&NSData>,
+        ) -> Bool;
+    }
+    unsafe { GCMicroGamepadSnapshotDataFromNSData(snapshot_data, data) }.as_bool()
+}
+
+#[deprecated = "renamed to `GCMicroGamepadSnapShotDataV100::from_ns_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn GCMicroGamepadSnapShotDataV100FromNSData(
+    snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
+    data: Option<&NSData>,
+) -> bool {
+    extern "C-unwind" {
+        fn GCMicroGamepadSnapShotDataV100FromNSData(
+            snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
+            data: Option<&NSData>,
+        ) -> Bool;
+    }
+    unsafe { GCMicroGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
 }

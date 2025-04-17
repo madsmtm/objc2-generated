@@ -155,55 +155,57 @@ pub const kCTRunDelegateVersion1: c_uint = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrundelegatecurrentversion?language=objc)
 pub const kCTRunDelegateCurrentVersion: c_uint = kCTRunDelegateVersion1;
 
-/// Creates an immutable instance of a run delegate.
-///
-///
-/// This function creates an immutable instance of a run delegate
-/// that can be used for reserving space in a line or for eliding the
-/// glyphs for a range of text altogether.
-///
-///
-/// Parameter `callbacks`: The callbacks for this run delegate.
-///
-///
-/// Returns: If run delegate creation was successful, this function will
-/// return a valid reference to an immutable CTRunDelegate
-/// object. Otherwise, this function will return NULL.
-#[inline]
-pub unsafe extern "C-unwind" fn CTRunDelegateCreate(
-    callbacks: NonNull<CTRunDelegateCallbacks>,
-    ref_con: *mut c_void,
-) -> Option<CFRetained<CTRunDelegate>> {
-    extern "C-unwind" {
-        fn CTRunDelegateCreate(
-            callbacks: NonNull<CTRunDelegateCallbacks>,
-            ref_con: *mut c_void,
-        ) -> Option<NonNull<CTRunDelegate>>;
+impl CTRunDelegate {
+    /// Creates an immutable instance of a run delegate.
+    ///
+    ///
+    /// This function creates an immutable instance of a run delegate
+    /// that can be used for reserving space in a line or for eliding the
+    /// glyphs for a range of text altogether.
+    ///
+    ///
+    /// Parameter `callbacks`: The callbacks for this run delegate.
+    ///
+    ///
+    /// Returns: If run delegate creation was successful, this function will
+    /// return a valid reference to an immutable CTRunDelegate
+    /// object. Otherwise, this function will return NULL.
+    #[inline]
+    #[doc(alias = "CTRunDelegateCreate")]
+    pub unsafe fn new(
+        callbacks: NonNull<CTRunDelegateCallbacks>,
+        ref_con: *mut c_void,
+    ) -> Option<CFRetained<CTRunDelegate>> {
+        extern "C-unwind" {
+            fn CTRunDelegateCreate(
+                callbacks: NonNull<CTRunDelegateCallbacks>,
+                ref_con: *mut c_void,
+            ) -> Option<NonNull<CTRunDelegate>>;
+        }
+        let ret = unsafe { CTRunDelegateCreate(callbacks, ref_con) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CTRunDelegateCreate(callbacks, ref_con) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns a run delegate's refCon value.
-///
-///
-/// This function returns the refCon value that a run delegate was
-/// created with.
-///
-///
-/// Parameter `runDelegate`: The run delegate to be queried.
-///
-///
-/// Returns: The refCon value of the supplied run delegate.
-#[inline]
-pub unsafe extern "C-unwind" fn CTRunDelegateGetRefCon(
-    run_delegate: &CTRunDelegate,
-) -> NonNull<c_void> {
-    extern "C-unwind" {
-        fn CTRunDelegateGetRefCon(run_delegate: &CTRunDelegate) -> Option<NonNull<c_void>>;
+    /// Returns a run delegate's refCon value.
+    ///
+    ///
+    /// This function returns the refCon value that a run delegate was
+    /// created with.
+    ///
+    ///
+    /// Parameter `runDelegate`: The run delegate to be queried.
+    ///
+    ///
+    /// Returns: The refCon value of the supplied run delegate.
+    #[inline]
+    #[doc(alias = "CTRunDelegateGetRefCon")]
+    pub unsafe fn ref_con(self: &CTRunDelegate) -> NonNull<c_void> {
+        extern "C-unwind" {
+            fn CTRunDelegateGetRefCon(run_delegate: &CTRunDelegate) -> Option<NonNull<c_void>>;
+        }
+        let ret = unsafe { CTRunDelegateGetRefCon(self) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { CTRunDelegateGetRefCon(run_delegate) };
-    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 #[cfg(feature = "objc2")]
@@ -223,3 +225,31 @@ extern_protocol!(
         ) -> Option<Retained<CGImage>>;
     }
 );
+
+#[deprecated = "renamed to `CTRunDelegate::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTRunDelegateCreate(
+    callbacks: NonNull<CTRunDelegateCallbacks>,
+    ref_con: *mut c_void,
+) -> Option<CFRetained<CTRunDelegate>> {
+    extern "C-unwind" {
+        fn CTRunDelegateCreate(
+            callbacks: NonNull<CTRunDelegateCallbacks>,
+            ref_con: *mut c_void,
+        ) -> Option<NonNull<CTRunDelegate>>;
+    }
+    let ret = unsafe { CTRunDelegateCreate(callbacks, ref_con) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CTRunDelegate::ref_con`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTRunDelegateGetRefCon(
+    run_delegate: &CTRunDelegate,
+) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn CTRunDelegateGetRefCon(run_delegate: &CTRunDelegate) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { CTRunDelegateGetRefCon(run_delegate) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
+}

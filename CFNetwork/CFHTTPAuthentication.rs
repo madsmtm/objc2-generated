@@ -75,7 +75,179 @@ unsafe impl ConcreteType for CFHTTPAuthentication {
     }
 }
 
+impl CFHTTPAuthentication {
+    #[cfg(feature = "CFHTTPMessage")]
+    #[inline]
+    #[doc(alias = "CFHTTPAuthenticationCreateFromResponse")]
+    pub unsafe fn from_response(
+        alloc: Option<&CFAllocator>,
+        response: &CFHTTPMessage,
+    ) -> CFRetained<CFHTTPAuthentication> {
+        extern "C-unwind" {
+            fn CFHTTPAuthenticationCreateFromResponse(
+                alloc: Option<&CFAllocator>,
+                response: &CFHTTPMessage,
+            ) -> Option<NonNull<CFHTTPAuthentication>>;
+        }
+        let ret = unsafe { CFHTTPAuthenticationCreateFromResponse(alloc, response) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFHTTPAuthenticationIsValid")]
+    pub unsafe fn is_valid(self: &CFHTTPAuthentication, error: *mut CFStreamError) -> bool {
+        extern "C-unwind" {
+            fn CFHTTPAuthenticationIsValid(
+                auth: &CFHTTPAuthentication,
+                error: *mut CFStreamError,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFHTTPAuthenticationIsValid(self, error) };
+        ret != 0
+    }
+
+    #[cfg(feature = "CFHTTPMessage")]
+    #[inline]
+    #[doc(alias = "CFHTTPAuthenticationAppliesToRequest")]
+    pub unsafe fn applies_to_request(self: &CFHTTPAuthentication, request: &CFHTTPMessage) -> bool {
+        extern "C-unwind" {
+            fn CFHTTPAuthenticationAppliesToRequest(
+                auth: &CFHTTPAuthentication,
+                request: &CFHTTPMessage,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFHTTPAuthenticationAppliesToRequest(self, request) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "CFHTTPAuthenticationRequiresOrderedRequests")]
+    pub unsafe fn requires_ordered_requests(self: &CFHTTPAuthentication) -> bool {
+        extern "C-unwind" {
+            fn CFHTTPAuthenticationRequiresOrderedRequests(auth: &CFHTTPAuthentication) -> Boolean;
+        }
+        let ret = unsafe { CFHTTPAuthenticationRequiresOrderedRequests(self) };
+        ret != 0
+    }
+}
+
 #[cfg(feature = "CFHTTPMessage")]
+impl CFHTTPMessage {
+    #[cfg(feature = "CFHTTPMessage")]
+    #[inline]
+    #[doc(alias = "CFHTTPMessageApplyCredentials")]
+    pub unsafe fn apply_credentials(
+        self: &CFHTTPMessage,
+        auth: &CFHTTPAuthentication,
+        username: Option<&CFString>,
+        password: Option<&CFString>,
+        error: *mut CFStreamError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFHTTPMessageApplyCredentials(
+                request: &CFHTTPMessage,
+                auth: &CFHTTPAuthentication,
+                username: Option<&CFString>,
+                password: Option<&CFString>,
+                error: *mut CFStreamError,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFHTTPMessageApplyCredentials(self, auth, username, password, error) };
+        ret != 0
+    }
+
+    #[cfg(feature = "CFHTTPMessage")]
+    #[inline]
+    #[doc(alias = "CFHTTPMessageApplyCredentialDictionary")]
+    pub unsafe fn apply_credential_dictionary(
+        self: &CFHTTPMessage,
+        auth: &CFHTTPAuthentication,
+        dict: &CFDictionary,
+        error: *mut CFStreamError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFHTTPMessageApplyCredentialDictionary(
+                request: &CFHTTPMessage,
+                auth: &CFHTTPAuthentication,
+                dict: &CFDictionary,
+                error: *mut CFStreamError,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFHTTPMessageApplyCredentialDictionary(self, auth, dict, error) };
+        ret != 0
+    }
+}
+
+impl CFHTTPAuthentication {
+    #[inline]
+    #[doc(alias = "CFHTTPAuthenticationCopyRealm")]
+    pub unsafe fn realm(self: &CFHTTPAuthentication) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn CFHTTPAuthenticationCopyRealm(
+                auth: &CFHTTPAuthentication,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFHTTPAuthenticationCopyRealm(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFHTTPAuthenticationCopyDomains")]
+    pub unsafe fn domains(self: &CFHTTPAuthentication) -> CFRetained<CFArray> {
+        extern "C-unwind" {
+            fn CFHTTPAuthenticationCopyDomains(
+                auth: &CFHTTPAuthentication,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CFHTTPAuthenticationCopyDomains(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFHTTPAuthenticationCopyMethod")]
+    pub unsafe fn method(self: &CFHTTPAuthentication) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn CFHTTPAuthenticationCopyMethod(
+                auth: &CFHTTPAuthentication,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFHTTPAuthenticationCopyMethod(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFHTTPAuthenticationRequiresUserNameAndPassword")]
+    pub unsafe fn requires_user_name_and_password(self: &CFHTTPAuthentication) -> bool {
+        extern "C-unwind" {
+            fn CFHTTPAuthenticationRequiresUserNameAndPassword(
+                auth: &CFHTTPAuthentication,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFHTTPAuthenticationRequiresUserNameAndPassword(self) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "CFHTTPAuthenticationRequiresAccountDomain")]
+    pub unsafe fn requires_account_domain(self: &CFHTTPAuthentication) -> bool {
+        extern "C-unwind" {
+            fn CFHTTPAuthenticationRequiresAccountDomain(auth: &CFHTTPAuthentication) -> Boolean;
+        }
+        let ret = unsafe { CFHTTPAuthenticationRequiresAccountDomain(self) };
+        ret != 0
+    }
+}
+
+#[cfg(feature = "CFHTTPMessage")]
+#[deprecated = "renamed to `CFHTTPAuthentication::from_response`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFHTTPAuthenticationCreateFromResponse(
     alloc: Option<&CFAllocator>,
@@ -92,6 +264,7 @@ pub unsafe extern "C-unwind" fn CFHTTPAuthenticationCreateFromResponse(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+#[deprecated = "renamed to `CFHTTPAuthentication::is_valid`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFHTTPAuthenticationIsValid(
     auth: &CFHTTPAuthentication,
@@ -108,6 +281,7 @@ pub unsafe extern "C-unwind" fn CFHTTPAuthenticationIsValid(
 }
 
 #[cfg(feature = "CFHTTPMessage")]
+#[deprecated = "renamed to `CFHTTPAuthentication::applies_to_request`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFHTTPAuthenticationAppliesToRequest(
     auth: &CFHTTPAuthentication,
@@ -123,6 +297,7 @@ pub unsafe extern "C-unwind" fn CFHTTPAuthenticationAppliesToRequest(
     ret != 0
 }
 
+#[deprecated = "renamed to `CFHTTPAuthentication::requires_ordered_requests`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFHTTPAuthenticationRequiresOrderedRequests(
     auth: &CFHTTPAuthentication,
@@ -135,6 +310,7 @@ pub unsafe extern "C-unwind" fn CFHTTPAuthenticationRequiresOrderedRequests(
 }
 
 #[cfg(feature = "CFHTTPMessage")]
+#[deprecated = "renamed to `CFHTTPMessage::apply_credentials`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFHTTPMessageApplyCredentials(
     request: &CFHTTPMessage,
@@ -157,6 +333,7 @@ pub unsafe extern "C-unwind" fn CFHTTPMessageApplyCredentials(
 }
 
 #[cfg(feature = "CFHTTPMessage")]
+#[deprecated = "renamed to `CFHTTPMessage::apply_credential_dictionary`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFHTTPMessageApplyCredentialDictionary(
     request: &CFHTTPMessage,
@@ -176,6 +353,7 @@ pub unsafe extern "C-unwind" fn CFHTTPMessageApplyCredentialDictionary(
     ret != 0
 }
 
+#[deprecated = "renamed to `CFHTTPAuthentication::realm`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFHTTPAuthenticationCopyRealm(
     auth: &CFHTTPAuthentication,
@@ -188,6 +366,7 @@ pub unsafe extern "C-unwind" fn CFHTTPAuthenticationCopyRealm(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+#[deprecated = "renamed to `CFHTTPAuthentication::domains`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFHTTPAuthenticationCopyDomains(
     auth: &CFHTTPAuthentication,
@@ -201,6 +380,7 @@ pub unsafe extern "C-unwind" fn CFHTTPAuthenticationCopyDomains(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+#[deprecated = "renamed to `CFHTTPAuthentication::method`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFHTTPAuthenticationCopyMethod(
     auth: &CFHTTPAuthentication,
@@ -214,6 +394,7 @@ pub unsafe extern "C-unwind" fn CFHTTPAuthenticationCopyMethod(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+#[deprecated = "renamed to `CFHTTPAuthentication::requires_user_name_and_password`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFHTTPAuthenticationRequiresUserNameAndPassword(
     auth: &CFHTTPAuthentication,
@@ -225,6 +406,7 @@ pub unsafe extern "C-unwind" fn CFHTTPAuthenticationRequiresUserNameAndPassword(
     ret != 0
 }
 
+#[deprecated = "renamed to `CFHTTPAuthentication::requires_account_domain`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFHTTPAuthenticationRequiresAccountDomain(
     auth: &CFHTTPAuthentication,

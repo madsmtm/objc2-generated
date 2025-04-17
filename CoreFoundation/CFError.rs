@@ -102,20 +102,200 @@ extern "C" {
     pub static kCFErrorFilePathKey: Option<&'static CFString>;
 }
 
-/// Creates a new CFError.
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the error. This parameter may be NULL in which case the
-/// current default CFAllocator is used. If this reference is not a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `domain`: A CFString identifying the error domain. If this reference is NULL or is otherwise not a valid CFString, the behavior is undefined.
-///
-/// Parameter `code`: A CFIndex identifying the error code. The code is interpreted within the context of the error domain.
-///
-/// Parameter `userInfo`: A CFDictionary created with kCFCopyStringDictionaryKeyCallBacks and kCFTypeDictionaryValueCallBacks. It will be copied with CFDictionaryCreateCopy().
-/// If no userInfo dictionary is desired, NULL may be passed in as a convenience, in which case an empty userInfo dictionary will be assigned.
-///
-/// Returns: A reference to the new CFError.
+impl CFError {
+    /// Creates a new CFError.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the error. This parameter may be NULL in which case the
+    /// current default CFAllocator is used. If this reference is not a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `domain`: A CFString identifying the error domain. If this reference is NULL or is otherwise not a valid CFString, the behavior is undefined.
+    ///
+    /// Parameter `code`: A CFIndex identifying the error code. The code is interpreted within the context of the error domain.
+    ///
+    /// Parameter `userInfo`: A CFDictionary created with kCFCopyStringDictionaryKeyCallBacks and kCFTypeDictionaryValueCallBacks. It will be copied with CFDictionaryCreateCopy().
+    /// If no userInfo dictionary is desired, NULL may be passed in as a convenience, in which case an empty userInfo dictionary will be assigned.
+    ///
+    /// Returns: A reference to the new CFError.
+    #[cfg(feature = "CFDictionary")]
+    #[inline]
+    #[doc(alias = "CFErrorCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        domain: Option<&CFErrorDomain>,
+        code: CFIndex,
+        user_info: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CFError>> {
+        extern "C-unwind" {
+            fn CFErrorCreate(
+                allocator: Option<&CFAllocator>,
+                domain: Option<&CFErrorDomain>,
+                code: CFIndex,
+                user_info: Option<&CFDictionary>,
+            ) -> Option<NonNull<CFError>>;
+        }
+        let ret = unsafe { CFErrorCreate(allocator, domain, code, user_info) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Creates a new CFError without having to create an intermediate userInfo dictionary.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the error. This parameter may be NULL in which case the
+    /// current default CFAllocator is used. If this reference is not a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `domain`: A CFString identifying the error domain. If this reference is NULL or is otherwise not a valid CFString, the behavior is undefined.
+    ///
+    /// Parameter `code`: A CFIndex identifying the error code. The code is interpreted within the context of the error domain.
+    ///
+    /// Parameter `userInfoKeys`: An array of numUserInfoValues CFStrings used as keys in creating the userInfo dictionary. NULL is valid only if numUserInfoValues is 0.
+    ///
+    /// Parameter `userInfoValues`: An array of numUserInfoValues CF types used as values in creating the userInfo dictionary.  NULL is valid only if numUserInfoValues is 0.
+    ///
+    /// Parameter `numUserInfoValues`: CFIndex representing the number of keys and values in the userInfoKeys and userInfoValues arrays.
+    ///
+    /// Returns: A reference to the new CFError. numUserInfoValues CF types are gathered from each of userInfoKeys and userInfoValues to create the userInfo dictionary.
+    #[inline]
+    #[doc(alias = "CFErrorCreateWithUserInfoKeysAndValues")]
+    pub unsafe fn with_user_info_keys_and_values(
+        allocator: Option<&CFAllocator>,
+        domain: Option<&CFErrorDomain>,
+        code: CFIndex,
+        user_info_keys: *const *const c_void,
+        user_info_values: *const *const c_void,
+        num_user_info_values: CFIndex,
+    ) -> Option<CFRetained<CFError>> {
+        extern "C-unwind" {
+            fn CFErrorCreateWithUserInfoKeysAndValues(
+                allocator: Option<&CFAllocator>,
+                domain: Option<&CFErrorDomain>,
+                code: CFIndex,
+                user_info_keys: *const *const c_void,
+                user_info_values: *const *const c_void,
+                num_user_info_values: CFIndex,
+            ) -> Option<NonNull<CFError>>;
+        }
+        let ret = unsafe {
+            CFErrorCreateWithUserInfoKeysAndValues(
+                allocator,
+                domain,
+                code,
+                user_info_keys,
+                user_info_values,
+                num_user_info_values,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the error domain the CFError was created with.
+    ///
+    /// Parameter `err`: The CFError whose error domain is to be returned. If this reference is not a valid CFError, the behavior is undefined.
+    ///
+    /// Returns: The error domain of the CFError. Since this is a "Get" function, the caller shouldn't CFRelease the return value.
+    #[inline]
+    #[doc(alias = "CFErrorGetDomain")]
+    pub fn domain(self: &CFError) -> Option<CFRetained<CFErrorDomain>> {
+        extern "C-unwind" {
+            fn CFErrorGetDomain(err: &CFError) -> Option<NonNull<CFErrorDomain>>;
+        }
+        let ret = unsafe { CFErrorGetDomain(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    /// Returns the error code the CFError was created with.
+    ///
+    /// Parameter `err`: The CFError whose error code is to be returned. If this reference is not a valid CFError, the behavior is undefined.
+    ///
+    /// Returns: The error code of the CFError (not an error return for the current call).
+    #[inline]
+    #[doc(alias = "CFErrorGetCode")]
+    pub fn code(self: &CFError) -> CFIndex {
+        extern "C-unwind" {
+            fn CFErrorGetCode(err: &CFError) -> CFIndex;
+        }
+        unsafe { CFErrorGetCode(self) }
+    }
+
+    /// Returns CFError userInfo dictionary.
+    ///
+    /// Returns a dictionary containing the same keys and values as in the userInfo dictionary the CFError was created with. Returns an empty dictionary if NULL was supplied to CFErrorCreate().
+    ///
+    /// Parameter `err`: The CFError whose error user info is to be returned. If this reference is not a valid CFError, the behavior is undefined.
+    ///
+    /// Returns: The user info of the CFError.
+    #[cfg(feature = "CFDictionary")]
+    #[inline]
+    #[doc(alias = "CFErrorCopyUserInfo")]
+    pub fn user_info(self: &CFError) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CFErrorCopyUserInfo(err: &CFError) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CFErrorCopyUserInfo(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns a human-presentable description for the error. CFError creators should strive to make sure the return value is human-presentable and localized by providing a value for kCFErrorLocalizedDescriptionKey at the time of CFError creation.
+    ///
+    /// This is a complete sentence or two which says what failed and why it failed. Please refer to header comments for -[NSError localizedDescription] for details on the steps used to compute this; but roughly:
+    /// - Use value of kCFErrorLocalizedDescriptionKey as-is if provided.
+    /// - Use value of kCFErrorLocalizedFailureKey if provided, optionally followed by kCFErrorLocalizedFailureReasonKey if available.
+    /// - Use value of kCFErrorLocalizedFailureReasonKey, combining with a generic failure message such as: "Operation code not be completed. " + kCFErrorLocalizedFailureReasonKey.
+    /// - If all of the above fail, generate a semi-user presentable string from kCFErrorDescriptionKey, the domain, and code. Something like: "Operation could not be completed. Error domain/code occurred. " or "Operation could not be completed. " + kCFErrorDescriptionKey + " (Error domain/code)"
+    /// Toll-free bridged NSError instances might provide additional behaviors for manufacturing a description string.  Do not count on the exact contents or format of the returned string, it might change.
+    ///
+    /// Parameter `err`: The CFError whose description is to be returned. If this reference is not a valid CFError, the behavior is undefined.
+    ///
+    /// Returns: A CFString with human-presentable description of the CFError. Never NULL.
+    #[inline]
+    #[doc(alias = "CFErrorCopyDescription")]
+    pub fn description(self: &CFError) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CFErrorCopyDescription(err: &CFError) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFErrorCopyDescription(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns a human-presentable failure reason for the error.  May return NULL.  CFError creators should strive to make sure the return value is human-presentable and localized by providing a value for kCFErrorLocalizedFailureReasonKey at the time of CFError creation.
+    ///
+    /// This is a complete sentence which describes why the operation failed. In many cases this will be just the "because" part of the description (but as a complete sentence, which makes localization easier). By default this looks for kCFErrorLocalizedFailureReasonKey in the user info. Toll-free bridged NSError instances might provide additional behaviors for manufacturing this value. If no user-presentable string is available, returns NULL.
+    /// Example Description: "Could not save file 'Letter' in folder 'Documents' because the volume 'MyDisk' doesn't have enough space."
+    /// Corresponding FailureReason: "The volume 'MyDisk' doesn't have enough space."
+    ///
+    /// Parameter `err`: The CFError whose failure reason is to be returned. If this reference is not a valid CFError, the behavior is undefined.
+    ///
+    /// Returns: A CFString with the localized, end-user presentable failure reason of the CFError, or NULL.
+    #[inline]
+    #[doc(alias = "CFErrorCopyFailureReason")]
+    pub fn failure_reason(self: &CFError) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CFErrorCopyFailureReason(err: &CFError) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFErrorCopyFailureReason(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns a human presentable recovery suggestion for the error.  May return NULL.  CFError creators should strive to make sure the return value is human-presentable and localized by providing a value for kCFErrorLocalizedRecoverySuggestionKey at the time of CFError creation.
+    ///
+    /// This is the string that can be displayed as the "informative" (aka "secondary") message on an alert panel. By default this looks for kCFErrorLocalizedRecoverySuggestionKey in the user info. Toll-free bridged NSError instances might provide additional behaviors for manufacturing this value. If no user-presentable string is available, returns NULL.
+    /// Example Description: "Could not save file 'Letter' in folder 'Documents' because the volume 'MyDisk' doesn't have enough space."
+    /// Corresponding RecoverySuggestion: "Remove some files from the volume and try again."
+    ///
+    /// Parameter `err`: The CFError whose recovery suggestion is to be returned. If this reference is not a valid CFError, the behavior is undefined.
+    ///
+    /// Returns: A CFString with the localized, end-user presentable recovery suggestion of the CFError, or NULL.
+    #[inline]
+    #[doc(alias = "CFErrorCopyRecoverySuggestion")]
+    pub fn recovery_suggestion(self: &CFError) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CFErrorCopyRecoverySuggestion(err: &CFError) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFErrorCopyRecoverySuggestion(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
 #[cfg(feature = "CFDictionary")]
+#[deprecated = "renamed to `CFError::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFErrorCreate(
     allocator: Option<&CFAllocator>,
@@ -135,22 +315,7 @@ pub unsafe extern "C-unwind" fn CFErrorCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Creates a new CFError without having to create an intermediate userInfo dictionary.
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the error. This parameter may be NULL in which case the
-/// current default CFAllocator is used. If this reference is not a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `domain`: A CFString identifying the error domain. If this reference is NULL or is otherwise not a valid CFString, the behavior is undefined.
-///
-/// Parameter `code`: A CFIndex identifying the error code. The code is interpreted within the context of the error domain.
-///
-/// Parameter `userInfoKeys`: An array of numUserInfoValues CFStrings used as keys in creating the userInfo dictionary. NULL is valid only if numUserInfoValues is 0.
-///
-/// Parameter `userInfoValues`: An array of numUserInfoValues CF types used as values in creating the userInfo dictionary.  NULL is valid only if numUserInfoValues is 0.
-///
-/// Parameter `numUserInfoValues`: CFIndex representing the number of keys and values in the userInfoKeys and userInfoValues arrays.
-///
-/// Returns: A reference to the new CFError. numUserInfoValues CF types are gathered from each of userInfoKeys and userInfoValues to create the userInfo dictionary.
+#[deprecated = "renamed to `CFError::with_user_info_keys_and_values`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFErrorCreateWithUserInfoKeysAndValues(
     allocator: Option<&CFAllocator>,
@@ -183,11 +348,7 @@ pub unsafe extern "C-unwind" fn CFErrorCreateWithUserInfoKeysAndValues(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the error domain the CFError was created with.
-///
-/// Parameter `err`: The CFError whose error domain is to be returned. If this reference is not a valid CFError, the behavior is undefined.
-///
-/// Returns: The error domain of the CFError. Since this is a "Get" function, the caller shouldn't CFRelease the return value.
+#[deprecated = "renamed to `CFError::domain`"]
 #[inline]
 pub extern "C-unwind" fn CFErrorGetDomain(err: &CFError) -> Option<CFRetained<CFErrorDomain>> {
     extern "C-unwind" {
@@ -197,11 +358,7 @@ pub extern "C-unwind" fn CFErrorGetDomain(err: &CFError) -> Option<CFRetained<CF
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// Returns the error code the CFError was created with.
-///
-/// Parameter `err`: The CFError whose error code is to be returned. If this reference is not a valid CFError, the behavior is undefined.
-///
-/// Returns: The error code of the CFError (not an error return for the current call).
+#[deprecated = "renamed to `CFError::code`"]
 #[inline]
 pub extern "C-unwind" fn CFErrorGetCode(err: &CFError) -> CFIndex {
     extern "C-unwind" {
@@ -210,14 +367,8 @@ pub extern "C-unwind" fn CFErrorGetCode(err: &CFError) -> CFIndex {
     unsafe { CFErrorGetCode(err) }
 }
 
-/// Returns CFError userInfo dictionary.
-///
-/// Returns a dictionary containing the same keys and values as in the userInfo dictionary the CFError was created with. Returns an empty dictionary if NULL was supplied to CFErrorCreate().
-///
-/// Parameter `err`: The CFError whose error user info is to be returned. If this reference is not a valid CFError, the behavior is undefined.
-///
-/// Returns: The user info of the CFError.
 #[cfg(feature = "CFDictionary")]
+#[deprecated = "renamed to `CFError::user_info`"]
 #[inline]
 pub extern "C-unwind" fn CFErrorCopyUserInfo(err: &CFError) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -227,18 +378,7 @@ pub extern "C-unwind" fn CFErrorCopyUserInfo(err: &CFError) -> Option<CFRetained
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns a human-presentable description for the error. CFError creators should strive to make sure the return value is human-presentable and localized by providing a value for kCFErrorLocalizedDescriptionKey at the time of CFError creation.
-///
-/// This is a complete sentence or two which says what failed and why it failed. Please refer to header comments for -[NSError localizedDescription] for details on the steps used to compute this; but roughly:
-/// - Use value of kCFErrorLocalizedDescriptionKey as-is if provided.
-/// - Use value of kCFErrorLocalizedFailureKey if provided, optionally followed by kCFErrorLocalizedFailureReasonKey if available.
-/// - Use value of kCFErrorLocalizedFailureReasonKey, combining with a generic failure message such as: "Operation code not be completed. " + kCFErrorLocalizedFailureReasonKey.
-/// - If all of the above fail, generate a semi-user presentable string from kCFErrorDescriptionKey, the domain, and code. Something like: "Operation could not be completed. Error domain/code occurred. " or "Operation could not be completed. " + kCFErrorDescriptionKey + " (Error domain/code)"
-/// Toll-free bridged NSError instances might provide additional behaviors for manufacturing a description string.  Do not count on the exact contents or format of the returned string, it might change.
-///
-/// Parameter `err`: The CFError whose description is to be returned. If this reference is not a valid CFError, the behavior is undefined.
-///
-/// Returns: A CFString with human-presentable description of the CFError. Never NULL.
+#[deprecated = "renamed to `CFError::description`"]
 #[inline]
 pub extern "C-unwind" fn CFErrorCopyDescription(err: &CFError) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -248,15 +388,7 @@ pub extern "C-unwind" fn CFErrorCopyDescription(err: &CFError) -> Option<CFRetai
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns a human-presentable failure reason for the error.  May return NULL.  CFError creators should strive to make sure the return value is human-presentable and localized by providing a value for kCFErrorLocalizedFailureReasonKey at the time of CFError creation.
-///
-/// This is a complete sentence which describes why the operation failed. In many cases this will be just the "because" part of the description (but as a complete sentence, which makes localization easier). By default this looks for kCFErrorLocalizedFailureReasonKey in the user info. Toll-free bridged NSError instances might provide additional behaviors for manufacturing this value. If no user-presentable string is available, returns NULL.
-/// Example Description: "Could not save file 'Letter' in folder 'Documents' because the volume 'MyDisk' doesn't have enough space."
-/// Corresponding FailureReason: "The volume 'MyDisk' doesn't have enough space."
-///
-/// Parameter `err`: The CFError whose failure reason is to be returned. If this reference is not a valid CFError, the behavior is undefined.
-///
-/// Returns: A CFString with the localized, end-user presentable failure reason of the CFError, or NULL.
+#[deprecated = "renamed to `CFError::failure_reason`"]
 #[inline]
 pub extern "C-unwind" fn CFErrorCopyFailureReason(err: &CFError) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -266,15 +398,7 @@ pub extern "C-unwind" fn CFErrorCopyFailureReason(err: &CFError) -> Option<CFRet
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns a human presentable recovery suggestion for the error.  May return NULL.  CFError creators should strive to make sure the return value is human-presentable and localized by providing a value for kCFErrorLocalizedRecoverySuggestionKey at the time of CFError creation.
-///
-/// This is the string that can be displayed as the "informative" (aka "secondary") message on an alert panel. By default this looks for kCFErrorLocalizedRecoverySuggestionKey in the user info. Toll-free bridged NSError instances might provide additional behaviors for manufacturing this value. If no user-presentable string is available, returns NULL.
-/// Example Description: "Could not save file 'Letter' in folder 'Documents' because the volume 'MyDisk' doesn't have enough space."
-/// Corresponding RecoverySuggestion: "Remove some files from the volume and try again."
-///
-/// Parameter `err`: The CFError whose recovery suggestion is to be returned. If this reference is not a valid CFError, the behavior is undefined.
-///
-/// Returns: A CFString with the localized, end-user presentable recovery suggestion of the CFError, or NULL.
+#[deprecated = "renamed to `CFError::recovery_suggestion`"]
 #[inline]
 pub extern "C-unwind" fn CFErrorCopyRecoverySuggestion(
     err: &CFError,

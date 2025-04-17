@@ -53,7 +53,90 @@ unsafe impl RefEncode for CGPDFBox {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+impl CGPDFPage {
+    #[cfg(feature = "CGPDFDocument")]
+    #[inline]
+    #[doc(alias = "CGPDFPageGetDocument")]
+    pub unsafe fn document(page: Option<&CGPDFPage>) -> Option<CFRetained<CGPDFDocument>> {
+        extern "C-unwind" {
+            fn CGPDFPageGetDocument(page: Option<&CGPDFPage>) -> Option<NonNull<CGPDFDocument>>;
+        }
+        let ret = unsafe { CGPDFPageGetDocument(page) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFPageGetPageNumber")]
+    pub unsafe fn page_number(page: Option<&CGPDFPage>) -> usize {
+        extern "C-unwind" {
+            fn CGPDFPageGetPageNumber(page: Option<&CGPDFPage>) -> usize;
+        }
+        unsafe { CGPDFPageGetPageNumber(page) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFPageGetBoxRect")]
+    pub unsafe fn box_rect(page: Option<&CGPDFPage>, r#box: CGPDFBox) -> CGRect {
+        extern "C-unwind" {
+            fn CGPDFPageGetBoxRect(page: Option<&CGPDFPage>, r#box: CGPDFBox) -> CGRect;
+        }
+        unsafe { CGPDFPageGetBoxRect(page, r#box) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFPageGetRotationAngle")]
+    pub unsafe fn rotation_angle(page: Option<&CGPDFPage>) -> c_int {
+        extern "C-unwind" {
+            fn CGPDFPageGetRotationAngle(page: Option<&CGPDFPage>) -> c_int;
+        }
+        unsafe { CGPDFPageGetRotationAngle(page) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFPageGetDrawingTransform")]
+    pub unsafe fn drawing_transform(
+        page: Option<&CGPDFPage>,
+        r#box: CGPDFBox,
+        rect: CGRect,
+        rotate: c_int,
+        preserve_aspect_ratio: bool,
+    ) -> CGAffineTransform {
+        extern "C-unwind" {
+            fn CGPDFPageGetDrawingTransform(
+                page: Option<&CGPDFPage>,
+                r#box: CGPDFBox,
+                rect: CGRect,
+                rotate: c_int,
+                preserve_aspect_ratio: bool,
+            ) -> CGAffineTransform;
+        }
+        unsafe { CGPDFPageGetDrawingTransform(page, r#box, rect, rotate, preserve_aspect_ratio) }
+    }
+
+    #[cfg(feature = "CGPDFDictionary")]
+    #[inline]
+    #[doc(alias = "CGPDFPageGetDictionary")]
+    pub unsafe fn dictionary(page: Option<&CGPDFPage>) -> CGPDFDictionaryRef {
+        extern "C-unwind" {
+            fn CGPDFPageGetDictionary(page: Option<&CGPDFPage>) -> CGPDFDictionaryRef;
+        }
+        unsafe { CGPDFPageGetDictionary(page) }
+    }
+}
+
+unsafe impl ConcreteType for CGPDFPage {
+    #[doc(alias = "CGPDFPageGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGPDFPageGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGPDFPageGetTypeID() }
+    }
+}
+
 #[cfg(feature = "CGPDFDocument")]
+#[deprecated = "renamed to `CGPDFPage::document`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPDFPageGetDocument(
     page: Option<&CGPDFPage>,
@@ -66,18 +149,22 @@ pub unsafe extern "C-unwind" fn CGPDFPageGetDocument(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFPage::page_number`"]
     pub fn CGPDFPageGetPageNumber(page: Option<&CGPDFPage>) -> usize;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFPage::box_rect`"]
     pub fn CGPDFPageGetBoxRect(page: Option<&CGPDFPage>, r#box: CGPDFBox) -> CGRect;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFPage::rotation_angle`"]
     pub fn CGPDFPageGetRotationAngle(page: Option<&CGPDFPage>) -> c_int;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFPage::drawing_transform`"]
     pub fn CGPDFPageGetDrawingTransform(
         page: Option<&CGPDFPage>,
         r#box: CGPDFBox,
@@ -89,16 +176,6 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFDictionary")]
+    #[deprecated = "renamed to `CGPDFPage::dictionary`"]
     pub fn CGPDFPageGetDictionary(page: Option<&CGPDFPage>) -> CGPDFDictionaryRef;
-}
-
-unsafe impl ConcreteType for CGPDFPage {
-    #[doc(alias = "CGPDFPageGetTypeID")]
-    #[inline]
-    fn type_id() -> CFTypeID {
-        extern "C-unwind" {
-            fn CGPDFPageGetTypeID() -> CFTypeID;
-        }
-        unsafe { CGPDFPageGetTypeID() }
-    }
 }

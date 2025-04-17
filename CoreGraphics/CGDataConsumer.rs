@@ -67,6 +67,47 @@ unsafe impl ConcreteType for CGDataConsumer {
     }
 }
 
+impl CGDataConsumer {
+    #[inline]
+    #[doc(alias = "CGDataConsumerCreate")]
+    pub unsafe fn new(
+        info: *mut c_void,
+        cbks: *const CGDataConsumerCallbacks,
+    ) -> Option<CFRetained<CGDataConsumer>> {
+        extern "C-unwind" {
+            fn CGDataConsumerCreate(
+                info: *mut c_void,
+                cbks: *const CGDataConsumerCallbacks,
+            ) -> Option<NonNull<CGDataConsumer>>;
+        }
+        let ret = unsafe { CGDataConsumerCreate(info, cbks) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGDataConsumerCreateWithURL")]
+    pub unsafe fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataConsumer>> {
+        extern "C-unwind" {
+            fn CGDataConsumerCreateWithURL(url: Option<&CFURL>) -> Option<NonNull<CGDataConsumer>>;
+        }
+        let ret = unsafe { CGDataConsumerCreateWithURL(url) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGDataConsumerCreateWithCFData")]
+    pub unsafe fn with_cf_data(data: Option<&CFMutableData>) -> Option<CFRetained<CGDataConsumer>> {
+        extern "C-unwind" {
+            fn CGDataConsumerCreateWithCFData(
+                data: Option<&CFMutableData>,
+            ) -> Option<NonNull<CGDataConsumer>>;
+        }
+        let ret = unsafe { CGDataConsumerCreateWithCFData(data) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+#[deprecated = "renamed to `CGDataConsumer::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGDataConsumerCreate(
     info: *mut c_void,
@@ -82,6 +123,7 @@ pub unsafe extern "C-unwind" fn CGDataConsumerCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `CGDataConsumer::with_url`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGDataConsumerCreateWithURL(
     url: Option<&CFURL>,
@@ -93,6 +135,7 @@ pub unsafe extern "C-unwind" fn CGDataConsumerCreateWithURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `CGDataConsumer::with_cf_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGDataConsumerCreateWithCFData(
     data: Option<&CFMutableData>,

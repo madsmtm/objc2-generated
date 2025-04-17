@@ -174,7 +174,8 @@ unsafe impl ConcreteType for SecKeychainItem {
     }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "SecBase")]
+impl SecKeychainItem {
     /// Updates an existing keychain item after changing its attributes or data.
     ///
     /// Parameter `itemRef`: A reference to the keychain item to modify.
@@ -190,15 +191,25 @@ extern "C-unwind" {
     /// The keychain item is written to the keychain's permanent data store. If the keychain item has not previously been added to a keychain, a call to the SecKeychainItemModifyContent function does nothing and returns errSecSuccess.
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemModifyAttributesAndData(
-        item_ref: &SecKeychainItem,
+    #[inline]
+    #[doc(alias = "SecKeychainItemModifyAttributesAndData")]
+    pub unsafe fn modify_attributes_and_data(
+        self: &SecKeychainItem,
         attr_list: *const SecKeychainAttributeList,
         length: u32,
         data: *const c_void,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemModifyAttributesAndData(
+                item_ref: &SecKeychainItem,
+                attr_list: *const SecKeychainAttributeList,
+                length: u32,
+                data: *const c_void,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemModifyAttributesAndData(self, attr_list, length, data) }
+    }
 
-extern "C-unwind" {
     /// Creates a new keychain item from the supplied parameters.
     ///
     /// Parameter `itemClass`: A constant identifying the class of item to create.
@@ -218,7 +229,9 @@ extern "C-unwind" {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if not enough valid parameters are supplied, or errSecAllocate (-108) if there is not enough memory in the current heap zone to create the object.
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemCreateFromContent(
+    #[inline]
+    #[doc(alias = "SecKeychainItemCreateFromContent")]
+    pub unsafe fn create_from_content(
         item_class: SecItemClass,
         attr_list: NonNull<SecKeychainAttributeList>,
         length: u32,
@@ -226,10 +239,31 @@ extern "C-unwind" {
         keychain_ref: Option<&SecKeychain>,
         initial_access: Option<&SecAccess>,
         item_ref: *mut *mut SecKeychainItem,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemCreateFromContent(
+                item_class: SecItemClass,
+                attr_list: NonNull<SecKeychainAttributeList>,
+                length: u32,
+                data: *const c_void,
+                keychain_ref: Option<&SecKeychain>,
+                initial_access: Option<&SecAccess>,
+                item_ref: *mut *mut SecKeychainItem,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeychainItemCreateFromContent(
+                item_class,
+                attr_list,
+                length,
+                data,
+                keychain_ref,
+                initial_access,
+                item_ref,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Updates an existing keychain item after changing its attributes or data. This call should only be used in conjunction with SecKeychainItemCopyContent().
     ///
     /// Parameter `itemRef`: A reference to the keychain item to modify.
@@ -243,15 +277,25 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemModifyContent(
-        item_ref: &SecKeychainItem,
+    #[inline]
+    #[doc(alias = "SecKeychainItemModifyContent")]
+    pub unsafe fn modify_content(
+        self: &SecKeychainItem,
         attr_list: *const SecKeychainAttributeList,
         length: u32,
         data: *const c_void,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemModifyContent(
+                item_ref: &SecKeychainItem,
+                attr_list: *const SecKeychainAttributeList,
+                length: u32,
+                data: *const c_void,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemModifyContent(self, attr_list, length, data) }
+    }
 
-extern "C-unwind" {
     /// Copies the data and/or attributes stored in the given keychain item. It is recommended that you use SecKeychainItemCopyAttributesAndData(). You must call SecKeychainItemFreeContent when you no longer need the attributes and data. If you want to modify the attributes returned here, use SecKeychainModifyContent().
     ///
     /// Parameter `itemRef`: A reference to the keychain item to modify.
@@ -267,16 +311,27 @@ extern "C-unwind" {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if not enough valid parameters are supplied.
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemCopyContent(
-        item_ref: &SecKeychainItem,
+    #[inline]
+    #[doc(alias = "SecKeychainItemCopyContent")]
+    pub unsafe fn copy_content(
+        self: &SecKeychainItem,
         item_class: *mut SecItemClass,
         attr_list: *mut SecKeychainAttributeList,
         length: *mut u32,
         out_data: *mut *mut c_void,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemCopyContent(
+                item_ref: &SecKeychainItem,
+                item_class: *mut SecItemClass,
+                attr_list: *mut SecKeychainAttributeList,
+                length: *mut u32,
+                out_data: *mut *mut c_void,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemCopyContent(self, item_class, attr_list, length, out_data) }
+    }
 
-extern "C-unwind" {
     /// Releases the memory used by the keychain attribute list and the keychain data retrieved in a previous call to SecKeychainItemCopyContent.
     ///
     /// Parameter `attrList`: A pointer to the attribute list to release. Pass NULL to ignore this parameter.
@@ -284,13 +339,21 @@ extern "C-unwind" {
     /// Parameter `data`: A pointer to the data buffer to release. Pass NULL to ignore this parameter.
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemFreeContent(
+    #[inline]
+    #[doc(alias = "SecKeychainItemFreeContent")]
+    pub unsafe fn free_content(
         attr_list: *mut SecKeychainAttributeList,
         data: *mut c_void,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemFreeContent(
+                attr_list: *mut SecKeychainAttributeList,
+                data: *mut c_void,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemFreeContent(attr_list, data) }
+    }
 
-extern "C-unwind" {
     /// Copies the data and/or attributes stored in the given keychain item. You must call SecKeychainItemFreeAttributesAndData when you no longer need the attributes and data. If you want to modify the attributes returned here, use SecKeychainModifyAttributesAndData.
     ///
     /// Parameter `itemRef`: A reference to the keychain item to copy.
@@ -308,17 +371,33 @@ extern "C-unwind" {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if not enough valid parameters are supplied.
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemCopyAttributesAndData(
-        item_ref: &SecKeychainItem,
+    #[inline]
+    #[doc(alias = "SecKeychainItemCopyAttributesAndData")]
+    pub unsafe fn copy_attributes_and_data(
+        self: &SecKeychainItem,
         info: *mut SecKeychainAttributeInfo,
         item_class: *mut SecItemClass,
         attr_list: *mut *mut SecKeychainAttributeList,
         length: *mut u32,
         out_data: *mut *mut c_void,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemCopyAttributesAndData(
+                item_ref: &SecKeychainItem,
+                info: *mut SecKeychainAttributeInfo,
+                item_class: *mut SecItemClass,
+                attr_list: *mut *mut SecKeychainAttributeList,
+                length: *mut u32,
+                out_data: *mut *mut c_void,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeychainItemCopyAttributesAndData(
+                self, info, item_class, attr_list, length, out_data,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Releases the memory used by the keychain attribute list and the keychain data retrieved in a previous call to SecKeychainItemCopyAttributesAndData.
     ///
     /// Parameter `attrList`: A pointer to the attribute list to release. Pass NULL to ignore this parameter.
@@ -328,13 +407,21 @@ extern "C-unwind" {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemFreeAttributesAndData(
+    #[inline]
+    #[doc(alias = "SecKeychainItemFreeAttributesAndData")]
+    pub unsafe fn free_attributes_and_data(
         attr_list: *mut SecKeychainAttributeList,
         data: *mut c_void,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemFreeAttributesAndData(
+                attr_list: *mut SecKeychainAttributeList,
+                data: *mut c_void,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemFreeAttributesAndData(attr_list, data) }
+    }
 
-extern "C-unwind" {
     /// Deletes a keychain item from the default keychain's permanent data store.
     ///
     /// Parameter `itemRef`: A keychain item reference of the item to delete.
@@ -344,10 +431,15 @@ extern "C-unwind" {
     /// If itemRef has not previously been added to the keychain, SecKeychainItemDelete does nothing and returns errSecSuccess. IMPORTANT: SecKeychainItemDelete does not dispose the memory occupied by the item reference itself; use the CFRelease function when you are completely finished with an item.
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemDelete(item_ref: &SecKeychainItem) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainItemDelete")]
+    pub unsafe fn delete(self: &SecKeychainItem) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemDelete(item_ref: &SecKeychainItem) -> OSStatus;
+        }
+        unsafe { SecKeychainItemDelete(self) }
+    }
 
-extern "C-unwind" {
     /// Copies an existing keychain reference from a keychain item.
     ///
     /// Parameter `itemRef`: A keychain item reference.
@@ -357,13 +449,21 @@ extern "C-unwind" {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemCopyKeychain(
-        item_ref: &SecKeychainItem,
+    #[inline]
+    #[doc(alias = "SecKeychainItemCopyKeychain")]
+    pub unsafe fn copy_keychain(
+        self: &SecKeychainItem,
         keychain_ref: NonNull<*mut SecKeychain>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemCopyKeychain(
+                item_ref: &SecKeychainItem,
+                keychain_ref: NonNull<*mut SecKeychain>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemCopyKeychain(self, keychain_ref) }
+    }
 
-extern "C-unwind" {
     /// Copies a keychain item.
     ///
     /// Parameter `itemRef`: A reference to the keychain item to copy.
@@ -377,15 +477,25 @@ extern "C-unwind" {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemCreateCopy(
-        item_ref: &SecKeychainItem,
+    #[inline]
+    #[doc(alias = "SecKeychainItemCreateCopy")]
+    pub unsafe fn create_copy(
+        self: &SecKeychainItem,
         dest_keychain_ref: Option<&SecKeychain>,
         initial_access: Option<&SecAccess>,
         item_copy: NonNull<*mut SecKeychainItem>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemCreateCopy(
+                item_ref: &SecKeychainItem,
+                dest_keychain_ref: Option<&SecKeychain>,
+                initial_access: Option<&SecAccess>,
+                item_copy: NonNull<*mut SecKeychainItem>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemCreateCopy(self, dest_keychain_ref, initial_access, item_copy) }
+    }
 
-extern "C-unwind" {
     /// Returns a CFDataRef which can be used as a persistent reference to the given keychain item. The data obtained can be turned back into a SecKeychainItemRef later by calling SecKeychainItemCopyFromPersistentReference().
     ///
     /// Parameter `itemRef`: A reference to a keychain item.
@@ -395,13 +505,21 @@ extern "C-unwind" {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemCreatePersistentReference(
-        item_ref: &SecKeychainItem,
+    #[inline]
+    #[doc(alias = "SecKeychainItemCreatePersistentReference")]
+    pub unsafe fn create_persistent_reference(
+        self: &SecKeychainItem,
         persistent_item_ref: NonNull<*const CFData>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemCreatePersistentReference(
+                item_ref: &SecKeychainItem,
+                persistent_item_ref: NonNull<*const CFData>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemCreatePersistentReference(self, persistent_item_ref) }
+    }
 
-extern "C-unwind" {
     /// Returns a SecKeychainItemRef, given a persistent reference previously obtained by calling SecKeychainItemCreatePersistentReference().
     ///
     /// Parameter `persistentItemRef`: A CFDataRef containing a persistent reference to a keychain item.
@@ -411,13 +529,21 @@ extern "C-unwind" {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemCopyFromPersistentReference(
+    #[inline]
+    #[doc(alias = "SecKeychainItemCopyFromPersistentReference")]
+    pub unsafe fn copy_from_persistent_reference(
         persistent_item_ref: &CFData,
         item_ref: NonNull<*mut SecKeychainItem>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemCopyFromPersistentReference(
+                persistent_item_ref: &CFData,
+                item_ref: NonNull<*mut SecKeychainItem>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemCopyFromPersistentReference(persistent_item_ref, item_ref) }
+    }
 
-extern "C-unwind" {
     /// Returns the CSSM_DL_DB_HANDLE for a given keychain item reference.
     ///
     /// Parameter `keyItemRef`: A keychain item reference.
@@ -429,13 +555,21 @@ extern "C-unwind" {
     /// This API is deprecated for 10.7. It should no longer be needed.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
-    pub fn SecKeychainItemGetDLDBHandle(
-        key_item_ref: &SecKeychainItem,
+    #[inline]
+    #[doc(alias = "SecKeychainItemGetDLDBHandle")]
+    pub unsafe fn dldb_handle(
+        self: &SecKeychainItem,
         dldb_handle: NonNull<CSSM_DL_DB_HANDLE>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemGetDLDBHandle(
+                key_item_ref: &SecKeychainItem,
+                dldb_handle: NonNull<CSSM_DL_DB_HANDLE>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemGetDLDBHandle(self, dldb_handle) }
+    }
 
-extern "C-unwind" {
     /// Returns a CSSM_DB_UNIQUE_RECORD for the given keychain item reference.
     ///
     /// Parameter `itemRef`: A keychain item reference.
@@ -452,13 +586,21 @@ extern "C-unwind" {
         feature = "cssmtype"
     ))]
     #[deprecated = "CSSM is not supported"]
-    pub fn SecKeychainItemGetUniqueRecordID(
-        item_ref: &SecKeychainItem,
+    #[inline]
+    #[doc(alias = "SecKeychainItemGetUniqueRecordID")]
+    pub unsafe fn unique_record_id(
+        self: &SecKeychainItem,
         unique_record_id: NonNull<*const CSSM_DB_UNIQUE_RECORD>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemGetUniqueRecordID(
+                item_ref: &SecKeychainItem,
+                unique_record_id: NonNull<*const CSSM_DB_UNIQUE_RECORD>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemGetUniqueRecordID(self, unique_record_id) }
+    }
 
-extern "C-unwind" {
     /// Copies the access of a given keychain item.
     ///
     /// Parameter `itemRef`: A reference to a keychain item.
@@ -468,13 +610,18 @@ extern "C-unwind" {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainItemCopyAccess(
-        item_ref: &SecKeychainItem,
-        access: NonNull<*mut SecAccess>,
-    ) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainItemCopyAccess")]
+    pub unsafe fn copy_access(self: &SecKeychainItem, access: NonNull<*mut SecAccess>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemCopyAccess(
+                item_ref: &SecKeychainItem,
+                access: NonNull<*mut SecAccess>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainItemCopyAccess(self, access) }
+    }
 
-extern "C-unwind" {
     /// Sets the access of a given keychain item.
     ///
     /// Parameter `itemRef`: A reference to a keychain item.
@@ -484,5 +631,174 @@ extern "C-unwind" {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
+    #[inline]
+    #[doc(alias = "SecKeychainItemSetAccess")]
+    pub unsafe fn set_access(self: &SecKeychainItem, access: &SecAccess) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemSetAccess(item_ref: &SecKeychainItem, access: &SecAccess)
+                -> OSStatus;
+        }
+        unsafe { SecKeychainItemSetAccess(self, access) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::modify_attributes_and_data`"]
+    pub fn SecKeychainItemModifyAttributesAndData(
+        item_ref: &SecKeychainItem,
+        attr_list: *const SecKeychainAttributeList,
+        length: u32,
+        data: *const c_void,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::create_from_content`"]
+    pub fn SecKeychainItemCreateFromContent(
+        item_class: SecItemClass,
+        attr_list: NonNull<SecKeychainAttributeList>,
+        length: u32,
+        data: *const c_void,
+        keychain_ref: Option<&SecKeychain>,
+        initial_access: Option<&SecAccess>,
+        item_ref: *mut *mut SecKeychainItem,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::modify_content`"]
+    pub fn SecKeychainItemModifyContent(
+        item_ref: &SecKeychainItem,
+        attr_list: *const SecKeychainAttributeList,
+        length: u32,
+        data: *const c_void,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::copy_content`"]
+    pub fn SecKeychainItemCopyContent(
+        item_ref: &SecKeychainItem,
+        item_class: *mut SecItemClass,
+        attr_list: *mut SecKeychainAttributeList,
+        length: *mut u32,
+        out_data: *mut *mut c_void,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::free_content`"]
+    pub fn SecKeychainItemFreeContent(
+        attr_list: *mut SecKeychainAttributeList,
+        data: *mut c_void,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::copy_attributes_and_data`"]
+    pub fn SecKeychainItemCopyAttributesAndData(
+        item_ref: &SecKeychainItem,
+        info: *mut SecKeychainAttributeInfo,
+        item_class: *mut SecItemClass,
+        attr_list: *mut *mut SecKeychainAttributeList,
+        length: *mut u32,
+        out_data: *mut *mut c_void,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::free_attributes_and_data`"]
+    pub fn SecKeychainItemFreeAttributesAndData(
+        attr_list: *mut SecKeychainAttributeList,
+        data: *mut c_void,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::delete`"]
+    pub fn SecKeychainItemDelete(item_ref: &SecKeychainItem) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::copy_keychain`"]
+    pub fn SecKeychainItemCopyKeychain(
+        item_ref: &SecKeychainItem,
+        keychain_ref: NonNull<*mut SecKeychain>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::create_copy`"]
+    pub fn SecKeychainItemCreateCopy(
+        item_ref: &SecKeychainItem,
+        dest_keychain_ref: Option<&SecKeychain>,
+        initial_access: Option<&SecAccess>,
+        item_copy: NonNull<*mut SecKeychainItem>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::create_persistent_reference`"]
+    pub fn SecKeychainItemCreatePersistentReference(
+        item_ref: &SecKeychainItem,
+        persistent_item_ref: NonNull<*const CFData>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::copy_from_persistent_reference`"]
+    pub fn SecKeychainItemCopyFromPersistentReference(
+        persistent_item_ref: &CFData,
+        item_ref: NonNull<*mut SecKeychainItem>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecKeychainItem::dldb_handle`"]
+    pub fn SecKeychainItemGetDLDBHandle(
+        key_item_ref: &SecKeychainItem,
+        dldb_handle: NonNull<CSSM_DL_DB_HANDLE>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "SecAsn1Types",
+        feature = "SecBase",
+        feature = "cssmconfig",
+        feature = "cssmtype"
+    ))]
+    #[deprecated = "renamed to `SecKeychainItem::unique_record_id`"]
+    pub fn SecKeychainItemGetUniqueRecordID(
+        item_ref: &SecKeychainItem,
+        unique_record_id: NonNull<*const CSSM_DB_UNIQUE_RECORD>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::copy_access`"]
+    pub fn SecKeychainItemCopyAccess(
+        item_ref: &SecKeychainItem,
+        access: NonNull<*mut SecAccess>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainItem::set_access`"]
     pub fn SecKeychainItemSetAccess(item_ref: &SecKeychainItem, access: &SecAccess) -> OSStatus;
 }

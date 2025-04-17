@@ -46,7 +46,7 @@ unsafe impl ConcreteType for CVPixelBufferPool {
     }
 }
 
-extern "C-unwind" {
+impl CVPixelBufferPool {
     /// Creates a new Pixel Buffer pool.
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating this buffer pool.  May be NULL.
@@ -57,54 +57,71 @@ extern "C-unwind" {
     ///
     /// Returns: Returns kCVReturnSuccess on success
     #[cfg(feature = "CVReturn")]
-    pub fn CVPixelBufferPoolCreate(
+    #[inline]
+    #[doc(alias = "CVPixelBufferPoolCreate")]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         pool_attributes: Option<&CFDictionary>,
         pixel_buffer_attributes: Option<&CFDictionary>,
         pool_out: NonNull<*mut CVPixelBufferPool>,
-    ) -> CVReturn;
-}
-
-/// Returns the pool attributes dictionary for a CVPixelBufferPool
-///
-/// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
-///
-/// Returns: Returns the pool attributes dictionary, or NULL on failure.
-#[inline]
-pub unsafe extern "C-unwind" fn CVPixelBufferPoolGetAttributes(
-    pool: &CVPixelBufferPool,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CVPixelBufferPoolGetAttributes(
-            pool: &CVPixelBufferPool,
-        ) -> Option<NonNull<CFDictionary>>;
+    ) -> CVReturn {
+        extern "C-unwind" {
+            fn CVPixelBufferPoolCreate(
+                allocator: Option<&CFAllocator>,
+                pool_attributes: Option<&CFDictionary>,
+                pixel_buffer_attributes: Option<&CFDictionary>,
+                pool_out: NonNull<*mut CVPixelBufferPool>,
+            ) -> CVReturn;
+        }
+        unsafe {
+            CVPixelBufferPoolCreate(
+                allocator,
+                pool_attributes,
+                pixel_buffer_attributes,
+                pool_out,
+            )
+        }
     }
-    let ret = unsafe { CVPixelBufferPoolGetAttributes(pool) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Returns the attributes of pixel buffers that will be created from this pool.
-///
-/// This function is provided for those cases where you may need to know some information about the buffers that
-/// will be created up front.
-///
-/// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
-///
-/// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
-#[inline]
-pub unsafe extern "C-unwind" fn CVPixelBufferPoolGetPixelBufferAttributes(
-    pool: &CVPixelBufferPool,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CVPixelBufferPoolGetPixelBufferAttributes(
-            pool: &CVPixelBufferPool,
-        ) -> Option<NonNull<CFDictionary>>;
+    /// Returns the pool attributes dictionary for a CVPixelBufferPool
+    ///
+    /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
+    ///
+    /// Returns: Returns the pool attributes dictionary, or NULL on failure.
+    #[inline]
+    #[doc(alias = "CVPixelBufferPoolGetAttributes")]
+    pub unsafe fn attributes(self: &CVPixelBufferPool) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CVPixelBufferPoolGetAttributes(
+                pool: &CVPixelBufferPool,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CVPixelBufferPoolGetAttributes(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { CVPixelBufferPoolGetPixelBufferAttributes(pool) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
+    /// Returns the attributes of pixel buffers that will be created from this pool.
+    ///
+    /// This function is provided for those cases where you may need to know some information about the buffers that
+    /// will be created up front.
+    ///
+    /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
+    ///
+    /// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
+    #[inline]
+    #[doc(alias = "CVPixelBufferPoolGetPixelBufferAttributes")]
+    pub unsafe fn pixel_buffer_attributes(
+        self: &CVPixelBufferPool,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CVPixelBufferPoolGetPixelBufferAttributes(
+                pool: &CVPixelBufferPool,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CVPixelBufferPoolGetPixelBufferAttributes(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
     /// Creates a new PixelBuffer object from the pool.
     ///
     /// The function creates a new (attachment-free) CVPixelBuffer using the pixel buffer attributes specifed during pool creation.
@@ -122,26 +139,56 @@ extern "C-unwind" {
         feature = "CVPixelBuffer",
         feature = "CVReturn"
     ))]
-    pub fn CVPixelBufferPoolCreatePixelBuffer(
+    #[inline]
+    #[doc(alias = "CVPixelBufferPoolCreatePixelBuffer")]
+    pub unsafe fn create_pixel_buffer(
         allocator: Option<&CFAllocator>,
         pixel_buffer_pool: &CVPixelBufferPool,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
-    ) -> CVReturn;
-}
+    ) -> CVReturn {
+        extern "C-unwind" {
+            fn CVPixelBufferPoolCreatePixelBuffer(
+                allocator: Option<&CFAllocator>,
+                pixel_buffer_pool: &CVPixelBufferPool,
+                pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+            ) -> CVReturn;
+        }
+        unsafe {
+            CVPixelBufferPoolCreatePixelBuffer(allocator, pixel_buffer_pool, pixel_buffer_out)
+        }
+    }
 
-extern "C-unwind" {
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
         feature = "CVPixelBuffer",
         feature = "CVReturn"
     ))]
-    pub fn CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
+    #[inline]
+    #[doc(alias = "CVPixelBufferPoolCreatePixelBufferWithAuxAttributes")]
+    pub unsafe fn create_pixel_buffer_with_aux_attributes(
         allocator: Option<&CFAllocator>,
         pixel_buffer_pool: &CVPixelBufferPool,
         aux_attributes: Option<&CFDictionary>,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
-    ) -> CVReturn;
+    ) -> CVReturn {
+        extern "C-unwind" {
+            fn CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
+                allocator: Option<&CFAllocator>,
+                pixel_buffer_pool: &CVPixelBufferPool,
+                aux_attributes: Option<&CFDictionary>,
+                pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+            ) -> CVReturn;
+        }
+        unsafe {
+            CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
+                allocator,
+                pixel_buffer_pool,
+                aux_attributes,
+                pixel_buffer_out,
+            )
+        }
+    }
 }
 
 extern "C" {
@@ -182,7 +229,7 @@ unsafe impl RefEncode for CVPixelBufferPoolFlushFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+impl CVPixelBufferPool {
     /// Frees as many buffers from the pool as possible.
     ///
     /// By default, this function will free all aged out buffers.  Setting the
@@ -194,5 +241,91 @@ extern "C-unwind" {
     /// Parameter `options`: Set to kCVPixelBufferPoolFlushExcessBuffers to free all unused buffers
     /// regardless of their age.
     #[cfg(feature = "CVBase")]
+    #[inline]
+    #[doc(alias = "CVPixelBufferPoolFlush")]
+    pub unsafe fn flush(self: &CVPixelBufferPool, options: CVPixelBufferPoolFlushFlags) {
+        extern "C-unwind" {
+            fn CVPixelBufferPoolFlush(
+                pool: &CVPixelBufferPool,
+                options: CVPixelBufferPoolFlushFlags,
+            );
+        }
+        unsafe { CVPixelBufferPoolFlush(self, options) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CVReturn")]
+    #[deprecated = "renamed to `CVPixelBufferPool::create`"]
+    pub fn CVPixelBufferPoolCreate(
+        allocator: Option<&CFAllocator>,
+        pool_attributes: Option<&CFDictionary>,
+        pixel_buffer_attributes: Option<&CFDictionary>,
+        pool_out: NonNull<*mut CVPixelBufferPool>,
+    ) -> CVReturn;
+}
+
+#[deprecated = "renamed to `CVPixelBufferPool::attributes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelBufferPoolGetAttributes(
+    pool: &CVPixelBufferPool,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVPixelBufferPoolGetAttributes(
+            pool: &CVPixelBufferPool,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CVPixelBufferPoolGetAttributes(pool) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `CVPixelBufferPool::pixel_buffer_attributes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelBufferPoolGetPixelBufferAttributes(
+    pool: &CVPixelBufferPool,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVPixelBufferPoolGetPixelBufferAttributes(
+            pool: &CVPixelBufferPool,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CVPixelBufferPoolGetPixelBufferAttributes(pool) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CVBuffer",
+        feature = "CVImageBuffer",
+        feature = "CVPixelBuffer",
+        feature = "CVReturn"
+    ))]
+    #[deprecated = "renamed to `CVPixelBufferPool::create_pixel_buffer`"]
+    pub fn CVPixelBufferPoolCreatePixelBuffer(
+        allocator: Option<&CFAllocator>,
+        pixel_buffer_pool: &CVPixelBufferPool,
+        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+    ) -> CVReturn;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CVBuffer",
+        feature = "CVImageBuffer",
+        feature = "CVPixelBuffer",
+        feature = "CVReturn"
+    ))]
+    #[deprecated = "renamed to `CVPixelBufferPool::create_pixel_buffer_with_aux_attributes`"]
+    pub fn CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
+        allocator: Option<&CFAllocator>,
+        pixel_buffer_pool: &CVPixelBufferPool,
+        aux_attributes: Option<&CFDictionary>,
+        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+    ) -> CVReturn;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CVBase")]
+    #[deprecated = "renamed to `CVPixelBufferPool::flush`"]
     pub fn CVPixelBufferPoolFlush(pool: &CVPixelBufferPool, options: CVPixelBufferPoolFlushFlags);
 }

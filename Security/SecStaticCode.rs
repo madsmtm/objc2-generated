@@ -18,7 +18,8 @@ unsafe impl ConcreteType for SecStaticCode {
     }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CSCommon")]
+impl SecStaticCode {
     /// Given a path to a file system object, create a SecStaticCode object representing
     /// the code at that location, if possible. Such a SecStaticCode is not inherently
     /// linked to running code in the system.
@@ -44,11 +45,22 @@ extern "C-unwind" {
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
     #[cfg(feature = "CSCommon")]
-    pub fn SecStaticCodeCreateWithPath(
+    #[inline]
+    #[doc(alias = "SecStaticCodeCreateWithPath")]
+    pub unsafe fn create_with_path(
         path: &CFURL,
         flags: SecCSFlags,
         static_code: NonNull<*const SecStaticCode>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecStaticCodeCreateWithPath(
+                path: &CFURL,
+                flags: SecCSFlags,
+                static_code: NonNull<*const SecStaticCode>,
+            ) -> OSStatus;
+        }
+        unsafe { SecStaticCodeCreateWithPath(path, flags, static_code) }
+    }
 }
 
 extern "C" {
@@ -71,7 +83,8 @@ extern "C" {
     pub static kSecCodeAttributeBundleVersion: &'static CFString;
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CSCommon")]
+impl SecStaticCode {
     /// Given a path to a file system object, create a SecStaticCode object representing
     /// the code at that location, if possible. Such a SecStaticCode is not inherently
     /// linked to running code in the system.
@@ -112,12 +125,24 @@ extern "C-unwind" {
     ///
     /// then select the specified framework version. This key is otherwise ignored.
     #[cfg(feature = "CSCommon")]
-    pub fn SecStaticCodeCreateWithPathAndAttributes(
+    #[inline]
+    #[doc(alias = "SecStaticCodeCreateWithPathAndAttributes")]
+    pub unsafe fn create_with_path_and_attributes(
         path: &CFURL,
         flags: SecCSFlags,
         attributes: &CFDictionary,
         static_code: NonNull<*const SecStaticCode>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecStaticCodeCreateWithPathAndAttributes(
+                path: &CFURL,
+                flags: SecCSFlags,
+                attributes: &CFDictionary,
+                static_code: NonNull<*const SecStaticCode>,
+            ) -> OSStatus;
+        }
+        unsafe { SecStaticCodeCreateWithPathAndAttributes(path, flags, attributes, static_code) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccscheckallarchitectures?language=objc)
@@ -153,8 +178,71 @@ pub const kSecCSAllowNetworkAccess: u32 = 65536;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsfastexecutablevalidation?language=objc)
 pub const kSecCSFastExecutableValidation: u32 = 131072;
 
+#[cfg(feature = "CSCommon")]
+impl SecStaticCode {
+    #[cfg(feature = "CSCommon")]
+    #[inline]
+    #[doc(alias = "SecStaticCodeCheckValidity")]
+    pub unsafe fn check_validity(
+        self: &SecStaticCode,
+        flags: SecCSFlags,
+        requirement: Option<&SecRequirement>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecStaticCodeCheckValidity(
+                static_code: &SecStaticCode,
+                flags: SecCSFlags,
+                requirement: Option<&SecRequirement>,
+            ) -> OSStatus;
+        }
+        unsafe { SecStaticCodeCheckValidity(self, flags, requirement) }
+    }
+
+    #[cfg(feature = "CSCommon")]
+    #[inline]
+    #[doc(alias = "SecStaticCodeCheckValidityWithErrors")]
+    pub unsafe fn check_validity_with_errors(
+        self: &SecStaticCode,
+        flags: SecCSFlags,
+        requirement: Option<&SecRequirement>,
+        errors: *mut *mut CFError,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecStaticCodeCheckValidityWithErrors(
+                static_code: &SecStaticCode,
+                flags: SecCSFlags,
+                requirement: Option<&SecRequirement>,
+                errors: *mut *mut CFError,
+            ) -> OSStatus;
+        }
+        unsafe { SecStaticCodeCheckValidityWithErrors(self, flags, requirement, errors) }
+    }
+}
+
 extern "C-unwind" {
     #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecStaticCode::create_with_path`"]
+    pub fn SecStaticCodeCreateWithPath(
+        path: &CFURL,
+        flags: SecCSFlags,
+        static_code: NonNull<*const SecStaticCode>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecStaticCode::create_with_path_and_attributes`"]
+    pub fn SecStaticCodeCreateWithPathAndAttributes(
+        path: &CFURL,
+        flags: SecCSFlags,
+        attributes: &CFDictionary,
+        static_code: NonNull<*const SecStaticCode>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecStaticCode::check_validity`"]
     pub fn SecStaticCodeCheckValidity(
         static_code: &SecStaticCode,
         flags: SecCSFlags,
@@ -164,6 +252,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecStaticCode::check_validity_with_errors`"]
     pub fn SecStaticCodeCheckValidityWithErrors(
         static_code: &SecStaticCode,
         flags: SecCSFlags,

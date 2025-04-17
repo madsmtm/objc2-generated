@@ -53,6 +53,213 @@ unsafe impl ConcreteType for CFBitVector {
     }
 }
 
+impl CFBitVector {
+    #[inline]
+    #[doc(alias = "CFBitVectorCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        bytes: *const u8,
+        num_bits: CFIndex,
+    ) -> Option<CFRetained<CFBitVector>> {
+        extern "C-unwind" {
+            fn CFBitVectorCreate(
+                allocator: Option<&CFAllocator>,
+                bytes: *const u8,
+                num_bits: CFIndex,
+            ) -> Option<NonNull<CFBitVector>>;
+        }
+        let ret = unsafe { CFBitVectorCreate(allocator, bytes, num_bits) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorCreateCopy")]
+    pub unsafe fn new_copy(
+        allocator: Option<&CFAllocator>,
+        bv: Option<&CFBitVector>,
+    ) -> Option<CFRetained<CFBitVector>> {
+        extern "C-unwind" {
+            fn CFBitVectorCreateCopy(
+                allocator: Option<&CFAllocator>,
+                bv: Option<&CFBitVector>,
+            ) -> Option<NonNull<CFBitVector>>;
+        }
+        let ret = unsafe { CFBitVectorCreateCopy(allocator, bv) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+impl CFMutableBitVector {
+    #[inline]
+    #[doc(alias = "CFBitVectorCreateMutable")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        capacity: CFIndex,
+    ) -> Option<CFRetained<CFMutableBitVector>> {
+        extern "C-unwind" {
+            fn CFBitVectorCreateMutable(
+                allocator: Option<&CFAllocator>,
+                capacity: CFIndex,
+            ) -> Option<NonNull<CFMutableBitVector>>;
+        }
+        let ret = unsafe { CFBitVectorCreateMutable(allocator, capacity) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorCreateMutableCopy")]
+    pub unsafe fn new_copy(
+        allocator: Option<&CFAllocator>,
+        capacity: CFIndex,
+        bv: Option<&CFBitVector>,
+    ) -> Option<CFRetained<CFMutableBitVector>> {
+        extern "C-unwind" {
+            fn CFBitVectorCreateMutableCopy(
+                allocator: Option<&CFAllocator>,
+                capacity: CFIndex,
+                bv: Option<&CFBitVector>,
+            ) -> Option<NonNull<CFMutableBitVector>>;
+        }
+        let ret = unsafe { CFBitVectorCreateMutableCopy(allocator, capacity, bv) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+impl CFBitVector {
+    #[inline]
+    #[doc(alias = "CFBitVectorGetCount")]
+    pub unsafe fn count(self: &CFBitVector) -> CFIndex {
+        extern "C-unwind" {
+            fn CFBitVectorGetCount(bv: &CFBitVector) -> CFIndex;
+        }
+        unsafe { CFBitVectorGetCount(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorGetCountOfBit")]
+    pub unsafe fn count_of_bit(self: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex {
+        extern "C-unwind" {
+            fn CFBitVectorGetCountOfBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex;
+        }
+        unsafe { CFBitVectorGetCountOfBit(self, range, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorContainsBit")]
+    pub unsafe fn contains_bit(self: &CFBitVector, range: CFRange, value: CFBit) -> bool {
+        extern "C-unwind" {
+            fn CFBitVectorContainsBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> Boolean;
+        }
+        let ret = unsafe { CFBitVectorContainsBit(self, range, value) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorGetBitAtIndex")]
+    pub unsafe fn bit_at_index(self: &CFBitVector, idx: CFIndex) -> CFBit {
+        extern "C-unwind" {
+            fn CFBitVectorGetBitAtIndex(bv: &CFBitVector, idx: CFIndex) -> CFBit;
+        }
+        unsafe { CFBitVectorGetBitAtIndex(self, idx) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorGetBits")]
+    pub unsafe fn bits(self: &CFBitVector, range: CFRange, bytes: *mut u8) {
+        extern "C-unwind" {
+            fn CFBitVectorGetBits(bv: &CFBitVector, range: CFRange, bytes: *mut u8);
+        }
+        unsafe { CFBitVectorGetBits(self, range, bytes) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorGetFirstIndexOfBit")]
+    pub unsafe fn first_index_of_bit(self: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex {
+        extern "C-unwind" {
+            fn CFBitVectorGetFirstIndexOfBit(
+                bv: &CFBitVector,
+                range: CFRange,
+                value: CFBit,
+            ) -> CFIndex;
+        }
+        unsafe { CFBitVectorGetFirstIndexOfBit(self, range, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorGetLastIndexOfBit")]
+    pub unsafe fn last_index_of_bit(self: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex {
+        extern "C-unwind" {
+            fn CFBitVectorGetLastIndexOfBit(
+                bv: &CFBitVector,
+                range: CFRange,
+                value: CFBit,
+            ) -> CFIndex;
+        }
+        unsafe { CFBitVectorGetLastIndexOfBit(self, range, value) }
+    }
+}
+
+impl CFMutableBitVector {
+    #[inline]
+    #[doc(alias = "CFBitVectorSetCount")]
+    pub unsafe fn set_count(bv: Option<&CFMutableBitVector>, count: CFIndex) {
+        extern "C-unwind" {
+            fn CFBitVectorSetCount(bv: Option<&CFMutableBitVector>, count: CFIndex);
+        }
+        unsafe { CFBitVectorSetCount(bv, count) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorFlipBitAtIndex")]
+    pub unsafe fn flip_bit_at_index(bv: Option<&CFMutableBitVector>, idx: CFIndex) {
+        extern "C-unwind" {
+            fn CFBitVectorFlipBitAtIndex(bv: Option<&CFMutableBitVector>, idx: CFIndex);
+        }
+        unsafe { CFBitVectorFlipBitAtIndex(bv, idx) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorFlipBits")]
+    pub unsafe fn flip_bits(bv: Option<&CFMutableBitVector>, range: CFRange) {
+        extern "C-unwind" {
+            fn CFBitVectorFlipBits(bv: Option<&CFMutableBitVector>, range: CFRange);
+        }
+        unsafe { CFBitVectorFlipBits(bv, range) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorSetBitAtIndex")]
+    pub unsafe fn set_bit_at_index(bv: Option<&CFMutableBitVector>, idx: CFIndex, value: CFBit) {
+        extern "C-unwind" {
+            fn CFBitVectorSetBitAtIndex(
+                bv: Option<&CFMutableBitVector>,
+                idx: CFIndex,
+                value: CFBit,
+            );
+        }
+        unsafe { CFBitVectorSetBitAtIndex(bv, idx, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorSetBits")]
+    pub unsafe fn set_bits(bv: Option<&CFMutableBitVector>, range: CFRange, value: CFBit) {
+        extern "C-unwind" {
+            fn CFBitVectorSetBits(bv: Option<&CFMutableBitVector>, range: CFRange, value: CFBit);
+        }
+        unsafe { CFBitVectorSetBits(bv, range, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBitVectorSetAllBits")]
+    pub unsafe fn set_all_bits(bv: Option<&CFMutableBitVector>, value: CFBit) {
+        extern "C-unwind" {
+            fn CFBitVectorSetAllBits(bv: Option<&CFMutableBitVector>, value: CFBit);
+        }
+        unsafe { CFBitVectorSetAllBits(bv, value) }
+    }
+}
+
+#[deprecated = "renamed to `CFBitVector::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBitVectorCreate(
     allocator: Option<&CFAllocator>,
@@ -70,6 +277,7 @@ pub unsafe extern "C-unwind" fn CFBitVectorCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `CFBitVector::new_copy`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBitVectorCreateCopy(
     allocator: Option<&CFAllocator>,
@@ -85,6 +293,7 @@ pub unsafe extern "C-unwind" fn CFBitVectorCreateCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `CFMutableBitVector::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBitVectorCreateMutable(
     allocator: Option<&CFAllocator>,
@@ -100,6 +309,7 @@ pub unsafe extern "C-unwind" fn CFBitVectorCreateMutable(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `CFMutableBitVector::new_copy`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBitVectorCreateMutableCopy(
     allocator: Option<&CFAllocator>,
@@ -118,13 +328,16 @@ pub unsafe extern "C-unwind" fn CFBitVectorCreateMutableCopy(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFBitVector::count`"]
     pub fn CFBitVectorGetCount(bv: &CFBitVector) -> CFIndex;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFBitVector::count_of_bit`"]
     pub fn CFBitVectorGetCountOfBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex;
 }
 
+#[deprecated = "renamed to `CFBitVector::contains_bit`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBitVectorContainsBit(
     bv: &CFBitVector,
@@ -139,42 +352,52 @@ pub unsafe extern "C-unwind" fn CFBitVectorContainsBit(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFBitVector::bit_at_index`"]
     pub fn CFBitVectorGetBitAtIndex(bv: &CFBitVector, idx: CFIndex) -> CFBit;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFBitVector::bits`"]
     pub fn CFBitVectorGetBits(bv: &CFBitVector, range: CFRange, bytes: *mut u8);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFBitVector::first_index_of_bit`"]
     pub fn CFBitVectorGetFirstIndexOfBit(bv: &CFBitVector, range: CFRange, value: CFBit)
         -> CFIndex;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFBitVector::last_index_of_bit`"]
     pub fn CFBitVectorGetLastIndexOfBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableBitVector::set_count`"]
     pub fn CFBitVectorSetCount(bv: Option<&CFMutableBitVector>, count: CFIndex);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableBitVector::flip_bit_at_index`"]
     pub fn CFBitVectorFlipBitAtIndex(bv: Option<&CFMutableBitVector>, idx: CFIndex);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableBitVector::flip_bits`"]
     pub fn CFBitVectorFlipBits(bv: Option<&CFMutableBitVector>, range: CFRange);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableBitVector::set_bit_at_index`"]
     pub fn CFBitVectorSetBitAtIndex(bv: Option<&CFMutableBitVector>, idx: CFIndex, value: CFBit);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableBitVector::set_bits`"]
     pub fn CFBitVectorSetBits(bv: Option<&CFMutableBitVector>, range: CFRange, value: CFBit);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableBitVector::set_all_bits`"]
     pub fn CFBitVectorSetAllBits(bv: Option<&CFMutableBitVector>, value: CFBit);
 }

@@ -234,20 +234,133 @@ unsafe impl ConcreteType for DADisk {
     }
 }
 
-/// Creates a new disk object.
-///
-/// Parameter `allocator`: The allocator object to be used to allocate memory.
-///
-/// Parameter `session`: The DASession in which to contact Disk Arbitration.
-///
-/// Parameter `name`: The BSD device name.
-///
-/// Returns: A reference to a new DADisk.
-///
-/// The caller of this function receives a reference to the returned object.  The
-/// caller also implicitly retains the object and is responsible for releasing it
-/// with CFRelease().
+impl DADisk {
+    /// Creates a new disk object.
+    ///
+    /// Parameter `allocator`: The allocator object to be used to allocate memory.
+    ///
+    /// Parameter `session`: The DASession in which to contact Disk Arbitration.
+    ///
+    /// Parameter `name`: The BSD device name.
+    ///
+    /// Returns: A reference to a new DADisk.
+    ///
+    /// The caller of this function receives a reference to the returned object.  The
+    /// caller also implicitly retains the object and is responsible for releasing it
+    /// with CFRelease().
+    #[cfg(feature = "DASession")]
+    #[inline]
+    #[doc(alias = "DADiskCreateFromBSDName")]
+    pub unsafe fn from_bsd_name(
+        allocator: Option<&CFAllocator>,
+        session: &DASession,
+        name: NonNull<c_char>,
+    ) -> Option<CFRetained<DADisk>> {
+        extern "C-unwind" {
+            fn DADiskCreateFromBSDName(
+                allocator: Option<&CFAllocator>,
+                session: &DASession,
+                name: NonNull<c_char>,
+            ) -> Option<NonNull<DADisk>>;
+        }
+        let ret = unsafe { DADiskCreateFromBSDName(allocator, session, name) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Creates a new disk object.
+    ///
+    /// Parameter `allocator`: The allocator object to be used to allocate memory.
+    ///
+    /// Parameter `session`: The DASession in which to contact Disk Arbitration.
+    ///
+    /// Parameter `path`: The BSD mount point.
+    ///
+    /// Returns: A reference to a new DADisk.
+    ///
+    /// The caller of this function receives a reference to the returned object.  The
+    /// caller also implicitly retains the object and is responsible for releasing it
+    /// with CFRelease().
+    #[cfg(feature = "DASession")]
+    #[inline]
+    #[doc(alias = "DADiskCreateFromVolumePath")]
+    pub unsafe fn from_volume_path(
+        allocator: Option<&CFAllocator>,
+        session: &DASession,
+        path: &CFURL,
+    ) -> Option<CFRetained<DADisk>> {
+        extern "C-unwind" {
+            fn DADiskCreateFromVolumePath(
+                allocator: Option<&CFAllocator>,
+                session: &DASession,
+                path: &CFURL,
+            ) -> Option<NonNull<DADisk>>;
+        }
+        let ret = unsafe { DADiskCreateFromVolumePath(allocator, session, path) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Obtains the BSD device name for the specified disk.
+    ///
+    /// Parameter `disk`: The DADisk for which to obtain the BSD device name.
+    ///
+    /// Returns: The disk's BSD device name.
+    ///
+    /// The BSD device name can be used with opendev() to open the BSD device.
+    #[inline]
+    #[doc(alias = "DADiskGetBSDName")]
+    pub unsafe fn bsd_name(self: &DADisk) -> *const c_char {
+        extern "C-unwind" {
+            fn DADiskGetBSDName(disk: &DADisk) -> *const c_char;
+        }
+        unsafe { DADiskGetBSDName(self) }
+    }
+
+    /// Obtains the Disk Arbitration description of the specified disk.
+    ///
+    /// Parameter `disk`: The DADisk for which to obtain the Disk Arbitration description.
+    ///
+    /// Returns: The disk's Disk Arbitration description.
+    ///
+    /// This function will contact Disk Arbitration to acquire the latest description
+    /// of the specified disk, unless this function is called on a disk object passed
+    /// within the context of a registered callback, in which case the description is
+    /// current as of that callback event.
+    ///
+    /// The caller of this function receives a reference to the returned object.  The
+    /// caller also implicitly retains the object and is responsible for releasing it
+    /// with CFRelease().
+    #[inline]
+    #[doc(alias = "DADiskCopyDescription")]
+    pub unsafe fn description(self: &DADisk) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn DADiskCopyDescription(disk: &DADisk) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { DADiskCopyDescription(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Obtain the associated whole disk object for the specified disk.
+    ///
+    /// Parameter `disk`: The disk object.
+    ///
+    /// Returns: The disk's associated whole disk object.
+    ///
+    /// The caller of this function receives a reference to the returned object.  The
+    /// caller also implicitly retains the object and is responsible for releasing it
+    /// with CFRelease().
+    #[inline]
+    #[doc(alias = "DADiskCopyWholeDisk")]
+    pub unsafe fn whole_disk(self: &DADisk) -> Option<CFRetained<DADisk>> {
+        extern "C-unwind" {
+            fn DADiskCopyWholeDisk(disk: &DADisk) -> Option<NonNull<DADisk>>;
+        }
+        let ret = unsafe { DADiskCopyWholeDisk(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
 #[cfg(feature = "DASession")]
+#[deprecated = "renamed to `DADisk::from_bsd_name`"]
 #[inline]
 pub unsafe extern "C-unwind" fn DADiskCreateFromBSDName(
     allocator: Option<&CFAllocator>,
@@ -265,20 +378,8 @@ pub unsafe extern "C-unwind" fn DADiskCreateFromBSDName(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Creates a new disk object.
-///
-/// Parameter `allocator`: The allocator object to be used to allocate memory.
-///
-/// Parameter `session`: The DASession in which to contact Disk Arbitration.
-///
-/// Parameter `path`: The BSD mount point.
-///
-/// Returns: A reference to a new DADisk.
-///
-/// The caller of this function receives a reference to the returned object.  The
-/// caller also implicitly retains the object and is responsible for releasing it
-/// with CFRelease().
 #[cfg(feature = "DASession")]
+#[deprecated = "renamed to `DADisk::from_volume_path`"]
 #[inline]
 pub unsafe extern "C-unwind" fn DADiskCreateFromVolumePath(
     allocator: Option<&CFAllocator>,
@@ -297,30 +398,11 @@ pub unsafe extern "C-unwind" fn DADiskCreateFromVolumePath(
 }
 
 extern "C-unwind" {
-    /// Obtains the BSD device name for the specified disk.
-    ///
-    /// Parameter `disk`: The DADisk for which to obtain the BSD device name.
-    ///
-    /// Returns: The disk's BSD device name.
-    ///
-    /// The BSD device name can be used with opendev() to open the BSD device.
+    #[deprecated = "renamed to `DADisk::bsd_name`"]
     pub fn DADiskGetBSDName(disk: &DADisk) -> *const c_char;
 }
 
-/// Obtains the Disk Arbitration description of the specified disk.
-///
-/// Parameter `disk`: The DADisk for which to obtain the Disk Arbitration description.
-///
-/// Returns: The disk's Disk Arbitration description.
-///
-/// This function will contact Disk Arbitration to acquire the latest description
-/// of the specified disk, unless this function is called on a disk object passed
-/// within the context of a registered callback, in which case the description is
-/// current as of that callback event.
-///
-/// The caller of this function receives a reference to the returned object.  The
-/// caller also implicitly retains the object and is responsible for releasing it
-/// with CFRelease().
+#[deprecated = "renamed to `DADisk::description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn DADiskCopyDescription(
     disk: &DADisk,
@@ -332,15 +414,7 @@ pub unsafe extern "C-unwind" fn DADiskCopyDescription(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Obtain the associated whole disk object for the specified disk.
-///
-/// Parameter `disk`: The disk object.
-///
-/// Returns: The disk's associated whole disk object.
-///
-/// The caller of this function receives a reference to the returned object.  The
-/// caller also implicitly retains the object and is responsible for releasing it
-/// with CFRelease().
+#[deprecated = "renamed to `DADisk::whole_disk`"]
 #[inline]
 pub unsafe extern "C-unwind" fn DADiskCopyWholeDisk(disk: &DADisk) -> Option<CFRetained<DADisk>> {
     extern "C-unwind" {

@@ -22,7 +22,8 @@ unsafe impl ConcreteType for SecKeychainSearch {
     }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "SecBase")]
+impl SecKeychainSearch {
     /// Creates a search reference matching a list of zero or more specified attributes in the specified keychain.
     ///
     /// Parameter `keychainOrArray`: An reference to an array of keychains to search, a single keychain or NULL to search the user's default keychain search list.
@@ -38,15 +39,32 @@ extern "C-unwind" {
     /// This function is deprecated in Mac OS X 10.7 and later; to find keychain items which match specified attributes, please use the SecItemCopyMatching API (see SecItem.h).
     #[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
     #[deprecated = "SecKeychainSearch is not supported"]
-    pub fn SecKeychainSearchCreateFromAttributes(
+    #[inline]
+    #[doc(alias = "SecKeychainSearchCreateFromAttributes")]
+    pub unsafe fn create_from_attributes(
         keychain_or_array: Option<&CFType>,
         item_class: SecItemClass,
         attr_list: *const SecKeychainAttributeList,
         search_ref: NonNull<*mut SecKeychainSearch>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainSearchCreateFromAttributes(
+                keychain_or_array: Option<&CFType>,
+                item_class: SecItemClass,
+                attr_list: *const SecKeychainAttributeList,
+                search_ref: NonNull<*mut SecKeychainSearch>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeychainSearchCreateFromAttributes(
+                keychain_or_array,
+                item_class,
+                attr_list,
+                search_ref,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Finds the next keychain item matching the given search criteria.
     ///
     /// Parameter `searchRef`: A reference to the current search criteria.  The search reference is created in the SecKeychainSearchCreateFromAttributes function and must be released by calling the CFRelease function when you are done with it.
@@ -58,6 +76,36 @@ extern "C-unwind" {
     /// This function is deprecated in Mac OS X 10.7 and later; to find keychain items which match specified attributes, please use the SecItemCopyMatching API (see SecItem.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychainSearch is not supported"]
+    #[inline]
+    #[doc(alias = "SecKeychainSearchCopyNext")]
+    pub unsafe fn copy_next(
+        self: &SecKeychainSearch,
+        item_ref: NonNull<*mut SecKeychainItem>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainSearchCopyNext(
+                search_ref: &SecKeychainSearch,
+                item_ref: NonNull<*mut SecKeychainItem>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainSearchCopyNext(self, item_ref) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
+    #[deprecated = "renamed to `SecKeychainSearch::create_from_attributes`"]
+    pub fn SecKeychainSearchCreateFromAttributes(
+        keychain_or_array: Option<&CFType>,
+        item_class: SecItemClass,
+        attr_list: *const SecKeychainAttributeList,
+        search_ref: NonNull<*mut SecKeychainSearch>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychainSearch::copy_next`"]
     pub fn SecKeychainSearchCopyNext(
         search_ref: &SecKeychainSearch,
         item_ref: NonNull<*mut SecKeychainItem>,

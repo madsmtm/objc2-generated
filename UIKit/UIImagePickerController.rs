@@ -607,14 +607,34 @@ extern_protocol!(
     }
 );
 
-extern "C-unwind" {
+#[cfg(feature = "UIImage")]
+impl UIImage {
     #[cfg(feature = "UIImage")]
-    pub fn UIImageWriteToSavedPhotosAlbum(
-        image: &UIImage,
+    #[inline]
+    #[doc(alias = "UIImageWriteToSavedPhotosAlbum")]
+    pub unsafe fn write_to_saved_photos_album(
+        self: &UIImage,
         completion_target: Option<&AnyObject>,
         completion_selector: Option<Sel>,
         context_info: *mut c_void,
-    );
+    ) {
+        extern "C-unwind" {
+            fn UIImageWriteToSavedPhotosAlbum(
+                image: &UIImage,
+                completion_target: Option<&AnyObject>,
+                completion_selector: Option<Sel>,
+                context_info: *mut c_void,
+            );
+        }
+        unsafe {
+            UIImageWriteToSavedPhotosAlbum(
+                self,
+                completion_target,
+                completion_selector,
+                context_info,
+            )
+        }
+    }
 }
 
 #[inline]
@@ -630,6 +650,17 @@ pub unsafe extern "C-unwind" fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(
 extern "C-unwind" {
     pub fn UISaveVideoAtPathToSavedPhotosAlbum(
         video_path: &NSString,
+        completion_target: Option<&AnyObject>,
+        completion_selector: Option<Sel>,
+        context_info: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "UIImage")]
+    #[deprecated = "renamed to `UIImage::write_to_saved_photos_album`"]
+    pub fn UIImageWriteToSavedPhotosAlbum(
+        image: &UIImage,
         completion_target: Option<&AnyObject>,
         completion_selector: Option<Sel>,
         context_info: *mut c_void,

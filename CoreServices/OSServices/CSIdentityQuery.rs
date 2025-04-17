@@ -36,155 +36,165 @@ pub const kCSIdentityQueryStringBeginsWith: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityquerystringcomparisonmethod?language=objc)
 pub type CSIdentityQueryStringComparisonMethod = CFIndex;
 
-#[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
-#[inline]
-pub unsafe extern "C-unwind" fn CSIdentityQueryCreate(
-    allocator: Option<&CFAllocator>,
-    identity_class: CSIdentityClass,
-    authority: Option<&CSIdentityAuthority>,
-) -> Option<CFRetained<CSIdentityQuery>> {
-    extern "C-unwind" {
-        fn CSIdentityQueryCreate(
-            allocator: Option<&CFAllocator>,
-            identity_class: CSIdentityClass,
-            authority: Option<&CSIdentityAuthority>,
-        ) -> Option<NonNull<CSIdentityQuery>>;
-    }
-    let ret = unsafe { CSIdentityQueryCreate(allocator, identity_class, authority) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
-#[inline]
-pub unsafe extern "C-unwind" fn CSIdentityQueryCreateForName(
-    allocator: Option<&CFAllocator>,
-    name: Option<&CFString>,
-    comparison_method: CSIdentityQueryStringComparisonMethod,
-    identity_class: CSIdentityClass,
-    authority: Option<&CSIdentityAuthority>,
-) -> Option<CFRetained<CSIdentityQuery>> {
-    extern "C-unwind" {
-        fn CSIdentityQueryCreateForName(
-            allocator: Option<&CFAllocator>,
-            name: Option<&CFString>,
-            comparison_method: CSIdentityQueryStringComparisonMethod,
-            identity_class: CSIdentityClass,
-            authority: Option<&CSIdentityAuthority>,
-        ) -> Option<NonNull<CSIdentityQuery>>;
-    }
-    let ret = unsafe {
-        CSIdentityQueryCreateForName(
-            allocator,
-            name,
-            comparison_method,
-            identity_class,
-            authority,
-        )
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
-#[inline]
-pub unsafe extern "C-unwind" fn CSIdentityQueryCreateForUUID(
-    allocator: Option<&CFAllocator>,
-    uuid: Option<&CFUUID>,
-    authority: Option<&CSIdentityAuthority>,
-) -> Option<CFRetained<CSIdentityQuery>> {
-    extern "C-unwind" {
-        fn CSIdentityQueryCreateForUUID(
-            allocator: Option<&CFAllocator>,
-            uuid: Option<&CFUUID>,
-            authority: Option<&CSIdentityAuthority>,
-        ) -> Option<NonNull<CSIdentityQuery>>;
-    }
-    let ret = unsafe { CSIdentityQueryCreateForUUID(allocator, uuid, authority) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[cfg(all(
-    feature = "CSIdentity",
-    feature = "CSIdentityAuthority",
-    feature = "libc"
-))]
-#[inline]
-pub unsafe extern "C-unwind" fn CSIdentityQueryCreateForPosixID(
-    allocator: Option<&CFAllocator>,
-    posix_id: libc::id_t,
-    identity_class: CSIdentityClass,
-    authority: Option<&CSIdentityAuthority>,
-) -> Option<CFRetained<CSIdentityQuery>> {
-    extern "C-unwind" {
-        fn CSIdentityQueryCreateForPosixID(
-            allocator: Option<&CFAllocator>,
-            posix_id: libc::id_t,
-            identity_class: CSIdentityClass,
-            authority: Option<&CSIdentityAuthority>,
-        ) -> Option<NonNull<CSIdentityQuery>>;
-    }
-    let ret =
-        unsafe { CSIdentityQueryCreateForPosixID(allocator, posix_id, identity_class, authority) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
 #[cfg(feature = "CSIdentity")]
-#[inline]
-pub unsafe extern "C-unwind" fn CSIdentityQueryCreateForPersistentReference(
-    allocator: Option<&CFAllocator>,
-    reference_data: Option<&CFData>,
-) -> Option<CFRetained<CSIdentityQuery>> {
-    extern "C-unwind" {
-        fn CSIdentityQueryCreateForPersistentReference(
-            allocator: Option<&CFAllocator>,
-            reference_data: Option<&CFData>,
-        ) -> Option<NonNull<CSIdentityQuery>>;
+impl CSIdentityQuery {
+    #[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
+    #[inline]
+    #[doc(alias = "CSIdentityQueryCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        identity_class: CSIdentityClass,
+        authority: Option<&CSIdentityAuthority>,
+    ) -> Option<CFRetained<CSIdentityQuery>> {
+        extern "C-unwind" {
+            fn CSIdentityQueryCreate(
+                allocator: Option<&CFAllocator>,
+                identity_class: CSIdentityClass,
+                authority: Option<&CSIdentityAuthority>,
+            ) -> Option<NonNull<CSIdentityQuery>>;
+        }
+        let ret = unsafe { CSIdentityQueryCreate(allocator, identity_class, authority) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CSIdentityQueryCreateForPersistentReference(allocator, reference_data) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CSIdentity")]
-#[inline]
-pub unsafe extern "C-unwind" fn CSIdentityQueryCreateForCurrentUser(
-    allocator: Option<&CFAllocator>,
-) -> Option<CFRetained<CSIdentityQuery>> {
-    extern "C-unwind" {
-        fn CSIdentityQueryCreateForCurrentUser(
-            allocator: Option<&CFAllocator>,
-        ) -> Option<NonNull<CSIdentityQuery>>;
+    #[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
+    #[inline]
+    #[doc(alias = "CSIdentityQueryCreateForName")]
+    pub unsafe fn new_for_name(
+        allocator: Option<&CFAllocator>,
+        name: Option<&CFString>,
+        comparison_method: CSIdentityQueryStringComparisonMethod,
+        identity_class: CSIdentityClass,
+        authority: Option<&CSIdentityAuthority>,
+    ) -> Option<CFRetained<CSIdentityQuery>> {
+        extern "C-unwind" {
+            fn CSIdentityQueryCreateForName(
+                allocator: Option<&CFAllocator>,
+                name: Option<&CFString>,
+                comparison_method: CSIdentityQueryStringComparisonMethod,
+                identity_class: CSIdentityClass,
+                authority: Option<&CSIdentityAuthority>,
+            ) -> Option<NonNull<CSIdentityQuery>>;
+        }
+        let ret = unsafe {
+            CSIdentityQueryCreateForName(
+                allocator,
+                name,
+                comparison_method,
+                identity_class,
+                authority,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CSIdentityQueryCreateForCurrentUser(allocator) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CSIdentity")]
-#[inline]
-pub unsafe extern "C-unwind" fn CSIdentityQueryCopyResults(
-    query: &CSIdentityQuery,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CSIdentityQueryCopyResults(query: &CSIdentityQuery) -> Option<NonNull<CFArray>>;
+    #[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
+    #[inline]
+    #[doc(alias = "CSIdentityQueryCreateForUUID")]
+    pub unsafe fn new_for_uuid(
+        allocator: Option<&CFAllocator>,
+        uuid: Option<&CFUUID>,
+        authority: Option<&CSIdentityAuthority>,
+    ) -> Option<CFRetained<CSIdentityQuery>> {
+        extern "C-unwind" {
+            fn CSIdentityQueryCreateForUUID(
+                allocator: Option<&CFAllocator>,
+                uuid: Option<&CFUUID>,
+                authority: Option<&CSIdentityAuthority>,
+            ) -> Option<NonNull<CSIdentityQuery>>;
+        }
+        let ret = unsafe { CSIdentityQueryCreateForUUID(allocator, uuid, authority) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CSIdentityQueryCopyResults(query) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CSIdentity")]
-#[inline]
-pub unsafe extern "C-unwind" fn CSIdentityQueryExecute(
-    query: &CSIdentityQuery,
-    flags: CSIdentityQueryFlags,
-    error: *mut *mut CFError,
-) -> bool {
-    extern "C-unwind" {
-        fn CSIdentityQueryExecute(
-            query: &CSIdentityQuery,
-            flags: CSIdentityQueryFlags,
-            error: *mut *mut CFError,
-        ) -> Boolean;
+    #[cfg(all(
+        feature = "CSIdentity",
+        feature = "CSIdentityAuthority",
+        feature = "libc"
+    ))]
+    #[inline]
+    #[doc(alias = "CSIdentityQueryCreateForPosixID")]
+    pub unsafe fn new_for_posix_id(
+        allocator: Option<&CFAllocator>,
+        posix_id: libc::id_t,
+        identity_class: CSIdentityClass,
+        authority: Option<&CSIdentityAuthority>,
+    ) -> Option<CFRetained<CSIdentityQuery>> {
+        extern "C-unwind" {
+            fn CSIdentityQueryCreateForPosixID(
+                allocator: Option<&CFAllocator>,
+                posix_id: libc::id_t,
+                identity_class: CSIdentityClass,
+                authority: Option<&CSIdentityAuthority>,
+            ) -> Option<NonNull<CSIdentityQuery>>;
+        }
+        let ret = unsafe {
+            CSIdentityQueryCreateForPosixID(allocator, posix_id, identity_class, authority)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CSIdentityQueryExecute(query, flags, error) };
-    ret != 0
+
+    #[cfg(feature = "CSIdentity")]
+    #[inline]
+    #[doc(alias = "CSIdentityQueryCreateForPersistentReference")]
+    pub unsafe fn new_for_persistent_reference(
+        allocator: Option<&CFAllocator>,
+        reference_data: Option<&CFData>,
+    ) -> Option<CFRetained<CSIdentityQuery>> {
+        extern "C-unwind" {
+            fn CSIdentityQueryCreateForPersistentReference(
+                allocator: Option<&CFAllocator>,
+                reference_data: Option<&CFData>,
+            ) -> Option<NonNull<CSIdentityQuery>>;
+        }
+        let ret = unsafe { CSIdentityQueryCreateForPersistentReference(allocator, reference_data) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CSIdentity")]
+    #[inline]
+    #[doc(alias = "CSIdentityQueryCreateForCurrentUser")]
+    pub unsafe fn new_for_current_user(
+        allocator: Option<&CFAllocator>,
+    ) -> Option<CFRetained<CSIdentityQuery>> {
+        extern "C-unwind" {
+            fn CSIdentityQueryCreateForCurrentUser(
+                allocator: Option<&CFAllocator>,
+            ) -> Option<NonNull<CSIdentityQuery>>;
+        }
+        let ret = unsafe { CSIdentityQueryCreateForCurrentUser(allocator) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CSIdentity")]
+    #[inline]
+    #[doc(alias = "CSIdentityQueryCopyResults")]
+    pub unsafe fn results(self: &CSIdentityQuery) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CSIdentityQueryCopyResults(query: &CSIdentityQuery) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CSIdentityQueryCopyResults(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CSIdentity")]
+    #[inline]
+    #[doc(alias = "CSIdentityQueryExecute")]
+    pub unsafe fn execute(
+        self: &CSIdentityQuery,
+        flags: CSIdentityQueryFlags,
+        error: *mut *mut CFError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CSIdentityQueryExecute(
+                query: &CSIdentityQuery,
+                flags: CSIdentityQueryFlags,
+                error: *mut *mut CFError,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CSIdentityQueryExecute(self, flags, error) };
+        ret != 0
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityqueryeventsearchphasefinished?language=objc)
@@ -247,6 +257,210 @@ unsafe impl RefEncode for CSIdentityQueryClientContext {
 }
 
 #[cfg(feature = "CSIdentity")]
+impl CSIdentityQuery {
+    #[cfg(feature = "CSIdentity")]
+    #[inline]
+    #[doc(alias = "CSIdentityQueryExecuteAsynchronously")]
+    pub unsafe fn execute_asynchronously(
+        self: &CSIdentityQuery,
+        flags: CSIdentityQueryFlags,
+        client_context: *const CSIdentityQueryClientContext,
+        run_loop: Option<&CFRunLoop>,
+        run_loop_mode: Option<&CFString>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CSIdentityQueryExecuteAsynchronously(
+                query: &CSIdentityQuery,
+                flags: CSIdentityQueryFlags,
+                client_context: *const CSIdentityQueryClientContext,
+                run_loop: Option<&CFRunLoop>,
+                run_loop_mode: Option<&CFString>,
+            ) -> Boolean;
+        }
+        let ret = unsafe {
+            CSIdentityQueryExecuteAsynchronously(
+                self,
+                flags,
+                client_context,
+                run_loop,
+                run_loop_mode,
+            )
+        };
+        ret != 0
+    }
+
+    #[cfg(feature = "CSIdentity")]
+    #[inline]
+    #[doc(alias = "CSIdentityQueryStop")]
+    pub unsafe fn stop(self: &CSIdentityQuery) {
+        extern "C-unwind" {
+            fn CSIdentityQueryStop(query: &CSIdentityQuery);
+        }
+        unsafe { CSIdentityQueryStop(self) }
+    }
+}
+
+#[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
+#[deprecated = "renamed to `CSIdentityQuery::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CSIdentityQueryCreate(
+    allocator: Option<&CFAllocator>,
+    identity_class: CSIdentityClass,
+    authority: Option<&CSIdentityAuthority>,
+) -> Option<CFRetained<CSIdentityQuery>> {
+    extern "C-unwind" {
+        fn CSIdentityQueryCreate(
+            allocator: Option<&CFAllocator>,
+            identity_class: CSIdentityClass,
+            authority: Option<&CSIdentityAuthority>,
+        ) -> Option<NonNull<CSIdentityQuery>>;
+    }
+    let ret = unsafe { CSIdentityQueryCreate(allocator, identity_class, authority) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
+#[deprecated = "renamed to `CSIdentityQuery::new_for_name`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CSIdentityQueryCreateForName(
+    allocator: Option<&CFAllocator>,
+    name: Option<&CFString>,
+    comparison_method: CSIdentityQueryStringComparisonMethod,
+    identity_class: CSIdentityClass,
+    authority: Option<&CSIdentityAuthority>,
+) -> Option<CFRetained<CSIdentityQuery>> {
+    extern "C-unwind" {
+        fn CSIdentityQueryCreateForName(
+            allocator: Option<&CFAllocator>,
+            name: Option<&CFString>,
+            comparison_method: CSIdentityQueryStringComparisonMethod,
+            identity_class: CSIdentityClass,
+            authority: Option<&CSIdentityAuthority>,
+        ) -> Option<NonNull<CSIdentityQuery>>;
+    }
+    let ret = unsafe {
+        CSIdentityQueryCreateForName(
+            allocator,
+            name,
+            comparison_method,
+            identity_class,
+            authority,
+        )
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
+#[deprecated = "renamed to `CSIdentityQuery::new_for_uuid`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CSIdentityQueryCreateForUUID(
+    allocator: Option<&CFAllocator>,
+    uuid: Option<&CFUUID>,
+    authority: Option<&CSIdentityAuthority>,
+) -> Option<CFRetained<CSIdentityQuery>> {
+    extern "C-unwind" {
+        fn CSIdentityQueryCreateForUUID(
+            allocator: Option<&CFAllocator>,
+            uuid: Option<&CFUUID>,
+            authority: Option<&CSIdentityAuthority>,
+        ) -> Option<NonNull<CSIdentityQuery>>;
+    }
+    let ret = unsafe { CSIdentityQueryCreateForUUID(allocator, uuid, authority) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(all(
+    feature = "CSIdentity",
+    feature = "CSIdentityAuthority",
+    feature = "libc"
+))]
+#[deprecated = "renamed to `CSIdentityQuery::new_for_posix_id`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CSIdentityQueryCreateForPosixID(
+    allocator: Option<&CFAllocator>,
+    posix_id: libc::id_t,
+    identity_class: CSIdentityClass,
+    authority: Option<&CSIdentityAuthority>,
+) -> Option<CFRetained<CSIdentityQuery>> {
+    extern "C-unwind" {
+        fn CSIdentityQueryCreateForPosixID(
+            allocator: Option<&CFAllocator>,
+            posix_id: libc::id_t,
+            identity_class: CSIdentityClass,
+            authority: Option<&CSIdentityAuthority>,
+        ) -> Option<NonNull<CSIdentityQuery>>;
+    }
+    let ret =
+        unsafe { CSIdentityQueryCreateForPosixID(allocator, posix_id, identity_class, authority) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CSIdentity")]
+#[deprecated = "renamed to `CSIdentityQuery::new_for_persistent_reference`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CSIdentityQueryCreateForPersistentReference(
+    allocator: Option<&CFAllocator>,
+    reference_data: Option<&CFData>,
+) -> Option<CFRetained<CSIdentityQuery>> {
+    extern "C-unwind" {
+        fn CSIdentityQueryCreateForPersistentReference(
+            allocator: Option<&CFAllocator>,
+            reference_data: Option<&CFData>,
+        ) -> Option<NonNull<CSIdentityQuery>>;
+    }
+    let ret = unsafe { CSIdentityQueryCreateForPersistentReference(allocator, reference_data) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CSIdentity")]
+#[deprecated = "renamed to `CSIdentityQuery::new_for_current_user`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CSIdentityQueryCreateForCurrentUser(
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CSIdentityQuery>> {
+    extern "C-unwind" {
+        fn CSIdentityQueryCreateForCurrentUser(
+            allocator: Option<&CFAllocator>,
+        ) -> Option<NonNull<CSIdentityQuery>>;
+    }
+    let ret = unsafe { CSIdentityQueryCreateForCurrentUser(allocator) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CSIdentity")]
+#[deprecated = "renamed to `CSIdentityQuery::results`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CSIdentityQueryCopyResults(
+    query: &CSIdentityQuery,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CSIdentityQueryCopyResults(query: &CSIdentityQuery) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CSIdentityQueryCopyResults(query) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CSIdentity")]
+#[deprecated = "renamed to `CSIdentityQuery::execute`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CSIdentityQueryExecute(
+    query: &CSIdentityQuery,
+    flags: CSIdentityQueryFlags,
+    error: *mut *mut CFError,
+) -> bool {
+    extern "C-unwind" {
+        fn CSIdentityQueryExecute(
+            query: &CSIdentityQuery,
+            flags: CSIdentityQueryFlags,
+            error: *mut *mut CFError,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CSIdentityQueryExecute(query, flags, error) };
+    ret != 0
+}
+
+#[cfg(feature = "CSIdentity")]
+#[deprecated = "renamed to `CSIdentityQuery::execute_asynchronously`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CSIdentityQueryExecuteAsynchronously(
     query: &CSIdentityQuery,
@@ -272,5 +486,6 @@ pub unsafe extern "C-unwind" fn CSIdentityQueryExecuteAsynchronously(
 
 extern "C-unwind" {
     #[cfg(feature = "CSIdentity")]
+    #[deprecated = "renamed to `CSIdentityQuery::stop`"]
     pub fn CSIdentityQueryStop(query: &CSIdentityQuery);
 }

@@ -42,7 +42,7 @@ unsafe impl ConcreteType for SecIdentitySearch {
     }
 }
 
-extern "C-unwind" {
+impl SecIdentitySearch {
     /// Creates a search reference for finding identities.
     ///
     /// Parameter `keychainOrArray`: An reference to an array of keychains to search, a single keychain, or NULL to search the user's default keychain search list.
@@ -57,14 +57,23 @@ extern "C-unwind" {
     /// This function is deprecated in Mac OS X 10.7 and later; to find identities which match a given key usage or other attributes, please use the SecItemCopyMatching API (see SecItem.h).
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
-    pub fn SecIdentitySearchCreate(
+    #[inline]
+    #[doc(alias = "SecIdentitySearchCreate")]
+    pub unsafe fn create(
         keychain_or_array: Option<&CFType>,
         key_usage: CSSM_KEYUSE,
         search_ref: *mut *mut SecIdentitySearch,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecIdentitySearchCreate(
+                keychain_or_array: Option<&CFType>,
+                key_usage: CSSM_KEYUSE,
+                search_ref: *mut *mut SecIdentitySearch,
+            ) -> OSStatus;
+        }
+        unsafe { SecIdentitySearchCreate(keychain_or_array, key_usage, search_ref) }
+    }
 
-extern "C-unwind" {
     /// Finds the next identity matching the given search criteria, as previously specified by a call to SecIdentitySearchCreate or SecIdentitySearchCreateWithAttributes.
     ///
     /// Parameter `searchRef`: A reference to the current identity search. You create the identity search reference by calling either SecIdentitySearchCreate or SecIdentitySearchCreateWithAttributes.
@@ -76,6 +85,32 @@ extern "C-unwind" {
     /// This function is deprecated in Mac OS X 10.7 and later; to find identities which match specified attributes, please use the SecItemCopyMatching API (see SecItem.h).
     #[cfg(feature = "SecBase")]
     #[deprecated]
+    #[inline]
+    #[doc(alias = "SecIdentitySearchCopyNext")]
+    pub unsafe fn copy_next(self: &SecIdentitySearch, identity: *mut *mut SecIdentity) -> OSStatus {
+        extern "C-unwind" {
+            fn SecIdentitySearchCopyNext(
+                search_ref: &SecIdentitySearch,
+                identity: *mut *mut SecIdentity,
+            ) -> OSStatus;
+        }
+        unsafe { SecIdentitySearchCopyNext(self, identity) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecIdentitySearch::create`"]
+    pub fn SecIdentitySearchCreate(
+        keychain_or_array: Option<&CFType>,
+        key_usage: CSSM_KEYUSE,
+        search_ref: *mut *mut SecIdentitySearch,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecIdentitySearch::copy_next`"]
     pub fn SecIdentitySearchCopyNext(
         search_ref: &SecIdentitySearch,
         identity: *mut *mut SecIdentity,

@@ -49,6 +49,18 @@ unsafe impl RefEncode for CGError {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerrorcallback?language=objc)
 pub type CGErrorCallback = Option<unsafe extern "C-unwind" fn()>;
 
+impl CGError {
+    #[inline]
+    #[doc(alias = "CGErrorSetCallback")]
+    pub unsafe fn set_callback(callback: CGErrorCallback) {
+        extern "C-unwind" {
+            fn CGErrorSetCallback(callback: CGErrorCallback);
+        }
+        unsafe { CGErrorSetCallback(callback) }
+    }
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGError::set_callback`"]
     pub fn CGErrorSetCallback(callback: CGErrorCallback);
 }

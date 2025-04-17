@@ -5,24 +5,300 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// Creates a dynamic store key that can be used to access
-/// a specific global (as opposed to a per-service or per-interface)
-/// network configuration entity.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for this key.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `domain`: A string specifying the desired domain, such as the
-/// requested configuration (kSCDynamicStoreDomainSetup) or the
-/// actual state (kSCDynamicStoreDomainState).
-///
-/// Parameter `entity`: A string containing the specific global entity, such
-/// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
-///
-/// Returns: Returns a string containing the formatted key.
+#[cfg(feature = "SCDynamicStore")]
+impl SCDynamicStore {
+    /// Creates a dynamic store key that can be used to access
+    /// a specific global (as opposed to a per-service or per-interface)
+    /// network configuration entity.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for this key.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `domain`: A string specifying the desired domain, such as the
+    /// requested configuration (kSCDynamicStoreDomainSetup) or the
+    /// actual state (kSCDynamicStoreDomainState).
+    ///
+    /// Parameter `entity`: A string containing the specific global entity, such
+    /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
+    ///
+    /// Returns: Returns a string containing the formatted key.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreKeyCreateNetworkGlobalEntity")]
+    pub fn key_create_network_global_entity(
+        allocator: Option<&CFAllocator>,
+        domain: &CFString,
+        entity: &CFString,
+    ) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn SCDynamicStoreKeyCreateNetworkGlobalEntity(
+                allocator: Option<&CFAllocator>,
+                domain: &CFString,
+                entity: &CFString,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SCDynamicStoreKeyCreateNetworkGlobalEntity(allocator, domain, entity) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Creates a dynamic store key that can be used to access
+    /// the network interface configuration information stored in
+    /// the dynamic store.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for this key.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `domain`: A string specifying the desired domain, such as the
+    /// requested configuration (kSCDynamicStoreDomainSetup) or the
+    /// actual state (kSCDynamicStoreDomainState).
+    ///
+    /// Returns: Returns a string containing the formatted key.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreKeyCreateNetworkInterface")]
+    pub fn key_create_network_interface(
+        allocator: Option<&CFAllocator>,
+        domain: &CFString,
+    ) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn SCDynamicStoreKeyCreateNetworkInterface(
+                allocator: Option<&CFAllocator>,
+                domain: &CFString,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SCDynamicStoreKeyCreateNetworkInterface(allocator, domain) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Creates a dynamic store key that can be used to access
+    /// the per-interface network configuration information stored in
+    /// the dynamic store.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for this key.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `domain`: A string specifying the desired domain, such as the
+    /// requested configuration (kSCDynamicStoreDomainSetup) or the
+    /// actual state (kSCDynamicStoreDomainState).
+    ///
+    /// Parameter `ifname`: A string containing the interface name or a regular
+    /// expression pattern.
+    ///
+    /// Parameter `entity`: A string containing the specific global entity, such
+    /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
+    ///
+    /// Returns: Returns a string containing the formatted key.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreKeyCreateNetworkInterfaceEntity")]
+    pub fn key_create_network_interface_entity(
+        allocator: Option<&CFAllocator>,
+        domain: &CFString,
+        ifname: &CFString,
+        entity: Option<&CFString>,
+    ) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn SCDynamicStoreKeyCreateNetworkInterfaceEntity(
+                allocator: Option<&CFAllocator>,
+                domain: &CFString,
+                ifname: &CFString,
+                entity: Option<&CFString>,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe {
+            SCDynamicStoreKeyCreateNetworkInterfaceEntity(allocator, domain, ifname, entity)
+        };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Creates a dynamic store key that can be used to access
+    /// the per-service network configuration information stored in
+    /// the dynamic store.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for this key.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `domain`: A string specifying the desired domain, such as the
+    /// requested configuration (kSCDynamicStoreDomainSetup) or the
+    /// actual state (kSCDynamicStoreDomainState).
+    ///
+    /// Parameter `serviceID`: A string containing the service ID or a regular
+    /// expression pattern.
+    ///
+    /// Parameter `entity`: A string containing the specific global entity, such
+    /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
+    ///
+    /// Returns: Returns a string containing the formatted key.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreKeyCreateNetworkServiceEntity")]
+    pub fn key_create_network_service_entity(
+        allocator: Option<&CFAllocator>,
+        domain: &CFString,
+        service_id: &CFString,
+        entity: Option<&CFString>,
+    ) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn SCDynamicStoreKeyCreateNetworkServiceEntity(
+                allocator: Option<&CFAllocator>,
+                domain: &CFString,
+                service_id: &CFString,
+                entity: Option<&CFString>,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe {
+            SCDynamicStoreKeyCreateNetworkServiceEntity(allocator, domain, service_id, entity)
+        };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Creates a key that can be used in conjuntion with
+    /// SCDynamicStoreSetNotificationKeys function to receive
+    /// notifications when the current computer name changes.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for this key.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Returns: Returns a notification string for the current computer or
+    /// host name.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreKeyCreateComputerName")]
+    pub fn key_create_computer_name(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn SCDynamicStoreKeyCreateComputerName(
+                allocator: Option<&CFAllocator>,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SCDynamicStoreKeyCreateComputerName(allocator) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Creates a key that can be used in conjunction with
+    /// SCDynamicStoreSetNotificationKeys function to receive
+    /// notifications when the current console user changes.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for this key.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Returns: Returns a notification string for the current console user.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreKeyCreateConsoleUser")]
+    pub fn key_create_console_user(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn SCDynamicStoreKeyCreateConsoleUser(
+                allocator: Option<&CFAllocator>,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SCDynamicStoreKeyCreateConsoleUser(allocator) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Creates a key that can be used in conjunction with the
+    /// SCDynamicStoreSetNotificationKeys function to receive
+    /// notifications when the HostNames entity changes.  The
+    /// HostNames entity includes the local host name.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for this key.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Returns: Returns a notification string for the HostNames entity.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreKeyCreateHostNames")]
+    pub fn key_create_host_names(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn SCDynamicStoreKeyCreateHostNames(
+                allocator: Option<&CFAllocator>,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SCDynamicStoreKeyCreateHostNames(allocator) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Creates a key that can be used in conjunction with the
+    /// SCDynamicStoreSetNotificationKeys function to receive
+    /// notifications when the location identifier changes.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for this key.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Returns: Returns a notification string for the current location
+    /// identifier.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreKeyCreateLocation")]
+    pub fn key_create_location(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn SCDynamicStoreKeyCreateLocation(
+                allocator: Option<&CFAllocator>,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SCDynamicStoreKeyCreateLocation(allocator) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Creates a key that can be used in conjunction with
+    /// the SCDynamicStoreSetNotificationKeys function to receive
+    /// notifications when the current network proxy settings
+    /// (such as HTTP or FTP) are changed.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for this key.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Returns: Returns a notification string for the current proxy settings.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreKeyCreateProxies")]
+    pub fn key_create_proxies(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn SCDynamicStoreKeyCreateProxies(
+                allocator: Option<&CFAllocator>,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SCDynamicStoreKeyCreateProxies(allocator) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+}
+
+#[deprecated = "renamed to `SCDynamicStore::key_create_network_global_entity`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkGlobalEntity(
     allocator: Option<&CFAllocator>,
@@ -41,21 +317,7 @@ pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkGlobalEntity(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Creates a dynamic store key that can be used to access
-/// the network interface configuration information stored in
-/// the dynamic store.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for this key.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `domain`: A string specifying the desired domain, such as the
-/// requested configuration (kSCDynamicStoreDomainSetup) or the
-/// actual state (kSCDynamicStoreDomainState).
-///
-/// Returns: Returns a string containing the formatted key.
+#[deprecated = "renamed to `SCDynamicStore::key_create_network_interface`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterface(
     allocator: Option<&CFAllocator>,
@@ -72,27 +334,7 @@ pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterface(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Creates a dynamic store key that can be used to access
-/// the per-interface network configuration information stored in
-/// the dynamic store.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for this key.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `domain`: A string specifying the desired domain, such as the
-/// requested configuration (kSCDynamicStoreDomainSetup) or the
-/// actual state (kSCDynamicStoreDomainState).
-///
-/// Parameter `ifname`: A string containing the interface name or a regular
-/// expression pattern.
-///
-/// Parameter `entity`: A string containing the specific global entity, such
-/// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
-///
-/// Returns: Returns a string containing the formatted key.
+#[deprecated = "renamed to `SCDynamicStore::key_create_network_interface_entity`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterfaceEntity(
     allocator: Option<&CFAllocator>,
@@ -114,27 +356,7 @@ pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterfaceEntity(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Creates a dynamic store key that can be used to access
-/// the per-service network configuration information stored in
-/// the dynamic store.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for this key.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `domain`: A string specifying the desired domain, such as the
-/// requested configuration (kSCDynamicStoreDomainSetup) or the
-/// actual state (kSCDynamicStoreDomainState).
-///
-/// Parameter `serviceID`: A string containing the service ID or a regular
-/// expression pattern.
-///
-/// Parameter `entity`: A string containing the specific global entity, such
-/// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
-///
-/// Returns: Returns a string containing the formatted key.
+#[deprecated = "renamed to `SCDynamicStore::key_create_network_service_entity`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkServiceEntity(
     allocator: Option<&CFAllocator>,
@@ -157,18 +379,7 @@ pub extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkServiceEntity(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Creates a key that can be used in conjuntion with
-/// SCDynamicStoreSetNotificationKeys function to receive
-/// notifications when the current computer name changes.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for this key.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Returns: Returns a notification string for the current computer or
-/// host name.
+#[deprecated = "renamed to `SCDynamicStore::key_create_computer_name`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreKeyCreateComputerName(
     allocator: Option<&CFAllocator>,
@@ -183,17 +394,7 @@ pub extern "C-unwind" fn SCDynamicStoreKeyCreateComputerName(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Creates a key that can be used in conjunction with
-/// SCDynamicStoreSetNotificationKeys function to receive
-/// notifications when the current console user changes.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for this key.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Returns: Returns a notification string for the current console user.
+#[deprecated = "renamed to `SCDynamicStore::key_create_console_user`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreKeyCreateConsoleUser(
     allocator: Option<&CFAllocator>,
@@ -208,18 +409,7 @@ pub extern "C-unwind" fn SCDynamicStoreKeyCreateConsoleUser(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Creates a key that can be used in conjunction with the
-/// SCDynamicStoreSetNotificationKeys function to receive
-/// notifications when the HostNames entity changes.  The
-/// HostNames entity includes the local host name.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for this key.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Returns: Returns a notification string for the HostNames entity.
+#[deprecated = "renamed to `SCDynamicStore::key_create_host_names`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreKeyCreateHostNames(
     allocator: Option<&CFAllocator>,
@@ -234,18 +424,7 @@ pub extern "C-unwind" fn SCDynamicStoreKeyCreateHostNames(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Creates a key that can be used in conjunction with the
-/// SCDynamicStoreSetNotificationKeys function to receive
-/// notifications when the location identifier changes.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for this key.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Returns: Returns a notification string for the current location
-/// identifier.
+#[deprecated = "renamed to `SCDynamicStore::key_create_location`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreKeyCreateLocation(
     allocator: Option<&CFAllocator>,
@@ -260,18 +439,7 @@ pub extern "C-unwind" fn SCDynamicStoreKeyCreateLocation(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Creates a key that can be used in conjunction with
-/// the SCDynamicStoreSetNotificationKeys function to receive
-/// notifications when the current network proxy settings
-/// (such as HTTP or FTP) are changed.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for this key.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Returns: Returns a notification string for the current proxy settings.
+#[deprecated = "renamed to `SCDynamicStore::key_create_proxies`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreKeyCreateProxies(
     allocator: Option<&CFAllocator>,

@@ -35,7 +35,76 @@ unsafe impl ConcreteType for CGShading {
     }
 }
 
+impl CGShading {
+    #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
+    #[inline]
+    #[doc(alias = "CGShadingCreateAxial")]
+    pub unsafe fn new_axial(
+        space: Option<&CGColorSpace>,
+        start: CGPoint,
+        end: CGPoint,
+        function: Option<&CGFunction>,
+        extend_start: bool,
+        extend_end: bool,
+    ) -> Option<CFRetained<CGShading>> {
+        extern "C-unwind" {
+            fn CGShadingCreateAxial(
+                space: Option<&CGColorSpace>,
+                start: CGPoint,
+                end: CGPoint,
+                function: Option<&CGFunction>,
+                extend_start: bool,
+                extend_end: bool,
+            ) -> Option<NonNull<CGShading>>;
+        }
+        let ret =
+            unsafe { CGShadingCreateAxial(space, start, end, function, extend_start, extend_end) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
+    #[inline]
+    #[doc(alias = "CGShadingCreateRadial")]
+    pub unsafe fn new_radial(
+        space: Option<&CGColorSpace>,
+        start: CGPoint,
+        start_radius: CGFloat,
+        end: CGPoint,
+        end_radius: CGFloat,
+        function: Option<&CGFunction>,
+        extend_start: bool,
+        extend_end: bool,
+    ) -> Option<CFRetained<CGShading>> {
+        extern "C-unwind" {
+            fn CGShadingCreateRadial(
+                space: Option<&CGColorSpace>,
+                start: CGPoint,
+                start_radius: CGFloat,
+                end: CGPoint,
+                end_radius: CGFloat,
+                function: Option<&CGFunction>,
+                extend_start: bool,
+                extend_end: bool,
+            ) -> Option<NonNull<CGShading>>;
+        }
+        let ret = unsafe {
+            CGShadingCreateRadial(
+                space,
+                start,
+                start_radius,
+                end,
+                end_radius,
+                function,
+                extend_start,
+                extend_end,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
 #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
+#[deprecated = "renamed to `CGShading::new_axial`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGShadingCreateAxial(
     space: Option<&CGColorSpace>,
@@ -61,6 +130,7 @@ pub unsafe extern "C-unwind" fn CGShadingCreateAxial(
 }
 
 #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
+#[deprecated = "renamed to `CGShading::new_radial`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGShadingCreateRadial(
     space: Option<&CGColorSpace>,

@@ -4,7 +4,8 @@ use core::ffi::*;
 
 use crate::*;
 
-extern "C-unwind" {
+#[cfg(all(feature = "JSContext", feature = "objc2"))]
+impl JSContext {
     /// Creates a JavaScript context group.
     ///
     /// A JSContextGroup associates JavaScript contexts with one another.
@@ -20,25 +21,42 @@ extern "C-unwind" {
     ///
     /// Returns: The created JSContextGroup.
     #[cfg(feature = "JSBase")]
-    pub fn JSContextGroupCreate() -> JSContextGroupRef;
-}
+    #[inline]
+    #[doc(alias = "JSContextGroupCreate")]
+    pub unsafe fn group_create() -> JSContextGroupRef {
+        extern "C-unwind" {
+            fn JSContextGroupCreate() -> JSContextGroupRef;
+        }
+        unsafe { JSContextGroupCreate() }
+    }
 
-extern "C-unwind" {
     /// Retains a JavaScript context group.
     ///
     /// Parameter `group`: The JSContextGroup to retain.
     ///
     /// Returns: A JSContextGroup that is the same as group.
     #[cfg(feature = "JSBase")]
-    pub fn JSContextGroupRetain(group: JSContextGroupRef) -> JSContextGroupRef;
-}
+    #[inline]
+    #[doc(alias = "JSContextGroupRetain")]
+    pub unsafe fn group_retain(group: JSContextGroupRef) -> JSContextGroupRef {
+        extern "C-unwind" {
+            fn JSContextGroupRetain(group: JSContextGroupRef) -> JSContextGroupRef;
+        }
+        unsafe { JSContextGroupRetain(group) }
+    }
 
-extern "C-unwind" {
     /// Releases a JavaScript context group.
     ///
     /// Parameter `group`: The JSContextGroup to release.
     #[cfg(feature = "JSBase")]
-    pub fn JSContextGroupRelease(group: JSContextGroupRef);
+    #[inline]
+    #[doc(alias = "JSContextGroupRelease")]
+    pub unsafe fn group_release(group: JSContextGroupRef) {
+        extern "C-unwind" {
+            fn JSContextGroupRelease(group: JSContextGroupRef);
+        }
+        unsafe { JSContextGroupRelease(group) }
+    }
 }
 
 extern "C-unwind" {
@@ -98,34 +116,52 @@ extern "C-unwind" {
     pub fn JSGlobalContextRelease(ctx: JSGlobalContextRef);
 }
 
-extern "C-unwind" {
+#[cfg(all(feature = "JSContext", feature = "objc2"))]
+impl JSContext {
     /// Gets the global object of a JavaScript execution context.
     ///
     /// Parameter `ctx`: The JSContext whose global object you want to get.
     ///
     /// Returns: ctx's global object.
     #[cfg(feature = "JSBase")]
-    pub fn JSContextGetGlobalObject(ctx: JSContextRef) -> JSObjectRef;
-}
+    #[inline]
+    #[doc(alias = "JSContextGetGlobalObject")]
+    pub unsafe fn global_object(ctx: JSContextRef) -> JSObjectRef {
+        extern "C-unwind" {
+            fn JSContextGetGlobalObject(ctx: JSContextRef) -> JSObjectRef;
+        }
+        unsafe { JSContextGetGlobalObject(ctx) }
+    }
 
-extern "C-unwind" {
     /// Gets the context group to which a JavaScript execution context belongs.
     ///
     /// Parameter `ctx`: The JSContext whose group you want to get.
     ///
     /// Returns: ctx's group.
     #[cfg(feature = "JSBase")]
-    pub fn JSContextGetGroup(ctx: JSContextRef) -> JSContextGroupRef;
-}
+    #[inline]
+    #[doc(alias = "JSContextGetGroup")]
+    pub unsafe fn group(ctx: JSContextRef) -> JSContextGroupRef {
+        extern "C-unwind" {
+            fn JSContextGetGroup(ctx: JSContextRef) -> JSContextGroupRef;
+        }
+        unsafe { JSContextGetGroup(ctx) }
+    }
 
-extern "C-unwind" {
     /// Gets the global context of a JavaScript execution context.
     ///
     /// Parameter `ctx`: The JSContext whose global context you want to get.
     ///
     /// Returns: ctx's global context.
     #[cfg(feature = "JSBase")]
-    pub fn JSContextGetGlobalContext(ctx: JSContextRef) -> JSGlobalContextRef;
+    #[inline]
+    #[doc(alias = "JSContextGetGlobalContext")]
+    pub unsafe fn global_context(ctx: JSContextRef) -> JSGlobalContextRef {
+        extern "C-unwind" {
+            fn JSContextGetGlobalContext(ctx: JSContextRef) -> JSGlobalContextRef;
+        }
+        unsafe { JSContextGetGlobalContext(ctx) }
+    }
 }
 
 extern "C-unwind" {
@@ -168,4 +204,40 @@ extern "C-unwind" {
     /// Parameter `inspectable`: YES to allow Web Inspector to connect to the context, otherwise NO.
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextSetInspectable(ctx: JSGlobalContextRef, inspectable: bool);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSContext::group_create`"]
+    pub fn JSContextGroupCreate() -> JSContextGroupRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSContext::group_retain`"]
+    pub fn JSContextGroupRetain(group: JSContextGroupRef) -> JSContextGroupRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSContext::group_release`"]
+    pub fn JSContextGroupRelease(group: JSContextGroupRef);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSContext::global_object`"]
+    pub fn JSContextGetGlobalObject(ctx: JSContextRef) -> JSObjectRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSContext::group`"]
+    pub fn JSContextGetGroup(ctx: JSContextRef) -> JSContextGroupRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSContext::global_context`"]
+    pub fn JSContextGetGlobalContext(ctx: JSContextRef) -> JSGlobalContextRef;
 }

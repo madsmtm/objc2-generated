@@ -177,7 +177,7 @@ impl MPSImageDescriptor {
     );
 }
 
-extern "C-unwind" {
+impl MPSImage {
     /// raise or lower the readcount of a batch by a set amount
     ///
     /// In some circumstances, a MPSImage may appear in a MPSImageBatch
@@ -206,23 +206,47 @@ extern "C-unwind" {
     /// Parameter `amount`: The value to add to the read count for each unique image in the batch
     ///
     /// Returns: The number of different images in the batch
-    pub fn MPSImageBatchIncrementReadCount(batch: &MPSImageBatch, amount: NSInteger) -> NSUInteger;
-}
+    #[inline]
+    #[doc(alias = "MPSImageBatchIncrementReadCount")]
+    pub unsafe fn batch_increment_read_count(
+        batch: &MPSImageBatch,
+        amount: NSInteger,
+    ) -> NSUInteger {
+        extern "C-unwind" {
+            fn MPSImageBatchIncrementReadCount(
+                batch: &MPSImageBatch,
+                amount: NSInteger,
+            ) -> NSUInteger;
+        }
+        unsafe { MPSImageBatchIncrementReadCount(batch, amount) }
+    }
 
-extern "C-unwind" {
     /// Call [MTLBlitEncoder synchronizeResource:] on unique resources
-    pub fn MPSImageBatchSynchronize(
+    #[inline]
+    #[doc(alias = "MPSImageBatchSynchronize")]
+    pub unsafe fn batch_synchronize(
         batch: &MPSImageBatch,
         cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn MPSImageBatchSynchronize(
+                batch: &MPSImageBatch,
+                cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
+            );
+        }
+        unsafe { MPSImageBatchSynchronize(batch, cmd_buf) }
+    }
 
-extern "C-unwind" {
     /// Call [MTLBlitEncoder resourceSize] on unique resources and return sum
-    pub fn MPSImageBatchResourceSize(batch: &MPSImageBatch) -> NSUInteger;
-}
+    #[inline]
+    #[doc(alias = "MPSImageBatchResourceSize")]
+    pub unsafe fn batch_resource_size(batch: &MPSImageBatch) -> NSUInteger {
+        extern "C-unwind" {
+            fn MPSImageBatchResourceSize(batch: &MPSImageBatch) -> NSUInteger;
+        }
+        unsafe { MPSImageBatchResourceSize(batch) }
+    }
 
-extern "C-unwind" {
     /// Iterate over unique images in the batch
     ///
     /// This function looks only at image address to determine uniqueness.
@@ -238,10 +262,22 @@ extern "C-unwind" {
     ///
     /// Returns: The value returned by the iterator block for the last image on which it ran
     #[cfg(feature = "block2")]
-    pub fn MPSImageBatchIterate(
+    #[inline]
+    #[doc(alias = "MPSImageBatchIterate")]
+    pub unsafe fn batch_iterate(
         batch: &MPSImageBatch,
         iterator_block: &block2::DynBlock<dyn Fn(NonNull<MPSImage>, NSUInteger) -> NSInteger>,
-    ) -> NSInteger;
+    ) -> NSInteger {
+        extern "C-unwind" {
+            fn MPSImageBatchIterate(
+                batch: &MPSImageBatch,
+                iterator_block: &block2::DynBlock<
+                    dyn Fn(NonNull<MPSImage>, NSUInteger) -> NSInteger,
+                >,
+            ) -> NSInteger;
+        }
+        unsafe { MPSImageBatchIterate(batch, iterator_block) }
+    }
 }
 
 extern_protocol!(
@@ -1359,4 +1395,31 @@ impl MPSTemporaryImage {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `MPSImage::batch_increment_read_count`"]
+    pub fn MPSImageBatchIncrementReadCount(batch: &MPSImageBatch, amount: NSInteger) -> NSUInteger;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `MPSImage::batch_synchronize`"]
+    pub fn MPSImageBatchSynchronize(
+        batch: &MPSImageBatch,
+        cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `MPSImage::batch_resource_size`"]
+    pub fn MPSImageBatchResourceSize(batch: &MPSImageBatch) -> NSUInteger;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `MPSImage::batch_iterate`"]
+    pub fn MPSImageBatchIterate(
+        batch: &MPSImageBatch,
+        iterator_block: &block2::DynBlock<dyn Fn(NonNull<MPSImage>, NSUInteger) -> NSInteger>,
+    ) -> NSInteger;
 }

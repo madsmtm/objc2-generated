@@ -2072,7 +2072,9 @@ unsafe impl RefEncode for AudioChannelLayout {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn AudioChannelLayoutTag_GetNumberOfChannels(in_layout_tag: AudioChannelLayoutTag,) -> u32;
+impl AudioChannelLayout {
+    // TODO: pub fn AudioChannelLayoutTag_GetNumberOfChannels(in_layout_tag: AudioChannelLayoutTag,) -> u32;
+}
 
 /// this struct is used as output from the kAudioFormatProperty_FormatList property
 ///

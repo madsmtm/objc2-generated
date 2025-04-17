@@ -1310,12 +1310,6 @@ pub use self::__CGEventSource::CGEventSourceSetPixelsPerLine;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceSetUserData;
 #[cfg(feature = "CGEventTypes")]
-pub use self::__CGEventTypes::kCGEventMaskForAllEvents;
-#[cfg(feature = "CGEventTypes")]
-pub use self::__CGEventTypes::kCGNotifyEventTapAdded;
-#[cfg(feature = "CGEventTypes")]
-pub use self::__CGEventTypes::kCGNotifyEventTapRemoved;
-#[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGEvent;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGEventField;
@@ -1359,6 +1353,12 @@ pub use self::__CGEventTypes::CGScrollEventUnit;
 pub use self::__CGEventTypes::CGScrollPhase;
 #[cfg(feature = "CGEventTypes")]
 pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
+#[cfg(feature = "CGEventTypes")]
+pub use self::__CGEventTypes::kCGEventMaskForAllEvents;
+#[cfg(feature = "CGEventTypes")]
+pub use self::__CGEventTypes::kCGNotifyEventTapAdded;
+#[cfg(feature = "CGEventTypes")]
+pub use self::__CGEventTypes::kCGNotifyEventTapRemoved;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontIndexInvalid;
 #[cfg(feature = "CGFont")]

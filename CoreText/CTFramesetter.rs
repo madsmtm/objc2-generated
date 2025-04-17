@@ -38,144 +38,148 @@ unsafe impl ConcreteType for CTFramesetter {
     }
 }
 
-/// Creates a framesetter directly from a typesetter.
-///
-///
-/// Each framesetter uses a typesetter internally to perform
-/// line breaking and other contextual analysis based on the
-/// characters in a string. This function allows use of a
-/// typesetter that was constructed using specific options.
-///
-///
-/// Parameter `typesetter`: The typesetter to be used by the newly-created framesetter.
-///
-///
-/// Returns: This function will return a reference to a CTFramesetter object.
-///
-///
-/// See also: CTTypesetterCreateWithAttributedStringAndOptions
-#[cfg(feature = "CTTypesetter")]
-#[inline]
-pub unsafe extern "C-unwind" fn CTFramesetterCreateWithTypesetter(
-    typesetter: &CTTypesetter,
-) -> CFRetained<CTFramesetter> {
-    extern "C-unwind" {
-        fn CTFramesetterCreateWithTypesetter(
-            typesetter: &CTTypesetter,
-        ) -> Option<NonNull<CTFramesetter>>;
+impl CTFramesetter {
+    /// Creates a framesetter directly from a typesetter.
+    ///
+    ///
+    /// Each framesetter uses a typesetter internally to perform
+    /// line breaking and other contextual analysis based on the
+    /// characters in a string. This function allows use of a
+    /// typesetter that was constructed using specific options.
+    ///
+    ///
+    /// Parameter `typesetter`: The typesetter to be used by the newly-created framesetter.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTFramesetter object.
+    ///
+    ///
+    /// See also: CTTypesetterCreateWithAttributedStringAndOptions
+    #[cfg(feature = "CTTypesetter")]
+    #[inline]
+    #[doc(alias = "CTFramesetterCreateWithTypesetter")]
+    pub unsafe fn with_typesetter(typesetter: &CTTypesetter) -> CFRetained<CTFramesetter> {
+        extern "C-unwind" {
+            fn CTFramesetterCreateWithTypesetter(
+                typesetter: &CTTypesetter,
+            ) -> Option<NonNull<CTFramesetter>>;
+        }
+        let ret = unsafe { CTFramesetterCreateWithTypesetter(typesetter) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTFramesetterCreateWithTypesetter(typesetter) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Creates an immutable framesetter object from an attributed
-/// string.
-///
-///
-/// The resultant framesetter object can be used to create and
-/// fill text frames with the CTFramesetterCreateFrame call.
-///
-///
-/// Parameter `attrString`: The attributed string to construct the framesetter with.
-///
-///
-/// Returns: This function will return a reference to a CTFramesetter object.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFramesetterCreateWithAttributedString(
-    attr_string: &CFAttributedString,
-) -> CFRetained<CTFramesetter> {
-    extern "C-unwind" {
-        fn CTFramesetterCreateWithAttributedString(
-            attr_string: &CFAttributedString,
-        ) -> Option<NonNull<CTFramesetter>>;
+    /// Creates an immutable framesetter object from an attributed
+    /// string.
+    ///
+    ///
+    /// The resultant framesetter object can be used to create and
+    /// fill text frames with the CTFramesetterCreateFrame call.
+    ///
+    ///
+    /// Parameter `attrString`: The attributed string to construct the framesetter with.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTFramesetter object.
+    #[inline]
+    #[doc(alias = "CTFramesetterCreateWithAttributedString")]
+    pub unsafe fn with_attributed_string(
+        attr_string: &CFAttributedString,
+    ) -> CFRetained<CTFramesetter> {
+        extern "C-unwind" {
+            fn CTFramesetterCreateWithAttributedString(
+                attr_string: &CFAttributedString,
+            ) -> Option<NonNull<CTFramesetter>>;
+        }
+        let ret = unsafe { CTFramesetterCreateWithAttributedString(attr_string) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTFramesetterCreateWithAttributedString(attr_string) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Creates an immutable frame from a framesetter.
-///
-///
-/// This call will create a frame full of glyphs in the shape of
-/// the path provided by the "path" parameter. The framesetter
-/// will continue to fill the frame until it either runs out of
-/// text or it finds that text no longer fits.
-///
-///
-/// Parameter `framesetter`: The framesetter that will be used to create the frame.
-///
-///
-/// Parameter `stringRange`: The string range which the new frame will be based on. The
-/// string range is a range over the string that was used to
-/// create the framesetter. If the length portion of the range
-/// is set to 0, then the framesetter will continue to add lines
-/// until it runs out of text or space.
-///
-///
-/// Parameter `path`: A CGPath object that specifies the shape which the frame will
-/// take on.
-///
-///
-/// Parameter `frameAttributes`: Additional attributes that control the frame filling process
-/// can be specified here, or NULL if there are no such attributes.
-/// See CTFrame.h for available attributes.
-///
-///
-/// Returns: This function will return a reference to a new CTFrame object.
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
-#[inline]
-pub unsafe extern "C-unwind" fn CTFramesetterCreateFrame(
-    framesetter: &CTFramesetter,
-    string_range: CFRange,
-    path: &CGPath,
-    frame_attributes: Option<&CFDictionary>,
-) -> CFRetained<CTFrame> {
-    extern "C-unwind" {
-        fn CTFramesetterCreateFrame(
-            framesetter: &CTFramesetter,
-            string_range: CFRange,
-            path: &CGPath,
-            frame_attributes: Option<&CFDictionary>,
-        ) -> Option<NonNull<CTFrame>>;
+    /// Creates an immutable frame from a framesetter.
+    ///
+    ///
+    /// This call will create a frame full of glyphs in the shape of
+    /// the path provided by the "path" parameter. The framesetter
+    /// will continue to fill the frame until it either runs out of
+    /// text or it finds that text no longer fits.
+    ///
+    ///
+    /// Parameter `framesetter`: The framesetter that will be used to create the frame.
+    ///
+    ///
+    /// Parameter `stringRange`: The string range which the new frame will be based on. The
+    /// string range is a range over the string that was used to
+    /// create the framesetter. If the length portion of the range
+    /// is set to 0, then the framesetter will continue to add lines
+    /// until it runs out of text or space.
+    ///
+    ///
+    /// Parameter `path`: A CGPath object that specifies the shape which the frame will
+    /// take on.
+    ///
+    ///
+    /// Parameter `frameAttributes`: Additional attributes that control the frame filling process
+    /// can be specified here, or NULL if there are no such attributes.
+    /// See CTFrame.h for available attributes.
+    ///
+    ///
+    /// Returns: This function will return a reference to a new CTFrame object.
+    #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
+    #[inline]
+    #[doc(alias = "CTFramesetterCreateFrame")]
+    pub unsafe fn new_frame(
+        self: &CTFramesetter,
+        string_range: CFRange,
+        path: &CGPath,
+        frame_attributes: Option<&CFDictionary>,
+    ) -> CFRetained<CTFrame> {
+        extern "C-unwind" {
+            fn CTFramesetterCreateFrame(
+                framesetter: &CTFramesetter,
+                string_range: CFRange,
+                path: &CGPath,
+                frame_attributes: Option<&CFDictionary>,
+            ) -> Option<NonNull<CTFrame>>;
+        }
+        let ret = unsafe { CTFramesetterCreateFrame(self, string_range, path, frame_attributes) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret =
-        unsafe { CTFramesetterCreateFrame(framesetter, string_range, path, frame_attributes) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Returns the typesetter object being used by the framesetter.
-///
-///
-/// Each framesetter uses a typesetter internally to perform
-/// line breaking and other contextual analysis based on the
-/// characters in a string; this function returns the typesetter
-/// being used by a particular framesetter if the caller would
-/// like to perform other operations on that typesetter.
-///
-///
-/// Parameter `framesetter`: The framesetter from which a typesetter is being requested.
-///
-///
-/// Returns: This function will return a reference to a CTTypesetter
-/// object, which should not be released by the caller.
-#[cfg(feature = "CTTypesetter")]
-#[inline]
-pub unsafe extern "C-unwind" fn CTFramesetterGetTypesetter(
-    framesetter: &CTFramesetter,
-) -> CFRetained<CTTypesetter> {
-    extern "C-unwind" {
-        fn CTFramesetterGetTypesetter(framesetter: &CTFramesetter)
-            -> Option<NonNull<CTTypesetter>>;
+    /// Returns the typesetter object being used by the framesetter.
+    ///
+    ///
+    /// Each framesetter uses a typesetter internally to perform
+    /// line breaking and other contextual analysis based on the
+    /// characters in a string; this function returns the typesetter
+    /// being used by a particular framesetter if the caller would
+    /// like to perform other operations on that typesetter.
+    ///
+    ///
+    /// Parameter `framesetter`: The framesetter from which a typesetter is being requested.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTTypesetter
+    /// object, which should not be released by the caller.
+    #[cfg(feature = "CTTypesetter")]
+    #[inline]
+    #[doc(alias = "CTFramesetterGetTypesetter")]
+    pub unsafe fn typesetter(self: &CTFramesetter) -> CFRetained<CTTypesetter> {
+        extern "C-unwind" {
+            fn CTFramesetterGetTypesetter(
+                framesetter: &CTFramesetter,
+            ) -> Option<NonNull<CTTypesetter>>;
+        }
+        let ret = unsafe { CTFramesetterGetTypesetter(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
-    let ret = unsafe { CTFramesetterGetTypesetter(framesetter) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-extern "C-unwind" {
     /// Determines the frame size needed for a string range.
     ///
     ///
@@ -207,6 +211,107 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The actual dimensions for the given string range and constraints.
+    #[inline]
+    #[doc(alias = "CTFramesetterSuggestFrameSizeWithConstraints")]
+    pub unsafe fn suggest_frame_size_with_constraints(
+        self: &CTFramesetter,
+        string_range: CFRange,
+        frame_attributes: Option<&CFDictionary>,
+        constraints: CGSize,
+        fit_range: *mut CFRange,
+    ) -> CGSize {
+        extern "C-unwind" {
+            fn CTFramesetterSuggestFrameSizeWithConstraints(
+                framesetter: &CTFramesetter,
+                string_range: CFRange,
+                frame_attributes: Option<&CFDictionary>,
+                constraints: CGSize,
+                fit_range: *mut CFRange,
+            ) -> CGSize;
+        }
+        unsafe {
+            CTFramesetterSuggestFrameSizeWithConstraints(
+                self,
+                string_range,
+                frame_attributes,
+                constraints,
+                fit_range,
+            )
+        }
+    }
+}
+
+#[cfg(feature = "CTTypesetter")]
+#[deprecated = "renamed to `CTFramesetter::with_typesetter`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFramesetterCreateWithTypesetter(
+    typesetter: &CTTypesetter,
+) -> CFRetained<CTFramesetter> {
+    extern "C-unwind" {
+        fn CTFramesetterCreateWithTypesetter(
+            typesetter: &CTTypesetter,
+        ) -> Option<NonNull<CTFramesetter>>;
+    }
+    let ret = unsafe { CTFramesetterCreateWithTypesetter(typesetter) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTFramesetter::with_attributed_string`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFramesetterCreateWithAttributedString(
+    attr_string: &CFAttributedString,
+) -> CFRetained<CTFramesetter> {
+    extern "C-unwind" {
+        fn CTFramesetterCreateWithAttributedString(
+            attr_string: &CFAttributedString,
+        ) -> Option<NonNull<CTFramesetter>>;
+    }
+    let ret = unsafe { CTFramesetterCreateWithAttributedString(attr_string) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
+#[deprecated = "renamed to `CTFramesetter::new_frame`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFramesetterCreateFrame(
+    framesetter: &CTFramesetter,
+    string_range: CFRange,
+    path: &CGPath,
+    frame_attributes: Option<&CFDictionary>,
+) -> CFRetained<CTFrame> {
+    extern "C-unwind" {
+        fn CTFramesetterCreateFrame(
+            framesetter: &CTFramesetter,
+            string_range: CFRange,
+            path: &CGPath,
+            frame_attributes: Option<&CFDictionary>,
+        ) -> Option<NonNull<CTFrame>>;
+    }
+    let ret =
+        unsafe { CTFramesetterCreateFrame(framesetter, string_range, path, frame_attributes) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[cfg(feature = "CTTypesetter")]
+#[deprecated = "renamed to `CTFramesetter::typesetter`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFramesetterGetTypesetter(
+    framesetter: &CTFramesetter,
+) -> CFRetained<CTTypesetter> {
+    extern "C-unwind" {
+        fn CTFramesetterGetTypesetter(framesetter: &CTFramesetter)
+            -> Option<NonNull<CTTypesetter>>;
+    }
+    let ret = unsafe { CTFramesetterGetTypesetter(framesetter) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::retain(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTFramesetter::suggest_frame_size_with_constraints`"]
     pub fn CTFramesetterSuggestFrameSizeWithConstraints(
         framesetter: &CTFramesetter,
         string_range: CFRange,

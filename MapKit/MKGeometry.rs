@@ -58,17 +58,38 @@ unsafe impl RefEncode for MKCoordinateRegion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn MKCoordinateSpanMake(latitude_delta: CLLocationDegrees,longitude_delta: CLLocationDegrees,) -> MKCoordinateSpan;
+#[cfg(feature = "objc2-core-location")]
+impl MKCoordinateSpan {
+    // TODO: pub fn MKCoordinateSpanMake(latitude_delta: CLLocationDegrees,longitude_delta: CLLocationDegrees,) -> MKCoordinateSpan;
+}
 
-// TODO: pub fn MKCoordinateRegionMake(center_coordinate: CLLocationCoordinate2D,span: MKCoordinateSpan,) -> MKCoordinateRegion;
+#[cfg(feature = "objc2-core-location")]
+impl MKCoordinateRegion {
+    // TODO: pub fn MKCoordinateRegionMake(center_coordinate: CLLocationCoordinate2D,span: MKCoordinateSpan,) -> MKCoordinateRegion;
 
-extern "C-unwind" {
     #[cfg(feature = "objc2-core-location")]
-    pub fn MKCoordinateRegionMakeWithDistance(
+    #[inline]
+    #[doc(alias = "MKCoordinateRegionMakeWithDistance")]
+    pub unsafe fn with_distance(
         center_coordinate: CLLocationCoordinate2D,
         latitudinal_meters: CLLocationDistance,
         longitudinal_meters: CLLocationDistance,
-    ) -> MKCoordinateRegion;
+    ) -> MKCoordinateRegion {
+        extern "C-unwind" {
+            fn MKCoordinateRegionMakeWithDistance(
+                center_coordinate: CLLocationCoordinate2D,
+                latitudinal_meters: CLLocationDistance,
+                longitudinal_meters: CLLocationDistance,
+            ) -> MKCoordinateRegion;
+        }
+        unsafe {
+            MKCoordinateRegionMakeWithDistance(
+                center_coordinate,
+                latitudinal_meters,
+                longitudinal_meters,
+            )
+        }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappoint?language=objc)
@@ -134,9 +155,16 @@ extern "C" {
     pub static MKMapRectWorld: MKMapRect;
 }
 
-extern "C-unwind" {
+impl MKMapPoint {
     #[cfg(feature = "objc2-core-location")]
-    pub fn MKMapPointForCoordinate(coordinate: CLLocationCoordinate2D) -> MKMapPoint;
+    #[inline]
+    #[doc(alias = "MKMapPointForCoordinate")]
+    pub unsafe fn for_coordinate(coordinate: CLLocationCoordinate2D) -> MKMapPoint {
+        extern "C-unwind" {
+            fn MKMapPointForCoordinate(coordinate: CLLocationCoordinate2D) -> MKMapPoint;
+        }
+        unsafe { MKMapPointForCoordinate(coordinate) }
+    }
 }
 
 extern "C-unwind" {
@@ -164,37 +192,49 @@ extern "C" {
     pub static MKMapRectNull: MKMapRect;
 }
 
-// TODO: pub fn MKMapPointMake(x: c_double,y: c_double,) -> MKMapPoint;
+impl MKMapPoint {
+    // TODO: pub fn MKMapPointMake(x: c_double,y: c_double,) -> MKMapPoint;
+}
 
-// TODO: pub fn MKMapSizeMake(width: c_double,height: c_double,) -> MKMapSize;
+impl MKMapSize {
+    // TODO: pub fn MKMapSizeMake(width: c_double,height: c_double,) -> MKMapSize;
+}
 
-// TODO: pub fn MKMapRectMake(x: c_double,y: c_double,width: c_double,height: c_double,) -> MKMapRect;
+impl MKMapRect {
+    // TODO: pub fn MKMapRectMake(x: c_double,y: c_double,width: c_double,height: c_double,) -> MKMapRect;
 
-// TODO: pub fn MKMapRectGetMinX(rect: MKMapRect,) -> c_double;
+    // TODO: pub fn MKMapRectGetMinX(rect: MKMapRect,) -> c_double;
 
-// TODO: pub fn MKMapRectGetMinY(rect: MKMapRect,) -> c_double;
+    // TODO: pub fn MKMapRectGetMinY(rect: MKMapRect,) -> c_double;
 
-// TODO: pub fn MKMapRectGetMidX(rect: MKMapRect,) -> c_double;
+    // TODO: pub fn MKMapRectGetMidX(rect: MKMapRect,) -> c_double;
 
-// TODO: pub fn MKMapRectGetMidY(rect: MKMapRect,) -> c_double;
+    // TODO: pub fn MKMapRectGetMidY(rect: MKMapRect,) -> c_double;
 
-// TODO: pub fn MKMapRectGetMaxX(rect: MKMapRect,) -> c_double;
+    // TODO: pub fn MKMapRectGetMaxX(rect: MKMapRect,) -> c_double;
 
-// TODO: pub fn MKMapRectGetMaxY(rect: MKMapRect,) -> c_double;
+    // TODO: pub fn MKMapRectGetMaxY(rect: MKMapRect,) -> c_double;
 
-// TODO: pub fn MKMapRectGetWidth(rect: MKMapRect,) -> c_double;
+    // TODO: pub fn MKMapRectGetWidth(rect: MKMapRect,) -> c_double;
 
-// TODO: pub fn MKMapRectGetHeight(rect: MKMapRect,) -> c_double;
+    // TODO: pub fn MKMapRectGetHeight(rect: MKMapRect,) -> c_double;
+}
 
-// TODO: pub fn MKMapPointEqualToPoint(point1: MKMapPoint,point2: MKMapPoint,) -> Bool;
+impl MKMapPoint {
+    // TODO: pub fn MKMapPointEqualToPoint(point1: MKMapPoint,point2: MKMapPoint,) -> Bool;
+}
 
-// TODO: pub fn MKMapSizeEqualToSize(size1: MKMapSize,size2: MKMapSize,) -> Bool;
+impl MKMapSize {
+    // TODO: pub fn MKMapSizeEqualToSize(size1: MKMapSize,size2: MKMapSize,) -> Bool;
+}
 
-// TODO: pub fn MKMapRectEqualToRect(rect1: MKMapRect,rect2: MKMapRect,) -> Bool;
+impl MKMapRect {
+    // TODO: pub fn MKMapRectEqualToRect(rect1: MKMapRect,rect2: MKMapRect,) -> Bool;
 
-// TODO: pub fn MKMapRectIsNull(rect: MKMapRect,) -> Bool;
+    // TODO: pub fn MKMapRectIsNull(rect: MKMapRect,) -> Bool;
 
-// TODO: pub fn MKMapRectIsEmpty(rect: MKMapRect,) -> Bool;
+    // TODO: pub fn MKMapRectIsEmpty(rect: MKMapRect,) -> Bool;
+}
 
 // TODO: pub fn MKStringFromMapPoint(point: MKMapPoint,)-> *mut NSString;
 
@@ -202,75 +242,124 @@ extern "C" {
 
 // TODO: pub fn MKStringFromMapRect(rect: MKMapRect,)-> *mut NSString;
 
-extern "C-unwind" {
-    pub fn MKMapRectUnion(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
-}
+impl MKMapRect {
+    #[inline]
+    #[doc(alias = "MKMapRectUnion")]
+    pub unsafe fn union(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect {
+        extern "C-unwind" {
+            fn MKMapRectUnion(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
+        }
+        unsafe { MKMapRectUnion(rect1, rect2) }
+    }
 
-extern "C-unwind" {
-    pub fn MKMapRectIntersection(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
-}
+    #[inline]
+    #[doc(alias = "MKMapRectIntersection")]
+    pub unsafe fn intersection(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect {
+        extern "C-unwind" {
+            fn MKMapRectIntersection(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
+        }
+        unsafe { MKMapRectIntersection(rect1, rect2) }
+    }
 
-extern "C-unwind" {
-    pub fn MKMapRectInset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
-}
+    #[inline]
+    #[doc(alias = "MKMapRectInset")]
+    pub unsafe fn inset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect {
+        extern "C-unwind" {
+            fn MKMapRectInset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
+        }
+        unsafe { MKMapRectInset(rect, dx, dy) }
+    }
 
-extern "C-unwind" {
-    pub fn MKMapRectOffset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
-}
+    #[inline]
+    #[doc(alias = "MKMapRectOffset")]
+    pub unsafe fn offset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect {
+        extern "C-unwind" {
+            fn MKMapRectOffset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
+        }
+        unsafe { MKMapRectOffset(rect, dx, dy) }
+    }
 
-extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn MKMapRectDivide(
+    #[inline]
+    #[doc(alias = "MKMapRectDivide")]
+    pub unsafe fn divide(
         rect: MKMapRect,
         slice: NonNull<MKMapRect>,
         remainder: NonNull<MKMapRect>,
         amount: c_double,
         edge: CGRectEdge,
-    );
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> bool {
-    extern "C-unwind" {
-        fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> Bool;
+    ) {
+        extern "C-unwind" {
+            fn MKMapRectDivide(
+                rect: MKMapRect,
+                slice: NonNull<MKMapRect>,
+                remainder: NonNull<MKMapRect>,
+                amount: c_double,
+                edge: CGRectEdge,
+            );
+        }
+        unsafe { MKMapRectDivide(rect, slice, remainder, amount, edge) }
     }
-    unsafe { MKMapRectContainsPoint(rect, point) }.as_bool()
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> bool {
-    extern "C-unwind" {
-        fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+    #[inline]
+    #[doc(alias = "MKMapRectContainsPoint")]
+    pub unsafe fn contains_point(rect: MKMapRect, point: MKMapPoint) -> bool {
+        extern "C-unwind" {
+            fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> Bool;
+        }
+        unsafe { MKMapRectContainsPoint(rect, point) }.as_bool()
     }
-    unsafe { MKMapRectContainsRect(rect1, rect2) }.as_bool()
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn MKMapRectIntersectsRect(
-    rect1: MKMapRect,
-    rect2: MKMapRect,
-) -> bool {
-    extern "C-unwind" {
-        fn MKMapRectIntersectsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+    #[inline]
+    #[doc(alias = "MKMapRectContainsRect")]
+    pub unsafe fn contains_rect(rect1: MKMapRect, rect2: MKMapRect) -> bool {
+        extern "C-unwind" {
+            fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+        }
+        unsafe { MKMapRectContainsRect(rect1, rect2) }.as_bool()
     }
-    unsafe { MKMapRectIntersectsRect(rect1, rect2) }.as_bool()
+
+    #[inline]
+    #[doc(alias = "MKMapRectIntersectsRect")]
+    pub unsafe fn intersects_rect(rect1: MKMapRect, rect2: MKMapRect) -> bool {
+        extern "C-unwind" {
+            fn MKMapRectIntersectsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+        }
+        unsafe { MKMapRectIntersectsRect(rect1, rect2) }.as_bool()
+    }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "objc2-core-location")]
+impl MKCoordinateRegion {
     #[cfg(feature = "objc2-core-location")]
-    pub fn MKCoordinateRegionForMapRect(rect: MKMapRect) -> MKCoordinateRegion;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> bool {
-    extern "C-unwind" {
-        fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> Bool;
+    #[inline]
+    #[doc(alias = "MKCoordinateRegionForMapRect")]
+    pub unsafe fn for_map_rect(rect: MKMapRect) -> MKCoordinateRegion {
+        extern "C-unwind" {
+            fn MKCoordinateRegionForMapRect(rect: MKMapRect) -> MKCoordinateRegion;
+        }
+        unsafe { MKCoordinateRegionForMapRect(rect) }
     }
-    unsafe { MKMapRectSpans180thMeridian(rect) }.as_bool()
 }
 
-extern "C-unwind" {
-    pub fn MKMapRectRemainder(rect: MKMapRect) -> MKMapRect;
+impl MKMapRect {
+    #[inline]
+    #[doc(alias = "MKMapRectSpans180thMeridian")]
+    pub unsafe fn spans180th_meridian(rect: MKMapRect) -> bool {
+        extern "C-unwind" {
+            fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> Bool;
+        }
+        unsafe { MKMapRectSpans180thMeridian(rect) }.as_bool()
+    }
+
+    #[inline]
+    #[doc(alias = "MKMapRectRemainder")]
+    pub unsafe fn remainder(rect: MKMapRect) -> MKMapRect {
+        extern "C-unwind" {
+            fn MKMapRectRemainder(rect: MKMapRect) -> MKMapRect;
+        }
+        unsafe { MKMapRectRemainder(rect) }
+    }
 }
 
 mod private_NSValueMapKitGeometryExtensions {
@@ -306,3 +395,101 @@ pub unsafe trait NSValueMapKitGeometryExtensions:
 
 impl private_NSValueMapKitGeometryExtensions::Sealed for NSValue {}
 unsafe impl NSValueMapKitGeometryExtensions for NSValue {}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-location")]
+    #[deprecated = "renamed to `MKCoordinateRegion::with_distance`"]
+    pub fn MKCoordinateRegionMakeWithDistance(
+        center_coordinate: CLLocationCoordinate2D,
+        latitudinal_meters: CLLocationDistance,
+        longitudinal_meters: CLLocationDistance,
+    ) -> MKCoordinateRegion;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-location")]
+    #[deprecated = "renamed to `MKMapPoint::for_coordinate`"]
+    pub fn MKMapPointForCoordinate(coordinate: CLLocationCoordinate2D) -> MKMapPoint;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `MKMapRect::union`"]
+    pub fn MKMapRectUnion(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `MKMapRect::intersection`"]
+    pub fn MKMapRectIntersection(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `MKMapRect::inset`"]
+    pub fn MKMapRectInset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `MKMapRect::offset`"]
+    pub fn MKMapRectOffset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `MKMapRect::divide`"]
+    pub fn MKMapRectDivide(
+        rect: MKMapRect,
+        slice: NonNull<MKMapRect>,
+        remainder: NonNull<MKMapRect>,
+        amount: c_double,
+        edge: CGRectEdge,
+    );
+}
+
+#[deprecated = "renamed to `MKMapRect::contains_point`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> bool {
+    extern "C-unwind" {
+        fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> Bool;
+    }
+    unsafe { MKMapRectContainsPoint(rect, point) }.as_bool()
+}
+
+#[deprecated = "renamed to `MKMapRect::contains_rect`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> bool {
+    extern "C-unwind" {
+        fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+    }
+    unsafe { MKMapRectContainsRect(rect1, rect2) }.as_bool()
+}
+
+#[deprecated = "renamed to `MKMapRect::intersects_rect`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MKMapRectIntersectsRect(
+    rect1: MKMapRect,
+    rect2: MKMapRect,
+) -> bool {
+    extern "C-unwind" {
+        fn MKMapRectIntersectsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+    }
+    unsafe { MKMapRectIntersectsRect(rect1, rect2) }.as_bool()
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-location")]
+    #[deprecated = "renamed to `MKCoordinateRegion::for_map_rect`"]
+    pub fn MKCoordinateRegionForMapRect(rect: MKMapRect) -> MKCoordinateRegion;
+}
+
+#[deprecated = "renamed to `MKMapRect::spans180th_meridian`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> bool {
+    extern "C-unwind" {
+        fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> Bool;
+    }
+    unsafe { MKMapRectSpans180thMeridian(rect) }.as_bool()
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `MKMapRect::remainder`"]
+    pub fn MKMapRectRemainder(rect: MKMapRect) -> MKMapRect;
+}

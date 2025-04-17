@@ -5,36 +5,40 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// Copies the DHCP information for the requested serviceID,
-/// or the primary service if serviceID == NULL.
-///
-/// Parameter `store`: An SCDynamicStoreRef representing the dynamic store session
-/// that should be used for communication with the server.
-/// If NULL, a temporary session will be used.
-///
-/// Parameter `serviceID`: A CFStringRef containing the requested service.
-/// If NULL, returns information for the primary service.
-///
-/// Returns: Returns a dictionary containing DHCP information if successful;
-/// NULL otherwise.
-/// Use the DHCPInfoGetOption function to retrieve
-/// individual options from the returned dictionary.
-///
-/// A non-NULL return value must be released using CFRelease().
 #[cfg(feature = "SCDynamicStore")]
-#[inline]
-pub extern "C-unwind" fn SCDynamicStoreCopyDHCPInfo(
-    store: Option<&SCDynamicStore>,
-    service_id: Option<&CFString>,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn SCDynamicStoreCopyDHCPInfo(
-            store: Option<&SCDynamicStore>,
-            service_id: Option<&CFString>,
-        ) -> Option<NonNull<CFDictionary>>;
+impl SCDynamicStore {
+    /// Copies the DHCP information for the requested serviceID,
+    /// or the primary service if serviceID == NULL.
+    ///
+    /// Parameter `store`: An SCDynamicStoreRef representing the dynamic store session
+    /// that should be used for communication with the server.
+    /// If NULL, a temporary session will be used.
+    ///
+    /// Parameter `serviceID`: A CFStringRef containing the requested service.
+    /// If NULL, returns information for the primary service.
+    ///
+    /// Returns: Returns a dictionary containing DHCP information if successful;
+    /// NULL otherwise.
+    /// Use the DHCPInfoGetOption function to retrieve
+    /// individual options from the returned dictionary.
+    ///
+    /// A non-NULL return value must be released using CFRelease().
+    #[cfg(feature = "SCDynamicStore")]
+    #[inline]
+    #[doc(alias = "SCDynamicStoreCopyDHCPInfo")]
+    pub fn dhcp_info(
+        store: Option<&SCDynamicStore>,
+        service_id: Option<&CFString>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SCDynamicStoreCopyDHCPInfo(
+                store: Option<&SCDynamicStore>,
+                service_id: Option<&CFString>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SCDynamicStoreCopyDHCPInfo(store, service_id) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SCDynamicStoreCopyDHCPInfo(store, service_id) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a non-NULL CFDataRef containing the DHCP
@@ -105,4 +109,21 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseExpirationTime(
     }
     let ret = unsafe { DHCPInfoGetLeaseExpirationTime(info) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[cfg(feature = "SCDynamicStore")]
+#[deprecated = "renamed to `SCDynamicStore::dhcp_info`"]
+#[inline]
+pub extern "C-unwind" fn SCDynamicStoreCopyDHCPInfo(
+    store: Option<&SCDynamicStore>,
+    service_id: Option<&CFString>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn SCDynamicStoreCopyDHCPInfo(
+            store: Option<&SCDynamicStore>,
+            service_id: Option<&CFString>,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { SCDynamicStoreCopyDHCPInfo(store, service_id) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

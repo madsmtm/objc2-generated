@@ -116,6 +116,213 @@ unsafe impl ConcreteType for CFBag {
     }
 }
 
+impl CFBag {
+    #[inline]
+    #[doc(alias = "CFBagCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        values: *mut *const c_void,
+        num_values: CFIndex,
+        call_backs: *const CFBagCallBacks,
+    ) -> Option<CFRetained<CFBag>> {
+        extern "C-unwind" {
+            fn CFBagCreate(
+                allocator: Option<&CFAllocator>,
+                values: *mut *const c_void,
+                num_values: CFIndex,
+                call_backs: *const CFBagCallBacks,
+            ) -> Option<NonNull<CFBag>>;
+        }
+        let ret = unsafe { CFBagCreate(allocator, values, num_values, call_backs) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagCreateCopy")]
+    pub unsafe fn new_copy(
+        allocator: Option<&CFAllocator>,
+        the_bag: Option<&CFBag>,
+    ) -> Option<CFRetained<CFBag>> {
+        extern "C-unwind" {
+            fn CFBagCreateCopy(
+                allocator: Option<&CFAllocator>,
+                the_bag: Option<&CFBag>,
+            ) -> Option<NonNull<CFBag>>;
+        }
+        let ret = unsafe { CFBagCreateCopy(allocator, the_bag) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+impl CFMutableBag {
+    #[inline]
+    #[doc(alias = "CFBagCreateMutable")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        capacity: CFIndex,
+        call_backs: *const CFBagCallBacks,
+    ) -> Option<CFRetained<CFMutableBag>> {
+        extern "C-unwind" {
+            fn CFBagCreateMutable(
+                allocator: Option<&CFAllocator>,
+                capacity: CFIndex,
+                call_backs: *const CFBagCallBacks,
+            ) -> Option<NonNull<CFMutableBag>>;
+        }
+        let ret = unsafe { CFBagCreateMutable(allocator, capacity, call_backs) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagCreateMutableCopy")]
+    pub unsafe fn new_copy(
+        allocator: Option<&CFAllocator>,
+        capacity: CFIndex,
+        the_bag: Option<&CFBag>,
+    ) -> Option<CFRetained<CFMutableBag>> {
+        extern "C-unwind" {
+            fn CFBagCreateMutableCopy(
+                allocator: Option<&CFAllocator>,
+                capacity: CFIndex,
+                the_bag: Option<&CFBag>,
+            ) -> Option<NonNull<CFMutableBag>>;
+        }
+        let ret = unsafe { CFBagCreateMutableCopy(allocator, capacity, the_bag) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+impl CFBag {
+    #[inline]
+    #[doc(alias = "CFBagGetCount")]
+    pub unsafe fn count(self: &CFBag) -> CFIndex {
+        extern "C-unwind" {
+            fn CFBagGetCount(the_bag: &CFBag) -> CFIndex;
+        }
+        unsafe { CFBagGetCount(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagGetCountOfValue")]
+    pub unsafe fn count_of_value(self: &CFBag, value: *const c_void) -> CFIndex {
+        extern "C-unwind" {
+            fn CFBagGetCountOfValue(the_bag: &CFBag, value: *const c_void) -> CFIndex;
+        }
+        unsafe { CFBagGetCountOfValue(self, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagContainsValue")]
+    pub unsafe fn contains_value(self: &CFBag, value: *const c_void) -> bool {
+        extern "C-unwind" {
+            fn CFBagContainsValue(the_bag: &CFBag, value: *const c_void) -> Boolean;
+        }
+        let ret = unsafe { CFBagContainsValue(self, value) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagGetValue")]
+    pub unsafe fn value(self: &CFBag, value: *const c_void) -> *const c_void {
+        extern "C-unwind" {
+            fn CFBagGetValue(the_bag: &CFBag, value: *const c_void) -> *const c_void;
+        }
+        unsafe { CFBagGetValue(self, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagGetValueIfPresent")]
+    pub unsafe fn value_if_present(
+        self: &CFBag,
+        candidate: *const c_void,
+        value: *mut *const c_void,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFBagGetValueIfPresent(
+                the_bag: &CFBag,
+                candidate: *const c_void,
+                value: *mut *const c_void,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFBagGetValueIfPresent(self, candidate, value) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagGetValues")]
+    pub unsafe fn values(self: &CFBag, values: *mut *const c_void) {
+        extern "C-unwind" {
+            fn CFBagGetValues(the_bag: &CFBag, values: *mut *const c_void);
+        }
+        unsafe { CFBagGetValues(self, values) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagApplyFunction")]
+    pub unsafe fn apply_function(
+        self: &CFBag,
+        applier: CFBagApplierFunction,
+        context: *mut c_void,
+    ) {
+        extern "C-unwind" {
+            fn CFBagApplyFunction(
+                the_bag: &CFBag,
+                applier: CFBagApplierFunction,
+                context: *mut c_void,
+            );
+        }
+        unsafe { CFBagApplyFunction(self, applier, context) }
+    }
+}
+
+impl CFMutableBag {
+    #[inline]
+    #[doc(alias = "CFBagAddValue")]
+    pub unsafe fn add_value(the_bag: Option<&CFMutableBag>, value: *const c_void) {
+        extern "C-unwind" {
+            fn CFBagAddValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
+        }
+        unsafe { CFBagAddValue(the_bag, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagReplaceValue")]
+    pub unsafe fn replace_value(the_bag: Option<&CFMutableBag>, value: *const c_void) {
+        extern "C-unwind" {
+            fn CFBagReplaceValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
+        }
+        unsafe { CFBagReplaceValue(the_bag, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagSetValue")]
+    pub unsafe fn set_value(the_bag: Option<&CFMutableBag>, value: *const c_void) {
+        extern "C-unwind" {
+            fn CFBagSetValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
+        }
+        unsafe { CFBagSetValue(the_bag, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagRemoveValue")]
+    pub unsafe fn remove_value(the_bag: Option<&CFMutableBag>, value: *const c_void) {
+        extern "C-unwind" {
+            fn CFBagRemoveValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
+        }
+        unsafe { CFBagRemoveValue(the_bag, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFBagRemoveAllValues")]
+    pub unsafe fn remove_all_values(the_bag: Option<&CFMutableBag>) {
+        extern "C-unwind" {
+            fn CFBagRemoveAllValues(the_bag: Option<&CFMutableBag>);
+        }
+        unsafe { CFBagRemoveAllValues(the_bag) }
+    }
+}
+
+#[deprecated = "renamed to `CFBag::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBagCreate(
     allocator: Option<&CFAllocator>,
@@ -135,6 +342,7 @@ pub unsafe extern "C-unwind" fn CFBagCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `CFBag::new_copy`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBagCreateCopy(
     allocator: Option<&CFAllocator>,
@@ -150,6 +358,7 @@ pub unsafe extern "C-unwind" fn CFBagCreateCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `CFMutableBag::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBagCreateMutable(
     allocator: Option<&CFAllocator>,
@@ -167,6 +376,7 @@ pub unsafe extern "C-unwind" fn CFBagCreateMutable(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `CFMutableBag::new_copy`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBagCreateMutableCopy(
     allocator: Option<&CFAllocator>,
@@ -185,13 +395,16 @@ pub unsafe extern "C-unwind" fn CFBagCreateMutableCopy(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFBag::count`"]
     pub fn CFBagGetCount(the_bag: &CFBag) -> CFIndex;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFBag::count_of_value`"]
     pub fn CFBagGetCountOfValue(the_bag: &CFBag, value: *const c_void) -> CFIndex;
 }
 
+#[deprecated = "renamed to `CFBag::contains_value`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBagContainsValue(the_bag: &CFBag, value: *const c_void) -> bool {
     extern "C-unwind" {
@@ -202,9 +415,11 @@ pub unsafe extern "C-unwind" fn CFBagContainsValue(the_bag: &CFBag, value: *cons
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFBag::value`"]
     pub fn CFBagGetValue(the_bag: &CFBag, value: *const c_void) -> *const c_void;
 }
 
+#[deprecated = "renamed to `CFBag::value_if_present`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFBagGetValueIfPresent(
     the_bag: &CFBag,
@@ -223,29 +438,36 @@ pub unsafe extern "C-unwind" fn CFBagGetValueIfPresent(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFBag::values`"]
     pub fn CFBagGetValues(the_bag: &CFBag, values: *mut *const c_void);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFBag::apply_function`"]
     pub fn CFBagApplyFunction(the_bag: &CFBag, applier: CFBagApplierFunction, context: *mut c_void);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableBag::add_value`"]
     pub fn CFBagAddValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableBag::replace_value`"]
     pub fn CFBagReplaceValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableBag::set_value`"]
     pub fn CFBagSetValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableBag::remove_value`"]
     pub fn CFBagRemoveValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableBag::remove_all_values`"]
     pub fn CFBagRemoveAllValues(the_bag: Option<&CFMutableBag>);
 }

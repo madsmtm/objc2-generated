@@ -19,6 +19,523 @@ unsafe impl ConcreteType for CGEvent {
 }
 
 #[cfg(feature = "CGEventTypes")]
+impl CGEvent {
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventCreate")]
+    pub unsafe fn new(source: Option<&CGEventSource>) -> Option<CFRetained<CGEvent>> {
+        extern "C-unwind" {
+            fn CGEventCreate(source: Option<&CGEventSource>) -> Option<NonNull<CGEvent>>;
+        }
+        let ret = unsafe { CGEventCreate(source) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventCreateData")]
+    pub unsafe fn new_data(
+        allocator: Option<&CFAllocator>,
+        event: Option<&CGEvent>,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn CGEventCreateData(
+                allocator: Option<&CFAllocator>,
+                event: Option<&CGEvent>,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { CGEventCreateData(allocator, event) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventCreateFromData")]
+    pub unsafe fn from_data(
+        allocator: Option<&CFAllocator>,
+        data: Option<&CFData>,
+    ) -> Option<CFRetained<CGEvent>> {
+        extern "C-unwind" {
+            fn CGEventCreateFromData(
+                allocator: Option<&CFAllocator>,
+                data: Option<&CFData>,
+            ) -> Option<NonNull<CGEvent>>;
+        }
+        let ret = unsafe { CGEventCreateFromData(allocator, data) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventCreateMouseEvent")]
+    pub unsafe fn new_mouse_event(
+        source: Option<&CGEventSource>,
+        mouse_type: CGEventType,
+        mouse_cursor_position: CGPoint,
+        mouse_button: CGMouseButton,
+    ) -> Option<CFRetained<CGEvent>> {
+        extern "C-unwind" {
+            fn CGEventCreateMouseEvent(
+                source: Option<&CGEventSource>,
+                mouse_type: CGEventType,
+                mouse_cursor_position: CGPoint,
+                mouse_button: CGMouseButton,
+            ) -> Option<NonNull<CGEvent>>;
+        }
+        let ret = unsafe {
+            CGEventCreateMouseEvent(source, mouse_type, mouse_cursor_position, mouse_button)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
+    #[inline]
+    #[doc(alias = "CGEventCreateKeyboardEvent")]
+    pub unsafe fn new_keyboard_event(
+        source: Option<&CGEventSource>,
+        virtual_key: CGKeyCode,
+        key_down: bool,
+    ) -> Option<CFRetained<CGEvent>> {
+        extern "C-unwind" {
+            fn CGEventCreateKeyboardEvent(
+                source: Option<&CGEventSource>,
+                virtual_key: CGKeyCode,
+                key_down: bool,
+            ) -> Option<NonNull<CGEvent>>;
+        }
+        let ret = unsafe { CGEventCreateKeyboardEvent(source, virtual_key, key_down) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventCreateScrollWheelEvent2")]
+    pub unsafe fn new_scroll_wheel_event2(
+        source: Option<&CGEventSource>,
+        units: CGScrollEventUnit,
+        wheel_count: u32,
+        wheel1: i32,
+        wheel2: i32,
+        wheel3: i32,
+    ) -> Option<CFRetained<CGEvent>> {
+        extern "C-unwind" {
+            fn CGEventCreateScrollWheelEvent2(
+                source: Option<&CGEventSource>,
+                units: CGScrollEventUnit,
+                wheel_count: u32,
+                wheel1: i32,
+                wheel2: i32,
+                wheel3: i32,
+            ) -> Option<NonNull<CGEvent>>;
+        }
+        let ret = unsafe {
+            CGEventCreateScrollWheelEvent2(source, units, wheel_count, wheel1, wheel2, wheel3)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventCreateCopy")]
+    pub unsafe fn new_copy(event: Option<&CGEvent>) -> Option<CFRetained<CGEvent>> {
+        extern "C-unwind" {
+            fn CGEventCreateCopy(event: Option<&CGEvent>) -> Option<NonNull<CGEvent>>;
+        }
+        let ret = unsafe { CGEventCreateCopy(event) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventCreateSourceFromEvent")]
+    pub unsafe fn new_source_from_event(
+        event: Option<&CGEvent>,
+    ) -> Option<CFRetained<CGEventSource>> {
+        extern "C-unwind" {
+            fn CGEventCreateSourceFromEvent(
+                event: Option<&CGEvent>,
+            ) -> Option<NonNull<CGEventSource>>;
+        }
+        let ret = unsafe { CGEventCreateSourceFromEvent(event) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventSetSource")]
+    pub unsafe fn set_source(event: Option<&CGEvent>, source: Option<&CGEventSource>) {
+        extern "C-unwind" {
+            fn CGEventSetSource(event: Option<&CGEvent>, source: Option<&CGEventSource>);
+        }
+        unsafe { CGEventSetSource(event, source) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventGetType")]
+    pub unsafe fn r#type(event: Option<&CGEvent>) -> CGEventType {
+        extern "C-unwind" {
+            fn CGEventGetType(event: Option<&CGEvent>) -> CGEventType;
+        }
+        unsafe { CGEventGetType(event) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventSetType")]
+    pub unsafe fn set_type(event: Option<&CGEvent>, r#type: CGEventType) {
+        extern "C-unwind" {
+            fn CGEventSetType(event: Option<&CGEvent>, r#type: CGEventType);
+        }
+        unsafe { CGEventSetType(event, r#type) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventGetTimestamp")]
+    pub unsafe fn timestamp(event: Option<&CGEvent>) -> CGEventTimestamp {
+        extern "C-unwind" {
+            fn CGEventGetTimestamp(event: Option<&CGEvent>) -> CGEventTimestamp;
+        }
+        unsafe { CGEventGetTimestamp(event) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventSetTimestamp")]
+    pub unsafe fn set_timestamp(event: Option<&CGEvent>, timestamp: CGEventTimestamp) {
+        extern "C-unwind" {
+            fn CGEventSetTimestamp(event: Option<&CGEvent>, timestamp: CGEventTimestamp);
+        }
+        unsafe { CGEventSetTimestamp(event, timestamp) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventGetLocation")]
+    pub unsafe fn location(event: Option<&CGEvent>) -> CGPoint {
+        extern "C-unwind" {
+            fn CGEventGetLocation(event: Option<&CGEvent>) -> CGPoint;
+        }
+        unsafe { CGEventGetLocation(event) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventGetUnflippedLocation")]
+    pub unsafe fn unflipped_location(event: Option<&CGEvent>) -> CGPoint {
+        extern "C-unwind" {
+            fn CGEventGetUnflippedLocation(event: Option<&CGEvent>) -> CGPoint;
+        }
+        unsafe { CGEventGetUnflippedLocation(event) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventSetLocation")]
+    pub unsafe fn set_location(event: Option<&CGEvent>, location: CGPoint) {
+        extern "C-unwind" {
+            fn CGEventSetLocation(event: Option<&CGEvent>, location: CGPoint);
+        }
+        unsafe { CGEventSetLocation(event, location) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventGetFlags")]
+    pub unsafe fn flags(event: Option<&CGEvent>) -> CGEventFlags {
+        extern "C-unwind" {
+            fn CGEventGetFlags(event: Option<&CGEvent>) -> CGEventFlags;
+        }
+        unsafe { CGEventGetFlags(event) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventSetFlags")]
+    pub unsafe fn set_flags(event: Option<&CGEvent>, flags: CGEventFlags) {
+        extern "C-unwind" {
+            fn CGEventSetFlags(event: Option<&CGEvent>, flags: CGEventFlags);
+        }
+        unsafe { CGEventSetFlags(event, flags) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventKeyboardGetUnicodeString")]
+    pub unsafe fn keyboard_get_unicode_string(
+        event: Option<&CGEvent>,
+        max_string_length: UniCharCount,
+        actual_string_length: *mut UniCharCount,
+        unicode_string: *mut UniChar,
+    ) {
+        extern "C-unwind" {
+            fn CGEventKeyboardGetUnicodeString(
+                event: Option<&CGEvent>,
+                max_string_length: UniCharCount,
+                actual_string_length: *mut UniCharCount,
+                unicode_string: *mut UniChar,
+            );
+        }
+        unsafe {
+            CGEventKeyboardGetUnicodeString(
+                event,
+                max_string_length,
+                actual_string_length,
+                unicode_string,
+            )
+        }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventKeyboardSetUnicodeString")]
+    pub unsafe fn keyboard_set_unicode_string(
+        event: Option<&CGEvent>,
+        string_length: UniCharCount,
+        unicode_string: *const UniChar,
+    ) {
+        extern "C-unwind" {
+            fn CGEventKeyboardSetUnicodeString(
+                event: Option<&CGEvent>,
+                string_length: UniCharCount,
+                unicode_string: *const UniChar,
+            );
+        }
+        unsafe { CGEventKeyboardSetUnicodeString(event, string_length, unicode_string) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventGetIntegerValueField")]
+    pub unsafe fn integer_value_field(event: Option<&CGEvent>, field: CGEventField) -> i64 {
+        extern "C-unwind" {
+            fn CGEventGetIntegerValueField(event: Option<&CGEvent>, field: CGEventField) -> i64;
+        }
+        unsafe { CGEventGetIntegerValueField(event, field) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventSetIntegerValueField")]
+    pub unsafe fn set_integer_value_field(
+        event: Option<&CGEvent>,
+        field: CGEventField,
+        value: i64,
+    ) {
+        extern "C-unwind" {
+            fn CGEventSetIntegerValueField(
+                event: Option<&CGEvent>,
+                field: CGEventField,
+                value: i64,
+            );
+        }
+        unsafe { CGEventSetIntegerValueField(event, field, value) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventGetDoubleValueField")]
+    pub unsafe fn double_value_field(event: Option<&CGEvent>, field: CGEventField) -> c_double {
+        extern "C-unwind" {
+            fn CGEventGetDoubleValueField(event: Option<&CGEvent>, field: CGEventField)
+                -> c_double;
+        }
+        unsafe { CGEventGetDoubleValueField(event, field) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventSetDoubleValueField")]
+    pub unsafe fn set_double_value_field(
+        event: Option<&CGEvent>,
+        field: CGEventField,
+        value: c_double,
+    ) {
+        extern "C-unwind" {
+            fn CGEventSetDoubleValueField(
+                event: Option<&CGEvent>,
+                field: CGEventField,
+                value: c_double,
+            );
+        }
+        unsafe { CGEventSetDoubleValueField(event, field, value) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventTapCreate")]
+    pub unsafe fn tap_create(
+        tap: CGEventTapLocation,
+        place: CGEventTapPlacement,
+        options: CGEventTapOptions,
+        events_of_interest: CGEventMask,
+        callback: CGEventTapCallBack,
+        user_info: *mut c_void,
+    ) -> Option<CFRetained<CFMachPort>> {
+        extern "C-unwind" {
+            fn CGEventTapCreate(
+                tap: CGEventTapLocation,
+                place: CGEventTapPlacement,
+                options: CGEventTapOptions,
+                events_of_interest: CGEventMask,
+                callback: CGEventTapCallBack,
+                user_info: *mut c_void,
+            ) -> Option<NonNull<CFMachPort>>;
+        }
+        let ret = unsafe {
+            CGEventTapCreate(tap, place, options, events_of_interest, callback, user_info)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventTapCreateForPSN")]
+    pub unsafe fn tap_create_for_psn(
+        process_serial_number: NonNull<c_void>,
+        place: CGEventTapPlacement,
+        options: CGEventTapOptions,
+        events_of_interest: CGEventMask,
+        callback: CGEventTapCallBack,
+        user_info: *mut c_void,
+    ) -> Option<CFRetained<CFMachPort>> {
+        extern "C-unwind" {
+            fn CGEventTapCreateForPSN(
+                process_serial_number: NonNull<c_void>,
+                place: CGEventTapPlacement,
+                options: CGEventTapOptions,
+                events_of_interest: CGEventMask,
+                callback: CGEventTapCallBack,
+                user_info: *mut c_void,
+            ) -> Option<NonNull<CFMachPort>>;
+        }
+        let ret = unsafe {
+            CGEventTapCreateForPSN(
+                process_serial_number,
+                place,
+                options,
+                events_of_interest,
+                callback,
+                user_info,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(all(feature = "CGEventTypes", feature = "libc"))]
+    #[inline]
+    #[doc(alias = "CGEventTapCreateForPid")]
+    pub unsafe fn tap_create_for_pid(
+        pid: libc::pid_t,
+        place: CGEventTapPlacement,
+        options: CGEventTapOptions,
+        events_of_interest: CGEventMask,
+        callback: CGEventTapCallBack,
+        user_info: *mut c_void,
+    ) -> Option<CFRetained<CFMachPort>> {
+        extern "C-unwind" {
+            fn CGEventTapCreateForPid(
+                pid: libc::pid_t,
+                place: CGEventTapPlacement,
+                options: CGEventTapOptions,
+                events_of_interest: CGEventMask,
+                callback: CGEventTapCallBack,
+                user_info: *mut c_void,
+            ) -> Option<NonNull<CFMachPort>>;
+        }
+        let ret = unsafe {
+            CGEventTapCreateForPid(pid, place, options, events_of_interest, callback, user_info)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGEventTapEnable")]
+    pub unsafe fn tap_enable(tap: &CFMachPort, enable: bool) {
+        extern "C-unwind" {
+            fn CGEventTapEnable(tap: &CFMachPort, enable: bool);
+        }
+        unsafe { CGEventTapEnable(tap, enable) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGEventTapIsEnabled")]
+    pub unsafe fn tap_is_enabled(tap: &CFMachPort) -> bool {
+        extern "C-unwind" {
+            fn CGEventTapIsEnabled(tap: &CFMachPort) -> bool;
+        }
+        unsafe { CGEventTapIsEnabled(tap) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventTapPostEvent")]
+    pub unsafe fn tap_post_event(proxy: CGEventTapProxy, event: Option<&CGEvent>) {
+        extern "C-unwind" {
+            fn CGEventTapPostEvent(proxy: CGEventTapProxy, event: Option<&CGEvent>);
+        }
+        unsafe { CGEventTapPostEvent(proxy, event) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventPost")]
+    pub unsafe fn post(tap: CGEventTapLocation, event: Option<&CGEvent>) {
+        extern "C-unwind" {
+            fn CGEventPost(tap: CGEventTapLocation, event: Option<&CGEvent>);
+        }
+        unsafe { CGEventPost(tap, event) }
+    }
+
+    #[cfg(feature = "CGEventTypes")]
+    #[inline]
+    #[doc(alias = "CGEventPostToPSN")]
+    pub unsafe fn post_to_psn(process_serial_number: *mut c_void, event: Option<&CGEvent>) {
+        extern "C-unwind" {
+            fn CGEventPostToPSN(process_serial_number: *mut c_void, event: Option<&CGEvent>);
+        }
+        unsafe { CGEventPostToPSN(process_serial_number, event) }
+    }
+
+    #[cfg(all(feature = "CGEventTypes", feature = "libc"))]
+    #[inline]
+    #[doc(alias = "CGEventPostToPid")]
+    pub unsafe fn post_to_pid(pid: libc::pid_t, event: Option<&CGEvent>) {
+        extern "C-unwind" {
+            fn CGEventPostToPid(pid: libc::pid_t, event: Option<&CGEvent>);
+        }
+        unsafe { CGEventPostToPid(pid, event) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CGError", feature = "CGEventTypes", feature = "libc"))]
+    pub fn CGGetEventTapList(
+        max_number_of_taps: u32,
+        tap_list: *mut CGEventTapInformation,
+        event_tap_count: *mut u32,
+    ) -> CGError;
+}
+
+extern "C-unwind" {
+    pub fn CGPreflightListenEventAccess() -> bool;
+}
+
+extern "C-unwind" {
+    pub fn CGRequestListenEventAccess() -> bool;
+}
+
+extern "C-unwind" {
+    pub fn CGPreflightPostEventAccess() -> bool;
+}
+
+extern "C-unwind" {
+    pub fn CGRequestPostEventAccess() -> bool;
+}
+
+#[cfg(feature = "CGEventTypes")]
+#[deprecated = "renamed to `CGEvent::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGEventCreate(
     source: Option<&CGEventSource>,
@@ -31,6 +548,7 @@ pub unsafe extern "C-unwind" fn CGEventCreate(
 }
 
 #[cfg(feature = "CGEventTypes")]
+#[deprecated = "renamed to `CGEvent::new_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGEventCreateData(
     allocator: Option<&CFAllocator>,
@@ -47,6 +565,7 @@ pub unsafe extern "C-unwind" fn CGEventCreateData(
 }
 
 #[cfg(feature = "CGEventTypes")]
+#[deprecated = "renamed to `CGEvent::from_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGEventCreateFromData(
     allocator: Option<&CFAllocator>,
@@ -63,6 +582,7 @@ pub unsafe extern "C-unwind" fn CGEventCreateFromData(
 }
 
 #[cfg(feature = "CGEventTypes")]
+#[deprecated = "renamed to `CGEvent::new_mouse_event`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGEventCreateMouseEvent(
     source: Option<&CGEventSource>,
@@ -84,6 +604,7 @@ pub unsafe extern "C-unwind" fn CGEventCreateMouseEvent(
 }
 
 #[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
+#[deprecated = "renamed to `CGEvent::new_keyboard_event`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGEventCreateKeyboardEvent(
     source: Option<&CGEventSource>,
@@ -102,6 +623,7 @@ pub unsafe extern "C-unwind" fn CGEventCreateKeyboardEvent(
 }
 
 #[cfg(feature = "CGEventTypes")]
+#[deprecated = "renamed to `CGEvent::new_scroll_wheel_event2`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGEventCreateScrollWheelEvent2(
     source: Option<&CGEventSource>,
@@ -128,6 +650,7 @@ pub unsafe extern "C-unwind" fn CGEventCreateScrollWheelEvent2(
 }
 
 #[cfg(feature = "CGEventTypes")]
+#[deprecated = "renamed to `CGEvent::new_copy`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGEventCreateCopy(
     event: Option<&CGEvent>,
@@ -140,6 +663,7 @@ pub unsafe extern "C-unwind" fn CGEventCreateCopy(
 }
 
 #[cfg(feature = "CGEventTypes")]
+#[deprecated = "renamed to `CGEvent::new_source_from_event`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGEventCreateSourceFromEvent(
     event: Option<&CGEvent>,
@@ -153,56 +677,67 @@ pub unsafe extern "C-unwind" fn CGEventCreateSourceFromEvent(
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::set_source`"]
     pub fn CGEventSetSource(event: Option<&CGEvent>, source: Option<&CGEventSource>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::type`"]
     pub fn CGEventGetType(event: Option<&CGEvent>) -> CGEventType;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::set_type`"]
     pub fn CGEventSetType(event: Option<&CGEvent>, r#type: CGEventType);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::timestamp`"]
     pub fn CGEventGetTimestamp(event: Option<&CGEvent>) -> CGEventTimestamp;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::set_timestamp`"]
     pub fn CGEventSetTimestamp(event: Option<&CGEvent>, timestamp: CGEventTimestamp);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::location`"]
     pub fn CGEventGetLocation(event: Option<&CGEvent>) -> CGPoint;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::unflipped_location`"]
     pub fn CGEventGetUnflippedLocation(event: Option<&CGEvent>) -> CGPoint;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::set_location`"]
     pub fn CGEventSetLocation(event: Option<&CGEvent>, location: CGPoint);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::flags`"]
     pub fn CGEventGetFlags(event: Option<&CGEvent>) -> CGEventFlags;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::set_flags`"]
     pub fn CGEventSetFlags(event: Option<&CGEvent>, flags: CGEventFlags);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::keyboard_get_unicode_string`"]
     pub fn CGEventKeyboardGetUnicodeString(
         event: Option<&CGEvent>,
         max_string_length: UniCharCount,
@@ -213,6 +748,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::keyboard_set_unicode_string`"]
     pub fn CGEventKeyboardSetUnicodeString(
         event: Option<&CGEvent>,
         string_length: UniCharCount,
@@ -222,21 +758,25 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::integer_value_field`"]
     pub fn CGEventGetIntegerValueField(event: Option<&CGEvent>, field: CGEventField) -> i64;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::set_integer_value_field`"]
     pub fn CGEventSetIntegerValueField(event: Option<&CGEvent>, field: CGEventField, value: i64);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::double_value_field`"]
     pub fn CGEventGetDoubleValueField(event: Option<&CGEvent>, field: CGEventField) -> c_double;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::set_double_value_field`"]
     pub fn CGEventSetDoubleValueField(
         event: Option<&CGEvent>,
         field: CGEventField,
@@ -245,6 +785,7 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "CGEventTypes")]
+#[deprecated = "renamed to `CGEvent::tap_create`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGEventTapCreate(
     tap: CGEventTapLocation,
@@ -270,6 +811,7 @@ pub unsafe extern "C-unwind" fn CGEventTapCreate(
 }
 
 #[cfg(feature = "CGEventTypes")]
+#[deprecated = "renamed to `CGEvent::tap_create_for_psn`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGEventTapCreateForPSN(
     process_serial_number: NonNull<c_void>,
@@ -303,6 +845,7 @@ pub unsafe extern "C-unwind" fn CGEventTapCreateForPSN(
 }
 
 #[cfg(all(feature = "CGEventTypes", feature = "libc"))]
+#[deprecated = "renamed to `CGEvent::tap_create_for_pid`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGEventTapCreateForPid(
     pid: libc::pid_t,
@@ -329,54 +872,35 @@ pub unsafe extern "C-unwind" fn CGEventTapCreateForPid(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGEvent::tap_enable`"]
     pub fn CGEventTapEnable(tap: &CFMachPort, enable: bool);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGEvent::tap_is_enabled`"]
     pub fn CGEventTapIsEnabled(tap: &CFMachPort) -> bool;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::tap_post_event`"]
     pub fn CGEventTapPostEvent(proxy: CGEventTapProxy, event: Option<&CGEvent>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::post`"]
     pub fn CGEventPost(tap: CGEventTapLocation, event: Option<&CGEvent>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGEventTypes")]
+    #[deprecated = "renamed to `CGEvent::post_to_psn`"]
     pub fn CGEventPostToPSN(process_serial_number: *mut c_void, event: Option<&CGEvent>);
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGEventTypes", feature = "libc"))]
+    #[deprecated = "renamed to `CGEvent::post_to_pid`"]
     pub fn CGEventPostToPid(pid: libc::pid_t, event: Option<&CGEvent>);
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "CGEventTypes", feature = "libc"))]
-    pub fn CGGetEventTapList(
-        max_number_of_taps: u32,
-        tap_list: *mut CGEventTapInformation,
-        event_tap_count: *mut u32,
-    ) -> CGError;
-}
-
-extern "C-unwind" {
-    pub fn CGPreflightListenEventAccess() -> bool;
-}
-
-extern "C-unwind" {
-    pub fn CGRequestListenEventAccess() -> bool;
-}
-
-extern "C-unwind" {
-    pub fn CGPreflightPostEventAccess() -> bool;
-}
-
-extern "C-unwind" {
-    pub fn CGRequestPostEventAccess() -> bool;
 }

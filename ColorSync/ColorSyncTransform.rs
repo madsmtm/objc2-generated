@@ -36,57 +36,65 @@ unsafe impl ConcreteType for ColorSyncTransform {
     }
 }
 
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncTransformCreate(
-    profile_sequence: Option<&CFArray>,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<ColorSyncTransform>> {
-    extern "C-unwind" {
-        fn ColorSyncTransformCreate(
-            profile_sequence: Option<&CFArray>,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<ColorSyncTransform>>;
+impl ColorSyncTransform {
+    #[inline]
+    #[doc(alias = "ColorSyncTransformCreate")]
+    pub unsafe fn new(
+        profile_sequence: Option<&CFArray>,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<ColorSyncTransform>> {
+        extern "C-unwind" {
+            fn ColorSyncTransformCreate(
+                profile_sequence: Option<&CFArray>,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<ColorSyncTransform>>;
+        }
+        let ret = unsafe { ColorSyncTransformCreate(profile_sequence, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ColorSyncTransformCreate(profile_sequence, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncTransformCopyProperty(
-    transform: &ColorSyncTransform,
-    key: &CFType,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn ColorSyncTransformCopyProperty(
-            transform: &ColorSyncTransform,
-            key: &CFType,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CFType>>;
-    }
-    let ret = unsafe { ColorSyncTransformCopyProperty(transform, key, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-extern "C-unwind" {
-    pub fn ColorSyncTransformSetProperty(
-        transform: &ColorSyncTransform,
+    #[inline]
+    #[doc(alias = "ColorSyncTransformCopyProperty")]
+    pub unsafe fn property(
+        self: &ColorSyncTransform,
         key: &CFType,
-        property: Option<&CFType>,
-    );
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncTransformGetProfileSequence(
-    transform: &ColorSyncTransform,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn ColorSyncTransformGetProfileSequence(
-            transform: &ColorSyncTransform,
-        ) -> Option<NonNull<CFArray>>;
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn ColorSyncTransformCopyProperty(
+                transform: &ColorSyncTransform,
+                key: &CFType,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { ColorSyncTransformCopyProperty(self, key, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ColorSyncTransformGetProfileSequence(transform) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+
+    #[inline]
+    #[doc(alias = "ColorSyncTransformSetProperty")]
+    pub unsafe fn set_property(self: &ColorSyncTransform, key: &CFType, property: Option<&CFType>) {
+        extern "C-unwind" {
+            fn ColorSyncTransformSetProperty(
+                transform: &ColorSyncTransform,
+                key: &CFType,
+                property: Option<&CFType>,
+            );
+        }
+        unsafe { ColorSyncTransformSetProperty(self, key, property) }
+    }
+
+    #[inline]
+    #[doc(alias = "ColorSyncTransformGetProfileSequence")]
+    pub unsafe fn profile_sequence(self: &ColorSyncTransform) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn ColorSyncTransformGetProfileSequence(
+                transform: &ColorSyncTransform,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { ColorSyncTransformGetProfileSequence(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdatadepth?language=objc)
@@ -171,9 +179,11 @@ pub const kColorSyncByteOrder32Big: c_uint = 4 << 12;
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdatalayout?language=objc)
 pub type ColorSyncDataLayout = u32;
 
-extern "C-unwind" {
-    pub fn ColorSyncTransformConvert(
-        transform: &ColorSyncTransform,
+impl ColorSyncTransform {
+    #[inline]
+    #[doc(alias = "ColorSyncTransformConvert")]
+    pub unsafe fn convert(
+        self: &ColorSyncTransform,
         width: usize,
         height: usize,
         dst: NonNull<c_void>,
@@ -185,7 +195,40 @@ extern "C-unwind" {
         src_layout: ColorSyncDataLayout,
         src_bytes_per_row: usize,
         options: Option<&CFDictionary>,
-    ) -> bool;
+    ) -> bool {
+        extern "C-unwind" {
+            fn ColorSyncTransformConvert(
+                transform: &ColorSyncTransform,
+                width: usize,
+                height: usize,
+                dst: NonNull<c_void>,
+                dst_depth: ColorSyncDataDepth,
+                dst_layout: ColorSyncDataLayout,
+                dst_bytes_per_row: usize,
+                src: NonNull<c_void>,
+                src_depth: ColorSyncDataDepth,
+                src_layout: ColorSyncDataLayout,
+                src_bytes_per_row: usize,
+                options: Option<&CFDictionary>,
+            ) -> bool;
+        }
+        unsafe {
+            ColorSyncTransformConvert(
+                self,
+                width,
+                height,
+                dst,
+                dst_depth,
+                dst_layout,
+                dst_bytes_per_row,
+                src,
+                src_depth,
+                src_layout,
+                src_bytes_per_row,
+                options,
+            )
+        }
+    }
 }
 
 extern "C" {
@@ -452,4 +495,79 @@ pub unsafe extern "C-unwind" fn ColorSyncCreateCodeFragment(
     let ret = unsafe { ColorSyncCreateCodeFragment(profile_sequence, options) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `ColorSyncTransform::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncTransformCreate(
+    profile_sequence: Option<&CFArray>,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<ColorSyncTransform>> {
+    extern "C-unwind" {
+        fn ColorSyncTransformCreate(
+            profile_sequence: Option<&CFArray>,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<ColorSyncTransform>>;
+    }
+    let ret = unsafe { ColorSyncTransformCreate(profile_sequence, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `ColorSyncTransform::property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncTransformCopyProperty(
+    transform: &ColorSyncTransform,
+    key: &CFType,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn ColorSyncTransformCopyProperty(
+            transform: &ColorSyncTransform,
+            key: &CFType,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { ColorSyncTransformCopyProperty(transform, key, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncTransform::set_property`"]
+    pub fn ColorSyncTransformSetProperty(
+        transform: &ColorSyncTransform,
+        key: &CFType,
+        property: Option<&CFType>,
+    );
+}
+
+#[deprecated = "renamed to `ColorSyncTransform::profile_sequence`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncTransformGetProfileSequence(
+    transform: &ColorSyncTransform,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn ColorSyncTransformGetProfileSequence(
+            transform: &ColorSyncTransform,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { ColorSyncTransformGetProfileSequence(transform) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncTransform::convert`"]
+    pub fn ColorSyncTransformConvert(
+        transform: &ColorSyncTransform,
+        width: usize,
+        height: usize,
+        dst: NonNull<c_void>,
+        dst_depth: ColorSyncDataDepth,
+        dst_layout: ColorSyncDataLayout,
+        dst_bytes_per_row: usize,
+        src: NonNull<c_void>,
+        src_depth: ColorSyncDataDepth,
+        src_layout: ColorSyncDataLayout,
+        src_bytes_per_row: usize,
+        options: Option<&CFDictionary>,
+    ) -> bool;
 }

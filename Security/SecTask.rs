@@ -40,11 +40,126 @@ unsafe impl ConcreteType for SecTask {
     }
 }
 
-/// Create a SecTask object for the current task.
-///
-/// Returns: The newly created SecTask object or NULL on error.  The caller must
-/// CFRelease the returned object.
-/// #ifndef LEFT
+impl SecTask {
+    /// Create a SecTask object for the current task.
+    ///
+    /// Returns: The newly created SecTask object or NULL on error.  The caller must
+    /// CFRelease the returned object.
+    /// #ifndef LEFT
+    #[inline]
+    #[doc(alias = "SecTaskCreateFromSelf")]
+    pub unsafe fn from_self(allocator: Option<&CFAllocator>) -> Option<CFRetained<SecTask>> {
+        extern "C-unwind" {
+            fn SecTaskCreateFromSelf(allocator: Option<&CFAllocator>) -> Option<NonNull<SecTask>>;
+        }
+        let ret = unsafe { SecTaskCreateFromSelf(allocator) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the value of a single entitlement for the represented
+    /// task.
+    ///
+    /// Parameter `task`: A previously created SecTask object
+    ///
+    /// Parameter `entitlement`: The name of the entitlement to be fetched
+    ///
+    /// Parameter `error`: On a NULL return, this may be contain a CFError describing
+    /// the problem.  This argument may be NULL if the caller is not interested in
+    /// detailed errors.
+    ///
+    /// Returns: The value of the specified entitlement for the process or NULL if
+    /// the entitlement value could not be retrieved.  The type of the returned
+    /// value will depend on the entitlement specified.  The caller must release
+    /// the returned object.
+    ///
+    /// A NULL return may indicate an error, or it may indicate that
+    /// the entitlement is simply not present.  In the latter case, no CFError is
+    /// returned.
+    #[inline]
+    #[doc(alias = "SecTaskCopyValueForEntitlement")]
+    pub unsafe fn value_for_entitlement(
+        self: &SecTask,
+        entitlement: &CFString,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn SecTaskCopyValueForEntitlement(
+                task: &SecTask,
+                entitlement: &CFString,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { SecTaskCopyValueForEntitlement(self, entitlement, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the values of multiple entitlements for the represented
+    /// task.
+    ///
+    /// Parameter `task`: A previously created SecTask object
+    ///
+    /// Parameter `entitlements`: An array of entitlement names to be fetched
+    ///
+    /// Parameter `error`: On a NULL return, this will contain a CFError describing
+    /// the problem.  This argument may be NULL if the caller is not interested in
+    /// detailed errors.  If a requested entitlement is not present for the
+    /// returned dictionary, the entitlement is not set on the task.  The caller
+    /// must CFRelease the returned value
+    #[inline]
+    #[doc(alias = "SecTaskCopyValuesForEntitlements")]
+    pub unsafe fn values_for_entitlements(
+        self: &SecTask,
+        entitlements: &CFArray,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SecTaskCopyValuesForEntitlements(
+                task: &SecTask,
+                entitlements: &CFArray,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SecTaskCopyValuesForEntitlements(self, entitlements, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Return the value of the codesigning identifier.
+    ///
+    /// Parameter `task`: A previously created SecTask object
+    ///
+    /// Parameter `error`: On a NULL return, this will contain a CFError describing
+    /// the problem.  This argument may be NULL if the caller is not interested in
+    /// detailed errors. The caller must CFRelease the returned value
+    #[inline]
+    #[doc(alias = "SecTaskCopySigningIdentifier")]
+    pub unsafe fn signing_identifier(
+        self: &SecTask,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SecTaskCopySigningIdentifier(
+                task: &SecTask,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SecTaskCopySigningIdentifier(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Return the code sign status flags
+    ///
+    /// Parameter `task`: A previously created SecTask object
+    #[inline]
+    #[doc(alias = "SecTaskGetCodeSignStatus")]
+    pub unsafe fn code_sign_status(self: &SecTask) -> u32 {
+        extern "C-unwind" {
+            fn SecTaskGetCodeSignStatus(task: &SecTask) -> u32;
+        }
+        unsafe { SecTaskGetCodeSignStatus(self) }
+    }
+}
+
+#[deprecated = "renamed to `SecTask::from_self`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTaskCreateFromSelf(
     allocator: Option<&CFAllocator>,
@@ -56,25 +171,7 @@ pub unsafe extern "C-unwind" fn SecTaskCreateFromSelf(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the value of a single entitlement for the represented
-/// task.
-///
-/// Parameter `task`: A previously created SecTask object
-///
-/// Parameter `entitlement`: The name of the entitlement to be fetched
-///
-/// Parameter `error`: On a NULL return, this may be contain a CFError describing
-/// the problem.  This argument may be NULL if the caller is not interested in
-/// detailed errors.
-///
-/// Returns: The value of the specified entitlement for the process or NULL if
-/// the entitlement value could not be retrieved.  The type of the returned
-/// value will depend on the entitlement specified.  The caller must release
-/// the returned object.
-///
-/// A NULL return may indicate an error, or it may indicate that
-/// the entitlement is simply not present.  In the latter case, no CFError is
-/// returned.
+#[deprecated = "renamed to `SecTask::value_for_entitlement`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTaskCopyValueForEntitlement(
     task: &SecTask,
@@ -92,18 +189,7 @@ pub unsafe extern "C-unwind" fn SecTaskCopyValueForEntitlement(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the values of multiple entitlements for the represented
-/// task.
-///
-/// Parameter `task`: A previously created SecTask object
-///
-/// Parameter `entitlements`: An array of entitlement names to be fetched
-///
-/// Parameter `error`: On a NULL return, this will contain a CFError describing
-/// the problem.  This argument may be NULL if the caller is not interested in
-/// detailed errors.  If a requested entitlement is not present for the
-/// returned dictionary, the entitlement is not set on the task.  The caller
-/// must CFRelease the returned value
+#[deprecated = "renamed to `SecTask::values_for_entitlements`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTaskCopyValuesForEntitlements(
     task: &SecTask,
@@ -121,13 +207,7 @@ pub unsafe extern "C-unwind" fn SecTaskCopyValuesForEntitlements(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Return the value of the codesigning identifier.
-///
-/// Parameter `task`: A previously created SecTask object
-///
-/// Parameter `error`: On a NULL return, this will contain a CFError describing
-/// the problem.  This argument may be NULL if the caller is not interested in
-/// detailed errors. The caller must CFRelease the returned value
+#[deprecated = "renamed to `SecTask::signing_identifier`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTaskCopySigningIdentifier(
     task: &SecTask,
@@ -144,8 +224,6 @@ pub unsafe extern "C-unwind" fn SecTaskCopySigningIdentifier(
 }
 
 extern "C-unwind" {
-    /// Return the code sign status flags
-    ///
-    /// Parameter `task`: A previously created SecTask object
+    #[deprecated = "renamed to `SecTask::code_sign_status`"]
     pub fn SecTaskGetCodeSignStatus(task: &SecTask) -> u32;
 }

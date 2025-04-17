@@ -324,7 +324,7 @@ pub type IOBluetoothUserNotificationCallback = Option<
     ),
 >;
 
-extern "C-unwind" {
+impl IOBluetoothUserNotificationRef {
     /// Unregisters the target notification.
     ///
     /// This function will unregister the notification.  Once the notification has been unregistered,
@@ -332,43 +332,55 @@ extern "C-unwind" {
     /// target IOBluetoothUserNotificationRef is no longer valid.
     ///
     /// Parameter `notificationRef`: The target IOBluetoothUserNotificationRef to be unregistered
-    pub fn IOBluetoothUserNotificationUnregister(notification_ref: &IOBluetoothUserNotificationRef);
+    #[inline]
+    #[doc(alias = "IOBluetoothUserNotificationUnregister")]
+    pub unsafe fn unregister(self: &IOBluetoothUserNotificationRef) {
+        extern "C-unwind" {
+            fn IOBluetoothUserNotificationUnregister(
+                notification_ref: &IOBluetoothUserNotificationRef,
+            );
+        }
+        unsafe { IOBluetoothUserNotificationUnregister(self) }
+    }
 }
 
-/// Allows a client to register for a channel close notification.
-///
-/// The given callback will be called when the L2CAP channel is closed.
-///
-/// Parameter `channel`: The target L2CAP channel
-///
-/// Parameter `callback`: Callback to be called when the L2CAP channel is closed.
-///
-/// Parameter `inRefCon`: Client-supplied refCon to be passed to the callback.
-///
-/// Returns: Returns an IOBluetoothUserNotificationRef representing the outstanding L2CAP channel close notification.
-/// To unregister the notification, call IOBluetoothUserNotificationUnregister(void) with the returned
-/// IOBluetoothUserNotificationRef.  If an error is encountered creating the notification, NULL is returned.
-/// The returned IOBluetoothUserNotificationRef will be valid for as long as the notification is registered.
-/// It is not necessary to retain the result.  Once the notification is unregistered, it will no longer
-/// be valid.
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(
-    channel: &IOBluetoothL2CAPChannelRef,
-    callback: IOBluetoothUserNotificationCallback,
-    in_ref_con: *mut c_void,
-) -> Option<CFRetained<IOBluetoothUserNotificationRef>> {
-    extern "C-unwind" {
-        fn IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(
-            channel: &IOBluetoothL2CAPChannelRef,
-            callback: IOBluetoothUserNotificationCallback,
-            in_ref_con: *mut c_void,
-        ) -> Option<NonNull<IOBluetoothUserNotificationRef>>;
+impl IOBluetoothL2CAPChannelRef {
+    /// Allows a client to register for a channel close notification.
+    ///
+    /// The given callback will be called when the L2CAP channel is closed.
+    ///
+    /// Parameter `channel`: The target L2CAP channel
+    ///
+    /// Parameter `callback`: Callback to be called when the L2CAP channel is closed.
+    ///
+    /// Parameter `inRefCon`: Client-supplied refCon to be passed to the callback.
+    ///
+    /// Returns: Returns an IOBluetoothUserNotificationRef representing the outstanding L2CAP channel close notification.
+    /// To unregister the notification, call IOBluetoothUserNotificationUnregister(void) with the returned
+    /// IOBluetoothUserNotificationRef.  If an error is encountered creating the notification, NULL is returned.
+    /// The returned IOBluetoothUserNotificationRef will be valid for as long as the notification is registered.
+    /// It is not necessary to retain the result.  Once the notification is unregistered, it will no longer
+    /// be valid.
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "IOBluetoothL2CAPChannelRegisterForChannelCloseNotification")]
+    pub unsafe fn register_for_channel_close_notification(
+        self: &IOBluetoothL2CAPChannelRef,
+        callback: IOBluetoothUserNotificationCallback,
+        in_ref_con: *mut c_void,
+    ) -> Option<CFRetained<IOBluetoothUserNotificationRef>> {
+        extern "C-unwind" {
+            fn IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(
+                channel: &IOBluetoothL2CAPChannelRef,
+                callback: IOBluetoothUserNotificationCallback,
+                in_ref_con: *mut c_void,
+            ) -> Option<NonNull<IOBluetoothUserNotificationRef>>;
+        }
+        let ret = unsafe {
+            IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(self, callback, in_ref_con)
+        };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe {
-        IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(channel, callback, in_ref_con)
-    };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -397,4 +409,30 @@ extern "C-unwind" {
     /// Returns: Returns kIOReturnSuccess if the audio driver was successfully removed. On 10.9 it will always return kIOReturnSuccess
     #[deprecated]
     pub fn IOBluetoothRemoveSCOAudioDevice(device: Option<&IOBluetoothDeviceRef>) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOBluetoothUserNotificationRef::unregister`"]
+    pub fn IOBluetoothUserNotificationUnregister(notification_ref: &IOBluetoothUserNotificationRef);
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `IOBluetoothL2CAPChannelRef::register_for_channel_close_notification`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(
+    channel: &IOBluetoothL2CAPChannelRef,
+    callback: IOBluetoothUserNotificationCallback,
+    in_ref_con: *mut c_void,
+) -> Option<CFRetained<IOBluetoothUserNotificationRef>> {
+    extern "C-unwind" {
+        fn IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(
+            channel: &IOBluetoothL2CAPChannelRef,
+            callback: IOBluetoothUserNotificationCallback,
+            in_ref_con: *mut c_void,
+        ) -> Option<NonNull<IOBluetoothUserNotificationRef>>;
+    }
+    let ret = unsafe {
+        IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(channel, callback, in_ref_con)
+    };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

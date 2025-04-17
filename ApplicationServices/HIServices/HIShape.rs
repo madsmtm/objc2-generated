@@ -78,6 +78,366 @@ unsafe impl ConcreteType for HIShape {
     }
 }
 
+impl HIShape {
+    #[inline]
+    #[doc(alias = "HIShapeCreateEmpty")]
+    pub unsafe fn new_empty() -> Option<CFRetained<HIShape>> {
+        extern "C-unwind" {
+            fn HIShapeCreateEmpty() -> Option<NonNull<HIShape>>;
+        }
+        let ret = unsafe { HIShapeCreateEmpty() };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeCreateWithRect")]
+    pub unsafe fn with_rect(in_rect: *const CGRect) -> Option<CFRetained<HIShape>> {
+        extern "C-unwind" {
+            fn HIShapeCreateWithRect(in_rect: *const CGRect) -> Option<NonNull<HIShape>>;
+        }
+        let ret = unsafe { HIShapeCreateWithRect(in_rect) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeCreateCopy")]
+    pub unsafe fn new_copy(self: &HIShape) -> Option<CFRetained<HIShape>> {
+        extern "C-unwind" {
+            fn HIShapeCreateCopy(in_shape: &HIShape) -> Option<NonNull<HIShape>>;
+        }
+        let ret = unsafe { HIShapeCreateCopy(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeCreateIntersection")]
+    pub unsafe fn new_intersection(
+        self: &HIShape,
+        in_shape2: Option<&HIShape>,
+    ) -> Option<CFRetained<HIShape>> {
+        extern "C-unwind" {
+            fn HIShapeCreateIntersection(
+                in_shape1: &HIShape,
+                in_shape2: Option<&HIShape>,
+            ) -> Option<NonNull<HIShape>>;
+        }
+        let ret = unsafe { HIShapeCreateIntersection(self, in_shape2) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeCreateDifference")]
+    pub unsafe fn new_difference(
+        self: &HIShape,
+        in_shape2: Option<&HIShape>,
+    ) -> Option<CFRetained<HIShape>> {
+        extern "C-unwind" {
+            fn HIShapeCreateDifference(
+                in_shape1: &HIShape,
+                in_shape2: Option<&HIShape>,
+            ) -> Option<NonNull<HIShape>>;
+        }
+        let ret = unsafe { HIShapeCreateDifference(self, in_shape2) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeCreateUnion")]
+    pub unsafe fn new_union(
+        self: &HIShape,
+        in_shape2: Option<&HIShape>,
+    ) -> Option<CFRetained<HIShape>> {
+        extern "C-unwind" {
+            fn HIShapeCreateUnion(
+                in_shape1: &HIShape,
+                in_shape2: Option<&HIShape>,
+            ) -> Option<NonNull<HIShape>>;
+        }
+        let ret = unsafe { HIShapeCreateUnion(self, in_shape2) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeCreateXor")]
+    pub unsafe fn new_xor(
+        self: &HIShape,
+        in_shape2: Option<&HIShape>,
+    ) -> Option<CFRetained<HIShape>> {
+        extern "C-unwind" {
+            fn HIShapeCreateXor(
+                in_shape1: &HIShape,
+                in_shape2: Option<&HIShape>,
+            ) -> Option<NonNull<HIShape>>;
+        }
+        let ret = unsafe { HIShapeCreateXor(self, in_shape2) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeIsEmpty")]
+    pub unsafe fn is_empty(self: &HIShape) -> bool {
+        extern "C-unwind" {
+            fn HIShapeIsEmpty(in_shape: &HIShape) -> Boolean;
+        }
+        let ret = unsafe { HIShapeIsEmpty(self) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeIsRectangular")]
+    pub unsafe fn is_rectangular(self: &HIShape) -> bool {
+        extern "C-unwind" {
+            fn HIShapeIsRectangular(in_shape: &HIShape) -> Boolean;
+        }
+        let ret = unsafe { HIShapeIsRectangular(self) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeContainsPoint")]
+    pub unsafe fn contains_point(self: &HIShape, in_point: *const CGPoint) -> bool {
+        extern "C-unwind" {
+            fn HIShapeContainsPoint(in_shape: &HIShape, in_point: *const CGPoint) -> Boolean;
+        }
+        let ret = unsafe { HIShapeContainsPoint(self, in_point) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeIntersectsRect")]
+    pub unsafe fn intersects_rect(self: &HIShape, in_rect: *const CGRect) -> bool {
+        extern "C-unwind" {
+            fn HIShapeIntersectsRect(in_shape: &HIShape, in_rect: *const CGRect) -> Boolean;
+        }
+        let ret = unsafe { HIShapeIntersectsRect(self, in_rect) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeGetBounds")]
+    pub unsafe fn bounds(self: &HIShape, out_rect: *mut CGRect) -> *mut CGRect {
+        extern "C-unwind" {
+            fn HIShapeGetBounds(in_shape: &HIShape, out_rect: *mut CGRect) -> *mut CGRect;
+        }
+        unsafe { HIShapeGetBounds(self, out_rect) }
+    }
+
+    #[cfg(feature = "objc2-core-graphics")]
+    #[inline]
+    #[doc(alias = "HIShapeReplacePathInCGContext")]
+    pub unsafe fn replace_path_in_cg_context(
+        self: &HIShape,
+        in_context: Option<&CGContext>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn HIShapeReplacePathInCGContext(
+                in_shape: &HIShape,
+                in_context: Option<&CGContext>,
+            ) -> OSStatus;
+        }
+        unsafe { HIShapeReplacePathInCGContext(self, in_context) }
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeEnumerate")]
+    pub unsafe fn enumerate(
+        self: &HIShape,
+        in_options: OptionBits,
+        in_proc: HIShapeEnumerateProcPtr,
+        in_refcon: *mut c_void,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn HIShapeEnumerate(
+                in_shape: &HIShape,
+                in_options: OptionBits,
+                in_proc: HIShapeEnumerateProcPtr,
+                in_refcon: *mut c_void,
+            ) -> OSStatus;
+        }
+        unsafe { HIShapeEnumerate(self, in_options, in_proc, in_refcon) }
+    }
+}
+
+impl HIMutableShape {
+    #[inline]
+    #[doc(alias = "HIShapeCreateMutable")]
+    pub unsafe fn new() -> Option<CFRetained<HIMutableShape>> {
+        extern "C-unwind" {
+            fn HIShapeCreateMutable() -> Option<NonNull<HIMutableShape>>;
+        }
+        let ret = unsafe { HIShapeCreateMutable() };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeCreateMutableCopy")]
+    pub unsafe fn new_copy(in_orig: &HIShape) -> Option<CFRetained<HIMutableShape>> {
+        extern "C-unwind" {
+            fn HIShapeCreateMutableCopy(in_orig: &HIShape) -> Option<NonNull<HIMutableShape>>;
+        }
+        let ret = unsafe { HIShapeCreateMutableCopy(in_orig) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeCreateMutableWithRect")]
+    pub unsafe fn with_rect(in_rect: *const CGRect) -> Option<CFRetained<HIMutableShape>> {
+        extern "C-unwind" {
+            fn HIShapeCreateMutableWithRect(
+                in_rect: *const CGRect,
+            ) -> Option<NonNull<HIMutableShape>>;
+        }
+        let ret = unsafe { HIShapeCreateMutableWithRect(in_rect) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeSetEmpty")]
+    pub unsafe fn set_empty(in_shape: Option<&HIMutableShape>) -> OSStatus {
+        extern "C-unwind" {
+            fn HIShapeSetEmpty(in_shape: Option<&HIMutableShape>) -> OSStatus;
+        }
+        unsafe { HIShapeSetEmpty(in_shape) }
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeSetWithShape")]
+    pub unsafe fn set_with_shape(
+        in_dest_shape: Option<&HIMutableShape>,
+        in_src_shape: Option<&HIShape>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn HIShapeSetWithShape(
+                in_dest_shape: Option<&HIMutableShape>,
+                in_src_shape: Option<&HIShape>,
+            ) -> OSStatus;
+        }
+        unsafe { HIShapeSetWithShape(in_dest_shape, in_src_shape) }
+    }
+}
+
+impl HIShape {
+    #[inline]
+    #[doc(alias = "HIShapeIntersect")]
+    pub unsafe fn intersect(
+        self: &HIShape,
+        in_shape2: Option<&HIShape>,
+        out_result: Option<&HIMutableShape>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn HIShapeIntersect(
+                in_shape1: &HIShape,
+                in_shape2: Option<&HIShape>,
+                out_result: Option<&HIMutableShape>,
+            ) -> OSStatus;
+        }
+        unsafe { HIShapeIntersect(self, in_shape2, out_result) }
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeDifference")]
+    pub unsafe fn difference(
+        self: &HIShape,
+        in_shape2: Option<&HIShape>,
+        out_result: Option<&HIMutableShape>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn HIShapeDifference(
+                in_shape1: &HIShape,
+                in_shape2: Option<&HIShape>,
+                out_result: Option<&HIMutableShape>,
+            ) -> OSStatus;
+        }
+        unsafe { HIShapeDifference(self, in_shape2, out_result) }
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeUnion")]
+    pub unsafe fn union(
+        self: &HIShape,
+        in_shape2: Option<&HIShape>,
+        out_result: Option<&HIMutableShape>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn HIShapeUnion(
+                in_shape1: &HIShape,
+                in_shape2: Option<&HIShape>,
+                out_result: Option<&HIMutableShape>,
+            ) -> OSStatus;
+        }
+        unsafe { HIShapeUnion(self, in_shape2, out_result) }
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeXor")]
+    pub unsafe fn xor(
+        self: &HIShape,
+        in_shape2: Option<&HIShape>,
+        out_result: Option<&HIMutableShape>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn HIShapeXor(
+                in_shape1: &HIShape,
+                in_shape2: Option<&HIShape>,
+                out_result: Option<&HIMutableShape>,
+            ) -> OSStatus;
+        }
+        unsafe { HIShapeXor(self, in_shape2, out_result) }
+    }
+}
+
+impl HIMutableShape {
+    #[inline]
+    #[doc(alias = "HIShapeOffset")]
+    pub unsafe fn offset(
+        in_shape: Option<&HIMutableShape>,
+        in_dx: CGFloat,
+        in_dy: CGFloat,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn HIShapeOffset(
+                in_shape: Option<&HIMutableShape>,
+                in_dx: CGFloat,
+                in_dy: CGFloat,
+            ) -> OSStatus;
+        }
+        unsafe { HIShapeOffset(in_shape, in_dx, in_dy) }
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeInset")]
+    pub unsafe fn inset(
+        in_shape: Option<&HIMutableShape>,
+        in_dx: CGFloat,
+        in_dy: CGFloat,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn HIShapeInset(
+                in_shape: Option<&HIMutableShape>,
+                in_dx: CGFloat,
+                in_dy: CGFloat,
+            ) -> OSStatus;
+        }
+        unsafe { HIShapeInset(in_shape, in_dx, in_dy) }
+    }
+
+    #[inline]
+    #[doc(alias = "HIShapeUnionWithRect")]
+    pub unsafe fn union_with_rect(
+        in_shape: Option<&HIMutableShape>,
+        in_rect: *const CGRect,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn HIShapeUnionWithRect(
+                in_shape: Option<&HIMutableShape>,
+                in_rect: *const CGRect,
+            ) -> OSStatus;
+        }
+        unsafe { HIShapeUnionWithRect(in_shape, in_rect) }
+    }
+}
+
+#[deprecated = "renamed to `HIShape::new_empty`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateEmpty() -> Option<CFRetained<HIShape>> {
     extern "C-unwind" {
@@ -87,6 +447,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateEmpty() -> Option<CFRetained<HIShap
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `HIShape::with_rect`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateWithRect(
     in_rect: *const CGRect,
@@ -98,6 +459,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateWithRect(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `HIShape::new_copy`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateCopy(
     in_shape: &HIShape,
@@ -109,6 +471,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `HIShape::new_intersection`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateIntersection(
     in_shape1: &HIShape,
@@ -124,6 +487,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateIntersection(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `HIShape::new_difference`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateDifference(
     in_shape1: &HIShape,
@@ -139,6 +503,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateDifference(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `HIShape::new_union`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateUnion(
     in_shape1: &HIShape,
@@ -154,6 +519,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateUnion(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `HIShape::new_xor`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateXor(
     in_shape1: &HIShape,
@@ -169,6 +535,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateXor(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `HIShape::is_empty`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeIsEmpty(in_shape: &HIShape) -> bool {
     extern "C-unwind" {
@@ -178,6 +545,7 @@ pub unsafe extern "C-unwind" fn HIShapeIsEmpty(in_shape: &HIShape) -> bool {
     ret != 0
 }
 
+#[deprecated = "renamed to `HIShape::is_rectangular`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeIsRectangular(in_shape: &HIShape) -> bool {
     extern "C-unwind" {
@@ -187,6 +555,7 @@ pub unsafe extern "C-unwind" fn HIShapeIsRectangular(in_shape: &HIShape) -> bool
     ret != 0
 }
 
+#[deprecated = "renamed to `HIShape::contains_point`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeContainsPoint(
     in_shape: &HIShape,
@@ -199,6 +568,7 @@ pub unsafe extern "C-unwind" fn HIShapeContainsPoint(
     ret != 0
 }
 
+#[deprecated = "renamed to `HIShape::intersects_rect`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeIntersectsRect(
     in_shape: &HIShape,
@@ -212,11 +582,13 @@ pub unsafe extern "C-unwind" fn HIShapeIntersectsRect(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `HIShape::bounds`"]
     pub fn HIShapeGetBounds(in_shape: &HIShape, out_rect: *mut CGRect) -> *mut CGRect;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `HIShape::replace_path_in_cg_context`"]
     pub fn HIShapeReplacePathInCGContext(
         in_shape: &HIShape,
         in_context: Option<&CGContext>,
@@ -224,6 +596,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `HIShape::enumerate`"]
     pub fn HIShapeEnumerate(
         in_shape: &HIShape,
         in_options: OptionBits,
@@ -232,6 +605,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+#[deprecated = "renamed to `HIMutableShape::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateMutable() -> Option<CFRetained<HIMutableShape>> {
     extern "C-unwind" {
@@ -241,6 +615,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateMutable() -> Option<CFRetained<HIMu
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `HIMutableShape::new_copy`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateMutableCopy(
     in_orig: &HIShape,
@@ -252,6 +627,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateMutableCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `HIMutableShape::with_rect`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateMutableWithRect(
     in_rect: *const CGRect,
@@ -264,10 +640,12 @@ pub unsafe extern "C-unwind" fn HIShapeCreateMutableWithRect(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `HIMutableShape::set_empty`"]
     pub fn HIShapeSetEmpty(in_shape: Option<&HIMutableShape>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `HIMutableShape::set_with_shape`"]
     pub fn HIShapeSetWithShape(
         in_dest_shape: Option<&HIMutableShape>,
         in_src_shape: Option<&HIShape>,
@@ -275,6 +653,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `HIShape::intersect`"]
     pub fn HIShapeIntersect(
         in_shape1: &HIShape,
         in_shape2: Option<&HIShape>,
@@ -283,6 +662,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `HIShape::difference`"]
     pub fn HIShapeDifference(
         in_shape1: &HIShape,
         in_shape2: Option<&HIShape>,
@@ -291,6 +671,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `HIShape::union`"]
     pub fn HIShapeUnion(
         in_shape1: &HIShape,
         in_shape2: Option<&HIShape>,
@@ -299,6 +680,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `HIShape::xor`"]
     pub fn HIShapeXor(
         in_shape1: &HIShape,
         in_shape2: Option<&HIShape>,
@@ -307,6 +689,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `HIMutableShape::offset`"]
     pub fn HIShapeOffset(
         in_shape: Option<&HIMutableShape>,
         in_dx: CGFloat,
@@ -315,6 +698,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `HIMutableShape::inset`"]
     pub fn HIShapeInset(
         in_shape: Option<&HIMutableShape>,
         in_dx: CGFloat,
@@ -323,6 +707,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `HIMutableShape::union_with_rect`"]
     pub fn HIShapeUnionWithRect(
         in_shape: Option<&HIMutableShape>,
         in_rect: *const CGRect,

@@ -61,7 +61,9 @@ unsafe impl RefEncode for MTLIndirectCommandBufferExecutionRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn MTLIndirectCommandBufferExecutionRangeMake(location: u32,length: u32,) -> MTLIndirectCommandBufferExecutionRange;
+impl MTLIndirectCommandBufferExecutionRange {
+    // TODO: pub fn MTLIndirectCommandBufferExecutionRangeMake(location: u32,length: u32,) -> MTLIndirectCommandBufferExecutionRange;
+}
 
 extern_class!(
     /// Describes the limits and features that can be used in an indirect command

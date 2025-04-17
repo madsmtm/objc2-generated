@@ -6,7 +6,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
+#[cfg(feature = "WKApplication")]
+impl WKApplication {
+    #[inline]
+    #[doc(alias = "WKApplicationMain")]
+    pub unsafe fn main(
+        argc: c_int,
+        argv: NonNull<*mut c_char>,
+        application_delegate_class_name: Option<&NSString>,
+    ) -> c_int {
+        extern "C-unwind" {
+            fn WKApplicationMain(
+                argc: c_int,
+                argv: NonNull<*mut c_char>,
+                application_delegate_class_name: Option<&NSString>,
+            ) -> c_int;
+        }
+        unsafe { WKApplicationMain(argc, argv, application_delegate_class_name) }
+    }
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `WKApplication::main`"]
     pub fn WKApplicationMain(
         argc: c_int,
         argv: NonNull<*mut c_char>,

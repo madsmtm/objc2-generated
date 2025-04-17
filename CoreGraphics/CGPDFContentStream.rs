@@ -26,13 +26,91 @@ unsafe impl RefEncode for CGPDFContentStream {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamref?language=objc)
 pub type CGPDFContentStreamRef = *mut CGPDFContentStream;
 
+impl CGPDFContentStream {
+    #[cfg(feature = "CGPDFPage")]
+    #[inline]
+    #[doc(alias = "CGPDFContentStreamCreateWithPage")]
+    pub unsafe fn create_with_page(page: &CGPDFPage) -> CGPDFContentStreamRef {
+        extern "C-unwind" {
+            fn CGPDFContentStreamCreateWithPage(page: &CGPDFPage) -> CGPDFContentStreamRef;
+        }
+        unsafe { CGPDFContentStreamCreateWithPage(page) }
+    }
+
+    #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFStream"))]
+    #[inline]
+    #[doc(alias = "CGPDFContentStreamCreateWithStream")]
+    pub unsafe fn create_with_stream(
+        stream: CGPDFStreamRef,
+        stream_resources: CGPDFDictionaryRef,
+        parent: CGPDFContentStreamRef,
+    ) -> CGPDFContentStreamRef {
+        extern "C-unwind" {
+            fn CGPDFContentStreamCreateWithStream(
+                stream: CGPDFStreamRef,
+                stream_resources: CGPDFDictionaryRef,
+                parent: CGPDFContentStreamRef,
+            ) -> CGPDFContentStreamRef;
+        }
+        unsafe { CGPDFContentStreamCreateWithStream(stream, stream_resources, parent) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFContentStreamRetain")]
+    pub unsafe fn retain(cs: CGPDFContentStreamRef) -> CGPDFContentStreamRef {
+        extern "C-unwind" {
+            fn CGPDFContentStreamRetain(cs: CGPDFContentStreamRef) -> CGPDFContentStreamRef;
+        }
+        unsafe { CGPDFContentStreamRetain(cs) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFContentStreamRelease")]
+    pub unsafe fn release(cs: CGPDFContentStreamRef) {
+        extern "C-unwind" {
+            fn CGPDFContentStreamRelease(cs: CGPDFContentStreamRef);
+        }
+        unsafe { CGPDFContentStreamRelease(cs) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFContentStreamGetStreams")]
+    pub unsafe fn streams(cs: CGPDFContentStreamRef) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CGPDFContentStreamGetStreams(cs: CGPDFContentStreamRef) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CGPDFContentStreamGetStreams(cs) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[cfg(feature = "CGPDFObject")]
+    #[inline]
+    #[doc(alias = "CGPDFContentStreamGetResource")]
+    pub unsafe fn resource(
+        cs: CGPDFContentStreamRef,
+        category: NonNull<c_char>,
+        name: NonNull<c_char>,
+    ) -> CGPDFObjectRef {
+        extern "C-unwind" {
+            fn CGPDFContentStreamGetResource(
+                cs: CGPDFContentStreamRef,
+                category: NonNull<c_char>,
+                name: NonNull<c_char>,
+            ) -> CGPDFObjectRef;
+        }
+        unsafe { CGPDFContentStreamGetResource(cs, category, name) }
+    }
+}
+
 extern "C-unwind" {
     #[cfg(feature = "CGPDFPage")]
+    #[deprecated = "renamed to `CGPDFContentStream::create_with_page`"]
     pub fn CGPDFContentStreamCreateWithPage(page: &CGPDFPage) -> CGPDFContentStreamRef;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFStream"))]
+    #[deprecated = "renamed to `CGPDFContentStream::create_with_stream`"]
     pub fn CGPDFContentStreamCreateWithStream(
         stream: CGPDFStreamRef,
         stream_resources: CGPDFDictionaryRef,
@@ -41,13 +119,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFContentStream::retain`"]
     pub fn CGPDFContentStreamRetain(cs: CGPDFContentStreamRef) -> CGPDFContentStreamRef;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFContentStream::release`"]
     pub fn CGPDFContentStreamRelease(cs: CGPDFContentStreamRef);
 }
 
+#[deprecated = "renamed to `CGPDFContentStream::streams`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPDFContentStreamGetStreams(
     cs: CGPDFContentStreamRef,
@@ -61,6 +142,7 @@ pub unsafe extern "C-unwind" fn CGPDFContentStreamGetStreams(
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFObject")]
+    #[deprecated = "renamed to `CGPDFContentStream::resource`"]
     pub fn CGPDFContentStreamGetResource(
         cs: CGPDFContentStreamRef,
         category: NonNull<c_char>,

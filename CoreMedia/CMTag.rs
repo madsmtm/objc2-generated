@@ -145,15 +145,22 @@ unsafe impl RefEncode for CMTag {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn CMTagIsValid(tag: CMTag,) -> Boolean;
+impl CMTag {
+    // TODO: pub fn CMTagIsValid(tag: CMTag,) -> Boolean;
 
-extern "C-unwind" {
     /// Returns the dataType field of the CMTag.
     ///
     /// Parameter `tag`: CMTag from which to extract the data type.
     ///
     /// Returns: kCMTagDataType_* value.
-    pub fn CMTagGetValueDataType(tag: CMTag) -> CMTagDataType;
+    #[inline]
+    #[doc(alias = "CMTagGetValueDataType")]
+    pub unsafe fn value_data_type(tag: CMTag) -> CMTagDataType {
+        extern "C-unwind" {
+            fn CMTagGetValueDataType(tag: CMTag) -> CMTagDataType;
+        }
+        unsafe { CMTagGetValueDataType(tag) }
+    }
 }
 
 extern "C" {
@@ -398,29 +405,34 @@ extern "C" {
     pub static kCMTagPackingTypeOverUnder: CMTag;
 }
 
-// TODO: pub fn CMTagGetCategory(tag: CMTag,) -> CMTagCategory;
-
-// TODO: pub fn CMTagCategoryEqualToTagCategory(tag1: CMTag,tag2: CMTag,) -> Boolean;
-
-// TODO: pub fn CMTagGetValue(tag: CMTag,) -> CMTagValue;
-
-// TODO: pub fn CMTagHasCategory(tag: CMTag,category: CMTagCategory,) -> Boolean;
-
-/// Checks if the tag represents a signed 64-bit value.
-///
-/// Parameter `tag`: CMTag to evaluate.
-///
-/// Returns: Returns true if the CMTag carries a signed 64-bit value indicated by a data type of kCMTagDataType_SInt64, false otherwise.
-#[inline]
-pub unsafe extern "C-unwind" fn CMTagHasSInt64Value(tag: CMTag) -> bool {
-    extern "C-unwind" {
-        fn CMTagHasSInt64Value(tag: CMTag) -> Boolean;
-    }
-    let ret = unsafe { CMTagHasSInt64Value(tag) };
-    ret != 0
+impl CMTag {
+    // TODO: pub fn CMTagGetCategory(tag: CMTag,) -> CMTagCategory;
 }
 
-extern "C-unwind" {
+impl CMTagCategory {
+    // TODO: pub fn CMTagCategoryEqualToTagCategory(tag1: CMTag,tag2: CMTag,) -> Boolean;
+}
+
+impl CMTag {
+    // TODO: pub fn CMTagGetValue(tag: CMTag,) -> CMTagValue;
+
+    // TODO: pub fn CMTagHasCategory(tag: CMTag,category: CMTagCategory,) -> Boolean;
+
+    /// Checks if the tag represents a signed 64-bit value.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: Returns true if the CMTag carries a signed 64-bit value indicated by a data type of kCMTagDataType_SInt64, false otherwise.
+    #[inline]
+    #[doc(alias = "CMTagHasSInt64Value")]
+    pub unsafe fn has_s_int64_value(tag: CMTag) -> bool {
+        extern "C-unwind" {
+            fn CMTagHasSInt64Value(tag: CMTag) -> Boolean;
+        }
+        let ret = unsafe { CMTagHasSInt64Value(tag) };
+        ret != 0
+    }
+
     /// Returns the signed 64-bit value carried by the CMTag.
     ///
     /// This should only be called on a CMTag with a data type of kCMTagDataType_SInt64. Calling it with a CMTag having another data type is undefined.
@@ -428,24 +440,30 @@ extern "C-unwind" {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: Signed 64-bit integer.
-    pub fn CMTagGetSInt64Value(tag: CMTag) -> i64;
-}
-
-/// Checks if the tag represents a 64-bit float value.
-///
-/// Parameter `tag`: CMTag to evaluate.
-///
-/// Returns: Returns true if the CMTag carries a 64-bit float indicated by a data type of kCMTagDataType_Float64, false otherwise.
-#[inline]
-pub unsafe extern "C-unwind" fn CMTagHasFloat64Value(tag: CMTag) -> bool {
-    extern "C-unwind" {
-        fn CMTagHasFloat64Value(tag: CMTag) -> Boolean;
+    #[inline]
+    #[doc(alias = "CMTagGetSInt64Value")]
+    pub unsafe fn s_int64_value(tag: CMTag) -> i64 {
+        extern "C-unwind" {
+            fn CMTagGetSInt64Value(tag: CMTag) -> i64;
+        }
+        unsafe { CMTagGetSInt64Value(tag) }
     }
-    let ret = unsafe { CMTagHasFloat64Value(tag) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Checks if the tag represents a 64-bit float value.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: Returns true if the CMTag carries a 64-bit float indicated by a data type of kCMTagDataType_Float64, false otherwise.
+    #[inline]
+    #[doc(alias = "CMTagHasFloat64Value")]
+    pub unsafe fn has_float64_value(tag: CMTag) -> bool {
+        extern "C-unwind" {
+            fn CMTagHasFloat64Value(tag: CMTag) -> Boolean;
+        }
+        let ret = unsafe { CMTagHasFloat64Value(tag) };
+        ret != 0
+    }
+
     /// Returns the 64-bit floating point value carried by the CMTag.
     ///
     /// This should only be called on a CMTag with a data type of kCMTagDataType_Float64. Calling it with a CMTag having another data type is undefined.
@@ -453,24 +471,30 @@ extern "C-unwind" {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: 64-bit float.
-    pub fn CMTagGetFloat64Value(tag: CMTag) -> f64;
-}
-
-/// Checks if the tag represents an OSType value.
-///
-/// Parameter `tag`: CMTag to evaluate.
-///
-/// Returns: Returns true if the CMTag carries an OSType indicated by a data type of kCMTagDataType_OSType, false otherwise.
-#[inline]
-pub unsafe extern "C-unwind" fn CMTagHasOSTypeValue(tag: CMTag) -> bool {
-    extern "C-unwind" {
-        fn CMTagHasOSTypeValue(tag: CMTag) -> Boolean;
+    #[inline]
+    #[doc(alias = "CMTagGetFloat64Value")]
+    pub unsafe fn float64_value(tag: CMTag) -> f64 {
+        extern "C-unwind" {
+            fn CMTagGetFloat64Value(tag: CMTag) -> f64;
+        }
+        unsafe { CMTagGetFloat64Value(tag) }
     }
-    let ret = unsafe { CMTagHasOSTypeValue(tag) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Checks if the tag represents an OSType value.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: Returns true if the CMTag carries an OSType indicated by a data type of kCMTagDataType_OSType, false otherwise.
+    #[inline]
+    #[doc(alias = "CMTagHasOSTypeValue")]
+    pub unsafe fn has_os_type_value(tag: CMTag) -> bool {
+        extern "C-unwind" {
+            fn CMTagHasOSTypeValue(tag: CMTag) -> Boolean;
+        }
+        let ret = unsafe { CMTagHasOSTypeValue(tag) };
+        ret != 0
+    }
+
     /// Returns the single OSType value carried by the CMTag.
     ///
     /// This should only be called on a CMTag with a data type of kCMTagDataType_OSType. Calling it with a CMTag having another data type is undefined.
@@ -478,24 +502,30 @@ extern "C-unwind" {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: OSType.
-    pub fn CMTagGetOSTypeValue(tag: CMTag) -> OSType;
-}
-
-/// Checks if the tag represents an flags value.
-///
-/// Parameter `tag`: CMTag to evaluate.
-///
-/// Returns: Returns true if the CMTag carries 64 bits of flags indicated by a data type of kCMTagDataType_Flags, false otherwise.
-#[inline]
-pub unsafe extern "C-unwind" fn CMTagHasFlagsValue(tag: CMTag) -> bool {
-    extern "C-unwind" {
-        fn CMTagHasFlagsValue(tag: CMTag) -> Boolean;
+    #[inline]
+    #[doc(alias = "CMTagGetOSTypeValue")]
+    pub unsafe fn os_type_value(tag: CMTag) -> OSType {
+        extern "C-unwind" {
+            fn CMTagGetOSTypeValue(tag: CMTag) -> OSType;
+        }
+        unsafe { CMTagGetOSTypeValue(tag) }
     }
-    let ret = unsafe { CMTagHasFlagsValue(tag) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Checks if the tag represents an flags value.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: Returns true if the CMTag carries 64 bits of flags indicated by a data type of kCMTagDataType_Flags, false otherwise.
+    #[inline]
+    #[doc(alias = "CMTagHasFlagsValue")]
+    pub unsafe fn has_flags_value(tag: CMTag) -> bool {
+        extern "C-unwind" {
+            fn CMTagHasFlagsValue(tag: CMTag) -> Boolean;
+        }
+        let ret = unsafe { CMTagHasFlagsValue(tag) };
+        ret != 0
+    }
+
     /// Returns the 64 bits of flags as an unsigned 64-bit integer carried by the CMTag.
     ///
     /// This should only be called on a CMTag with a data type of kCMTagDataType_Flags. Calling it with a CMTag having another data type is undefined.
@@ -503,10 +533,15 @@ extern "C-unwind" {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: Unsigned 64-bit integer holding the flags value.
-    pub fn CMTagGetFlagsValue(tag: CMTag) -> u64;
-}
+    #[inline]
+    #[doc(alias = "CMTagGetFlagsValue")]
+    pub unsafe fn flags_value(tag: CMTag) -> u64 {
+        extern "C-unwind" {
+            fn CMTagGetFlagsValue(tag: CMTag) -> u64;
+        }
+        unsafe { CMTagGetFlagsValue(tag) }
+    }
 
-extern "C-unwind" {
     /// Create a CMTag holding a signed 64-bit integer.
     ///
     /// This function creates a valid CMTag with the data type kCMTagDataType_SInt64 and have a signed 64-bit integer value.
@@ -516,10 +551,15 @@ extern "C-unwind" {
     /// Parameter `value`: A signed 64-bit integer to encode in the returned CMTag.
     ///
     /// Returns: A CMTag.
-    pub fn CMTagMakeWithSInt64Value(category: CMTagCategory, value: i64) -> CMTag;
-}
+    #[inline]
+    #[doc(alias = "CMTagMakeWithSInt64Value")]
+    pub unsafe fn with_s_int64_value(category: CMTagCategory, value: i64) -> CMTag {
+        extern "C-unwind" {
+            fn CMTagMakeWithSInt64Value(category: CMTagCategory, value: i64) -> CMTag;
+        }
+        unsafe { CMTagMakeWithSInt64Value(category, value) }
+    }
 
-extern "C-unwind" {
     /// Create a CMTag holding a 64-bit float.
     ///
     /// This function creates a valid CMTag with the data type kCMTagDataType_Float64 and have a 64-bit floating point value.
@@ -529,10 +569,15 @@ extern "C-unwind" {
     /// Parameter `value`: A 64-bit float to encode in the returned CMTag.
     ///
     /// Returns: A CMTag.
-    pub fn CMTagMakeWithFloat64Value(category: CMTagCategory, value: f64) -> CMTag;
-}
+    #[inline]
+    #[doc(alias = "CMTagMakeWithFloat64Value")]
+    pub unsafe fn with_float64_value(category: CMTagCategory, value: f64) -> CMTag {
+        extern "C-unwind" {
+            fn CMTagMakeWithFloat64Value(category: CMTagCategory, value: f64) -> CMTag;
+        }
+        unsafe { CMTagMakeWithFloat64Value(category, value) }
+    }
 
-extern "C-unwind" {
     /// Create a CMTag holding an OSType.
     ///
     /// This function creates a valid CMTag with the data type kCMTagDataType_OSType and have an OSType value.
@@ -542,10 +587,15 @@ extern "C-unwind" {
     /// Parameter `value`: An OSType to encode in the returned CMTag.
     ///
     /// Returns: A CMTag.
-    pub fn CMTagMakeWithOSTypeValue(category: CMTagCategory, value: OSType) -> CMTag;
-}
+    #[inline]
+    #[doc(alias = "CMTagMakeWithOSTypeValue")]
+    pub unsafe fn with_os_type_value(category: CMTagCategory, value: OSType) -> CMTag {
+        extern "C-unwind" {
+            fn CMTagMakeWithOSTypeValue(category: CMTagCategory, value: OSType) -> CMTag;
+        }
+        unsafe { CMTagMakeWithOSTypeValue(category, value) }
+    }
 
-extern "C-unwind" {
     /// Create a CMTag holding a 64 bits of flags.
     ///
     /// This function creates a valid CMTag with the data type kCMTagDataType_Flags and has an unsigned 64-bit integer value holding the flags.
@@ -555,28 +605,34 @@ extern "C-unwind" {
     /// Parameter `flagsForTag`: An unsigned 64-bit integer to encode in the returned CMTag.
     ///
     /// Returns: A CMTag.
-    pub fn CMTagMakeWithFlagsValue(category: CMTagCategory, flags_for_tag: u64) -> CMTag;
-}
-
-/// Tests if two CMTags are equal.
-///
-/// Function evaluates if two tags are structurally equivalent. It performs a field by field comparison.
-///
-/// Parameter `tag1`: First CMTag to test for equality.
-///
-/// Parameter `tag2`: Second CMTag to test for equality.
-///
-/// Returns: Returns true if the two tags are equal, false otherwise.
-#[inline]
-pub unsafe extern "C-unwind" fn CMTagEqualToTag(tag1: CMTag, tag2: CMTag) -> bool {
-    extern "C-unwind" {
-        fn CMTagEqualToTag(tag1: CMTag, tag2: CMTag) -> Boolean;
+    #[inline]
+    #[doc(alias = "CMTagMakeWithFlagsValue")]
+    pub unsafe fn with_flags_value(category: CMTagCategory, flags_for_tag: u64) -> CMTag {
+        extern "C-unwind" {
+            fn CMTagMakeWithFlagsValue(category: CMTagCategory, flags_for_tag: u64) -> CMTag;
+        }
+        unsafe { CMTagMakeWithFlagsValue(category, flags_for_tag) }
     }
-    let ret = unsafe { CMTagEqualToTag(tag1, tag2) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Tests if two CMTags are equal.
+    ///
+    /// Function evaluates if two tags are structurally equivalent. It performs a field by field comparison.
+    ///
+    /// Parameter `tag1`: First CMTag to test for equality.
+    ///
+    /// Parameter `tag2`: Second CMTag to test for equality.
+    ///
+    /// Returns: Returns true if the two tags are equal, false otherwise.
+    #[inline]
+    #[doc(alias = "CMTagEqualToTag")]
+    pub unsafe fn equal_to_tag(tag1: CMTag, tag2: CMTag) -> bool {
+        extern "C-unwind" {
+            fn CMTagEqualToTag(tag1: CMTag, tag2: CMTag) -> Boolean;
+        }
+        let ret = unsafe { CMTagEqualToTag(tag1, tag2) };
+        ret != 0
+    }
+
     /// Compares two CMTags in an ordered fashion returning a CFComparisonResult based upon the ordering of the tags.
     ///
     /// The entirety of a CMTag can be compared against a second CMTag in an ordered way.  The details of how the comparison is performed is an internal implementation detail. The comparison is performed as tag1 COMPARISON tag2 where COMPARISON is the ordering operation.  The ordering will be stable under a release of the framework but may change in the future. Therefore, an ordered CMTag array serialized in one version of the framework should not be assumed to be ordered the same in another version of the framework. This is best handled by retrieving the original array of CMTags and then reinserting with the new order.
@@ -586,69 +642,85 @@ extern "C-unwind" {
     /// Parameter `tag2`: Second CMTag to compare in ordered fashion.
     ///
     /// Returns: The CFComparisonResult indicating the order of tag1 compared to tag2.
-    pub fn CMTagCompare(tag1: CMTag, tag2: CMTag) -> CFComparisonResult;
+    #[inline]
+    #[doc(alias = "CMTagCompare")]
+    pub unsafe fn compare(tag1: CMTag, tag2: CMTag) -> CFComparisonResult {
+        extern "C-unwind" {
+            fn CMTagCompare(tag1: CMTag, tag2: CMTag) -> CFComparisonResult;
+        }
+        unsafe { CMTagCompare(tag1, tag2) }
+    }
 }
 
-// TODO: pub fn CMTagCategoryValueEqualToValue(tag1: CMTag,tag2: CMTag,) -> Boolean;
+impl CMTagCategory {
+    // TODO: pub fn CMTagCategoryValueEqualToValue(tag1: CMTag,tag2: CMTag,) -> Boolean;
+}
 
-extern "C-unwind" {
+impl CMTag {
     /// Calculates a hash code for the CMTag.
     ///
     /// Parameter `tag`: CMTag to hash.
     ///
     /// Returns: The created CFHashCode.
-    pub fn CMTagHash(tag: CMTag) -> CFHashCode;
-}
-
-/// Creates a CFString with a description of a CMTag (just like CFCopyDescription).
-///
-/// This can be used from within CFShow on an object that contains CMTag fields. It is also useful from other client debugging code.  The caller owns the returned CFString, and is responsible for releasing it.  Descriptions are not localized so are likely suitable only for debugging.
-///
-/// Parameter `allocator`: CFAllocator to use in creating the description string.  Pass kCFAllocatorDefault to use the default allocator.
-///
-/// Parameter `tag`: CMTag to describe.
-///
-/// Returns: The created CFString description.
-#[inline]
-pub unsafe extern "C-unwind" fn CMTagCopyDescription(
-    allocator: Option<&CFAllocator>,
-    tag: CMTag,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CMTagCopyDescription(
-            allocator: Option<&CFAllocator>,
-            tag: CMTag,
-        ) -> Option<NonNull<CFString>>;
+    #[inline]
+    #[doc(alias = "CMTagHash")]
+    pub unsafe fn hash(tag: CMTag) -> CFHashCode {
+        extern "C-unwind" {
+            fn CMTagHash(tag: CMTag) -> CFHashCode;
+        }
+        unsafe { CMTagHash(tag) }
     }
-    let ret = unsafe { CMTagCopyDescription(allocator, tag) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns a CFDictionary version of a CMTag.
-///
-/// This is useful when putting CMTag in CF container types.  The caller owns the returned CFDictionary, and is responsible for releasing it.
-///
-/// Parameter `tag`: The CMTag from which to create the dictionary.
-///
-/// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
-///
-/// Returns: A CFDictionary version of the CMTag.
-#[inline]
-pub unsafe extern "C-unwind" fn CMTagCopyAsDictionary(
-    tag: CMTag,
-    allocator: Option<&CFAllocator>,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CMTagCopyAsDictionary(
-            tag: CMTag,
-            allocator: Option<&CFAllocator>,
-        ) -> Option<NonNull<CFDictionary>>;
+    /// Creates a CFString with a description of a CMTag (just like CFCopyDescription).
+    ///
+    /// This can be used from within CFShow on an object that contains CMTag fields. It is also useful from other client debugging code.  The caller owns the returned CFString, and is responsible for releasing it.  Descriptions are not localized so are likely suitable only for debugging.
+    ///
+    /// Parameter `allocator`: CFAllocator to use in creating the description string.  Pass kCFAllocatorDefault to use the default allocator.
+    ///
+    /// Parameter `tag`: CMTag to describe.
+    ///
+    /// Returns: The created CFString description.
+    #[inline]
+    #[doc(alias = "CMTagCopyDescription")]
+    pub unsafe fn description(
+        allocator: Option<&CFAllocator>,
+        tag: CMTag,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CMTagCopyDescription(
+                allocator: Option<&CFAllocator>,
+                tag: CMTag,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CMTagCopyDescription(allocator, tag) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CMTagCopyAsDictionary(tag, allocator) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Returns a CFDictionary version of a CMTag.
+    ///
+    /// This is useful when putting CMTag in CF container types.  The caller owns the returned CFDictionary, and is responsible for releasing it.
+    ///
+    /// Parameter `tag`: The CMTag from which to create the dictionary.
+    ///
+    /// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
+    ///
+    /// Returns: A CFDictionary version of the CMTag.
+    #[inline]
+    #[doc(alias = "CMTagCopyAsDictionary")]
+    pub unsafe fn as_dictionary(
+        tag: CMTag,
+        allocator: Option<&CFAllocator>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CMTagCopyAsDictionary(
+                tag: CMTag,
+                allocator: Option<&CFAllocator>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CMTagCopyAsDictionary(tag, allocator) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Reconstitutes a CMTag struct from a CFDictionary previously created by CMTagCopyAsDictionary.
     ///
     /// This is useful when getting CMTag from CF container types.  If the CFDictionary does not have the requisite keyed values, kCMTagInvalid is returned.
@@ -656,7 +728,14 @@ extern "C-unwind" {
     /// Parameter `dict`: A CFDictionary from which to create a CMTag.
     ///
     /// Returns: The created CMTag.
-    pub fn CMTagMakeFromDictionary(dict: &CFDictionary) -> CMTag;
+    #[inline]
+    #[doc(alias = "CMTagMakeFromDictionary")]
+    pub unsafe fn from_dictionary(dict: &CFDictionary) -> CMTag {
+        extern "C-unwind" {
+            fn CMTagMakeFromDictionary(dict: &CFDictionary) -> CMTag;
+        }
+        unsafe { CMTagMakeFromDictionary(dict) }
+    }
 }
 
 extern "C" {
@@ -680,14 +759,164 @@ extern "C" {
     pub static kCMTagDataTypeKey: &'static CFString;
 }
 
-// TODO: pub fn CMTagGetCategory(tag: CMTag,) -> CMTagCategory;
+impl CMTag {
+    // TODO: pub fn CMTagGetCategory(tag: CMTag,) -> CMTagCategory;
 
-// TODO: pub fn CMTagGetValue(tag: CMTag,) -> CMTagValue;
+    // TODO: pub fn CMTagGetValue(tag: CMTag,) -> CMTagValue;
 
-// TODO: pub fn CMTagHasCategory(tag: CMTag,category: CMTagCategory,) -> Boolean;
+    // TODO: pub fn CMTagHasCategory(tag: CMTag,category: CMTagCategory,) -> Boolean;
+}
 
-// TODO: pub fn CMTagCategoryEqualToTagCategory(tag1: CMTag,tag2: CMTag,) -> Boolean;
+impl CMTagCategory {
+    // TODO: pub fn CMTagCategoryEqualToTagCategory(tag1: CMTag,tag2: CMTag,) -> Boolean;
+}
 
-// TODO: pub fn CMTagIsValid(tag: CMTag,) -> Boolean;
+impl CMTag {
+    // TODO: pub fn CMTagIsValid(tag: CMTag,) -> Boolean;
+}
 
-// TODO: pub fn CMTagCategoryValueEqualToValue(tag1: CMTag,tag2: CMTag,) -> Boolean;
+impl CMTagCategory {
+    // TODO: pub fn CMTagCategoryValueEqualToValue(tag1: CMTag,tag2: CMTag,) -> Boolean;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::value_data_type`"]
+    pub fn CMTagGetValueDataType(tag: CMTag) -> CMTagDataType;
+}
+
+#[deprecated = "renamed to `CMTag::has_s_int64_value`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagHasSInt64Value(tag: CMTag) -> bool {
+    extern "C-unwind" {
+        fn CMTagHasSInt64Value(tag: CMTag) -> Boolean;
+    }
+    let ret = unsafe { CMTagHasSInt64Value(tag) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::s_int64_value`"]
+    pub fn CMTagGetSInt64Value(tag: CMTag) -> i64;
+}
+
+#[deprecated = "renamed to `CMTag::has_float64_value`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagHasFloat64Value(tag: CMTag) -> bool {
+    extern "C-unwind" {
+        fn CMTagHasFloat64Value(tag: CMTag) -> Boolean;
+    }
+    let ret = unsafe { CMTagHasFloat64Value(tag) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::float64_value`"]
+    pub fn CMTagGetFloat64Value(tag: CMTag) -> f64;
+}
+
+#[deprecated = "renamed to `CMTag::has_os_type_value`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagHasOSTypeValue(tag: CMTag) -> bool {
+    extern "C-unwind" {
+        fn CMTagHasOSTypeValue(tag: CMTag) -> Boolean;
+    }
+    let ret = unsafe { CMTagHasOSTypeValue(tag) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::os_type_value`"]
+    pub fn CMTagGetOSTypeValue(tag: CMTag) -> OSType;
+}
+
+#[deprecated = "renamed to `CMTag::has_flags_value`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagHasFlagsValue(tag: CMTag) -> bool {
+    extern "C-unwind" {
+        fn CMTagHasFlagsValue(tag: CMTag) -> Boolean;
+    }
+    let ret = unsafe { CMTagHasFlagsValue(tag) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::flags_value`"]
+    pub fn CMTagGetFlagsValue(tag: CMTag) -> u64;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::with_s_int64_value`"]
+    pub fn CMTagMakeWithSInt64Value(category: CMTagCategory, value: i64) -> CMTag;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::with_float64_value`"]
+    pub fn CMTagMakeWithFloat64Value(category: CMTagCategory, value: f64) -> CMTag;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::with_os_type_value`"]
+    pub fn CMTagMakeWithOSTypeValue(category: CMTagCategory, value: OSType) -> CMTag;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::with_flags_value`"]
+    pub fn CMTagMakeWithFlagsValue(category: CMTagCategory, flags_for_tag: u64) -> CMTag;
+}
+
+#[deprecated = "renamed to `CMTag::equal_to_tag`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagEqualToTag(tag1: CMTag, tag2: CMTag) -> bool {
+    extern "C-unwind" {
+        fn CMTagEqualToTag(tag1: CMTag, tag2: CMTag) -> Boolean;
+    }
+    let ret = unsafe { CMTagEqualToTag(tag1, tag2) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::compare`"]
+    pub fn CMTagCompare(tag1: CMTag, tag2: CMTag) -> CFComparisonResult;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::hash`"]
+    pub fn CMTagHash(tag: CMTag) -> CFHashCode;
+}
+
+#[deprecated = "renamed to `CMTag::description`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCopyDescription(
+    allocator: Option<&CFAllocator>,
+    tag: CMTag,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CMTagCopyDescription(
+            allocator: Option<&CFAllocator>,
+            tag: CMTag,
+        ) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CMTagCopyDescription(allocator, tag) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CMTag::as_dictionary`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCopyAsDictionary(
+    tag: CMTag,
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMTagCopyAsDictionary(
+            tag: CMTag,
+            allocator: Option<&CFAllocator>,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CMTagCopyAsDictionary(tag, allocator) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTag::from_dictionary`"]
+    pub fn CMTagMakeFromDictionary(dict: &CFDictionary) -> CMTag;
+}

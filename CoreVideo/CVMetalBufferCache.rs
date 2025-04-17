@@ -44,7 +44,7 @@ unsafe impl ConcreteType for CVMetalBufferCache {
     }
 }
 
-extern "C-unwind" {
+impl CVMetalBufferCache {
     /// Creates a new Buffer Cache.
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating the cache.  May be NULL.
@@ -58,15 +58,25 @@ extern "C-unwind" {
     /// Returns: Returns kCVReturnSuccess on success
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
-    pub fn CVMetalBufferCacheCreate(
+    #[inline]
+    #[doc(alias = "CVMetalBufferCacheCreate")]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         cache_attributes: Option<&CFDictionary>,
         metal_device: &ProtocolObject<dyn MTLDevice>,
         cache_out: NonNull<*mut CVMetalBufferCache>,
-    ) -> CVReturn;
-}
+    ) -> CVReturn {
+        extern "C-unwind" {
+            fn CVMetalBufferCacheCreate(
+                allocator: Option<&CFAllocator>,
+                cache_attributes: Option<&CFDictionary>,
+                metal_device: &ProtocolObject<dyn MTLDevice>,
+                cache_out: NonNull<*mut CVMetalBufferCache>,
+            ) -> CVReturn;
+        }
+        unsafe { CVMetalBufferCacheCreate(allocator, cache_attributes, metal_device, cache_out) }
+    }
 
-extern "C-unwind" {
     /// Creates a CVMetalBuffer object from an existing CVImageBuffer
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating the CVMetalBuffer object. May be NULL.
@@ -90,6 +100,70 @@ extern "C-unwind" {
         feature = "CVMetalBuffer",
         feature = "CVReturn"
     ))]
+    #[inline]
+    #[doc(alias = "CVMetalBufferCacheCreateBufferFromImage")]
+    pub unsafe fn create_buffer_from_image(
+        allocator: Option<&CFAllocator>,
+        buffer_cache: &CVMetalBufferCache,
+        image_buffer: &CVImageBuffer,
+        buffer_out: NonNull<*mut CVMetalBuffer>,
+    ) -> CVReturn {
+        extern "C-unwind" {
+            fn CVMetalBufferCacheCreateBufferFromImage(
+                allocator: Option<&CFAllocator>,
+                buffer_cache: &CVMetalBufferCache,
+                image_buffer: &CVImageBuffer,
+                buffer_out: NonNull<*mut CVMetalBuffer>,
+            ) -> CVReturn;
+        }
+        unsafe {
+            CVMetalBufferCacheCreateBufferFromImage(
+                allocator,
+                buffer_cache,
+                image_buffer,
+                buffer_out,
+            )
+        }
+    }
+
+    /// Performs internal housekeeping/recycling operations
+    ///
+    /// This call must be made periodically to give the buffer cache a chance to do internal housekeeping operations.
+    ///
+    /// Parameter `bufferCache`: The buffer cache object to flush
+    ///
+    /// Parameter `options`: Currently unused, set to 0.
+    #[cfg(feature = "CVBase")]
+    #[inline]
+    #[doc(alias = "CVMetalBufferCacheFlush")]
+    pub unsafe fn flush(self: &CVMetalBufferCache, options: CVOptionFlags) {
+        extern "C-unwind" {
+            fn CVMetalBufferCacheFlush(buffer_cache: &CVMetalBufferCache, options: CVOptionFlags);
+        }
+        unsafe { CVMetalBufferCacheFlush(self, options) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(not(target_os = "watchos"))]
+    #[deprecated = "renamed to `CVMetalBufferCache::create`"]
+    pub fn CVMetalBufferCacheCreate(
+        allocator: Option<&CFAllocator>,
+        cache_attributes: Option<&CFDictionary>,
+        metal_device: &ProtocolObject<dyn MTLDevice>,
+        cache_out: NonNull<*mut CVMetalBufferCache>,
+    ) -> CVReturn;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CVBuffer",
+        feature = "CVImageBuffer",
+        feature = "CVMetalBuffer",
+        feature = "CVReturn"
+    ))]
+    #[deprecated = "renamed to `CVMetalBufferCache::create_buffer_from_image`"]
     pub fn CVMetalBufferCacheCreateBufferFromImage(
         allocator: Option<&CFAllocator>,
         buffer_cache: &CVMetalBufferCache,
@@ -99,13 +173,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Performs internal housekeeping/recycling operations
-    ///
-    /// This call must be made periodically to give the buffer cache a chance to do internal housekeeping operations.
-    ///
-    /// Parameter `bufferCache`: The buffer cache object to flush
-    ///
-    /// Parameter `options`: Currently unused, set to 0.
     #[cfg(feature = "CVBase")]
+    #[deprecated = "renamed to `CVMetalBufferCache::flush`"]
     pub fn CVMetalBufferCacheFlush(buffer_cache: &CVMetalBufferCache, options: CVOptionFlags);
 }

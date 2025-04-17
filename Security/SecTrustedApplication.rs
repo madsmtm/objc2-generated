@@ -21,7 +21,8 @@ unsafe impl ConcreteType for SecTrustedApplication {
     }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "SecBase")]
+impl SecTrustedApplication {
     /// Creates a trusted application reference based on the trusted application specified by path.
     ///
     /// Parameter `path`: The path to the application or tool to trust. For application bundles, use the
@@ -33,13 +34,21 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecTrustedApplicationCreateFromPath(
+    #[inline]
+    #[doc(alias = "SecTrustedApplicationCreateFromPath")]
+    pub unsafe fn create_from_path(
         path: *const c_char,
         app: NonNull<*mut SecTrustedApplication>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecTrustedApplicationCreateFromPath(
+                path: *const c_char,
+                app: NonNull<*mut SecTrustedApplication>,
+            ) -> OSStatus;
+        }
+        unsafe { SecTrustedApplicationCreateFromPath(path, app) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the data of a given trusted application reference
     ///
     /// Parameter `appRef`: A trusted application reference to retrieve data from
@@ -49,13 +58,21 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecTrustedApplicationCopyData(
-        app_ref: &SecTrustedApplication,
+    #[inline]
+    #[doc(alias = "SecTrustedApplicationCopyData")]
+    pub unsafe fn copy_data(
+        self: &SecTrustedApplication,
         data: NonNull<*const CFData>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecTrustedApplicationCopyData(
+                app_ref: &SecTrustedApplication,
+                data: NonNull<*const CFData>,
+            ) -> OSStatus;
+        }
+        unsafe { SecTrustedApplicationCopyData(self, data) }
+    }
 
-extern "C-unwind" {
     /// Sets the data of a given trusted application reference
     ///
     /// Parameter `appRef`: A trusted application reference.
@@ -65,6 +82,40 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
+    #[inline]
+    #[doc(alias = "SecTrustedApplicationSetData")]
+    pub unsafe fn set_data(self: &SecTrustedApplication, data: &CFData) -> OSStatus {
+        extern "C-unwind" {
+            fn SecTrustedApplicationSetData(
+                app_ref: &SecTrustedApplication,
+                data: &CFData,
+            ) -> OSStatus;
+        }
+        unsafe { SecTrustedApplicationSetData(self, data) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecTrustedApplication::create_from_path`"]
+    pub fn SecTrustedApplicationCreateFromPath(
+        path: *const c_char,
+        app: NonNull<*mut SecTrustedApplication>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecTrustedApplication::copy_data`"]
+    pub fn SecTrustedApplicationCopyData(
+        app_ref: &SecTrustedApplication,
+        data: NonNull<*const CFData>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecTrustedApplication::set_data`"]
     pub fn SecTrustedApplicationSetData(app_ref: &SecTrustedApplication, data: &CFData)
         -> OSStatus;
 }

@@ -589,18 +589,21 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorTextAnimation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[inline]
-pub unsafe extern "C-unwind" fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
-    animation_type: UIWritingToolsCoordinatorTextAnimation,
-) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
-            animation_type: UIWritingToolsCoordinatorTextAnimation,
-        ) -> *mut NSString;
+impl UIWritingToolsCoordinatorTextAnimation {
+    #[inline]
+    #[doc(alias = "UIWritingToolsCoordinatorTextAnimationDebugDescription")]
+    pub unsafe fn debug_description(
+        animation_type: UIWritingToolsCoordinatorTextAnimation,
+    ) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
+                animation_type: UIWritingToolsCoordinatorTextAnimation,
+            ) -> *mut NSString;
+        }
+        let ret = unsafe { UIWritingToolsCoordinatorTextAnimationDebugDescription(animation_type) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { UIWritingToolsCoordinatorTextAnimationDebugDescription(animation_type) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern_protocol!(
@@ -1251,3 +1254,18 @@ extern_protocol!(
         );
     }
 );
+
+#[deprecated = "renamed to `UIWritingToolsCoordinatorTextAnimation::debug_description`"]
+#[inline]
+pub unsafe extern "C-unwind" fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
+    animation_type: UIWritingToolsCoordinatorTextAnimation,
+) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
+            animation_type: UIWritingToolsCoordinatorTextAnimation,
+        ) -> *mut NSString;
+    }
+    let ret = unsafe { UIWritingToolsCoordinatorTextAnimationDebugDescription(animation_type) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}

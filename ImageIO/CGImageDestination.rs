@@ -67,112 +67,159 @@ unsafe impl ConcreteType for CGImageDestination {
     }
 }
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageDestinationCopyTypeIdentifiers() -> CFRetained<CFArray> {
-    extern "C-unwind" {
-        fn CGImageDestinationCopyTypeIdentifiers() -> Option<NonNull<CFArray>>;
+impl CGImageDestination {
+    #[inline]
+    #[doc(alias = "CGImageDestinationCopyTypeIdentifiers")]
+    pub unsafe fn type_identifiers() -> CFRetained<CFArray> {
+        extern "C-unwind" {
+            fn CGImageDestinationCopyTypeIdentifiers() -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CGImageDestinationCopyTypeIdentifiers() };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CGImageDestinationCopyTypeIdentifiers() };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-#[cfg(feature = "objc2-core-graphics")]
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageDestinationCreateWithDataConsumer(
-    consumer: &CGDataConsumer,
-    r#type: &CFString,
-    count: usize,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CGImageDestination>> {
-    extern "C-unwind" {
-        fn CGImageDestinationCreateWithDataConsumer(
-            consumer: &CGDataConsumer,
-            r#type: &CFString,
-            count: usize,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGImageDestination>>;
-    }
-    let ret = unsafe { CGImageDestinationCreateWithDataConsumer(consumer, r#type, count, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageDestinationCreateWithData(
-    data: &CFMutableData,
-    r#type: &CFString,
-    count: usize,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CGImageDestination>> {
-    extern "C-unwind" {
-        fn CGImageDestinationCreateWithData(
-            data: &CFMutableData,
-            r#type: &CFString,
-            count: usize,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGImageDestination>>;
-    }
-    let ret = unsafe { CGImageDestinationCreateWithData(data, r#type, count, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageDestinationCreateWithURL(
-    url: &CFURL,
-    r#type: &CFString,
-    count: usize,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CGImageDestination>> {
-    extern "C-unwind" {
-        fn CGImageDestinationCreateWithURL(
-            url: &CFURL,
-            r#type: &CFString,
-            count: usize,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGImageDestination>>;
-    }
-    let ret = unsafe { CGImageDestinationCreateWithURL(url, r#type, count, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-extern "C-unwind" {
-    pub fn CGImageDestinationSetProperties(
-        idst: &CGImageDestination,
-        properties: Option<&CFDictionary>,
-    );
-}
-
-extern "C-unwind" {
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CGImageDestinationAddImage(
-        idst: &CGImageDestination,
+    #[inline]
+    #[doc(alias = "CGImageDestinationCreateWithDataConsumer")]
+    pub unsafe fn with_data_consumer(
+        consumer: &CGDataConsumer,
+        r#type: &CFString,
+        count: usize,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGImageDestination>> {
+        extern "C-unwind" {
+            fn CGImageDestinationCreateWithDataConsumer(
+                consumer: &CGDataConsumer,
+                r#type: &CFString,
+                count: usize,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGImageDestination>>;
+        }
+        let ret =
+            unsafe { CGImageDestinationCreateWithDataConsumer(consumer, r#type, count, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGImageDestinationCreateWithData")]
+    pub unsafe fn with_data(
+        data: &CFMutableData,
+        r#type: &CFString,
+        count: usize,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGImageDestination>> {
+        extern "C-unwind" {
+            fn CGImageDestinationCreateWithData(
+                data: &CFMutableData,
+                r#type: &CFString,
+                count: usize,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGImageDestination>>;
+        }
+        let ret = unsafe { CGImageDestinationCreateWithData(data, r#type, count, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGImageDestinationCreateWithURL")]
+    pub unsafe fn with_url(
+        url: &CFURL,
+        r#type: &CFString,
+        count: usize,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGImageDestination>> {
+        extern "C-unwind" {
+            fn CGImageDestinationCreateWithURL(
+                url: &CFURL,
+                r#type: &CFString,
+                count: usize,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGImageDestination>>;
+        }
+        let ret = unsafe { CGImageDestinationCreateWithURL(url, r#type, count, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGImageDestinationSetProperties")]
+    pub unsafe fn set_properties(self: &CGImageDestination, properties: Option<&CFDictionary>) {
+        extern "C-unwind" {
+            fn CGImageDestinationSetProperties(
+                idst: &CGImageDestination,
+                properties: Option<&CFDictionary>,
+            );
+        }
+        unsafe { CGImageDestinationSetProperties(self, properties) }
+    }
+
+    #[cfg(feature = "objc2-core-graphics")]
+    #[inline]
+    #[doc(alias = "CGImageDestinationAddImage")]
+    pub unsafe fn add_image(
+        self: &CGImageDestination,
         image: &CGImage,
         properties: Option<&CFDictionary>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn CGImageDestinationAddImage(
+                idst: &CGImageDestination,
+                image: &CGImage,
+                properties: Option<&CFDictionary>,
+            );
+        }
+        unsafe { CGImageDestinationAddImage(self, image, properties) }
+    }
 
-extern "C-unwind" {
     #[cfg(feature = "CGImageSource")]
-    pub fn CGImageDestinationAddImageFromSource(
-        idst: &CGImageDestination,
+    #[inline]
+    #[doc(alias = "CGImageDestinationAddImageFromSource")]
+    pub unsafe fn add_image_from_source(
+        self: &CGImageDestination,
         isrc: &CGImageSource,
         index: usize,
         properties: Option<&CFDictionary>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn CGImageDestinationAddImageFromSource(
+                idst: &CGImageDestination,
+                isrc: &CGImageSource,
+                index: usize,
+                properties: Option<&CFDictionary>,
+            );
+        }
+        unsafe { CGImageDestinationAddImageFromSource(self, isrc, index, properties) }
+    }
 
-extern "C-unwind" {
-    pub fn CGImageDestinationFinalize(idst: &CGImageDestination) -> bool;
-}
+    #[inline]
+    #[doc(alias = "CGImageDestinationFinalize")]
+    pub unsafe fn finalize(self: &CGImageDestination) -> bool {
+        extern "C-unwind" {
+            fn CGImageDestinationFinalize(idst: &CGImageDestination) -> bool;
+        }
+        unsafe { CGImageDestinationFinalize(self) }
+    }
 
-extern "C-unwind" {
     #[cfg(all(feature = "CGImageMetadata", feature = "objc2-core-graphics"))]
-    pub fn CGImageDestinationAddImageAndMetadata(
-        idst: &CGImageDestination,
+    #[inline]
+    #[doc(alias = "CGImageDestinationAddImageAndMetadata")]
+    pub unsafe fn add_image_and_metadata(
+        self: &CGImageDestination,
         image: &CGImage,
         metadata: Option<&CGImageMetadata>,
         options: Option<&CFDictionary>,
-    );
+    ) {
+        extern "C-unwind" {
+            fn CGImageDestinationAddImageAndMetadata(
+                idst: &CGImageDestination,
+                image: &CGImage,
+                metadata: Option<&CGImageMetadata>,
+                options: Option<&CFDictionary>,
+            );
+        }
+        unsafe { CGImageDestinationAddImageAndMetadata(self, image, metadata, options) }
+    }
 }
 
 extern "C" {
@@ -213,22 +260,49 @@ extern "C" {
     pub static kCGImageDestinationOrientation: &'static CFString;
 }
 
-extern "C-unwind" {
+impl CGImageDestination {
     #[cfg(feature = "CGImageSource")]
-    pub fn CGImageDestinationCopyImageSource(
-        idst: &CGImageDestination,
+    #[inline]
+    #[doc(alias = "CGImageDestinationCopyImageSource")]
+    pub unsafe fn copy_image_source(
+        self: &CGImageDestination,
         isrc: &CGImageSource,
         options: Option<&CFDictionary>,
         err: *mut *mut CFError,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGImageDestinationCopyImageSource(
+                idst: &CGImageDestination,
+                isrc: &CGImageSource,
+                options: Option<&CFDictionary>,
+                err: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { CGImageDestinationCopyImageSource(self, isrc, options, err) }
+    }
 
-extern "C-unwind" {
-    pub fn CGImageDestinationAddAuxiliaryDataInfo(
-        idst: &CGImageDestination,
+    #[inline]
+    #[doc(alias = "CGImageDestinationAddAuxiliaryDataInfo")]
+    pub unsafe fn add_auxiliary_data_info(
+        self: &CGImageDestination,
         auxiliary_image_data_type: &CFString,
         auxiliary_data_info_dictionary: &CFDictionary,
-    );
+    ) {
+        extern "C-unwind" {
+            fn CGImageDestinationAddAuxiliaryDataInfo(
+                idst: &CGImageDestination,
+                auxiliary_image_data_type: &CFString,
+                auxiliary_data_info_dictionary: &CFDictionary,
+            );
+        }
+        unsafe {
+            CGImageDestinationAddAuxiliaryDataInfo(
+                self,
+                auxiliary_image_data_type,
+                auxiliary_data_info_dictionary,
+            )
+        }
+    }
 }
 
 extern "C" {
@@ -264,4 +338,141 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodetonemapmode?language=objc)
     pub static kCGImageDestinationEncodeTonemapMode: &'static CFString;
+}
+
+#[deprecated = "renamed to `CGImageDestination::type_identifiers`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageDestinationCopyTypeIdentifiers() -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CGImageDestinationCopyTypeIdentifiers() -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CGImageDestinationCopyTypeIdentifiers() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `CGImageDestination::with_data_consumer`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageDestinationCreateWithDataConsumer(
+    consumer: &CGDataConsumer,
+    r#type: &CFString,
+    count: usize,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CGImageDestination>> {
+    extern "C-unwind" {
+        fn CGImageDestinationCreateWithDataConsumer(
+            consumer: &CGDataConsumer,
+            r#type: &CFString,
+            count: usize,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGImageDestination>>;
+    }
+    let ret = unsafe { CGImageDestinationCreateWithDataConsumer(consumer, r#type, count, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageDestination::with_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageDestinationCreateWithData(
+    data: &CFMutableData,
+    r#type: &CFString,
+    count: usize,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CGImageDestination>> {
+    extern "C-unwind" {
+        fn CGImageDestinationCreateWithData(
+            data: &CFMutableData,
+            r#type: &CFString,
+            count: usize,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGImageDestination>>;
+    }
+    let ret = unsafe { CGImageDestinationCreateWithData(data, r#type, count, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageDestination::with_url`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageDestinationCreateWithURL(
+    url: &CFURL,
+    r#type: &CFString,
+    count: usize,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CGImageDestination>> {
+    extern "C-unwind" {
+        fn CGImageDestinationCreateWithURL(
+            url: &CFURL,
+            r#type: &CFString,
+            count: usize,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGImageDestination>>;
+    }
+    let ret = unsafe { CGImageDestinationCreateWithURL(url, r#type, count, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImageDestination::set_properties`"]
+    pub fn CGImageDestinationSetProperties(
+        idst: &CGImageDestination,
+        properties: Option<&CFDictionary>,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `CGImageDestination::add_image`"]
+    pub fn CGImageDestinationAddImage(
+        idst: &CGImageDestination,
+        image: &CGImage,
+        properties: Option<&CFDictionary>,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CGImageSource")]
+    #[deprecated = "renamed to `CGImageDestination::add_image_from_source`"]
+    pub fn CGImageDestinationAddImageFromSource(
+        idst: &CGImageDestination,
+        isrc: &CGImageSource,
+        index: usize,
+        properties: Option<&CFDictionary>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImageDestination::finalize`"]
+    pub fn CGImageDestinationFinalize(idst: &CGImageDestination) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CGImageMetadata", feature = "objc2-core-graphics"))]
+    #[deprecated = "renamed to `CGImageDestination::add_image_and_metadata`"]
+    pub fn CGImageDestinationAddImageAndMetadata(
+        idst: &CGImageDestination,
+        image: &CGImage,
+        metadata: Option<&CGImageMetadata>,
+        options: Option<&CFDictionary>,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CGImageSource")]
+    #[deprecated = "renamed to `CGImageDestination::copy_image_source`"]
+    pub fn CGImageDestinationCopyImageSource(
+        idst: &CGImageDestination,
+        isrc: &CGImageSource,
+        options: Option<&CFDictionary>,
+        err: *mut *mut CFError,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImageDestination::add_auxiliary_data_info`"]
+    pub fn CGImageDestinationAddAuxiliaryDataInfo(
+        idst: &CGImageDestination,
+        auxiliary_image_data_type: &CFString,
+        auxiliary_data_info_dictionary: &CFDictionary,
+    );
 }

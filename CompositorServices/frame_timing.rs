@@ -29,7 +29,7 @@ unsafe impl RefEncode for cp_frame_timing {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_t?language=objc)
 pub type cp_frame_timing_t = *mut cp_frame_timing;
 
-extern "C-unwind" {
+impl cp_frame_timing {
     /// Returns the optimal time to query the input for a frame.
     ///
     /// - Parameters:
@@ -43,10 +43,16 @@ extern "C-unwind" {
     /// The returned value indicates the optimal time for you to query the input
     /// for your frame.
     #[cfg(feature = "cp_types")]
-    pub fn cp_frame_timing_get_optimal_input_time(frame_timing: cp_frame_timing_t) -> cp_time_t;
-}
+    #[inline]
+    #[doc(alias = "cp_frame_timing_get_optimal_input_time")]
+    pub unsafe fn get_optimal_input_time(frame_timing: cp_frame_timing_t) -> cp_time_t {
+        extern "C-unwind" {
+            fn cp_frame_timing_get_optimal_input_time(frame_timing: cp_frame_timing_t)
+                -> cp_time_t;
+        }
+        unsafe { cp_frame_timing_get_optimal_input_time(frame_timing) }
+    }
 
-extern "C-unwind" {
     /// Returns the time at which you must finish all work for the specified
     /// frame.
     ///
@@ -64,10 +70,16 @@ extern "C-unwind" {
     /// Finish all CPU and GPU work by the returned time to ensure the timely
     /// display of the frame onscreen.
     #[cfg(feature = "cp_types")]
-    pub fn cp_frame_timing_get_rendering_deadline(frame_timing: cp_frame_timing_t) -> cp_time_t;
-}
+    #[inline]
+    #[doc(alias = "cp_frame_timing_get_rendering_deadline")]
+    pub unsafe fn get_rendering_deadline(frame_timing: cp_frame_timing_t) -> cp_time_t {
+        extern "C-unwind" {
+            fn cp_frame_timing_get_rendering_deadline(frame_timing: cp_frame_timing_t)
+                -> cp_time_t;
+        }
+        unsafe { cp_frame_timing_get_rendering_deadline(frame_timing) }
+    }
 
-extern "C-unwind" {
     /// Returns the time at which the system will display the frame
     /// onscreen.
     ///
@@ -84,10 +96,15 @@ extern "C-unwind" {
     /// other parts of your app. For example, you might play a specific
     /// audio clip when the frame appears.
     #[cfg(feature = "cp_types")]
-    pub fn cp_frame_timing_get_presentation_time(frame_timing: cp_frame_timing_t) -> cp_time_t;
-}
+    #[inline]
+    #[doc(alias = "cp_frame_timing_get_presentation_time")]
+    pub unsafe fn get_presentation_time(frame_timing: cp_frame_timing_t) -> cp_time_t {
+        extern "C-unwind" {
+            fn cp_frame_timing_get_presentation_time(frame_timing: cp_frame_timing_t) -> cp_time_t;
+        }
+        unsafe { cp_frame_timing_get_presentation_time(frame_timing) }
+    }
 
-extern "C-unwind" {
     /// Returns the time to used to predict transform of trackable anchors to provide best
     /// content registration with the frame.
     ///
@@ -106,5 +123,38 @@ extern "C-unwind" {
     /// - note: For predicting ARKit device anchor use presentation time, see
     /// ``cp_frame_timing_get_presentation_time``
     #[cfg(feature = "cp_types")]
+    #[inline]
+    #[doc(alias = "cp_frame_timing_get_trackable_anchor_time")]
+    pub unsafe fn get_trackable_anchor_time(frame_timing: cp_frame_timing_t) -> cp_time_t {
+        extern "C-unwind" {
+            fn cp_frame_timing_get_trackable_anchor_time(
+                frame_timing: cp_frame_timing_t,
+            ) -> cp_time_t;
+        }
+        unsafe { cp_frame_timing_get_trackable_anchor_time(frame_timing) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "cp_types")]
+    #[deprecated = "renamed to `cp_frame_timing::get_optimal_input_time`"]
+    pub fn cp_frame_timing_get_optimal_input_time(frame_timing: cp_frame_timing_t) -> cp_time_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "cp_types")]
+    #[deprecated = "renamed to `cp_frame_timing::get_rendering_deadline`"]
+    pub fn cp_frame_timing_get_rendering_deadline(frame_timing: cp_frame_timing_t) -> cp_time_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "cp_types")]
+    #[deprecated = "renamed to `cp_frame_timing::get_presentation_time`"]
+    pub fn cp_frame_timing_get_presentation_time(frame_timing: cp_frame_timing_t) -> cp_time_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "cp_types")]
+    #[deprecated = "renamed to `cp_frame_timing::get_trackable_anchor_time`"]
     pub fn cp_frame_timing_get_trackable_anchor_time(frame_timing: cp_frame_timing_t) -> cp_time_t;
 }

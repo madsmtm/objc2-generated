@@ -18,7 +18,8 @@ unsafe impl ConcreteType for SecCode {
     }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CSCommon")]
+impl SecCode {
     /// Obtains a SecCode object for the code making the call.
     /// The calling code is determined in a way that is subject to modification over
     /// time, but obeys the following rules. If it is a UNIX process, its process id (pid)
@@ -33,22 +34,39 @@ extern "C-unwind" {
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
     #[cfg(feature = "CSCommon")]
-    pub fn SecCodeCopySelf(flags: SecCSFlags, self_: NonNull<*mut SecCode>) -> OSStatus;
+    #[inline]
+    #[doc(alias = "SecCodeCopySelf")]
+    pub unsafe fn copy_self(flags: SecCSFlags, self_: NonNull<*mut SecCode>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCodeCopySelf(flags: SecCSFlags, self_: NonNull<*mut SecCode>) -> OSStatus;
+        }
+        unsafe { SecCodeCopySelf(flags, self_) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsuseallarchitectures?language=objc)
 pub const kSecCSUseAllArchitectures: u32 = 1;
 
-extern "C-unwind" {
+#[cfg(feature = "CSCommon")]
+impl SecCode {
     #[cfg(feature = "CSCommon")]
-    pub fn SecCodeCopyStaticCode(
-        code: &SecCode,
+    #[inline]
+    #[doc(alias = "SecCodeCopyStaticCode")]
+    pub unsafe fn copy_static_code(
+        self: &SecCode,
         flags: SecCSFlags,
         static_code: NonNull<*const SecStaticCode>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCodeCopyStaticCode(
+                code: &SecCode,
+                flags: SecCSFlags,
+                static_code: NonNull<*const SecStaticCode>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCodeCopyStaticCode(self, flags, static_code) }
+    }
 
-extern "C-unwind" {
     /// Given a SecCode object, identify the (different) SecCode object that acts
     /// as its host. A SecCode's host acts as a supervisor and controller,
     /// and is the ultimate authority on the its dynamic validity and status.
@@ -66,11 +84,22 @@ extern "C-unwind" {
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
     #[cfg(feature = "CSCommon")]
-    pub fn SecCodeCopyHost(
-        guest: &SecCode,
+    #[inline]
+    #[doc(alias = "SecCodeCopyHost")]
+    pub unsafe fn copy_host(
+        self: &SecCode,
         flags: SecCSFlags,
         host: NonNull<*mut SecCode>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCodeCopyHost(
+                guest: &SecCode,
+                flags: SecCSFlags,
+                host: NonNull<*mut SecCode>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCodeCopyHost(self, flags, host) }
+    }
 }
 
 extern "C" {
@@ -118,7 +147,8 @@ extern "C" {
     pub static kSecGuestAttributeSubarchitecture: &'static CFString;
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CSCommon")]
+impl SecCode {
     /// This is the omnibus API function for obtaining dynamic code references.
     /// In general, it asks a particular code acting as a code host to locate
     /// and return a guest with given attributes. Different hosts support
@@ -176,15 +206,25 @@ extern "C-unwind" {
     /// errSecCSMultipleGuests The attributes specified do not uniquely identify
     /// a guest (the specification is ambiguous).
     #[cfg(feature = "CSCommon")]
-    pub fn SecCodeCopyGuestWithAttributes(
+    #[inline]
+    #[doc(alias = "SecCodeCopyGuestWithAttributes")]
+    pub unsafe fn copy_guest_with_attributes(
         host: Option<&SecCode>,
         attributes: Option<&CFDictionary>,
         flags: SecCSFlags,
         guest: NonNull<*mut SecCode>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCodeCopyGuestWithAttributes(
+                host: Option<&SecCode>,
+                attributes: Option<&CFDictionary>,
+                flags: SecCSFlags,
+                guest: NonNull<*mut SecCode>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCodeCopyGuestWithAttributes(host, attributes, flags, guest) }
+    }
 
-extern "C-unwind" {
     /// Performs dynamic validation of the given SecCode object. The call obtains and
     /// verifies the signature on the code object. It checks the validity of only those
     /// sealed components required to establish identity. It checks the SecCode's
@@ -208,14 +248,23 @@ extern "C-unwind" {
     /// Returns: If validation passes, errSecSuccess. If validation fails, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
     #[cfg(feature = "CSCommon")]
-    pub fn SecCodeCheckValidity(
-        code: &SecCode,
+    #[inline]
+    #[doc(alias = "SecCodeCheckValidity")]
+    pub unsafe fn check_validity(
+        self: &SecCode,
         flags: SecCSFlags,
         requirement: Option<&SecRequirement>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCodeCheckValidity(
+                code: &SecCode,
+                flags: SecCSFlags,
+                requirement: Option<&SecRequirement>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCodeCheckValidity(self, flags, requirement) }
+    }
 
-extern "C-unwind" {
     /// Performs dynamic validation of the given SecCode object. The call obtains and
     /// verifies the signature on the code object. It checks the validity of only those
     /// sealed components required to establish identity. It checks the SecCode's
@@ -244,15 +293,25 @@ extern "C-unwind" {
     /// Returns: If validation passes, errSecSuccess. If validation fails, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
     #[cfg(feature = "CSCommon")]
-    pub fn SecCodeCheckValidityWithErrors(
-        code: &SecCode,
+    #[inline]
+    #[doc(alias = "SecCodeCheckValidityWithErrors")]
+    pub unsafe fn check_validity_with_errors(
+        self: &SecCode,
         flags: SecCSFlags,
         requirement: Option<&SecRequirement>,
         errors: *mut *mut CFError,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCodeCheckValidityWithErrors(
+                code: &SecCode,
+                flags: SecCSFlags,
+                requirement: Option<&SecRequirement>,
+                errors: *mut *mut CFError,
+            ) -> OSStatus;
+        }
+        unsafe { SecCodeCheckValidityWithErrors(self, flags, requirement, errors) }
+    }
 
-extern "C-unwind" {
     /// For a SecStaticCodeRef, check that a given CFData object faithfully represents
     /// a plain-file resource in its resource seal.
     /// This call will fail if the file is missing in the bundle, even if it is optional.
@@ -272,15 +331,25 @@ extern "C-unwind" {
     /// time it was signed. Various error codes if it is different, there was no such file,
     /// it was not a plain file, or anything is irregular.
     #[cfg(feature = "CSCommon")]
-    pub fn SecCodeValidateFileResource(
+    #[inline]
+    #[doc(alias = "SecCodeValidateFileResource")]
+    pub unsafe fn validate_file_resource(
         code: &SecStaticCode,
         relative_path: &CFString,
         file_data: &CFData,
         flags: SecCSFlags,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCodeValidateFileResource(
+                code: &SecStaticCode,
+                relative_path: &CFString,
+                file_data: &CFData,
+                flags: SecCSFlags,
+            ) -> OSStatus;
+        }
+        unsafe { SecCodeValidateFileResource(code, relative_path, file_data, flags) }
+    }
 
-extern "C-unwind" {
     /// For a given Code or StaticCode object, returns a URL to a location on disk where the
     /// code object can be found. For single files, the URL points to that file.
     /// For bundles, it points to the directory containing the entire bundle.
@@ -297,14 +366,23 @@ extern "C-unwind" {
     /// Returns: On success, errSecSuccess. On error, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
     #[cfg(feature = "CSCommon")]
-    pub fn SecCodeCopyPath(
+    #[inline]
+    #[doc(alias = "SecCodeCopyPath")]
+    pub unsafe fn copy_path(
         static_code: &SecStaticCode,
         flags: SecCSFlags,
         path: NonNull<*const CFURL>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCodeCopyPath(
+                static_code: &SecStaticCode,
+                flags: SecCSFlags,
+                path: NonNull<*const CFURL>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCodeCopyPath(static_code, flags, path) }
+    }
 
-extern "C-unwind" {
     /// For a given Code or StaticCode object, determines its Designated Code Requirement.
     /// The Designated Requirement is the SecRequirement that the code believes
     /// should be used to properly identify it in the future.
@@ -328,11 +406,22 @@ extern "C-unwind" {
     /// Returns: On success, errSecSuccess. On error, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
     #[cfg(feature = "CSCommon")]
-    pub fn SecCodeCopyDesignatedRequirement(
+    #[inline]
+    #[doc(alias = "SecCodeCopyDesignatedRequirement")]
+    pub unsafe fn copy_designated_requirement(
         code: &SecStaticCode,
         flags: SecCSFlags,
         requirement: NonNull<*mut SecRequirement>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCodeCopyDesignatedRequirement(
+                code: &SecStaticCode,
+                flags: SecCSFlags,
+                requirement: NonNull<*mut SecRequirement>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCodeCopyDesignatedRequirement(code, flags, requirement) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsinternalinformation?language=objc)
@@ -490,8 +579,129 @@ extern "C" {
     pub static kSecCodeInfoStapledNotarizationTicket: &'static CFString;
 }
 
+#[cfg(feature = "CSCommon")]
+impl SecCode {
+    #[cfg(feature = "CSCommon")]
+    #[inline]
+    #[doc(alias = "SecCodeCopySigningInformation")]
+    pub unsafe fn copy_signing_information(
+        code: &SecStaticCode,
+        flags: SecCSFlags,
+        information: NonNull<*const CFDictionary>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCodeCopySigningInformation(
+                code: &SecStaticCode,
+                flags: SecCSFlags,
+                information: NonNull<*const CFDictionary>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCodeCopySigningInformation(code, flags, information) }
+    }
+
+    #[cfg(feature = "CSCommon")]
+    #[inline]
+    #[doc(alias = "SecCodeMapMemory")]
+    pub unsafe fn map_memory(code: &SecStaticCode, flags: SecCSFlags) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCodeMapMemory(code: &SecStaticCode, flags: SecCSFlags) -> OSStatus;
+        }
+        unsafe { SecCodeMapMemory(code, flags) }
+    }
+}
+
 extern "C-unwind" {
     #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecCode::copy_self`"]
+    pub fn SecCodeCopySelf(flags: SecCSFlags, self_: NonNull<*mut SecCode>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecCode::copy_static_code`"]
+    pub fn SecCodeCopyStaticCode(
+        code: &SecCode,
+        flags: SecCSFlags,
+        static_code: NonNull<*const SecStaticCode>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecCode::copy_host`"]
+    pub fn SecCodeCopyHost(
+        guest: &SecCode,
+        flags: SecCSFlags,
+        host: NonNull<*mut SecCode>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecCode::copy_guest_with_attributes`"]
+    pub fn SecCodeCopyGuestWithAttributes(
+        host: Option<&SecCode>,
+        attributes: Option<&CFDictionary>,
+        flags: SecCSFlags,
+        guest: NonNull<*mut SecCode>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecCode::check_validity`"]
+    pub fn SecCodeCheckValidity(
+        code: &SecCode,
+        flags: SecCSFlags,
+        requirement: Option<&SecRequirement>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecCode::check_validity_with_errors`"]
+    pub fn SecCodeCheckValidityWithErrors(
+        code: &SecCode,
+        flags: SecCSFlags,
+        requirement: Option<&SecRequirement>,
+        errors: *mut *mut CFError,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecCode::validate_file_resource`"]
+    pub fn SecCodeValidateFileResource(
+        code: &SecStaticCode,
+        relative_path: &CFString,
+        file_data: &CFData,
+        flags: SecCSFlags,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecCode::copy_path`"]
+    pub fn SecCodeCopyPath(
+        static_code: &SecStaticCode,
+        flags: SecCSFlags,
+        path: NonNull<*const CFURL>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecCode::copy_designated_requirement`"]
+    pub fn SecCodeCopyDesignatedRequirement(
+        code: &SecStaticCode,
+        flags: SecCSFlags,
+        requirement: NonNull<*mut SecRequirement>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecCode::copy_signing_information`"]
     pub fn SecCodeCopySigningInformation(
         code: &SecStaticCode,
         flags: SecCSFlags,
@@ -501,5 +711,6 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecCode::map_memory`"]
     pub fn SecCodeMapMemory(code: &SecStaticCode, flags: SecCSFlags) -> OSStatus;
 }

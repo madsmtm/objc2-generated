@@ -437,273 +437,287 @@ extern "C" {
     pub static kCTFontOpticalSizeAttribute: &'static CFString;
 }
 
-/// Creates a new font descriptor with the provided PostScript name and size.
-///
-///
-/// Parameter `name`: The PostScript name to be used for the font descriptor as a CFStringRef. Any font name beginning with a "." is reserved for the system and should not be used here.
-///
-///
-/// Parameter `size`: The point size. If 0.0, the kCTFontSizeAttribute will be omitted from the font descriptor.
-///
-///
-/// Returns: This function creates a new font descriptor reference with the given PostScript name and point size.
-///
-///
-/// If you are trying to create a system UI font descriptor (with name beginning with a "."), you should create a font with CTFontCreateUIFontForLanguage() or appropriate AppKit/UIKit APIs instead, then use CTFontCopyFontDescriptor() to get its font descriptor.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateWithNameAndSize(
-    name: &CFString,
-    size: CGFloat,
-) -> CFRetained<CTFontDescriptor> {
-    extern "C-unwind" {
-        fn CTFontDescriptorCreateWithNameAndSize(
-            name: &CFString,
-            size: CGFloat,
-        ) -> Option<NonNull<CTFontDescriptor>>;
+impl CTFontDescriptor {
+    /// Creates a new font descriptor with the provided PostScript name and size.
+    ///
+    ///
+    /// Parameter `name`: The PostScript name to be used for the font descriptor as a CFStringRef. Any font name beginning with a "." is reserved for the system and should not be used here.
+    ///
+    ///
+    /// Parameter `size`: The point size. If 0.0, the kCTFontSizeAttribute will be omitted from the font descriptor.
+    ///
+    ///
+    /// Returns: This function creates a new font descriptor reference with the given PostScript name and point size.
+    ///
+    ///
+    /// If you are trying to create a system UI font descriptor (with name beginning with a "."), you should create a font with CTFontCreateUIFontForLanguage() or appropriate AppKit/UIKit APIs instead, then use CTFontCopyFontDescriptor() to get its font descriptor.
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCreateWithNameAndSize")]
+    pub unsafe fn with_name_and_size(
+        name: &CFString,
+        size: CGFloat,
+    ) -> CFRetained<CTFontDescriptor> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCreateWithNameAndSize(
+                name: &CFString,
+                size: CGFloat,
+            ) -> Option<NonNull<CTFontDescriptor>>;
+        }
+        let ret = unsafe { CTFontDescriptorCreateWithNameAndSize(name, size) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTFontDescriptorCreateWithNameAndSize(name, size) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Creates a new font descriptor reference from a dictionary of attributes.
-///
-///
-/// Parameter `attributes`: A CFDictionaryRef of arbitrary attributes.
-///
-///
-/// Returns: This function creates a new font descriptor with the attributes specified. This dictionary can contain arbitrary attributes that will be preserved, however unrecognized attributes will be ignored on font creation and and may not be preserved over the round trip (descriptor -> font -> descriptor).
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateWithAttributes(
-    attributes: &CFDictionary,
-) -> CFRetained<CTFontDescriptor> {
-    extern "C-unwind" {
-        fn CTFontDescriptorCreateWithAttributes(
-            attributes: &CFDictionary,
-        ) -> Option<NonNull<CTFontDescriptor>>;
+    /// Creates a new font descriptor reference from a dictionary of attributes.
+    ///
+    ///
+    /// Parameter `attributes`: A CFDictionaryRef of arbitrary attributes.
+    ///
+    ///
+    /// Returns: This function creates a new font descriptor with the attributes specified. This dictionary can contain arbitrary attributes that will be preserved, however unrecognized attributes will be ignored on font creation and and may not be preserved over the round trip (descriptor -> font -> descriptor).
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCreateWithAttributes")]
+    pub unsafe fn with_attributes(attributes: &CFDictionary) -> CFRetained<CTFontDescriptor> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCreateWithAttributes(
+                attributes: &CFDictionary,
+            ) -> Option<NonNull<CTFontDescriptor>>;
+        }
+        let ret = unsafe { CTFontDescriptorCreateWithAttributes(attributes) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTFontDescriptorCreateWithAttributes(attributes) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Creates a copy of the original font descriptor with new attributes.
-///
-///
-/// Parameter `original`: The original font descriptor reference.
-///
-///
-/// Parameter `attributes`: A CFDictionaryRef of arbitrary attributes.
-///
-///
-/// Returns: This function creates a new copy of the original font descriptor with attributes augmented by those specified. If there are conflicts between attributes, the new attributes will replace existing ones, except for kCTFontVariationAttribute and kCTFontFeatureSettingsAttribute which will be merged.
-///
-/// Starting with macOS 10.12 and iOS 10.0, setting the value of kCTFontFeatureSettingsAttribute to kCFNull will clear the feature settings of the original font descriptor. Setting the value of any individual feature settings pair in the kCTFontFeatureSettingsAttribute value array to kCFNull will clear that feature setting alone. For example, an element like
-/// @
-/// { (id)kCTFontFeatureTypeIdentifierKey:
-/// @
-/// (kLigaturesType), (id)kCTFontFeatureSelectorIdentifierKey: (id)kCFNull } means clear the kLigatureType feature set in the original font descriptor. An element like
-/// @
-/// [
-/// "
-/// liga", (id)kCFNull ] will have the same effect.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithAttributes(
-    original: &CTFontDescriptor,
-    attributes: &CFDictionary,
-) -> CFRetained<CTFontDescriptor> {
-    extern "C-unwind" {
-        fn CTFontDescriptorCreateCopyWithAttributes(
-            original: &CTFontDescriptor,
-            attributes: &CFDictionary,
-        ) -> Option<NonNull<CTFontDescriptor>>;
+    /// Creates a copy of the original font descriptor with new attributes.
+    ///
+    ///
+    /// Parameter `original`: The original font descriptor reference.
+    ///
+    ///
+    /// Parameter `attributes`: A CFDictionaryRef of arbitrary attributes.
+    ///
+    ///
+    /// Returns: This function creates a new copy of the original font descriptor with attributes augmented by those specified. If there are conflicts between attributes, the new attributes will replace existing ones, except for kCTFontVariationAttribute and kCTFontFeatureSettingsAttribute which will be merged.
+    ///
+    /// Starting with macOS 10.12 and iOS 10.0, setting the value of kCTFontFeatureSettingsAttribute to kCFNull will clear the feature settings of the original font descriptor. Setting the value of any individual feature settings pair in the kCTFontFeatureSettingsAttribute value array to kCFNull will clear that feature setting alone. For example, an element like
+    /// @
+    /// { (id)kCTFontFeatureTypeIdentifierKey:
+    /// @
+    /// (kLigaturesType), (id)kCTFontFeatureSelectorIdentifierKey: (id)kCFNull } means clear the kLigatureType feature set in the original font descriptor. An element like
+    /// @
+    /// [
+    /// "
+    /// liga", (id)kCFNull ] will have the same effect.
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCreateCopyWithAttributes")]
+    pub unsafe fn new_copy_with_attributes(
+        self: &CTFontDescriptor,
+        attributes: &CFDictionary,
+    ) -> CFRetained<CTFontDescriptor> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCreateCopyWithAttributes(
+                original: &CTFontDescriptor,
+                attributes: &CFDictionary,
+            ) -> Option<NonNull<CTFontDescriptor>>;
+        }
+        let ret = unsafe { CTFontDescriptorCreateCopyWithAttributes(self, attributes) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTFontDescriptorCreateCopyWithAttributes(original, attributes) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Returns a new font descriptor in the specified family based on the traits of the original descriptor.
-///
-///
-/// Parameter `original`: The original font descriptor reference.
-///
-///
-/// Parameter `family`: The name of the desired family.
-///
-///
-/// Returns: Returns a new font reference with the original traits in the given family, or NULL if none found in the system.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFamily(
-    original: &CTFontDescriptor,
-    family: &CFString,
-) -> Option<CFRetained<CTFontDescriptor>> {
-    extern "C-unwind" {
-        fn CTFontDescriptorCreateCopyWithFamily(
-            original: &CTFontDescriptor,
-            family: &CFString,
-        ) -> Option<NonNull<CTFontDescriptor>>;
+    /// Returns a new font descriptor in the specified family based on the traits of the original descriptor.
+    ///
+    ///
+    /// Parameter `original`: The original font descriptor reference.
+    ///
+    ///
+    /// Parameter `family`: The name of the desired family.
+    ///
+    ///
+    /// Returns: Returns a new font reference with the original traits in the given family, or NULL if none found in the system.
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCreateCopyWithFamily")]
+    pub unsafe fn new_copy_with_family(
+        self: &CTFontDescriptor,
+        family: &CFString,
+    ) -> Option<CFRetained<CTFontDescriptor>> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCreateCopyWithFamily(
+                original: &CTFontDescriptor,
+                family: &CFString,
+            ) -> Option<NonNull<CTFontDescriptor>>;
+        }
+        let ret = unsafe { CTFontDescriptorCreateCopyWithFamily(self, family) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CTFontDescriptorCreateCopyWithFamily(original, family) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns a new font descriptor based on the original descriptor having the specified symbolic traits.
-///
-///
-/// Parameter `original`: The original font descriptor reference.
-///
-///
-/// Parameter `symTraitValue`: The value of the symbolic traits. This bitfield is used to indicate the desired value for the traits specified by the symTraitMask parameter. Used in conjunction, they can allow for trait removal as well as addition.
-///
-///
-/// Parameter `symTraitMask`: The mask bits of the symbolic traits. This bitfield is used to indicate the traits that should be changed.
-///
-///
-/// Returns: Returns a new font descriptor reference in the same family with the given symbolic traits, or NULL if none found in the system.
-#[cfg(feature = "CTFontTraits")]
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithSymbolicTraits(
-    original: &CTFontDescriptor,
-    sym_trait_value: CTFontSymbolicTraits,
-    sym_trait_mask: CTFontSymbolicTraits,
-) -> Option<CFRetained<CTFontDescriptor>> {
-    extern "C-unwind" {
-        fn CTFontDescriptorCreateCopyWithSymbolicTraits(
-            original: &CTFontDescriptor,
-            sym_trait_value: CTFontSymbolicTraits,
-            sym_trait_mask: CTFontSymbolicTraits,
-        ) -> Option<NonNull<CTFontDescriptor>>;
+    /// Returns a new font descriptor based on the original descriptor having the specified symbolic traits.
+    ///
+    ///
+    /// Parameter `original`: The original font descriptor reference.
+    ///
+    ///
+    /// Parameter `symTraitValue`: The value of the symbolic traits. This bitfield is used to indicate the desired value for the traits specified by the symTraitMask parameter. Used in conjunction, they can allow for trait removal as well as addition.
+    ///
+    ///
+    /// Parameter `symTraitMask`: The mask bits of the symbolic traits. This bitfield is used to indicate the traits that should be changed.
+    ///
+    ///
+    /// Returns: Returns a new font descriptor reference in the same family with the given symbolic traits, or NULL if none found in the system.
+    #[cfg(feature = "CTFontTraits")]
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCreateCopyWithSymbolicTraits")]
+    pub unsafe fn new_copy_with_symbolic_traits(
+        self: &CTFontDescriptor,
+        sym_trait_value: CTFontSymbolicTraits,
+        sym_trait_mask: CTFontSymbolicTraits,
+    ) -> Option<CFRetained<CTFontDescriptor>> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCreateCopyWithSymbolicTraits(
+                original: &CTFontDescriptor,
+                sym_trait_value: CTFontSymbolicTraits,
+                sym_trait_mask: CTFontSymbolicTraits,
+            ) -> Option<NonNull<CTFontDescriptor>>;
+        }
+        let ret = unsafe {
+            CTFontDescriptorCreateCopyWithSymbolicTraits(self, sym_trait_value, sym_trait_mask)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe {
-        CTFontDescriptorCreateCopyWithSymbolicTraits(original, sym_trait_value, sym_trait_mask)
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Creates a copy of the original font descriptor with a new variation instance.
-///
-///
-/// Parameter `original`: The original font descriptor reference.
-///
-///
-/// Parameter `variationIdentifier`: The variation axis identifier. This is the four character code of the variation axis as a CFNumberRef.
-///
-///
-/// Parameter `variationValue`: The value corresponding with the variation instance.
-///
-///
-/// Returns: This function returns a copy of the original font descriptor with a new variation instance. This is a convenience method for easily creating new variation font instances.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithVariation(
-    original: &CTFontDescriptor,
-    variation_identifier: &CFNumber,
-    variation_value: CGFloat,
-) -> CFRetained<CTFontDescriptor> {
-    extern "C-unwind" {
-        fn CTFontDescriptorCreateCopyWithVariation(
-            original: &CTFontDescriptor,
-            variation_identifier: &CFNumber,
-            variation_value: CGFloat,
-        ) -> Option<NonNull<CTFontDescriptor>>;
+    /// Creates a copy of the original font descriptor with a new variation instance.
+    ///
+    ///
+    /// Parameter `original`: The original font descriptor reference.
+    ///
+    ///
+    /// Parameter `variationIdentifier`: The variation axis identifier. This is the four character code of the variation axis as a CFNumberRef.
+    ///
+    ///
+    /// Parameter `variationValue`: The value corresponding with the variation instance.
+    ///
+    ///
+    /// Returns: This function returns a copy of the original font descriptor with a new variation instance. This is a convenience method for easily creating new variation font instances.
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCreateCopyWithVariation")]
+    pub unsafe fn new_copy_with_variation(
+        self: &CTFontDescriptor,
+        variation_identifier: &CFNumber,
+        variation_value: CGFloat,
+    ) -> CFRetained<CTFontDescriptor> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCreateCopyWithVariation(
+                original: &CTFontDescriptor,
+                variation_identifier: &CFNumber,
+                variation_value: CGFloat,
+            ) -> Option<NonNull<CTFontDescriptor>>;
+        }
+        let ret = unsafe {
+            CTFontDescriptorCreateCopyWithVariation(self, variation_identifier, variation_value)
+        };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe {
-        CTFontDescriptorCreateCopyWithVariation(original, variation_identifier, variation_value)
-    };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Copies a font descriptor with new feature setting.
-///
-///
-/// This is a convenience method to more easily toggle the state of individual features.
-///
-///
-/// Parameter `original`: The original font descriptor reference.
-///
-///
-/// Parameter `featureTypeIdentifier`: The feature type identifier.
-///
-///
-/// Parameter `featureSelectorIdentifier`: The feature selector identifier.
-///
-///
-/// Returns: A copy of the original font descriptor modified with the given feature settings.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFeature(
-    original: &CTFontDescriptor,
-    feature_type_identifier: &CFNumber,
-    feature_selector_identifier: &CFNumber,
-) -> CFRetained<CTFontDescriptor> {
-    extern "C-unwind" {
-        fn CTFontDescriptorCreateCopyWithFeature(
-            original: &CTFontDescriptor,
-            feature_type_identifier: &CFNumber,
-            feature_selector_identifier: &CFNumber,
-        ) -> Option<NonNull<CTFontDescriptor>>;
+    /// Copies a font descriptor with new feature setting.
+    ///
+    ///
+    /// This is a convenience method to more easily toggle the state of individual features.
+    ///
+    ///
+    /// Parameter `original`: The original font descriptor reference.
+    ///
+    ///
+    /// Parameter `featureTypeIdentifier`: The feature type identifier.
+    ///
+    ///
+    /// Parameter `featureSelectorIdentifier`: The feature selector identifier.
+    ///
+    ///
+    /// Returns: A copy of the original font descriptor modified with the given feature settings.
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCreateCopyWithFeature")]
+    pub unsafe fn new_copy_with_feature(
+        self: &CTFontDescriptor,
+        feature_type_identifier: &CFNumber,
+        feature_selector_identifier: &CFNumber,
+    ) -> CFRetained<CTFontDescriptor> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCreateCopyWithFeature(
+                original: &CTFontDescriptor,
+                feature_type_identifier: &CFNumber,
+                feature_selector_identifier: &CFNumber,
+            ) -> Option<NonNull<CTFontDescriptor>>;
+        }
+        let ret = unsafe {
+            CTFontDescriptorCreateCopyWithFeature(
+                self,
+                feature_type_identifier,
+                feature_selector_identifier,
+            )
+        };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe {
-        CTFontDescriptorCreateCopyWithFeature(
-            original,
-            feature_type_identifier,
-            feature_selector_identifier,
-        )
-    };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Returns an array of font normalized font descriptors matching the provided descriptor.
-///
-///
-/// Parameter `descriptor`: The font descriptor reference.
-///
-///
-/// Parameter `mandatoryAttributes`: A set of attribute keys which are required to be identically matched in any returned font descriptors. Optional.
-///
-///
-/// Returns: This function returns a retained array of normalized font descriptors matching the attributes present in descriptor. If descriptor itself is normalized then the array will contain only one item, the original descriptor.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateMatchingFontDescriptors(
-    descriptor: &CTFontDescriptor,
-    mandatory_attributes: Option<&CFSet>,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CTFontDescriptorCreateMatchingFontDescriptors(
-            descriptor: &CTFontDescriptor,
-            mandatory_attributes: Option<&CFSet>,
-        ) -> Option<NonNull<CFArray>>;
+    /// Returns an array of font normalized font descriptors matching the provided descriptor.
+    ///
+    ///
+    /// Parameter `descriptor`: The font descriptor reference.
+    ///
+    ///
+    /// Parameter `mandatoryAttributes`: A set of attribute keys which are required to be identically matched in any returned font descriptors. Optional.
+    ///
+    ///
+    /// Returns: This function returns a retained array of normalized font descriptors matching the attributes present in descriptor. If descriptor itself is normalized then the array will contain only one item, the original descriptor.
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptors")]
+    pub unsafe fn new_matching_font_descriptors(
+        self: &CTFontDescriptor,
+        mandatory_attributes: Option<&CFSet>,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCreateMatchingFontDescriptors(
+                descriptor: &CTFontDescriptor,
+                mandatory_attributes: Option<&CFSet>,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret =
+            unsafe { CTFontDescriptorCreateMatchingFontDescriptors(self, mandatory_attributes) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret =
-        unsafe { CTFontDescriptorCreateMatchingFontDescriptors(descriptor, mandatory_attributes) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns an the single preferred matching font descriptor based on the original descriptor and system precedence.
-///
-///
-/// Parameter `descriptor`: The font descriptor reference.
-///
-///
-/// Parameter `mandatoryAttributes`: A set of attribute keys which are required to be identically matched in any returned font descriptors. Optional.
-///
-///
-/// Returns: This function returns a retained normalized font descriptor matching the attributes present in descriptor. The original descriptor may be returned in normalized form.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateMatchingFontDescriptor(
-    descriptor: &CTFontDescriptor,
-    mandatory_attributes: Option<&CFSet>,
-) -> Option<CFRetained<CTFontDescriptor>> {
-    extern "C-unwind" {
-        fn CTFontDescriptorCreateMatchingFontDescriptor(
-            descriptor: &CTFontDescriptor,
-            mandatory_attributes: Option<&CFSet>,
-        ) -> Option<NonNull<CTFontDescriptor>>;
+    /// Returns an the single preferred matching font descriptor based on the original descriptor and system precedence.
+    ///
+    ///
+    /// Parameter `descriptor`: The font descriptor reference.
+    ///
+    ///
+    /// Parameter `mandatoryAttributes`: A set of attribute keys which are required to be identically matched in any returned font descriptors. Optional.
+    ///
+    ///
+    /// Returns: This function returns a retained normalized font descriptor matching the attributes present in descriptor. The original descriptor may be returned in normalized form.
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptor")]
+    pub unsafe fn new_matching_font_descriptor(
+        self: &CTFontDescriptor,
+        mandatory_attributes: Option<&CFSet>,
+    ) -> Option<CFRetained<CTFontDescriptor>> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCreateMatchingFontDescriptor(
+                descriptor: &CTFontDescriptor,
+                mandatory_attributes: Option<&CFSet>,
+            ) -> Option<NonNull<CTFontDescriptor>>;
+        }
+        let ret =
+            unsafe { CTFontDescriptorCreateMatchingFontDescriptor(self, mandatory_attributes) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret =
-        unsafe { CTFontDescriptorCreateMatchingFontDescriptor(descriptor, mandatory_attributes) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Progress state
@@ -789,8 +803,285 @@ extern "C" {
 pub type CTFontDescriptorProgressHandler =
     *mut block2::DynBlock<dyn Fn(CTFontDescriptorMatchingState, NonNull<CFDictionary>) -> bool>;
 
+impl CTFontDescriptor {
+    #[cfg(feature = "block2")]
+    #[inline]
+    #[doc(alias = "CTFontDescriptorMatchFontDescriptorsWithProgressHandler")]
+    pub unsafe fn match_font_descriptors_with_progress_handler(
+        descriptors: &CFArray,
+        mandatory_attributes: Option<&CFSet>,
+        progress_block: CTFontDescriptorProgressHandler,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CTFontDescriptorMatchFontDescriptorsWithProgressHandler(
+                descriptors: &CFArray,
+                mandatory_attributes: Option<&CFSet>,
+                progress_block: CTFontDescriptorProgressHandler,
+            ) -> bool;
+        }
+        unsafe {
+            CTFontDescriptorMatchFontDescriptorsWithProgressHandler(
+                descriptors,
+                mandatory_attributes,
+                progress_block,
+            )
+        }
+    }
+
+    /// Returns the attributes dictionary of the font descriptor.
+    ///
+    ///
+    /// Parameter `descriptor`: The font descriptor reference.
+    ///
+    ///
+    /// Returns: A retained reference to the font descriptor attributes dictionary. This dictionary will contain the minimum number of attributes to fully specify this particular font descriptor.
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCopyAttributes")]
+    pub unsafe fn attributes(self: &CTFontDescriptor) -> CFRetained<CFDictionary> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCopyAttributes(
+                descriptor: &CTFontDescriptor,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CTFontDescriptorCopyAttributes(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Returns the value associated with an arbitrary attribute.
+    ///
+    ///
+    /// Parameter `descriptor`: The font descriptor.
+    ///
+    ///
+    /// Parameter `attribute`: The requested attribute.
+    ///
+    ///
+    /// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCopyAttribute")]
+    pub unsafe fn attribute(
+        self: &CTFontDescriptor,
+        attribute: &CFString,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCopyAttribute(
+                descriptor: &CTFontDescriptor,
+                attribute: &CFString,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { CTFontDescriptorCopyAttribute(self, attribute) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// function    CTFontDescriptorCopyLocalizedAttribute
+    ///
+    /// Returns a localized value for the requested attribute if available.
+    ///
+    ///
+    /// This function returns a localized attribute based on the global language list. If localization is not possible for the attribute the behavior matches CTFontDescriptorCopyAttribute(). Generally, localization of attributes is only applicable to name attributes of a normalized font descriptor.
+    ///
+    ///
+    /// Parameter `descriptor`: The font descriptor reference.
+    ///
+    ///
+    /// Parameter `attribute`: The requested font attribute.
+    ///
+    ///
+    /// Parameter `language`: If non-NULL, this will be receive a retained reference to the matched language. The language identifier will conform to UTS #35.
+    /// If CoreText can supply its own localized string where the font cannot, this value will be NULL.
+    ///
+    ///
+    /// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
+    #[inline]
+    #[doc(alias = "CTFontDescriptorCopyLocalizedAttribute")]
+    pub unsafe fn localized_attribute(
+        self: &CTFontDescriptor,
+        attribute: &CFString,
+        language: *mut *const CFString,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn CTFontDescriptorCopyLocalizedAttribute(
+                descriptor: &CTFontDescriptor,
+                attribute: &CFString,
+                language: *mut *const CFString,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { CTFontDescriptorCopyLocalizedAttribute(self, attribute, language) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+#[deprecated = "renamed to `CTFontDescriptor::with_name_and_size`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontDescriptorCreateWithNameAndSize(
+    name: &CFString,
+    size: CGFloat,
+) -> CFRetained<CTFontDescriptor> {
+    extern "C-unwind" {
+        fn CTFontDescriptorCreateWithNameAndSize(
+            name: &CFString,
+            size: CGFloat,
+        ) -> Option<NonNull<CTFontDescriptor>>;
+    }
+    let ret = unsafe { CTFontDescriptorCreateWithNameAndSize(name, size) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTFontDescriptor::with_attributes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontDescriptorCreateWithAttributes(
+    attributes: &CFDictionary,
+) -> CFRetained<CTFontDescriptor> {
+    extern "C-unwind" {
+        fn CTFontDescriptorCreateWithAttributes(
+            attributes: &CFDictionary,
+        ) -> Option<NonNull<CTFontDescriptor>>;
+    }
+    let ret = unsafe { CTFontDescriptorCreateWithAttributes(attributes) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTFontDescriptor::new_copy_with_attributes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithAttributes(
+    original: &CTFontDescriptor,
+    attributes: &CFDictionary,
+) -> CFRetained<CTFontDescriptor> {
+    extern "C-unwind" {
+        fn CTFontDescriptorCreateCopyWithAttributes(
+            original: &CTFontDescriptor,
+            attributes: &CFDictionary,
+        ) -> Option<NonNull<CTFontDescriptor>>;
+    }
+    let ret = unsafe { CTFontDescriptorCreateCopyWithAttributes(original, attributes) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTFontDescriptor::new_copy_with_family`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFamily(
+    original: &CTFontDescriptor,
+    family: &CFString,
+) -> Option<CFRetained<CTFontDescriptor>> {
+    extern "C-unwind" {
+        fn CTFontDescriptorCreateCopyWithFamily(
+            original: &CTFontDescriptor,
+            family: &CFString,
+        ) -> Option<NonNull<CTFontDescriptor>>;
+    }
+    let ret = unsafe { CTFontDescriptorCreateCopyWithFamily(original, family) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CTFontTraits")]
+#[deprecated = "renamed to `CTFontDescriptor::new_copy_with_symbolic_traits`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithSymbolicTraits(
+    original: &CTFontDescriptor,
+    sym_trait_value: CTFontSymbolicTraits,
+    sym_trait_mask: CTFontSymbolicTraits,
+) -> Option<CFRetained<CTFontDescriptor>> {
+    extern "C-unwind" {
+        fn CTFontDescriptorCreateCopyWithSymbolicTraits(
+            original: &CTFontDescriptor,
+            sym_trait_value: CTFontSymbolicTraits,
+            sym_trait_mask: CTFontSymbolicTraits,
+        ) -> Option<NonNull<CTFontDescriptor>>;
+    }
+    let ret = unsafe {
+        CTFontDescriptorCreateCopyWithSymbolicTraits(original, sym_trait_value, sym_trait_mask)
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CTFontDescriptor::new_copy_with_variation`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithVariation(
+    original: &CTFontDescriptor,
+    variation_identifier: &CFNumber,
+    variation_value: CGFloat,
+) -> CFRetained<CTFontDescriptor> {
+    extern "C-unwind" {
+        fn CTFontDescriptorCreateCopyWithVariation(
+            original: &CTFontDescriptor,
+            variation_identifier: &CFNumber,
+            variation_value: CGFloat,
+        ) -> Option<NonNull<CTFontDescriptor>>;
+    }
+    let ret = unsafe {
+        CTFontDescriptorCreateCopyWithVariation(original, variation_identifier, variation_value)
+    };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTFontDescriptor::new_copy_with_feature`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFeature(
+    original: &CTFontDescriptor,
+    feature_type_identifier: &CFNumber,
+    feature_selector_identifier: &CFNumber,
+) -> CFRetained<CTFontDescriptor> {
+    extern "C-unwind" {
+        fn CTFontDescriptorCreateCopyWithFeature(
+            original: &CTFontDescriptor,
+            feature_type_identifier: &CFNumber,
+            feature_selector_identifier: &CFNumber,
+        ) -> Option<NonNull<CTFontDescriptor>>;
+    }
+    let ret = unsafe {
+        CTFontDescriptorCreateCopyWithFeature(
+            original,
+            feature_type_identifier,
+            feature_selector_identifier,
+        )
+    };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTFontDescriptor::new_matching_font_descriptors`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontDescriptorCreateMatchingFontDescriptors(
+    descriptor: &CTFontDescriptor,
+    mandatory_attributes: Option<&CFSet>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontDescriptorCreateMatchingFontDescriptors(
+            descriptor: &CTFontDescriptor,
+            mandatory_attributes: Option<&CFSet>,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret =
+        unsafe { CTFontDescriptorCreateMatchingFontDescriptors(descriptor, mandatory_attributes) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CTFontDescriptor::new_matching_font_descriptor`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontDescriptorCreateMatchingFontDescriptor(
+    descriptor: &CTFontDescriptor,
+    mandatory_attributes: Option<&CFSet>,
+) -> Option<CFRetained<CTFontDescriptor>> {
+    extern "C-unwind" {
+        fn CTFontDescriptorCreateMatchingFontDescriptor(
+            descriptor: &CTFontDescriptor,
+            mandatory_attributes: Option<&CFSet>,
+        ) -> Option<NonNull<CTFontDescriptor>>;
+    }
+    let ret =
+        unsafe { CTFontDescriptorCreateMatchingFontDescriptor(descriptor, mandatory_attributes) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
 extern "C-unwind" {
     #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `CTFontDescriptor::match_font_descriptors_with_progress_handler`"]
     pub fn CTFontDescriptorMatchFontDescriptorsWithProgressHandler(
         descriptors: &CFArray,
         mandatory_attributes: Option<&CFSet>,
@@ -798,13 +1089,7 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-/// Returns the attributes dictionary of the font descriptor.
-///
-///
-/// Parameter `descriptor`: The font descriptor reference.
-///
-///
-/// Returns: A retained reference to the font descriptor attributes dictionary. This dictionary will contain the minimum number of attributes to fully specify this particular font descriptor.
+#[deprecated = "renamed to `CTFontDescriptor::attributes`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontDescriptorCopyAttributes(
     descriptor: &CTFontDescriptor,
@@ -819,16 +1104,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCopyAttributes(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Returns the value associated with an arbitrary attribute.
-///
-///
-/// Parameter `descriptor`: The font descriptor.
-///
-///
-/// Parameter `attribute`: The requested attribute.
-///
-///
-/// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
+#[deprecated = "renamed to `CTFontDescriptor::attribute`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontDescriptorCopyAttribute(
     descriptor: &CTFontDescriptor,
@@ -844,25 +1120,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCopyAttribute(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// function    CTFontDescriptorCopyLocalizedAttribute
-///
-/// Returns a localized value for the requested attribute if available.
-///
-///
-/// This function returns a localized attribute based on the global language list. If localization is not possible for the attribute the behavior matches CTFontDescriptorCopyAttribute(). Generally, localization of attributes is only applicable to name attributes of a normalized font descriptor.
-///
-///
-/// Parameter `descriptor`: The font descriptor reference.
-///
-///
-/// Parameter `attribute`: The requested font attribute.
-///
-///
-/// Parameter `language`: If non-NULL, this will be receive a retained reference to the matched language. The language identifier will conform to UTS #35.
-/// If CoreText can supply its own localized string where the font cannot, this value will be NULL.
-///
-///
-/// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
+#[deprecated = "renamed to `CTFontDescriptor::localized_attribute`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontDescriptorCopyLocalizedAttribute(
     descriptor: &CTFontDescriptor,

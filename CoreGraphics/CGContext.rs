@@ -225,56 +225,1550 @@ unsafe impl ConcreteType for CGContext {
     }
 }
 
-extern "C-unwind" {
+impl CGContext {
     /// Graphics state functions. *
+    #[inline]
+    #[doc(alias = "CGContextSaveGState")]
+    pub unsafe fn save_g_state(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextSaveGState(c: Option<&CGContext>);
+        }
+        unsafe { CGContextSaveGState(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextRestoreGState")]
+    pub unsafe fn restore_g_state(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextRestoreGState(c: Option<&CGContext>);
+        }
+        unsafe { CGContextRestoreGState(c) }
+    }
+
+    /// Coordinate space transformations. *
+    #[inline]
+    #[doc(alias = "CGContextScaleCTM")]
+    pub unsafe fn scale_ctm(c: Option<&CGContext>, sx: CGFloat, sy: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextScaleCTM(c: Option<&CGContext>, sx: CGFloat, sy: CGFloat);
+        }
+        unsafe { CGContextScaleCTM(c, sx, sy) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextTranslateCTM")]
+    pub unsafe fn translate_ctm(c: Option<&CGContext>, tx: CGFloat, ty: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextTranslateCTM(c: Option<&CGContext>, tx: CGFloat, ty: CGFloat);
+        }
+        unsafe { CGContextTranslateCTM(c, tx, ty) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextRotateCTM")]
+    pub unsafe fn rotate_ctm(c: Option<&CGContext>, angle: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextRotateCTM(c: Option<&CGContext>, angle: CGFloat);
+        }
+        unsafe { CGContextRotateCTM(c, angle) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextConcatCTM")]
+    pub unsafe fn concat_ctm(c: Option<&CGContext>, transform: CGAffineTransform) {
+        extern "C-unwind" {
+            fn CGContextConcatCTM(c: Option<&CGContext>, transform: CGAffineTransform);
+        }
+        unsafe { CGContextConcatCTM(c, transform) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextGetCTM")]
+    pub unsafe fn ctm(c: Option<&CGContext>) -> CGAffineTransform {
+        extern "C-unwind" {
+            fn CGContextGetCTM(c: Option<&CGContext>) -> CGAffineTransform;
+        }
+        unsafe { CGContextGetCTM(c) }
+    }
+
+    /// Drawing attribute functions. *
+    #[inline]
+    #[doc(alias = "CGContextSetLineWidth")]
+    pub unsafe fn set_line_width(c: Option<&CGContext>, width: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetLineWidth(c: Option<&CGContext>, width: CGFloat);
+        }
+        unsafe { CGContextSetLineWidth(c, width) }
+    }
+
+    #[cfg(feature = "CGPath")]
+    #[inline]
+    #[doc(alias = "CGContextSetLineCap")]
+    pub unsafe fn set_line_cap(c: Option<&CGContext>, cap: CGLineCap) {
+        extern "C-unwind" {
+            fn CGContextSetLineCap(c: Option<&CGContext>, cap: CGLineCap);
+        }
+        unsafe { CGContextSetLineCap(c, cap) }
+    }
+
+    #[cfg(feature = "CGPath")]
+    #[inline]
+    #[doc(alias = "CGContextSetLineJoin")]
+    pub unsafe fn set_line_join(c: Option<&CGContext>, join: CGLineJoin) {
+        extern "C-unwind" {
+            fn CGContextSetLineJoin(c: Option<&CGContext>, join: CGLineJoin);
+        }
+        unsafe { CGContextSetLineJoin(c, join) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetMiterLimit")]
+    pub unsafe fn set_miter_limit(c: Option<&CGContext>, limit: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetMiterLimit(c: Option<&CGContext>, limit: CGFloat);
+        }
+        unsafe { CGContextSetMiterLimit(c, limit) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetLineDash")]
+    pub unsafe fn set_line_dash(
+        c: Option<&CGContext>,
+        phase: CGFloat,
+        lengths: *const CGFloat,
+        count: usize,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetLineDash(
+                c: Option<&CGContext>,
+                phase: CGFloat,
+                lengths: *const CGFloat,
+                count: usize,
+            );
+        }
+        unsafe { CGContextSetLineDash(c, phase, lengths, count) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetFlatness")]
+    pub unsafe fn set_flatness(c: Option<&CGContext>, flatness: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetFlatness(c: Option<&CGContext>, flatness: CGFloat);
+        }
+        unsafe { CGContextSetFlatness(c, flatness) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetAlpha")]
+    pub unsafe fn set_alpha(c: Option<&CGContext>, alpha: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetAlpha(c: Option<&CGContext>, alpha: CGFloat);
+        }
+        unsafe { CGContextSetAlpha(c, alpha) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetBlendMode")]
+    pub unsafe fn set_blend_mode(c: Option<&CGContext>, mode: CGBlendMode) {
+        extern "C-unwind" {
+            fn CGContextSetBlendMode(c: Option<&CGContext>, mode: CGBlendMode);
+        }
+        unsafe { CGContextSetBlendMode(c, mode) }
+    }
+
+    /// Path construction functions. *
+    #[inline]
+    #[doc(alias = "CGContextBeginPath")]
+    pub unsafe fn begin_path(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextBeginPath(c: Option<&CGContext>);
+        }
+        unsafe { CGContextBeginPath(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextMoveToPoint")]
+    pub unsafe fn move_to_point(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextMoveToPoint(c: Option<&CGContext>, x: CGFloat, y: CGFloat);
+        }
+        unsafe { CGContextMoveToPoint(c, x, y) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextAddLineToPoint")]
+    pub unsafe fn add_line_to_point(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextAddLineToPoint(c: Option<&CGContext>, x: CGFloat, y: CGFloat);
+        }
+        unsafe { CGContextAddLineToPoint(c, x, y) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextAddCurveToPoint")]
+    pub unsafe fn add_curve_to_point(
+        c: Option<&CGContext>,
+        cp1x: CGFloat,
+        cp1y: CGFloat,
+        cp2x: CGFloat,
+        cp2y: CGFloat,
+        x: CGFloat,
+        y: CGFloat,
+    ) {
+        extern "C-unwind" {
+            fn CGContextAddCurveToPoint(
+                c: Option<&CGContext>,
+                cp1x: CGFloat,
+                cp1y: CGFloat,
+                cp2x: CGFloat,
+                cp2y: CGFloat,
+                x: CGFloat,
+                y: CGFloat,
+            );
+        }
+        unsafe { CGContextAddCurveToPoint(c, cp1x, cp1y, cp2x, cp2y, x, y) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextAddQuadCurveToPoint")]
+    pub unsafe fn add_quad_curve_to_point(
+        c: Option<&CGContext>,
+        cpx: CGFloat,
+        cpy: CGFloat,
+        x: CGFloat,
+        y: CGFloat,
+    ) {
+        extern "C-unwind" {
+            fn CGContextAddQuadCurveToPoint(
+                c: Option<&CGContext>,
+                cpx: CGFloat,
+                cpy: CGFloat,
+                x: CGFloat,
+                y: CGFloat,
+            );
+        }
+        unsafe { CGContextAddQuadCurveToPoint(c, cpx, cpy, x, y) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextClosePath")]
+    pub unsafe fn close_path(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextClosePath(c: Option<&CGContext>);
+        }
+        unsafe { CGContextClosePath(c) }
+    }
+
+    /// Path construction convenience functions. *
+    #[inline]
+    #[doc(alias = "CGContextAddRect")]
+    pub unsafe fn add_rect(c: Option<&CGContext>, rect: CGRect) {
+        extern "C-unwind" {
+            fn CGContextAddRect(c: Option<&CGContext>, rect: CGRect);
+        }
+        unsafe { CGContextAddRect(c, rect) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextAddRects")]
+    pub unsafe fn add_rects(c: Option<&CGContext>, rects: *const CGRect, count: usize) {
+        extern "C-unwind" {
+            fn CGContextAddRects(c: Option<&CGContext>, rects: *const CGRect, count: usize);
+        }
+        unsafe { CGContextAddRects(c, rects, count) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextAddLines")]
+    pub unsafe fn add_lines(c: Option<&CGContext>, points: *const CGPoint, count: usize) {
+        extern "C-unwind" {
+            fn CGContextAddLines(c: Option<&CGContext>, points: *const CGPoint, count: usize);
+        }
+        unsafe { CGContextAddLines(c, points, count) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextAddEllipseInRect")]
+    pub unsafe fn add_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
+        extern "C-unwind" {
+            fn CGContextAddEllipseInRect(c: Option<&CGContext>, rect: CGRect);
+        }
+        unsafe { CGContextAddEllipseInRect(c, rect) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextAddArc")]
+    pub unsafe fn add_arc(
+        c: Option<&CGContext>,
+        x: CGFloat,
+        y: CGFloat,
+        radius: CGFloat,
+        start_angle: CGFloat,
+        end_angle: CGFloat,
+        clockwise: c_int,
+    ) {
+        extern "C-unwind" {
+            fn CGContextAddArc(
+                c: Option<&CGContext>,
+                x: CGFloat,
+                y: CGFloat,
+                radius: CGFloat,
+                start_angle: CGFloat,
+                end_angle: CGFloat,
+                clockwise: c_int,
+            );
+        }
+        unsafe { CGContextAddArc(c, x, y, radius, start_angle, end_angle, clockwise) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextAddArcToPoint")]
+    pub unsafe fn add_arc_to_point(
+        c: Option<&CGContext>,
+        x1: CGFloat,
+        y1: CGFloat,
+        x2: CGFloat,
+        y2: CGFloat,
+        radius: CGFloat,
+    ) {
+        extern "C-unwind" {
+            fn CGContextAddArcToPoint(
+                c: Option<&CGContext>,
+                x1: CGFloat,
+                y1: CGFloat,
+                x2: CGFloat,
+                y2: CGFloat,
+                radius: CGFloat,
+            );
+        }
+        unsafe { CGContextAddArcToPoint(c, x1, y1, x2, y2, radius) }
+    }
+
+    #[cfg(feature = "CGPath")]
+    #[inline]
+    #[doc(alias = "CGContextAddPath")]
+    pub unsafe fn add_path(c: Option<&CGContext>, path: Option<&CGPath>) {
+        extern "C-unwind" {
+            fn CGContextAddPath(c: Option<&CGContext>, path: Option<&CGPath>);
+        }
+        unsafe { CGContextAddPath(c, path) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextReplacePathWithStrokedPath")]
+    pub unsafe fn replace_path_with_stroked_path(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextReplacePathWithStrokedPath(c: Option<&CGContext>);
+        }
+        unsafe { CGContextReplacePathWithStrokedPath(c) }
+    }
+
+    /// Path information functions. *
+    #[inline]
+    #[doc(alias = "CGContextIsPathEmpty")]
+    pub unsafe fn is_path_empty(c: Option<&CGContext>) -> bool {
+        extern "C-unwind" {
+            fn CGContextIsPathEmpty(c: Option<&CGContext>) -> bool;
+        }
+        unsafe { CGContextIsPathEmpty(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextGetPathCurrentPoint")]
+    pub unsafe fn path_current_point(c: Option<&CGContext>) -> CGPoint {
+        extern "C-unwind" {
+            fn CGContextGetPathCurrentPoint(c: Option<&CGContext>) -> CGPoint;
+        }
+        unsafe { CGContextGetPathCurrentPoint(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextGetPathBoundingBox")]
+    pub unsafe fn path_bounding_box(c: Option<&CGContext>) -> CGRect {
+        extern "C-unwind" {
+            fn CGContextGetPathBoundingBox(c: Option<&CGContext>) -> CGRect;
+        }
+        unsafe { CGContextGetPathBoundingBox(c) }
+    }
+
+    #[cfg(feature = "CGPath")]
+    #[inline]
+    #[doc(alias = "CGContextCopyPath")]
+    pub unsafe fn path(c: Option<&CGContext>) -> Option<CFRetained<CGPath>> {
+        extern "C-unwind" {
+            fn CGContextCopyPath(c: Option<&CGContext>) -> Option<NonNull<CGPath>>;
+        }
+        let ret = unsafe { CGContextCopyPath(c) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextPathContainsPoint")]
+    pub unsafe fn path_contains_point(
+        c: Option<&CGContext>,
+        point: CGPoint,
+        mode: CGPathDrawingMode,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGContextPathContainsPoint(
+                c: Option<&CGContext>,
+                point: CGPoint,
+                mode: CGPathDrawingMode,
+            ) -> bool;
+        }
+        unsafe { CGContextPathContainsPoint(c, point, mode) }
+    }
+
+    /// Path drawing functions. *
+    #[inline]
+    #[doc(alias = "CGContextDrawPath")]
+    pub unsafe fn draw_path(c: Option<&CGContext>, mode: CGPathDrawingMode) {
+        extern "C-unwind" {
+            fn CGContextDrawPath(c: Option<&CGContext>, mode: CGPathDrawingMode);
+        }
+        unsafe { CGContextDrawPath(c, mode) }
+    }
+
+    /// Path drawing convenience functions. *
+    #[inline]
+    #[doc(alias = "CGContextFillPath")]
+    pub unsafe fn fill_path(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextFillPath(c: Option<&CGContext>);
+        }
+        unsafe { CGContextFillPath(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextEOFillPath")]
+    pub unsafe fn eo_fill_path(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextEOFillPath(c: Option<&CGContext>);
+        }
+        unsafe { CGContextEOFillPath(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextStrokePath")]
+    pub unsafe fn stroke_path(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextStrokePath(c: Option<&CGContext>);
+        }
+        unsafe { CGContextStrokePath(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextFillRect")]
+    pub unsafe fn fill_rect(c: Option<&CGContext>, rect: CGRect) {
+        extern "C-unwind" {
+            fn CGContextFillRect(c: Option<&CGContext>, rect: CGRect);
+        }
+        unsafe { CGContextFillRect(c, rect) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextFillRects")]
+    pub unsafe fn fill_rects(c: Option<&CGContext>, rects: *const CGRect, count: usize) {
+        extern "C-unwind" {
+            fn CGContextFillRects(c: Option<&CGContext>, rects: *const CGRect, count: usize);
+        }
+        unsafe { CGContextFillRects(c, rects, count) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextStrokeRect")]
+    pub unsafe fn stroke_rect(c: Option<&CGContext>, rect: CGRect) {
+        extern "C-unwind" {
+            fn CGContextStrokeRect(c: Option<&CGContext>, rect: CGRect);
+        }
+        unsafe { CGContextStrokeRect(c, rect) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextStrokeRectWithWidth")]
+    pub unsafe fn stroke_rect_with_width(c: Option<&CGContext>, rect: CGRect, width: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextStrokeRectWithWidth(c: Option<&CGContext>, rect: CGRect, width: CGFloat);
+        }
+        unsafe { CGContextStrokeRectWithWidth(c, rect, width) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextClearRect")]
+    pub unsafe fn clear_rect(c: Option<&CGContext>, rect: CGRect) {
+        extern "C-unwind" {
+            fn CGContextClearRect(c: Option<&CGContext>, rect: CGRect);
+        }
+        unsafe { CGContextClearRect(c, rect) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextFillEllipseInRect")]
+    pub unsafe fn fill_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
+        extern "C-unwind" {
+            fn CGContextFillEllipseInRect(c: Option<&CGContext>, rect: CGRect);
+        }
+        unsafe { CGContextFillEllipseInRect(c, rect) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextStrokeEllipseInRect")]
+    pub unsafe fn stroke_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
+        extern "C-unwind" {
+            fn CGContextStrokeEllipseInRect(c: Option<&CGContext>, rect: CGRect);
+        }
+        unsafe { CGContextStrokeEllipseInRect(c, rect) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextStrokeLineSegments")]
+    pub unsafe fn stroke_line_segments(
+        c: Option<&CGContext>,
+        points: *const CGPoint,
+        count: usize,
+    ) {
+        extern "C-unwind" {
+            fn CGContextStrokeLineSegments(
+                c: Option<&CGContext>,
+                points: *const CGPoint,
+                count: usize,
+            );
+        }
+        unsafe { CGContextStrokeLineSegments(c, points, count) }
+    }
+
+    /// Clipping functions. *
+    #[inline]
+    #[doc(alias = "CGContextClip")]
+    pub unsafe fn clip(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextClip(c: Option<&CGContext>);
+        }
+        unsafe { CGContextClip(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextEOClip")]
+    pub unsafe fn eo_clip(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextEOClip(c: Option<&CGContext>);
+        }
+        unsafe { CGContextEOClip(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextResetClip")]
+    pub unsafe fn reset_clip(self: &CGContext) {
+        extern "C-unwind" {
+            fn CGContextResetClip(c: &CGContext);
+        }
+        unsafe { CGContextResetClip(self) }
+    }
+
+    #[cfg(feature = "CGImage")]
+    #[inline]
+    #[doc(alias = "CGContextClipToMask")]
+    pub unsafe fn clip_to_mask(c: Option<&CGContext>, rect: CGRect, mask: Option<&CGImage>) {
+        extern "C-unwind" {
+            fn CGContextClipToMask(c: Option<&CGContext>, rect: CGRect, mask: Option<&CGImage>);
+        }
+        unsafe { CGContextClipToMask(c, rect, mask) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextGetClipBoundingBox")]
+    pub unsafe fn clip_bounding_box(c: Option<&CGContext>) -> CGRect {
+        extern "C-unwind" {
+            fn CGContextGetClipBoundingBox(c: Option<&CGContext>) -> CGRect;
+        }
+        unsafe { CGContextGetClipBoundingBox(c) }
+    }
+
+    /// Clipping convenience functions. *
+    #[inline]
+    #[doc(alias = "CGContextClipToRect")]
+    pub unsafe fn clip_to_rect(c: Option<&CGContext>, rect: CGRect) {
+        extern "C-unwind" {
+            fn CGContextClipToRect(c: Option<&CGContext>, rect: CGRect);
+        }
+        unsafe { CGContextClipToRect(c, rect) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextClipToRects")]
+    pub unsafe fn clip_to_rects(c: Option<&CGContext>, rects: NonNull<CGRect>, count: usize) {
+        extern "C-unwind" {
+            fn CGContextClipToRects(c: Option<&CGContext>, rects: NonNull<CGRect>, count: usize);
+        }
+        unsafe { CGContextClipToRects(c, rects, count) }
+    }
+
+    /// Primitive color functions. *
+    #[cfg(feature = "CGColor")]
+    #[inline]
+    #[doc(alias = "CGContextSetFillColorWithColor")]
+    pub unsafe fn set_fill_color_with_color(c: Option<&CGContext>, color: Option<&CGColor>) {
+        extern "C-unwind" {
+            fn CGContextSetFillColorWithColor(c: Option<&CGContext>, color: Option<&CGColor>);
+        }
+        unsafe { CGContextSetFillColorWithColor(c, color) }
+    }
+
+    #[cfg(feature = "CGColor")]
+    #[inline]
+    #[doc(alias = "CGContextSetStrokeColorWithColor")]
+    pub unsafe fn set_stroke_color_with_color(c: Option<&CGContext>, color: Option<&CGColor>) {
+        extern "C-unwind" {
+            fn CGContextSetStrokeColorWithColor(c: Option<&CGContext>, color: Option<&CGColor>);
+        }
+        unsafe { CGContextSetStrokeColorWithColor(c, color) }
+    }
+
+    /// Color space functions. *
+    #[cfg(feature = "CGColorSpace")]
+    #[inline]
+    #[doc(alias = "CGContextSetFillColorSpace")]
+    pub unsafe fn set_fill_color_space(c: Option<&CGContext>, space: Option<&CGColorSpace>) {
+        extern "C-unwind" {
+            fn CGContextSetFillColorSpace(c: Option<&CGContext>, space: Option<&CGColorSpace>);
+        }
+        unsafe { CGContextSetFillColorSpace(c, space) }
+    }
+
+    #[cfg(feature = "CGColorSpace")]
+    #[inline]
+    #[doc(alias = "CGContextSetStrokeColorSpace")]
+    pub unsafe fn set_stroke_color_space(c: Option<&CGContext>, space: Option<&CGColorSpace>) {
+        extern "C-unwind" {
+            fn CGContextSetStrokeColorSpace(c: Option<&CGContext>, space: Option<&CGColorSpace>);
+        }
+        unsafe { CGContextSetStrokeColorSpace(c, space) }
+    }
+
+    /// Color functions. *
+    #[inline]
+    #[doc(alias = "CGContextSetFillColor")]
+    pub unsafe fn set_fill_color(c: Option<&CGContext>, components: *const CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetFillColor(c: Option<&CGContext>, components: *const CGFloat);
+        }
+        unsafe { CGContextSetFillColor(c, components) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetStrokeColor")]
+    pub unsafe fn set_stroke_color(c: Option<&CGContext>, components: *const CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetStrokeColor(c: Option<&CGContext>, components: *const CGFloat);
+        }
+        unsafe { CGContextSetStrokeColor(c, components) }
+    }
+
+    /// Pattern functions. *
+    #[cfg(feature = "CGPattern")]
+    #[inline]
+    #[doc(alias = "CGContextSetFillPattern")]
+    pub unsafe fn set_fill_pattern(
+        c: Option<&CGContext>,
+        pattern: Option<&CGPattern>,
+        components: *const CGFloat,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetFillPattern(
+                c: Option<&CGContext>,
+                pattern: Option<&CGPattern>,
+                components: *const CGFloat,
+            );
+        }
+        unsafe { CGContextSetFillPattern(c, pattern, components) }
+    }
+
+    #[cfg(feature = "CGPattern")]
+    #[inline]
+    #[doc(alias = "CGContextSetStrokePattern")]
+    pub unsafe fn set_stroke_pattern(
+        c: Option<&CGContext>,
+        pattern: Option<&CGPattern>,
+        components: *const CGFloat,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetStrokePattern(
+                c: Option<&CGContext>,
+                pattern: Option<&CGPattern>,
+                components: *const CGFloat,
+            );
+        }
+        unsafe { CGContextSetStrokePattern(c, pattern, components) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetPatternPhase")]
+    pub unsafe fn set_pattern_phase(c: Option<&CGContext>, phase: CGSize) {
+        extern "C-unwind" {
+            fn CGContextSetPatternPhase(c: Option<&CGContext>, phase: CGSize);
+        }
+        unsafe { CGContextSetPatternPhase(c, phase) }
+    }
+
+    /// Color convenience functions. *
+    #[inline]
+    #[doc(alias = "CGContextSetGrayFillColor")]
+    pub unsafe fn set_gray_fill_color(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetGrayFillColor(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat);
+        }
+        unsafe { CGContextSetGrayFillColor(c, gray, alpha) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetGrayStrokeColor")]
+    pub unsafe fn set_gray_stroke_color(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetGrayStrokeColor(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat);
+        }
+        unsafe { CGContextSetGrayStrokeColor(c, gray, alpha) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetRGBFillColor")]
+    pub unsafe fn set_rgb_fill_color(
+        c: Option<&CGContext>,
+        red: CGFloat,
+        green: CGFloat,
+        blue: CGFloat,
+        alpha: CGFloat,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetRGBFillColor(
+                c: Option<&CGContext>,
+                red: CGFloat,
+                green: CGFloat,
+                blue: CGFloat,
+                alpha: CGFloat,
+            );
+        }
+        unsafe { CGContextSetRGBFillColor(c, red, green, blue, alpha) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetRGBStrokeColor")]
+    pub unsafe fn set_rgb_stroke_color(
+        c: Option<&CGContext>,
+        red: CGFloat,
+        green: CGFloat,
+        blue: CGFloat,
+        alpha: CGFloat,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetRGBStrokeColor(
+                c: Option<&CGContext>,
+                red: CGFloat,
+                green: CGFloat,
+                blue: CGFloat,
+                alpha: CGFloat,
+            );
+        }
+        unsafe { CGContextSetRGBStrokeColor(c, red, green, blue, alpha) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetCMYKFillColor")]
+    pub unsafe fn set_cmyk_fill_color(
+        c: Option<&CGContext>,
+        cyan: CGFloat,
+        magenta: CGFloat,
+        yellow: CGFloat,
+        black: CGFloat,
+        alpha: CGFloat,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetCMYKFillColor(
+                c: Option<&CGContext>,
+                cyan: CGFloat,
+                magenta: CGFloat,
+                yellow: CGFloat,
+                black: CGFloat,
+                alpha: CGFloat,
+            );
+        }
+        unsafe { CGContextSetCMYKFillColor(c, cyan, magenta, yellow, black, alpha) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetCMYKStrokeColor")]
+    pub unsafe fn set_cmyk_stroke_color(
+        c: Option<&CGContext>,
+        cyan: CGFloat,
+        magenta: CGFloat,
+        yellow: CGFloat,
+        black: CGFloat,
+        alpha: CGFloat,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetCMYKStrokeColor(
+                c: Option<&CGContext>,
+                cyan: CGFloat,
+                magenta: CGFloat,
+                yellow: CGFloat,
+                black: CGFloat,
+                alpha: CGFloat,
+            );
+        }
+        unsafe { CGContextSetCMYKStrokeColor(c, cyan, magenta, yellow, black, alpha) }
+    }
+
+    /// Rendering intent. *
+    #[cfg(feature = "CGColorSpace")]
+    #[inline]
+    #[doc(alias = "CGContextSetRenderingIntent")]
+    pub unsafe fn set_rendering_intent(c: Option<&CGContext>, intent: CGColorRenderingIntent) {
+        extern "C-unwind" {
+            fn CGContextSetRenderingIntent(c: Option<&CGContext>, intent: CGColorRenderingIntent);
+        }
+        unsafe { CGContextSetRenderingIntent(c, intent) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetEDRTargetHeadroom")]
+    pub unsafe fn set_edr_target_headroom(self: &CGContext, headroom: c_float) -> bool {
+        extern "C-unwind" {
+            fn CGContextSetEDRTargetHeadroom(c: &CGContext, headroom: c_float) -> bool;
+        }
+        unsafe { CGContextSetEDRTargetHeadroom(self, headroom) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextGetEDRTargetHeadroom")]
+    pub unsafe fn edr_target_headroom(self: &CGContext) -> c_float {
+        extern "C-unwind" {
+            fn CGContextGetEDRTargetHeadroom(c: &CGContext) -> c_float;
+        }
+        unsafe { CGContextGetEDRTargetHeadroom(self) }
+    }
+
+    /// Image functions. *
+    #[cfg(feature = "CGImage")]
+    #[inline]
+    #[doc(alias = "CGContextDrawImage")]
+    pub unsafe fn draw_image(c: Option<&CGContext>, rect: CGRect, image: Option<&CGImage>) {
+        extern "C-unwind" {
+            fn CGContextDrawImage(c: Option<&CGContext>, rect: CGRect, image: Option<&CGImage>);
+        }
+        unsafe { CGContextDrawImage(c, rect, image) }
+    }
+
+    #[cfg(feature = "CGImage")]
+    #[inline]
+    #[doc(alias = "CGContextDrawTiledImage")]
+    pub unsafe fn draw_tiled_image(c: Option<&CGContext>, rect: CGRect, image: Option<&CGImage>) {
+        extern "C-unwind" {
+            fn CGContextDrawTiledImage(
+                c: Option<&CGContext>,
+                rect: CGRect,
+                image: Option<&CGImage>,
+            );
+        }
+        unsafe { CGContextDrawTiledImage(c, rect, image) }
+    }
+
+    #[cfg(all(feature = "CGImage", feature = "CGToneMapping"))]
+    #[inline]
+    #[doc(alias = "CGContextDrawImageApplyingToneMapping")]
+    pub unsafe fn draw_image_applying_tone_mapping(
+        self: &CGContext,
+        r: CGRect,
+        image: &CGImage,
+        method: CGToneMapping,
+        options: Option<&CFDictionary>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGContextDrawImageApplyingToneMapping(
+                c: &CGContext,
+                r: CGRect,
+                image: &CGImage,
+                method: CGToneMapping,
+                options: Option<&CFDictionary>,
+            ) -> bool;
+        }
+        unsafe { CGContextDrawImageApplyingToneMapping(self, r, image, method, options) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextGetInterpolationQuality")]
+    pub unsafe fn interpolation_quality(c: Option<&CGContext>) -> CGInterpolationQuality {
+        extern "C-unwind" {
+            fn CGContextGetInterpolationQuality(c: Option<&CGContext>) -> CGInterpolationQuality;
+        }
+        unsafe { CGContextGetInterpolationQuality(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetInterpolationQuality")]
+    pub unsafe fn set_interpolation_quality(
+        c: Option<&CGContext>,
+        quality: CGInterpolationQuality,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetInterpolationQuality(
+                c: Option<&CGContext>,
+                quality: CGInterpolationQuality,
+            );
+        }
+        unsafe { CGContextSetInterpolationQuality(c, quality) }
+    }
+
+    #[cfg(feature = "CGColor")]
+    #[inline]
+    #[doc(alias = "CGContextSetShadowWithColor")]
+    pub unsafe fn set_shadow_with_color(
+        c: Option<&CGContext>,
+        offset: CGSize,
+        blur: CGFloat,
+        color: Option<&CGColor>,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetShadowWithColor(
+                c: Option<&CGContext>,
+                offset: CGSize,
+                blur: CGFloat,
+                color: Option<&CGColor>,
+            );
+        }
+        unsafe { CGContextSetShadowWithColor(c, offset, blur, color) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetShadow")]
+    pub unsafe fn set_shadow(c: Option<&CGContext>, offset: CGSize, blur: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetShadow(c: Option<&CGContext>, offset: CGSize, blur: CGFloat);
+        }
+        unsafe { CGContextSetShadow(c, offset, blur) }
+    }
+
+    #[cfg(feature = "CGGradient")]
+    #[inline]
+    #[doc(alias = "CGContextDrawLinearGradient")]
+    pub unsafe fn draw_linear_gradient(
+        c: Option<&CGContext>,
+        gradient: Option<&CGGradient>,
+        start_point: CGPoint,
+        end_point: CGPoint,
+        options: CGGradientDrawingOptions,
+    ) {
+        extern "C-unwind" {
+            fn CGContextDrawLinearGradient(
+                c: Option<&CGContext>,
+                gradient: Option<&CGGradient>,
+                start_point: CGPoint,
+                end_point: CGPoint,
+                options: CGGradientDrawingOptions,
+            );
+        }
+        unsafe { CGContextDrawLinearGradient(c, gradient, start_point, end_point, options) }
+    }
+
+    #[cfg(feature = "CGGradient")]
+    #[inline]
+    #[doc(alias = "CGContextDrawRadialGradient")]
+    pub unsafe fn draw_radial_gradient(
+        c: Option<&CGContext>,
+        gradient: Option<&CGGradient>,
+        start_center: CGPoint,
+        start_radius: CGFloat,
+        end_center: CGPoint,
+        end_radius: CGFloat,
+        options: CGGradientDrawingOptions,
+    ) {
+        extern "C-unwind" {
+            fn CGContextDrawRadialGradient(
+                c: Option<&CGContext>,
+                gradient: Option<&CGGradient>,
+                start_center: CGPoint,
+                start_radius: CGFloat,
+                end_center: CGPoint,
+                end_radius: CGFloat,
+                options: CGGradientDrawingOptions,
+            );
+        }
+        unsafe {
+            CGContextDrawRadialGradient(
+                c,
+                gradient,
+                start_center,
+                start_radius,
+                end_center,
+                end_radius,
+                options,
+            )
+        }
+    }
+
+    #[cfg(feature = "CGGradient")]
+    #[inline]
+    #[doc(alias = "CGContextDrawConicGradient")]
+    pub unsafe fn draw_conic_gradient(
+        self: &CGContext,
+        gradient: Option<&CGGradient>,
+        center: CGPoint,
+        angle: CGFloat,
+    ) {
+        extern "C-unwind" {
+            fn CGContextDrawConicGradient(
+                c: &CGContext,
+                gradient: Option<&CGGradient>,
+                center: CGPoint,
+                angle: CGFloat,
+            );
+        }
+        unsafe { CGContextDrawConicGradient(self, gradient, center, angle) }
+    }
+
+    #[cfg(feature = "CGShading")]
+    #[inline]
+    #[doc(alias = "CGContextDrawShading")]
+    pub unsafe fn draw_shading(c: Option<&CGContext>, shading: Option<&CGShading>) {
+        extern "C-unwind" {
+            fn CGContextDrawShading(c: Option<&CGContext>, shading: Option<&CGShading>);
+        }
+        unsafe { CGContextDrawShading(c, shading) }
+    }
+
+    /// Text functions. *
+    #[inline]
+    #[doc(alias = "CGContextSetCharacterSpacing")]
+    pub unsafe fn set_character_spacing(c: Option<&CGContext>, spacing: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetCharacterSpacing(c: Option<&CGContext>, spacing: CGFloat);
+        }
+        unsafe { CGContextSetCharacterSpacing(c, spacing) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetTextPosition")]
+    pub unsafe fn set_text_position(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetTextPosition(c: Option<&CGContext>, x: CGFloat, y: CGFloat);
+        }
+        unsafe { CGContextSetTextPosition(c, x, y) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextGetTextPosition")]
+    pub unsafe fn text_position(c: Option<&CGContext>) -> CGPoint {
+        extern "C-unwind" {
+            fn CGContextGetTextPosition(c: Option<&CGContext>) -> CGPoint;
+        }
+        unsafe { CGContextGetTextPosition(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetTextMatrix")]
+    pub unsafe fn set_text_matrix(c: Option<&CGContext>, t: CGAffineTransform) {
+        extern "C-unwind" {
+            fn CGContextSetTextMatrix(c: Option<&CGContext>, t: CGAffineTransform);
+        }
+        unsafe { CGContextSetTextMatrix(c, t) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextGetTextMatrix")]
+    pub unsafe fn text_matrix(c: Option<&CGContext>) -> CGAffineTransform {
+        extern "C-unwind" {
+            fn CGContextGetTextMatrix(c: Option<&CGContext>) -> CGAffineTransform;
+        }
+        unsafe { CGContextGetTextMatrix(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetTextDrawingMode")]
+    pub unsafe fn set_text_drawing_mode(c: Option<&CGContext>, mode: CGTextDrawingMode) {
+        extern "C-unwind" {
+            fn CGContextSetTextDrawingMode(c: Option<&CGContext>, mode: CGTextDrawingMode);
+        }
+        unsafe { CGContextSetTextDrawingMode(c, mode) }
+    }
+
+    #[cfg(feature = "CGFont")]
+    #[inline]
+    #[doc(alias = "CGContextSetFont")]
+    pub unsafe fn set_font(c: Option<&CGContext>, font: Option<&CGFont>) {
+        extern "C-unwind" {
+            fn CGContextSetFont(c: Option<&CGContext>, font: Option<&CGFont>);
+        }
+        unsafe { CGContextSetFont(c, font) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetFontSize")]
+    pub unsafe fn set_font_size(c: Option<&CGContext>, size: CGFloat) {
+        extern "C-unwind" {
+            fn CGContextSetFontSize(c: Option<&CGContext>, size: CGFloat);
+        }
+        unsafe { CGContextSetFontSize(c, size) }
+    }
+
+    #[cfg(feature = "CGFont")]
+    #[inline]
+    #[doc(alias = "CGContextShowGlyphsAtPositions")]
+    pub unsafe fn show_glyphs_at_positions(
+        c: Option<&CGContext>,
+        glyphs: *const CGGlyph,
+        lpositions: *const CGPoint,
+        count: usize,
+    ) {
+        extern "C-unwind" {
+            fn CGContextShowGlyphsAtPositions(
+                c: Option<&CGContext>,
+                glyphs: *const CGGlyph,
+                lpositions: *const CGPoint,
+                count: usize,
+            );
+        }
+        unsafe { CGContextShowGlyphsAtPositions(c, glyphs, lpositions, count) }
+    }
+
+    /// PDF functions. *
+    #[cfg(feature = "CGPDFPage")]
+    #[inline]
+    #[doc(alias = "CGContextDrawPDFPage")]
+    pub unsafe fn draw_pdf_page(c: Option<&CGContext>, page: Option<&CGPDFPage>) {
+        extern "C-unwind" {
+            fn CGContextDrawPDFPage(c: Option<&CGContext>, page: Option<&CGPDFPage>);
+        }
+        unsafe { CGContextDrawPDFPage(c, page) }
+    }
+
+    /// Output page functions. *
+    #[inline]
+    #[doc(alias = "CGContextBeginPage")]
+    pub unsafe fn begin_page(c: Option<&CGContext>, media_box: *const CGRect) {
+        extern "C-unwind" {
+            fn CGContextBeginPage(c: Option<&CGContext>, media_box: *const CGRect);
+        }
+        unsafe { CGContextBeginPage(c, media_box) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextEndPage")]
+    pub unsafe fn end_page(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextEndPage(c: Option<&CGContext>);
+        }
+        unsafe { CGContextEndPage(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextFlush")]
+    pub unsafe fn flush(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextFlush(c: Option<&CGContext>);
+        }
+        unsafe { CGContextFlush(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSynchronize")]
+    pub unsafe fn synchronize(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextSynchronize(c: Option<&CGContext>);
+        }
+        unsafe { CGContextSynchronize(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetShouldAntialias")]
+    pub unsafe fn set_should_antialias(c: Option<&CGContext>, should_antialias: bool) {
+        extern "C-unwind" {
+            fn CGContextSetShouldAntialias(c: Option<&CGContext>, should_antialias: bool);
+        }
+        unsafe { CGContextSetShouldAntialias(c, should_antialias) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetAllowsAntialiasing")]
+    pub unsafe fn set_allows_antialiasing(c: Option<&CGContext>, allows_antialiasing: bool) {
+        extern "C-unwind" {
+            fn CGContextSetAllowsAntialiasing(c: Option<&CGContext>, allows_antialiasing: bool);
+        }
+        unsafe { CGContextSetAllowsAntialiasing(c, allows_antialiasing) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetShouldSmoothFonts")]
+    pub unsafe fn set_should_smooth_fonts(c: Option<&CGContext>, should_smooth_fonts: bool) {
+        extern "C-unwind" {
+            fn CGContextSetShouldSmoothFonts(c: Option<&CGContext>, should_smooth_fonts: bool);
+        }
+        unsafe { CGContextSetShouldSmoothFonts(c, should_smooth_fonts) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetAllowsFontSmoothing")]
+    pub unsafe fn set_allows_font_smoothing(c: Option<&CGContext>, allows_font_smoothing: bool) {
+        extern "C-unwind" {
+            fn CGContextSetAllowsFontSmoothing(c: Option<&CGContext>, allows_font_smoothing: bool);
+        }
+        unsafe { CGContextSetAllowsFontSmoothing(c, allows_font_smoothing) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetShouldSubpixelPositionFonts")]
+    pub unsafe fn set_should_subpixel_position_fonts(
+        c: Option<&CGContext>,
+        should_subpixel_position_fonts: bool,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetShouldSubpixelPositionFonts(
+                c: Option<&CGContext>,
+                should_subpixel_position_fonts: bool,
+            );
+        }
+        unsafe { CGContextSetShouldSubpixelPositionFonts(c, should_subpixel_position_fonts) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetAllowsFontSubpixelPositioning")]
+    pub unsafe fn set_allows_font_subpixel_positioning(
+        c: Option<&CGContext>,
+        allows_font_subpixel_positioning: bool,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetAllowsFontSubpixelPositioning(
+                c: Option<&CGContext>,
+                allows_font_subpixel_positioning: bool,
+            );
+        }
+        unsafe { CGContextSetAllowsFontSubpixelPositioning(c, allows_font_subpixel_positioning) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetShouldSubpixelQuantizeFonts")]
+    pub unsafe fn set_should_subpixel_quantize_fonts(
+        c: Option<&CGContext>,
+        should_subpixel_quantize_fonts: bool,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetShouldSubpixelQuantizeFonts(
+                c: Option<&CGContext>,
+                should_subpixel_quantize_fonts: bool,
+            );
+        }
+        unsafe { CGContextSetShouldSubpixelQuantizeFonts(c, should_subpixel_quantize_fonts) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextSetAllowsFontSubpixelQuantization")]
+    pub unsafe fn set_allows_font_subpixel_quantization(
+        c: Option<&CGContext>,
+        allows_font_subpixel_quantization: bool,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSetAllowsFontSubpixelQuantization(
+                c: Option<&CGContext>,
+                allows_font_subpixel_quantization: bool,
+            );
+        }
+        unsafe { CGContextSetAllowsFontSubpixelQuantization(c, allows_font_subpixel_quantization) }
+    }
+
+    /// Transparency layer support. *
+    #[inline]
+    #[doc(alias = "CGContextBeginTransparencyLayer")]
+    pub unsafe fn begin_transparency_layer(
+        c: Option<&CGContext>,
+        auxiliary_info: Option<&CFDictionary>,
+    ) {
+        extern "C-unwind" {
+            fn CGContextBeginTransparencyLayer(
+                c: Option<&CGContext>,
+                auxiliary_info: Option<&CFDictionary>,
+            );
+        }
+        unsafe { CGContextBeginTransparencyLayer(c, auxiliary_info) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextBeginTransparencyLayerWithRect")]
+    pub unsafe fn begin_transparency_layer_with_rect(
+        c: Option<&CGContext>,
+        rect: CGRect,
+        aux_info: Option<&CFDictionary>,
+    ) {
+        extern "C-unwind" {
+            fn CGContextBeginTransparencyLayerWithRect(
+                c: Option<&CGContext>,
+                rect: CGRect,
+                aux_info: Option<&CFDictionary>,
+            );
+        }
+        unsafe { CGContextBeginTransparencyLayerWithRect(c, rect, aux_info) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextEndTransparencyLayer")]
+    pub unsafe fn end_transparency_layer(c: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn CGContextEndTransparencyLayer(c: Option<&CGContext>);
+        }
+        unsafe { CGContextEndTransparencyLayer(c) }
+    }
+
+    /// User space to device space tranformations. *
+    #[inline]
+    #[doc(alias = "CGContextGetUserSpaceToDeviceSpaceTransform")]
+    pub unsafe fn user_space_to_device_space_transform(c: Option<&CGContext>) -> CGAffineTransform {
+        extern "C-unwind" {
+            fn CGContextGetUserSpaceToDeviceSpaceTransform(
+                c: Option<&CGContext>,
+            ) -> CGAffineTransform;
+        }
+        unsafe { CGContextGetUserSpaceToDeviceSpaceTransform(c) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextConvertPointToDeviceSpace")]
+    pub unsafe fn convert_point_to_device_space(c: Option<&CGContext>, point: CGPoint) -> CGPoint {
+        extern "C-unwind" {
+            fn CGContextConvertPointToDeviceSpace(c: Option<&CGContext>, point: CGPoint)
+                -> CGPoint;
+        }
+        unsafe { CGContextConvertPointToDeviceSpace(c, point) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextConvertPointToUserSpace")]
+    pub unsafe fn convert_point_to_user_space(c: Option<&CGContext>, point: CGPoint) -> CGPoint {
+        extern "C-unwind" {
+            fn CGContextConvertPointToUserSpace(c: Option<&CGContext>, point: CGPoint) -> CGPoint;
+        }
+        unsafe { CGContextConvertPointToUserSpace(c, point) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextConvertSizeToDeviceSpace")]
+    pub unsafe fn convert_size_to_device_space(c: Option<&CGContext>, size: CGSize) -> CGSize {
+        extern "C-unwind" {
+            fn CGContextConvertSizeToDeviceSpace(c: Option<&CGContext>, size: CGSize) -> CGSize;
+        }
+        unsafe { CGContextConvertSizeToDeviceSpace(c, size) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextConvertSizeToUserSpace")]
+    pub unsafe fn convert_size_to_user_space(c: Option<&CGContext>, size: CGSize) -> CGSize {
+        extern "C-unwind" {
+            fn CGContextConvertSizeToUserSpace(c: Option<&CGContext>, size: CGSize) -> CGSize;
+        }
+        unsafe { CGContextConvertSizeToUserSpace(c, size) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextConvertRectToDeviceSpace")]
+    pub unsafe fn convert_rect_to_device_space(c: Option<&CGContext>, rect: CGRect) -> CGRect {
+        extern "C-unwind" {
+            fn CGContextConvertRectToDeviceSpace(c: Option<&CGContext>, rect: CGRect) -> CGRect;
+        }
+        unsafe { CGContextConvertRectToDeviceSpace(c, rect) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGContextConvertRectToUserSpace")]
+    pub unsafe fn convert_rect_to_user_space(c: Option<&CGContext>, rect: CGRect) -> CGRect {
+        extern "C-unwind" {
+            fn CGContextConvertRectToUserSpace(c: Option<&CGContext>, rect: CGRect) -> CGRect;
+        }
+        unsafe { CGContextConvertRectToUserSpace(c, rect) }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "CGContextSelectFont")]
+    pub unsafe fn select_font(
+        c: Option<&CGContext>,
+        name: *const c_char,
+        size: CGFloat,
+        text_encoding: CGTextEncoding,
+    ) {
+        extern "C-unwind" {
+            fn CGContextSelectFont(
+                c: Option<&CGContext>,
+                name: *const c_char,
+                size: CGFloat,
+                text_encoding: CGTextEncoding,
+            );
+        }
+        unsafe { CGContextSelectFont(c, name, size, text_encoding) }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "CGContextShowText")]
+    pub unsafe fn show_text(c: Option<&CGContext>, string: *const c_char, length: usize) {
+        extern "C-unwind" {
+            fn CGContextShowText(c: Option<&CGContext>, string: *const c_char, length: usize);
+        }
+        unsafe { CGContextShowText(c, string, length) }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "CGContextShowTextAtPoint")]
+    pub unsafe fn show_text_at_point(
+        c: Option<&CGContext>,
+        x: CGFloat,
+        y: CGFloat,
+        string: *const c_char,
+        length: usize,
+    ) {
+        extern "C-unwind" {
+            fn CGContextShowTextAtPoint(
+                c: Option<&CGContext>,
+                x: CGFloat,
+                y: CGFloat,
+                string: *const c_char,
+                length: usize,
+            );
+        }
+        unsafe { CGContextShowTextAtPoint(c, x, y, string, length) }
+    }
+
+    #[cfg(feature = "CGFont")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "CGContextShowGlyphs")]
+    pub unsafe fn show_glyphs(c: Option<&CGContext>, g: *const CGGlyph, count: usize) {
+        extern "C-unwind" {
+            fn CGContextShowGlyphs(c: Option<&CGContext>, g: *const CGGlyph, count: usize);
+        }
+        unsafe { CGContextShowGlyphs(c, g, count) }
+    }
+
+    #[cfg(feature = "CGFont")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "CGContextShowGlyphsAtPoint")]
+    pub unsafe fn show_glyphs_at_point(
+        c: Option<&CGContext>,
+        x: CGFloat,
+        y: CGFloat,
+        glyphs: *const CGGlyph,
+        count: usize,
+    ) {
+        extern "C-unwind" {
+            fn CGContextShowGlyphsAtPoint(
+                c: Option<&CGContext>,
+                x: CGFloat,
+                y: CGFloat,
+                glyphs: *const CGGlyph,
+                count: usize,
+            );
+        }
+        unsafe { CGContextShowGlyphsAtPoint(c, x, y, glyphs, count) }
+    }
+
+    #[cfg(feature = "CGFont")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "CGContextShowGlyphsWithAdvances")]
+    pub unsafe fn show_glyphs_with_advances(
+        c: Option<&CGContext>,
+        glyphs: *const CGGlyph,
+        advances: *const CGSize,
+        count: usize,
+    ) {
+        extern "C-unwind" {
+            fn CGContextShowGlyphsWithAdvances(
+                c: Option<&CGContext>,
+                glyphs: *const CGGlyph,
+                advances: *const CGSize,
+                count: usize,
+            );
+        }
+        unsafe { CGContextShowGlyphsWithAdvances(c, glyphs, advances, count) }
+    }
+
+    #[cfg(feature = "CGPDFDocument")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "CGContextDrawPDFDocument")]
+    pub unsafe fn draw_pdf_document(
+        c: Option<&CGContext>,
+        rect: CGRect,
+        document: Option<&CGPDFDocument>,
+        page: c_int,
+    ) {
+        extern "C-unwind" {
+            fn CGContextDrawPDFDocument(
+                c: Option<&CGContext>,
+                rect: CGRect,
+                document: Option<&CGPDFDocument>,
+                page: c_int,
+            );
+        }
+        unsafe { CGContextDrawPDFDocument(c, rect, document, page) }
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::save_g_state`"]
     pub fn CGContextSaveGState(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::restore_g_state`"]
     pub fn CGContextRestoreGState(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
-    /// Coordinate space transformations. *
+    #[deprecated = "renamed to `CGContext::scale_ctm`"]
     pub fn CGContextScaleCTM(c: Option<&CGContext>, sx: CGFloat, sy: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::translate_ctm`"]
     pub fn CGContextTranslateCTM(c: Option<&CGContext>, tx: CGFloat, ty: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::rotate_ctm`"]
     pub fn CGContextRotateCTM(c: Option<&CGContext>, angle: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::concat_ctm`"]
     pub fn CGContextConcatCTM(c: Option<&CGContext>, transform: CGAffineTransform);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::ctm`"]
     pub fn CGContextGetCTM(c: Option<&CGContext>) -> CGAffineTransform;
 }
 
 extern "C-unwind" {
-    /// Drawing attribute functions. *
+    #[deprecated = "renamed to `CGContext::set_line_width`"]
     pub fn CGContextSetLineWidth(c: Option<&CGContext>, width: CGFloat);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPath")]
+    #[deprecated = "renamed to `CGContext::set_line_cap`"]
     pub fn CGContextSetLineCap(c: Option<&CGContext>, cap: CGLineCap);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPath")]
+    #[deprecated = "renamed to `CGContext::set_line_join`"]
     pub fn CGContextSetLineJoin(c: Option<&CGContext>, join: CGLineJoin);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_miter_limit`"]
     pub fn CGContextSetMiterLimit(c: Option<&CGContext>, limit: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_line_dash`"]
     pub fn CGContextSetLineDash(
         c: Option<&CGContext>,
         phase: CGFloat,
@@ -284,31 +1778,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_flatness`"]
     pub fn CGContextSetFlatness(c: Option<&CGContext>, flatness: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_alpha`"]
     pub fn CGContextSetAlpha(c: Option<&CGContext>, alpha: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_blend_mode`"]
     pub fn CGContextSetBlendMode(c: Option<&CGContext>, mode: CGBlendMode);
 }
 
 extern "C-unwind" {
-    /// Path construction functions. *
+    #[deprecated = "renamed to `CGContext::begin_path`"]
     pub fn CGContextBeginPath(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::move_to_point`"]
     pub fn CGContextMoveToPoint(c: Option<&CGContext>, x: CGFloat, y: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::add_line_to_point`"]
     pub fn CGContextAddLineToPoint(c: Option<&CGContext>, x: CGFloat, y: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::add_curve_to_point`"]
     pub fn CGContextAddCurveToPoint(
         c: Option<&CGContext>,
         cp1x: CGFloat,
@@ -321,6 +1821,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::add_quad_curve_to_point`"]
     pub fn CGContextAddQuadCurveToPoint(
         c: Option<&CGContext>,
         cpx: CGFloat,
@@ -331,27 +1832,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::close_path`"]
     pub fn CGContextClosePath(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
-    /// Path construction convenience functions. *
+    #[deprecated = "renamed to `CGContext::add_rect`"]
     pub fn CGContextAddRect(c: Option<&CGContext>, rect: CGRect);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::add_rects`"]
     pub fn CGContextAddRects(c: Option<&CGContext>, rects: *const CGRect, count: usize);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::add_lines`"]
     pub fn CGContextAddLines(c: Option<&CGContext>, points: *const CGPoint, count: usize);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::add_ellipse_in_rect`"]
     pub fn CGContextAddEllipseInRect(c: Option<&CGContext>, rect: CGRect);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::add_arc`"]
     pub fn CGContextAddArc(
         c: Option<&CGContext>,
         x: CGFloat,
@@ -364,6 +1870,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::add_arc_to_point`"]
     pub fn CGContextAddArcToPoint(
         c: Option<&CGContext>,
         x1: CGFloat,
@@ -376,27 +1883,32 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPath")]
+    #[deprecated = "renamed to `CGContext::add_path`"]
     pub fn CGContextAddPath(c: Option<&CGContext>, path: Option<&CGPath>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::replace_path_with_stroked_path`"]
     pub fn CGContextReplacePathWithStrokedPath(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
-    /// Path information functions. *
+    #[deprecated = "renamed to `CGContext::is_path_empty`"]
     pub fn CGContextIsPathEmpty(c: Option<&CGContext>) -> bool;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::path_current_point`"]
     pub fn CGContextGetPathCurrentPoint(c: Option<&CGContext>) -> CGPoint;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::path_bounding_box`"]
     pub fn CGContextGetPathBoundingBox(c: Option<&CGContext>) -> CGRect;
 }
 
 #[cfg(feature = "CGPath")]
+#[deprecated = "renamed to `CGContext::path`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGContextCopyPath(
     c: Option<&CGContext>,
@@ -409,6 +1921,7 @@ pub unsafe extern "C-unwind" fn CGContextCopyPath(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::path_contains_point`"]
     pub fn CGContextPathContainsPoint(
         c: Option<&CGContext>,
         point: CGPoint,
@@ -417,120 +1930,138 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Path drawing functions. *
+    #[deprecated = "renamed to `CGContext::draw_path`"]
     pub fn CGContextDrawPath(c: Option<&CGContext>, mode: CGPathDrawingMode);
 }
 
 extern "C-unwind" {
-    /// Path drawing convenience functions. *
+    #[deprecated = "renamed to `CGContext::fill_path`"]
     pub fn CGContextFillPath(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::eo_fill_path`"]
     pub fn CGContextEOFillPath(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::stroke_path`"]
     pub fn CGContextStrokePath(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::fill_rect`"]
     pub fn CGContextFillRect(c: Option<&CGContext>, rect: CGRect);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::fill_rects`"]
     pub fn CGContextFillRects(c: Option<&CGContext>, rects: *const CGRect, count: usize);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::stroke_rect`"]
     pub fn CGContextStrokeRect(c: Option<&CGContext>, rect: CGRect);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::stroke_rect_with_width`"]
     pub fn CGContextStrokeRectWithWidth(c: Option<&CGContext>, rect: CGRect, width: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::clear_rect`"]
     pub fn CGContextClearRect(c: Option<&CGContext>, rect: CGRect);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::fill_ellipse_in_rect`"]
     pub fn CGContextFillEllipseInRect(c: Option<&CGContext>, rect: CGRect);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::stroke_ellipse_in_rect`"]
     pub fn CGContextStrokeEllipseInRect(c: Option<&CGContext>, rect: CGRect);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::stroke_line_segments`"]
     pub fn CGContextStrokeLineSegments(c: Option<&CGContext>, points: *const CGPoint, count: usize);
 }
 
 extern "C-unwind" {
-    /// Clipping functions. *
+    #[deprecated = "renamed to `CGContext::clip`"]
     pub fn CGContextClip(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::eo_clip`"]
     pub fn CGContextEOClip(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::reset_clip`"]
     pub fn CGContextResetClip(c: &CGContext);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGImage")]
+    #[deprecated = "renamed to `CGContext::clip_to_mask`"]
     pub fn CGContextClipToMask(c: Option<&CGContext>, rect: CGRect, mask: Option<&CGImage>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::clip_bounding_box`"]
     pub fn CGContextGetClipBoundingBox(c: Option<&CGContext>) -> CGRect;
 }
 
 extern "C-unwind" {
-    /// Clipping convenience functions. *
+    #[deprecated = "renamed to `CGContext::clip_to_rect`"]
     pub fn CGContextClipToRect(c: Option<&CGContext>, rect: CGRect);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::clip_to_rects`"]
     pub fn CGContextClipToRects(c: Option<&CGContext>, rects: NonNull<CGRect>, count: usize);
 }
 
 extern "C-unwind" {
-    /// Primitive color functions. *
     #[cfg(feature = "CGColor")]
+    #[deprecated = "renamed to `CGContext::set_fill_color_with_color`"]
     pub fn CGContextSetFillColorWithColor(c: Option<&CGContext>, color: Option<&CGColor>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGColor")]
+    #[deprecated = "renamed to `CGContext::set_stroke_color_with_color`"]
     pub fn CGContextSetStrokeColorWithColor(c: Option<&CGContext>, color: Option<&CGColor>);
 }
 
 extern "C-unwind" {
-    /// Color space functions. *
     #[cfg(feature = "CGColorSpace")]
+    #[deprecated = "renamed to `CGContext::set_fill_color_space`"]
     pub fn CGContextSetFillColorSpace(c: Option<&CGContext>, space: Option<&CGColorSpace>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGColorSpace")]
+    #[deprecated = "renamed to `CGContext::set_stroke_color_space`"]
     pub fn CGContextSetStrokeColorSpace(c: Option<&CGContext>, space: Option<&CGColorSpace>);
 }
 
 extern "C-unwind" {
-    /// Color functions. *
+    #[deprecated = "renamed to `CGContext::set_fill_color`"]
     pub fn CGContextSetFillColor(c: Option<&CGContext>, components: *const CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_stroke_color`"]
     pub fn CGContextSetStrokeColor(c: Option<&CGContext>, components: *const CGFloat);
 }
 
 extern "C-unwind" {
-    /// Pattern functions. *
     #[cfg(feature = "CGPattern")]
+    #[deprecated = "renamed to `CGContext::set_fill_pattern`"]
     pub fn CGContextSetFillPattern(
         c: Option<&CGContext>,
         pattern: Option<&CGPattern>,
@@ -540,6 +2071,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPattern")]
+    #[deprecated = "renamed to `CGContext::set_stroke_pattern`"]
     pub fn CGContextSetStrokePattern(
         c: Option<&CGContext>,
         pattern: Option<&CGPattern>,
@@ -548,19 +2080,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_pattern_phase`"]
     pub fn CGContextSetPatternPhase(c: Option<&CGContext>, phase: CGSize);
 }
 
 extern "C-unwind" {
-    /// Color convenience functions. *
+    #[deprecated = "renamed to `CGContext::set_gray_fill_color`"]
     pub fn CGContextSetGrayFillColor(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_gray_stroke_color`"]
     pub fn CGContextSetGrayStrokeColor(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_rgb_fill_color`"]
     pub fn CGContextSetRGBFillColor(
         c: Option<&CGContext>,
         red: CGFloat,
@@ -571,6 +2106,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_rgb_stroke_color`"]
     pub fn CGContextSetRGBStrokeColor(
         c: Option<&CGContext>,
         red: CGFloat,
@@ -581,6 +2117,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_cmyk_fill_color`"]
     pub fn CGContextSetCMYKFillColor(
         c: Option<&CGContext>,
         cyan: CGFloat,
@@ -592,6 +2129,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_cmyk_stroke_color`"]
     pub fn CGContextSetCMYKStrokeColor(
         c: Option<&CGContext>,
         cyan: CGFloat,
@@ -603,32 +2141,36 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Rendering intent. *
     #[cfg(feature = "CGColorSpace")]
+    #[deprecated = "renamed to `CGContext::set_rendering_intent`"]
     pub fn CGContextSetRenderingIntent(c: Option<&CGContext>, intent: CGColorRenderingIntent);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_edr_target_headroom`"]
     pub fn CGContextSetEDRTargetHeadroom(c: &CGContext, headroom: c_float) -> bool;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::edr_target_headroom`"]
     pub fn CGContextGetEDRTargetHeadroom(c: &CGContext) -> c_float;
 }
 
 extern "C-unwind" {
-    /// Image functions. *
     #[cfg(feature = "CGImage")]
+    #[deprecated = "renamed to `CGContext::draw_image`"]
     pub fn CGContextDrawImage(c: Option<&CGContext>, rect: CGRect, image: Option<&CGImage>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGImage")]
+    #[deprecated = "renamed to `CGContext::draw_tiled_image`"]
     pub fn CGContextDrawTiledImage(c: Option<&CGContext>, rect: CGRect, image: Option<&CGImage>);
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGImage", feature = "CGToneMapping"))]
+    #[deprecated = "renamed to `CGContext::draw_image_applying_tone_mapping`"]
     pub fn CGContextDrawImageApplyingToneMapping(
         c: &CGContext,
         r: CGRect,
@@ -639,15 +2181,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::interpolation_quality`"]
     pub fn CGContextGetInterpolationQuality(c: Option<&CGContext>) -> CGInterpolationQuality;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_interpolation_quality`"]
     pub fn CGContextSetInterpolationQuality(c: Option<&CGContext>, quality: CGInterpolationQuality);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGColor")]
+    #[deprecated = "renamed to `CGContext::set_shadow_with_color`"]
     pub fn CGContextSetShadowWithColor(
         c: Option<&CGContext>,
         offset: CGSize,
@@ -657,11 +2202,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_shadow`"]
     pub fn CGContextSetShadow(c: Option<&CGContext>, offset: CGSize, blur: CGFloat);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGGradient")]
+    #[deprecated = "renamed to `CGContext::draw_linear_gradient`"]
     pub fn CGContextDrawLinearGradient(
         c: Option<&CGContext>,
         gradient: Option<&CGGradient>,
@@ -673,6 +2220,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGGradient")]
+    #[deprecated = "renamed to `CGContext::draw_radial_gradient`"]
     pub fn CGContextDrawRadialGradient(
         c: Option<&CGContext>,
         gradient: Option<&CGGradient>,
@@ -686,6 +2234,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGGradient")]
+    #[deprecated = "renamed to `CGContext::draw_conic_gradient`"]
     pub fn CGContextDrawConicGradient(
         c: &CGContext,
         gradient: Option<&CGGradient>,
@@ -696,45 +2245,54 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGShading")]
+    #[deprecated = "renamed to `CGContext::draw_shading`"]
     pub fn CGContextDrawShading(c: Option<&CGContext>, shading: Option<&CGShading>);
 }
 
 extern "C-unwind" {
-    /// Text functions. *
+    #[deprecated = "renamed to `CGContext::set_character_spacing`"]
     pub fn CGContextSetCharacterSpacing(c: Option<&CGContext>, spacing: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_text_position`"]
     pub fn CGContextSetTextPosition(c: Option<&CGContext>, x: CGFloat, y: CGFloat);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::text_position`"]
     pub fn CGContextGetTextPosition(c: Option<&CGContext>) -> CGPoint;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_text_matrix`"]
     pub fn CGContextSetTextMatrix(c: Option<&CGContext>, t: CGAffineTransform);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::text_matrix`"]
     pub fn CGContextGetTextMatrix(c: Option<&CGContext>) -> CGAffineTransform;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_text_drawing_mode`"]
     pub fn CGContextSetTextDrawingMode(c: Option<&CGContext>, mode: CGTextDrawingMode);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGFont")]
+    #[deprecated = "renamed to `CGContext::set_font`"]
     pub fn CGContextSetFont(c: Option<&CGContext>, font: Option<&CGFont>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_font_size`"]
     pub fn CGContextSetFontSize(c: Option<&CGContext>, size: CGFloat);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGFont")]
+    #[deprecated = "renamed to `CGContext::show_glyphs_at_positions`"]
     pub fn CGContextShowGlyphsAtPositions(
         c: Option<&CGContext>,
         glyphs: *const CGGlyph,
@@ -744,45 +2302,53 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// PDF functions. *
     #[cfg(feature = "CGPDFPage")]
+    #[deprecated = "renamed to `CGContext::draw_pdf_page`"]
     pub fn CGContextDrawPDFPage(c: Option<&CGContext>, page: Option<&CGPDFPage>);
 }
 
 extern "C-unwind" {
-    /// Output page functions. *
+    #[deprecated = "renamed to `CGContext::begin_page`"]
     pub fn CGContextBeginPage(c: Option<&CGContext>, media_box: *const CGRect);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::end_page`"]
     pub fn CGContextEndPage(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::flush`"]
     pub fn CGContextFlush(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::synchronize`"]
     pub fn CGContextSynchronize(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_should_antialias`"]
     pub fn CGContextSetShouldAntialias(c: Option<&CGContext>, should_antialias: bool);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_allows_antialiasing`"]
     pub fn CGContextSetAllowsAntialiasing(c: Option<&CGContext>, allows_antialiasing: bool);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_should_smooth_fonts`"]
     pub fn CGContextSetShouldSmoothFonts(c: Option<&CGContext>, should_smooth_fonts: bool);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_allows_font_smoothing`"]
     pub fn CGContextSetAllowsFontSmoothing(c: Option<&CGContext>, allows_font_smoothing: bool);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_should_subpixel_position_fonts`"]
     pub fn CGContextSetShouldSubpixelPositionFonts(
         c: Option<&CGContext>,
         should_subpixel_position_fonts: bool,
@@ -790,6 +2356,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_allows_font_subpixel_positioning`"]
     pub fn CGContextSetAllowsFontSubpixelPositioning(
         c: Option<&CGContext>,
         allows_font_subpixel_positioning: bool,
@@ -797,6 +2364,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_should_subpixel_quantize_fonts`"]
     pub fn CGContextSetShouldSubpixelQuantizeFonts(
         c: Option<&CGContext>,
         should_subpixel_quantize_fonts: bool,
@@ -804,6 +2372,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::set_allows_font_subpixel_quantization`"]
     pub fn CGContextSetAllowsFontSubpixelQuantization(
         c: Option<&CGContext>,
         allows_font_subpixel_quantization: bool,
@@ -811,7 +2380,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Transparency layer support. *
+    #[deprecated = "renamed to `CGContext::begin_transparency_layer`"]
     pub fn CGContextBeginTransparencyLayer(
         c: Option<&CGContext>,
         auxiliary_info: Option<&CFDictionary>,
@@ -819,6 +2388,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::begin_transparency_layer_with_rect`"]
     pub fn CGContextBeginTransparencyLayerWithRect(
         c: Option<&CGContext>,
         rect: CGRect,
@@ -827,40 +2397,47 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::end_transparency_layer`"]
     pub fn CGContextEndTransparencyLayer(c: Option<&CGContext>);
 }
 
 extern "C-unwind" {
-    /// User space to device space tranformations. *
+    #[deprecated = "renamed to `CGContext::user_space_to_device_space_transform`"]
     pub fn CGContextGetUserSpaceToDeviceSpaceTransform(c: Option<&CGContext>) -> CGAffineTransform;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::convert_point_to_device_space`"]
     pub fn CGContextConvertPointToDeviceSpace(c: Option<&CGContext>, point: CGPoint) -> CGPoint;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::convert_point_to_user_space`"]
     pub fn CGContextConvertPointToUserSpace(c: Option<&CGContext>, point: CGPoint) -> CGPoint;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::convert_size_to_device_space`"]
     pub fn CGContextConvertSizeToDeviceSpace(c: Option<&CGContext>, size: CGSize) -> CGSize;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::convert_size_to_user_space`"]
     pub fn CGContextConvertSizeToUserSpace(c: Option<&CGContext>, size: CGSize) -> CGSize;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::convert_rect_to_device_space`"]
     pub fn CGContextConvertRectToDeviceSpace(c: Option<&CGContext>, rect: CGRect) -> CGRect;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::convert_rect_to_user_space`"]
     pub fn CGContextConvertRectToUserSpace(c: Option<&CGContext>, rect: CGRect) -> CGRect;
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `CGContext::select_font`"]
     pub fn CGContextSelectFont(
         c: Option<&CGContext>,
         name: *const c_char,
@@ -870,12 +2447,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `CGContext::show_text`"]
     pub fn CGContextShowText(c: Option<&CGContext>, string: *const c_char, length: usize);
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `CGContext::show_text_at_point`"]
     pub fn CGContextShowTextAtPoint(
         c: Option<&CGContext>,
         x: CGFloat,
@@ -887,13 +2464,13 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGFont")]
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `CGContext::show_glyphs`"]
     pub fn CGContextShowGlyphs(c: Option<&CGContext>, g: *const CGGlyph, count: usize);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGFont")]
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `CGContext::show_glyphs_at_point`"]
     pub fn CGContextShowGlyphsAtPoint(
         c: Option<&CGContext>,
         x: CGFloat,
@@ -905,7 +2482,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGFont")]
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `CGContext::show_glyphs_with_advances`"]
     pub fn CGContextShowGlyphsWithAdvances(
         c: Option<&CGContext>,
         glyphs: *const CGGlyph,
@@ -916,7 +2493,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFDocument")]
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `CGContext::draw_pdf_document`"]
     pub fn CGContextDrawPDFDocument(
         c: Option<&CGContext>,
         rect: CGRect,

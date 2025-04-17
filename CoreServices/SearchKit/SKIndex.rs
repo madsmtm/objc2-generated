@@ -112,6 +112,524 @@ unsafe impl RefEncode for SKDocumentIndexState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+impl SKIndex {
+    #[inline]
+    #[doc(alias = "SKIndexCreateWithURL")]
+    pub unsafe fn with_url(
+        in_url: Option<&CFURL>,
+        in_index_name: Option<&CFString>,
+        in_index_type: SKIndexType,
+        in_analysis_properties: Option<&CFDictionary>,
+    ) -> Option<CFRetained<SKIndex>> {
+        extern "C-unwind" {
+            fn SKIndexCreateWithURL(
+                in_url: Option<&CFURL>,
+                in_index_name: Option<&CFString>,
+                in_index_type: SKIndexType,
+                in_analysis_properties: Option<&CFDictionary>,
+            ) -> Option<NonNull<SKIndex>>;
+        }
+        let ret = unsafe {
+            SKIndexCreateWithURL(in_url, in_index_name, in_index_type, in_analysis_properties)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexOpenWithURL")]
+    pub unsafe fn open_with_url(
+        in_url: Option<&CFURL>,
+        in_index_name: Option<&CFString>,
+        in_write_access: bool,
+    ) -> Option<CFRetained<SKIndex>> {
+        extern "C-unwind" {
+            fn SKIndexOpenWithURL(
+                in_url: Option<&CFURL>,
+                in_index_name: Option<&CFString>,
+                in_write_access: Boolean,
+            ) -> Option<NonNull<SKIndex>>;
+        }
+        let ret = unsafe { SKIndexOpenWithURL(in_url, in_index_name, in_write_access as _) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexCreateWithMutableData")]
+    pub unsafe fn with_mutable_data(
+        in_data: Option<&CFMutableData>,
+        in_index_name: Option<&CFString>,
+        in_index_type: SKIndexType,
+        in_analysis_properties: Option<&CFDictionary>,
+    ) -> Option<CFRetained<SKIndex>> {
+        extern "C-unwind" {
+            fn SKIndexCreateWithMutableData(
+                in_data: Option<&CFMutableData>,
+                in_index_name: Option<&CFString>,
+                in_index_type: SKIndexType,
+                in_analysis_properties: Option<&CFDictionary>,
+            ) -> Option<NonNull<SKIndex>>;
+        }
+        let ret = unsafe {
+            SKIndexCreateWithMutableData(
+                in_data,
+                in_index_name,
+                in_index_type,
+                in_analysis_properties,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexOpenWithData")]
+    pub unsafe fn open_with_data(
+        in_data: Option<&CFData>,
+        in_index_name: Option<&CFString>,
+    ) -> Option<CFRetained<SKIndex>> {
+        extern "C-unwind" {
+            fn SKIndexOpenWithData(
+                in_data: Option<&CFData>,
+                in_index_name: Option<&CFString>,
+            ) -> Option<NonNull<SKIndex>>;
+        }
+        let ret = unsafe { SKIndexOpenWithData(in_data, in_index_name) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexOpenWithMutableData")]
+    pub unsafe fn open_with_mutable_data(
+        in_data: Option<&CFMutableData>,
+        in_index_name: Option<&CFString>,
+    ) -> Option<CFRetained<SKIndex>> {
+        extern "C-unwind" {
+            fn SKIndexOpenWithMutableData(
+                in_data: Option<&CFMutableData>,
+                in_index_name: Option<&CFString>,
+            ) -> Option<NonNull<SKIndex>>;
+        }
+        let ret = unsafe { SKIndexOpenWithMutableData(in_data, in_index_name) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexFlush")]
+    pub unsafe fn flush(self: &SKIndex) -> bool {
+        extern "C-unwind" {
+            fn SKIndexFlush(in_index: &SKIndex) -> Boolean;
+        }
+        let ret = unsafe { SKIndexFlush(self) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexSetMaximumBytesBeforeFlush")]
+    pub unsafe fn set_maximum_bytes_before_flush(self: &SKIndex, in_bytes_for_update: CFIndex) {
+        extern "C-unwind" {
+            fn SKIndexSetMaximumBytesBeforeFlush(in_index: &SKIndex, in_bytes_for_update: CFIndex);
+        }
+        unsafe { SKIndexSetMaximumBytesBeforeFlush(self, in_bytes_for_update) }
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexGetMaximumBytesBeforeFlush")]
+    pub unsafe fn maximum_bytes_before_flush(self: &SKIndex) -> CFIndex {
+        extern "C-unwind" {
+            fn SKIndexGetMaximumBytesBeforeFlush(in_index: &SKIndex) -> CFIndex;
+        }
+        unsafe { SKIndexGetMaximumBytesBeforeFlush(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexCompact")]
+    pub unsafe fn compact(self: &SKIndex) -> bool {
+        extern "C-unwind" {
+            fn SKIndexCompact(in_index: &SKIndex) -> Boolean;
+        }
+        let ret = unsafe { SKIndexCompact(self) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexGetIndexType")]
+    pub unsafe fn index_type(self: &SKIndex) -> SKIndexType {
+        extern "C-unwind" {
+            fn SKIndexGetIndexType(in_index: &SKIndex) -> SKIndexType;
+        }
+        unsafe { SKIndexGetIndexType(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexGetAnalysisProperties")]
+    pub unsafe fn analysis_properties(self: &SKIndex) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SKIndexGetAnalysisProperties(in_index: &SKIndex) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SKIndexGetAnalysisProperties(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexGetDocumentCount")]
+    pub unsafe fn document_count(self: &SKIndex) -> CFIndex {
+        extern "C-unwind" {
+            fn SKIndexGetDocumentCount(in_index: &SKIndex) -> CFIndex;
+        }
+        unsafe { SKIndexGetDocumentCount(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexClose")]
+    pub unsafe fn close(self: &SKIndex) {
+        extern "C-unwind" {
+            fn SKIndexClose(in_index: &SKIndex);
+        }
+        unsafe { SKIndexClose(self) }
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentid?language=objc)
+pub type SKDocumentID = CFIndex;
+
+impl SKIndex {
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexAddDocumentWithText")]
+    pub unsafe fn add_document_with_text(
+        self: &SKIndex,
+        in_document: Option<&SKDocument>,
+        in_document_text: Option<&CFString>,
+        in_can_replace: bool,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SKIndexAddDocumentWithText(
+                in_index: &SKIndex,
+                in_document: Option<&SKDocument>,
+                in_document_text: Option<&CFString>,
+                in_can_replace: Boolean,
+            ) -> Boolean;
+        }
+        let ret = unsafe {
+            SKIndexAddDocumentWithText(self, in_document, in_document_text, in_can_replace as _)
+        };
+        ret != 0
+    }
+
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexAddDocument")]
+    pub unsafe fn add_document(
+        self: &SKIndex,
+        in_document: Option<&SKDocument>,
+        in_mime_type_hint: Option<&CFString>,
+        in_can_replace: bool,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SKIndexAddDocument(
+                in_index: &SKIndex,
+                in_document: Option<&SKDocument>,
+                in_mime_type_hint: Option<&CFString>,
+                in_can_replace: Boolean,
+            ) -> Boolean;
+        }
+        let ret = unsafe {
+            SKIndexAddDocument(self, in_document, in_mime_type_hint, in_can_replace as _)
+        };
+        ret != 0
+    }
+
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexRemoveDocument")]
+    pub unsafe fn remove_document(self: &SKIndex, in_document: Option<&SKDocument>) -> bool {
+        extern "C-unwind" {
+            fn SKIndexRemoveDocument(
+                in_index: &SKIndex,
+                in_document: Option<&SKDocument>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SKIndexRemoveDocument(self, in_document) };
+        ret != 0
+    }
+
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexCopyDocumentProperties")]
+    pub unsafe fn document_properties(
+        self: &SKIndex,
+        in_document: Option<&SKDocument>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SKIndexCopyDocumentProperties(
+                in_index: &SKIndex,
+                in_document: Option<&SKDocument>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SKIndexCopyDocumentProperties(self, in_document) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexSetDocumentProperties")]
+    pub unsafe fn set_document_properties(
+        self: &SKIndex,
+        in_document: Option<&SKDocument>,
+        in_properties: Option<&CFDictionary>,
+    ) {
+        extern "C-unwind" {
+            fn SKIndexSetDocumentProperties(
+                in_index: &SKIndex,
+                in_document: Option<&SKDocument>,
+                in_properties: Option<&CFDictionary>,
+            );
+        }
+        unsafe { SKIndexSetDocumentProperties(self, in_document, in_properties) }
+    }
+
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexGetDocumentState")]
+    pub unsafe fn document_state(
+        self: &SKIndex,
+        in_document: Option<&SKDocument>,
+    ) -> SKDocumentIndexState {
+        extern "C-unwind" {
+            fn SKIndexGetDocumentState(
+                in_index: &SKIndex,
+                in_document: Option<&SKDocument>,
+            ) -> SKDocumentIndexState;
+        }
+        unsafe { SKIndexGetDocumentState(self, in_document) }
+    }
+
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexGetDocumentID")]
+    pub unsafe fn document_id(self: &SKIndex, in_document: Option<&SKDocument>) -> SKDocumentID {
+        extern "C-unwind" {
+            fn SKIndexGetDocumentID(
+                in_index: &SKIndex,
+                in_document: Option<&SKDocument>,
+            ) -> SKDocumentID;
+        }
+        unsafe { SKIndexGetDocumentID(self, in_document) }
+    }
+
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexCopyDocumentForDocumentID")]
+    pub unsafe fn document_for_document_id(
+        self: &SKIndex,
+        in_document_id: SKDocumentID,
+    ) -> Option<CFRetained<SKDocument>> {
+        extern "C-unwind" {
+            fn SKIndexCopyDocumentForDocumentID(
+                in_index: &SKIndex,
+                in_document_id: SKDocumentID,
+            ) -> Option<NonNull<SKDocument>>;
+        }
+        let ret = unsafe { SKIndexCopyDocumentForDocumentID(self, in_document_id) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexRenameDocument")]
+    pub unsafe fn rename_document(
+        self: &SKIndex,
+        in_document: Option<&SKDocument>,
+        in_new_name: Option<&CFString>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SKIndexRenameDocument(
+                in_index: &SKIndex,
+                in_document: Option<&SKDocument>,
+                in_new_name: Option<&CFString>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SKIndexRenameDocument(self, in_document, in_new_name) };
+        ret != 0
+    }
+
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexMoveDocument")]
+    pub unsafe fn move_document(
+        self: &SKIndex,
+        in_document: Option<&SKDocument>,
+        in_new_parent: Option<&SKDocument>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SKIndexMoveDocument(
+                in_index: &SKIndex,
+                in_document: Option<&SKDocument>,
+                in_new_parent: Option<&SKDocument>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SKIndexMoveDocument(self, in_document, in_new_parent) };
+        ret != 0
+    }
+}
+
+impl SKIndexDocumentIterator {
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexDocumentIteratorCreate")]
+    pub unsafe fn new(
+        in_index: &SKIndex,
+        in_parent_document: Option<&SKDocument>,
+    ) -> Option<CFRetained<SKIndexDocumentIterator>> {
+        extern "C-unwind" {
+            fn SKIndexDocumentIteratorCreate(
+                in_index: &SKIndex,
+                in_parent_document: Option<&SKDocument>,
+            ) -> Option<NonNull<SKIndexDocumentIterator>>;
+        }
+        let ret = unsafe { SKIndexDocumentIteratorCreate(in_index, in_parent_document) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "SKDocument")]
+    #[inline]
+    #[doc(alias = "SKIndexDocumentIteratorCopyNext")]
+    pub unsafe fn next(self: &SKIndexDocumentIterator) -> Option<CFRetained<SKDocument>> {
+        extern "C-unwind" {
+            fn SKIndexDocumentIteratorCopyNext(
+                in_iterator: &SKIndexDocumentIterator,
+            ) -> Option<NonNull<SKDocument>>;
+        }
+        let ret = unsafe { SKIndexDocumentIteratorCopyNext(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+impl SKIndex {
+    #[inline]
+    #[doc(alias = "SKIndexGetMaximumDocumentID")]
+    pub unsafe fn maximum_document_id(self: &SKIndex) -> SKDocumentID {
+        extern "C-unwind" {
+            fn SKIndexGetMaximumDocumentID(in_index: &SKIndex) -> SKDocumentID;
+        }
+        unsafe { SKIndexGetMaximumDocumentID(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexGetDocumentTermCount")]
+    pub unsafe fn document_term_count(self: &SKIndex, in_document_id: SKDocumentID) -> CFIndex {
+        extern "C-unwind" {
+            fn SKIndexGetDocumentTermCount(
+                in_index: &SKIndex,
+                in_document_id: SKDocumentID,
+            ) -> CFIndex;
+        }
+        unsafe { SKIndexGetDocumentTermCount(self, in_document_id) }
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexCopyTermIDArrayForDocumentID")]
+    pub unsafe fn term_id_array_for_document_id(
+        self: &SKIndex,
+        in_document_id: SKDocumentID,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn SKIndexCopyTermIDArrayForDocumentID(
+                in_index: &SKIndex,
+                in_document_id: SKDocumentID,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { SKIndexCopyTermIDArrayForDocumentID(self, in_document_id) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexGetDocumentTermFrequency")]
+    pub unsafe fn document_term_frequency(
+        self: &SKIndex,
+        in_document_id: SKDocumentID,
+        in_term_id: CFIndex,
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn SKIndexGetDocumentTermFrequency(
+                in_index: &SKIndex,
+                in_document_id: SKDocumentID,
+                in_term_id: CFIndex,
+            ) -> CFIndex;
+        }
+        unsafe { SKIndexGetDocumentTermFrequency(self, in_document_id, in_term_id) }
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexGetMaximumTermID")]
+    pub unsafe fn maximum_term_id(self: &SKIndex) -> CFIndex {
+        extern "C-unwind" {
+            fn SKIndexGetMaximumTermID(in_index: &SKIndex) -> CFIndex;
+        }
+        unsafe { SKIndexGetMaximumTermID(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexGetTermDocumentCount")]
+    pub unsafe fn term_document_count(self: &SKIndex, in_term_id: CFIndex) -> CFIndex {
+        extern "C-unwind" {
+            fn SKIndexGetTermDocumentCount(in_index: &SKIndex, in_term_id: CFIndex) -> CFIndex;
+        }
+        unsafe { SKIndexGetTermDocumentCount(self, in_term_id) }
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexCopyDocumentIDArrayForTermID")]
+    pub unsafe fn document_id_array_for_term_id(
+        self: &SKIndex,
+        in_term_id: CFIndex,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn SKIndexCopyDocumentIDArrayForTermID(
+                in_index: &SKIndex,
+                in_term_id: CFIndex,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { SKIndexCopyDocumentIDArrayForTermID(self, in_term_id) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexCopyTermStringForTermID")]
+    pub unsafe fn term_string_for_term_id(
+        self: &SKIndex,
+        in_term_id: CFIndex,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SKIndexCopyTermStringForTermID(
+                in_index: &SKIndex,
+                in_term_id: CFIndex,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SKIndexCopyTermStringForTermID(self, in_term_id) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKIndexGetTermIDForTermString")]
+    pub unsafe fn term_id_for_term_string(
+        self: &SKIndex,
+        in_term_string: Option<&CFString>,
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn SKIndexGetTermIDForTermString(
+                in_index: &SKIndex,
+                in_term_string: Option<&CFString>,
+            ) -> CFIndex;
+        }
+        unsafe { SKIndexGetTermIDForTermString(self, in_term_string) }
+    }
+}
+
+extern "C-unwind" {
+    pub fn SKLoadDefaultExtractorPlugIns();
+}
+
+#[deprecated = "renamed to `SKIndex::with_url`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexCreateWithURL(
     in_url: Option<&CFURL>,
@@ -133,6 +651,7 @@ pub unsafe extern "C-unwind" fn SKIndexCreateWithURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `SKIndex::open_with_url`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexOpenWithURL(
     in_url: Option<&CFURL>,
@@ -150,6 +669,7 @@ pub unsafe extern "C-unwind" fn SKIndexOpenWithURL(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+#[deprecated = "renamed to `SKIndex::with_mutable_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexCreateWithMutableData(
     in_data: Option<&CFMutableData>,
@@ -176,6 +696,7 @@ pub unsafe extern "C-unwind" fn SKIndexCreateWithMutableData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `SKIndex::open_with_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexOpenWithData(
     in_data: Option<&CFData>,
@@ -191,6 +712,7 @@ pub unsafe extern "C-unwind" fn SKIndexOpenWithData(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+#[deprecated = "renamed to `SKIndex::open_with_mutable_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexOpenWithMutableData(
     in_data: Option<&CFMutableData>,
@@ -206,6 +728,7 @@ pub unsafe extern "C-unwind" fn SKIndexOpenWithMutableData(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+#[deprecated = "renamed to `SKIndex::flush`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexFlush(in_index: &SKIndex) -> bool {
     extern "C-unwind" {
@@ -216,13 +739,16 @@ pub unsafe extern "C-unwind" fn SKIndexFlush(in_index: &SKIndex) -> bool {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKIndex::set_maximum_bytes_before_flush`"]
     pub fn SKIndexSetMaximumBytesBeforeFlush(in_index: &SKIndex, in_bytes_for_update: CFIndex);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKIndex::maximum_bytes_before_flush`"]
     pub fn SKIndexGetMaximumBytesBeforeFlush(in_index: &SKIndex) -> CFIndex;
 }
 
+#[deprecated = "renamed to `SKIndex::compact`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexCompact(in_index: &SKIndex) -> bool {
     extern "C-unwind" {
@@ -233,9 +759,11 @@ pub unsafe extern "C-unwind" fn SKIndexCompact(in_index: &SKIndex) -> bool {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKIndex::index_type`"]
     pub fn SKIndexGetIndexType(in_index: &SKIndex) -> SKIndexType;
 }
 
+#[deprecated = "renamed to `SKIndex::analysis_properties`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexGetAnalysisProperties(
     in_index: &SKIndex,
@@ -248,17 +776,17 @@ pub unsafe extern "C-unwind" fn SKIndexGetAnalysisProperties(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKIndex::document_count`"]
     pub fn SKIndexGetDocumentCount(in_index: &SKIndex) -> CFIndex;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKIndex::close`"]
     pub fn SKIndexClose(in_index: &SKIndex);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentid?language=objc)
-pub type SKDocumentID = CFIndex;
-
 #[cfg(feature = "SKDocument")]
+#[deprecated = "renamed to `SKIndex::add_document_with_text`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexAddDocumentWithText(
     in_index: &SKIndex,
@@ -281,6 +809,7 @@ pub unsafe extern "C-unwind" fn SKIndexAddDocumentWithText(
 }
 
 #[cfg(feature = "SKDocument")]
+#[deprecated = "renamed to `SKIndex::add_document`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexAddDocument(
     in_index: &SKIndex,
@@ -308,6 +837,7 @@ pub unsafe extern "C-unwind" fn SKIndexAddDocument(
 }
 
 #[cfg(feature = "SKDocument")]
+#[deprecated = "renamed to `SKIndex::remove_document`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexRemoveDocument(
     in_index: &SKIndex,
@@ -321,6 +851,7 @@ pub unsafe extern "C-unwind" fn SKIndexRemoveDocument(
 }
 
 #[cfg(feature = "SKDocument")]
+#[deprecated = "renamed to `SKIndex::document_properties`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexCopyDocumentProperties(
     in_index: &SKIndex,
@@ -338,6 +869,7 @@ pub unsafe extern "C-unwind" fn SKIndexCopyDocumentProperties(
 
 extern "C-unwind" {
     #[cfg(feature = "SKDocument")]
+    #[deprecated = "renamed to `SKIndex::set_document_properties`"]
     pub fn SKIndexSetDocumentProperties(
         in_index: &SKIndex,
         in_document: Option<&SKDocument>,
@@ -347,6 +879,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "SKDocument")]
+    #[deprecated = "renamed to `SKIndex::document_state`"]
     pub fn SKIndexGetDocumentState(
         in_index: &SKIndex,
         in_document: Option<&SKDocument>,
@@ -355,6 +888,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "SKDocument")]
+    #[deprecated = "renamed to `SKIndex::document_id`"]
     pub fn SKIndexGetDocumentID(
         in_index: &SKIndex,
         in_document: Option<&SKDocument>,
@@ -362,6 +896,7 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "SKDocument")]
+#[deprecated = "renamed to `SKIndex::document_for_document_id`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexCopyDocumentForDocumentID(
     in_index: &SKIndex,
@@ -378,6 +913,7 @@ pub unsafe extern "C-unwind" fn SKIndexCopyDocumentForDocumentID(
 }
 
 #[cfg(feature = "SKDocument")]
+#[deprecated = "renamed to `SKIndex::rename_document`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexRenameDocument(
     in_index: &SKIndex,
@@ -396,6 +932,7 @@ pub unsafe extern "C-unwind" fn SKIndexRenameDocument(
 }
 
 #[cfg(feature = "SKDocument")]
+#[deprecated = "renamed to `SKIndex::move_document`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexMoveDocument(
     in_index: &SKIndex,
@@ -414,6 +951,7 @@ pub unsafe extern "C-unwind" fn SKIndexMoveDocument(
 }
 
 #[cfg(feature = "SKDocument")]
+#[deprecated = "renamed to `SKIndexDocumentIterator::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexDocumentIteratorCreate(
     in_index: &SKIndex,
@@ -430,6 +968,7 @@ pub unsafe extern "C-unwind" fn SKIndexDocumentIteratorCreate(
 }
 
 #[cfg(feature = "SKDocument")]
+#[deprecated = "renamed to `SKIndexDocumentIterator::next`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexDocumentIteratorCopyNext(
     in_iterator: &SKIndexDocumentIterator,
@@ -444,14 +983,17 @@ pub unsafe extern "C-unwind" fn SKIndexDocumentIteratorCopyNext(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKIndex::maximum_document_id`"]
     pub fn SKIndexGetMaximumDocumentID(in_index: &SKIndex) -> SKDocumentID;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKIndex::document_term_count`"]
     pub fn SKIndexGetDocumentTermCount(in_index: &SKIndex, in_document_id: SKDocumentID)
         -> CFIndex;
 }
 
+#[deprecated = "renamed to `SKIndex::term_id_array_for_document_id`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexCopyTermIDArrayForDocumentID(
     in_index: &SKIndex,
@@ -468,6 +1010,7 @@ pub unsafe extern "C-unwind" fn SKIndexCopyTermIDArrayForDocumentID(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKIndex::document_term_frequency`"]
     pub fn SKIndexGetDocumentTermFrequency(
         in_index: &SKIndex,
         in_document_id: SKDocumentID,
@@ -476,13 +1019,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKIndex::maximum_term_id`"]
     pub fn SKIndexGetMaximumTermID(in_index: &SKIndex) -> CFIndex;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKIndex::term_document_count`"]
     pub fn SKIndexGetTermDocumentCount(in_index: &SKIndex, in_term_id: CFIndex) -> CFIndex;
 }
 
+#[deprecated = "renamed to `SKIndex::document_id_array_for_term_id`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexCopyDocumentIDArrayForTermID(
     in_index: &SKIndex,
@@ -498,6 +1044,7 @@ pub unsafe extern "C-unwind" fn SKIndexCopyDocumentIDArrayForTermID(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `SKIndex::term_string_for_term_id`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKIndexCopyTermStringForTermID(
     in_index: &SKIndex,
@@ -514,12 +1061,9 @@ pub unsafe extern "C-unwind" fn SKIndexCopyTermStringForTermID(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKIndex::term_id_for_term_string`"]
     pub fn SKIndexGetTermIDForTermString(
         in_index: &SKIndex,
         in_term_string: Option<&CFString>,
     ) -> CFIndex;
-}
-
-extern "C-unwind" {
-    pub fn SKLoadDefaultExtractorPlugIns();
 }

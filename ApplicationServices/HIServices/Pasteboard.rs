@@ -134,91 +134,183 @@ unsafe impl ConcreteType for Pasteboard {
     }
 }
 
-extern "C-unwind" {
-    pub fn PasteboardCreate(
+impl Pasteboard {
+    #[inline]
+    #[doc(alias = "PasteboardCreate")]
+    pub unsafe fn create(
         in_name: Option<&CFString>,
         out_pasteboard: NonNull<*mut Pasteboard>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardCreate(
+                in_name: Option<&CFString>,
+                out_pasteboard: NonNull<*mut Pasteboard>,
+            ) -> OSStatus;
+        }
+        unsafe { PasteboardCreate(in_name, out_pasteboard) }
+    }
 
-extern "C-unwind" {
-    pub fn PasteboardSynchronize(in_pasteboard: &Pasteboard) -> PasteboardSyncFlags;
-}
+    #[inline]
+    #[doc(alias = "PasteboardSynchronize")]
+    pub unsafe fn synchronize(self: &Pasteboard) -> PasteboardSyncFlags {
+        extern "C-unwind" {
+            fn PasteboardSynchronize(in_pasteboard: &Pasteboard) -> PasteboardSyncFlags;
+        }
+        unsafe { PasteboardSynchronize(self) }
+    }
 
-extern "C-unwind" {
-    pub fn PasteboardClear(in_pasteboard: &Pasteboard) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "PasteboardClear")]
+    pub unsafe fn clear(self: &Pasteboard) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardClear(in_pasteboard: &Pasteboard) -> OSStatus;
+        }
+        unsafe { PasteboardClear(self) }
+    }
 
-extern "C-unwind" {
-    pub fn PasteboardCopyName(
-        in_pasteboard: &Pasteboard,
-        out_name: NonNull<*const CFString>,
-    ) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "PasteboardCopyName")]
+    pub unsafe fn copy_name(self: &Pasteboard, out_name: NonNull<*const CFString>) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardCopyName(
+                in_pasteboard: &Pasteboard,
+                out_name: NonNull<*const CFString>,
+            ) -> OSStatus;
+        }
+        unsafe { PasteboardCopyName(self, out_name) }
+    }
 
-extern "C-unwind" {
-    pub fn PasteboardGetItemCount(
-        in_pasteboard: &Pasteboard,
-        out_item_count: NonNull<ItemCount>,
-    ) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "PasteboardGetItemCount")]
+    pub unsafe fn item_count(self: &Pasteboard, out_item_count: NonNull<ItemCount>) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardGetItemCount(
+                in_pasteboard: &Pasteboard,
+                out_item_count: NonNull<ItemCount>,
+            ) -> OSStatus;
+        }
+        unsafe { PasteboardGetItemCount(self, out_item_count) }
+    }
 
-extern "C-unwind" {
-    pub fn PasteboardGetItemIdentifier(
-        in_pasteboard: &Pasteboard,
+    #[inline]
+    #[doc(alias = "PasteboardGetItemIdentifier")]
+    pub unsafe fn item_identifier(
+        self: &Pasteboard,
         in_index: CFIndex,
         out_item: NonNull<PasteboardItemID>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardGetItemIdentifier(
+                in_pasteboard: &Pasteboard,
+                in_index: CFIndex,
+                out_item: NonNull<PasteboardItemID>,
+            ) -> OSStatus;
+        }
+        unsafe { PasteboardGetItemIdentifier(self, in_index, out_item) }
+    }
 
-extern "C-unwind" {
-    pub fn PasteboardCopyItemFlavors(
-        in_pasteboard: &Pasteboard,
+    #[inline]
+    #[doc(alias = "PasteboardCopyItemFlavors")]
+    pub unsafe fn copy_item_flavors(
+        self: &Pasteboard,
         in_item: PasteboardItemID,
         out_flavor_types: NonNull<*const CFArray>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardCopyItemFlavors(
+                in_pasteboard: &Pasteboard,
+                in_item: PasteboardItemID,
+                out_flavor_types: NonNull<*const CFArray>,
+            ) -> OSStatus;
+        }
+        unsafe { PasteboardCopyItemFlavors(self, in_item, out_flavor_types) }
+    }
 
-extern "C-unwind" {
-    pub fn PasteboardGetItemFlavorFlags(
-        in_pasteboard: &Pasteboard,
+    #[inline]
+    #[doc(alias = "PasteboardGetItemFlavorFlags")]
+    pub unsafe fn item_flavor_flags(
+        self: &Pasteboard,
         in_item: PasteboardItemID,
         in_flavor_type: &CFString,
         out_flags: NonNull<PasteboardFlavorFlags>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardGetItemFlavorFlags(
+                in_pasteboard: &Pasteboard,
+                in_item: PasteboardItemID,
+                in_flavor_type: &CFString,
+                out_flags: NonNull<PasteboardFlavorFlags>,
+            ) -> OSStatus;
+        }
+        unsafe { PasteboardGetItemFlavorFlags(self, in_item, in_flavor_type, out_flags) }
+    }
 
-extern "C-unwind" {
-    pub fn PasteboardCopyItemFlavorData(
-        in_pasteboard: &Pasteboard,
+    #[inline]
+    #[doc(alias = "PasteboardCopyItemFlavorData")]
+    pub unsafe fn copy_item_flavor_data(
+        self: &Pasteboard,
         in_item: PasteboardItemID,
         in_flavor_type: &CFString,
         out_data: NonNull<*const CFData>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardCopyItemFlavorData(
+                in_pasteboard: &Pasteboard,
+                in_item: PasteboardItemID,
+                in_flavor_type: &CFString,
+                out_data: NonNull<*const CFData>,
+            ) -> OSStatus;
+        }
+        unsafe { PasteboardCopyItemFlavorData(self, in_item, in_flavor_type, out_data) }
+    }
 
-extern "C-unwind" {
-    pub fn PasteboardPutItemFlavor(
-        in_pasteboard: &Pasteboard,
+    #[inline]
+    #[doc(alias = "PasteboardPutItemFlavor")]
+    pub unsafe fn put_item_flavor(
+        self: &Pasteboard,
         in_item: PasteboardItemID,
         in_flavor_type: &CFString,
         in_data: Option<&CFData>,
         in_flags: PasteboardFlavorFlags,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardPutItemFlavor(
+                in_pasteboard: &Pasteboard,
+                in_item: PasteboardItemID,
+                in_flavor_type: &CFString,
+                in_data: Option<&CFData>,
+                in_flags: PasteboardFlavorFlags,
+            ) -> OSStatus;
+        }
+        unsafe { PasteboardPutItemFlavor(self, in_item, in_flavor_type, in_data, in_flags) }
+    }
 
-extern "C-unwind" {
-    pub fn PasteboardCopyPasteLocation(
-        in_pasteboard: &Pasteboard,
+    #[inline]
+    #[doc(alias = "PasteboardCopyPasteLocation")]
+    pub unsafe fn copy_paste_location(
+        self: &Pasteboard,
         out_paste_location: NonNull<*const CFURL>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardCopyPasteLocation(
+                in_pasteboard: &Pasteboard,
+                out_paste_location: NonNull<*const CFURL>,
+            ) -> OSStatus;
+        }
+        unsafe { PasteboardCopyPasteLocation(self, out_paste_location) }
+    }
 
-extern "C-unwind" {
-    pub fn PasteboardSetPasteLocation(
-        in_pasteboard: &Pasteboard,
-        in_paste_location: &CFURL,
-    ) -> OSStatus;
+    #[inline]
+    #[doc(alias = "PasteboardSetPasteLocation")]
+    pub unsafe fn set_paste_location(self: &Pasteboard, in_paste_location: &CFURL) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardSetPasteLocation(
+                in_pasteboard: &Pasteboard,
+                in_paste_location: &CFURL,
+            ) -> OSStatus;
+        }
+        unsafe { PasteboardSetPasteLocation(self, in_paste_location) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardpromisekeeperprocptr?language=objc)
@@ -231,7 +323,135 @@ pub type PasteboardPromiseKeeperProcPtr = Option<
     ) -> OSStatus,
 >;
 
+impl Pasteboard {
+    #[inline]
+    #[doc(alias = "PasteboardSetPromiseKeeper")]
+    pub unsafe fn set_promise_keeper(
+        self: &Pasteboard,
+        in_promise_keeper: PasteboardPromiseKeeperProcPtr,
+        in_context: *mut c_void,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardSetPromiseKeeper(
+                in_pasteboard: &Pasteboard,
+                in_promise_keeper: PasteboardPromiseKeeperProcPtr,
+                in_context: *mut c_void,
+            ) -> OSStatus;
+        }
+        unsafe { PasteboardSetPromiseKeeper(self, in_promise_keeper, in_context) }
+    }
+
+    #[inline]
+    #[doc(alias = "PasteboardResolvePromises")]
+    pub unsafe fn resolve_promises(self: &Pasteboard) -> OSStatus {
+        extern "C-unwind" {
+            fn PasteboardResolvePromises(in_pasteboard: &Pasteboard) -> OSStatus;
+        }
+        unsafe { PasteboardResolvePromises(self) }
+    }
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::create`"]
+    pub fn PasteboardCreate(
+        in_name: Option<&CFString>,
+        out_pasteboard: NonNull<*mut Pasteboard>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::synchronize`"]
+    pub fn PasteboardSynchronize(in_pasteboard: &Pasteboard) -> PasteboardSyncFlags;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::clear`"]
+    pub fn PasteboardClear(in_pasteboard: &Pasteboard) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::copy_name`"]
+    pub fn PasteboardCopyName(
+        in_pasteboard: &Pasteboard,
+        out_name: NonNull<*const CFString>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::item_count`"]
+    pub fn PasteboardGetItemCount(
+        in_pasteboard: &Pasteboard,
+        out_item_count: NonNull<ItemCount>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::item_identifier`"]
+    pub fn PasteboardGetItemIdentifier(
+        in_pasteboard: &Pasteboard,
+        in_index: CFIndex,
+        out_item: NonNull<PasteboardItemID>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::copy_item_flavors`"]
+    pub fn PasteboardCopyItemFlavors(
+        in_pasteboard: &Pasteboard,
+        in_item: PasteboardItemID,
+        out_flavor_types: NonNull<*const CFArray>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::item_flavor_flags`"]
+    pub fn PasteboardGetItemFlavorFlags(
+        in_pasteboard: &Pasteboard,
+        in_item: PasteboardItemID,
+        in_flavor_type: &CFString,
+        out_flags: NonNull<PasteboardFlavorFlags>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::copy_item_flavor_data`"]
+    pub fn PasteboardCopyItemFlavorData(
+        in_pasteboard: &Pasteboard,
+        in_item: PasteboardItemID,
+        in_flavor_type: &CFString,
+        out_data: NonNull<*const CFData>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::put_item_flavor`"]
+    pub fn PasteboardPutItemFlavor(
+        in_pasteboard: &Pasteboard,
+        in_item: PasteboardItemID,
+        in_flavor_type: &CFString,
+        in_data: Option<&CFData>,
+        in_flags: PasteboardFlavorFlags,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::copy_paste_location`"]
+    pub fn PasteboardCopyPasteLocation(
+        in_pasteboard: &Pasteboard,
+        out_paste_location: NonNull<*const CFURL>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::set_paste_location`"]
+    pub fn PasteboardSetPasteLocation(
+        in_pasteboard: &Pasteboard,
+        in_paste_location: &CFURL,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::set_promise_keeper`"]
     pub fn PasteboardSetPromiseKeeper(
         in_pasteboard: &Pasteboard,
         in_promise_keeper: PasteboardPromiseKeeperProcPtr,
@@ -240,5 +460,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `Pasteboard::resolve_promises`"]
     pub fn PasteboardResolvePromises(in_pasteboard: &Pasteboard) -> OSStatus;
 }

@@ -25,12 +25,235 @@ unsafe impl RefEncode for CGPDFDictionary {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryref?language=objc)
 pub type CGPDFDictionaryRef = *mut CGPDFDictionary;
 
+impl CGPDFDictionary {
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryGetCount")]
+    pub unsafe fn count(dict: CGPDFDictionaryRef) -> usize {
+        extern "C-unwind" {
+            fn CGPDFDictionaryGetCount(dict: CGPDFDictionaryRef) -> usize;
+        }
+        unsafe { CGPDFDictionaryGetCount(dict) }
+    }
+
+    #[cfg(feature = "CGPDFObject")]
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryGetObject")]
+    pub unsafe fn object(
+        dict: CGPDFDictionaryRef,
+        key: NonNull<c_char>,
+        value: *mut CGPDFObjectRef,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPDFDictionaryGetObject(
+                dict: CGPDFDictionaryRef,
+                key: NonNull<c_char>,
+                value: *mut CGPDFObjectRef,
+            ) -> bool;
+        }
+        unsafe { CGPDFDictionaryGetObject(dict, key, value) }
+    }
+
+    #[cfg(feature = "CGPDFObject")]
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryGetBoolean")]
+    pub unsafe fn boolean(
+        dict: CGPDFDictionaryRef,
+        key: NonNull<c_char>,
+        value: *mut CGPDFBoolean,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPDFDictionaryGetBoolean(
+                dict: CGPDFDictionaryRef,
+                key: NonNull<c_char>,
+                value: *mut CGPDFBoolean,
+            ) -> bool;
+        }
+        unsafe { CGPDFDictionaryGetBoolean(dict, key, value) }
+    }
+
+    #[cfg(feature = "CGPDFObject")]
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryGetInteger")]
+    pub unsafe fn integer(
+        dict: CGPDFDictionaryRef,
+        key: NonNull<c_char>,
+        value: *mut CGPDFInteger,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPDFDictionaryGetInteger(
+                dict: CGPDFDictionaryRef,
+                key: NonNull<c_char>,
+                value: *mut CGPDFInteger,
+            ) -> bool;
+        }
+        unsafe { CGPDFDictionaryGetInteger(dict, key, value) }
+    }
+
+    #[cfg(feature = "CGPDFObject")]
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryGetNumber")]
+    pub unsafe fn number(
+        dict: CGPDFDictionaryRef,
+        key: NonNull<c_char>,
+        value: *mut CGPDFReal,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPDFDictionaryGetNumber(
+                dict: CGPDFDictionaryRef,
+                key: NonNull<c_char>,
+                value: *mut CGPDFReal,
+            ) -> bool;
+        }
+        unsafe { CGPDFDictionaryGetNumber(dict, key, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryGetName")]
+    pub unsafe fn name(
+        dict: CGPDFDictionaryRef,
+        key: NonNull<c_char>,
+        value: *mut *const c_char,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPDFDictionaryGetName(
+                dict: CGPDFDictionaryRef,
+                key: NonNull<c_char>,
+                value: *mut *const c_char,
+            ) -> bool;
+        }
+        unsafe { CGPDFDictionaryGetName(dict, key, value) }
+    }
+
+    #[cfg(feature = "CGPDFString")]
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryGetString")]
+    pub unsafe fn string(
+        dict: CGPDFDictionaryRef,
+        key: NonNull<c_char>,
+        value: *mut CGPDFStringRef,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPDFDictionaryGetString(
+                dict: CGPDFDictionaryRef,
+                key: NonNull<c_char>,
+                value: *mut CGPDFStringRef,
+            ) -> bool;
+        }
+        unsafe { CGPDFDictionaryGetString(dict, key, value) }
+    }
+
+    #[cfg(feature = "CGPDFArray")]
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryGetArray")]
+    pub unsafe fn array(
+        dict: CGPDFDictionaryRef,
+        key: NonNull<c_char>,
+        value: *mut CGPDFArrayRef,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPDFDictionaryGetArray(
+                dict: CGPDFDictionaryRef,
+                key: NonNull<c_char>,
+                value: *mut CGPDFArrayRef,
+            ) -> bool;
+        }
+        unsafe { CGPDFDictionaryGetArray(dict, key, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryGetDictionary")]
+    pub unsafe fn dictionary(
+        dict: CGPDFDictionaryRef,
+        key: NonNull<c_char>,
+        value: *mut CGPDFDictionaryRef,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPDFDictionaryGetDictionary(
+                dict: CGPDFDictionaryRef,
+                key: NonNull<c_char>,
+                value: *mut CGPDFDictionaryRef,
+            ) -> bool;
+        }
+        unsafe { CGPDFDictionaryGetDictionary(dict, key, value) }
+    }
+
+    #[cfg(feature = "CGPDFStream")]
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryGetStream")]
+    pub unsafe fn stream(
+        dict: CGPDFDictionaryRef,
+        key: NonNull<c_char>,
+        value: *mut CGPDFStreamRef,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPDFDictionaryGetStream(
+                dict: CGPDFDictionaryRef,
+                key: NonNull<c_char>,
+                value: *mut CGPDFStreamRef,
+            ) -> bool;
+        }
+        unsafe { CGPDFDictionaryGetStream(dict, key, value) }
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierfunction?language=objc)
+#[cfg(feature = "CGPDFObject")]
+pub type CGPDFDictionaryApplierFunction =
+    Option<unsafe extern "C-unwind" fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void)>;
+
+impl CGPDFDictionary {
+    #[cfg(feature = "CGPDFObject")]
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryApplyFunction")]
+    pub unsafe fn apply_function(
+        dict: CGPDFDictionaryRef,
+        function: CGPDFDictionaryApplierFunction,
+        info: *mut c_void,
+    ) {
+        extern "C-unwind" {
+            fn CGPDFDictionaryApplyFunction(
+                dict: CGPDFDictionaryRef,
+                function: CGPDFDictionaryApplierFunction,
+                info: *mut c_void,
+            );
+        }
+        unsafe { CGPDFDictionaryApplyFunction(dict, function, info) }
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierblock?language=objc)
+#[cfg(all(feature = "CGPDFObject", feature = "block2"))]
+pub type CGPDFDictionaryApplierBlock =
+    *mut block2::DynBlock<dyn Fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
+
+impl CGPDFDictionary {
+    #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
+    #[inline]
+    #[doc(alias = "CGPDFDictionaryApplyBlock")]
+    pub unsafe fn apply_block(
+        dict: CGPDFDictionaryRef,
+        block: CGPDFDictionaryApplierBlock,
+        info: *mut c_void,
+    ) {
+        extern "C-unwind" {
+            fn CGPDFDictionaryApplyBlock(
+                dict: CGPDFDictionaryRef,
+                block: CGPDFDictionaryApplierBlock,
+                info: *mut c_void,
+            );
+        }
+        unsafe { CGPDFDictionaryApplyBlock(dict, block, info) }
+    }
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFDictionary::count`"]
     pub fn CGPDFDictionaryGetCount(dict: CGPDFDictionaryRef) -> usize;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFObject")]
+    #[deprecated = "renamed to `CGPDFDictionary::object`"]
     pub fn CGPDFDictionaryGetObject(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -40,6 +263,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFObject")]
+    #[deprecated = "renamed to `CGPDFDictionary::boolean`"]
     pub fn CGPDFDictionaryGetBoolean(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -49,6 +273,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFObject")]
+    #[deprecated = "renamed to `CGPDFDictionary::integer`"]
     pub fn CGPDFDictionaryGetInteger(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -58,6 +283,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFObject")]
+    #[deprecated = "renamed to `CGPDFDictionary::number`"]
     pub fn CGPDFDictionaryGetNumber(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -66,6 +292,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFDictionary::name`"]
     pub fn CGPDFDictionaryGetName(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -75,6 +302,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFString")]
+    #[deprecated = "renamed to `CGPDFDictionary::string`"]
     pub fn CGPDFDictionaryGetString(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -84,6 +312,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFArray")]
+    #[deprecated = "renamed to `CGPDFDictionary::array`"]
     pub fn CGPDFDictionaryGetArray(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -92,6 +321,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFDictionary::dictionary`"]
     pub fn CGPDFDictionaryGetDictionary(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -101,6 +331,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFStream")]
+    #[deprecated = "renamed to `CGPDFDictionary::stream`"]
     pub fn CGPDFDictionaryGetStream(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -108,13 +339,9 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierfunction?language=objc)
-#[cfg(feature = "CGPDFObject")]
-pub type CGPDFDictionaryApplierFunction =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void)>;
-
 extern "C-unwind" {
     #[cfg(feature = "CGPDFObject")]
+    #[deprecated = "renamed to `CGPDFDictionary::apply_function`"]
     pub fn CGPDFDictionaryApplyFunction(
         dict: CGPDFDictionaryRef,
         function: CGPDFDictionaryApplierFunction,
@@ -122,13 +349,9 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierblock?language=objc)
-#[cfg(all(feature = "CGPDFObject", feature = "block2"))]
-pub type CGPDFDictionaryApplierBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
-
 extern "C-unwind" {
     #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
+    #[deprecated = "renamed to `CGPDFDictionary::apply_block`"]
     pub fn CGPDFDictionaryApplyBlock(
         dict: CGPDFDictionaryRef,
         block: CGPDFDictionaryApplierBlock,

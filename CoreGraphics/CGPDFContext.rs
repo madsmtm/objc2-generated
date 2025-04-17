@@ -364,8 +364,15 @@ unsafe impl RefEncode for CGPDFTagType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *const c_char;
+impl CGPDFTagType {
+    #[inline]
+    #[doc(alias = "CGPDFTagTypeGetName")]
+    pub unsafe fn name(tag_type: CGPDFTagType) -> *const c_char {
+        extern "C-unwind" {
+            fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *const c_char;
+        }
+        unsafe { CGPDFTagTypeGetName(tag_type) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagproperty?language=objc)
@@ -404,4 +411,9 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
     pub fn CGPDFContextEndTag(context: &CGContext);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFTagType::name`"]
+    pub fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *const c_char;
 }

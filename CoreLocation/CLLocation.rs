@@ -102,21 +102,30 @@ extern "C" {
     pub static kCLLocationCoordinate2DInvalid: CLLocationCoordinate2D;
 }
 
-#[inline]
-pub unsafe extern "C-unwind" fn CLLocationCoordinate2DIsValid(
-    coord: CLLocationCoordinate2D,
-) -> bool {
-    extern "C-unwind" {
-        fn CLLocationCoordinate2DIsValid(coord: CLLocationCoordinate2D) -> Bool;
+impl CLLocationCoordinate2D {
+    #[inline]
+    #[doc(alias = "CLLocationCoordinate2DIsValid")]
+    pub unsafe fn is_valid(coord: CLLocationCoordinate2D) -> bool {
+        extern "C-unwind" {
+            fn CLLocationCoordinate2DIsValid(coord: CLLocationCoordinate2D) -> Bool;
+        }
+        unsafe { CLLocationCoordinate2DIsValid(coord) }.as_bool()
     }
-    unsafe { CLLocationCoordinate2DIsValid(coord) }.as_bool()
-}
 
-extern "C-unwind" {
-    pub fn CLLocationCoordinate2DMake(
+    #[inline]
+    #[doc(alias = "CLLocationCoordinate2DMake")]
+    pub unsafe fn new(
         latitude: CLLocationDegrees,
         longitude: CLLocationDegrees,
-    ) -> CLLocationCoordinate2D;
+    ) -> CLLocationCoordinate2D {
+        extern "C-unwind" {
+            fn CLLocationCoordinate2DMake(
+                latitude: CLLocationDegrees,
+                longitude: CLLocationDegrees,
+            ) -> CLLocationCoordinate2D;
+        }
+        unsafe { CLLocationCoordinate2DMake(latitude, longitude) }
+    }
 }
 
 extern_class!(
@@ -384,4 +393,23 @@ impl CLLocation {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     );
+}
+
+#[deprecated = "renamed to `CLLocationCoordinate2D::is_valid`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CLLocationCoordinate2DIsValid(
+    coord: CLLocationCoordinate2D,
+) -> bool {
+    extern "C-unwind" {
+        fn CLLocationCoordinate2DIsValid(coord: CLLocationCoordinate2D) -> Bool;
+    }
+    unsafe { CLLocationCoordinate2DIsValid(coord) }.as_bool()
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CLLocationCoordinate2D::new`"]
+    pub fn CLLocationCoordinate2DMake(
+        latitude: CLLocationDegrees,
+        longitude: CLLocationDegrees,
+    ) -> CLLocationCoordinate2D;
 }

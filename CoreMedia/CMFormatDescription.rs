@@ -65,7 +65,7 @@ pub const kCMMediaType_TaggedBufferGroup: CMMediaType = 0x74626772;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmediatype_auxiliarypicture?language=objc)
 pub const kCMMediaType_AuxiliaryPicture: CMMediaType = 0x61757876;
 
-extern "C-unwind" {
+impl CMFormatDescription {
     /// Creates a generic CMFormatDescription object.
     ///
     /// Use this call to create any CMFormatDescription that is composed solely of extensions, and for which
@@ -75,13 +75,34 @@ extern "C-unwind" {
     /// creations routines such as CMVideoFormatDescriptionCreate, CMAudioFormatDescriptionCreate, etc.
     ///
     /// Returns: A new CMFormatDescription object.
-    pub fn CMFormatDescriptionCreate(
+    #[inline]
+    #[doc(alias = "CMFormatDescriptionCreate")]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         media_type: CMMediaType,
         media_sub_type: FourCharCode,
         extensions: Option<&CFDictionary>,
         format_description_out: NonNull<*const CMFormatDescription>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMFormatDescriptionCreate(
+                allocator: Option<&CFAllocator>,
+                media_type: CMMediaType,
+                media_sub_type: FourCharCode,
+                extensions: Option<&CFDictionary>,
+                format_description_out: NonNull<*const CMFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMFormatDescriptionCreate(
+                allocator,
+                media_type,
+                media_sub_type,
+                extensions,
+                format_description_out,
+            )
+        }
+    }
 }
 
 unsafe impl ConcreteType for CMFormatDescription {
@@ -99,74 +120,81 @@ unsafe impl ConcreteType for CMFormatDescription {
     }
 }
 
-/// Compares two CMFormatDescription objects for equality.
-///
-/// This calls CFEqual on the provided CMFormatDescription objects.
-/// In contrast to the CF call it is NULL safe.
-#[inline]
-pub unsafe extern "C-unwind" fn CMFormatDescriptionEqual(
-    format_description: Option<&CMFormatDescription>,
-    other_format_description: Option<&CMFormatDescription>,
-) -> bool {
-    extern "C-unwind" {
-        fn CMFormatDescriptionEqual(
-            format_description: Option<&CMFormatDescription>,
-            other_format_description: Option<&CMFormatDescription>,
-        ) -> Boolean;
+impl CMFormatDescription {
+    /// Compares two CMFormatDescription objects for equality.
+    ///
+    /// This calls CFEqual on the provided CMFormatDescription objects.
+    /// In contrast to the CF call it is NULL safe.
+    #[inline]
+    #[doc(alias = "CMFormatDescriptionEqual")]
+    pub unsafe fn equal(
+        format_description: Option<&CMFormatDescription>,
+        other_format_description: Option<&CMFormatDescription>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CMFormatDescriptionEqual(
+                format_description: Option<&CMFormatDescription>,
+                other_format_description: Option<&CMFormatDescription>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CMFormatDescriptionEqual(format_description, other_format_description) };
+        ret != 0
     }
-    let ret = unsafe { CMFormatDescriptionEqual(format_description, other_format_description) };
-    ret != 0
-}
 
-/// Compares two CMFormatDescription objects for equality, ignoring differences in specified lists of format description extension keys and sample description extension keys.
-///
-/// This function is NULL safe.
-/// If any keys are passed, kCMFormatDescriptionExtension_VerbatimSampleDescription
-/// and kCMFormatDescriptionExtension_VerbatimISOSampleEntry will also be automatically
-/// ignored for the purpose of comparison.
-///
-/// Parameter `formatDescriptionExtensionKeysToIgnore`: Either a single format description extension key (CFString)
-/// or a CFArray of such keys.
-///
-/// Parameter `sampleDescriptionExtensionAtomKeysToIgnore`: Either a single sample description extension atom key (four-character CFString)
-/// or a CFArray of such keys.
-/// See kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms.
-#[inline]
-pub unsafe extern "C-unwind" fn CMFormatDescriptionEqualIgnoringExtensionKeys(
-    format_description: Option<&CMFormatDescription>,
-    other_format_description: Option<&CMFormatDescription>,
-    format_description_extension_keys_to_ignore: Option<&CFType>,
-    sample_description_extension_atom_keys_to_ignore: Option<&CFType>,
-) -> bool {
-    extern "C-unwind" {
-        fn CMFormatDescriptionEqualIgnoringExtensionKeys(
-            format_description: Option<&CMFormatDescription>,
-            other_format_description: Option<&CMFormatDescription>,
-            format_description_extension_keys_to_ignore: Option<&CFType>,
-            sample_description_extension_atom_keys_to_ignore: Option<&CFType>,
-        ) -> Boolean;
+    /// Compares two CMFormatDescription objects for equality, ignoring differences in specified lists of format description extension keys and sample description extension keys.
+    ///
+    /// This function is NULL safe.
+    /// If any keys are passed, kCMFormatDescriptionExtension_VerbatimSampleDescription
+    /// and kCMFormatDescriptionExtension_VerbatimISOSampleEntry will also be automatically
+    /// ignored for the purpose of comparison.
+    ///
+    /// Parameter `formatDescriptionExtensionKeysToIgnore`: Either a single format description extension key (CFString)
+    /// or a CFArray of such keys.
+    ///
+    /// Parameter `sampleDescriptionExtensionAtomKeysToIgnore`: Either a single sample description extension atom key (four-character CFString)
+    /// or a CFArray of such keys.
+    /// See kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms.
+    #[inline]
+    #[doc(alias = "CMFormatDescriptionEqualIgnoringExtensionKeys")]
+    pub unsafe fn equal_ignoring_extension_keys(
+        format_description: Option<&CMFormatDescription>,
+        other_format_description: Option<&CMFormatDescription>,
+        format_description_extension_keys_to_ignore: Option<&CFType>,
+        sample_description_extension_atom_keys_to_ignore: Option<&CFType>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CMFormatDescriptionEqualIgnoringExtensionKeys(
+                format_description: Option<&CMFormatDescription>,
+                other_format_description: Option<&CMFormatDescription>,
+                format_description_extension_keys_to_ignore: Option<&CFType>,
+                sample_description_extension_atom_keys_to_ignore: Option<&CFType>,
+            ) -> Boolean;
+        }
+        let ret = unsafe {
+            CMFormatDescriptionEqualIgnoringExtensionKeys(
+                format_description,
+                other_format_description,
+                format_description_extension_keys_to_ignore,
+                sample_description_extension_atom_keys_to_ignore,
+            )
+        };
+        ret != 0
     }
-    let ret = unsafe {
-        CMFormatDescriptionEqualIgnoringExtensionKeys(
-            format_description,
-            other_format_description,
-            format_description_extension_keys_to_ignore,
-            sample_description_extension_atom_keys_to_ignore,
-        )
-    };
-    ret != 0
-}
 
-extern "C-unwind" {
     /// Returns the media type of a CMFormatDescription.
     ///
     /// For example, returns kCMMediaType_Audio for a description of an audio stream.
     ///
     /// Returns: The media type of the CMFormatDescription.
-    pub fn CMFormatDescriptionGetMediaType(desc: &CMFormatDescription) -> CMMediaType;
-}
+    #[inline]
+    #[doc(alias = "CMFormatDescriptionGetMediaType")]
+    pub unsafe fn media_type(self: &CMFormatDescription) -> CMMediaType {
+        extern "C-unwind" {
+            fn CMFormatDescriptionGetMediaType(desc: &CMFormatDescription) -> CMMediaType;
+        }
+        unsafe { CMFormatDescriptionGetMediaType(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the media subtype of a CMFormatDescription.
     ///
     /// The media subtype is defined in a media-specific way.
@@ -180,29 +208,35 @@ extern "C-unwind" {
     /// does not have subtypes, this API may return 0.
     ///
     /// Returns: The media subtype of the CMFormatDescription.
-    pub fn CMFormatDescriptionGetMediaSubType(desc: &CMFormatDescription) -> FourCharCode;
-}
-
-/// Returns an immutable dictionary containing all the extensions of a CMFormatDescription.
-///
-/// If there are no extensions, NULL is returned. Extensions dictionaries are valid property list
-/// objects.  This means that dictionary keys are all CFStrings, and the values are all either
-/// CFNumber, CFString, CFBoolean, CFArray, CFDictionary, CFDate, or CFData. The returned
-/// dictionary is not retained by this call, so clients are required to retain it if they
-/// need to keep it longer.
-///
-/// Returns: An immutable dictionary containing all the extensions of the CMFormatDescription.  May be NULL.
-#[inline]
-pub unsafe extern "C-unwind" fn CMFormatDescriptionGetExtensions(
-    desc: &CMFormatDescription,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CMFormatDescriptionGetExtensions(
-            desc: &CMFormatDescription,
-        ) -> Option<NonNull<CFDictionary>>;
+    #[inline]
+    #[doc(alias = "CMFormatDescriptionGetMediaSubType")]
+    pub unsafe fn media_sub_type(self: &CMFormatDescription) -> FourCharCode {
+        extern "C-unwind" {
+            fn CMFormatDescriptionGetMediaSubType(desc: &CMFormatDescription) -> FourCharCode;
+        }
+        unsafe { CMFormatDescriptionGetMediaSubType(self) }
     }
-    let ret = unsafe { CMFormatDescriptionGetExtensions(desc) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+
+    /// Returns an immutable dictionary containing all the extensions of a CMFormatDescription.
+    ///
+    /// If there are no extensions, NULL is returned. Extensions dictionaries are valid property list
+    /// objects.  This means that dictionary keys are all CFStrings, and the values are all either
+    /// CFNumber, CFString, CFBoolean, CFArray, CFDictionary, CFDate, or CFData. The returned
+    /// dictionary is not retained by this call, so clients are required to retain it if they
+    /// need to keep it longer.
+    ///
+    /// Returns: An immutable dictionary containing all the extensions of the CMFormatDescription.  May be NULL.
+    #[inline]
+    #[doc(alias = "CMFormatDescriptionGetExtensions")]
+    pub unsafe fn extensions(self: &CMFormatDescription) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CMFormatDescriptionGetExtensions(
+                desc: &CMFormatDescription,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CMFormatDescriptionGetExtensions(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
 }
 
 extern "C" {
@@ -264,29 +298,32 @@ extern "C" {
     pub static kCMFormatDescriptionExtension_VerbatimISOSampleEntry: &'static CFString;
 }
 
-/// Returns the specified extension of a CMFormatDescription.
-///
-/// If the named extension does not exist, NULL is returned. The extension is always a valid
-/// property list object. This means that it will be either a CFNumber, CFString, CFBoolean,
-/// CFArray, CFDictionary, CFDate, or CFData. If it is a CFDictionary, the keys will all be
-/// CFStrings. The returned extension is not retained by this call, so it is only valid as
-/// long as the CMFormatDescription is valid. Clients are required to retain it if they
-/// need to keep it longer.
-///
-/// Returns: The specified extension of the CMFormatDescription.  May be NULL.
-#[inline]
-pub unsafe extern "C-unwind" fn CMFormatDescriptionGetExtension(
-    desc: &CMFormatDescription,
-    extension_key: &CFString,
-) -> Option<CFRetained<CFPropertyList>> {
-    extern "C-unwind" {
-        fn CMFormatDescriptionGetExtension(
-            desc: &CMFormatDescription,
-            extension_key: &CFString,
-        ) -> Option<NonNull<CFPropertyList>>;
+impl CMFormatDescription {
+    /// Returns the specified extension of a CMFormatDescription.
+    ///
+    /// If the named extension does not exist, NULL is returned. The extension is always a valid
+    /// property list object. This means that it will be either a CFNumber, CFString, CFBoolean,
+    /// CFArray, CFDictionary, CFDate, or CFData. If it is a CFDictionary, the keys will all be
+    /// CFStrings. The returned extension is not retained by this call, so it is only valid as
+    /// long as the CMFormatDescription is valid. Clients are required to retain it if they
+    /// need to keep it longer.
+    ///
+    /// Returns: The specified extension of the CMFormatDescription.  May be NULL.
+    #[inline]
+    #[doc(alias = "CMFormatDescriptionGetExtension")]
+    pub unsafe fn extension(
+        self: &CMFormatDescription,
+        extension_key: &CFString,
+    ) -> Option<CFRetained<CFPropertyList>> {
+        extern "C-unwind" {
+            fn CMFormatDescriptionGetExtension(
+                desc: &CMFormatDescription,
+                extension_key: &CFString,
+            ) -> Option<NonNull<CFPropertyList>>;
+        }
+        let ret = unsafe { CMFormatDescriptionGetExtension(self, extension_key) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { CMFormatDescriptionGetExtension(desc, extension_key) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Four-character codes identifying the code type. Certain codec types are also audio formats.
@@ -2070,5 +2107,99 @@ pub unsafe extern "C-unwind" fn CMMetadataFormatDescriptionGetIdentifiers(
         ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CMMetadataFormatDescriptionGetIdentifiers(desc) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMFormatDescription::create`"]
+    pub fn CMFormatDescriptionCreate(
+        allocator: Option<&CFAllocator>,
+        media_type: CMMediaType,
+        media_sub_type: FourCharCode,
+        extensions: Option<&CFDictionary>,
+        format_description_out: NonNull<*const CMFormatDescription>,
+    ) -> OSStatus;
+}
+
+#[deprecated = "renamed to `CMFormatDescription::equal`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMFormatDescriptionEqual(
+    format_description: Option<&CMFormatDescription>,
+    other_format_description: Option<&CMFormatDescription>,
+) -> bool {
+    extern "C-unwind" {
+        fn CMFormatDescriptionEqual(
+            format_description: Option<&CMFormatDescription>,
+            other_format_description: Option<&CMFormatDescription>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CMFormatDescriptionEqual(format_description, other_format_description) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `CMFormatDescription::equal_ignoring_extension_keys`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMFormatDescriptionEqualIgnoringExtensionKeys(
+    format_description: Option<&CMFormatDescription>,
+    other_format_description: Option<&CMFormatDescription>,
+    format_description_extension_keys_to_ignore: Option<&CFType>,
+    sample_description_extension_atom_keys_to_ignore: Option<&CFType>,
+) -> bool {
+    extern "C-unwind" {
+        fn CMFormatDescriptionEqualIgnoringExtensionKeys(
+            format_description: Option<&CMFormatDescription>,
+            other_format_description: Option<&CMFormatDescription>,
+            format_description_extension_keys_to_ignore: Option<&CFType>,
+            sample_description_extension_atom_keys_to_ignore: Option<&CFType>,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CMFormatDescriptionEqualIgnoringExtensionKeys(
+            format_description,
+            other_format_description,
+            format_description_extension_keys_to_ignore,
+            sample_description_extension_atom_keys_to_ignore,
+        )
+    };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMFormatDescription::media_type`"]
+    pub fn CMFormatDescriptionGetMediaType(desc: &CMFormatDescription) -> CMMediaType;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMFormatDescription::media_sub_type`"]
+    pub fn CMFormatDescriptionGetMediaSubType(desc: &CMFormatDescription) -> FourCharCode;
+}
+
+#[deprecated = "renamed to `CMFormatDescription::extensions`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMFormatDescriptionGetExtensions(
+    desc: &CMFormatDescription,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMFormatDescriptionGetExtensions(
+            desc: &CMFormatDescription,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CMFormatDescriptionGetExtensions(desc) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `CMFormatDescription::extension`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMFormatDescriptionGetExtension(
+    desc: &CMFormatDescription,
+    extension_key: &CFString,
+) -> Option<CFRetained<CFPropertyList>> {
+    extern "C-unwind" {
+        fn CMFormatDescriptionGetExtension(
+            desc: &CMFormatDescription,
+            extension_key: &CFString,
+        ) -> Option<NonNull<CFPropertyList>>;
+    }
+    let ret = unsafe { CMFormatDescriptionGetExtension(desc, extension_key) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

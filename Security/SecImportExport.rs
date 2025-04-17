@@ -220,16 +220,38 @@ unsafe impl RefEncode for SecItemImportExportKeyParameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+#[cfg(feature = "SecBase")]
+impl SecKeychainItem {
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
-    pub fn SecKeychainItemExport(
+    #[inline]
+    #[doc(alias = "SecKeychainItemExport")]
+    pub unsafe fn export(
         keychain_item_or_array: &CFType,
         output_format: SecExternalFormat,
         flags: SecItemImportExportFlags,
         key_params: *const SecKeyImportExportParameters,
         exported_data: NonNull<*const CFData>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemExport(
+                keychain_item_or_array: &CFType,
+                output_format: SecExternalFormat,
+                flags: SecItemImportExportFlags,
+                key_params: *const SecKeyImportExportParameters,
+                exported_data: NonNull<*const CFData>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeychainItemExport(
+                keychain_item_or_array,
+                output_format,
+                flags,
+                key_params,
+                exported_data,
+            )
+        }
+    }
 }
 
 extern "C-unwind" {
@@ -243,10 +265,13 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
+#[cfg(feature = "SecBase")]
+impl SecKeychainItem {
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
-    pub fn SecKeychainItemImport(
+    #[inline]
+    #[doc(alias = "SecKeychainItemImport")]
+    pub unsafe fn import(
         imported_data: &CFData,
         file_name_or_extension: Option<&CFString>,
         input_format: *mut SecExternalFormat,
@@ -255,7 +280,32 @@ extern "C-unwind" {
         key_params: *const SecKeyImportExportParameters,
         import_keychain: Option<&SecKeychain>,
         out_items: *mut *const CFArray,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainItemImport(
+                imported_data: &CFData,
+                file_name_or_extension: Option<&CFString>,
+                input_format: *mut SecExternalFormat,
+                item_type: *mut SecExternalItemType,
+                flags: SecItemImportExportFlags,
+                key_params: *const SecKeyImportExportParameters,
+                import_keychain: Option<&SecKeychain>,
+                out_items: *mut *const CFArray,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeychainItemImport(
+                imported_data,
+                file_name_or_extension,
+                input_format,
+                item_type,
+                flags,
+                key_params,
+                import_keychain,
+                out_items,
+            )
+        }
+    }
 }
 
 extern "C-unwind" {
@@ -364,5 +414,32 @@ extern "C-unwind" {
         pkcs12_data: &CFData,
         options: &CFDictionary,
         items: NonNull<*const CFArray>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecKeychainItem::export`"]
+    pub fn SecKeychainItemExport(
+        keychain_item_or_array: &CFType,
+        output_format: SecExternalFormat,
+        flags: SecItemImportExportFlags,
+        key_params: *const SecKeyImportExportParameters,
+        exported_data: NonNull<*const CFData>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecKeychainItem::import`"]
+    pub fn SecKeychainItemImport(
+        imported_data: &CFData,
+        file_name_or_extension: Option<&CFString>,
+        input_format: *mut SecExternalFormat,
+        item_type: *mut SecExternalItemType,
+        flags: SecItemImportExportFlags,
+        key_params: *const SecKeyImportExportParameters,
+        import_keychain: Option<&SecKeychain>,
+        out_items: *mut *const CFArray,
     ) -> OSStatus;
 }

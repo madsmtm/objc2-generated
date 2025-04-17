@@ -113,21 +113,23 @@ unsafe impl ConcreteType for CMClock {
     }
 }
 
-/// Returns a reference to the singleton clock logically identified with host time.
-///
-/// On Mac OS X, the host time clock uses mach_absolute_time but returns a value
-/// with a large integer timescale (eg, nanoseconds).
-#[inline]
-pub unsafe extern "C-unwind" fn CMClockGetHostTimeClock() -> CFRetained<CMClock> {
-    extern "C-unwind" {
-        fn CMClockGetHostTimeClock() -> Option<NonNull<CMClock>>;
+impl CMClock {
+    /// Returns a reference to the singleton clock logically identified with host time.
+    ///
+    /// On Mac OS X, the host time clock uses mach_absolute_time but returns a value
+    /// with a large integer timescale (eg, nanoseconds).
+    #[inline]
+    #[doc(alias = "CMClockGetHostTimeClock")]
+    pub unsafe fn host_time_clock() -> CFRetained<CMClock> {
+        extern "C-unwind" {
+            fn CMClockGetHostTimeClock() -> Option<NonNull<CMClock>>;
+        }
+        let ret = unsafe { CMClockGetHostTimeClock() };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
-    let ret = unsafe { CMClockGetHostTimeClock() };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-extern "C-unwind" {
     /// Converts a host time from CMTime to the host time's native units.
     ///
     /// This function performs a scale conversion, not a clock conversion.
@@ -135,10 +137,15 @@ extern "C-unwind" {
     /// have a non-integer timescale.
     /// On Mac OS X, this function converts to the units of mach_absolute_time.
     #[cfg(feature = "CMTime")]
-    pub fn CMClockConvertHostTimeToSystemUnits(host_time: CMTime) -> u64;
-}
+    #[inline]
+    #[doc(alias = "CMClockConvertHostTimeToSystemUnits")]
+    pub unsafe fn convert_host_time_to_system_units(host_time: CMTime) -> u64 {
+        extern "C-unwind" {
+            fn CMClockConvertHostTimeToSystemUnits(host_time: CMTime) -> u64;
+        }
+        unsafe { CMClockConvertHostTimeToSystemUnits(host_time) }
+    }
 
-extern "C-unwind" {
     /// Converts a host time from native units to CMTime.
     ///
     /// The returned value will have a large integer timescale (eg, nanoseconds).
@@ -146,44 +153,71 @@ extern "C-unwind" {
     /// non-integer timescale.
     /// On Mac OS X, this function converts from the units of mach_absolute_time.
     #[cfg(feature = "CMTime")]
-    pub fn CMClockMakeHostTimeFromSystemUnits(host_time: u64) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMClockMakeHostTimeFromSystemUnits")]
+    pub unsafe fn new_host_time_from_system_units(host_time: u64) -> CMTime {
+        extern "C-unwind" {
+            fn CMClockMakeHostTimeFromSystemUnits(host_time: u64) -> CMTime;
+        }
+        unsafe { CMClockMakeHostTimeFromSystemUnits(host_time) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the current time from a clock.
     #[cfg(feature = "CMTime")]
-    pub fn CMClockGetTime(clock: &CMClock) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMClockGetTime")]
+    pub unsafe fn time(self: &CMClock) -> CMTime {
+        extern "C-unwind" {
+            fn CMClockGetTime(clock: &CMClock) -> CMTime;
+        }
+        unsafe { CMClockGetTime(self) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the current time from a clock and also the matching time from the clock's reference clock.
     ///
     /// To make practical use of this, you may need to know what the clock's reference clock is.
     #[cfg(feature = "CMTime")]
-    pub fn CMClockGetAnchorTime(
-        clock: &CMClock,
+    #[inline]
+    #[doc(alias = "CMClockGetAnchorTime")]
+    pub unsafe fn anchor_time(
+        self: &CMClock,
         clock_time_out: NonNull<CMTime>,
         reference_clock_time_out: NonNull<CMTime>,
-    ) -> OSStatus;
-}
-
-/// Indicates whether it is possible for two clocks to drift relative to each other.
-#[inline]
-pub unsafe extern "C-unwind" fn CMClockMightDrift(clock: &CMClock, other_clock: &CMClock) -> bool {
-    extern "C-unwind" {
-        fn CMClockMightDrift(clock: &CMClock, other_clock: &CMClock) -> Boolean;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMClockGetAnchorTime(
+                clock: &CMClock,
+                clock_time_out: NonNull<CMTime>,
+                reference_clock_time_out: NonNull<CMTime>,
+            ) -> OSStatus;
+        }
+        unsafe { CMClockGetAnchorTime(self, clock_time_out, reference_clock_time_out) }
     }
-    let ret = unsafe { CMClockMightDrift(clock, other_clock) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Indicates whether it is possible for two clocks to drift relative to each other.
+    #[inline]
+    #[doc(alias = "CMClockMightDrift")]
+    pub unsafe fn might_drift(self: &CMClock, other_clock: &CMClock) -> bool {
+        extern "C-unwind" {
+            fn CMClockMightDrift(clock: &CMClock, other_clock: &CMClock) -> Boolean;
+        }
+        let ret = unsafe { CMClockMightDrift(self, other_clock) };
+        ret != 0
+    }
+
     /// Makes the clock stop functioning.
     ///
     /// After invalidation, the clock will return errors from all APIs.
     /// This should only be called by the "owner" of the clock, who knows (for example) that some piece of hardware
     /// has gone away, and the clock will no longer work (and might even crash).
-    pub fn CMClockInvalidate(clock: &CMClock);
+    #[inline]
+    #[doc(alias = "CMClockInvalidate")]
+    pub unsafe fn invalidate(self: &CMClock) {
+        extern "C-unwind" {
+            fn CMClockInvalidate(clock: &CMClock);
+        }
+        unsafe { CMClockInvalidate(self) }
+    }
 }
 
 unsafe impl ConcreteType for CMTimebase {
@@ -198,190 +232,238 @@ unsafe impl ConcreteType for CMTimebase {
     }
 }
 
-extern "C-unwind" {
+impl CMTimebase {
     #[deprecated]
-    pub fn CMTimebaseCreateWithMasterClock(
+    #[inline]
+    #[doc(alias = "CMTimebaseCreateWithMasterClock")]
+    pub unsafe fn create_with_master_clock(
         allocator: Option<&CFAllocator>,
         master_clock: &CMClock,
         timebase_out: NonNull<*mut CMTimebase>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseCreateWithMasterClock(
+                allocator: Option<&CFAllocator>,
+                master_clock: &CMClock,
+                timebase_out: NonNull<*mut CMTimebase>,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseCreateWithMasterClock(allocator, master_clock, timebase_out) }
+    }
 
-// TODO: pub fn CMTimebaseCreateWithSourceClock(allocator: Option<&CFAllocator>,source_clock: &CMClock,timebase_out: NonNull<*mut CMTimebase>,) -> OSStatus;
+    // TODO: pub fn CMTimebaseCreateWithSourceClock(allocator: Option<&CFAllocator>,source_clock: &CMClock,timebase_out: NonNull<*mut CMTimebase>,) -> OSStatus;
 
-extern "C-unwind" {
     #[deprecated]
-    pub fn CMTimebaseCreateWithMasterTimebase(
+    #[inline]
+    #[doc(alias = "CMTimebaseCreateWithMasterTimebase")]
+    pub unsafe fn create_with_master_timebase(
         allocator: Option<&CFAllocator>,
         master_timebase: &CMTimebase,
         timebase_out: NonNull<*mut CMTimebase>,
-    ) -> OSStatus;
-}
-
-// TODO: pub fn CMTimebaseCreateWithSourceTimebase(allocator: Option<&CFAllocator>,source_timebase: &CMTimebase,timebase_out: NonNull<*mut CMTimebase>,) -> OSStatus;
-
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimebaseCopyMasterTimebase(
-    timebase: &CMTimebase,
-) -> Option<CFRetained<CMTimebase>> {
-    extern "C-unwind" {
-        fn CMTimebaseCopyMasterTimebase(timebase: &CMTimebase) -> Option<NonNull<CMTimebase>>;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseCreateWithMasterTimebase(
+                allocator: Option<&CFAllocator>,
+                master_timebase: &CMTimebase,
+                timebase_out: NonNull<*mut CMTimebase>,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseCreateWithMasterTimebase(allocator, master_timebase, timebase_out) }
     }
-    let ret = unsafe { CMTimebaseCopyMasterTimebase(timebase) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-// TODO: pub fn CMTimebaseCopySourceTimebase(timebase: &CMTimebase,)-> Option<NonNull<CMTimebase>>;
+    // TODO: pub fn CMTimebaseCreateWithSourceTimebase(allocator: Option<&CFAllocator>,source_timebase: &CMTimebase,timebase_out: NonNull<*mut CMTimebase>,) -> OSStatus;
 
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimebaseCopyMasterClock(
-    timebase: &CMTimebase,
-) -> Option<CFRetained<CMClock>> {
-    extern "C-unwind" {
-        fn CMTimebaseCopyMasterClock(timebase: &CMTimebase) -> Option<NonNull<CMClock>>;
-    }
-    let ret = unsafe { CMTimebaseCopyMasterClock(timebase) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-// TODO: pub fn CMTimebaseCopySourceClock(timebase: &CMTimebase,)-> Option<NonNull<CMClock>>;
-
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimebaseCopyMaster(
-    timebase: &CMTimebase,
-) -> CFRetained<CMClockOrTimebase> {
-    extern "C-unwind" {
-        fn CMTimebaseCopyMaster(timebase: &CMTimebase) -> Option<NonNull<CMClockOrTimebase>>;
-    }
-    let ret = unsafe { CMTimebaseCopyMaster(timebase) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
-
-// TODO: pub fn CMTimebaseCopySource(timebase: &CMTimebase,)-> Option<NonNull<CMClockOrTimebase>>;
-
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimebaseCopyUltimateMasterClock(
-    timebase: &CMTimebase,
-) -> CFRetained<CMClock> {
-    extern "C-unwind" {
-        fn CMTimebaseCopyUltimateMasterClock(timebase: &CMTimebase) -> Option<NonNull<CMClock>>;
-    }
-    let ret = unsafe { CMTimebaseCopyUltimateMasterClock(timebase) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
-
-// TODO: pub fn CMTimebaseCopyUltimateSourceClock(timebase: &CMTimebase,)-> Option<NonNull<CMClock>>;
-
-/// Returns the immediate source timebase of a timebase.
-///
-/// Returns NULL if the timebase actually has a source clock instead of a source timebase.
-/// Please use CMTimebaseCopySourceTimebase instead.
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimebaseGetMasterTimebase(
-    timebase: &CMTimebase,
-) -> Option<CFRetained<CMTimebase>> {
-    extern "C-unwind" {
-        fn CMTimebaseGetMasterTimebase(timebase: &CMTimebase) -> Option<NonNull<CMTimebase>>;
-    }
-    let ret = unsafe { CMTimebaseGetMasterTimebase(timebase) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
-
-/// Returns the immediate source clock of a timebase.
-///
-/// Returns NULL if the timebase actually has a source timebase instead of a source clock.
-/// Please use CMTimebaseCopySourceClock instead.
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimebaseGetMasterClock(
-    timebase: &CMTimebase,
-) -> Option<CFRetained<CMClock>> {
-    extern "C-unwind" {
-        fn CMTimebaseGetMasterClock(timebase: &CMTimebase) -> Option<NonNull<CMClock>>;
-    }
-    let ret = unsafe { CMTimebaseGetMasterClock(timebase) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
-
-/// Returns the immediate source (either timebase or clock) of a timebase.
-///
-/// Only returns NULL if there was an error (such as timebase == NULL).
-/// Example of use: time = CMSyncGetTime(CMTimebaseGetMaster(timebase));
-/// Please use CMTimebaseCopySource instead.
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimebaseGetMaster(
-    timebase: &CMTimebase,
-) -> Option<CFRetained<CMClockOrTimebase>> {
-    extern "C-unwind" {
-        fn CMTimebaseGetMaster(timebase: &CMTimebase) -> Option<NonNull<CMClockOrTimebase>>;
-    }
-    let ret = unsafe { CMTimebaseGetMaster(timebase) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
-
-/// Returns the source clock that is the source of all of a timebase's source timebases.
-///
-/// Please use CMTimebaseCopyUltimateSourceClock instead.
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimebaseGetUltimateMasterClock(
-    timebase: &CMTimebase,
-) -> Option<CFRetained<CMClock>> {
-    extern "C-unwind" {
-        fn CMTimebaseGetUltimateMasterClock(timebase: &CMTimebase) -> Option<NonNull<CMClock>>;
-    }
-    let ret = unsafe { CMTimebaseGetUltimateMasterClock(timebase) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
-
-extern "C-unwind" {
     #[deprecated]
-    pub fn CMTimebaseSetMasterClock(timebase: &CMTimebase, new_master_clock: &CMClock) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "CMTimebaseCopyMasterTimebase")]
+    pub unsafe fn master_timebase(self: &CMTimebase) -> Option<CFRetained<CMTimebase>> {
+        extern "C-unwind" {
+            fn CMTimebaseCopyMasterTimebase(timebase: &CMTimebase) -> Option<NonNull<CMTimebase>>;
+        }
+        let ret = unsafe { CMTimebaseCopyMasterTimebase(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 
-// TODO: pub fn CMTimebaseSetSourceClock(timebase: &CMTimebase,new_source_clock: &CMClock,) -> OSStatus;
+    // TODO: pub fn CMTimebaseCopySourceTimebase(timebase: &CMTimebase,)-> Option<NonNull<CMTimebase>>;
 
-extern "C-unwind" {
     #[deprecated]
-    pub fn CMTimebaseSetMasterTimebase(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseCopyMasterClock")]
+    pub unsafe fn master_clock(self: &CMTimebase) -> Option<CFRetained<CMClock>> {
+        extern "C-unwind" {
+            fn CMTimebaseCopyMasterClock(timebase: &CMTimebase) -> Option<NonNull<CMClock>>;
+        }
+        let ret = unsafe { CMTimebaseCopyMasterClock(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    // TODO: pub fn CMTimebaseCopySourceClock(timebase: &CMTimebase,)-> Option<NonNull<CMClock>>;
+
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CMTimebaseCopyMaster")]
+    pub unsafe fn master(self: &CMTimebase) -> CFRetained<CMClockOrTimebase> {
+        extern "C-unwind" {
+            fn CMTimebaseCopyMaster(timebase: &CMTimebase) -> Option<NonNull<CMClockOrTimebase>>;
+        }
+        let ret = unsafe { CMTimebaseCopyMaster(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    // TODO: pub fn CMTimebaseCopySource(timebase: &CMTimebase,)-> Option<NonNull<CMClockOrTimebase>>;
+
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CMTimebaseCopyUltimateMasterClock")]
+    pub unsafe fn ultimate_master_clock(self: &CMTimebase) -> CFRetained<CMClock> {
+        extern "C-unwind" {
+            fn CMTimebaseCopyUltimateMasterClock(timebase: &CMTimebase)
+                -> Option<NonNull<CMClock>>;
+        }
+        let ret = unsafe { CMTimebaseCopyUltimateMasterClock(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    // TODO: pub fn CMTimebaseCopyUltimateSourceClock(timebase: &CMTimebase,)-> Option<NonNull<CMClock>>;
+
+    /// Returns the immediate source timebase of a timebase.
+    ///
+    /// Returns NULL if the timebase actually has a source clock instead of a source timebase.
+    /// Please use CMTimebaseCopySourceTimebase instead.
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CMTimebaseGetMasterTimebase")]
+    pub unsafe fn get_master_timebase(self: &CMTimebase) -> Option<CFRetained<CMTimebase>> {
+        extern "C-unwind" {
+            fn CMTimebaseGetMasterTimebase(timebase: &CMTimebase) -> Option<NonNull<CMTimebase>>;
+        }
+        let ret = unsafe { CMTimebaseGetMasterTimebase(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    /// Returns the immediate source clock of a timebase.
+    ///
+    /// Returns NULL if the timebase actually has a source timebase instead of a source clock.
+    /// Please use CMTimebaseCopySourceClock instead.
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CMTimebaseGetMasterClock")]
+    pub unsafe fn get_master_clock(self: &CMTimebase) -> Option<CFRetained<CMClock>> {
+        extern "C-unwind" {
+            fn CMTimebaseGetMasterClock(timebase: &CMTimebase) -> Option<NonNull<CMClock>>;
+        }
+        let ret = unsafe { CMTimebaseGetMasterClock(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    /// Returns the immediate source (either timebase or clock) of a timebase.
+    ///
+    /// Only returns NULL if there was an error (such as timebase == NULL).
+    /// Example of use: time = CMSyncGetTime(CMTimebaseGetMaster(timebase));
+    /// Please use CMTimebaseCopySource instead.
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CMTimebaseGetMaster")]
+    pub unsafe fn get_master(self: &CMTimebase) -> Option<CFRetained<CMClockOrTimebase>> {
+        extern "C-unwind" {
+            fn CMTimebaseGetMaster(timebase: &CMTimebase) -> Option<NonNull<CMClockOrTimebase>>;
+        }
+        let ret = unsafe { CMTimebaseGetMaster(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    /// Returns the source clock that is the source of all of a timebase's source timebases.
+    ///
+    /// Please use CMTimebaseCopyUltimateSourceClock instead.
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CMTimebaseGetUltimateMasterClock")]
+    pub unsafe fn get_ultimate_master_clock(self: &CMTimebase) -> Option<CFRetained<CMClock>> {
+        extern "C-unwind" {
+            fn CMTimebaseGetUltimateMasterClock(timebase: &CMTimebase) -> Option<NonNull<CMClock>>;
+        }
+        let ret = unsafe { CMTimebaseGetUltimateMasterClock(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CMTimebaseSetMasterClock")]
+    pub unsafe fn set_master_clock(self: &CMTimebase, new_master_clock: &CMClock) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseSetMasterClock(
+                timebase: &CMTimebase,
+                new_master_clock: &CMClock,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseSetMasterClock(self, new_master_clock) }
+    }
+
+    // TODO: pub fn CMTimebaseSetSourceClock(timebase: &CMTimebase,new_source_clock: &CMClock,) -> OSStatus;
+
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CMTimebaseSetMasterTimebase")]
+    pub unsafe fn set_master_timebase(
+        self: &CMTimebase,
         new_master_timebase: &CMTimebase,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseSetMasterTimebase(
+                timebase: &CMTimebase,
+                new_master_timebase: &CMTimebase,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseSetMasterTimebase(self, new_master_timebase) }
+    }
 
-// TODO: pub fn CMTimebaseSetSourceTimebase(timebase: &CMTimebase,new_source_timebase: &CMTimebase,) -> OSStatus;
+    // TODO: pub fn CMTimebaseSetSourceTimebase(timebase: &CMTimebase,new_source_timebase: &CMTimebase,) -> OSStatus;
 
-extern "C-unwind" {
     /// Retrieves the current time from a timebase.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimebaseGetTime(timebase: &CMTimebase) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimebaseGetTime")]
+    pub unsafe fn time(self: &CMTimebase) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimebaseGetTime(timebase: &CMTimebase) -> CMTime;
+        }
+        unsafe { CMTimebaseGetTime(self) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the current time from a timebase in the specified timescale.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimebaseGetTimeWithTimeScale(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseGetTimeWithTimeScale")]
+    pub unsafe fn time_with_time_scale(
+        self: &CMTimebase,
         timescale: CMTimeScale,
         method: CMTimeRoundingMethod,
-    ) -> CMTime;
-}
+    ) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimebaseGetTimeWithTimeScale(
+                timebase: &CMTimebase,
+                timescale: CMTimeScale,
+                method: CMTimeRoundingMethod,
+            ) -> CMTime;
+        }
+        unsafe { CMTimebaseGetTimeWithTimeScale(self, timescale, method) }
+    }
 
-extern "C-unwind" {
     /// Sets the current time of a timebase.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimebaseSetTime(timebase: &CMTimebase, time: CMTime) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "CMTimebaseSetTime")]
+    pub unsafe fn set_time(self: &CMTimebase, time: CMTime) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseSetTime(timebase: &CMTimebase, time: CMTime) -> OSStatus;
+        }
+        unsafe { CMTimebaseSetTime(self, time) }
+    }
 
-extern "C-unwind" {
     /// Sets the time of a timebase at a particular source time.
     ///
     /// CMTimebaseGetTime's results will be interpolated from that anchor time.
@@ -390,40 +472,68 @@ extern "C-unwind" {
     /// CMTimebaseSetAnchorTime(timebase, time, CMSyncGetTime(source));
     /// CFRelease(source).
     #[cfg(feature = "CMTime")]
-    pub fn CMTimebaseSetAnchorTime(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseSetAnchorTime")]
+    pub unsafe fn set_anchor_time(
+        self: &CMTimebase,
         timebase_time: CMTime,
         immediate_source_time: CMTime,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseSetAnchorTime(
+                timebase: &CMTimebase,
+                timebase_time: CMTime,
+                immediate_source_time: CMTime,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseSetAnchorTime(self, timebase_time, immediate_source_time) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the current rate of a timebase.
     ///
     /// This is the rate relative to its immediate source clock or timebase.
     /// For example, if a timebase is running at twice the rate of its source, its rate is 2.0.
-    pub fn CMTimebaseGetRate(timebase: &CMTimebase) -> f64;
-}
+    #[inline]
+    #[doc(alias = "CMTimebaseGetRate")]
+    pub unsafe fn rate(self: &CMTimebase) -> f64 {
+        extern "C-unwind" {
+            fn CMTimebaseGetRate(timebase: &CMTimebase) -> f64;
+        }
+        unsafe { CMTimebaseGetRate(self) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the current time and rate of a timebase.
     ///
     /// You can use this function to take a consistent snapshot of the two values,
     /// avoiding possible inconsistencies due to external changes between retrieval of time and rate.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimebaseGetTimeAndRate(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseGetTimeAndRate")]
+    pub unsafe fn time_and_rate(
+        self: &CMTimebase,
         time_out: *mut CMTime,
         rate_out: *mut f64,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseGetTimeAndRate(
+                timebase: &CMTimebase,
+                time_out: *mut CMTime,
+                rate_out: *mut f64,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseGetTimeAndRate(self, time_out, rate_out) }
+    }
 
-extern "C-unwind" {
     /// Sets the rate of a timebase.
-    pub fn CMTimebaseSetRate(timebase: &CMTimebase, rate: f64) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "CMTimebaseSetRate")]
+    pub unsafe fn set_rate(self: &CMTimebase, rate: f64) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseSetRate(timebase: &CMTimebase, rate: f64) -> OSStatus;
+        }
+        unsafe { CMTimebaseSetRate(self, rate) }
+    }
 
-extern "C-unwind" {
     /// Sets the time of a timebase at a particular source time, and changes the rate at exactly that time.
     ///
     /// CMTimebaseGetTime's results will be interpolated from that anchor time as though the timebase
@@ -435,25 +545,40 @@ extern "C-unwind" {
     /// except that CMTimebaseSetRate will not generate a TimeJumped notification, and
     /// CMTimebaseSetRateAndAnchorTime will.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimebaseSetRateAndAnchorTime(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseSetRateAndAnchorTime")]
+    pub unsafe fn set_rate_and_anchor_time(
+        self: &CMTimebase,
         rate: f64,
         timebase_time: CMTime,
         immediate_source_time: CMTime,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseSetRateAndAnchorTime(
+                timebase: &CMTimebase,
+                rate: f64,
+                timebase_time: CMTime,
+                immediate_source_time: CMTime,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseSetRateAndAnchorTime(self, rate, timebase_time, immediate_source_time) }
+    }
 
-extern "C-unwind" {
     /// Gets the effective rate of a timebase (which combines its rate with the rates of all its source timebases).
     ///
     /// Calling CMTimebaseGetEffectiveRate(timebase) is equivalent to calling
     /// CMClockRef clock = CMTimebaseCopyUltimateSourceClock(timebase);
     /// CMSyncGetRelativeRate(timebase, clock).
     /// CFRelease(clock);
-    pub fn CMTimebaseGetEffectiveRate(timebase: &CMTimebase) -> f64;
-}
+    #[inline]
+    #[doc(alias = "CMTimebaseGetEffectiveRate")]
+    pub unsafe fn effective_rate(self: &CMTimebase) -> f64 {
+        extern "C-unwind" {
+            fn CMTimebaseGetEffectiveRate(timebase: &CMTimebase) -> f64;
+        }
+        unsafe { CMTimebaseGetEffectiveRate(self) }
+    }
 
-extern "C-unwind" {
     /// Adds the timer to the list of timers managed by the timebase.
     ///
     /// The timer must be a repeating run loop timer (with a very long interval at
@@ -464,23 +589,37 @@ extern "C-unwind" {
     /// will be set far, far in the future. The runloop that timer is attached to must be
     /// passed in and the timebase will retain that runloop. The retained runloop will be
     /// used to call CFRunLoopWakeUp() any time the timebase modifies the timer's fire date.
-    pub fn CMTimebaseAddTimer(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseAddTimer")]
+    pub unsafe fn add_timer(
+        self: &CMTimebase,
         timer: &CFRunLoopTimer,
         runloop: &CFRunLoop,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseAddTimer(
+                timebase: &CMTimebase,
+                timer: &CFRunLoopTimer,
+                runloop: &CFRunLoop,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseAddTimer(self, timer, runloop) }
+    }
 
-extern "C-unwind" {
     /// Removes the timer from the list of timers managed by the timebase.
     ///
     /// The timebase will no longer maintain the timer's "NextFireDate".
     /// If the timer is invalidated, the timebase will eventually remove it
     /// from its list and release it even if this function is not called.
-    pub fn CMTimebaseRemoveTimer(timebase: &CMTimebase, timer: &CFRunLoopTimer) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "CMTimebaseRemoveTimer")]
+    pub unsafe fn remove_timer(self: &CMTimebase, timer: &CFRunLoopTimer) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseRemoveTimer(timebase: &CMTimebase, timer: &CFRunLoopTimer) -> OSStatus;
+        }
+        unsafe { CMTimebaseRemoveTimer(self, timer) }
+    }
 
-extern "C-unwind" {
     /// Sets the CMTime on the timebase's timeline at which the timer should next be fired.
     ///
     /// The timer must be on the list of timers managed by the timebase.
@@ -498,28 +637,46 @@ extern "C-unwind" {
     /// might put the timer's fire time in the past, you may need to set the fire time to
     /// kCMTimeInvalid across the timebase change.)
     #[cfg(feature = "CMTime")]
-    pub fn CMTimebaseSetTimerNextFireTime(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseSetTimerNextFireTime")]
+    pub unsafe fn set_timer_next_fire_time(
+        self: &CMTimebase,
         timer: &CFRunLoopTimer,
         fire_time: CMTime,
         flags: u32,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseSetTimerNextFireTime(
+                timebase: &CMTimebase,
+                timer: &CFRunLoopTimer,
+                fire_time: CMTime,
+                flags: u32,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseSetTimerNextFireTime(self, timer, fire_time, flags) }
+    }
 
-extern "C-unwind" {
     /// Sets the timer to fire immediately once, overriding any previous CMTimebaseSetTimerNextFireTime call.
     ///
     /// The timer must be on the list of timers managed by the timebase.
     /// This is equivalent to calling
     /// CFRunLoopTimerSetNextFireDate( timer, CFAbsoluteTimeGetCurrent() );
     /// except that the timebase gets to know that it shouldn't interfere.
-    pub fn CMTimebaseSetTimerToFireImmediately(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseSetTimerToFireImmediately")]
+    pub unsafe fn set_timer_to_fire_immediately(
+        self: &CMTimebase,
         timer: &CFRunLoopTimer,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseSetTimerToFireImmediately(
+                timebase: &CMTimebase,
+                timer: &CFRunLoopTimer,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseSetTimerToFireImmediately(self, timer) }
+    }
 
-extern "C-unwind" {
     /// Adds the timer dispatch source to the list of timers managed by the timebase.
     ///
     /// The timer source must have been created by calling
@@ -535,26 +692,42 @@ extern "C-unwind" {
     /// Until the first call to CMTimebaseSetTimerDispatchSourceNextFireTime, the start time
     /// will be set to DISPATCH_TIME_FOREVER.
     #[cfg(feature = "dispatch2")]
-    pub fn CMTimebaseAddTimerDispatchSource(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseAddTimerDispatchSource")]
+    pub unsafe fn add_timer_dispatch_source(
+        self: &CMTimebase,
         timer_source: &DispatchSource,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseAddTimerDispatchSource(
+                timebase: &CMTimebase,
+                timer_source: &DispatchSource,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseAddTimerDispatchSource(self, timer_source) }
+    }
 
-extern "C-unwind" {
     /// Removes the timer dispatch source from the list of timers managed by the timebase.
     ///
     /// The timebase will no longer maintain the timer source's start time.
     /// If the timer source is cancelled, the timebase will eventually remove it
     /// from its list and release it even if this function is not called.
     #[cfg(feature = "dispatch2")]
-    pub fn CMTimebaseRemoveTimerDispatchSource(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseRemoveTimerDispatchSource")]
+    pub unsafe fn remove_timer_dispatch_source(
+        self: &CMTimebase,
         timer_source: &DispatchSource,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseRemoveTimerDispatchSource(
+                timebase: &CMTimebase,
+                timer_source: &DispatchSource,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseRemoveTimerDispatchSource(self, timer_source) }
+    }
 
-extern "C-unwind" {
     /// Sets the CMTime on the timebase's timeline at which the timer dispatch source should next be fired.
     ///
     /// The timer source must be on the list of timers managed by the timebase.
@@ -572,15 +745,27 @@ extern "C-unwind" {
     /// might put the timer's fire time in the past, you may need to set the fire time to
     /// kCMTimeInvalid across the timebase change.)
     #[cfg(all(feature = "CMTime", feature = "dispatch2"))]
-    pub fn CMTimebaseSetTimerDispatchSourceNextFireTime(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseSetTimerDispatchSourceNextFireTime")]
+    pub unsafe fn set_timer_dispatch_source_next_fire_time(
+        self: &CMTimebase,
         timer_source: &DispatchSource,
         fire_time: CMTime,
         flags: u32,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseSetTimerDispatchSourceNextFireTime(
+                timebase: &CMTimebase,
+                timer_source: &DispatchSource,
+                fire_time: CMTime,
+                flags: u32,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTimebaseSetTimerDispatchSourceNextFireTime(self, timer_source, fire_time, flags)
+        }
+    }
 
-extern "C-unwind" {
     /// Sets the timer dispatch source to fire immediately once, overriding any previous
     /// CMTimebaseSetTimerDispatchSourceNextFireTime call.
     ///
@@ -589,10 +774,20 @@ extern "C-unwind" {
     /// dispatch_source_set_timer( timerSource, DISPATCH_TIME_NOW, 0, 0 );
     /// except that the timebase gets to know that it shouldn't interfere.
     #[cfg(feature = "dispatch2")]
-    pub fn CMTimebaseSetTimerDispatchSourceToFireImmediately(
-        timebase: &CMTimebase,
+    #[inline]
+    #[doc(alias = "CMTimebaseSetTimerDispatchSourceToFireImmediately")]
+    pub unsafe fn set_timer_dispatch_source_to_fire_immediately(
+        self: &CMTimebase,
         timer_source: &DispatchSource,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseSetTimerDispatchSourceToFireImmediately(
+                timebase: &CMTimebase,
+                timer_source: &DispatchSource,
+            ) -> OSStatus;
+        }
+        unsafe { CMTimebaseSetTimerDispatchSourceToFireImmediately(self, timer_source) }
+    }
 }
 
 extern "C-unwind" {
@@ -678,9 +873,16 @@ extern "C-unwind" {
     pub fn CMSyncGetTime(clock_or_timebase: &CMClockOrTimebase) -> CMTime;
 }
 
-extern "C-unwind" {
+impl CMTimebase {
     /// Requests that the timebase wait until it is not posting any notifications.
-    pub fn CMTimebaseNotificationBarrier(timebase: &CMTimebase) -> OSStatus;
+    #[inline]
+    #[doc(alias = "CMTimebaseNotificationBarrier")]
+    pub unsafe fn notification_barrier(self: &CMTimebase) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTimebaseNotificationBarrier(timebase: &CMTimebase) -> OSStatus;
+        }
+        unsafe { CMTimebaseNotificationBarrier(self) }
+    }
 }
 
 extern "C" {
@@ -696,4 +898,331 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimebasenotificationkey_eventtime?language=objc)
     pub static kCMTimebaseNotificationKey_EventTime: &'static CFString;
+}
+
+#[deprecated = "renamed to `CMClock::host_time_clock`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMClockGetHostTimeClock() -> CFRetained<CMClock> {
+    extern "C-unwind" {
+        fn CMClockGetHostTimeClock() -> Option<NonNull<CMClock>>;
+    }
+    let ret = unsafe { CMClockGetHostTimeClock() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::retain(ret) }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMClock::convert_host_time_to_system_units`"]
+    pub fn CMClockConvertHostTimeToSystemUnits(host_time: CMTime) -> u64;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMClock::new_host_time_from_system_units`"]
+    pub fn CMClockMakeHostTimeFromSystemUnits(host_time: u64) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMClock::time`"]
+    pub fn CMClockGetTime(clock: &CMClock) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMClock::anchor_time`"]
+    pub fn CMClockGetAnchorTime(
+        clock: &CMClock,
+        clock_time_out: NonNull<CMTime>,
+        reference_clock_time_out: NonNull<CMTime>,
+    ) -> OSStatus;
+}
+
+#[deprecated = "renamed to `CMClock::might_drift`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMClockMightDrift(clock: &CMClock, other_clock: &CMClock) -> bool {
+    extern "C-unwind" {
+        fn CMClockMightDrift(clock: &CMClock, other_clock: &CMClock) -> Boolean;
+    }
+    let ret = unsafe { CMClockMightDrift(clock, other_clock) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMClock::invalidate`"]
+    pub fn CMClockInvalidate(clock: &CMClock);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTimebase::create_with_master_clock`"]
+    pub fn CMTimebaseCreateWithMasterClock(
+        allocator: Option<&CFAllocator>,
+        master_clock: &CMClock,
+        timebase_out: NonNull<*mut CMTimebase>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTimebase::create_with_master_timebase`"]
+    pub fn CMTimebaseCreateWithMasterTimebase(
+        allocator: Option<&CFAllocator>,
+        master_timebase: &CMTimebase,
+        timebase_out: NonNull<*mut CMTimebase>,
+    ) -> OSStatus;
+}
+
+#[deprecated = "renamed to `CMTimebase::master_timebase`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseCopyMasterTimebase(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMTimebase>> {
+    extern "C-unwind" {
+        fn CMTimebaseCopyMasterTimebase(timebase: &CMTimebase) -> Option<NonNull<CMTimebase>>;
+    }
+    let ret = unsafe { CMTimebaseCopyMasterTimebase(timebase) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CMTimebase::master_clock`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseCopyMasterClock(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMClock>> {
+    extern "C-unwind" {
+        fn CMTimebaseCopyMasterClock(timebase: &CMTimebase) -> Option<NonNull<CMClock>>;
+    }
+    let ret = unsafe { CMTimebaseCopyMasterClock(timebase) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CMTimebase::master`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseCopyMaster(
+    timebase: &CMTimebase,
+) -> CFRetained<CMClockOrTimebase> {
+    extern "C-unwind" {
+        fn CMTimebaseCopyMaster(timebase: &CMTimebase) -> Option<NonNull<CMClockOrTimebase>>;
+    }
+    let ret = unsafe { CMTimebaseCopyMaster(timebase) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CMTimebase::ultimate_master_clock`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseCopyUltimateMasterClock(
+    timebase: &CMTimebase,
+) -> CFRetained<CMClock> {
+    extern "C-unwind" {
+        fn CMTimebaseCopyUltimateMasterClock(timebase: &CMTimebase) -> Option<NonNull<CMClock>>;
+    }
+    let ret = unsafe { CMTimebaseCopyUltimateMasterClock(timebase) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CMTimebase::master_timebase`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseGetMasterTimebase(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMTimebase>> {
+    extern "C-unwind" {
+        fn CMTimebaseGetMasterTimebase(timebase: &CMTimebase) -> Option<NonNull<CMTimebase>>;
+    }
+    let ret = unsafe { CMTimebaseGetMasterTimebase(timebase) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `CMTimebase::master_clock`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseGetMasterClock(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMClock>> {
+    extern "C-unwind" {
+        fn CMTimebaseGetMasterClock(timebase: &CMTimebase) -> Option<NonNull<CMClock>>;
+    }
+    let ret = unsafe { CMTimebaseGetMasterClock(timebase) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `CMTimebase::master`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseGetMaster(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMClockOrTimebase>> {
+    extern "C-unwind" {
+        fn CMTimebaseGetMaster(timebase: &CMTimebase) -> Option<NonNull<CMClockOrTimebase>>;
+    }
+    let ret = unsafe { CMTimebaseGetMaster(timebase) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `CMTimebase::ultimate_master_clock`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseGetUltimateMasterClock(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMClock>> {
+    extern "C-unwind" {
+        fn CMTimebaseGetUltimateMasterClock(timebase: &CMTimebase) -> Option<NonNull<CMClock>>;
+    }
+    let ret = unsafe { CMTimebaseGetUltimateMasterClock(timebase) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTimebase::set_master_clock`"]
+    pub fn CMTimebaseSetMasterClock(timebase: &CMTimebase, new_master_clock: &CMClock) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTimebase::set_master_timebase`"]
+    pub fn CMTimebaseSetMasterTimebase(
+        timebase: &CMTimebase,
+        new_master_timebase: &CMTimebase,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimebase::time`"]
+    pub fn CMTimebaseGetTime(timebase: &CMTimebase) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimebase::time_with_time_scale`"]
+    pub fn CMTimebaseGetTimeWithTimeScale(
+        timebase: &CMTimebase,
+        timescale: CMTimeScale,
+        method: CMTimeRoundingMethod,
+    ) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimebase::set_time`"]
+    pub fn CMTimebaseSetTime(timebase: &CMTimebase, time: CMTime) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimebase::set_anchor_time`"]
+    pub fn CMTimebaseSetAnchorTime(
+        timebase: &CMTimebase,
+        timebase_time: CMTime,
+        immediate_source_time: CMTime,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTimebase::rate`"]
+    pub fn CMTimebaseGetRate(timebase: &CMTimebase) -> f64;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimebase::time_and_rate`"]
+    pub fn CMTimebaseGetTimeAndRate(
+        timebase: &CMTimebase,
+        time_out: *mut CMTime,
+        rate_out: *mut f64,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTimebase::set_rate`"]
+    pub fn CMTimebaseSetRate(timebase: &CMTimebase, rate: f64) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimebase::set_rate_and_anchor_time`"]
+    pub fn CMTimebaseSetRateAndAnchorTime(
+        timebase: &CMTimebase,
+        rate: f64,
+        timebase_time: CMTime,
+        immediate_source_time: CMTime,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTimebase::effective_rate`"]
+    pub fn CMTimebaseGetEffectiveRate(timebase: &CMTimebase) -> f64;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTimebase::add_timer`"]
+    pub fn CMTimebaseAddTimer(
+        timebase: &CMTimebase,
+        timer: &CFRunLoopTimer,
+        runloop: &CFRunLoop,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTimebase::remove_timer`"]
+    pub fn CMTimebaseRemoveTimer(timebase: &CMTimebase, timer: &CFRunLoopTimer) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimebase::set_timer_next_fire_time`"]
+    pub fn CMTimebaseSetTimerNextFireTime(
+        timebase: &CMTimebase,
+        timer: &CFRunLoopTimer,
+        fire_time: CMTime,
+        flags: u32,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTimebase::set_timer_to_fire_immediately`"]
+    pub fn CMTimebaseSetTimerToFireImmediately(
+        timebase: &CMTimebase,
+        timer: &CFRunLoopTimer,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `CMTimebase::add_timer_dispatch_source`"]
+    pub fn CMTimebaseAddTimerDispatchSource(
+        timebase: &CMTimebase,
+        timer_source: &DispatchSource,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `CMTimebase::remove_timer_dispatch_source`"]
+    pub fn CMTimebaseRemoveTimerDispatchSource(
+        timebase: &CMTimebase,
+        timer_source: &DispatchSource,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CMTime", feature = "dispatch2"))]
+    #[deprecated = "renamed to `CMTimebase::set_timer_dispatch_source_next_fire_time`"]
+    pub fn CMTimebaseSetTimerDispatchSourceNextFireTime(
+        timebase: &CMTimebase,
+        timer_source: &DispatchSource,
+        fire_time: CMTime,
+        flags: u32,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `CMTimebase::set_timer_dispatch_source_to_fire_immediately`"]
+    pub fn CMTimebaseSetTimerDispatchSourceToFireImmediately(
+        timebase: &CMTimebase,
+        timer_source: &DispatchSource,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTimebase::notification_barrier`"]
+    pub fn CMTimebaseNotificationBarrier(timebase: &CMTimebase) -> OSStatus;
 }

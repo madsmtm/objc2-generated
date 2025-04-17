@@ -200,32 +200,163 @@ extern "C" {
     pub static kCTRubyAnnotationScaleToFitAttributeName: &'static CFString;
 }
 
-/// Creates an immutable ruby annotation object.
-///
-///
-/// Using this function to create a ruby annotation object with more precise
-/// control of the annotation text.
-///
-///
-/// Parameter `alignment`: Specifies how the ruby text and the base text should be aligned relative to each other.
-///
-///
-/// Parameter `overhang`: Specifies how the ruby text can overhang adjacent characters.
-///
-///
-/// Parameter `position`: The position of the annotation text.
-///
-///
-/// Parameter `string`: A string without any formatting, its format will be derived from the attrs specified below.
-///
-///
-/// Parameter `attributes`: A attribute dictionary to combine with the string specified above. If you don't specify
-/// kCTFontAttributeName, the font used by the Ruby annotation will be deduced from the base
-/// text, with a size factor specified by a CFNumberRef value keyed by
-/// kCTRubyAnnotationSizeFactorAttributeName.
-///
-///
-/// Returns: This function will return a reference to a CTRubyAnnotation object.
+impl CTRubyAnnotation {
+    /// Creates an immutable ruby annotation object.
+    ///
+    ///
+    /// Using this function to create a ruby annotation object with more precise
+    /// control of the annotation text.
+    ///
+    ///
+    /// Parameter `alignment`: Specifies how the ruby text and the base text should be aligned relative to each other.
+    ///
+    ///
+    /// Parameter `overhang`: Specifies how the ruby text can overhang adjacent characters.
+    ///
+    ///
+    /// Parameter `position`: The position of the annotation text.
+    ///
+    ///
+    /// Parameter `string`: A string without any formatting, its format will be derived from the attrs specified below.
+    ///
+    ///
+    /// Parameter `attributes`: A attribute dictionary to combine with the string specified above. If you don't specify
+    /// kCTFontAttributeName, the font used by the Ruby annotation will be deduced from the base
+    /// text, with a size factor specified by a CFNumberRef value keyed by
+    /// kCTRubyAnnotationSizeFactorAttributeName.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTRubyAnnotation object.
+    #[inline]
+    #[doc(alias = "CTRubyAnnotationCreateWithAttributes")]
+    pub unsafe fn with_attributes(
+        alignment: CTRubyAlignment,
+        overhang: CTRubyOverhang,
+        position: CTRubyPosition,
+        string: &CFString,
+        attributes: &CFDictionary,
+    ) -> CFRetained<CTRubyAnnotation> {
+        extern "C-unwind" {
+            fn CTRubyAnnotationCreateWithAttributes(
+                alignment: CTRubyAlignment,
+                overhang: CTRubyOverhang,
+                position: CTRubyPosition,
+                string: &CFString,
+                attributes: &CFDictionary,
+            ) -> Option<NonNull<CTRubyAnnotation>>;
+        }
+        let ret = unsafe {
+            CTRubyAnnotationCreateWithAttributes(alignment, overhang, position, string, attributes)
+        };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Creates an immutable copy of a ruby annotation object.
+    ///
+    ///
+    /// Parameter `rubyAnnotation`: The ruby annotation that you wish to copy.
+    ///
+    ///
+    /// Returns: If the "rubyAnnotation" reference is valid, then this
+    /// function will return valid reference to an immutable
+    /// CTRubyAnnotation object that is a copy of the one passed into
+    /// "rubyAnnotation".
+    #[inline]
+    #[doc(alias = "CTRubyAnnotationCreateCopy")]
+    pub unsafe fn new_copy(self: &CTRubyAnnotation) -> CFRetained<CTRubyAnnotation> {
+        extern "C-unwind" {
+            fn CTRubyAnnotationCreateCopy(
+                ruby_annotation: &CTRubyAnnotation,
+            ) -> Option<NonNull<CTRubyAnnotation>>;
+        }
+        let ret = unsafe { CTRubyAnnotationCreateCopy(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Get the alignment value of a ruby annotation object.
+    ///
+    ///
+    /// Parameter `rubyAnnotation`: The ruby annotation object.
+    ///
+    ///
+    /// Returns: If the "rubyAnnotation" reference is valid, then this
+    /// function will return its alignment. Otherwise it will return kCTRubyAlignmentInvalid.
+    #[inline]
+    #[doc(alias = "CTRubyAnnotationGetAlignment")]
+    pub unsafe fn alignment(self: &CTRubyAnnotation) -> CTRubyAlignment {
+        extern "C-unwind" {
+            fn CTRubyAnnotationGetAlignment(ruby_annotation: &CTRubyAnnotation) -> CTRubyAlignment;
+        }
+        unsafe { CTRubyAnnotationGetAlignment(self) }
+    }
+
+    /// Get the overhang value of a ruby annotation object.
+    ///
+    ///
+    /// Parameter `rubyAnnotation`: The ruby annotation object.
+    ///
+    ///
+    /// Returns: If the "rubyAnnotation" reference is valid, then this
+    /// function will return its overhang value. Otherwise it will return kCTRubyOverhangInvalid.
+    #[inline]
+    #[doc(alias = "CTRubyAnnotationGetOverhang")]
+    pub unsafe fn overhang(self: &CTRubyAnnotation) -> CTRubyOverhang {
+        extern "C-unwind" {
+            fn CTRubyAnnotationGetOverhang(ruby_annotation: &CTRubyAnnotation) -> CTRubyOverhang;
+        }
+        unsafe { CTRubyAnnotationGetOverhang(self) }
+    }
+
+    /// Get the size factor of a ruby annotation object.
+    ///
+    ///
+    /// Parameter `rubyAnnotation`: The ruby annotation object.
+    ///
+    ///
+    /// Returns: If the "rubyAnnotation" reference is valid, then this
+    /// function will return its sizeFactor. Otherwise it will return 0.
+    #[inline]
+    #[doc(alias = "CTRubyAnnotationGetSizeFactor")]
+    pub unsafe fn size_factor(self: &CTRubyAnnotation) -> CGFloat {
+        extern "C-unwind" {
+            fn CTRubyAnnotationGetSizeFactor(ruby_annotation: &CTRubyAnnotation) -> CGFloat;
+        }
+        unsafe { CTRubyAnnotationGetSizeFactor(self) }
+    }
+
+    /// Get the ruby text for a particular position in a ruby annotation.
+    ///
+    ///
+    /// Parameter `rubyAnnotation`: The ruby annotation object.
+    ///
+    ///
+    /// Parameter `position`: The position for which you want to get the ruby text.
+    ///
+    ///
+    /// Returns: If the "rubyAnnotation" reference and the position are valid, then this
+    /// function will return a CFStringRef for the text. Otherwise it will return NULL.
+    #[inline]
+    #[doc(alias = "CTRubyAnnotationGetTextForPosition")]
+    pub unsafe fn text_for_position(
+        self: &CTRubyAnnotation,
+        position: CTRubyPosition,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CTRubyAnnotationGetTextForPosition(
+                ruby_annotation: &CTRubyAnnotation,
+                position: CTRubyPosition,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CTRubyAnnotationGetTextForPosition(self, position) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+}
+
+#[deprecated = "renamed to `CTRubyAnnotation::with_attributes`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTRubyAnnotationCreateWithAttributes(
     alignment: CTRubyAlignment,
@@ -250,16 +381,7 @@ pub unsafe extern "C-unwind" fn CTRubyAnnotationCreateWithAttributes(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Creates an immutable copy of a ruby annotation object.
-///
-///
-/// Parameter `rubyAnnotation`: The ruby annotation that you wish to copy.
-///
-///
-/// Returns: If the "rubyAnnotation" reference is valid, then this
-/// function will return valid reference to an immutable
-/// CTRubyAnnotation object that is a copy of the one passed into
-/// "rubyAnnotation".
+#[deprecated = "renamed to `CTRubyAnnotation::new_copy`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTRubyAnnotationCreateCopy(
     ruby_annotation: &CTRubyAnnotation,
@@ -275,52 +397,21 @@ pub unsafe extern "C-unwind" fn CTRubyAnnotationCreateCopy(
 }
 
 extern "C-unwind" {
-    /// Get the alignment value of a ruby annotation object.
-    ///
-    ///
-    /// Parameter `rubyAnnotation`: The ruby annotation object.
-    ///
-    ///
-    /// Returns: If the "rubyAnnotation" reference is valid, then this
-    /// function will return its alignment. Otherwise it will return kCTRubyAlignmentInvalid.
+    #[deprecated = "renamed to `CTRubyAnnotation::alignment`"]
     pub fn CTRubyAnnotationGetAlignment(ruby_annotation: &CTRubyAnnotation) -> CTRubyAlignment;
 }
 
 extern "C-unwind" {
-    /// Get the overhang value of a ruby annotation object.
-    ///
-    ///
-    /// Parameter `rubyAnnotation`: The ruby annotation object.
-    ///
-    ///
-    /// Returns: If the "rubyAnnotation" reference is valid, then this
-    /// function will return its overhang value. Otherwise it will return kCTRubyOverhangInvalid.
+    #[deprecated = "renamed to `CTRubyAnnotation::overhang`"]
     pub fn CTRubyAnnotationGetOverhang(ruby_annotation: &CTRubyAnnotation) -> CTRubyOverhang;
 }
 
 extern "C-unwind" {
-    /// Get the size factor of a ruby annotation object.
-    ///
-    ///
-    /// Parameter `rubyAnnotation`: The ruby annotation object.
-    ///
-    ///
-    /// Returns: If the "rubyAnnotation" reference is valid, then this
-    /// function will return its sizeFactor. Otherwise it will return 0.
+    #[deprecated = "renamed to `CTRubyAnnotation::size_factor`"]
     pub fn CTRubyAnnotationGetSizeFactor(ruby_annotation: &CTRubyAnnotation) -> CGFloat;
 }
 
-/// Get the ruby text for a particular position in a ruby annotation.
-///
-///
-/// Parameter `rubyAnnotation`: The ruby annotation object.
-///
-///
-/// Parameter `position`: The position for which you want to get the ruby text.
-///
-///
-/// Returns: If the "rubyAnnotation" reference and the position are valid, then this
-/// function will return a CFStringRef for the text. Otherwise it will return NULL.
+#[deprecated = "renamed to `CTRubyAnnotation::text_for_position`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTRubyAnnotationGetTextForPosition(
     ruby_annotation: &CTRubyAnnotation,

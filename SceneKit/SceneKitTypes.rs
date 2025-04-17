@@ -138,19 +138,41 @@ extern "C" {
     pub static SCNVector4Zero: SCNVector4;
 }
 
-extern "C-unwind" {
+#[cfg(feature = "objc2-core-foundation")]
+impl SCNVector3 {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn SCNVector3EqualToVector3(a: SCNVector3, b: SCNVector3) -> bool;
+    #[inline]
+    #[doc(alias = "SCNVector3EqualToVector3")]
+    pub unsafe fn equal_to_vector3(a: SCNVector3, b: SCNVector3) -> bool {
+        extern "C-unwind" {
+            fn SCNVector3EqualToVector3(a: SCNVector3, b: SCNVector3) -> bool;
+        }
+        unsafe { SCNVector3EqualToVector3(a, b) }
+    }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "objc2-core-foundation")]
+impl SCNVector4 {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn SCNVector4EqualToVector4(a: SCNVector4, b: SCNVector4) -> bool;
+    #[inline]
+    #[doc(alias = "SCNVector4EqualToVector4")]
+    pub unsafe fn equal_to_vector4(a: SCNVector4, b: SCNVector4) -> bool {
+        extern "C-unwind" {
+            fn SCNVector4EqualToVector4(a: SCNVector4, b: SCNVector4) -> bool;
+        }
+        unsafe { SCNVector4EqualToVector4(a, b) }
+    }
 }
 
-// TODO: pub fn SCNVector3Make(x: CGFloat,y: CGFloat,z: CGFloat,) -> SCNVector3;
+#[cfg(feature = "objc2-core-foundation")]
+impl SCNVector3 {
+    // TODO: pub fn SCNVector3Make(x: CGFloat,y: CGFloat,z: CGFloat,) -> SCNVector3;
+}
 
-// TODO: pub fn SCNVector4Make(x: CGFloat,y: CGFloat,z: CGFloat,w: CGFloat,) -> SCNVector4;
+#[cfg(feature = "objc2-core-foundation")]
+impl SCNVector4 {
+    // TODO: pub fn SCNVector4Make(x: CGFloat,y: CGFloat,z: CGFloat,w: CGFloat,) -> SCNVector4;
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnquaternion?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
@@ -278,3 +300,15 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnprogramcompilationerror?language=objc)
 pub const SCNProgramCompilationError: c_uint = 1;
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `SCNVector3::equal_to_vector3`"]
+    pub fn SCNVector3EqualToVector3(a: SCNVector3, b: SCNVector3) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `SCNVector4::equal_to_vector4`"]
+    pub fn SCNVector4EqualToVector4(a: SCNVector4, b: SCNVector4) -> bool;
+}

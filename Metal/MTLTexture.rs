@@ -101,7 +101,9 @@ unsafe impl RefEncode for MTLTextureSwizzleChannels {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn MTLTextureSwizzleChannelsMake(r: MTLTextureSwizzle,g: MTLTextureSwizzle,b: MTLTextureSwizzle,a: MTLTextureSwizzle,) -> MTLTextureSwizzleChannels;
+impl MTLTextureSwizzleChannels {
+    // TODO: pub fn MTLTextureSwizzleChannelsMake(r: MTLTextureSwizzle,g: MTLTextureSwizzle,b: MTLTextureSwizzle,a: MTLTextureSwizzle,) -> MTLTextureSwizzleChannels;
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedtexturehandle?language=objc)

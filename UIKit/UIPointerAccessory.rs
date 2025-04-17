@@ -36,7 +36,10 @@ unsafe impl Send for UIPointerAccessoryPosition {}
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl Sync for UIPointerAccessoryPosition {}
 
-// TODO: pub fn UIPointerAccessoryPositionMake(offset: CGFloat,angle: CGFloat,) -> UIPointerAccessoryPosition;
+#[cfg(feature = "objc2-core-foundation")]
+impl UIPointerAccessoryPosition {
+    // TODO: pub fn UIPointerAccessoryPositionMake(offset: CGFloat,angle: CGFloat,) -> UIPointerAccessoryPosition;
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositiontop?language=objc)

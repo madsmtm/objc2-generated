@@ -107,7 +107,7 @@ unsafe impl RefEncode for CMBlockBufferCustomBlockSource {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbuffercustomblocksourceversion?language=objc)
 pub const kCMBlockBufferCustomBlockSourceVersion: u32 = 0;
 
-extern "C-unwind" {
+impl CMBlockBuffer {
     /// Creates an empty CMBlockBuffer
     ///
     /// Creates an empty CMBlockBuffer, i.e. one which has no memory block nor reference to a CMBlockBuffer
@@ -130,15 +130,32 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    pub fn CMBlockBufferCreateEmpty(
+    #[inline]
+    #[doc(alias = "CMBlockBufferCreateEmpty")]
+    pub unsafe fn create_empty(
         structure_allocator: Option<&CFAllocator>,
         sub_block_capacity: u32,
         flags: CMBlockBufferFlags,
         block_buffer_out: NonNull<*mut CMBlockBuffer>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferCreateEmpty(
+                structure_allocator: Option<&CFAllocator>,
+                sub_block_capacity: u32,
+                flags: CMBlockBufferFlags,
+                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMBlockBufferCreateEmpty(
+                structure_allocator,
+                sub_block_capacity,
+                flags,
+                block_buffer_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a new CMBlockBuffer backed by a memory block (or promise thereof).
     ///
     /// Creates a new CMBlockBuffer backed by a memory block. The memory block may be statically allocated, dynamically allocated
@@ -179,7 +196,9 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    pub fn CMBlockBufferCreateWithMemoryBlock(
+    #[inline]
+    #[doc(alias = "CMBlockBufferCreateWithMemoryBlock")]
+    pub unsafe fn create_with_memory_block(
         structure_allocator: Option<&CFAllocator>,
         memory_block: *mut c_void,
         block_length: usize,
@@ -189,10 +208,35 @@ extern "C-unwind" {
         data_length: usize,
         flags: CMBlockBufferFlags,
         block_buffer_out: NonNull<*mut CMBlockBuffer>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferCreateWithMemoryBlock(
+                structure_allocator: Option<&CFAllocator>,
+                memory_block: *mut c_void,
+                block_length: usize,
+                block_allocator: Option<&CFAllocator>,
+                custom_block_source: *const CMBlockBufferCustomBlockSource,
+                offset_to_data: usize,
+                data_length: usize,
+                flags: CMBlockBufferFlags,
+                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMBlockBufferCreateWithMemoryBlock(
+                structure_allocator,
+                memory_block,
+                block_length,
+                block_allocator,
+                custom_block_source,
+                offset_to_data,
+                data_length,
+                flags,
+                block_buffer_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a new CMBlockBuffer that refers to another CMBlockBuffer.
     ///
     /// Creates a new CMBlockBuffer that refers to (a possibly subset portion of) another CMBlockBuffer.
@@ -216,17 +260,38 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    pub fn CMBlockBufferCreateWithBufferReference(
+    #[inline]
+    #[doc(alias = "CMBlockBufferCreateWithBufferReference")]
+    pub unsafe fn create_with_buffer_reference(
         structure_allocator: Option<&CFAllocator>,
         buffer_reference: &CMBlockBuffer,
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
         block_buffer_out: NonNull<*mut CMBlockBuffer>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferCreateWithBufferReference(
+                structure_allocator: Option<&CFAllocator>,
+                buffer_reference: &CMBlockBuffer,
+                offset_to_data: usize,
+                data_length: usize,
+                flags: CMBlockBufferFlags,
+                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMBlockBufferCreateWithBufferReference(
+                structure_allocator,
+                buffer_reference,
+                offset_to_data,
+                data_length,
+                flags,
+                block_buffer_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Produces a CMBlockBuffer containing a contiguous copy of or reference to the data specified by the parameters.
     ///
     /// Produces a CMBlockBuffer containing a contiguous copy of or reference to the data specified by the parameters.
@@ -260,7 +325,9 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful
-    pub fn CMBlockBufferCreateContiguous(
+    #[inline]
+    #[doc(alias = "CMBlockBufferCreateContiguous")]
+    pub unsafe fn create_contiguous(
         structure_allocator: Option<&CFAllocator>,
         source_buffer: &CMBlockBuffer,
         block_allocator: Option<&CFAllocator>,
@@ -269,7 +336,32 @@ extern "C-unwind" {
         data_length: usize,
         flags: CMBlockBufferFlags,
         block_buffer_out: NonNull<*mut CMBlockBuffer>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferCreateContiguous(
+                structure_allocator: Option<&CFAllocator>,
+                source_buffer: &CMBlockBuffer,
+                block_allocator: Option<&CFAllocator>,
+                custom_block_source: *const CMBlockBufferCustomBlockSource,
+                offset_to_data: usize,
+                data_length: usize,
+                flags: CMBlockBufferFlags,
+                block_buffer_out: NonNull<*mut CMBlockBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMBlockBufferCreateContiguous(
+                structure_allocator,
+                source_buffer,
+                block_allocator,
+                custom_block_source,
+                offset_to_data,
+                data_length,
+                flags,
+                block_buffer_out,
+            )
+        }
+    }
 }
 
 unsafe impl ConcreteType for CMBlockBuffer {
@@ -289,7 +381,7 @@ unsafe impl ConcreteType for CMBlockBuffer {
     }
 }
 
-extern "C-unwind" {
+impl CMBlockBuffer {
     /// Adds a memoryBlock to an existing CMBlockBuffer.
     ///
     /// Adds a memoryBlock to an existing CMBlockBuffer. The memory block may be statically allocated,
@@ -329,8 +421,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    pub fn CMBlockBufferAppendMemoryBlock(
-        the_buffer: &CMBlockBuffer,
+    #[inline]
+    #[doc(alias = "CMBlockBufferAppendMemoryBlock")]
+    pub unsafe fn append_memory_block(
+        self: &CMBlockBuffer,
         memory_block: *mut c_void,
         block_length: usize,
         block_allocator: Option<&CFAllocator>,
@@ -338,10 +432,33 @@ extern "C-unwind" {
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferAppendMemoryBlock(
+                the_buffer: &CMBlockBuffer,
+                memory_block: *mut c_void,
+                block_length: usize,
+                block_allocator: Option<&CFAllocator>,
+                custom_block_source: *const CMBlockBufferCustomBlockSource,
+                offset_to_data: usize,
+                data_length: usize,
+                flags: CMBlockBufferFlags,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMBlockBufferAppendMemoryBlock(
+                self,
+                memory_block,
+                block_length,
+                block_allocator,
+                custom_block_source,
+                offset_to_data,
+                data_length,
+                flags,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Adds a CMBlockBuffer reference to an existing CMBlockBuffer.
     ///
     /// Adds a buffer reference to (a possibly subset portion of) another CMBlockBuffer to an existing CMBlockBuffer.
@@ -364,16 +481,35 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    pub fn CMBlockBufferAppendBufferReference(
-        the_buffer: &CMBlockBuffer,
+    #[inline]
+    #[doc(alias = "CMBlockBufferAppendBufferReference")]
+    pub unsafe fn append_buffer_reference(
+        self: &CMBlockBuffer,
         target_b_buf: &CMBlockBuffer,
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferAppendBufferReference(
+                the_buffer: &CMBlockBuffer,
+                target_b_buf: &CMBlockBuffer,
+                offset_to_data: usize,
+                data_length: usize,
+                flags: CMBlockBufferFlags,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMBlockBufferAppendBufferReference(
+                self,
+                target_b_buf,
+                offset_to_data,
+                data_length,
+                flags,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Assures all memory blocks in a CMBlockBuffer are allocated.
     ///
     /// Traverses the possibly complex CMBlockBuffer, allocating the memory for any constituent
@@ -384,10 +520,15 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    pub fn CMBlockBufferAssureBlockMemory(the_buffer: &CMBlockBuffer) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "CMBlockBufferAssureBlockMemory")]
+    pub unsafe fn assure_block_memory(self: &CMBlockBuffer) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferAssureBlockMemory(the_buffer: &CMBlockBuffer) -> OSStatus;
+        }
+        unsafe { CMBlockBufferAssureBlockMemory(self) }
+    }
 
-extern "C-unwind" {
     /// Accesses potentially noncontiguous data in a CMBlockBuffer.
     ///
     /// Used for accessing potentially noncontiguous data, this routine will return a pointer directly
@@ -409,16 +550,35 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the desired amount of data could be accessed at the given offset.
-    pub fn CMBlockBufferAccessDataBytes(
-        the_buffer: &CMBlockBuffer,
+    #[inline]
+    #[doc(alias = "CMBlockBufferAccessDataBytes")]
+    pub unsafe fn access_data_bytes(
+        self: &CMBlockBuffer,
         offset: usize,
         length: usize,
         temporary_block: NonNull<c_void>,
         returned_pointer_out: NonNull<*mut c_char>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferAccessDataBytes(
+                the_buffer: &CMBlockBuffer,
+                offset: usize,
+                length: usize,
+                temporary_block: NonNull<c_void>,
+                returned_pointer_out: NonNull<*mut c_char>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMBlockBufferAccessDataBytes(
+                self,
+                offset,
+                length,
+                temporary_block,
+                returned_pointer_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Copies bytes from a CMBlockBuffer into a provided memory area.
     ///
     /// This function is used to copy bytes out of a CMBlockBuffer into a provided piece of memory.
@@ -438,15 +598,25 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the copy succeeded, returns an error otherwise.
-    pub fn CMBlockBufferCopyDataBytes(
-        the_source_buffer: &CMBlockBuffer,
+    #[inline]
+    #[doc(alias = "CMBlockBufferCopyDataBytes")]
+    pub unsafe fn copy_data_bytes(
+        self: &CMBlockBuffer,
         offset_to_data: usize,
         data_length: usize,
         destination: NonNull<c_void>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferCopyDataBytes(
+                the_source_buffer: &CMBlockBuffer,
+                offset_to_data: usize,
+                data_length: usize,
+                destination: NonNull<c_void>,
+            ) -> OSStatus;
+        }
+        unsafe { CMBlockBufferCopyDataBytes(self, offset_to_data, data_length, destination) }
+    }
 
-extern "C-unwind" {
     /// Copies bytes from a given memory block into a CMBlockBuffer, replacing bytes in the underlying data blocks
     ///
     /// This function is used to replace bytes in a CMBlockBuffer's memory blocks with those from a provided piece of memory.
@@ -465,15 +635,32 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the replacement succeeded, returns an error otherwise.
-    pub fn CMBlockBufferReplaceDataBytes(
+    #[inline]
+    #[doc(alias = "CMBlockBufferReplaceDataBytes")]
+    pub unsafe fn replace_data_bytes(
         source_bytes: NonNull<c_void>,
         destination_buffer: &CMBlockBuffer,
         offset_into_destination: usize,
         data_length: usize,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferReplaceDataBytes(
+                source_bytes: NonNull<c_void>,
+                destination_buffer: &CMBlockBuffer,
+                offset_into_destination: usize,
+                data_length: usize,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMBlockBufferReplaceDataBytes(
+                source_bytes,
+                destination_buffer,
+                offset_into_destination,
+                data_length,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Fills a CMBlockBuffer with a given byte value, replacing bytes in the underlying data blocks
     ///
     /// This function is used to fill bytes in a CMBlockBuffer's memory blocks with a given byte value.
@@ -493,15 +680,32 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the fill succeeded, returns an error otherwise.
-    pub fn CMBlockBufferFillDataBytes(
+    #[inline]
+    #[doc(alias = "CMBlockBufferFillDataBytes")]
+    pub unsafe fn fill_data_bytes(
         fill_byte: c_char,
         destination_buffer: &CMBlockBuffer,
         offset_into_destination: usize,
         data_length: usize,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferFillDataBytes(
+                fill_byte: c_char,
+                destination_buffer: &CMBlockBuffer,
+                offset_into_destination: usize,
+                data_length: usize,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMBlockBufferFillDataBytes(
+                fill_byte,
+                destination_buffer,
+                offset_into_destination,
+                data_length,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Gains access to the data represented by a CMBlockBuffer.
     ///
     /// Gains access to the data represented by a CMBlockBuffer. A pointer into a memory block is returned
@@ -529,16 +733,35 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if data was accessible at the specified offset within the given CMBlockBuffer, false otherwise.
-    pub fn CMBlockBufferGetDataPointer(
-        the_buffer: &CMBlockBuffer,
+    #[inline]
+    #[doc(alias = "CMBlockBufferGetDataPointer")]
+    pub unsafe fn data_pointer(
+        self: &CMBlockBuffer,
         offset: usize,
         length_at_offset_out: *mut usize,
         total_length_out: *mut usize,
         data_pointer_out: *mut *mut c_char,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMBlockBufferGetDataPointer(
+                the_buffer: &CMBlockBuffer,
+                offset: usize,
+                length_at_offset_out: *mut usize,
+                total_length_out: *mut usize,
+                data_pointer_out: *mut *mut c_char,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMBlockBufferGetDataPointer(
+                self,
+                offset,
+                length_at_offset_out,
+                total_length_out,
+                data_pointer_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Obtains the total data length reachable via a CMBlockBuffer.
     ///
     /// Obtains the total data length reachable via a CMBlockBuffer. This total is the sum of the dataLengths
@@ -551,25 +774,205 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns the total data length available via this CMBlockBuffer, or zero if it is empty, NULL, or somehow invalid.
+    #[inline]
+    #[doc(alias = "CMBlockBufferGetDataLength")]
+    pub unsafe fn data_length(self: &CMBlockBuffer) -> usize {
+        extern "C-unwind" {
+            fn CMBlockBufferGetDataLength(the_buffer: &CMBlockBuffer) -> usize;
+        }
+        unsafe { CMBlockBufferGetDataLength(self) }
+    }
+
+    /// Determines whether the specified range within the given CMBlockBuffer is contiguous.
+    ///
+    /// Determines whether the specified range within the given CMBlockBuffer is contiguous. if CMBlockBufferGetDataPointer()
+    /// were to be called with the same parameters, the returned pointer would address the desired number of bytes.
+    ///
+    ///
+    /// Parameter `theBuffer`: CMBlockBuffer to examine. Must not be NULL
+    ///
+    /// Parameter `offset`: Offset within the buffer's offset range.
+    ///
+    /// Parameter `length`: Desired number of bytes to access at offset. If zero, the number of bytes available at offset
+    /// (dataLength – offset), contiguous or not, is used.
+    ///
+    ///
+    /// Returns: Returns true if the specified range is contiguous within the CMBlockBuffer, false otherwise. Also returns false if the
+    /// CMBlockBuffer is NULL or empty.
+    #[inline]
+    #[doc(alias = "CMBlockBufferIsRangeContiguous")]
+    pub unsafe fn is_range_contiguous(self: &CMBlockBuffer, offset: usize, length: usize) -> bool {
+        extern "C-unwind" {
+            fn CMBlockBufferIsRangeContiguous(
+                the_buffer: &CMBlockBuffer,
+                offset: usize,
+                length: usize,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CMBlockBufferIsRangeContiguous(self, offset, length) };
+        ret != 0
+    }
+
+    /// Indicates whether the given CMBlockBuffer is empty.
+    ///
+    /// Indicates whether the given CMBlockBuffer is empty, i.e., devoid of any memoryBlocks or CMBlockBuffer references.
+    /// Note that a CMBlockBuffer containing a not-yet allocated memoryBlock is not considered empty.
+    ///
+    ///
+    /// Parameter `theBuffer`: CMBlockBuffer to examine. Must not be NULL
+    ///
+    ///
+    /// Returns: Returns the result of the emptiness test. Will return false if the CMBlockBuffer is NULL.
+    #[inline]
+    #[doc(alias = "CMBlockBufferIsEmpty")]
+    pub unsafe fn is_empty(self: &CMBlockBuffer) -> bool {
+        extern "C-unwind" {
+            fn CMBlockBufferIsEmpty(the_buffer: &CMBlockBuffer) -> Boolean;
+        }
+        let ret = unsafe { CMBlockBufferIsEmpty(self) };
+        ret != 0
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::create_empty`"]
+    pub fn CMBlockBufferCreateEmpty(
+        structure_allocator: Option<&CFAllocator>,
+        sub_block_capacity: u32,
+        flags: CMBlockBufferFlags,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::create_with_memory_block`"]
+    pub fn CMBlockBufferCreateWithMemoryBlock(
+        structure_allocator: Option<&CFAllocator>,
+        memory_block: *mut c_void,
+        block_length: usize,
+        block_allocator: Option<&CFAllocator>,
+        custom_block_source: *const CMBlockBufferCustomBlockSource,
+        offset_to_data: usize,
+        data_length: usize,
+        flags: CMBlockBufferFlags,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::create_with_buffer_reference`"]
+    pub fn CMBlockBufferCreateWithBufferReference(
+        structure_allocator: Option<&CFAllocator>,
+        buffer_reference: &CMBlockBuffer,
+        offset_to_data: usize,
+        data_length: usize,
+        flags: CMBlockBufferFlags,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::create_contiguous`"]
+    pub fn CMBlockBufferCreateContiguous(
+        structure_allocator: Option<&CFAllocator>,
+        source_buffer: &CMBlockBuffer,
+        block_allocator: Option<&CFAllocator>,
+        custom_block_source: *const CMBlockBufferCustomBlockSource,
+        offset_to_data: usize,
+        data_length: usize,
+        flags: CMBlockBufferFlags,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::append_memory_block`"]
+    pub fn CMBlockBufferAppendMemoryBlock(
+        the_buffer: &CMBlockBuffer,
+        memory_block: *mut c_void,
+        block_length: usize,
+        block_allocator: Option<&CFAllocator>,
+        custom_block_source: *const CMBlockBufferCustomBlockSource,
+        offset_to_data: usize,
+        data_length: usize,
+        flags: CMBlockBufferFlags,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::append_buffer_reference`"]
+    pub fn CMBlockBufferAppendBufferReference(
+        the_buffer: &CMBlockBuffer,
+        target_b_buf: &CMBlockBuffer,
+        offset_to_data: usize,
+        data_length: usize,
+        flags: CMBlockBufferFlags,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::assure_block_memory`"]
+    pub fn CMBlockBufferAssureBlockMemory(the_buffer: &CMBlockBuffer) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::access_data_bytes`"]
+    pub fn CMBlockBufferAccessDataBytes(
+        the_buffer: &CMBlockBuffer,
+        offset: usize,
+        length: usize,
+        temporary_block: NonNull<c_void>,
+        returned_pointer_out: NonNull<*mut c_char>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::copy_data_bytes`"]
+    pub fn CMBlockBufferCopyDataBytes(
+        the_source_buffer: &CMBlockBuffer,
+        offset_to_data: usize,
+        data_length: usize,
+        destination: NonNull<c_void>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::replace_data_bytes`"]
+    pub fn CMBlockBufferReplaceDataBytes(
+        source_bytes: NonNull<c_void>,
+        destination_buffer: &CMBlockBuffer,
+        offset_into_destination: usize,
+        data_length: usize,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::fill_data_bytes`"]
+    pub fn CMBlockBufferFillDataBytes(
+        fill_byte: c_char,
+        destination_buffer: &CMBlockBuffer,
+        offset_into_destination: usize,
+        data_length: usize,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::data_pointer`"]
+    pub fn CMBlockBufferGetDataPointer(
+        the_buffer: &CMBlockBuffer,
+        offset: usize,
+        length_at_offset_out: *mut usize,
+        total_length_out: *mut usize,
+        data_pointer_out: *mut *mut c_char,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMBlockBuffer::data_length`"]
     pub fn CMBlockBufferGetDataLength(the_buffer: &CMBlockBuffer) -> usize;
 }
 
-/// Determines whether the specified range within the given CMBlockBuffer is contiguous.
-///
-/// Determines whether the specified range within the given CMBlockBuffer is contiguous. if CMBlockBufferGetDataPointer()
-/// were to be called with the same parameters, the returned pointer would address the desired number of bytes.
-///
-///
-/// Parameter `theBuffer`: CMBlockBuffer to examine. Must not be NULL
-///
-/// Parameter `offset`: Offset within the buffer's offset range.
-///
-/// Parameter `length`: Desired number of bytes to access at offset. If zero, the number of bytes available at offset
-/// (dataLength – offset), contiguous or not, is used.
-///
-///
-/// Returns: Returns true if the specified range is contiguous within the CMBlockBuffer, false otherwise. Also returns false if the
-/// CMBlockBuffer is NULL or empty.
+#[deprecated = "renamed to `CMBlockBuffer::is_range_contiguous`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CMBlockBufferIsRangeContiguous(
     the_buffer: &CMBlockBuffer,
@@ -587,16 +990,7 @@ pub unsafe extern "C-unwind" fn CMBlockBufferIsRangeContiguous(
     ret != 0
 }
 
-/// Indicates whether the given CMBlockBuffer is empty.
-///
-/// Indicates whether the given CMBlockBuffer is empty, i.e., devoid of any memoryBlocks or CMBlockBuffer references.
-/// Note that a CMBlockBuffer containing a not-yet allocated memoryBlock is not considered empty.
-///
-///
-/// Parameter `theBuffer`: CMBlockBuffer to examine. Must not be NULL
-///
-///
-/// Returns: Returns the result of the emptiness test. Will return false if the CMBlockBuffer is NULL.
+#[deprecated = "renamed to `CMBlockBuffer::is_empty`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CMBlockBufferIsEmpty(the_buffer: &CMBlockBuffer) -> bool {
     extern "C-unwind" {

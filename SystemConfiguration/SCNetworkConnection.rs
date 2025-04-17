@@ -238,22 +238,441 @@ unsafe impl ConcreteType for SCNetworkConnection {
     }
 }
 
-/// Provides the default service ID and a dictionary of user
-/// options for the connection.  Applications can use the
-/// returned serviceID and userOptions values to open a
-/// connection on the fly.
-///
-/// Parameter `selectionOptions`: Currently unimplemented. Pass NULL for this
-/// version.
-///
-/// Parameter `serviceID`: Reference to the default serviceID for starting
-/// connections, this value will be returned by the function.
-///
-/// Parameter `userOptions`: Reference to default userOptions for starting
-/// connections, this will be returned by the function.
-///
-/// Returns: Returns TRUE if there is a valid service to dial;
-/// FALSE if the function was unable to retrieve a service to dial.
+impl SCNetworkConnection {
+    /// Provides the default service ID and a dictionary of user
+    /// options for the connection.  Applications can use the
+    /// returned serviceID and userOptions values to open a
+    /// connection on the fly.
+    ///
+    /// Parameter `selectionOptions`: Currently unimplemented. Pass NULL for this
+    /// version.
+    ///
+    /// Parameter `serviceID`: Reference to the default serviceID for starting
+    /// connections, this value will be returned by the function.
+    ///
+    /// Parameter `userOptions`: Reference to default userOptions for starting
+    /// connections, this will be returned by the function.
+    ///
+    /// Returns: Returns TRUE if there is a valid service to dial;
+    /// FALSE if the function was unable to retrieve a service to dial.
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionCopyUserPreferences")]
+    pub unsafe fn user_preferences(
+        selection_options: Option<&CFDictionary>,
+        service_id: NonNull<*const CFString>,
+        user_options: NonNull<*const CFDictionary>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCNetworkConnectionCopyUserPreferences(
+                selection_options: Option<&CFDictionary>,
+                service_id: NonNull<*const CFString>,
+                user_options: NonNull<*const CFDictionary>,
+            ) -> Boolean;
+        }
+        let ret = unsafe {
+            SCNetworkConnectionCopyUserPreferences(selection_options, service_id, user_options)
+        };
+        ret != 0
+    }
+
+    /// Creates a new connection reference to use for getting
+    /// the status or for connecting or disconnecting the associated
+    /// service.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for the connection structure.  This parameter may be
+    /// NULL in which case the current default CFAllocator is used.
+    /// If this reference is not a valid CFAllocator, the behavior
+    /// is undefined.
+    ///
+    /// Parameter `serviceID`: A string that defines the service identifier
+    /// of the connection.  Service identifiers uniquely identify
+    /// services in the system configuration database.
+    ///
+    /// Parameter `callout`: The function to be called when the status
+    /// of the connection changes.  If this parameter is NULL, the
+    /// application will not receive notifications of status change
+    /// and will need to poll for updates.
+    ///
+    /// Parameter `context`: The SCNetworkConnectionContext associated with the
+    /// callout.
+    ///
+    /// Returns: Returns a reference to the new SCNetworkConnection.
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionCreateWithServiceID")]
+    pub unsafe fn with_service_id(
+        allocator: Option<&CFAllocator>,
+        service_id: &CFString,
+        callout: SCNetworkConnectionCallBack,
+        context: *mut SCNetworkConnectionContext,
+    ) -> Option<CFRetained<SCNetworkConnection>> {
+        extern "C-unwind" {
+            fn SCNetworkConnectionCreateWithServiceID(
+                allocator: Option<&CFAllocator>,
+                service_id: &CFString,
+                callout: SCNetworkConnectionCallBack,
+                context: *mut SCNetworkConnectionContext,
+            ) -> Option<NonNull<SCNetworkConnection>>;
+        }
+        let ret = unsafe {
+            SCNetworkConnectionCreateWithServiceID(allocator, service_id, callout, context)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the service ID associated with the SCNetworkConnection.
+    ///
+    /// Parameter `connection`: The SCNetworkConnection to obtain status from.
+    ///
+    /// Returns: Returns the service ID associated with the SCNetworkConnection.
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionCopyServiceID")]
+    pub fn service_id(self: &SCNetworkConnection) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SCNetworkConnectionCopyServiceID(
+                connection: &SCNetworkConnection,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SCNetworkConnectionCopyServiceID(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the status of the SCNetworkConnection.
+    /// A status is one of the following values:
+    /// <pre>
+    ///
+    /// ```text
+    /// &#32
+    ///     kSCNetworkConnectionInvalid
+    ///     kSCNetworkConnectionDisconnected
+    ///     kSCNetworkConnectionConnecting
+    ///     kSCNetworkConnectionDisconnecting
+    ///     kSCNetworkConnectionConnected
+    /// ```
+    ///
+    /// </pre>
+    ///
+    /// Parameter `connection`: The SCNetworkConnection to obtain status from.
+    ///
+    /// Returns: Returns the status value.
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionGetStatus")]
+    pub fn status(self: &SCNetworkConnection) -> SCNetworkConnectionStatus {
+        extern "C-unwind" {
+            fn SCNetworkConnectionGetStatus(
+                connection: &SCNetworkConnection,
+            ) -> SCNetworkConnectionStatus;
+        }
+        unsafe { SCNetworkConnectionGetStatus(self) }
+    }
+
+    /// Returns the extended status of the connection.
+    /// An extended status dictionary contains specific dictionaries
+    /// describing the status for each subcomponent of the service.
+    ///
+    /// For example, a status dictionary will contain the following
+    /// sub-dictionaries, keys, and values:
+    /// <pre>
+    ///
+    /// ```text
+    /// &#32
+    ///     IPv4  : Addresses      : the assigned IP address.
+    /// &#32
+    ///     PPP   : Status         : the PPP-specific status of type
+    ///                  SCNetworkConnectionPPPStatus.
+    /// &#32
+    ///         LastCause      : Available when the status is "Disconnected"
+    ///                  and contains the last error associated with
+    ///                  connecting or disconnecting.
+    /// &#32
+    ///         ConnectTime    : the time when the connection was
+    ///                  established.
+    /// &#32
+    ///     Modem : ConnectSpeed   : the speed of the modem connection
+    ///                  in bits/second.
+    /// &#32
+    ///     IPSec : Status         : the IPSec-specific status of type
+    ///                  SCNetworkConnectionIPSecStatus
+    /// &#32
+    ///         ConnectTime    : the time when the connection was
+    ///                  established.
+    ///
+    /// ```
+    ///
+    /// </pre>
+    /// Other dictionaries could be present for PPPoE, PPTP, and L2TP.
+    ///
+    /// The status dictionary may be extended in the future to contain
+    /// additional information.
+    ///
+    /// Parameter `connection`: The SCNetworkConnection to obtain status from.
+    ///
+    /// Returns: Returns the status dictionary.
+    /// If NULL is returned, the error can be retrieved using the SCError function.
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionCopyExtendedStatus")]
+    pub fn extended_status(self: &SCNetworkConnection) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SCNetworkConnectionCopyExtendedStatus(
+                connection: &SCNetworkConnection,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SCNetworkConnectionCopyExtendedStatus(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the statistics of the SCNetworkConnection.
+    /// A statistic dictionary contains specific dictionaries
+    /// with statistics for each subcomponent of the service.
+    ///
+    /// For example, a statistics dictionary will contain the following
+    /// sub-dictionaries, keys, and values:
+    /// <pre>
+    ///
+    /// ```text
+    /// &#32
+    ///     PPP : BytesIn    :
+    ///     PPP : BytesOut   : Contains the number of bytes going up into
+    ///                (or coming out of) the network stack for
+    ///                any networking protocol without the PPP
+    ///                headers and trailers.
+    /// &#32
+    ///     PPP : PacketsIn  :
+    ///     PPP : PacketsOut : Contains the number of packets going up into
+    ///                (or coming out of) the network stack for
+    ///                any networking protocol without the PPP
+    ///                headers and trailers.
+    /// &#32
+    ///     PPP : ErrorsIn   :
+    ///     PPP : ErrorsOut  : Contains the number of errors going up into
+    ///                (or coming out of) the network stack for
+    ///                any networking protocol without the PPP
+    ///                headers and trailers.
+    /// ```
+    ///
+    /// </pre>
+    /// The statistics dictionary may be extended in the future to
+    /// contain additional information.
+    ///
+    /// Parameter `connection`: The SCNetworkConnection to obtained statistics from.
+    ///
+    /// Returns: Returns the statistics dictionary.
+    /// If NULL is returned, the error can be retrieved using the SCError function.
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionCopyStatistics")]
+    pub fn statistics(self: &SCNetworkConnection) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SCNetworkConnectionCopyStatistics(
+                connection: &SCNetworkConnection,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SCNetworkConnectionCopyStatistics(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Starts the connection for the SCNetworkConnection.
+    /// The connection process is asynchronous and the function will
+    /// return immediately.  The connection status can be obtained
+    /// by polling or by callback.  The connection is made with the
+    /// default settings from the administrator.  Some of the settings
+    /// can be overridden for the duration of the connection.  These
+    /// are specified in an options dictionary.  The options dictionary
+    /// uses the same format as a network service defined in the system
+    /// configuration preferences schema.
+    ///
+    /// Note: Starting and stopping of connections is implicitly
+    /// arbitrated.  Calling SCNetworkConnectionStart on a connection
+    /// already started will indicate that the application has
+    /// interest in the connection and it shouldn't be stopped by
+    /// anyone else.
+    ///
+    /// Parameter `connection`: The SCNetworkConnection to start.
+    ///
+    /// Parameter `userOptions`: The options dictionary to start the connection with.
+    /// If userOptions is NULL, the default settings will be used.
+    /// If userOptions are specified, they must be in the same format
+    /// as network services stored in the system configuration
+    /// preferences schema.  The options will override the default
+    /// settings defined for the service.
+    ///
+    /// For security reasons, not all options can be overridden; the
+    /// appropriate merging of all settings will be done before the
+    /// connection is established, and inappropriate options will be
+    /// ignored.
+    ///
+    /// Parameter `linger`: This parameter indicates whether or not the connection
+    /// can stay around when the application no longer has interest
+    /// in it.  A typical application should pass FALSE, and the
+    /// connection will be automatically stopped when the reference
+    /// is released or if the application quits.  If the application
+    /// passes TRUE, the application can release the reference or
+    /// exit and the connection will be maintained until a timeout
+    /// event, until a specific stop request occurs, or until an
+    /// error is encountered.
+    ///
+    /// Returns: Returns TRUE if the connection was correctly started (the
+    /// actual connection is not established yet, and the connection
+    /// status needs to be periodically checked); FALSE if the
+    /// connection request was not started.  The error must be
+    /// retrieved from the SCError function.
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionStart")]
+    pub unsafe fn start(
+        self: &SCNetworkConnection,
+        user_options: Option<&CFDictionary>,
+        linger: bool,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCNetworkConnectionStart(
+                connection: &SCNetworkConnection,
+                user_options: Option<&CFDictionary>,
+                linger: Boolean,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCNetworkConnectionStart(self, user_options, linger as _) };
+        ret != 0
+    }
+
+    /// Stops the connection for the SCNetworkConnection.
+    /// The disconnection process is asynchronous and the function
+    /// will return immediately.  The connection status can be
+    /// obtained by polling or by callback.  This function performs
+    /// an arbitrated stop of the connection.  If several applications
+    /// have marked their interest in the connection, by calling
+    /// SCNetworkConnectionStart, the call will succeed but the
+    /// actual connection will be maintained until the last interested
+    /// application calls SCNetworkConnectionStop.
+    ///
+    /// In certain cases, you might want to stop the connection anyway.
+    /// In these cases, you set the forceDisconnect argument to TRUE.
+    ///
+    /// Parameter `connection`: The SCNetworkConnection to stop.
+    ///
+    /// Returns: Returns TRUE if the disconnection request succeeded;
+    /// FALSE if the disconnection request failed.
+    /// The error must be retrieved from the SCError function.
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionStop")]
+    pub fn stop(self: &SCNetworkConnection, force_disconnect: bool) -> bool {
+        extern "C-unwind" {
+            fn SCNetworkConnectionStop(
+                connection: &SCNetworkConnection,
+                force_disconnect: Boolean,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCNetworkConnectionStop(self, force_disconnect as _) };
+        ret != 0
+    }
+
+    /// Copies the user options used to start the connection.
+    /// This is a mechanism a client can use to retrieve the user options
+    /// previously passed to the SCNetworkConnectionStart function.
+    ///
+    /// Parameter `connection`: The SCNetworkConnection to obtain options from.
+    ///
+    /// Returns: Returns the service dictionary containing the connection options.
+    /// The dictionary can be empty if no user options were used.
+    /// If NULL is returned, the error can be retrieved using the SCError function.
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionCopyUserOptions")]
+    pub fn user_options(self: &SCNetworkConnection) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SCNetworkConnectionCopyUserOptions(
+                connection: &SCNetworkConnection,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SCNetworkConnectionCopyUserOptions(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Schedules a connection with the run loop.
+    ///
+    /// Parameter `connection`: The SCNetworkConnection to schedule.
+    ///
+    /// Parameter `runLoop`: The run loop to schedule with.
+    ///
+    /// Parameter `runLoopMode`: The run loop mode.
+    ///
+    /// Returns: Returns TRUE if the connection is scheduled successfully;
+    /// FALSE if the scheduling failed.
+    /// The error can be retrieved using the SCError function.
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionScheduleWithRunLoop")]
+    pub fn schedule_with_run_loop(
+        self: &SCNetworkConnection,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCNetworkConnectionScheduleWithRunLoop(
+                connection: &SCNetworkConnection,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCNetworkConnectionScheduleWithRunLoop(self, run_loop, run_loop_mode) };
+        ret != 0
+    }
+
+    /// Unschedules a connection from the run loop.
+    ///
+    /// Parameter `connection`: The SCNetworkConnection to unschedule.
+    ///
+    /// Parameter `runLoop`: The run loop to unschedule from.
+    ///
+    /// Parameter `runLoopMode`: The run loop mode.
+    ///
+    /// Returns: Returns TRUE if the connection is unscheduled successfully;
+    /// FALSE if the unscheduling failed.
+    /// The error can be retrieved using the SCError function.
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionUnscheduleFromRunLoop")]
+    pub fn unschedule_from_run_loop(
+        self: &SCNetworkConnection,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCNetworkConnectionUnscheduleFromRunLoop(
+                connection: &SCNetworkConnection,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            ) -> Boolean;
+        }
+        let ret =
+            unsafe { SCNetworkConnectionUnscheduleFromRunLoop(self, run_loop, run_loop_mode) };
+        ret != 0
+    }
+
+    /// Caller provides a dispatch queue on which the callback contained in connection will run.
+    ///
+    /// Parameter `connection`: The SCNetworkConnection to notify.
+    ///
+    /// Parameter `queue`: The libdispatch queue to run the callback on.
+    /// Pass NULL to disable notifications, and release queue.
+    ///
+    /// Returns: Returns TRUE if the notifications have been enabled/disabled as desired;
+    /// FALSE if not.
+    /// The error can be retrieved using the SCError function.
+    #[cfg(feature = "dispatch2")]
+    #[inline]
+    #[doc(alias = "SCNetworkConnectionSetDispatchQueue")]
+    pub unsafe fn set_dispatch_queue(
+        self: &SCNetworkConnection,
+        queue: Option<&DispatchQueue>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCNetworkConnectionSetDispatchQueue(
+                connection: &SCNetworkConnection,
+                queue: Option<&DispatchQueue>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCNetworkConnectionSetDispatchQueue(self, queue) };
+        ret != 0
+    }
+}
+
+#[deprecated = "renamed to `SCNetworkConnection::user_preferences`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyUserPreferences(
     selection_options: Option<&CFDictionary>,
@@ -273,29 +692,7 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyUserPreferences(
     ret != 0
 }
 
-/// Creates a new connection reference to use for getting
-/// the status or for connecting or disconnecting the associated
-/// service.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for the connection structure.  This parameter may be
-/// NULL in which case the current default CFAllocator is used.
-/// If this reference is not a valid CFAllocator, the behavior
-/// is undefined.
-///
-/// Parameter `serviceID`: A string that defines the service identifier
-/// of the connection.  Service identifiers uniquely identify
-/// services in the system configuration database.
-///
-/// Parameter `callout`: The function to be called when the status
-/// of the connection changes.  If this parameter is NULL, the
-/// application will not receive notifications of status change
-/// and will need to poll for updates.
-///
-/// Parameter `context`: The SCNetworkConnectionContext associated with the
-/// callout.
-///
-/// Returns: Returns a reference to the new SCNetworkConnection.
+#[deprecated = "renamed to `SCNetworkConnection::with_service_id`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkConnectionCreateWithServiceID(
     allocator: Option<&CFAllocator>,
@@ -316,11 +713,7 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCreateWithServiceID(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the service ID associated with the SCNetworkConnection.
-///
-/// Parameter `connection`: The SCNetworkConnection to obtain status from.
-///
-/// Returns: Returns the service ID associated with the SCNetworkConnection.
+#[deprecated = "renamed to `SCNetworkConnection::service_id`"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkConnectionCopyServiceID(
     connection: &SCNetworkConnection,
@@ -334,24 +727,7 @@ pub extern "C-unwind" fn SCNetworkConnectionCopyServiceID(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the status of the SCNetworkConnection.
-/// A status is one of the following values:
-/// <pre>
-///
-/// ```text
-/// &#32
-///     kSCNetworkConnectionInvalid
-///     kSCNetworkConnectionDisconnected
-///     kSCNetworkConnectionConnecting
-///     kSCNetworkConnectionDisconnecting
-///     kSCNetworkConnectionConnected
-/// ```
-///
-/// </pre>
-///
-/// Parameter `connection`: The SCNetworkConnection to obtain status from.
-///
-/// Returns: Returns the status value.
+#[deprecated = "renamed to `SCNetworkConnection::status`"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkConnectionGetStatus(
     connection: &SCNetworkConnection,
@@ -364,49 +740,7 @@ pub extern "C-unwind" fn SCNetworkConnectionGetStatus(
     unsafe { SCNetworkConnectionGetStatus(connection) }
 }
 
-/// Returns the extended status of the connection.
-/// An extended status dictionary contains specific dictionaries
-/// describing the status for each subcomponent of the service.
-///
-/// For example, a status dictionary will contain the following
-/// sub-dictionaries, keys, and values:
-/// <pre>
-///
-/// ```text
-/// &#32
-///     IPv4  : Addresses      : the assigned IP address.
-/// &#32
-///     PPP   : Status         : the PPP-specific status of type
-///                  SCNetworkConnectionPPPStatus.
-/// &#32
-///         LastCause      : Available when the status is "Disconnected"
-///                  and contains the last error associated with
-///                  connecting or disconnecting.
-/// &#32
-///         ConnectTime    : the time when the connection was
-///                  established.
-/// &#32
-///     Modem : ConnectSpeed   : the speed of the modem connection
-///                  in bits/second.
-/// &#32
-///     IPSec : Status         : the IPSec-specific status of type
-///                  SCNetworkConnectionIPSecStatus
-/// &#32
-///         ConnectTime    : the time when the connection was
-///                  established.
-///
-/// ```
-///
-/// </pre>
-/// Other dictionaries could be present for PPPoE, PPTP, and L2TP.
-///
-/// The status dictionary may be extended in the future to contain
-/// additional information.
-///
-/// Parameter `connection`: The SCNetworkConnection to obtain status from.
-///
-/// Returns: Returns the status dictionary.
-/// If NULL is returned, the error can be retrieved using the SCError function.
+#[deprecated = "renamed to `SCNetworkConnection::extended_status`"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkConnectionCopyExtendedStatus(
     connection: &SCNetworkConnection,
@@ -420,43 +754,7 @@ pub extern "C-unwind" fn SCNetworkConnectionCopyExtendedStatus(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the statistics of the SCNetworkConnection.
-/// A statistic dictionary contains specific dictionaries
-/// with statistics for each subcomponent of the service.
-///
-/// For example, a statistics dictionary will contain the following
-/// sub-dictionaries, keys, and values:
-/// <pre>
-///
-/// ```text
-/// &#32
-///     PPP : BytesIn    :
-///     PPP : BytesOut   : Contains the number of bytes going up into
-///                (or coming out of) the network stack for
-///                any networking protocol without the PPP
-///                headers and trailers.
-/// &#32
-///     PPP : PacketsIn  :
-///     PPP : PacketsOut : Contains the number of packets going up into
-///                (or coming out of) the network stack for
-///                any networking protocol without the PPP
-///                headers and trailers.
-/// &#32
-///     PPP : ErrorsIn   :
-///     PPP : ErrorsOut  : Contains the number of errors going up into
-///                (or coming out of) the network stack for
-///                any networking protocol without the PPP
-///                headers and trailers.
-/// ```
-///
-/// </pre>
-/// The statistics dictionary may be extended in the future to
-/// contain additional information.
-///
-/// Parameter `connection`: The SCNetworkConnection to obtained statistics from.
-///
-/// Returns: Returns the statistics dictionary.
-/// If NULL is returned, the error can be retrieved using the SCError function.
+#[deprecated = "renamed to `SCNetworkConnection::statistics`"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkConnectionCopyStatistics(
     connection: &SCNetworkConnection,
@@ -470,51 +768,7 @@ pub extern "C-unwind" fn SCNetworkConnectionCopyStatistics(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Starts the connection for the SCNetworkConnection.
-/// The connection process is asynchronous and the function will
-/// return immediately.  The connection status can be obtained
-/// by polling or by callback.  The connection is made with the
-/// default settings from the administrator.  Some of the settings
-/// can be overridden for the duration of the connection.  These
-/// are specified in an options dictionary.  The options dictionary
-/// uses the same format as a network service defined in the system
-/// configuration preferences schema.
-///
-/// Note: Starting and stopping of connections is implicitly
-/// arbitrated.  Calling SCNetworkConnectionStart on a connection
-/// already started will indicate that the application has
-/// interest in the connection and it shouldn't be stopped by
-/// anyone else.
-///
-/// Parameter `connection`: The SCNetworkConnection to start.
-///
-/// Parameter `userOptions`: The options dictionary to start the connection with.
-/// If userOptions is NULL, the default settings will be used.
-/// If userOptions are specified, they must be in the same format
-/// as network services stored in the system configuration
-/// preferences schema.  The options will override the default
-/// settings defined for the service.
-///
-/// For security reasons, not all options can be overridden; the
-/// appropriate merging of all settings will be done before the
-/// connection is established, and inappropriate options will be
-/// ignored.
-///
-/// Parameter `linger`: This parameter indicates whether or not the connection
-/// can stay around when the application no longer has interest
-/// in it.  A typical application should pass FALSE, and the
-/// connection will be automatically stopped when the reference
-/// is released or if the application quits.  If the application
-/// passes TRUE, the application can release the reference or
-/// exit and the connection will be maintained until a timeout
-/// event, until a specific stop request occurs, or until an
-/// error is encountered.
-///
-/// Returns: Returns TRUE if the connection was correctly started (the
-/// actual connection is not established yet, and the connection
-/// status needs to be periodically checked); FALSE if the
-/// connection request was not started.  The error must be
-/// retrieved from the SCError function.
+#[deprecated = "renamed to `SCNetworkConnection::start`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkConnectionStart(
     connection: &SCNetworkConnection,
@@ -532,24 +786,7 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionStart(
     ret != 0
 }
 
-/// Stops the connection for the SCNetworkConnection.
-/// The disconnection process is asynchronous and the function
-/// will return immediately.  The connection status can be
-/// obtained by polling or by callback.  This function performs
-/// an arbitrated stop of the connection.  If several applications
-/// have marked their interest in the connection, by calling
-/// SCNetworkConnectionStart, the call will succeed but the
-/// actual connection will be maintained until the last interested
-/// application calls SCNetworkConnectionStop.
-///
-/// In certain cases, you might want to stop the connection anyway.
-/// In these cases, you set the forceDisconnect argument to TRUE.
-///
-/// Parameter `connection`: The SCNetworkConnection to stop.
-///
-/// Returns: Returns TRUE if the disconnection request succeeded;
-/// FALSE if the disconnection request failed.
-/// The error must be retrieved from the SCError function.
+#[deprecated = "renamed to `SCNetworkConnection::stop`"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkConnectionStop(
     connection: &SCNetworkConnection,
@@ -565,15 +802,7 @@ pub extern "C-unwind" fn SCNetworkConnectionStop(
     ret != 0
 }
 
-/// Copies the user options used to start the connection.
-/// This is a mechanism a client can use to retrieve the user options
-/// previously passed to the SCNetworkConnectionStart function.
-///
-/// Parameter `connection`: The SCNetworkConnection to obtain options from.
-///
-/// Returns: Returns the service dictionary containing the connection options.
-/// The dictionary can be empty if no user options were used.
-/// If NULL is returned, the error can be retrieved using the SCError function.
+#[deprecated = "renamed to `SCNetworkConnection::user_options`"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkConnectionCopyUserOptions(
     connection: &SCNetworkConnection,
@@ -587,17 +816,7 @@ pub extern "C-unwind" fn SCNetworkConnectionCopyUserOptions(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Schedules a connection with the run loop.
-///
-/// Parameter `connection`: The SCNetworkConnection to schedule.
-///
-/// Parameter `runLoop`: The run loop to schedule with.
-///
-/// Parameter `runLoopMode`: The run loop mode.
-///
-/// Returns: Returns TRUE if the connection is scheduled successfully;
-/// FALSE if the scheduling failed.
-/// The error can be retrieved using the SCError function.
+#[deprecated = "renamed to `SCNetworkConnection::schedule_with_run_loop`"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkConnectionScheduleWithRunLoop(
     connection: &SCNetworkConnection,
@@ -616,17 +835,7 @@ pub extern "C-unwind" fn SCNetworkConnectionScheduleWithRunLoop(
     ret != 0
 }
 
-/// Unschedules a connection from the run loop.
-///
-/// Parameter `connection`: The SCNetworkConnection to unschedule.
-///
-/// Parameter `runLoop`: The run loop to unschedule from.
-///
-/// Parameter `runLoopMode`: The run loop mode.
-///
-/// Returns: Returns TRUE if the connection is unscheduled successfully;
-/// FALSE if the unscheduling failed.
-/// The error can be retrieved using the SCError function.
+#[deprecated = "renamed to `SCNetworkConnection::unschedule_from_run_loop`"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkConnectionUnscheduleFromRunLoop(
     connection: &SCNetworkConnection,
@@ -645,17 +854,8 @@ pub extern "C-unwind" fn SCNetworkConnectionUnscheduleFromRunLoop(
     ret != 0
 }
 
-/// Caller provides a dispatch queue on which the callback contained in connection will run.
-///
-/// Parameter `connection`: The SCNetworkConnection to notify.
-///
-/// Parameter `queue`: The libdispatch queue to run the callback on.
-/// Pass NULL to disable notifications, and release queue.
-///
-/// Returns: Returns TRUE if the notifications have been enabled/disabled as desired;
-/// FALSE if not.
-/// The error can be retrieved using the SCError function.
 #[cfg(feature = "dispatch2")]
+#[deprecated = "renamed to `SCNetworkConnection::set_dispatch_queue`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkConnectionSetDispatchQueue(
     connection: &SCNetworkConnection,

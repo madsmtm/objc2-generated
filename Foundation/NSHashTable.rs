@@ -297,14 +297,18 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "NSString")]
-#[inline]
-pub unsafe extern "C-unwind" fn NSStringFromHashTable(table: &NSHashTable) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn NSStringFromHashTable(table: &NSHashTable) -> *mut NSString;
+impl NSString {
+    #[cfg(feature = "NSString")]
+    #[inline]
+    #[doc(alias = "NSStringFromHashTable")]
+    pub unsafe fn from_hash_table(table: &NSHashTable) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn NSStringFromHashTable(table: &NSHashTable) -> *mut NSString;
+        }
+        let ret = unsafe { NSStringFromHashTable(table) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { NSStringFromHashTable(table) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 #[cfg(feature = "NSArray")]
@@ -447,4 +451,16 @@ extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinthashcallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntHashCallBacks: NSHashTableCallBacks;
+}
+
+#[cfg(feature = "NSString")]
+#[deprecated = "renamed to `NSString::from_hash_table`"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromHashTable(table: &NSHashTable) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromHashTable(table: &NSHashTable) -> *mut NSString;
+    }
+    let ret = unsafe { NSStringFromHashTable(table) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

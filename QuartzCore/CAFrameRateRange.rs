@@ -34,7 +34,35 @@ extern "C" {
     pub static CAFrameRateRangeDefault: CAFrameRateRange;
 }
 
+impl CAFrameRateRange {
+    #[inline]
+    #[doc(alias = "CAFrameRateRangeMake")]
+    pub unsafe fn new(minimum: c_float, maximum: c_float, preferred: c_float) -> CAFrameRateRange {
+        extern "C-unwind" {
+            fn CAFrameRateRangeMake(
+                minimum: c_float,
+                maximum: c_float,
+                preferred: c_float,
+            ) -> CAFrameRateRange;
+        }
+        unsafe { CAFrameRateRangeMake(minimum, maximum, preferred) }
+    }
+
+    #[inline]
+    #[doc(alias = "CAFrameRateRangeIsEqualToRange")]
+    pub unsafe fn is_equal_to_range(range: CAFrameRateRange, other: CAFrameRateRange) -> bool {
+        extern "C-unwind" {
+            fn CAFrameRateRangeIsEqualToRange(
+                range: CAFrameRateRange,
+                other: CAFrameRateRange,
+            ) -> bool;
+        }
+        unsafe { CAFrameRateRangeIsEqualToRange(range, other) }
+    }
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `CAFrameRateRange::new`"]
     pub fn CAFrameRateRangeMake(
         minimum: c_float,
         maximum: c_float,
@@ -43,6 +71,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CAFrameRateRange::is_equal_to_range`"]
     pub fn CAFrameRateRangeIsEqualToRange(range: CAFrameRateRange, other: CAFrameRateRange)
         -> bool;
 }

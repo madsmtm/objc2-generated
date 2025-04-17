@@ -39,58 +39,62 @@ unsafe impl ConcreteType for MDItem {
     }
 }
 
-/// Returns an metadata item for the given path.
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate
-/// memory for the query and its sub-storage. This
-/// parameter may be NULL in which case the current default
-/// CFAllocator is used.
-///
-/// Parameter `path`: A path to the file for which to create the MDItem.
-/// [[Currently, the path must exist. MDItemRefs may or
-/// may not be uniqued. Use CFEqual() to compare them.]]
-///
-/// Returns: An MDItemRef, or NULL on failure.
-#[inline]
-pub unsafe extern "C-unwind" fn MDItemCreate(
-    allocator: Option<&CFAllocator>,
-    path: Option<&CFString>,
-) -> Option<CFRetained<MDItem>> {
-    extern "C-unwind" {
-        fn MDItemCreate(
-            allocator: Option<&CFAllocator>,
-            path: Option<&CFString>,
-        ) -> Option<NonNull<MDItem>>;
+impl MDItem {
+    /// Returns an metadata item for the given path.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate
+    /// memory for the query and its sub-storage. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used.
+    ///
+    /// Parameter `path`: A path to the file for which to create the MDItem.
+    /// [[Currently, the path must exist. MDItemRefs may or
+    /// may not be uniqued. Use CFEqual() to compare them.]]
+    ///
+    /// Returns: An MDItemRef, or NULL on failure.
+    #[inline]
+    #[doc(alias = "MDItemCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        path: Option<&CFString>,
+    ) -> Option<CFRetained<MDItem>> {
+        extern "C-unwind" {
+            fn MDItemCreate(
+                allocator: Option<&CFAllocator>,
+                path: Option<&CFString>,
+            ) -> Option<NonNull<MDItem>>;
+        }
+        let ret = unsafe { MDItemCreate(allocator, path) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { MDItemCreate(allocator, path) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns an metadata item for the given path.
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate
-/// memory for the query and its sub-storage. This
-/// parameter may be NULL in which case the current default
-/// CFAllocator is used.
-///
-/// Parameter `url`: A url to the file for which to create the MDItem.
-/// [[Currently, the file must exist. MDItemRefs may or
-/// may not be uniqued. Use CFEqual() to compare them.]]
-///
-/// Returns: An MDItemRef, or NULL on failure.
-#[inline]
-pub unsafe extern "C-unwind" fn MDItemCreateWithURL(
-    allocator: Option<&CFAllocator>,
-    url: Option<&CFURL>,
-) -> Option<CFRetained<MDItem>> {
-    extern "C-unwind" {
-        fn MDItemCreateWithURL(
-            allocator: Option<&CFAllocator>,
-            url: Option<&CFURL>,
-        ) -> Option<NonNull<MDItem>>;
+    /// Returns an metadata item for the given path.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate
+    /// memory for the query and its sub-storage. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used.
+    ///
+    /// Parameter `url`: A url to the file for which to create the MDItem.
+    /// [[Currently, the file must exist. MDItemRefs may or
+    /// may not be uniqued. Use CFEqual() to compare them.]]
+    ///
+    /// Returns: An MDItemRef, or NULL on failure.
+    #[inline]
+    #[doc(alias = "MDItemCreateWithURL")]
+    pub unsafe fn with_url(
+        allocator: Option<&CFAllocator>,
+        url: Option<&CFURL>,
+    ) -> Option<CFRetained<MDItem>> {
+        extern "C-unwind" {
+            fn MDItemCreateWithURL(
+                allocator: Option<&CFAllocator>,
+                url: Option<&CFURL>,
+            ) -> Option<NonNull<MDItem>>;
+        }
+        let ret = unsafe { MDItemCreateWithURL(allocator, url) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { MDItemCreateWithURL(allocator, url) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns metadata items for the given urls.
@@ -117,67 +121,70 @@ pub unsafe extern "C-unwind" fn MDItemsCreateWithURLs(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the value of the given attribute for the item.
-///
-/// Parameter `item`: The item to be interrogated.
-///
-/// Parameter `name`: The name of the desired attribute.
-///
-/// Returns: A CFTypeRef, or NULL on failure, or if the attribute
-/// does not exist, of if the attribute is not readable.
-#[inline]
-pub unsafe extern "C-unwind" fn MDItemCopyAttribute(
-    item: &MDItem,
-    name: Option<&CFString>,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn MDItemCopyAttribute(item: &MDItem, name: Option<&CFString>) -> Option<NonNull<CFType>>;
+impl MDItem {
+    /// Returns the value of the given attribute for the item.
+    ///
+    /// Parameter `item`: The item to be interrogated.
+    ///
+    /// Parameter `name`: The name of the desired attribute.
+    ///
+    /// Returns: A CFTypeRef, or NULL on failure, or if the attribute
+    /// does not exist, of if the attribute is not readable.
+    #[inline]
+    #[doc(alias = "MDItemCopyAttribute")]
+    pub unsafe fn attribute(self: &MDItem, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn MDItemCopyAttribute(
+                item: &MDItem,
+                name: Option<&CFString>,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { MDItemCopyAttribute(self, name) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { MDItemCopyAttribute(item, name) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns the values of the given attributes for the item.
-///
-/// Parameter `item`: The item to be interrogated.
-///
-/// Parameter `names`: A CFArray of the names of the desired attributes.
-///
-/// Returns: A CFDictionary where the keys are the attribute names,
-/// and the values are the attribute values, or NULL on
-/// failure. If an attribute does not exist, or is
-/// unreadable, there will be no key-value pair for it
-/// in the dictionary.
-#[inline]
-pub unsafe extern "C-unwind" fn MDItemCopyAttributes(
-    item: &MDItem,
-    names: Option<&CFArray>,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn MDItemCopyAttributes(
-            item: &MDItem,
-            names: Option<&CFArray>,
-        ) -> Option<NonNull<CFDictionary>>;
+    /// Returns the values of the given attributes for the item.
+    ///
+    /// Parameter `item`: The item to be interrogated.
+    ///
+    /// Parameter `names`: A CFArray of the names of the desired attributes.
+    ///
+    /// Returns: A CFDictionary where the keys are the attribute names,
+    /// and the values are the attribute values, or NULL on
+    /// failure. If an attribute does not exist, or is
+    /// unreadable, there will be no key-value pair for it
+    /// in the dictionary.
+    #[inline]
+    #[doc(alias = "MDItemCopyAttributes")]
+    pub unsafe fn attributes(
+        self: &MDItem,
+        names: Option<&CFArray>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn MDItemCopyAttributes(
+                item: &MDItem,
+                names: Option<&CFArray>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { MDItemCopyAttributes(self, names) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { MDItemCopyAttributes(item, names) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns an array of the attribute names existing in the item.
-///
-/// Parameter `item`: The item to be interrogated.
-///
-/// Returns: A CFArray of CFString attribute names, or NULL on
-/// failure.
-#[inline]
-pub unsafe extern "C-unwind" fn MDItemCopyAttributeNames(
-    item: &MDItem,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn MDItemCopyAttributeNames(item: &MDItem) -> Option<NonNull<CFArray>>;
+    /// Returns an array of the attribute names existing in the item.
+    ///
+    /// Parameter `item`: The item to be interrogated.
+    ///
+    /// Returns: A CFArray of CFString attribute names, or NULL on
+    /// failure.
+    #[inline]
+    #[doc(alias = "MDItemCopyAttributeNames")]
+    pub unsafe fn attribute_names(self: &MDItem) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn MDItemCopyAttributeNames(item: &MDItem) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { MDItemCopyAttributeNames(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { MDItemCopyAttributeNames(item) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns metadata for the given items.
@@ -205,12 +212,22 @@ pub unsafe extern "C-unwind" fn MDItemsCopyAttributes(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
+impl MDItem {
     #[cfg(feature = "block2")]
-    pub fn MDItemGetCacheFileDescriptors(
+    #[inline]
+    #[doc(alias = "MDItemGetCacheFileDescriptors")]
+    pub unsafe fn cache_file_descriptors(
         items: Option<&CFArray>,
         completion_handler: Option<&block2::DynBlock<dyn Fn(*const CFArray)>>,
-    );
+    ) {
+        extern "C-unwind" {
+            fn MDItemGetCacheFileDescriptors(
+                items: Option<&CFArray>,
+                completion_handler: Option<&block2::DynBlock<dyn Fn(*const CFArray)>>,
+            );
+        }
+        unsafe { MDItemGetCacheFileDescriptors(items, completion_handler) }
+    }
 }
 
 extern "C" {
@@ -1704,4 +1721,86 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemisapplicationmanaged?language=objc)
     pub static kMDItemIsApplicationManaged: Option<&'static CFString>;
+}
+
+#[deprecated = "renamed to `MDItem::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDItemCreate(
+    allocator: Option<&CFAllocator>,
+    path: Option<&CFString>,
+) -> Option<CFRetained<MDItem>> {
+    extern "C-unwind" {
+        fn MDItemCreate(
+            allocator: Option<&CFAllocator>,
+            path: Option<&CFString>,
+        ) -> Option<NonNull<MDItem>>;
+    }
+    let ret = unsafe { MDItemCreate(allocator, path) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `MDItem::with_url`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDItemCreateWithURL(
+    allocator: Option<&CFAllocator>,
+    url: Option<&CFURL>,
+) -> Option<CFRetained<MDItem>> {
+    extern "C-unwind" {
+        fn MDItemCreateWithURL(
+            allocator: Option<&CFAllocator>,
+            url: Option<&CFURL>,
+        ) -> Option<NonNull<MDItem>>;
+    }
+    let ret = unsafe { MDItemCreateWithURL(allocator, url) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `MDItem::attribute`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDItemCopyAttribute(
+    item: &MDItem,
+    name: Option<&CFString>,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn MDItemCopyAttribute(item: &MDItem, name: Option<&CFString>) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { MDItemCopyAttribute(item, name) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `MDItem::attributes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDItemCopyAttributes(
+    item: &MDItem,
+    names: Option<&CFArray>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn MDItemCopyAttributes(
+            item: &MDItem,
+            names: Option<&CFArray>,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { MDItemCopyAttributes(item, names) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `MDItem::attribute_names`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDItemCopyAttributeNames(
+    item: &MDItem,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn MDItemCopyAttributeNames(item: &MDItem) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { MDItemCopyAttributeNames(item) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `MDItem::cache_file_descriptors`"]
+    pub fn MDItemGetCacheFileDescriptors(
+        items: Option<&CFArray>,
+        completion_handler: Option<&block2::DynBlock<dyn Fn(*const CFArray)>>,
+    );
 }

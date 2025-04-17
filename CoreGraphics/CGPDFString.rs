@@ -26,14 +26,57 @@ unsafe impl RefEncode for CGPDFString {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstringref?language=objc)
 pub type CGPDFStringRef = *mut CGPDFString;
 
+impl CGPDFString {
+    #[inline]
+    #[doc(alias = "CGPDFStringGetLength")]
+    pub unsafe fn length(string: CGPDFStringRef) -> usize {
+        extern "C-unwind" {
+            fn CGPDFStringGetLength(string: CGPDFStringRef) -> usize;
+        }
+        unsafe { CGPDFStringGetLength(string) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFStringGetBytePtr")]
+    pub unsafe fn byte_ptr(string: CGPDFStringRef) -> *const c_uchar {
+        extern "C-unwind" {
+            fn CGPDFStringGetBytePtr(string: CGPDFStringRef) -> *const c_uchar;
+        }
+        unsafe { CGPDFStringGetBytePtr(string) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFStringCopyTextString")]
+    pub unsafe fn text_string(string: CGPDFStringRef) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CGPDFStringCopyTextString(string: CGPDFStringRef) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CGPDFStringCopyTextString(string) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFStringCopyDate")]
+    pub unsafe fn date(string: CGPDFStringRef) -> Option<CFRetained<CFDate>> {
+        extern "C-unwind" {
+            fn CGPDFStringCopyDate(string: CGPDFStringRef) -> Option<NonNull<CFDate>>;
+        }
+        let ret = unsafe { CGPDFStringCopyDate(string) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFString::length`"]
     pub fn CGPDFStringGetLength(string: CGPDFStringRef) -> usize;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFString::byte_ptr`"]
     pub fn CGPDFStringGetBytePtr(string: CGPDFStringRef) -> *const c_uchar;
 }
 
+#[deprecated = "renamed to `CGPDFString::text_string`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPDFStringCopyTextString(
     string: CGPDFStringRef,
@@ -45,6 +88,7 @@ pub unsafe extern "C-unwind" fn CGPDFStringCopyTextString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `CGPDFString::date`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPDFStringCopyDate(
     string: CGPDFStringRef,

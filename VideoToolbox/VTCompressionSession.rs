@@ -84,7 +84,7 @@ extern "C" {
     pub static kVTVideoEncoderSpecification_EncoderID: &'static CFString;
 }
 
-extern "C-unwind" {
+impl VTCompressionSession {
     /// Creates a session for compressing video frames.
     ///
     /// Compressed frames will be emitted through calls to outputCallback.
@@ -117,7 +117,9 @@ extern "C-unwind" {
     ///
     /// Parameter `compressionSessionOut`: Points to a variable to receive the new compression session.
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
-    pub fn VTCompressionSessionCreate(
+    #[inline]
+    #[doc(alias = "VTCompressionSessionCreate")]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         width: i32,
         height: i32,
@@ -128,10 +130,37 @@ extern "C-unwind" {
         output_callback: VTCompressionOutputCallback,
         output_callback_ref_con: *mut c_void,
         compression_session_out: NonNull<*mut VTCompressionSession>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTCompressionSessionCreate(
+                allocator: Option<&CFAllocator>,
+                width: i32,
+                height: i32,
+                codec_type: CMVideoCodecType,
+                encoder_specification: Option<&CFDictionary>,
+                source_image_buffer_attributes: Option<&CFDictionary>,
+                compressed_data_allocator: Option<&CFAllocator>,
+                output_callback: VTCompressionOutputCallback,
+                output_callback_ref_con: *mut c_void,
+                compression_session_out: NonNull<*mut VTCompressionSession>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTCompressionSessionCreate(
+                allocator,
+                width,
+                height,
+                codec_type,
+                encoder_specification,
+                source_image_buffer_attributes,
+                compressed_data_allocator,
+                output_callback,
+                output_callback_ref_con,
+                compression_session_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Tears down a compression session.
     ///
     /// When you are done with a compression session you created, call VTCompressionSessionInvalidate
@@ -139,7 +168,14 @@ extern "C-unwind" {
     /// When a compression session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTCompressionSessionInvalidate ensures a deterministic, orderly teardown.
-    pub fn VTCompressionSessionInvalidate(session: &VTCompressionSession);
+    #[inline]
+    #[doc(alias = "VTCompressionSessionInvalidate")]
+    pub unsafe fn invalidate(self: &VTCompressionSession) {
+        extern "C-unwind" {
+            fn VTCompressionSessionInvalidate(session: &VTCompressionSession);
+        }
+        unsafe { VTCompressionSessionInvalidate(self) }
+    }
 }
 
 unsafe impl ConcreteType for VTCompressionSession {
@@ -154,37 +190,38 @@ unsafe impl ConcreteType for VTCompressionSession {
     }
 }
 
-/// Returns a pool that can provide ideal source pixel buffers for a compression session.
-///
-/// The compression session creates this pixel buffer pool based on
-/// the compressor's pixel buffer attributes and any pixel buffer
-/// attributes passed in to VTCompressionSessionCreate.  If the
-/// source pixel buffer attributes and the compressor pixel buffer
-/// attributes cannot be reconciled, the pool is based on the source
-/// pixel buffer attributes and the Video Toolbox converts each CVImageBuffer
-/// internally.
-/// <BR
-/// >
-/// While clients can call VTCompressionSessionGetPixelBufferPool once
-/// and retain the resulting pool, the call is cheap enough that it's OK
-/// to call it once per frame.  If a change of session properties causes
-/// the compressor's pixel buffer attributes to change, it's possible that
-/// VTCompressionSessionGetPixelBufferPool might return a different pool.
-#[cfg(feature = "objc2-core-video")]
-#[inline]
-pub unsafe extern "C-unwind" fn VTCompressionSessionGetPixelBufferPool(
-    session: &VTCompressionSession,
-) -> Option<CFRetained<CVPixelBufferPool>> {
-    extern "C-unwind" {
-        fn VTCompressionSessionGetPixelBufferPool(
-            session: &VTCompressionSession,
-        ) -> Option<NonNull<CVPixelBufferPool>>;
+impl VTCompressionSession {
+    /// Returns a pool that can provide ideal source pixel buffers for a compression session.
+    ///
+    /// The compression session creates this pixel buffer pool based on
+    /// the compressor's pixel buffer attributes and any pixel buffer
+    /// attributes passed in to VTCompressionSessionCreate.  If the
+    /// source pixel buffer attributes and the compressor pixel buffer
+    /// attributes cannot be reconciled, the pool is based on the source
+    /// pixel buffer attributes and the Video Toolbox converts each CVImageBuffer
+    /// internally.
+    /// <BR
+    /// >
+    /// While clients can call VTCompressionSessionGetPixelBufferPool once
+    /// and retain the resulting pool, the call is cheap enough that it's OK
+    /// to call it once per frame.  If a change of session properties causes
+    /// the compressor's pixel buffer attributes to change, it's possible that
+    /// VTCompressionSessionGetPixelBufferPool might return a different pool.
+    #[cfg(feature = "objc2-core-video")]
+    #[inline]
+    #[doc(alias = "VTCompressionSessionGetPixelBufferPool")]
+    pub unsafe fn pixel_buffer_pool(
+        self: &VTCompressionSession,
+    ) -> Option<CFRetained<CVPixelBufferPool>> {
+        extern "C-unwind" {
+            fn VTCompressionSessionGetPixelBufferPool(
+                session: &VTCompressionSession,
+            ) -> Option<NonNull<CVPixelBufferPool>>;
+        }
+        let ret = unsafe { VTCompressionSessionGetPixelBufferPool(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { VTCompressionSessionGetPixelBufferPool(session) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
     /// You can optionally call this function to provide the encoder with an opportunity to perform
     /// any necessary resource allocation before it begins encoding frames.
     ///
@@ -194,10 +231,17 @@ extern "C-unwind" {
     /// Extra calls to this function will have no effect.
     ///
     /// Parameter `session`: The compression session.
-    pub fn VTCompressionSessionPrepareToEncodeFrames(session: &VTCompressionSession) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "VTCompressionSessionPrepareToEncodeFrames")]
+    pub unsafe fn prepare_to_encode_frames(self: &VTCompressionSession) -> OSStatus {
+        extern "C-unwind" {
+            fn VTCompressionSessionPrepareToEncodeFrames(
+                session: &VTCompressionSession,
+            ) -> OSStatus;
+        }
+        unsafe { VTCompressionSessionPrepareToEncodeFrames(self) }
+    }
 
-extern "C-unwind" {
     /// Call this function to present frames to the compression session.
     /// Encoded frames may or may not be output before the function returns.
     ///
@@ -231,15 +275,40 @@ extern "C-unwind" {
         feature = "objc2-core-media",
         feature = "objc2-core-video"
     ))]
-    pub fn VTCompressionSessionEncodeFrame(
-        session: &VTCompressionSession,
+    #[inline]
+    #[doc(alias = "VTCompressionSessionEncodeFrame")]
+    pub unsafe fn encode_frame(
+        self: &VTCompressionSession,
         image_buffer: &CVImageBuffer,
         presentation_time_stamp: CMTime,
         duration: CMTime,
         frame_properties: Option<&CFDictionary>,
         source_frame_refcon: *mut c_void,
         info_flags_out: *mut VTEncodeInfoFlags,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTCompressionSessionEncodeFrame(
+                session: &VTCompressionSession,
+                image_buffer: &CVImageBuffer,
+                presentation_time_stamp: CMTime,
+                duration: CMTime,
+                frame_properties: Option<&CFDictionary>,
+                source_frame_refcon: *mut c_void,
+                info_flags_out: *mut VTEncodeInfoFlags,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTCompressionSessionEncodeFrame(
+                self,
+                image_buffer,
+                presentation_time_stamp,
+                duration,
+                frame_properties,
+                source_frame_refcon,
+                info_flags_out,
+            )
+        }
+    }
 }
 
 /// Prototype for block invoked when frame compression is complete.
@@ -262,7 +331,7 @@ extern "C-unwind" {
 pub type VTCompressionOutputHandler =
     *mut block2::DynBlock<dyn Fn(OSStatus, VTEncodeInfoFlags, *mut CMSampleBuffer)>;
 
-extern "C-unwind" {
+impl VTCompressionSession {
     /// Call this function to present frames to the compression session.
     /// Encoded frames may or may not be output before the function returns.
     ///
@@ -299,18 +368,41 @@ extern "C-unwind" {
         feature = "objc2-core-media",
         feature = "objc2-core-video"
     ))]
-    pub fn VTCompressionSessionEncodeFrameWithOutputHandler(
-        session: &VTCompressionSession,
+    #[inline]
+    #[doc(alias = "VTCompressionSessionEncodeFrameWithOutputHandler")]
+    pub unsafe fn encode_frame_with_output_handler(
+        self: &VTCompressionSession,
         image_buffer: &CVImageBuffer,
         presentation_time_stamp: CMTime,
         duration: CMTime,
         frame_properties: Option<&CFDictionary>,
         info_flags_out: *mut VTEncodeInfoFlags,
         output_handler: VTCompressionOutputHandler,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTCompressionSessionEncodeFrameWithOutputHandler(
+                session: &VTCompressionSession,
+                image_buffer: &CVImageBuffer,
+                presentation_time_stamp: CMTime,
+                duration: CMTime,
+                frame_properties: Option<&CFDictionary>,
+                info_flags_out: *mut VTEncodeInfoFlags,
+                output_handler: VTCompressionOutputHandler,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTCompressionSessionEncodeFrameWithOutputHandler(
+                self,
+                image_buffer,
+                presentation_time_stamp,
+                duration,
+                frame_properties,
+                info_flags_out,
+                output_handler,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Forces the compression session to complete encoding frames.
     ///
     /// If completeUntilPresentationTimeStamp is numeric, frames with presentation timestamps
@@ -318,10 +410,20 @@ extern "C-unwind" {
     /// If completeUntilPresentationTimeStamp is non-numeric, all pending frames
     /// will be emitted before the function returns.
     #[cfg(feature = "objc2-core-media")]
-    pub fn VTCompressionSessionCompleteFrames(
-        session: &VTCompressionSession,
+    #[inline]
+    #[doc(alias = "VTCompressionSessionCompleteFrames")]
+    pub unsafe fn complete_frames(
+        self: &VTCompressionSession,
         complete_until_presentation_time_stamp: CMTime,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTCompressionSessionCompleteFrames(
+                session: &VTCompressionSession,
+                complete_until_presentation_time_stamp: CMTime,
+            ) -> OSStatus;
+        }
+        unsafe { VTCompressionSessionCompleteFrames(self, complete_until_presentation_time_stamp) }
+    }
 }
 
 /// Indicates whether the current system supports stereo MV-HEVC encode.
@@ -336,7 +438,7 @@ pub unsafe extern "C-unwind" fn VTIsStereoMVHEVCEncodeSupported() -> bool {
     ret != 0
 }
 
-extern "C-unwind" {
+impl VTCompressionSession {
     /// Call this function to present a multi-image frame to the compression session.
     /// Encoded frames may or may not be output before the function returns.
     ///
@@ -365,18 +467,41 @@ extern "C-unwind" {
     /// The kVTEncodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously).
     /// Pass NULL if you do not want to receive this information.
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
-    pub fn VTCompressionSessionEncodeMultiImageFrame(
-        session: &VTCompressionSession,
+    #[inline]
+    #[doc(alias = "VTCompressionSessionEncodeMultiImageFrame")]
+    pub unsafe fn encode_multi_image_frame(
+        self: &VTCompressionSession,
         tagged_buffer_group: &CMTaggedBufferGroup,
         presentation_time_stamp: CMTime,
         duration: CMTime,
         frame_properties: Option<&CFDictionary>,
         source_frame_refcon: *mut c_void,
         info_flags_out: *mut VTEncodeInfoFlags,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTCompressionSessionEncodeMultiImageFrame(
+                session: &VTCompressionSession,
+                tagged_buffer_group: &CMTaggedBufferGroup,
+                presentation_time_stamp: CMTime,
+                duration: CMTime,
+                frame_properties: Option<&CFDictionary>,
+                source_frame_refcon: *mut c_void,
+                info_flags_out: *mut VTEncodeInfoFlags,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTCompressionSessionEncodeMultiImageFrame(
+                self,
+                tagged_buffer_group,
+                presentation_time_stamp,
+                duration,
+                frame_properties,
+                source_frame_refcon,
+                info_flags_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Call this function to present a multi-image frame to the compression session.
     /// Encoded frames may or may not be output before the function returns.
     ///
@@ -407,15 +532,40 @@ extern "C-unwind" {
     /// Parameter `outputHandler`: The block to be called when encoding the frame is completed.
     /// This block may be called asynchronously, on a different thread from the one that calls VTCompressionSessionEncodeMultiImageFrameWithOutputHandler.
     #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
-    pub fn VTCompressionSessionEncodeMultiImageFrameWithOutputHandler(
-        session: &VTCompressionSession,
+    #[inline]
+    #[doc(alias = "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler")]
+    pub unsafe fn encode_multi_image_frame_with_output_handler(
+        self: &VTCompressionSession,
         tagged_buffer_group: &CMTaggedBufferGroup,
         presentation_time_stamp: CMTime,
         duration: CMTime,
         frame_properties: Option<&CFDictionary>,
         info_flags_out: *mut VTEncodeInfoFlags,
         output_handler: VTCompressionOutputHandler,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTCompressionSessionEncodeMultiImageFrameWithOutputHandler(
+                session: &VTCompressionSession,
+                tagged_buffer_group: &CMTaggedBufferGroup,
+                presentation_time_stamp: CMTime,
+                duration: CMTime,
+                frame_properties: Option<&CFDictionary>,
+                info_flags_out: *mut VTEncodeInfoFlags,
+                output_handler: VTCompressionOutputHandler,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTCompressionSessionEncodeMultiImageFrameWithOutputHandler(
+                self,
+                tagged_buffer_group,
+                presentation_time_stamp,
+                duration,
+                frame_properties,
+                info_flags_out,
+                output_handler,
+            )
+        }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionoptionflags?language=objc)
@@ -440,21 +590,30 @@ unsafe impl RefEncode for VTCompressionSessionOptionFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+impl VTCompressionSession {
     /// Call to announce the start of a specific compression pass.
     ///
     /// During multi-pass encoding, this function must be called before VTCompressionSessionEncodeFrame.
     /// It is an error to call this function when multi-pass encoding has not been enabled by setting kVTCompressionPropertyKey_MultiPassStorage.
     ///
     /// Parameter `beginPassFlags`: Pass kVTCompressionSessionBeginFinalPass to inform the encoder that the pass must be the final pass.
-    pub fn VTCompressionSessionBeginPass(
-        session: &VTCompressionSession,
+    #[inline]
+    #[doc(alias = "VTCompressionSessionBeginPass")]
+    pub unsafe fn begin_pass(
+        self: &VTCompressionSession,
         begin_pass_flags: VTCompressionSessionOptionFlags,
         reserved: *mut u32,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTCompressionSessionBeginPass(
+                session: &VTCompressionSession,
+                begin_pass_flags: VTCompressionSessionOptionFlags,
+                reserved: *mut u32,
+            ) -> OSStatus;
+        }
+        unsafe { VTCompressionSessionBeginPass(self, begin_pass_flags, reserved) }
+    }
 
-extern "C-unwind" {
     /// Call to announce the end of a pass.
     ///
     /// VTCompressionSessionEndPass can take a long time, since the video encoder may perform significant processing between passes.
@@ -463,14 +622,23 @@ extern "C-unwind" {
     ///
     /// Parameter `furtherPassesRequestedOut`: Points to a Boolean that will be set to true if the video encoder would like to perform another pass, false otherwise.
     /// You may pass NULL to indicate that the client is certain to use this as the final pass, in which case the video encoder can skip that evaluation step.
-    pub fn VTCompressionSessionEndPass(
-        session: &VTCompressionSession,
+    #[inline]
+    #[doc(alias = "VTCompressionSessionEndPass")]
+    pub unsafe fn end_pass(
+        self: &VTCompressionSession,
         further_passes_requested_out: *mut Boolean,
         reserved: *mut u32,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTCompressionSessionEndPass(
+                session: &VTCompressionSession,
+                further_passes_requested_out: *mut Boolean,
+                reserved: *mut u32,
+            ) -> OSStatus;
+        }
+        unsafe { VTCompressionSessionEndPass(self, further_passes_requested_out, reserved) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the time ranges for the next pass.
     ///
     /// If VTCompressionSessionEndPass sets *furtherPassesRequestedOut to true, call VTCompressionSessionGetTimeRangesForNextPass to find out the time ranges for the next pass.  Source frames outside these time ranges should be skipped.
@@ -483,6 +651,167 @@ extern "C-unwind" {
     /// The storage for this array belongs to the VTCompressionSession and should not be modified.
     /// The pointer will be valid until the next call to VTCompressionSessionEndPass, or until the VTCompressionSession is invalidated or finalized.
     #[cfg(feature = "objc2-core-media")]
+    #[inline]
+    #[doc(alias = "VTCompressionSessionGetTimeRangesForNextPass")]
+    pub unsafe fn time_ranges_for_next_pass(
+        self: &VTCompressionSession,
+        time_range_count_out: NonNull<CMItemCount>,
+        time_range_array_out: NonNull<*const CMTimeRange>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTCompressionSessionGetTimeRangesForNextPass(
+                session: &VTCompressionSession,
+                time_range_count_out: NonNull<CMItemCount>,
+                time_range_array_out: NonNull<*const CMTimeRange>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTCompressionSessionGetTimeRangesForNextPass(
+                self,
+                time_range_count_out,
+                time_range_array_out,
+            )
+        }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
+    #[deprecated = "renamed to `VTCompressionSession::create`"]
+    pub fn VTCompressionSessionCreate(
+        allocator: Option<&CFAllocator>,
+        width: i32,
+        height: i32,
+        codec_type: CMVideoCodecType,
+        encoder_specification: Option<&CFDictionary>,
+        source_image_buffer_attributes: Option<&CFDictionary>,
+        compressed_data_allocator: Option<&CFAllocator>,
+        output_callback: VTCompressionOutputCallback,
+        output_callback_ref_con: *mut c_void,
+        compression_session_out: NonNull<*mut VTCompressionSession>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTCompressionSession::invalidate`"]
+    pub fn VTCompressionSessionInvalidate(session: &VTCompressionSession);
+}
+
+#[cfg(feature = "objc2-core-video")]
+#[deprecated = "renamed to `VTCompressionSession::pixel_buffer_pool`"]
+#[inline]
+pub unsafe extern "C-unwind" fn VTCompressionSessionGetPixelBufferPool(
+    session: &VTCompressionSession,
+) -> Option<CFRetained<CVPixelBufferPool>> {
+    extern "C-unwind" {
+        fn VTCompressionSessionGetPixelBufferPool(
+            session: &VTCompressionSession,
+        ) -> Option<NonNull<CVPixelBufferPool>>;
+    }
+    let ret = unsafe { VTCompressionSessionGetPixelBufferPool(session) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTCompressionSession::prepare_to_encode_frames`"]
+    pub fn VTCompressionSessionPrepareToEncodeFrames(session: &VTCompressionSession) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "VTErrors",
+        feature = "objc2-core-media",
+        feature = "objc2-core-video"
+    ))]
+    #[deprecated = "renamed to `VTCompressionSession::encode_frame`"]
+    pub fn VTCompressionSessionEncodeFrame(
+        session: &VTCompressionSession,
+        image_buffer: &CVImageBuffer,
+        presentation_time_stamp: CMTime,
+        duration: CMTime,
+        frame_properties: Option<&CFDictionary>,
+        source_frame_refcon: *mut c_void,
+        info_flags_out: *mut VTEncodeInfoFlags,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "VTErrors",
+        feature = "block2",
+        feature = "objc2-core-media",
+        feature = "objc2-core-video"
+    ))]
+    #[deprecated = "renamed to `VTCompressionSession::encode_frame_with_output_handler`"]
+    pub fn VTCompressionSessionEncodeFrameWithOutputHandler(
+        session: &VTCompressionSession,
+        image_buffer: &CVImageBuffer,
+        presentation_time_stamp: CMTime,
+        duration: CMTime,
+        frame_properties: Option<&CFDictionary>,
+        info_flags_out: *mut VTEncodeInfoFlags,
+        output_handler: VTCompressionOutputHandler,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-media")]
+    #[deprecated = "renamed to `VTCompressionSession::complete_frames`"]
+    pub fn VTCompressionSessionCompleteFrames(
+        session: &VTCompressionSession,
+        complete_until_presentation_time_stamp: CMTime,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
+    #[deprecated = "renamed to `VTCompressionSession::encode_multi_image_frame`"]
+    pub fn VTCompressionSessionEncodeMultiImageFrame(
+        session: &VTCompressionSession,
+        tagged_buffer_group: &CMTaggedBufferGroup,
+        presentation_time_stamp: CMTime,
+        duration: CMTime,
+        frame_properties: Option<&CFDictionary>,
+        source_frame_refcon: *mut c_void,
+        info_flags_out: *mut VTEncodeInfoFlags,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
+    #[deprecated = "renamed to `VTCompressionSession::encode_multi_image_frame_with_output_handler`"]
+    pub fn VTCompressionSessionEncodeMultiImageFrameWithOutputHandler(
+        session: &VTCompressionSession,
+        tagged_buffer_group: &CMTaggedBufferGroup,
+        presentation_time_stamp: CMTime,
+        duration: CMTime,
+        frame_properties: Option<&CFDictionary>,
+        info_flags_out: *mut VTEncodeInfoFlags,
+        output_handler: VTCompressionOutputHandler,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTCompressionSession::begin_pass`"]
+    pub fn VTCompressionSessionBeginPass(
+        session: &VTCompressionSession,
+        begin_pass_flags: VTCompressionSessionOptionFlags,
+        reserved: *mut u32,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTCompressionSession::end_pass`"]
+    pub fn VTCompressionSessionEndPass(
+        session: &VTCompressionSession,
+        further_passes_requested_out: *mut Boolean,
+        reserved: *mut u32,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-media")]
+    #[deprecated = "renamed to `VTCompressionSession::time_ranges_for_next_pass`"]
     pub fn VTCompressionSessionGetTimeRangesForNextPass(
         session: &VTCompressionSession,
         time_range_count_out: NonNull<CMItemCount>,

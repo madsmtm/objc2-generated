@@ -187,7 +187,10 @@ extern "C" {
 
 // TODO: pub fn NSSizeToCGSize(nssize: NSSize,) -> CGSize;
 
-// TODO: pub fn NSEdgeInsetsMake(top: CGFloat,left: CGFloat,bottom: CGFloat,right: CGFloat,) -> NSEdgeInsets;
+#[cfg(feature = "objc2-core-foundation")]
+impl NSEdgeInsets {
+    // TODO: pub fn NSEdgeInsetsMake(top: CGFloat,left: CGFloat,bottom: CGFloat,right: CGFloat,) -> NSEdgeInsets;
+}
 
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
@@ -226,15 +229,16 @@ pub unsafe extern "C-unwind" fn NSIsEmptyRect(a_rect: NSRect) -> bool {
 }
 
 #[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn NSEdgeInsetsEqual(
-    a_insets: NSEdgeInsets,
-    b_insets: NSEdgeInsets,
-) -> bool {
-    extern "C-unwind" {
-        fn NSEdgeInsetsEqual(a_insets: NSEdgeInsets, b_insets: NSEdgeInsets) -> Bool;
+impl NSEdgeInsets {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "NSEdgeInsetsEqual")]
+    pub unsafe fn equal(a_insets: NSEdgeInsets, b_insets: NSEdgeInsets) -> bool {
+        extern "C-unwind" {
+            fn NSEdgeInsetsEqual(a_insets: NSEdgeInsets, b_insets: NSEdgeInsets) -> Bool;
+        }
+        unsafe { NSEdgeInsetsEqual(a_insets, b_insets) }.as_bool()
     }
-    unsafe { NSEdgeInsetsEqual(a_insets, b_insets) }.as_bool()
 }
 
 extern "C-unwind" {
@@ -318,37 +322,43 @@ pub unsafe extern "C-unwind" fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect)
     unsafe { NSIntersectsRect(a_rect, b_rect) }.as_bool()
 }
 
-#[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-#[inline]
-pub unsafe extern "C-unwind" fn NSStringFromPoint(a_point: NSPoint) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn NSStringFromPoint(a_point: NSPoint) -> *mut NSString;
+#[cfg(feature = "NSString")]
+impl NSString {
+    #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+    #[inline]
+    #[doc(alias = "NSStringFromPoint")]
+    pub unsafe fn from_point(a_point: NSPoint) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn NSStringFromPoint(a_point: NSPoint) -> *mut NSString;
+        }
+        let ret = unsafe { NSStringFromPoint(a_point) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { NSStringFromPoint(a_point) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-#[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-#[inline]
-pub unsafe extern "C-unwind" fn NSStringFromSize(a_size: NSSize) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn NSStringFromSize(a_size: NSSize) -> *mut NSString;
+    #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+    #[inline]
+    #[doc(alias = "NSStringFromSize")]
+    pub unsafe fn from_size(a_size: NSSize) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn NSStringFromSize(a_size: NSSize) -> *mut NSString;
+        }
+        let ret = unsafe { NSStringFromSize(a_size) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { NSStringFromSize(a_size) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-#[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-#[inline]
-pub unsafe extern "C-unwind" fn NSStringFromRect(a_rect: NSRect) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn NSStringFromRect(a_rect: NSRect) -> *mut NSString;
+    #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+    #[inline]
+    #[doc(alias = "NSStringFromRect")]
+    pub unsafe fn from_rect(a_rect: NSRect) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn NSStringFromRect(a_rect: NSRect) -> *mut NSString;
+        }
+        let ret = unsafe { NSStringFromRect(a_rect) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { NSStringFromRect(a_rect) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {
@@ -482,4 +492,53 @@ impl NSCoder {
         #[unsafe(method_family = none)]
         pub unsafe fn decodeRectForKey(&self, key: &NSString) -> NSRect;
     );
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `NSEdgeInsets::equal`"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSEdgeInsetsEqual(
+    a_insets: NSEdgeInsets,
+    b_insets: NSEdgeInsets,
+) -> bool {
+    extern "C-unwind" {
+        fn NSEdgeInsetsEqual(a_insets: NSEdgeInsets, b_insets: NSEdgeInsets) -> Bool;
+    }
+    unsafe { NSEdgeInsetsEqual(a_insets, b_insets) }.as_bool()
+}
+
+#[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+#[deprecated = "renamed to `NSString::from_point`"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromPoint(a_point: NSPoint) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromPoint(a_point: NSPoint) -> *mut NSString;
+    }
+    let ret = unsafe { NSStringFromPoint(a_point) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+#[deprecated = "renamed to `NSString::from_size`"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromSize(a_size: NSSize) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromSize(a_size: NSSize) -> *mut NSString;
+    }
+    let ret = unsafe { NSStringFromSize(a_size) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+#[deprecated = "renamed to `NSString::from_rect`"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromRect(a_rect: NSRect) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromRect(a_rect: NSRect) -> *mut NSString;
+    }
+    let ret = unsafe { NSStringFromRect(a_rect) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

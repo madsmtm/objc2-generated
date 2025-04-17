@@ -44,17 +44,18 @@ unsafe impl RefEncode for DDDeviceProtocol {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Converts a device protocol type to a string for logging, etc.
-#[inline]
-pub unsafe extern "C-unwind" fn DDDeviceProtocolToString(
-    in_value: DDDeviceProtocol,
-) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn DDDeviceProtocolToString(in_value: DDDeviceProtocol) -> *mut NSString;
+impl DDDeviceProtocol {
+    /// Converts a device protocol type to a string for logging, etc.
+    #[inline]
+    #[doc(alias = "DDDeviceProtocolToString")]
+    pub unsafe fn to_string(in_value: DDDeviceProtocol) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn DDDeviceProtocolToString(in_value: DDDeviceProtocol) -> *mut NSString;
+        }
+        let ret = unsafe { DDDeviceProtocolToString(in_value) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { DDDeviceProtocolToString(in_value) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 /// Category of the device.
@@ -95,17 +96,18 @@ unsafe impl RefEncode for DDDeviceCategory {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Converts a device category to a string for logging, etc.
-#[inline]
-pub unsafe extern "C-unwind" fn DDDeviceCategoryToString(
-    in_value: DDDeviceCategory,
-) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn DDDeviceCategoryToString(in_value: DDDeviceCategory) -> *mut NSString;
+impl DDDeviceCategory {
+    /// Converts a device category to a string for logging, etc.
+    #[inline]
+    #[doc(alias = "DDDeviceCategoryToString")]
+    pub unsafe fn to_string(in_value: DDDeviceCategory) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn DDDeviceCategoryToString(in_value: DDDeviceCategory) -> *mut NSString;
+        }
+        let ret = unsafe { DDDeviceCategoryToString(in_value) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { DDDeviceCategoryToString(in_value) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 /// State of the device.
@@ -140,17 +142,18 @@ unsafe impl RefEncode for DDDeviceState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Converts a device state to a string for logging, etc.
-#[inline]
-pub unsafe extern "C-unwind" fn DDDeviceStateToString(
-    in_value: DDDeviceState,
-) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn DDDeviceStateToString(in_value: DDDeviceState) -> *mut NSString;
+impl DDDeviceState {
+    /// Converts a device state to a string for logging, etc.
+    #[inline]
+    #[doc(alias = "DDDeviceStateToString")]
+    pub unsafe fn to_string(in_value: DDDeviceState) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn DDDeviceStateToString(in_value: DDDeviceState) -> *mut NSString;
+        }
+        let ret = unsafe { DDDeviceStateToString(in_value) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { DDDeviceStateToString(in_value) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 /// State of media playback on the device.
@@ -204,19 +207,20 @@ unsafe impl RefEncode for DDDeviceSupports {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Converts a device media playback state to a string for logging, etc.
-#[inline]
-pub unsafe extern "C-unwind" fn DDDeviceMediaPlaybackStateToString(
-    in_value: DDDeviceMediaPlaybackState,
-) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn DDDeviceMediaPlaybackStateToString(
-            in_value: DDDeviceMediaPlaybackState,
-        ) -> *mut NSString;
+impl DDDeviceMediaPlaybackState {
+    /// Converts a device media playback state to a string for logging, etc.
+    #[inline]
+    #[doc(alias = "DDDeviceMediaPlaybackStateToString")]
+    pub unsafe fn to_string(in_value: DDDeviceMediaPlaybackState) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn DDDeviceMediaPlaybackStateToString(
+                in_value: DDDeviceMediaPlaybackState,
+            ) -> *mut NSString;
+        }
+        let ret = unsafe { DDDeviceMediaPlaybackStateToString(in_value) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { DDDeviceMediaPlaybackStateToString(in_value) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern_class!(
@@ -425,4 +429,58 @@ impl DDDevice {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     );
+}
+
+#[deprecated = "renamed to `DDDeviceProtocol::to_string`"]
+#[inline]
+pub unsafe extern "C-unwind" fn DDDeviceProtocolToString(
+    in_value: DDDeviceProtocol,
+) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn DDDeviceProtocolToString(in_value: DDDeviceProtocol) -> *mut NSString;
+    }
+    let ret = unsafe { DDDeviceProtocolToString(in_value) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[deprecated = "renamed to `DDDeviceCategory::to_string`"]
+#[inline]
+pub unsafe extern "C-unwind" fn DDDeviceCategoryToString(
+    in_value: DDDeviceCategory,
+) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn DDDeviceCategoryToString(in_value: DDDeviceCategory) -> *mut NSString;
+    }
+    let ret = unsafe { DDDeviceCategoryToString(in_value) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[deprecated = "renamed to `DDDeviceState::to_string`"]
+#[inline]
+pub unsafe extern "C-unwind" fn DDDeviceStateToString(
+    in_value: DDDeviceState,
+) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn DDDeviceStateToString(in_value: DDDeviceState) -> *mut NSString;
+    }
+    let ret = unsafe { DDDeviceStateToString(in_value) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[deprecated = "renamed to `DDDeviceMediaPlaybackState::to_string`"]
+#[inline]
+pub unsafe extern "C-unwind" fn DDDeviceMediaPlaybackStateToString(
+    in_value: DDDeviceMediaPlaybackState,
+) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn DDDeviceMediaPlaybackStateToString(
+            in_value: DDDeviceMediaPlaybackState,
+        ) -> *mut NSString;
+    }
+    let ret = unsafe { DDDeviceMediaPlaybackStateToString(in_value) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

@@ -36,7 +36,7 @@ unsafe impl RefEncode for sec_protocol_options {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_t?language=objc)
 pub type sec_protocol_options_t = *mut sec_protocol_options;
 
-extern "C-unwind" {
+impl sec_protocol_options {
     /// Compare two `sec_protocol_options_t` instances.
     ///
     ///
@@ -47,13 +47,21 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: True if equal, and false otherwise.
-    pub fn sec_protocol_options_are_equal(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_are_equal")]
+    pub unsafe fn are_equal(
         options_a: sec_protocol_options_t,
         options_b: sec_protocol_options_t,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn sec_protocol_options_are_equal(
+                options_a: sec_protocol_options_t,
+                options_b: sec_protocol_options_t,
+            ) -> bool;
+        }
+        unsafe { sec_protocol_options_are_equal(options_a, options_b) }
+    }
 
-extern "C-unwind" {
     /// Set the local identity to be used for this protocol instance.
     ///
     ///
@@ -62,13 +70,18 @@ extern "C-unwind" {
     ///
     /// Parameter `identity`: A `sec_identity_t` instance carrying the private key and certificate.
     #[cfg(feature = "SecProtocolTypes")]
-    pub fn sec_protocol_options_set_local_identity(
-        options: sec_protocol_options_t,
-        identity: sec_identity_t,
-    );
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_local_identity")]
+    pub unsafe fn set_local_identity(options: sec_protocol_options_t, identity: sec_identity_t) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_local_identity(
+                options: sec_protocol_options_t,
+                identity: sec_identity_t,
+            );
+        }
+        unsafe { sec_protocol_options_set_local_identity(options, identity) }
+    }
 
-extern "C-unwind" {
     /// Append a TLS ciphersuite to the set of enabled ciphersuites.
     ///
     ///
@@ -77,13 +90,21 @@ extern "C-unwind" {
     ///
     /// Parameter `ciphersuite`: A `tls_ciphersuite_t` value.
     #[cfg(feature = "SecProtocolTypes")]
-    pub fn sec_protocol_options_append_tls_ciphersuite(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_append_tls_ciphersuite")]
+    pub unsafe fn append_tls_ciphersuite(
         options: sec_protocol_options_t,
         ciphersuite: tls_ciphersuite_t,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_append_tls_ciphersuite(
+                options: sec_protocol_options_t,
+                ciphersuite: tls_ciphersuite_t,
+            );
+        }
+        unsafe { sec_protocol_options_append_tls_ciphersuite(options, ciphersuite) }
+    }
 
-extern "C-unwind" {
     /// Add a TLS ciphersuite to the set of enabled ciphersuites.
     ///
     ///
@@ -93,13 +114,21 @@ extern "C-unwind" {
     /// Parameter `ciphersuite`: A SSLCipherSuite value.
     #[cfg(feature = "CipherSuite")]
     #[deprecated = "Use sec_protocol_options_append_tls_ciphersuite"]
-    pub fn sec_protocol_options_add_tls_ciphersuite(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_add_tls_ciphersuite")]
+    pub unsafe fn add_tls_ciphersuite(
         options: sec_protocol_options_t,
         ciphersuite: SSLCipherSuite,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_add_tls_ciphersuite(
+                options: sec_protocol_options_t,
+                ciphersuite: SSLCipherSuite,
+            );
+        }
+        unsafe { sec_protocol_options_add_tls_ciphersuite(options, ciphersuite) }
+    }
 
-extern "C-unwind" {
     /// Append a TLS ciphersuite group to the set of enabled ciphersuites.
     ///
     ///
@@ -108,13 +137,21 @@ extern "C-unwind" {
     ///
     /// Parameter `group`: A tls_ciphersuite_group_t value.
     #[cfg(feature = "SecProtocolTypes")]
-    pub fn sec_protocol_options_append_tls_ciphersuite_group(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_append_tls_ciphersuite_group")]
+    pub unsafe fn append_tls_ciphersuite_group(
         options: sec_protocol_options_t,
         group: tls_ciphersuite_group_t,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_append_tls_ciphersuite_group(
+                options: sec_protocol_options_t,
+                group: tls_ciphersuite_group_t,
+            );
+        }
+        unsafe { sec_protocol_options_append_tls_ciphersuite_group(options, group) }
+    }
 
-extern "C-unwind" {
     /// Add a TLS ciphersuite group to the set of enabled ciphersuites.
     ///
     ///
@@ -124,13 +161,21 @@ extern "C-unwind" {
     /// Parameter `group`: A SSLCipherSuiteGroup value.
     #[cfg(feature = "CipherSuite")]
     #[deprecated = "Use sec_protocol_options_append_tls_ciphersuite_group"]
-    pub fn sec_protocol_options_add_tls_ciphersuite_group(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_add_tls_ciphersuite_group")]
+    pub unsafe fn add_tls_ciphersuite_group(
         options: sec_protocol_options_t,
         group: SSLCiphersuiteGroup,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_add_tls_ciphersuite_group(
+                options: sec_protocol_options_t,
+                group: SSLCiphersuiteGroup,
+            );
+        }
+        unsafe { sec_protocol_options_add_tls_ciphersuite_group(options, group) }
+    }
 
-extern "C-unwind" {
     /// Set the minimum support TLS version.
     ///
     ///
@@ -140,13 +185,18 @@ extern "C-unwind" {
     /// Parameter `version`: A SSLProtocol enum value.
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated]
-    pub fn sec_protocol_options_set_tls_min_version(
-        options: sec_protocol_options_t,
-        version: SSLProtocol,
-    );
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_tls_min_version")]
+    pub unsafe fn set_tls_min_version(options: sec_protocol_options_t, version: SSLProtocol) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_tls_min_version(
+                options: sec_protocol_options_t,
+                version: SSLProtocol,
+            );
+        }
+        unsafe { sec_protocol_options_set_tls_min_version(options, version) }
+    }
 
-extern "C-unwind" {
     /// Set the minimum support TLS version.
     ///
     ///
@@ -155,31 +205,49 @@ extern "C-unwind" {
     ///
     /// Parameter `version`: A tls_protocol_version_t enum value.
     #[cfg(feature = "SecProtocolTypes")]
-    pub fn sec_protocol_options_set_min_tls_protocol_version(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_min_tls_protocol_version")]
+    pub unsafe fn set_min_tls_protocol_version(
         options: sec_protocol_options_t,
         version: tls_protocol_version_t,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_min_tls_protocol_version(
+                options: sec_protocol_options_t,
+                version: tls_protocol_version_t,
+            );
+        }
+        unsafe { sec_protocol_options_set_min_tls_protocol_version(options, version) }
+    }
 
-extern "C-unwind" {
     /// Get the system default minimum TLS protocol version.
     ///
     ///
     /// Returns: The default minimum TLS version.
     #[cfg(feature = "SecProtocolTypes")]
-    pub fn sec_protocol_options_get_default_min_tls_protocol_version() -> tls_protocol_version_t;
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_get_default_min_tls_protocol_version")]
+    pub unsafe fn get_default_min_tls_protocol_version() -> tls_protocol_version_t {
+        extern "C-unwind" {
+            fn sec_protocol_options_get_default_min_tls_protocol_version() -> tls_protocol_version_t;
+        }
+        unsafe { sec_protocol_options_get_default_min_tls_protocol_version() }
+    }
 
-extern "C-unwind" {
     /// Get the system default minimum DTLS protocol version.
     ///
     ///
     /// Returns: The default minimum DTLS version.
     #[cfg(feature = "SecProtocolTypes")]
-    pub fn sec_protocol_options_get_default_min_dtls_protocol_version() -> tls_protocol_version_t;
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_get_default_min_dtls_protocol_version")]
+    pub unsafe fn get_default_min_dtls_protocol_version() -> tls_protocol_version_t {
+        extern "C-unwind" {
+            fn sec_protocol_options_get_default_min_dtls_protocol_version() -> tls_protocol_version_t;
+        }
+        unsafe { sec_protocol_options_get_default_min_dtls_protocol_version() }
+    }
 
-extern "C-unwind" {
     /// Set the maximum support TLS version.
     ///
     ///
@@ -189,13 +257,18 @@ extern "C-unwind" {
     /// Parameter `version`: A SSLProtocol enum value.
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated]
-    pub fn sec_protocol_options_set_tls_max_version(
-        options: sec_protocol_options_t,
-        version: SSLProtocol,
-    );
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_tls_max_version")]
+    pub unsafe fn set_tls_max_version(options: sec_protocol_options_t, version: SSLProtocol) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_tls_max_version(
+                options: sec_protocol_options_t,
+                version: SSLProtocol,
+            );
+        }
+        unsafe { sec_protocol_options_set_tls_max_version(options, version) }
+    }
 
-extern "C-unwind" {
     /// Set the maximum support TLS version.
     ///
     ///
@@ -204,52 +277,80 @@ extern "C-unwind" {
     ///
     /// Parameter `version`: A tls_protocol_version_t enum value.
     #[cfg(feature = "SecProtocolTypes")]
-    pub fn sec_protocol_options_set_max_tls_protocol_version(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_max_tls_protocol_version")]
+    pub unsafe fn set_max_tls_protocol_version(
         options: sec_protocol_options_t,
         version: tls_protocol_version_t,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_max_tls_protocol_version(
+                options: sec_protocol_options_t,
+                version: tls_protocol_version_t,
+            );
+        }
+        unsafe { sec_protocol_options_set_max_tls_protocol_version(options, version) }
+    }
 
-extern "C-unwind" {
     /// Get the system default maximum TLS protocol version.
     ///
     ///
     /// Returns: The default maximum TLS version.
     #[cfg(feature = "SecProtocolTypes")]
-    pub fn sec_protocol_options_get_default_max_tls_protocol_version() -> tls_protocol_version_t;
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_get_default_max_tls_protocol_version")]
+    pub unsafe fn get_default_max_tls_protocol_version() -> tls_protocol_version_t {
+        extern "C-unwind" {
+            fn sec_protocol_options_get_default_max_tls_protocol_version() -> tls_protocol_version_t;
+        }
+        unsafe { sec_protocol_options_get_default_max_tls_protocol_version() }
+    }
 
-extern "C-unwind" {
     /// Get the system default maximum DTLS protocol version.
     ///
     ///
     /// Returns: The default maximum DTLS version.
     #[cfg(feature = "SecProtocolTypes")]
-    pub fn sec_protocol_options_get_default_max_dtls_protocol_version() -> tls_protocol_version_t;
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_get_default_max_dtls_protocol_version")]
+    pub unsafe fn get_default_max_dtls_protocol_version() -> tls_protocol_version_t {
+        extern "C-unwind" {
+            fn sec_protocol_options_get_default_max_dtls_protocol_version() -> tls_protocol_version_t;
+        }
+        unsafe { sec_protocol_options_get_default_max_dtls_protocol_version() }
+    }
 
-extern "C-unwind" {
     /// For experimental use only. Find out whether Encrypted Client Hello has been enabled.
     ///
     ///
     /// Returns: A boolean that indicates whether or not Encrypted Client Hello has been enabled.
-    pub fn sec_protocol_options_get_enable_encrypted_client_hello(
-        options: sec_protocol_options_t,
-    ) -> bool;
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_get_enable_encrypted_client_hello")]
+    pub unsafe fn get_enable_encrypted_client_hello(options: sec_protocol_options_t) -> bool {
+        extern "C-unwind" {
+            fn sec_protocol_options_get_enable_encrypted_client_hello(
+                options: sec_protocol_options_t,
+            ) -> bool;
+        }
+        unsafe { sec_protocol_options_get_enable_encrypted_client_hello(options) }
+    }
 
-extern "C-unwind" {
     /// Check whether the QUIC legacy codepoint has been enabled.
     ///
     ///
     /// Returns: A boolean that indicates whether or not the QUIC legacy codepoint has been
     /// enabled.
-    pub fn sec_protocol_options_get_quic_use_legacy_codepoint(
-        options: sec_protocol_options_t,
-    ) -> bool;
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_get_quic_use_legacy_codepoint")]
+    pub unsafe fn get_quic_use_legacy_codepoint(options: sec_protocol_options_t) -> bool {
+        extern "C-unwind" {
+            fn sec_protocol_options_get_quic_use_legacy_codepoint(
+                options: sec_protocol_options_t,
+            ) -> bool;
+        }
+        unsafe { sec_protocol_options_get_quic_use_legacy_codepoint(options) }
+    }
 
-extern "C-unwind" {
     /// Add an application protocol supported by clients of this protocol instance.
     ///
     ///
@@ -257,13 +358,21 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `application_protocol`: A NULL-terminated string defining the application protocol.
-    pub fn sec_protocol_options_add_tls_application_protocol(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_add_tls_application_protocol")]
+    pub unsafe fn add_tls_application_protocol(
         options: sec_protocol_options_t,
         application_protocol: NonNull<c_char>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_add_tls_application_protocol(
+                options: sec_protocol_options_t,
+                application_protocol: NonNull<c_char>,
+            );
+        }
+        unsafe { sec_protocol_options_add_tls_application_protocol(options, application_protocol) }
+    }
 
-extern "C-unwind" {
     /// Set the server name to be used when verifying the peer's certificate. This will override
     /// the server name obtained from the endpoint.
     ///
@@ -272,13 +381,21 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `server_name`: A NULL-terminated string carrying the server name.
-    pub fn sec_protocol_options_set_tls_server_name(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_tls_server_name")]
+    pub unsafe fn set_tls_server_name(
         options: sec_protocol_options_t,
         server_name: NonNull<c_char>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_tls_server_name(
+                options: sec_protocol_options_t,
+                server_name: NonNull<c_char>,
+            );
+        }
+        unsafe { sec_protocol_options_set_tls_server_name(options, server_name) }
+    }
 
-extern "C-unwind" {
     /// Enable or disable TLS session ticket support.
     ///
     ///
@@ -286,13 +403,18 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `tickets_enabled`: Flag to enable or disable TLS session ticket support.
-    pub fn sec_protocol_options_set_tls_tickets_enabled(
-        options: sec_protocol_options_t,
-        tickets_enabled: bool,
-    );
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_tls_tickets_enabled")]
+    pub unsafe fn set_tls_tickets_enabled(options: sec_protocol_options_t, tickets_enabled: bool) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_tls_tickets_enabled(
+                options: sec_protocol_options_t,
+                tickets_enabled: bool,
+            );
+        }
+        unsafe { sec_protocol_options_set_tls_tickets_enabled(options, tickets_enabled) }
+    }
 
-extern "C-unwind" {
     /// Signal if this is a TLS fallback attempt.
     ///
     /// A fallback attempt is one following a previously failed TLS connection
@@ -306,13 +428,21 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `is_fallback_attempt`: Set a flag indicating that this is a TLS fallback attempt.
-    pub fn sec_protocol_options_set_tls_is_fallback_attempt(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_tls_is_fallback_attempt")]
+    pub unsafe fn set_tls_is_fallback_attempt(
         options: sec_protocol_options_t,
         is_fallback_attempt: bool,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_tls_is_fallback_attempt(
+                options: sec_protocol_options_t,
+                is_fallback_attempt: bool,
+            );
+        }
+        unsafe { sec_protocol_options_set_tls_is_fallback_attempt(options, is_fallback_attempt) }
+    }
 
-extern "C-unwind" {
     /// Enable or disable TLS session resumption.
     ///
     ///
@@ -320,13 +450,21 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `resumption_enabled`: Flag to enable or disable TLS session resumption.
-    pub fn sec_protocol_options_set_tls_resumption_enabled(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_tls_resumption_enabled")]
+    pub unsafe fn set_tls_resumption_enabled(
         options: sec_protocol_options_t,
         resumption_enabled: bool,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_tls_resumption_enabled(
+                options: sec_protocol_options_t,
+                resumption_enabled: bool,
+            );
+        }
+        unsafe { sec_protocol_options_set_tls_resumption_enabled(options, resumption_enabled) }
+    }
 
-extern "C-unwind" {
     /// Enable or disable TLS False Start.
     ///
     ///
@@ -334,13 +472,21 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `false_start_enabled`: Flag to enable or disable TLS False Start.
-    pub fn sec_protocol_options_set_tls_false_start_enabled(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_tls_false_start_enabled")]
+    pub unsafe fn set_tls_false_start_enabled(
         options: sec_protocol_options_t,
         false_start_enabled: bool,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_tls_false_start_enabled(
+                options: sec_protocol_options_t,
+                false_start_enabled: bool,
+            );
+        }
+        unsafe { sec_protocol_options_set_tls_false_start_enabled(options, false_start_enabled) }
+    }
 
-extern "C-unwind" {
     /// Enable or disable OCSP support.
     ///
     ///
@@ -348,13 +494,18 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `ocsp_enabled`: Flag to enable or disable OCSP support.
-    pub fn sec_protocol_options_set_tls_ocsp_enabled(
-        options: sec_protocol_options_t,
-        ocsp_enabled: bool,
-    );
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_tls_ocsp_enabled")]
+    pub unsafe fn set_tls_ocsp_enabled(options: sec_protocol_options_t, ocsp_enabled: bool) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_tls_ocsp_enabled(
+                options: sec_protocol_options_t,
+                ocsp_enabled: bool,
+            );
+        }
+        unsafe { sec_protocol_options_set_tls_ocsp_enabled(options, ocsp_enabled) }
+    }
 
-extern "C-unwind" {
     /// Enable or disable SCT (signed certificate timestamp) support.
     ///
     ///
@@ -362,13 +513,18 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `sct_enabled`: Flag to enable or disable SCT support.
-    pub fn sec_protocol_options_set_tls_sct_enabled(
-        options: sec_protocol_options_t,
-        sct_enabled: bool,
-    );
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_tls_sct_enabled")]
+    pub unsafe fn set_tls_sct_enabled(options: sec_protocol_options_t, sct_enabled: bool) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_tls_sct_enabled(
+                options: sec_protocol_options_t,
+                sct_enabled: bool,
+            );
+        }
+        unsafe { sec_protocol_options_set_tls_sct_enabled(options, sct_enabled) }
+    }
 
-extern "C-unwind" {
     /// Enable or disable TLS (1.2 and prior) session renegotiation. This defaults to `true`.
     ///
     ///
@@ -376,13 +532,23 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `renegotiation_enabled`: Flag to enable or disable TLS (1.2 and prior) session renegotiation.
-    pub fn sec_protocol_options_set_tls_renegotiation_enabled(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_tls_renegotiation_enabled")]
+    pub unsafe fn set_tls_renegotiation_enabled(
         options: sec_protocol_options_t,
         renegotiation_enabled: bool,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_tls_renegotiation_enabled(
+                options: sec_protocol_options_t,
+                renegotiation_enabled: bool,
+            );
+        }
+        unsafe {
+            sec_protocol_options_set_tls_renegotiation_enabled(options, renegotiation_enabled)
+        }
+    }
 
-extern "C-unwind" {
     /// Enable or disable peer authentication. Clients default to true, whereas servers default to false.
     ///
     ///
@@ -390,13 +556,26 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `peer_authentication_required`: Flag to enable or disable mandatory peer authentication.
-    pub fn sec_protocol_options_set_peer_authentication_required(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_peer_authentication_required")]
+    pub unsafe fn set_peer_authentication_required(
         options: sec_protocol_options_t,
         peer_authentication_required: bool,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_peer_authentication_required(
+                options: sec_protocol_options_t,
+                peer_authentication_required: bool,
+            );
+        }
+        unsafe {
+            sec_protocol_options_set_peer_authentication_required(
+                options,
+                peer_authentication_required,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// When this is enabled, the endpoint requests the peer certificate, but if none is provided, the
     /// endpoint still proceeds with the connection. Default false for servers; always false for clients (clients ignore
     /// this option). If peer_authentication_required is set to true via
@@ -408,13 +587,26 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `peer_authentication_optional`: Flag to enable or disable requested peer authentication.
-    pub fn sec_protocol_options_set_peer_authentication_optional(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_peer_authentication_optional")]
+    pub unsafe fn set_peer_authentication_optional(
         options: sec_protocol_options_t,
         peer_authentication_optional: bool,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_peer_authentication_optional(
+                options: sec_protocol_options_t,
+                peer_authentication_optional: bool,
+            );
+        }
+        unsafe {
+            sec_protocol_options_set_peer_authentication_optional(
+                options,
+                peer_authentication_optional,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// For experimental use only. When this is enabled, the Encrypted Client Hello extension will be sent on the Client
     /// Hello if TLS 1.3 is among the supported TLS versions. Default false.
     ///
@@ -423,13 +615,26 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `peer_authentication_optional`: Flag to enable or disable Encrypted Client Hello.
-    pub fn sec_protocol_options_set_enable_encrypted_client_hello(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_enable_encrypted_client_hello")]
+    pub unsafe fn set_enable_encrypted_client_hello(
         options: sec_protocol_options_t,
         enable_encrypted_client_hello: bool,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_enable_encrypted_client_hello(
+                options: sec_protocol_options_t,
+                enable_encrypted_client_hello: bool,
+            );
+        }
+        unsafe {
+            sec_protocol_options_set_enable_encrypted_client_hello(
+                options,
+                enable_encrypted_client_hello,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Set QUIC to use the legacy codepoint. Defaults to true.
     ///
     ///
@@ -437,10 +642,22 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `quic_use_legacy_codepoint`: A boolean to enable/disable the legacy codepoint.
-    pub fn sec_protocol_options_set_quic_use_legacy_codepoint(
+    #[inline]
+    #[doc(alias = "sec_protocol_options_set_quic_use_legacy_codepoint")]
+    pub unsafe fn set_quic_use_legacy_codepoint(
         options: sec_protocol_options_t,
         quic_use_legacy_codepoint: bool,
-    );
+    ) {
+        extern "C-unwind" {
+            fn sec_protocol_options_set_quic_use_legacy_codepoint(
+                options: sec_protocol_options_t,
+                quic_use_legacy_codepoint: bool,
+            );
+        }
+        unsafe {
+            sec_protocol_options_set_quic_use_legacy_codepoint(options, quic_use_legacy_codepoint)
+        }
+    }
 }
 
 /// sec_protocol_key_update_complete_t
@@ -540,3 +757,234 @@ pub type sec_protocol_verify_complete_t = *mut block2::DynBlock<dyn Fn(bool)>;
 pub type sec_protocol_verify_t = *mut block2::DynBlock<
     dyn Fn(sec_protocol_metadata_t, sec_trust_t, sec_protocol_verify_complete_t),
 >;
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::are_equal`"]
+    pub fn sec_protocol_options_are_equal(
+        options_a: sec_protocol_options_t,
+        options_b: sec_protocol_options_t,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_options::set_local_identity`"]
+    pub fn sec_protocol_options_set_local_identity(
+        options: sec_protocol_options_t,
+        identity: sec_identity_t,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_options::append_tls_ciphersuite`"]
+    pub fn sec_protocol_options_append_tls_ciphersuite(
+        options: sec_protocol_options_t,
+        ciphersuite: tls_ciphersuite_t,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CipherSuite")]
+    #[deprecated = "renamed to `sec_protocol_options::add_tls_ciphersuite`"]
+    pub fn sec_protocol_options_add_tls_ciphersuite(
+        options: sec_protocol_options_t,
+        ciphersuite: SSLCipherSuite,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_options::append_tls_ciphersuite_group`"]
+    pub fn sec_protocol_options_append_tls_ciphersuite_group(
+        options: sec_protocol_options_t,
+        group: tls_ciphersuite_group_t,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CipherSuite")]
+    #[deprecated = "renamed to `sec_protocol_options::add_tls_ciphersuite_group`"]
+    pub fn sec_protocol_options_add_tls_ciphersuite_group(
+        options: sec_protocol_options_t,
+        group: SSLCiphersuiteGroup,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_options::set_tls_min_version`"]
+    pub fn sec_protocol_options_set_tls_min_version(
+        options: sec_protocol_options_t,
+        version: SSLProtocol,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_options::set_min_tls_protocol_version`"]
+    pub fn sec_protocol_options_set_min_tls_protocol_version(
+        options: sec_protocol_options_t,
+        version: tls_protocol_version_t,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_options::get_default_min_tls_protocol_version`"]
+    pub fn sec_protocol_options_get_default_min_tls_protocol_version() -> tls_protocol_version_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_options::get_default_min_dtls_protocol_version`"]
+    pub fn sec_protocol_options_get_default_min_dtls_protocol_version() -> tls_protocol_version_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_options::set_tls_max_version`"]
+    pub fn sec_protocol_options_set_tls_max_version(
+        options: sec_protocol_options_t,
+        version: SSLProtocol,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_options::set_max_tls_protocol_version`"]
+    pub fn sec_protocol_options_set_max_tls_protocol_version(
+        options: sec_protocol_options_t,
+        version: tls_protocol_version_t,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_options::get_default_max_tls_protocol_version`"]
+    pub fn sec_protocol_options_get_default_max_tls_protocol_version() -> tls_protocol_version_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_options::get_default_max_dtls_protocol_version`"]
+    pub fn sec_protocol_options_get_default_max_dtls_protocol_version() -> tls_protocol_version_t;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::get_enable_encrypted_client_hello`"]
+    pub fn sec_protocol_options_get_enable_encrypted_client_hello(
+        options: sec_protocol_options_t,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::get_quic_use_legacy_codepoint`"]
+    pub fn sec_protocol_options_get_quic_use_legacy_codepoint(
+        options: sec_protocol_options_t,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::add_tls_application_protocol`"]
+    pub fn sec_protocol_options_add_tls_application_protocol(
+        options: sec_protocol_options_t,
+        application_protocol: NonNull<c_char>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_tls_server_name`"]
+    pub fn sec_protocol_options_set_tls_server_name(
+        options: sec_protocol_options_t,
+        server_name: NonNull<c_char>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_tls_tickets_enabled`"]
+    pub fn sec_protocol_options_set_tls_tickets_enabled(
+        options: sec_protocol_options_t,
+        tickets_enabled: bool,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_tls_is_fallback_attempt`"]
+    pub fn sec_protocol_options_set_tls_is_fallback_attempt(
+        options: sec_protocol_options_t,
+        is_fallback_attempt: bool,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_tls_resumption_enabled`"]
+    pub fn sec_protocol_options_set_tls_resumption_enabled(
+        options: sec_protocol_options_t,
+        resumption_enabled: bool,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_tls_false_start_enabled`"]
+    pub fn sec_protocol_options_set_tls_false_start_enabled(
+        options: sec_protocol_options_t,
+        false_start_enabled: bool,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_tls_ocsp_enabled`"]
+    pub fn sec_protocol_options_set_tls_ocsp_enabled(
+        options: sec_protocol_options_t,
+        ocsp_enabled: bool,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_tls_sct_enabled`"]
+    pub fn sec_protocol_options_set_tls_sct_enabled(
+        options: sec_protocol_options_t,
+        sct_enabled: bool,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_tls_renegotiation_enabled`"]
+    pub fn sec_protocol_options_set_tls_renegotiation_enabled(
+        options: sec_protocol_options_t,
+        renegotiation_enabled: bool,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_peer_authentication_required`"]
+    pub fn sec_protocol_options_set_peer_authentication_required(
+        options: sec_protocol_options_t,
+        peer_authentication_required: bool,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_peer_authentication_optional`"]
+    pub fn sec_protocol_options_set_peer_authentication_optional(
+        options: sec_protocol_options_t,
+        peer_authentication_optional: bool,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_enable_encrypted_client_hello`"]
+    pub fn sec_protocol_options_set_enable_encrypted_client_hello(
+        options: sec_protocol_options_t,
+        enable_encrypted_client_hello: bool,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_options::set_quic_use_legacy_codepoint`"]
+    pub fn sec_protocol_options_set_quic_use_legacy_codepoint(
+        options: sec_protocol_options_t,
+        quic_use_legacy_codepoint: bool,
+    );
+}

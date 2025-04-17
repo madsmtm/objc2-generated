@@ -71,7 +71,7 @@ unsafe impl ConcreteType for VTHDRPerFrameMetadataGenerationSession {
     }
 }
 
-extern "C-unwind" {
+impl VTHDRPerFrameMetadataGenerationSession {
     /// Creates a VTHDRPerFrameMetadataGenerationSession object.
     ///
     /// The returned VTHDRPerFrameMetadataGenerationSession object may be used to perform HDR Per Frame Metadata Generation
@@ -80,6 +80,71 @@ extern "C-unwind" {
     /// Parameter `framesPerSecond`: Value must be greater than 0.0
     ///
     /// Parameter `options`: CFDictionary may contain the key kVTHDRPerFrameMetadataGenerationOptionsHDRFormatsKey.
+    #[inline]
+    #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionCreate")]
+    pub unsafe fn create(
+        allocator: Option<&CFAllocator>,
+        frames_per_second: c_float,
+        options: Option<&CFDictionary>,
+        hdr_per_frame_metadata_generation_session_out: NonNull<
+            *mut VTHDRPerFrameMetadataGenerationSession,
+        >,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTHDRPerFrameMetadataGenerationSessionCreate(
+                allocator: Option<&CFAllocator>,
+                frames_per_second: c_float,
+                options: Option<&CFDictionary>,
+                hdr_per_frame_metadata_generation_session_out: NonNull<
+                    *mut VTHDRPerFrameMetadataGenerationSession,
+                >,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTHDRPerFrameMetadataGenerationSessionCreate(
+                allocator,
+                frames_per_second,
+                options,
+                hdr_per_frame_metadata_generation_session_out,
+            )
+        }
+    }
+
+    /// Attaches the Per Frame Metadata to the CVPixelBuffer and the backing IOSurface
+    ///
+    /// Call this to analyze and attach HDR Metadata. This call will change CVPixelBuffer attachments and backing IOSurface attachments.
+    ///
+    /// Parameter `hdrPerFrameMetadataGenerationSession`:
+    /// Parameter `pixelBuffer`:
+    /// Parameter `sceneChange`: If this frame changes significantly in brightness from the previous frame, for example going from an indoor scene to an outdoor scene or
+    /// from a night scene to a daytime scene, set this to true.
+    #[cfg(feature = "objc2-core-video")]
+    #[inline]
+    #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionAttachMetadata")]
+    pub unsafe fn attach_metadata(
+        self: &VTHDRPerFrameMetadataGenerationSession,
+        pixel_buffer: &CVPixelBuffer,
+        scene_change: bool,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTHDRPerFrameMetadataGenerationSessionAttachMetadata(
+                hdr_per_frame_metadata_generation_session: &VTHDRPerFrameMetadataGenerationSession,
+                pixel_buffer: &CVPixelBuffer,
+                scene_change: Boolean,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTHDRPerFrameMetadataGenerationSessionAttachMetadata(
+                self,
+                pixel_buffer,
+                scene_change as _,
+            )
+        }
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTHDRPerFrameMetadataGenerationSession::create`"]
     pub fn VTHDRPerFrameMetadataGenerationSessionCreate(
         allocator: Option<&CFAllocator>,
         frames_per_second: c_float,
@@ -90,15 +155,8 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// Attaches the Per Frame Metadata to the CVPixelBuffer and the backing IOSurface
-///
-/// Call this to analyze and attach HDR Metadata. This call will change CVPixelBuffer attachments and backing IOSurface attachments.
-///
-/// Parameter `hdrPerFrameMetadataGenerationSession`:
-/// Parameter `pixelBuffer`:
-/// Parameter `sceneChange`: If this frame changes significantly in brightness from the previous frame, for example going from an indoor scene to an outdoor scene or
-/// from a night scene to a daytime scene, set this to true.
 #[cfg(feature = "objc2-core-video")]
+#[deprecated = "renamed to `VTHDRPerFrameMetadataGenerationSession::attach_metadata`"]
 #[inline]
 pub unsafe extern "C-unwind" fn VTHDRPerFrameMetadataGenerationSessionAttachMetadata(
     hdr_per_frame_metadata_generation_session: &VTHDRPerFrameMetadataGenerationSession,

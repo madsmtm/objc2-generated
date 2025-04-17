@@ -45,89 +45,90 @@ unsafe impl ConcreteType for QLThumbnailRequest {
     }
 }
 
-/// Returns the url of the file for the thumbnail request.
-///
-/// Parameter `thumbnail`: The thumbnail request.
-///
-/// Returns: The url of the file for the thumbnail request.
-#[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLThumbnailRequestCopyURL(
-    thumbnail: &QLThumbnailRequest,
-) -> Option<CFRetained<CFURL>> {
-    extern "C-unwind" {
-        fn QLThumbnailRequestCopyURL(thumbnail: &QLThumbnailRequest) -> Option<NonNull<CFURL>>;
+impl QLThumbnailRequest {
+    /// Returns the url of the file for the thumbnail request.
+    ///
+    /// Parameter `thumbnail`: The thumbnail request.
+    ///
+    /// Returns: The url of the file for the thumbnail request.
+    #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestCopyURL")]
+    pub unsafe fn url(self: &QLThumbnailRequest) -> Option<CFRetained<CFURL>> {
+        extern "C-unwind" {
+            fn QLThumbnailRequestCopyURL(thumbnail: &QLThumbnailRequest) -> Option<NonNull<CFURL>>;
+        }
+        let ret = unsafe { QLThumbnailRequestCopyURL(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { QLThumbnailRequestCopyURL(thumbnail) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns the desired options for the thumbnail request.
-///
-/// Parameter `thumbnail`: The thumbnail request.
-///
-/// Returns: The desired options for the thumbnail request.
-#[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLThumbnailRequestCopyOptions(
-    thumbnail: &QLThumbnailRequest,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn QLThumbnailRequestCopyOptions(
-            thumbnail: &QLThumbnailRequest,
-        ) -> Option<NonNull<CFDictionary>>;
+    /// Returns the desired options for the thumbnail request.
+    ///
+    /// Parameter `thumbnail`: The thumbnail request.
+    ///
+    /// Returns: The desired options for the thumbnail request.
+    #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestCopyOptions")]
+    pub unsafe fn options(self: &QLThumbnailRequest) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn QLThumbnailRequestCopyOptions(
+                thumbnail: &QLThumbnailRequest,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { QLThumbnailRequestCopyOptions(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { QLThumbnailRequestCopyOptions(thumbnail) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns the UTI for the thumbnail request.
-///
-/// Parameter `thumbnail`: The thumbnail request.
-///
-/// Returns: The UTI of the content being thumbnailed, NULL if not available.
-#[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLThumbnailRequestCopyContentUTI(
-    thumbnail: &QLThumbnailRequest,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn QLThumbnailRequestCopyContentUTI(
-            thumbnail: &QLThumbnailRequest,
-        ) -> Option<NonNull<CFString>>;
+    /// Returns the UTI for the thumbnail request.
+    ///
+    /// Parameter `thumbnail`: The thumbnail request.
+    ///
+    /// Returns: The UTI of the content being thumbnailed, NULL if not available.
+    #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestCopyContentUTI")]
+    pub unsafe fn content_uti(self: &QLThumbnailRequest) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn QLThumbnailRequestCopyContentUTI(
+                thumbnail: &QLThumbnailRequest,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { QLThumbnailRequestCopyContentUTI(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { QLThumbnailRequestCopyContentUTI(thumbnail) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
     /// Returns the maximum desired size (in points) for the thumbnail request.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The maximum desired size (in points) for the thumbnail request.
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
-    pub fn QLThumbnailRequestGetMaximumSize(thumbnail: &QLThumbnailRequest) -> CGSize;
-}
-
-/// Get the thumbnail request generator bundle.
-///
-/// Parameter `thumbnail`: The thumbnail request.
-#[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLThumbnailRequestGetGeneratorBundle(
-    thumbnail: &QLThumbnailRequest,
-) -> Option<CFRetained<CFBundle>> {
-    extern "C-unwind" {
-        fn QLThumbnailRequestGetGeneratorBundle(
-            thumbnail: &QLThumbnailRequest,
-        ) -> Option<NonNull<CFBundle>>;
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestGetMaximumSize")]
+    pub unsafe fn maximum_size(self: &QLThumbnailRequest) -> CGSize {
+        extern "C-unwind" {
+            fn QLThumbnailRequestGetMaximumSize(thumbnail: &QLThumbnailRequest) -> CGSize;
+        }
+        unsafe { QLThumbnailRequestGetMaximumSize(self) }
     }
-    let ret = unsafe { QLThumbnailRequestGetGeneratorBundle(thumbnail) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
+    /// Get the thumbnail request generator bundle.
+    ///
+    /// Parameter `thumbnail`: The thumbnail request.
+    #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestGetGeneratorBundle")]
+    pub unsafe fn generator_bundle(self: &QLThumbnailRequest) -> Option<CFRetained<CFBundle>> {
+        extern "C-unwind" {
+            fn QLThumbnailRequestGetGeneratorBundle(
+                thumbnail: &QLThumbnailRequest,
+            ) -> Option<NonNull<CFBundle>>;
+        }
+        let ret = unsafe { QLThumbnailRequestGetGeneratorBundle(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
     /// Store some object in thumbnail request.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -138,24 +139,39 @@ extern "C-unwind" {
     ///
     /// You can only call this function once per request.
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
-    pub fn QLThumbnailRequestSetDocumentObject(
-        thumbnail: &QLThumbnailRequest,
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestSetDocumentObject")]
+    pub unsafe fn set_document_object(
+        self: &QLThumbnailRequest,
         object: *const c_void,
         callbacks: *const CFArrayCallBacks,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn QLThumbnailRequestSetDocumentObject(
+                thumbnail: &QLThumbnailRequest,
+                object: *const c_void,
+                callbacks: *const CFArrayCallBacks,
+            );
+        }
+        unsafe { QLThumbnailRequestSetDocumentObject(self, object, callbacks) }
+    }
 
-extern "C-unwind" {
     /// Get the object previously stored with QLThumbnailRequestSetDocumentObject.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The object representing the document
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
-    pub fn QLThumbnailRequestGetDocumentObject(thumbnail: &QLThumbnailRequest) -> *const c_void;
-}
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestGetDocumentObject")]
+    pub unsafe fn document_object(self: &QLThumbnailRequest) -> *const c_void {
+        extern "C-unwind" {
+            fn QLThumbnailRequestGetDocumentObject(thumbnail: &QLThumbnailRequest)
+                -> *const c_void;
+        }
+        unsafe { QLThumbnailRequestGetDocumentObject(self) }
+    }
 
-extern "C-unwind" {
     /// Sets the thumbnail request response to image.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -165,14 +181,23 @@ extern "C-unwind" {
     /// Parameter `properties`: See possible properties below.
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types"]
-    pub fn QLThumbnailRequestSetImage(
-        thumbnail: &QLThumbnailRequest,
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestSetImage")]
+    pub unsafe fn set_image(
+        self: &QLThumbnailRequest,
         image: Option<&CGImage>,
         properties: Option<&CFDictionary>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn QLThumbnailRequestSetImage(
+                thumbnail: &QLThumbnailRequest,
+                image: Option<&CGImage>,
+                properties: Option<&CFDictionary>,
+            );
+        }
+        unsafe { QLThumbnailRequestSetImage(self, image, properties) }
+    }
 
-extern "C-unwind" {
     /// Sets the thumbnail request response to image data.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -181,49 +206,59 @@ extern "C-unwind" {
     ///
     /// Parameter `properties`: See possible properties below. Additional useful properties: kCGImageSourceTypeIdentifierHint (see ImageIO documentation).
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
-    pub fn QLThumbnailRequestSetImageWithData(
-        thumbnail: &QLThumbnailRequest,
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestSetImageWithData")]
+    pub unsafe fn set_image_with_data(
+        self: &QLThumbnailRequest,
         data: Option<&CFData>,
         properties: Option<&CFDictionary>,
-    );
-}
-
-/// Creates a graphic context to draw the thumbnail response in.
-///
-/// Parameter `thumbnail`: The thumbnail request.
-///
-/// Parameter `size`: Size in points of the context for the thumbnail response.
-///
-/// Parameter `isBitmap`: True if thumbnail contents is based on bitmap. size will then be interpreted as pixels, not points.
-///
-/// Parameter `properties`: See possible properties below.
-///
-/// Returns: A graphic context to draw to.
-///
-/// Once the thumbnail is fully drawn, you should call QLThumbnailRequestFlushContext().
-#[cfg(feature = "objc2-core-graphics")]
-#[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLThumbnailRequestCreateContext(
-    thumbnail: &QLThumbnailRequest,
-    size: CGSize,
-    is_bitmap: bool,
-    properties: Option<&CFDictionary>,
-) -> Option<CFRetained<CGContext>> {
-    extern "C-unwind" {
-        fn QLThumbnailRequestCreateContext(
-            thumbnail: &QLThumbnailRequest,
-            size: CGSize,
-            is_bitmap: Boolean,
-            properties: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGContext>>;
+    ) {
+        extern "C-unwind" {
+            fn QLThumbnailRequestSetImageWithData(
+                thumbnail: &QLThumbnailRequest,
+                data: Option<&CFData>,
+                properties: Option<&CFDictionary>,
+            );
+        }
+        unsafe { QLThumbnailRequestSetImageWithData(self, data, properties) }
     }
-    let ret =
-        unsafe { QLThumbnailRequestCreateContext(thumbnail, size, is_bitmap as _, properties) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Creates a graphic context to draw the thumbnail response in.
+    ///
+    /// Parameter `thumbnail`: The thumbnail request.
+    ///
+    /// Parameter `size`: Size in points of the context for the thumbnail response.
+    ///
+    /// Parameter `isBitmap`: True if thumbnail contents is based on bitmap. size will then be interpreted as pixels, not points.
+    ///
+    /// Parameter `properties`: See possible properties below.
+    ///
+    /// Returns: A graphic context to draw to.
+    ///
+    /// Once the thumbnail is fully drawn, you should call QLThumbnailRequestFlushContext().
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestCreateContext")]
+    pub unsafe fn new_context(
+        self: &QLThumbnailRequest,
+        size: CGSize,
+        is_bitmap: bool,
+        properties: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGContext>> {
+        extern "C-unwind" {
+            fn QLThumbnailRequestCreateContext(
+                thumbnail: &QLThumbnailRequest,
+                size: CGSize,
+                is_bitmap: Boolean,
+                properties: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGContext>>;
+        }
+        let ret =
+            unsafe { QLThumbnailRequestCreateContext(self, size, is_bitmap as _, properties) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Flushes the graphic context and creates the thumbnail image response.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -231,13 +266,18 @@ extern "C-unwind" {
     /// Parameter `context`: The graphic context created by QLThumbnailRequestCreateContext().
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
-    pub fn QLThumbnailRequestFlushContext(
-        thumbnail: &QLThumbnailRequest,
-        context: Option<&CGContext>,
-    );
-}
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestFlushContext")]
+    pub unsafe fn flush_context(self: &QLThumbnailRequest, context: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn QLThumbnailRequestFlushContext(
+                thumbnail: &QLThumbnailRequest,
+                context: Option<&CGContext>,
+            );
+        }
+        unsafe { QLThumbnailRequestFlushContext(self, context) }
+    }
 
-extern "C-unwind" {
     /// Sets the thumbnail request response to the image contained at url.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -246,14 +286,23 @@ extern "C-unwind" {
     ///
     /// Parameter `properties`: Currently unused.
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
-    pub fn QLThumbnailRequestSetImageAtURL(
-        thumbnail: &QLThumbnailRequest,
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestSetImageAtURL")]
+    pub unsafe fn set_image_at_url(
+        self: &QLThumbnailRequest,
         url: Option<&CFURL>,
         properties: Option<&CFDictionary>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn QLThumbnailRequestSetImageAtURL(
+                thumbnail: &QLThumbnailRequest,
+                url: Option<&CFURL>,
+                properties: Option<&CFDictionary>,
+            );
+        }
+        unsafe { QLThumbnailRequestSetImageAtURL(self, url, properties) }
+    }
 
-extern "C-unwind" {
     /// Sets the thumbnail request response to the image produced by the equivalent preview representation.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -268,16 +317,35 @@ extern "C-unwind" {
     ///
     /// Currently supported UTIs are: none. This call only works if your generator is set to be run in the main thread
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
-    pub fn QLThumbnailRequestSetThumbnailWithDataRepresentation(
-        thumbnail: &QLThumbnailRequest,
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestSetThumbnailWithDataRepresentation")]
+    pub unsafe fn set_thumbnail_with_data_representation(
+        self: &QLThumbnailRequest,
         data: Option<&CFData>,
         content_type_uti: Option<&CFString>,
         preview_properties: Option<&CFDictionary>,
         properties: Option<&CFDictionary>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn QLThumbnailRequestSetThumbnailWithDataRepresentation(
+                thumbnail: &QLThumbnailRequest,
+                data: Option<&CFData>,
+                content_type_uti: Option<&CFString>,
+                preview_properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary>,
+            );
+        }
+        unsafe {
+            QLThumbnailRequestSetThumbnailWithDataRepresentation(
+                self,
+                data,
+                content_type_uti,
+                preview_properties,
+                properties,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Sets the thumbnail request response to the image produced by the equivalent preview representation.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -290,30 +358,50 @@ extern "C-unwind" {
     ///
     /// Currently supported UTIs are: none. This call only works if your generator is set to be run in the main thread
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
-    pub fn QLThumbnailRequestSetThumbnailWithURLRepresentation(
-        thumbnail: &QLThumbnailRequest,
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestSetThumbnailWithURLRepresentation")]
+    pub unsafe fn set_thumbnail_with_url_representation(
+        self: &QLThumbnailRequest,
         url: Option<&CFURL>,
         content_type_uti: Option<&CFString>,
         preview_properties: Option<&CFDictionary>,
         properties: Option<&CFDictionary>,
-    );
-}
-
-/// Returns wether the thumbnail request was cancelled or not.
-///
-/// Parameter `thumbnail`: The thumbnail request.
-///
-/// Returns: true if the request was cancelled.
-#[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLThumbnailRequestIsCancelled(
-    thumbnail: &QLThumbnailRequest,
-) -> bool {
-    extern "C-unwind" {
-        fn QLThumbnailRequestIsCancelled(thumbnail: &QLThumbnailRequest) -> Boolean;
+    ) {
+        extern "C-unwind" {
+            fn QLThumbnailRequestSetThumbnailWithURLRepresentation(
+                thumbnail: &QLThumbnailRequest,
+                url: Option<&CFURL>,
+                content_type_uti: Option<&CFString>,
+                preview_properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary>,
+            );
+        }
+        unsafe {
+            QLThumbnailRequestSetThumbnailWithURLRepresentation(
+                self,
+                url,
+                content_type_uti,
+                preview_properties,
+                properties,
+            )
+        }
     }
-    let ret = unsafe { QLThumbnailRequestIsCancelled(thumbnail) };
-    ret != 0
+
+    /// Returns wether the thumbnail request was cancelled or not.
+    ///
+    /// Parameter `thumbnail`: The thumbnail request.
+    ///
+    /// Returns: true if the request was cancelled.
+    #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
+    #[inline]
+    #[doc(alias = "QLThumbnailRequestIsCancelled")]
+    pub unsafe fn is_cancelled(self: &QLThumbnailRequest) -> bool {
+        extern "C-unwind" {
+            fn QLThumbnailRequestIsCancelled(thumbnail: &QLThumbnailRequest) -> Boolean;
+        }
+        let ret = unsafe { QLThumbnailRequestIsCancelled(self) };
+        ret != 0
+    }
 }
 
 extern "C" {
@@ -454,76 +542,75 @@ extern "C" {
     pub static kQLPreviewPropertyCursorKey: Option<&'static CFString>;
 }
 
-/// Returns the url of the file for the preview request.
-///
-/// Parameter `preview`: The preview request.
-///
-/// Returns: The url of the file for the preview request.
-#[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLPreviewRequestCopyURL(
-    preview: &QLPreviewRequest,
-) -> Option<CFRetained<CFURL>> {
-    extern "C-unwind" {
-        fn QLPreviewRequestCopyURL(preview: &QLPreviewRequest) -> Option<NonNull<CFURL>>;
+impl QLPreviewRequest {
+    /// Returns the url of the file for the preview request.
+    ///
+    /// Parameter `preview`: The preview request.
+    ///
+    /// Returns: The url of the file for the preview request.
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
+    #[inline]
+    #[doc(alias = "QLPreviewRequestCopyURL")]
+    pub unsafe fn url(self: &QLPreviewRequest) -> Option<CFRetained<CFURL>> {
+        extern "C-unwind" {
+            fn QLPreviewRequestCopyURL(preview: &QLPreviewRequest) -> Option<NonNull<CFURL>>;
+        }
+        let ret = unsafe { QLPreviewRequestCopyURL(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { QLPreviewRequestCopyURL(preview) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns the desired options for the preview request.
-///
-/// Parameter `preview`: The preview request.
-///
-/// Returns: The desired options for the preview request.
-#[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLPreviewRequestCopyOptions(
-    preview: &QLPreviewRequest,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn QLPreviewRequestCopyOptions(preview: &QLPreviewRequest)
-            -> Option<NonNull<CFDictionary>>;
+    /// Returns the desired options for the preview request.
+    ///
+    /// Parameter `preview`: The preview request.
+    ///
+    /// Returns: The desired options for the preview request.
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
+    #[inline]
+    #[doc(alias = "QLPreviewRequestCopyOptions")]
+    pub unsafe fn options(self: &QLPreviewRequest) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn QLPreviewRequestCopyOptions(
+                preview: &QLPreviewRequest,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { QLPreviewRequestCopyOptions(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { QLPreviewRequestCopyOptions(preview) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns the UTI for the preview request.
-///
-/// Parameter `preview`: The preview request.
-///
-/// Returns: The UTI of the content being previewed, NULL if not available.
-#[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLPreviewRequestCopyContentUTI(
-    preview: &QLPreviewRequest,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn QLPreviewRequestCopyContentUTI(preview: &QLPreviewRequest) -> Option<NonNull<CFString>>;
+    /// Returns the UTI for the preview request.
+    ///
+    /// Parameter `preview`: The preview request.
+    ///
+    /// Returns: The UTI of the content being previewed, NULL if not available.
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
+    #[inline]
+    #[doc(alias = "QLPreviewRequestCopyContentUTI")]
+    pub unsafe fn content_uti(self: &QLPreviewRequest) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn QLPreviewRequestCopyContentUTI(
+                preview: &QLPreviewRequest,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { QLPreviewRequestCopyContentUTI(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { QLPreviewRequestCopyContentUTI(preview) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Gets the preview request generator bundle.
-///
-/// Parameter `preview`: The preview request.
-#[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLPreviewRequestGetGeneratorBundle(
-    preview: &QLPreviewRequest,
-) -> Option<CFRetained<CFBundle>> {
-    extern "C-unwind" {
-        fn QLPreviewRequestGetGeneratorBundle(
-            preview: &QLPreviewRequest,
-        ) -> Option<NonNull<CFBundle>>;
+    /// Gets the preview request generator bundle.
+    ///
+    /// Parameter `preview`: The preview request.
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
+    #[inline]
+    #[doc(alias = "QLPreviewRequestGetGeneratorBundle")]
+    pub unsafe fn generator_bundle(self: &QLPreviewRequest) -> Option<CFRetained<CFBundle>> {
+        extern "C-unwind" {
+            fn QLPreviewRequestGetGeneratorBundle(
+                preview: &QLPreviewRequest,
+            ) -> Option<NonNull<CFBundle>>;
+        }
+        let ret = unsafe { QLPreviewRequestGetGeneratorBundle(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { QLPreviewRequestGetGeneratorBundle(preview) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
     /// Store some object in preview request.
     ///
     /// Parameter `preview`: The preview request.
@@ -534,39 +621,54 @@ extern "C-unwind" {
     ///
     /// You can only call this function once per request.
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-    pub fn QLPreviewRequestSetDocumentObject(
-        preview: &QLPreviewRequest,
+    #[inline]
+    #[doc(alias = "QLPreviewRequestSetDocumentObject")]
+    pub unsafe fn set_document_object(
+        self: &QLPreviewRequest,
         object: *const c_void,
         callbacks: *const CFArrayCallBacks,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn QLPreviewRequestSetDocumentObject(
+                preview: &QLPreviewRequest,
+                object: *const c_void,
+                callbacks: *const CFArrayCallBacks,
+            );
+        }
+        unsafe { QLPreviewRequestSetDocumentObject(self, object, callbacks) }
+    }
 
-extern "C-unwind" {
     /// Get the object previously stored with QLPreviewRequestSetDocumentObject.
     ///
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The object representing the document
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-    pub fn QLPreviewRequestGetDocumentObject(preview: &QLPreviewRequest) -> *const c_void;
-}
-
-/// Returns wether the preview request was cancelled or not.
-///
-/// Parameter `preview`: The preview request.
-///
-/// Returns: true if the request was cancelled.
-#[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLPreviewRequestIsCancelled(preview: &QLPreviewRequest) -> bool {
-    extern "C-unwind" {
-        fn QLPreviewRequestIsCancelled(preview: &QLPreviewRequest) -> Boolean;
+    #[inline]
+    #[doc(alias = "QLPreviewRequestGetDocumentObject")]
+    pub unsafe fn document_object(self: &QLPreviewRequest) -> *const c_void {
+        extern "C-unwind" {
+            fn QLPreviewRequestGetDocumentObject(preview: &QLPreviewRequest) -> *const c_void;
+        }
+        unsafe { QLPreviewRequestGetDocumentObject(self) }
     }
-    let ret = unsafe { QLPreviewRequestIsCancelled(preview) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Returns wether the preview request was cancelled or not.
+    ///
+    /// Parameter `preview`: The preview request.
+    ///
+    /// Returns: true if the request was cancelled.
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
+    #[inline]
+    #[doc(alias = "QLPreviewRequestIsCancelled")]
+    pub unsafe fn is_cancelled(self: &QLPreviewRequest) -> bool {
+        extern "C-unwind" {
+            fn QLPreviewRequestIsCancelled(preview: &QLPreviewRequest) -> Boolean;
+        }
+        let ret = unsafe { QLPreviewRequestIsCancelled(self) };
+        ret != 0
+    }
+
     /// Sets the preview response with the provided data.
     ///
     /// Parameter `preview`: The preview request.
@@ -581,15 +683,25 @@ extern "C-unwind" {
     /// kUTTypeXML, kUTTypePlainText, kUTTypeRTF, kUTTypeMovie, kUTTypeAudio,
     /// and "org.khronos.collada.digital-asset-exchange" (from OSX 10.9)
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-    pub fn QLPreviewRequestSetDataRepresentation(
-        preview: &QLPreviewRequest,
+    #[inline]
+    #[doc(alias = "QLPreviewRequestSetDataRepresentation")]
+    pub unsafe fn set_data_representation(
+        self: &QLPreviewRequest,
         data: Option<&CFData>,
         content_type_uti: Option<&CFString>,
         properties: Option<&CFDictionary>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn QLPreviewRequestSetDataRepresentation(
+                preview: &QLPreviewRequest,
+                data: Option<&CFData>,
+                content_type_uti: Option<&CFString>,
+                properties: Option<&CFDictionary>,
+            );
+        }
+        unsafe { QLPreviewRequestSetDataRepresentation(self, data, content_type_uti, properties) }
+    }
 
-extern "C-unwind" {
     /// Sets the preview request response with contents at url.
     ///
     /// Parameter `preview`: The preview request.
@@ -604,76 +716,89 @@ extern "C-unwind" {
     /// kUTTypeXML, kUTTypePlainText, kUTTypeRTF, kUTTypeRTFD, kUTTypeMovie, kUTTypeAudio,
     /// and "org.khronos.collada.digital-asset-exchange" (from OSX 10.9)
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-    pub fn QLPreviewRequestSetURLRepresentation(
-        preview: &QLPreviewRequest,
+    #[inline]
+    #[doc(alias = "QLPreviewRequestSetURLRepresentation")]
+    pub unsafe fn set_url_representation(
+        self: &QLPreviewRequest,
         url: Option<&CFURL>,
         content_type_uti: Option<&CFString>,
         properties: Option<&CFDictionary>,
-    );
-}
-
-/// Creates a context to draw the preview in. Context should be flushed with QLPreviewRequestFlushContext()
-///
-/// Parameter `preview`: The preview request.
-///
-/// Parameter `size`: The size of the context.
-///
-/// Parameter `isBitmap`: true if preview is bitmap-based.
-///
-/// Parameter `properties`: Additional properties for the preview response.
-#[cfg(feature = "objc2-core-graphics")]
-#[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLPreviewRequestCreateContext(
-    preview: &QLPreviewRequest,
-    size: CGSize,
-    is_bitmap: bool,
-    properties: Option<&CFDictionary>,
-) -> Option<CFRetained<CGContext>> {
-    extern "C-unwind" {
-        fn QLPreviewRequestCreateContext(
-            preview: &QLPreviewRequest,
-            size: CGSize,
-            is_bitmap: Boolean,
-            properties: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGContext>>;
+    ) {
+        extern "C-unwind" {
+            fn QLPreviewRequestSetURLRepresentation(
+                preview: &QLPreviewRequest,
+                url: Option<&CFURL>,
+                content_type_uti: Option<&CFString>,
+                properties: Option<&CFDictionary>,
+            );
+        }
+        unsafe { QLPreviewRequestSetURLRepresentation(self, url, content_type_uti, properties) }
     }
-    let ret = unsafe { QLPreviewRequestCreateContext(preview, size, is_bitmap as _, properties) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Creates a PDF context to draw the preview in, likely to be multi-pages. Context should be flushed with QLPreviewRequestFlushContext()
-///
-/// Parameter `preview`: The preview request.
-///
-/// Parameter `mediaBox`: The media box of the context. see CGPDFContextCreate().
-///
-/// Parameter `auxiliaryInfo`: The PDF auxiliary info. see CGPDFContextCreate().
-///
-/// Parameter `properties`: Additional properties for the preview response.
-#[cfg(feature = "objc2-core-graphics")]
-#[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-#[inline]
-pub unsafe extern "C-unwind" fn QLPreviewRequestCreatePDFContext(
-    preview: &QLPreviewRequest,
-    media_box: *const CGRect,
-    auxiliary_info: Option<&CFDictionary>,
-    properties: Option<&CFDictionary>,
-) -> Option<CFRetained<CGContext>> {
-    extern "C-unwind" {
-        fn QLPreviewRequestCreatePDFContext(
-            preview: &QLPreviewRequest,
-            media_box: *const CGRect,
-            auxiliary_info: Option<&CFDictionary>,
-            properties: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGContext>>;
+    /// Creates a context to draw the preview in. Context should be flushed with QLPreviewRequestFlushContext()
+    ///
+    /// Parameter `preview`: The preview request.
+    ///
+    /// Parameter `size`: The size of the context.
+    ///
+    /// Parameter `isBitmap`: true if preview is bitmap-based.
+    ///
+    /// Parameter `properties`: Additional properties for the preview response.
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
+    #[inline]
+    #[doc(alias = "QLPreviewRequestCreateContext")]
+    pub unsafe fn new_context(
+        self: &QLPreviewRequest,
+        size: CGSize,
+        is_bitmap: bool,
+        properties: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGContext>> {
+        extern "C-unwind" {
+            fn QLPreviewRequestCreateContext(
+                preview: &QLPreviewRequest,
+                size: CGSize,
+                is_bitmap: Boolean,
+                properties: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGContext>>;
+        }
+        let ret = unsafe { QLPreviewRequestCreateContext(self, size, is_bitmap as _, properties) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret =
-        unsafe { QLPreviewRequestCreatePDFContext(preview, media_box, auxiliary_info, properties) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Creates a PDF context to draw the preview in, likely to be multi-pages. Context should be flushed with QLPreviewRequestFlushContext()
+    ///
+    /// Parameter `preview`: The preview request.
+    ///
+    /// Parameter `mediaBox`: The media box of the context. see CGPDFContextCreate().
+    ///
+    /// Parameter `auxiliaryInfo`: The PDF auxiliary info. see CGPDFContextCreate().
+    ///
+    /// Parameter `properties`: Additional properties for the preview response.
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
+    #[inline]
+    #[doc(alias = "QLPreviewRequestCreatePDFContext")]
+    pub unsafe fn new_pdf_context(
+        self: &QLPreviewRequest,
+        media_box: *const CGRect,
+        auxiliary_info: Option<&CFDictionary>,
+        properties: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGContext>> {
+        extern "C-unwind" {
+            fn QLPreviewRequestCreatePDFContext(
+                preview: &QLPreviewRequest,
+                media_box: *const CGRect,
+                auxiliary_info: Option<&CFDictionary>,
+                properties: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGContext>>;
+        }
+        let ret = unsafe {
+            QLPreviewRequestCreatePDFContext(self, media_box, auxiliary_info, properties)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Flush the context and sets the preview response.
     ///
     /// Parameter `preview`: The preview request.
@@ -681,7 +806,17 @@ extern "C-unwind" {
     /// Parameter `context`: context previously created by QLPreviewRequestCreateContext() or QLPreviewRequestCreatePDFContext().
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
-    pub fn QLPreviewRequestFlushContext(preview: &QLPreviewRequest, context: Option<&CGContext>);
+    #[inline]
+    #[doc(alias = "QLPreviewRequestFlushContext")]
+    pub unsafe fn flush_context(self: &QLPreviewRequest, context: Option<&CGContext>) {
+        extern "C-unwind" {
+            fn QLPreviewRequestFlushContext(
+                preview: &QLPreviewRequest,
+                context: Option<&CGContext>,
+            );
+        }
+        unsafe { QLPreviewRequestFlushContext(self, context) }
+    }
 }
 
 extern "C" {
@@ -774,4 +909,314 @@ unsafe impl Encode for QLGeneratorInterfaceStruct {
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for QLGeneratorInterfaceStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[deprecated = "renamed to `QLThumbnailRequest::url`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLThumbnailRequestCopyURL(
+    thumbnail: &QLThumbnailRequest,
+) -> Option<CFRetained<CFURL>> {
+    extern "C-unwind" {
+        fn QLThumbnailRequestCopyURL(thumbnail: &QLThumbnailRequest) -> Option<NonNull<CFURL>>;
+    }
+    let ret = unsafe { QLThumbnailRequestCopyURL(thumbnail) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `QLThumbnailRequest::options`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLThumbnailRequestCopyOptions(
+    thumbnail: &QLThumbnailRequest,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn QLThumbnailRequestCopyOptions(
+            thumbnail: &QLThumbnailRequest,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { QLThumbnailRequestCopyOptions(thumbnail) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `QLThumbnailRequest::content_uti`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLThumbnailRequestCopyContentUTI(
+    thumbnail: &QLThumbnailRequest,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn QLThumbnailRequestCopyContentUTI(
+            thumbnail: &QLThumbnailRequest,
+        ) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { QLThumbnailRequestCopyContentUTI(thumbnail) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `QLThumbnailRequest::maximum_size`"]
+    pub fn QLThumbnailRequestGetMaximumSize(thumbnail: &QLThumbnailRequest) -> CGSize;
+}
+
+#[deprecated = "renamed to `QLThumbnailRequest::generator_bundle`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLThumbnailRequestGetGeneratorBundle(
+    thumbnail: &QLThumbnailRequest,
+) -> Option<CFRetained<CFBundle>> {
+    extern "C-unwind" {
+        fn QLThumbnailRequestGetGeneratorBundle(
+            thumbnail: &QLThumbnailRequest,
+        ) -> Option<NonNull<CFBundle>>;
+    }
+    let ret = unsafe { QLThumbnailRequestGetGeneratorBundle(thumbnail) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `QLThumbnailRequest::set_document_object`"]
+    pub fn QLThumbnailRequestSetDocumentObject(
+        thumbnail: &QLThumbnailRequest,
+        object: *const c_void,
+        callbacks: *const CFArrayCallBacks,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `QLThumbnailRequest::document_object`"]
+    pub fn QLThumbnailRequestGetDocumentObject(thumbnail: &QLThumbnailRequest) -> *const c_void;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `QLThumbnailRequest::set_image`"]
+    pub fn QLThumbnailRequestSetImage(
+        thumbnail: &QLThumbnailRequest,
+        image: Option<&CGImage>,
+        properties: Option<&CFDictionary>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `QLThumbnailRequest::set_image_with_data`"]
+    pub fn QLThumbnailRequestSetImageWithData(
+        thumbnail: &QLThumbnailRequest,
+        data: Option<&CFData>,
+        properties: Option<&CFDictionary>,
+    );
+}
+
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `QLThumbnailRequest::new_context`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLThumbnailRequestCreateContext(
+    thumbnail: &QLThumbnailRequest,
+    size: CGSize,
+    is_bitmap: bool,
+    properties: Option<&CFDictionary>,
+) -> Option<CFRetained<CGContext>> {
+    extern "C-unwind" {
+        fn QLThumbnailRequestCreateContext(
+            thumbnail: &QLThumbnailRequest,
+            size: CGSize,
+            is_bitmap: Boolean,
+            properties: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGContext>>;
+    }
+    let ret =
+        unsafe { QLThumbnailRequestCreateContext(thumbnail, size, is_bitmap as _, properties) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `QLThumbnailRequest::flush_context`"]
+    pub fn QLThumbnailRequestFlushContext(
+        thumbnail: &QLThumbnailRequest,
+        context: Option<&CGContext>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `QLThumbnailRequest::set_image_at_url`"]
+    pub fn QLThumbnailRequestSetImageAtURL(
+        thumbnail: &QLThumbnailRequest,
+        url: Option<&CFURL>,
+        properties: Option<&CFDictionary>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `QLThumbnailRequest::set_thumbnail_with_data_representation`"]
+    pub fn QLThumbnailRequestSetThumbnailWithDataRepresentation(
+        thumbnail: &QLThumbnailRequest,
+        data: Option<&CFData>,
+        content_type_uti: Option<&CFString>,
+        preview_properties: Option<&CFDictionary>,
+        properties: Option<&CFDictionary>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `QLThumbnailRequest::set_thumbnail_with_url_representation`"]
+    pub fn QLThumbnailRequestSetThumbnailWithURLRepresentation(
+        thumbnail: &QLThumbnailRequest,
+        url: Option<&CFURL>,
+        content_type_uti: Option<&CFString>,
+        preview_properties: Option<&CFDictionary>,
+        properties: Option<&CFDictionary>,
+    );
+}
+
+#[deprecated = "renamed to `QLThumbnailRequest::is_cancelled`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLThumbnailRequestIsCancelled(
+    thumbnail: &QLThumbnailRequest,
+) -> bool {
+    extern "C-unwind" {
+        fn QLThumbnailRequestIsCancelled(thumbnail: &QLThumbnailRequest) -> Boolean;
+    }
+    let ret = unsafe { QLThumbnailRequestIsCancelled(thumbnail) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `QLPreviewRequest::url`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLPreviewRequestCopyURL(
+    preview: &QLPreviewRequest,
+) -> Option<CFRetained<CFURL>> {
+    extern "C-unwind" {
+        fn QLPreviewRequestCopyURL(preview: &QLPreviewRequest) -> Option<NonNull<CFURL>>;
+    }
+    let ret = unsafe { QLPreviewRequestCopyURL(preview) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `QLPreviewRequest::options`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLPreviewRequestCopyOptions(
+    preview: &QLPreviewRequest,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn QLPreviewRequestCopyOptions(preview: &QLPreviewRequest)
+            -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { QLPreviewRequestCopyOptions(preview) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `QLPreviewRequest::content_uti`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLPreviewRequestCopyContentUTI(
+    preview: &QLPreviewRequest,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn QLPreviewRequestCopyContentUTI(preview: &QLPreviewRequest) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { QLPreviewRequestCopyContentUTI(preview) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `QLPreviewRequest::generator_bundle`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLPreviewRequestGetGeneratorBundle(
+    preview: &QLPreviewRequest,
+) -> Option<CFRetained<CFBundle>> {
+    extern "C-unwind" {
+        fn QLPreviewRequestGetGeneratorBundle(
+            preview: &QLPreviewRequest,
+        ) -> Option<NonNull<CFBundle>>;
+    }
+    let ret = unsafe { QLPreviewRequestGetGeneratorBundle(preview) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `QLPreviewRequest::set_document_object`"]
+    pub fn QLPreviewRequestSetDocumentObject(
+        preview: &QLPreviewRequest,
+        object: *const c_void,
+        callbacks: *const CFArrayCallBacks,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `QLPreviewRequest::document_object`"]
+    pub fn QLPreviewRequestGetDocumentObject(preview: &QLPreviewRequest) -> *const c_void;
+}
+
+#[deprecated = "renamed to `QLPreviewRequest::is_cancelled`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLPreviewRequestIsCancelled(preview: &QLPreviewRequest) -> bool {
+    extern "C-unwind" {
+        fn QLPreviewRequestIsCancelled(preview: &QLPreviewRequest) -> Boolean;
+    }
+    let ret = unsafe { QLPreviewRequestIsCancelled(preview) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `QLPreviewRequest::set_data_representation`"]
+    pub fn QLPreviewRequestSetDataRepresentation(
+        preview: &QLPreviewRequest,
+        data: Option<&CFData>,
+        content_type_uti: Option<&CFString>,
+        properties: Option<&CFDictionary>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `QLPreviewRequest::set_url_representation`"]
+    pub fn QLPreviewRequestSetURLRepresentation(
+        preview: &QLPreviewRequest,
+        url: Option<&CFURL>,
+        content_type_uti: Option<&CFString>,
+        properties: Option<&CFDictionary>,
+    );
+}
+
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `QLPreviewRequest::new_context`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLPreviewRequestCreateContext(
+    preview: &QLPreviewRequest,
+    size: CGSize,
+    is_bitmap: bool,
+    properties: Option<&CFDictionary>,
+) -> Option<CFRetained<CGContext>> {
+    extern "C-unwind" {
+        fn QLPreviewRequestCreateContext(
+            preview: &QLPreviewRequest,
+            size: CGSize,
+            is_bitmap: Boolean,
+            properties: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGContext>>;
+    }
+    let ret = unsafe { QLPreviewRequestCreateContext(preview, size, is_bitmap as _, properties) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `QLPreviewRequest::new_pdf_context`"]
+#[inline]
+pub unsafe extern "C-unwind" fn QLPreviewRequestCreatePDFContext(
+    preview: &QLPreviewRequest,
+    media_box: *const CGRect,
+    auxiliary_info: Option<&CFDictionary>,
+    properties: Option<&CFDictionary>,
+) -> Option<CFRetained<CGContext>> {
+    extern "C-unwind" {
+        fn QLPreviewRequestCreatePDFContext(
+            preview: &QLPreviewRequest,
+            media_box: *const CGRect,
+            auxiliary_info: Option<&CFDictionary>,
+            properties: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGContext>>;
+    }
+    let ret =
+        unsafe { QLPreviewRequestCreatePDFContext(preview, media_box, auxiliary_info, properties) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `QLPreviewRequest::flush_context`"]
+    pub fn QLPreviewRequestFlushContext(preview: &QLPreviewRequest, context: Option<&CGContext>);
 }

@@ -25,14 +25,26 @@ unsafe impl RefEncode for SecAsn1Coder {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1coderref?language=objc)
 pub type SecAsn1CoderRef = *mut SecAsn1Coder;
 
-extern "C-unwind" {
+impl SecAsn1Coder {
     #[deprecated = "SecAsn1 is not supported"]
-    pub fn SecAsn1CoderCreate(coder: NonNull<SecAsn1CoderRef>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecAsn1CoderCreate")]
+    pub unsafe fn create(coder: NonNull<SecAsn1CoderRef>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecAsn1CoderCreate(coder: NonNull<SecAsn1CoderRef>) -> OSStatus;
+        }
+        unsafe { SecAsn1CoderCreate(coder) }
+    }
 
-extern "C-unwind" {
     #[deprecated = "SecAsn1 is not supported"]
-    pub fn SecAsn1CoderRelease(coder: SecAsn1CoderRef) -> OSStatus;
+    #[inline]
+    #[doc(alias = "SecAsn1CoderRelease")]
+    pub unsafe fn release(coder: SecAsn1CoderRef) -> OSStatus {
+        extern "C-unwind" {
+            fn SecAsn1CoderRelease(coder: SecAsn1CoderRef) -> OSStatus;
+        }
+        unsafe { SecAsn1CoderRelease(coder) }
+    }
 }
 
 extern "C-unwind" {
@@ -117,4 +129,14 @@ extern "C-unwind" {
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated = "SecAsn1 is not supported"]
     pub fn SecAsn1OidCompare(oid1: NonNull<SecAsn1Oid>, oid2: NonNull<SecAsn1Oid>) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `SecAsn1Coder::create`"]
+    pub fn SecAsn1CoderCreate(coder: NonNull<SecAsn1CoderRef>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `SecAsn1Coder::release`"]
+    pub fn SecAsn1CoderRelease(coder: SecAsn1CoderRef) -> OSStatus;
 }

@@ -329,7 +329,7 @@ unsafe impl RefEncode for MTAudioProcessingTapCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+impl MTAudioProcessingTap {
     /// Create a new processing tap.
     ///
     /// This function creates a processing tap.
@@ -354,33 +354,44 @@ extern "C-unwind" {
     ///
     /// Returns: An OSStatus result code.
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
-    pub fn MTAudioProcessingTapCreate(
+    #[inline]
+    #[doc(alias = "MTAudioProcessingTapCreate")]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         callbacks: NonNull<MTAudioProcessingTapCallbacks>,
         flags: MTAudioProcessingTapCreationFlags,
         tap_out: NonNull<*const MTAudioProcessingTap>,
-    ) -> OSStatus;
-}
-
-/// Used by a processing tap to retrieve a custom storage pointer.
-///
-///
-/// Parameter `tap`: The processing tap.
-///
-///
-/// Returns: The tapStorage returned by the init callback.
-#[inline]
-pub unsafe extern "C-unwind" fn MTAudioProcessingTapGetStorage(
-    tap: &MTAudioProcessingTap,
-) -> NonNull<c_void> {
-    extern "C-unwind" {
-        fn MTAudioProcessingTapGetStorage(tap: &MTAudioProcessingTap) -> Option<NonNull<c_void>>;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn MTAudioProcessingTapCreate(
+                allocator: Option<&CFAllocator>,
+                callbacks: NonNull<MTAudioProcessingTapCallbacks>,
+                flags: MTAudioProcessingTapCreationFlags,
+                tap_out: NonNull<*const MTAudioProcessingTap>,
+            ) -> OSStatus;
+        }
+        unsafe { MTAudioProcessingTapCreate(allocator, callbacks, flags, tap_out) }
     }
-    let ret = unsafe { MTAudioProcessingTapGetStorage(tap) };
-    ret.expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-extern "C-unwind" {
+    /// Used by a processing tap to retrieve a custom storage pointer.
+    ///
+    ///
+    /// Parameter `tap`: The processing tap.
+    ///
+    ///
+    /// Returns: The tapStorage returned by the init callback.
+    #[inline]
+    #[doc(alias = "MTAudioProcessingTapGetStorage")]
+    pub unsafe fn storage(self: &MTAudioProcessingTap) -> NonNull<c_void> {
+        extern "C-unwind" {
+            fn MTAudioProcessingTapGetStorage(
+                tap: &MTAudioProcessingTap,
+            ) -> Option<NonNull<c_void>>;
+        }
+        let ret = unsafe { MTAudioProcessingTapGetStorage(self) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
+    }
+
     /// Used by a processing tap to retrieve source audio.
     ///
     /// This function may only be called from the processing tap's callback.
@@ -408,6 +419,65 @@ extern "C-unwind" {
     ///
     /// Returns: An OSStatus result code.
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
+    #[inline]
+    #[doc(alias = "MTAudioProcessingTapGetSourceAudio")]
+    pub unsafe fn source_audio(
+        self: &MTAudioProcessingTap,
+        number_frames: CMItemCount,
+        buffer_list_in_out: NonNull<AudioBufferList>,
+        flags_out: *mut MTAudioProcessingTapFlags,
+        time_range_out: *mut CMTimeRange,
+        number_frames_out: *mut CMItemCount,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn MTAudioProcessingTapGetSourceAudio(
+                tap: &MTAudioProcessingTap,
+                number_frames: CMItemCount,
+                buffer_list_in_out: NonNull<AudioBufferList>,
+                flags_out: *mut MTAudioProcessingTapFlags,
+                time_range_out: *mut CMTimeRange,
+                number_frames_out: *mut CMItemCount,
+            ) -> OSStatus;
+        }
+        unsafe {
+            MTAudioProcessingTapGetSourceAudio(
+                self,
+                number_frames,
+                buffer_list_in_out,
+                flags_out,
+                time_range_out,
+                number_frames_out,
+            )
+        }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
+    #[deprecated = "renamed to `MTAudioProcessingTap::create`"]
+    pub fn MTAudioProcessingTapCreate(
+        allocator: Option<&CFAllocator>,
+        callbacks: NonNull<MTAudioProcessingTapCallbacks>,
+        flags: MTAudioProcessingTapCreationFlags,
+        tap_out: NonNull<*const MTAudioProcessingTap>,
+    ) -> OSStatus;
+}
+
+#[deprecated = "renamed to `MTAudioProcessingTap::storage`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MTAudioProcessingTapGetStorage(
+    tap: &MTAudioProcessingTap,
+) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn MTAudioProcessingTapGetStorage(tap: &MTAudioProcessingTap) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { MTAudioProcessingTapGetStorage(tap) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
+    #[deprecated = "renamed to `MTAudioProcessingTap::source_audio`"]
     pub fn MTAudioProcessingTapGetSourceAudio(
         tap: &MTAudioProcessingTap,
         number_frames: CMItemCount,

@@ -30,33 +30,36 @@ unsafe impl RefEncode for HKAppleWalkingSteadinessClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Determines the Apple Walking Steadiness classification for the provided Apple Walking Steadiness value.
-///
-/// Parameter `value`: Apple Walking Steadiness quantity with expected value between 0% and 100%.
-///
-/// Parameter `classificationOut`: A pointer to the classification determined for the provided value.
-///
-/// Parameter `errorOut`: A pointer to an error describing why an unknown classification was returned.
-///
-/// Returns: YES if the classification was successful. NO otherwise, meaning the provided value could not be classified.
-#[cfg(feature = "HKQuantity")]
-#[inline]
-pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessClassificationForQuantity(
-    value: &HKQuantity,
-    classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
-    error_out: *mut *mut NSError,
-) -> bool {
-    extern "C-unwind" {
-        fn HKAppleWalkingSteadinessClassificationForQuantity(
-            value: &HKQuantity,
-            classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
-            error_out: *mut *mut NSError,
-        ) -> Bool;
+impl HKAppleWalkingSteadinessClassification {
+    /// Determines the Apple Walking Steadiness classification for the provided Apple Walking Steadiness value.
+    ///
+    /// Parameter `value`: Apple Walking Steadiness quantity with expected value between 0% and 100%.
+    ///
+    /// Parameter `classificationOut`: A pointer to the classification determined for the provided value.
+    ///
+    /// Parameter `errorOut`: A pointer to an error describing why an unknown classification was returned.
+    ///
+    /// Returns: YES if the classification was successful. NO otherwise, meaning the provided value could not be classified.
+    #[cfg(feature = "HKQuantity")]
+    #[inline]
+    #[doc(alias = "HKAppleWalkingSteadinessClassificationForQuantity")]
+    pub unsafe fn for_quantity(
+        value: &HKQuantity,
+        classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
+        error_out: *mut *mut NSError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn HKAppleWalkingSteadinessClassificationForQuantity(
+                value: &HKQuantity,
+                classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
+                error_out: *mut *mut NSError,
+            ) -> Bool;
+        }
+        unsafe {
+            HKAppleWalkingSteadinessClassificationForQuantity(value, classification_out, error_out)
+        }
+        .as_bool()
     }
-    unsafe {
-        HKAppleWalkingSteadinessClassificationForQuantity(value, classification_out, error_out)
-    }
-    .as_bool()
 }
 
 /// Retrieves the minimum quantity in percent unit for an Apple Walking Steadiness classification.
@@ -93,4 +96,25 @@ pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMaximumQuantityForClassi
     let ret = unsafe { HKAppleWalkingSteadinessMaximumQuantityForClassification(classification) };
     unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[cfg(feature = "HKQuantity")]
+#[deprecated = "renamed to `HKAppleWalkingSteadinessClassification::for_quantity`"]
+#[inline]
+pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessClassificationForQuantity(
+    value: &HKQuantity,
+    classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
+    error_out: *mut *mut NSError,
+) -> bool {
+    extern "C-unwind" {
+        fn HKAppleWalkingSteadinessClassificationForQuantity(
+            value: &HKQuantity,
+            classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
+            error_out: *mut *mut NSError,
+        ) -> Bool;
+    }
+    unsafe {
+        HKAppleWalkingSteadinessClassificationForQuantity(value, classification_out, error_out)
+    }
+    .as_bool()
 }

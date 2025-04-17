@@ -264,7 +264,538 @@ unsafe impl ConcreteType for CFNetServiceBrowser {
     }
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+impl CFNetService {
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceCreate")]
+    pub unsafe fn new(
+        alloc: Option<&CFAllocator>,
+        domain: &CFString,
+        service_type: &CFString,
+        name: &CFString,
+        port: i32,
+    ) -> CFRetained<CFNetService> {
+        extern "C-unwind" {
+            fn CFNetServiceCreate(
+                alloc: Option<&CFAllocator>,
+                domain: &CFString,
+                service_type: &CFString,
+                name: &CFString,
+                port: i32,
+            ) -> Option<NonNull<CFNetService>>;
+        }
+        let ret = unsafe { CFNetServiceCreate(alloc, domain, service_type, name, port) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceCreateCopy")]
+    pub unsafe fn new_copy(
+        alloc: Option<&CFAllocator>,
+        service: &CFNetService,
+    ) -> CFRetained<CFNetService> {
+        extern "C-unwind" {
+            fn CFNetServiceCreateCopy(
+                alloc: Option<&CFAllocator>,
+                service: &CFNetService,
+            ) -> Option<NonNull<CFNetService>>;
+        }
+        let ret = unsafe { CFNetServiceCreateCopy(alloc, service) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceGetDomain")]
+    pub unsafe fn domain(self: &CFNetService) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn CFNetServiceGetDomain(the_service: &CFNetService) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFNetServiceGetDomain(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceGetType")]
+    pub unsafe fn r#type(self: &CFNetService) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn CFNetServiceGetType(the_service: &CFNetService) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFNetServiceGetType(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceGetName")]
+    pub unsafe fn name(self: &CFNetService) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn CFNetServiceGetName(the_service: &CFNetService) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFNetServiceGetName(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceRegisterWithOptions")]
+    pub unsafe fn register_with_options(
+        self: &CFNetService,
+        options: CFOptionFlags,
+        error: *mut CFStreamError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFNetServiceRegisterWithOptions(
+                the_service: &CFNetService,
+                options: CFOptionFlags,
+                error: *mut CFStreamError,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFNetServiceRegisterWithOptions(self, options, error) };
+        ret != 0
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceResolveWithTimeout")]
+    pub unsafe fn resolve_with_timeout(
+        self: &CFNetService,
+        timeout: CFTimeInterval,
+        error: *mut CFStreamError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFNetServiceResolveWithTimeout(
+                the_service: &CFNetService,
+                timeout: CFTimeInterval,
+                error: *mut CFStreamError,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFNetServiceResolveWithTimeout(self, timeout, error) };
+        ret != 0
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceCancel")]
+    pub unsafe fn cancel(self: &CFNetService) {
+        extern "C-unwind" {
+            fn CFNetServiceCancel(the_service: &CFNetService);
+        }
+        unsafe { CFNetServiceCancel(self) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceGetTargetHost")]
+    pub unsafe fn target_host(self: &CFNetService) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CFNetServiceGetTargetHost(the_service: &CFNetService) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFNetServiceGetTargetHost(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceGetPortNumber")]
+    pub unsafe fn port_number(self: &CFNetService) -> i32 {
+        extern "C-unwind" {
+            fn CFNetServiceGetPortNumber(the_service: &CFNetService) -> i32;
+        }
+        unsafe { CFNetServiceGetPortNumber(self) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceGetAddressing")]
+    pub unsafe fn addressing(self: &CFNetService) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CFNetServiceGetAddressing(the_service: &CFNetService) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CFNetServiceGetAddressing(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceGetTXTData")]
+    pub unsafe fn txt_data(self: &CFNetService) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn CFNetServiceGetTXTData(the_service: &CFNetService) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { CFNetServiceGetTXTData(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceSetTXTData")]
+    pub unsafe fn set_txt_data(self: &CFNetService, txt_record: &CFData) -> bool {
+        extern "C-unwind" {
+            fn CFNetServiceSetTXTData(the_service: &CFNetService, txt_record: &CFData) -> Boolean;
+        }
+        let ret = unsafe { CFNetServiceSetTXTData(self, txt_record) };
+        ret != 0
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceCreateDictionaryWithTXTData")]
+    pub unsafe fn new_dictionary_with_txt_data(
+        alloc: Option<&CFAllocator>,
+        txt_record: &CFData,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CFNetServiceCreateDictionaryWithTXTData(
+                alloc: Option<&CFAllocator>,
+                txt_record: &CFData,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CFNetServiceCreateDictionaryWithTXTData(alloc, txt_record) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceCreateTXTDataWithDictionary")]
+    pub unsafe fn new_txt_data_with_dictionary(
+        alloc: Option<&CFAllocator>,
+        key_value_pairs: &CFDictionary,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn CFNetServiceCreateTXTDataWithDictionary(
+                alloc: Option<&CFAllocator>,
+                key_value_pairs: &CFDictionary,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { CFNetServiceCreateTXTDataWithDictionary(alloc, key_value_pairs) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceSetClient")]
+    pub unsafe fn set_client(
+        self: &CFNetService,
+        client_cb: CFNetServiceClientCallBack,
+        client_context: *mut CFNetServiceClientContext,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFNetServiceSetClient(
+                the_service: &CFNetService,
+                client_cb: CFNetServiceClientCallBack,
+                client_context: *mut CFNetServiceClientContext,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFNetServiceSetClient(self, client_cb, client_context) };
+        ret != 0
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceScheduleWithRunLoop")]
+    pub unsafe fn schedule_with_run_loop(
+        self: &CFNetService,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    ) {
+        extern "C-unwind" {
+            fn CFNetServiceScheduleWithRunLoop(
+                the_service: &CFNetService,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { CFNetServiceScheduleWithRunLoop(self, run_loop, run_loop_mode) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceUnscheduleFromRunLoop")]
+    pub unsafe fn unschedule_from_run_loop(
+        self: &CFNetService,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    ) {
+        extern "C-unwind" {
+            fn CFNetServiceUnscheduleFromRunLoop(
+                the_service: &CFNetService,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { CFNetServiceUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
+    }
+}
+
+impl CFNetServiceMonitor {
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceMonitorCreate")]
+    pub unsafe fn new(
+        alloc: Option<&CFAllocator>,
+        the_service: &CFNetService,
+        client_cb: CFNetServiceMonitorClientCallBack,
+        client_context: NonNull<CFNetServiceClientContext>,
+    ) -> CFRetained<CFNetServiceMonitor> {
+        extern "C-unwind" {
+            fn CFNetServiceMonitorCreate(
+                alloc: Option<&CFAllocator>,
+                the_service: &CFNetService,
+                client_cb: CFNetServiceMonitorClientCallBack,
+                client_context: NonNull<CFNetServiceClientContext>,
+            ) -> Option<NonNull<CFNetServiceMonitor>>;
+        }
+        let ret =
+            unsafe { CFNetServiceMonitorCreate(alloc, the_service, client_cb, client_context) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceMonitorInvalidate")]
+    pub unsafe fn invalidate(self: &CFNetServiceMonitor) {
+        extern "C-unwind" {
+            fn CFNetServiceMonitorInvalidate(monitor: &CFNetServiceMonitor);
+        }
+        unsafe { CFNetServiceMonitorInvalidate(self) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceMonitorStart")]
+    pub unsafe fn start(
+        self: &CFNetServiceMonitor,
+        record_type: CFNetServiceMonitorType,
+        error: *mut CFStreamError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFNetServiceMonitorStart(
+                monitor: &CFNetServiceMonitor,
+                record_type: CFNetServiceMonitorType,
+                error: *mut CFStreamError,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFNetServiceMonitorStart(self, record_type, error) };
+        ret != 0
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceMonitorStop")]
+    pub unsafe fn stop(self: &CFNetServiceMonitor, error: *mut CFStreamError) {
+        extern "C-unwind" {
+            fn CFNetServiceMonitorStop(monitor: &CFNetServiceMonitor, error: *mut CFStreamError);
+        }
+        unsafe { CFNetServiceMonitorStop(self, error) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceMonitorScheduleWithRunLoop")]
+    pub unsafe fn schedule_with_run_loop(
+        self: &CFNetServiceMonitor,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    ) {
+        extern "C-unwind" {
+            fn CFNetServiceMonitorScheduleWithRunLoop(
+                monitor: &CFNetServiceMonitor,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { CFNetServiceMonitorScheduleWithRunLoop(self, run_loop, run_loop_mode) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceMonitorUnscheduleFromRunLoop")]
+    pub unsafe fn unschedule_from_run_loop(
+        self: &CFNetServiceMonitor,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    ) {
+        extern "C-unwind" {
+            fn CFNetServiceMonitorUnscheduleFromRunLoop(
+                monitor: &CFNetServiceMonitor,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { CFNetServiceMonitorUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
+    }
+}
+
+impl CFNetServiceBrowser {
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceBrowserCreate")]
+    pub unsafe fn new(
+        alloc: Option<&CFAllocator>,
+        client_cb: CFNetServiceBrowserClientCallBack,
+        client_context: NonNull<CFNetServiceClientContext>,
+    ) -> CFRetained<CFNetServiceBrowser> {
+        extern "C-unwind" {
+            fn CFNetServiceBrowserCreate(
+                alloc: Option<&CFAllocator>,
+                client_cb: CFNetServiceBrowserClientCallBack,
+                client_context: NonNull<CFNetServiceClientContext>,
+            ) -> Option<NonNull<CFNetServiceBrowser>>;
+        }
+        let ret = unsafe { CFNetServiceBrowserCreate(alloc, client_cb, client_context) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceBrowserInvalidate")]
+    pub unsafe fn invalidate(self: &CFNetServiceBrowser) {
+        extern "C-unwind" {
+            fn CFNetServiceBrowserInvalidate(browser: &CFNetServiceBrowser);
+        }
+        unsafe { CFNetServiceBrowserInvalidate(self) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceBrowserSearchForDomains")]
+    pub unsafe fn search_for_domains(
+        self: &CFNetServiceBrowser,
+        registration_domains: bool,
+        error: *mut CFStreamError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFNetServiceBrowserSearchForDomains(
+                browser: &CFNetServiceBrowser,
+                registration_domains: Boolean,
+                error: *mut CFStreamError,
+            ) -> Boolean;
+        }
+        let ret =
+            unsafe { CFNetServiceBrowserSearchForDomains(self, registration_domains as _, error) };
+        ret != 0
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceBrowserSearchForServices")]
+    pub unsafe fn search_for_services(
+        self: &CFNetServiceBrowser,
+        domain: &CFString,
+        service_type: &CFString,
+        error: *mut CFStreamError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFNetServiceBrowserSearchForServices(
+                browser: &CFNetServiceBrowser,
+                domain: &CFString,
+                service_type: &CFString,
+                error: *mut CFStreamError,
+            ) -> Boolean;
+        }
+        let ret =
+            unsafe { CFNetServiceBrowserSearchForServices(self, domain, service_type, error) };
+        ret != 0
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceBrowserStopSearch")]
+    pub unsafe fn stop_search(self: &CFNetServiceBrowser, error: *mut CFStreamError) {
+        extern "C-unwind" {
+            fn CFNetServiceBrowserStopSearch(
+                browser: &CFNetServiceBrowser,
+                error: *mut CFStreamError,
+            );
+        }
+        unsafe { CFNetServiceBrowserStopSearch(self, error) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceBrowserScheduleWithRunLoop")]
+    pub unsafe fn schedule_with_run_loop(
+        self: &CFNetServiceBrowser,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    ) {
+        extern "C-unwind" {
+            fn CFNetServiceBrowserScheduleWithRunLoop(
+                browser: &CFNetServiceBrowser,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { CFNetServiceBrowserScheduleWithRunLoop(self, run_loop, run_loop_mode) }
+    }
+
+    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[inline]
+    #[doc(alias = "CFNetServiceBrowserUnscheduleFromRunLoop")]
+    pub unsafe fn unschedule_from_run_loop(
+        self: &CFNetServiceBrowser,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    ) {
+        extern "C-unwind" {
+            fn CFNetServiceBrowserUnscheduleFromRunLoop(
+                browser: &CFNetServiceBrowser,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { CFNetServiceBrowserUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
+    }
+}
+
+impl CFNetService {
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CFNetServiceRegister")]
+    pub unsafe fn register(self: &CFNetService, error: *mut CFStreamError) -> bool {
+        extern "C-unwind" {
+            fn CFNetServiceRegister(
+                the_service: &CFNetService,
+                error: *mut CFStreamError,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFNetServiceRegister(self, error) };
+        ret != 0
+    }
+
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CFNetServiceResolve")]
+    pub unsafe fn resolve(self: &CFNetService, error: *mut CFStreamError) -> bool {
+        extern "C-unwind" {
+            fn CFNetServiceResolve(
+                the_service: &CFNetService,
+                error: *mut CFStreamError,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFNetServiceResolve(self, error) };
+        ret != 0
+    }
+}
+
+#[deprecated = "renamed to `CFNetService::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceCreate(
     alloc: Option<&CFAllocator>,
@@ -287,7 +818,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceCreate(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::new_copy`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceCreateCopy(
     alloc: Option<&CFAllocator>,
@@ -304,7 +835,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceCreateCopy(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::domain`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceGetDomain(
     the_service: &CFNetService,
@@ -317,7 +848,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceGetDomain(
     unsafe { CFRetained::retain(ret) }
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::type`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceGetType(
     the_service: &CFNetService,
@@ -330,7 +861,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceGetType(
     unsafe { CFRetained::retain(ret) }
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::name`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceGetName(
     the_service: &CFNetService,
@@ -343,7 +874,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceGetName(
     unsafe { CFRetained::retain(ret) }
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::register_with_options`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceRegisterWithOptions(
     the_service: &CFNetService,
@@ -361,7 +892,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceRegisterWithOptions(
     ret != 0
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::resolve_with_timeout`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceResolveWithTimeout(
     the_service: &CFNetService,
@@ -380,11 +911,11 @@ pub unsafe extern "C-unwind" fn CFNetServiceResolveWithTimeout(
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetService::cancel`"]
     pub fn CFNetServiceCancel(the_service: &CFNetService);
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::target_host`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceGetTargetHost(
     the_service: &CFNetService,
@@ -397,11 +928,11 @@ pub unsafe extern "C-unwind" fn CFNetServiceGetTargetHost(
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetService::port_number`"]
     pub fn CFNetServiceGetPortNumber(the_service: &CFNetService) -> i32;
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::addressing`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceGetAddressing(
     the_service: &CFNetService,
@@ -413,7 +944,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceGetAddressing(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::txt_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceGetTXTData(
     the_service: &CFNetService,
@@ -425,7 +956,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceGetTXTData(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::set_txt_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceSetTXTData(
     the_service: &CFNetService,
@@ -438,7 +969,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceSetTXTData(
     ret != 0
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::new_dictionary_with_txt_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceCreateDictionaryWithTXTData(
     alloc: Option<&CFAllocator>,
@@ -454,7 +985,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceCreateDictionaryWithTXTData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::new_txt_data_with_dictionary`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceCreateTXTDataWithDictionary(
     alloc: Option<&CFAllocator>,
@@ -470,7 +1001,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceCreateTXTDataWithDictionary(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetService::set_client`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceSetClient(
     the_service: &CFNetService,
@@ -489,7 +1020,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceSetClient(
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetService::schedule_with_run_loop`"]
     pub fn CFNetServiceScheduleWithRunLoop(
         the_service: &CFNetService,
         run_loop: &CFRunLoop,
@@ -498,7 +1029,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetService::unschedule_from_run_loop`"]
     pub fn CFNetServiceUnscheduleFromRunLoop(
         the_service: &CFNetService,
         run_loop: &CFRunLoop,
@@ -506,7 +1037,7 @@ extern "C-unwind" {
     );
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetServiceMonitor::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceMonitorCreate(
     alloc: Option<&CFAllocator>,
@@ -528,11 +1059,11 @@ pub unsafe extern "C-unwind" fn CFNetServiceMonitorCreate(
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetServiceMonitor::invalidate`"]
     pub fn CFNetServiceMonitorInvalidate(monitor: &CFNetServiceMonitor);
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetServiceMonitor::start`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceMonitorStart(
     monitor: &CFNetServiceMonitor,
@@ -551,12 +1082,12 @@ pub unsafe extern "C-unwind" fn CFNetServiceMonitorStart(
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetServiceMonitor::stop`"]
     pub fn CFNetServiceMonitorStop(monitor: &CFNetServiceMonitor, error: *mut CFStreamError);
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetServiceMonitor::schedule_with_run_loop`"]
     pub fn CFNetServiceMonitorScheduleWithRunLoop(
         monitor: &CFNetServiceMonitor,
         run_loop: &CFRunLoop,
@@ -565,7 +1096,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetServiceMonitor::unschedule_from_run_loop`"]
     pub fn CFNetServiceMonitorUnscheduleFromRunLoop(
         monitor: &CFNetServiceMonitor,
         run_loop: &CFRunLoop,
@@ -573,7 +1104,7 @@ extern "C-unwind" {
     );
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetServiceBrowser::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceBrowserCreate(
     alloc: Option<&CFAllocator>,
@@ -593,11 +1124,11 @@ pub unsafe extern "C-unwind" fn CFNetServiceBrowserCreate(
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetServiceBrowser::invalidate`"]
     pub fn CFNetServiceBrowserInvalidate(browser: &CFNetServiceBrowser);
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetServiceBrowser::search_for_domains`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceBrowserSearchForDomains(
     browser: &CFNetServiceBrowser,
@@ -616,7 +1147,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceBrowserSearchForDomains(
     ret != 0
 }
 
-#[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+#[deprecated = "renamed to `CFNetServiceBrowser::search_for_services`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceBrowserSearchForServices(
     browser: &CFNetServiceBrowser,
@@ -637,12 +1168,12 @@ pub unsafe extern "C-unwind" fn CFNetServiceBrowserSearchForServices(
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetServiceBrowser::stop_search`"]
     pub fn CFNetServiceBrowserStopSearch(browser: &CFNetServiceBrowser, error: *mut CFStreamError);
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetServiceBrowser::schedule_with_run_loop`"]
     pub fn CFNetServiceBrowserScheduleWithRunLoop(
         browser: &CFNetServiceBrowser,
         run_loop: &CFRunLoop,
@@ -651,7 +1182,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
+    #[deprecated = "renamed to `CFNetServiceBrowser::unschedule_from_run_loop`"]
     pub fn CFNetServiceBrowserUnscheduleFromRunLoop(
         browser: &CFNetServiceBrowser,
         run_loop: &CFRunLoop,
@@ -659,7 +1190,7 @@ extern "C-unwind" {
     );
 }
 
-#[deprecated]
+#[deprecated = "renamed to `CFNetService::register`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceRegister(
     the_service: &CFNetService,
@@ -672,7 +1203,7 @@ pub unsafe extern "C-unwind" fn CFNetServiceRegister(
     ret != 0
 }
 
-#[deprecated]
+#[deprecated = "renamed to `CFNetService::resolve`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetServiceResolve(
     the_service: &CFNetService,

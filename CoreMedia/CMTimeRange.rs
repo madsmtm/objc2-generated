@@ -43,17 +43,23 @@ extern "C" {
     pub static kCMTimeRangeInvalid: CMTimeRange;
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CMTime")]
+impl CMTimeRange {
     /// Make a valid CMTimeRange with start and duration.
     ///
     /// Returns: The resulting CMTimeRange.
     ///
     /// The duration parameter must have an epoch of 0; otherwise an invalid time range will be returned.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeMake(start: CMTime, duration: CMTime) -> CMTimeRange;
-}
+    #[inline]
+    #[doc(alias = "CMTimeRangeMake")]
+    pub unsafe fn new(start: CMTime, duration: CMTime) -> CMTimeRange {
+        extern "C-unwind" {
+            fn CMTimeRangeMake(start: CMTime, duration: CMTime) -> CMTimeRange;
+        }
+        unsafe { CMTimeRangeMake(start, duration) }
+    }
 
-extern "C-unwind" {
     /// Returns the union of two CMTimeRanges.
     ///
     /// This function returns a CMTimeRange structure that represents the union of the time ranges specified by the
@@ -69,10 +75,15 @@ extern "C-unwind" {
     ///
     /// Returns: The union of the two CMTimeRanges.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeGetUnion(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange;
-}
+    #[inline]
+    #[doc(alias = "CMTimeRangeGetUnion")]
+    pub unsafe fn union(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange {
+        extern "C-unwind" {
+            fn CMTimeRangeGetUnion(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange;
+        }
+        unsafe { CMTimeRangeGetUnion(range, other_range) }
+    }
 
-extern "C-unwind" {
     /// Returns the intersection of two CMTimeRanges.
     ///
     /// This function returns a CMTimeRange structure that represents the intersection of the time ranges specified by the
@@ -88,84 +99,95 @@ extern "C-unwind" {
     ///
     /// Returns: The intersection of the two CMTimeRanges.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeGetIntersection(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange;
-}
-
-/// Returns a Boolean value that indicates whether two CMTimeRanges are identical.
-///
-/// This function returns a Boolean value that indicates whether the time ranges specified by the
-/// <i>
-/// range1
-/// </i>
-/// and
-/// <i>
-/// range2
-/// </i>
-/// parameters are identical.
-///
-/// Returns: Returns true if the two time ranges are identical, false if they differ.
-#[cfg(feature = "CMTime")]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> bool {
-    extern "C-unwind" {
-        fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> Boolean;
+    #[inline]
+    #[doc(alias = "CMTimeRangeGetIntersection")]
+    pub unsafe fn intersection(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange {
+        extern "C-unwind" {
+            fn CMTimeRangeGetIntersection(
+                range: CMTimeRange,
+                other_range: CMTimeRange,
+            ) -> CMTimeRange;
+        }
+        unsafe { CMTimeRangeGetIntersection(range, other_range) }
     }
-    let ret = unsafe { CMTimeRangeEqual(range1, range2) };
-    ret != 0
-}
 
-/// Indicates whether a time is contained within a time range.
-///
-/// This function returns a Boolean value that indicates whether the time specified by the
-/// <i>
-/// time
-/// </i>
-/// parameter
-/// is contained within the range specified by the
-/// <i>
-/// range
-/// </i>
-/// parameter.
-///
-/// Returns: Returns true if the specified time is contained within the specified time range, false if it is not.
-#[cfg(feature = "CMTime")]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> bool {
-    extern "C-unwind" {
-        fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> Boolean;
+    /// Returns a Boolean value that indicates whether two CMTimeRanges are identical.
+    ///
+    /// This function returns a Boolean value that indicates whether the time ranges specified by the
+    /// <i>
+    /// range1
+    /// </i>
+    /// and
+    /// <i>
+    /// range2
+    /// </i>
+    /// parameters are identical.
+    ///
+    /// Returns: Returns true if the two time ranges are identical, false if they differ.
+    #[cfg(feature = "CMTime")]
+    #[inline]
+    #[doc(alias = "CMTimeRangeEqual")]
+    pub unsafe fn equal(range1: CMTimeRange, range2: CMTimeRange) -> bool {
+        extern "C-unwind" {
+            fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> Boolean;
+        }
+        let ret = unsafe { CMTimeRangeEqual(range1, range2) };
+        ret != 0
     }
-    let ret = unsafe { CMTimeRangeContainsTime(range, time) };
-    ret != 0
-}
 
-/// Indicates whether a time range is contained within a time range.
-///
-/// This function returns a Boolean value that indicates whether the time range specified by the
-/// <i>
-/// range
-/// </i>
-/// parameter
-/// contains the range specified by the
-/// <i>
-/// otherRange
-/// </i>
-/// parameter.
-///
-/// Returns: Returns true if the second time range is contained within the first time range, false if it is not.
-#[cfg(feature = "CMTime")]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimeRangeContainsTimeRange(
-    range: CMTimeRange,
-    other_range: CMTimeRange,
-) -> bool {
-    extern "C-unwind" {
-        fn CMTimeRangeContainsTimeRange(range: CMTimeRange, other_range: CMTimeRange) -> Boolean;
+    /// Indicates whether a time is contained within a time range.
+    ///
+    /// This function returns a Boolean value that indicates whether the time specified by the
+    /// <i>
+    /// time
+    /// </i>
+    /// parameter
+    /// is contained within the range specified by the
+    /// <i>
+    /// range
+    /// </i>
+    /// parameter.
+    ///
+    /// Returns: Returns true if the specified time is contained within the specified time range, false if it is not.
+    #[cfg(feature = "CMTime")]
+    #[inline]
+    #[doc(alias = "CMTimeRangeContainsTime")]
+    pub unsafe fn contains_time(range: CMTimeRange, time: CMTime) -> bool {
+        extern "C-unwind" {
+            fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> Boolean;
+        }
+        let ret = unsafe { CMTimeRangeContainsTime(range, time) };
+        ret != 0
     }
-    let ret = unsafe { CMTimeRangeContainsTimeRange(range, other_range) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Indicates whether a time range is contained within a time range.
+    ///
+    /// This function returns a Boolean value that indicates whether the time range specified by the
+    /// <i>
+    /// range
+    /// </i>
+    /// parameter
+    /// contains the range specified by the
+    /// <i>
+    /// otherRange
+    /// </i>
+    /// parameter.
+    ///
+    /// Returns: Returns true if the second time range is contained within the first time range, false if it is not.
+    #[cfg(feature = "CMTime")]
+    #[inline]
+    #[doc(alias = "CMTimeRangeContainsTimeRange")]
+    pub unsafe fn contains_time_range(range: CMTimeRange, other_range: CMTimeRange) -> bool {
+        extern "C-unwind" {
+            fn CMTimeRangeContainsTimeRange(
+                range: CMTimeRange,
+                other_range: CMTimeRange,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CMTimeRangeContainsTimeRange(range, other_range) };
+        ret != 0
+    }
+
     /// Returns a CMTime structure representing the end of a time range.
     ///
     /// Returns: A CMTime structure representing the end of the specified time range.
@@ -177,10 +199,18 @@ extern "C-unwind" {
     /// parameter.
     /// CMTimeRangeContainsTime(range, CMTimeRangeGetEnd(range)) is always false.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeGetEnd(range: CMTimeRange) -> CMTime;
+    #[inline]
+    #[doc(alias = "CMTimeRangeGetEnd")]
+    pub unsafe fn end(range: CMTimeRange) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeRangeGetEnd(range: CMTimeRange) -> CMTime;
+        }
+        unsafe { CMTimeRangeGetEnd(range) }
+    }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CMTime")]
+impl CMTime {
     /// Translates a time through a mapping from CMTimeRange to CMTimeRange.
     ///
     /// Returns: A CMTime structure representing the translated time.
@@ -193,14 +223,23 @@ extern "C-unwind" {
     /// If both fromRange and toRange have duration kCMTimePositiveInfinity,
     /// t will be offset relative to the differences between their starts, but not scaled.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeMapTimeFromRangeToRange(
+    #[inline]
+    #[doc(alias = "CMTimeMapTimeFromRangeToRange")]
+    pub unsafe fn map_time_from_range_to_range(
         t: CMTime,
         from_range: CMTimeRange,
         to_range: CMTimeRange,
-    ) -> CMTime;
-}
+    ) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeMapTimeFromRangeToRange(
+                t: CMTime,
+                from_range: CMTimeRange,
+                to_range: CMTimeRange,
+            ) -> CMTime;
+        }
+        unsafe { CMTimeMapTimeFromRangeToRange(t, from_range, to_range) }
+    }
 
-extern "C-unwind" {
     /// For a given CMTime and CMTimeRange, returns the nearest CMTime inside that time range.
     ///
     /// Returns: A CMTime structure inside the given time range.
@@ -211,10 +250,15 @@ extern "C-unwind" {
     /// If the CMTimeRange argument is empty, an invalid CMTime will be returned.
     /// If the given CMTime is invalid, the returned CMTime will be invalid,
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeClampToRange(time: CMTime, range: CMTimeRange) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimeClampToRange")]
+    pub unsafe fn clamp_to_range(time: CMTime, range: CMTimeRange) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeClampToRange(time: CMTime, range: CMTimeRange) -> CMTime;
+        }
+        unsafe { CMTimeClampToRange(time, range) }
+    }
 
-extern "C-unwind" {
     /// Translates a duration through a mapping from CMTimeRange to CMTimeRange.
     ///
     /// Returns: A CMTime structure representing the translated duration.
@@ -223,14 +267,23 @@ extern "C-unwind" {
     /// result = dur*(toRange.duration/fromRange.duration)
     /// If dur does not have the epoch zero, an invalid CMTime will be returned.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeMapDurationFromRangeToRange(
+    #[inline]
+    #[doc(alias = "CMTimeMapDurationFromRangeToRange")]
+    pub unsafe fn map_duration_from_range_to_range(
         dur: CMTime,
         from_range: CMTimeRange,
         to_range: CMTimeRange,
-    ) -> CMTime;
-}
+    ) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeMapDurationFromRangeToRange(
+                dur: CMTime,
+                from_range: CMTimeRange,
+                to_range: CMTimeRange,
+            ) -> CMTime;
+        }
+        unsafe { CMTimeMapDurationFromRangeToRange(dur, from_range, to_range) }
+    }
 
-extern "C-unwind" {
     /// Folds a time into the given range.  This can be used in looping time calculations.
     ///
     /// Returns: A CMTime structure representing the translated duration.
@@ -238,39 +291,53 @@ extern "C-unwind" {
     /// Note that for certain types of looping, you may want to NOT fold times that are prior
     /// to the loop range.  That's up to the client.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeFoldIntoRange(time: CMTime, fold_range: CMTimeRange) -> CMTime;
+    #[inline]
+    #[doc(alias = "CMTimeFoldIntoRange")]
+    pub unsafe fn fold_into_range(time: CMTime, fold_range: CMTimeRange) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeFoldIntoRange(time: CMTime, fold_range: CMTimeRange) -> CMTime;
+        }
+        unsafe { CMTimeFoldIntoRange(time, fold_range) }
+    }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CMTime")]
+impl CMTimeRange {
     /// Make a valid CMTimeRange with the given starting and ending times.
     ///
     /// Returns: The resulting CMTimeRange.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeFromTimeToTime(start: CMTime, end: CMTime) -> CMTimeRange;
-}
-
-/// Returns a CFDictionary version of a CMTimeRange.
-///
-/// This is useful when putting CMTimeRanges in CF container types.
-///
-/// Returns: A CFDictionary version of the CMTimeRange.
-#[cfg(feature = "CMTime")]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimeRangeCopyAsDictionary(
-    range: CMTimeRange,
-    allocator: Option<&CFAllocator>,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CMTimeRangeCopyAsDictionary(
-            range: CMTimeRange,
-            allocator: Option<&CFAllocator>,
-        ) -> Option<NonNull<CFDictionary>>;
+    #[inline]
+    #[doc(alias = "CMTimeRangeFromTimeToTime")]
+    pub unsafe fn from_time_to_time(start: CMTime, end: CMTime) -> CMTimeRange {
+        extern "C-unwind" {
+            fn CMTimeRangeFromTimeToTime(start: CMTime, end: CMTime) -> CMTimeRange;
+        }
+        unsafe { CMTimeRangeFromTimeToTime(start, end) }
     }
-    let ret = unsafe { CMTimeRangeCopyAsDictionary(range, allocator) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Returns a CFDictionary version of a CMTimeRange.
+    ///
+    /// This is useful when putting CMTimeRanges in CF container types.
+    ///
+    /// Returns: A CFDictionary version of the CMTimeRange.
+    #[cfg(feature = "CMTime")]
+    #[inline]
+    #[doc(alias = "CMTimeRangeCopyAsDictionary")]
+    pub unsafe fn as_dictionary(
+        range: CMTimeRange,
+        allocator: Option<&CFAllocator>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CMTimeRangeCopyAsDictionary(
+                range: CMTimeRange,
+                allocator: Option<&CFAllocator>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CMTimeRangeCopyAsDictionary(range, allocator) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Reconstitutes a CMTimeRange struct from a CFDictionary previously created by CMTimeRangeCopyAsDictionary.
     ///
     /// This is useful when getting CMTimeRanges from CF container types.  If the CFDictionary does not
@@ -278,7 +345,16 @@ extern "C-unwind" {
     ///
     /// Returns: The created CMTimeRange.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeMakeFromDictionary(dictionary_representation: &CFDictionary) -> CMTimeRange;
+    #[inline]
+    #[doc(alias = "CMTimeRangeMakeFromDictionary")]
+    pub unsafe fn from_dictionary(dictionary_representation: &CFDictionary) -> CMTimeRange {
+        extern "C-unwind" {
+            fn CMTimeRangeMakeFromDictionary(
+                dictionary_representation: &CFDictionary,
+            ) -> CMTimeRange;
+        }
+        unsafe { CMTimeRangeMakeFromDictionary(dictionary_representation) }
+    }
 }
 
 extern "C" {
@@ -295,34 +371,43 @@ extern "C" {
     pub static kCMTimeRangeDurationKey: &'static CFString;
 }
 
-/// Creates a CFString with a description of a CMTimeRange (just like CFCopyDescription).
-///
-/// This is used from within CFShow on an object that contains CMTimeRange fields. It is
-/// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
-///
-/// Returns: The created CFString description.
 #[cfg(feature = "CMTime")]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimeRangeCopyDescription(
-    allocator: Option<&CFAllocator>,
-    range: CMTimeRange,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CMTimeRangeCopyDescription(
-            allocator: Option<&CFAllocator>,
-            range: CMTimeRange,
-        ) -> Option<NonNull<CFString>>;
+impl CMTimeRange {
+    /// Creates a CFString with a description of a CMTimeRange (just like CFCopyDescription).
+    ///
+    /// This is used from within CFShow on an object that contains CMTimeRange fields. It is
+    /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
+    ///
+    /// Returns: The created CFString description.
+    #[cfg(feature = "CMTime")]
+    #[inline]
+    #[doc(alias = "CMTimeRangeCopyDescription")]
+    pub unsafe fn description(
+        allocator: Option<&CFAllocator>,
+        range: CMTimeRange,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CMTimeRangeCopyDescription(
+                allocator: Option<&CFAllocator>,
+                range: CMTimeRange,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CMTimeRangeCopyDescription(allocator, range) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CMTimeRangeCopyDescription(allocator, range) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
     /// Prints a description of the CMTimeRange (just like CFShow).
     ///
     /// This is most useful from within gdb.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeShow(range: CMTimeRange);
+    #[inline]
+    #[doc(alias = "CMTimeRangeShow")]
+    pub unsafe fn show(range: CMTimeRange) {
+        extern "C-unwind" {
+            fn CMTimeRangeShow(range: CMTimeRange);
+        }
+        unsafe { CMTimeRangeShow(range) }
+    }
 }
 
 /// A CMTimeMapping specifies the mapping of a segment of one time line (called "source") into another time line (called "target").
@@ -364,48 +449,60 @@ extern "C" {
     pub static kCMTimeMappingInvalid: CMTimeMapping;
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CMTime")]
+impl CMTimeMapping {
     /// Make a valid CMTimeMapping with source and target.
     ///
     /// Returns: The resulting CMTimeMapping.
     ///
     /// The source and target parameters must have durations whose epoch is 0; otherwise an invalid time mapping will be returned.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeMappingMake(source: CMTimeRange, target: CMTimeRange) -> CMTimeMapping;
-}
+    #[inline]
+    #[doc(alias = "CMTimeMappingMake")]
+    pub unsafe fn new(source: CMTimeRange, target: CMTimeRange) -> CMTimeMapping {
+        extern "C-unwind" {
+            fn CMTimeMappingMake(source: CMTimeRange, target: CMTimeRange) -> CMTimeMapping;
+        }
+        unsafe { CMTimeMappingMake(source, target) }
+    }
 
-extern "C-unwind" {
     /// Make a valid CMTimeMapping with an empty source.
     ///
     /// Returns: The resulting CMTimeMapping.
     ///
     /// The target parameter must have a duration whose epoch is 0; otherwise an invalid time mapping will be returned.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeMappingMakeEmpty(target: CMTimeRange) -> CMTimeMapping;
-}
-
-/// Returns a CFDictionary version of a CMTimeMapping.
-///
-/// This is useful when putting CMTimeMappings in CF container types.
-///
-/// Returns: A CFDictionary version of the CMTimeMapping.
-#[cfg(feature = "CMTime")]
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimeMappingCopyAsDictionary(
-    mapping: CMTimeMapping,
-    allocator: Option<&CFAllocator>,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CMTimeMappingCopyAsDictionary(
-            mapping: CMTimeMapping,
-            allocator: Option<&CFAllocator>,
-        ) -> Option<NonNull<CFDictionary>>;
+    #[inline]
+    #[doc(alias = "CMTimeMappingMakeEmpty")]
+    pub unsafe fn new_empty(target: CMTimeRange) -> CMTimeMapping {
+        extern "C-unwind" {
+            fn CMTimeMappingMakeEmpty(target: CMTimeRange) -> CMTimeMapping;
+        }
+        unsafe { CMTimeMappingMakeEmpty(target) }
     }
-    let ret = unsafe { CMTimeMappingCopyAsDictionary(mapping, allocator) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Returns a CFDictionary version of a CMTimeMapping.
+    ///
+    /// This is useful when putting CMTimeMappings in CF container types.
+    ///
+    /// Returns: A CFDictionary version of the CMTimeMapping.
+    #[cfg(feature = "CMTime")]
+    #[inline]
+    #[doc(alias = "CMTimeMappingCopyAsDictionary")]
+    pub unsafe fn as_dictionary(
+        mapping: CMTimeMapping,
+        allocator: Option<&CFAllocator>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CMTimeMappingCopyAsDictionary(
+                mapping: CMTimeMapping,
+                allocator: Option<&CFAllocator>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CMTimeMappingCopyAsDictionary(mapping, allocator) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Reconstitutes a CMTimeMapping struct from a CFDictionary previously created by CMTimeMappingCopyAsDictionary.
     ///
     /// This is useful when getting CMTimeMappings from CF container types.  If the CFDictionary does not
@@ -413,9 +510,16 @@ extern "C-unwind" {
     ///
     /// Returns: The created CMTimeMapping.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeMappingMakeFromDictionary(
-        dictionary_representation: &CFDictionary,
-    ) -> CMTimeMapping;
+    #[inline]
+    #[doc(alias = "CMTimeMappingMakeFromDictionary")]
+    pub unsafe fn from_dictionary(dictionary_representation: &CFDictionary) -> CMTimeMapping {
+        extern "C-unwind" {
+            fn CMTimeMappingMakeFromDictionary(
+                dictionary_representation: &CFDictionary,
+            ) -> CMTimeMapping;
+        }
+        unsafe { CMTimeMappingMakeFromDictionary(dictionary_representation) }
+    }
 }
 
 extern "C" {
@@ -432,13 +536,228 @@ extern "C" {
     pub static kCMTimeMappingTargetKey: &'static CFString;
 }
 
-/// Creates a CFString with a description of a CMTimeMapping (just like CFCopyDescription).
-///
-/// This is used from within CFShow on an object that contains CMTimeMapping fields. It is
-/// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
-///
-/// Returns: The created CFString description.
 #[cfg(feature = "CMTime")]
+impl CMTimeMapping {
+    /// Creates a CFString with a description of a CMTimeMapping (just like CFCopyDescription).
+    ///
+    /// This is used from within CFShow on an object that contains CMTimeMapping fields. It is
+    /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
+    ///
+    /// Returns: The created CFString description.
+    #[cfg(feature = "CMTime")]
+    #[inline]
+    #[doc(alias = "CMTimeMappingCopyDescription")]
+    pub unsafe fn description(
+        allocator: Option<&CFAllocator>,
+        mapping: CMTimeMapping,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CMTimeMappingCopyDescription(
+                allocator: Option<&CFAllocator>,
+                mapping: CMTimeMapping,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CMTimeMappingCopyDescription(allocator, mapping) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Prints a description of a CMTimeMapping (just like CFShow).
+    ///
+    /// This is most useful from within gdb.
+    #[cfg(feature = "CMTime")]
+    #[inline]
+    #[doc(alias = "CMTimeMappingShow")]
+    pub unsafe fn show(mapping: CMTimeMapping) {
+        extern "C-unwind" {
+            fn CMTimeMappingShow(mapping: CMTimeMapping);
+        }
+        unsafe { CMTimeMappingShow(mapping) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimeRange::new`"]
+    pub fn CMTimeRangeMake(start: CMTime, duration: CMTime) -> CMTimeRange;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimeRange::union`"]
+    pub fn CMTimeRangeGetUnion(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimeRange::intersection`"]
+    pub fn CMTimeRangeGetIntersection(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange;
+}
+
+#[cfg(feature = "CMTime")]
+#[deprecated = "renamed to `CMTimeRange::equal`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> bool {
+    extern "C-unwind" {
+        fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> Boolean;
+    }
+    let ret = unsafe { CMTimeRangeEqual(range1, range2) };
+    ret != 0
+}
+
+#[cfg(feature = "CMTime")]
+#[deprecated = "renamed to `CMTimeRange::contains_time`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> bool {
+    extern "C-unwind" {
+        fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> Boolean;
+    }
+    let ret = unsafe { CMTimeRangeContainsTime(range, time) };
+    ret != 0
+}
+
+#[cfg(feature = "CMTime")]
+#[deprecated = "renamed to `CMTimeRange::contains_time_range`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeRangeContainsTimeRange(
+    range: CMTimeRange,
+    other_range: CMTimeRange,
+) -> bool {
+    extern "C-unwind" {
+        fn CMTimeRangeContainsTimeRange(range: CMTimeRange, other_range: CMTimeRange) -> Boolean;
+    }
+    let ret = unsafe { CMTimeRangeContainsTimeRange(range, other_range) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimeRange::end`"]
+    pub fn CMTimeRangeGetEnd(range: CMTimeRange) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTime::map_time_from_range_to_range`"]
+    pub fn CMTimeMapTimeFromRangeToRange(
+        t: CMTime,
+        from_range: CMTimeRange,
+        to_range: CMTimeRange,
+    ) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTime::clamp_to_range`"]
+    pub fn CMTimeClampToRange(time: CMTime, range: CMTimeRange) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTime::map_duration_from_range_to_range`"]
+    pub fn CMTimeMapDurationFromRangeToRange(
+        dur: CMTime,
+        from_range: CMTimeRange,
+        to_range: CMTimeRange,
+    ) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTime::fold_into_range`"]
+    pub fn CMTimeFoldIntoRange(time: CMTime, fold_range: CMTimeRange) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimeRange::from_time_to_time`"]
+    pub fn CMTimeRangeFromTimeToTime(start: CMTime, end: CMTime) -> CMTimeRange;
+}
+
+#[cfg(feature = "CMTime")]
+#[deprecated = "renamed to `CMTimeRange::as_dictionary`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeRangeCopyAsDictionary(
+    range: CMTimeRange,
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMTimeRangeCopyAsDictionary(
+            range: CMTimeRange,
+            allocator: Option<&CFAllocator>,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CMTimeRangeCopyAsDictionary(range, allocator) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimeRange::from_dictionary`"]
+    pub fn CMTimeRangeMakeFromDictionary(dictionary_representation: &CFDictionary) -> CMTimeRange;
+}
+
+#[cfg(feature = "CMTime")]
+#[deprecated = "renamed to `CMTimeRange::description`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeRangeCopyDescription(
+    allocator: Option<&CFAllocator>,
+    range: CMTimeRange,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CMTimeRangeCopyDescription(
+            allocator: Option<&CFAllocator>,
+            range: CMTimeRange,
+        ) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CMTimeRangeCopyDescription(allocator, range) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimeRange::show`"]
+    pub fn CMTimeRangeShow(range: CMTimeRange);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimeMapping::new`"]
+    pub fn CMTimeMappingMake(source: CMTimeRange, target: CMTimeRange) -> CMTimeMapping;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimeMapping::new_empty`"]
+    pub fn CMTimeMappingMakeEmpty(target: CMTimeRange) -> CMTimeMapping;
+}
+
+#[cfg(feature = "CMTime")]
+#[deprecated = "renamed to `CMTimeMapping::as_dictionary`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeMappingCopyAsDictionary(
+    mapping: CMTimeMapping,
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMTimeMappingCopyAsDictionary(
+            mapping: CMTimeMapping,
+            allocator: Option<&CFAllocator>,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CMTimeMappingCopyAsDictionary(mapping, allocator) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimeMapping::from_dictionary`"]
+    pub fn CMTimeMappingMakeFromDictionary(
+        dictionary_representation: &CFDictionary,
+    ) -> CMTimeMapping;
+}
+
+#[cfg(feature = "CMTime")]
+#[deprecated = "renamed to `CMTimeMapping::description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CMTimeMappingCopyDescription(
     allocator: Option<&CFAllocator>,
@@ -455,9 +774,7 @@ pub unsafe extern "C-unwind" fn CMTimeMappingCopyDescription(
 }
 
 extern "C-unwind" {
-    /// Prints a description of a CMTimeMapping (just like CFShow).
-    ///
-    /// This is most useful from within gdb.
     #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTimeMapping::show`"]
     pub fn CMTimeMappingShow(mapping: CMTimeMapping);
 }

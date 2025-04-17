@@ -45,13 +45,16 @@ unsafe impl ConcreteType for CFBoolean {
     }
 }
 
-#[inline]
-pub extern "C-unwind" fn CFBooleanGetValue(boolean: &CFBoolean) -> bool {
-    extern "C-unwind" {
-        fn CFBooleanGetValue(boolean: &CFBoolean) -> Boolean;
+impl CFBoolean {
+    #[inline]
+    #[doc(alias = "CFBooleanGetValue")]
+    pub fn value(self: &CFBoolean) -> bool {
+        extern "C-unwind" {
+            fn CFBooleanGetValue(boolean: &CFBoolean) -> Boolean;
+        }
+        let ret = unsafe { CFBooleanGetValue(self) };
+        ret != 0
     }
-    let ret = unsafe { CFBooleanGetValue(boolean) };
-    ret != 0
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype?language=objc)
@@ -147,6 +150,96 @@ unsafe impl ConcreteType for CFNumber {
     }
 }
 
+impl CFNumber {
+    #[inline]
+    #[doc(alias = "CFNumberCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        the_type: CFNumberType,
+        value_ptr: *const c_void,
+    ) -> Option<CFRetained<CFNumber>> {
+        extern "C-unwind" {
+            fn CFNumberCreate(
+                allocator: Option<&CFAllocator>,
+                the_type: CFNumberType,
+                value_ptr: *const c_void,
+            ) -> Option<NonNull<CFNumber>>;
+        }
+        let ret = unsafe { CFNumberCreate(allocator, the_type, value_ptr) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CFNumberGetType")]
+    pub fn r#type(self: &CFNumber) -> CFNumberType {
+        extern "C-unwind" {
+            fn CFNumberGetType(number: &CFNumber) -> CFNumberType;
+        }
+        unsafe { CFNumberGetType(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFNumberGetByteSize")]
+    pub fn byte_size(self: &CFNumber) -> CFIndex {
+        extern "C-unwind" {
+            fn CFNumberGetByteSize(number: &CFNumber) -> CFIndex;
+        }
+        unsafe { CFNumberGetByteSize(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFNumberIsFloatType")]
+    pub fn is_float_type(self: &CFNumber) -> bool {
+        extern "C-unwind" {
+            fn CFNumberIsFloatType(number: &CFNumber) -> Boolean;
+        }
+        let ret = unsafe { CFNumberIsFloatType(self) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "CFNumberGetValue")]
+    pub unsafe fn value(self: &CFNumber, the_type: CFNumberType, value_ptr: *mut c_void) -> bool {
+        extern "C-unwind" {
+            fn CFNumberGetValue(
+                number: &CFNumber,
+                the_type: CFNumberType,
+                value_ptr: *mut c_void,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFNumberGetValue(self, the_type, value_ptr) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "CFNumberCompare")]
+    pub unsafe fn compare(
+        self: &CFNumber,
+        other_number: Option<&CFNumber>,
+        context: *mut c_void,
+    ) -> CFComparisonResult {
+        extern "C-unwind" {
+            fn CFNumberCompare(
+                number: &CFNumber,
+                other_number: Option<&CFNumber>,
+                context: *mut c_void,
+            ) -> CFComparisonResult;
+        }
+        unsafe { CFNumberCompare(self, other_number, context) }
+    }
+}
+
+#[deprecated = "renamed to `CFBoolean::value`"]
+#[inline]
+pub extern "C-unwind" fn CFBooleanGetValue(boolean: &CFBoolean) -> bool {
+    extern "C-unwind" {
+        fn CFBooleanGetValue(boolean: &CFBoolean) -> Boolean;
+    }
+    let ret = unsafe { CFBooleanGetValue(boolean) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `CFNumber::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberCreate(
     allocator: Option<&CFAllocator>,
@@ -164,6 +257,7 @@ pub unsafe extern "C-unwind" fn CFNumberCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `CFNumber::type`"]
 #[inline]
 pub extern "C-unwind" fn CFNumberGetType(number: &CFNumber) -> CFNumberType {
     extern "C-unwind" {
@@ -172,6 +266,7 @@ pub extern "C-unwind" fn CFNumberGetType(number: &CFNumber) -> CFNumberType {
     unsafe { CFNumberGetType(number) }
 }
 
+#[deprecated = "renamed to `CFNumber::byte_size`"]
 #[inline]
 pub extern "C-unwind" fn CFNumberGetByteSize(number: &CFNumber) -> CFIndex {
     extern "C-unwind" {
@@ -180,6 +275,7 @@ pub extern "C-unwind" fn CFNumberGetByteSize(number: &CFNumber) -> CFIndex {
     unsafe { CFNumberGetByteSize(number) }
 }
 
+#[deprecated = "renamed to `CFNumber::is_float_type`"]
 #[inline]
 pub extern "C-unwind" fn CFNumberIsFloatType(number: &CFNumber) -> bool {
     extern "C-unwind" {
@@ -189,6 +285,7 @@ pub extern "C-unwind" fn CFNumberIsFloatType(number: &CFNumber) -> bool {
     ret != 0
 }
 
+#[deprecated = "renamed to `CFNumber::value`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberGetValue(
     number: &CFNumber,
@@ -207,6 +304,7 @@ pub unsafe extern "C-unwind" fn CFNumberGetValue(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFNumber::compare`"]
     pub fn CFNumberCompare(
         number: &CFNumber,
         other_number: Option<&CFNumber>,

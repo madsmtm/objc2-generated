@@ -34,7 +34,7 @@ unsafe impl RefEncode for sec_protocol_metadata {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_t?language=objc)
 pub type sec_protocol_metadata_t = *mut sec_protocol_metadata;
 
-extern "C-unwind" {
+impl sec_protocol_metadata {
     /// Get the application protocol negotiated, e.g., via the TLS ALPN extension.
     ///
     ///
@@ -42,12 +42,17 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A NULL-terminated string carrying the negotiated protocol.
-    pub fn sec_protocol_metadata_get_negotiated_protocol(
-        metadata: sec_protocol_metadata_t,
-    ) -> *const c_char;
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol")]
+    pub unsafe fn get_negotiated_protocol(metadata: sec_protocol_metadata_t) -> *const c_char {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_get_negotiated_protocol(
+                metadata: sec_protocol_metadata_t,
+            ) -> *const c_char;
+        }
+        unsafe { sec_protocol_metadata_get_negotiated_protocol(metadata) }
+    }
 
-extern "C-unwind" {
     /// Get the negotiated TLS version.
     ///
     ///
@@ -56,12 +61,19 @@ extern "C-unwind" {
     ///
     /// Returns: A `tls_protocol_version_t` value.
     #[cfg(feature = "SecProtocolTypes")]
-    pub fn sec_protocol_metadata_get_negotiated_tls_protocol_version(
+    #[inline]
+    #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_protocol_version")]
+    pub unsafe fn get_negotiated_tls_protocol_version(
         metadata: sec_protocol_metadata_t,
-    ) -> tls_protocol_version_t;
-}
+    ) -> tls_protocol_version_t {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_get_negotiated_tls_protocol_version(
+                metadata: sec_protocol_metadata_t,
+            ) -> tls_protocol_version_t;
+        }
+        unsafe { sec_protocol_metadata_get_negotiated_tls_protocol_version(metadata) }
+    }
 
-extern "C-unwind" {
     /// Get the negotiated TLS version.
     ///
     ///
@@ -71,12 +83,19 @@ extern "C-unwind" {
     /// Returns: A SSLProtocol enum of the TLS version.
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated]
-    pub fn sec_protocol_metadata_get_negotiated_protocol_version(
+    #[inline]
+    #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol_version")]
+    pub unsafe fn get_negotiated_protocol_version(
         metadata: sec_protocol_metadata_t,
-    ) -> SSLProtocol;
-}
+    ) -> SSLProtocol {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_get_negotiated_protocol_version(
+                metadata: sec_protocol_metadata_t,
+            ) -> SSLProtocol;
+        }
+        unsafe { sec_protocol_metadata_get_negotiated_protocol_version(metadata) }
+    }
 
-extern "C-unwind" {
     /// Get the negotiated TLS ciphersuite.
     ///
     ///
@@ -85,12 +104,19 @@ extern "C-unwind" {
     ///
     /// Returns: A `tls_ciphersuite_t`.
     #[cfg(feature = "SecProtocolTypes")]
-    pub fn sec_protocol_metadata_get_negotiated_tls_ciphersuite(
+    #[inline]
+    #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_ciphersuite")]
+    pub unsafe fn get_negotiated_tls_ciphersuite(
         metadata: sec_protocol_metadata_t,
-    ) -> tls_ciphersuite_t;
-}
+    ) -> tls_ciphersuite_t {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_get_negotiated_tls_ciphersuite(
+                metadata: sec_protocol_metadata_t,
+            ) -> tls_ciphersuite_t;
+        }
+        unsafe { sec_protocol_metadata_get_negotiated_tls_ciphersuite(metadata) }
+    }
 
-extern "C-unwind" {
     /// Get the negotiated TLS ciphersuite.
     ///
     ///
@@ -100,12 +126,17 @@ extern "C-unwind" {
     /// Returns: A SSLCipherSuite.
     #[cfg(feature = "CipherSuite")]
     #[deprecated]
-    pub fn sec_protocol_metadata_get_negotiated_ciphersuite(
-        metadata: sec_protocol_metadata_t,
-    ) -> SSLCipherSuite;
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_metadata_get_negotiated_ciphersuite")]
+    pub unsafe fn get_negotiated_ciphersuite(metadata: sec_protocol_metadata_t) -> SSLCipherSuite {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_get_negotiated_ciphersuite(
+                metadata: sec_protocol_metadata_t,
+            ) -> SSLCipherSuite;
+        }
+        unsafe { sec_protocol_metadata_get_negotiated_ciphersuite(metadata) }
+    }
 
-extern "C-unwind" {
     /// Determine if early data was accepted by the peer.
     ///
     ///
@@ -113,11 +144,17 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A bool indicating if early data was accepted.
-    pub fn sec_protocol_metadata_get_early_data_accepted(metadata: sec_protocol_metadata_t)
-        -> bool;
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_metadata_get_early_data_accepted")]
+    pub unsafe fn get_early_data_accepted(metadata: sec_protocol_metadata_t) -> bool {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_get_early_data_accepted(
+                metadata: sec_protocol_metadata_t,
+            ) -> bool;
+        }
+        unsafe { sec_protocol_metadata_get_early_data_accepted(metadata) }
+    }
 
-extern "C-unwind" {
     /// Get the certificate chain of the protocol instance peer.
     ///
     ///
@@ -129,13 +166,21 @@ extern "C-unwind" {
     ///
     /// Returns: Returns true if the peer certificates were accessible, false otherwise.
     #[cfg(all(feature = "SecProtocolTypes", feature = "block2"))]
-    pub fn sec_protocol_metadata_access_peer_certificate_chain(
+    #[inline]
+    #[doc(alias = "sec_protocol_metadata_access_peer_certificate_chain")]
+    pub unsafe fn access_peer_certificate_chain(
         metadata: sec_protocol_metadata_t,
         handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_access_peer_certificate_chain(
+                metadata: sec_protocol_metadata_t,
+                handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
+            ) -> bool;
+        }
+        unsafe { sec_protocol_metadata_access_peer_certificate_chain(metadata, handler) }
+    }
 
-extern "C-unwind" {
     /// Get the signature algorithms supported by the peer. Clients may call this
     /// in response to a challenge block.
     ///
@@ -148,13 +193,21 @@ extern "C-unwind" {
     ///
     /// Returns: Returns true if the supported signature list was accessible, false otherwise.
     #[cfg(feature = "block2")]
-    pub fn sec_protocol_metadata_access_supported_signature_algorithms(
+    #[inline]
+    #[doc(alias = "sec_protocol_metadata_access_supported_signature_algorithms")]
+    pub unsafe fn access_supported_signature_algorithms(
         metadata: sec_protocol_metadata_t,
         handler: &block2::DynBlock<dyn Fn(u16)>,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_access_supported_signature_algorithms(
+                metadata: sec_protocol_metadata_t,
+                handler: &block2::DynBlock<dyn Fn(u16)>,
+            ) -> bool;
+        }
+        unsafe { sec_protocol_metadata_access_supported_signature_algorithms(metadata, handler) }
+    }
 
-extern "C-unwind" {
     /// Obtain the server name offered by a client or server during
     /// connection establishmet. This is the value commonly carried
     /// in the TLS SNI extesion.
@@ -165,12 +218,17 @@ extern "C-unwind" {
     ///
     /// Returns: Returns A NULL-terminated string carrying the server name, or NULL
     /// if none was provided.
-    pub fn sec_protocol_metadata_get_server_name(
-        metadata: sec_protocol_metadata_t,
-    ) -> *const c_char;
-}
+    #[inline]
+    #[doc(alias = "sec_protocol_metadata_get_server_name")]
+    pub unsafe fn get_server_name(metadata: sec_protocol_metadata_t) -> *const c_char {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_get_server_name(
+                metadata: sec_protocol_metadata_t,
+            ) -> *const c_char;
+        }
+        unsafe { sec_protocol_metadata_get_server_name(metadata) }
+    }
 
-extern "C-unwind" {
     /// Compare peer information for two `sec_protocol_metadata` instances.
     /// This comparison does not include protocol configuration options, e.g., ciphersuites.
     ///
@@ -182,13 +240,21 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns true if both metadata values refer to the same peer, and false otherwise.
-    pub fn sec_protocol_metadata_peers_are_equal(
+    #[inline]
+    #[doc(alias = "sec_protocol_metadata_peers_are_equal")]
+    pub unsafe fn peers_are_equal(
         metadata_a: sec_protocol_metadata_t,
         metadata_b: sec_protocol_metadata_t,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_peers_are_equal(
+                metadata_a: sec_protocol_metadata_t,
+                metadata_b: sec_protocol_metadata_t,
+            ) -> bool;
+        }
+        unsafe { sec_protocol_metadata_peers_are_equal(metadata_a, metadata_b) }
+    }
 
-extern "C-unwind" {
     /// Compare challenge-relevant information for two `sec_protocol_metadata` instances.
     ///
     /// This comparison includes all information relevant to a challenge request, including:
@@ -203,6 +269,102 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns true if both metadata values have the same challenge parameters.
+    #[inline]
+    #[doc(alias = "sec_protocol_metadata_challenge_parameters_are_equal")]
+    pub unsafe fn challenge_parameters_are_equal(
+        metadata_a: sec_protocol_metadata_t,
+        metadata_b: sec_protocol_metadata_t,
+    ) -> bool {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_challenge_parameters_are_equal(
+                metadata_a: sec_protocol_metadata_t,
+                metadata_b: sec_protocol_metadata_t,
+            ) -> bool;
+        }
+        unsafe { sec_protocol_metadata_challenge_parameters_are_equal(metadata_a, metadata_b) }
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_metadata::get_negotiated_protocol`"]
+    pub fn sec_protocol_metadata_get_negotiated_protocol(
+        metadata: sec_protocol_metadata_t,
+    ) -> *const c_char;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_metadata::get_negotiated_tls_protocol_version`"]
+    pub fn sec_protocol_metadata_get_negotiated_tls_protocol_version(
+        metadata: sec_protocol_metadata_t,
+    ) -> tls_protocol_version_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_metadata::get_negotiated_protocol_version`"]
+    pub fn sec_protocol_metadata_get_negotiated_protocol_version(
+        metadata: sec_protocol_metadata_t,
+    ) -> SSLProtocol;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecProtocolTypes")]
+    #[deprecated = "renamed to `sec_protocol_metadata::get_negotiated_tls_ciphersuite`"]
+    pub fn sec_protocol_metadata_get_negotiated_tls_ciphersuite(
+        metadata: sec_protocol_metadata_t,
+    ) -> tls_ciphersuite_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CipherSuite")]
+    #[deprecated = "renamed to `sec_protocol_metadata::get_negotiated_ciphersuite`"]
+    pub fn sec_protocol_metadata_get_negotiated_ciphersuite(
+        metadata: sec_protocol_metadata_t,
+    ) -> SSLCipherSuite;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_metadata::get_early_data_accepted`"]
+    pub fn sec_protocol_metadata_get_early_data_accepted(metadata: sec_protocol_metadata_t)
+        -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecProtocolTypes", feature = "block2"))]
+    #[deprecated = "renamed to `sec_protocol_metadata::access_peer_certificate_chain`"]
+    pub fn sec_protocol_metadata_access_peer_certificate_chain(
+        metadata: sec_protocol_metadata_t,
+        handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `sec_protocol_metadata::access_supported_signature_algorithms`"]
+    pub fn sec_protocol_metadata_access_supported_signature_algorithms(
+        metadata: sec_protocol_metadata_t,
+        handler: &block2::DynBlock<dyn Fn(u16)>,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_metadata::get_server_name`"]
+    pub fn sec_protocol_metadata_get_server_name(
+        metadata: sec_protocol_metadata_t,
+    ) -> *const c_char;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_metadata::peers_are_equal`"]
+    pub fn sec_protocol_metadata_peers_are_equal(
+        metadata_a: sec_protocol_metadata_t,
+        metadata_b: sec_protocol_metadata_t,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_metadata::challenge_parameters_are_equal`"]
     pub fn sec_protocol_metadata_challenge_parameters_are_equal(
         metadata_a: sec_protocol_metadata_t,
         metadata_b: sec_protocol_metadata_t,

@@ -65,34 +65,38 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGImageMetadata"> for CGMutableImageMetadata {}
 );
 
-/// Creates an empty CGMutableImageMetadataRef
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataCreateMutable() -> CFRetained<CGMutableImageMetadata>
-{
-    extern "C-unwind" {
-        fn CGImageMetadataCreateMutable() -> Option<NonNull<CGMutableImageMetadata>>;
+impl CGMutableImageMetadata {
+    /// Creates an empty CGMutableImageMetadataRef
+    #[inline]
+    #[doc(alias = "CGImageMetadataCreateMutable")]
+    pub unsafe fn new() -> CFRetained<CGMutableImageMetadata> {
+        extern "C-unwind" {
+            fn CGImageMetadataCreateMutable() -> Option<NonNull<CGMutableImageMetadata>>;
+        }
+        let ret = unsafe { CGImageMetadataCreateMutable() };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CGImageMetadataCreateMutable() };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Creates a deep mutable copy of another CGImageMetadataRef
-///
-/// Before modifying an immutable CGImageMetadataRef (such as metadata
-/// from CGImageSourceCopyMetadataAtIndex) you must first make a copy.
-/// This function makes a deep copy of all CGImageMetadataTags and their values.
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataCreateMutableCopy(
-    metadata: &CGImageMetadata,
-) -> Option<CFRetained<CGMutableImageMetadata>> {
-    extern "C-unwind" {
-        fn CGImageMetadataCreateMutableCopy(
-            metadata: &CGImageMetadata,
-        ) -> Option<NonNull<CGMutableImageMetadata>>;
+    /// Creates a deep mutable copy of another CGImageMetadataRef
+    ///
+    /// Before modifying an immutable CGImageMetadataRef (such as metadata
+    /// from CGImageSourceCopyMetadataAtIndex) you must first make a copy.
+    /// This function makes a deep copy of all CGImageMetadataTags and their values.
+    #[inline]
+    #[doc(alias = "CGImageMetadataCreateMutableCopy")]
+    pub unsafe fn new_copy(
+        metadata: &CGImageMetadata,
+    ) -> Option<CFRetained<CGMutableImageMetadata>> {
+        extern "C-unwind" {
+            fn CGImageMetadataCreateMutableCopy(
+                metadata: &CGImageMetadata,
+            ) -> Option<NonNull<CGMutableImageMetadata>>;
+        }
+        let ret = unsafe { CGImageMetadataCreateMutableCopy(metadata) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageMetadataCreateMutableCopy(metadata) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// an individual metadata tag
@@ -307,329 +311,339 @@ unsafe impl RefEncode for CGImageMetadataType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Creates a new CGImageMetadataTag
-///
-/// Parameter `xmlns`: The namespace for the tag. The value can be a common XMP namespace
-/// defined above, such as kCGImageMetadataNamespaceExif, or a CFString with a
-/// custom namespace URI. Custom namespaces must be a valid XML namespace. By
-/// convention, namespaces should end with either '/' or '#'. For example, exif
-/// uses the namespace "http://ns.adobe.com/exif/1.0/".
-///
-/// Parameter `prefix`: An abbreviation for the XML namespace. The value can be NULL if
-/// the namespace is defined as a constant. Custom prefixes must be a valid XML
-/// name. For example, the prefix used for "http://ns.adobe.com/exif/1.0/" is "exif".
-/// The XMP serialization of the tag will use the prefix. Prefixes are also
-/// important for path-based CGImageMetadata functions, such as
-///
-/// ```text
-///  CGImageMetadataCopyStringValueWithPath
-/// ```
-///
-/// or
-///
-/// ```text
-///  CGImageMetadataSetValueWithPath
-/// ```
-///
-/// .
-///
-/// Parameter `name`: The name of the tag. It must be a valid XMP name.
-///
-/// Parameter `type`: The type of the tag's value. Must be a constant from
-///
-/// ```text
-///  
-///  CGImageMetadataType
-/// ```
-///
-/// .
-///
-/// Parameter `value`: The value of the tag. Allowable CFTypes include CFStringRef,
-/// CFNumberRef, CFBooleanRef, CFArrayRef, and CFDictionaryRef. The CFType of 'value'
-/// must correspond to the 'type'. The elements of a CFArray must be either a
-/// CFStringRef or CGImageMetadataTagRef. The keys of a CFDictionary must be
-/// CFStringRefs with valid XMP names. The values of a CFDictionary must be either
-/// CFStringRefs or CGImageMetadataTagRefs. A shallow copy of the value is stored
-/// in the tag. Therefore, modifying a mutable value after the tag is created
-/// will not affect the tag's value.
-///
-/// Returns: Returns a pointer to a new CGImageMetadataTag. Returns NULL if a tag
-/// could not be created with the specified parameters.
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataTagCreate(
-    xmlns: &CFString,
-    prefix: Option<&CFString>,
-    name: &CFString,
-    r#type: CGImageMetadataType,
-    value: &CFType,
-) -> Option<CFRetained<CGImageMetadataTag>> {
-    extern "C-unwind" {
-        fn CGImageMetadataTagCreate(
-            xmlns: &CFString,
-            prefix: Option<&CFString>,
-            name: &CFString,
-            r#type: CGImageMetadataType,
-            value: &CFType,
-        ) -> Option<NonNull<CGImageMetadataTag>>;
+impl CGImageMetadataTag {
+    /// Creates a new CGImageMetadataTag
+    ///
+    /// Parameter `xmlns`: The namespace for the tag. The value can be a common XMP namespace
+    /// defined above, such as kCGImageMetadataNamespaceExif, or a CFString with a
+    /// custom namespace URI. Custom namespaces must be a valid XML namespace. By
+    /// convention, namespaces should end with either '/' or '#'. For example, exif
+    /// uses the namespace "http://ns.adobe.com/exif/1.0/".
+    ///
+    /// Parameter `prefix`: An abbreviation for the XML namespace. The value can be NULL if
+    /// the namespace is defined as a constant. Custom prefixes must be a valid XML
+    /// name. For example, the prefix used for "http://ns.adobe.com/exif/1.0/" is "exif".
+    /// The XMP serialization of the tag will use the prefix. Prefixes are also
+    /// important for path-based CGImageMetadata functions, such as
+    ///
+    /// ```text
+    ///  CGImageMetadataCopyStringValueWithPath
+    /// ```
+    ///
+    /// or
+    ///
+    /// ```text
+    ///  CGImageMetadataSetValueWithPath
+    /// ```
+    ///
+    /// .
+    ///
+    /// Parameter `name`: The name of the tag. It must be a valid XMP name.
+    ///
+    /// Parameter `type`: The type of the tag's value. Must be a constant from
+    ///
+    /// ```text
+    ///  
+    ///  CGImageMetadataType
+    /// ```
+    ///
+    /// .
+    ///
+    /// Parameter `value`: The value of the tag. Allowable CFTypes include CFStringRef,
+    /// CFNumberRef, CFBooleanRef, CFArrayRef, and CFDictionaryRef. The CFType of 'value'
+    /// must correspond to the 'type'. The elements of a CFArray must be either a
+    /// CFStringRef or CGImageMetadataTagRef. The keys of a CFDictionary must be
+    /// CFStringRefs with valid XMP names. The values of a CFDictionary must be either
+    /// CFStringRefs or CGImageMetadataTagRefs. A shallow copy of the value is stored
+    /// in the tag. Therefore, modifying a mutable value after the tag is created
+    /// will not affect the tag's value.
+    ///
+    /// Returns: Returns a pointer to a new CGImageMetadataTag. Returns NULL if a tag
+    /// could not be created with the specified parameters.
+    #[inline]
+    #[doc(alias = "CGImageMetadataTagCreate")]
+    pub unsafe fn new(
+        xmlns: &CFString,
+        prefix: Option<&CFString>,
+        name: &CFString,
+        r#type: CGImageMetadataType,
+        value: &CFType,
+    ) -> Option<CFRetained<CGImageMetadataTag>> {
+        extern "C-unwind" {
+            fn CGImageMetadataTagCreate(
+                xmlns: &CFString,
+                prefix: Option<&CFString>,
+                name: &CFString,
+                r#type: CGImageMetadataType,
+                value: &CFType,
+            ) -> Option<NonNull<CGImageMetadataTag>>;
+        }
+        let ret = unsafe { CGImageMetadataTagCreate(xmlns, prefix, name, r#type, value) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageMetadataTagCreate(xmlns, prefix, name, r#type, value) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// *!
-///
-///
-///
-/// Returns a copy of the tag's namespace
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataTagCopyNamespace(
-    tag: &CGImageMetadataTag,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CGImageMetadataTagCopyNamespace(tag: &CGImageMetadataTag) -> Option<NonNull<CFString>>;
+    /// *!
+    ///
+    ///
+    ///
+    /// Returns a copy of the tag's namespace
+    #[inline]
+    #[doc(alias = "CGImageMetadataTagCopyNamespace")]
+    pub unsafe fn namespace(self: &CGImageMetadataTag) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CGImageMetadataTagCopyNamespace(
+                tag: &CGImageMetadataTag,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CGImageMetadataTagCopyNamespace(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageMetadataTagCopyNamespace(tag) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns a copy of the tag's prefix
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataTagCopyPrefix(
-    tag: &CGImageMetadataTag,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CGImageMetadataTagCopyPrefix(tag: &CGImageMetadataTag) -> Option<NonNull<CFString>>;
+    /// Returns a copy of the tag's prefix
+    #[inline]
+    #[doc(alias = "CGImageMetadataTagCopyPrefix")]
+    pub unsafe fn prefix(self: &CGImageMetadataTag) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CGImageMetadataTagCopyPrefix(tag: &CGImageMetadataTag) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CGImageMetadataTagCopyPrefix(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageMetadataTagCopyPrefix(tag) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns a copy of the tag's name
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataTagCopyName(
-    tag: &CGImageMetadataTag,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CGImageMetadataTagCopyName(tag: &CGImageMetadataTag) -> Option<NonNull<CFString>>;
+    /// Returns a copy of the tag's name
+    #[inline]
+    #[doc(alias = "CGImageMetadataTagCopyName")]
+    pub unsafe fn name(self: &CGImageMetadataTag) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CGImageMetadataTagCopyName(tag: &CGImageMetadataTag) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CGImageMetadataTagCopyName(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageMetadataTagCopyName(tag) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns a shallow copy of the tag's value
-///
-/// This function should only be used to read the tag's value.
-/// CGImageMetadataCopyTagWithPath returns a copy of the tag (including a copy of
-/// the tag's value). Therefore mutating a tag's value returned from this function
-/// may not actually mutate the value in the CGImageMetadata. It is recommended
-/// to create a new tag followed by CGImageMetadataSetTagWithPath, or use
-/// CGImageMetadataSetValueWithPath to mutate a metadata value.
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataTagCopyValue(
-    tag: &CGImageMetadataTag,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn CGImageMetadataTagCopyValue(tag: &CGImageMetadataTag) -> Option<NonNull<CFType>>;
+    /// Returns a shallow copy of the tag's value
+    ///
+    /// This function should only be used to read the tag's value.
+    /// CGImageMetadataCopyTagWithPath returns a copy of the tag (including a copy of
+    /// the tag's value). Therefore mutating a tag's value returned from this function
+    /// may not actually mutate the value in the CGImageMetadata. It is recommended
+    /// to create a new tag followed by CGImageMetadataSetTagWithPath, or use
+    /// CGImageMetadataSetValueWithPath to mutate a metadata value.
+    #[inline]
+    #[doc(alias = "CGImageMetadataTagCopyValue")]
+    pub unsafe fn value(self: &CGImageMetadataTag) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn CGImageMetadataTagCopyValue(tag: &CGImageMetadataTag) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { CGImageMetadataTagCopyValue(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageMetadataTagCopyValue(tag) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
     /// Get the type of the CGImageMetadataTag
     ///
     /// Returns: Returns a CGImageMetadataType constant for the CGImageMetadataTag.
     /// This is primarily used to determine how to interpret the tag's value.
-    pub fn CGImageMetadataTagGetType(tag: &CGImageMetadataTag) -> CGImageMetadataType;
-}
-
-/// Return a copy of the tag's qualifiers
-///
-/// XMP allows properties to contain supplemental properties called
-/// qualifiers. Qualifiers are themselves CGImageMetadataTags with their own
-/// namespace, prefix, name, and value. A common use is the xml:lang qualifier
-/// for elements of an alternate-text array.
-///
-/// Returns: Returns a copy of the array of qualifiers. Elements of the array are
-/// CGImageMetadataTags. Returns NULL if the tag does not have any qualifiers.
-/// The copy is shallow, the qualifiers are not deep copied.
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataTagCopyQualifiers(
-    tag: &CGImageMetadataTag,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CGImageMetadataTagCopyQualifiers(tag: &CGImageMetadataTag) -> Option<NonNull<CFArray>>;
+    #[inline]
+    #[doc(alias = "CGImageMetadataTagGetType")]
+    pub unsafe fn r#type(self: &CGImageMetadataTag) -> CGImageMetadataType {
+        extern "C-unwind" {
+            fn CGImageMetadataTagGetType(tag: &CGImageMetadataTag) -> CGImageMetadataType;
+        }
+        unsafe { CGImageMetadataTagGetType(self) }
     }
-    let ret = unsafe { CGImageMetadataTagCopyQualifiers(tag) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// *!
-///
-///
-///
-/// Obtain an array of tags from a CGImageMetadataRef
-///
-/// Returns: Returns an array with a shallow copy of all top-level
-/// CGImageMetadataTagRefs in a CGImageMetadataRef.
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataCopyTags(
-    metadata: &CGImageMetadata,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CGImageMetadataCopyTags(metadata: &CGImageMetadata) -> Option<NonNull<CFArray>>;
+    /// Return a copy of the tag's qualifiers
+    ///
+    /// XMP allows properties to contain supplemental properties called
+    /// qualifiers. Qualifiers are themselves CGImageMetadataTags with their own
+    /// namespace, prefix, name, and value. A common use is the xml:lang qualifier
+    /// for elements of an alternate-text array.
+    ///
+    /// Returns: Returns a copy of the array of qualifiers. Elements of the array are
+    /// CGImageMetadataTags. Returns NULL if the tag does not have any qualifiers.
+    /// The copy is shallow, the qualifiers are not deep copied.
+    #[inline]
+    #[doc(alias = "CGImageMetadataTagCopyQualifiers")]
+    pub unsafe fn qualifiers(self: &CGImageMetadataTag) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CGImageMetadataTagCopyQualifiers(
+                tag: &CGImageMetadataTag,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CGImageMetadataTagCopyQualifiers(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageMetadataCopyTags(metadata) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Searches for a specific CGImageMetadataTag in a CGImageMetadataRef
-///
-/// This is the primary function for clients to obtain specific
-/// metadata properties from an image. The 'path' mechanism provides a way to
-/// access both simple top-level properties, such as Date
-/// &
-/// Time, or complex
-/// deeply-nested properties with ease.
-///
-/// Parameter `metadata`: A collection of metadata tags.
-///
-/// Parameter `parent`: A parent tag. If NULL, the path is relative to the root of the
-/// CGImageMetadataRef (i.e. it is not a child of another property). If the parent
-/// is provided, the effective path will be the concatenation of the parent's path
-/// and the 'path' parameter. This is useful for accessing array elements or
-/// structure fields inside nested tags.
-///
-/// Parameter `path`: A string representing a path to the desired tag. Paths consist of
-/// a tag prefix (i.e. "exif") joined with a tag name (i.e. "Flash") by a colon
-/// (":"), such as CFSTR("exif:Flash").
-/// Elements of ordered and unordered arrays are accessed via 0-based indices inside square [] brackets.
-/// Elements of alternate-text arrays are accessed by an RFC 3066 language code inside square [] brackets.
-/// Fields of a structure are delimited by a period, '.'.
-/// Qualifiers are delimited by the '?' character. Only tags with string values (kCGImageMetadataTypeString)
-/// are allowed to have qualifiers - arrays and structures may not contain qualifiers.
-///
-/// If parent is NULL, a prefix must be specified for the first tag. Prefixes for
-/// all subsequent tags are optional. If unspecified, the prefix is
-/// inherented from the nearest parent tag with a prefix. Custom prefixes must be
-/// registered using
-///
-/// ```text
-///  CGImageMetadataRegisterNamespaceForPrefix
-/// ```
-///
-/// prior to use
-/// in any path-based functions.
-///
-/// Examples:
-/// <ul>
-/// <li>
-/// 'path' = CFSTR("xmp:CreateDate")
-/// </li>
-/// <li>
-/// 'path' = CFSTR("exif:Flash.Fired")
-/// </li>
-/// <li>
-/// 'parent' = tag at path CFSTR("exif:Flash"), path = CFSTR("exif:Fired") (equivilent to previous)
-/// </li>
-/// <li>
-/// 'path' = CFSTR("exif:Flash.RedEyeMode")
-/// </li>
-/// <li>
-/// 'path' = CFSTR("dc:title")
-/// </li>
-/// <li>
-/// 'path' = CFSTR("dc:subject")
-/// </li>
-/// <li>
-/// 'path' = CFSTR("dc:subject[2]")
-/// </li>
-/// <li>
-/// 'parent' = tag at path CFSTR("dc:subject"), path = CFSTR("[2]") (equivilent to previous)
-/// </li>
-/// <li>
-/// 'path' = CFSTR("dc:description[x-default])"
-/// </li>
-/// <li>
-/// 'path' = CFSTR("dc.description[de])"
-/// </li>
-/// <li>
-/// 'path' = CFSTR("dc.description[fr])"
-/// </li>
-/// <li>
-/// 'path' = CFSTR("foo:product)"
-/// </li>
-/// <li>
-/// 'path' = CFSTR("foo:product?bar:manufacturer)"
-/// </li>
-/// </ul>
-///
-/// Returns: Returns a copy of CGImageMetadataTag matching 'path', or NULL if no
-/// match is found. The copy of the tag's value is shallow. Tags
-/// copied from an immutable CGImageMetadataRef are also immutable. Because this
-/// function returns a copy of the tag's value, any modification of the tag's
-/// value must be followed by a CGImageMetadataSetTagWithPath to commit the
-/// change to the metadata container.
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataCopyTagWithPath(
-    metadata: &CGImageMetadata,
-    parent: Option<&CGImageMetadataTag>,
-    path: &CFString,
-) -> Option<CFRetained<CGImageMetadataTag>> {
-    extern "C-unwind" {
-        fn CGImageMetadataCopyTagWithPath(
-            metadata: &CGImageMetadata,
-            parent: Option<&CGImageMetadataTag>,
-            path: &CFString,
-        ) -> Option<NonNull<CGImageMetadataTag>>;
+impl CGImageMetadata {
+    /// *!
+    ///
+    ///
+    ///
+    /// Obtain an array of tags from a CGImageMetadataRef
+    ///
+    /// Returns: Returns an array with a shallow copy of all top-level
+    /// CGImageMetadataTagRefs in a CGImageMetadataRef.
+    #[inline]
+    #[doc(alias = "CGImageMetadataCopyTags")]
+    pub unsafe fn tags(self: &CGImageMetadata) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CGImageMetadataCopyTags(metadata: &CGImageMetadata) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CGImageMetadataCopyTags(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageMetadataCopyTagWithPath(metadata, parent, path) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Searches for a specific tag in a CGImageMetadataRef and returns its
-/// string value.
-///
-/// This is a convenience method for searching for a tag at path and
-/// extracting the string value.
-///
-/// Parameter `metadata`: A collection of metadata tags.
-///
-/// Parameter `parent`: A parent tag. If NULL, the path is relative to the root of the
-/// CGImageMetadataRef (i.e. it is not a child of another property).
-///
-/// Parameter `path`: A string with the path to the desired tag. Please consult
-/// the documentation of
-///
-/// ```text
-///  CGImageMetadataCopyTagWithPath
-/// ```
-///
-/// for
-/// information about path syntax.
-///
-/// Returns: Returns a string from a CGImageMetadataTag located at 'path'. The
-/// tag must be of type kCGImageMetadataTypeString or kCGImageMetadataTypeAlternateText.
-/// For AlternateText tags, the element with the "x-default" language qualifier
-/// will be returned. For other types, NULL will be returned.
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataCopyStringValueWithPath(
-    metadata: &CGImageMetadata,
-    parent: Option<&CGImageMetadataTag>,
-    path: &CFString,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CGImageMetadataCopyStringValueWithPath(
-            metadata: &CGImageMetadata,
-            parent: Option<&CGImageMetadataTag>,
-            path: &CFString,
-        ) -> Option<NonNull<CFString>>;
+    /// Searches for a specific CGImageMetadataTag in a CGImageMetadataRef
+    ///
+    /// This is the primary function for clients to obtain specific
+    /// metadata properties from an image. The 'path' mechanism provides a way to
+    /// access both simple top-level properties, such as Date
+    /// &
+    /// Time, or complex
+    /// deeply-nested properties with ease.
+    ///
+    /// Parameter `metadata`: A collection of metadata tags.
+    ///
+    /// Parameter `parent`: A parent tag. If NULL, the path is relative to the root of the
+    /// CGImageMetadataRef (i.e. it is not a child of another property). If the parent
+    /// is provided, the effective path will be the concatenation of the parent's path
+    /// and the 'path' parameter. This is useful for accessing array elements or
+    /// structure fields inside nested tags.
+    ///
+    /// Parameter `path`: A string representing a path to the desired tag. Paths consist of
+    /// a tag prefix (i.e. "exif") joined with a tag name (i.e. "Flash") by a colon
+    /// (":"), such as CFSTR("exif:Flash").
+    /// Elements of ordered and unordered arrays are accessed via 0-based indices inside square [] brackets.
+    /// Elements of alternate-text arrays are accessed by an RFC 3066 language code inside square [] brackets.
+    /// Fields of a structure are delimited by a period, '.'.
+    /// Qualifiers are delimited by the '?' character. Only tags with string values (kCGImageMetadataTypeString)
+    /// are allowed to have qualifiers - arrays and structures may not contain qualifiers.
+    ///
+    /// If parent is NULL, a prefix must be specified for the first tag. Prefixes for
+    /// all subsequent tags are optional. If unspecified, the prefix is
+    /// inherented from the nearest parent tag with a prefix. Custom prefixes must be
+    /// registered using
+    ///
+    /// ```text
+    ///  CGImageMetadataRegisterNamespaceForPrefix
+    /// ```
+    ///
+    /// prior to use
+    /// in any path-based functions.
+    ///
+    /// Examples:
+    /// <ul>
+    /// <li>
+    /// 'path' = CFSTR("xmp:CreateDate")
+    /// </li>
+    /// <li>
+    /// 'path' = CFSTR("exif:Flash.Fired")
+    /// </li>
+    /// <li>
+    /// 'parent' = tag at path CFSTR("exif:Flash"), path = CFSTR("exif:Fired") (equivilent to previous)
+    /// </li>
+    /// <li>
+    /// 'path' = CFSTR("exif:Flash.RedEyeMode")
+    /// </li>
+    /// <li>
+    /// 'path' = CFSTR("dc:title")
+    /// </li>
+    /// <li>
+    /// 'path' = CFSTR("dc:subject")
+    /// </li>
+    /// <li>
+    /// 'path' = CFSTR("dc:subject[2]")
+    /// </li>
+    /// <li>
+    /// 'parent' = tag at path CFSTR("dc:subject"), path = CFSTR("[2]") (equivilent to previous)
+    /// </li>
+    /// <li>
+    /// 'path' = CFSTR("dc:description[x-default])"
+    /// </li>
+    /// <li>
+    /// 'path' = CFSTR("dc.description[de])"
+    /// </li>
+    /// <li>
+    /// 'path' = CFSTR("dc.description[fr])"
+    /// </li>
+    /// <li>
+    /// 'path' = CFSTR("foo:product)"
+    /// </li>
+    /// <li>
+    /// 'path' = CFSTR("foo:product?bar:manufacturer)"
+    /// </li>
+    /// </ul>
+    ///
+    /// Returns: Returns a copy of CGImageMetadataTag matching 'path', or NULL if no
+    /// match is found. The copy of the tag's value is shallow. Tags
+    /// copied from an immutable CGImageMetadataRef are also immutable. Because this
+    /// function returns a copy of the tag's value, any modification of the tag's
+    /// value must be followed by a CGImageMetadataSetTagWithPath to commit the
+    /// change to the metadata container.
+    #[inline]
+    #[doc(alias = "CGImageMetadataCopyTagWithPath")]
+    pub unsafe fn tag_with_path(
+        self: &CGImageMetadata,
+        parent: Option<&CGImageMetadataTag>,
+        path: &CFString,
+    ) -> Option<CFRetained<CGImageMetadataTag>> {
+        extern "C-unwind" {
+            fn CGImageMetadataCopyTagWithPath(
+                metadata: &CGImageMetadata,
+                parent: Option<&CGImageMetadataTag>,
+                path: &CFString,
+            ) -> Option<NonNull<CGImageMetadataTag>>;
+        }
+        let ret = unsafe { CGImageMetadataCopyTagWithPath(self, parent, path) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageMetadataCopyStringValueWithPath(metadata, parent, path) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    /// Searches for a specific tag in a CGImageMetadataRef and returns its
+    /// string value.
+    ///
+    /// This is a convenience method for searching for a tag at path and
+    /// extracting the string value.
+    ///
+    /// Parameter `metadata`: A collection of metadata tags.
+    ///
+    /// Parameter `parent`: A parent tag. If NULL, the path is relative to the root of the
+    /// CGImageMetadataRef (i.e. it is not a child of another property).
+    ///
+    /// Parameter `path`: A string with the path to the desired tag. Please consult
+    /// the documentation of
+    ///
+    /// ```text
+    ///  CGImageMetadataCopyTagWithPath
+    /// ```
+    ///
+    /// for
+    /// information about path syntax.
+    ///
+    /// Returns: Returns a string from a CGImageMetadataTag located at 'path'. The
+    /// tag must be of type kCGImageMetadataTypeString or kCGImageMetadataTypeAlternateText.
+    /// For AlternateText tags, the element with the "x-default" language qualifier
+    /// will be returned. For other types, NULL will be returned.
+    #[inline]
+    #[doc(alias = "CGImageMetadataCopyStringValueWithPath")]
+    pub unsafe fn string_value_with_path(
+        self: &CGImageMetadata,
+        parent: Option<&CGImageMetadataTag>,
+        path: &CFString,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CGImageMetadataCopyStringValueWithPath(
+                metadata: &CGImageMetadata,
+                parent: Option<&CGImageMetadataTag>,
+                path: &CFString,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CGImageMetadataCopyStringValueWithPath(self, parent, path) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
-extern "C-unwind" {
+impl CGMutableImageMetadata {
     /// *!
     ///
     ///
@@ -645,15 +659,25 @@ extern "C-unwind" {
     ///
     /// Returns: Returns true if successful. Returns false and sets 'err' if an error
     /// or conflict occurs.
-    pub fn CGImageMetadataRegisterNamespaceForPrefix(
-        metadata: &CGMutableImageMetadata,
+    #[inline]
+    #[doc(alias = "CGImageMetadataRegisterNamespaceForPrefix")]
+    pub unsafe fn register_namespace_for_prefix(
+        self: &CGMutableImageMetadata,
         xmlns: &CFString,
         prefix: &CFString,
         err: *mut *mut CFError,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGImageMetadataRegisterNamespaceForPrefix(
+                metadata: &CGMutableImageMetadata,
+                xmlns: &CFString,
+                prefix: &CFString,
+                err: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { CGImageMetadataRegisterNamespaceForPrefix(self, xmlns, prefix, err) }
+    }
 
-extern "C-unwind" {
     /// Sets the tag at a specific path in a CGMutableImageMetadata container or a parent tag
     ///
     /// This is the primary function for adding new metadata tags to a
@@ -713,15 +737,25 @@ extern "C-unwind" {
     /// will be retained.
     ///
     /// Returns: Returns true if successful, false otherwise.
-    pub fn CGImageMetadataSetTagWithPath(
-        metadata: &CGMutableImageMetadata,
+    #[inline]
+    #[doc(alias = "CGImageMetadataSetTagWithPath")]
+    pub unsafe fn set_tag_with_path(
+        self: &CGMutableImageMetadata,
         parent: Option<&CGImageMetadataTag>,
         path: &CFString,
         tag: &CGImageMetadataTag,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGImageMetadataSetTagWithPath(
+                metadata: &CGMutableImageMetadata,
+                parent: Option<&CGImageMetadataTag>,
+                path: &CFString,
+                tag: &CGImageMetadataTag,
+            ) -> bool;
+        }
+        unsafe { CGImageMetadataSetTagWithPath(self, parent, path, tag) }
+    }
 
-extern "C-unwind" {
     /// Sets the value of the tag at a specific path in a CGMutableImageMetadataRef container or a parent tag
     ///
     /// This function is used to add new metadata values to a
@@ -800,15 +834,25 @@ extern "C-unwind" {
     /// .
     ///
     /// Returns: Returns true if successful, false otherwise.
-    pub fn CGImageMetadataSetValueWithPath(
-        metadata: &CGMutableImageMetadata,
+    #[inline]
+    #[doc(alias = "CGImageMetadataSetValueWithPath")]
+    pub unsafe fn set_value_with_path(
+        self: &CGMutableImageMetadata,
         parent: Option<&CGImageMetadataTag>,
         path: &CFString,
         value: &CFType,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGImageMetadataSetValueWithPath(
+                metadata: &CGMutableImageMetadata,
+                parent: Option<&CGImageMetadataTag>,
+                path: &CFString,
+                value: &CFType,
+            ) -> bool;
+        }
+        unsafe { CGImageMetadataSetValueWithPath(self, parent, path, value) }
+    }
 
-extern "C-unwind" {
     /// Removes the tag at a specific path from a CGMutableImageMetadata container or from the parent tag
     ///
     /// Use this function to delete a metadata tag matching a specific
@@ -831,11 +875,22 @@ extern "C-unwind" {
     ///
     /// for
     /// information about path syntax.
-    pub fn CGImageMetadataRemoveTagWithPath(
-        metadata: &CGMutableImageMetadata,
+    #[inline]
+    #[doc(alias = "CGImageMetadataRemoveTagWithPath")]
+    pub unsafe fn remove_tag_with_path(
+        self: &CGMutableImageMetadata,
         parent: Option<&CGImageMetadataTag>,
         path: &CFString,
-    ) -> bool;
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGImageMetadataRemoveTagWithPath(
+                metadata: &CGMutableImageMetadata,
+                parent: Option<&CGImageMetadataTag>,
+                path: &CFString,
+            ) -> bool;
+        }
+        unsafe { CGImageMetadataRemoveTagWithPath(self, parent, path) }
+    }
 }
 
 /// The block type used by CGImageMetadataEnumerateTagsUsingBlock
@@ -851,7 +906,7 @@ extern "C-unwind" {
 pub type CGImageMetadataTagBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<CFString>, NonNull<CGImageMetadataTag>) -> bool>;
 
-extern "C-unwind" {
+impl CGImageMetadata {
     /// Executes a given block using each tag in the metadata
     ///
     /// This function iterates over all of the tags in a
@@ -873,12 +928,24 @@ extern "C-unwind" {
     ///
     /// Parameter `block`: The block that is executed for each tag in metadata.
     #[cfg(feature = "block2")]
-    pub fn CGImageMetadataEnumerateTagsUsingBlock(
-        metadata: &CGImageMetadata,
+    #[inline]
+    #[doc(alias = "CGImageMetadataEnumerateTagsUsingBlock")]
+    pub unsafe fn enumerate_tags_using_block(
+        self: &CGImageMetadata,
         root_path: Option<&CFString>,
         options: Option<&CFDictionary>,
         block: CGImageMetadataTagBlock,
-    );
+    ) {
+        extern "C-unwind" {
+            fn CGImageMetadataEnumerateTagsUsingBlock(
+                metadata: &CGImageMetadata,
+                root_path: Option<&CFString>,
+                options: Option<&CFDictionary>,
+                block: CGImageMetadataTagBlock,
+            );
+        }
+        unsafe { CGImageMetadataEnumerateTagsUsingBlock(self, root_path, options, block) }
+    }
 }
 
 extern "C" {
@@ -886,56 +953,59 @@ extern "C" {
     pub static kCGImageMetadataEnumerateRecursively: &'static CFString;
 }
 
-/// *!
-///
-///
-///
-/// Searches for a specific CGImageMetadataTag matching a kCGImageProperty constant
-///
-/// Provides a bridge for values from CGImageCopyPropertiesAtIndex, simplifying
-/// access for properties defined in EXIF and IPTC standards, which have no notion of
-/// namespaces, prefixes, or XMP property types.
-/// Metadata Working Group guidance is factored into the mapping of CGImageProperties to
-/// XMP compatible CGImageMetadataTags.
-/// For example, kCGImagePropertyExifDateTimeOriginal will get the value of the
-/// corresponding XMP tag, which is photoshop:DateCreated. Note that property values will
-/// still be in their XMP forms, such as "YYYY-MM-DDThh:mm:ss" for DateTime, rather than
-/// the EXIF or IPTC DateTime formats.
-///
-/// Parameter `metadata`: A collection of metadata tags
-///
-/// Parameter `dictionaryName`: the metadata subdictionary to which the image property belongs,
-/// such as kCGImagePropertyExifDictionary or kCGImagePropertyIPTCDictionary. Not all
-/// dictionaries and properties are supported at this time.
-///
-/// Parameter `propertyName`: the name of the property. This must be a defined property constant
-/// corresponding to the 'dictionaryName'. For example, kCGImagePropertyTIFFOrientation,
-/// kCGImagePropertyExifDateTimeOriginal, or kCGImagePropertyIPTCKeywords. A warning
-/// will be logged if the CGImageProperty is unsupported by CGImageMetadata.
-///
-/// Returns: Returns a CGImageMetadataTagRef with the appropriate namespace, prefix,
-/// tag name, and XMP value for the corresponding CGImageProperty. Returns NULL if the
-/// property could not be found.
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataCopyTagMatchingImageProperty(
-    metadata: &CGImageMetadata,
-    dictionary_name: &CFString,
-    property_name: &CFString,
-) -> Option<CFRetained<CGImageMetadataTag>> {
-    extern "C-unwind" {
-        fn CGImageMetadataCopyTagMatchingImageProperty(
-            metadata: &CGImageMetadata,
-            dictionary_name: &CFString,
-            property_name: &CFString,
-        ) -> Option<NonNull<CGImageMetadataTag>>;
+impl CGImageMetadata {
+    /// *!
+    ///
+    ///
+    ///
+    /// Searches for a specific CGImageMetadataTag matching a kCGImageProperty constant
+    ///
+    /// Provides a bridge for values from CGImageCopyPropertiesAtIndex, simplifying
+    /// access for properties defined in EXIF and IPTC standards, which have no notion of
+    /// namespaces, prefixes, or XMP property types.
+    /// Metadata Working Group guidance is factored into the mapping of CGImageProperties to
+    /// XMP compatible CGImageMetadataTags.
+    /// For example, kCGImagePropertyExifDateTimeOriginal will get the value of the
+    /// corresponding XMP tag, which is photoshop:DateCreated. Note that property values will
+    /// still be in their XMP forms, such as "YYYY-MM-DDThh:mm:ss" for DateTime, rather than
+    /// the EXIF or IPTC DateTime formats.
+    ///
+    /// Parameter `metadata`: A collection of metadata tags
+    ///
+    /// Parameter `dictionaryName`: the metadata subdictionary to which the image property belongs,
+    /// such as kCGImagePropertyExifDictionary or kCGImagePropertyIPTCDictionary. Not all
+    /// dictionaries and properties are supported at this time.
+    ///
+    /// Parameter `propertyName`: the name of the property. This must be a defined property constant
+    /// corresponding to the 'dictionaryName'. For example, kCGImagePropertyTIFFOrientation,
+    /// kCGImagePropertyExifDateTimeOriginal, or kCGImagePropertyIPTCKeywords. A warning
+    /// will be logged if the CGImageProperty is unsupported by CGImageMetadata.
+    ///
+    /// Returns: Returns a CGImageMetadataTagRef with the appropriate namespace, prefix,
+    /// tag name, and XMP value for the corresponding CGImageProperty. Returns NULL if the
+    /// property could not be found.
+    #[inline]
+    #[doc(alias = "CGImageMetadataCopyTagMatchingImageProperty")]
+    pub unsafe fn tag_matching_image_property(
+        self: &CGImageMetadata,
+        dictionary_name: &CFString,
+        property_name: &CFString,
+    ) -> Option<CFRetained<CGImageMetadataTag>> {
+        extern "C-unwind" {
+            fn CGImageMetadataCopyTagMatchingImageProperty(
+                metadata: &CGImageMetadata,
+                dictionary_name: &CFString,
+                property_name: &CFString,
+            ) -> Option<NonNull<CGImageMetadataTag>>;
+        }
+        let ret = unsafe {
+            CGImageMetadataCopyTagMatchingImageProperty(self, dictionary_name, property_name)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe {
-        CGImageMetadataCopyTagMatchingImageProperty(metadata, dictionary_name, property_name)
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
+impl CGMutableImageMetadata {
     /// Sets the value of the CGImageMetadataTag matching a kCGImageProperty constant
     ///
     /// Provides a bridge for values from CGImageCopyPropertiesAtIndex, simplifying
@@ -971,63 +1041,84 @@ extern "C-unwind" {
     /// .
     ///
     /// Returns: Returns true if successful, false otherwise.
-    pub fn CGImageMetadataSetValueMatchingImageProperty(
-        metadata: &CGMutableImageMetadata,
+    #[inline]
+    #[doc(alias = "CGImageMetadataSetValueMatchingImageProperty")]
+    pub unsafe fn set_value_matching_image_property(
+        self: &CGMutableImageMetadata,
         dictionary_name: &CFString,
         property_name: &CFString,
         value: &CFType,
-    ) -> bool;
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGImageMetadataSetValueMatchingImageProperty(
+                metadata: &CGMutableImageMetadata,
+                dictionary_name: &CFString,
+                property_name: &CFString,
+                value: &CFType,
+            ) -> bool;
+        }
+        unsafe {
+            CGImageMetadataSetValueMatchingImageProperty(
+                self,
+                dictionary_name,
+                property_name,
+                value,
+            )
+        }
+    }
 }
 
-/// Serializes the CGImageMetadataRef to XMP data
-///
-/// This converts all of the metadata tags to a block of XMP data. Common uses
-/// include creating sidecar files that contain metadata for image formats that do not
-/// support embedded XMP, or cannot be edited due to other format restrictions (such as
-/// proprietary RAW camera formats).
-///
-/// Parameter `metadata`: A collection of metadata tags.
-///
-/// Parameter `options`: should be NULL. Options are currently not used, but may be used in
-/// future release.
-///
-/// Returns: Returns a CFData containing an XMP representation of the metadata. Returns
-/// NULL if an error occurred.
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataCreateXMPData(
-    metadata: &CGImageMetadata,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn CGImageMetadataCreateXMPData(
-            metadata: &CGImageMetadata,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CFData>>;
+impl CGImageMetadata {
+    /// Serializes the CGImageMetadataRef to XMP data
+    ///
+    /// This converts all of the metadata tags to a block of XMP data. Common uses
+    /// include creating sidecar files that contain metadata for image formats that do not
+    /// support embedded XMP, or cannot be edited due to other format restrictions (such as
+    /// proprietary RAW camera formats).
+    ///
+    /// Parameter `metadata`: A collection of metadata tags.
+    ///
+    /// Parameter `options`: should be NULL. Options are currently not used, but may be used in
+    /// future release.
+    ///
+    /// Returns: Returns a CFData containing an XMP representation of the metadata. Returns
+    /// NULL if an error occurred.
+    #[inline]
+    #[doc(alias = "CGImageMetadataCreateXMPData")]
+    pub unsafe fn new_xmp_data(
+        self: &CGImageMetadata,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn CGImageMetadataCreateXMPData(
+                metadata: &CGImageMetadata,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { CGImageMetadataCreateXMPData(self, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageMetadataCreateXMPData(metadata, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Creates a collection of CGImageMetadataTags from a block of XMP data
-///
-/// Converts XMP data into a collection of metadata tags.
-/// The data must be a complete XMP tree. XMP packet  headers (
-/// <
-/// ?xpacket .. ?>) are
-/// supported.
-///
-/// Parameter `data`: The XMP data.
-///
-/// Returns: Returns a collection of CGImageMetadata tags. Returns NULL if an error occurred.
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageMetadataCreateFromXMPData(
-    data: &CFData,
-) -> Option<CFRetained<CGImageMetadata>> {
-    extern "C-unwind" {
-        fn CGImageMetadataCreateFromXMPData(data: &CFData) -> Option<NonNull<CGImageMetadata>>;
+    /// Creates a collection of CGImageMetadataTags from a block of XMP data
+    ///
+    /// Converts XMP data into a collection of metadata tags.
+    /// The data must be a complete XMP tree. XMP packet  headers (
+    /// <
+    /// ?xpacket .. ?>) are
+    /// supported.
+    ///
+    /// Parameter `data`: The XMP data.
+    ///
+    /// Returns: Returns a collection of CGImageMetadata tags. Returns NULL if an error occurred.
+    #[inline]
+    #[doc(alias = "CGImageMetadataCreateFromXMPData")]
+    pub unsafe fn from_xmp_data(data: &CFData) -> Option<CFRetained<CGImageMetadata>> {
+        extern "C-unwind" {
+            fn CGImageMetadataCreateFromXMPData(data: &CFData) -> Option<NonNull<CGImageMetadata>>;
+        }
+        let ret = unsafe { CGImageMetadataCreateFromXMPData(data) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageMetadataCreateFromXMPData(data) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -1066,4 +1157,273 @@ unsafe impl Encode for CGImageMetadataErrors {
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for CGImageMetadataErrors {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[deprecated = "renamed to `CGMutableImageMetadata::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataCreateMutable() -> CFRetained<CGMutableImageMetadata>
+{
+    extern "C-unwind" {
+        fn CGImageMetadataCreateMutable() -> Option<NonNull<CGMutableImageMetadata>>;
+    }
+    let ret = unsafe { CGImageMetadataCreateMutable() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CGMutableImageMetadata::new_copy`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataCreateMutableCopy(
+    metadata: &CGImageMetadata,
+) -> Option<CFRetained<CGMutableImageMetadata>> {
+    extern "C-unwind" {
+        fn CGImageMetadataCreateMutableCopy(
+            metadata: &CGImageMetadata,
+        ) -> Option<NonNull<CGMutableImageMetadata>>;
+    }
+    let ret = unsafe { CGImageMetadataCreateMutableCopy(metadata) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageMetadataTag::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataTagCreate(
+    xmlns: &CFString,
+    prefix: Option<&CFString>,
+    name: &CFString,
+    r#type: CGImageMetadataType,
+    value: &CFType,
+) -> Option<CFRetained<CGImageMetadataTag>> {
+    extern "C-unwind" {
+        fn CGImageMetadataTagCreate(
+            xmlns: &CFString,
+            prefix: Option<&CFString>,
+            name: &CFString,
+            r#type: CGImageMetadataType,
+            value: &CFType,
+        ) -> Option<NonNull<CGImageMetadataTag>>;
+    }
+    let ret = unsafe { CGImageMetadataTagCreate(xmlns, prefix, name, r#type, value) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageMetadataTag::namespace`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataTagCopyNamespace(
+    tag: &CGImageMetadataTag,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGImageMetadataTagCopyNamespace(tag: &CGImageMetadataTag) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CGImageMetadataTagCopyNamespace(tag) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageMetadataTag::prefix`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataTagCopyPrefix(
+    tag: &CGImageMetadataTag,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGImageMetadataTagCopyPrefix(tag: &CGImageMetadataTag) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CGImageMetadataTagCopyPrefix(tag) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageMetadataTag::name`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataTagCopyName(
+    tag: &CGImageMetadataTag,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGImageMetadataTagCopyName(tag: &CGImageMetadataTag) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CGImageMetadataTagCopyName(tag) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageMetadataTag::value`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataTagCopyValue(
+    tag: &CGImageMetadataTag,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn CGImageMetadataTagCopyValue(tag: &CGImageMetadataTag) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { CGImageMetadataTagCopyValue(tag) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImageMetadataTag::type`"]
+    pub fn CGImageMetadataTagGetType(tag: &CGImageMetadataTag) -> CGImageMetadataType;
+}
+
+#[deprecated = "renamed to `CGImageMetadataTag::qualifiers`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataTagCopyQualifiers(
+    tag: &CGImageMetadataTag,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CGImageMetadataTagCopyQualifiers(tag: &CGImageMetadataTag) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CGImageMetadataTagCopyQualifiers(tag) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageMetadata::tags`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataCopyTags(
+    metadata: &CGImageMetadata,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CGImageMetadataCopyTags(metadata: &CGImageMetadata) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CGImageMetadataCopyTags(metadata) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageMetadata::tag_with_path`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataCopyTagWithPath(
+    metadata: &CGImageMetadata,
+    parent: Option<&CGImageMetadataTag>,
+    path: &CFString,
+) -> Option<CFRetained<CGImageMetadataTag>> {
+    extern "C-unwind" {
+        fn CGImageMetadataCopyTagWithPath(
+            metadata: &CGImageMetadata,
+            parent: Option<&CGImageMetadataTag>,
+            path: &CFString,
+        ) -> Option<NonNull<CGImageMetadataTag>>;
+    }
+    let ret = unsafe { CGImageMetadataCopyTagWithPath(metadata, parent, path) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageMetadata::string_value_with_path`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataCopyStringValueWithPath(
+    metadata: &CGImageMetadata,
+    parent: Option<&CGImageMetadataTag>,
+    path: &CFString,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGImageMetadataCopyStringValueWithPath(
+            metadata: &CGImageMetadata,
+            parent: Option<&CGImageMetadataTag>,
+            path: &CFString,
+        ) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CGImageMetadataCopyStringValueWithPath(metadata, parent, path) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGMutableImageMetadata::register_namespace_for_prefix`"]
+    pub fn CGImageMetadataRegisterNamespaceForPrefix(
+        metadata: &CGMutableImageMetadata,
+        xmlns: &CFString,
+        prefix: &CFString,
+        err: *mut *mut CFError,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGMutableImageMetadata::set_tag_with_path`"]
+    pub fn CGImageMetadataSetTagWithPath(
+        metadata: &CGMutableImageMetadata,
+        parent: Option<&CGImageMetadataTag>,
+        path: &CFString,
+        tag: &CGImageMetadataTag,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGMutableImageMetadata::set_value_with_path`"]
+    pub fn CGImageMetadataSetValueWithPath(
+        metadata: &CGMutableImageMetadata,
+        parent: Option<&CGImageMetadataTag>,
+        path: &CFString,
+        value: &CFType,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGMutableImageMetadata::remove_tag_with_path`"]
+    pub fn CGImageMetadataRemoveTagWithPath(
+        metadata: &CGMutableImageMetadata,
+        parent: Option<&CGImageMetadataTag>,
+        path: &CFString,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `CGImageMetadata::enumerate_tags_using_block`"]
+    pub fn CGImageMetadataEnumerateTagsUsingBlock(
+        metadata: &CGImageMetadata,
+        root_path: Option<&CFString>,
+        options: Option<&CFDictionary>,
+        block: CGImageMetadataTagBlock,
+    );
+}
+
+#[deprecated = "renamed to `CGImageMetadata::tag_matching_image_property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataCopyTagMatchingImageProperty(
+    metadata: &CGImageMetadata,
+    dictionary_name: &CFString,
+    property_name: &CFString,
+) -> Option<CFRetained<CGImageMetadataTag>> {
+    extern "C-unwind" {
+        fn CGImageMetadataCopyTagMatchingImageProperty(
+            metadata: &CGImageMetadata,
+            dictionary_name: &CFString,
+            property_name: &CFString,
+        ) -> Option<NonNull<CGImageMetadataTag>>;
+    }
+    let ret = unsafe {
+        CGImageMetadataCopyTagMatchingImageProperty(metadata, dictionary_name, property_name)
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGMutableImageMetadata::set_value_matching_image_property`"]
+    pub fn CGImageMetadataSetValueMatchingImageProperty(
+        metadata: &CGMutableImageMetadata,
+        dictionary_name: &CFString,
+        property_name: &CFString,
+        value: &CFType,
+    ) -> bool;
+}
+
+#[deprecated = "renamed to `CGImageMetadata::new_xmp_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataCreateXMPData(
+    metadata: &CGImageMetadata,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn CGImageMetadataCreateXMPData(
+            metadata: &CGImageMetadata,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { CGImageMetadataCreateXMPData(metadata, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageMetadata::from_xmp_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMetadataCreateFromXMPData(
+    data: &CFData,
+) -> Option<CFRetained<CGImageMetadata>> {
+    extern "C-unwind" {
+        fn CGImageMetadataCreateFromXMPData(data: &CFData) -> Option<NonNull<CGImageMetadata>>;
+    }
+    let ret = unsafe { CGImageMetadataCreateFromXMPData(data) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

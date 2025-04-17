@@ -20,205 +20,220 @@ unsafe impl ConcreteType for CFTimeZone {
 }
 
 #[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneCopySystem() -> Option<CFRetained<CFTimeZone>> {
-    extern "C-unwind" {
-        fn CFTimeZoneCopySystem() -> Option<NonNull<CFTimeZone>>;
+impl CFTimeZone {
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneCopySystem")]
+    pub fn system() -> Option<CFRetained<CFTimeZone>> {
+        extern "C-unwind" {
+            fn CFTimeZoneCopySystem() -> Option<NonNull<CFTimeZone>>;
+        }
+        let ret = unsafe { CFTimeZoneCopySystem() };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFTimeZoneCopySystem() };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
-    pub fn CFTimeZoneResetSystem();
-}
-
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneCopyDefault() -> Option<CFRetained<CFTimeZone>> {
-    extern "C-unwind" {
-        fn CFTimeZoneCopyDefault() -> Option<NonNull<CFTimeZone>>;
+    #[inline]
+    #[doc(alias = "CFTimeZoneResetSystem")]
+    pub unsafe fn reset_system() {
+        extern "C-unwind" {
+            fn CFTimeZoneResetSystem();
+        }
+        unsafe { CFTimeZoneResetSystem() }
     }
-    let ret = unsafe { CFTimeZoneCopyDefault() };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneSetDefault(tz: &CFTimeZone) {
-    extern "C-unwind" {
-        fn CFTimeZoneSetDefault(tz: &CFTimeZone);
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneCopyDefault")]
+    pub fn default() -> Option<CFRetained<CFTimeZone>> {
+        extern "C-unwind" {
+            fn CFTimeZoneCopyDefault() -> Option<NonNull<CFTimeZone>>;
+        }
+        let ret = unsafe { CFTimeZoneCopyDefault() };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    unsafe { CFTimeZoneSetDefault(tz) }
-}
 
-#[cfg(feature = "CFArray")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneCopyKnownNames() -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CFTimeZoneCopyKnownNames() -> Option<NonNull<CFArray>>;
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneSetDefault")]
+    pub fn set_default(self: &CFTimeZone) {
+        extern "C-unwind" {
+            fn CFTimeZoneSetDefault(tz: &CFTimeZone);
+        }
+        unsafe { CFTimeZoneSetDefault(self) }
     }
-    let ret = unsafe { CFTimeZoneCopyKnownNames() };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CFDictionary")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneCopyAbbreviationDictionary() -> Option<CFRetained<CFDictionary>>
-{
-    extern "C-unwind" {
-        fn CFTimeZoneCopyAbbreviationDictionary() -> Option<NonNull<CFDictionary>>;
+    #[cfg(feature = "CFArray")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneCopyKnownNames")]
+    pub fn known_names() -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CFTimeZoneCopyKnownNames() -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CFTimeZoneCopyKnownNames() };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFTimeZoneCopyAbbreviationDictionary() };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
     #[cfg(feature = "CFDictionary")]
-    pub fn CFTimeZoneSetAbbreviationDictionary(dict: Option<&CFDictionary>);
-}
-
-#[cfg(all(feature = "CFData", feature = "CFDate"))]
-#[inline]
-pub unsafe extern "C-unwind" fn CFTimeZoneCreate(
-    allocator: Option<&CFAllocator>,
-    name: Option<&CFString>,
-    data: Option<&CFData>,
-) -> Option<CFRetained<CFTimeZone>> {
-    extern "C-unwind" {
-        fn CFTimeZoneCreate(
-            allocator: Option<&CFAllocator>,
-            name: Option<&CFString>,
-            data: Option<&CFData>,
-        ) -> Option<NonNull<CFTimeZone>>;
+    #[inline]
+    #[doc(alias = "CFTimeZoneCopyAbbreviationDictionary")]
+    pub fn abbreviation_dictionary() -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CFTimeZoneCopyAbbreviationDictionary() -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CFTimeZoneCopyAbbreviationDictionary() };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFTimeZoneCreate(allocator, name, data) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneCreateWithTimeIntervalFromGMT(
-    allocator: Option<&CFAllocator>,
-    ti: CFTimeInterval,
-) -> Option<CFRetained<CFTimeZone>> {
-    extern "C-unwind" {
-        fn CFTimeZoneCreateWithTimeIntervalFromGMT(
-            allocator: Option<&CFAllocator>,
-            ti: CFTimeInterval,
-        ) -> Option<NonNull<CFTimeZone>>;
+    #[cfg(feature = "CFDictionary")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneSetAbbreviationDictionary")]
+    pub unsafe fn set_abbreviation_dictionary(dict: Option<&CFDictionary>) {
+        extern "C-unwind" {
+            fn CFTimeZoneSetAbbreviationDictionary(dict: Option<&CFDictionary>);
+        }
+        unsafe { CFTimeZoneSetAbbreviationDictionary(dict) }
     }
-    let ret = unsafe { CFTimeZoneCreateWithTimeIntervalFromGMT(allocator, ti) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneCreateWithName(
-    allocator: Option<&CFAllocator>,
-    name: Option<&CFString>,
-    try_abbrev: bool,
-) -> Option<CFRetained<CFTimeZone>> {
-    extern "C-unwind" {
-        fn CFTimeZoneCreateWithName(
-            allocator: Option<&CFAllocator>,
-            name: Option<&CFString>,
-            try_abbrev: Boolean,
-        ) -> Option<NonNull<CFTimeZone>>;
+    #[cfg(all(feature = "CFData", feature = "CFDate"))]
+    #[inline]
+    #[doc(alias = "CFTimeZoneCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        name: Option<&CFString>,
+        data: Option<&CFData>,
+    ) -> Option<CFRetained<CFTimeZone>> {
+        extern "C-unwind" {
+            fn CFTimeZoneCreate(
+                allocator: Option<&CFAllocator>,
+                name: Option<&CFString>,
+                data: Option<&CFData>,
+            ) -> Option<NonNull<CFTimeZone>>;
+        }
+        let ret = unsafe { CFTimeZoneCreate(allocator, name, data) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFTimeZoneCreateWithName(allocator, name, try_abbrev as _) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<NonNull<CFString>>;
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneCreateWithTimeIntervalFromGMT")]
+    pub fn with_time_interval_from_gmt(
+        allocator: Option<&CFAllocator>,
+        ti: CFTimeInterval,
+    ) -> Option<CFRetained<CFTimeZone>> {
+        extern "C-unwind" {
+            fn CFTimeZoneCreateWithTimeIntervalFromGMT(
+                allocator: Option<&CFAllocator>,
+                ti: CFTimeInterval,
+            ) -> Option<NonNull<CFTimeZone>>;
+        }
+        let ret = unsafe { CFTimeZoneCreateWithTimeIntervalFromGMT(allocator, ti) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFTimeZoneGetName(tz) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-#[cfg(all(feature = "CFData", feature = "CFDate"))]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneGetData(tz: &CFTimeZone) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn CFTimeZoneGetData(tz: &CFTimeZone) -> Option<NonNull<CFData>>;
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneCreateWithName")]
+    pub fn with_name(
+        allocator: Option<&CFAllocator>,
+        name: Option<&CFString>,
+        try_abbrev: bool,
+    ) -> Option<CFRetained<CFTimeZone>> {
+        extern "C-unwind" {
+            fn CFTimeZoneCreateWithName(
+                allocator: Option<&CFAllocator>,
+                name: Option<&CFString>,
+                try_abbrev: Boolean,
+            ) -> Option<NonNull<CFTimeZone>>;
+        }
+        let ret = unsafe { CFTimeZoneCreateWithName(allocator, name, try_abbrev as _) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFTimeZoneGetData(tz) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneGetSecondsFromGMT(
-    tz: &CFTimeZone,
-    at: CFAbsoluteTime,
-) -> CFTimeInterval {
-    extern "C-unwind" {
-        fn CFTimeZoneGetSecondsFromGMT(tz: &CFTimeZone, at: CFAbsoluteTime) -> CFTimeInterval;
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneGetName")]
+    pub fn name(self: &CFTimeZone) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFTimeZoneGetName(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    unsafe { CFTimeZoneGetSecondsFromGMT(tz, at) }
-}
 
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneCopyAbbreviation(
-    tz: &CFTimeZone,
-    at: CFAbsoluteTime,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CFTimeZoneCopyAbbreviation(
-            tz: &CFTimeZone,
-            at: CFAbsoluteTime,
-        ) -> Option<NonNull<CFString>>;
+    #[cfg(all(feature = "CFData", feature = "CFDate"))]
+    #[inline]
+    #[doc(alias = "CFTimeZoneGetData")]
+    pub fn data(self: &CFTimeZone) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn CFTimeZoneGetData(tz: &CFTimeZone) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { CFTimeZoneGetData(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { CFTimeZoneCopyAbbreviation(tz, at) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneIsDaylightSavingTime(
-    tz: &CFTimeZone,
-    at: CFAbsoluteTime,
-) -> bool {
-    extern "C-unwind" {
-        fn CFTimeZoneIsDaylightSavingTime(tz: &CFTimeZone, at: CFAbsoluteTime) -> Boolean;
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneGetSecondsFromGMT")]
+    pub fn seconds_from_gmt(self: &CFTimeZone, at: CFAbsoluteTime) -> CFTimeInterval {
+        extern "C-unwind" {
+            fn CFTimeZoneGetSecondsFromGMT(tz: &CFTimeZone, at: CFAbsoluteTime) -> CFTimeInterval;
+        }
+        unsafe { CFTimeZoneGetSecondsFromGMT(self, at) }
     }
-    let ret = unsafe { CFTimeZoneIsDaylightSavingTime(tz, at) };
-    ret != 0
-}
 
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneGetDaylightSavingTimeOffset(
-    tz: &CFTimeZone,
-    at: CFAbsoluteTime,
-) -> CFTimeInterval {
-    extern "C-unwind" {
-        fn CFTimeZoneGetDaylightSavingTimeOffset(
-            tz: &CFTimeZone,
-            at: CFAbsoluteTime,
-        ) -> CFTimeInterval;
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneCopyAbbreviation")]
+    pub fn abbreviation(self: &CFTimeZone, at: CFAbsoluteTime) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CFTimeZoneCopyAbbreviation(
+                tz: &CFTimeZone,
+                at: CFAbsoluteTime,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFTimeZoneCopyAbbreviation(self, at) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    unsafe { CFTimeZoneGetDaylightSavingTimeOffset(tz, at) }
-}
 
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFTimeZoneGetNextDaylightSavingTimeTransition(
-    tz: &CFTimeZone,
-    at: CFAbsoluteTime,
-) -> CFAbsoluteTime {
-    extern "C-unwind" {
-        fn CFTimeZoneGetNextDaylightSavingTimeTransition(
-            tz: &CFTimeZone,
-            at: CFAbsoluteTime,
-        ) -> CFAbsoluteTime;
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneIsDaylightSavingTime")]
+    pub fn is_daylight_saving_time(self: &CFTimeZone, at: CFAbsoluteTime) -> bool {
+        extern "C-unwind" {
+            fn CFTimeZoneIsDaylightSavingTime(tz: &CFTimeZone, at: CFAbsoluteTime) -> Boolean;
+        }
+        let ret = unsafe { CFTimeZoneIsDaylightSavingTime(self, at) };
+        ret != 0
     }
-    unsafe { CFTimeZoneGetNextDaylightSavingTimeTransition(tz, at) }
+
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneGetDaylightSavingTimeOffset")]
+    pub fn daylight_saving_time_offset(self: &CFTimeZone, at: CFAbsoluteTime) -> CFTimeInterval {
+        extern "C-unwind" {
+            fn CFTimeZoneGetDaylightSavingTimeOffset(
+                tz: &CFTimeZone,
+                at: CFAbsoluteTime,
+            ) -> CFTimeInterval;
+        }
+        unsafe { CFTimeZoneGetDaylightSavingTimeOffset(self, at) }
+    }
+
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFTimeZoneGetNextDaylightSavingTimeTransition")]
+    pub fn next_daylight_saving_time_transition(
+        self: &CFTimeZone,
+        at: CFAbsoluteTime,
+    ) -> CFAbsoluteTime {
+        extern "C-unwind" {
+            fn CFTimeZoneGetNextDaylightSavingTimeTransition(
+                tz: &CFTimeZone,
+                at: CFAbsoluteTime,
+            ) -> CFAbsoluteTime;
+        }
+        unsafe { CFTimeZoneGetNextDaylightSavingTimeTransition(self, at) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle?language=objc)
@@ -251,7 +266,255 @@ unsafe impl RefEncode for CFTimeZoneNameStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+#[cfg(feature = "CFDate")]
+impl CFTimeZone {
+    #[cfg(all(feature = "CFDate", feature = "CFLocale"))]
+    #[inline]
+    #[doc(alias = "CFTimeZoneCopyLocalizedName")]
+    pub fn localized_name(
+        self: &CFTimeZone,
+        style: CFTimeZoneNameStyle,
+        locale: Option<&CFLocale>,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CFTimeZoneCopyLocalizedName(
+                tz: &CFTimeZone,
+                style: CFTimeZoneNameStyle,
+                locale: Option<&CFLocale>,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFTimeZoneCopyLocalizedName(self, style, locale) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftimezonesystemtimezonedidchangenotification?language=objc)
+    #[cfg(feature = "CFNotificationCenter")]
+    pub static kCFTimeZoneSystemTimeZoneDidChangeNotification: Option<&'static CFNotificationName>;
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFTimeZone::system`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneCopySystem() -> Option<CFRetained<CFTimeZone>> {
+    extern "C-unwind" {
+        fn CFTimeZoneCopySystem() -> Option<NonNull<CFTimeZone>>;
+    }
+    let ret = unsafe { CFTimeZoneCopySystem() };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFTimeZone::reset_system`"]
+    pub fn CFTimeZoneResetSystem();
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFTimeZone::default`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneCopyDefault() -> Option<CFRetained<CFTimeZone>> {
+    extern "C-unwind" {
+        fn CFTimeZoneCopyDefault() -> Option<NonNull<CFTimeZone>>;
+    }
+    let ret = unsafe { CFTimeZoneCopyDefault() };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFTimeZone::set_default`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneSetDefault(tz: &CFTimeZone) {
+    extern "C-unwind" {
+        fn CFTimeZoneSetDefault(tz: &CFTimeZone);
+    }
+    unsafe { CFTimeZoneSetDefault(tz) }
+}
+
+#[cfg(feature = "CFArray")]
+#[deprecated = "renamed to `CFTimeZone::known_names`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneCopyKnownNames() -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CFTimeZoneCopyKnownNames() -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CFTimeZoneCopyKnownNames() };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFDictionary")]
+#[deprecated = "renamed to `CFTimeZone::abbreviation_dictionary`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneCopyAbbreviationDictionary() -> Option<CFRetained<CFDictionary>>
+{
+    extern "C-unwind" {
+        fn CFTimeZoneCopyAbbreviationDictionary() -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CFTimeZoneCopyAbbreviationDictionary() };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CFDictionary")]
+    #[deprecated = "renamed to `CFTimeZone::set_abbreviation_dictionary`"]
+    pub fn CFTimeZoneSetAbbreviationDictionary(dict: Option<&CFDictionary>);
+}
+
+#[cfg(all(feature = "CFData", feature = "CFDate"))]
+#[deprecated = "renamed to `CFTimeZone::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFTimeZoneCreate(
+    allocator: Option<&CFAllocator>,
+    name: Option<&CFString>,
+    data: Option<&CFData>,
+) -> Option<CFRetained<CFTimeZone>> {
+    extern "C-unwind" {
+        fn CFTimeZoneCreate(
+            allocator: Option<&CFAllocator>,
+            name: Option<&CFString>,
+            data: Option<&CFData>,
+        ) -> Option<NonNull<CFTimeZone>>;
+    }
+    let ret = unsafe { CFTimeZoneCreate(allocator, name, data) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFTimeZone::with_time_interval_from_gmt`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneCreateWithTimeIntervalFromGMT(
+    allocator: Option<&CFAllocator>,
+    ti: CFTimeInterval,
+) -> Option<CFRetained<CFTimeZone>> {
+    extern "C-unwind" {
+        fn CFTimeZoneCreateWithTimeIntervalFromGMT(
+            allocator: Option<&CFAllocator>,
+            ti: CFTimeInterval,
+        ) -> Option<NonNull<CFTimeZone>>;
+    }
+    let ret = unsafe { CFTimeZoneCreateWithTimeIntervalFromGMT(allocator, ti) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFTimeZone::with_name`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneCreateWithName(
+    allocator: Option<&CFAllocator>,
+    name: Option<&CFString>,
+    try_abbrev: bool,
+) -> Option<CFRetained<CFTimeZone>> {
+    extern "C-unwind" {
+        fn CFTimeZoneCreateWithName(
+            allocator: Option<&CFAllocator>,
+            name: Option<&CFString>,
+            try_abbrev: Boolean,
+        ) -> Option<NonNull<CFTimeZone>>;
+    }
+    let ret = unsafe { CFTimeZoneCreateWithName(allocator, name, try_abbrev as _) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFTimeZone::name`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CFTimeZoneGetName(tz) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[cfg(all(feature = "CFData", feature = "CFDate"))]
+#[deprecated = "renamed to `CFTimeZone::data`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneGetData(tz: &CFTimeZone) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn CFTimeZoneGetData(tz: &CFTimeZone) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { CFTimeZoneGetData(tz) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFTimeZone::seconds_from_gmt`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneGetSecondsFromGMT(
+    tz: &CFTimeZone,
+    at: CFAbsoluteTime,
+) -> CFTimeInterval {
+    extern "C-unwind" {
+        fn CFTimeZoneGetSecondsFromGMT(tz: &CFTimeZone, at: CFAbsoluteTime) -> CFTimeInterval;
+    }
+    unsafe { CFTimeZoneGetSecondsFromGMT(tz, at) }
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFTimeZone::abbreviation`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneCopyAbbreviation(
+    tz: &CFTimeZone,
+    at: CFAbsoluteTime,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CFTimeZoneCopyAbbreviation(
+            tz: &CFTimeZone,
+            at: CFAbsoluteTime,
+        ) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CFTimeZoneCopyAbbreviation(tz, at) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFTimeZone::is_daylight_saving_time`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneIsDaylightSavingTime(
+    tz: &CFTimeZone,
+    at: CFAbsoluteTime,
+) -> bool {
+    extern "C-unwind" {
+        fn CFTimeZoneIsDaylightSavingTime(tz: &CFTimeZone, at: CFAbsoluteTime) -> Boolean;
+    }
+    let ret = unsafe { CFTimeZoneIsDaylightSavingTime(tz, at) };
+    ret != 0
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFTimeZone::daylight_saving_time_offset`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneGetDaylightSavingTimeOffset(
+    tz: &CFTimeZone,
+    at: CFAbsoluteTime,
+) -> CFTimeInterval {
+    extern "C-unwind" {
+        fn CFTimeZoneGetDaylightSavingTimeOffset(
+            tz: &CFTimeZone,
+            at: CFAbsoluteTime,
+        ) -> CFTimeInterval;
+    }
+    unsafe { CFTimeZoneGetDaylightSavingTimeOffset(tz, at) }
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFTimeZone::next_daylight_saving_time_transition`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneGetNextDaylightSavingTimeTransition(
+    tz: &CFTimeZone,
+    at: CFAbsoluteTime,
+) -> CFAbsoluteTime {
+    extern "C-unwind" {
+        fn CFTimeZoneGetNextDaylightSavingTimeTransition(
+            tz: &CFTimeZone,
+            at: CFAbsoluteTime,
+        ) -> CFAbsoluteTime;
+    }
+    unsafe { CFTimeZoneGetNextDaylightSavingTimeTransition(tz, at) }
+}
+
 #[cfg(all(feature = "CFDate", feature = "CFLocale"))]
+#[deprecated = "renamed to `CFTimeZone::localized_name`"]
 #[inline]
 pub extern "C-unwind" fn CFTimeZoneCopyLocalizedName(
     tz: &CFTimeZone,
@@ -267,10 +530,4 @@ pub extern "C-unwind" fn CFTimeZoneCopyLocalizedName(
     }
     let ret = unsafe { CFTimeZoneCopyLocalizedName(tz, style, locale) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftimezonesystemtimezonedidchangenotification?language=objc)
-    #[cfg(feature = "CFNotificationCenter")]
-    pub static kCFTimeZoneSystemTimeZoneDidChangeNotification: Option<&'static CFNotificationName>;
 }

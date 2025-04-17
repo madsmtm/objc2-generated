@@ -86,7 +86,7 @@ unsafe impl ConcreteType for CTRun {
     }
 }
 
-extern "C-unwind" {
+impl CTRun {
     /// Gets the glyph count for the run.
     ///
     ///
@@ -96,35 +96,42 @@ extern "C-unwind" {
     /// Returns: The number of glyphs that the run contains. It is totally
     /// possible that this function could return a value of zero,
     /// indicating that there are no glyphs in this run.
-    pub fn CTRunGetGlyphCount(run: &CTRun) -> CFIndex;
-}
-
-/// Returns the attribute dictionary that was used to create the
-/// glyph run.
-///
-///
-/// This dictionary returned is either the same exact one that was
-/// set as an attribute dictionary on the original attributed string
-/// or a dictionary that has been manufactured by the layout engine.
-/// Attribute dictionaries can be manufactured in the case of font
-/// substitution or if they are missing critical attributes.
-///
-///
-/// Parameter `run`: The run whose attributes you wish to access.
-///
-///
-/// Returns: The attribute dictionary.
-#[inline]
-pub unsafe extern "C-unwind" fn CTRunGetAttributes(run: &CTRun) -> CFRetained<CFDictionary> {
-    extern "C-unwind" {
-        fn CTRunGetAttributes(run: &CTRun) -> Option<NonNull<CFDictionary>>;
+    #[inline]
+    #[doc(alias = "CTRunGetGlyphCount")]
+    pub unsafe fn glyph_count(self: &CTRun) -> CFIndex {
+        extern "C-unwind" {
+            fn CTRunGetGlyphCount(run: &CTRun) -> CFIndex;
+        }
+        unsafe { CTRunGetGlyphCount(self) }
     }
-    let ret = unsafe { CTRunGetAttributes(run) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-extern "C-unwind" {
+    /// Returns the attribute dictionary that was used to create the
+    /// glyph run.
+    ///
+    ///
+    /// This dictionary returned is either the same exact one that was
+    /// set as an attribute dictionary on the original attributed string
+    /// or a dictionary that has been manufactured by the layout engine.
+    /// Attribute dictionaries can be manufactured in the case of font
+    /// substitution or if they are missing critical attributes.
+    ///
+    ///
+    /// Parameter `run`: The run whose attributes you wish to access.
+    ///
+    ///
+    /// Returns: The attribute dictionary.
+    #[inline]
+    #[doc(alias = "CTRunGetAttributes")]
+    pub unsafe fn attributes(self: &CTRun) -> CFRetained<CFDictionary> {
+        extern "C-unwind" {
+            fn CTRunGetAttributes(run: &CTRun) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CTRunGetAttributes(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
+    }
+
     /// Returns the run's status.
     ///
     ///
@@ -141,10 +148,15 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The run's status.
-    pub fn CTRunGetStatus(run: &CTRun) -> CTRunStatus;
-}
+    #[inline]
+    #[doc(alias = "CTRunGetStatus")]
+    pub unsafe fn status(self: &CTRun) -> CTRunStatus {
+        extern "C-unwind" {
+            fn CTRunGetStatus(run: &CTRun) -> CTRunStatus;
+        }
+        unsafe { CTRunGetStatus(self) }
+    }
 
-extern "C-unwind" {
     /// Returns a direct pointer for the glyph array stored in the run.
     ///
     ///
@@ -161,10 +173,15 @@ extern "C-unwind" {
     ///
     /// Returns: A valid pointer to an array of CGGlyph structures or NULL.
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTRunGetGlyphsPtr(run: &CTRun) -> *const CGGlyph;
-}
+    #[inline]
+    #[doc(alias = "CTRunGetGlyphsPtr")]
+    pub unsafe fn glyphs_ptr(self: &CTRun) -> *const CGGlyph {
+        extern "C-unwind" {
+            fn CTRunGetGlyphsPtr(run: &CTRun) -> *const CGGlyph;
+        }
+        unsafe { CTRunGetGlyphsPtr(self) }
+    }
 
-extern "C-unwind" {
     /// Copies a range of glyphs into user-provided buffer.
     ///
     ///
@@ -180,10 +197,15 @@ extern "C-unwind" {
     /// Parameter `buffer`: The buffer where the glyphs will be copied to. The buffer must be
     /// allocated to at least the value specified by the range's length.
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTRunGetGlyphs(run: &CTRun, range: CFRange, buffer: NonNull<CGGlyph>);
-}
+    #[inline]
+    #[doc(alias = "CTRunGetGlyphs")]
+    pub unsafe fn glyphs(self: &CTRun, range: CFRange, buffer: NonNull<CGGlyph>) {
+        extern "C-unwind" {
+            fn CTRunGetGlyphs(run: &CTRun, range: CFRange, buffer: NonNull<CGGlyph>);
+        }
+        unsafe { CTRunGetGlyphs(self, range, buffer) }
+    }
 
-extern "C-unwind" {
     /// Returns a direct pointer for the glyph position array stored in
     /// the run.
     ///
@@ -201,10 +223,15 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A valid pointer to an array of CGPoint structures or NULL.
-    pub fn CTRunGetPositionsPtr(run: &CTRun) -> *const CGPoint;
-}
+    #[inline]
+    #[doc(alias = "CTRunGetPositionsPtr")]
+    pub unsafe fn positions_ptr(self: &CTRun) -> *const CGPoint {
+        extern "C-unwind" {
+            fn CTRunGetPositionsPtr(run: &CTRun) -> *const CGPoint;
+        }
+        unsafe { CTRunGetPositionsPtr(self) }
+    }
 
-extern "C-unwind" {
     /// Copies a range of glyph positions into a user-provided buffer.
     ///
     ///
@@ -224,10 +251,15 @@ extern "C-unwind" {
     /// Parameter `buffer`: The buffer where the glyph positions will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    pub fn CTRunGetPositions(run: &CTRun, range: CFRange, buffer: NonNull<CGPoint>);
-}
+    #[inline]
+    #[doc(alias = "CTRunGetPositions")]
+    pub unsafe fn positions(self: &CTRun, range: CFRange, buffer: NonNull<CGPoint>) {
+        extern "C-unwind" {
+            fn CTRunGetPositions(run: &CTRun, range: CFRange, buffer: NonNull<CGPoint>);
+        }
+        unsafe { CTRunGetPositions(self, range, buffer) }
+    }
 
-extern "C-unwind" {
     /// Returns a direct pointer for the glyph advance array stored in
     /// the run.
     ///
@@ -247,10 +279,15 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A valid pointer to an array of CGSize structures or NULL.
-    pub fn CTRunGetAdvancesPtr(run: &CTRun) -> *const CGSize;
-}
+    #[inline]
+    #[doc(alias = "CTRunGetAdvancesPtr")]
+    pub unsafe fn advances_ptr(self: &CTRun) -> *const CGSize {
+        extern "C-unwind" {
+            fn CTRunGetAdvancesPtr(run: &CTRun) -> *const CGSize;
+        }
+        unsafe { CTRunGetAdvancesPtr(self) }
+    }
 
-extern "C-unwind" {
     /// Copies a range of glyph advances into a user-provided buffer.
     ///
     ///
@@ -266,10 +303,15 @@ extern "C-unwind" {
     /// Parameter `buffer`: The buffer where the glyph advances will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    pub fn CTRunGetAdvances(run: &CTRun, range: CFRange, buffer: NonNull<CGSize>);
-}
+    #[inline]
+    #[doc(alias = "CTRunGetAdvances")]
+    pub unsafe fn advances(self: &CTRun, range: CFRange, buffer: NonNull<CGSize>) {
+        extern "C-unwind" {
+            fn CTRunGetAdvances(run: &CTRun, range: CFRange, buffer: NonNull<CGSize>);
+        }
+        unsafe { CTRunGetAdvances(self, range, buffer) }
+    }
 
-extern "C-unwind" {
     /// Returns a direct pointer for the string indices stored in the run.
     ///
     ///
@@ -288,10 +330,15 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A valid pointer to an array of CFIndex structures or NULL.
-    pub fn CTRunGetStringIndicesPtr(run: &CTRun) -> *const CFIndex;
-}
+    #[inline]
+    #[doc(alias = "CTRunGetStringIndicesPtr")]
+    pub unsafe fn string_indices_ptr(self: &CTRun) -> *const CFIndex {
+        extern "C-unwind" {
+            fn CTRunGetStringIndicesPtr(run: &CTRun) -> *const CFIndex;
+        }
+        unsafe { CTRunGetStringIndicesPtr(self) }
+    }
 
-extern "C-unwind" {
     /// Copies a range of string indices into a user-provided buffer.
     ///
     ///
@@ -312,10 +359,15 @@ extern "C-unwind" {
     /// Parameter `buffer`: The buffer where the string indices will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    pub fn CTRunGetStringIndices(run: &CTRun, range: CFRange, buffer: NonNull<CFIndex>);
-}
+    #[inline]
+    #[doc(alias = "CTRunGetStringIndices")]
+    pub unsafe fn string_indices(self: &CTRun, range: CFRange, buffer: NonNull<CFIndex>) {
+        extern "C-unwind" {
+            fn CTRunGetStringIndices(run: &CTRun, range: CFRange, buffer: NonNull<CFIndex>);
+        }
+        unsafe { CTRunGetStringIndices(self, range, buffer) }
+    }
 
-extern "C-unwind" {
     /// Gets the range of characters that originally spawned the glyphs
     /// in the run.
     ///
@@ -325,10 +377,15 @@ extern "C-unwind" {
     ///
     /// Returns: Returns the range of characters that originally spawned the
     /// glyphs. If run is invalid, this will return an empty range.
-    pub fn CTRunGetStringRange(run: &CTRun) -> CFRange;
-}
+    #[inline]
+    #[doc(alias = "CTRunGetStringRange")]
+    pub unsafe fn string_range(self: &CTRun) -> CFRange {
+        extern "C-unwind" {
+            fn CTRunGetStringRange(run: &CTRun) -> CFRange;
+        }
+        unsafe { CTRunGetStringRange(self) }
+    }
 
-extern "C-unwind" {
     /// Gets the typographic bounds of the run.
     ///
     ///
@@ -355,16 +412,27 @@ extern "C-unwind" {
     ///
     /// Returns: The typographic width of the run. If run or range is
     /// invalid, then this function will always return zero.
-    pub fn CTRunGetTypographicBounds(
-        run: &CTRun,
+    #[inline]
+    #[doc(alias = "CTRunGetTypographicBounds")]
+    pub unsafe fn typographic_bounds(
+        self: &CTRun,
         range: CFRange,
         ascent: *mut CGFloat,
         descent: *mut CGFloat,
         leading: *mut CGFloat,
-    ) -> c_double;
-}
+    ) -> c_double {
+        extern "C-unwind" {
+            fn CTRunGetTypographicBounds(
+                run: &CTRun,
+                range: CFRange,
+                ascent: *mut CGFloat,
+                descent: *mut CGFloat,
+                leading: *mut CGFloat,
+            ) -> c_double;
+        }
+        unsafe { CTRunGetTypographicBounds(self, range, ascent, descent, leading) }
+    }
 
-extern "C-unwind" {
     /// Calculates the image bounds for a glyph range.
     ///
     ///
@@ -400,10 +468,23 @@ extern "C-unwind" {
     ///
     /// See also: CTRunGetTypographicBounds
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTRunGetImageBounds(run: &CTRun, context: Option<&CGContext>, range: CFRange) -> CGRect;
-}
+    #[inline]
+    #[doc(alias = "CTRunGetImageBounds")]
+    pub unsafe fn image_bounds(
+        self: &CTRun,
+        context: Option<&CGContext>,
+        range: CFRange,
+    ) -> CGRect {
+        extern "C-unwind" {
+            fn CTRunGetImageBounds(
+                run: &CTRun,
+                context: Option<&CGContext>,
+                range: CFRange,
+            ) -> CGRect;
+        }
+        unsafe { CTRunGetImageBounds(self, context, range) }
+    }
 
-extern "C-unwind" {
     /// Returns the text matrix needed to draw this run.
     ///
     ///
@@ -416,10 +497,15 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A CGAffineTransform.
-    pub fn CTRunGetTextMatrix(run: &CTRun) -> CGAffineTransform;
-}
+    #[inline]
+    #[doc(alias = "CTRunGetTextMatrix")]
+    pub unsafe fn text_matrix(self: &CTRun) -> CGAffineTransform {
+        extern "C-unwind" {
+            fn CTRunGetTextMatrix(run: &CTRun) -> CGAffineTransform;
+        }
+        unsafe { CTRunGetTextMatrix(self) }
+    }
 
-extern "C-unwind" {
     /// Copies a range of base advances and/or origins into user-provided
     /// buffers.
     ///
@@ -453,15 +539,25 @@ extern "C-unwind" {
     /// Parameter `originsBuffer`: The buffer where the origins will be copied to, or NULL. If not
     /// NULL, the buffer must allow for at least as many elements as
     /// specified by the range's length.
-    pub fn CTRunGetBaseAdvancesAndOrigins(
-        run_ref: &CTRun,
+    #[inline]
+    #[doc(alias = "CTRunGetBaseAdvancesAndOrigins")]
+    pub unsafe fn base_advances_and_origins(
+        self: &CTRun,
         range: CFRange,
         advances_buffer: *mut CGSize,
         origins_buffer: *mut CGPoint,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn CTRunGetBaseAdvancesAndOrigins(
+                run_ref: &CTRun,
+                range: CFRange,
+                advances_buffer: *mut CGSize,
+                origins_buffer: *mut CGPoint,
+            );
+        }
+        unsafe { CTRunGetBaseAdvancesAndOrigins(self, range, advances_buffer, origins_buffer) }
+    }
 
-extern "C-unwind" {
     /// Draws a complete run or part of one.
     ///
     ///
@@ -487,5 +583,118 @@ extern "C-unwind" {
     /// of the range is set to 0, then the operation will continue from
     /// the range's start index to the end of the run.
     #[cfg(feature = "objc2-core-graphics")]
+    #[inline]
+    #[doc(alias = "CTRunDraw")]
+    pub unsafe fn draw(self: &CTRun, context: &CGContext, range: CFRange) {
+        extern "C-unwind" {
+            fn CTRunDraw(run: &CTRun, context: &CGContext, range: CFRange);
+        }
+        unsafe { CTRunDraw(self, context, range) }
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::glyph_count`"]
+    pub fn CTRunGetGlyphCount(run: &CTRun) -> CFIndex;
+}
+
+#[deprecated = "renamed to `CTRun::attributes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTRunGetAttributes(run: &CTRun) -> CFRetained<CFDictionary> {
+    extern "C-unwind" {
+        fn CTRunGetAttributes(run: &CTRun) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CTRunGetAttributes(run) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::retain(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::status`"]
+    pub fn CTRunGetStatus(run: &CTRun) -> CTRunStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `CTRun::glyphs_ptr`"]
+    pub fn CTRunGetGlyphsPtr(run: &CTRun) -> *const CGGlyph;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `CTRun::glyphs`"]
+    pub fn CTRunGetGlyphs(run: &CTRun, range: CFRange, buffer: NonNull<CGGlyph>);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::positions_ptr`"]
+    pub fn CTRunGetPositionsPtr(run: &CTRun) -> *const CGPoint;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::positions`"]
+    pub fn CTRunGetPositions(run: &CTRun, range: CFRange, buffer: NonNull<CGPoint>);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::advances_ptr`"]
+    pub fn CTRunGetAdvancesPtr(run: &CTRun) -> *const CGSize;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::advances`"]
+    pub fn CTRunGetAdvances(run: &CTRun, range: CFRange, buffer: NonNull<CGSize>);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::string_indices_ptr`"]
+    pub fn CTRunGetStringIndicesPtr(run: &CTRun) -> *const CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::string_indices`"]
+    pub fn CTRunGetStringIndices(run: &CTRun, range: CFRange, buffer: NonNull<CFIndex>);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::string_range`"]
+    pub fn CTRunGetStringRange(run: &CTRun) -> CFRange;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::typographic_bounds`"]
+    pub fn CTRunGetTypographicBounds(
+        run: &CTRun,
+        range: CFRange,
+        ascent: *mut CGFloat,
+        descent: *mut CGFloat,
+        leading: *mut CGFloat,
+    ) -> c_double;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `CTRun::image_bounds`"]
+    pub fn CTRunGetImageBounds(run: &CTRun, context: Option<&CGContext>, range: CFRange) -> CGRect;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::text_matrix`"]
+    pub fn CTRunGetTextMatrix(run: &CTRun) -> CGAffineTransform;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTRun::base_advances_and_origins`"]
+    pub fn CTRunGetBaseAdvancesAndOrigins(
+        run_ref: &CTRun,
+        range: CFRange,
+        advances_buffer: *mut CGSize,
+        origins_buffer: *mut CGPoint,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `CTRun::draw`"]
     pub fn CTRunDraw(run: &CTRun, context: &CGContext, range: CFRange);
 }

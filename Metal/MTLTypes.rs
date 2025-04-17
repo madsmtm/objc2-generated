@@ -31,7 +31,9 @@ unsafe impl RefEncode for MTLOrigin {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn MTLOriginMake(x: NSUInteger,y: NSUInteger,z: NSUInteger,) -> MTLOrigin;
+impl MTLOrigin {
+    // TODO: pub fn MTLOriginMake(x: NSUInteger,y: NSUInteger,z: NSUInteger,) -> MTLOrigin;
+}
 
 /// A set of dimensions to declare the size of an object, such as an image, texture, threadgroup, or grid.
 ///
@@ -59,7 +61,9 @@ unsafe impl RefEncode for MTLSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn MTLSizeMake(width: NSUInteger,height: NSUInteger,depth: NSUInteger,) -> MTLSize;
+impl MTLSize {
+    // TODO: pub fn MTLSizeMake(width: NSUInteger,height: NSUInteger,depth: NSUInteger,) -> MTLSize;
+}
 
 /// Identify a region in an image or texture.
 ///
@@ -79,11 +83,13 @@ unsafe impl RefEncode for MTLRegion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn MTLRegionMake1D(x: NSUInteger,width: NSUInteger,) -> MTLRegion;
+impl MTLRegion {
+    // TODO: pub fn MTLRegionMake1D(x: NSUInteger,width: NSUInteger,) -> MTLRegion;
 
-// TODO: pub fn MTLRegionMake2D(x: NSUInteger,y: NSUInteger,width: NSUInteger,height: NSUInteger,) -> MTLRegion;
+    // TODO: pub fn MTLRegionMake2D(x: NSUInteger,y: NSUInteger,width: NSUInteger,height: NSUInteger,) -> MTLRegion;
 
-// TODO: pub fn MTLRegionMake3D(x: NSUInteger,y: NSUInteger,z: NSUInteger,width: NSUInteger,height: NSUInteger,depth: NSUInteger,) -> MTLRegion;
+    // TODO: pub fn MTLRegionMake3D(x: NSUInteger,y: NSUInteger,z: NSUInteger,width: NSUInteger,height: NSUInteger,depth: NSUInteger,) -> MTLRegion;
+}
 
 /// Identify a sample within a pixel. Origin is top-left with a range [0,1) for both x and y.
 ///
@@ -103,7 +109,9 @@ unsafe impl RefEncode for MTLSamplePosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn MTLSamplePositionMake(x: c_float,y: c_float,) -> MTLSamplePosition;
+impl MTLSamplePosition {
+    // TODO: pub fn MTLSamplePositionMake(x: c_float,y: c_float,) -> MTLSamplePosition;
+}
 
 /// A floating point coordinate in an abstract 2D space.
 /// Refer to location of use for concrete information on the space in which the coordinate exists.

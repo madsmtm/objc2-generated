@@ -145,119 +145,123 @@ unsafe impl ConcreteType for CTLine {
     }
 }
 
-/// Creates a single immutable line object directly from an
-/// attributed string.
-///
-///
-/// This will allow clients who need very simple line generation to
-/// create a line without needing to create a typesetter object. The
-/// typesetting will be done under the hood. Without a typesetter
-/// object, the line cannot be properly broken. However, for simple
-/// things like text labels and other things, this is not an issue.
-///
-///
-/// Parameter `attrString`: The attributed string which the line will be created for.
-///
-///
-/// Returns: This function will return a reference to a CTLine object.
-#[inline]
-pub unsafe extern "C-unwind" fn CTLineCreateWithAttributedString(
-    attr_string: &CFAttributedString,
-) -> CFRetained<CTLine> {
-    extern "C-unwind" {
-        fn CTLineCreateWithAttributedString(
-            attr_string: &CFAttributedString,
-        ) -> Option<NonNull<CTLine>>;
+impl CTLine {
+    /// Creates a single immutable line object directly from an
+    /// attributed string.
+    ///
+    ///
+    /// This will allow clients who need very simple line generation to
+    /// create a line without needing to create a typesetter object. The
+    /// typesetting will be done under the hood. Without a typesetter
+    /// object, the line cannot be properly broken. However, for simple
+    /// things like text labels and other things, this is not an issue.
+    ///
+    ///
+    /// Parameter `attrString`: The attributed string which the line will be created for.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTLine object.
+    #[inline]
+    #[doc(alias = "CTLineCreateWithAttributedString")]
+    pub unsafe fn with_attributed_string(attr_string: &CFAttributedString) -> CFRetained<CTLine> {
+        extern "C-unwind" {
+            fn CTLineCreateWithAttributedString(
+                attr_string: &CFAttributedString,
+            ) -> Option<NonNull<CTLine>>;
+        }
+        let ret = unsafe { CTLineCreateWithAttributedString(attr_string) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTLineCreateWithAttributedString(attr_string) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Creates a truncated line from an existing line.
-///
-///
-/// Parameter `line`: The line that you want to create a truncated line for.
-///
-///
-/// Parameter `width`: The width at which truncation will begin. The line will be
-/// truncated if its width is greater than the width passed in this.
-///
-///
-/// Parameter `truncationType`: The type of truncation to perform if needed.
-///
-///
-/// Parameter `truncationToken`: This token will be added to the point where truncation took place
-/// to indicate that the line was truncated. Usually, the truncation
-/// token is the ellipsis character (U+2026). If this parameter is
-/// set to NULL, then no truncation token is used, and the line is
-/// simply cut off. The line specified in truncationToken should have
-/// a width less than the width specified by the width parameter. If
-/// the width of the line specified in truncationToken is greater,
-/// this function will return NULL if truncation is needed.
-///
-///
-/// Returns: This function will return a reference to a truncated CTLine
-/// object if the call was successful. Otherwise, it will return
-/// NULL.
-#[inline]
-pub unsafe extern "C-unwind" fn CTLineCreateTruncatedLine(
-    line: &CTLine,
-    width: c_double,
-    truncation_type: CTLineTruncationType,
-    truncation_token: Option<&CTLine>,
-) -> Option<CFRetained<CTLine>> {
-    extern "C-unwind" {
-        fn CTLineCreateTruncatedLine(
-            line: &CTLine,
-            width: c_double,
-            truncation_type: CTLineTruncationType,
-            truncation_token: Option<&CTLine>,
-        ) -> Option<NonNull<CTLine>>;
+    /// Creates a truncated line from an existing line.
+    ///
+    ///
+    /// Parameter `line`: The line that you want to create a truncated line for.
+    ///
+    ///
+    /// Parameter `width`: The width at which truncation will begin. The line will be
+    /// truncated if its width is greater than the width passed in this.
+    ///
+    ///
+    /// Parameter `truncationType`: The type of truncation to perform if needed.
+    ///
+    ///
+    /// Parameter `truncationToken`: This token will be added to the point where truncation took place
+    /// to indicate that the line was truncated. Usually, the truncation
+    /// token is the ellipsis character (U+2026). If this parameter is
+    /// set to NULL, then no truncation token is used, and the line is
+    /// simply cut off. The line specified in truncationToken should have
+    /// a width less than the width specified by the width parameter. If
+    /// the width of the line specified in truncationToken is greater,
+    /// this function will return NULL if truncation is needed.
+    ///
+    ///
+    /// Returns: This function will return a reference to a truncated CTLine
+    /// object if the call was successful. Otherwise, it will return
+    /// NULL.
+    #[inline]
+    #[doc(alias = "CTLineCreateTruncatedLine")]
+    pub unsafe fn new_truncated_line(
+        self: &CTLine,
+        width: c_double,
+        truncation_type: CTLineTruncationType,
+        truncation_token: Option<&CTLine>,
+    ) -> Option<CFRetained<CTLine>> {
+        extern "C-unwind" {
+            fn CTLineCreateTruncatedLine(
+                line: &CTLine,
+                width: c_double,
+                truncation_type: CTLineTruncationType,
+                truncation_token: Option<&CTLine>,
+            ) -> Option<NonNull<CTLine>>;
+        }
+        let ret =
+            unsafe { CTLineCreateTruncatedLine(self, width, truncation_type, truncation_token) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CTLineCreateTruncatedLine(line, width, truncation_type, truncation_token) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Creates a justified line from an existing line.
-///
-///
-/// Parameter `line`: The line that you want to create a justified line for.
-///
-///
-/// Parameter `justificationFactor`: Allows for full or partial justification. When set to 1.0 or
-/// greater indicates, full justification will be performed. If less
-/// than 1.0, varying degrees of partial justification will be
-/// performed. If set to 0 or less, then no justification will be
-/// performed.
-///
-///
-/// Parameter `justificationWidth`: The width to which the resultant line will be justified. If
-/// justificationWidth is less than the actual width of the line,
-/// then negative justification will be performed ("text squishing").
-///
-///
-/// Returns: This function will return a reference to a justified CTLine
-/// object if the call was successful. Otherwise, it will return
-/// NULL.
-#[inline]
-pub unsafe extern "C-unwind" fn CTLineCreateJustifiedLine(
-    line: &CTLine,
-    justification_factor: CGFloat,
-    justification_width: c_double,
-) -> Option<CFRetained<CTLine>> {
-    extern "C-unwind" {
-        fn CTLineCreateJustifiedLine(
-            line: &CTLine,
-            justification_factor: CGFloat,
-            justification_width: c_double,
-        ) -> Option<NonNull<CTLine>>;
+    /// Creates a justified line from an existing line.
+    ///
+    ///
+    /// Parameter `line`: The line that you want to create a justified line for.
+    ///
+    ///
+    /// Parameter `justificationFactor`: Allows for full or partial justification. When set to 1.0 or
+    /// greater indicates, full justification will be performed. If less
+    /// than 1.0, varying degrees of partial justification will be
+    /// performed. If set to 0 or less, then no justification will be
+    /// performed.
+    ///
+    ///
+    /// Parameter `justificationWidth`: The width to which the resultant line will be justified. If
+    /// justificationWidth is less than the actual width of the line,
+    /// then negative justification will be performed ("text squishing").
+    ///
+    ///
+    /// Returns: This function will return a reference to a justified CTLine
+    /// object if the call was successful. Otherwise, it will return
+    /// NULL.
+    #[inline]
+    #[doc(alias = "CTLineCreateJustifiedLine")]
+    pub unsafe fn new_justified_line(
+        self: &CTLine,
+        justification_factor: CGFloat,
+        justification_width: c_double,
+    ) -> Option<CFRetained<CTLine>> {
+        extern "C-unwind" {
+            fn CTLineCreateJustifiedLine(
+                line: &CTLine,
+                justification_factor: CGFloat,
+                justification_width: c_double,
+            ) -> Option<NonNull<CTLine>>;
+        }
+        let ret =
+            unsafe { CTLineCreateJustifiedLine(self, justification_factor, justification_width) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CTLineCreateJustifiedLine(line, justification_factor, justification_width) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
     /// Returns the total glyph count for the line object.
     ///
     ///
@@ -269,27 +273,34 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The total glyph count for the line passed in.
-    pub fn CTLineGetGlyphCount(line: &CTLine) -> CFIndex;
-}
-
-/// Returns the array of glyph runs that make up the line object.
-///
-///
-/// Parameter `line`: The line that you want to obtain the glyph run array for.
-///
-///
-/// Returns: A CFArrayRef containing the CTRun objects that make up the line.
-#[inline]
-pub unsafe extern "C-unwind" fn CTLineGetGlyphRuns(line: &CTLine) -> CFRetained<CFArray> {
-    extern "C-unwind" {
-        fn CTLineGetGlyphRuns(line: &CTLine) -> Option<NonNull<CFArray>>;
+    #[inline]
+    #[doc(alias = "CTLineGetGlyphCount")]
+    pub unsafe fn glyph_count(self: &CTLine) -> CFIndex {
+        extern "C-unwind" {
+            fn CTLineGetGlyphCount(line: &CTLine) -> CFIndex;
+        }
+        unsafe { CTLineGetGlyphCount(self) }
     }
-    let ret = unsafe { CTLineGetGlyphRuns(line) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-extern "C-unwind" {
+    /// Returns the array of glyph runs that make up the line object.
+    ///
+    ///
+    /// Parameter `line`: The line that you want to obtain the glyph run array for.
+    ///
+    ///
+    /// Returns: A CFArrayRef containing the CTRun objects that make up the line.
+    #[inline]
+    #[doc(alias = "CTLineGetGlyphRuns")]
+    pub unsafe fn glyph_runs(self: &CTLine) -> CFRetained<CFArray> {
+        extern "C-unwind" {
+            fn CTLineGetGlyphRuns(line: &CTLine) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CTLineGetGlyphRuns(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
+    }
+
     /// Gets the range of characters that originally spawned the glyphs
     /// in the line.
     ///
@@ -300,10 +311,15 @@ extern "C-unwind" {
     /// Returns: A CFRange that contains the range over the backing store string
     /// that spawned the glyphs. If the function fails for any reason, an
     /// empty range will be returned.
-    pub fn CTLineGetStringRange(line: &CTLine) -> CFRange;
-}
+    #[inline]
+    #[doc(alias = "CTLineGetStringRange")]
+    pub unsafe fn string_range(self: &CTLine) -> CFRange {
+        extern "C-unwind" {
+            fn CTLineGetStringRange(line: &CTLine) -> CFRange;
+        }
+        unsafe { CTLineGetStringRange(self) }
+    }
 
-extern "C-unwind" {
     /// Gets the pen offset required to draw flush text.
     ///
     ///
@@ -322,14 +338,23 @@ extern "C-unwind" {
     ///
     /// Returns: A value which can be used to offset the current pen position for
     /// the flush operation.
-    pub fn CTLineGetPenOffsetForFlush(
-        line: &CTLine,
+    #[inline]
+    #[doc(alias = "CTLineGetPenOffsetForFlush")]
+    pub unsafe fn pen_offset_for_flush(
+        self: &CTLine,
         flush_factor: CGFloat,
         flush_width: c_double,
-    ) -> c_double;
-}
+    ) -> c_double {
+        extern "C-unwind" {
+            fn CTLineGetPenOffsetForFlush(
+                line: &CTLine,
+                flush_factor: CGFloat,
+                flush_width: c_double,
+            ) -> c_double;
+        }
+        unsafe { CTLineGetPenOffsetForFlush(self, flush_factor, flush_width) }
+    }
 
-extern "C-unwind" {
     /// Draws a line.
     ///
     ///
@@ -346,10 +371,15 @@ extern "C-unwind" {
     ///
     /// Parameter `context`: The context to which the line will be drawn.
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTLineDraw(line: &CTLine, context: &CGContext);
-}
+    #[inline]
+    #[doc(alias = "CTLineDraw")]
+    pub unsafe fn draw(self: &CTLine, context: &CGContext) {
+        extern "C-unwind" {
+            fn CTLineDraw(line: &CTLine, context: &CGContext);
+        }
+        unsafe { CTLineDraw(self, context) }
+    }
 
-extern "C-unwind" {
     /// Calculates the typographic bounds for a line.
     ///
     ///
@@ -378,15 +408,25 @@ extern "C-unwind" {
     ///
     ///
     /// See also: CTLineGetTrailingWhitespaceWidth
-    pub fn CTLineGetTypographicBounds(
-        line: &CTLine,
+    #[inline]
+    #[doc(alias = "CTLineGetTypographicBounds")]
+    pub unsafe fn typographic_bounds(
+        self: &CTLine,
         ascent: *mut CGFloat,
         descent: *mut CGFloat,
         leading: *mut CGFloat,
-    ) -> c_double;
-}
+    ) -> c_double {
+        extern "C-unwind" {
+            fn CTLineGetTypographicBounds(
+                line: &CTLine,
+                ascent: *mut CGFloat,
+                descent: *mut CGFloat,
+                leading: *mut CGFloat,
+            ) -> c_double;
+        }
+        unsafe { CTLineGetTypographicBounds(self, ascent, descent, leading) }
+    }
 
-extern "C-unwind" {
     /// Calculates the bounds for a line.
     ///
     ///
@@ -400,10 +440,15 @@ extern "C-unwind" {
     /// such that the coordinate origin is coincident with the line
     /// origin and the rect origin is at the bottom left. If the line
     /// is invalid this function will return CGRectNull.
-    pub fn CTLineGetBoundsWithOptions(line: &CTLine, options: CTLineBoundsOptions) -> CGRect;
-}
+    #[inline]
+    #[doc(alias = "CTLineGetBoundsWithOptions")]
+    pub unsafe fn bounds_with_options(self: &CTLine, options: CTLineBoundsOptions) -> CGRect {
+        extern "C-unwind" {
+            fn CTLineGetBoundsWithOptions(line: &CTLine, options: CTLineBoundsOptions) -> CGRect;
+        }
+        unsafe { CTLineGetBoundsWithOptions(self, options) }
+    }
 
-extern "C-unwind" {
     /// Calculates the trailing whitespace width for a line.
     ///
     ///
@@ -417,10 +462,15 @@ extern "C-unwind" {
     ///
     /// Returns: The width of the line's trailing whitespace. If line is invalid,
     /// this function will always return zero.
-    pub fn CTLineGetTrailingWhitespaceWidth(line: &CTLine) -> c_double;
-}
+    #[inline]
+    #[doc(alias = "CTLineGetTrailingWhitespaceWidth")]
+    pub unsafe fn trailing_whitespace_width(self: &CTLine) -> c_double {
+        extern "C-unwind" {
+            fn CTLineGetTrailingWhitespaceWidth(line: &CTLine) -> c_double;
+        }
+        unsafe { CTLineGetTrailingWhitespaceWidth(self) }
+    }
 
-extern "C-unwind" {
     /// Calculates the image bounds for a line.
     ///
     ///
@@ -450,10 +500,15 @@ extern "C-unwind" {
     ///
     /// See also: CTLineGetPenOffsetForFlush
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTLineGetImageBounds(line: &CTLine, context: Option<&CGContext>) -> CGRect;
-}
+    #[inline]
+    #[doc(alias = "CTLineGetImageBounds")]
+    pub unsafe fn image_bounds(self: &CTLine, context: Option<&CGContext>) -> CGRect {
+        extern "C-unwind" {
+            fn CTLineGetImageBounds(line: &CTLine, context: Option<&CGContext>) -> CGRect;
+        }
+        unsafe { CTLineGetImageBounds(self, context) }
+    }
 
-extern "C-unwind" {
     /// Performs hit testing.
     ///
     ///
@@ -475,10 +530,15 @@ extern "C-unwind" {
     /// range, this value will be no less than the first string index and
     /// no greater than one plus the last string index. In the event of
     /// failure, this function will return kCFNotFound.
-    pub fn CTLineGetStringIndexForPosition(line: &CTLine, position: CGPoint) -> CFIndex;
-}
+    #[inline]
+    #[doc(alias = "CTLineGetStringIndexForPosition")]
+    pub unsafe fn string_index_for_position(self: &CTLine, position: CGPoint) -> CFIndex {
+        extern "C-unwind" {
+            fn CTLineGetStringIndexForPosition(line: &CTLine, position: CGPoint) -> CFIndex;
+        }
+        unsafe { CTLineGetStringIndexForPosition(self, position) }
+    }
 
-extern "C-unwind" {
     /// Determines the graphical offset(s) for a string index.
     ///
     ///
@@ -509,14 +569,23 @@ extern "C-unwind" {
     ///
     /// Returns: The primary offset along the baseline for charIndex, or 0.0 in
     /// the event of failure.
-    pub fn CTLineGetOffsetForStringIndex(
-        line: &CTLine,
+    #[inline]
+    #[doc(alias = "CTLineGetOffsetForStringIndex")]
+    pub unsafe fn offset_for_string_index(
+        self: &CTLine,
         char_index: CFIndex,
         secondary_offset: *mut CGFloat,
-    ) -> CGFloat;
-}
+    ) -> CGFloat {
+        extern "C-unwind" {
+            fn CTLineGetOffsetForStringIndex(
+                line: &CTLine,
+                char_index: CFIndex,
+                secondary_offset: *mut CGFloat,
+            ) -> CGFloat;
+        }
+        unsafe { CTLineGetOffsetForStringIndex(self, char_index, secondary_offset) }
+    }
 
-extern "C-unwind" {
     /// Enumerates caret offsets for characters in a line.
     ///
     ///
@@ -525,6 +594,154 @@ extern "C-unwind" {
     ///
     /// Parameter `block`: The offset parameter is relative to the line origin. The leadingEdge parameter of this block refers to logical order.
     #[cfg(feature = "block2")]
+    #[inline]
+    #[doc(alias = "CTLineEnumerateCaretOffsets")]
+    pub unsafe fn enumerate_caret_offsets(
+        self: &CTLine,
+        block: &block2::DynBlock<dyn Fn(c_double, CFIndex, bool, NonNull<bool>)>,
+    ) {
+        extern "C-unwind" {
+            fn CTLineEnumerateCaretOffsets(
+                line: &CTLine,
+                block: &block2::DynBlock<dyn Fn(c_double, CFIndex, bool, NonNull<bool>)>,
+            );
+        }
+        unsafe { CTLineEnumerateCaretOffsets(self, block) }
+    }
+}
+
+#[deprecated = "renamed to `CTLine::with_attributed_string`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTLineCreateWithAttributedString(
+    attr_string: &CFAttributedString,
+) -> CFRetained<CTLine> {
+    extern "C-unwind" {
+        fn CTLineCreateWithAttributedString(
+            attr_string: &CFAttributedString,
+        ) -> Option<NonNull<CTLine>>;
+    }
+    let ret = unsafe { CTLineCreateWithAttributedString(attr_string) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTLine::new_truncated_line`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTLineCreateTruncatedLine(
+    line: &CTLine,
+    width: c_double,
+    truncation_type: CTLineTruncationType,
+    truncation_token: Option<&CTLine>,
+) -> Option<CFRetained<CTLine>> {
+    extern "C-unwind" {
+        fn CTLineCreateTruncatedLine(
+            line: &CTLine,
+            width: c_double,
+            truncation_type: CTLineTruncationType,
+            truncation_token: Option<&CTLine>,
+        ) -> Option<NonNull<CTLine>>;
+    }
+    let ret = unsafe { CTLineCreateTruncatedLine(line, width, truncation_type, truncation_token) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CTLine::new_justified_line`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTLineCreateJustifiedLine(
+    line: &CTLine,
+    justification_factor: CGFloat,
+    justification_width: c_double,
+) -> Option<CFRetained<CTLine>> {
+    extern "C-unwind" {
+        fn CTLineCreateJustifiedLine(
+            line: &CTLine,
+            justification_factor: CGFloat,
+            justification_width: c_double,
+        ) -> Option<NonNull<CTLine>>;
+    }
+    let ret = unsafe { CTLineCreateJustifiedLine(line, justification_factor, justification_width) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTLine::glyph_count`"]
+    pub fn CTLineGetGlyphCount(line: &CTLine) -> CFIndex;
+}
+
+#[deprecated = "renamed to `CTLine::glyph_runs`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTLineGetGlyphRuns(line: &CTLine) -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CTLineGetGlyphRuns(line: &CTLine) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CTLineGetGlyphRuns(line) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::retain(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTLine::string_range`"]
+    pub fn CTLineGetStringRange(line: &CTLine) -> CFRange;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTLine::pen_offset_for_flush`"]
+    pub fn CTLineGetPenOffsetForFlush(
+        line: &CTLine,
+        flush_factor: CGFloat,
+        flush_width: c_double,
+    ) -> c_double;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `CTLine::draw`"]
+    pub fn CTLineDraw(line: &CTLine, context: &CGContext);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTLine::typographic_bounds`"]
+    pub fn CTLineGetTypographicBounds(
+        line: &CTLine,
+        ascent: *mut CGFloat,
+        descent: *mut CGFloat,
+        leading: *mut CGFloat,
+    ) -> c_double;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTLine::bounds_with_options`"]
+    pub fn CTLineGetBoundsWithOptions(line: &CTLine, options: CTLineBoundsOptions) -> CGRect;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTLine::trailing_whitespace_width`"]
+    pub fn CTLineGetTrailingWhitespaceWidth(line: &CTLine) -> c_double;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `CTLine::image_bounds`"]
+    pub fn CTLineGetImageBounds(line: &CTLine, context: Option<&CGContext>) -> CGRect;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTLine::string_index_for_position`"]
+    pub fn CTLineGetStringIndexForPosition(line: &CTLine, position: CGPoint) -> CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTLine::offset_for_string_index`"]
+    pub fn CTLineGetOffsetForStringIndex(
+        line: &CTLine,
+        char_index: CFIndex,
+        secondary_offset: *mut CGFloat,
+    ) -> CGFloat;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `CTLine::enumerate_caret_offsets`"]
     pub fn CTLineEnumerateCaretOffsets(
         line: &CTLine,
         block: &block2::DynBlock<dyn Fn(c_double, CFIndex, bool, NonNull<bool>)>,

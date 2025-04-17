@@ -2518,7 +2518,7 @@ extern "C-unwind" {
     pub fn MIDISendUMPSysex8(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
 }
 
-extern "C-unwind" {
+impl MIDIEventPacket {
     /// Gets MIDI 1.0 SysEx bytes on the indicated group.
     ///
     ///
@@ -2536,11 +2536,22 @@ extern "C-unwind" {
     ///
     /// pkt must contain a single MIDI system-exclusive message on groupIndex, or portion thereof.
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn MIDIEventPacketSysexBytesForGroup(
+    #[inline]
+    #[doc(alias = "MIDIEventPacketSysexBytesForGroup")]
+    pub unsafe fn sysex_bytes_for_group(
         pkt: NonNull<MIDIEventPacket>,
         group_index: u8,
         out_data: NonNull<*const CFData>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn MIDIEventPacketSysexBytesForGroup(
+                pkt: NonNull<MIDIEventPacket>,
+                group_index: u8,
+                out_data: NonNull<*const CFData>,
+            ) -> OSStatus;
+        }
+        unsafe { MIDIEventPacketSysexBytesForGroup(pkt, group_index, out_data) }
+    }
 }
 
 extern "C-unwind" {
@@ -2614,15 +2625,180 @@ extern "C-unwind" {
     pub fn MIDIRestart() -> OSStatus;
 }
 
-// TODO: pub fn MIDIEventPacketNext(pkt: NonNull<MIDIEventPacket>,)-> Option<NonNull<MIDIEventPacket>>;
+impl MIDIEventPacket {
+    // TODO: pub fn MIDIEventPacketNext(pkt: NonNull<MIDIEventPacket>,)-> Option<NonNull<MIDIEventPacket>>;
+}
 
-/// Prepares a MIDIEventList to be built up dynamically.
-///
-///
-/// Parameter `evtlist`: The event list to be initialized.
-///
-///
-/// Returns: A pointer to the first MIDIEventPacket in the event list.
+impl MIDIEventList {
+    /// Prepares a MIDIEventList to be built up dynamically.
+    ///
+    ///
+    /// Parameter `evtlist`: The event list to be initialized.
+    ///
+    ///
+    /// Returns: A pointer to the first MIDIEventPacket in the event list.
+    #[inline]
+    #[doc(alias = "MIDIEventListInit")]
+    pub unsafe fn init(
+        evtlist: NonNull<MIDIEventList>,
+        protocol: MIDIProtocolID,
+    ) -> NonNull<MIDIEventPacket> {
+        extern "C-unwind" {
+            fn MIDIEventListInit(
+                evtlist: NonNull<MIDIEventList>,
+                protocol: MIDIProtocolID,
+            ) -> Option<NonNull<MIDIEventPacket>>;
+        }
+        let ret = unsafe { MIDIEventListInit(evtlist, protocol) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
+    }
+
+    /// Adds a MIDI event to a MIDIEventList.
+    ///
+    ///
+    /// Parameter `evtlist`: The event list to which the event is to be added.
+    ///
+    /// Parameter `listSize`: The capacity, in bytes, of the event list.
+    ///
+    /// Parameter `curPacket`: A packet pointer returned by a previous call to
+    /// MIDIEventListInit or MIDIEventListAdd for this packet
+    /// list.
+    ///
+    /// Parameter `time`: The new event's time.
+    ///
+    /// Parameter `wordCount`: The number of valid MIDI 32-bit words which follow, in data.
+    ///
+    /// Parameter `words`: The new event.  May be a single MIDI event, or a partial
+    /// sys-ex event.  Running status is
+    /// <b>
+    /// not
+    /// </b>
+    /// permitted.
+    ///
+    /// Returns: Returns null if there was not room in the packet for the
+    /// event; otherwise returns a packet pointer which should be
+    /// passed as curPacket in a subsequent call to this function.
+    ///
+    ///
+    /// The maximum size of a event list is 65536 bytes. Large sysex messages must be sent in
+    /// smaller event lists.
+    ///
+    /// Note that events must use the same protocol as was passed to MIDIEventListInit().
+    #[inline]
+    #[doc(alias = "MIDIEventListAdd")]
+    pub unsafe fn add(
+        evtlist: NonNull<MIDIEventList>,
+        list_size: ByteCount,
+        cur_packet: NonNull<MIDIEventPacket>,
+        time: MIDITimeStamp,
+        word_count: ByteCount,
+        words: NonNull<u32>,
+    ) -> NonNull<MIDIEventPacket> {
+        extern "C-unwind" {
+            fn MIDIEventListAdd(
+                evtlist: NonNull<MIDIEventList>,
+                list_size: ByteCount,
+                cur_packet: NonNull<MIDIEventPacket>,
+                time: MIDITimeStamp,
+                word_count: ByteCount,
+                words: NonNull<u32>,
+            ) -> Option<NonNull<MIDIEventPacket>>;
+        }
+        let ret =
+            unsafe { MIDIEventListAdd(evtlist, list_size, cur_packet, time, word_count, words) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+impl MIDIPacket {
+    // TODO: pub fn MIDIPacketNext(pkt: NonNull<MIDIPacket>,)-> Option<NonNull<MIDIPacket>>;
+}
+
+impl MIDIPacketList {
+    /// Prepares a MIDIPacketList to be built up dynamically.
+    ///
+    ///
+    /// Parameter `pktlist`: The packet list to be initialized.
+    ///
+    ///
+    /// Returns: A pointer to the first MIDIPacket in the packet list.
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "MIDIPacketListInit")]
+    pub unsafe fn init(pktlist: NonNull<MIDIPacketList>) -> NonNull<MIDIPacket> {
+        extern "C-unwind" {
+            fn MIDIPacketListInit(pktlist: NonNull<MIDIPacketList>) -> Option<NonNull<MIDIPacket>>;
+        }
+        let ret = unsafe { MIDIPacketListInit(pktlist) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
+    }
+
+    /// Adds a MIDI event to a MIDIPacketList.
+    ///
+    ///
+    /// Parameter `pktlist`: The packet list to which the event is to be added.
+    ///
+    /// Parameter `listSize`: The size, in bytes, of the packet list.
+    ///
+    /// Parameter `curPacket`: A packet pointer returned by a previous call to
+    /// MIDIPacketListInit or MIDIPacketListAdd for this packet
+    /// list.
+    ///
+    /// Parameter `time`: The new event's time.
+    ///
+    /// Parameter `nData`: The length of the new event, in bytes.
+    ///
+    /// Parameter `data`: The new event.  May be a single MIDI event, or a partial
+    /// sys-ex event.  Running status is
+    /// <b>
+    /// not
+    /// </b>
+    /// permitted.
+    ///
+    /// Returns: Returns null if there was not room in the packet for the
+    /// event; otherwise returns a packet pointer which should be
+    /// passed as curPacket in a subsequent call to this function.
+    ///
+    ///
+    /// The maximum size of a packet list is 65536 bytes. Large sysex messages must be sent in
+    /// smaller packet lists.
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "MIDIPacketListAdd")]
+    pub unsafe fn add(
+        pktlist: NonNull<MIDIPacketList>,
+        list_size: ByteCount,
+        cur_packet: NonNull<MIDIPacket>,
+        time: MIDITimeStamp,
+        n_data: ByteCount,
+        data: NonNull<Byte>,
+    ) -> NonNull<MIDIPacket> {
+        extern "C-unwind" {
+            fn MIDIPacketListAdd(
+                pktlist: NonNull<MIDIPacketList>,
+                list_size: ByteCount,
+                cur_packet: NonNull<MIDIPacket>,
+                time: MIDITimeStamp,
+                n_data: ByteCount,
+                data: NonNull<Byte>,
+            ) -> Option<NonNull<MIDIPacket>>;
+        }
+        let ret = unsafe { MIDIPacketListAdd(pktlist, list_size, cur_packet, time, n_data, data) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `MIDIEventPacket::sysex_bytes_for_group`"]
+    pub fn MIDIEventPacketSysexBytesForGroup(
+        pkt: NonNull<MIDIEventPacket>,
+        group_index: u8,
+        out_data: NonNull<*const CFData>,
+    ) -> OSStatus;
+}
+
+#[deprecated = "renamed to `MIDIEventList::init`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIEventListInit(
     evtlist: NonNull<MIDIEventList>,
@@ -2638,37 +2814,7 @@ pub unsafe extern "C-unwind" fn MIDIEventListInit(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Adds a MIDI event to a MIDIEventList.
-///
-///
-/// Parameter `evtlist`: The event list to which the event is to be added.
-///
-/// Parameter `listSize`: The capacity, in bytes, of the event list.
-///
-/// Parameter `curPacket`: A packet pointer returned by a previous call to
-/// MIDIEventListInit or MIDIEventListAdd for this packet
-/// list.
-///
-/// Parameter `time`: The new event's time.
-///
-/// Parameter `wordCount`: The number of valid MIDI 32-bit words which follow, in data.
-///
-/// Parameter `words`: The new event.  May be a single MIDI event, or a partial
-/// sys-ex event.  Running status is
-/// <b>
-/// not
-/// </b>
-/// permitted.
-///
-/// Returns: Returns null if there was not room in the packet for the
-/// event; otherwise returns a packet pointer which should be
-/// passed as curPacket in a subsequent call to this function.
-///
-///
-/// The maximum size of a event list is 65536 bytes. Large sysex messages must be sent in
-/// smaller event lists.
-///
-/// Note that events must use the same protocol as was passed to MIDIEventListInit().
+#[deprecated = "renamed to `MIDIEventList::add`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIEventListAdd(
     evtlist: NonNull<MIDIEventList>,
@@ -2692,16 +2838,7 @@ pub unsafe extern "C-unwind" fn MIDIEventListAdd(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-// TODO: pub fn MIDIPacketNext(pkt: NonNull<MIDIPacket>,)-> Option<NonNull<MIDIPacket>>;
-
-/// Prepares a MIDIPacketList to be built up dynamically.
-///
-///
-/// Parameter `pktlist`: The packet list to be initialized.
-///
-///
-/// Returns: A pointer to the first MIDIPacket in the packet list.
-#[deprecated]
+#[deprecated = "renamed to `MIDIPacketList::init`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIPacketListInit(
     pktlist: NonNull<MIDIPacketList>,
@@ -2713,36 +2850,7 @@ pub unsafe extern "C-unwind" fn MIDIPacketListInit(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// Adds a MIDI event to a MIDIPacketList.
-///
-///
-/// Parameter `pktlist`: The packet list to which the event is to be added.
-///
-/// Parameter `listSize`: The size, in bytes, of the packet list.
-///
-/// Parameter `curPacket`: A packet pointer returned by a previous call to
-/// MIDIPacketListInit or MIDIPacketListAdd for this packet
-/// list.
-///
-/// Parameter `time`: The new event's time.
-///
-/// Parameter `nData`: The length of the new event, in bytes.
-///
-/// Parameter `data`: The new event.  May be a single MIDI event, or a partial
-/// sys-ex event.  Running status is
-/// <b>
-/// not
-/// </b>
-/// permitted.
-///
-/// Returns: Returns null if there was not room in the packet for the
-/// event; otherwise returns a packet pointer which should be
-/// passed as curPacket in a subsequent call to this function.
-///
-///
-/// The maximum size of a packet list is 65536 bytes. Large sysex messages must be sent in
-/// smaller packet lists.
-#[deprecated]
+#[deprecated = "renamed to `MIDIPacketList::add`"]
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIPacketListAdd(
     pktlist: NonNull<MIDIPacketList>,

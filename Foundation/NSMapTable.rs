@@ -344,14 +344,18 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "NSString")]
-#[inline]
-pub unsafe extern "C-unwind" fn NSStringFromMapTable(table: &NSMapTable) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn NSStringFromMapTable(table: &NSMapTable) -> *mut NSString;
+impl NSString {
+    #[cfg(feature = "NSString")]
+    #[inline]
+    #[doc(alias = "NSStringFromMapTable")]
+    pub unsafe fn from_map_table(table: &NSMapTable) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn NSStringFromMapTable(table: &NSMapTable) -> *mut NSString;
+        }
+        let ret = unsafe { NSStringFromMapTable(table) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { NSStringFromMapTable(table) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 #[cfg(feature = "NSArray")]
@@ -562,4 +566,16 @@ extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintmapvaluecallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntMapValueCallBacks: NSMapTableValueCallBacks;
+}
+
+#[cfg(feature = "NSString")]
+#[deprecated = "renamed to `NSString::from_map_table`"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromMapTable(table: &NSMapTable) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromMapTable(table: &NSMapTable) -> *mut NSString;
+    }
+    let ret = unsafe { NSStringFromMapTable(table) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

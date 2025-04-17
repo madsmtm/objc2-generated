@@ -564,7 +564,9 @@ unsafe impl RefEncode for MIDIMessage_128 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn MIDIMessageTypeForUPWord(word: u32,) -> MIDIMessageType;
+impl MIDIMessageType {
+    // TODO: pub fn MIDIMessageTypeForUPWord(word: u32,) -> MIDIMessageType;
+}
 
 // TODO: pub fn MIDI1UPChannelVoiceMessage(group: u8,status: u8,channel: u8,data1: u8,data2: u8,) -> MIDIMessage_32;
 

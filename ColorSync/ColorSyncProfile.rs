@@ -384,156 +384,207 @@ unsafe impl ConcreteType for ColorSyncProfile {
     }
 }
 
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCreate(
-    data: &CFData,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<ColorSyncProfile>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCreate(
-            data: &CFData,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<ColorSyncProfile>>;
+impl ColorSyncProfile {
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCreate")]
+    pub unsafe fn new(
+        data: &CFData,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<ColorSyncProfile>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCreate(
+                data: &CFData,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<ColorSyncProfile>>;
+        }
+        let ret = unsafe { ColorSyncProfileCreate(data, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ColorSyncProfileCreate(data, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCreateWithURL")]
+    pub unsafe fn with_url(
+        url: &CFURL,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<ColorSyncProfile>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCreateWithURL(
+                url: &CFURL,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<ColorSyncProfile>>;
+        }
+        let ret = unsafe { ColorSyncProfileCreateWithURL(url, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCreateWithName")]
+    pub unsafe fn with_name(name: &CFString) -> Option<CFRetained<ColorSyncProfile>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCreateWithName(name: &CFString)
+                -> Option<NonNull<ColorSyncProfile>>;
+        }
+        let ret = unsafe { ColorSyncProfileCreateWithName(name) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCreateWithDisplayID")]
+    pub unsafe fn with_display_id(display_id: u32) -> Option<CFRetained<ColorSyncProfile>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCreateWithDisplayID(
+                display_id: u32,
+            ) -> Option<NonNull<ColorSyncProfile>>;
+        }
+        let ret = unsafe { ColorSyncProfileCreateWithDisplayID(display_id) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCreateDeviceProfile")]
+    pub unsafe fn new_device_profile(
+        device_class: &CFString,
+        device_id: &CFUUID,
+        profile_id: &CFType,
+    ) -> Option<CFRetained<ColorSyncProfile>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCreateDeviceProfile(
+                device_class: &CFString,
+                device_id: &CFUUID,
+                profile_id: &CFType,
+            ) -> Option<NonNull<ColorSyncProfile>>;
+        }
+        let ret =
+            unsafe { ColorSyncProfileCreateDeviceProfile(device_class, device_id, profile_id) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithURL(
-    url: &CFURL,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<ColorSyncProfile>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCreateWithURL(
-            url: &CFURL,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<ColorSyncProfile>>;
+impl ColorSyncMutableProfile {
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCreateMutable")]
+    pub unsafe fn new() -> Option<CFRetained<ColorSyncMutableProfile>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCreateMutable() -> Option<NonNull<ColorSyncMutableProfile>>;
+        }
+        let ret = unsafe { ColorSyncProfileCreateMutable() };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ColorSyncProfileCreateWithURL(url, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCreateMutableCopy")]
+    pub unsafe fn new_copy(prof: &ColorSyncProfile) -> Option<CFRetained<ColorSyncMutableProfile>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCreateMutableCopy(
+                prof: &ColorSyncProfile,
+            ) -> Option<NonNull<ColorSyncMutableProfile>>;
+        }
+        let ret = unsafe { ColorSyncProfileCreateMutableCopy(prof) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithName(
-    name: &CFString,
-) -> Option<CFRetained<ColorSyncProfile>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCreateWithName(name: &CFString) -> Option<NonNull<ColorSyncProfile>>;
+impl ColorSyncProfile {
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCreateLink")]
+    pub unsafe fn new_link(
+        profile_info: &CFArray,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<ColorSyncProfile>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCreateLink(
+                profile_info: &CFArray,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<ColorSyncProfile>>;
+        }
+        let ret = unsafe { ColorSyncProfileCreateLink(profile_info, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ColorSyncProfileCreateWithName(name) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithDisplayID(
-    display_id: u32,
-) -> Option<CFRetained<ColorSyncProfile>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCreateWithDisplayID(
-            display_id: u32,
-        ) -> Option<NonNull<ColorSyncProfile>>;
-    }
-    let ret = unsafe { ColorSyncProfileCreateWithDisplayID(display_id) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCreateDeviceProfile(
-    device_class: &CFString,
-    device_id: &CFUUID,
-    profile_id: &CFType,
-) -> Option<CFRetained<ColorSyncProfile>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCreateDeviceProfile(
-            device_class: &CFString,
-            device_id: &CFUUID,
-            profile_id: &CFType,
-        ) -> Option<NonNull<ColorSyncProfile>>;
-    }
-    let ret = unsafe { ColorSyncProfileCreateDeviceProfile(device_class, device_id, profile_id) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCreateMutable(
-) -> Option<CFRetained<ColorSyncMutableProfile>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCreateMutable() -> Option<NonNull<ColorSyncMutableProfile>>;
-    }
-    let ret = unsafe { ColorSyncProfileCreateMutable() };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCreateMutableCopy(
-    prof: &ColorSyncProfile,
-) -> Option<CFRetained<ColorSyncMutableProfile>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCreateMutableCopy(
-            prof: &ColorSyncProfile,
-        ) -> Option<NonNull<ColorSyncMutableProfile>>;
-    }
-    let ret = unsafe { ColorSyncProfileCreateMutableCopy(prof) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCreateLink(
-    profile_info: &CFArray,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<ColorSyncProfile>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCreateLink(
-            profile_info: &CFArray,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<ColorSyncProfile>>;
-    }
-    let ret = unsafe { ColorSyncProfileCreateLink(profile_info, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-extern "C-unwind" {
-    pub fn ColorSyncProfileVerify(
-        prof: &ColorSyncProfile,
+    #[inline]
+    #[doc(alias = "ColorSyncProfileVerify")]
+    pub unsafe fn verify(
+        self: &ColorSyncProfile,
         errors: *mut *mut CFError,
         warnings: *mut *mut CFError,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn ColorSyncProfileVerify(
+                prof: &ColorSyncProfile,
+                errors: *mut *mut CFError,
+                warnings: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ColorSyncProfileVerify(self, errors, warnings) }
+    }
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileIsWideGamut(param1: &ColorSyncProfile) -> bool;
-}
+    #[inline]
+    #[doc(alias = "ColorSyncProfileIsWideGamut")]
+    pub unsafe fn is_wide_gamut(self: &ColorSyncProfile) -> bool {
+        extern "C-unwind" {
+            fn ColorSyncProfileIsWideGamut(param1: &ColorSyncProfile) -> bool;
+        }
+        unsafe { ColorSyncProfileIsWideGamut(self) }
+    }
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileIsMatrixBased(param1: &ColorSyncProfile) -> bool;
-}
+    #[inline]
+    #[doc(alias = "ColorSyncProfileIsMatrixBased")]
+    pub unsafe fn is_matrix_based(self: &ColorSyncProfile) -> bool {
+        extern "C-unwind" {
+            fn ColorSyncProfileIsMatrixBased(param1: &ColorSyncProfile) -> bool;
+        }
+        unsafe { ColorSyncProfileIsMatrixBased(self) }
+    }
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileIsPQBased(param1: &ColorSyncProfile) -> bool;
-}
+    #[inline]
+    #[doc(alias = "ColorSyncProfileIsPQBased")]
+    pub unsafe fn is_pq_based(self: &ColorSyncProfile) -> bool {
+        extern "C-unwind" {
+            fn ColorSyncProfileIsPQBased(param1: &ColorSyncProfile) -> bool;
+        }
+        unsafe { ColorSyncProfileIsPQBased(self) }
+    }
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileIsHLGBased(param1: &ColorSyncProfile) -> bool;
-}
+    #[inline]
+    #[doc(alias = "ColorSyncProfileIsHLGBased")]
+    pub unsafe fn is_hlg_based(self: &ColorSyncProfile) -> bool {
+        extern "C-unwind" {
+            fn ColorSyncProfileIsHLGBased(param1: &ColorSyncProfile) -> bool;
+        }
+        unsafe { ColorSyncProfileIsHLGBased(self) }
+    }
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileEstimateGammaWithDisplayID(
+    #[inline]
+    #[doc(alias = "ColorSyncProfileEstimateGammaWithDisplayID")]
+    pub unsafe fn estimate_gamma_with_display_id(
         display_id: i32,
         error: *mut *mut CFError,
-    ) -> c_float;
-}
+    ) -> c_float {
+        extern "C-unwind" {
+            fn ColorSyncProfileEstimateGammaWithDisplayID(
+                display_id: i32,
+                error: *mut *mut CFError,
+            ) -> c_float;
+        }
+        unsafe { ColorSyncProfileEstimateGammaWithDisplayID(display_id, error) }
+    }
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileEstimateGamma(
-        prof: &ColorSyncProfile,
-        error: *mut *mut CFError,
-    ) -> c_float;
-}
+    #[inline]
+    #[doc(alias = "ColorSyncProfileEstimateGamma")]
+    pub unsafe fn estimate_gamma(self: &ColorSyncProfile, error: *mut *mut CFError) -> c_float {
+        extern "C-unwind" {
+            fn ColorSyncProfileEstimateGamma(
+                prof: &ColorSyncProfile,
+                error: *mut *mut CFError,
+            ) -> c_float;
+        }
+        unsafe { ColorSyncProfileEstimateGamma(self, error) }
+    }
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileGetDisplayTransferFormulaFromVCGT(
-        profile: &ColorSyncProfile,
+    #[inline]
+    #[doc(alias = "ColorSyncProfileGetDisplayTransferFormulaFromVCGT")]
+    pub unsafe fn display_transfer_formula_from_vcgt(
+        self: &ColorSyncProfile,
         red_min: NonNull<c_float>,
         red_max: NonNull<c_float>,
         red_gamma: NonNull<c_float>,
@@ -543,24 +594,54 @@ extern "C-unwind" {
         blue_min: NonNull<c_float>,
         blue_max: NonNull<c_float>,
         blue_gamma: NonNull<c_float>,
-    ) -> bool;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCreateDisplayTransferTablesFromVCGT(
-    profile: &ColorSyncProfile,
-    n_samples_per_channel: NonNull<usize>,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCreateDisplayTransferTablesFromVCGT(
-            profile: &ColorSyncProfile,
-            n_samples_per_channel: NonNull<usize>,
-        ) -> Option<NonNull<CFData>>;
+    ) -> bool {
+        extern "C-unwind" {
+            fn ColorSyncProfileGetDisplayTransferFormulaFromVCGT(
+                profile: &ColorSyncProfile,
+                red_min: NonNull<c_float>,
+                red_max: NonNull<c_float>,
+                red_gamma: NonNull<c_float>,
+                green_min: NonNull<c_float>,
+                green_max: NonNull<c_float>,
+                green_gamma: NonNull<c_float>,
+                blue_min: NonNull<c_float>,
+                blue_max: NonNull<c_float>,
+                blue_gamma: NonNull<c_float>,
+            ) -> bool;
+        }
+        unsafe {
+            ColorSyncProfileGetDisplayTransferFormulaFromVCGT(
+                self,
+                red_min,
+                red_max,
+                red_gamma,
+                green_min,
+                green_max,
+                green_gamma,
+                blue_min,
+                blue_max,
+                blue_gamma,
+            )
+        }
     }
-    let ret = unsafe {
-        ColorSyncProfileCreateDisplayTransferTablesFromVCGT(profile, n_samples_per_channel)
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCreateDisplayTransferTablesFromVCGT")]
+    pub unsafe fn new_display_transfer_tables_from_vcgt(
+        self: &ColorSyncProfile,
+        n_samples_per_channel: NonNull<usize>,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCreateDisplayTransferTablesFromVCGT(
+                profile: &ColorSyncProfile,
+                n_samples_per_channel: NonNull<usize>,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe {
+            ColorSyncProfileCreateDisplayTransferTablesFromVCGT(self, n_samples_per_channel)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncmd5?language=objc)
@@ -580,111 +661,140 @@ unsafe impl RefEncode for ColorSyncMD5 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileGetMD5(prof: &ColorSyncProfile) -> ColorSyncMD5;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCopyData(
-    prof: &ColorSyncProfile,
-    error: *mut *mut CFError,
-) -> CFRetained<CFData> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCopyData(
-            prof: &ColorSyncProfile,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFData>>;
+impl ColorSyncProfile {
+    #[inline]
+    #[doc(alias = "ColorSyncProfileGetMD5")]
+    pub unsafe fn md_5(self: &ColorSyncProfile) -> ColorSyncMD5 {
+        extern "C-unwind" {
+            fn ColorSyncProfileGetMD5(prof: &ColorSyncProfile) -> ColorSyncMD5;
+        }
+        unsafe { ColorSyncProfileGetMD5(self) }
     }
-    let ret = unsafe { ColorSyncProfileCopyData(prof, error) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileGetURL(
-    prof: &ColorSyncProfile,
-    error: *mut *mut CFError,
-) -> CFRetained<CFURL> {
-    extern "C-unwind" {
-        fn ColorSyncProfileGetURL(
-            prof: &ColorSyncProfile,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFURL>>;
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCopyData")]
+    pub unsafe fn data(self: &ColorSyncProfile, error: *mut *mut CFError) -> CFRetained<CFData> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCopyData(
+                prof: &ColorSyncProfile,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { ColorSyncProfileCopyData(self, error) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { ColorSyncProfileGetURL(prof, error) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCopyHeader(
-    prof: &ColorSyncProfile,
-) -> CFRetained<CFData> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCopyHeader(prof: &ColorSyncProfile) -> Option<NonNull<CFData>>;
+    #[inline]
+    #[doc(alias = "ColorSyncProfileGetURL")]
+    pub unsafe fn url(self: &ColorSyncProfile, error: *mut *mut CFError) -> CFRetained<CFURL> {
+        extern "C-unwind" {
+            fn ColorSyncProfileGetURL(
+                prof: &ColorSyncProfile,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFURL>>;
+        }
+        let ret = unsafe { ColorSyncProfileGetURL(self, error) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
-    let ret = unsafe { ColorSyncProfileCopyHeader(prof) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileSetHeader(prof: &ColorSyncMutableProfile, header: &CFData);
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCopyDescriptionString(
-    prof: &ColorSyncProfile,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCopyDescriptionString(
-            prof: &ColorSyncProfile,
-        ) -> Option<NonNull<CFString>>;
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCopyHeader")]
+    pub unsafe fn header(self: &ColorSyncProfile) -> CFRetained<CFData> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCopyHeader(prof: &ColorSyncProfile) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { ColorSyncProfileCopyHeader(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { ColorSyncProfileCopyDescriptionString(prof) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCopyTagSignatures(
-    prof: &ColorSyncProfile,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCopyTagSignatures(prof: &ColorSyncProfile) -> Option<NonNull<CFArray>>;
+impl ColorSyncMutableProfile {
+    #[inline]
+    #[doc(alias = "ColorSyncProfileSetHeader")]
+    pub unsafe fn set_header(self: &ColorSyncMutableProfile, header: &CFData) {
+        extern "C-unwind" {
+            fn ColorSyncProfileSetHeader(prof: &ColorSyncMutableProfile, header: &CFData);
+        }
+        unsafe { ColorSyncProfileSetHeader(self, header) }
     }
-    let ret = unsafe { ColorSyncProfileCopyTagSignatures(prof) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileContainsTag(prof: &ColorSyncProfile, signature: &CFString) -> bool;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn ColorSyncProfileCopyTag(
-    prof: &ColorSyncProfile,
-    signature: &CFString,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn ColorSyncProfileCopyTag(
-            prof: &ColorSyncProfile,
-            signature: &CFString,
-        ) -> Option<NonNull<CFData>>;
+impl ColorSyncProfile {
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCopyDescriptionString")]
+    pub unsafe fn description_string(self: &ColorSyncProfile) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCopyDescriptionString(
+                prof: &ColorSyncProfile,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { ColorSyncProfileCopyDescriptionString(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ColorSyncProfileCopyTag(prof, signature) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCopyTagSignatures")]
+    pub unsafe fn tag_signatures(self: &ColorSyncProfile) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCopyTagSignatures(
+                prof: &ColorSyncProfile,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { ColorSyncProfileCopyTagSignatures(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "ColorSyncProfileContainsTag")]
+    pub unsafe fn contains_tag(self: &ColorSyncProfile, signature: &CFString) -> bool {
+        extern "C-unwind" {
+            fn ColorSyncProfileContainsTag(prof: &ColorSyncProfile, signature: &CFString) -> bool;
+        }
+        unsafe { ColorSyncProfileContainsTag(self, signature) }
+    }
+
+    #[inline]
+    #[doc(alias = "ColorSyncProfileCopyTag")]
+    pub unsafe fn tag(self: &ColorSyncProfile, signature: &CFString) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCopyTag(
+                prof: &ColorSyncProfile,
+                signature: &CFString,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { ColorSyncProfileCopyTag(self, signature) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileSetTag(
-        prof: &ColorSyncMutableProfile,
-        signature: &CFString,
-        data: &CFData,
-    );
-}
+impl ColorSyncMutableProfile {
+    #[inline]
+    #[doc(alias = "ColorSyncProfileSetTag")]
+    pub unsafe fn set_tag(self: &ColorSyncMutableProfile, signature: &CFString, data: &CFData) {
+        extern "C-unwind" {
+            fn ColorSyncProfileSetTag(
+                prof: &ColorSyncMutableProfile,
+                signature: &CFString,
+                data: &CFData,
+            );
+        }
+        unsafe { ColorSyncProfileSetTag(self, signature, data) }
+    }
 
-extern "C-unwind" {
-    pub fn ColorSyncProfileRemoveTag(prof: &ColorSyncMutableProfile, signature: &CFString);
+    #[inline]
+    #[doc(alias = "ColorSyncProfileRemoveTag")]
+    pub unsafe fn remove_tag(self: &ColorSyncMutableProfile, signature: &CFString) {
+        extern "C-unwind" {
+            fn ColorSyncProfileRemoveTag(prof: &ColorSyncMutableProfile, signature: &CFString);
+        }
+        unsafe { ColorSyncProfileRemoveTag(self, signature) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileiteratecallback?language=objc)
@@ -720,7 +830,355 @@ extern "C-unwind" {
     );
 }
 
+impl ColorSyncProfile {
+    #[inline]
+    #[doc(alias = "ColorSyncProfileInstall")]
+    pub unsafe fn install(
+        self: &ColorSyncProfile,
+        domain: &CFString,
+        subpath: &CFString,
+        error: *mut *mut CFError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn ColorSyncProfileInstall(
+                profile: &ColorSyncProfile,
+                domain: &CFString,
+                subpath: &CFString,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ColorSyncProfileInstall(self, domain, subpath, error) }
+    }
+
+    #[inline]
+    #[doc(alias = "ColorSyncProfileUninstall")]
+    pub unsafe fn uninstall(self: &ColorSyncProfile, error: *mut *mut CFError) -> bool {
+        extern "C-unwind" {
+            fn ColorSyncProfileUninstall(
+                profile: &ColorSyncProfile,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ColorSyncProfileUninstall(self, error) }
+    }
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCreate(
+    data: &CFData,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<ColorSyncProfile>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCreate(
+            data: &CFData,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<ColorSyncProfile>>;
+    }
+    let ret = unsafe { ColorSyncProfileCreate(data, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::with_url`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithURL(
+    url: &CFURL,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<ColorSyncProfile>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCreateWithURL(
+            url: &CFURL,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<ColorSyncProfile>>;
+    }
+    let ret = unsafe { ColorSyncProfileCreateWithURL(url, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::with_name`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithName(
+    name: &CFString,
+) -> Option<CFRetained<ColorSyncProfile>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCreateWithName(name: &CFString) -> Option<NonNull<ColorSyncProfile>>;
+    }
+    let ret = unsafe { ColorSyncProfileCreateWithName(name) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::with_display_id`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithDisplayID(
+    display_id: u32,
+) -> Option<CFRetained<ColorSyncProfile>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCreateWithDisplayID(
+            display_id: u32,
+        ) -> Option<NonNull<ColorSyncProfile>>;
+    }
+    let ret = unsafe { ColorSyncProfileCreateWithDisplayID(display_id) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::new_device_profile`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCreateDeviceProfile(
+    device_class: &CFString,
+    device_id: &CFUUID,
+    profile_id: &CFType,
+) -> Option<CFRetained<ColorSyncProfile>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCreateDeviceProfile(
+            device_class: &CFString,
+            device_id: &CFUUID,
+            profile_id: &CFType,
+        ) -> Option<NonNull<ColorSyncProfile>>;
+    }
+    let ret = unsafe { ColorSyncProfileCreateDeviceProfile(device_class, device_id, profile_id) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `ColorSyncMutableProfile::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCreateMutable(
+) -> Option<CFRetained<ColorSyncMutableProfile>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCreateMutable() -> Option<NonNull<ColorSyncMutableProfile>>;
+    }
+    let ret = unsafe { ColorSyncProfileCreateMutable() };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `ColorSyncMutableProfile::new_copy`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCreateMutableCopy(
+    prof: &ColorSyncProfile,
+) -> Option<CFRetained<ColorSyncMutableProfile>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCreateMutableCopy(
+            prof: &ColorSyncProfile,
+        ) -> Option<NonNull<ColorSyncMutableProfile>>;
+    }
+    let ret = unsafe { ColorSyncProfileCreateMutableCopy(prof) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::new_link`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCreateLink(
+    profile_info: &CFArray,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<ColorSyncProfile>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCreateLink(
+            profile_info: &CFArray,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<ColorSyncProfile>>;
+    }
+    let ret = unsafe { ColorSyncProfileCreateLink(profile_info, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::verify`"]
+    pub fn ColorSyncProfileVerify(
+        prof: &ColorSyncProfile,
+        errors: *mut *mut CFError,
+        warnings: *mut *mut CFError,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::is_wide_gamut`"]
+    pub fn ColorSyncProfileIsWideGamut(param1: &ColorSyncProfile) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::is_matrix_based`"]
+    pub fn ColorSyncProfileIsMatrixBased(param1: &ColorSyncProfile) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::is_pq_based`"]
+    pub fn ColorSyncProfileIsPQBased(param1: &ColorSyncProfile) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::is_hlg_based`"]
+    pub fn ColorSyncProfileIsHLGBased(param1: &ColorSyncProfile) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::estimate_gamma_with_display_id`"]
+    pub fn ColorSyncProfileEstimateGammaWithDisplayID(
+        display_id: i32,
+        error: *mut *mut CFError,
+    ) -> c_float;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::estimate_gamma`"]
+    pub fn ColorSyncProfileEstimateGamma(
+        prof: &ColorSyncProfile,
+        error: *mut *mut CFError,
+    ) -> c_float;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::display_transfer_formula_from_vcgt`"]
+    pub fn ColorSyncProfileGetDisplayTransferFormulaFromVCGT(
+        profile: &ColorSyncProfile,
+        red_min: NonNull<c_float>,
+        red_max: NonNull<c_float>,
+        red_gamma: NonNull<c_float>,
+        green_min: NonNull<c_float>,
+        green_max: NonNull<c_float>,
+        green_gamma: NonNull<c_float>,
+        blue_min: NonNull<c_float>,
+        blue_max: NonNull<c_float>,
+        blue_gamma: NonNull<c_float>,
+    ) -> bool;
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::new_display_transfer_tables_from_vcgt`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCreateDisplayTransferTablesFromVCGT(
+    profile: &ColorSyncProfile,
+    n_samples_per_channel: NonNull<usize>,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCreateDisplayTransferTablesFromVCGT(
+            profile: &ColorSyncProfile,
+            n_samples_per_channel: NonNull<usize>,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe {
+        ColorSyncProfileCreateDisplayTransferTablesFromVCGT(profile, n_samples_per_channel)
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::md_5`"]
+    pub fn ColorSyncProfileGetMD5(prof: &ColorSyncProfile) -> ColorSyncMD5;
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCopyData(
+    prof: &ColorSyncProfile,
+    error: *mut *mut CFError,
+) -> CFRetained<CFData> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCopyData(
+            prof: &ColorSyncProfile,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { ColorSyncProfileCopyData(prof, error) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::url`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileGetURL(
+    prof: &ColorSyncProfile,
+    error: *mut *mut CFError,
+) -> CFRetained<CFURL> {
+    extern "C-unwind" {
+        fn ColorSyncProfileGetURL(
+            prof: &ColorSyncProfile,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFURL>>;
+    }
+    let ret = unsafe { ColorSyncProfileGetURL(prof, error) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::retain(ret) }
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::header`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCopyHeader(
+    prof: &ColorSyncProfile,
+) -> CFRetained<CFData> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCopyHeader(prof: &ColorSyncProfile) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { ColorSyncProfileCopyHeader(prof) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncMutableProfile::set_header`"]
+    pub fn ColorSyncProfileSetHeader(prof: &ColorSyncMutableProfile, header: &CFData);
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::description_string`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCopyDescriptionString(
+    prof: &ColorSyncProfile,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCopyDescriptionString(
+            prof: &ColorSyncProfile,
+        ) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { ColorSyncProfileCopyDescriptionString(prof) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::tag_signatures`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCopyTagSignatures(
+    prof: &ColorSyncProfile,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCopyTagSignatures(prof: &ColorSyncProfile) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { ColorSyncProfileCopyTagSignatures(prof) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::contains_tag`"]
+    pub fn ColorSyncProfileContainsTag(prof: &ColorSyncProfile, signature: &CFString) -> bool;
+}
+
+#[deprecated = "renamed to `ColorSyncProfile::tag`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCopyTag(
+    prof: &ColorSyncProfile,
+    signature: &CFString,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCopyTag(
+            prof: &ColorSyncProfile,
+            signature: &CFString,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { ColorSyncProfileCopyTag(prof, signature) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncMutableProfile::set_tag`"]
+    pub fn ColorSyncProfileSetTag(
+        prof: &ColorSyncMutableProfile,
+        signature: &CFString,
+        data: &CFData,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncMutableProfile::remove_tag`"]
+    pub fn ColorSyncProfileRemoveTag(prof: &ColorSyncMutableProfile, signature: &CFString);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::install`"]
     pub fn ColorSyncProfileInstall(
         profile: &ColorSyncProfile,
         domain: &CFString,
@@ -730,5 +1188,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::uninstall`"]
     pub fn ColorSyncProfileUninstall(profile: &ColorSyncProfile, error: *mut *mut CFError) -> bool;
 }

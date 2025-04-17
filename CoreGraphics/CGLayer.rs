@@ -25,7 +25,99 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGLayer"> for CGLayer {}
 );
 
+impl CGLayer {
+    #[cfg(feature = "CGContext")]
+    #[inline]
+    #[doc(alias = "CGLayerCreateWithContext")]
+    pub unsafe fn with_context(
+        context: Option<&CGContext>,
+        size: CGSize,
+        auxiliary_info: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGLayer>> {
+        extern "C-unwind" {
+            fn CGLayerCreateWithContext(
+                context: Option<&CGContext>,
+                size: CGSize,
+                auxiliary_info: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGLayer>>;
+        }
+        let ret = unsafe { CGLayerCreateWithContext(context, size, auxiliary_info) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGLayerGetSize")]
+    pub unsafe fn size(layer: Option<&CGLayer>) -> CGSize {
+        extern "C-unwind" {
+            fn CGLayerGetSize(layer: Option<&CGLayer>) -> CGSize;
+        }
+        unsafe { CGLayerGetSize(layer) }
+    }
+
+    #[cfg(feature = "CGContext")]
+    #[inline]
+    #[doc(alias = "CGLayerGetContext")]
+    pub unsafe fn context(layer: Option<&CGLayer>) -> Option<CFRetained<CGContext>> {
+        extern "C-unwind" {
+            fn CGLayerGetContext(layer: Option<&CGLayer>) -> Option<NonNull<CGContext>>;
+        }
+        let ret = unsafe { CGLayerGetContext(layer) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+}
+
 #[cfg(feature = "CGContext")]
+impl CGContext {
+    #[cfg(feature = "CGContext")]
+    #[inline]
+    #[doc(alias = "CGContextDrawLayerInRect")]
+    pub unsafe fn draw_layer_in_rect(
+        context: Option<&CGContext>,
+        rect: CGRect,
+        layer: Option<&CGLayer>,
+    ) {
+        extern "C-unwind" {
+            fn CGContextDrawLayerInRect(
+                context: Option<&CGContext>,
+                rect: CGRect,
+                layer: Option<&CGLayer>,
+            );
+        }
+        unsafe { CGContextDrawLayerInRect(context, rect, layer) }
+    }
+
+    #[cfg(feature = "CGContext")]
+    #[inline]
+    #[doc(alias = "CGContextDrawLayerAtPoint")]
+    pub unsafe fn draw_layer_at_point(
+        context: Option<&CGContext>,
+        point: CGPoint,
+        layer: Option<&CGLayer>,
+    ) {
+        extern "C-unwind" {
+            fn CGContextDrawLayerAtPoint(
+                context: Option<&CGContext>,
+                point: CGPoint,
+                layer: Option<&CGLayer>,
+            );
+        }
+        unsafe { CGContextDrawLayerAtPoint(context, point, layer) }
+    }
+}
+
+unsafe impl ConcreteType for CGLayer {
+    #[doc(alias = "CGLayerGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGLayerGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGLayerGetTypeID() }
+    }
+}
+
+#[cfg(feature = "CGContext")]
+#[deprecated = "renamed to `CGLayer::with_context`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGLayerCreateWithContext(
     context: Option<&CGContext>,
@@ -44,10 +136,12 @@ pub unsafe extern "C-unwind" fn CGLayerCreateWithContext(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGLayer::size`"]
     pub fn CGLayerGetSize(layer: Option<&CGLayer>) -> CGSize;
 }
 
 #[cfg(feature = "CGContext")]
+#[deprecated = "renamed to `CGLayer::context`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGLayerGetContext(
     layer: Option<&CGLayer>,
@@ -61,6 +155,7 @@ pub unsafe extern "C-unwind" fn CGLayerGetContext(
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
+    #[deprecated = "renamed to `CGContext::draw_layer_in_rect`"]
     pub fn CGContextDrawLayerInRect(
         context: Option<&CGContext>,
         rect: CGRect,
@@ -70,20 +165,10 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
+    #[deprecated = "renamed to `CGContext::draw_layer_at_point`"]
     pub fn CGContextDrawLayerAtPoint(
         context: Option<&CGContext>,
         point: CGPoint,
         layer: Option<&CGLayer>,
     );
-}
-
-unsafe impl ConcreteType for CGLayer {
-    #[doc(alias = "CGLayerGetTypeID")]
-    #[inline]
-    fn type_id() -> CFTypeID {
-        extern "C-unwind" {
-            fn CGLayerGetTypeID() -> CFTypeID;
-        }
-        unsafe { CGLayerGetTypeID() }
-    }
 }

@@ -108,11 +108,18 @@ unsafe impl RefEncode for UIEventButtonMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+impl UIEventButtonMask {
     /// Convenience initializer for a button mask where `buttonNumber` is a one-based index of the button on the input device
     /// .button(1) == .primary
     /// .button(2) == .secondary
-    pub fn UIEventButtonMaskForButtonNumber(button_number: NSInteger) -> UIEventButtonMask;
+    #[inline]
+    #[doc(alias = "UIEventButtonMaskForButtonNumber")]
+    pub unsafe fn for_button_number(button_number: NSInteger) -> UIEventButtonMask {
+        extern "C-unwind" {
+            fn UIEventButtonMaskForButtonNumber(button_number: NSInteger) -> UIEventButtonMask;
+        }
+        unsafe { UIEventButtonMaskForButtonNumber(button_number) }
+    }
 }
 
 extern_class!(
@@ -210,4 +217,9 @@ impl UIEvent {
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `UIEventButtonMask::for_button_number`"]
+    pub fn UIEventButtonMaskForButtonNumber(button_number: NSInteger) -> UIEventButtonMask;
 }

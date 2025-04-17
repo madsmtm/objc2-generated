@@ -38,53 +38,59 @@ unsafe impl ConcreteType for MDLabel {
     }
 }
 
-/// Returns an array of the labels set on the specified item.
-///
-/// Parameter `item`: The item to be interrogated.
-///
-/// Returns: A CFArrayRef containing MDLabelRefs for the labels set on the item, or NULL on failure.
 #[cfg(feature = "MDItem")]
-#[inline]
-pub unsafe extern "C-unwind" fn MDItemCopyLabels(item: &MDItem) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn MDItemCopyLabels(item: &MDItem) -> Option<NonNull<CFArray>>;
+impl MDItem {
+    /// Returns an array of the labels set on the specified item.
+    ///
+    /// Parameter `item`: The item to be interrogated.
+    ///
+    /// Returns: A CFArrayRef containing MDLabelRefs for the labels set on the item, or NULL on failure.
+    #[cfg(feature = "MDItem")]
+    #[inline]
+    #[doc(alias = "MDItemCopyLabels")]
+    pub unsafe fn labels(self: &MDItem) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn MDItemCopyLabels(item: &MDItem) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { MDItemCopyLabels(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { MDItemCopyLabels(item) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Sets a label on the specified item.
-///
-/// Parameter `item`: The item to be updated.
-///
-/// Parameter `label`: The label.
-///
-/// Returns: True if the label was successfully set on the item, false otherwise.
-#[cfg(feature = "MDItem")]
-#[inline]
-pub unsafe extern "C-unwind" fn MDItemSetLabel(item: &MDItem, label: Option<&MDLabel>) -> bool {
-    extern "C-unwind" {
-        fn MDItemSetLabel(item: &MDItem, label: Option<&MDLabel>) -> Boolean;
+    /// Sets a label on the specified item.
+    ///
+    /// Parameter `item`: The item to be updated.
+    ///
+    /// Parameter `label`: The label.
+    ///
+    /// Returns: True if the label was successfully set on the item, false otherwise.
+    #[cfg(feature = "MDItem")]
+    #[inline]
+    #[doc(alias = "MDItemSetLabel")]
+    pub unsafe fn set_label(self: &MDItem, label: Option<&MDLabel>) -> bool {
+        extern "C-unwind" {
+            fn MDItemSetLabel(item: &MDItem, label: Option<&MDLabel>) -> Boolean;
+        }
+        let ret = unsafe { MDItemSetLabel(self, label) };
+        ret != 0
     }
-    let ret = unsafe { MDItemSetLabel(item, label) };
-    ret != 0
-}
 
-/// Removes a label from the specified item.
-///
-/// Parameter `item`: The item to be updated.
-///
-/// Parameter `label`: The label.
-///
-/// Returns: True if the label was successfully removed from the item, false otherwise.
-#[cfg(feature = "MDItem")]
-#[inline]
-pub unsafe extern "C-unwind" fn MDItemRemoveLabel(item: &MDItem, label: Option<&MDLabel>) -> bool {
-    extern "C-unwind" {
-        fn MDItemRemoveLabel(item: &MDItem, label: Option<&MDLabel>) -> Boolean;
+    /// Removes a label from the specified item.
+    ///
+    /// Parameter `item`: The item to be updated.
+    ///
+    /// Parameter `label`: The label.
+    ///
+    /// Returns: True if the label was successfully removed from the item, false otherwise.
+    #[cfg(feature = "MDItem")]
+    #[inline]
+    #[doc(alias = "MDItemRemoveLabel")]
+    pub unsafe fn remove_label(self: &MDItem, label: Option<&MDLabel>) -> bool {
+        extern "C-unwind" {
+            fn MDItemRemoveLabel(item: &MDItem, label: Option<&MDLabel>) -> Boolean;
+        }
+        let ret = unsafe { MDItemRemoveLabel(self, label) };
+        ret != 0
     }
-    let ret = unsafe { MDItemRemoveLabel(item, label) };
-    ret != 0
 }
 
 /// These constants are used to specify a domain to MDLabelCreate().
@@ -110,105 +116,104 @@ unsafe impl RefEncode for MDLabelDomain {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Returns a label with the specified parameters. If there is already a label that exactly matches the parameters, a reference to the existing label will be returned; otherwise this will attempt to create a new label.  A successful creation of a new private label definition will generate a kMDLabelAddedNotification. Note that this function can only create labels with "Private" visibility. Creating "Public" labels requires creating and installing a label bundle.
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the label. This parameter may be NULL in which case the current default CFAllocator is used. Use kCFAllocatorNull to request a reference to an existing label only.
-///
-/// Parameter `displayName`: The label's display name.
-///
-/// Parameter `kind`: The label's kind string.
-///
-/// Parameter `domain`: The domain of the label (normally kMDLabelUserDomain).
-///
-/// Returns: An MDLabelRef, or NULL on failure.
-#[inline]
-pub unsafe extern "C-unwind" fn MDLabelCreate(
-    allocator: Option<&CFAllocator>,
-    display_name: Option<&CFString>,
-    kind: Option<&CFString>,
-    domain: MDLabelDomain,
-) -> Option<CFRetained<MDLabel>> {
-    extern "C-unwind" {
-        fn MDLabelCreate(
-            allocator: Option<&CFAllocator>,
-            display_name: Option<&CFString>,
-            kind: Option<&CFString>,
-            domain: MDLabelDomain,
-        ) -> Option<NonNull<MDLabel>>;
+impl MDLabel {
+    /// Returns a label with the specified parameters. If there is already a label that exactly matches the parameters, a reference to the existing label will be returned; otherwise this will attempt to create a new label.  A successful creation of a new private label definition will generate a kMDLabelAddedNotification. Note that this function can only create labels with "Private" visibility. Creating "Public" labels requires creating and installing a label bundle.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the label. This parameter may be NULL in which case the current default CFAllocator is used. Use kCFAllocatorNull to request a reference to an existing label only.
+    ///
+    /// Parameter `displayName`: The label's display name.
+    ///
+    /// Parameter `kind`: The label's kind string.
+    ///
+    /// Parameter `domain`: The domain of the label (normally kMDLabelUserDomain).
+    ///
+    /// Returns: An MDLabelRef, or NULL on failure.
+    #[inline]
+    #[doc(alias = "MDLabelCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        display_name: Option<&CFString>,
+        kind: Option<&CFString>,
+        domain: MDLabelDomain,
+    ) -> Option<CFRetained<MDLabel>> {
+        extern "C-unwind" {
+            fn MDLabelCreate(
+                allocator: Option<&CFAllocator>,
+                display_name: Option<&CFString>,
+                kind: Option<&CFString>,
+                domain: MDLabelDomain,
+            ) -> Option<NonNull<MDLabel>>;
+        }
+        let ret = unsafe { MDLabelCreate(allocator, display_name, kind, domain) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { MDLabelCreate(allocator, display_name, kind, domain) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Copy the value of the named attribute of a label.
-///
-/// Parameter `label`: The label.
-///
-/// Parameter `name`: The name of the desired attribute.
-///
-/// Returns: A CFTypeRef, or NULL on failure, or if the attribute does not exist, or if the attribute is not readable.
-#[inline]
-pub unsafe extern "C-unwind" fn MDLabelCopyAttribute(
-    label: &MDLabel,
-    name: Option<&CFString>,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn MDLabelCopyAttribute(
-            label: &MDLabel,
-            name: Option<&CFString>,
-        ) -> Option<NonNull<CFType>>;
+    /// Copy the value of the named attribute of a label.
+    ///
+    /// Parameter `label`: The label.
+    ///
+    /// Parameter `name`: The name of the desired attribute.
+    ///
+    /// Returns: A CFTypeRef, or NULL on failure, or if the attribute does not exist, or if the attribute is not readable.
+    #[inline]
+    #[doc(alias = "MDLabelCopyAttribute")]
+    pub unsafe fn attribute(self: &MDLabel, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn MDLabelCopyAttribute(
+                label: &MDLabel,
+                name: Option<&CFString>,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { MDLabelCopyAttribute(self, name) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { MDLabelCopyAttribute(label, name) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Copy the MDItem attribute name of a label. The attribute name can be used in an MDQuery string to search for MDItems that have the label set. The value of the MDItem attribute is a CFDate corresponding to the time the label was set on the item.
-///
-/// Parameter `label`: The label.
-///
-/// Returns: A CFStringRef, or NULL on failure.
-#[inline]
-pub unsafe extern "C-unwind" fn MDLabelCopyAttributeName(
-    label: &MDLabel,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn MDLabelCopyAttributeName(label: &MDLabel) -> Option<NonNull<CFString>>;
+    /// Copy the MDItem attribute name of a label. The attribute name can be used in an MDQuery string to search for MDItems that have the label set. The value of the MDItem attribute is a CFDate corresponding to the time the label was set on the item.
+    ///
+    /// Parameter `label`: The label.
+    ///
+    /// Returns: A CFStringRef, or NULL on failure.
+    #[inline]
+    #[doc(alias = "MDLabelCopyAttributeName")]
+    pub unsafe fn attribute_name(self: &MDLabel) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn MDLabelCopyAttributeName(label: &MDLabel) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { MDLabelCopyAttributeName(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { MDLabelCopyAttributeName(label) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Deletes the user's definition or override of the specified label from ~/Library/Metadata. Labels defined in bundles elsewhere in the filesystem cannot be deleted using this API. Deleting an override of a label merely makes the original definition of the label visible again and thus will generate a kMDLabelChangedNotification. A successful deletion of a private label definition will generate a kMDLabelRemovedNotification.
-///
-/// Parameter `label`: The label.
-///
-/// Returns: True if a label definition or override was successfully deleted.
-#[inline]
-pub unsafe extern "C-unwind" fn MDLabelDelete(label: &MDLabel) -> bool {
-    extern "C-unwind" {
-        fn MDLabelDelete(label: &MDLabel) -> Boolean;
+    /// Deletes the user's definition or override of the specified label from ~/Library/Metadata. Labels defined in bundles elsewhere in the filesystem cannot be deleted using this API. Deleting an override of a label merely makes the original definition of the label visible again and thus will generate a kMDLabelChangedNotification. A successful deletion of a private label definition will generate a kMDLabelRemovedNotification.
+    ///
+    /// Parameter `label`: The label.
+    ///
+    /// Returns: True if a label definition or override was successfully deleted.
+    #[inline]
+    #[doc(alias = "MDLabelDelete")]
+    pub unsafe fn delete(self: &MDLabel) -> bool {
+        extern "C-unwind" {
+            fn MDLabelDelete(label: &MDLabel) -> Boolean;
+        }
+        let ret = unsafe { MDLabelDelete(self) };
+        ret != 0
     }
-    let ret = unsafe { MDLabelDelete(label) };
-    ret != 0
-}
 
-/// Updates the attributes of the specified label. Labels defined in ~/Library/Metadata are modified directly. Labels defined in bundles elsewhere in the filesystem are overridden by creating a private copy of the label definition in ~/Library/Metadata. The updated attributes are then stored in the private copy. A successful call to MDLabelSetAttributes() will generate a kMDLabelChangedNotification.
-///
-/// Parameter `label`: The label.
-///
-/// Parameter `attrs`: A dictionary containing the attributes to be modified. To remove an attribute, include it in the dictionary with kCFNull as its value.
-///
-/// Returns: True if the label definition or override was successfully updated.
-#[inline]
-pub unsafe extern "C-unwind" fn MDLabelSetAttributes(
-    label: &MDLabel,
-    attrs: Option<&CFDictionary>,
-) -> bool {
-    extern "C-unwind" {
-        fn MDLabelSetAttributes(label: &MDLabel, attrs: Option<&CFDictionary>) -> Boolean;
+    /// Updates the attributes of the specified label. Labels defined in ~/Library/Metadata are modified directly. Labels defined in bundles elsewhere in the filesystem are overridden by creating a private copy of the label definition in ~/Library/Metadata. The updated attributes are then stored in the private copy. A successful call to MDLabelSetAttributes() will generate a kMDLabelChangedNotification.
+    ///
+    /// Parameter `label`: The label.
+    ///
+    /// Parameter `attrs`: A dictionary containing the attributes to be modified. To remove an attribute, include it in the dictionary with kCFNull as its value.
+    ///
+    /// Returns: True if the label definition or override was successfully updated.
+    #[inline]
+    #[doc(alias = "MDLabelSetAttributes")]
+    pub unsafe fn set_attributes(self: &MDLabel, attrs: Option<&CFDictionary>) -> bool {
+        extern "C-unwind" {
+            fn MDLabelSetAttributes(label: &MDLabel, attrs: Option<&CFDictionary>) -> Boolean;
+        }
+        let ret = unsafe { MDLabelSetAttributes(self, attrs) };
+        ret != 0
     }
-    let ret = unsafe { MDLabelSetAttributes(label, attrs) };
-    ret != 0
 }
 
 /// Copy the list of label kind strings.
@@ -418,4 +423,108 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelremovednotification?language=objc)
     pub static kMDLabelRemovedNotification: Option<&'static CFString>;
+}
+
+#[cfg(feature = "MDItem")]
+#[deprecated = "renamed to `MDItem::labels`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDItemCopyLabels(item: &MDItem) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn MDItemCopyLabels(item: &MDItem) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { MDItemCopyLabels(item) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "MDItem")]
+#[deprecated = "renamed to `MDItem::set_label`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDItemSetLabel(item: &MDItem, label: Option<&MDLabel>) -> bool {
+    extern "C-unwind" {
+        fn MDItemSetLabel(item: &MDItem, label: Option<&MDLabel>) -> Boolean;
+    }
+    let ret = unsafe { MDItemSetLabel(item, label) };
+    ret != 0
+}
+
+#[cfg(feature = "MDItem")]
+#[deprecated = "renamed to `MDItem::remove_label`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDItemRemoveLabel(item: &MDItem, label: Option<&MDLabel>) -> bool {
+    extern "C-unwind" {
+        fn MDItemRemoveLabel(item: &MDItem, label: Option<&MDLabel>) -> Boolean;
+    }
+    let ret = unsafe { MDItemRemoveLabel(item, label) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `MDLabel::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDLabelCreate(
+    allocator: Option<&CFAllocator>,
+    display_name: Option<&CFString>,
+    kind: Option<&CFString>,
+    domain: MDLabelDomain,
+) -> Option<CFRetained<MDLabel>> {
+    extern "C-unwind" {
+        fn MDLabelCreate(
+            allocator: Option<&CFAllocator>,
+            display_name: Option<&CFString>,
+            kind: Option<&CFString>,
+            domain: MDLabelDomain,
+        ) -> Option<NonNull<MDLabel>>;
+    }
+    let ret = unsafe { MDLabelCreate(allocator, display_name, kind, domain) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `MDLabel::attribute`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDLabelCopyAttribute(
+    label: &MDLabel,
+    name: Option<&CFString>,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn MDLabelCopyAttribute(
+            label: &MDLabel,
+            name: Option<&CFString>,
+        ) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { MDLabelCopyAttribute(label, name) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `MDLabel::attribute_name`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDLabelCopyAttributeName(
+    label: &MDLabel,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn MDLabelCopyAttributeName(label: &MDLabel) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { MDLabelCopyAttributeName(label) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `MDLabel::delete`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDLabelDelete(label: &MDLabel) -> bool {
+    extern "C-unwind" {
+        fn MDLabelDelete(label: &MDLabel) -> Boolean;
+    }
+    let ret = unsafe { MDLabelDelete(label) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `MDLabel::set_attributes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn MDLabelSetAttributes(
+    label: &MDLabel,
+    attrs: Option<&CFDictionary>,
+) -> bool {
+    extern "C-unwind" {
+        fn MDLabelSetAttributes(label: &MDLabel, attrs: Option<&CFDictionary>) -> Boolean;
+    }
+    let ret = unsafe { MDLabelSetAttributes(label, attrs) };
+    ret != 0
 }

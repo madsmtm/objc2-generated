@@ -68,7 +68,7 @@ unsafe impl RefEncode for cp_drawable {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_t?language=objc)
 pub type cp_drawable_t = *mut cp_drawable;
 
-extern "C-unwind" {
+impl cp_drawable {
     /// Returns the number of color and depth textures available in the drawable.
     ///
     /// - Parameters:
@@ -80,70 +80,77 @@ extern "C-unwind" {
     /// Use the returned value as the maximum number of textures to retrieve
     /// from the ``cp_drawable_get_color_texture`` or ``cp_drawable_get_depth_texture``
     /// functions.
-    pub fn cp_drawable_get_texture_count(drawable: cp_drawable_t) -> usize;
-}
-
-/// Returns the depth texture at the specified index in the drawable.
-///
-/// - Parameters:
-/// - drawable: The drawable for a frame.
-/// - index: The index of the depth texture you want. The index must
-/// be greater than or equal to `0` and less than the value that
-/// ``cp_drawable_get_texture_count`` returns.
-/// - Returns: The Metal depth texture at the specified index.
-///
-/// Use the returned texture in your render pipeline as the depth texture
-/// for your content. The layer’s texture topology determines the layout and
-/// content for each texture. The drawable’s views contain information
-/// about how those views map to the textures.
-#[cfg(feature = "objc2-metal")]
-#[inline]
-pub unsafe extern "C-unwind" fn cp_drawable_get_depth_texture(
-    drawable: cp_drawable_t,
-    index: usize,
-) -> Retained<ProtocolObject<dyn MTLTexture>> {
-    extern "C-unwind" {
-        fn cp_drawable_get_depth_texture(
-            drawable: cp_drawable_t,
-            index: usize,
-        ) -> *mut ProtocolObject<dyn MTLTexture>;
+    #[inline]
+    #[doc(alias = "cp_drawable_get_texture_count")]
+    pub unsafe fn get_texture_count(drawable: cp_drawable_t) -> usize {
+        extern "C-unwind" {
+            fn cp_drawable_get_texture_count(drawable: cp_drawable_t) -> usize;
+        }
+        unsafe { cp_drawable_get_texture_count(drawable) }
     }
-    let ret = unsafe { cp_drawable_get_depth_texture(drawable, index) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-/// Returns the color texture at the specified index in the drawable.
-///
-/// - Parameters:
-/// - drawable: The drawable for a frame.
-/// - index: The index of the color texture you want. The index must
-/// be greater than or equal to `0` and less than the value that
-/// ``cp_drawable_get_texture_count`` returns.
-/// - Returns: The Metal color texture at the specified index.
-///
-/// Use the returned texture in your render pipeline to store the pixels
-/// you want to appear onscreen. The layer’s texture topology determines
-/// the layout and content for each texture. The drawable’s views contain
-/// information about how those views map to the textures.
-#[cfg(feature = "objc2-metal")]
-#[inline]
-pub unsafe extern "C-unwind" fn cp_drawable_get_color_texture(
-    drawable: cp_drawable_t,
-    index: usize,
-) -> Retained<ProtocolObject<dyn MTLTexture>> {
-    extern "C-unwind" {
-        fn cp_drawable_get_color_texture(
-            drawable: cp_drawable_t,
-            index: usize,
-        ) -> *mut ProtocolObject<dyn MTLTexture>;
+    /// Returns the depth texture at the specified index in the drawable.
+    ///
+    /// - Parameters:
+    /// - drawable: The drawable for a frame.
+    /// - index: The index of the depth texture you want. The index must
+    /// be greater than or equal to `0` and less than the value that
+    /// ``cp_drawable_get_texture_count`` returns.
+    /// - Returns: The Metal depth texture at the specified index.
+    ///
+    /// Use the returned texture in your render pipeline as the depth texture
+    /// for your content. The layer’s texture topology determines the layout and
+    /// content for each texture. The drawable’s views contain information
+    /// about how those views map to the textures.
+    #[cfg(feature = "objc2-metal")]
+    #[inline]
+    #[doc(alias = "cp_drawable_get_depth_texture")]
+    pub unsafe fn get_depth_texture(
+        drawable: cp_drawable_t,
+        index: usize,
+    ) -> Retained<ProtocolObject<dyn MTLTexture>> {
+        extern "C-unwind" {
+            fn cp_drawable_get_depth_texture(
+                drawable: cp_drawable_t,
+                index: usize,
+            ) -> *mut ProtocolObject<dyn MTLTexture>;
+        }
+        let ret = unsafe { cp_drawable_get_depth_texture(drawable, index) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { cp_drawable_get_color_texture(drawable, index) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-extern "C-unwind" {
+    /// Returns the color texture at the specified index in the drawable.
+    ///
+    /// - Parameters:
+    /// - drawable: The drawable for a frame.
+    /// - index: The index of the color texture you want. The index must
+    /// be greater than or equal to `0` and less than the value that
+    /// ``cp_drawable_get_texture_count`` returns.
+    /// - Returns: The Metal color texture at the specified index.
+    ///
+    /// Use the returned texture in your render pipeline to store the pixels
+    /// you want to appear onscreen. The layer’s texture topology determines
+    /// the layout and content for each texture. The drawable’s views contain
+    /// information about how those views map to the textures.
+    #[cfg(feature = "objc2-metal")]
+    #[inline]
+    #[doc(alias = "cp_drawable_get_color_texture")]
+    pub unsafe fn get_color_texture(
+        drawable: cp_drawable_t,
+        index: usize,
+    ) -> Retained<ProtocolObject<dyn MTLTexture>> {
+        extern "C-unwind" {
+            fn cp_drawable_get_color_texture(
+                drawable: cp_drawable_t,
+                index: usize,
+            ) -> *mut ProtocolObject<dyn MTLTexture>;
+        }
+        let ret = unsafe { cp_drawable_get_color_texture(drawable, index) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+
     /// Returns the number of rasterization rate maps associated with the
     /// drawable.
     ///
@@ -153,83 +160,90 @@ extern "C-unwind" {
     ///
     /// Use the returned value as the maximum number of rate maps to retrieve
     /// from the ``cp_drawable_get_rasterization_rate_map`` function.
-    pub fn cp_drawable_get_rasterization_rate_map_count(drawable: cp_drawable_t) -> usize;
-}
-
-/// Returns the rasterization rate map at the specified index in the drawable.
-///
-/// - Parameters:
-/// - drawable: The drawable for a frame.
-/// - index: The index of the rasterization rate map you want.
-/// The index must be greater than or equal to `0` and less than the value
-/// that ``cp_drawable_get_rasterization_rate_map_count`` returns.
-/// - Returns: The rasterization rate map at the specified index.
-///
-/// Apply the rasterization rate map to your render descriptor when you set
-/// up your drawing environment. A rate map defines how the GPU scales
-/// different parts of the texture to fill the screen. You use these rate
-/// maps to save time and render less important parts of your scene at lower
-/// resolutions. For example, when foveation is enabled, the drawable
-/// includes a rasterization rate map to render the portions of the texture
-/// in someone’s peripheral vision at a lower resolution.
-#[cfg(feature = "objc2-metal")]
-#[inline]
-pub unsafe extern "C-unwind" fn cp_drawable_get_rasterization_rate_map(
-    drawable: cp_drawable_t,
-    index: usize,
-) -> Retained<ProtocolObject<dyn MTLRasterizationRateMap>> {
-    extern "C-unwind" {
-        fn cp_drawable_get_rasterization_rate_map(
-            drawable: cp_drawable_t,
-            index: usize,
-        ) -> *mut ProtocolObject<dyn MTLRasterizationRateMap>;
+    #[inline]
+    #[doc(alias = "cp_drawable_get_rasterization_rate_map_count")]
+    pub unsafe fn get_rasterization_rate_map_count(drawable: cp_drawable_t) -> usize {
+        extern "C-unwind" {
+            fn cp_drawable_get_rasterization_rate_map_count(drawable: cp_drawable_t) -> usize;
+        }
+        unsafe { cp_drawable_get_rasterization_rate_map_count(drawable) }
     }
-    let ret = unsafe { cp_drawable_get_rasterization_rate_map(drawable, index) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-/// Returns the Y flipped rasterization rate map at the specified index in the drawable.
-///
-/// - Parameters:
-/// - drawable: The drawable for a frame.
-/// - index: The index of the rasterization rate map you want.
-/// The index must be greater than or equal to `0` and less than the value
-/// that ``cp_drawable_get_rasterization_rate_map_count`` returns.
-/// - Returns: The Y flipped rasterization rate map at the specified index.
-///
-/// This function provides a Y flipped map that is generated form the ``cp_drawable_get_rasterization_rate_map``.
-/// Flipped is defined as +Y = down for clip/normalized device coordinates (flipped from Metal).
-/// If projection matrix is needed, use ``cp_drawable_compute_projection``
-/// with a +Y = down axes convention to generate the correct matrix.
-///
-/// Can only be used for intermediary render passes, the final render pass of the
-/// drawable it cannot be flipped and must use Metal convention of +Y = up.
-///
-/// Generating a flipped rasterization rate map will bring additional computational
-/// cost to your render loop.
-///
-/// In order to generate Y flipped rasterization rate maps in your rendering session,
-/// update the ``cp_layer_renderer_configuration_t`` using the function
-/// ``cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps``.
-#[cfg(feature = "objc2-metal")]
-#[inline]
-pub unsafe extern "C-unwind" fn cp_drawable_get_flipped_rasterization_rate_map(
-    drawable: cp_drawable_t,
-    index: usize,
-) -> Retained<ProtocolObject<dyn MTLRasterizationRateMap>> {
-    extern "C-unwind" {
-        fn cp_drawable_get_flipped_rasterization_rate_map(
-            drawable: cp_drawable_t,
-            index: usize,
-        ) -> *mut ProtocolObject<dyn MTLRasterizationRateMap>;
+    /// Returns the rasterization rate map at the specified index in the drawable.
+    ///
+    /// - Parameters:
+    /// - drawable: The drawable for a frame.
+    /// - index: The index of the rasterization rate map you want.
+    /// The index must be greater than or equal to `0` and less than the value
+    /// that ``cp_drawable_get_rasterization_rate_map_count`` returns.
+    /// - Returns: The rasterization rate map at the specified index.
+    ///
+    /// Apply the rasterization rate map to your render descriptor when you set
+    /// up your drawing environment. A rate map defines how the GPU scales
+    /// different parts of the texture to fill the screen. You use these rate
+    /// maps to save time and render less important parts of your scene at lower
+    /// resolutions. For example, when foveation is enabled, the drawable
+    /// includes a rasterization rate map to render the portions of the texture
+    /// in someone’s peripheral vision at a lower resolution.
+    #[cfg(feature = "objc2-metal")]
+    #[inline]
+    #[doc(alias = "cp_drawable_get_rasterization_rate_map")]
+    pub unsafe fn get_rasterization_rate_map(
+        drawable: cp_drawable_t,
+        index: usize,
+    ) -> Retained<ProtocolObject<dyn MTLRasterizationRateMap>> {
+        extern "C-unwind" {
+            fn cp_drawable_get_rasterization_rate_map(
+                drawable: cp_drawable_t,
+                index: usize,
+            ) -> *mut ProtocolObject<dyn MTLRasterizationRateMap>;
+        }
+        let ret = unsafe { cp_drawable_get_rasterization_rate_map(drawable, index) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { cp_drawable_get_flipped_rasterization_rate_map(drawable, index) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-extern "C-unwind" {
+    /// Returns the Y flipped rasterization rate map at the specified index in the drawable.
+    ///
+    /// - Parameters:
+    /// - drawable: The drawable for a frame.
+    /// - index: The index of the rasterization rate map you want.
+    /// The index must be greater than or equal to `0` and less than the value
+    /// that ``cp_drawable_get_rasterization_rate_map_count`` returns.
+    /// - Returns: The Y flipped rasterization rate map at the specified index.
+    ///
+    /// This function provides a Y flipped map that is generated form the ``cp_drawable_get_rasterization_rate_map``.
+    /// Flipped is defined as +Y = down for clip/normalized device coordinates (flipped from Metal).
+    /// If projection matrix is needed, use ``cp_drawable_compute_projection``
+    /// with a +Y = down axes convention to generate the correct matrix.
+    ///
+    /// Can only be used for intermediary render passes, the final render pass of the
+    /// drawable it cannot be flipped and must use Metal convention of +Y = up.
+    ///
+    /// Generating a flipped rasterization rate map will bring additional computational
+    /// cost to your render loop.
+    ///
+    /// In order to generate Y flipped rasterization rate maps in your rendering session,
+    /// update the ``cp_layer_renderer_configuration_t`` using the function
+    /// ``cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps``.
+    #[cfg(feature = "objc2-metal")]
+    #[inline]
+    #[doc(alias = "cp_drawable_get_flipped_rasterization_rate_map")]
+    pub unsafe fn get_flipped_rasterization_rate_map(
+        drawable: cp_drawable_t,
+        index: usize,
+    ) -> Retained<ProtocolObject<dyn MTLRasterizationRateMap>> {
+        extern "C-unwind" {
+            fn cp_drawable_get_flipped_rasterization_rate_map(
+                drawable: cp_drawable_t,
+                index: usize,
+            ) -> *mut ProtocolObject<dyn MTLRasterizationRateMap>;
+        }
+        let ret = unsafe { cp_drawable_get_flipped_rasterization_rate_map(drawable, index) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+
     /// Returns the number of separate views to draw for the frame.
     ///
     /// - Parameters:
@@ -244,10 +258,15 @@ extern "C-unwind" {
     /// Simulator.
     ///
     /// Fetch the actual views using the ``cp_drawable_get_view`` function.
-    pub fn cp_drawable_get_view_count(drawable: cp_drawable_t) -> usize;
-}
+    #[inline]
+    #[doc(alias = "cp_drawable_get_view_count")]
+    pub unsafe fn get_view_count(drawable: cp_drawable_t) -> usize {
+        extern "C-unwind" {
+            fn cp_drawable_get_view_count(drawable: cp_drawable_t) -> usize;
+        }
+        unsafe { cp_drawable_get_view_count(drawable) }
+    }
 
-extern "C-unwind" {
     /// Returns the specified view from the drawable.
     ///
     /// - Parameters:
@@ -260,10 +279,15 @@ extern "C-unwind" {
     /// Each view contains information you need to render into the drawable’s
     /// textures.
     #[cfg(feature = "view")]
-    pub fn cp_drawable_get_view(drawable: cp_drawable_t, index: usize) -> cp_view_t;
-}
+    #[inline]
+    #[doc(alias = "cp_drawable_get_view")]
+    pub unsafe fn get_view(drawable: cp_drawable_t, index: usize) -> cp_view_t {
+        extern "C-unwind" {
+            fn cp_drawable_get_view(drawable: cp_drawable_t, index: usize) -> cp_view_t;
+        }
+        unsafe { cp_drawable_get_view(drawable, index) }
+    }
 
-extern "C-unwind" {
     /// Encodes a notification event to the specified command buffer to present
     /// the drawable’s content onscreen.
     ///
@@ -282,13 +306,21 @@ extern "C-unwind" {
     /// method. The function adds a presentation event to the buffer that
     /// causes the compositor to display your frame.
     #[cfg(feature = "objc2-metal")]
-    pub fn cp_drawable_encode_present(
+    #[inline]
+    #[doc(alias = "cp_drawable_encode_present")]
+    pub unsafe fn encode_present(
         drawable: cp_drawable_t,
         command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn cp_drawable_encode_present(
+                drawable: cp_drawable_t,
+                command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
+            );
+        }
+        unsafe { cp_drawable_encode_present(drawable, command_buffer) }
+    }
 
-extern "C-unwind" {
     /// Returns a value that indicates the current operational state
     /// of the drawable type.
     ///
@@ -301,10 +333,15 @@ extern "C-unwind" {
     /// drawable types, and the state of the drawable indicates whether
     /// it's ready for you to use. Perform your drawing operations only
     /// when the drawable is in the ``cp_drawable_state/cp_drawable_state_rendering`` state.
-    pub fn cp_drawable_get_state(drawable: cp_drawable_t) -> cp_drawable_state;
-}
+    #[inline]
+    #[doc(alias = "cp_drawable_get_state")]
+    pub unsafe fn get_state(drawable: cp_drawable_t) -> cp_drawable_state {
+        extern "C-unwind" {
+            fn cp_drawable_get_state(drawable: cp_drawable_t) -> cp_drawable_state;
+        }
+        unsafe { cp_drawable_get_state(drawable) }
+    }
 
-extern "C-unwind" {
     /// Returns the index of the frame of content for you to produce.
     ///
     /// - Parameters:
@@ -318,12 +355,19 @@ extern "C-unwind" {
     /// future frame indexes. For example, you might start playback of an
     /// audio file when a specific frame appears onscreen.
     #[cfg(feature = "cp_types")]
-    pub fn cp_drawable_get_presentation_frame_index(
+    #[inline]
+    #[doc(alias = "cp_drawable_get_presentation_frame_index")]
+    pub unsafe fn get_presentation_frame_index(
         drawable: cp_drawable_t,
-    ) -> cp_compositor_frame_index_t;
-}
+    ) -> cp_compositor_frame_index_t {
+        extern "C-unwind" {
+            fn cp_drawable_get_presentation_frame_index(
+                drawable: cp_drawable_t,
+            ) -> cp_compositor_frame_index_t;
+        }
+        unsafe { cp_drawable_get_presentation_frame_index(drawable) }
+    }
 
-extern "C-unwind" {
     /// Returns the timing information for the frame of the specified drawable.
     ///
     /// - Parameters:
@@ -334,5 +378,133 @@ extern "C-unwind" {
     /// function to determine when to start the encoding process for a frame.
     /// Pass it to other functions to determine other time-related deadlines.
     #[cfg(feature = "frame_timing")]
+    #[inline]
+    #[doc(alias = "cp_drawable_get_frame_timing")]
+    pub unsafe fn get_frame_timing(drawable: cp_drawable_t) -> cp_frame_timing_t {
+        extern "C-unwind" {
+            fn cp_drawable_get_frame_timing(drawable: cp_drawable_t) -> cp_frame_timing_t;
+        }
+        unsafe { cp_drawable_get_frame_timing(drawable) }
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_drawable::get_texture_count`"]
+    pub fn cp_drawable_get_texture_count(drawable: cp_drawable_t) -> usize;
+}
+
+#[cfg(feature = "objc2-metal")]
+#[deprecated = "renamed to `cp_drawable::get_depth_texture`"]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_drawable_get_depth_texture(
+    drawable: cp_drawable_t,
+    index: usize,
+) -> Retained<ProtocolObject<dyn MTLTexture>> {
+    extern "C-unwind" {
+        fn cp_drawable_get_depth_texture(
+            drawable: cp_drawable_t,
+            index: usize,
+        ) -> *mut ProtocolObject<dyn MTLTexture>;
+    }
+    let ret = unsafe { cp_drawable_get_depth_texture(drawable, index) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[cfg(feature = "objc2-metal")]
+#[deprecated = "renamed to `cp_drawable::get_color_texture`"]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_drawable_get_color_texture(
+    drawable: cp_drawable_t,
+    index: usize,
+) -> Retained<ProtocolObject<dyn MTLTexture>> {
+    extern "C-unwind" {
+        fn cp_drawable_get_color_texture(
+            drawable: cp_drawable_t,
+            index: usize,
+        ) -> *mut ProtocolObject<dyn MTLTexture>;
+    }
+    let ret = unsafe { cp_drawable_get_color_texture(drawable, index) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_drawable::get_rasterization_rate_map_count`"]
+    pub fn cp_drawable_get_rasterization_rate_map_count(drawable: cp_drawable_t) -> usize;
+}
+
+#[cfg(feature = "objc2-metal")]
+#[deprecated = "renamed to `cp_drawable::get_rasterization_rate_map`"]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_drawable_get_rasterization_rate_map(
+    drawable: cp_drawable_t,
+    index: usize,
+) -> Retained<ProtocolObject<dyn MTLRasterizationRateMap>> {
+    extern "C-unwind" {
+        fn cp_drawable_get_rasterization_rate_map(
+            drawable: cp_drawable_t,
+            index: usize,
+        ) -> *mut ProtocolObject<dyn MTLRasterizationRateMap>;
+    }
+    let ret = unsafe { cp_drawable_get_rasterization_rate_map(drawable, index) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[cfg(feature = "objc2-metal")]
+#[deprecated = "renamed to `cp_drawable::get_flipped_rasterization_rate_map`"]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_drawable_get_flipped_rasterization_rate_map(
+    drawable: cp_drawable_t,
+    index: usize,
+) -> Retained<ProtocolObject<dyn MTLRasterizationRateMap>> {
+    extern "C-unwind" {
+        fn cp_drawable_get_flipped_rasterization_rate_map(
+            drawable: cp_drawable_t,
+            index: usize,
+        ) -> *mut ProtocolObject<dyn MTLRasterizationRateMap>;
+    }
+    let ret = unsafe { cp_drawable_get_flipped_rasterization_rate_map(drawable, index) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_drawable::get_view_count`"]
+    pub fn cp_drawable_get_view_count(drawable: cp_drawable_t) -> usize;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "view")]
+    #[deprecated = "renamed to `cp_drawable::get_view`"]
+    pub fn cp_drawable_get_view(drawable: cp_drawable_t, index: usize) -> cp_view_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-metal")]
+    #[deprecated = "renamed to `cp_drawable::encode_present`"]
+    pub fn cp_drawable_encode_present(
+        drawable: cp_drawable_t,
+        command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_drawable::get_state`"]
+    pub fn cp_drawable_get_state(drawable: cp_drawable_t) -> cp_drawable_state;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "cp_types")]
+    #[deprecated = "renamed to `cp_drawable::get_presentation_frame_index`"]
+    pub fn cp_drawable_get_presentation_frame_index(
+        drawable: cp_drawable_t,
+    ) -> cp_compositor_frame_index_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "frame_timing")]
+    #[deprecated = "renamed to `cp_drawable::get_frame_timing`"]
     pub fn cp_drawable_get_frame_timing(drawable: cp_drawable_t) -> cp_frame_timing_t;
 }

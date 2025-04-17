@@ -69,6 +69,42 @@ unsafe impl ConcreteType for CGFunction {
     }
 }
 
+impl CGFunction {
+    #[inline]
+    #[doc(alias = "CGFunctionCreate")]
+    pub unsafe fn new(
+        info: *mut c_void,
+        domain_dimension: usize,
+        domain: *const CGFloat,
+        range_dimension: usize,
+        range: *const CGFloat,
+        callbacks: *const CGFunctionCallbacks,
+    ) -> Option<CFRetained<CGFunction>> {
+        extern "C-unwind" {
+            fn CGFunctionCreate(
+                info: *mut c_void,
+                domain_dimension: usize,
+                domain: *const CGFloat,
+                range_dimension: usize,
+                range: *const CGFloat,
+                callbacks: *const CGFunctionCallbacks,
+            ) -> Option<NonNull<CGFunction>>;
+        }
+        let ret = unsafe {
+            CGFunctionCreate(
+                info,
+                domain_dimension,
+                domain,
+                range_dimension,
+                range,
+                callbacks,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+#[deprecated = "renamed to `CGFunction::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGFunctionCreate(
     info: *mut c_void,

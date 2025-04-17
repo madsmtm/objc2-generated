@@ -80,7 +80,9 @@ unsafe impl RefEncode for NSTouchTypeMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn NSTouchTypeMaskFromType(r#type: NSTouchType,) -> NSTouchTypeMask;
+impl NSTouchTypeMask {
+    // TODO: pub fn NSTouchTypeMaskFromType(r#type: NSTouchType,) -> NSTouchTypeMask;
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch?language=objc)

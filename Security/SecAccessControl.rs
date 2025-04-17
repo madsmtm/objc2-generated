@@ -109,25 +109,50 @@ unsafe impl RefEncode for SecAccessControlCreateFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Creates new access control object based on protection type and additional flags.
-///
-/// Created access control object should be used as a value for kSecAttrAccessControl attribute in SecItemAdd,
-/// SecItemUpdate or SecKeyGeneratePair functions.  Accessing keychain items or performing operations on keys which are
-/// protected by access control objects can block the execution because of UI which can appear to satisfy the access control
-/// conditions, therefore it is recommended to either move those potentially blocking operations out of the main
-/// application thread or use combination of kSecUseAuthenticationContext and kSecUseAuthenticationUI attributes to control
-/// where the UI interaction can appear.
-///
-/// Parameter `allocator`: Allocator to be used by this instance.
-///
-/// Parameter `protection`: Protection class to be used for the item. One of kSecAttrAccessible constants.
-///
-/// Parameter `flags`: If no flags are set then all operations are allowed.
-///
-/// Parameter `error`: Additional error information filled in case of failure.
-///
-/// Returns: Newly created access control object.
 #[cfg(feature = "SecBase")]
+impl SecAccessControl {
+    /// Creates new access control object based on protection type and additional flags.
+    ///
+    /// Created access control object should be used as a value for kSecAttrAccessControl attribute in SecItemAdd,
+    /// SecItemUpdate or SecKeyGeneratePair functions.  Accessing keychain items or performing operations on keys which are
+    /// protected by access control objects can block the execution because of UI which can appear to satisfy the access control
+    /// conditions, therefore it is recommended to either move those potentially blocking operations out of the main
+    /// application thread or use combination of kSecUseAuthenticationContext and kSecUseAuthenticationUI attributes to control
+    /// where the UI interaction can appear.
+    ///
+    /// Parameter `allocator`: Allocator to be used by this instance.
+    ///
+    /// Parameter `protection`: Protection class to be used for the item. One of kSecAttrAccessible constants.
+    ///
+    /// Parameter `flags`: If no flags are set then all operations are allowed.
+    ///
+    /// Parameter `error`: Additional error information filled in case of failure.
+    ///
+    /// Returns: Newly created access control object.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecAccessControlCreateWithFlags")]
+    pub unsafe fn with_flags(
+        allocator: Option<&CFAllocator>,
+        protection: &CFType,
+        flags: SecAccessControlCreateFlags,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<SecAccessControl>> {
+        extern "C-unwind" {
+            fn SecAccessControlCreateWithFlags(
+                allocator: Option<&CFAllocator>,
+                protection: &CFType,
+                flags: SecAccessControlCreateFlags,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<SecAccessControl>>;
+        }
+        let ret = unsafe { SecAccessControlCreateWithFlags(allocator, protection, flags, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecAccessControl::with_flags`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecAccessControlCreateWithFlags(
     allocator: Option<&CFAllocator>,

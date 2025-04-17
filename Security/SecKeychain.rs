@@ -313,17 +313,23 @@ unsafe impl ConcreteType for SecKeychain {
     }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "SecBase")]
+impl SecKeychain {
     /// Determines the version of the Keychain Manager installed on the user�s system.
     ///
     /// Parameter `returnVers`: On return, a pointer to the version number of the Keychain Manager installed on the current system.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainGetVersion(return_vers: NonNull<u32>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainGetVersion")]
+    pub unsafe fn version(return_vers: NonNull<u32>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainGetVersion(return_vers: NonNull<u32>) -> OSStatus;
+        }
+        unsafe { SecKeychainGetVersion(return_vers) }
+    }
 
-extern "C-unwind" {
     /// Create a SecKeychainRef for a keychain at pathName.  This keychain might
     /// not currently exist, use SecKeychainGetStatus if you want to confirm the existence
     /// of this keychain.
@@ -335,61 +341,70 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain parameter is invalid (NULL).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainOpen(
+    #[inline]
+    #[doc(alias = "SecKeychainOpen")]
+    pub unsafe fn open(
         path_name: NonNull<c_char>,
         keychain: NonNull<*mut SecKeychain>,
-    ) -> OSStatus;
-}
-
-/// Creates a new keychain.
-///
-/// Parameter `pathName`: The POSIX path to a keychain file.
-///
-/// Parameter `passwordLength`: An unsigned 32-bit integer representing the length of the password buffer.
-///
-/// Parameter `password`: A pointer to the buffer containing the password. The password must be in canonical UTF8 encoding.
-///
-/// Parameter `promptUser`: A boolean representing whether to display a password dialog to the user.
-///
-/// Parameter `initialAccess`: An access reference.
-///
-/// Parameter `keychain`: On return, a pointer to a keychain reference. The memory that keychain occupies must be released by calling CFRelease when finished with it.
-///
-/// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain parameter is invalid (NULL).
-#[cfg(feature = "SecBase")]
-#[deprecated = "SecKeychain is deprecated"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeychainCreate(
-    path_name: NonNull<c_char>,
-    password_length: u32,
-    password: *const c_void,
-    prompt_user: bool,
-    initial_access: Option<&SecAccess>,
-    keychain: NonNull<*mut SecKeychain>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecKeychainCreate(
-            path_name: NonNull<c_char>,
-            password_length: u32,
-            password: *const c_void,
-            prompt_user: Boolean,
-            initial_access: Option<&SecAccess>,
-            keychain: NonNull<*mut SecKeychain>,
-        ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainOpen(
+                path_name: NonNull<c_char>,
+                keychain: NonNull<*mut SecKeychain>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainOpen(path_name, keychain) }
     }
-    unsafe {
-        SecKeychainCreate(
-            path_name,
-            password_length,
-            password,
-            prompt_user as _,
-            initial_access,
-            keychain,
-        )
-    }
-}
 
-extern "C-unwind" {
+    /// Creates a new keychain.
+    ///
+    /// Parameter `pathName`: The POSIX path to a keychain file.
+    ///
+    /// Parameter `passwordLength`: An unsigned 32-bit integer representing the length of the password buffer.
+    ///
+    /// Parameter `password`: A pointer to the buffer containing the password. The password must be in canonical UTF8 encoding.
+    ///
+    /// Parameter `promptUser`: A boolean representing whether to display a password dialog to the user.
+    ///
+    /// Parameter `initialAccess`: An access reference.
+    ///
+    /// Parameter `keychain`: On return, a pointer to a keychain reference. The memory that keychain occupies must be released by calling CFRelease when finished with it.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain parameter is invalid (NULL).
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "SecKeychain is deprecated"]
+    #[inline]
+    #[doc(alias = "SecKeychainCreate")]
+    pub unsafe fn create(
+        path_name: NonNull<c_char>,
+        password_length: u32,
+        password: *const c_void,
+        prompt_user: bool,
+        initial_access: Option<&SecAccess>,
+        keychain: NonNull<*mut SecKeychain>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainCreate(
+                path_name: NonNull<c_char>,
+                password_length: u32,
+                password: *const c_void,
+                prompt_user: Boolean,
+                initial_access: Option<&SecAccess>,
+                keychain: NonNull<*mut SecKeychain>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeychainCreate(
+                path_name,
+                password_length,
+                password,
+                prompt_user as _,
+                initial_access,
+                keychain,
+            )
+        }
+    }
+
     /// Removes one or more keychains from the current keychain searchlist, and deletes the keychain storage (if the keychains are file-based).
     ///
     /// Parameter `keychainOrArray`: A single keychain reference or a reference to an array of keychains to delete. IMPORTANT: SecKeychainDelete does not dispose the memory occupied by keychain references; use the CFRelease function when you are completely finished with a keychain.
@@ -397,10 +412,15 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecInvalidKeychain (-25295) may be returned if the keychain parameter is invalid (NULL).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainDelete(keychain_or_array: Option<&SecKeychain>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainDelete")]
+    pub unsafe fn delete(keychain_or_array: Option<&SecKeychain>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainDelete(keychain_or_array: Option<&SecKeychain>) -> OSStatus;
+        }
+        unsafe { SecKeychainDelete(keychain_or_array) }
+    }
 
-extern "C-unwind" {
     /// Changes the settings of a keychain.
     ///
     /// Parameter `keychain`: A reference to a keychain.
@@ -410,13 +430,21 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainSetSettings(
+    #[inline]
+    #[doc(alias = "SecKeychainSetSettings")]
+    pub unsafe fn set_settings(
         keychain: Option<&SecKeychain>,
         new_settings: NonNull<SecKeychainSettings>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainSetSettings(
+                keychain: Option<&SecKeychain>,
+                new_settings: NonNull<SecKeychainSettings>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainSetSettings(keychain, new_settings) }
+    }
 
-extern "C-unwind" {
     /// Copy the keychain settings.
     ///
     /// Parameter `keychain`: A reference to the keychain from which to copy its settings.
@@ -426,46 +454,55 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainCopySettings(
+    #[inline]
+    #[doc(alias = "SecKeychainCopySettings")]
+    pub unsafe fn copy_settings(
         keychain: Option<&SecKeychain>,
         out_settings: NonNull<SecKeychainSettings>,
-    ) -> OSStatus;
-}
-
-/// Unlocks the specified keychain.
-///
-/// Parameter `keychain`: A reference to the keychain to unlock. Pass NULL to specify the default keychain. If you pass NULL and the default keychain is currently locked, the keychain will appear as the default choice. If you pass a locked keychain, SecKeychainUnlock will use the password provided to unlock it. If the default keychain is currently unlocked, SecKeychainUnlock returns errSecSuccess.
-///
-/// Parameter `passwordLength`: An unsigned 32-bit integer representing the length of the password buffer.
-///
-/// Parameter `password`: A buffer containing the password for the keychain. Pass NULL if the user password is unknown. In this case, SecKeychainUnlock displays the Unlock Keychain dialog box, and the authentication user interface associated with the keychain about to be unlocked.
-///
-/// Parameter `usePassword`: A boolean indicating whether the password parameter is used.  You should pass TRUE if it is used or FALSE if it is ignored.
-///
-/// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-///
-/// In most cases, your application does not need to call the SecKeychainUnlock function directly, since most Keychain Manager functions that require an unlocked keychain call SecKeychainUnlock automatically. If your application needs to verify that a keychain is unlocked, call the function SecKeychainGetStatus.
-#[cfg(feature = "SecBase")]
-#[deprecated = "SecKeychain is deprecated"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeychainUnlock(
-    keychain: Option<&SecKeychain>,
-    password_length: u32,
-    password: *const c_void,
-    use_password: bool,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecKeychainUnlock(
-            keychain: Option<&SecKeychain>,
-            password_length: u32,
-            password: *const c_void,
-            use_password: Boolean,
-        ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainCopySettings(
+                keychain: Option<&SecKeychain>,
+                out_settings: NonNull<SecKeychainSettings>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainCopySettings(keychain, out_settings) }
     }
-    unsafe { SecKeychainUnlock(keychain, password_length, password, use_password as _) }
-}
 
-extern "C-unwind" {
+    /// Unlocks the specified keychain.
+    ///
+    /// Parameter `keychain`: A reference to the keychain to unlock. Pass NULL to specify the default keychain. If you pass NULL and the default keychain is currently locked, the keychain will appear as the default choice. If you pass a locked keychain, SecKeychainUnlock will use the password provided to unlock it. If the default keychain is currently unlocked, SecKeychainUnlock returns errSecSuccess.
+    ///
+    /// Parameter `passwordLength`: An unsigned 32-bit integer representing the length of the password buffer.
+    ///
+    /// Parameter `password`: A buffer containing the password for the keychain. Pass NULL if the user password is unknown. In this case, SecKeychainUnlock displays the Unlock Keychain dialog box, and the authentication user interface associated with the keychain about to be unlocked.
+    ///
+    /// Parameter `usePassword`: A boolean indicating whether the password parameter is used.  You should pass TRUE if it is used or FALSE if it is ignored.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// In most cases, your application does not need to call the SecKeychainUnlock function directly, since most Keychain Manager functions that require an unlocked keychain call SecKeychainUnlock automatically. If your application needs to verify that a keychain is unlocked, call the function SecKeychainGetStatus.
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "SecKeychain is deprecated"]
+    #[inline]
+    #[doc(alias = "SecKeychainUnlock")]
+    pub unsafe fn unlock(
+        keychain: Option<&SecKeychain>,
+        password_length: u32,
+        password: *const c_void,
+        use_password: bool,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainUnlock(
+                keychain: Option<&SecKeychain>,
+                password_length: u32,
+                password: *const c_void,
+                use_password: Boolean,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainUnlock(keychain, password_length, password, use_password as _) }
+    }
+
     /// Locks the specified keychain.
     ///
     /// Parameter `keychain`: A reference to the keychain to lock.
@@ -473,18 +510,28 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainLock(keychain: Option<&SecKeychain>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainLock")]
+    pub unsafe fn lock(keychain: Option<&SecKeychain>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainLock(keychain: Option<&SecKeychain>) -> OSStatus;
+        }
+        unsafe { SecKeychainLock(keychain) }
+    }
 
-extern "C-unwind" {
     /// Locks all keychains belonging to the current user.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainLockAll() -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainLockAll")]
+    pub unsafe fn lock_all() -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainLockAll() -> OSStatus;
+        }
+        unsafe { SecKeychainLockAll() }
+    }
 
-extern "C-unwind" {
     /// Retrieves a reference to the default keychain.
     ///
     /// Parameter `keychain`: On return, a pointer to the default keychain reference.
@@ -492,10 +539,15 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainCopyDefault(keychain: NonNull<*mut SecKeychain>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainCopyDefault")]
+    pub unsafe fn copy_default(keychain: NonNull<*mut SecKeychain>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainCopyDefault(keychain: NonNull<*mut SecKeychain>) -> OSStatus;
+        }
+        unsafe { SecKeychainCopyDefault(keychain) }
+    }
 
-extern "C-unwind" {
     /// Sets the default keychain.
     ///
     /// Parameter `keychain`: A reference to the keychain to set as default.
@@ -503,27 +555,44 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain parameter is invalid (NULL).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainSetDefault(keychain: Option<&SecKeychain>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainSetDefault")]
+    pub unsafe fn set_default(keychain: Option<&SecKeychain>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainSetDefault(keychain: Option<&SecKeychain>) -> OSStatus;
+        }
+        unsafe { SecKeychainSetDefault(keychain) }
+    }
 
-extern "C-unwind" {
     /// Retrieves a keychain search list.
     ///
     /// Parameter `searchList`: The returned list of keychains to search. When finished with the array, you must call CFRelease() to release the memory.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain list is not specified (NULL).
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainCopySearchList(search_list: NonNull<*const CFArray>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainCopySearchList")]
+    pub unsafe fn copy_search_list(search_list: NonNull<*const CFArray>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainCopySearchList(search_list: NonNull<*const CFArray>) -> OSStatus;
+        }
+        unsafe { SecKeychainCopySearchList(search_list) }
+    }
 
-extern "C-unwind" {
     /// Specifies the list of keychains to use in a keychain search list.
     ///
     /// Parameter `searchList`: The list of keychains to use in a search list when the SecKeychainCopySearchList function is called. An empty array clears the search list.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain list is not specified (NULL).
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainSetSearchList(search_list: &CFArray) -> OSStatus;
+    #[inline]
+    #[doc(alias = "SecKeychainSetSearchList")]
+    pub unsafe fn set_search_list(search_list: &CFArray) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainSetSearchList(search_list: &CFArray) -> OSStatus;
+        }
+        unsafe { SecKeychainSetSearchList(search_list) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secpreferencesdomain?language=objc)
@@ -552,51 +621,94 @@ unsafe impl RefEncode for SecPreferencesDomain {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+#[cfg(feature = "SecBase")]
+impl SecKeychain {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainCopyDomainDefault(
+    #[inline]
+    #[doc(alias = "SecKeychainCopyDomainDefault")]
+    pub unsafe fn copy_domain_default(
         domain: SecPreferencesDomain,
         keychain: NonNull<*mut SecKeychain>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainCopyDomainDefault(
+                domain: SecPreferencesDomain,
+                keychain: NonNull<*mut SecKeychain>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainCopyDomainDefault(domain, keychain) }
+    }
 
-extern "C-unwind" {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainSetDomainDefault(
+    #[inline]
+    #[doc(alias = "SecKeychainSetDomainDefault")]
+    pub unsafe fn set_domain_default(
         domain: SecPreferencesDomain,
         keychain: Option<&SecKeychain>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainSetDomainDefault(
+                domain: SecPreferencesDomain,
+                keychain: Option<&SecKeychain>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainSetDomainDefault(domain, keychain) }
+    }
 
-extern "C-unwind" {
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainCopyDomainSearchList(
+    #[inline]
+    #[doc(alias = "SecKeychainCopyDomainSearchList")]
+    pub unsafe fn copy_domain_search_list(
         domain: SecPreferencesDomain,
         search_list: NonNull<*const CFArray>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainCopyDomainSearchList(
+                domain: SecPreferencesDomain,
+                search_list: NonNull<*const CFArray>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainCopyDomainSearchList(domain, search_list) }
+    }
 
-extern "C-unwind" {
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainSetDomainSearchList(
+    #[inline]
+    #[doc(alias = "SecKeychainSetDomainSearchList")]
+    pub unsafe fn set_domain_search_list(
         domain: SecPreferencesDomain,
         search_list: &CFArray,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainSetDomainSearchList(
+                domain: SecPreferencesDomain,
+                search_list: &CFArray,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainSetDomainSearchList(domain, search_list) }
+    }
 
-extern "C-unwind" {
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainSetPreferenceDomain(domain: SecPreferencesDomain) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainSetPreferenceDomain")]
+    pub unsafe fn set_preference_domain(domain: SecPreferencesDomain) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainSetPreferenceDomain(domain: SecPreferencesDomain) -> OSStatus;
+        }
+        unsafe { SecKeychainSetPreferenceDomain(domain) }
+    }
 
-extern "C-unwind" {
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainGetPreferenceDomain(domain: NonNull<SecPreferencesDomain>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainGetPreferenceDomain")]
+    pub unsafe fn preference_domain(domain: NonNull<SecPreferencesDomain>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainGetPreferenceDomain(domain: NonNull<SecPreferencesDomain>) -> OSStatus;
+        }
+        unsafe { SecKeychainGetPreferenceDomain(domain) }
+    }
 
-extern "C-unwind" {
     /// Retrieves status information for the specified keychain.
     ///
     /// Parameter `keychain`: A keychain reference. Pass NULL to specify the default keychain.
@@ -606,13 +718,21 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainGetStatus(
+    #[inline]
+    #[doc(alias = "SecKeychainGetStatus")]
+    pub unsafe fn status(
         keychain: Option<&SecKeychain>,
         keychain_status: NonNull<SecKeychainStatus>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainGetStatus(
+                keychain: Option<&SecKeychain>,
+                keychain_status: NonNull<SecKeychainStatus>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainGetStatus(keychain, keychain_status) }
+    }
 
-extern "C-unwind" {
     /// Get the path of the specified keychain.
     ///
     /// Parameter `keychain`: A reference to a keychain.
@@ -624,14 +744,23 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainGetPath(
+    #[inline]
+    #[doc(alias = "SecKeychainGetPath")]
+    pub unsafe fn path(
         keychain: Option<&SecKeychain>,
         io_path_length: NonNull<u32>,
         path_name: NonNull<c_char>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainGetPath(
+                keychain: Option<&SecKeychain>,
+                io_path_length: NonNull<u32>,
+                path_name: NonNull<c_char>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainGetPath(keychain, io_path_length, path_name) }
+    }
 
-extern "C-unwind" {
     /// Obtains tags for all possible attributes for a given item class.
     ///
     /// Parameter `keychain`: A keychain reference.
@@ -645,14 +774,23 @@ extern "C-unwind" {
     /// Warning, this call returns more attributes than are support by the old style Keychain API and passing them into older calls will yield an invalid attribute error. The recommended call to retrieve the attribute values is the SecKeychainItemCopyAttributesAndData function.
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainAttributeInfoForItemID(
+    #[inline]
+    #[doc(alias = "SecKeychainAttributeInfoForItemID")]
+    pub unsafe fn attribute_info_for_item_id(
         keychain: Option<&SecKeychain>,
         item_id: u32,
         info: NonNull<*mut SecKeychainAttributeInfo>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainAttributeInfoForItemID(
+                keychain: Option<&SecKeychain>,
+                item_id: u32,
+                info: NonNull<*mut SecKeychainAttributeInfo>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainAttributeInfoForItemID(keychain, item_id, info) }
+    }
 
-extern "C-unwind" {
     /// Releases the memory acquired by calling the SecKeychainAttributeInfoForItemID function.
     ///
     /// Parameter `info`: A pointer to the keychain attribute information to release.
@@ -660,7 +798,14 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if not enough valid parameters were supplied (NULL).
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainFreeAttributeInfo(info: NonNull<SecKeychainAttributeInfo>) -> OSStatus;
+    #[inline]
+    #[doc(alias = "SecKeychainFreeAttributeInfo")]
+    pub unsafe fn free_attribute_info(info: NonNull<SecKeychainAttributeInfo>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainFreeAttributeInfo(info: NonNull<SecKeychainAttributeInfo>) -> OSStatus;
+        }
+        unsafe { SecKeychainFreeAttributeInfo(info) }
+    }
 }
 
 /// Defines a pointer to a customized callback function.  You supply the customized callback function to do a callback tailored to your application's needs.
@@ -691,7 +836,8 @@ pub type SecKeychainCallback = Option<
     ) -> OSStatus,
 >;
 
-extern "C-unwind" {
+#[cfg(feature = "SecBase")]
+impl SecKeychain {
     /// Registers your keychain event callback function
     ///
     /// Parameter `callbackFunction`: A pointer to your keychain event callback function, described in SecKeychainCallback. You indicate the type of keychain events you want to receive by passing a bit mask of the desired events in the eventMask parameter.
@@ -703,14 +849,23 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainAddCallback(
+    #[inline]
+    #[doc(alias = "SecKeychainAddCallback")]
+    pub unsafe fn add_callback(
         callback_function: SecKeychainCallback,
         event_mask: SecKeychainEventMask,
         user_context: *mut c_void,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainAddCallback(
+                callback_function: SecKeychainCallback,
+                event_mask: SecKeychainEventMask,
+                user_context: *mut c_void,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainAddCallback(callback_function, event_mask, user_context) }
+    }
 
-extern "C-unwind" {
     /// Unregisters your keychain event callback function. Once removed, keychain events won't be sent to the owner of the callback.
     ///
     /// Parameter `callbackFunction`: The callback function pointer to remove
@@ -718,10 +873,15 @@ extern "C-unwind" {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainRemoveCallback(callback_function: SecKeychainCallback) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeychainRemoveCallback")]
+    pub unsafe fn remove_callback(callback_function: SecKeychainCallback) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainRemoveCallback(callback_function: SecKeychainCallback) -> OSStatus;
+        }
+        unsafe { SecKeychainRemoveCallback(callback_function) }
+    }
 
-extern "C-unwind" {
     /// Adds an Internet password to the specified keychain.
     ///
     /// Parameter `keychain`: A reference to a keychain in which to store an Internet password. Pass NULL to specify the user's default keychain.
@@ -759,7 +919,9 @@ extern "C-unwind" {
     /// The SecKeychainAddInternetPassword function adds a new Internet server password to the specified keychain. Required parameters to identify the password are serverName and accountName (you cannot pass NULL for both parameters). In addition, some protocols may require an optional securityDomain when authentication is requested. SecKeychainAddInternetPassword optionally returns a reference to the newly added item.
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainAddInternetPassword(
+    #[inline]
+    #[doc(alias = "SecKeychainAddInternetPassword")]
+    pub unsafe fn add_internet_password(
         keychain: Option<&SecKeychain>,
         server_name_length: u32,
         server_name: *const c_char,
@@ -775,10 +937,47 @@ extern "C-unwind" {
         password_length: u32,
         password_data: NonNull<c_void>,
         item_ref: *mut *mut SecKeychainItem,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainAddInternetPassword(
+                keychain: Option<&SecKeychain>,
+                server_name_length: u32,
+                server_name: *const c_char,
+                security_domain_length: u32,
+                security_domain: *const c_char,
+                account_name_length: u32,
+                account_name: *const c_char,
+                path_length: u32,
+                path: *const c_char,
+                port: u16,
+                protocol: SecProtocolType,
+                authentication_type: SecAuthenticationType,
+                password_length: u32,
+                password_data: NonNull<c_void>,
+                item_ref: *mut *mut SecKeychainItem,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeychainAddInternetPassword(
+                keychain,
+                server_name_length,
+                server_name,
+                security_domain_length,
+                security_domain,
+                account_name_length,
+                account_name,
+                path_length,
+                path,
+                port,
+                protocol,
+                authentication_type,
+                password_length,
+                password_data,
+                item_ref,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Finds an Internet password based on the attributes passed.
     ///
     /// Parameter `keychainOrArray`: A reference to an array of keychains to search, a single keychain, or NULL to search the user's default keychain search list.
@@ -816,7 +1015,9 @@ extern "C-unwind" {
     /// The SecKeychainFindInternetPassword function finds the first Internet password item which matches the attributes you provide. Most attributes are optional; you should pass only as many as you need to narrow the search sufficiently for your application's intended use. SecKeychainFindInternetPassword optionally returns a reference to the found item.
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainFindInternetPassword(
+    #[inline]
+    #[doc(alias = "SecKeychainFindInternetPassword")]
+    pub unsafe fn find_internet_password(
         keychain_or_array: Option<&CFType>,
         server_name_length: u32,
         server_name: *const c_char,
@@ -832,10 +1033,47 @@ extern "C-unwind" {
         password_length: *mut u32,
         password_data: *mut *mut c_void,
         item_ref: *mut *mut SecKeychainItem,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainFindInternetPassword(
+                keychain_or_array: Option<&CFType>,
+                server_name_length: u32,
+                server_name: *const c_char,
+                security_domain_length: u32,
+                security_domain: *const c_char,
+                account_name_length: u32,
+                account_name: *const c_char,
+                path_length: u32,
+                path: *const c_char,
+                port: u16,
+                protocol: SecProtocolType,
+                authentication_type: SecAuthenticationType,
+                password_length: *mut u32,
+                password_data: *mut *mut c_void,
+                item_ref: *mut *mut SecKeychainItem,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeychainFindInternetPassword(
+                keychain_or_array,
+                server_name_length,
+                server_name,
+                security_domain_length,
+                security_domain,
+                account_name_length,
+                account_name,
+                path_length,
+                path,
+                port,
+                protocol,
+                authentication_type,
+                password_length,
+                password_data,
+                item_ref,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Adds a generic password to the specified keychain.
     ///
     /// Parameter `keychain`: A reference to the keychain in which to store a generic password. Pass NULL to specify the user's default keychain.
@@ -859,7 +1097,9 @@ extern "C-unwind" {
     /// The SecKeychainAddGenericPassword function adds a new generic password to the default keychain. Required parameters to identify the password are serviceName and accountName, which are application-defined strings. SecKeychainAddGenericPassword optionally returns a reference to the newly added item.
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainAddGenericPassword(
+    #[inline]
+    #[doc(alias = "SecKeychainAddGenericPassword")]
+    pub unsafe fn add_generic_password(
         keychain: Option<&SecKeychain>,
         service_name_length: u32,
         service_name: *const c_char,
@@ -868,10 +1108,33 @@ extern "C-unwind" {
         password_length: u32,
         password_data: NonNull<c_void>,
         item_ref: *mut *mut SecKeychainItem,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainAddGenericPassword(
+                keychain: Option<&SecKeychain>,
+                service_name_length: u32,
+                service_name: *const c_char,
+                account_name_length: u32,
+                account_name: *const c_char,
+                password_length: u32,
+                password_data: NonNull<c_void>,
+                item_ref: *mut *mut SecKeychainItem,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeychainAddGenericPassword(
+                keychain,
+                service_name_length,
+                service_name,
+                account_name_length,
+                account_name,
+                password_length,
+                password_data,
+                item_ref,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Find a generic password based on the attributes passed.
     ///
     /// Parameter `keychainOrArray`: A reference to an array of keychains to search, a single keychain, or NULL to search the user's default keychain search list.
@@ -895,6 +1158,451 @@ extern "C-unwind" {
     /// The SecKeychainFindGenericPassword function finds the first generic password item which matches the attributes you provide. Most attributes are optional; you should pass only as many as you need to narrow the search sufficiently for your application's intended use. SecKeychainFindGenericPassword optionally returns a reference to the found item.
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
+    #[inline]
+    #[doc(alias = "SecKeychainFindGenericPassword")]
+    pub unsafe fn find_generic_password(
+        keychain_or_array: Option<&CFType>,
+        service_name_length: u32,
+        service_name: *const c_char,
+        account_name_length: u32,
+        account_name: *const c_char,
+        password_length: *mut u32,
+        password_data: *mut *mut c_void,
+        item_ref: *mut *mut SecKeychainItem,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainFindGenericPassword(
+                keychain_or_array: Option<&CFType>,
+                service_name_length: u32,
+                service_name: *const c_char,
+                account_name_length: u32,
+                account_name: *const c_char,
+                password_length: *mut u32,
+                password_data: *mut *mut c_void,
+                item_ref: *mut *mut SecKeychainItem,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeychainFindGenericPassword(
+                keychain_or_array,
+                service_name_length,
+                service_name,
+                account_name_length,
+                account_name,
+                password_length,
+                password_data,
+                item_ref,
+            )
+        }
+    }
+
+    /// Turns on or off any optional user interaction
+    ///
+    /// Parameter `state`: A boolean representing the state of user interaction.  You should pass TRUE to allow user interaction, and FALSE to disallow user interaction
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[deprecated = "SecKeychain is deprecated"]
+    #[inline]
+    #[doc(alias = "SecKeychainSetUserInteractionAllowed")]
+    pub unsafe fn set_user_interaction_allowed(state: bool) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainSetUserInteractionAllowed(state: Boolean) -> OSStatus;
+        }
+        unsafe { SecKeychainSetUserInteractionAllowed(state as _) }
+    }
+
+    /// Retrieves the current state of user interaction.
+    ///
+    /// Parameter `state`: On return, a pointer to the current state of user interaction.  If this is TRUE then user interaction is allowed, if it is FALSE, then user interaction is not allowed.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[deprecated = "SecKeychain is deprecated"]
+    #[inline]
+    #[doc(alias = "SecKeychainGetUserInteractionAllowed")]
+    pub unsafe fn user_interaction_allowed(state: NonNull<Boolean>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainGetUserInteractionAllowed(state: NonNull<Boolean>) -> OSStatus;
+        }
+        unsafe { SecKeychainGetUserInteractionAllowed(state) }
+    }
+
+    /// Returns the CSSM_CSP_HANDLE attachment for the given keychain reference. The handle is valid until the keychain reference is released.
+    ///
+    /// Parameter `keychain`: A keychain reference.
+    ///
+    /// Parameter `cspHandle`: On return, a pointer to the CSSM_CSP_HANDLE for the given keychain.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// This API is deprecated for 10.7. It should nho longer be needed.
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SecKeychainGetCSPHandle")]
+    pub unsafe fn csp_handle(
+        keychain: Option<&SecKeychain>,
+        csp_handle: NonNull<CSSM_CSP_HANDLE>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainGetCSPHandle(
+                keychain: Option<&SecKeychain>,
+                csp_handle: NonNull<CSSM_CSP_HANDLE>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainGetCSPHandle(keychain, csp_handle) }
+    }
+
+    /// Returns the CSSM_DL_DB_HANDLE for a given keychain reference. The handle is valid until the keychain reference is released.
+    ///
+    /// Parameter `keychain`: A keychain reference.
+    ///
+    /// Parameter `dldbHandle`: On return, a pointer to the CSSM_DL_DB_HANDLE for the given keychain.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// This API is deprecated for 10.7. It should nho longer be needed.
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SecKeychainGetDLDBHandle")]
+    pub unsafe fn dldb_handle(
+        keychain: Option<&SecKeychain>,
+        dldb_handle: NonNull<CSSM_DL_DB_HANDLE>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainGetDLDBHandle(
+                keychain: Option<&SecKeychain>,
+                dldb_handle: NonNull<CSSM_DL_DB_HANDLE>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainGetDLDBHandle(keychain, dldb_handle) }
+    }
+
+    /// Retrieves the access for a keychain.
+    ///
+    /// Parameter `keychain`: A reference to the keychain from which to copy the access.
+    ///
+    /// Parameter `access`: On return, a pointer to the access reference.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "SecKeychain is deprecated"]
+    #[inline]
+    #[doc(alias = "SecKeychainCopyAccess")]
+    pub unsafe fn copy_access(
+        keychain: Option<&SecKeychain>,
+        access: NonNull<*mut SecAccess>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainCopyAccess(
+                keychain: Option<&SecKeychain>,
+                access: NonNull<*mut SecAccess>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeychainCopyAccess(keychain, access) }
+    }
+
+    /// Sets the access for a keychain.
+    ///
+    /// Parameter `keychain`: A reference to the keychain for which to set the access.
+    ///
+    /// Parameter `access`: An access reference.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "SecKeychain is deprecated"]
+    #[inline]
+    #[doc(alias = "SecKeychainSetAccess")]
+    pub unsafe fn set_access(keychain: Option<&SecKeychain>, access: &SecAccess) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeychainSetAccess(keychain: Option<&SecKeychain>, access: &SecAccess)
+                -> OSStatus;
+        }
+        unsafe { SecKeychainSetAccess(keychain, access) }
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `SecKeychain::version`"]
+    pub fn SecKeychainGetVersion(return_vers: NonNull<u32>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::open`"]
+    pub fn SecKeychainOpen(
+        path_name: NonNull<c_char>,
+        keychain: NonNull<*mut SecKeychain>,
+    ) -> OSStatus;
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKeychain::create`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeychainCreate(
+    path_name: NonNull<c_char>,
+    password_length: u32,
+    password: *const c_void,
+    prompt_user: bool,
+    initial_access: Option<&SecAccess>,
+    keychain: NonNull<*mut SecKeychain>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecKeychainCreate(
+            path_name: NonNull<c_char>,
+            password_length: u32,
+            password: *const c_void,
+            prompt_user: Boolean,
+            initial_access: Option<&SecAccess>,
+            keychain: NonNull<*mut SecKeychain>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        SecKeychainCreate(
+            path_name,
+            password_length,
+            password,
+            prompt_user as _,
+            initial_access,
+            keychain,
+        )
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::delete`"]
+    pub fn SecKeychainDelete(keychain_or_array: Option<&SecKeychain>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::set_settings`"]
+    pub fn SecKeychainSetSettings(
+        keychain: Option<&SecKeychain>,
+        new_settings: NonNull<SecKeychainSettings>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::copy_settings`"]
+    pub fn SecKeychainCopySettings(
+        keychain: Option<&SecKeychain>,
+        out_settings: NonNull<SecKeychainSettings>,
+    ) -> OSStatus;
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKeychain::unlock`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeychainUnlock(
+    keychain: Option<&SecKeychain>,
+    password_length: u32,
+    password: *const c_void,
+    use_password: bool,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn SecKeychainUnlock(
+            keychain: Option<&SecKeychain>,
+            password_length: u32,
+            password: *const c_void,
+            use_password: Boolean,
+        ) -> OSStatus;
+    }
+    unsafe { SecKeychainUnlock(keychain, password_length, password, use_password as _) }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::lock`"]
+    pub fn SecKeychainLock(keychain: Option<&SecKeychain>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `SecKeychain::lock_all`"]
+    pub fn SecKeychainLockAll() -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::copy_default`"]
+    pub fn SecKeychainCopyDefault(keychain: NonNull<*mut SecKeychain>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::set_default`"]
+    pub fn SecKeychainSetDefault(keychain: Option<&SecKeychain>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `SecKeychain::copy_search_list`"]
+    pub fn SecKeychainCopySearchList(search_list: NonNull<*const CFArray>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `SecKeychain::set_search_list`"]
+    pub fn SecKeychainSetSearchList(search_list: &CFArray) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::copy_domain_default`"]
+    pub fn SecKeychainCopyDomainDefault(
+        domain: SecPreferencesDomain,
+        keychain: NonNull<*mut SecKeychain>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::set_domain_default`"]
+    pub fn SecKeychainSetDomainDefault(
+        domain: SecPreferencesDomain,
+        keychain: Option<&SecKeychain>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `SecKeychain::copy_domain_search_list`"]
+    pub fn SecKeychainCopyDomainSearchList(
+        domain: SecPreferencesDomain,
+        search_list: NonNull<*const CFArray>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `SecKeychain::set_domain_search_list`"]
+    pub fn SecKeychainSetDomainSearchList(
+        domain: SecPreferencesDomain,
+        search_list: &CFArray,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `SecKeychain::set_preference_domain`"]
+    pub fn SecKeychainSetPreferenceDomain(domain: SecPreferencesDomain) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `SecKeychain::preference_domain`"]
+    pub fn SecKeychainGetPreferenceDomain(domain: NonNull<SecPreferencesDomain>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::status`"]
+    pub fn SecKeychainGetStatus(
+        keychain: Option<&SecKeychain>,
+        keychain_status: NonNull<SecKeychainStatus>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::path`"]
+    pub fn SecKeychainGetPath(
+        keychain: Option<&SecKeychain>,
+        io_path_length: NonNull<u32>,
+        path_name: NonNull<c_char>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::attribute_info_for_item_id`"]
+    pub fn SecKeychainAttributeInfoForItemID(
+        keychain: Option<&SecKeychain>,
+        item_id: u32,
+        info: NonNull<*mut SecKeychainAttributeInfo>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::free_attribute_info`"]
+    pub fn SecKeychainFreeAttributeInfo(info: NonNull<SecKeychainAttributeInfo>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "libc"))]
+    #[deprecated = "renamed to `SecKeychain::add_callback`"]
+    pub fn SecKeychainAddCallback(
+        callback_function: SecKeychainCallback,
+        event_mask: SecKeychainEventMask,
+        user_context: *mut c_void,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "libc"))]
+    #[deprecated = "renamed to `SecKeychain::remove_callback`"]
+    pub fn SecKeychainRemoveCallback(callback_function: SecKeychainCallback) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::add_internet_password`"]
+    pub fn SecKeychainAddInternetPassword(
+        keychain: Option<&SecKeychain>,
+        server_name_length: u32,
+        server_name: *const c_char,
+        security_domain_length: u32,
+        security_domain: *const c_char,
+        account_name_length: u32,
+        account_name: *const c_char,
+        path_length: u32,
+        path: *const c_char,
+        port: u16,
+        protocol: SecProtocolType,
+        authentication_type: SecAuthenticationType,
+        password_length: u32,
+        password_data: NonNull<c_void>,
+        item_ref: *mut *mut SecKeychainItem,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::find_internet_password`"]
+    pub fn SecKeychainFindInternetPassword(
+        keychain_or_array: Option<&CFType>,
+        server_name_length: u32,
+        server_name: *const c_char,
+        security_domain_length: u32,
+        security_domain: *const c_char,
+        account_name_length: u32,
+        account_name: *const c_char,
+        path_length: u32,
+        path: *const c_char,
+        port: u16,
+        protocol: SecProtocolType,
+        authentication_type: SecAuthenticationType,
+        password_length: *mut u32,
+        password_data: *mut *mut c_void,
+        item_ref: *mut *mut SecKeychainItem,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::add_generic_password`"]
+    pub fn SecKeychainAddGenericPassword(
+        keychain: Option<&SecKeychain>,
+        service_name_length: u32,
+        service_name: *const c_char,
+        account_name_length: u32,
+        account_name: *const c_char,
+        password_length: u32,
+        password_data: NonNull<c_void>,
+        item_ref: *mut *mut SecKeychainItem,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKeychain::find_generic_password`"]
     pub fn SecKeychainFindGenericPassword(
         keychain_or_array: Option<&CFType>,
         service_name_length: u32,
@@ -907,12 +1615,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// Turns on or off any optional user interaction
-///
-/// Parameter `state`: A boolean representing the state of user interaction.  You should pass TRUE to allow user interaction, and FALSE to disallow user interaction
-///
-/// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-#[deprecated = "SecKeychain is deprecated"]
+#[deprecated = "renamed to `SecKeychain::set_user_interaction_allowed`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecKeychainSetUserInteractionAllowed(state: bool) -> OSStatus {
     extern "C-unwind" {
@@ -922,27 +1625,13 @@ pub unsafe extern "C-unwind" fn SecKeychainSetUserInteractionAllowed(state: bool
 }
 
 extern "C-unwind" {
-    /// Retrieves the current state of user interaction.
-    ///
-    /// Parameter `state`: On return, a pointer to the current state of user interaction.  If this is TRUE then user interaction is allowed, if it is FALSE, then user interaction is not allowed.
-    ///
-    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    #[deprecated = "SecKeychain is deprecated"]
+    #[deprecated = "renamed to `SecKeychain::user_interaction_allowed`"]
     pub fn SecKeychainGetUserInteractionAllowed(state: NonNull<Boolean>) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// Returns the CSSM_CSP_HANDLE attachment for the given keychain reference. The handle is valid until the keychain reference is released.
-    ///
-    /// Parameter `keychain`: A keychain reference.
-    ///
-    /// Parameter `cspHandle`: On return, a pointer to the CSSM_CSP_HANDLE for the given keychain.
-    ///
-    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// This API is deprecated for 10.7. It should nho longer be needed.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
+    #[deprecated = "renamed to `SecKeychain::csp_handle`"]
     pub fn SecKeychainGetCSPHandle(
         keychain: Option<&SecKeychain>,
         csp_handle: NonNull<CSSM_CSP_HANDLE>,
@@ -950,17 +1639,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Returns the CSSM_DL_DB_HANDLE for a given keychain reference. The handle is valid until the keychain reference is released.
-    ///
-    /// Parameter `keychain`: A keychain reference.
-    ///
-    /// Parameter `dldbHandle`: On return, a pointer to the CSSM_DL_DB_HANDLE for the given keychain.
-    ///
-    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// This API is deprecated for 10.7. It should nho longer be needed.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated]
+    #[deprecated = "renamed to `SecKeychain::dldb_handle`"]
     pub fn SecKeychainGetDLDBHandle(
         keychain: Option<&SecKeychain>,
         dldb_handle: NonNull<CSSM_DL_DB_HANDLE>,
@@ -968,15 +1648,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Retrieves the access for a keychain.
-    ///
-    /// Parameter `keychain`: A reference to the keychain from which to copy the access.
-    ///
-    /// Parameter `access`: On return, a pointer to the access reference.
-    ///
-    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
-    #[deprecated = "SecKeychain is deprecated"]
+    #[deprecated = "renamed to `SecKeychain::copy_access`"]
     pub fn SecKeychainCopyAccess(
         keychain: Option<&SecKeychain>,
         access: NonNull<*mut SecAccess>,
@@ -984,14 +1657,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Sets the access for a keychain.
-    ///
-    /// Parameter `keychain`: A reference to the keychain for which to set the access.
-    ///
-    /// Parameter `access`: An access reference.
-    ///
-    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
-    #[deprecated = "SecKeychain is deprecated"]
+    #[deprecated = "renamed to `SecKeychain::set_access`"]
     pub fn SecKeychainSetAccess(keychain: Option<&SecKeychain>, access: &SecAccess) -> OSStatus;
 }

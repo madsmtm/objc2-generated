@@ -114,7 +114,10 @@ unsafe impl RefEncode for NSRectAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn NSDirectionalEdgeInsetsMake(top: CGFloat,leading: CGFloat,bottom: CGFloat,trailing: CGFloat,) -> NSDirectionalEdgeInsets;
+#[cfg(feature = "objc2-core-foundation")]
+impl NSDirectionalEdgeInsets {
+    // TODO: pub fn NSDirectionalEdgeInsetsMake(top: CGFloat,leading: CGFloat,bottom: CGFloat,trailing: CGFloat,) -> NSDirectionalEdgeInsets;
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewcompositionallayoutconfiguration?language=objc)

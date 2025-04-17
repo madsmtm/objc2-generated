@@ -118,7 +118,8 @@ unsafe impl RefEncode for JSRelationCondition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+#[cfg(all(feature = "JSValue", feature = "objc2"))]
+impl JSValue {
     /// Returns a JavaScript value's type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -127,10 +128,15 @@ extern "C-unwind" {
     ///
     /// Returns: A value of type JSType that identifies value's type.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueGetType(ctx: JSContextRef, value: JSValueRef) -> JSType;
-}
+    #[inline]
+    #[doc(alias = "JSValueGetType")]
+    pub unsafe fn r#type(ctx: JSContextRef, value: JSValueRef) -> JSType {
+        extern "C-unwind" {
+            fn JSValueGetType(ctx: JSContextRef, value: JSValueRef) -> JSType;
+        }
+        unsafe { JSValueGetType(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value's type is the undefined type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -139,10 +145,15 @@ extern "C-unwind" {
     ///
     /// Returns: true if value's type is the undefined type, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsUndefined(ctx: JSContextRef, value: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueIsUndefined")]
+    pub unsafe fn is_undefined(ctx: JSContextRef, value: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsUndefined(ctx: JSContextRef, value: JSValueRef) -> bool;
+        }
+        unsafe { JSValueIsUndefined(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value's type is the null type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -151,10 +162,15 @@ extern "C-unwind" {
     ///
     /// Returns: true if value's type is the null type, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsNull(ctx: JSContextRef, value: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueIsNull")]
+    pub unsafe fn is_null(ctx: JSContextRef, value: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsNull(ctx: JSContextRef, value: JSValueRef) -> bool;
+        }
+        unsafe { JSValueIsNull(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value's type is the boolean type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -163,10 +179,15 @@ extern "C-unwind" {
     ///
     /// Returns: true if value's type is the boolean type, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsBoolean(ctx: JSContextRef, value: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueIsBoolean")]
+    pub unsafe fn is_boolean(ctx: JSContextRef, value: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsBoolean(ctx: JSContextRef, value: JSValueRef) -> bool;
+        }
+        unsafe { JSValueIsBoolean(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value's type is the number type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -175,10 +196,15 @@ extern "C-unwind" {
     ///
     /// Returns: true if value's type is the number type, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsNumber(ctx: JSContextRef, value: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueIsNumber")]
+    pub unsafe fn is_number(ctx: JSContextRef, value: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsNumber(ctx: JSContextRef, value: JSValueRef) -> bool;
+        }
+        unsafe { JSValueIsNumber(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value's type is the string type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -187,10 +213,15 @@ extern "C-unwind" {
     ///
     /// Returns: true if value's type is the string type, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsString(ctx: JSContextRef, value: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueIsString")]
+    pub unsafe fn is_string(ctx: JSContextRef, value: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsString(ctx: JSContextRef, value: JSValueRef) -> bool;
+        }
+        unsafe { JSValueIsString(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value's type is the symbol type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -199,10 +230,15 @@ extern "C-unwind" {
     ///
     /// Returns: true if value's type is the symbol type, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsSymbol(ctx: JSContextRef, value: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueIsSymbol")]
+    pub unsafe fn is_symbol(ctx: JSContextRef, value: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsSymbol(ctx: JSContextRef, value: JSValueRef) -> bool;
+        }
+        unsafe { JSValueIsSymbol(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value's type is the BigInt type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -211,10 +247,15 @@ extern "C-unwind" {
     ///
     /// Returns: true if value's type is the BigInt type, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsBigInt(ctx: JSContextRef, value: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueIsBigInt")]
+    pub unsafe fn is_big_int(ctx: JSContextRef, value: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsBigInt(ctx: JSContextRef, value: JSValueRef) -> bool;
+        }
+        unsafe { JSValueIsBigInt(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value's type is the object type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -223,10 +264,15 @@ extern "C-unwind" {
     ///
     /// Returns: true if value's type is the object type, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsObject(ctx: JSContextRef, value: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueIsObject")]
+    pub unsafe fn is_object(ctx: JSContextRef, value: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsObject(ctx: JSContextRef, value: JSValueRef) -> bool;
+        }
+        unsafe { JSValueIsObject(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value is an object with a given class in its class chain.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -237,14 +283,23 @@ extern "C-unwind" {
     ///
     /// Returns: true if value is an object and has jsClass in its class chain, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsObjectOfClass(
+    #[inline]
+    #[doc(alias = "JSValueIsObjectOfClass")]
+    pub unsafe fn is_object_of_class(
         ctx: JSContextRef,
         value: JSValueRef,
         js_class: JSClassRef,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsObjectOfClass(
+                ctx: JSContextRef,
+                value: JSValueRef,
+                js_class: JSClassRef,
+            ) -> bool;
+        }
+        unsafe { JSValueIsObjectOfClass(ctx, value, js_class) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value is an array.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -253,10 +308,15 @@ extern "C-unwind" {
     ///
     /// Returns: true if value is an array, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsArray(ctx: JSContextRef, value: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueIsArray")]
+    pub unsafe fn is_array(ctx: JSContextRef, value: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsArray(ctx: JSContextRef, value: JSValueRef) -> bool;
+        }
+        unsafe { JSValueIsArray(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value is a date.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -265,10 +325,15 @@ extern "C-unwind" {
     ///
     /// Returns: true if value is a date, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsDate(ctx: JSContextRef, value: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueIsDate")]
+    pub unsafe fn is_date(ctx: JSContextRef, value: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsDate(ctx: JSContextRef, value: JSValueRef) -> bool;
+        }
+        unsafe { JSValueIsDate(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Returns a JavaScript value's Typed Array type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -279,14 +344,23 @@ extern "C-unwind" {
     ///
     /// Returns: A value of type JSTypedArrayType that identifies value's Typed Array type, or kJSTypedArrayTypeNone if the value is not a Typed Array object.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueGetTypedArrayType(
+    #[inline]
+    #[doc(alias = "JSValueGetTypedArrayType")]
+    pub unsafe fn typed_array_type(
         ctx: JSContextRef,
         value: JSValueRef,
         exception: *mut JSValueRef,
-    ) -> JSTypedArrayType;
-}
+    ) -> JSTypedArrayType {
+        extern "C-unwind" {
+            fn JSValueGetTypedArrayType(
+                ctx: JSContextRef,
+                value: JSValueRef,
+                exception: *mut JSValueRef,
+            ) -> JSTypedArrayType;
+        }
+        unsafe { JSValueGetTypedArrayType(ctx, value, exception) }
+    }
 
-extern "C-unwind" {
     /// Tests whether two JavaScript values are equal, as compared by the JS == operator.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -299,15 +373,25 @@ extern "C-unwind" {
     ///
     /// Returns: true if the two values are equal, false if they are not equal or an exception is thrown.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsEqual(
+    #[inline]
+    #[doc(alias = "JSValueIsEqual")]
+    pub unsafe fn is_equal(
         ctx: JSContextRef,
         a: JSValueRef,
         b: JSValueRef,
         exception: *mut JSValueRef,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsEqual(
+                ctx: JSContextRef,
+                a: JSValueRef,
+                b: JSValueRef,
+                exception: *mut JSValueRef,
+            ) -> bool;
+        }
+        unsafe { JSValueIsEqual(ctx, a, b, exception) }
+    }
 
-extern "C-unwind" {
     /// Tests whether two JavaScript values are strict equal, as compared by the JS === operator.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -318,10 +402,15 @@ extern "C-unwind" {
     ///
     /// Returns: true if the two values are strict equal, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsStrictEqual(ctx: JSContextRef, a: JSValueRef, b: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueIsStrictEqual")]
+    pub unsafe fn is_strict_equal(ctx: JSContextRef, a: JSValueRef, b: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsStrictEqual(ctx: JSContextRef, a: JSValueRef, b: JSValueRef) -> bool;
+        }
+        unsafe { JSValueIsStrictEqual(ctx, a, b) }
+    }
 
-extern "C-unwind" {
     /// Tests whether a JavaScript value is an object constructed by a given constructor, as compared by the JS instanceof operator.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -334,15 +423,25 @@ extern "C-unwind" {
     ///
     /// Returns: true if value is an object constructed by constructor, as compared by the JS instanceof operator, otherwise false.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueIsInstanceOfConstructor(
+    #[inline]
+    #[doc(alias = "JSValueIsInstanceOfConstructor")]
+    pub unsafe fn is_instance_of_constructor(
         ctx: JSContextRef,
         value: JSValueRef,
         constructor: JSObjectRef,
         exception: *mut JSValueRef,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn JSValueIsInstanceOfConstructor(
+                ctx: JSContextRef,
+                value: JSValueRef,
+                constructor: JSObjectRef,
+                exception: *mut JSValueRef,
+            ) -> bool;
+        }
+        unsafe { JSValueIsInstanceOfConstructor(ctx, value, constructor, exception) }
+    }
 
-extern "C-unwind" {
     /// Compares two JSValues.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -359,15 +458,25 @@ extern "C-unwind" {
     /// <
     /// `, and `>` operators. If either `left` or `right` is (or would coerce to) `NaN` in JavaScript, then the result is kJSRelationConditionUndefined.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueCompare(
+    #[inline]
+    #[doc(alias = "JSValueCompare")]
+    pub unsafe fn compare(
         ctx: JSContextRef,
         left: JSValueRef,
         right: JSValueRef,
         exception: *mut JSValueRef,
-    ) -> JSRelationCondition;
-}
+    ) -> JSRelationCondition {
+        extern "C-unwind" {
+            fn JSValueCompare(
+                ctx: JSContextRef,
+                left: JSValueRef,
+                right: JSValueRef,
+                exception: *mut JSValueRef,
+            ) -> JSRelationCondition;
+        }
+        unsafe { JSValueCompare(ctx, left, right, exception) }
+    }
 
-extern "C-unwind" {
     /// Compares a JSValue with a signed 64-bit integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -382,15 +491,25 @@ extern "C-unwind" {
     ///
     /// `left` is converted to an integer according to the rules specified by the JavaScript language then compared with `right`.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueCompareInt64(
+    #[inline]
+    #[doc(alias = "JSValueCompareInt64")]
+    pub unsafe fn compare_int64(
         ctx: JSContextRef,
         left: JSValueRef,
         right: i64,
         exception: *mut JSValueRef,
-    ) -> JSRelationCondition;
-}
+    ) -> JSRelationCondition {
+        extern "C-unwind" {
+            fn JSValueCompareInt64(
+                ctx: JSContextRef,
+                left: JSValueRef,
+                right: i64,
+                exception: *mut JSValueRef,
+            ) -> JSRelationCondition;
+        }
+        unsafe { JSValueCompareInt64(ctx, left, right, exception) }
+    }
 
-extern "C-unwind" {
     /// Compares a JSValue with an unsigned 64-bit integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -405,15 +524,25 @@ extern "C-unwind" {
     ///
     /// `left` is converted to an integer according to the rules specified by the JavaScript language then compared with `right`.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueCompareUInt64(
+    #[inline]
+    #[doc(alias = "JSValueCompareUInt64")]
+    pub unsafe fn compare_u_int64(
         ctx: JSContextRef,
         left: JSValueRef,
         right: u64,
         exception: *mut JSValueRef,
-    ) -> JSRelationCondition;
-}
+    ) -> JSRelationCondition {
+        extern "C-unwind" {
+            fn JSValueCompareUInt64(
+                ctx: JSContextRef,
+                left: JSValueRef,
+                right: u64,
+                exception: *mut JSValueRef,
+            ) -> JSRelationCondition;
+        }
+        unsafe { JSValueCompareUInt64(ctx, left, right, exception) }
+    }
 
-extern "C-unwind" {
     /// Compares a JSValue with a double.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -428,35 +557,55 @@ extern "C-unwind" {
     ///
     /// `left` is converted to a double according to the rules specified by the JavaScript language then compared with `right`.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueCompareDouble(
+    #[inline]
+    #[doc(alias = "JSValueCompareDouble")]
+    pub unsafe fn compare_double(
         ctx: JSContextRef,
         left: JSValueRef,
         right: c_double,
         exception: *mut JSValueRef,
-    ) -> JSRelationCondition;
-}
+    ) -> JSRelationCondition {
+        extern "C-unwind" {
+            fn JSValueCompareDouble(
+                ctx: JSContextRef,
+                left: JSValueRef,
+                right: c_double,
+                exception: *mut JSValueRef,
+            ) -> JSRelationCondition;
+        }
+        unsafe { JSValueCompareDouble(ctx, left, right, exception) }
+    }
 
-extern "C-unwind" {
     /// Creates a JavaScript value of the undefined type.
     ///
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Returns: The unique undefined value.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueMakeUndefined(ctx: JSContextRef) -> JSValueRef;
-}
+    #[inline]
+    #[doc(alias = "JSValueMakeUndefined")]
+    pub unsafe fn new_undefined(ctx: JSContextRef) -> JSValueRef {
+        extern "C-unwind" {
+            fn JSValueMakeUndefined(ctx: JSContextRef) -> JSValueRef;
+        }
+        unsafe { JSValueMakeUndefined(ctx) }
+    }
 
-extern "C-unwind" {
     /// Creates a JavaScript value of the null type.
     ///
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Returns: The unique null value.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueMakeNull(ctx: JSContextRef) -> JSValueRef;
-}
+    #[inline]
+    #[doc(alias = "JSValueMakeNull")]
+    pub unsafe fn new_null(ctx: JSContextRef) -> JSValueRef {
+        extern "C-unwind" {
+            fn JSValueMakeNull(ctx: JSContextRef) -> JSValueRef;
+        }
+        unsafe { JSValueMakeNull(ctx) }
+    }
 
-extern "C-unwind" {
     /// Creates a JavaScript value of the boolean type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -465,10 +614,15 @@ extern "C-unwind" {
     ///
     /// Returns: A JSValue of the boolean type, representing the value of boolean.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueMakeBoolean(ctx: JSContextRef, boolean: bool) -> JSValueRef;
-}
+    #[inline]
+    #[doc(alias = "JSValueMakeBoolean")]
+    pub unsafe fn new_boolean(ctx: JSContextRef, boolean: bool) -> JSValueRef {
+        extern "C-unwind" {
+            fn JSValueMakeBoolean(ctx: JSContextRef, boolean: bool) -> JSValueRef;
+        }
+        unsafe { JSValueMakeBoolean(ctx, boolean) }
+    }
 
-extern "C-unwind" {
     /// Creates a JavaScript value of the number type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -477,10 +631,15 @@ extern "C-unwind" {
     ///
     /// Returns: A JSValue of the number type, representing the value of number.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueMakeNumber(ctx: JSContextRef, number: c_double) -> JSValueRef;
-}
+    #[inline]
+    #[doc(alias = "JSValueMakeNumber")]
+    pub unsafe fn new_number(ctx: JSContextRef, number: c_double) -> JSValueRef {
+        extern "C-unwind" {
+            fn JSValueMakeNumber(ctx: JSContextRef, number: c_double) -> JSValueRef;
+        }
+        unsafe { JSValueMakeNumber(ctx, number) }
+    }
 
-extern "C-unwind" {
     /// Creates a JavaScript value of the string type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -490,10 +649,15 @@ extern "C-unwind" {
     ///
     /// Returns: A JSValue of the string type, representing the value of string.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueMakeString(ctx: JSContextRef, string: JSStringRef) -> JSValueRef;
-}
+    #[inline]
+    #[doc(alias = "JSValueMakeString")]
+    pub unsafe fn new_string(ctx: JSContextRef, string: JSStringRef) -> JSValueRef {
+        extern "C-unwind" {
+            fn JSValueMakeString(ctx: JSContextRef, string: JSStringRef) -> JSValueRef;
+        }
+        unsafe { JSValueMakeString(ctx, string) }
+    }
 
-extern "C-unwind" {
     /// Creates a JavaScript value of the symbol type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -502,7 +666,14 @@ extern "C-unwind" {
     ///
     /// Returns: A unique JSValue of the symbol type, whose description matches the one provided.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueMakeSymbol(ctx: JSContextRef, description: JSStringRef) -> JSValueRef;
+    #[inline]
+    #[doc(alias = "JSValueMakeSymbol")]
+    pub unsafe fn new_symbol(ctx: JSContextRef, description: JSStringRef) -> JSValueRef {
+        extern "C-unwind" {
+            fn JSValueMakeSymbol(ctx: JSContextRef, description: JSStringRef) -> JSValueRef;
+        }
+        unsafe { JSValueMakeSymbol(ctx, description) }
+    }
 }
 
 extern "C-unwind" {
@@ -581,7 +752,8 @@ extern "C-unwind" {
     ) -> JSValueRef;
 }
 
-extern "C-unwind" {
+#[cfg(all(feature = "JSValue", feature = "objc2"))]
+impl JSValue {
     /// Creates a JavaScript value from a JSON formatted string.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -590,10 +762,15 @@ extern "C-unwind" {
     ///
     /// Returns: A JSValue containing the parsed value, or NULL if the input is invalid.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueMakeFromJSONString(ctx: JSContextRef, string: JSStringRef) -> JSValueRef;
-}
+    #[inline]
+    #[doc(alias = "JSValueMakeFromJSONString")]
+    pub unsafe fn from_json_string(ctx: JSContextRef, string: JSStringRef) -> JSValueRef {
+        extern "C-unwind" {
+            fn JSValueMakeFromJSONString(ctx: JSContextRef, string: JSStringRef) -> JSValueRef;
+        }
+        unsafe { JSValueMakeFromJSONString(ctx, string) }
+    }
 
-extern "C-unwind" {
     /// Creates a JavaScript string containing the JSON serialized representation of a JS value.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -606,15 +783,25 @@ extern "C-unwind" {
     ///
     /// Returns: A JSString with the result of serialization, or NULL if an exception is thrown.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueCreateJSONString(
+    #[inline]
+    #[doc(alias = "JSValueCreateJSONString")]
+    pub unsafe fn create_json_string(
         ctx: JSContextRef,
         value: JSValueRef,
         indent: c_uint,
         exception: *mut JSValueRef,
-    ) -> JSStringRef;
-}
+    ) -> JSStringRef {
+        extern "C-unwind" {
+            fn JSValueCreateJSONString(
+                ctx: JSContextRef,
+                value: JSValueRef,
+                indent: c_uint,
+                exception: *mut JSValueRef,
+            ) -> JSStringRef;
+        }
+        unsafe { JSValueCreateJSONString(ctx, value, indent, exception) }
+    }
 
-extern "C-unwind" {
     /// Converts a JavaScript value to boolean and returns the resulting boolean.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -623,10 +810,15 @@ extern "C-unwind" {
     ///
     /// Returns: The boolean result of conversion.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueToBoolean(ctx: JSContextRef, value: JSValueRef) -> bool;
-}
+    #[inline]
+    #[doc(alias = "JSValueToBoolean")]
+    pub unsafe fn to_boolean(ctx: JSContextRef, value: JSValueRef) -> bool {
+        extern "C-unwind" {
+            fn JSValueToBoolean(ctx: JSContextRef, value: JSValueRef) -> bool;
+        }
+        unsafe { JSValueToBoolean(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Converts a JavaScript value to number and returns the resulting number.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -639,14 +831,23 @@ extern "C-unwind" {
     ///
     /// The result is equivalent to `Number(value)` in JavaScript.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueToNumber(
+    #[inline]
+    #[doc(alias = "JSValueToNumber")]
+    pub unsafe fn to_number(
         ctx: JSContextRef,
         value: JSValueRef,
         exception: *mut JSValueRef,
-    ) -> c_double;
-}
+    ) -> c_double {
+        extern "C-unwind" {
+            fn JSValueToNumber(
+                ctx: JSContextRef,
+                value: JSValueRef,
+                exception: *mut JSValueRef,
+            ) -> c_double;
+        }
+        unsafe { JSValueToNumber(ctx, value, exception) }
+    }
 
-extern "C-unwind" {
     /// Converts a JSValue to a singed 32-bit integer and returns the resulting integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -659,10 +860,23 @@ extern "C-unwind" {
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to an int32_t.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueToInt32(ctx: JSContextRef, value: JSValueRef, exception: *mut JSValueRef) -> i32;
-}
+    #[inline]
+    #[doc(alias = "JSValueToInt32")]
+    pub unsafe fn to_int32(
+        ctx: JSContextRef,
+        value: JSValueRef,
+        exception: *mut JSValueRef,
+    ) -> i32 {
+        extern "C-unwind" {
+            fn JSValueToInt32(
+                ctx: JSContextRef,
+                value: JSValueRef,
+                exception: *mut JSValueRef,
+            ) -> i32;
+        }
+        unsafe { JSValueToInt32(ctx, value, exception) }
+    }
 
-extern "C-unwind" {
     /// Converts a JSValue to an unsigned 32-bit integer and returns the resulting integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -675,11 +889,23 @@ extern "C-unwind" {
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to a uint32_t.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueToUInt32(ctx: JSContextRef, value: JSValueRef, exception: *mut JSValueRef)
-        -> u32;
-}
+    #[inline]
+    #[doc(alias = "JSValueToUInt32")]
+    pub unsafe fn to_u_int32(
+        ctx: JSContextRef,
+        value: JSValueRef,
+        exception: *mut JSValueRef,
+    ) -> u32 {
+        extern "C-unwind" {
+            fn JSValueToUInt32(
+                ctx: JSContextRef,
+                value: JSValueRef,
+                exception: *mut JSValueRef,
+            ) -> u32;
+        }
+        unsafe { JSValueToUInt32(ctx, value, exception) }
+    }
 
-extern "C-unwind" {
     /// Converts a JSValue to a singed 64-bit integer and returns the resulting integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -692,10 +918,23 @@ extern "C-unwind" {
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to an int64_t.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueToInt64(ctx: JSContextRef, value: JSValueRef, exception: *mut JSValueRef) -> i64;
-}
+    #[inline]
+    #[doc(alias = "JSValueToInt64")]
+    pub unsafe fn to_int64(
+        ctx: JSContextRef,
+        value: JSValueRef,
+        exception: *mut JSValueRef,
+    ) -> i64 {
+        extern "C-unwind" {
+            fn JSValueToInt64(
+                ctx: JSContextRef,
+                value: JSValueRef,
+                exception: *mut JSValueRef,
+            ) -> i64;
+        }
+        unsafe { JSValueToInt64(ctx, value, exception) }
+    }
 
-extern "C-unwind" {
     /// Converts a JSValue to an unsigned 64-bit integer and returns the resulting integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -708,11 +947,23 @@ extern "C-unwind" {
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to a uint64_t.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueToUInt64(ctx: JSContextRef, value: JSValueRef, exception: *mut JSValueRef)
-        -> u64;
-}
+    #[inline]
+    #[doc(alias = "JSValueToUInt64")]
+    pub unsafe fn to_u_int64(
+        ctx: JSContextRef,
+        value: JSValueRef,
+        exception: *mut JSValueRef,
+    ) -> u64 {
+        extern "C-unwind" {
+            fn JSValueToUInt64(
+                ctx: JSContextRef,
+                value: JSValueRef,
+                exception: *mut JSValueRef,
+            ) -> u64;
+        }
+        unsafe { JSValueToUInt64(ctx, value, exception) }
+    }
 
-extern "C-unwind" {
     /// Converts a JavaScript value to string and copies the result into a JavaScript string.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -723,14 +974,23 @@ extern "C-unwind" {
     ///
     /// Returns: A JSString with the result of conversion, or NULL if an exception is thrown. Ownership follows the Create Rule.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueToStringCopy(
+    #[inline]
+    #[doc(alias = "JSValueToStringCopy")]
+    pub unsafe fn to_string_copy(
         ctx: JSContextRef,
         value: JSValueRef,
         exception: *mut JSValueRef,
-    ) -> JSStringRef;
-}
+    ) -> JSStringRef {
+        extern "C-unwind" {
+            fn JSValueToStringCopy(
+                ctx: JSContextRef,
+                value: JSValueRef,
+                exception: *mut JSValueRef,
+            ) -> JSStringRef;
+        }
+        unsafe { JSValueToStringCopy(ctx, value, exception) }
+    }
 
-extern "C-unwind" {
     /// Converts a JavaScript value to object and returns the resulting object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -741,14 +1001,23 @@ extern "C-unwind" {
     ///
     /// Returns: The JSObject result of conversion, or NULL if an exception is thrown.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueToObject(
+    #[inline]
+    #[doc(alias = "JSValueToObject")]
+    pub unsafe fn to_object(
         ctx: JSContextRef,
         value: JSValueRef,
         exception: *mut JSValueRef,
-    ) -> JSObjectRef;
-}
+    ) -> JSObjectRef {
+        extern "C-unwind" {
+            fn JSValueToObject(
+                ctx: JSContextRef,
+                value: JSValueRef,
+                exception: *mut JSValueRef,
+            ) -> JSObjectRef;
+        }
+        unsafe { JSValueToObject(ctx, value, exception) }
+    }
 
-extern "C-unwind" {
     /// Protects a JavaScript value from garbage collection.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -759,10 +1028,15 @@ extern "C-unwind" {
     ///
     /// A value may be protected multiple times and must be unprotected an equal number of times before becoming eligible for garbage collection.
     #[cfg(feature = "JSBase")]
-    pub fn JSValueProtect(ctx: JSContextRef, value: JSValueRef);
-}
+    #[inline]
+    #[doc(alias = "JSValueProtect")]
+    pub unsafe fn protect(ctx: JSContextRef, value: JSValueRef) {
+        extern "C-unwind" {
+            fn JSValueProtect(ctx: JSContextRef, value: JSValueRef);
+        }
+        unsafe { JSValueProtect(ctx, value) }
+    }
 
-extern "C-unwind" {
     /// Unprotects a JavaScript value from garbage collection.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -772,5 +1046,297 @@ extern "C-unwind" {
     /// A value may be protected multiple times and must be unprotected an
     /// equal number of times before becoming eligible for garbage collection.
     #[cfg(feature = "JSBase")]
+    #[inline]
+    #[doc(alias = "JSValueUnprotect")]
+    pub unsafe fn unprotect(ctx: JSContextRef, value: JSValueRef) {
+        extern "C-unwind" {
+            fn JSValueUnprotect(ctx: JSContextRef, value: JSValueRef);
+        }
+        unsafe { JSValueUnprotect(ctx, value) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::type`"]
+    pub fn JSValueGetType(ctx: JSContextRef, value: JSValueRef) -> JSType;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_undefined`"]
+    pub fn JSValueIsUndefined(ctx: JSContextRef, value: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_null`"]
+    pub fn JSValueIsNull(ctx: JSContextRef, value: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_boolean`"]
+    pub fn JSValueIsBoolean(ctx: JSContextRef, value: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_number`"]
+    pub fn JSValueIsNumber(ctx: JSContextRef, value: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_string`"]
+    pub fn JSValueIsString(ctx: JSContextRef, value: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_symbol`"]
+    pub fn JSValueIsSymbol(ctx: JSContextRef, value: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_big_int`"]
+    pub fn JSValueIsBigInt(ctx: JSContextRef, value: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_object`"]
+    pub fn JSValueIsObject(ctx: JSContextRef, value: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_object_of_class`"]
+    pub fn JSValueIsObjectOfClass(
+        ctx: JSContextRef,
+        value: JSValueRef,
+        js_class: JSClassRef,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_array`"]
+    pub fn JSValueIsArray(ctx: JSContextRef, value: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_date`"]
+    pub fn JSValueIsDate(ctx: JSContextRef, value: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::typed_array_type`"]
+    pub fn JSValueGetTypedArrayType(
+        ctx: JSContextRef,
+        value: JSValueRef,
+        exception: *mut JSValueRef,
+    ) -> JSTypedArrayType;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_equal`"]
+    pub fn JSValueIsEqual(
+        ctx: JSContextRef,
+        a: JSValueRef,
+        b: JSValueRef,
+        exception: *mut JSValueRef,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_strict_equal`"]
+    pub fn JSValueIsStrictEqual(ctx: JSContextRef, a: JSValueRef, b: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::is_instance_of_constructor`"]
+    pub fn JSValueIsInstanceOfConstructor(
+        ctx: JSContextRef,
+        value: JSValueRef,
+        constructor: JSObjectRef,
+        exception: *mut JSValueRef,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::compare`"]
+    pub fn JSValueCompare(
+        ctx: JSContextRef,
+        left: JSValueRef,
+        right: JSValueRef,
+        exception: *mut JSValueRef,
+    ) -> JSRelationCondition;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::compare_int64`"]
+    pub fn JSValueCompareInt64(
+        ctx: JSContextRef,
+        left: JSValueRef,
+        right: i64,
+        exception: *mut JSValueRef,
+    ) -> JSRelationCondition;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::compare_u_int64`"]
+    pub fn JSValueCompareUInt64(
+        ctx: JSContextRef,
+        left: JSValueRef,
+        right: u64,
+        exception: *mut JSValueRef,
+    ) -> JSRelationCondition;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::compare_double`"]
+    pub fn JSValueCompareDouble(
+        ctx: JSContextRef,
+        left: JSValueRef,
+        right: c_double,
+        exception: *mut JSValueRef,
+    ) -> JSRelationCondition;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::new_undefined`"]
+    pub fn JSValueMakeUndefined(ctx: JSContextRef) -> JSValueRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::new_null`"]
+    pub fn JSValueMakeNull(ctx: JSContextRef) -> JSValueRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::new_boolean`"]
+    pub fn JSValueMakeBoolean(ctx: JSContextRef, boolean: bool) -> JSValueRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::new_number`"]
+    pub fn JSValueMakeNumber(ctx: JSContextRef, number: c_double) -> JSValueRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::new_string`"]
+    pub fn JSValueMakeString(ctx: JSContextRef, string: JSStringRef) -> JSValueRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::new_symbol`"]
+    pub fn JSValueMakeSymbol(ctx: JSContextRef, description: JSStringRef) -> JSValueRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::from_json_string`"]
+    pub fn JSValueMakeFromJSONString(ctx: JSContextRef, string: JSStringRef) -> JSValueRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::create_json_string`"]
+    pub fn JSValueCreateJSONString(
+        ctx: JSContextRef,
+        value: JSValueRef,
+        indent: c_uint,
+        exception: *mut JSValueRef,
+    ) -> JSStringRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::to_boolean`"]
+    pub fn JSValueToBoolean(ctx: JSContextRef, value: JSValueRef) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::to_number`"]
+    pub fn JSValueToNumber(
+        ctx: JSContextRef,
+        value: JSValueRef,
+        exception: *mut JSValueRef,
+    ) -> c_double;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::to_int32`"]
+    pub fn JSValueToInt32(ctx: JSContextRef, value: JSValueRef, exception: *mut JSValueRef) -> i32;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::to_u_int32`"]
+    pub fn JSValueToUInt32(ctx: JSContextRef, value: JSValueRef, exception: *mut JSValueRef)
+        -> u32;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::to_int64`"]
+    pub fn JSValueToInt64(ctx: JSContextRef, value: JSValueRef, exception: *mut JSValueRef) -> i64;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::to_u_int64`"]
+    pub fn JSValueToUInt64(ctx: JSContextRef, value: JSValueRef, exception: *mut JSValueRef)
+        -> u64;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::to_string_copy`"]
+    pub fn JSValueToStringCopy(
+        ctx: JSContextRef,
+        value: JSValueRef,
+        exception: *mut JSValueRef,
+    ) -> JSStringRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::to_object`"]
+    pub fn JSValueToObject(
+        ctx: JSContextRef,
+        value: JSValueRef,
+        exception: *mut JSValueRef,
+    ) -> JSObjectRef;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::protect`"]
+    pub fn JSValueProtect(ctx: JSContextRef, value: JSValueRef);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "JSBase")]
+    #[deprecated = "renamed to `JSValue::unprotect`"]
     pub fn JSValueUnprotect(ctx: JSContextRef, value: JSValueRef);
 }

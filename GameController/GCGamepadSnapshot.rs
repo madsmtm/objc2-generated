@@ -116,23 +116,26 @@ unsafe impl RefEncode for GCGamepadSnapShotDataV100 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Fills out a v100 snapshot from any compatible NSData source
-///
-///
-/// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
-#[deprecated = "Use GCExtendedGamepad instead"]
-#[inline]
-pub unsafe extern "C-unwind" fn GCGamepadSnapShotDataV100FromNSData(
-    snapshot_data: *mut GCGamepadSnapShotDataV100,
-    data: Option<&NSData>,
-) -> bool {
-    extern "C-unwind" {
-        fn GCGamepadSnapShotDataV100FromNSData(
-            snapshot_data: *mut GCGamepadSnapShotDataV100,
-            data: Option<&NSData>,
-        ) -> Bool;
+impl GCGamepadSnapShotDataV100 {
+    /// Fills out a v100 snapshot from any compatible NSData source
+    ///
+    ///
+    /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    #[deprecated = "Use GCExtendedGamepad instead"]
+    #[inline]
+    #[doc(alias = "GCGamepadSnapShotDataV100FromNSData")]
+    pub unsafe fn from_ns_data(
+        snapshot_data: *mut GCGamepadSnapShotDataV100,
+        data: Option<&NSData>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn GCGamepadSnapShotDataV100FromNSData(
+                snapshot_data: *mut GCGamepadSnapShotDataV100,
+                data: Option<&NSData>,
+            ) -> Bool;
+        }
+        unsafe { GCGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
     }
-    unsafe { GCGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
 }
 
 /// Creates an NSData object from a v100 snapshot.
@@ -152,4 +155,19 @@ pub unsafe extern "C-unwind" fn NSDataFromGCGamepadSnapShotDataV100(
     }
     let ret = unsafe { NSDataFromGCGamepadSnapShotDataV100(snapshot_data) };
     unsafe { Retained::retain_autoreleased(ret) }
+}
+
+#[deprecated = "renamed to `GCGamepadSnapShotDataV100::from_ns_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn GCGamepadSnapShotDataV100FromNSData(
+    snapshot_data: *mut GCGamepadSnapShotDataV100,
+    data: Option<&NSData>,
+) -> bool {
+    extern "C-unwind" {
+        fn GCGamepadSnapShotDataV100FromNSData(
+            snapshot_data: *mut GCGamepadSnapShotDataV100,
+            data: Option<&NSData>,
+        ) -> Bool;
+    }
+    unsafe { GCGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
 }

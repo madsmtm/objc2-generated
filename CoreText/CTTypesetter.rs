@@ -75,130 +75,132 @@ extern "C" {
     pub static kCTTypesetterOptionForcedEmbeddingLevel: &'static CFString;
 }
 
-/// Creates an immutable typesetter object using an attributed
-/// string.
-///
-///
-/// The resultant typesetter can be used to create lines, perform
-/// line breaking, and do other contextual analysis based on the
-/// characters in the string.
-///
-///
-/// Parameter `string`: The CFAttributedStringRef that you want to typeset. This
-/// parameter must be filled in with a valid CFAttributedString.
-///
-///
-/// Returns: This function will return a reference to a CTTypesetter.
-#[inline]
-pub unsafe extern "C-unwind" fn CTTypesetterCreateWithAttributedString(
-    string: &CFAttributedString,
-) -> CFRetained<CTTypesetter> {
-    extern "C-unwind" {
-        fn CTTypesetterCreateWithAttributedString(
-            string: &CFAttributedString,
-        ) -> Option<NonNull<CTTypesetter>>;
+impl CTTypesetter {
+    /// Creates an immutable typesetter object using an attributed
+    /// string.
+    ///
+    ///
+    /// The resultant typesetter can be used to create lines, perform
+    /// line breaking, and do other contextual analysis based on the
+    /// characters in the string.
+    ///
+    ///
+    /// Parameter `string`: The CFAttributedStringRef that you want to typeset. This
+    /// parameter must be filled in with a valid CFAttributedString.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTTypesetter.
+    #[inline]
+    #[doc(alias = "CTTypesetterCreateWithAttributedString")]
+    pub unsafe fn with_attributed_string(string: &CFAttributedString) -> CFRetained<CTTypesetter> {
+        extern "C-unwind" {
+            fn CTTypesetterCreateWithAttributedString(
+                string: &CFAttributedString,
+            ) -> Option<NonNull<CTTypesetter>>;
+        }
+        let ret = unsafe { CTTypesetterCreateWithAttributedString(string) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTTypesetterCreateWithAttributedString(string) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Creates an immutable typesetter object using an attributed
-/// string and a dictionary of options.
-///
-///
-/// The resultant typesetter can be used to create lines, perform
-/// line breaking, and do other contextual analysis based on the
-/// characters in the string.
-///
-///
-/// Parameter `string`: The CFAttributedStringRef that you want to typeset. This
-/// parameter must be filled in with a valid CFAttributedString.
-///
-///
-/// Parameter `options`: A CFDictionary of typesetter options, or NULL if there are none.
-///
-///
-/// Returns: This function will return either a reference to a CTTypesetter
-/// or NULL if layout cannot be performed due to an attributed
-/// string that would require unreasonable effort.
-///
-///
-/// See also: kCTTypesetterOptionAllowUnboundedLayout
-#[inline]
-pub unsafe extern "C-unwind" fn CTTypesetterCreateWithAttributedStringAndOptions(
-    string: &CFAttributedString,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CTTypesetter>> {
-    extern "C-unwind" {
-        fn CTTypesetterCreateWithAttributedStringAndOptions(
-            string: &CFAttributedString,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CTTypesetter>>;
+    /// Creates an immutable typesetter object using an attributed
+    /// string and a dictionary of options.
+    ///
+    ///
+    /// The resultant typesetter can be used to create lines, perform
+    /// line breaking, and do other contextual analysis based on the
+    /// characters in the string.
+    ///
+    ///
+    /// Parameter `string`: The CFAttributedStringRef that you want to typeset. This
+    /// parameter must be filled in with a valid CFAttributedString.
+    ///
+    ///
+    /// Parameter `options`: A CFDictionary of typesetter options, or NULL if there are none.
+    ///
+    ///
+    /// Returns: This function will return either a reference to a CTTypesetter
+    /// or NULL if layout cannot be performed due to an attributed
+    /// string that would require unreasonable effort.
+    ///
+    ///
+    /// See also: kCTTypesetterOptionAllowUnboundedLayout
+    #[inline]
+    #[doc(alias = "CTTypesetterCreateWithAttributedStringAndOptions")]
+    pub unsafe fn with_attributed_string_and_options(
+        string: &CFAttributedString,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CTTypesetter>> {
+        extern "C-unwind" {
+            fn CTTypesetterCreateWithAttributedStringAndOptions(
+                string: &CFAttributedString,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CTTypesetter>>;
+        }
+        let ret = unsafe { CTTypesetterCreateWithAttributedStringAndOptions(string, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CTTypesetterCreateWithAttributedStringAndOptions(string, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Creates an immutable line from the typesetter.
-///
-///
-/// The resultant line will consist of glyphs in the correct visual
-/// order, ready to draw.
-///
-///
-/// Parameter `typesetter`: The typesetter which the line will come from.
-///
-///
-/// Parameter `stringRange`: The string range which the line will be based on. If the length
-/// portion of range is set to 0, then the typesetter will continue
-/// to add glyphs to the line until it runs out of characters in the
-/// string. The location and length of the range must be within the
-/// bounds of the string, otherwise the call will fail.
-///
-///
-/// Parameter `offset`: The line position offset.
-///
-///
-/// Returns: This function will return a reference to a CTLine.
-#[cfg(feature = "CTLine")]
-#[inline]
-pub unsafe extern "C-unwind" fn CTTypesetterCreateLineWithOffset(
-    typesetter: &CTTypesetter,
-    string_range: CFRange,
-    offset: c_double,
-) -> CFRetained<CTLine> {
-    extern "C-unwind" {
-        fn CTTypesetterCreateLineWithOffset(
-            typesetter: &CTTypesetter,
-            string_range: CFRange,
-            offset: c_double,
-        ) -> Option<NonNull<CTLine>>;
+    /// Creates an immutable line from the typesetter.
+    ///
+    ///
+    /// The resultant line will consist of glyphs in the correct visual
+    /// order, ready to draw.
+    ///
+    ///
+    /// Parameter `typesetter`: The typesetter which the line will come from.
+    ///
+    ///
+    /// Parameter `stringRange`: The string range which the line will be based on. If the length
+    /// portion of range is set to 0, then the typesetter will continue
+    /// to add glyphs to the line until it runs out of characters in the
+    /// string. The location and length of the range must be within the
+    /// bounds of the string, otherwise the call will fail.
+    ///
+    ///
+    /// Parameter `offset`: The line position offset.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTLine.
+    #[cfg(feature = "CTLine")]
+    #[inline]
+    #[doc(alias = "CTTypesetterCreateLineWithOffset")]
+    pub unsafe fn new_line_with_offset(
+        self: &CTTypesetter,
+        string_range: CFRange,
+        offset: c_double,
+    ) -> CFRetained<CTLine> {
+        extern "C-unwind" {
+            fn CTTypesetterCreateLineWithOffset(
+                typesetter: &CTTypesetter,
+                string_range: CFRange,
+                offset: c_double,
+            ) -> Option<NonNull<CTLine>>;
+        }
+        let ret = unsafe { CTTypesetterCreateLineWithOffset(self, string_range, offset) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTTypesetterCreateLineWithOffset(typesetter, string_range, offset) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Equivalent to CTTypesetterCreateLineWithOffset with offset = 0.0.
-#[cfg(feature = "CTLine")]
-#[inline]
-pub unsafe extern "C-unwind" fn CTTypesetterCreateLine(
-    typesetter: &CTTypesetter,
-    string_range: CFRange,
-) -> CFRetained<CTLine> {
-    extern "C-unwind" {
-        fn CTTypesetterCreateLine(
-            typesetter: &CTTypesetter,
-            string_range: CFRange,
-        ) -> Option<NonNull<CTLine>>;
+    /// Equivalent to CTTypesetterCreateLineWithOffset with offset = 0.0.
+    #[cfg(feature = "CTLine")]
+    #[inline]
+    #[doc(alias = "CTTypesetterCreateLine")]
+    pub unsafe fn new_line(self: &CTTypesetter, string_range: CFRange) -> CFRetained<CTLine> {
+        extern "C-unwind" {
+            fn CTTypesetterCreateLine(
+                typesetter: &CTTypesetter,
+                string_range: CFRange,
+            ) -> Option<NonNull<CTLine>>;
+        }
+        let ret = unsafe { CTTypesetterCreateLine(self, string_range) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTTypesetterCreateLine(typesetter, string_range) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-extern "C-unwind" {
     /// Suggests a contextual line break point based on the width
     /// provided.
     ///
@@ -223,24 +225,43 @@ extern "C-unwind" {
     /// Returns: The value returned is a count of the characters from startIndex
     /// that would cause the line break. This value returned can be used
     /// to construct a character range for CTTypesetterCreateLine.
-    pub fn CTTypesetterSuggestLineBreakWithOffset(
-        typesetter: &CTTypesetter,
+    #[inline]
+    #[doc(alias = "CTTypesetterSuggestLineBreakWithOffset")]
+    pub unsafe fn suggest_line_break_with_offset(
+        self: &CTTypesetter,
         start_index: CFIndex,
         width: c_double,
         offset: c_double,
-    ) -> CFIndex;
-}
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn CTTypesetterSuggestLineBreakWithOffset(
+                typesetter: &CTTypesetter,
+                start_index: CFIndex,
+                width: c_double,
+                offset: c_double,
+            ) -> CFIndex;
+        }
+        unsafe { CTTypesetterSuggestLineBreakWithOffset(self, start_index, width, offset) }
+    }
 
-extern "C-unwind" {
     /// Equivalent to CTTypesetterSuggestLineBreakWithOffset with offset = 0.0.
-    pub fn CTTypesetterSuggestLineBreak(
-        typesetter: &CTTypesetter,
+    #[inline]
+    #[doc(alias = "CTTypesetterSuggestLineBreak")]
+    pub unsafe fn suggest_line_break(
+        self: &CTTypesetter,
         start_index: CFIndex,
         width: c_double,
-    ) -> CFIndex;
-}
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn CTTypesetterSuggestLineBreak(
+                typesetter: &CTTypesetter,
+                start_index: CFIndex,
+                width: c_double,
+            ) -> CFIndex;
+        }
+        unsafe { CTTypesetterSuggestLineBreak(self, start_index, width) }
+    }
 
-extern "C-unwind" {
     /// Suggests a cluster line break point based on the width provided.
     ///
     ///
@@ -270,6 +291,134 @@ extern "C-unwind" {
     /// Returns: The value returned is a count of the characters from startIndex
     /// that would cause the cluster break. This value returned can be
     /// used to construct a character range for CTTypesetterCreateLine.
+    #[inline]
+    #[doc(alias = "CTTypesetterSuggestClusterBreakWithOffset")]
+    pub unsafe fn suggest_cluster_break_with_offset(
+        self: &CTTypesetter,
+        start_index: CFIndex,
+        width: c_double,
+        offset: c_double,
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn CTTypesetterSuggestClusterBreakWithOffset(
+                typesetter: &CTTypesetter,
+                start_index: CFIndex,
+                width: c_double,
+                offset: c_double,
+            ) -> CFIndex;
+        }
+        unsafe { CTTypesetterSuggestClusterBreakWithOffset(self, start_index, width, offset) }
+    }
+
+    /// Equivalent to CTTypesetterSuggestClusterBreakWithOffset with offset = 0.0.
+    #[inline]
+    #[doc(alias = "CTTypesetterSuggestClusterBreak")]
+    pub unsafe fn suggest_cluster_break(
+        self: &CTTypesetter,
+        start_index: CFIndex,
+        width: c_double,
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn CTTypesetterSuggestClusterBreak(
+                typesetter: &CTTypesetter,
+                start_index: CFIndex,
+                width: c_double,
+            ) -> CFIndex;
+        }
+        unsafe { CTTypesetterSuggestClusterBreak(self, start_index, width) }
+    }
+}
+
+#[deprecated = "renamed to `CTTypesetter::with_attributed_string`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTTypesetterCreateWithAttributedString(
+    string: &CFAttributedString,
+) -> CFRetained<CTTypesetter> {
+    extern "C-unwind" {
+        fn CTTypesetterCreateWithAttributedString(
+            string: &CFAttributedString,
+        ) -> Option<NonNull<CTTypesetter>>;
+    }
+    let ret = unsafe { CTTypesetterCreateWithAttributedString(string) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTTypesetter::with_attributed_string_and_options`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTTypesetterCreateWithAttributedStringAndOptions(
+    string: &CFAttributedString,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CTTypesetter>> {
+    extern "C-unwind" {
+        fn CTTypesetterCreateWithAttributedStringAndOptions(
+            string: &CFAttributedString,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CTTypesetter>>;
+    }
+    let ret = unsafe { CTTypesetterCreateWithAttributedStringAndOptions(string, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CTLine")]
+#[deprecated = "renamed to `CTTypesetter::new_line_with_offset`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTTypesetterCreateLineWithOffset(
+    typesetter: &CTTypesetter,
+    string_range: CFRange,
+    offset: c_double,
+) -> CFRetained<CTLine> {
+    extern "C-unwind" {
+        fn CTTypesetterCreateLineWithOffset(
+            typesetter: &CTTypesetter,
+            string_range: CFRange,
+            offset: c_double,
+        ) -> Option<NonNull<CTLine>>;
+    }
+    let ret = unsafe { CTTypesetterCreateLineWithOffset(typesetter, string_range, offset) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[cfg(feature = "CTLine")]
+#[deprecated = "renamed to `CTTypesetter::new_line`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTTypesetterCreateLine(
+    typesetter: &CTTypesetter,
+    string_range: CFRange,
+) -> CFRetained<CTLine> {
+    extern "C-unwind" {
+        fn CTTypesetterCreateLine(
+            typesetter: &CTTypesetter,
+            string_range: CFRange,
+        ) -> Option<NonNull<CTLine>>;
+    }
+    let ret = unsafe { CTTypesetterCreateLine(typesetter, string_range) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTTypesetter::suggest_line_break_with_offset`"]
+    pub fn CTTypesetterSuggestLineBreakWithOffset(
+        typesetter: &CTTypesetter,
+        start_index: CFIndex,
+        width: c_double,
+        offset: c_double,
+    ) -> CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTTypesetter::suggest_line_break`"]
+    pub fn CTTypesetterSuggestLineBreak(
+        typesetter: &CTTypesetter,
+        start_index: CFIndex,
+        width: c_double,
+    ) -> CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTTypesetter::suggest_cluster_break_with_offset`"]
     pub fn CTTypesetterSuggestClusterBreakWithOffset(
         typesetter: &CTTypesetter,
         start_index: CFIndex,
@@ -279,7 +428,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Equivalent to CTTypesetterSuggestClusterBreakWithOffset with offset = 0.0.
+    #[deprecated = "renamed to `CTTypesetter::suggest_cluster_break`"]
     pub fn CTTypesetterSuggestClusterBreak(
         typesetter: &CTTypesetter,
         start_index: CFIndex,

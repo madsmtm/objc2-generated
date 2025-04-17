@@ -85,6 +85,76 @@ unsafe impl RefEncode for CGPSConverterCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+impl CGPSConverter {
+    #[inline]
+    #[doc(alias = "CGPSConverterCreate")]
+    pub unsafe fn new(
+        info: *mut c_void,
+        callbacks: NonNull<CGPSConverterCallbacks>,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGPSConverter>> {
+        extern "C-unwind" {
+            fn CGPSConverterCreate(
+                info: *mut c_void,
+                callbacks: NonNull<CGPSConverterCallbacks>,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGPSConverter>>;
+        }
+        let ret = unsafe { CGPSConverterCreate(info, callbacks, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(all(feature = "CGDataConsumer", feature = "CGDataProvider"))]
+    #[inline]
+    #[doc(alias = "CGPSConverterConvert")]
+    pub unsafe fn convert(
+        self: &CGPSConverter,
+        provider: &CGDataProvider,
+        consumer: &CGDataConsumer,
+        options: Option<&CFDictionary>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPSConverterConvert(
+                converter: &CGPSConverter,
+                provider: &CGDataProvider,
+                consumer: &CGDataConsumer,
+                options: Option<&CFDictionary>,
+            ) -> bool;
+        }
+        unsafe { CGPSConverterConvert(self, provider, consumer, options) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPSConverterAbort")]
+    pub unsafe fn abort(self: &CGPSConverter) -> bool {
+        extern "C-unwind" {
+            fn CGPSConverterAbort(converter: &CGPSConverter) -> bool;
+        }
+        unsafe { CGPSConverterAbort(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPSConverterIsConverting")]
+    pub unsafe fn is_converting(self: &CGPSConverter) -> bool {
+        extern "C-unwind" {
+            fn CGPSConverterIsConverting(converter: &CGPSConverter) -> bool;
+        }
+        unsafe { CGPSConverterIsConverting(self) }
+    }
+}
+
+unsafe impl ConcreteType for CGPSConverter {
+    #[doc(alias = "CGPSConverterGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGPSConverterGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGPSConverterGetTypeID() }
+    }
+}
+
+#[deprecated = "renamed to `CGPSConverter::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPSConverterCreate(
     info: *mut c_void,
@@ -104,6 +174,7 @@ pub unsafe extern "C-unwind" fn CGPSConverterCreate(
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGDataConsumer", feature = "CGDataProvider"))]
+    #[deprecated = "renamed to `CGPSConverter::convert`"]
     pub fn CGPSConverterConvert(
         converter: &CGPSConverter,
         provider: &CGDataProvider,
@@ -113,20 +184,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPSConverter::abort`"]
     pub fn CGPSConverterAbort(converter: &CGPSConverter) -> bool;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPSConverter::is_converting`"]
     pub fn CGPSConverterIsConverting(converter: &CGPSConverter) -> bool;
-}
-
-unsafe impl ConcreteType for CGPSConverter {
-    #[doc(alias = "CGPSConverterGetTypeID")]
-    #[inline]
-    fn type_id() -> CFTypeID {
-        extern "C-unwind" {
-            fn CGPSConverterGetTypeID() -> CFTypeID;
-        }
-        unsafe { CGPSConverterGetTypeID() }
-    }
 }

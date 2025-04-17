@@ -1681,19 +1681,28 @@ impl NSApplication {
     );
 }
 
-extern "C-unwind" {
+#[cfg(feature = "NSResponder")]
+impl NSApplication {
     /// An Application's startup function.
-    pub fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
-}
-
-/// `NSApplicationLoad`should be called when loading a Cocoa bundle in a Carbon app in order to initialize
-/// `NSApplication`and other Cocoa objects.  Redundant calls are ignored.
-#[inline]
-pub unsafe extern "C-unwind" fn NSApplicationLoad() -> bool {
-    extern "C-unwind" {
-        fn NSApplicationLoad() -> Bool;
+    #[inline]
+    #[doc(alias = "NSApplicationMain")]
+    pub unsafe fn main(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int {
+        extern "C-unwind" {
+            fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
+        }
+        unsafe { NSApplicationMain(argc, argv) }
     }
-    unsafe { NSApplicationLoad() }.as_bool()
+
+    /// `NSApplicationLoad`should be called when loading a Cocoa bundle in a Carbon app in order to initialize
+    /// `NSApplication`and other Cocoa objects.  Redundant calls are ignored.
+    #[inline]
+    #[doc(alias = "NSApplicationLoad")]
+    pub unsafe fn load() -> bool {
+        extern "C-unwind" {
+            fn NSApplicationLoad() -> Bool;
+        }
+        unsafe { NSApplicationLoad() }.as_bool()
+    }
 }
 
 /// `NSShowsServicesMenuItem()`always returns
@@ -1948,4 +1957,18 @@ impl NSApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> Option<Retained<NSGraphicsContext>>;
     );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `NSApplication::main`"]
+    pub fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
+}
+
+#[deprecated = "renamed to `NSApplication::load`"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSApplicationLoad() -> bool {
+    extern "C-unwind" {
+        fn NSApplicationLoad() -> Bool;
+    }
+    unsafe { NSApplicationLoad() }.as_bool()
 }

@@ -38,7 +38,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueVTPixelTransferSession"> for VTPixelTransferSession {}
 );
 
-extern "C-unwind" {
+impl VTPixelTransferSession {
     /// Creates a session for transferring images between CVPixelBuffers.
     ///
     /// The function creates a session for transferring images between CVPixelBuffers.
@@ -46,13 +46,21 @@ extern "C-unwind" {
     /// Parameter `allocator`: An allocator for the session.  Pass NULL to use the default allocator.
     ///
     /// Parameter `pixelTransferSessionOut`: Points to a variable to receive the new pixel transfer session.
-    pub fn VTPixelTransferSessionCreate(
+    #[inline]
+    #[doc(alias = "VTPixelTransferSessionCreate")]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         pixel_transfer_session_out: NonNull<*mut VTPixelTransferSession>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTPixelTransferSessionCreate(
+                allocator: Option<&CFAllocator>,
+                pixel_transfer_session_out: NonNull<*mut VTPixelTransferSession>,
+            ) -> OSStatus;
+        }
+        unsafe { VTPixelTransferSessionCreate(allocator, pixel_transfer_session_out) }
+    }
 
-extern "C-unwind" {
     /// Tears down a pixel transfer session.
     ///
     /// When you are done with a pixel transfer session you created, call VTPixelTransferSessionInvalidate
@@ -60,7 +68,14 @@ extern "C-unwind" {
     /// When a pixel transfer session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTPixelTransferSessionInvalidate ensures a deterministic, orderly teardown.
-    pub fn VTPixelTransferSessionInvalidate(session: &VTPixelTransferSession);
+    #[inline]
+    #[doc(alias = "VTPixelTransferSessionInvalidate")]
+    pub unsafe fn invalidate(self: &VTPixelTransferSession) {
+        extern "C-unwind" {
+            fn VTPixelTransferSessionInvalidate(session: &VTPixelTransferSession);
+        }
+        unsafe { VTPixelTransferSessionInvalidate(self) }
+    }
 }
 
 unsafe impl ConcreteType for VTPixelTransferSession {
@@ -75,7 +90,7 @@ unsafe impl ConcreteType for VTPixelTransferSession {
     }
 }
 
-extern "C-unwind" {
+impl VTPixelTransferSession {
     /// Copies and/or converts an image from one pixel buffer to another.
     ///
     /// By default, the full width and height of sourceBuffer are scaled to the full
@@ -93,6 +108,40 @@ extern "C-unwind" {
     ///
     /// Returns: If the transfer was successful, noErr; otherwise an error code, such as kVTPixelTransferNotSupportedErr.
     #[cfg(feature = "objc2-core-video")]
+    #[inline]
+    #[doc(alias = "VTPixelTransferSessionTransferImage")]
+    pub unsafe fn transfer_image(
+        self: &VTPixelTransferSession,
+        source_buffer: &CVPixelBuffer,
+        destination_buffer: &CVPixelBuffer,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTPixelTransferSessionTransferImage(
+                session: &VTPixelTransferSession,
+                source_buffer: &CVPixelBuffer,
+                destination_buffer: &CVPixelBuffer,
+            ) -> OSStatus;
+        }
+        unsafe { VTPixelTransferSessionTransferImage(self, source_buffer, destination_buffer) }
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTPixelTransferSession::create`"]
+    pub fn VTPixelTransferSessionCreate(
+        allocator: Option<&CFAllocator>,
+        pixel_transfer_session_out: NonNull<*mut VTPixelTransferSession>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTPixelTransferSession::invalidate`"]
+    pub fn VTPixelTransferSessionInvalidate(session: &VTPixelTransferSession);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-video")]
+    #[deprecated = "renamed to `VTPixelTransferSession::transfer_image`"]
     pub fn VTPixelTransferSessionTransferImage(
         session: &VTPixelTransferSession,
         source_buffer: &CVPixelBuffer,

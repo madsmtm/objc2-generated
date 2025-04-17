@@ -451,74 +451,76 @@ unsafe impl RefEncode for CTParagraphStyleSetting {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Creates an immutable paragraph style.
-///
-///
-/// Using this function is the easiest and most efficient way to
-/// create a paragraph style. Paragraph styles should be kept
-/// immutable for totally lock-free operation.
-///
-/// If an invalid paragraph style setting specifier is passed into
-/// the "settings" parameter, nothing bad will happen but just don't
-/// expect to be able to query for this value. This is to allow
-/// backwards compatibility with style setting specifiers that may
-/// be introduced in future versions.
-///
-///
-/// Parameter `settings`: The settings that you wish to pre-load the paragraph style
-/// with. If you wish to specify the default set of settings,
-/// then this parameter may be set to NULL.
-///
-///
-/// Parameter `settingCount`: The number of settings that you have specified in the
-/// "settings" parameter. This must be greater than or equal
-/// to zero.
-///
-///
-/// Returns: If the paragraph style creation was successful, this function
-/// will return a valid reference to an immutable CTParagraphStyle
-/// object. Otherwise, this function will return NULL.
-#[inline]
-pub unsafe extern "C-unwind" fn CTParagraphStyleCreate(
-    settings: *const CTParagraphStyleSetting,
-    setting_count: usize,
-) -> CFRetained<CTParagraphStyle> {
-    extern "C-unwind" {
-        fn CTParagraphStyleCreate(
-            settings: *const CTParagraphStyleSetting,
-            setting_count: usize,
-        ) -> Option<NonNull<CTParagraphStyle>>;
+impl CTParagraphStyle {
+    /// Creates an immutable paragraph style.
+    ///
+    ///
+    /// Using this function is the easiest and most efficient way to
+    /// create a paragraph style. Paragraph styles should be kept
+    /// immutable for totally lock-free operation.
+    ///
+    /// If an invalid paragraph style setting specifier is passed into
+    /// the "settings" parameter, nothing bad will happen but just don't
+    /// expect to be able to query for this value. This is to allow
+    /// backwards compatibility with style setting specifiers that may
+    /// be introduced in future versions.
+    ///
+    ///
+    /// Parameter `settings`: The settings that you wish to pre-load the paragraph style
+    /// with. If you wish to specify the default set of settings,
+    /// then this parameter may be set to NULL.
+    ///
+    ///
+    /// Parameter `settingCount`: The number of settings that you have specified in the
+    /// "settings" parameter. This must be greater than or equal
+    /// to zero.
+    ///
+    ///
+    /// Returns: If the paragraph style creation was successful, this function
+    /// will return a valid reference to an immutable CTParagraphStyle
+    /// object. Otherwise, this function will return NULL.
+    #[inline]
+    #[doc(alias = "CTParagraphStyleCreate")]
+    pub unsafe fn new(
+        settings: *const CTParagraphStyleSetting,
+        setting_count: usize,
+    ) -> CFRetained<CTParagraphStyle> {
+        extern "C-unwind" {
+            fn CTParagraphStyleCreate(
+                settings: *const CTParagraphStyleSetting,
+                setting_count: usize,
+            ) -> Option<NonNull<CTParagraphStyle>>;
+        }
+        let ret = unsafe { CTParagraphStyleCreate(settings, setting_count) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTParagraphStyleCreate(settings, setting_count) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Creates an immutable copy of a paragraph style.
-///
-///
-/// Parameter `paragraphStyle`: The style that you wish to copy.
-///
-///
-/// Returns: If the "paragraphStyle" reference is valid, then this
-/// function will return valid reference to an immutable
-/// CTParagraphStyle object that is a copy of the one passed into
-/// "paragraphStyle".
-#[inline]
-pub unsafe extern "C-unwind" fn CTParagraphStyleCreateCopy(
-    paragraph_style: &CTParagraphStyle,
-) -> CFRetained<CTParagraphStyle> {
-    extern "C-unwind" {
-        fn CTParagraphStyleCreateCopy(
-            paragraph_style: &CTParagraphStyle,
-        ) -> Option<NonNull<CTParagraphStyle>>;
+    /// Creates an immutable copy of a paragraph style.
+    ///
+    ///
+    /// Parameter `paragraphStyle`: The style that you wish to copy.
+    ///
+    ///
+    /// Returns: If the "paragraphStyle" reference is valid, then this
+    /// function will return valid reference to an immutable
+    /// CTParagraphStyle object that is a copy of the one passed into
+    /// "paragraphStyle".
+    #[inline]
+    #[doc(alias = "CTParagraphStyleCreateCopy")]
+    pub unsafe fn new_copy(self: &CTParagraphStyle) -> CFRetained<CTParagraphStyle> {
+        extern "C-unwind" {
+            fn CTParagraphStyleCreateCopy(
+                paragraph_style: &CTParagraphStyle,
+            ) -> Option<NonNull<CTParagraphStyle>>;
+        }
+        let ret = unsafe { CTParagraphStyleCreateCopy(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTParagraphStyleCreateCopy(paragraph_style) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-extern "C-unwind" {
     /// Obtains the current value for a single setting specifier.
     ///
     ///
@@ -552,6 +554,60 @@ extern "C-unwind" {
     /// Returns: This function will return "true" if the valueBuffer had been
     /// successfully filled. Otherwise, this function will return false,
     /// indicating that one or more of the parameters is not valid.
+    #[inline]
+    #[doc(alias = "CTParagraphStyleGetValueForSpecifier")]
+    pub unsafe fn value_for_specifier(
+        self: &CTParagraphStyle,
+        spec: CTParagraphStyleSpecifier,
+        value_buffer_size: usize,
+        value_buffer: NonNull<c_void>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CTParagraphStyleGetValueForSpecifier(
+                paragraph_style: &CTParagraphStyle,
+                spec: CTParagraphStyleSpecifier,
+                value_buffer_size: usize,
+                value_buffer: NonNull<c_void>,
+            ) -> bool;
+        }
+        unsafe { CTParagraphStyleGetValueForSpecifier(self, spec, value_buffer_size, value_buffer) }
+    }
+}
+
+#[deprecated = "renamed to `CTParagraphStyle::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTParagraphStyleCreate(
+    settings: *const CTParagraphStyleSetting,
+    setting_count: usize,
+) -> CFRetained<CTParagraphStyle> {
+    extern "C-unwind" {
+        fn CTParagraphStyleCreate(
+            settings: *const CTParagraphStyleSetting,
+            setting_count: usize,
+        ) -> Option<NonNull<CTParagraphStyle>>;
+    }
+    let ret = unsafe { CTParagraphStyleCreate(settings, setting_count) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTParagraphStyle::new_copy`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTParagraphStyleCreateCopy(
+    paragraph_style: &CTParagraphStyle,
+) -> CFRetained<CTParagraphStyle> {
+    extern "C-unwind" {
+        fn CTParagraphStyleCreateCopy(
+            paragraph_style: &CTParagraphStyle,
+        ) -> Option<NonNull<CTParagraphStyle>>;
+    }
+    let ret = unsafe { CTParagraphStyleCreateCopy(paragraph_style) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTParagraphStyle::value_for_specifier`"]
     pub fn CTParagraphStyleGetValueForSpecifier(
         paragraph_style: &CTParagraphStyle,
         spec: CTParagraphStyleSpecifier,

@@ -125,7 +125,7 @@ unsafe impl RefEncode for VTDecompressionOutputCallbackRecord {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+impl VTDecompressionSession {
     /// Creates a session for decompressing video frames.
     ///
     /// Decompressed frames will be emitted through calls to outputCallback.
@@ -149,17 +149,38 @@ extern "C-unwind" {
         feature = "objc2-core-media",
         feature = "objc2-core-video"
     ))]
-    pub fn VTDecompressionSessionCreate(
+    #[inline]
+    #[doc(alias = "VTDecompressionSessionCreate")]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         video_format_description: &CMVideoFormatDescription,
         video_decoder_specification: Option<&CFDictionary>,
         destination_image_buffer_attributes: Option<&CFDictionary>,
         output_callback: *const VTDecompressionOutputCallbackRecord,
         decompression_session_out: NonNull<*mut VTDecompressionSession>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTDecompressionSessionCreate(
+                allocator: Option<&CFAllocator>,
+                video_format_description: &CMVideoFormatDescription,
+                video_decoder_specification: Option<&CFDictionary>,
+                destination_image_buffer_attributes: Option<&CFDictionary>,
+                output_callback: *const VTDecompressionOutputCallbackRecord,
+                decompression_session_out: NonNull<*mut VTDecompressionSession>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTDecompressionSessionCreate(
+                allocator,
+                video_format_description,
+                video_decoder_specification,
+                destination_image_buffer_attributes,
+                output_callback,
+                decompression_session_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Tears down a decompression session.
     ///
     /// When you are done with a decompression session you created, call VTDecompressionSessionInvalidate
@@ -167,7 +188,14 @@ extern "C-unwind" {
     /// When a decompression session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTDecompressionSessionInvalidate ensures a deterministic, orderly teardown.
-    pub fn VTDecompressionSessionInvalidate(session: &VTDecompressionSession);
+    #[inline]
+    #[doc(alias = "VTDecompressionSessionInvalidate")]
+    pub unsafe fn invalidate(self: &VTDecompressionSession) {
+        extern "C-unwind" {
+            fn VTDecompressionSessionInvalidate(session: &VTDecompressionSession);
+        }
+        unsafe { VTDecompressionSessionInvalidate(self) }
+    }
 }
 
 unsafe impl ConcreteType for VTDecompressionSession {
@@ -182,7 +210,7 @@ unsafe impl ConcreteType for VTDecompressionSession {
     }
 }
 
-extern "C-unwind" {
+impl VTDecompressionSession {
     /// Decompresses a video frame.
     ///
     /// If an error is returned from this function, there will be no callback.  Otherwise
@@ -211,13 +239,34 @@ extern "C-unwind" {
     /// The kVTDecodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously).
     /// Pass NULL if you do not want to receive this information.
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
-    pub fn VTDecompressionSessionDecodeFrame(
-        session: &VTDecompressionSession,
+    #[inline]
+    #[doc(alias = "VTDecompressionSessionDecodeFrame")]
+    pub unsafe fn decode_frame(
+        self: &VTDecompressionSession,
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
         source_frame_ref_con: *mut c_void,
         info_flags_out: *mut VTDecodeInfoFlags,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTDecompressionSessionDecodeFrame(
+                session: &VTDecompressionSession,
+                sample_buffer: &CMSampleBuffer,
+                decode_flags: VTDecodeFrameFlags,
+                source_frame_ref_con: *mut c_void,
+                info_flags_out: *mut VTDecodeInfoFlags,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTDecompressionSessionDecodeFrame(
+                self,
+                sample_buffer,
+                decode_flags,
+                source_frame_ref_con,
+                info_flags_out,
+            )
+        }
+    }
 }
 
 /// Prototype for block invoked when frame decompression is complete.
@@ -253,7 +302,7 @@ extern "C-unwind" {
 pub type VTDecompressionOutputHandler =
     *mut block2::DynBlock<dyn Fn(OSStatus, VTDecodeInfoFlags, *mut CVImageBuffer, CMTime, CMTime)>;
 
-extern "C-unwind" {
+impl VTDecompressionSession {
     /// Decompresses a video frame.
     ///
     /// Cannot be called with a session created with a VTDecompressionOutputCallbackRecord.
@@ -287,16 +336,35 @@ extern "C-unwind" {
         feature = "objc2-core-media",
         feature = "objc2-core-video"
     ))]
-    pub fn VTDecompressionSessionDecodeFrameWithOutputHandler(
-        session: &VTDecompressionSession,
+    #[inline]
+    #[doc(alias = "VTDecompressionSessionDecodeFrameWithOutputHandler")]
+    pub unsafe fn decode_frame_with_output_handler(
+        self: &VTDecompressionSession,
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
         info_flags_out: *mut VTDecodeInfoFlags,
         output_handler: VTDecompressionOutputHandler,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTDecompressionSessionDecodeFrameWithOutputHandler(
+                session: &VTDecompressionSession,
+                sample_buffer: &CMSampleBuffer,
+                decode_flags: VTDecodeFrameFlags,
+                info_flags_out: *mut VTDecodeInfoFlags,
+                output_handler: VTDecompressionOutputHandler,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTDecompressionSessionDecodeFrameWithOutputHandler(
+                self,
+                sample_buffer,
+                decode_flags,
+                info_flags_out,
+                output_handler,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Directs the decompression session to emit all delayed frames.
     ///
     /// By default, the decompression session may not delay frames indefinitely;
@@ -304,41 +372,55 @@ extern "C-unwind" {
     /// kVTDecodeFrame_EnableTemporalProcessing.
     /// IMPORTANT NOTE: This function may return before all delayed frames are emitted.
     /// To wait for them, call VTDecompressionSessionWaitForAsynchronousFrames instead.
-    pub fn VTDecompressionSessionFinishDelayedFrames(session: &VTDecompressionSession) -> OSStatus;
-}
-
-/// Indicates whether the session can decode frames with the given format description.
-///
-/// Some video decoders are able to accommodate minor changes in format without needing to be
-/// completely reset in a new session.  This function can be used to test whether a format change
-/// is sufficiently minor.
-#[cfg(feature = "objc2-core-media")]
-#[inline]
-pub unsafe extern "C-unwind" fn VTDecompressionSessionCanAcceptFormatDescription(
-    session: &VTDecompressionSession,
-    new_format_desc: &CMFormatDescription,
-) -> bool {
-    extern "C-unwind" {
-        fn VTDecompressionSessionCanAcceptFormatDescription(
-            session: &VTDecompressionSession,
-            new_format_desc: &CMFormatDescription,
-        ) -> Boolean;
+    #[inline]
+    #[doc(alias = "VTDecompressionSessionFinishDelayedFrames")]
+    pub unsafe fn finish_delayed_frames(self: &VTDecompressionSession) -> OSStatus {
+        extern "C-unwind" {
+            fn VTDecompressionSessionFinishDelayedFrames(
+                session: &VTDecompressionSession,
+            ) -> OSStatus;
+        }
+        unsafe { VTDecompressionSessionFinishDelayedFrames(self) }
     }
-    let ret = unsafe { VTDecompressionSessionCanAcceptFormatDescription(session, new_format_desc) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Indicates whether the session can decode frames with the given format description.
+    ///
+    /// Some video decoders are able to accommodate minor changes in format without needing to be
+    /// completely reset in a new session.  This function can be used to test whether a format change
+    /// is sufficiently minor.
+    #[cfg(feature = "objc2-core-media")]
+    #[inline]
+    #[doc(alias = "VTDecompressionSessionCanAcceptFormatDescription")]
+    pub unsafe fn can_accept_format_description(
+        self: &VTDecompressionSession,
+        new_format_desc: &CMFormatDescription,
+    ) -> bool {
+        extern "C-unwind" {
+            fn VTDecompressionSessionCanAcceptFormatDescription(
+                session: &VTDecompressionSession,
+                new_format_desc: &CMFormatDescription,
+            ) -> Boolean;
+        }
+        let ret =
+            unsafe { VTDecompressionSessionCanAcceptFormatDescription(self, new_format_desc) };
+        ret != 0
+    }
+
     /// Waits for any and all outstanding asynchronous and delayed frames to complete, then returns.
     ///
     /// This function automatically calls VTDecompressionSessionFinishDelayedFrames,
     /// so clients don't have to call both.
-    pub fn VTDecompressionSessionWaitForAsynchronousFrames(
-        session: &VTDecompressionSession,
-    ) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "VTDecompressionSessionWaitForAsynchronousFrames")]
+    pub unsafe fn wait_for_asynchronous_frames(self: &VTDecompressionSession) -> OSStatus {
+        extern "C-unwind" {
+            fn VTDecompressionSessionWaitForAsynchronousFrames(
+                session: &VTDecompressionSession,
+            ) -> OSStatus;
+        }
+        unsafe { VTDecompressionSessionWaitForAsynchronousFrames(self) }
+    }
 
-extern "C-unwind" {
     /// Copies a black pixel buffer from the decompression session.
     ///
     /// The pixel buffer is in the same format that the session is decompressing to.
@@ -347,10 +429,20 @@ extern "C-unwind" {
     ///
     /// Parameter `pixelBufferOut`: Points to a variable to receive the copied pixel buffer.
     #[cfg(feature = "objc2-core-video")]
-    pub fn VTDecompressionSessionCopyBlackPixelBuffer(
-        session: &VTDecompressionSession,
+    #[inline]
+    #[doc(alias = "VTDecompressionSessionCopyBlackPixelBuffer")]
+    pub unsafe fn copy_black_pixel_buffer(
+        self: &VTDecompressionSession,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTDecompressionSessionCopyBlackPixelBuffer(
+                session: &VTDecompressionSession,
+                pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe { VTDecompressionSessionCopyBlackPixelBuffer(self, pixel_buffer_out) }
+    }
 }
 
 /// Indicates whether the current system supports hardware decode for a given codec
@@ -425,7 +517,7 @@ pub type VTDecompressionOutputMultiImageCallback = Option<
     ),
 >;
 
-extern "C-unwind" {
+impl VTDecompressionSession {
     /// Provides a callback capable of receiving multiple images for individual DecodeFrame requests.
     ///
     /// The outputMultiImageCallback will be used when the video decoder outputs CMTaggedBufferGroups.
@@ -433,11 +525,28 @@ extern "C-unwind" {
     /// The original single-image callback will only be used in the case where the video decoder outputs a CVImageBuffer instead of a CMTaggedBufferGroup.
     /// Terminology note: in multi-image decompression, a single video sample (from one CMSampleBuffer) contains a single frame (with one PTS) that is decoded to produce multiple images.
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
-    pub fn VTDecompressionSessionSetMultiImageCallback(
-        decompression_session: &VTDecompressionSession,
+    #[inline]
+    #[doc(alias = "VTDecompressionSessionSetMultiImageCallback")]
+    pub unsafe fn set_multi_image_callback(
+        self: &VTDecompressionSession,
         output_multi_image_callback: VTDecompressionOutputMultiImageCallback,
         output_multi_image_refcon: *mut c_void,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTDecompressionSessionSetMultiImageCallback(
+                decompression_session: &VTDecompressionSession,
+                output_multi_image_callback: VTDecompressionOutputMultiImageCallback,
+                output_multi_image_refcon: *mut c_void,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTDecompressionSessionSetMultiImageCallback(
+                self,
+                output_multi_image_callback,
+                output_multi_image_refcon,
+            )
+        }
+    }
 }
 
 /// Prototype for block invoked when frame decompression is complete.
@@ -488,7 +597,7 @@ pub type VTDecompressionMultiImageCapableOutputHandler = *mut block2::DynBlock<
     ),
 >;
 
-extern "C-unwind" {
+impl VTDecompressionSession {
     /// Decompresses a video frame.
     ///
     /// Cannot be called with a session created with a VTDecompressionOutputCallbackRecord.
@@ -523,6 +632,143 @@ extern "C-unwind" {
         feature = "objc2-core-media",
         feature = "objc2-core-video"
     ))]
+    #[inline]
+    #[doc(alias = "VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler")]
+    pub unsafe fn decode_frame_with_multi_image_capable_output_handler(
+        self: &VTDecompressionSession,
+        sample_buffer: &CMSampleBuffer,
+        decode_flags: VTDecodeFrameFlags,
+        info_flags_out: *mut VTDecodeInfoFlags,
+        multi_image_capable_output_handler: VTDecompressionMultiImageCapableOutputHandler,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler(
+                session: &VTDecompressionSession,
+                sample_buffer: &CMSampleBuffer,
+                decode_flags: VTDecodeFrameFlags,
+                info_flags_out: *mut VTDecodeInfoFlags,
+                multi_image_capable_output_handler: VTDecompressionMultiImageCapableOutputHandler,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler(
+                self,
+                sample_buffer,
+                decode_flags,
+                info_flags_out,
+                multi_image_capable_output_handler,
+            )
+        }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "VTErrors",
+        feature = "objc2-core-media",
+        feature = "objc2-core-video"
+    ))]
+    #[deprecated = "renamed to `VTDecompressionSession::create`"]
+    pub fn VTDecompressionSessionCreate(
+        allocator: Option<&CFAllocator>,
+        video_format_description: &CMVideoFormatDescription,
+        video_decoder_specification: Option<&CFDictionary>,
+        destination_image_buffer_attributes: Option<&CFDictionary>,
+        output_callback: *const VTDecompressionOutputCallbackRecord,
+        decompression_session_out: NonNull<*mut VTDecompressionSession>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTDecompressionSession::invalidate`"]
+    pub fn VTDecompressionSessionInvalidate(session: &VTDecompressionSession);
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
+    #[deprecated = "renamed to `VTDecompressionSession::decode_frame`"]
+    pub fn VTDecompressionSessionDecodeFrame(
+        session: &VTDecompressionSession,
+        sample_buffer: &CMSampleBuffer,
+        decode_flags: VTDecodeFrameFlags,
+        source_frame_ref_con: *mut c_void,
+        info_flags_out: *mut VTDecodeInfoFlags,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "VTErrors",
+        feature = "block2",
+        feature = "objc2-core-media",
+        feature = "objc2-core-video"
+    ))]
+    #[deprecated = "renamed to `VTDecompressionSession::decode_frame_with_output_handler`"]
+    pub fn VTDecompressionSessionDecodeFrameWithOutputHandler(
+        session: &VTDecompressionSession,
+        sample_buffer: &CMSampleBuffer,
+        decode_flags: VTDecodeFrameFlags,
+        info_flags_out: *mut VTDecodeInfoFlags,
+        output_handler: VTDecompressionOutputHandler,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTDecompressionSession::finish_delayed_frames`"]
+    pub fn VTDecompressionSessionFinishDelayedFrames(session: &VTDecompressionSession) -> OSStatus;
+}
+
+#[cfg(feature = "objc2-core-media")]
+#[deprecated = "renamed to `VTDecompressionSession::can_accept_format_description`"]
+#[inline]
+pub unsafe extern "C-unwind" fn VTDecompressionSessionCanAcceptFormatDescription(
+    session: &VTDecompressionSession,
+    new_format_desc: &CMFormatDescription,
+) -> bool {
+    extern "C-unwind" {
+        fn VTDecompressionSessionCanAcceptFormatDescription(
+            session: &VTDecompressionSession,
+            new_format_desc: &CMFormatDescription,
+        ) -> Boolean;
+    }
+    let ret = unsafe { VTDecompressionSessionCanAcceptFormatDescription(session, new_format_desc) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTDecompressionSession::wait_for_asynchronous_frames`"]
+    pub fn VTDecompressionSessionWaitForAsynchronousFrames(
+        session: &VTDecompressionSession,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-video")]
+    #[deprecated = "renamed to `VTDecompressionSession::copy_black_pixel_buffer`"]
+    pub fn VTDecompressionSessionCopyBlackPixelBuffer(
+        session: &VTDecompressionSession,
+        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
+    #[deprecated = "renamed to `VTDecompressionSession::set_multi_image_callback`"]
+    pub fn VTDecompressionSessionSetMultiImageCallback(
+        decompression_session: &VTDecompressionSession,
+        output_multi_image_callback: VTDecompressionOutputMultiImageCallback,
+        output_multi_image_refcon: *mut c_void,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "VTErrors",
+        feature = "block2",
+        feature = "objc2-core-media",
+        feature = "objc2-core-video"
+    ))]
+    #[deprecated = "renamed to `VTDecompressionSession::decode_frame_with_multi_image_capable_output_handler`"]
     pub fn VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler(
         session: &VTDecompressionSession,
         sample_buffer: &CMSampleBuffer,

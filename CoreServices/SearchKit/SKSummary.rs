@@ -35,6 +35,152 @@ unsafe impl ConcreteType for SKSummary {
     }
 }
 
+impl SKSummary {
+    #[inline]
+    #[doc(alias = "SKSummaryCreateWithString")]
+    pub unsafe fn with_string(in_string: Option<&CFString>) -> Option<CFRetained<SKSummary>> {
+        extern "C-unwind" {
+            fn SKSummaryCreateWithString(
+                in_string: Option<&CFString>,
+            ) -> Option<NonNull<SKSummary>>;
+        }
+        let ret = unsafe { SKSummaryCreateWithString(in_string) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKSummaryGetSentenceCount")]
+    pub unsafe fn sentence_count(self: &SKSummary) -> CFIndex {
+        extern "C-unwind" {
+            fn SKSummaryGetSentenceCount(summary: &SKSummary) -> CFIndex;
+        }
+        unsafe { SKSummaryGetSentenceCount(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "SKSummaryGetParagraphCount")]
+    pub unsafe fn paragraph_count(self: &SKSummary) -> CFIndex {
+        extern "C-unwind" {
+            fn SKSummaryGetParagraphCount(summary: &SKSummary) -> CFIndex;
+        }
+        unsafe { SKSummaryGetParagraphCount(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "SKSummaryCopySentenceAtIndex")]
+    pub unsafe fn sentence_at_index(self: &SKSummary, i: CFIndex) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SKSummaryCopySentenceAtIndex(
+                summary: &SKSummary,
+                i: CFIndex,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SKSummaryCopySentenceAtIndex(self, i) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKSummaryCopyParagraphAtIndex")]
+    pub unsafe fn paragraph_at_index(self: &SKSummary, i: CFIndex) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SKSummaryCopyParagraphAtIndex(
+                summary: &SKSummary,
+                i: CFIndex,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SKSummaryCopyParagraphAtIndex(self, i) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKSummaryCopySentenceSummaryString")]
+    pub unsafe fn sentence_summary_string(
+        self: &SKSummary,
+        num_sentences: CFIndex,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SKSummaryCopySentenceSummaryString(
+                summary: &SKSummary,
+                num_sentences: CFIndex,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SKSummaryCopySentenceSummaryString(self, num_sentences) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKSummaryCopyParagraphSummaryString")]
+    pub unsafe fn paragraph_summary_string(
+        self: &SKSummary,
+        num_paragraphs: CFIndex,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SKSummaryCopyParagraphSummaryString(
+                summary: &SKSummary,
+                num_paragraphs: CFIndex,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SKSummaryCopyParagraphSummaryString(self, num_paragraphs) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "SKSummaryGetSentenceSummaryInfo")]
+    pub unsafe fn sentence_summary_info(
+        self: &SKSummary,
+        num_sentences_in_summary: CFIndex,
+        out_rank_order_of_sentences: *mut CFIndex,
+        out_sentence_index_of_sentences: *mut CFIndex,
+        out_paragraph_index_of_sentences: *mut CFIndex,
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn SKSummaryGetSentenceSummaryInfo(
+                summary: &SKSummary,
+                num_sentences_in_summary: CFIndex,
+                out_rank_order_of_sentences: *mut CFIndex,
+                out_sentence_index_of_sentences: *mut CFIndex,
+                out_paragraph_index_of_sentences: *mut CFIndex,
+            ) -> CFIndex;
+        }
+        unsafe {
+            SKSummaryGetSentenceSummaryInfo(
+                self,
+                num_sentences_in_summary,
+                out_rank_order_of_sentences,
+                out_sentence_index_of_sentences,
+                out_paragraph_index_of_sentences,
+            )
+        }
+    }
+
+    #[inline]
+    #[doc(alias = "SKSummaryGetParagraphSummaryInfo")]
+    pub unsafe fn paragraph_summary_info(
+        self: &SKSummary,
+        num_paragraphs_in_summary: CFIndex,
+        out_rank_order_of_paragraphs: *mut CFIndex,
+        out_paragraph_index_of_paragraphs: *mut CFIndex,
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn SKSummaryGetParagraphSummaryInfo(
+                summary: &SKSummary,
+                num_paragraphs_in_summary: CFIndex,
+                out_rank_order_of_paragraphs: *mut CFIndex,
+                out_paragraph_index_of_paragraphs: *mut CFIndex,
+            ) -> CFIndex;
+        }
+        unsafe {
+            SKSummaryGetParagraphSummaryInfo(
+                self,
+                num_paragraphs_in_summary,
+                out_rank_order_of_paragraphs,
+                out_paragraph_index_of_paragraphs,
+            )
+        }
+    }
+}
+
+#[deprecated = "renamed to `SKSummary::with_string`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKSummaryCreateWithString(
     in_string: Option<&CFString>,
@@ -47,13 +193,16 @@ pub unsafe extern "C-unwind" fn SKSummaryCreateWithString(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKSummary::sentence_count`"]
     pub fn SKSummaryGetSentenceCount(summary: &SKSummary) -> CFIndex;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKSummary::paragraph_count`"]
     pub fn SKSummaryGetParagraphCount(summary: &SKSummary) -> CFIndex;
 }
 
+#[deprecated = "renamed to `SKSummary::sentence_at_index`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKSummaryCopySentenceAtIndex(
     summary: &SKSummary,
@@ -69,6 +218,7 @@ pub unsafe extern "C-unwind" fn SKSummaryCopySentenceAtIndex(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `SKSummary::paragraph_at_index`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKSummaryCopyParagraphAtIndex(
     summary: &SKSummary,
@@ -84,6 +234,7 @@ pub unsafe extern "C-unwind" fn SKSummaryCopyParagraphAtIndex(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `SKSummary::sentence_summary_string`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKSummaryCopySentenceSummaryString(
     summary: &SKSummary,
@@ -99,6 +250,7 @@ pub unsafe extern "C-unwind" fn SKSummaryCopySentenceSummaryString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `SKSummary::paragraph_summary_string`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SKSummaryCopyParagraphSummaryString(
     summary: &SKSummary,
@@ -115,6 +267,7 @@ pub unsafe extern "C-unwind" fn SKSummaryCopyParagraphSummaryString(
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKSummary::sentence_summary_info`"]
     pub fn SKSummaryGetSentenceSummaryInfo(
         summary: &SKSummary,
         num_sentences_in_summary: CFIndex,
@@ -125,6 +278,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SKSummary::paragraph_summary_info`"]
     pub fn SKSummaryGetParagraphSummaryInfo(
         summary: &SKSummary,
         num_paragraphs_in_summary: CFIndex,

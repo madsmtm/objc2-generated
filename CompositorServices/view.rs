@@ -34,7 +34,7 @@ unsafe impl RefEncode for cp_view_texture_map {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_view_texture_map_t?language=objc)
 pub type cp_view_texture_map_t = *mut cp_view_texture_map;
 
-extern "C-unwind" {
+impl cp_view_texture_map {
     /// Returns the index of the view’s textures in the drawable.
     ///
     /// - Parameters:
@@ -43,10 +43,17 @@ extern "C-unwind" {
     ///
     /// Pass the returned index to the ``cp_drawable_get_color_texture``
     /// or ``cp_drawable_get_depth_texture`` function.
-    pub fn cp_view_texture_map_get_texture_index(view_texture_map: cp_view_texture_map_t) -> usize;
-}
+    #[inline]
+    #[doc(alias = "cp_view_texture_map_get_texture_index")]
+    pub unsafe fn get_texture_index(view_texture_map: cp_view_texture_map_t) -> usize {
+        extern "C-unwind" {
+            fn cp_view_texture_map_get_texture_index(
+                view_texture_map: cp_view_texture_map_t,
+            ) -> usize;
+        }
+        unsafe { cp_view_texture_map_get_texture_index(view_texture_map) }
+    }
 
-extern "C-unwind" {
     /// Returns the index of the view’s texture in an array-based texture type.
     ///
     /// - Parameters:
@@ -64,10 +71,17 @@ extern "C-unwind" {
     ///
     /// To request an array-based texture from your layer, configure your layer
     /// with the ``cp_layer_renderer_layout/cp_layer_renderer_layout_dedicated`` layout option.
-    pub fn cp_view_texture_map_get_slice_index(view_texture_map: cp_view_texture_map_t) -> usize;
-}
+    #[inline]
+    #[doc(alias = "cp_view_texture_map_get_slice_index")]
+    pub unsafe fn get_slice_index(view_texture_map: cp_view_texture_map_t) -> usize {
+        extern "C-unwind" {
+            fn cp_view_texture_map_get_slice_index(
+                view_texture_map: cp_view_texture_map_t,
+            ) -> usize;
+        }
+        unsafe { cp_view_texture_map_get_slice_index(view_texture_map) }
+    }
 
-extern "C-unwind" {
     /// Returns the portion of the texture that the view uses to draw its content.
     ///
     /// - Parameters:
@@ -81,8 +95,16 @@ extern "C-unwind" {
     /// shared or layered texture, the view’s location or other slice index
     /// might differ.
     #[cfg(feature = "objc2-metal")]
-    pub fn cp_view_texture_map_get_viewport(view_texture_map: cp_view_texture_map_t)
-        -> MTLViewport;
+    #[inline]
+    #[doc(alias = "cp_view_texture_map_get_viewport")]
+    pub unsafe fn get_viewport(view_texture_map: cp_view_texture_map_t) -> MTLViewport {
+        extern "C-unwind" {
+            fn cp_view_texture_map_get_viewport(
+                view_texture_map: cp_view_texture_map_t,
+            ) -> MTLViewport;
+        }
+        unsafe { cp_view_texture_map_get_viewport(view_texture_map) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_view?language=objc)
@@ -109,7 +131,7 @@ unsafe impl RefEncode for cp_view {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_view_t?language=objc)
 pub type cp_view_t = *mut cp_view;
 
-extern "C-unwind" {
+impl cp_view {
     /// Returns the texture map for this view.
     ///
     /// - Parameters:
@@ -119,5 +141,34 @@ extern "C-unwind" {
     /// Use the texture map to fetch additional information you need to
     /// draw your content. For example, use it to fetch the rectangle to
     /// use for drawing in the associated texture.
+    #[inline]
+    #[doc(alias = "cp_view_get_view_texture_map")]
+    pub unsafe fn get_view_texture_map(view: cp_view_t) -> cp_view_texture_map_t {
+        extern "C-unwind" {
+            fn cp_view_get_view_texture_map(view: cp_view_t) -> cp_view_texture_map_t;
+        }
+        unsafe { cp_view_get_view_texture_map(view) }
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_view_texture_map::get_texture_index`"]
+    pub fn cp_view_texture_map_get_texture_index(view_texture_map: cp_view_texture_map_t) -> usize;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_view_texture_map::get_slice_index`"]
+    pub fn cp_view_texture_map_get_slice_index(view_texture_map: cp_view_texture_map_t) -> usize;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-metal")]
+    #[deprecated = "renamed to `cp_view_texture_map::get_viewport`"]
+    pub fn cp_view_texture_map_get_viewport(view_texture_map: cp_view_texture_map_t)
+        -> MTLViewport;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_view::get_view_texture_map`"]
     pub fn cp_view_get_view_texture_map(view: cp_view_t) -> cp_view_texture_map_t;
 }

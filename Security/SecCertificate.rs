@@ -23,75 +23,76 @@ unsafe impl ConcreteType for SecCertificate {
     }
 }
 
-/// Create a certificate given it's DER representation as a CFData.
-///
-/// Parameter `allocator`: CFAllocator to allocate the certificate with.
-///
-/// Parameter `data`: DER encoded X.509 certificate.
-///
-/// Returns: Return NULL if the passed-in data is not a valid DER-encoded
-/// X.509 certificate, return a SecCertificateRef otherwise.
 #[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecCertificateCreateWithData(
-    allocator: Option<&CFAllocator>,
-    data: &CFData,
-) -> Option<CFRetained<SecCertificate>> {
-    extern "C-unwind" {
-        fn SecCertificateCreateWithData(
-            allocator: Option<&CFAllocator>,
-            data: &CFData,
-        ) -> Option<NonNull<SecCertificate>>;
+impl SecCertificate {
+    /// Create a certificate given it's DER representation as a CFData.
+    ///
+    /// Parameter `allocator`: CFAllocator to allocate the certificate with.
+    ///
+    /// Parameter `data`: DER encoded X.509 certificate.
+    ///
+    /// Returns: Return NULL if the passed-in data is not a valid DER-encoded
+    /// X.509 certificate, return a SecCertificateRef otherwise.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCreateWithData")]
+    pub unsafe fn with_data(
+        allocator: Option<&CFAllocator>,
+        data: &CFData,
+    ) -> Option<CFRetained<SecCertificate>> {
+        extern "C-unwind" {
+            fn SecCertificateCreateWithData(
+                allocator: Option<&CFAllocator>,
+                data: &CFData,
+            ) -> Option<NonNull<SecCertificate>>;
+        }
+        let ret = unsafe { SecCertificateCreateWithData(allocator, data) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecCertificateCreateWithData(allocator, data) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Return the DER representation of an X.509 certificate.
-///
-/// Parameter `certificate`: SecCertificate object created with
-/// SecCertificateCreateWithData().
-///
-/// Returns: DER encoded X.509 certificate.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecCertificateCopyData(
-    certificate: &SecCertificate,
-) -> CFRetained<CFData> {
-    extern "C-unwind" {
-        fn SecCertificateCopyData(certificate: &SecCertificate) -> Option<NonNull<CFData>>;
+    /// Return the DER representation of an X.509 certificate.
+    ///
+    /// Parameter `certificate`: SecCertificate object created with
+    /// SecCertificateCreateWithData().
+    ///
+    /// Returns: DER encoded X.509 certificate.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyData")]
+    pub unsafe fn data(self: &SecCertificate) -> CFRetained<CFData> {
+        extern "C-unwind" {
+            fn SecCertificateCopyData(certificate: &SecCertificate) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecCertificateCopyData(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { SecCertificateCopyData(certificate) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Return a simple string which hopefully represents a human
-/// understandable summary.
-///
-/// Parameter `certificate`: A reference to the certificate from which to derive
-/// the subject summary string.
-///
-/// All the data in this string comes from the certificate itself
-/// and thus it's in whatever language the certificate itself is in.
-///
-/// Returns: A CFStringRef which the caller should CFRelease() once it's no
-/// longer needed.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecCertificateCopySubjectSummary(
-    certificate: &SecCertificate,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn SecCertificateCopySubjectSummary(
-            certificate: &SecCertificate,
-        ) -> Option<NonNull<CFString>>;
+    /// Return a simple string which hopefully represents a human
+    /// understandable summary.
+    ///
+    /// Parameter `certificate`: A reference to the certificate from which to derive
+    /// the subject summary string.
+    ///
+    /// All the data in this string comes from the certificate itself
+    /// and thus it's in whatever language the certificate itself is in.
+    ///
+    /// Returns: A CFStringRef which the caller should CFRelease() once it's no
+    /// longer needed.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopySubjectSummary")]
+    pub unsafe fn subject_summary(self: &SecCertificate) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SecCertificateCopySubjectSummary(
+                certificate: &SecCertificate,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SecCertificateCopySubjectSummary(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecCertificateCopySubjectSummary(certificate) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
     /// Retrieves the common name of the subject of a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to retrieve the common name.
@@ -104,13 +105,21 @@ extern "C-unwind" {
     /// Note that the certificate's common name field may not be present, or may be inadequate to describe the certificate; for display purposes,
     /// you should consider using SecCertificateCopySubjectSummary instead of this function.
     #[cfg(feature = "SecBase")]
-    pub fn SecCertificateCopyCommonName(
-        certificate: &SecCertificate,
+    #[inline]
+    #[doc(alias = "SecCertificateCopyCommonName")]
+    pub unsafe fn copy_common_name(
+        self: &SecCertificate,
         common_name: NonNull<*const CFString>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateCopyCommonName(
+                certificate: &SecCertificate,
+                common_name: NonNull<*const CFString>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateCopyCommonName(self, common_name) }
+    }
 
-extern "C-unwind" {
     /// Returns an array of zero or more email addresses for the subject of a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to retrieve the email addresses.
@@ -120,70 +129,75 @@ extern "C-unwind" {
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
-    pub fn SecCertificateCopyEmailAddresses(
-        certificate: &SecCertificate,
+    #[inline]
+    #[doc(alias = "SecCertificateCopyEmailAddresses")]
+    pub unsafe fn copy_email_addresses(
+        self: &SecCertificate,
         email_addresses: NonNull<*const CFArray>,
-    ) -> OSStatus;
-}
-
-/// Return the certificate's normalized issuer
-///
-/// Parameter `certificate`: The certificate from which to get values
-///
-/// The issuer is a sequence in the format used by SecItemCopyMatching.  The content returned is a DER-encoded X.509 distinguished name. For a display version of the issuer, call SecCertificateCopyValues. The caller must CFRelease the value returned.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecCertificateCopyNormalizedIssuerSequence(
-    certificate: &SecCertificate,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn SecCertificateCopyNormalizedIssuerSequence(
-            certificate: &SecCertificate,
-        ) -> Option<NonNull<CFData>>;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateCopyEmailAddresses(
+                certificate: &SecCertificate,
+                email_addresses: NonNull<*const CFArray>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateCopyEmailAddresses(self, email_addresses) }
     }
-    let ret = unsafe { SecCertificateCopyNormalizedIssuerSequence(certificate) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Return the certificate's normalized subject
-///
-/// Parameter `certificate`: The certificate from which to get values
-///
-/// The subject is a sequence in the format used by SecItemCopyMatching. The content returned is a DER-encoded X.509 distinguished name. For a display version of the subject, call SecCertificateCopyValues. The caller must CFRelease the value returned.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecCertificateCopyNormalizedSubjectSequence(
-    certificate: &SecCertificate,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn SecCertificateCopyNormalizedSubjectSequence(
-            certificate: &SecCertificate,
-        ) -> Option<NonNull<CFData>>;
+    /// Return the certificate's normalized issuer
+    ///
+    /// Parameter `certificate`: The certificate from which to get values
+    ///
+    /// The issuer is a sequence in the format used by SecItemCopyMatching.  The content returned is a DER-encoded X.509 distinguished name. For a display version of the issuer, call SecCertificateCopyValues. The caller must CFRelease the value returned.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyNormalizedIssuerSequence")]
+    pub unsafe fn normalized_issuer_sequence(self: &SecCertificate) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn SecCertificateCopyNormalizedIssuerSequence(
+                certificate: &SecCertificate,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecCertificateCopyNormalizedIssuerSequence(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecCertificateCopyNormalizedSubjectSequence(certificate) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Retrieves the public key for a given certificate.
-///
-/// Parameter `certificate`: A reference to the certificate from which to retrieve the public key.
-///
-/// Returns: A reference to the public key for the specified certificate. Your code must release this reference by calling the CFRelease function. If the public key has an encoding issue or uses an unsupported algorithm, the returned reference will be null.
-///
-/// RSA and ECDSA public keys are supported. All other public key algorithms are unsupported.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecCertificateCopyKey(
-    certificate: &SecCertificate,
-) -> Option<CFRetained<SecKey>> {
-    extern "C-unwind" {
-        fn SecCertificateCopyKey(certificate: &SecCertificate) -> Option<NonNull<SecKey>>;
+    /// Return the certificate's normalized subject
+    ///
+    /// Parameter `certificate`: The certificate from which to get values
+    ///
+    /// The subject is a sequence in the format used by SecItemCopyMatching. The content returned is a DER-encoded X.509 distinguished name. For a display version of the subject, call SecCertificateCopyValues. The caller must CFRelease the value returned.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyNormalizedSubjectSequence")]
+    pub unsafe fn normalized_subject_sequence(self: &SecCertificate) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn SecCertificateCopyNormalizedSubjectSequence(
+                certificate: &SecCertificate,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecCertificateCopyNormalizedSubjectSequence(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecCertificateCopyKey(certificate) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Retrieves the public key for a given certificate.
+    ///
+    /// Parameter `certificate`: A reference to the certificate from which to retrieve the public key.
+    ///
+    /// Returns: A reference to the public key for the specified certificate. Your code must release this reference by calling the CFRelease function. If the public key has an encoding issue or uses an unsupported algorithm, the returned reference will be null.
+    ///
+    /// RSA and ECDSA public keys are supported. All other public key algorithms are unsupported.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyKey")]
+    pub unsafe fn key(self: &SecCertificate) -> Option<CFRetained<SecKey>> {
+        extern "C-unwind" {
+            fn SecCertificateCopyKey(certificate: &SecCertificate) -> Option<NonNull<SecKey>>;
+        }
+        let ret = unsafe { SecCertificateCopyKey(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Retrieves the public key for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to retrieve the public key.
@@ -195,105 +209,112 @@ extern "C-unwind" {
     /// NOTE: Deprecated in macOS 10.14; use SecCertificateCopyKey instead for cross-platform availability.
     #[cfg(feature = "SecBase")]
     #[deprecated]
-    #[cfg_attr(
-        target_vendor = "apple",
-        link_name = "SecCertificateCopyPublicKey$LEGACYMAC"
-    )]
-    pub fn SecCertificateCopyPublicKey(
-        certificate: &SecCertificate,
-        key: NonNull<*mut SecKey>,
-    ) -> OSStatus;
-}
-
-/// Return the certificate's serial number.
-///
-/// Parameter `certificate`: The certificate from which to get values.
-///
-/// Parameter `error`: An optional pointer to a CFErrorRef which will be set on return from the function if an error occurred. If not NULL, the caller is responsible for releasing the CFErrorRef.
-///
-/// Return the content of a DER-encoded integer (without the tag and length fields) for this certificate's serial number. The caller must CFRelease the value returned.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecCertificateCopySerialNumberData(
-    certificate: &SecCertificate,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn SecCertificateCopySerialNumberData(
-            certificate: &SecCertificate,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFData>>;
+    #[inline]
+    #[doc(alias = "SecCertificateCopyPublicKey")]
+    pub unsafe fn copy_public_key(self: &SecCertificate, key: NonNull<*mut SecKey>) -> OSStatus {
+        extern "C-unwind" {
+            #[cfg_attr(
+                target_vendor = "apple",
+                link_name = "SecCertificateCopyPublicKey$LEGACYMAC"
+            )]
+            fn SecCertificateCopyPublicKey(
+                certificate: &SecCertificate,
+                key: NonNull<*mut SecKey>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateCopyPublicKey(self, key) }
     }
-    let ret = unsafe { SecCertificateCopySerialNumberData(certificate, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Obtain the starting date of the given certificate.
-///
-/// Parameter `certificate`: The certificate from which to get values.
-///
-/// Returns: Returns the absolute time at which the given certificate becomes valid,
-/// or NULL if this value could not be obtained. The caller must CFRelease the value returned.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecCertificateCopyNotValidBeforeDate(
-    certificate: &SecCertificate,
-) -> Option<CFRetained<CFDate>> {
-    extern "C-unwind" {
-        fn SecCertificateCopyNotValidBeforeDate(
-            certificate: &SecCertificate,
-        ) -> Option<NonNull<CFDate>>;
+    /// Return the certificate's serial number.
+    ///
+    /// Parameter `certificate`: The certificate from which to get values.
+    ///
+    /// Parameter `error`: An optional pointer to a CFErrorRef which will be set on return from the function if an error occurred. If not NULL, the caller is responsible for releasing the CFErrorRef.
+    ///
+    /// Return the content of a DER-encoded integer (without the tag and length fields) for this certificate's serial number. The caller must CFRelease the value returned.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopySerialNumberData")]
+    pub unsafe fn serial_number_data(
+        self: &SecCertificate,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn SecCertificateCopySerialNumberData(
+                certificate: &SecCertificate,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecCertificateCopySerialNumberData(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecCertificateCopyNotValidBeforeDate(certificate) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Obtain the expiration date of the given certificate.
-///
-/// Parameter `certificate`: The certificate from which to get values.
-///
-/// Returns: Returns the absolute time at which the given certificate expires,
-/// or NULL if this value could not be obtained. The caller must CFRelease the value returned.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecCertificateCopyNotValidAfterDate(
-    certificate: &SecCertificate,
-) -> Option<CFRetained<CFDate>> {
-    extern "C-unwind" {
-        fn SecCertificateCopyNotValidAfterDate(
-            certificate: &SecCertificate,
-        ) -> Option<NonNull<CFDate>>;
+    /// Obtain the starting date of the given certificate.
+    ///
+    /// Parameter `certificate`: The certificate from which to get values.
+    ///
+    /// Returns: Returns the absolute time at which the given certificate becomes valid,
+    /// or NULL if this value could not be obtained. The caller must CFRelease the value returned.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyNotValidBeforeDate")]
+    pub unsafe fn not_valid_before_date(self: &SecCertificate) -> Option<CFRetained<CFDate>> {
+        extern "C-unwind" {
+            fn SecCertificateCopyNotValidBeforeDate(
+                certificate: &SecCertificate,
+            ) -> Option<NonNull<CFDate>>;
+        }
+        let ret = unsafe { SecCertificateCopyNotValidBeforeDate(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecCertificateCopyNotValidAfterDate(certificate) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Return the certificate's serial number.
-///
-/// Parameter `certificate`: The certificate from which to get values.
-///
-/// Parameter `error`: An optional pointer to a CFErrorRef which will be set on return from the function if an error occurred. If not NULL, the caller is responsible for releasing the CFErrorRef.
-///
-/// Return the content of a DER-encoded integer (without the tag and length fields) for this certificate's serial number. The caller must CFRelease the value returned. NOTE: Deprecated in macOS 10.13; use SecCertificateCopySerialNumberData instead for cross-platform availability.
-#[cfg(feature = "SecBase")]
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn SecCertificateCopySerialNumber(
-    certificate: &SecCertificate,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        #[cfg_attr(
-            target_vendor = "apple",
-            link_name = "SecCertificateCopySerialNumber$LEGACYMAC"
-        )]
-        fn SecCertificateCopySerialNumber(
-            certificate: &SecCertificate,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFData>>;
+    /// Obtain the expiration date of the given certificate.
+    ///
+    /// Parameter `certificate`: The certificate from which to get values.
+    ///
+    /// Returns: Returns the absolute time at which the given certificate expires,
+    /// or NULL if this value could not be obtained. The caller must CFRelease the value returned.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyNotValidAfterDate")]
+    pub unsafe fn not_valid_after_date(self: &SecCertificate) -> Option<CFRetained<CFDate>> {
+        extern "C-unwind" {
+            fn SecCertificateCopyNotValidAfterDate(
+                certificate: &SecCertificate,
+            ) -> Option<NonNull<CFDate>>;
+        }
+        let ret = unsafe { SecCertificateCopyNotValidAfterDate(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecCertificateCopySerialNumber(certificate, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    /// Return the certificate's serial number.
+    ///
+    /// Parameter `certificate`: The certificate from which to get values.
+    ///
+    /// Parameter `error`: An optional pointer to a CFErrorRef which will be set on return from the function if an error occurred. If not NULL, the caller is responsible for releasing the CFErrorRef.
+    ///
+    /// Return the content of a DER-encoded integer (without the tag and length fields) for this certificate's serial number. The caller must CFRelease the value returned. NOTE: Deprecated in macOS 10.13; use SecCertificateCopySerialNumberData instead for cross-platform availability.
+    #[cfg(feature = "SecBase")]
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SecCertificateCopySerialNumber")]
+    pub unsafe fn serial_number(
+        self: &SecCertificate,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            #[cfg_attr(
+                target_vendor = "apple",
+                link_name = "SecCertificateCopySerialNumber$LEGACYMAC"
+            )]
+            fn SecCertificateCopySerialNumber(
+                certificate: &SecCertificate,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecCertificateCopySerialNumber(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecsubjectitemattr?language=objc)
@@ -311,7 +332,8 @@ pub const kSecCertTypeItemAttr: c_uint = 1668577648;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccertencodingitemattr?language=objc)
 pub const kSecCertEncodingItemAttr: c_uint = 1667591779;
 
-extern "C-unwind" {
+#[cfg(feature = "SecBase")]
+impl SecCertificate {
     /// Creates a certificate based on the input data, type, and encoding.
     ///
     /// Parameter `data`: A pointer to the certificate data.
@@ -332,15 +354,25 @@ extern "C-unwind" {
         feature = "cssmtype"
     ))]
     #[deprecated]
-    pub fn SecCertificateCreateFromData(
+    #[inline]
+    #[doc(alias = "SecCertificateCreateFromData")]
+    pub unsafe fn create_from_data(
         data: NonNull<SecAsn1Item>,
         r#type: CSSM_CERT_TYPE,
         encoding: CSSM_CERT_ENCODING,
         certificate: NonNull<*mut SecCertificate>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateCreateFromData(
+                data: NonNull<SecAsn1Item>,
+                r#type: CSSM_CERT_TYPE,
+                encoding: CSSM_CERT_ENCODING,
+                certificate: NonNull<*mut SecCertificate>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateCreateFromData(data, r#type, encoding, certificate) }
+    }
 
-extern "C-unwind" {
     /// Adds a certificate to the specified keychain.
     ///
     /// Parameter `certificate`: A reference to a certificate.
@@ -352,13 +384,21 @@ extern "C-unwind" {
     /// This function is successful only if the certificate was created using the SecCertificateCreateFromData or
     /// SecCertificateCreateWithData functions, and the certificate has not yet been added to the specified keychain.
     #[cfg(feature = "SecBase")]
-    pub fn SecCertificateAddToKeychain(
-        certificate: &SecCertificate,
+    #[inline]
+    #[doc(alias = "SecCertificateAddToKeychain")]
+    pub unsafe fn add_to_keychain(
+        self: &SecCertificate,
         keychain: Option<&SecKeychain>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateAddToKeychain(
+                certificate: &SecCertificate,
+                keychain: Option<&SecKeychain>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateAddToKeychain(self, keychain) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the data for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to retrieve the data.
@@ -370,10 +410,16 @@ extern "C-unwind" {
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyData API instead.
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase", feature = "cssmtype"))]
     #[deprecated]
-    pub fn SecCertificateGetData(certificate: &SecCertificate, data: CSSM_DATA_PTR) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecCertificateGetData")]
+    pub unsafe fn get_data(self: &SecCertificate, data: CSSM_DATA_PTR) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateGetData(certificate: &SecCertificate, data: CSSM_DATA_PTR)
+                -> OSStatus;
+        }
+        unsafe { SecCertificateGetData(self, data) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the type for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to obtain the type.
@@ -385,13 +431,21 @@ extern "C-unwind" {
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyValues API instead.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
-    pub fn SecCertificateGetType(
-        certificate: &SecCertificate,
+    #[inline]
+    #[doc(alias = "SecCertificateGetType")]
+    pub unsafe fn r#type(
+        self: &SecCertificate,
         certificate_type: NonNull<CSSM_CERT_TYPE>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateGetType(
+                certificate: &SecCertificate,
+                certificate_type: NonNull<CSSM_CERT_TYPE>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateGetType(self, certificate_type) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the subject name for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to obtain the subject name.
@@ -420,13 +474,21 @@ extern "C-unwind" {
         feature = "x509defs"
     ))]
     #[deprecated]
-    pub fn SecCertificateGetSubject(
-        certificate: &SecCertificate,
+    #[inline]
+    #[doc(alias = "SecCertificateGetSubject")]
+    pub unsafe fn subject(
+        self: &SecCertificate,
         subject: NonNull<*const CSSM_X509_NAME>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateGetSubject(
+                certificate: &SecCertificate,
+                subject: NonNull<*const CSSM_X509_NAME>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateGetSubject(self, subject) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the issuer name for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to obtain the issuer name.
@@ -455,13 +517,21 @@ extern "C-unwind" {
         feature = "x509defs"
     ))]
     #[deprecated]
-    pub fn SecCertificateGetIssuer(
-        certificate: &SecCertificate,
+    #[inline]
+    #[doc(alias = "SecCertificateGetIssuer")]
+    pub unsafe fn issuer(
+        self: &SecCertificate,
         issuer: NonNull<*const CSSM_X509_NAME>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateGetIssuer(
+                certificate: &SecCertificate,
+                issuer: NonNull<*const CSSM_X509_NAME>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateGetIssuer(self, issuer) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the certificate library handle for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to obtain the certificate library handle.
@@ -473,13 +543,18 @@ extern "C-unwind" {
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyValues API instead.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
-    pub fn SecCertificateGetCLHandle(
-        certificate: &SecCertificate,
-        cl_handle: NonNull<CSSM_CL_HANDLE>,
-    ) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecCertificateGetCLHandle")]
+    pub unsafe fn cl_handle(self: &SecCertificate, cl_handle: NonNull<CSSM_CL_HANDLE>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateGetCLHandle(
+                certificate: &SecCertificate,
+                cl_handle: NonNull<CSSM_CL_HANDLE>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateGetCLHandle(self, cl_handle) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the algorithm identifier for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to retrieve the algorithm identifier.
@@ -490,13 +565,21 @@ extern "C-unwind" {
     /// discussion This API is deprecated in 10.7. Please use the SecCertificateCopyValues API instead.
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
-    pub fn SecCertificateGetAlgorithmID(
-        certificate: &SecCertificate,
+    #[inline]
+    #[doc(alias = "SecCertificateGetAlgorithmID")]
+    pub unsafe fn algorithm_id(
+        self: &SecCertificate,
         algid: NonNull<*const SecAsn1AlgId>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateGetAlgorithmID(
+                certificate: &SecCertificate,
+                algid: NonNull<*const SecAsn1AlgId>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateGetAlgorithmID(self, algid) }
+    }
 
-extern "C-unwind" {
     /// Returns the preferred certificate for the specified name and key usage. If a preferred certificate does not exist for the specified name and key usage, NULL is returned.
     ///
     /// Parameter `name`: A string containing an email address (RFC822) or other name for which a preferred certificate is requested.
@@ -511,40 +594,50 @@ extern "C-unwind" {
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyPreferred API instead.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated]
-    pub fn SecCertificateCopyPreference(
+    #[inline]
+    #[doc(alias = "SecCertificateCopyPreference")]
+    pub unsafe fn copy_preference(
         name: &CFString,
         key_usage: uint32,
         certificate: NonNull<*mut SecCertificate>,
-    ) -> OSStatus;
-}
-
-/// Returns the preferred certificate for the specified name and key usage. If a preferred certificate does not exist for the specified name and key usage, NULL is returned.
-///
-/// Parameter `name`: A string containing an email address (RFC822) or other name for which a preferred certificate is requested.
-///
-/// Parameter `keyUsage`: A CFArrayRef value, containing items defined in SecItem.h  Pass NULL to ignore this parameter. (kSecAttrCanEncrypt, kSecAttrCanDecrypt, kSecAttrCanDerive, kSecAttrCanSign, kSecAttrCanVerify, kSecAttrCanWrap, kSecAttrCanUnwrap)
-///
-/// Returns: On return, a reference to the preferred certificate, or NULL if none was found. You are responsible for releasing this reference by calling the CFRelease function.
-///
-/// This function will typically be used to obtain the preferred encryption certificate for an email recipient. If a preferred certificate has not been set
-/// for the supplied name, the returned reference will be NULL. Your code should then perform a search for possible certificates, using the SecItemCopyMatching API.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecCertificateCopyPreferred(
-    name: &CFString,
-    key_usage: Option<&CFArray>,
-) -> Option<CFRetained<SecCertificate>> {
-    extern "C-unwind" {
-        fn SecCertificateCopyPreferred(
-            name: &CFString,
-            key_usage: Option<&CFArray>,
-        ) -> Option<NonNull<SecCertificate>>;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateCopyPreference(
+                name: &CFString,
+                key_usage: uint32,
+                certificate: NonNull<*mut SecCertificate>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateCopyPreference(name, key_usage, certificate) }
     }
-    let ret = unsafe { SecCertificateCopyPreferred(name, key_usage) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Returns the preferred certificate for the specified name and key usage. If a preferred certificate does not exist for the specified name and key usage, NULL is returned.
+    ///
+    /// Parameter `name`: A string containing an email address (RFC822) or other name for which a preferred certificate is requested.
+    ///
+    /// Parameter `keyUsage`: A CFArrayRef value, containing items defined in SecItem.h  Pass NULL to ignore this parameter. (kSecAttrCanEncrypt, kSecAttrCanDecrypt, kSecAttrCanDerive, kSecAttrCanSign, kSecAttrCanVerify, kSecAttrCanWrap, kSecAttrCanUnwrap)
+    ///
+    /// Returns: On return, a reference to the preferred certificate, or NULL if none was found. You are responsible for releasing this reference by calling the CFRelease function.
+    ///
+    /// This function will typically be used to obtain the preferred encryption certificate for an email recipient. If a preferred certificate has not been set
+    /// for the supplied name, the returned reference will be NULL. Your code should then perform a search for possible certificates, using the SecItemCopyMatching API.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyPreferred")]
+    pub unsafe fn preferred(
+        name: &CFString,
+        key_usage: Option<&CFArray>,
+    ) -> Option<CFRetained<SecCertificate>> {
+        extern "C-unwind" {
+            fn SecCertificateCopyPreferred(
+                name: &CFString,
+                key_usage: Option<&CFArray>,
+            ) -> Option<NonNull<SecCertificate>>;
+        }
+        let ret = unsafe { SecCertificateCopyPreferred(name, key_usage) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Sets the preferred certificate for a specified name, key usage, and date.
     ///
     /// Parameter `certificate`: A reference to the certificate which will be preferred.
@@ -561,15 +654,25 @@ extern "C-unwind" {
     /// This API is deprecated in 10.7. Plese use the SecCertificateSetPreferred API instead.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated]
-    pub fn SecCertificateSetPreference(
-        certificate: &SecCertificate,
+    #[inline]
+    #[doc(alias = "SecCertificateSetPreference")]
+    pub unsafe fn set_preference(
+        self: &SecCertificate,
         name: &CFString,
         key_usage: uint32,
         date: Option<&CFDate>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateSetPreference(
+                certificate: &SecCertificate,
+                name: &CFString,
+                key_usage: uint32,
+                date: Option<&CFDate>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateSetPreference(self, name, key_usage, date) }
+    }
 
-extern "C-unwind" {
     /// Sets the preferred certificate for a specified name and optional key usage.
     ///
     /// Parameter `certificate`: A reference to the preferred certificate. If NULL is passed, any existing preference for the specified name is cleared instead.
@@ -583,11 +686,22 @@ extern "C-unwind" {
     /// This function will typically be used to set the preferred encryption certificate for an email recipient, either manually (when encrypting email to a recipient)
     /// or automatically upon receipt of encrypted email.
     #[cfg(feature = "SecBase")]
-    pub fn SecCertificateSetPreferred(
+    #[inline]
+    #[doc(alias = "SecCertificateSetPreferred")]
+    pub unsafe fn set_preferred(
         certificate: Option<&SecCertificate>,
         name: &CFString,
         key_usage: Option<&CFArray>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecCertificateSetPreferred(
+                certificate: Option<&SecCertificate>,
+                name: &CFString,
+                key_usage: Option<&CFArray>,
+            ) -> OSStatus;
+        }
+        unsafe { SecCertificateSetPreferred(certificate, name, key_usage) }
+    }
 }
 
 /// Flags to indicate key usages in the KeyUsage extension of a certificate
@@ -709,31 +823,512 @@ extern "C" {
     pub static kSecPropertyTypeNumber: &'static CFString;
 }
 
-/// Creates a dictionary that represents a certificate's contents.
-///
-/// Parameter `certificate`: The certificate from which to get values
-///
-/// Parameter `keys`: An array of string OID values, or NULL. If present, this is
-/// the subset of values from the certificate to return. If NULL,
-/// all values will be returned. Only OIDs that are top level keys
-/// in the returned dictionary can be specified. Unknown OIDs are
-/// ignored.
-///
-/// Parameter `error`: An optional pointer to a CFErrorRef. This value is
-/// set if an error occurred.  If not NULL the caller is
-/// responsible for releasing the CFErrorRef.
-///
-/// The keys array will contain all of the keys used in the
-/// returned dictionary. The top level keys in the returned
-/// dictionary are OIDs, many of which are found in SecCertificateOIDs.h.
-/// Each entry that is returned is itself a dictionary with four
-/// entries, whose keys are kSecPropertyKeyType, kSecPropertyKeyLabel,
-/// kSecPropertyKeyLocalizedLabel, kSecPropertyKeyValue. The label
-/// entries may contain a descriptive (localized) string, or an
-/// OID string. The kSecPropertyKeyType describes the type in the
-/// value entry. The value entry may be any CFType, although it
-/// is usually a CFStringRef, CFArrayRef or a CFDictionaryRef.
 #[cfg(feature = "SecBase")]
+impl SecCertificate {
+    /// Creates a dictionary that represents a certificate's contents.
+    ///
+    /// Parameter `certificate`: The certificate from which to get values
+    ///
+    /// Parameter `keys`: An array of string OID values, or NULL. If present, this is
+    /// the subset of values from the certificate to return. If NULL,
+    /// all values will be returned. Only OIDs that are top level keys
+    /// in the returned dictionary can be specified. Unknown OIDs are
+    /// ignored.
+    ///
+    /// Parameter `error`: An optional pointer to a CFErrorRef. This value is
+    /// set if an error occurred.  If not NULL the caller is
+    /// responsible for releasing the CFErrorRef.
+    ///
+    /// The keys array will contain all of the keys used in the
+    /// returned dictionary. The top level keys in the returned
+    /// dictionary are OIDs, many of which are found in SecCertificateOIDs.h.
+    /// Each entry that is returned is itself a dictionary with four
+    /// entries, whose keys are kSecPropertyKeyType, kSecPropertyKeyLabel,
+    /// kSecPropertyKeyLocalizedLabel, kSecPropertyKeyValue. The label
+    /// entries may contain a descriptive (localized) string, or an
+    /// OID string. The kSecPropertyKeyType describes the type in the
+    /// value entry. The value entry may be any CFType, although it
+    /// is usually a CFStringRef, CFArrayRef or a CFDictionaryRef.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyValues")]
+    pub unsafe fn values(
+        self: &SecCertificate,
+        keys: Option<&CFArray>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SecCertificateCopyValues(
+                certificate: &SecCertificate,
+                keys: Option<&CFArray>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SecCertificateCopyValues(self, keys, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Return the long description of a certificate
+    ///
+    /// Parameter `alloc`: The CFAllocator which should be used to allocate
+    /// memory for the dictionary and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `certificate`: The certificate from which to retrieve the long description
+    ///
+    /// Parameter `error`: An optional pointer to a CFErrorRef. This value is
+    /// set if an error occurred.  If not NULL the caller is
+    /// responsible for releasing the CFErrorRef.
+    ///
+    /// Returns: A CFStringRef of the long description or NULL. If NULL and the error
+    /// parameter is supplied the error will be returned in the error parameter
+    ///
+    /// Note that the format of this string may change in the future
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyLongDescription")]
+    pub unsafe fn long_description(
+        alloc: Option<&CFAllocator>,
+        certificate: &SecCertificate,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SecCertificateCopyLongDescription(
+                alloc: Option<&CFAllocator>,
+                certificate: &SecCertificate,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SecCertificateCopyLongDescription(alloc, certificate, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Return the short description of a certificate
+    ///
+    /// Parameter `alloc`: The CFAllocator which should be used to allocate
+    /// memory for the dictionary and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `certificate`: The certificate from which to retrieve the short description
+    ///
+    /// Parameter `error`: An optional pointer to a CFErrorRef. This value is
+    /// set if an error occurred.  If not NULL the caller is
+    /// responsible for releasing the CFErrorRef.
+    ///
+    /// Returns: A CFStringRef of the short description or NULL. If NULL and the error
+    /// parameter is supplied the error will be returned in the error parameter
+    ///
+    /// Note that the format of this string may change in the future
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyShortDescription")]
+    pub unsafe fn short_description(
+        alloc: Option<&CFAllocator>,
+        certificate: &SecCertificate,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SecCertificateCopyShortDescription(
+                alloc: Option<&CFAllocator>,
+                certificate: &SecCertificate,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SecCertificateCopyShortDescription(alloc, certificate, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Return the certificate's normalized issuer
+    ///
+    /// Parameter `certificate`: The certificate from which to get values
+    ///
+    /// Parameter `error`: An optional pointer to a CFErrorRef. This value is
+    /// set if an error occurred.  If not NULL the caller is
+    /// responsible for releasing the CFErrorRef.
+    ///
+    /// The issuer is a sequence in the format used by
+    /// SecItemCopyMatching.  The content returned is a DER-encoded
+    /// X.509 distinguished name. For a display version of the issuer,
+    /// call SecCertificateCopyValues. The caller must CFRelease
+    /// the value returned.
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "SecCertificateCopyNormalizedIssuerContent is deprecated. Use SecCertificateCopyNormalizedIssuerSequence instead."]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyNormalizedIssuerContent")]
+    pub unsafe fn normalized_issuer_content(
+        self: &SecCertificate,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn SecCertificateCopyNormalizedIssuerContent(
+                certificate: &SecCertificate,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecCertificateCopyNormalizedIssuerContent(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Return the certificate's normalized subject
+    ///
+    /// Parameter `certificate`: The certificate from which to get values
+    ///
+    /// Parameter `error`: An optional pointer to a CFErrorRef. This value is
+    /// set if an error occurred.  If not NULL the caller is
+    /// responsible for releasing the CFErrorRef.
+    ///
+    /// The subject is a sequence in the format used by
+    /// SecItemCopyMatching. The content returned is a DER-encoded
+    /// X.509 distinguished name. For a display version of the subject,
+    /// call SecCertificateCopyValues. The caller must CFRelease
+    /// the value returned.
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "SecCertificateCopyNormalizedSubjectContent is deprecated. Use SecCertificateCopyNormalizedSubjectSequence instead."]
+    #[inline]
+    #[doc(alias = "SecCertificateCopyNormalizedSubjectContent")]
+    pub unsafe fn normalized_subject_content(
+        self: &SecCertificate,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn SecCertificateCopyNormalizedSubjectContent(
+                certificate: &SecCertificate,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecCertificateCopyNormalizedSubjectContent(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::with_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecCertificateCreateWithData(
+    allocator: Option<&CFAllocator>,
+    data: &CFData,
+) -> Option<CFRetained<SecCertificate>> {
+    extern "C-unwind" {
+        fn SecCertificateCreateWithData(
+            allocator: Option<&CFAllocator>,
+            data: &CFData,
+        ) -> Option<NonNull<SecCertificate>>;
+    }
+    let ret = unsafe { SecCertificateCreateWithData(allocator, data) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecCertificateCopyData(
+    certificate: &SecCertificate,
+) -> CFRetained<CFData> {
+    extern "C-unwind" {
+        fn SecCertificateCopyData(certificate: &SecCertificate) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { SecCertificateCopyData(certificate) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::subject_summary`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecCertificateCopySubjectSummary(
+    certificate: &SecCertificate,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn SecCertificateCopySubjectSummary(
+            certificate: &SecCertificate,
+        ) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { SecCertificateCopySubjectSummary(certificate) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecCertificate::copy_common_name`"]
+    pub fn SecCertificateCopyCommonName(
+        certificate: &SecCertificate,
+        common_name: NonNull<*const CFString>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecCertificate::copy_email_addresses`"]
+    pub fn SecCertificateCopyEmailAddresses(
+        certificate: &SecCertificate,
+        email_addresses: NonNull<*const CFArray>,
+    ) -> OSStatus;
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::normalized_issuer_sequence`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecCertificateCopyNormalizedIssuerSequence(
+    certificate: &SecCertificate,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn SecCertificateCopyNormalizedIssuerSequence(
+            certificate: &SecCertificate,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { SecCertificateCopyNormalizedIssuerSequence(certificate) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::normalized_subject_sequence`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecCertificateCopyNormalizedSubjectSequence(
+    certificate: &SecCertificate,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn SecCertificateCopyNormalizedSubjectSequence(
+            certificate: &SecCertificate,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { SecCertificateCopyNormalizedSubjectSequence(certificate) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::key`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecCertificateCopyKey(
+    certificate: &SecCertificate,
+) -> Option<CFRetained<SecKey>> {
+    extern "C-unwind" {
+        fn SecCertificateCopyKey(certificate: &SecCertificate) -> Option<NonNull<SecKey>>;
+    }
+    let ret = unsafe { SecCertificateCopyKey(certificate) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecCertificate::copy_public_key`"]
+    #[cfg_attr(
+        target_vendor = "apple",
+        link_name = "SecCertificateCopyPublicKey$LEGACYMAC"
+    )]
+    pub fn SecCertificateCopyPublicKey(
+        certificate: &SecCertificate,
+        key: NonNull<*mut SecKey>,
+    ) -> OSStatus;
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::serial_number_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecCertificateCopySerialNumberData(
+    certificate: &SecCertificate,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn SecCertificateCopySerialNumberData(
+            certificate: &SecCertificate,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { SecCertificateCopySerialNumberData(certificate, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::not_valid_before_date`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecCertificateCopyNotValidBeforeDate(
+    certificate: &SecCertificate,
+) -> Option<CFRetained<CFDate>> {
+    extern "C-unwind" {
+        fn SecCertificateCopyNotValidBeforeDate(
+            certificate: &SecCertificate,
+        ) -> Option<NonNull<CFDate>>;
+    }
+    let ret = unsafe { SecCertificateCopyNotValidBeforeDate(certificate) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::not_valid_after_date`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecCertificateCopyNotValidAfterDate(
+    certificate: &SecCertificate,
+) -> Option<CFRetained<CFDate>> {
+    extern "C-unwind" {
+        fn SecCertificateCopyNotValidAfterDate(
+            certificate: &SecCertificate,
+        ) -> Option<NonNull<CFDate>>;
+    }
+    let ret = unsafe { SecCertificateCopyNotValidAfterDate(certificate) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::serial_number`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecCertificateCopySerialNumber(
+    certificate: &SecCertificate,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        #[cfg_attr(
+            target_vendor = "apple",
+            link_name = "SecCertificateCopySerialNumber$LEGACYMAC"
+        )]
+        fn SecCertificateCopySerialNumber(
+            certificate: &SecCertificate,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { SecCertificateCopySerialNumber(certificate, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "SecAsn1Types",
+        feature = "SecBase",
+        feature = "cssmconfig",
+        feature = "cssmtype"
+    ))]
+    #[deprecated = "renamed to `SecCertificate::create_from_data`"]
+    pub fn SecCertificateCreateFromData(
+        data: NonNull<SecAsn1Item>,
+        r#type: CSSM_CERT_TYPE,
+        encoding: CSSM_CERT_ENCODING,
+        certificate: NonNull<*mut SecCertificate>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecCertificate::add_to_keychain`"]
+    pub fn SecCertificateAddToKeychain(
+        certificate: &SecCertificate,
+        keychain: Option<&SecKeychain>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecAsn1Types", feature = "SecBase", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecCertificate::data`"]
+    pub fn SecCertificateGetData(certificate: &SecCertificate, data: CSSM_DATA_PTR) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecCertificate::type`"]
+    pub fn SecCertificateGetType(
+        certificate: &SecCertificate,
+        certificate_type: NonNull<CSSM_CERT_TYPE>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "SecAsn1Types",
+        feature = "SecBase",
+        feature = "cssmconfig",
+        feature = "x509defs"
+    ))]
+    #[deprecated = "renamed to `SecCertificate::subject`"]
+    pub fn SecCertificateGetSubject(
+        certificate: &SecCertificate,
+        subject: NonNull<*const CSSM_X509_NAME>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "SecAsn1Types",
+        feature = "SecBase",
+        feature = "cssmconfig",
+        feature = "x509defs"
+    ))]
+    #[deprecated = "renamed to `SecCertificate::issuer`"]
+    pub fn SecCertificateGetIssuer(
+        certificate: &SecCertificate,
+        issuer: NonNull<*const CSSM_X509_NAME>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecCertificate::cl_handle`"]
+    pub fn SecCertificateGetCLHandle(
+        certificate: &SecCertificate,
+        cl_handle: NonNull<CSSM_CL_HANDLE>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
+    #[deprecated = "renamed to `SecCertificate::algorithm_id`"]
+    pub fn SecCertificateGetAlgorithmID(
+        certificate: &SecCertificate,
+        algid: NonNull<*const SecAsn1AlgId>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
+    #[deprecated = "renamed to `SecCertificate::copy_preference`"]
+    pub fn SecCertificateCopyPreference(
+        name: &CFString,
+        key_usage: uint32,
+        certificate: NonNull<*mut SecCertificate>,
+    ) -> OSStatus;
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::preferred`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecCertificateCopyPreferred(
+    name: &CFString,
+    key_usage: Option<&CFArray>,
+) -> Option<CFRetained<SecCertificate>> {
+    extern "C-unwind" {
+        fn SecCertificateCopyPreferred(
+            name: &CFString,
+            key_usage: Option<&CFArray>,
+        ) -> Option<NonNull<SecCertificate>>;
+    }
+    let ret = unsafe { SecCertificateCopyPreferred(name, key_usage) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
+    #[deprecated = "renamed to `SecCertificate::set_preference`"]
+    pub fn SecCertificateSetPreference(
+        certificate: &SecCertificate,
+        name: &CFString,
+        key_usage: uint32,
+        date: Option<&CFDate>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecCertificate::set_preferred`"]
+    pub fn SecCertificateSetPreferred(
+        certificate: Option<&SecCertificate>,
+        name: &CFString,
+        key_usage: Option<&CFArray>,
+    ) -> OSStatus;
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::values`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecCertificateCopyValues(
     certificate: &SecCertificate,
@@ -751,25 +1346,8 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyValues(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Return the long description of a certificate
-///
-/// Parameter `alloc`: The CFAllocator which should be used to allocate
-/// memory for the dictionary and its storage for values. This
-/// parameter may be NULL in which case the current default
-/// CFAllocator is used. If this reference is not a valid
-/// CFAllocator, the behavior is undefined.
-///
-/// Parameter `certificate`: The certificate from which to retrieve the long description
-///
-/// Parameter `error`: An optional pointer to a CFErrorRef. This value is
-/// set if an error occurred.  If not NULL the caller is
-/// responsible for releasing the CFErrorRef.
-///
-/// Returns: A CFStringRef of the long description or NULL. If NULL and the error
-/// parameter is supplied the error will be returned in the error parameter
-///
-/// Note that the format of this string may change in the future
 #[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::long_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecCertificateCopyLongDescription(
     alloc: Option<&CFAllocator>,
@@ -787,25 +1365,8 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyLongDescription(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Return the short description of a certificate
-///
-/// Parameter `alloc`: The CFAllocator which should be used to allocate
-/// memory for the dictionary and its storage for values. This
-/// parameter may be NULL in which case the current default
-/// CFAllocator is used. If this reference is not a valid
-/// CFAllocator, the behavior is undefined.
-///
-/// Parameter `certificate`: The certificate from which to retrieve the short description
-///
-/// Parameter `error`: An optional pointer to a CFErrorRef. This value is
-/// set if an error occurred.  If not NULL the caller is
-/// responsible for releasing the CFErrorRef.
-///
-/// Returns: A CFStringRef of the short description or NULL. If NULL and the error
-/// parameter is supplied the error will be returned in the error parameter
-///
-/// Note that the format of this string may change in the future
 #[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecCertificate::short_description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecCertificateCopyShortDescription(
     alloc: Option<&CFAllocator>,
@@ -823,21 +1384,8 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyShortDescription(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Return the certificate's normalized issuer
-///
-/// Parameter `certificate`: The certificate from which to get values
-///
-/// Parameter `error`: An optional pointer to a CFErrorRef. This value is
-/// set if an error occurred.  If not NULL the caller is
-/// responsible for releasing the CFErrorRef.
-///
-/// The issuer is a sequence in the format used by
-/// SecItemCopyMatching.  The content returned is a DER-encoded
-/// X.509 distinguished name. For a display version of the issuer,
-/// call SecCertificateCopyValues. The caller must CFRelease
-/// the value returned.
 #[cfg(feature = "SecBase")]
-#[deprecated = "SecCertificateCopyNormalizedIssuerContent is deprecated. Use SecCertificateCopyNormalizedIssuerSequence instead."]
+#[deprecated = "renamed to `SecCertificate::normalized_issuer_content`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecCertificateCopyNormalizedIssuerContent(
     certificate: &SecCertificate,
@@ -853,21 +1401,8 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyNormalizedIssuerContent(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Return the certificate's normalized subject
-///
-/// Parameter `certificate`: The certificate from which to get values
-///
-/// Parameter `error`: An optional pointer to a CFErrorRef. This value is
-/// set if an error occurred.  If not NULL the caller is
-/// responsible for releasing the CFErrorRef.
-///
-/// The subject is a sequence in the format used by
-/// SecItemCopyMatching. The content returned is a DER-encoded
-/// X.509 distinguished name. For a display version of the subject,
-/// call SecCertificateCopyValues. The caller must CFRelease
-/// the value returned.
 #[cfg(feature = "SecBase")]
-#[deprecated = "SecCertificateCopyNormalizedSubjectContent is deprecated. Use SecCertificateCopyNormalizedSubjectSequence instead."]
+#[deprecated = "renamed to `SecCertificate::normalized_subject_content`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecCertificateCopyNormalizedSubjectContent(
     certificate: &SecCertificate,

@@ -102,25 +102,208 @@ unsafe impl RefEncode for CTCharacterCollection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Creates an immutable glyph info object.
-///
-///
-/// This function creates an immutable glyph info object for a glyph
-/// name such as "copyright" and a specified font.
-///
-///
-/// Parameter `glyphName`: The name of the glyph.
-///
-///
-/// Parameter `font`: The font to be associated with the returned CTGlyphInfo object.
-///
-///
-/// Parameter `baseString`: The part of the string the returned object is intended
-/// to override.
-///
-///
-/// Returns: This function will return a reference to a CTGlyphInfo object.
+impl CTGlyphInfo {
+    /// Creates an immutable glyph info object.
+    ///
+    ///
+    /// This function creates an immutable glyph info object for a glyph
+    /// name such as "copyright" and a specified font.
+    ///
+    ///
+    /// Parameter `glyphName`: The name of the glyph.
+    ///
+    ///
+    /// Parameter `font`: The font to be associated with the returned CTGlyphInfo object.
+    ///
+    ///
+    /// Parameter `baseString`: The part of the string the returned object is intended
+    /// to override.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTGlyphInfo object.
+    #[cfg(feature = "CTFont")]
+    #[inline]
+    #[doc(alias = "CTGlyphInfoCreateWithGlyphName")]
+    pub unsafe fn with_glyph_name(
+        glyph_name: &CFString,
+        font: &CTFont,
+        base_string: &CFString,
+    ) -> Option<CFRetained<CTGlyphInfo>> {
+        extern "C-unwind" {
+            fn CTGlyphInfoCreateWithGlyphName(
+                glyph_name: &CFString,
+                font: &CTFont,
+                base_string: &CFString,
+            ) -> Option<NonNull<CTGlyphInfo>>;
+        }
+        let ret = unsafe { CTGlyphInfoCreateWithGlyphName(glyph_name, font, base_string) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Creates an immutable glyph info object.
+    ///
+    ///
+    /// This function creates an immutable glyph info object for a glyph
+    /// index and a specified font.
+    ///
+    ///
+    /// Parameter `glyph`: The glyph identifier.
+    ///
+    ///
+    /// Parameter `font`: The font to be associated with the returned CTGlyphInfo object.
+    ///
+    ///
+    /// Parameter `baseString`: The part of the string the returned object is intended
+    /// to override.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTGlyphInfo object.
+    #[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
+    #[inline]
+    #[doc(alias = "CTGlyphInfoCreateWithGlyph")]
+    pub unsafe fn with_glyph(
+        glyph: CGGlyph,
+        font: &CTFont,
+        base_string: &CFString,
+    ) -> Option<CFRetained<CTGlyphInfo>> {
+        extern "C-unwind" {
+            fn CTGlyphInfoCreateWithGlyph(
+                glyph: CGGlyph,
+                font: &CTFont,
+                base_string: &CFString,
+            ) -> Option<NonNull<CTGlyphInfo>>;
+        }
+        let ret = unsafe { CTGlyphInfoCreateWithGlyph(glyph, font, base_string) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Creates an immutable glyph info object.
+    ///
+    ///
+    /// This function creates an immutable glyph info object for a
+    /// character identifier and a character collection.
+    ///
+    ///
+    /// Parameter `cid`: A character identifier.
+    ///
+    ///
+    /// Parameter `collection`: A character collection identifier.
+    ///
+    ///
+    /// Parameter `baseString`: The part of the string the returned object is intended
+    /// to override.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTGlyphInfo object.
+    #[cfg(feature = "objc2-core-graphics")]
+    #[inline]
+    #[doc(alias = "CTGlyphInfoCreateWithCharacterIdentifier")]
+    pub unsafe fn with_character_identifier(
+        cid: CGFontIndex,
+        collection: CTCharacterCollection,
+        base_string: &CFString,
+    ) -> Option<CFRetained<CTGlyphInfo>> {
+        extern "C-unwind" {
+            fn CTGlyphInfoCreateWithCharacterIdentifier(
+                cid: CGFontIndex,
+                collection: CTCharacterCollection,
+                base_string: &CFString,
+            ) -> Option<NonNull<CTGlyphInfo>>;
+        }
+        let ret = unsafe { CTGlyphInfoCreateWithCharacterIdentifier(cid, collection, base_string) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Gets the glyph name for a glyph info, if applicable.
+    ///
+    ///
+    /// This function will return the glyph name.
+    ///
+    ///
+    /// Parameter `glyphInfo`: The glyph info for which you would like the glyph name.
+    ///
+    ///
+    /// Returns: If the glyph info object was created with a glyph name, it will
+    /// be returned. Otherwise, this function will return NULL.
+    #[inline]
+    #[doc(alias = "CTGlyphInfoGetGlyphName")]
+    pub unsafe fn glyph_name(self: &CTGlyphInfo) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CTGlyphInfoGetGlyphName(glyph_info: &CTGlyphInfo) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CTGlyphInfoGetGlyphName(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    /// Gets the glyph for a glyph info, if applicable.
+    ///
+    ///
+    /// This function will return the glyph.
+    ///
+    ///
+    /// Parameter `glyphInfo`: The glyph info from which you would like the glyph.
+    ///
+    ///
+    /// Returns: If the glyph info object was created with a font, it will be
+    /// returned. Otherwise, this function will return 0.
+    #[cfg(feature = "objc2-core-graphics")]
+    #[inline]
+    #[doc(alias = "CTGlyphInfoGetGlyph")]
+    pub unsafe fn glyph(self: &CTGlyphInfo) -> CGGlyph {
+        extern "C-unwind" {
+            fn CTGlyphInfoGetGlyph(glyph_info: &CTGlyphInfo) -> CGGlyph;
+        }
+        unsafe { CTGlyphInfoGetGlyph(self) }
+    }
+
+    /// Gets the character identifier for a glyph info.
+    ///
+    ///
+    /// This function will return the character identifier.
+    ///
+    ///
+    /// Parameter `glyphInfo`: The glyph info for which you would like the character identifier.
+    ///
+    ///
+    /// Returns: If the glyph info object was created with a character identifier,
+    /// it will be returned. Otherwise, this function will return 0.
+    #[cfg(feature = "objc2-core-graphics")]
+    #[inline]
+    #[doc(alias = "CTGlyphInfoGetCharacterIdentifier")]
+    pub unsafe fn character_identifier(self: &CTGlyphInfo) -> CGFontIndex {
+        extern "C-unwind" {
+            fn CTGlyphInfoGetCharacterIdentifier(glyph_info: &CTGlyphInfo) -> CGFontIndex;
+        }
+        unsafe { CTGlyphInfoGetCharacterIdentifier(self) }
+    }
+
+    /// Gets the character collection for a glyph info.
+    ///
+    ///
+    /// This function will return the character collection. If the glyph
+    /// info object was created with a glyph name or a glyph index, its
+    /// character collection will be
+    /// kCTIdentityMappingCharacterCollection.
+    ///
+    ///
+    /// Parameter `glyphInfo`: The glyph info for which you would like the character collection.
+    ///
+    ///
+    /// Returns: This function will return the character collection of the given
+    /// glyph info.
+    #[inline]
+    #[doc(alias = "CTGlyphInfoGetCharacterCollection")]
+    pub unsafe fn character_collection(self: &CTGlyphInfo) -> CTCharacterCollection {
+        extern "C-unwind" {
+            fn CTGlyphInfoGetCharacterCollection(glyph_info: &CTGlyphInfo)
+                -> CTCharacterCollection;
+        }
+        unsafe { CTGlyphInfoGetCharacterCollection(self) }
+    }
+}
+
 #[cfg(feature = "CTFont")]
+#[deprecated = "renamed to `CTGlyphInfo::with_glyph_name`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTGlyphInfoCreateWithGlyphName(
     glyph_name: &CFString,
@@ -138,25 +321,8 @@ pub unsafe extern "C-unwind" fn CTGlyphInfoCreateWithGlyphName(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Creates an immutable glyph info object.
-///
-///
-/// This function creates an immutable glyph info object for a glyph
-/// index and a specified font.
-///
-///
-/// Parameter `glyph`: The glyph identifier.
-///
-///
-/// Parameter `font`: The font to be associated with the returned CTGlyphInfo object.
-///
-///
-/// Parameter `baseString`: The part of the string the returned object is intended
-/// to override.
-///
-///
-/// Returns: This function will return a reference to a CTGlyphInfo object.
 #[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
+#[deprecated = "renamed to `CTGlyphInfo::with_glyph`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTGlyphInfoCreateWithGlyph(
     glyph: CGGlyph,
@@ -174,25 +340,8 @@ pub unsafe extern "C-unwind" fn CTGlyphInfoCreateWithGlyph(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Creates an immutable glyph info object.
-///
-///
-/// This function creates an immutable glyph info object for a
-/// character identifier and a character collection.
-///
-///
-/// Parameter `cid`: A character identifier.
-///
-///
-/// Parameter `collection`: A character collection identifier.
-///
-///
-/// Parameter `baseString`: The part of the string the returned object is intended
-/// to override.
-///
-///
-/// Returns: This function will return a reference to a CTGlyphInfo object.
 #[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `CTGlyphInfo::with_character_identifier`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTGlyphInfoCreateWithCharacterIdentifier(
     cid: CGFontIndex,
@@ -210,17 +359,7 @@ pub unsafe extern "C-unwind" fn CTGlyphInfoCreateWithCharacterIdentifier(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Gets the glyph name for a glyph info, if applicable.
-///
-///
-/// This function will return the glyph name.
-///
-///
-/// Parameter `glyphInfo`: The glyph info for which you would like the glyph name.
-///
-///
-/// Returns: If the glyph info object was created with a glyph name, it will
-/// be returned. Otherwise, this function will return NULL.
+#[deprecated = "renamed to `CTGlyphInfo::glyph_name`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTGlyphInfoGetGlyphName(
     glyph_info: &CTGlyphInfo,
@@ -233,51 +372,18 @@ pub unsafe extern "C-unwind" fn CTGlyphInfoGetGlyphName(
 }
 
 extern "C-unwind" {
-    /// Gets the glyph for a glyph info, if applicable.
-    ///
-    ///
-    /// This function will return the glyph.
-    ///
-    ///
-    /// Parameter `glyphInfo`: The glyph info from which you would like the glyph.
-    ///
-    ///
-    /// Returns: If the glyph info object was created with a font, it will be
-    /// returned. Otherwise, this function will return 0.
     #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `CTGlyphInfo::glyph`"]
     pub fn CTGlyphInfoGetGlyph(glyph_info: &CTGlyphInfo) -> CGGlyph;
 }
 
 extern "C-unwind" {
-    /// Gets the character identifier for a glyph info.
-    ///
-    ///
-    /// This function will return the character identifier.
-    ///
-    ///
-    /// Parameter `glyphInfo`: The glyph info for which you would like the character identifier.
-    ///
-    ///
-    /// Returns: If the glyph info object was created with a character identifier,
-    /// it will be returned. Otherwise, this function will return 0.
     #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `CTGlyphInfo::character_identifier`"]
     pub fn CTGlyphInfoGetCharacterIdentifier(glyph_info: &CTGlyphInfo) -> CGFontIndex;
 }
 
 extern "C-unwind" {
-    /// Gets the character collection for a glyph info.
-    ///
-    ///
-    /// This function will return the character collection. If the glyph
-    /// info object was created with a glyph name or a glyph index, its
-    /// character collection will be
-    /// kCTIdentityMappingCharacterCollection.
-    ///
-    ///
-    /// Parameter `glyphInfo`: The glyph info for which you would like the character collection.
-    ///
-    ///
-    /// Returns: This function will return the character collection of the given
-    /// glyph info.
+    #[deprecated = "renamed to `CTGlyphInfo::character_collection`"]
     pub fn CTGlyphInfoGetCharacterCollection(glyph_info: &CTGlyphInfo) -> CTCharacterCollection;
 }

@@ -18,7 +18,8 @@ unsafe impl ConcreteType for SecRequirement {
     }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CSCommon")]
+impl SecRequirement {
     /// Create a SecRequirement object from binary form.
     /// This is the effective inverse of SecRequirementCopyData.
     ///
@@ -35,14 +36,23 @@ extern "C-unwind" {
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
     #[cfg(feature = "CSCommon")]
-    pub fn SecRequirementCreateWithData(
+    #[inline]
+    #[doc(alias = "SecRequirementCreateWithData")]
+    pub unsafe fn create_with_data(
         data: &CFData,
         flags: SecCSFlags,
         requirement: NonNull<*mut SecRequirement>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecRequirementCreateWithData(
+                data: &CFData,
+                flags: SecCSFlags,
+                requirement: NonNull<*mut SecRequirement>,
+            ) -> OSStatus;
+        }
+        unsafe { SecRequirementCreateWithData(data, flags, requirement) }
+    }
 
-extern "C-unwind" {
     /// Create a SecRequirement object by compiling a valid text representation
     /// of a requirement.
     ///
@@ -57,24 +67,43 @@ extern "C-unwind" {
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
     #[cfg(feature = "CSCommon")]
-    pub fn SecRequirementCreateWithString(
+    #[inline]
+    #[doc(alias = "SecRequirementCreateWithString")]
+    pub unsafe fn create_with_string(
         text: &CFString,
         flags: SecCSFlags,
         requirement: NonNull<*mut SecRequirement>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecRequirementCreateWithString(
+                text: &CFString,
+                flags: SecCSFlags,
+                requirement: NonNull<*mut SecRequirement>,
+            ) -> OSStatus;
+        }
+        unsafe { SecRequirementCreateWithString(text, flags, requirement) }
+    }
 
-extern "C-unwind" {
     #[cfg(feature = "CSCommon")]
-    pub fn SecRequirementCreateWithStringAndErrors(
+    #[inline]
+    #[doc(alias = "SecRequirementCreateWithStringAndErrors")]
+    pub unsafe fn create_with_string_and_errors(
         text: &CFString,
         flags: SecCSFlags,
         errors: *mut *mut CFError,
         requirement: NonNull<*mut SecRequirement>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecRequirementCreateWithStringAndErrors(
+                text: &CFString,
+                flags: SecCSFlags,
+                errors: *mut *mut CFError,
+                requirement: NonNull<*mut SecRequirement>,
+            ) -> OSStatus;
+        }
+        unsafe { SecRequirementCreateWithStringAndErrors(text, flags, errors, requirement) }
+    }
 
-extern "C-unwind" {
     /// Extracts a stable, persistent binary form of a SecRequirement.
     /// This is the effective inverse of SecRequirementCreateWithData.
     ///
@@ -90,14 +119,23 @@ extern "C-unwind" {
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
     #[cfg(feature = "CSCommon")]
-    pub fn SecRequirementCopyData(
-        requirement: &SecRequirement,
+    #[inline]
+    #[doc(alias = "SecRequirementCopyData")]
+    pub unsafe fn copy_data(
+        self: &SecRequirement,
         flags: SecCSFlags,
         data: NonNull<*const CFData>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecRequirementCopyData(
+                requirement: &SecRequirement,
+                flags: SecCSFlags,
+                data: NonNull<*const CFData>,
+            ) -> OSStatus;
+        }
+        unsafe { SecRequirementCopyData(self, flags, data) }
+    }
 
-extern "C-unwind" {
     /// Converts a SecRequirement object into text form.
     /// This is the effective inverse of SecRequirementCreateWithString.
     ///
@@ -118,6 +156,68 @@ extern "C-unwind" {
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
     #[cfg(feature = "CSCommon")]
+    #[inline]
+    #[doc(alias = "SecRequirementCopyString")]
+    pub unsafe fn copy_string(
+        self: &SecRequirement,
+        flags: SecCSFlags,
+        text: NonNull<*const CFString>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecRequirementCopyString(
+                requirement: &SecRequirement,
+                flags: SecCSFlags,
+                text: NonNull<*const CFString>,
+            ) -> OSStatus;
+        }
+        unsafe { SecRequirementCopyString(self, flags, text) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecRequirement::create_with_data`"]
+    pub fn SecRequirementCreateWithData(
+        data: &CFData,
+        flags: SecCSFlags,
+        requirement: NonNull<*mut SecRequirement>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecRequirement::create_with_string`"]
+    pub fn SecRequirementCreateWithString(
+        text: &CFString,
+        flags: SecCSFlags,
+        requirement: NonNull<*mut SecRequirement>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecRequirement::create_with_string_and_errors`"]
+    pub fn SecRequirementCreateWithStringAndErrors(
+        text: &CFString,
+        flags: SecCSFlags,
+        errors: *mut *mut CFError,
+        requirement: NonNull<*mut SecRequirement>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecRequirement::copy_data`"]
+    pub fn SecRequirementCopyData(
+        requirement: &SecRequirement,
+        flags: SecCSFlags,
+        data: NonNull<*const CFData>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CSCommon")]
+    #[deprecated = "renamed to `SecRequirement::copy_string`"]
     pub fn SecRequirementCopyString(
         requirement: &SecRequirement,
         flags: SecCSFlags,

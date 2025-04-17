@@ -28,23 +28,24 @@ unsafe impl RefEncode for HKAppleSleepingBreathingDisturbancesClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Determines the Breathing Disturbances classification for the provided BD value.
-///
-/// Parameter `value`: Breathing Disturbances quantity
-///
-/// Returns: A Breathing Disturbances classification if one can be created, otherwise nil.
-#[cfg(feature = "HKQuantity")]
-#[inline]
-pub unsafe extern "C-unwind" fn HKAppleSleepingBreathingDisturbancesClassificationForQuantity(
-    value: &HKQuantity,
-) -> Option<Retained<NSNumber>> {
-    extern "C-unwind" {
-        fn HKAppleSleepingBreathingDisturbancesClassificationForQuantity(
-            value: &HKQuantity,
-        ) -> *mut NSNumber;
+impl HKAppleSleepingBreathingDisturbancesClassification {
+    /// Determines the Breathing Disturbances classification for the provided BD value.
+    ///
+    /// Parameter `value`: Breathing Disturbances quantity
+    ///
+    /// Returns: A Breathing Disturbances classification if one can be created, otherwise nil.
+    #[cfg(feature = "HKQuantity")]
+    #[inline]
+    #[doc(alias = "HKAppleSleepingBreathingDisturbancesClassificationForQuantity")]
+    pub unsafe fn for_quantity(value: &HKQuantity) -> Option<Retained<NSNumber>> {
+        extern "C-unwind" {
+            fn HKAppleSleepingBreathingDisturbancesClassificationForQuantity(
+                value: &HKQuantity,
+            ) -> *mut NSNumber;
+        }
+        let ret = unsafe { HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value) };
+        unsafe { Retained::retain_autoreleased(ret) }
     }
-    let ret = unsafe { HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value) };
-    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 /// Retrieves the minimum quantity for a Breathing Disturbances classification.
@@ -65,4 +66,19 @@ pub unsafe extern "C-unwind" fn HKAppleSleepingBreathingDisturbancesMinimumQuant
     };
     unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[cfg(feature = "HKQuantity")]
+#[deprecated = "renamed to `HKAppleSleepingBreathingDisturbancesClassification::for_quantity`"]
+#[inline]
+pub unsafe extern "C-unwind" fn HKAppleSleepingBreathingDisturbancesClassificationForQuantity(
+    value: &HKQuantity,
+) -> Option<Retained<NSNumber>> {
+    extern "C-unwind" {
+        fn HKAppleSleepingBreathingDisturbancesClassificationForQuantity(
+            value: &HKQuantity,
+        ) -> *mut NSNumber;
+    }
+    let ret = unsafe { HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }

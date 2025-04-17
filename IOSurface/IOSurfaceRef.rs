@@ -317,325 +317,351 @@ unsafe impl ConcreteType for IOSurfaceRef {
     }
 }
 
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn IOSurfaceCreate(
-    properties: &CFDictionary,
-) -> Option<CFRetained<IOSurfaceRef>> {
-    extern "C-unwind" {
-        fn IOSurfaceCreate(properties: &CFDictionary) -> Option<NonNull<IOSurfaceRef>>;
+impl IOSurfaceRef {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "IOSurfaceCreate")]
+    pub unsafe fn new(properties: &CFDictionary) -> Option<CFRetained<IOSurfaceRef>> {
+        extern "C-unwind" {
+            fn IOSurfaceCreate(properties: &CFDictionary) -> Option<NonNull<IOSurfaceRef>>;
+        }
+        let ret = unsafe { IOSurfaceCreate(properties) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOSurfaceCreate(properties) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(all(feature = "IOSurfaceTypes", feature = "objc2-core-foundation"))]
-#[inline]
-pub extern "C-unwind" fn IOSurfaceLookup(csid: IOSurfaceID) -> Option<CFRetained<IOSurfaceRef>> {
-    extern "C-unwind" {
-        fn IOSurfaceLookup(csid: IOSurfaceID) -> Option<NonNull<IOSurfaceRef>>;
+    #[cfg(all(feature = "IOSurfaceTypes", feature = "objc2-core-foundation"))]
+    #[inline]
+    #[doc(alias = "IOSurfaceLookup")]
+    pub fn lookup(csid: IOSurfaceID) -> Option<CFRetained<IOSurfaceRef>> {
+        extern "C-unwind" {
+            fn IOSurfaceLookup(csid: IOSurfaceID) -> Option<NonNull<IOSurfaceRef>>;
+        }
+        let ret = unsafe { IOSurfaceLookup(csid) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOSurfaceLookup(csid) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "IOSurfaceTypes")]
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetID(buffer: &IOSurfaceRef) -> IOSurfaceID {
-    extern "C-unwind" {
-        fn IOSurfaceGetID(buffer: &IOSurfaceRef) -> IOSurfaceID;
+    #[cfg(feature = "IOSurfaceTypes")]
+    #[inline]
+    #[doc(alias = "IOSurfaceGetID")]
+    pub fn id(self: &IOSurfaceRef) -> IOSurfaceID {
+        extern "C-unwind" {
+            fn IOSurfaceGetID(buffer: &IOSurfaceRef) -> IOSurfaceID;
+        }
+        unsafe { IOSurfaceGetID(self) }
     }
-    unsafe { IOSurfaceGetID(buffer) }
-}
 
-extern "C-unwind" {
     #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
-    pub fn IOSurfaceLock(
-        buffer: &IOSurfaceRef,
+    #[inline]
+    #[doc(alias = "IOSurfaceLock")]
+    pub unsafe fn lock(
+        self: &IOSurfaceRef,
         options: IOSurfaceLockOptions,
         seed: *mut u32,
-    ) -> libc::kern_return_t;
-}
+    ) -> libc::kern_return_t {
+        extern "C-unwind" {
+            fn IOSurfaceLock(
+                buffer: &IOSurfaceRef,
+                options: IOSurfaceLockOptions,
+                seed: *mut u32,
+            ) -> libc::kern_return_t;
+        }
+        unsafe { IOSurfaceLock(self, options, seed) }
+    }
 
-extern "C-unwind" {
     #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
-    pub fn IOSurfaceUnlock(
-        buffer: &IOSurfaceRef,
+    #[inline]
+    #[doc(alias = "IOSurfaceUnlock")]
+    pub unsafe fn unlock(
+        self: &IOSurfaceRef,
         options: IOSurfaceLockOptions,
         seed: *mut u32,
-    ) -> libc::kern_return_t;
-}
-
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetAllocSize(buffer: &IOSurfaceRef) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetAllocSize(buffer: &IOSurfaceRef) -> usize;
+    ) -> libc::kern_return_t {
+        extern "C-unwind" {
+            fn IOSurfaceUnlock(
+                buffer: &IOSurfaceRef,
+                options: IOSurfaceLockOptions,
+                seed: *mut u32,
+            ) -> libc::kern_return_t;
+        }
+        unsafe { IOSurfaceUnlock(self, options, seed) }
     }
-    unsafe { IOSurfaceGetAllocSize(buffer) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetWidth(buffer: &IOSurfaceRef) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetWidth(buffer: &IOSurfaceRef) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetAllocSize")]
+    pub fn alloc_size(self: &IOSurfaceRef) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetAllocSize(buffer: &IOSurfaceRef) -> usize;
+        }
+        unsafe { IOSurfaceGetAllocSize(self) }
     }
-    unsafe { IOSurfaceGetWidth(buffer) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetHeight(buffer: &IOSurfaceRef) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetHeight(buffer: &IOSurfaceRef) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetWidth")]
+    pub fn width(self: &IOSurfaceRef) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetWidth(buffer: &IOSurfaceRef) -> usize;
+        }
+        unsafe { IOSurfaceGetWidth(self) }
     }
-    unsafe { IOSurfaceGetHeight(buffer) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetBytesPerElement(buffer: &IOSurfaceRef) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetBytesPerElement(buffer: &IOSurfaceRef) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetHeight")]
+    pub fn height(self: &IOSurfaceRef) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetHeight(buffer: &IOSurfaceRef) -> usize;
+        }
+        unsafe { IOSurfaceGetHeight(self) }
     }
-    unsafe { IOSurfaceGetBytesPerElement(buffer) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetBytesPerRow(buffer: &IOSurfaceRef) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetBytesPerRow(buffer: &IOSurfaceRef) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetBytesPerElement")]
+    pub fn bytes_per_element(self: &IOSurfaceRef) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetBytesPerElement(buffer: &IOSurfaceRef) -> usize;
+        }
+        unsafe { IOSurfaceGetBytesPerElement(self) }
     }
-    unsafe { IOSurfaceGetBytesPerRow(buffer) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetBaseAddress(buffer: &IOSurfaceRef) -> NonNull<c_void> {
-    extern "C-unwind" {
-        fn IOSurfaceGetBaseAddress(buffer: &IOSurfaceRef) -> Option<NonNull<c_void>>;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetBytesPerRow")]
+    pub fn bytes_per_row(self: &IOSurfaceRef) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetBytesPerRow(buffer: &IOSurfaceRef) -> usize;
+        }
+        unsafe { IOSurfaceGetBytesPerRow(self) }
     }
-    let ret = unsafe { IOSurfaceGetBaseAddress(buffer) };
-    ret.expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetElementWidth(buffer: &IOSurfaceRef) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetElementWidth(buffer: &IOSurfaceRef) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetBaseAddress")]
+    pub fn base_address(self: &IOSurfaceRef) -> NonNull<c_void> {
+        extern "C-unwind" {
+            fn IOSurfaceGetBaseAddress(buffer: &IOSurfaceRef) -> Option<NonNull<c_void>>;
+        }
+        let ret = unsafe { IOSurfaceGetBaseAddress(self) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
-    unsafe { IOSurfaceGetElementWidth(buffer) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetElementHeight(buffer: &IOSurfaceRef) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetElementHeight(buffer: &IOSurfaceRef) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetElementWidth")]
+    pub fn element_width(self: &IOSurfaceRef) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetElementWidth(buffer: &IOSurfaceRef) -> usize;
+        }
+        unsafe { IOSurfaceGetElementWidth(self) }
     }
-    unsafe { IOSurfaceGetElementHeight(buffer) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetPixelFormat(buffer: &IOSurfaceRef) -> OSType {
-    extern "C-unwind" {
-        fn IOSurfaceGetPixelFormat(buffer: &IOSurfaceRef) -> OSType;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetElementHeight")]
+    pub fn element_height(self: &IOSurfaceRef) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetElementHeight(buffer: &IOSurfaceRef) -> usize;
+        }
+        unsafe { IOSurfaceGetElementHeight(self) }
     }
-    unsafe { IOSurfaceGetPixelFormat(buffer) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetSeed(buffer: &IOSurfaceRef) -> u32 {
-    extern "C-unwind" {
-        fn IOSurfaceGetSeed(buffer: &IOSurfaceRef) -> u32;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetPixelFormat")]
+    pub fn pixel_format(self: &IOSurfaceRef) -> OSType {
+        extern "C-unwind" {
+            fn IOSurfaceGetPixelFormat(buffer: &IOSurfaceRef) -> OSType;
+        }
+        unsafe { IOSurfaceGetPixelFormat(self) }
     }
-    unsafe { IOSurfaceGetSeed(buffer) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetPlaneCount(buffer: &IOSurfaceRef) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetPlaneCount(buffer: &IOSurfaceRef) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetSeed")]
+    pub fn seed(self: &IOSurfaceRef) -> u32 {
+        extern "C-unwind" {
+            fn IOSurfaceGetSeed(buffer: &IOSurfaceRef) -> u32;
+        }
+        unsafe { IOSurfaceGetSeed(self) }
     }
-    unsafe { IOSurfaceGetPlaneCount(buffer) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetWidthOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetWidthOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetPlaneCount")]
+    pub fn plane_count(self: &IOSurfaceRef) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetPlaneCount(buffer: &IOSurfaceRef) -> usize;
+        }
+        unsafe { IOSurfaceGetPlaneCount(self) }
     }
-    unsafe { IOSurfaceGetWidthOfPlane(buffer, plane_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetHeightOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetHeightOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetWidthOfPlane")]
+    pub fn width_of_plane(self: &IOSurfaceRef, plane_index: usize) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetWidthOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+        }
+        unsafe { IOSurfaceGetWidthOfPlane(self, plane_index) }
     }
-    unsafe { IOSurfaceGetHeightOfPlane(buffer, plane_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetBytesPerElementOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetBytesPerElementOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetHeightOfPlane")]
+    pub fn height_of_plane(self: &IOSurfaceRef, plane_index: usize) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetHeightOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+        }
+        unsafe { IOSurfaceGetHeightOfPlane(self, plane_index) }
     }
-    unsafe { IOSurfaceGetBytesPerElementOfPlane(buffer, plane_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetBytesPerRowOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetBytesPerRowOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetBytesPerElementOfPlane")]
+    pub fn bytes_per_element_of_plane(self: &IOSurfaceRef, plane_index: usize) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetBytesPerElementOfPlane(
+                buffer: &IOSurfaceRef,
+                plane_index: usize,
+            ) -> usize;
+        }
+        unsafe { IOSurfaceGetBytesPerElementOfPlane(self, plane_index) }
     }
-    unsafe { IOSurfaceGetBytesPerRowOfPlane(buffer, plane_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetBaseAddressOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-) -> NonNull<c_void> {
-    extern "C-unwind" {
-        fn IOSurfaceGetBaseAddressOfPlane(
-            buffer: &IOSurfaceRef,
-            plane_index: usize,
-        ) -> Option<NonNull<c_void>>;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetBytesPerRowOfPlane")]
+    pub fn bytes_per_row_of_plane(self: &IOSurfaceRef, plane_index: usize) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetBytesPerRowOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+        }
+        unsafe { IOSurfaceGetBytesPerRowOfPlane(self, plane_index) }
     }
-    let ret = unsafe { IOSurfaceGetBaseAddressOfPlane(buffer, plane_index) };
-    ret.expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetElementWidthOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetElementWidthOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetBaseAddressOfPlane")]
+    pub fn base_address_of_plane(self: &IOSurfaceRef, plane_index: usize) -> NonNull<c_void> {
+        extern "C-unwind" {
+            fn IOSurfaceGetBaseAddressOfPlane(
+                buffer: &IOSurfaceRef,
+                plane_index: usize,
+            ) -> Option<NonNull<c_void>>;
+        }
+        let ret = unsafe { IOSurfaceGetBaseAddressOfPlane(self, plane_index) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
-    unsafe { IOSurfaceGetElementWidthOfPlane(buffer, plane_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetElementHeightOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetElementHeightOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetElementWidthOfPlane")]
+    pub fn element_width_of_plane(self: &IOSurfaceRef, plane_index: usize) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetElementWidthOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+        }
+        unsafe { IOSurfaceGetElementWidthOfPlane(self, plane_index) }
     }
-    unsafe { IOSurfaceGetElementHeightOfPlane(buffer, plane_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetNumberOfComponentsOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetNumberOfComponentsOfPlane(
-            buffer: &IOSurfaceRef,
-            plane_index: usize,
-        ) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetElementHeightOfPlane")]
+    pub fn element_height_of_plane(self: &IOSurfaceRef, plane_index: usize) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetElementHeightOfPlane(buffer: &IOSurfaceRef, plane_index: usize)
+                -> usize;
+        }
+        unsafe { IOSurfaceGetElementHeightOfPlane(self, plane_index) }
     }
-    unsafe { IOSurfaceGetNumberOfComponentsOfPlane(buffer, plane_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetNameOfComponentOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-    component_index: usize,
-) -> IOSurfaceComponentName {
-    extern "C-unwind" {
-        fn IOSurfaceGetNameOfComponentOfPlane(
-            buffer: &IOSurfaceRef,
-            plane_index: usize,
-            component_index: usize,
-        ) -> IOSurfaceComponentName;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetNumberOfComponentsOfPlane")]
+    pub fn number_of_components_of_plane(self: &IOSurfaceRef, plane_index: usize) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetNumberOfComponentsOfPlane(
+                buffer: &IOSurfaceRef,
+                plane_index: usize,
+            ) -> usize;
+        }
+        unsafe { IOSurfaceGetNumberOfComponentsOfPlane(self, plane_index) }
     }
-    unsafe { IOSurfaceGetNameOfComponentOfPlane(buffer, plane_index, component_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetTypeOfComponentOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-    component_index: usize,
-) -> IOSurfaceComponentType {
-    extern "C-unwind" {
-        fn IOSurfaceGetTypeOfComponentOfPlane(
-            buffer: &IOSurfaceRef,
-            plane_index: usize,
-            component_index: usize,
-        ) -> IOSurfaceComponentType;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetNameOfComponentOfPlane")]
+    pub fn name_of_component_of_plane(
+        self: &IOSurfaceRef,
+        plane_index: usize,
+        component_index: usize,
+    ) -> IOSurfaceComponentName {
+        extern "C-unwind" {
+            fn IOSurfaceGetNameOfComponentOfPlane(
+                buffer: &IOSurfaceRef,
+                plane_index: usize,
+                component_index: usize,
+            ) -> IOSurfaceComponentName;
+        }
+        unsafe { IOSurfaceGetNameOfComponentOfPlane(self, plane_index, component_index) }
     }
-    unsafe { IOSurfaceGetTypeOfComponentOfPlane(buffer, plane_index, component_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetRangeOfComponentOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-    component_index: usize,
-) -> IOSurfaceComponentRange {
-    extern "C-unwind" {
-        fn IOSurfaceGetRangeOfComponentOfPlane(
-            buffer: &IOSurfaceRef,
-            plane_index: usize,
-            component_index: usize,
-        ) -> IOSurfaceComponentRange;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetTypeOfComponentOfPlane")]
+    pub fn type_of_component_of_plane(
+        self: &IOSurfaceRef,
+        plane_index: usize,
+        component_index: usize,
+    ) -> IOSurfaceComponentType {
+        extern "C-unwind" {
+            fn IOSurfaceGetTypeOfComponentOfPlane(
+                buffer: &IOSurfaceRef,
+                plane_index: usize,
+                component_index: usize,
+            ) -> IOSurfaceComponentType;
+        }
+        unsafe { IOSurfaceGetTypeOfComponentOfPlane(self, plane_index, component_index) }
     }
-    unsafe { IOSurfaceGetRangeOfComponentOfPlane(buffer, plane_index, component_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetBitDepthOfComponentOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-    component_index: usize,
-) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetBitDepthOfComponentOfPlane(
-            buffer: &IOSurfaceRef,
-            plane_index: usize,
-            component_index: usize,
-        ) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetRangeOfComponentOfPlane")]
+    pub fn range_of_component_of_plane(
+        self: &IOSurfaceRef,
+        plane_index: usize,
+        component_index: usize,
+    ) -> IOSurfaceComponentRange {
+        extern "C-unwind" {
+            fn IOSurfaceGetRangeOfComponentOfPlane(
+                buffer: &IOSurfaceRef,
+                plane_index: usize,
+                component_index: usize,
+            ) -> IOSurfaceComponentRange;
+        }
+        unsafe { IOSurfaceGetRangeOfComponentOfPlane(self, plane_index, component_index) }
     }
-    unsafe { IOSurfaceGetBitDepthOfComponentOfPlane(buffer, plane_index, component_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetBitOffsetOfComponentOfPlane(
-    buffer: &IOSurfaceRef,
-    plane_index: usize,
-    component_index: usize,
-) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetBitOffsetOfComponentOfPlane(
-            buffer: &IOSurfaceRef,
-            plane_index: usize,
-            component_index: usize,
-        ) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetBitDepthOfComponentOfPlane")]
+    pub fn bit_depth_of_component_of_plane(
+        self: &IOSurfaceRef,
+        plane_index: usize,
+        component_index: usize,
+    ) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetBitDepthOfComponentOfPlane(
+                buffer: &IOSurfaceRef,
+                plane_index: usize,
+                component_index: usize,
+            ) -> usize;
+        }
+        unsafe { IOSurfaceGetBitDepthOfComponentOfPlane(self, plane_index, component_index) }
     }
-    unsafe { IOSurfaceGetBitOffsetOfComponentOfPlane(buffer, plane_index, component_index) }
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetSubsampling(buffer: &IOSurfaceRef) -> IOSurfaceSubsampling {
-    extern "C-unwind" {
-        fn IOSurfaceGetSubsampling(buffer: &IOSurfaceRef) -> IOSurfaceSubsampling;
+    #[inline]
+    #[doc(alias = "IOSurfaceGetBitOffsetOfComponentOfPlane")]
+    pub fn bit_offset_of_component_of_plane(
+        self: &IOSurfaceRef,
+        plane_index: usize,
+        component_index: usize,
+    ) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetBitOffsetOfComponentOfPlane(
+                buffer: &IOSurfaceRef,
+                plane_index: usize,
+                component_index: usize,
+            ) -> usize;
+        }
+        unsafe { IOSurfaceGetBitOffsetOfComponentOfPlane(self, plane_index, component_index) }
     }
-    unsafe { IOSurfaceGetSubsampling(buffer) }
+
+    #[inline]
+    #[doc(alias = "IOSurfaceGetSubsampling")]
+    pub fn subsampling(self: &IOSurfaceRef) -> IOSurfaceSubsampling {
+        extern "C-unwind" {
+            fn IOSurfaceGetSubsampling(buffer: &IOSurfaceRef) -> IOSurfaceSubsampling;
+        }
+        unsafe { IOSurfaceGetSubsampling(self) }
+    }
 }
 
 extern "C" {
@@ -656,155 +682,186 @@ extern "C" {
     pub static kIOSurfaceContentHeadroom: &'static CFString;
 }
 
-extern "C-unwind" {
+impl IOSurfaceRef {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceSetValue(buffer: &IOSurfaceRef, key: &CFString, value: &CFType);
-}
-
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub extern "C-unwind" fn IOSurfaceCopyValue(
-    buffer: &IOSurfaceRef,
-    key: &CFString,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn IOSurfaceCopyValue(buffer: &IOSurfaceRef, key: &CFString) -> Option<NonNull<CFType>>;
+    #[inline]
+    #[doc(alias = "IOSurfaceSetValue")]
+    pub unsafe fn set_value(self: &IOSurfaceRef, key: &CFString, value: &CFType) {
+        extern "C-unwind" {
+            fn IOSurfaceSetValue(buffer: &IOSurfaceRef, key: &CFString, value: &CFType);
+        }
+        unsafe { IOSurfaceSetValue(self, key, value) }
     }
-    let ret = unsafe { IOSurfaceCopyValue(buffer, key) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub extern "C-unwind" fn IOSurfaceRemoveValue(buffer: &IOSurfaceRef, key: &CFString) {
-    extern "C-unwind" {
-        fn IOSurfaceRemoveValue(buffer: &IOSurfaceRef, key: &CFString);
-    }
-    unsafe { IOSurfaceRemoveValue(buffer, key) }
-}
-
-extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceSetValues(buffer: &IOSurfaceRef, keys_and_values: &CFDictionary);
-}
-
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub extern "C-unwind" fn IOSurfaceCopyAllValues(
-    buffer: &IOSurfaceRef,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn IOSurfaceCopyAllValues(buffer: &IOSurfaceRef) -> Option<NonNull<CFDictionary>>;
+    #[inline]
+    #[doc(alias = "IOSurfaceCopyValue")]
+    pub fn value(self: &IOSurfaceRef, key: &CFString) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn IOSurfaceCopyValue(buffer: &IOSurfaceRef, key: &CFString)
+                -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { IOSurfaceCopyValue(self, key) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOSurfaceCopyAllValues(buffer) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub extern "C-unwind" fn IOSurfaceRemoveAllValues(buffer: &IOSurfaceRef) {
-    extern "C-unwind" {
-        fn IOSurfaceRemoveAllValues(buffer: &IOSurfaceRef);
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "IOSurfaceRemoveValue")]
+    pub fn remove_value(self: &IOSurfaceRef, key: &CFString) {
+        extern "C-unwind" {
+            fn IOSurfaceRemoveValue(buffer: &IOSurfaceRef, key: &CFString);
+        }
+        unsafe { IOSurfaceRemoveValue(self, key) }
     }
-    unsafe { IOSurfaceRemoveAllValues(buffer) }
-}
 
-#[cfg(feature = "libc")]
-#[inline]
-pub extern "C-unwind" fn IOSurfaceCreateMachPort(buffer: &IOSurfaceRef) -> libc::mach_port_t {
-    extern "C-unwind" {
-        fn IOSurfaceCreateMachPort(buffer: &IOSurfaceRef) -> libc::mach_port_t;
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "IOSurfaceSetValues")]
+    pub unsafe fn set_values(self: &IOSurfaceRef, keys_and_values: &CFDictionary) {
+        extern "C-unwind" {
+            fn IOSurfaceSetValues(buffer: &IOSurfaceRef, keys_and_values: &CFDictionary);
+        }
+        unsafe { IOSurfaceSetValues(self, keys_and_values) }
     }
-    unsafe { IOSurfaceCreateMachPort(buffer) }
-}
 
-#[cfg(all(feature = "libc", feature = "objc2-core-foundation"))]
-#[inline]
-pub extern "C-unwind" fn IOSurfaceLookupFromMachPort(
-    port: libc::mach_port_t,
-) -> Option<CFRetained<IOSurfaceRef>> {
-    extern "C-unwind" {
-        fn IOSurfaceLookupFromMachPort(port: libc::mach_port_t) -> Option<NonNull<IOSurfaceRef>>;
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "IOSurfaceCopyAllValues")]
+    pub fn all_values(self: &IOSurfaceRef) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn IOSurfaceCopyAllValues(buffer: &IOSurfaceRef) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { IOSurfaceCopyAllValues(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOSurfaceLookupFromMachPort(port) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetPropertyMaximum(property: &CFString) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetPropertyMaximum(property: &CFString) -> usize;
+    #[inline]
+    #[doc(alias = "IOSurfaceRemoveAllValues")]
+    pub fn remove_all_values(self: &IOSurfaceRef) {
+        extern "C-unwind" {
+            fn IOSurfaceRemoveAllValues(buffer: &IOSurfaceRef);
+        }
+        unsafe { IOSurfaceRemoveAllValues(self) }
     }
-    unsafe { IOSurfaceGetPropertyMaximum(property) }
-}
 
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetPropertyAlignment(property: &CFString) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceGetPropertyAlignment(property: &CFString) -> usize;
-    }
-    unsafe { IOSurfaceGetPropertyAlignment(property) }
-}
-
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub extern "C-unwind" fn IOSurfaceAlignProperty(property: &CFString, value: usize) -> usize {
-    extern "C-unwind" {
-        fn IOSurfaceAlignProperty(property: &CFString, value: usize) -> usize;
-    }
-    unsafe { IOSurfaceAlignProperty(property, value) }
-}
-
-#[inline]
-pub extern "C-unwind" fn IOSurfaceIncrementUseCount(buffer: &IOSurfaceRef) {
-    extern "C-unwind" {
-        fn IOSurfaceIncrementUseCount(buffer: &IOSurfaceRef);
-    }
-    unsafe { IOSurfaceIncrementUseCount(buffer) }
-}
-
-#[inline]
-pub extern "C-unwind" fn IOSurfaceDecrementUseCount(buffer: &IOSurfaceRef) {
-    extern "C-unwind" {
-        fn IOSurfaceDecrementUseCount(buffer: &IOSurfaceRef);
-    }
-    unsafe { IOSurfaceDecrementUseCount(buffer) }
-}
-
-#[inline]
-pub extern "C-unwind" fn IOSurfaceGetUseCount(buffer: &IOSurfaceRef) -> i32 {
-    extern "C-unwind" {
-        fn IOSurfaceGetUseCount(buffer: &IOSurfaceRef) -> i32;
-    }
-    unsafe { IOSurfaceGetUseCount(buffer) }
-}
-
-#[inline]
-pub extern "C-unwind" fn IOSurfaceIsInUse(buffer: &IOSurfaceRef) -> bool {
-    extern "C-unwind" {
-        fn IOSurfaceIsInUse(buffer: &IOSurfaceRef) -> Boolean;
-    }
-    let ret = unsafe { IOSurfaceIsInUse(buffer) };
-    ret != 0
-}
-
-#[inline]
-pub extern "C-unwind" fn IOSurfaceAllowsPixelSizeCasting(buffer: &IOSurfaceRef) -> bool {
-    extern "C-unwind" {
-        fn IOSurfaceAllowsPixelSizeCasting(buffer: &IOSurfaceRef) -> Boolean;
-    }
-    let ret = unsafe { IOSurfaceAllowsPixelSizeCasting(buffer) };
-    ret != 0
-}
-
-extern "C-unwind" {
     #[cfg(feature = "libc")]
-    pub fn IOSurfaceSetPurgeable(
-        buffer: &IOSurfaceRef,
+    #[inline]
+    #[doc(alias = "IOSurfaceCreateMachPort")]
+    pub fn create_mach_port(self: &IOSurfaceRef) -> libc::mach_port_t {
+        extern "C-unwind" {
+            fn IOSurfaceCreateMachPort(buffer: &IOSurfaceRef) -> libc::mach_port_t;
+        }
+        unsafe { IOSurfaceCreateMachPort(self) }
+    }
+
+    #[cfg(all(feature = "libc", feature = "objc2-core-foundation"))]
+    #[inline]
+    #[doc(alias = "IOSurfaceLookupFromMachPort")]
+    pub fn lookup_from_mach_port(port: libc::mach_port_t) -> Option<CFRetained<IOSurfaceRef>> {
+        extern "C-unwind" {
+            fn IOSurfaceLookupFromMachPort(
+                port: libc::mach_port_t,
+            ) -> Option<NonNull<IOSurfaceRef>>;
+        }
+        let ret = unsafe { IOSurfaceLookupFromMachPort(port) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "IOSurfaceGetPropertyMaximum")]
+    pub fn property_maximum(property: &CFString) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetPropertyMaximum(property: &CFString) -> usize;
+        }
+        unsafe { IOSurfaceGetPropertyMaximum(property) }
+    }
+
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "IOSurfaceGetPropertyAlignment")]
+    pub fn property_alignment(property: &CFString) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceGetPropertyAlignment(property: &CFString) -> usize;
+        }
+        unsafe { IOSurfaceGetPropertyAlignment(property) }
+    }
+
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "IOSurfaceAlignProperty")]
+    pub fn align_property(property: &CFString, value: usize) -> usize {
+        extern "C-unwind" {
+            fn IOSurfaceAlignProperty(property: &CFString, value: usize) -> usize;
+        }
+        unsafe { IOSurfaceAlignProperty(property, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "IOSurfaceIncrementUseCount")]
+    pub fn increment_use_count(self: &IOSurfaceRef) {
+        extern "C-unwind" {
+            fn IOSurfaceIncrementUseCount(buffer: &IOSurfaceRef);
+        }
+        unsafe { IOSurfaceIncrementUseCount(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "IOSurfaceDecrementUseCount")]
+    pub fn decrement_use_count(self: &IOSurfaceRef) {
+        extern "C-unwind" {
+            fn IOSurfaceDecrementUseCount(buffer: &IOSurfaceRef);
+        }
+        unsafe { IOSurfaceDecrementUseCount(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "IOSurfaceGetUseCount")]
+    pub fn use_count(self: &IOSurfaceRef) -> i32 {
+        extern "C-unwind" {
+            fn IOSurfaceGetUseCount(buffer: &IOSurfaceRef) -> i32;
+        }
+        unsafe { IOSurfaceGetUseCount(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "IOSurfaceIsInUse")]
+    pub fn is_in_use(self: &IOSurfaceRef) -> bool {
+        extern "C-unwind" {
+            fn IOSurfaceIsInUse(buffer: &IOSurfaceRef) -> Boolean;
+        }
+        let ret = unsafe { IOSurfaceIsInUse(self) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "IOSurfaceAllowsPixelSizeCasting")]
+    pub fn allows_pixel_size_casting(self: &IOSurfaceRef) -> bool {
+        extern "C-unwind" {
+            fn IOSurfaceAllowsPixelSizeCasting(buffer: &IOSurfaceRef) -> Boolean;
+        }
+        let ret = unsafe { IOSurfaceAllowsPixelSizeCasting(self) };
+        ret != 0
+    }
+
+    #[cfg(feature = "libc")]
+    #[inline]
+    #[doc(alias = "IOSurfaceSetPurgeable")]
+    pub unsafe fn set_purgeable(
+        self: &IOSurfaceRef,
         new_state: u32,
         old_state: *mut u32,
-    ) -> libc::kern_return_t;
+    ) -> libc::kern_return_t {
+        extern "C-unwind" {
+            fn IOSurfaceSetPurgeable(
+                buffer: &IOSurfaceRef,
+                new_state: u32,
+                old_state: *mut u32,
+            ) -> libc::kern_return_t;
+        }
+        unsafe { IOSurfaceSetPurgeable(self, new_state, old_state) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags?language=objc)
@@ -855,4 +912,523 @@ unsafe impl Encode for IOSurfaceMemoryLedgerFlags {
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOSurfaceMemoryLedgerFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `IOSurfaceRef::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOSurfaceCreate(
+    properties: &CFDictionary,
+) -> Option<CFRetained<IOSurfaceRef>> {
+    extern "C-unwind" {
+        fn IOSurfaceCreate(properties: &CFDictionary) -> Option<NonNull<IOSurfaceRef>>;
+    }
+    let ret = unsafe { IOSurfaceCreate(properties) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(all(feature = "IOSurfaceTypes", feature = "objc2-core-foundation"))]
+#[deprecated = "renamed to `IOSurfaceRef::lookup`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceLookup(csid: IOSurfaceID) -> Option<CFRetained<IOSurfaceRef>> {
+    extern "C-unwind" {
+        fn IOSurfaceLookup(csid: IOSurfaceID) -> Option<NonNull<IOSurfaceRef>>;
+    }
+    let ret = unsafe { IOSurfaceLookup(csid) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "IOSurfaceTypes")]
+#[deprecated = "renamed to `IOSurfaceRef::id`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetID(buffer: &IOSurfaceRef) -> IOSurfaceID {
+    extern "C-unwind" {
+        fn IOSurfaceGetID(buffer: &IOSurfaceRef) -> IOSurfaceID;
+    }
+    unsafe { IOSurfaceGetID(buffer) }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
+    #[deprecated = "renamed to `IOSurfaceRef::lock`"]
+    pub fn IOSurfaceLock(
+        buffer: &IOSurfaceRef,
+        options: IOSurfaceLockOptions,
+        seed: *mut u32,
+    ) -> libc::kern_return_t;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
+    #[deprecated = "renamed to `IOSurfaceRef::unlock`"]
+    pub fn IOSurfaceUnlock(
+        buffer: &IOSurfaceRef,
+        options: IOSurfaceLockOptions,
+        seed: *mut u32,
+    ) -> libc::kern_return_t;
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::alloc_size`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetAllocSize(buffer: &IOSurfaceRef) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetAllocSize(buffer: &IOSurfaceRef) -> usize;
+    }
+    unsafe { IOSurfaceGetAllocSize(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::width`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetWidth(buffer: &IOSurfaceRef) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetWidth(buffer: &IOSurfaceRef) -> usize;
+    }
+    unsafe { IOSurfaceGetWidth(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::height`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetHeight(buffer: &IOSurfaceRef) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetHeight(buffer: &IOSurfaceRef) -> usize;
+    }
+    unsafe { IOSurfaceGetHeight(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::bytes_per_element`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetBytesPerElement(buffer: &IOSurfaceRef) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetBytesPerElement(buffer: &IOSurfaceRef) -> usize;
+    }
+    unsafe { IOSurfaceGetBytesPerElement(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::bytes_per_row`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetBytesPerRow(buffer: &IOSurfaceRef) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetBytesPerRow(buffer: &IOSurfaceRef) -> usize;
+    }
+    unsafe { IOSurfaceGetBytesPerRow(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::base_address`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetBaseAddress(buffer: &IOSurfaceRef) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn IOSurfaceGetBaseAddress(buffer: &IOSurfaceRef) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { IOSurfaceGetBaseAddress(buffer) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::element_width`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetElementWidth(buffer: &IOSurfaceRef) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetElementWidth(buffer: &IOSurfaceRef) -> usize;
+    }
+    unsafe { IOSurfaceGetElementWidth(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::element_height`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetElementHeight(buffer: &IOSurfaceRef) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetElementHeight(buffer: &IOSurfaceRef) -> usize;
+    }
+    unsafe { IOSurfaceGetElementHeight(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::pixel_format`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetPixelFormat(buffer: &IOSurfaceRef) -> OSType {
+    extern "C-unwind" {
+        fn IOSurfaceGetPixelFormat(buffer: &IOSurfaceRef) -> OSType;
+    }
+    unsafe { IOSurfaceGetPixelFormat(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::seed`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetSeed(buffer: &IOSurfaceRef) -> u32 {
+    extern "C-unwind" {
+        fn IOSurfaceGetSeed(buffer: &IOSurfaceRef) -> u32;
+    }
+    unsafe { IOSurfaceGetSeed(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::plane_count`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetPlaneCount(buffer: &IOSurfaceRef) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetPlaneCount(buffer: &IOSurfaceRef) -> usize;
+    }
+    unsafe { IOSurfaceGetPlaneCount(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::width_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetWidthOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetWidthOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    }
+    unsafe { IOSurfaceGetWidthOfPlane(buffer, plane_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::height_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetHeightOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetHeightOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    }
+    unsafe { IOSurfaceGetHeightOfPlane(buffer, plane_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::bytes_per_element_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetBytesPerElementOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetBytesPerElementOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    }
+    unsafe { IOSurfaceGetBytesPerElementOfPlane(buffer, plane_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::bytes_per_row_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetBytesPerRowOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetBytesPerRowOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    }
+    unsafe { IOSurfaceGetBytesPerRowOfPlane(buffer, plane_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::base_address_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetBaseAddressOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn IOSurfaceGetBaseAddressOfPlane(
+            buffer: &IOSurfaceRef,
+            plane_index: usize,
+        ) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { IOSurfaceGetBaseAddressOfPlane(buffer, plane_index) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::element_width_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetElementWidthOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetElementWidthOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    }
+    unsafe { IOSurfaceGetElementWidthOfPlane(buffer, plane_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::element_height_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetElementHeightOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetElementHeightOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
+    }
+    unsafe { IOSurfaceGetElementHeightOfPlane(buffer, plane_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::number_of_components_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetNumberOfComponentsOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetNumberOfComponentsOfPlane(
+            buffer: &IOSurfaceRef,
+            plane_index: usize,
+        ) -> usize;
+    }
+    unsafe { IOSurfaceGetNumberOfComponentsOfPlane(buffer, plane_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::name_of_component_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetNameOfComponentOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+    component_index: usize,
+) -> IOSurfaceComponentName {
+    extern "C-unwind" {
+        fn IOSurfaceGetNameOfComponentOfPlane(
+            buffer: &IOSurfaceRef,
+            plane_index: usize,
+            component_index: usize,
+        ) -> IOSurfaceComponentName;
+    }
+    unsafe { IOSurfaceGetNameOfComponentOfPlane(buffer, plane_index, component_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::type_of_component_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetTypeOfComponentOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+    component_index: usize,
+) -> IOSurfaceComponentType {
+    extern "C-unwind" {
+        fn IOSurfaceGetTypeOfComponentOfPlane(
+            buffer: &IOSurfaceRef,
+            plane_index: usize,
+            component_index: usize,
+        ) -> IOSurfaceComponentType;
+    }
+    unsafe { IOSurfaceGetTypeOfComponentOfPlane(buffer, plane_index, component_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::range_of_component_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetRangeOfComponentOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+    component_index: usize,
+) -> IOSurfaceComponentRange {
+    extern "C-unwind" {
+        fn IOSurfaceGetRangeOfComponentOfPlane(
+            buffer: &IOSurfaceRef,
+            plane_index: usize,
+            component_index: usize,
+        ) -> IOSurfaceComponentRange;
+    }
+    unsafe { IOSurfaceGetRangeOfComponentOfPlane(buffer, plane_index, component_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::bit_depth_of_component_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetBitDepthOfComponentOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+    component_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetBitDepthOfComponentOfPlane(
+            buffer: &IOSurfaceRef,
+            plane_index: usize,
+            component_index: usize,
+        ) -> usize;
+    }
+    unsafe { IOSurfaceGetBitDepthOfComponentOfPlane(buffer, plane_index, component_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::bit_offset_of_component_of_plane`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetBitOffsetOfComponentOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+    component_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetBitOffsetOfComponentOfPlane(
+            buffer: &IOSurfaceRef,
+            plane_index: usize,
+            component_index: usize,
+        ) -> usize;
+    }
+    unsafe { IOSurfaceGetBitOffsetOfComponentOfPlane(buffer, plane_index, component_index) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::subsampling`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetSubsampling(buffer: &IOSurfaceRef) -> IOSurfaceSubsampling {
+    extern "C-unwind" {
+        fn IOSurfaceGetSubsampling(buffer: &IOSurfaceRef) -> IOSurfaceSubsampling;
+    }
+    unsafe { IOSurfaceGetSubsampling(buffer) }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `IOSurfaceRef::set_value`"]
+    pub fn IOSurfaceSetValue(buffer: &IOSurfaceRef, key: &CFString, value: &CFType);
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `IOSurfaceRef::value`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceCopyValue(
+    buffer: &IOSurfaceRef,
+    key: &CFString,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn IOSurfaceCopyValue(buffer: &IOSurfaceRef, key: &CFString) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { IOSurfaceCopyValue(buffer, key) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `IOSurfaceRef::remove_value`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceRemoveValue(buffer: &IOSurfaceRef, key: &CFString) {
+    extern "C-unwind" {
+        fn IOSurfaceRemoveValue(buffer: &IOSurfaceRef, key: &CFString);
+    }
+    unsafe { IOSurfaceRemoveValue(buffer, key) }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `IOSurfaceRef::set_values`"]
+    pub fn IOSurfaceSetValues(buffer: &IOSurfaceRef, keys_and_values: &CFDictionary);
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `IOSurfaceRef::all_values`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceCopyAllValues(
+    buffer: &IOSurfaceRef,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn IOSurfaceCopyAllValues(buffer: &IOSurfaceRef) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { IOSurfaceCopyAllValues(buffer) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::remove_all_values`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceRemoveAllValues(buffer: &IOSurfaceRef) {
+    extern "C-unwind" {
+        fn IOSurfaceRemoveAllValues(buffer: &IOSurfaceRef);
+    }
+    unsafe { IOSurfaceRemoveAllValues(buffer) }
+}
+
+#[cfg(feature = "libc")]
+#[deprecated = "renamed to `IOSurfaceRef::create_mach_port`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceCreateMachPort(buffer: &IOSurfaceRef) -> libc::mach_port_t {
+    extern "C-unwind" {
+        fn IOSurfaceCreateMachPort(buffer: &IOSurfaceRef) -> libc::mach_port_t;
+    }
+    unsafe { IOSurfaceCreateMachPort(buffer) }
+}
+
+#[cfg(all(feature = "libc", feature = "objc2-core-foundation"))]
+#[deprecated = "renamed to `IOSurfaceRef::lookup_from_mach_port`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceLookupFromMachPort(
+    port: libc::mach_port_t,
+) -> Option<CFRetained<IOSurfaceRef>> {
+    extern "C-unwind" {
+        fn IOSurfaceLookupFromMachPort(port: libc::mach_port_t) -> Option<NonNull<IOSurfaceRef>>;
+    }
+    let ret = unsafe { IOSurfaceLookupFromMachPort(port) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `IOSurfaceRef::property_maximum`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetPropertyMaximum(property: &CFString) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetPropertyMaximum(property: &CFString) -> usize;
+    }
+    unsafe { IOSurfaceGetPropertyMaximum(property) }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `IOSurfaceRef::property_alignment`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetPropertyAlignment(property: &CFString) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceGetPropertyAlignment(property: &CFString) -> usize;
+    }
+    unsafe { IOSurfaceGetPropertyAlignment(property) }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `IOSurfaceRef::align_property`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceAlignProperty(property: &CFString, value: usize) -> usize {
+    extern "C-unwind" {
+        fn IOSurfaceAlignProperty(property: &CFString, value: usize) -> usize;
+    }
+    unsafe { IOSurfaceAlignProperty(property, value) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::increment_use_count`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceIncrementUseCount(buffer: &IOSurfaceRef) {
+    extern "C-unwind" {
+        fn IOSurfaceIncrementUseCount(buffer: &IOSurfaceRef);
+    }
+    unsafe { IOSurfaceIncrementUseCount(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::decrement_use_count`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceDecrementUseCount(buffer: &IOSurfaceRef) {
+    extern "C-unwind" {
+        fn IOSurfaceDecrementUseCount(buffer: &IOSurfaceRef);
+    }
+    unsafe { IOSurfaceDecrementUseCount(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::use_count`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceGetUseCount(buffer: &IOSurfaceRef) -> i32 {
+    extern "C-unwind" {
+        fn IOSurfaceGetUseCount(buffer: &IOSurfaceRef) -> i32;
+    }
+    unsafe { IOSurfaceGetUseCount(buffer) }
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::is_in_use`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceIsInUse(buffer: &IOSurfaceRef) -> bool {
+    extern "C-unwind" {
+        fn IOSurfaceIsInUse(buffer: &IOSurfaceRef) -> Boolean;
+    }
+    let ret = unsafe { IOSurfaceIsInUse(buffer) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOSurfaceRef::allows_pixel_size_casting`"]
+#[inline]
+pub extern "C-unwind" fn IOSurfaceAllowsPixelSizeCasting(buffer: &IOSurfaceRef) -> bool {
+    extern "C-unwind" {
+        fn IOSurfaceAllowsPixelSizeCasting(buffer: &IOSurfaceRef) -> Boolean;
+    }
+    let ret = unsafe { IOSurfaceAllowsPixelSizeCasting(buffer) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "libc")]
+    #[deprecated = "renamed to `IOSurfaceRef::set_purgeable`"]
+    pub fn IOSurfaceSetPurgeable(
+        buffer: &IOSurfaceRef,
+        new_state: u32,
+        old_state: *mut u32,
+    ) -> libc::kern_return_t;
 }

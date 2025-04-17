@@ -141,22 +141,46 @@ impl ARSkeleton2D {
     );
 }
 
-/// Returns the landmark joint name that corresponds to a key point defined in Vision framework.
-///
-/// See: VNRecognizedPointKey, VNDetectHumanBodyPoseRequest
-///
-/// If an invalid key point is passed the returned point will be nil.
-///
-///
-/// Parameter `recognizedPointKey`: Recognized key point.
-///
-/// Returns: Joint name that could be mapped to a ARSkeleton2D. Nil if no mapping exists.
+#[cfg(feature = "objc2")]
+impl ARSkeleton {
+    /// Returns the landmark joint name that corresponds to a key point defined in Vision framework.
+    ///
+    /// See: VNRecognizedPointKey, VNDetectHumanBodyPoseRequest
+    ///
+    /// If an invalid key point is passed the returned point will be nil.
+    ///
+    ///
+    /// Parameter `recognizedPointKey`: Recognized key point.
+    ///
+    /// Returns: Joint name that could be mapped to a ARSkeleton2D. Nil if no mapping exists.
+    #[cfg(all(
+        feature = "ARSkeletonDefinition",
+        feature = "objc2",
+        feature = "objc2-foundation",
+        feature = "objc2-vision"
+    ))]
+    #[inline]
+    #[doc(alias = "ARSkeletonJointNameForRecognizedPointKey")]
+    pub unsafe fn joint_name_for_recognized_point_key(
+        recognized_point_key: &VNRecognizedPointKey,
+    ) -> Option<Retained<ARSkeletonJointName>> {
+        extern "C-unwind" {
+            fn ARSkeletonJointNameForRecognizedPointKey(
+                recognized_point_key: &VNRecognizedPointKey,
+            ) -> *mut ARSkeletonJointName;
+        }
+        let ret = unsafe { ARSkeletonJointNameForRecognizedPointKey(recognized_point_key) };
+        unsafe { Retained::retain_autoreleased(ret) }
+    }
+}
+
 #[cfg(all(
     feature = "ARSkeletonDefinition",
     feature = "objc2",
     feature = "objc2-foundation",
     feature = "objc2-vision"
 ))]
+#[deprecated = "renamed to `ARSkeleton::joint_name_for_recognized_point_key`"]
 #[inline]
 pub unsafe extern "C-unwind" fn ARSkeletonJointNameForRecognizedPointKey(
     recognized_point_key: &VNRecognizedPointKey,

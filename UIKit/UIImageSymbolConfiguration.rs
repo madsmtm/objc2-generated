@@ -75,9 +75,16 @@ extern "C-unwind" {
     pub fn UIFontWeightForImageSymbolWeight(symbol_weight: UIImageSymbolWeight) -> UIFontWeight;
 }
 
-extern "C-unwind" {
+impl UIImageSymbolWeight {
     #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
-    pub fn UIImageSymbolWeightForFontWeight(font_weight: UIFontWeight) -> UIImageSymbolWeight;
+    #[inline]
+    #[doc(alias = "UIImageSymbolWeightForFontWeight")]
+    pub unsafe fn for_font_weight(font_weight: UIFontWeight) -> UIImageSymbolWeight {
+        extern "C-unwind" {
+            fn UIImageSymbolWeightForFontWeight(font_weight: UIFontWeight) -> UIImageSymbolWeight;
+        }
+        unsafe { UIImageSymbolWeightForFontWeight(font_weight) }
+    }
 }
 
 extern_class!(
@@ -252,4 +259,10 @@ impl UIImageSymbolConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithLocale(locale: Option<&NSLocale>) -> Retained<Self>;
     );
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
+    #[deprecated = "renamed to `UIImageSymbolWeight::for_font_weight`"]
+    pub fn UIImageSymbolWeightForFontWeight(font_weight: UIFontWeight) -> UIImageSymbolWeight;
 }

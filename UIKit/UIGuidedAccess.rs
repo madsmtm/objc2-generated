@@ -86,10 +86,19 @@ extern_protocol!(
     }
 );
 
-extern "C-unwind" {
-    pub fn UIGuidedAccessRestrictionStateForIdentifier(
+impl UIGuidedAccessRestrictionState {
+    #[inline]
+    #[doc(alias = "UIGuidedAccessRestrictionStateForIdentifier")]
+    pub unsafe fn for_identifier(
         restriction_identifier: &NSString,
-    ) -> UIGuidedAccessRestrictionState;
+    ) -> UIGuidedAccessRestrictionState {
+        extern "C-unwind" {
+            fn UIGuidedAccessRestrictionStateForIdentifier(
+                restriction_identifier: &NSString,
+            ) -> UIGuidedAccessRestrictionState;
+        }
+        unsafe { UIGuidedAccessRestrictionStateForIdentifier(restriction_identifier) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature?language=objc)
@@ -137,4 +146,11 @@ pub unsafe extern "C-unwind" fn UIGuidedAccessConfigureAccessibilityFeatures(
     unsafe {
         UIGuidedAccessConfigureAccessibilityFeatures(features, Bool::new(enabled), completion)
     }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `UIGuidedAccessRestrictionState::for_identifier`"]
+    pub fn UIGuidedAccessRestrictionStateForIdentifier(
+        restriction_identifier: &NSString,
+    ) -> UIGuidedAccessRestrictionState;
 }

@@ -194,17 +194,273 @@ pub type SCNetworkReachabilityCallBack = Option<
     ),
 >;
 
-/// Creates a reference to the specified network
-/// address.  This reference can be used later to monitor the
-/// reachability of the target host.
-///
-/// Parameter `address`: The address of the desired host.
-///
-/// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
-///
-/// You must release the returned value.
+impl SCNetworkReachability {
+    /// Creates a reference to the specified network
+    /// address.  This reference can be used later to monitor the
+    /// reachability of the target host.
+    ///
+    /// Parameter `address`: The address of the desired host.
+    ///
+    /// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
+    ///
+    /// You must release the returned value.
+    #[cfg(feature = "libc")]
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SCNetworkReachabilityCreateWithAddress")]
+    pub unsafe fn with_address(
+        allocator: Option<&CFAllocator>,
+        address: NonNull<libc::sockaddr>,
+    ) -> Option<CFRetained<SCNetworkReachability>> {
+        extern "C-unwind" {
+            fn SCNetworkReachabilityCreateWithAddress(
+                allocator: Option<&CFAllocator>,
+                address: NonNull<libc::sockaddr>,
+            ) -> Option<NonNull<SCNetworkReachability>>;
+        }
+        let ret = unsafe { SCNetworkReachabilityCreateWithAddress(allocator, address) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Creates a reference to the specified network
+    /// address.  This reference can be used later to monitor the
+    /// reachability of the target host.
+    ///
+    /// Parameter `localAddress`: The local address associated with a network
+    /// connection.  If NULL, only the remote address is of interest.
+    ///
+    /// Parameter `remoteAddress`: The remote address associated with a network
+    /// connection.  If NULL, only the local address is of interest.
+    ///
+    /// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
+    ///
+    /// You must release the returned value.
+    #[cfg(feature = "libc")]
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SCNetworkReachabilityCreateWithAddressPair")]
+    pub unsafe fn with_address_pair(
+        allocator: Option<&CFAllocator>,
+        local_address: *const libc::sockaddr,
+        remote_address: *const libc::sockaddr,
+    ) -> Option<CFRetained<SCNetworkReachability>> {
+        extern "C-unwind" {
+            fn SCNetworkReachabilityCreateWithAddressPair(
+                allocator: Option<&CFAllocator>,
+                local_address: *const libc::sockaddr,
+                remote_address: *const libc::sockaddr,
+            ) -> Option<NonNull<SCNetworkReachability>>;
+        }
+        let ret = unsafe {
+            SCNetworkReachabilityCreateWithAddressPair(allocator, local_address, remote_address)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Creates a reference to the specified network host or node
+    /// name.  This reference can be used later to monitor the
+    /// reachability of the target host.
+    ///
+    /// Parameter `nodename`: The node name of the desired host.
+    /// This name would be the same as that passed to the
+    /// gethostbyname(3) or getaddrinfo(3) functions.
+    ///
+    /// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
+    ///
+    /// You must release the returned value.
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SCNetworkReachabilityCreateWithName")]
+    pub unsafe fn with_name(
+        allocator: Option<&CFAllocator>,
+        nodename: NonNull<c_char>,
+    ) -> Option<CFRetained<SCNetworkReachability>> {
+        extern "C-unwind" {
+            fn SCNetworkReachabilityCreateWithName(
+                allocator: Option<&CFAllocator>,
+                nodename: NonNull<c_char>,
+            ) -> Option<NonNull<SCNetworkReachability>>;
+        }
+        let ret = unsafe { SCNetworkReachabilityCreateWithName(allocator, nodename) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+unsafe impl ConcreteType for SCNetworkReachability {
+    /// Returns the type identifier of all SCNetworkReachability
+    /// instances.
+    #[doc(alias = "SCNetworkReachabilityGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn SCNetworkReachabilityGetTypeID() -> CFTypeID;
+        }
+        unsafe { SCNetworkReachabilityGetTypeID() }
+    }
+}
+
+impl SCNetworkReachability {
+    /// Determines if the given target is reachable using the
+    /// current network configuration.
+    ///
+    /// Parameter `target`: The network reference associated with the address or name
+    /// to be checked for reachability.
+    ///
+    /// Parameter `flags`: A pointer to memory that will be filled with the
+    /// SCNetworkReachabilityFlags detailing the reachability
+    /// of the specified target.
+    ///
+    /// Returns: Returns TRUE if the network connection flags are valid;
+    /// FALSE if the status could not be determined.
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SCNetworkReachabilityGetFlags")]
+    pub unsafe fn flags(
+        self: &SCNetworkReachability,
+        flags: NonNull<SCNetworkReachabilityFlags>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCNetworkReachabilityGetFlags(
+                target: &SCNetworkReachability,
+                flags: NonNull<SCNetworkReachabilityFlags>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCNetworkReachabilityGetFlags(self, flags) };
+        ret != 0
+    }
+
+    /// Assigns a client to a target, which receives callbacks
+    /// when the reachability of the target changes.
+    ///
+    /// Parameter `target`: The network reference associated with the address or
+    /// name to be checked for reachability.
+    ///
+    /// Parameter `callout`: The function to be called when the reachability of the
+    /// target changes.  If NULL, the current client for the target
+    /// is removed.
+    ///
+    /// Parameter `context`: The SCNetworkReachabilityContext associated with
+    /// the callout.  The value may be NULL.
+    ///
+    /// Returns: Returns TRUE if the notification client was successfully set.
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SCNetworkReachabilitySetCallback")]
+    pub unsafe fn set_callback(
+        self: &SCNetworkReachability,
+        callout: SCNetworkReachabilityCallBack,
+        context: *mut SCNetworkReachabilityContext,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCNetworkReachabilitySetCallback(
+                target: &SCNetworkReachability,
+                callout: SCNetworkReachabilityCallBack,
+                context: *mut SCNetworkReachabilityContext,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCNetworkReachabilitySetCallback(self, callout, context) };
+        ret != 0
+    }
+
+    /// Schedules the given target with the given run loop and mode.
+    ///
+    /// Parameter `target`: The address or name that is set up for asynchronous
+    /// notifications.  Must be non-NULL.
+    ///
+    /// Parameter `runLoop`: A reference to a run loop on which the target should
+    /// be scheduled.  Must be non-NULL.
+    ///
+    /// Parameter `runLoopMode`: The mode on which to schedule the target.
+    /// Must be non-NULL.
+    ///
+    /// Returns: Returns TRUE if the target is scheduled successfully;
+    /// FALSE otherwise.
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SCNetworkReachabilityScheduleWithRunLoop")]
+    pub fn schedule_with_run_loop(
+        self: &SCNetworkReachability,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCNetworkReachabilityScheduleWithRunLoop(
+                target: &SCNetworkReachability,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            ) -> Boolean;
+        }
+        let ret =
+            unsafe { SCNetworkReachabilityScheduleWithRunLoop(self, run_loop, run_loop_mode) };
+        ret != 0
+    }
+
+    /// Unschedules the given target from the given run loop
+    /// and mode.
+    ///
+    /// Parameter `target`: The address or name that is set up for asynchronous
+    /// notifications.  Must be non-NULL.
+    ///
+    /// Parameter `runLoop`: A reference to a run loop from which the target
+    /// should be unscheduled.  Must be non-NULL.
+    ///
+    /// Parameter `runLoopMode`: The mode on which to unschedule the target.
+    /// Must be non-NULL.
+    ///
+    /// Returns: Returns TRUE if the target is unscheduled successfully;
+    /// FALSE otherwise.
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SCNetworkReachabilityUnscheduleFromRunLoop")]
+    pub fn unschedule_from_run_loop(
+        self: &SCNetworkReachability,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCNetworkReachabilityUnscheduleFromRunLoop(
+                target: &SCNetworkReachability,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            ) -> Boolean;
+        }
+        let ret =
+            unsafe { SCNetworkReachabilityUnscheduleFromRunLoop(self, run_loop, run_loop_mode) };
+        ret != 0
+    }
+
+    /// Schedule or unschedule callbacks for the given target on the given
+    /// dispatch queue.
+    ///
+    /// Parameter `target`: The address or name that is set up for asynchronous
+    /// notifications.  Must be non-NULL.
+    ///
+    /// Parameter `queue`: A libdispatch queue to run the callback on.
+    /// Pass NULL to unschedule callbacks.
+    ///
+    /// Returns: Returns TRUE if the target is scheduled or unscheduled successfully;
+    /// FALSE otherwise.
+    #[cfg(feature = "dispatch2")]
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SCNetworkReachabilitySetDispatchQueue")]
+    pub unsafe fn set_dispatch_queue(
+        self: &SCNetworkReachability,
+        queue: Option<&DispatchQueue>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCNetworkReachabilitySetDispatchQueue(
+                target: &SCNetworkReachability,
+                queue: Option<&DispatchQueue>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCNetworkReachabilitySetDispatchQueue(self, queue) };
+        ret != 0
+    }
+}
+
 #[cfg(feature = "libc")]
-#[deprecated]
+#[deprecated = "renamed to `SCNetworkReachability::with_address`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkReachabilityCreateWithAddress(
     allocator: Option<&CFAllocator>,
@@ -220,21 +476,8 @@ pub unsafe extern "C-unwind" fn SCNetworkReachabilityCreateWithAddress(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Creates a reference to the specified network
-/// address.  This reference can be used later to monitor the
-/// reachability of the target host.
-///
-/// Parameter `localAddress`: The local address associated with a network
-/// connection.  If NULL, only the remote address is of interest.
-///
-/// Parameter `remoteAddress`: The remote address associated with a network
-/// connection.  If NULL, only the local address is of interest.
-///
-/// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
-///
-/// You must release the returned value.
 #[cfg(feature = "libc")]
-#[deprecated]
+#[deprecated = "renamed to `SCNetworkReachability::with_address_pair`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkReachabilityCreateWithAddressPair(
     allocator: Option<&CFAllocator>,
@@ -254,18 +497,7 @@ pub unsafe extern "C-unwind" fn SCNetworkReachabilityCreateWithAddressPair(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Creates a reference to the specified network host or node
-/// name.  This reference can be used later to monitor the
-/// reachability of the target host.
-///
-/// Parameter `nodename`: The node name of the desired host.
-/// This name would be the same as that passed to the
-/// gethostbyname(3) or getaddrinfo(3) functions.
-///
-/// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
-///
-/// You must release the returned value.
-#[deprecated]
+#[deprecated = "renamed to `SCNetworkReachability::with_name`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkReachabilityCreateWithName(
     allocator: Option<&CFAllocator>,
@@ -281,32 +513,7 @@ pub unsafe extern "C-unwind" fn SCNetworkReachabilityCreateWithName(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-unsafe impl ConcreteType for SCNetworkReachability {
-    /// Returns the type identifier of all SCNetworkReachability
-    /// instances.
-    #[doc(alias = "SCNetworkReachabilityGetTypeID")]
-    #[inline]
-    fn type_id() -> CFTypeID {
-        extern "C-unwind" {
-            fn SCNetworkReachabilityGetTypeID() -> CFTypeID;
-        }
-        unsafe { SCNetworkReachabilityGetTypeID() }
-    }
-}
-
-/// Determines if the given target is reachable using the
-/// current network configuration.
-///
-/// Parameter `target`: The network reference associated with the address or name
-/// to be checked for reachability.
-///
-/// Parameter `flags`: A pointer to memory that will be filled with the
-/// SCNetworkReachabilityFlags detailing the reachability
-/// of the specified target.
-///
-/// Returns: Returns TRUE if the network connection flags are valid;
-/// FALSE if the status could not be determined.
-#[deprecated]
+#[deprecated = "renamed to `SCNetworkReachability::flags`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkReachabilityGetFlags(
     target: &SCNetworkReachability,
@@ -322,21 +529,7 @@ pub unsafe extern "C-unwind" fn SCNetworkReachabilityGetFlags(
     ret != 0
 }
 
-/// Assigns a client to a target, which receives callbacks
-/// when the reachability of the target changes.
-///
-/// Parameter `target`: The network reference associated with the address or
-/// name to be checked for reachability.
-///
-/// Parameter `callout`: The function to be called when the reachability of the
-/// target changes.  If NULL, the current client for the target
-/// is removed.
-///
-/// Parameter `context`: The SCNetworkReachabilityContext associated with
-/// the callout.  The value may be NULL.
-///
-/// Returns: Returns TRUE if the notification client was successfully set.
-#[deprecated]
+#[deprecated = "renamed to `SCNetworkReachability::set_callback`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkReachabilitySetCallback(
     target: &SCNetworkReachability,
@@ -354,20 +547,7 @@ pub unsafe extern "C-unwind" fn SCNetworkReachabilitySetCallback(
     ret != 0
 }
 
-/// Schedules the given target with the given run loop and mode.
-///
-/// Parameter `target`: The address or name that is set up for asynchronous
-/// notifications.  Must be non-NULL.
-///
-/// Parameter `runLoop`: A reference to a run loop on which the target should
-/// be scheduled.  Must be non-NULL.
-///
-/// Parameter `runLoopMode`: The mode on which to schedule the target.
-/// Must be non-NULL.
-///
-/// Returns: Returns TRUE if the target is scheduled successfully;
-/// FALSE otherwise.
-#[deprecated]
+#[deprecated = "renamed to `SCNetworkReachability::schedule_with_run_loop`"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkReachabilityScheduleWithRunLoop(
     target: &SCNetworkReachability,
@@ -385,21 +565,7 @@ pub extern "C-unwind" fn SCNetworkReachabilityScheduleWithRunLoop(
     ret != 0
 }
 
-/// Unschedules the given target from the given run loop
-/// and mode.
-///
-/// Parameter `target`: The address or name that is set up for asynchronous
-/// notifications.  Must be non-NULL.
-///
-/// Parameter `runLoop`: A reference to a run loop from which the target
-/// should be unscheduled.  Must be non-NULL.
-///
-/// Parameter `runLoopMode`: The mode on which to unschedule the target.
-/// Must be non-NULL.
-///
-/// Returns: Returns TRUE if the target is unscheduled successfully;
-/// FALSE otherwise.
-#[deprecated]
+#[deprecated = "renamed to `SCNetworkReachability::unschedule_from_run_loop`"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkReachabilityUnscheduleFromRunLoop(
     target: &SCNetworkReachability,
@@ -418,19 +584,8 @@ pub extern "C-unwind" fn SCNetworkReachabilityUnscheduleFromRunLoop(
     ret != 0
 }
 
-/// Schedule or unschedule callbacks for the given target on the given
-/// dispatch queue.
-///
-/// Parameter `target`: The address or name that is set up for asynchronous
-/// notifications.  Must be non-NULL.
-///
-/// Parameter `queue`: A libdispatch queue to run the callback on.
-/// Pass NULL to unschedule callbacks.
-///
-/// Returns: Returns TRUE if the target is scheduled or unscheduled successfully;
-/// FALSE otherwise.
 #[cfg(feature = "dispatch2")]
-#[deprecated]
+#[deprecated = "renamed to `SCNetworkReachability::set_dispatch_queue`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkReachabilitySetDispatchQueue(
     target: &SCNetworkReachability,

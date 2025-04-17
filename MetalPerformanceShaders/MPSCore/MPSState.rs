@@ -544,7 +544,7 @@ impl MPSState {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstatebatch?language=objc)
 pub type MPSStateBatch = NSArray<MPSState>;
 
-extern "C-unwind" {
+impl MPSState {
     /// raise or lower the readcount of a batch by a set amount
     ///
     /// In some circumstances, a MPSState may appear in a MPSStateBatch
@@ -563,6 +563,50 @@ extern "C-unwind" {
     /// Parameter `amount`: The value to add to the read count for each unique state in the batch
     ///
     /// Returns: The number of different objects in the batch
+    #[inline]
+    #[doc(alias = "MPSStateBatchIncrementReadCount")]
+    pub unsafe fn batch_increment_read_count(
+        batch: Option<&MPSStateBatch>,
+        amount: NSInteger,
+    ) -> NSUInteger {
+        extern "C-unwind" {
+            fn MPSStateBatchIncrementReadCount(
+                batch: Option<&MPSStateBatch>,
+                amount: NSInteger,
+            ) -> NSUInteger;
+        }
+        unsafe { MPSStateBatchIncrementReadCount(batch, amount) }
+    }
+
+    /// Call [MTLBlitEncoder synchronizeResource:] on unique resources
+    #[inline]
+    #[doc(alias = "MPSStateBatchSynchronize")]
+    pub unsafe fn batch_synchronize(
+        batch: &MPSStateBatch,
+        cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
+    ) {
+        extern "C-unwind" {
+            fn MPSStateBatchSynchronize(
+                batch: &MPSStateBatch,
+                cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
+            );
+        }
+        unsafe { MPSStateBatchSynchronize(batch, cmd_buf) }
+    }
+
+    /// Call [MTLBlitEncoder resourceSize] on unique resources
+    #[inline]
+    #[doc(alias = "MPSStateBatchResourceSize")]
+    pub unsafe fn batch_resource_size(batch: Option<&MPSStateBatch>) -> NSUInteger {
+        extern "C-unwind" {
+            fn MPSStateBatchResourceSize(batch: Option<&MPSStateBatch>) -> NSUInteger;
+        }
+        unsafe { MPSStateBatchResourceSize(batch) }
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `MPSState::batch_increment_read_count`"]
     pub fn MPSStateBatchIncrementReadCount(
         batch: Option<&MPSStateBatch>,
         amount: NSInteger,
@@ -570,7 +614,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Call [MTLBlitEncoder synchronizeResource:] on unique resources
+    #[deprecated = "renamed to `MPSState::batch_synchronize`"]
     pub fn MPSStateBatchSynchronize(
         batch: &MPSStateBatch,
         cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -578,6 +622,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Call [MTLBlitEncoder resourceSize] on unique resources
+    #[deprecated = "renamed to `MPSState::batch_resource_size`"]
     pub fn MPSStateBatchResourceSize(batch: Option<&MPSStateBatch>) -> NSUInteger;
 }

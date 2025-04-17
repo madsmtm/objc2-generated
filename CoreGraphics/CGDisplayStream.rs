@@ -135,7 +135,7 @@ unsafe impl ConcreteType for CGDisplayStreamUpdate {
     }
 }
 
-extern "C-unwind" {
+impl CGDisplayStreamUpdate {
     /// Returns a pointer to an array of CGRect structs that describe what parts of the frame have changed relative
     /// to the previously delivered frame.   This rectangle list encapsulates both the update rectangles and movement rectangles.
     ///
@@ -145,43 +145,53 @@ extern "C-unwind" {
     ///
     /// Returns: A pointer to the array of CGRectangles.  This array should not be freed by the caller.
     #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayStreamUpdateGetRects(
+    #[inline]
+    #[doc(alias = "CGDisplayStreamUpdateGetRects")]
+    pub unsafe fn rects(
         update_ref: Option<&CGDisplayStreamUpdate>,
         rect_type: CGDisplayStreamUpdateRectType,
         rect_count: NonNull<usize>,
-    ) -> *const CGRect;
-}
-
-/// Merge two CGDisplayUpdateRefs into a new one.
-///
-/// In cases where the client wishes to drop certain frame updates, this function may be used to merge two
-/// CGDisplayUpdateRefs together.  The core bit of functionality here is generating a new set of refresh/move/dirty
-/// rectangle arrays that properly represent the union of the deltas between the two frames.  Note that the ordering of
-/// the two refs is important.
-///
-///
-/// Parameter `firstUpdate`: The first update (in a temporal sense)
-///
-/// Parameter `secondUpdate`: The second update (in a temporal sense)
-///
-/// Returns: The new CGDisplayStreamUpdateRef
-#[deprecated = "Please use ScreenCaptureKit instead."]
-#[inline]
-pub unsafe extern "C-unwind" fn CGDisplayStreamUpdateCreateMergedUpdate(
-    first_update: Option<&CGDisplayStreamUpdate>,
-    second_update: Option<&CGDisplayStreamUpdate>,
-) -> Option<CFRetained<CGDisplayStreamUpdate>> {
-    extern "C-unwind" {
-        fn CGDisplayStreamUpdateCreateMergedUpdate(
-            first_update: Option<&CGDisplayStreamUpdate>,
-            second_update: Option<&CGDisplayStreamUpdate>,
-        ) -> Option<NonNull<CGDisplayStreamUpdate>>;
+    ) -> *const CGRect {
+        extern "C-unwind" {
+            fn CGDisplayStreamUpdateGetRects(
+                update_ref: Option<&CGDisplayStreamUpdate>,
+                rect_type: CGDisplayStreamUpdateRectType,
+                rect_count: NonNull<usize>,
+            ) -> *const CGRect;
+        }
+        unsafe { CGDisplayStreamUpdateGetRects(update_ref, rect_type, rect_count) }
     }
-    let ret = unsafe { CGDisplayStreamUpdateCreateMergedUpdate(first_update, second_update) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Merge two CGDisplayUpdateRefs into a new one.
+    ///
+    /// In cases where the client wishes to drop certain frame updates, this function may be used to merge two
+    /// CGDisplayUpdateRefs together.  The core bit of functionality here is generating a new set of refresh/move/dirty
+    /// rectangle arrays that properly represent the union of the deltas between the two frames.  Note that the ordering of
+    /// the two refs is important.
+    ///
+    ///
+    /// Parameter `firstUpdate`: The first update (in a temporal sense)
+    ///
+    /// Parameter `secondUpdate`: The second update (in a temporal sense)
+    ///
+    /// Returns: The new CGDisplayStreamUpdateRef
+    #[deprecated = "Please use ScreenCaptureKit instead."]
+    #[inline]
+    #[doc(alias = "CGDisplayStreamUpdateCreateMergedUpdate")]
+    pub unsafe fn new_merged_update(
+        first_update: Option<&CGDisplayStreamUpdate>,
+        second_update: Option<&CGDisplayStreamUpdate>,
+    ) -> Option<CFRetained<CGDisplayStreamUpdate>> {
+        extern "C-unwind" {
+            fn CGDisplayStreamUpdateCreateMergedUpdate(
+                first_update: Option<&CGDisplayStreamUpdate>,
+                second_update: Option<&CGDisplayStreamUpdate>,
+            ) -> Option<NonNull<CGDisplayStreamUpdate>>;
+        }
+        let ret = unsafe { CGDisplayStreamUpdateCreateMergedUpdate(first_update, second_update) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Return the movement dx and dy values for a single update
     ///
     /// Parameter `updateRef`: The CGDisplayStreamUpdateRef
@@ -192,14 +202,23 @@ extern "C-unwind" {
     ///
     /// The delta values describe the offset from the moved rectangles back to the source location.
     #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayStreamUpdateGetMovedRectsDelta(
+    #[inline]
+    #[doc(alias = "CGDisplayStreamUpdateGetMovedRectsDelta")]
+    pub unsafe fn moved_rects_delta(
         update_ref: Option<&CGDisplayStreamUpdate>,
         dx: NonNull<CGFloat>,
         dy: NonNull<CGFloat>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn CGDisplayStreamUpdateGetMovedRectsDelta(
+                update_ref: Option<&CGDisplayStreamUpdate>,
+                dx: NonNull<CGFloat>,
+                dy: NonNull<CGFloat>,
+            );
+        }
+        unsafe { CGDisplayStreamUpdateGetMovedRectsDelta(update_ref, dx, dy) }
+    }
 
-extern "C-unwind" {
     /// Return how many frames (if any) have been dropped since the last call to the handler.
     ///
     /// Parameter `updateRef`: The CGDisplayStreamUpdateRef
@@ -209,7 +228,16 @@ extern "C-unwind" {
     /// This call is primarily useful for performance measurement to determine if the client is keeping up with
     /// all WindowServer updates.
     #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayStreamUpdateGetDropCount(update_ref: Option<&CGDisplayStreamUpdate>) -> usize;
+    #[inline]
+    #[doc(alias = "CGDisplayStreamUpdateGetDropCount")]
+    pub unsafe fn drop_count(update_ref: Option<&CGDisplayStreamUpdate>) -> usize {
+        extern "C-unwind" {
+            fn CGDisplayStreamUpdateGetDropCount(
+                update_ref: Option<&CGDisplayStreamUpdate>,
+            ) -> usize;
+        }
+        unsafe { CGDisplayStreamUpdateGetDropCount(update_ref) }
+    }
 }
 
 extern "C" {
@@ -307,38 +335,240 @@ unsafe impl ConcreteType for CGDisplayStream {
     }
 }
 
-/// Creates a new CGDisplayStream intended to be used with a CFRunLoop
-///
-/// This function creates a new CGDisplayStream that is to be used to get a stream of frame updates
-/// from a particular display.
-///
-/// Parameter `display`: The CGDirectDisplayID to use as the source for generated frames
-///
-/// Parameter `outputWidth`: The output width (in pixels, not points) of the frames to be generated.  Must not be zero.
-///
-/// Parameter `outputHeight`: The output height (in pixels, not points) of the frames to be generated.  Must not be zero.
-///
-/// Parameter `pixelFormat`: The desired CoreVideo/CoreMedia-style pixel format of the output IOSurfaces.  The currently
-/// supported values are:
-///
-/// 'BGRA' Packed Little Endian ARGB8888
-/// 'l10r' Packed Little Endian ARGB2101010
-/// '420v' 2-plane "video" range YCbCr 4:2:0
-/// '420f' 2-plane "full" range YCbCr 4:2:0
-///
-///
-/// Parameter `properties`: Any optional properties of the CGDisplayStream
-///
-/// Parameter `handler`: A block that will be called for frame deliver.
-///
-/// Returns: The new CGDisplayStream object.
+impl CGDisplayStream {
+    /// Creates a new CGDisplayStream intended to be used with a CFRunLoop
+    ///
+    /// This function creates a new CGDisplayStream that is to be used to get a stream of frame updates
+    /// from a particular display.
+    ///
+    /// Parameter `display`: The CGDirectDisplayID to use as the source for generated frames
+    ///
+    /// Parameter `outputWidth`: The output width (in pixels, not points) of the frames to be generated.  Must not be zero.
+    ///
+    /// Parameter `outputHeight`: The output height (in pixels, not points) of the frames to be generated.  Must not be zero.
+    ///
+    /// Parameter `pixelFormat`: The desired CoreVideo/CoreMedia-style pixel format of the output IOSurfaces.  The currently
+    /// supported values are:
+    ///
+    /// 'BGRA' Packed Little Endian ARGB8888
+    /// 'l10r' Packed Little Endian ARGB2101010
+    /// '420v' 2-plane "video" range YCbCr 4:2:0
+    /// '420f' 2-plane "full" range YCbCr 4:2:0
+    ///
+    ///
+    /// Parameter `properties`: Any optional properties of the CGDisplayStream
+    ///
+    /// Parameter `handler`: A block that will be called for frame deliver.
+    ///
+    /// Returns: The new CGDisplayStream object.
+    #[cfg(all(
+        feature = "CGDirectDisplay",
+        feature = "block2",
+        feature = "objc2-io-surface"
+    ))]
+    #[cfg(not(target_os = "watchos"))]
+    #[deprecated = "Please use ScreenCaptureKit instead."]
+    #[inline]
+    #[doc(alias = "CGDisplayStreamCreate")]
+    pub unsafe fn new(
+        display: CGDirectDisplayID,
+        output_width: usize,
+        output_height: usize,
+        pixel_format: i32,
+        properties: Option<&CFDictionary>,
+        handler: CGDisplayStreamFrameAvailableHandler,
+    ) -> Option<CFRetained<CGDisplayStream>> {
+        extern "C-unwind" {
+            fn CGDisplayStreamCreate(
+                display: CGDirectDisplayID,
+                output_width: usize,
+                output_height: usize,
+                pixel_format: i32,
+                properties: Option<&CFDictionary>,
+                handler: CGDisplayStreamFrameAvailableHandler,
+            ) -> Option<NonNull<CGDisplayStream>>;
+        }
+        let ret = unsafe {
+            CGDisplayStreamCreate(
+                display,
+                output_width,
+                output_height,
+                pixel_format,
+                properties,
+                handler,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Creates a new CGDisplayStream intended to be serviced by a block handler
+    ///
+    /// This function creates a new CGDisplayStream that is to be used to get a stream of frame updates
+    /// from a particular display.
+    ///
+    /// Parameter `display`: The CGDirectDisplayID to use as the source for generated frames
+    ///
+    /// Parameter `outputWidth`: The output width (in pixels, not points) of the frames to be generated.  Must not be zero.
+    ///
+    /// Parameter `outputHeight`: The output height (in pixels, not points) of the frames to be generated.  Must not be zero.
+    ///
+    /// Parameter `pixelFormat`: The desired CoreVideo/CoreMedia-style pixel format of the output IOSurfaces
+    ///
+    /// Parameter `properties`: Any optional properties of the CGDisplayStream
+    ///
+    /// Parameter `queue`: The dispatch_queue_t that will be used to invoke the callback handler.
+    ///
+    /// Parameter `handler`: A block that will be called for frame deliver.
+    ///
+    /// Returns: The new CGDisplayStream object.
+    #[cfg(all(
+        feature = "CGDirectDisplay",
+        feature = "block2",
+        feature = "dispatch2",
+        feature = "objc2-io-surface"
+    ))]
+    #[cfg(not(target_os = "watchos"))]
+    #[deprecated = "Please use ScreenCaptureKit instead."]
+    #[inline]
+    #[doc(alias = "CGDisplayStreamCreateWithDispatchQueue")]
+    pub unsafe fn with_dispatch_queue(
+        display: CGDirectDisplayID,
+        output_width: usize,
+        output_height: usize,
+        pixel_format: i32,
+        properties: Option<&CFDictionary>,
+        queue: &DispatchQueue,
+        handler: CGDisplayStreamFrameAvailableHandler,
+    ) -> Option<CFRetained<CGDisplayStream>> {
+        extern "C-unwind" {
+            fn CGDisplayStreamCreateWithDispatchQueue(
+                display: CGDirectDisplayID,
+                output_width: usize,
+                output_height: usize,
+                pixel_format: i32,
+                properties: Option<&CFDictionary>,
+                queue: &DispatchQueue,
+                handler: CGDisplayStreamFrameAvailableHandler,
+            ) -> Option<NonNull<CGDisplayStream>>;
+        }
+        let ret = unsafe {
+            CGDisplayStreamCreateWithDispatchQueue(
+                display,
+                output_width,
+                output_height,
+                pixel_format,
+                properties,
+                queue,
+                handler,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Begin delivering frame updates to the handler block.
+    ///
+    /// Parameter `displayStream`: to be started
+    ///
+    /// Returns: kCGErrorSuccess If the display stream was started, otherwise an error.
+    #[cfg(feature = "CGError")]
+    #[deprecated = "Please use ScreenCaptureKit instead."]
+    #[inline]
+    #[doc(alias = "CGDisplayStreamStart")]
+    pub unsafe fn start(display_stream: Option<&CGDisplayStream>) -> CGError {
+        extern "C-unwind" {
+            fn CGDisplayStreamStart(display_stream: Option<&CGDisplayStream>) -> CGError;
+        }
+        unsafe { CGDisplayStreamStart(display_stream) }
+    }
+
+    /// End delivery of frame updates to the handler block.
+    ///
+    /// Parameter `displayStream`: to be stopped
+    ///
+    /// Returns: kCGErrorSuccess If the display stream was stopped, otherwise an error.
+    ///
+    /// After this call returns, the CGDisplayStream callback function will eventually be called with a
+    /// status of kCGDisplayStreamFrameStatusStopped.  After that point it is safe to release the CGDisplayStream.
+    /// It is safe to call this function from within the handler block, but the previous caveat still applies.
+    #[cfg(feature = "CGError")]
+    #[deprecated = "Please use ScreenCaptureKit instead."]
+    #[inline]
+    #[doc(alias = "CGDisplayStreamStop")]
+    pub unsafe fn stop(display_stream: Option<&CGDisplayStream>) -> CGError {
+        extern "C-unwind" {
+            fn CGDisplayStreamStop(display_stream: Option<&CGDisplayStream>) -> CGError;
+        }
+        unsafe { CGDisplayStreamStop(display_stream) }
+    }
+
+    /// Return the singleton CFRunLoopSourceRef for a CGDisplayStream.
+    ///
+    /// Parameter `displayStream`: The CGDisplayStream object
+    ///
+    /// Returns: The CFRunLoopSource for this displayStream.  Note: This function will return NULL if the
+    /// display stream was created via  CGDisplayStreamCreateWithDispatchQueue().
+    #[deprecated = "Please use ScreenCaptureKit instead."]
+    #[inline]
+    #[doc(alias = "CGDisplayStreamGetRunLoopSource")]
+    pub unsafe fn run_loop_source(
+        display_stream: Option<&CGDisplayStream>,
+    ) -> Option<CFRetained<CFRunLoopSource>> {
+        extern "C-unwind" {
+            fn CGDisplayStreamGetRunLoopSource(
+                display_stream: Option<&CGDisplayStream>,
+            ) -> Option<NonNull<CFRunLoopSource>>;
+        }
+        let ret = unsafe { CGDisplayStreamGetRunLoopSource(display_stream) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGDisplayStreamUpdate::rects`"]
+    pub fn CGDisplayStreamUpdateGetRects(
+        update_ref: Option<&CGDisplayStreamUpdate>,
+        rect_type: CGDisplayStreamUpdateRectType,
+        rect_count: NonNull<usize>,
+    ) -> *const CGRect;
+}
+
+#[deprecated = "renamed to `CGDisplayStreamUpdate::new_merged_update`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayStreamUpdateCreateMergedUpdate(
+    first_update: Option<&CGDisplayStreamUpdate>,
+    second_update: Option<&CGDisplayStreamUpdate>,
+) -> Option<CFRetained<CGDisplayStreamUpdate>> {
+    extern "C-unwind" {
+        fn CGDisplayStreamUpdateCreateMergedUpdate(
+            first_update: Option<&CGDisplayStreamUpdate>,
+            second_update: Option<&CGDisplayStreamUpdate>,
+        ) -> Option<NonNull<CGDisplayStreamUpdate>>;
+    }
+    let ret = unsafe { CGDisplayStreamUpdateCreateMergedUpdate(first_update, second_update) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGDisplayStreamUpdate::moved_rects_delta`"]
+    pub fn CGDisplayStreamUpdateGetMovedRectsDelta(
+        update_ref: Option<&CGDisplayStreamUpdate>,
+        dx: NonNull<CGFloat>,
+        dy: NonNull<CGFloat>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGDisplayStreamUpdate::drop_count`"]
+    pub fn CGDisplayStreamUpdateGetDropCount(update_ref: Option<&CGDisplayStreamUpdate>) -> usize;
+}
+
 #[cfg(all(
     feature = "CGDirectDisplay",
     feature = "block2",
     feature = "objc2-io-surface"
 ))]
 #[cfg(not(target_os = "watchos"))]
-#[deprecated = "Please use ScreenCaptureKit instead."]
+#[deprecated = "renamed to `CGDisplayStream::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayStreamCreate(
     display: CGDirectDisplayID,
@@ -371,26 +601,6 @@ pub unsafe extern "C-unwind" fn CGDisplayStreamCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Creates a new CGDisplayStream intended to be serviced by a block handler
-///
-/// This function creates a new CGDisplayStream that is to be used to get a stream of frame updates
-/// from a particular display.
-///
-/// Parameter `display`: The CGDirectDisplayID to use as the source for generated frames
-///
-/// Parameter `outputWidth`: The output width (in pixels, not points) of the frames to be generated.  Must not be zero.
-///
-/// Parameter `outputHeight`: The output height (in pixels, not points) of the frames to be generated.  Must not be zero.
-///
-/// Parameter `pixelFormat`: The desired CoreVideo/CoreMedia-style pixel format of the output IOSurfaces
-///
-/// Parameter `properties`: Any optional properties of the CGDisplayStream
-///
-/// Parameter `queue`: The dispatch_queue_t that will be used to invoke the callback handler.
-///
-/// Parameter `handler`: A block that will be called for frame deliver.
-///
-/// Returns: The new CGDisplayStream object.
 #[cfg(all(
     feature = "CGDirectDisplay",
     feature = "block2",
@@ -398,7 +608,7 @@ pub unsafe extern "C-unwind" fn CGDisplayStreamCreate(
     feature = "objc2-io-surface"
 ))]
 #[cfg(not(target_os = "watchos"))]
-#[deprecated = "Please use ScreenCaptureKit instead."]
+#[deprecated = "renamed to `CGDisplayStream::with_dispatch_queue`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayStreamCreateWithDispatchQueue(
     display: CGDirectDisplayID,
@@ -435,38 +645,18 @@ pub unsafe extern "C-unwind" fn CGDisplayStreamCreateWithDispatchQueue(
 }
 
 extern "C-unwind" {
-    /// Begin delivering frame updates to the handler block.
-    ///
-    /// Parameter `displayStream`: to be started
-    ///
-    /// Returns: kCGErrorSuccess If the display stream was started, otherwise an error.
     #[cfg(feature = "CGError")]
-    #[deprecated = "Please use ScreenCaptureKit instead."]
+    #[deprecated = "renamed to `CGDisplayStream::start`"]
     pub fn CGDisplayStreamStart(display_stream: Option<&CGDisplayStream>) -> CGError;
 }
 
 extern "C-unwind" {
-    /// End delivery of frame updates to the handler block.
-    ///
-    /// Parameter `displayStream`: to be stopped
-    ///
-    /// Returns: kCGErrorSuccess If the display stream was stopped, otherwise an error.
-    ///
-    /// After this call returns, the CGDisplayStream callback function will eventually be called with a
-    /// status of kCGDisplayStreamFrameStatusStopped.  After that point it is safe to release the CGDisplayStream.
-    /// It is safe to call this function from within the handler block, but the previous caveat still applies.
     #[cfg(feature = "CGError")]
-    #[deprecated = "Please use ScreenCaptureKit instead."]
+    #[deprecated = "renamed to `CGDisplayStream::stop`"]
     pub fn CGDisplayStreamStop(display_stream: Option<&CGDisplayStream>) -> CGError;
 }
 
-/// Return the singleton CFRunLoopSourceRef for a CGDisplayStream.
-///
-/// Parameter `displayStream`: The CGDisplayStream object
-///
-/// Returns: The CFRunLoopSource for this displayStream.  Note: This function will return NULL if the
-/// display stream was created via  CGDisplayStreamCreateWithDispatchQueue().
-#[deprecated = "Please use ScreenCaptureKit instead."]
+#[deprecated = "renamed to `CGDisplayStream::run_loop_source`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayStreamGetRunLoopSource(
     display_stream: Option<&CGDisplayStream>,

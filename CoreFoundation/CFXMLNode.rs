@@ -357,70 +357,88 @@ unsafe impl ConcreteType for CFXMLNode {
     }
 }
 
-#[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-#[inline]
-pub unsafe extern "C-unwind" fn CFXMLNodeCreate(
-    alloc: Option<&CFAllocator>,
-    xml_type: CFXMLNodeTypeCode,
-    data_string: Option<&CFString>,
-    additional_info_ptr: *const c_void,
-    version: CFIndex,
-) -> Option<CFRetained<CFXMLNode>> {
-    extern "C-unwind" {
-        fn CFXMLNodeCreate(
-            alloc: Option<&CFAllocator>,
-            xml_type: CFXMLNodeTypeCode,
-            data_string: Option<&CFString>,
-            additional_info_ptr: *const c_void,
-            version: CFIndex,
-        ) -> Option<NonNull<CFXMLNode>>;
-    }
-    let ret =
-        unsafe { CFXMLNodeCreate(alloc, xml_type, data_string, additional_info_ptr, version) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-#[inline]
-pub unsafe extern "C-unwind" fn CFXMLNodeCreateCopy(
-    alloc: Option<&CFAllocator>,
-    orig_node: Option<&CFXMLNode>,
-) -> Option<CFRetained<CFXMLNode>> {
-    extern "C-unwind" {
-        fn CFXMLNodeCreateCopy(
-            alloc: Option<&CFAllocator>,
-            orig_node: Option<&CFXMLNode>,
-        ) -> Option<NonNull<CFXMLNode>>;
-    }
-    let ret = unsafe { CFXMLNodeCreateCopy(alloc, orig_node) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-extern "C-unwind" {
+impl CFXMLNode {
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetTypeCode(node: &CFXMLNode) -> CFXMLNodeTypeCode;
-}
-
-#[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-#[inline]
-pub unsafe extern "C-unwind" fn CFXMLNodeGetString(
-    node: &CFXMLNode,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CFXMLNodeGetString(node: &CFXMLNode) -> Option<NonNull<CFString>>;
+    #[inline]
+    #[doc(alias = "CFXMLNodeCreate")]
+    pub unsafe fn new(
+        alloc: Option<&CFAllocator>,
+        xml_type: CFXMLNodeTypeCode,
+        data_string: Option<&CFString>,
+        additional_info_ptr: *const c_void,
+        version: CFIndex,
+    ) -> Option<CFRetained<CFXMLNode>> {
+        extern "C-unwind" {
+            fn CFXMLNodeCreate(
+                alloc: Option<&CFAllocator>,
+                xml_type: CFXMLNodeTypeCode,
+                data_string: Option<&CFString>,
+                additional_info_ptr: *const c_void,
+                version: CFIndex,
+            ) -> Option<NonNull<CFXMLNode>>;
+        }
+        let ret =
+            unsafe { CFXMLNodeCreate(alloc, xml_type, data_string, additional_info_ptr, version) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFXMLNodeGetString(node) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetInfoPtr(node: &CFXMLNode) -> *const c_void;
-}
+    #[inline]
+    #[doc(alias = "CFXMLNodeCreateCopy")]
+    pub unsafe fn new_copy(
+        alloc: Option<&CFAllocator>,
+        orig_node: Option<&CFXMLNode>,
+    ) -> Option<CFRetained<CFXMLNode>> {
+        extern "C-unwind" {
+            fn CFXMLNodeCreateCopy(
+                alloc: Option<&CFAllocator>,
+                orig_node: Option<&CFXMLNode>,
+            ) -> Option<NonNull<CFXMLNode>>;
+        }
+        let ret = unsafe { CFXMLNodeCreateCopy(alloc, orig_node) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 
-extern "C-unwind" {
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetVersion(node: &CFXMLNode) -> CFIndex;
+    #[inline]
+    #[doc(alias = "CFXMLNodeGetTypeCode")]
+    pub unsafe fn type_code(self: &CFXMLNode) -> CFXMLNodeTypeCode {
+        extern "C-unwind" {
+            fn CFXMLNodeGetTypeCode(node: &CFXMLNode) -> CFXMLNodeTypeCode;
+        }
+        unsafe { CFXMLNodeGetTypeCode(self) }
+    }
+
+    #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
+    #[inline]
+    #[doc(alias = "CFXMLNodeGetString")]
+    pub unsafe fn string(self: &CFXMLNode) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CFXMLNodeGetString(node: &CFXMLNode) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFXMLNodeGetString(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
+    #[inline]
+    #[doc(alias = "CFXMLNodeGetInfoPtr")]
+    pub unsafe fn info_ptr(self: &CFXMLNode) -> *const c_void {
+        extern "C-unwind" {
+            fn CFXMLNodeGetInfoPtr(node: &CFXMLNode) -> *const c_void;
+        }
+        unsafe { CFXMLNodeGetInfoPtr(self) }
+    }
+
+    #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
+    #[inline]
+    #[doc(alias = "CFXMLNodeGetVersion")]
+    pub unsafe fn version(self: &CFXMLNode) -> CFIndex {
+        extern "C-unwind" {
+            fn CFXMLNodeGetVersion(node: &CFXMLNode) -> CFIndex;
+        }
+        unsafe { CFXMLNodeGetVersion(self) }
+    }
 }
 
 #[cfg(feature = "CFTree")]
@@ -451,4 +469,70 @@ pub unsafe extern "C-unwind" fn CFXMLTreeGetNode(
     }
     let ret = unsafe { CFXMLTreeGetNode(xml_tree) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `CFXMLNode::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFXMLNodeCreate(
+    alloc: Option<&CFAllocator>,
+    xml_type: CFXMLNodeTypeCode,
+    data_string: Option<&CFString>,
+    additional_info_ptr: *const c_void,
+    version: CFIndex,
+) -> Option<CFRetained<CFXMLNode>> {
+    extern "C-unwind" {
+        fn CFXMLNodeCreate(
+            alloc: Option<&CFAllocator>,
+            xml_type: CFXMLNodeTypeCode,
+            data_string: Option<&CFString>,
+            additional_info_ptr: *const c_void,
+            version: CFIndex,
+        ) -> Option<NonNull<CFXMLNode>>;
+    }
+    let ret =
+        unsafe { CFXMLNodeCreate(alloc, xml_type, data_string, additional_info_ptr, version) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CFXMLNode::new_copy`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFXMLNodeCreateCopy(
+    alloc: Option<&CFAllocator>,
+    orig_node: Option<&CFXMLNode>,
+) -> Option<CFRetained<CFXMLNode>> {
+    extern "C-unwind" {
+        fn CFXMLNodeCreateCopy(
+            alloc: Option<&CFAllocator>,
+            orig_node: Option<&CFXMLNode>,
+        ) -> Option<NonNull<CFXMLNode>>;
+    }
+    let ret = unsafe { CFXMLNodeCreateCopy(alloc, orig_node) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFXMLNode::type_code`"]
+    pub fn CFXMLNodeGetTypeCode(node: &CFXMLNode) -> CFXMLNodeTypeCode;
+}
+
+#[deprecated = "renamed to `CFXMLNode::string`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFXMLNodeGetString(
+    node: &CFXMLNode,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CFXMLNodeGetString(node: &CFXMLNode) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CFXMLNodeGetString(node) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFXMLNode::info_ptr`"]
+    pub fn CFXMLNodeGetInfoPtr(node: &CFXMLNode) -> *const c_void;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFXMLNode::version`"]
+    pub fn CFXMLNodeGetVersion(node: &CFXMLNode) -> CFIndex;
 }

@@ -151,7 +151,7 @@ unsafe impl ConcreteType for AXUIElement {
     }
 }
 
-extern "C-unwind" {
+impl AXUIElement {
     /// Returns a list of all the attributes supported by the specified accessibility object.
     ///
     ///
@@ -216,13 +216,21 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementCopyAttributeNames(
-        element: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementCopyAttributeNames")]
+    pub unsafe fn copy_attribute_names(
+        self: &AXUIElement,
         names: NonNull<*const CFArray>,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementCopyAttributeNames(
+                element: &AXUIElement,
+                names: NonNull<*const CFArray>,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementCopyAttributeNames(self, names) }
+    }
 
-extern "C-unwind" {
     /// Returns the value of an accessibility object's attribute.
     ///
     ///
@@ -289,14 +297,23 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementCopyAttributeValue(
-        element: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementCopyAttributeValue")]
+    pub unsafe fn copy_attribute_value(
+        self: &AXUIElement,
         attribute: &CFString,
         value: NonNull<*const CFType>,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementCopyAttributeValue(
+                element: &AXUIElement,
+                attribute: &CFString,
+                value: NonNull<*const CFType>,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementCopyAttributeValue(self, attribute, value) }
+    }
 
-extern "C-unwind" {
     /// Returns the count of the array of an accessibility object's attribute value.
     ///
     ///
@@ -355,14 +372,23 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementGetAttributeValueCount(
-        element: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementGetAttributeValueCount")]
+    pub unsafe fn attribute_value_count(
+        self: &AXUIElement,
         attribute: &CFString,
         count: NonNull<CFIndex>,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementGetAttributeValueCount(
+                element: &AXUIElement,
+                attribute: &CFString,
+                count: NonNull<CFIndex>,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementGetAttributeValueCount(self, attribute, count) }
+    }
 
-extern "C-unwind" {
     /// Returns an array of attribute values for the accessibility object's attribute, starting at the specified index.
     ///
     /// This function is useful for dealing with large arrays, for example, a table view with a large number of children.
@@ -447,16 +473,27 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementCopyAttributeValues(
-        element: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementCopyAttributeValues")]
+    pub unsafe fn copy_attribute_values(
+        self: &AXUIElement,
         attribute: &CFString,
         index: CFIndex,
         max_values: CFIndex,
         values: NonNull<*const CFArray>,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementCopyAttributeValues(
+                element: &AXUIElement,
+                attribute: &CFString,
+                index: CFIndex,
+                max_values: CFIndex,
+                values: NonNull<*const CFArray>,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementCopyAttributeValues(self, attribute, index, max_values, values) }
+    }
 
-extern "C-unwind" {
     /// Returns whether the specified accessibility object's attribute can be modified.
     ///
     /// If you receive a
@@ -529,14 +566,23 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementIsAttributeSettable(
-        element: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementIsAttributeSettable")]
+    pub unsafe fn is_attribute_settable(
+        self: &AXUIElement,
         attribute: &CFString,
         settable: NonNull<Boolean>,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementIsAttributeSettable(
+                element: &AXUIElement,
+                attribute: &CFString,
+                settable: NonNull<Boolean>,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementIsAttributeSettable(self, attribute, settable) }
+    }
 
-extern "C-unwind" {
     /// Sets the accessibility object's attribute to the specified value.
     ///
     /// You can send and receive many different CFTypeRefs using the accessibility API.
@@ -598,14 +644,23 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementSetAttributeValue(
-        element: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementSetAttributeValue")]
+    pub unsafe fn set_attribute_value(
+        self: &AXUIElement,
         attribute: &CFString,
         value: &CFType,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementSetAttributeValue(
+                element: &AXUIElement,
+                attribute: &CFString,
+                value: &CFType,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementSetAttributeValue(self, attribute, value) }
+    }
 
-extern "C-unwind" {
     /// Returns the values of multiple attributes in the accessibility object.
     ///
     /// If the specified AXUIElementRef does not support an attribute passed in the
@@ -695,15 +750,25 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementCopyMultipleAttributeValues(
-        element: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementCopyMultipleAttributeValues")]
+    pub unsafe fn copy_multiple_attribute_values(
+        self: &AXUIElement,
         attributes: &CFArray,
         options: AXCopyMultipleAttributeOptions,
         values: NonNull<*const CFArray>,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementCopyMultipleAttributeValues(
+                element: &AXUIElement,
+                attributes: &CFArray,
+                options: AXCopyMultipleAttributeOptions,
+                values: NonNull<*const CFArray>,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementCopyMultipleAttributeValues(self, attributes, options, values) }
+    }
 
-extern "C-unwind" {
     /// Returns a list of all the parameterized attributes supported by the specified accessibility object.
     ///
     ///
@@ -772,13 +837,21 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementCopyParameterizedAttributeNames(
-        element: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementCopyParameterizedAttributeNames")]
+    pub unsafe fn copy_parameterized_attribute_names(
+        self: &AXUIElement,
         names: NonNull<*const CFArray>,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementCopyParameterizedAttributeNames(
+                element: &AXUIElement,
+                names: NonNull<*const CFArray>,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementCopyParameterizedAttributeNames(self, names) }
+    }
 
-extern "C-unwind" {
     /// Returns the value of an accessibility object's parameterized attribute.
     ///
     ///
@@ -851,15 +924,32 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementCopyParameterizedAttributeValue(
-        element: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementCopyParameterizedAttributeValue")]
+    pub unsafe fn copy_parameterized_attribute_value(
+        self: &AXUIElement,
         parameterized_attribute: &CFString,
         parameter: &CFType,
         result: NonNull<*const CFType>,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementCopyParameterizedAttributeValue(
+                element: &AXUIElement,
+                parameterized_attribute: &CFString,
+                parameter: &CFType,
+                result: NonNull<*const CFType>,
+            ) -> AXError;
+        }
+        unsafe {
+            AXUIElementCopyParameterizedAttributeValue(
+                self,
+                parameterized_attribute,
+                parameter,
+                result,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Returns a list of all the actions the specified accessibility object can perform.
     ///
     /// Parameter `element`: The AXUIElementRef representing the accessibility object.
@@ -915,13 +1005,18 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementCopyActionNames(
-        element: &AXUIElement,
-        names: NonNull<*const CFArray>,
-    ) -> AXError;
-}
+    #[inline]
+    #[doc(alias = "AXUIElementCopyActionNames")]
+    pub unsafe fn copy_action_names(self: &AXUIElement, names: NonNull<*const CFArray>) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementCopyActionNames(
+                element: &AXUIElement,
+                names: NonNull<*const CFArray>,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementCopyActionNames(self, names) }
+    }
 
-extern "C-unwind" {
     /// Returns a localized description of the specified accessibility object's action.
     ///
     ///
@@ -980,14 +1075,23 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementCopyActionDescription(
-        element: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementCopyActionDescription")]
+    pub unsafe fn copy_action_description(
+        self: &AXUIElement,
         action: &CFString,
         description: NonNull<*const CFString>,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementCopyActionDescription(
+                element: &AXUIElement,
+                action: &CFString,
+                description: NonNull<*const CFString>,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementCopyActionDescription(self, action, description) }
+    }
 
-extern "C-unwind" {
     /// Requests that the specified accessibility object perform the specified action.
     ///
     /// It is possible to receive the
@@ -1058,10 +1162,15 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementPerformAction(element: &AXUIElement, action: &CFString) -> AXError;
-}
+    #[inline]
+    #[doc(alias = "AXUIElementPerformAction")]
+    pub unsafe fn perform_action(self: &AXUIElement, action: &CFString) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementPerformAction(element: &AXUIElement, action: &CFString) -> AXError;
+        }
+        unsafe { AXUIElementPerformAction(self, action) }
+    }
 
-extern "C-unwind" {
     /// Returns the accessibility object at the specified position in top-left relative screen coordinates.
     ///
     ///
@@ -1131,50 +1240,62 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementCopyElementAtPosition(
-        application: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementCopyElementAtPosition")]
+    pub unsafe fn copy_element_at_position(
+        self: &AXUIElement,
         x: c_float,
         y: c_float,
         element: NonNull<*const AXUIElement>,
-    ) -> AXError;
-}
-
-/// Creates and returns the top-level accessibility object for the application with the specified process ID.
-///
-///
-/// Parameter `pid`: The process ID of an application.
-///
-/// Returns: The AXUIElementRef representing the top-level accessibility object for the application with the specified process ID.
-#[cfg(feature = "libc")]
-#[inline]
-pub unsafe extern "C-unwind" fn AXUIElementCreateApplication(
-    pid: libc::pid_t,
-) -> CFRetained<AXUIElement> {
-    extern "C-unwind" {
-        fn AXUIElementCreateApplication(pid: libc::pid_t) -> Option<NonNull<AXUIElement>>;
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementCopyElementAtPosition(
+                application: &AXUIElement,
+                x: c_float,
+                y: c_float,
+                element: NonNull<*const AXUIElement>,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementCopyElementAtPosition(self, x, y, element) }
     }
-    let ret = unsafe { AXUIElementCreateApplication(pid) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Returns an accessibility object that provides access to system attributes.
-///
-/// This is useful for things like finding the focused accessibility object regardless of which application is currently active.
-///
-///
-/// Returns: The AXUIElementRef representing the system-wide accessibility object.
-#[inline]
-pub unsafe extern "C-unwind" fn AXUIElementCreateSystemWide() -> CFRetained<AXUIElement> {
-    extern "C-unwind" {
-        fn AXUIElementCreateSystemWide() -> Option<NonNull<AXUIElement>>;
+    /// Creates and returns the top-level accessibility object for the application with the specified process ID.
+    ///
+    ///
+    /// Parameter `pid`: The process ID of an application.
+    ///
+    /// Returns: The AXUIElementRef representing the top-level accessibility object for the application with the specified process ID.
+    #[cfg(feature = "libc")]
+    #[inline]
+    #[doc(alias = "AXUIElementCreateApplication")]
+    pub unsafe fn new_application(pid: libc::pid_t) -> CFRetained<AXUIElement> {
+        extern "C-unwind" {
+            fn AXUIElementCreateApplication(pid: libc::pid_t) -> Option<NonNull<AXUIElement>>;
+        }
+        let ret = unsafe { AXUIElementCreateApplication(pid) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { AXUIElementCreateSystemWide() };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-extern "C-unwind" {
+    /// Returns an accessibility object that provides access to system attributes.
+    ///
+    /// This is useful for things like finding the focused accessibility object regardless of which application is currently active.
+    ///
+    ///
+    /// Returns: The AXUIElementRef representing the system-wide accessibility object.
+    #[inline]
+    #[doc(alias = "AXUIElementCreateSystemWide")]
+    pub unsafe fn new_system_wide() -> CFRetained<AXUIElement> {
+        extern "C-unwind" {
+            fn AXUIElementCreateSystemWide() -> Option<NonNull<AXUIElement>>;
+        }
+        let ret = unsafe { AXUIElementCreateSystemWide() };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
     /// Returns the process ID associated with the specified accessibility object.
     ///
     ///
@@ -1207,10 +1328,15 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(all(feature = "AXError", feature = "libc"))]
-    pub fn AXUIElementGetPid(element: &AXUIElement, pid: NonNull<libc::pid_t>) -> AXError;
-}
+    #[inline]
+    #[doc(alias = "AXUIElementGetPid")]
+    pub unsafe fn pid(self: &AXUIElement, pid: NonNull<libc::pid_t>) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementGetPid(element: &AXUIElement, pid: NonNull<libc::pid_t>) -> AXError;
+        }
+        unsafe { AXUIElementGetPid(self, pid) }
+    }
 
-extern "C-unwind" {
     /// Sets the timeout value used in the accessibility API.
     ///
     /// Pass the system-wide accessibility object (see
@@ -1262,102 +1388,113 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXUIElementSetMessagingTimeout(
-        element: &AXUIElement,
+    #[inline]
+    #[doc(alias = "AXUIElementSetMessagingTimeout")]
+    pub unsafe fn set_messaging_timeout(
+        self: &AXUIElement,
         timeout_in_seconds: c_float,
-    ) -> AXError;
-}
-
-/// Posts keys to the specified application.
-///
-///
-/// This is similar to
-///
-/// ```text
-///  //apple_ref/c/func/CGPostKeyboardEvent CGPostKeyboardEvent
-/// ```
-///
-/// (which synthesizes a low-level keyboard event on the
-/// local machine), but it allows you to specify the target application as opposed to always sending the events to the active application. If the
-/// system-wide accessibility object is passed in the
-/// <code>
-/// application
-/// </code>
-/// parameter, the event is sent to the active application.
-///
-/// You can only pass in the system-wide or application AXUIElementRef.
-///
-///
-/// Parameter `application`: The AXUIElementRef representing the application (or the system-wide accessibility object).
-///
-/// Parameter `keyChar`:
-/// Parameter `virtualKey`:
-/// Parameter `keyDown`:
-/// Returns: If unsuccessful,
-/// <code>
-/// AXUIElementPostKeyboardEvent
-/// </code>
-/// may return one of the following error codes, among others:
-/// <dl>
-/// <dt>
-/// <code>
-/// kAXErrorIllegalArgument
-/// </code>
-/// </dt>
-/// <dd>
-/// One or more of the arguments is an illegal value.
-/// </dd>
-/// <dt>
-/// <code>
-/// kAXErrorInvalidUIElement
-/// </code>
-/// </dt>
-/// <dd>
-/// The AXUIElementRef is invalid.
-/// </dd>
-/// <dt>
-/// <code>
-/// kAXErrorFailure
-/// </code>
-/// </dt>
-/// <dd>
-/// There is some sort of system memory failure.
-/// </dd>
-/// <dt>
-/// <code>
-/// kAXErrorCannotComplete
-/// </code>
-/// </dt>
-/// <dd>
-/// The function cannot complete because messaging has failed in some way.
-/// </dd>
-/// <dt>
-/// <code>
-/// kAXErrorNotImplemented
-/// </code>
-/// </dt>
-/// <dd>
-/// The process does not fully support the accessibility API.
-/// </dd>
-/// </dl>
-#[cfg(all(feature = "AXError", feature = "objc2-core-graphics"))]
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn AXUIElementPostKeyboardEvent(
-    application: &AXUIElement,
-    key_char: CGCharCode,
-    virtual_key: CGKeyCode,
-    key_down: bool,
-) -> AXError {
-    extern "C-unwind" {
-        fn AXUIElementPostKeyboardEvent(
-            application: &AXUIElement,
-            key_char: CGCharCode,
-            virtual_key: CGKeyCode,
-            key_down: Boolean,
-        ) -> AXError;
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementSetMessagingTimeout(
+                element: &AXUIElement,
+                timeout_in_seconds: c_float,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementSetMessagingTimeout(self, timeout_in_seconds) }
     }
-    unsafe { AXUIElementPostKeyboardEvent(application, key_char, virtual_key, key_down as _) }
+
+    /// Posts keys to the specified application.
+    ///
+    ///
+    /// This is similar to
+    ///
+    /// ```text
+    ///  //apple_ref/c/func/CGPostKeyboardEvent CGPostKeyboardEvent
+    /// ```
+    ///
+    /// (which synthesizes a low-level keyboard event on the
+    /// local machine), but it allows you to specify the target application as opposed to always sending the events to the active application. If the
+    /// system-wide accessibility object is passed in the
+    /// <code>
+    /// application
+    /// </code>
+    /// parameter, the event is sent to the active application.
+    ///
+    /// You can only pass in the system-wide or application AXUIElementRef.
+    ///
+    ///
+    /// Parameter `application`: The AXUIElementRef representing the application (or the system-wide accessibility object).
+    ///
+    /// Parameter `keyChar`:
+    /// Parameter `virtualKey`:
+    /// Parameter `keyDown`:
+    /// Returns: If unsuccessful,
+    /// <code>
+    /// AXUIElementPostKeyboardEvent
+    /// </code>
+    /// may return one of the following error codes, among others:
+    /// <dl>
+    /// <dt>
+    /// <code>
+    /// kAXErrorIllegalArgument
+    /// </code>
+    /// </dt>
+    /// <dd>
+    /// One or more of the arguments is an illegal value.
+    /// </dd>
+    /// <dt>
+    /// <code>
+    /// kAXErrorInvalidUIElement
+    /// </code>
+    /// </dt>
+    /// <dd>
+    /// The AXUIElementRef is invalid.
+    /// </dd>
+    /// <dt>
+    /// <code>
+    /// kAXErrorFailure
+    /// </code>
+    /// </dt>
+    /// <dd>
+    /// There is some sort of system memory failure.
+    /// </dd>
+    /// <dt>
+    /// <code>
+    /// kAXErrorCannotComplete
+    /// </code>
+    /// </dt>
+    /// <dd>
+    /// The function cannot complete because messaging has failed in some way.
+    /// </dd>
+    /// <dt>
+    /// <code>
+    /// kAXErrorNotImplemented
+    /// </code>
+    /// </dt>
+    /// <dd>
+    /// The process does not fully support the accessibility API.
+    /// </dd>
+    /// </dl>
+    #[cfg(all(feature = "AXError", feature = "objc2-core-graphics"))]
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "AXUIElementPostKeyboardEvent")]
+    pub unsafe fn post_keyboard_event(
+        self: &AXUIElement,
+        key_char: CGCharCode,
+        virtual_key: CGKeyCode,
+        key_down: bool,
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXUIElementPostKeyboardEvent(
+                application: &AXUIElement,
+                key_char: CGCharCode,
+                virtual_key: CGKeyCode,
+                key_down: Boolean,
+            ) -> AXError;
+        }
+        unsafe { AXUIElementPostKeyboardEvent(self, key_char, virtual_key, key_down as _) }
+    }
 }
 
 /// An AXTextMarkerRef is a CFType. Like all CFTypes, they are reference counted (
@@ -1404,31 +1541,33 @@ unsafe impl ConcreteType for AXTextMarker {
     }
 }
 
-/// Creates a new text marker.
-///
-///
-/// Parameter `bytes`: The data used to identify this location in text
-///
-/// Parameter `length`: The length of the data
-#[inline]
-pub unsafe extern "C-unwind" fn AXTextMarkerCreate(
-    allocator: Option<&CFAllocator>,
-    bytes: NonNull<u8>,
-    length: CFIndex,
-) -> CFRetained<AXTextMarker> {
-    extern "C-unwind" {
-        fn AXTextMarkerCreate(
-            allocator: Option<&CFAllocator>,
-            bytes: NonNull<u8>,
-            length: CFIndex,
-        ) -> Option<NonNull<AXTextMarker>>;
+impl AXTextMarker {
+    /// Creates a new text marker.
+    ///
+    ///
+    /// Parameter `bytes`: The data used to identify this location in text
+    ///
+    /// Parameter `length`: The length of the data
+    #[inline]
+    #[doc(alias = "AXTextMarkerCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        bytes: NonNull<u8>,
+        length: CFIndex,
+    ) -> CFRetained<AXTextMarker> {
+        extern "C-unwind" {
+            fn AXTextMarkerCreate(
+                allocator: Option<&CFAllocator>,
+                bytes: NonNull<u8>,
+                length: CFIndex,
+            ) -> Option<NonNull<AXTextMarker>>;
+        }
+        let ret = unsafe { AXTextMarkerCreate(allocator, bytes, length) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { AXTextMarkerCreate(allocator, bytes, length) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-extern "C-unwind" {
     /// Get the length of bytes stored in a text marker
     ///
     ///
@@ -1436,25 +1575,31 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The length of the data
-    pub fn AXTextMarkerGetLength(marker: &AXTextMarker) -> CFIndex;
-}
-
-/// Get the byte data used to identify this location in text.
-///
-///
-/// Parameter `marker`: The text marker
-///
-///
-/// Returns: a pointer to the byte data used to identify this location in text.
-#[inline]
-pub unsafe extern "C-unwind" fn AXTextMarkerGetBytePtr(
-    the_text_marker: &AXTextMarker,
-) -> NonNull<u8> {
-    extern "C-unwind" {
-        fn AXTextMarkerGetBytePtr(the_text_marker: &AXTextMarker) -> Option<NonNull<u8>>;
+    #[inline]
+    #[doc(alias = "AXTextMarkerGetLength")]
+    pub unsafe fn length(self: &AXTextMarker) -> CFIndex {
+        extern "C-unwind" {
+            fn AXTextMarkerGetLength(marker: &AXTextMarker) -> CFIndex;
+        }
+        unsafe { AXTextMarkerGetLength(self) }
     }
-    let ret = unsafe { AXTextMarkerGetBytePtr(the_text_marker) };
-    ret.expect("function was marked as returning non-null, but actually returned NULL")
+
+    /// Get the byte data used to identify this location in text.
+    ///
+    ///
+    /// Parameter `marker`: The text marker
+    ///
+    ///
+    /// Returns: a pointer to the byte data used to identify this location in text.
+    #[inline]
+    #[doc(alias = "AXTextMarkerGetBytePtr")]
+    pub unsafe fn byte_ptr(self: &AXTextMarker) -> NonNull<u8> {
+        extern "C-unwind" {
+            fn AXTextMarkerGetBytePtr(the_text_marker: &AXTextMarker) -> Option<NonNull<u8>>;
+        }
+        let ret = unsafe { AXTextMarkerGetBytePtr(self) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
+    }
 }
 
 /// An AXTextMarkerRangeRef is a CFType. Like all CFTypes, they are reference counted (
@@ -1501,116 +1646,128 @@ unsafe impl ConcreteType for AXTextMarkerRange {
     }
 }
 
-/// Creates a new text marker given a start and end marker
-///
-///
-/// Parameter `startMarker`: The text marker for the beginning of the range
-///
-/// Parameter `endMarker`: The text marker for the end of the range
-///
-///
-/// Returns: The text marker range object
-#[inline]
-pub unsafe extern "C-unwind" fn AXTextMarkerRangeCreate(
-    allocator: Option<&CFAllocator>,
-    start_marker: &AXTextMarker,
-    end_marker: &AXTextMarker,
-) -> CFRetained<AXTextMarkerRange> {
-    extern "C-unwind" {
-        fn AXTextMarkerRangeCreate(
-            allocator: Option<&CFAllocator>,
-            start_marker: &AXTextMarker,
-            end_marker: &AXTextMarker,
-        ) -> Option<NonNull<AXTextMarkerRange>>;
+impl AXTextMarkerRange {
+    /// Creates a new text marker given a start and end marker
+    ///
+    ///
+    /// Parameter `startMarker`: The text marker for the beginning of the range
+    ///
+    /// Parameter `endMarker`: The text marker for the end of the range
+    ///
+    ///
+    /// Returns: The text marker range object
+    #[inline]
+    #[doc(alias = "AXTextMarkerRangeCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        start_marker: &AXTextMarker,
+        end_marker: &AXTextMarker,
+    ) -> CFRetained<AXTextMarkerRange> {
+        extern "C-unwind" {
+            fn AXTextMarkerRangeCreate(
+                allocator: Option<&CFAllocator>,
+                start_marker: &AXTextMarker,
+                end_marker: &AXTextMarker,
+            ) -> Option<NonNull<AXTextMarkerRange>>;
+        }
+        let ret = unsafe { AXTextMarkerRangeCreate(allocator, start_marker, end_marker) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { AXTextMarkerRangeCreate(allocator, start_marker, end_marker) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
+
+    /// Creates a new text marker given the bytes for a start marker and an end marker
+    ///
+    ///
+    /// Parameter `startMarkerBytes`: The data used to identify the start marker location in text
+    ///
+    /// Parameter `startMarkerLength`: The length of the start marker data
+    ///
+    /// Parameter `endMarkeBytes`: The data used to identify the end marker location in text
+    ///
+    /// Parameter `endMarkerLength`: The length of the end marker data
+    ///
+    ///
+    /// Returns: The text marker range object
+    #[inline]
+    #[doc(alias = "AXTextMarkerRangeCreateWithBytes")]
+    pub unsafe fn with_bytes(
+        allocator: Option<&CFAllocator>,
+        start_marker_bytes: NonNull<u8>,
+        start_marker_length: CFIndex,
+        end_marker_bytes: NonNull<u8>,
+        end_marker_length: CFIndex,
+    ) -> CFRetained<AXTextMarkerRange> {
+        extern "C-unwind" {
+            fn AXTextMarkerRangeCreateWithBytes(
+                allocator: Option<&CFAllocator>,
+                start_marker_bytes: NonNull<u8>,
+                start_marker_length: CFIndex,
+                end_marker_bytes: NonNull<u8>,
+                end_marker_length: CFIndex,
+            ) -> Option<NonNull<AXTextMarkerRange>>;
+        }
+        let ret = unsafe {
+            AXTextMarkerRangeCreateWithBytes(
+                allocator,
+                start_marker_bytes,
+                start_marker_length,
+                end_marker_bytes,
+                end_marker_length,
+            )
+        };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
 }
 
-/// Creates a new text marker given the bytes for a start marker and an end marker
-///
-///
-/// Parameter `startMarkerBytes`: The data used to identify the start marker location in text
-///
-/// Parameter `startMarkerLength`: The length of the start marker data
-///
-/// Parameter `endMarkeBytes`: The data used to identify the end marker location in text
-///
-/// Parameter `endMarkerLength`: The length of the end marker data
-///
-///
-/// Returns: The text marker range object
-#[inline]
-pub unsafe extern "C-unwind" fn AXTextMarkerRangeCreateWithBytes(
-    allocator: Option<&CFAllocator>,
-    start_marker_bytes: NonNull<u8>,
-    start_marker_length: CFIndex,
-    end_marker_bytes: NonNull<u8>,
-    end_marker_length: CFIndex,
-) -> CFRetained<AXTextMarkerRange> {
-    extern "C-unwind" {
-        fn AXTextMarkerRangeCreateWithBytes(
-            allocator: Option<&CFAllocator>,
-            start_marker_bytes: NonNull<u8>,
-            start_marker_length: CFIndex,
-            end_marker_bytes: NonNull<u8>,
-            end_marker_length: CFIndex,
-        ) -> Option<NonNull<AXTextMarkerRange>>;
+impl AXTextMarker {
+    /// Copies the start marker from a text marker range
+    ///
+    ///
+    /// Parameter `textMarkerRange`: The text marker range
+    ///
+    ///
+    /// Returns: The start text marker object
+    #[inline]
+    #[doc(alias = "AXTextMarkerRangeCopyStartMarker")]
+    pub unsafe fn range_copy_start_marker(
+        text_marker_range: &AXTextMarkerRange,
+    ) -> CFRetained<AXTextMarker> {
+        extern "C-unwind" {
+            fn AXTextMarkerRangeCopyStartMarker(
+                text_marker_range: &AXTextMarkerRange,
+            ) -> Option<NonNull<AXTextMarker>>;
+        }
+        let ret = unsafe { AXTextMarkerRangeCopyStartMarker(text_marker_range) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe {
-        AXTextMarkerRangeCreateWithBytes(
-            allocator,
-            start_marker_bytes,
-            start_marker_length,
-            end_marker_bytes,
-            end_marker_length,
-        )
-    };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Copies the start marker from a text marker range
-///
-///
-/// Parameter `textMarkerRange`: The text marker range
-///
-///
-/// Returns: The start text marker object
-#[inline]
-pub unsafe extern "C-unwind" fn AXTextMarkerRangeCopyStartMarker(
-    text_marker_range: &AXTextMarkerRange,
-) -> CFRetained<AXTextMarker> {
-    extern "C-unwind" {
-        fn AXTextMarkerRangeCopyStartMarker(
-            text_marker_range: &AXTextMarkerRange,
-        ) -> Option<NonNull<AXTextMarker>>;
+    /// Copies the end marker from a text marker range
+    ///
+    ///
+    /// Parameter `textMarkerRange`: The text marker range
+    ///
+    ///
+    /// Returns: The end text marker object
+    #[inline]
+    #[doc(alias = "AXTextMarkerRangeCopyEndMarker")]
+    pub unsafe fn range_copy_end_marker(
+        text_marker_range: &AXTextMarkerRange,
+    ) -> CFRetained<AXTextMarker> {
+        extern "C-unwind" {
+            fn AXTextMarkerRangeCopyEndMarker(
+                text_marker_range: &AXTextMarkerRange,
+            ) -> Option<NonNull<AXTextMarker>>;
+        }
+        let ret = unsafe { AXTextMarkerRangeCopyEndMarker(text_marker_range) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { AXTextMarkerRangeCopyStartMarker(text_marker_range) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
-
-/// Copies the end marker from a text marker range
-///
-///
-/// Parameter `textMarkerRange`: The text marker range
-///
-///
-/// Returns: The end text marker object
-#[inline]
-pub unsafe extern "C-unwind" fn AXTextMarkerRangeCopyEndMarker(
-    text_marker_range: &AXTextMarkerRange,
-) -> CFRetained<AXTextMarker> {
-    extern "C-unwind" {
-        fn AXTextMarkerRangeCopyEndMarker(
-            text_marker_range: &AXTextMarkerRange,
-        ) -> Option<NonNull<AXTextMarker>>;
-    }
-    let ret = unsafe { AXTextMarkerRangeCopyEndMarker(text_marker_range) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
 }
 
 /// An AXObserverRef is a CFType. Like all CFTypes, they are reference counted (
@@ -1696,7 +1853,7 @@ unsafe impl ConcreteType for AXObserver {
     }
 }
 
-extern "C-unwind" {
+impl AXObserver {
     /// Creates a new observer that can receive notifications from the specified application.
     ///
     /// When an observed notification is received, it is passed to
@@ -1739,14 +1896,23 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(all(feature = "AXError", feature = "libc"))]
-    pub fn AXObserverCreate(
+    #[inline]
+    #[doc(alias = "AXObserverCreate")]
+    pub unsafe fn create(
         application: libc::pid_t,
         callback: AXObserverCallback,
         out_observer: NonNull<*mut AXObserver>,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXObserverCreate(
+                application: libc::pid_t,
+                callback: AXObserverCallback,
+                out_observer: NonNull<*mut AXObserver>,
+            ) -> AXError;
+        }
+        unsafe { AXObserverCreate(application, callback, out_observer) }
+    }
 
-extern "C-unwind" {
     /// Creates a new observer that can receive notifications with an information dictionary from the specified application.
     ///
     /// When an observed notification is received, it is passed to
@@ -1789,14 +1955,23 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(all(feature = "AXError", feature = "libc"))]
-    pub fn AXObserverCreateWithInfoCallback(
+    #[inline]
+    #[doc(alias = "AXObserverCreateWithInfoCallback")]
+    pub unsafe fn create_with_info_callback(
         application: libc::pid_t,
         callback: AXObserverCallbackWithInfo,
         out_observer: NonNull<*mut AXObserver>,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXObserverCreateWithInfoCallback(
+                application: libc::pid_t,
+                callback: AXObserverCallbackWithInfo,
+                out_observer: NonNull<*mut AXObserver>,
+            ) -> AXError;
+        }
+        unsafe { AXObserverCreateWithInfoCallback(application, callback, out_observer) }
+    }
 
-extern "C-unwind" {
     /// Registers the specified observer to receive notifications from the specified accessibility object.
     ///
     ///
@@ -1871,15 +2046,25 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
-    pub fn AXObserverAddNotification(
-        observer: &AXObserver,
+    #[inline]
+    #[doc(alias = "AXObserverAddNotification")]
+    pub unsafe fn add_notification(
+        self: &AXObserver,
         element: &AXUIElement,
         notification: &CFString,
         refcon: *mut c_void,
-    ) -> AXError;
-}
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXObserverAddNotification(
+                observer: &AXObserver,
+                element: &AXUIElement,
+                notification: &CFString,
+                refcon: *mut c_void,
+            ) -> AXError;
+        }
+        unsafe { AXObserverAddNotification(self, element, notification, refcon) }
+    }
 
-extern "C-unwind" {
     /// Removes the specified notification from the list of notifications the observer wants to receive from the accessibility object.
     ///
     ///
@@ -1952,6 +2137,410 @@ extern "C-unwind" {
     /// </dd>
     /// </dl>
     #[cfg(feature = "AXError")]
+    #[inline]
+    #[doc(alias = "AXObserverRemoveNotification")]
+    pub unsafe fn remove_notification(
+        self: &AXObserver,
+        element: &AXUIElement,
+        notification: &CFString,
+    ) -> AXError {
+        extern "C-unwind" {
+            fn AXObserverRemoveNotification(
+                observer: &AXObserver,
+                element: &AXUIElement,
+                notification: &CFString,
+            ) -> AXError;
+        }
+        unsafe { AXObserverRemoveNotification(self, element, notification) }
+    }
+
+    /// Returns the observer's run loop source.
+    ///
+    /// The observer must be added to a run loop before it can receive notifications. Note that releasing the AXObserverRef automatically
+    /// removes the run loop source from the run loop (you can also do this explicitly by calling
+    ///
+    /// ```text
+    ///  //apple_ref/c/func/CFRunLoopRemoveSource CFRunLoopRemoveSource
+    /// ```
+    ///
+    /// ).
+    ///
+    /// <code>
+    /// AXObserverGetRunLoopSource
+    /// </code>
+    /// might be used in code in this way:
+    ///
+    /// <pre>
+    /// CFRunLoopAddSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(observer), kCFRunLoopDefaultMode);
+    /// </pre>
+    ///
+    ///
+    /// Parameter `observer`: The observer object (created from a call to
+    ///
+    /// ```text
+    ///  AXObserverCreate AXObserverCreate
+    /// ```
+    ///
+    /// ) for which to get the run loop source.
+    ///
+    /// Returns: Returns the CFRunLoopSourceRef of the observer; NIL if you pass NIL in
+    /// <code>
+    /// observer
+    /// </code>
+    /// .
+    #[inline]
+    #[doc(alias = "AXObserverGetRunLoopSource")]
+    pub unsafe fn run_loop_source(self: &AXObserver) -> CFRetained<CFRunLoopSource> {
+        extern "C-unwind" {
+            fn AXObserverGetRunLoopSource(
+                observer: &AXObserver,
+            ) -> Option<NonNull<CFRunLoopSource>>;
+        }
+        let ret = unsafe { AXObserverGetRunLoopSource(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::copy_attribute_names`"]
+    pub fn AXUIElementCopyAttributeNames(
+        element: &AXUIElement,
+        names: NonNull<*const CFArray>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::copy_attribute_value`"]
+    pub fn AXUIElementCopyAttributeValue(
+        element: &AXUIElement,
+        attribute: &CFString,
+        value: NonNull<*const CFType>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::attribute_value_count`"]
+    pub fn AXUIElementGetAttributeValueCount(
+        element: &AXUIElement,
+        attribute: &CFString,
+        count: NonNull<CFIndex>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::copy_attribute_values`"]
+    pub fn AXUIElementCopyAttributeValues(
+        element: &AXUIElement,
+        attribute: &CFString,
+        index: CFIndex,
+        max_values: CFIndex,
+        values: NonNull<*const CFArray>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::is_attribute_settable`"]
+    pub fn AXUIElementIsAttributeSettable(
+        element: &AXUIElement,
+        attribute: &CFString,
+        settable: NonNull<Boolean>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::set_attribute_value`"]
+    pub fn AXUIElementSetAttributeValue(
+        element: &AXUIElement,
+        attribute: &CFString,
+        value: &CFType,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::copy_multiple_attribute_values`"]
+    pub fn AXUIElementCopyMultipleAttributeValues(
+        element: &AXUIElement,
+        attributes: &CFArray,
+        options: AXCopyMultipleAttributeOptions,
+        values: NonNull<*const CFArray>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::copy_parameterized_attribute_names`"]
+    pub fn AXUIElementCopyParameterizedAttributeNames(
+        element: &AXUIElement,
+        names: NonNull<*const CFArray>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::copy_parameterized_attribute_value`"]
+    pub fn AXUIElementCopyParameterizedAttributeValue(
+        element: &AXUIElement,
+        parameterized_attribute: &CFString,
+        parameter: &CFType,
+        result: NonNull<*const CFType>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::copy_action_names`"]
+    pub fn AXUIElementCopyActionNames(
+        element: &AXUIElement,
+        names: NonNull<*const CFArray>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::copy_action_description`"]
+    pub fn AXUIElementCopyActionDescription(
+        element: &AXUIElement,
+        action: &CFString,
+        description: NonNull<*const CFString>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::perform_action`"]
+    pub fn AXUIElementPerformAction(element: &AXUIElement, action: &CFString) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::copy_element_at_position`"]
+    pub fn AXUIElementCopyElementAtPosition(
+        application: &AXUIElement,
+        x: c_float,
+        y: c_float,
+        element: NonNull<*const AXUIElement>,
+    ) -> AXError;
+}
+
+#[cfg(feature = "libc")]
+#[deprecated = "renamed to `AXUIElement::new_application`"]
+#[inline]
+pub unsafe extern "C-unwind" fn AXUIElementCreateApplication(
+    pid: libc::pid_t,
+) -> CFRetained<AXUIElement> {
+    extern "C-unwind" {
+        fn AXUIElementCreateApplication(pid: libc::pid_t) -> Option<NonNull<AXUIElement>>;
+    }
+    let ret = unsafe { AXUIElementCreateApplication(pid) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `AXUIElement::new_system_wide`"]
+#[inline]
+pub unsafe extern "C-unwind" fn AXUIElementCreateSystemWide() -> CFRetained<AXUIElement> {
+    extern "C-unwind" {
+        fn AXUIElementCreateSystemWide() -> Option<NonNull<AXUIElement>>;
+    }
+    let ret = unsafe { AXUIElementCreateSystemWide() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "AXError", feature = "libc"))]
+    #[deprecated = "renamed to `AXUIElement::pid`"]
+    pub fn AXUIElementGetPid(element: &AXUIElement, pid: NonNull<libc::pid_t>) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXUIElement::set_messaging_timeout`"]
+    pub fn AXUIElementSetMessagingTimeout(
+        element: &AXUIElement,
+        timeout_in_seconds: c_float,
+    ) -> AXError;
+}
+
+#[cfg(all(feature = "AXError", feature = "objc2-core-graphics"))]
+#[deprecated = "renamed to `AXUIElement::post_keyboard_event`"]
+#[inline]
+pub unsafe extern "C-unwind" fn AXUIElementPostKeyboardEvent(
+    application: &AXUIElement,
+    key_char: CGCharCode,
+    virtual_key: CGKeyCode,
+    key_down: bool,
+) -> AXError {
+    extern "C-unwind" {
+        fn AXUIElementPostKeyboardEvent(
+            application: &AXUIElement,
+            key_char: CGCharCode,
+            virtual_key: CGKeyCode,
+            key_down: Boolean,
+        ) -> AXError;
+    }
+    unsafe { AXUIElementPostKeyboardEvent(application, key_char, virtual_key, key_down as _) }
+}
+
+#[deprecated = "renamed to `AXTextMarker::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn AXTextMarkerCreate(
+    allocator: Option<&CFAllocator>,
+    bytes: NonNull<u8>,
+    length: CFIndex,
+) -> CFRetained<AXTextMarker> {
+    extern "C-unwind" {
+        fn AXTextMarkerCreate(
+            allocator: Option<&CFAllocator>,
+            bytes: NonNull<u8>,
+            length: CFIndex,
+        ) -> Option<NonNull<AXTextMarker>>;
+    }
+    let ret = unsafe { AXTextMarkerCreate(allocator, bytes, length) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `AXTextMarker::length`"]
+    pub fn AXTextMarkerGetLength(marker: &AXTextMarker) -> CFIndex;
+}
+
+#[deprecated = "renamed to `AXTextMarker::byte_ptr`"]
+#[inline]
+pub unsafe extern "C-unwind" fn AXTextMarkerGetBytePtr(
+    the_text_marker: &AXTextMarker,
+) -> NonNull<u8> {
+    extern "C-unwind" {
+        fn AXTextMarkerGetBytePtr(the_text_marker: &AXTextMarker) -> Option<NonNull<u8>>;
+    }
+    let ret = unsafe { AXTextMarkerGetBytePtr(the_text_marker) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[deprecated = "renamed to `AXTextMarkerRange::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn AXTextMarkerRangeCreate(
+    allocator: Option<&CFAllocator>,
+    start_marker: &AXTextMarker,
+    end_marker: &AXTextMarker,
+) -> CFRetained<AXTextMarkerRange> {
+    extern "C-unwind" {
+        fn AXTextMarkerRangeCreate(
+            allocator: Option<&CFAllocator>,
+            start_marker: &AXTextMarker,
+            end_marker: &AXTextMarker,
+        ) -> Option<NonNull<AXTextMarkerRange>>;
+    }
+    let ret = unsafe { AXTextMarkerRangeCreate(allocator, start_marker, end_marker) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `AXTextMarkerRange::with_bytes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn AXTextMarkerRangeCreateWithBytes(
+    allocator: Option<&CFAllocator>,
+    start_marker_bytes: NonNull<u8>,
+    start_marker_length: CFIndex,
+    end_marker_bytes: NonNull<u8>,
+    end_marker_length: CFIndex,
+) -> CFRetained<AXTextMarkerRange> {
+    extern "C-unwind" {
+        fn AXTextMarkerRangeCreateWithBytes(
+            allocator: Option<&CFAllocator>,
+            start_marker_bytes: NonNull<u8>,
+            start_marker_length: CFIndex,
+            end_marker_bytes: NonNull<u8>,
+            end_marker_length: CFIndex,
+        ) -> Option<NonNull<AXTextMarkerRange>>;
+    }
+    let ret = unsafe {
+        AXTextMarkerRangeCreateWithBytes(
+            allocator,
+            start_marker_bytes,
+            start_marker_length,
+            end_marker_bytes,
+            end_marker_length,
+        )
+    };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `AXTextMarker::range_copy_start_marker`"]
+#[inline]
+pub unsafe extern "C-unwind" fn AXTextMarkerRangeCopyStartMarker(
+    text_marker_range: &AXTextMarkerRange,
+) -> CFRetained<AXTextMarker> {
+    extern "C-unwind" {
+        fn AXTextMarkerRangeCopyStartMarker(
+            text_marker_range: &AXTextMarkerRange,
+        ) -> Option<NonNull<AXTextMarker>>;
+    }
+    let ret = unsafe { AXTextMarkerRangeCopyStartMarker(text_marker_range) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `AXTextMarker::range_copy_end_marker`"]
+#[inline]
+pub unsafe extern "C-unwind" fn AXTextMarkerRangeCopyEndMarker(
+    text_marker_range: &AXTextMarkerRange,
+) -> CFRetained<AXTextMarker> {
+    extern "C-unwind" {
+        fn AXTextMarkerRangeCopyEndMarker(
+            text_marker_range: &AXTextMarkerRange,
+        ) -> Option<NonNull<AXTextMarker>>;
+    }
+    let ret = unsafe { AXTextMarkerRangeCopyEndMarker(text_marker_range) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "AXError", feature = "libc"))]
+    #[deprecated = "renamed to `AXObserver::create`"]
+    pub fn AXObserverCreate(
+        application: libc::pid_t,
+        callback: AXObserverCallback,
+        out_observer: NonNull<*mut AXObserver>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "AXError", feature = "libc"))]
+    #[deprecated = "renamed to `AXObserver::create_with_info_callback`"]
+    pub fn AXObserverCreateWithInfoCallback(
+        application: libc::pid_t,
+        callback: AXObserverCallbackWithInfo,
+        out_observer: NonNull<*mut AXObserver>,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXObserver::add_notification`"]
+    pub fn AXObserverAddNotification(
+        observer: &AXObserver,
+        element: &AXUIElement,
+        notification: &CFString,
+        refcon: *mut c_void,
+    ) -> AXError;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "AXError")]
+    #[deprecated = "renamed to `AXObserver::remove_notification`"]
     pub fn AXObserverRemoveNotification(
         observer: &AXObserver,
         element: &AXUIElement,
@@ -1959,40 +2548,7 @@ extern "C-unwind" {
     ) -> AXError;
 }
 
-/// Returns the observer's run loop source.
-///
-/// The observer must be added to a run loop before it can receive notifications. Note that releasing the AXObserverRef automatically
-/// removes the run loop source from the run loop (you can also do this explicitly by calling
-///
-/// ```text
-///  //apple_ref/c/func/CFRunLoopRemoveSource CFRunLoopRemoveSource
-/// ```
-///
-/// ).
-///
-/// <code>
-/// AXObserverGetRunLoopSource
-/// </code>
-/// might be used in code in this way:
-///
-/// <pre>
-/// CFRunLoopAddSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(observer), kCFRunLoopDefaultMode);
-/// </pre>
-///
-///
-/// Parameter `observer`: The observer object (created from a call to
-///
-/// ```text
-///  AXObserverCreate AXObserverCreate
-/// ```
-///
-/// ) for which to get the run loop source.
-///
-/// Returns: Returns the CFRunLoopSourceRef of the observer; NIL if you pass NIL in
-/// <code>
-/// observer
-/// </code>
-/// .
+#[deprecated = "renamed to `AXObserver::run_loop_source`"]
 #[inline]
 pub unsafe extern "C-unwind" fn AXObserverGetRunLoopSource(
     observer: &AXObserver,

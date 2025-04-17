@@ -45,7 +45,7 @@ unsafe impl ConcreteType for CVOpenGLBufferPool {
     }
 }
 
-extern "C-unwind" {
+impl CVOpenGLBufferPool {
     /// Creates a new OpenGL Buffer pool.
     ///
     /// Equivalent to CFRelease, but NULL safe
@@ -61,56 +61,73 @@ extern "C-unwind" {
     /// Returns: Returns kCVReturnSuccess on success
     #[cfg(feature = "CVReturn")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLBufferPoolCreate(
+    #[inline]
+    #[doc(alias = "CVOpenGLBufferPoolCreate")]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         pool_attributes: Option<&CFDictionary>,
         open_gl_buffer_attributes: Option<&CFDictionary>,
         pool_out: NonNull<*mut CVOpenGLBufferPool>,
-    ) -> CVReturn;
-}
-
-/// Returns the pool attributes dictionary for a CVOpenGLBufferPool
-///
-/// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
-///
-/// Returns: Returns the pool attributes dictionary, or NULL on failure.
-#[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-#[inline]
-pub unsafe extern "C-unwind" fn CVOpenGLBufferPoolGetAttributes(
-    pool: &CVOpenGLBufferPool,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CVOpenGLBufferPoolGetAttributes(
-            pool: &CVOpenGLBufferPool,
-        ) -> Option<NonNull<CFDictionary>>;
+    ) -> CVReturn {
+        extern "C-unwind" {
+            fn CVOpenGLBufferPoolCreate(
+                allocator: Option<&CFAllocator>,
+                pool_attributes: Option<&CFDictionary>,
+                open_gl_buffer_attributes: Option<&CFDictionary>,
+                pool_out: NonNull<*mut CVOpenGLBufferPool>,
+            ) -> CVReturn;
+        }
+        unsafe {
+            CVOpenGLBufferPoolCreate(
+                allocator,
+                pool_attributes,
+                open_gl_buffer_attributes,
+                pool_out,
+            )
+        }
     }
-    let ret = unsafe { CVOpenGLBufferPoolGetAttributes(pool) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Returns the attributes of OpenGL buffers that will be created from this pool.
-///
-/// This function is provided for those cases where you may need to know some information about the buffers that
-/// will be created up front.
-///
-/// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
-///
-/// Returns: Returns the OpenGL buffer attributes dictionary, or NULL on failure.
-#[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-#[inline]
-pub unsafe extern "C-unwind" fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
-    pool: &CVOpenGLBufferPool,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
-            pool: &CVOpenGLBufferPool,
-        ) -> Option<NonNull<CFDictionary>>;
+    /// Returns the pool attributes dictionary for a CVOpenGLBufferPool
+    ///
+    /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
+    ///
+    /// Returns: Returns the pool attributes dictionary, or NULL on failure.
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+    #[inline]
+    #[doc(alias = "CVOpenGLBufferPoolGetAttributes")]
+    pub unsafe fn attributes(self: &CVOpenGLBufferPool) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CVOpenGLBufferPoolGetAttributes(
+                pool: &CVOpenGLBufferPool,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CVOpenGLBufferPoolGetAttributes(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { CVOpenGLBufferPoolGetOpenGLBufferAttributes(pool) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
+    /// Returns the attributes of OpenGL buffers that will be created from this pool.
+    ///
+    /// This function is provided for those cases where you may need to know some information about the buffers that
+    /// will be created up front.
+    ///
+    /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
+    ///
+    /// Returns: Returns the OpenGL buffer attributes dictionary, or NULL on failure.
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+    #[inline]
+    #[doc(alias = "CVOpenGLBufferPoolGetOpenGLBufferAttributes")]
+    pub unsafe fn open_gl_buffer_attributes(
+        self: &CVOpenGLBufferPool,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
+                pool: &CVOpenGLBufferPool,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CVOpenGLBufferPoolGetOpenGLBufferAttributes(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
     /// Creates a new OpenGLBuffer object from the pool.
     ///
     /// The function creates a new CVOpenGLBuffer with the default attachments using the OpenGL buffer attributes specifed during pool creation.
@@ -129,6 +146,73 @@ extern "C-unwind" {
         feature = "CVReturn"
     ))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+    #[inline]
+    #[doc(alias = "CVOpenGLBufferPoolCreateOpenGLBuffer")]
+    pub unsafe fn create_open_gl_buffer(
+        allocator: Option<&CFAllocator>,
+        open_gl_buffer_pool: &CVOpenGLBufferPool,
+        open_gl_buffer_out: NonNull<*mut CVOpenGLBuffer>,
+    ) -> CVReturn {
+        extern "C-unwind" {
+            fn CVOpenGLBufferPoolCreateOpenGLBuffer(
+                allocator: Option<&CFAllocator>,
+                open_gl_buffer_pool: &CVOpenGLBufferPool,
+                open_gl_buffer_out: NonNull<*mut CVOpenGLBuffer>,
+            ) -> CVReturn;
+        }
+        unsafe {
+            CVOpenGLBufferPoolCreateOpenGLBuffer(allocator, open_gl_buffer_pool, open_gl_buffer_out)
+        }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CVReturn")]
+    #[deprecated = "renamed to `CVOpenGLBufferPool::create`"]
+    pub fn CVOpenGLBufferPoolCreate(
+        allocator: Option<&CFAllocator>,
+        pool_attributes: Option<&CFDictionary>,
+        open_gl_buffer_attributes: Option<&CFDictionary>,
+        pool_out: NonNull<*mut CVOpenGLBufferPool>,
+    ) -> CVReturn;
+}
+
+#[deprecated = "renamed to `CVOpenGLBufferPool::attributes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CVOpenGLBufferPoolGetAttributes(
+    pool: &CVOpenGLBufferPool,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVOpenGLBufferPoolGetAttributes(
+            pool: &CVOpenGLBufferPool,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CVOpenGLBufferPoolGetAttributes(pool) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `CVOpenGLBufferPool::open_gl_buffer_attributes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
+    pool: &CVOpenGLBufferPool,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
+            pool: &CVOpenGLBufferPool,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CVOpenGLBufferPoolGetOpenGLBufferAttributes(pool) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CVBuffer",
+        feature = "CVImageBuffer",
+        feature = "CVOpenGLBuffer",
+        feature = "CVReturn"
+    ))]
+    #[deprecated = "renamed to `CVOpenGLBufferPool::create_open_gl_buffer`"]
     pub fn CVOpenGLBufferPoolCreateOpenGLBuffer(
         allocator: Option<&CFAllocator>,
         open_gl_buffer_pool: &CVOpenGLBufferPool,

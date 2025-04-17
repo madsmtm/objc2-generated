@@ -118,125 +118,139 @@ unsafe impl ConcreteType for CGImageSource {
     }
 }
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceCopyTypeIdentifiers() -> CFRetained<CFArray> {
-    extern "C-unwind" {
-        fn CGImageSourceCopyTypeIdentifiers() -> Option<NonNull<CFArray>>;
+impl CGImageSource {
+    #[inline]
+    #[doc(alias = "CGImageSourceCopyTypeIdentifiers")]
+    pub unsafe fn type_identifiers() -> CFRetained<CFArray> {
+        extern "C-unwind" {
+            fn CGImageSourceCopyTypeIdentifiers() -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CGImageSourceCopyTypeIdentifiers() };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CGImageSourceCopyTypeIdentifiers() };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-#[cfg(feature = "objc2-core-graphics")]
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceCreateWithDataProvider(
-    provider: &CGDataProvider,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CGImageSource>> {
-    extern "C-unwind" {
-        fn CGImageSourceCreateWithDataProvider(
-            provider: &CGDataProvider,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGImageSource>>;
+    #[cfg(feature = "objc2-core-graphics")]
+    #[inline]
+    #[doc(alias = "CGImageSourceCreateWithDataProvider")]
+    pub unsafe fn with_data_provider(
+        provider: &CGDataProvider,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGImageSource>> {
+        extern "C-unwind" {
+            fn CGImageSourceCreateWithDataProvider(
+                provider: &CGDataProvider,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGImageSource>>;
+        }
+        let ret = unsafe { CGImageSourceCreateWithDataProvider(provider, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageSourceCreateWithDataProvider(provider, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceCreateWithData(
-    data: &CFData,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CGImageSource>> {
-    extern "C-unwind" {
-        fn CGImageSourceCreateWithData(
-            data: &CFData,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGImageSource>>;
+    #[inline]
+    #[doc(alias = "CGImageSourceCreateWithData")]
+    pub unsafe fn with_data(
+        data: &CFData,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGImageSource>> {
+        extern "C-unwind" {
+            fn CGImageSourceCreateWithData(
+                data: &CFData,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGImageSource>>;
+        }
+        let ret = unsafe { CGImageSourceCreateWithData(data, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageSourceCreateWithData(data, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceCreateWithURL(
-    url: &CFURL,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CGImageSource>> {
-    extern "C-unwind" {
-        fn CGImageSourceCreateWithURL(
-            url: &CFURL,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGImageSource>>;
+    #[inline]
+    #[doc(alias = "CGImageSourceCreateWithURL")]
+    pub unsafe fn with_url(
+        url: &CFURL,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGImageSource>> {
+        extern "C-unwind" {
+            fn CGImageSourceCreateWithURL(
+                url: &CFURL,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGImageSource>>;
+        }
+        let ret = unsafe { CGImageSourceCreateWithURL(url, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageSourceCreateWithURL(url, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceGetType(
-    isrc: &CGImageSource,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CGImageSourceGetType(isrc: &CGImageSource) -> Option<NonNull<CFString>>;
+    #[inline]
+    #[doc(alias = "CGImageSourceGetType")]
+    pub unsafe fn r#type(self: &CGImageSource) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CGImageSourceGetType(isrc: &CGImageSource) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CGImageSourceGetType(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { CGImageSourceGetType(isrc) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
-    pub fn CGImageSourceGetCount(isrc: &CGImageSource) -> usize;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceCopyProperties(
-    isrc: &CGImageSource,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CGImageSourceCopyProperties(
-            isrc: &CGImageSource,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CFDictionary>>;
+    #[inline]
+    #[doc(alias = "CGImageSourceGetCount")]
+    pub unsafe fn count(self: &CGImageSource) -> usize {
+        extern "C-unwind" {
+            fn CGImageSourceGetCount(isrc: &CGImageSource) -> usize;
+        }
+        unsafe { CGImageSourceGetCount(self) }
     }
-    let ret = unsafe { CGImageSourceCopyProperties(isrc, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceCopyPropertiesAtIndex(
-    isrc: &CGImageSource,
-    index: usize,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CGImageSourceCopyPropertiesAtIndex(
-            isrc: &CGImageSource,
-            index: usize,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CFDictionary>>;
+    #[inline]
+    #[doc(alias = "CGImageSourceCopyProperties")]
+    pub unsafe fn properties(
+        self: &CGImageSource,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CGImageSourceCopyProperties(
+                isrc: &CGImageSource,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CGImageSourceCopyProperties(self, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageSourceCopyPropertiesAtIndex(isrc, index, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CGImageMetadata")]
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceCopyMetadataAtIndex(
-    isrc: &CGImageSource,
-    index: usize,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CGImageMetadata>> {
-    extern "C-unwind" {
-        fn CGImageSourceCopyMetadataAtIndex(
-            isrc: &CGImageSource,
-            index: usize,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGImageMetadata>>;
+    #[inline]
+    #[doc(alias = "CGImageSourceCopyPropertiesAtIndex")]
+    pub unsafe fn properties_at_index(
+        self: &CGImageSource,
+        index: usize,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CGImageSourceCopyPropertiesAtIndex(
+                isrc: &CGImageSource,
+                index: usize,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CGImageSourceCopyPropertiesAtIndex(self, index, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageSourceCopyMetadataAtIndex(isrc, index, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    #[cfg(feature = "CGImageMetadata")]
+    #[inline]
+    #[doc(alias = "CGImageSourceCopyMetadataAtIndex")]
+    pub unsafe fn metadata_at_index(
+        self: &CGImageSource,
+        index: usize,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGImageMetadata>> {
+        extern "C-unwind" {
+            fn CGImageSourceCopyMetadataAtIndex(
+                isrc: &CGImageSource,
+                index: usize,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGImageMetadata>>;
+        }
+        let ret = unsafe { CGImageSourceCopyMetadataAtIndex(self, index, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
 #[cfg(feature = "objc2-core-graphics")]
@@ -257,8 +271,15 @@ pub unsafe extern "C-unwind" fn CGImageSourceCreateImageAtIndex(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGImageSourceRemoveCacheAtIndex(isrc: &CGImageSource, index: usize);
+impl CGImageSource {
+    #[inline]
+    #[doc(alias = "CGImageSourceRemoveCacheAtIndex")]
+    pub unsafe fn remove_cache_at_index(self: &CGImageSource, index: usize) {
+        extern "C-unwind" {
+            fn CGImageSourceRemoveCacheAtIndex(isrc: &CGImageSource, index: usize);
+        }
+        unsafe { CGImageSourceRemoveCacheAtIndex(self, index) }
+    }
 }
 
 #[cfg(feature = "objc2-core-graphics")]
@@ -279,63 +300,97 @@ pub unsafe extern "C-unwind" fn CGImageSourceCreateThumbnailAtIndex(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceCreateIncremental(
-    options: Option<&CFDictionary>,
-) -> CFRetained<CGImageSource> {
-    extern "C-unwind" {
-        fn CGImageSourceCreateIncremental(
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGImageSource>>;
+impl CGImageSource {
+    #[inline]
+    #[doc(alias = "CGImageSourceCreateIncremental")]
+    pub unsafe fn new_incremental(options: Option<&CFDictionary>) -> CFRetained<CGImageSource> {
+        extern "C-unwind" {
+            fn CGImageSourceCreateIncremental(
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGImageSource>>;
+        }
+        let ret = unsafe { CGImageSourceCreateIncremental(options) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CGImageSourceCreateIncremental(options) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-extern "C-unwind" {
-    pub fn CGImageSourceUpdateData(isrc: &CGImageSource, data: &CFData, r#final: bool);
-}
+    #[inline]
+    #[doc(alias = "CGImageSourceUpdateData")]
+    pub unsafe fn update_data(self: &CGImageSource, data: &CFData, r#final: bool) {
+        extern "C-unwind" {
+            fn CGImageSourceUpdateData(isrc: &CGImageSource, data: &CFData, r#final: bool);
+        }
+        unsafe { CGImageSourceUpdateData(self, data, r#final) }
+    }
 
-extern "C-unwind" {
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CGImageSourceUpdateDataProvider(
-        isrc: &CGImageSource,
+    #[inline]
+    #[doc(alias = "CGImageSourceUpdateDataProvider")]
+    pub unsafe fn update_data_provider(
+        self: &CGImageSource,
         provider: &CGDataProvider,
         r#final: bool,
-    );
-}
-
-extern "C-unwind" {
-    pub fn CGImageSourceGetStatus(isrc: &CGImageSource) -> CGImageSourceStatus;
-}
-
-extern "C-unwind" {
-    pub fn CGImageSourceGetStatusAtIndex(isrc: &CGImageSource, index: usize)
-        -> CGImageSourceStatus;
-}
-
-extern "C-unwind" {
-    pub fn CGImageSourceGetPrimaryImageIndex(isrc: &CGImageSource) -> usize;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceCopyAuxiliaryDataInfoAtIndex(
-    isrc: &CGImageSource,
-    index: usize,
-    auxiliary_image_data_type: &CFString,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CGImageSourceCopyAuxiliaryDataInfoAtIndex(
-            isrc: &CGImageSource,
-            index: usize,
-            auxiliary_image_data_type: &CFString,
-        ) -> Option<NonNull<CFDictionary>>;
+    ) {
+        extern "C-unwind" {
+            fn CGImageSourceUpdateDataProvider(
+                isrc: &CGImageSource,
+                provider: &CGDataProvider,
+                r#final: bool,
+            );
+        }
+        unsafe { CGImageSourceUpdateDataProvider(self, provider, r#final) }
     }
-    let ret = unsafe {
-        CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc, index, auxiliary_image_data_type)
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    #[inline]
+    #[doc(alias = "CGImageSourceGetStatus")]
+    pub unsafe fn status(self: &CGImageSource) -> CGImageSourceStatus {
+        extern "C-unwind" {
+            fn CGImageSourceGetStatus(isrc: &CGImageSource) -> CGImageSourceStatus;
+        }
+        unsafe { CGImageSourceGetStatus(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGImageSourceGetStatusAtIndex")]
+    pub unsafe fn status_at_index(self: &CGImageSource, index: usize) -> CGImageSourceStatus {
+        extern "C-unwind" {
+            fn CGImageSourceGetStatusAtIndex(
+                isrc: &CGImageSource,
+                index: usize,
+            ) -> CGImageSourceStatus;
+        }
+        unsafe { CGImageSourceGetStatusAtIndex(self, index) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGImageSourceGetPrimaryImageIndex")]
+    pub unsafe fn primary_image_index(self: &CGImageSource) -> usize {
+        extern "C-unwind" {
+            fn CGImageSourceGetPrimaryImageIndex(isrc: &CGImageSource) -> usize;
+        }
+        unsafe { CGImageSourceGetPrimaryImageIndex(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGImageSourceCopyAuxiliaryDataInfoAtIndex")]
+    pub unsafe fn auxiliary_data_info_at_index(
+        self: &CGImageSource,
+        index: usize,
+        auxiliary_image_data_type: &CFString,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CGImageSourceCopyAuxiliaryDataInfoAtIndex(
+                isrc: &CGImageSource,
+                index: usize,
+                auxiliary_image_data_type: &CFString,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe {
+            CGImageSourceCopyAuxiliaryDataInfoAtIndex(self, index, auxiliary_image_data_type)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
 extern "C" {
@@ -363,6 +418,219 @@ extern "C" {
     pub static kCGImageSourceDecodeRequestOptions: &'static CFString;
 }
 
+impl CGImageSource {
+    #[inline]
+    #[doc(alias = "CGImageSourceSetAllowableTypes")]
+    pub unsafe fn set_allowable_types(allowable_types: &CFArray) -> OSStatus {
+        extern "C-unwind" {
+            fn CGImageSourceSetAllowableTypes(allowable_types: &CFArray) -> OSStatus;
+        }
+        unsafe { CGImageSourceSetAllowableTypes(allowable_types) }
+    }
+}
+
+#[deprecated = "renamed to `CGImageSource::type_identifiers`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceCopyTypeIdentifiers() -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CGImageSourceCopyTypeIdentifiers() -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CGImageSourceCopyTypeIdentifiers() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `CGImageSource::with_data_provider`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceCreateWithDataProvider(
+    provider: &CGDataProvider,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CGImageSource>> {
+    extern "C-unwind" {
+        fn CGImageSourceCreateWithDataProvider(
+            provider: &CGDataProvider,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGImageSource>>;
+    }
+    let ret = unsafe { CGImageSourceCreateWithDataProvider(provider, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageSource::with_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceCreateWithData(
+    data: &CFData,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CGImageSource>> {
+    extern "C-unwind" {
+        fn CGImageSourceCreateWithData(
+            data: &CFData,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGImageSource>>;
+    }
+    let ret = unsafe { CGImageSourceCreateWithData(data, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageSource::with_url`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceCreateWithURL(
+    url: &CFURL,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CGImageSource>> {
+    extern "C-unwind" {
+        fn CGImageSourceCreateWithURL(
+            url: &CFURL,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGImageSource>>;
+    }
+    let ret = unsafe { CGImageSourceCreateWithURL(url, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageSource::type`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceGetType(
+    isrc: &CGImageSource,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGImageSourceGetType(isrc: &CGImageSource) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CGImageSourceGetType(isrc) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGImageSource::count`"]
+    pub fn CGImageSourceGetCount(isrc: &CGImageSource) -> usize;
+}
+
+#[deprecated = "renamed to `CGImageSource::properties`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceCopyProperties(
+    isrc: &CGImageSource,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CGImageSourceCopyProperties(
+            isrc: &CGImageSource,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CGImageSourceCopyProperties(isrc, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImageSource::properties_at_index`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceCopyPropertiesAtIndex(
+    isrc: &CGImageSource,
+    index: usize,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CGImageSourceCopyPropertiesAtIndex(
+            isrc: &CGImageSource,
+            index: usize,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CGImageSourceCopyPropertiesAtIndex(isrc, index, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CGImageMetadata")]
+#[deprecated = "renamed to `CGImageSource::metadata_at_index`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceCopyMetadataAtIndex(
+    isrc: &CGImageSource,
+    index: usize,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CGImageMetadata>> {
+    extern "C-unwind" {
+        fn CGImageSourceCopyMetadataAtIndex(
+            isrc: &CGImageSource,
+            index: usize,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGImageMetadata>>;
+    }
+    let ret = unsafe { CGImageSourceCopyMetadataAtIndex(isrc, index, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImageSource::remove_cache_at_index`"]
+    pub fn CGImageSourceRemoveCacheAtIndex(isrc: &CGImageSource, index: usize);
+}
+
+#[deprecated = "renamed to `CGImageSource::new_incremental`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceCreateIncremental(
+    options: Option<&CFDictionary>,
+) -> CFRetained<CGImageSource> {
+    extern "C-unwind" {
+        fn CGImageSourceCreateIncremental(
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGImageSource>>;
+    }
+    let ret = unsafe { CGImageSourceCreateIncremental(options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImageSource::update_data`"]
+    pub fn CGImageSourceUpdateData(isrc: &CGImageSource, data: &CFData, r#final: bool);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "renamed to `CGImageSource::update_data_provider`"]
+    pub fn CGImageSourceUpdateDataProvider(
+        isrc: &CGImageSource,
+        provider: &CGDataProvider,
+        r#final: bool,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImageSource::status`"]
+    pub fn CGImageSourceGetStatus(isrc: &CGImageSource) -> CGImageSourceStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImageSource::status_at_index`"]
+    pub fn CGImageSourceGetStatusAtIndex(isrc: &CGImageSource, index: usize)
+        -> CGImageSourceStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImageSource::primary_image_index`"]
+    pub fn CGImageSourceGetPrimaryImageIndex(isrc: &CGImageSource) -> usize;
+}
+
+#[deprecated = "renamed to `CGImageSource::auxiliary_data_info_at_index`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceCopyAuxiliaryDataInfoAtIndex(
+    isrc: &CGImageSource,
+    index: usize,
+    auxiliary_image_data_type: &CFString,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CGImageSourceCopyAuxiliaryDataInfoAtIndex(
+            isrc: &CGImageSource,
+            index: usize,
+            auxiliary_image_data_type: &CFString,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe {
+        CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc, index, auxiliary_image_data_type)
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImageSource::set_allowable_types`"]
     pub fn CGImageSourceSetAllowableTypes(allowable_types: &CFArray) -> OSStatus;
 }

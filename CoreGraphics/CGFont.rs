@@ -75,207 +75,289 @@ unsafe impl ConcreteType for CGFont {
     }
 }
 
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn CGFontCreateWithPlatformFont(
-    platform_font_reference: *mut c_void,
-) -> Option<CFRetained<CGFont>> {
-    extern "C-unwind" {
-        fn CGFontCreateWithPlatformFont(
-            platform_font_reference: *mut c_void,
-        ) -> Option<NonNull<CGFont>>;
+impl CGFont {
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "CGFontCreateWithPlatformFont")]
+    pub unsafe fn with_platform_font(
+        platform_font_reference: *mut c_void,
+    ) -> Option<CFRetained<CGFont>> {
+        extern "C-unwind" {
+            fn CGFontCreateWithPlatformFont(
+                platform_font_reference: *mut c_void,
+            ) -> Option<NonNull<CGFont>>;
+        }
+        let ret = unsafe { CGFontCreateWithPlatformFont(platform_font_reference) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGFontCreateWithPlatformFont(platform_font_reference) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CGDataProvider")]
-#[inline]
-pub unsafe extern "C-unwind" fn CGFontCreateWithDataProvider(
-    provider: &CGDataProvider,
-) -> Option<CFRetained<CGFont>> {
-    extern "C-unwind" {
-        fn CGFontCreateWithDataProvider(provider: &CGDataProvider) -> Option<NonNull<CGFont>>;
+    #[cfg(feature = "CGDataProvider")]
+    #[inline]
+    #[doc(alias = "CGFontCreateWithDataProvider")]
+    pub unsafe fn with_data_provider(provider: &CGDataProvider) -> Option<CFRetained<CGFont>> {
+        extern "C-unwind" {
+            fn CGFontCreateWithDataProvider(provider: &CGDataProvider) -> Option<NonNull<CGFont>>;
+        }
+        let ret = unsafe { CGFontCreateWithDataProvider(provider) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGFontCreateWithDataProvider(provider) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGFontCreateWithFontName(
-    name: Option<&CFString>,
-) -> Option<CFRetained<CGFont>> {
-    extern "C-unwind" {
-        fn CGFontCreateWithFontName(name: Option<&CFString>) -> Option<NonNull<CGFont>>;
+    #[inline]
+    #[doc(alias = "CGFontCreateWithFontName")]
+    pub unsafe fn with_font_name(name: Option<&CFString>) -> Option<CFRetained<CGFont>> {
+        extern "C-unwind" {
+            fn CGFontCreateWithFontName(name: Option<&CFString>) -> Option<NonNull<CGFont>>;
+        }
+        let ret = unsafe { CGFontCreateWithFontName(name) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGFontCreateWithFontName(name) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGFontCreateCopyWithVariations(
-    font: Option<&CGFont>,
-    variations: Option<&CFDictionary>,
-) -> Option<CFRetained<CGFont>> {
-    extern "C-unwind" {
-        fn CGFontCreateCopyWithVariations(
-            font: Option<&CGFont>,
-            variations: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGFont>>;
+    #[inline]
+    #[doc(alias = "CGFontCreateCopyWithVariations")]
+    pub unsafe fn new_copy_with_variations(
+        font: Option<&CGFont>,
+        variations: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGFont>> {
+        extern "C-unwind" {
+            fn CGFontCreateCopyWithVariations(
+                font: Option<&CGFont>,
+                variations: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGFont>>;
+        }
+        let ret = unsafe { CGFontCreateCopyWithVariations(font, variations) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGFontCreateCopyWithVariations(font, variations) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
-    pub fn CGFontGetNumberOfGlyphs(font: Option<&CGFont>) -> usize;
-}
-
-extern "C-unwind" {
-    pub fn CGFontGetUnitsPerEm(font: Option<&CGFont>) -> c_int;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn CGFontCopyPostScriptName(
-    font: Option<&CGFont>,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CGFontCopyPostScriptName(font: Option<&CGFont>) -> Option<NonNull<CFString>>;
+    #[inline]
+    #[doc(alias = "CGFontGetNumberOfGlyphs")]
+    pub unsafe fn number_of_glyphs(font: Option<&CGFont>) -> usize {
+        extern "C-unwind" {
+            fn CGFontGetNumberOfGlyphs(font: Option<&CGFont>) -> usize;
+        }
+        unsafe { CGFontGetNumberOfGlyphs(font) }
     }
-    let ret = unsafe { CGFontCopyPostScriptName(font) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGFontCopyFullName(
-    font: Option<&CGFont>,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CGFontCopyFullName(font: Option<&CGFont>) -> Option<NonNull<CFString>>;
+    #[inline]
+    #[doc(alias = "CGFontGetUnitsPerEm")]
+    pub unsafe fn units_per_em(font: Option<&CGFont>) -> c_int {
+        extern "C-unwind" {
+            fn CGFontGetUnitsPerEm(font: Option<&CGFont>) -> c_int;
+        }
+        unsafe { CGFontGetUnitsPerEm(font) }
     }
-    let ret = unsafe { CGFontCopyFullName(font) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
-    pub fn CGFontGetAscent(font: Option<&CGFont>) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn CGFontGetDescent(font: Option<&CGFont>) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn CGFontGetLeading(font: Option<&CGFont>) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn CGFontGetCapHeight(font: Option<&CGFont>) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn CGFontGetXHeight(font: Option<&CGFont>) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn CGFontGetFontBBox(font: Option<&CGFont>) -> CGRect;
-}
-
-extern "C-unwind" {
-    pub fn CGFontGetItalicAngle(font: Option<&CGFont>) -> CGFloat;
-}
-
-extern "C-unwind" {
-    pub fn CGFontGetStemV(font: Option<&CGFont>) -> CGFloat;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn CGFontCopyVariationAxes(
-    font: Option<&CGFont>,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CGFontCopyVariationAxes(font: Option<&CGFont>) -> Option<NonNull<CFArray>>;
+    #[inline]
+    #[doc(alias = "CGFontCopyPostScriptName")]
+    pub unsafe fn post_script_name(font: Option<&CGFont>) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CGFontCopyPostScriptName(font: Option<&CGFont>) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CGFontCopyPostScriptName(font) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGFontCopyVariationAxes(font) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGFontCopyVariations(
-    font: Option<&CGFont>,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CGFontCopyVariations(font: Option<&CGFont>) -> Option<NonNull<CFDictionary>>;
+    #[inline]
+    #[doc(alias = "CGFontCopyFullName")]
+    pub unsafe fn full_name(font: Option<&CGFont>) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CGFontCopyFullName(font: Option<&CGFont>) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CGFontCopyFullName(font) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGFontCopyVariations(font) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
-    pub fn CGFontGetGlyphAdvances(
+    #[inline]
+    #[doc(alias = "CGFontGetAscent")]
+    pub unsafe fn ascent(font: Option<&CGFont>) -> c_int {
+        extern "C-unwind" {
+            fn CGFontGetAscent(font: Option<&CGFont>) -> c_int;
+        }
+        unsafe { CGFontGetAscent(font) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontGetDescent")]
+    pub unsafe fn descent(font: Option<&CGFont>) -> c_int {
+        extern "C-unwind" {
+            fn CGFontGetDescent(font: Option<&CGFont>) -> c_int;
+        }
+        unsafe { CGFontGetDescent(font) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontGetLeading")]
+    pub unsafe fn leading(font: Option<&CGFont>) -> c_int {
+        extern "C-unwind" {
+            fn CGFontGetLeading(font: Option<&CGFont>) -> c_int;
+        }
+        unsafe { CGFontGetLeading(font) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontGetCapHeight")]
+    pub unsafe fn cap_height(font: Option<&CGFont>) -> c_int {
+        extern "C-unwind" {
+            fn CGFontGetCapHeight(font: Option<&CGFont>) -> c_int;
+        }
+        unsafe { CGFontGetCapHeight(font) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontGetXHeight")]
+    pub unsafe fn x_height(font: Option<&CGFont>) -> c_int {
+        extern "C-unwind" {
+            fn CGFontGetXHeight(font: Option<&CGFont>) -> c_int;
+        }
+        unsafe { CGFontGetXHeight(font) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontGetFontBBox")]
+    pub unsafe fn font_b_box(font: Option<&CGFont>) -> CGRect {
+        extern "C-unwind" {
+            fn CGFontGetFontBBox(font: Option<&CGFont>) -> CGRect;
+        }
+        unsafe { CGFontGetFontBBox(font) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontGetItalicAngle")]
+    pub unsafe fn italic_angle(font: Option<&CGFont>) -> CGFloat {
+        extern "C-unwind" {
+            fn CGFontGetItalicAngle(font: Option<&CGFont>) -> CGFloat;
+        }
+        unsafe { CGFontGetItalicAngle(font) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontGetStemV")]
+    pub unsafe fn stem_v(font: Option<&CGFont>) -> CGFloat {
+        extern "C-unwind" {
+            fn CGFontGetStemV(font: Option<&CGFont>) -> CGFloat;
+        }
+        unsafe { CGFontGetStemV(font) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontCopyVariationAxes")]
+    pub unsafe fn variation_axes(font: Option<&CGFont>) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CGFontCopyVariationAxes(font: Option<&CGFont>) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CGFontCopyVariationAxes(font) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontCopyVariations")]
+    pub unsafe fn variations(font: Option<&CGFont>) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CGFontCopyVariations(font: Option<&CGFont>) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CGFontCopyVariations(font) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontGetGlyphAdvances")]
+    pub unsafe fn glyph_advances(
         font: Option<&CGFont>,
         glyphs: NonNull<CGGlyph>,
         count: usize,
         advances: NonNull<c_int>,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGFontGetGlyphAdvances(
+                font: Option<&CGFont>,
+                glyphs: NonNull<CGGlyph>,
+                count: usize,
+                advances: NonNull<c_int>,
+            ) -> bool;
+        }
+        unsafe { CGFontGetGlyphAdvances(font, glyphs, count, advances) }
+    }
 
-extern "C-unwind" {
-    pub fn CGFontGetGlyphBBoxes(
+    #[inline]
+    #[doc(alias = "CGFontGetGlyphBBoxes")]
+    pub unsafe fn glyph_b_boxes(
         font: Option<&CGFont>,
         glyphs: NonNull<CGGlyph>,
         count: usize,
         bboxes: NonNull<CGRect>,
-    ) -> bool;
-}
-
-extern "C-unwind" {
-    pub fn CGFontGetGlyphWithGlyphName(font: Option<&CGFont>, name: Option<&CFString>) -> CGGlyph;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn CGFontCopyGlyphNameForGlyph(
-    font: Option<&CGFont>,
-    glyph: CGGlyph,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CGFontCopyGlyphNameForGlyph(
-            font: Option<&CGFont>,
-            glyph: CGGlyph,
-        ) -> Option<NonNull<CFString>>;
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGFontGetGlyphBBoxes(
+                font: Option<&CGFont>,
+                glyphs: NonNull<CGGlyph>,
+                count: usize,
+                bboxes: NonNull<CGRect>,
+            ) -> bool;
+        }
+        unsafe { CGFontGetGlyphBBoxes(font, glyphs, count, bboxes) }
     }
-    let ret = unsafe { CGFontCopyGlyphNameForGlyph(font, glyph) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
-    pub fn CGFontCanCreatePostScriptSubset(
+    #[inline]
+    #[doc(alias = "CGFontGetGlyphWithGlyphName")]
+    pub unsafe fn glyph_with_glyph_name(font: Option<&CGFont>, name: Option<&CFString>) -> CGGlyph {
+        extern "C-unwind" {
+            fn CGFontGetGlyphWithGlyphName(
+                font: Option<&CGFont>,
+                name: Option<&CFString>,
+            ) -> CGGlyph;
+        }
+        unsafe { CGFontGetGlyphWithGlyphName(font, name) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontCopyGlyphNameForGlyph")]
+    pub unsafe fn glyph_name_for_glyph(
+        font: Option<&CGFont>,
+        glyph: CGGlyph,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CGFontCopyGlyphNameForGlyph(
+                font: Option<&CGFont>,
+                glyph: CGGlyph,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CGFontCopyGlyphNameForGlyph(font, glyph) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CGFontCanCreatePostScriptSubset")]
+    pub unsafe fn can_create_post_script_subset(
         font: Option<&CGFont>,
         format: CGFontPostScriptFormat,
-    ) -> bool;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn CGFontCopyTableTags(
-    font: Option<&CGFont>,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CGFontCopyTableTags(font: Option<&CGFont>) -> Option<NonNull<CFArray>>;
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGFontCanCreatePostScriptSubset(
+                font: Option<&CGFont>,
+                format: CGFontPostScriptFormat,
+            ) -> bool;
+        }
+        unsafe { CGFontCanCreatePostScriptSubset(font, format) }
     }
-    let ret = unsafe { CGFontCopyTableTags(font) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub unsafe extern "C-unwind" fn CGFontCopyTableForTag(
-    font: Option<&CGFont>,
-    tag: u32,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn CGFontCopyTableForTag(font: Option<&CGFont>, tag: u32) -> Option<NonNull<CFData>>;
+    #[inline]
+    #[doc(alias = "CGFontCopyTableTags")]
+    pub unsafe fn table_tags(font: Option<&CGFont>) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CGFontCopyTableTags(font: Option<&CGFont>) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CGFontCopyTableTags(font) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGFontCopyTableForTag(font, tag) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    #[inline]
+    #[doc(alias = "CGFontCopyTableForTag")]
+    pub unsafe fn table_for_tag(font: Option<&CGFont>, tag: u32) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn CGFontCopyTableForTag(font: Option<&CGFont>, tag: u32) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { CGFontCopyTableForTag(font, tag) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
 extern "C" {
@@ -320,4 +402,231 @@ unsafe impl Encode for CGGlyphDeprecatedEnum {
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for CGGlyphDeprecatedEnum {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[deprecated = "renamed to `CGFont::with_platform_font`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCreateWithPlatformFont(
+    platform_font_reference: *mut c_void,
+) -> Option<CFRetained<CGFont>> {
+    extern "C-unwind" {
+        fn CGFontCreateWithPlatformFont(
+            platform_font_reference: *mut c_void,
+        ) -> Option<NonNull<CGFont>>;
+    }
+    let ret = unsafe { CGFontCreateWithPlatformFont(platform_font_reference) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CGDataProvider")]
+#[deprecated = "renamed to `CGFont::with_data_provider`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCreateWithDataProvider(
+    provider: &CGDataProvider,
+) -> Option<CFRetained<CGFont>> {
+    extern "C-unwind" {
+        fn CGFontCreateWithDataProvider(provider: &CGDataProvider) -> Option<NonNull<CGFont>>;
+    }
+    let ret = unsafe { CGFontCreateWithDataProvider(provider) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGFont::with_font_name`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCreateWithFontName(
+    name: Option<&CFString>,
+) -> Option<CFRetained<CGFont>> {
+    extern "C-unwind" {
+        fn CGFontCreateWithFontName(name: Option<&CFString>) -> Option<NonNull<CGFont>>;
+    }
+    let ret = unsafe { CGFontCreateWithFontName(name) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGFont::new_copy_with_variations`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCreateCopyWithVariations(
+    font: Option<&CGFont>,
+    variations: Option<&CFDictionary>,
+) -> Option<CFRetained<CGFont>> {
+    extern "C-unwind" {
+        fn CGFontCreateCopyWithVariations(
+            font: Option<&CGFont>,
+            variations: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGFont>>;
+    }
+    let ret = unsafe { CGFontCreateCopyWithVariations(font, variations) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::number_of_glyphs`"]
+    pub fn CGFontGetNumberOfGlyphs(font: Option<&CGFont>) -> usize;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::units_per_em`"]
+    pub fn CGFontGetUnitsPerEm(font: Option<&CGFont>) -> c_int;
+}
+
+#[deprecated = "renamed to `CGFont::post_script_name`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyPostScriptName(
+    font: Option<&CGFont>,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGFontCopyPostScriptName(font: Option<&CGFont>) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CGFontCopyPostScriptName(font) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGFont::full_name`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyFullName(
+    font: Option<&CGFont>,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGFontCopyFullName(font: Option<&CGFont>) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CGFontCopyFullName(font) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::ascent`"]
+    pub fn CGFontGetAscent(font: Option<&CGFont>) -> c_int;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::descent`"]
+    pub fn CGFontGetDescent(font: Option<&CGFont>) -> c_int;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::leading`"]
+    pub fn CGFontGetLeading(font: Option<&CGFont>) -> c_int;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::cap_height`"]
+    pub fn CGFontGetCapHeight(font: Option<&CGFont>) -> c_int;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::x_height`"]
+    pub fn CGFontGetXHeight(font: Option<&CGFont>) -> c_int;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::font_b_box`"]
+    pub fn CGFontGetFontBBox(font: Option<&CGFont>) -> CGRect;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::italic_angle`"]
+    pub fn CGFontGetItalicAngle(font: Option<&CGFont>) -> CGFloat;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::stem_v`"]
+    pub fn CGFontGetStemV(font: Option<&CGFont>) -> CGFloat;
+}
+
+#[deprecated = "renamed to `CGFont::variation_axes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyVariationAxes(
+    font: Option<&CGFont>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CGFontCopyVariationAxes(font: Option<&CGFont>) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CGFontCopyVariationAxes(font) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGFont::variations`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyVariations(
+    font: Option<&CGFont>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CGFontCopyVariations(font: Option<&CGFont>) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CGFontCopyVariations(font) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::glyph_advances`"]
+    pub fn CGFontGetGlyphAdvances(
+        font: Option<&CGFont>,
+        glyphs: NonNull<CGGlyph>,
+        count: usize,
+        advances: NonNull<c_int>,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::glyph_b_boxes`"]
+    pub fn CGFontGetGlyphBBoxes(
+        font: Option<&CGFont>,
+        glyphs: NonNull<CGGlyph>,
+        count: usize,
+        bboxes: NonNull<CGRect>,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::glyph_with_glyph_name`"]
+    pub fn CGFontGetGlyphWithGlyphName(font: Option<&CGFont>, name: Option<&CFString>) -> CGGlyph;
+}
+
+#[deprecated = "renamed to `CGFont::glyph_name_for_glyph`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyGlyphNameForGlyph(
+    font: Option<&CGFont>,
+    glyph: CGGlyph,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGFontCopyGlyphNameForGlyph(
+            font: Option<&CGFont>,
+            glyph: CGGlyph,
+        ) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CGFontCopyGlyphNameForGlyph(font, glyph) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGFont::can_create_post_script_subset`"]
+    pub fn CGFontCanCreatePostScriptSubset(
+        font: Option<&CGFont>,
+        format: CGFontPostScriptFormat,
+    ) -> bool;
+}
+
+#[deprecated = "renamed to `CGFont::table_tags`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyTableTags(
+    font: Option<&CGFont>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CGFontCopyTableTags(font: Option<&CGFont>) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CGFontCopyTableTags(font) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGFont::table_for_tag`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyTableForTag(
+    font: Option<&CGFont>,
+    tag: u32,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn CGFontCopyTableForTag(font: Option<&CGFont>, tag: u32) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { CGFontCopyTableForTag(font, tag) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

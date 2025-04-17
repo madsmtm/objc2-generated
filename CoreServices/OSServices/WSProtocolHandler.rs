@@ -36,7 +36,243 @@ unsafe impl ConcreteType for WSProtocolHandler {
     }
 }
 
-#[deprecated = "No longer supported"]
+impl WSProtocolHandler {
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSProtocolHandlerCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        protocol: Option<&CFString>,
+    ) -> Option<CFRetained<WSProtocolHandler>> {
+        extern "C-unwind" {
+            fn WSProtocolHandlerCreate(
+                allocator: Option<&CFAllocator>,
+                protocol: Option<&CFString>,
+            ) -> Option<NonNull<WSProtocolHandler>>;
+        }
+        let ret = unsafe { WSProtocolHandlerCreate(allocator, protocol) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSProtocolHandlerCopyRequestDictionary")]
+    pub unsafe fn request_dictionary(
+        self: &WSProtocolHandler,
+        data: Option<&CFData>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn WSProtocolHandlerCopyRequestDictionary(
+                r#ref: &WSProtocolHandler,
+                data: Option<&CFData>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { WSProtocolHandlerCopyRequestDictionary(self, data) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSProtocolHandlerCopyReplyDictionary")]
+    pub unsafe fn reply_dictionary(
+        self: &WSProtocolHandler,
+        method_name: Option<&CFString>,
+        data: Option<&CFData>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn WSProtocolHandlerCopyReplyDictionary(
+                r#ref: &WSProtocolHandler,
+                method_name: Option<&CFString>,
+                data: Option<&CFData>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { WSProtocolHandlerCopyReplyDictionary(self, method_name, data) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSProtocolHandlerCopyReplyDocument")]
+    pub unsafe fn reply_document(
+        self: &WSProtocolHandler,
+        method_context: Option<&CFDictionary>,
+        result_value: Option<&CFType>,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn WSProtocolHandlerCopyReplyDocument(
+                r#ref: &WSProtocolHandler,
+                method_context: Option<&CFDictionary>,
+                result_value: Option<&CFType>,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { WSProtocolHandlerCopyReplyDocument(self, method_context, result_value) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSProtocolHandlerCopyFaultDocument")]
+    pub unsafe fn fault_document(
+        self: &WSProtocolHandler,
+        method_context: Option<&CFDictionary>,
+        fault_dict: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn WSProtocolHandlerCopyFaultDocument(
+                r#ref: &WSProtocolHandler,
+                method_context: Option<&CFDictionary>,
+                fault_dict: Option<&CFDictionary>,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { WSProtocolHandlerCopyFaultDocument(self, method_context, fault_dict) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSProtocolHandlerCopyRequestDocument")]
+    pub unsafe fn request_document(
+        self: &WSProtocolHandler,
+        method_name: Option<&CFString>,
+        method_params: Option<&CFDictionary>,
+        method_param_order: Option<&CFArray>,
+        method_extras: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn WSProtocolHandlerCopyRequestDocument(
+                r#ref: &WSProtocolHandler,
+                method_name: Option<&CFString>,
+                method_params: Option<&CFDictionary>,
+                method_param_order: Option<&CFArray>,
+                method_extras: Option<&CFDictionary>,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe {
+            WSProtocolHandlerCopyRequestDocument(
+                self,
+                method_name,
+                method_params,
+                method_param_order,
+                method_extras,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSProtocolHandlerCopyProperty")]
+    pub unsafe fn property(
+        self: &WSProtocolHandler,
+        property_name: Option<&CFString>,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn WSProtocolHandlerCopyProperty(
+                r#ref: &WSProtocolHandler,
+                property_name: Option<&CFString>,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { WSProtocolHandlerCopyProperty(self, property_name) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSProtocolHandlerSetProperty")]
+    pub unsafe fn set_property(
+        self: &WSProtocolHandler,
+        property_name: Option<&CFString>,
+        property_value: Option<&CFType>,
+    ) {
+        extern "C-unwind" {
+            fn WSProtocolHandlerSetProperty(
+                r#ref: &WSProtocolHandler,
+                property_name: Option<&CFString>,
+                property_value: Option<&CFType>,
+            );
+        }
+        unsafe { WSProtocolHandlerSetProperty(self, property_name, property_value) }
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandlerserializationprocptr?language=objc)
+pub type WSProtocolHandlerSerializationProcPtr = Option<
+    unsafe extern "C-unwind" fn(
+        *mut WSProtocolHandler,
+        *const CFType,
+        *mut c_void,
+    ) -> *const CFString,
+>;
+
+impl WSProtocolHandler {
+    #[cfg(feature = "WSTypes")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSProtocolHandlerSetSerializationOverride")]
+    pub unsafe fn set_serialization_override(
+        self: &WSProtocolHandler,
+        obj_type: CFTypeID,
+        serialization_proc: WSProtocolHandlerSerializationProcPtr,
+        context: *mut WSClientContext,
+    ) {
+        extern "C-unwind" {
+            fn WSProtocolHandlerSetSerializationOverride(
+                protocol: &WSProtocolHandler,
+                obj_type: CFTypeID,
+                serialization_proc: WSProtocolHandlerSerializationProcPtr,
+                context: *mut WSClientContext,
+            );
+        }
+        unsafe {
+            WSProtocolHandlerSetSerializationOverride(self, obj_type, serialization_proc, context)
+        }
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandlerdeserializationprocptr?language=objc)
+pub type WSProtocolHandlerDeserializationProcPtr = Option<
+    unsafe extern "C-unwind" fn(
+        *mut WSProtocolHandler,
+        *mut CFXMLTree,
+        *mut CFXMLTree,
+        *mut c_void,
+    ) -> *const CFType,
+>;
+
+impl WSProtocolHandler {
+    #[cfg(feature = "WSTypes")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "WSProtocolHandlerSetDeserializationOverride")]
+    pub unsafe fn set_deserialization_override(
+        self: &WSProtocolHandler,
+        type_namespace: Option<&CFString>,
+        type_name: Option<&CFString>,
+        deserialization_proc: WSProtocolHandlerDeserializationProcPtr,
+        context: *mut WSClientContext,
+    ) {
+        extern "C-unwind" {
+            fn WSProtocolHandlerSetDeserializationOverride(
+                protocol: &WSProtocolHandler,
+                type_namespace: Option<&CFString>,
+                type_name: Option<&CFString>,
+                deserialization_proc: WSProtocolHandlerDeserializationProcPtr,
+                context: *mut WSClientContext,
+            );
+        }
+        unsafe {
+            WSProtocolHandlerSetDeserializationOverride(
+                self,
+                type_namespace,
+                type_name,
+                deserialization_proc,
+                context,
+            )
+        }
+    }
+}
+
+#[deprecated = "renamed to `WSProtocolHandler::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn WSProtocolHandlerCreate(
     allocator: Option<&CFAllocator>,
@@ -52,7 +288,7 @@ pub unsafe extern "C-unwind" fn WSProtocolHandlerCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `WSProtocolHandler::request_dictionary`"]
 #[inline]
 pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyRequestDictionary(
     r#ref: &WSProtocolHandler,
@@ -68,7 +304,7 @@ pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyRequestDictionary(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `WSProtocolHandler::reply_dictionary`"]
 #[inline]
 pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyReplyDictionary(
     r#ref: &WSProtocolHandler,
@@ -86,7 +322,7 @@ pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyReplyDictionary(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `WSProtocolHandler::reply_document`"]
 #[inline]
 pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyReplyDocument(
     r#ref: &WSProtocolHandler,
@@ -104,7 +340,7 @@ pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyReplyDocument(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `WSProtocolHandler::fault_document`"]
 #[inline]
 pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyFaultDocument(
     r#ref: &WSProtocolHandler,
@@ -122,7 +358,7 @@ pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyFaultDocument(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `WSProtocolHandler::request_document`"]
 #[inline]
 pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyRequestDocument(
     r#ref: &WSProtocolHandler,
@@ -152,7 +388,7 @@ pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyRequestDocument(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `WSProtocolHandler::property`"]
 #[inline]
 pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyProperty(
     r#ref: &WSProtocolHandler,
@@ -169,7 +405,7 @@ pub unsafe extern "C-unwind" fn WSProtocolHandlerCopyProperty(
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `WSProtocolHandler::set_property`"]
     pub fn WSProtocolHandlerSetProperty(
         r#ref: &WSProtocolHandler,
         property_name: Option<&CFString>,
@@ -177,18 +413,9 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandlerserializationprocptr?language=objc)
-pub type WSProtocolHandlerSerializationProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *mut WSProtocolHandler,
-        *const CFType,
-        *mut c_void,
-    ) -> *const CFString,
->;
-
 extern "C-unwind" {
     #[cfg(feature = "WSTypes")]
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `WSProtocolHandler::set_serialization_override`"]
     pub fn WSProtocolHandlerSetSerializationOverride(
         protocol: &WSProtocolHandler,
         obj_type: CFTypeID,
@@ -197,19 +424,9 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandlerdeserializationprocptr?language=objc)
-pub type WSProtocolHandlerDeserializationProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *mut WSProtocolHandler,
-        *mut CFXMLTree,
-        *mut CFXMLTree,
-        *mut c_void,
-    ) -> *const CFType,
->;
-
 extern "C-unwind" {
     #[cfg(feature = "WSTypes")]
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `WSProtocolHandler::set_deserialization_override`"]
     pub fn WSProtocolHandlerSetDeserializationOverride(
         protocol: &WSProtocolHandler,
         type_namespace: Option<&CFString>,

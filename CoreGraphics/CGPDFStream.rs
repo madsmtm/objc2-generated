@@ -49,11 +49,41 @@ unsafe impl RefEncode for CGPDFDataFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+impl CGPDFStream {
+    #[cfg(feature = "CGPDFDictionary")]
+    #[inline]
+    #[doc(alias = "CGPDFStreamGetDictionary")]
+    pub unsafe fn dictionary(stream: CGPDFStreamRef) -> CGPDFDictionaryRef {
+        extern "C-unwind" {
+            fn CGPDFStreamGetDictionary(stream: CGPDFStreamRef) -> CGPDFDictionaryRef;
+        }
+        unsafe { CGPDFStreamGetDictionary(stream) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFStreamCopyData")]
+    pub unsafe fn data(
+        stream: CGPDFStreamRef,
+        format: *mut CGPDFDataFormat,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn CGPDFStreamCopyData(
+                stream: CGPDFStreamRef,
+                format: *mut CGPDFDataFormat,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { CGPDFStreamCopyData(stream, format) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
 extern "C-unwind" {
     #[cfg(feature = "CGPDFDictionary")]
+    #[deprecated = "renamed to `CGPDFStream::dictionary`"]
     pub fn CGPDFStreamGetDictionary(stream: CGPDFStreamRef) -> CGPDFDictionaryRef;
 }
 
+#[deprecated = "renamed to `CGPDFStream::data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPDFStreamCopyData(
     stream: CGPDFStreamRef,

@@ -67,17 +67,21 @@ extern "C" {
 }
 
 #[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn UIFloatRangeIsInfinite(range: UIFloatRange) -> bool {
-    extern "C-unwind" {
-        fn UIFloatRangeIsInfinite(range: UIFloatRange) -> Bool;
+impl UIFloatRange {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "UIFloatRangeIsInfinite")]
+    pub unsafe fn is_infinite(range: UIFloatRange) -> bool {
+        extern "C-unwind" {
+            fn UIFloatRangeIsInfinite(range: UIFloatRange) -> Bool;
+        }
+        unsafe { UIFloatRangeIsInfinite(range) }.as_bool()
     }
-    unsafe { UIFloatRangeIsInfinite(range) }.as_bool()
+
+    // TODO: pub fn UIFloatRangeMake(minimum: CGFloat,maximum: CGFloat,) -> UIFloatRange;
+
+    // TODO: pub fn UIFloatRangeIsEqualToRange(range: UIFloatRange,other_range: UIFloatRange,) -> Bool;
 }
-
-// TODO: pub fn UIFloatRangeMake(minimum: CGFloat,maximum: CGFloat,) -> UIFloatRange;
-
-// TODO: pub fn UIFloatRangeIsEqualToRange(range: UIFloatRange,other_range: UIFloatRange,) -> Bool;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiattachmentbehavior?language=objc)
@@ -320,4 +324,14 @@ impl UIAttachmentBehavior {
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `UIFloatRange::is_infinite`"]
+#[inline]
+pub unsafe extern "C-unwind" fn UIFloatRangeIsInfinite(range: UIFloatRange) -> bool {
+    extern "C-unwind" {
+        fn UIFloatRangeIsInfinite(range: UIFloatRange) -> Bool;
+    }
+    unsafe { UIFloatRangeIsInfinite(range) }.as_bool()
 }

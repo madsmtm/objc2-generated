@@ -55,7 +55,7 @@ unsafe impl RefEncode for cp_time {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_time_t?language=objc)
 pub type cp_time_t = cp_time;
 
-extern "C-unwind" {
+impl cp_time {
     /// Converts a Mach absolute time value to a Core Foundation time value.
     ///
     /// - Parameters:
@@ -63,15 +63,27 @@ extern "C-unwind" {
     /// - Returns: The elapsed time in seconds that correspond to the specified
     /// time value.
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn cp_time_to_cf_time_interval(time: cp_time_t) -> CFTimeInterval;
-}
+    #[inline]
+    #[doc(alias = "cp_time_to_cf_time_interval")]
+    pub unsafe fn to_cf_time_interval(time: cp_time_t) -> CFTimeInterval {
+        extern "C-unwind" {
+            fn cp_time_to_cf_time_interval(time: cp_time_t) -> CFTimeInterval;
+        }
+        unsafe { cp_time_to_cf_time_interval(time) }
+    }
 
-extern "C-unwind" {
     /// Blocks the current thread until the specified time.
     ///
     /// - Parameters:
     /// - time: The Mach absolute time at which to wake up the thread.
-    pub fn cp_time_wait_until(time: cp_time_t);
+    #[inline]
+    #[doc(alias = "cp_time_wait_until")]
+    pub unsafe fn wait_until(time: cp_time_t) {
+        extern "C-unwind" {
+            fn cp_time_wait_until(time: cp_time_t);
+        }
+        unsafe { cp_time_wait_until(time) }
+    }
 }
 
 /// Axis direction convention for defining the X/Y/Z directions.
@@ -107,4 +119,15 @@ unsafe impl Encode for cp_axis_direction_convention {
 
 unsafe impl RefEncode for cp_axis_direction_convention {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `cp_time::to_cf_time_interval`"]
+    pub fn cp_time_to_cf_time_interval(time: cp_time_t) -> CFTimeInterval;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_time::wait_until`"]
+    pub fn cp_time_wait_until(time: cp_time_t);
 }

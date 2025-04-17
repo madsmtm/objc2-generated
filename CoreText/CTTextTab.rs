@@ -52,24 +52,99 @@ extern "C" {
     pub static kCTTabColumnTerminatorsAttributeName: &'static CFString;
 }
 
-/// Creates and initializes a new text tab.
-///
-///
-/// Parameter `alignment`: The tab's alignment. This is used to determine the position of
-/// text inside the tab column. This parameter must be set to a valid
-/// CTTextAlignment value or this function will return NULL.
-///
-///
-/// Parameter `location`: The tab's ruler location, relative to the back margin.
-///
-///
-/// Parameter `options`: Options to pass in when the tab is created. Currently, the only
-/// option available is kCTTabColumnTerminatorsAttributeName. This
-/// parameter is optional and can be set to NULL if not needed.
-///
-///
-/// Returns: The new CTTextTab.
+impl CTTextTab {
+    /// Creates and initializes a new text tab.
+    ///
+    ///
+    /// Parameter `alignment`: The tab's alignment. This is used to determine the position of
+    /// text inside the tab column. This parameter must be set to a valid
+    /// CTTextAlignment value or this function will return NULL.
+    ///
+    ///
+    /// Parameter `location`: The tab's ruler location, relative to the back margin.
+    ///
+    ///
+    /// Parameter `options`: Options to pass in when the tab is created. Currently, the only
+    /// option available is kCTTabColumnTerminatorsAttributeName. This
+    /// parameter is optional and can be set to NULL if not needed.
+    ///
+    ///
+    /// Returns: The new CTTextTab.
+    #[cfg(feature = "CTParagraphStyle")]
+    #[inline]
+    #[doc(alias = "CTTextTabCreate")]
+    pub unsafe fn new(
+        alignment: CTTextAlignment,
+        location: c_double,
+        options: Option<&CFDictionary>,
+    ) -> CFRetained<CTTextTab> {
+        extern "C-unwind" {
+            fn CTTextTabCreate(
+                alignment: CTTextAlignment,
+                location: c_double,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CTTextTab>>;
+        }
+        let ret = unsafe { CTTextTabCreate(alignment, location, options) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Returns the text alignment of the tab.
+    ///
+    ///
+    /// Parameter `tab`: The tab whose text alignment you wish to access.
+    ///
+    ///
+    /// Returns: The tab's text alignment value.
+    #[cfg(feature = "CTParagraphStyle")]
+    #[inline]
+    #[doc(alias = "CTTextTabGetAlignment")]
+    pub unsafe fn alignment(self: &CTTextTab) -> CTTextAlignment {
+        extern "C-unwind" {
+            fn CTTextTabGetAlignment(tab: &CTTextTab) -> CTTextAlignment;
+        }
+        unsafe { CTTextTabGetAlignment(self) }
+    }
+
+    /// Returns the tab's ruler location.
+    ///
+    ///
+    /// Parameter `tab`: The tab whose location you wish to access.
+    ///
+    ///
+    /// Returns: The tab's ruler location relative to the back margin.
+    #[inline]
+    #[doc(alias = "CTTextTabGetLocation")]
+    pub unsafe fn location(self: &CTTextTab) -> c_double {
+        extern "C-unwind" {
+            fn CTTextTabGetLocation(tab: &CTTextTab) -> c_double;
+        }
+        unsafe { CTTextTabGetLocation(self) }
+    }
+
+    /// Returns the dictionary of attributes associated with the tab.
+    ///
+    ///
+    /// Parameter `tab`: The tab whose attributes you wish to access.
+    ///
+    ///
+    /// Returns: The dictionary of attributes associated with the tab or NULL if
+    /// no dictionary is present.
+    #[inline]
+    #[doc(alias = "CTTextTabGetOptions")]
+    pub unsafe fn options(self: &CTTextTab) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CTTextTabGetOptions(tab: &CTTextTab) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CTTextTabGetOptions(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+}
+
 #[cfg(feature = "CTParagraphStyle")]
+#[deprecated = "renamed to `CTTextTab::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTTextTabCreate(
     alignment: CTTextAlignment,
@@ -89,36 +164,17 @@ pub unsafe extern "C-unwind" fn CTTextTabCreate(
 }
 
 extern "C-unwind" {
-    /// Returns the text alignment of the tab.
-    ///
-    ///
-    /// Parameter `tab`: The tab whose text alignment you wish to access.
-    ///
-    ///
-    /// Returns: The tab's text alignment value.
     #[cfg(feature = "CTParagraphStyle")]
+    #[deprecated = "renamed to `CTTextTab::alignment`"]
     pub fn CTTextTabGetAlignment(tab: &CTTextTab) -> CTTextAlignment;
 }
 
 extern "C-unwind" {
-    /// Returns the tab's ruler location.
-    ///
-    ///
-    /// Parameter `tab`: The tab whose location you wish to access.
-    ///
-    ///
-    /// Returns: The tab's ruler location relative to the back margin.
+    #[deprecated = "renamed to `CTTextTab::location`"]
     pub fn CTTextTabGetLocation(tab: &CTTextTab) -> c_double;
 }
 
-/// Returns the dictionary of attributes associated with the tab.
-///
-///
-/// Parameter `tab`: The tab whose attributes you wish to access.
-///
-///
-/// Returns: The dictionary of attributes associated with the tab or NULL if
-/// no dictionary is present.
+#[deprecated = "renamed to `CTTextTab::options`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTTextTabGetOptions(
     tab: &CTTextTab,

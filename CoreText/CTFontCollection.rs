@@ -101,128 +101,139 @@ extern "C" {
     pub static kCTFontCollectionDisallowAutoActivationOption: &'static CFString;
 }
 
-/// Returns a new font collection matching all available fonts.
-///
-///
-/// Parameter `options`: The options dictionary. See constant option keys.
-///
-///
-/// Returns: This function creates a new collection containing all fonts available to the current application.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCreateFromAvailableFonts(
-    options: Option<&CFDictionary>,
-) -> CFRetained<CTFontCollection> {
-    extern "C-unwind" {
-        fn CTFontCollectionCreateFromAvailableFonts(
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CTFontCollection>>;
+impl CTFontCollection {
+    /// Returns a new font collection matching all available fonts.
+    ///
+    ///
+    /// Parameter `options`: The options dictionary. See constant option keys.
+    ///
+    ///
+    /// Returns: This function creates a new collection containing all fonts available to the current application.
+    #[inline]
+    #[doc(alias = "CTFontCollectionCreateFromAvailableFonts")]
+    pub unsafe fn from_available_fonts(
+        options: Option<&CFDictionary>,
+    ) -> CFRetained<CTFontCollection> {
+        extern "C-unwind" {
+            fn CTFontCollectionCreateFromAvailableFonts(
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CTFontCollection>>;
+        }
+        let ret = unsafe { CTFontCollectionCreateFromAvailableFonts(options) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTFontCollectionCreateFromAvailableFonts(options) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
+
+    /// Returns a new collection based on the array of font descriptors.
+    ///
+    ///
+    /// Parameter `queryDescriptors`: An array of font descriptors to use for matching. May be NULL, in which case the matching descriptors will be NULL.
+    ///
+    ///
+    /// Parameter `options`: The options dictionary. See constant option keys.
+    ///
+    ///
+    /// Returns: This function creates a new collection based on the provided font descriptors. The contents of this collection is defined by matching the provided descriptors against all available font descriptors.
+    #[inline]
+    #[doc(alias = "CTFontCollectionCreateWithFontDescriptors")]
+    pub unsafe fn with_font_descriptors(
+        query_descriptors: Option<&CFArray>,
+        options: Option<&CFDictionary>,
+    ) -> CFRetained<CTFontCollection> {
+        extern "C-unwind" {
+            fn CTFontCollectionCreateWithFontDescriptors(
+                query_descriptors: Option<&CFArray>,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CTFontCollection>>;
+        }
+        let ret = unsafe { CTFontCollectionCreateWithFontDescriptors(query_descriptors, options) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Returns a copy of the original collection augmented with the new font descriptors.
+    ///
+    ///
+    /// Parameter `original`: The original font collection reference.
+    ///
+    ///
+    /// Parameter `queryDescriptors`: An array of font descriptors to augment those of the original collection.
+    ///
+    ///
+    /// Parameter `options`: The options dictionary. See constant option keys.
+    ///
+    ///
+    /// Returns: This function creates a copy of the original font collection augmented by the new font descriptors and options. The new font descriptors are merged with the existing descriptors to create a single set.
+    #[inline]
+    #[doc(alias = "CTFontCollectionCreateCopyWithFontDescriptors")]
+    pub unsafe fn new_copy_with_font_descriptors(
+        self: &CTFontCollection,
+        query_descriptors: Option<&CFArray>,
+        options: Option<&CFDictionary>,
+    ) -> CFRetained<CTFontCollection> {
+        extern "C-unwind" {
+            fn CTFontCollectionCreateCopyWithFontDescriptors(
+                original: &CTFontCollection,
+                query_descriptors: Option<&CFArray>,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CTFontCollection>>;
+        }
+        let ret = unsafe {
+            CTFontCollectionCreateCopyWithFontDescriptors(self, query_descriptors, options)
+        };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
 }
 
-/// Returns a new collection based on the array of font descriptors.
-///
-///
-/// Parameter `queryDescriptors`: An array of font descriptors to use for matching. May be NULL, in which case the matching descriptors will be NULL.
-///
-///
-/// Parameter `options`: The options dictionary. See constant option keys.
-///
-///
-/// Returns: This function creates a new collection based on the provided font descriptors. The contents of this collection is defined by matching the provided descriptors against all available font descriptors.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCreateWithFontDescriptors(
-    query_descriptors: Option<&CFArray>,
-    options: Option<&CFDictionary>,
-) -> CFRetained<CTFontCollection> {
-    extern "C-unwind" {
-        fn CTFontCollectionCreateWithFontDescriptors(
-            query_descriptors: Option<&CFArray>,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CTFontCollection>>;
+impl CTMutableFontCollection {
+    /// Returns a mutable copy of the original collection.
+    ///
+    ///
+    /// Parameter `original`: The original font collection reference.
+    ///
+    ///
+    /// Returns: This function creates a mutable copy of the original font collection.
+    #[inline]
+    #[doc(alias = "CTFontCollectionCreateMutableCopy")]
+    pub unsafe fn new_copy(original: &CTFontCollection) -> CFRetained<CTMutableFontCollection> {
+        extern "C-unwind" {
+            fn CTFontCollectionCreateMutableCopy(
+                original: &CTFontCollection,
+            ) -> Option<NonNull<CTMutableFontCollection>>;
+        }
+        let ret = unsafe { CTFontCollectionCreateMutableCopy(original) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { CTFontCollectionCreateWithFontDescriptors(query_descriptors, options) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Returns a copy of the original collection augmented with the new font descriptors.
-///
-///
-/// Parameter `original`: The original font collection reference.
-///
-///
-/// Parameter `queryDescriptors`: An array of font descriptors to augment those of the original collection.
-///
-///
-/// Parameter `options`: The options dictionary. See constant option keys.
-///
-///
-/// Returns: This function creates a copy of the original font collection augmented by the new font descriptors and options. The new font descriptors are merged with the existing descriptors to create a single set.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCreateCopyWithFontDescriptors(
-    original: &CTFontCollection,
-    query_descriptors: Option<&CFArray>,
-    options: Option<&CFDictionary>,
-) -> CFRetained<CTFontCollection> {
-    extern "C-unwind" {
-        fn CTFontCollectionCreateCopyWithFontDescriptors(
-            original: &CTFontCollection,
-            query_descriptors: Option<&CFArray>,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CTFontCollection>>;
+impl CTFontCollection {
+    /// Returns the array of descriptors to match.
+    ///
+    ///
+    /// Parameter `collection`: The font collection reference.
+    ///
+    ///
+    /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database. The return value is undefined if CTFontCollectionCreateFromAvailableFonts was used to create the collection.
+    #[inline]
+    #[doc(alias = "CTFontCollectionCopyQueryDescriptors")]
+    pub unsafe fn query_descriptors(self: &CTFontCollection) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CTFontCollectionCopyQueryDescriptors(
+                collection: &CTFontCollection,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CTFontCollectionCopyQueryDescriptors(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe {
-        CTFontCollectionCreateCopyWithFontDescriptors(original, query_descriptors, options)
-    };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Returns a mutable copy of the original collection.
-///
-///
-/// Parameter `original`: The original font collection reference.
-///
-///
-/// Returns: This function creates a mutable copy of the original font collection.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCreateMutableCopy(
-    original: &CTFontCollection,
-) -> CFRetained<CTMutableFontCollection> {
-    extern "C-unwind" {
-        fn CTFontCollectionCreateMutableCopy(
-            original: &CTFontCollection,
-        ) -> Option<NonNull<CTMutableFontCollection>>;
-    }
-    let ret = unsafe { CTFontCollectionCreateMutableCopy(original) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
-
-/// Returns the array of descriptors to match.
-///
-///
-/// Parameter `collection`: The font collection reference.
-///
-///
-/// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database. The return value is undefined if CTFontCollectionCreateFromAvailableFonts was used to create the collection.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCopyQueryDescriptors(
-    collection: &CTFontCollection,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CTFontCollectionCopyQueryDescriptors(
-            collection: &CTFontCollection,
-        ) -> Option<NonNull<CFArray>>;
-    }
-    let ret = unsafe { CTFontCollectionCopyQueryDescriptors(collection) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-extern "C-unwind" {
+impl CTMutableFontCollection {
     /// Replaces the array of descriptors to match.
     ///
     ///
@@ -230,33 +241,44 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `descriptors`: An array of CTFontDescriptorRef. May be NULL to represent an empty collection, in which case the matching descriptors will also be NULL.
-    pub fn CTFontCollectionSetQueryDescriptors(
-        collection: &CTMutableFontCollection,
+    #[inline]
+    #[doc(alias = "CTFontCollectionSetQueryDescriptors")]
+    pub unsafe fn set_query_descriptors(
+        self: &CTMutableFontCollection,
         descriptors: Option<&CFArray>,
-    );
-}
-
-/// Returns the array of descriptors to exclude from the match.
-///
-///
-/// Parameter `collection`: The font collection reference.
-///
-///
-/// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCopyExclusionDescriptors(
-    collection: &CTFontCollection,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CTFontCollectionCopyExclusionDescriptors(
-            collection: &CTFontCollection,
-        ) -> Option<NonNull<CFArray>>;
+    ) {
+        extern "C-unwind" {
+            fn CTFontCollectionSetQueryDescriptors(
+                collection: &CTMutableFontCollection,
+                descriptors: Option<&CFArray>,
+            );
+        }
+        unsafe { CTFontCollectionSetQueryDescriptors(self, descriptors) }
     }
-    let ret = unsafe { CTFontCollectionCopyExclusionDescriptors(collection) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
+impl CTFontCollection {
+    /// Returns the array of descriptors to exclude from the match.
+    ///
+    ///
+    /// Parameter `collection`: The font collection reference.
+    ///
+    ///
+    /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database.
+    #[inline]
+    #[doc(alias = "CTFontCollectionCopyExclusionDescriptors")]
+    pub unsafe fn exclusion_descriptors(self: &CTFontCollection) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CTFontCollectionCopyExclusionDescriptors(
+                collection: &CTFontCollection,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CTFontCollectionCopyExclusionDescriptors(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+impl CTMutableFontCollection {
     /// Replaces the array of descriptors to exclude from the match.
     ///
     ///
@@ -264,122 +286,138 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `descriptors`: An array of CTFontDescriptorRef. May be NULL.
-    pub fn CTFontCollectionSetExclusionDescriptors(
-        collection: &CTMutableFontCollection,
+    #[inline]
+    #[doc(alias = "CTFontCollectionSetExclusionDescriptors")]
+    pub unsafe fn set_exclusion_descriptors(
+        self: &CTMutableFontCollection,
         descriptors: Option<&CFArray>,
-    );
+    ) {
+        extern "C-unwind" {
+            fn CTFontCollectionSetExclusionDescriptors(
+                collection: &CTMutableFontCollection,
+                descriptors: Option<&CFArray>,
+            );
+        }
+        unsafe { CTFontCollectionSetExclusionDescriptors(self, descriptors) }
+    }
 }
 
-/// Returns an array of font descriptors matching the collection.
-///
-///
-/// Parameter `collection`: The font collection reference.
-///
-///
-/// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptors(
-    collection: &CTFontCollection,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CTFontCollectionCreateMatchingFontDescriptors(
-            collection: &CTFontCollection,
-        ) -> Option<NonNull<CFArray>>;
+impl CTFontCollection {
+    /// Returns an array of font descriptors matching the collection.
+    ///
+    ///
+    /// Parameter `collection`: The font collection reference.
+    ///
+    ///
+    /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
+    #[inline]
+    #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptors")]
+    pub unsafe fn new_matching_font_descriptors(
+        self: &CTFontCollection,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CTFontCollectionCreateMatchingFontDescriptors(
+                collection: &CTFontCollection,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CTFontCollectionCreateMatchingFontDescriptors(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CTFontCollectionCreateMatchingFontDescriptors(collection) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns the array of matching font descriptors sorted with the callback function.
-///
-///
-/// Parameter `collection`: The collection reference.
-///
-///
-/// Parameter `sortCallback`: The sorting callback function that defines the sort order.
-///
-///
-/// Parameter `refCon`: Pointer to client data define context for the callback.
-///
-///
-/// Returns: An array of CTFontDescriptors matching the criteria of the collection, sorted by the results of the sorting callback function, or NULL if there are none.
-#[cfg(feature = "CTFontDescriptor")]
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
-    collection: &CTFontCollection,
-    sort_callback: CTFontCollectionSortDescriptorsCallback,
-    ref_con: *mut c_void,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
-            collection: &CTFontCollection,
-            sort_callback: CTFontCollectionSortDescriptorsCallback,
-            ref_con: *mut c_void,
-        ) -> Option<NonNull<CFArray>>;
+    /// Returns the array of matching font descriptors sorted with the callback function.
+    ///
+    ///
+    /// Parameter `collection`: The collection reference.
+    ///
+    ///
+    /// Parameter `sortCallback`: The sorting callback function that defines the sort order.
+    ///
+    ///
+    /// Parameter `refCon`: Pointer to client data define context for the callback.
+    ///
+    ///
+    /// Returns: An array of CTFontDescriptors matching the criteria of the collection, sorted by the results of the sorting callback function, or NULL if there are none.
+    #[cfg(feature = "CTFontDescriptor")]
+    #[inline]
+    #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback")]
+    pub unsafe fn new_matching_font_descriptors_sorted_with_callback(
+        self: &CTFontCollection,
+        sort_callback: CTFontCollectionSortDescriptorsCallback,
+        ref_con: *mut c_void,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
+                collection: &CTFontCollection,
+                sort_callback: CTFontCollectionSortDescriptorsCallback,
+                ref_con: *mut c_void,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe {
+            CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
+                self,
+                sort_callback,
+                ref_con,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe {
-        CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
-            collection,
-            sort_callback,
-            ref_con,
-        )
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns an array of font descriptors matching the collection.
-///
-///
-/// Parameter `collection`: The font collection reference.
-///
-///
-/// Parameter `options`: The options dictionary. See constant option keys. May be NULL, in which case this call returns the same results as CTFontCollectionCreateMatchingFontDescriptors, using the options passed in when the collection was created.
-///
-///
-/// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsWithOptions(
-    collection: &CTFontCollection,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CTFontCollectionCreateMatchingFontDescriptorsWithOptions(
-            collection: &CTFontCollection,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CFArray>>;
+    /// Returns an array of font descriptors matching the collection.
+    ///
+    ///
+    /// Parameter `collection`: The font collection reference.
+    ///
+    ///
+    /// Parameter `options`: The options dictionary. See constant option keys. May be NULL, in which case this call returns the same results as CTFontCollectionCreateMatchingFontDescriptors, using the options passed in when the collection was created.
+    ///
+    ///
+    /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
+    #[inline]
+    #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsWithOptions")]
+    pub unsafe fn new_matching_font_descriptors_with_options(
+        self: &CTFontCollection,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CTFontCollectionCreateMatchingFontDescriptorsWithOptions(
+                collection: &CTFontCollection,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret =
+            unsafe { CTFontCollectionCreateMatchingFontDescriptorsWithOptions(self, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret =
-        unsafe { CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns an array of font descriptors matching the specified family, one descriptor for each style in the collection.
-///
-///
-/// Parameter `collection`: The font collection reference.
-///
-///
-/// Parameter `familyName`: The font family name
-///
-///
-/// Returns: An array of CTFontDescriptors matching the specified family in the collection or NULL if there are none.
-#[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsForFamily(
-    collection: &CTFontCollection,
-    family_name: &CFString,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CTFontCollectionCreateMatchingFontDescriptorsForFamily(
-            collection: &CTFontCollection,
-            family_name: &CFString,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CFArray>>;
+    /// Returns an array of font descriptors matching the specified family, one descriptor for each style in the collection.
+    ///
+    ///
+    /// Parameter `collection`: The font collection reference.
+    ///
+    ///
+    /// Parameter `familyName`: The font family name
+    ///
+    ///
+    /// Returns: An array of CTFontDescriptors matching the specified family in the collection or NULL if there are none.
+    #[inline]
+    #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsForFamily")]
+    pub unsafe fn new_matching_font_descriptors_for_family(
+        self: &CTFontCollection,
+        family_name: &CFString,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CTFontCollectionCreateMatchingFontDescriptorsForFamily(
+                collection: &CTFontCollection,
+                family_name: &CFString,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe {
+            CTFontCollectionCreateMatchingFontDescriptorsForFamily(self, family_name, options)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe {
-        CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection, family_name, options)
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Option bits for use with CTFontCollectionCopyFontAttribute(s).
@@ -416,19 +454,263 @@ unsafe impl RefEncode for CTFontCollectionCopyOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Returns an array of font descriptor attribute values.
-///
-///
-/// Parameter `collection`: The font collection reference.
-///
-///
-/// Parameter `attributeName`: The attribute to retrieve for each descriptor in the collection.
-///
-///
-/// Parameter `options`: Options to alter the return value.
-///
-///
-/// Returns: An array containing one value for each descriptor. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors and NULL values will be transformed to kCFNull. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
+impl CTFontCollection {
+    /// Returns an array of font descriptor attribute values.
+    ///
+    ///
+    /// Parameter `collection`: The font collection reference.
+    ///
+    ///
+    /// Parameter `attributeName`: The attribute to retrieve for each descriptor in the collection.
+    ///
+    ///
+    /// Parameter `options`: Options to alter the return value.
+    ///
+    ///
+    /// Returns: An array containing one value for each descriptor. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors and NULL values will be transformed to kCFNull. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
+    #[inline]
+    #[doc(alias = "CTFontCollectionCopyFontAttribute")]
+    pub unsafe fn font_attribute(
+        self: &CTFontCollection,
+        attribute_name: &CFString,
+        options: CTFontCollectionCopyOptions,
+    ) -> CFRetained<CFArray> {
+        extern "C-unwind" {
+            fn CTFontCollectionCopyFontAttribute(
+                collection: &CTFontCollection,
+                attribute_name: &CFString,
+                options: CTFontCollectionCopyOptions,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CTFontCollectionCopyFontAttribute(self, attribute_name, options) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Returns an array of dictionaries containing font descriptor attribute values.
+    ///
+    ///
+    /// Parameter `collection`: The font collection reference.
+    ///
+    ///
+    /// Parameter `attributeNames`: The attributes to retrieve for each descriptor in the collection.
+    ///
+    ///
+    /// Parameter `options`: Options to alter the return value.
+    ///
+    ///
+    /// Returns: An array containing one CFDictionary value for each descriptor mapping the requested attribute names. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
+    #[inline]
+    #[doc(alias = "CTFontCollectionCopyFontAttributes")]
+    pub unsafe fn font_attributes(
+        self: &CTFontCollection,
+        attribute_names: &CFSet,
+        options: CTFontCollectionCopyOptions,
+    ) -> CFRetained<CFArray> {
+        extern "C-unwind" {
+            fn CTFontCollectionCopyFontAttributes(
+                collection: &CTFontCollection,
+                attribute_names: &CFSet,
+                options: CTFontCollectionCopyOptions,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CTFontCollectionCopyFontAttributes(self, attribute_names, options) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+}
+
+#[deprecated = "renamed to `CTFontCollection::from_available_fonts`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCollectionCreateFromAvailableFonts(
+    options: Option<&CFDictionary>,
+) -> CFRetained<CTFontCollection> {
+    extern "C-unwind" {
+        fn CTFontCollectionCreateFromAvailableFonts(
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CTFontCollection>>;
+    }
+    let ret = unsafe { CTFontCollectionCreateFromAvailableFonts(options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTFontCollection::with_font_descriptors`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCollectionCreateWithFontDescriptors(
+    query_descriptors: Option<&CFArray>,
+    options: Option<&CFDictionary>,
+) -> CFRetained<CTFontCollection> {
+    extern "C-unwind" {
+        fn CTFontCollectionCreateWithFontDescriptors(
+            query_descriptors: Option<&CFArray>,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CTFontCollection>>;
+    }
+    let ret = unsafe { CTFontCollectionCreateWithFontDescriptors(query_descriptors, options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTFontCollection::new_copy_with_font_descriptors`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCollectionCreateCopyWithFontDescriptors(
+    original: &CTFontCollection,
+    query_descriptors: Option<&CFArray>,
+    options: Option<&CFDictionary>,
+) -> CFRetained<CTFontCollection> {
+    extern "C-unwind" {
+        fn CTFontCollectionCreateCopyWithFontDescriptors(
+            original: &CTFontCollection,
+            query_descriptors: Option<&CFArray>,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CTFontCollection>>;
+    }
+    let ret = unsafe {
+        CTFontCollectionCreateCopyWithFontDescriptors(original, query_descriptors, options)
+    };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTMutableFontCollection::new_copy`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCollectionCreateMutableCopy(
+    original: &CTFontCollection,
+) -> CFRetained<CTMutableFontCollection> {
+    extern "C-unwind" {
+        fn CTFontCollectionCreateMutableCopy(
+            original: &CTFontCollection,
+        ) -> Option<NonNull<CTMutableFontCollection>>;
+    }
+    let ret = unsafe { CTFontCollectionCreateMutableCopy(original) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `CTFontCollection::query_descriptors`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCollectionCopyQueryDescriptors(
+    collection: &CTFontCollection,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontCollectionCopyQueryDescriptors(
+            collection: &CTFontCollection,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CTFontCollectionCopyQueryDescriptors(collection) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTMutableFontCollection::set_query_descriptors`"]
+    pub fn CTFontCollectionSetQueryDescriptors(
+        collection: &CTMutableFontCollection,
+        descriptors: Option<&CFArray>,
+    );
+}
+
+#[deprecated = "renamed to `CTFontCollection::exclusion_descriptors`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCollectionCopyExclusionDescriptors(
+    collection: &CTFontCollection,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontCollectionCopyExclusionDescriptors(
+            collection: &CTFontCollection,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CTFontCollectionCopyExclusionDescriptors(collection) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CTMutableFontCollection::set_exclusion_descriptors`"]
+    pub fn CTFontCollectionSetExclusionDescriptors(
+        collection: &CTMutableFontCollection,
+        descriptors: Option<&CFArray>,
+    );
+}
+
+#[deprecated = "renamed to `CTFontCollection::new_matching_font_descriptors`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptors(
+    collection: &CTFontCollection,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontCollectionCreateMatchingFontDescriptors(
+            collection: &CTFontCollection,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CTFontCollectionCreateMatchingFontDescriptors(collection) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CTFontDescriptor")]
+#[deprecated = "renamed to `CTFontCollection::new_matching_font_descriptors_sorted_with_callback`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
+    collection: &CTFontCollection,
+    sort_callback: CTFontCollectionSortDescriptorsCallback,
+    ref_con: *mut c_void,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
+            collection: &CTFontCollection,
+            sort_callback: CTFontCollectionSortDescriptorsCallback,
+            ref_con: *mut c_void,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe {
+        CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
+            collection,
+            sort_callback,
+            ref_con,
+        )
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CTFontCollection::new_matching_font_descriptors_with_options`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsWithOptions(
+    collection: &CTFontCollection,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontCollectionCreateMatchingFontDescriptorsWithOptions(
+            collection: &CTFontCollection,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret =
+        unsafe { CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CTFontCollection::new_matching_font_descriptors_for_family`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsForFamily(
+    collection: &CTFontCollection,
+    family_name: &CFString,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontCollectionCreateMatchingFontDescriptorsForFamily(
+            collection: &CTFontCollection,
+            family_name: &CFString,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe {
+        CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection, family_name, options)
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CTFontCollection::font_attribute`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCollectionCopyFontAttribute(
     collection: &CTFontCollection,
@@ -447,19 +729,7 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCopyFontAttribute(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// Returns an array of dictionaries containing font descriptor attribute values.
-///
-///
-/// Parameter `collection`: The font collection reference.
-///
-///
-/// Parameter `attributeNames`: The attributes to retrieve for each descriptor in the collection.
-///
-///
-/// Parameter `options`: Options to alter the return value.
-///
-///
-/// Returns: An array containing one CFDictionary value for each descriptor mapping the requested attribute names. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
+#[deprecated = "renamed to `CTFontCollection::font_attributes`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCollectionCopyFontAttributes(
     collection: &CTFontCollection,

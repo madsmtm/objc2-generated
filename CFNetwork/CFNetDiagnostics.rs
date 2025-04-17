@@ -62,7 +62,84 @@ unsafe impl RefEncode for CFNetDiagnosticStatusValues {
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatus?language=objc)
 pub type CFNetDiagnosticStatus = CFIndex;
 
-#[deprecated]
+impl CFNetDiagnostic {
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CFNetDiagnosticCreateWithStreams")]
+    pub unsafe fn with_streams(
+        alloc: Option<&CFAllocator>,
+        read_stream: Option<&CFReadStream>,
+        write_stream: Option<&CFWriteStream>,
+    ) -> CFRetained<CFNetDiagnostic> {
+        extern "C-unwind" {
+            fn CFNetDiagnosticCreateWithStreams(
+                alloc: Option<&CFAllocator>,
+                read_stream: Option<&CFReadStream>,
+                write_stream: Option<&CFWriteStream>,
+            ) -> Option<NonNull<CFNetDiagnostic>>;
+        }
+        let ret = unsafe { CFNetDiagnosticCreateWithStreams(alloc, read_stream, write_stream) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CFNetDiagnosticCreateWithURL")]
+    pub unsafe fn with_url(alloc: &CFAllocator, url: &CFURL) -> CFRetained<CFNetDiagnostic> {
+        extern "C-unwind" {
+            fn CFNetDiagnosticCreateWithURL(
+                alloc: &CFAllocator,
+                url: &CFURL,
+            ) -> Option<NonNull<CFNetDiagnostic>>;
+        }
+        let ret = unsafe { CFNetDiagnosticCreateWithURL(alloc, url) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CFNetDiagnosticSetName")]
+    pub unsafe fn set_name(self: &CFNetDiagnostic, name: &CFString) {
+        extern "C-unwind" {
+            fn CFNetDiagnosticSetName(details: &CFNetDiagnostic, name: &CFString);
+        }
+        unsafe { CFNetDiagnosticSetName(self, name) }
+    }
+
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CFNetDiagnosticDiagnoseProblemInteractively")]
+    pub unsafe fn diagnose_problem_interactively(self: &CFNetDiagnostic) -> CFNetDiagnosticStatus {
+        extern "C-unwind" {
+            fn CFNetDiagnosticDiagnoseProblemInteractively(
+                details: &CFNetDiagnostic,
+            ) -> CFNetDiagnosticStatus;
+        }
+        unsafe { CFNetDiagnosticDiagnoseProblemInteractively(self) }
+    }
+
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "CFNetDiagnosticCopyNetworkStatusPassively")]
+    pub unsafe fn copy_network_status_passively(
+        self: &CFNetDiagnostic,
+        description: *mut *const CFString,
+    ) -> CFNetDiagnosticStatus {
+        extern "C-unwind" {
+            fn CFNetDiagnosticCopyNetworkStatusPassively(
+                details: &CFNetDiagnostic,
+                description: *mut *const CFString,
+            ) -> CFNetDiagnosticStatus;
+        }
+        unsafe { CFNetDiagnosticCopyNetworkStatusPassively(self, description) }
+    }
+}
+
+#[deprecated = "renamed to `CFNetDiagnostic::with_streams`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetDiagnosticCreateWithStreams(
     alloc: Option<&CFAllocator>,
@@ -81,7 +158,7 @@ pub unsafe extern "C-unwind" fn CFNetDiagnosticCreateWithStreams(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated]
+#[deprecated = "renamed to `CFNetDiagnostic::with_url`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetDiagnosticCreateWithURL(
     alloc: &CFAllocator,
@@ -99,19 +176,19 @@ pub unsafe extern "C-unwind" fn CFNetDiagnosticCreateWithURL(
 }
 
 extern "C-unwind" {
-    #[deprecated]
+    #[deprecated = "renamed to `CFNetDiagnostic::set_name`"]
     pub fn CFNetDiagnosticSetName(details: &CFNetDiagnostic, name: &CFString);
 }
 
 extern "C-unwind" {
-    #[deprecated]
+    #[deprecated = "renamed to `CFNetDiagnostic::diagnose_problem_interactively`"]
     pub fn CFNetDiagnosticDiagnoseProblemInteractively(
         details: &CFNetDiagnostic,
     ) -> CFNetDiagnosticStatus;
 }
 
 extern "C-unwind" {
-    #[deprecated]
+    #[deprecated = "renamed to `CFNetDiagnostic::copy_network_status_passively`"]
     pub fn CFNetDiagnosticCopyNetworkStatusPassively(
         details: &CFNetDiagnostic,
         description: *mut *const CFString,

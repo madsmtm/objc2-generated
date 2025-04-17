@@ -266,7 +266,8 @@ unsafe impl ConcreteType for SecKey {
     }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "SecBase")]
+impl SecKey {
     /// Creates an asymmetric key pair and stores it in a specified keychain.
     ///
     /// Parameter `keychainRef`: A reference to the keychain in which to store the private and public key items. Specify NULL for the default keychain.
@@ -296,7 +297,9 @@ extern "C-unwind" {
     /// This API is deprecated for 10.7. Please use the SecKeyGeneratePair API instead.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
-    pub fn SecKeyCreatePair(
+    #[inline]
+    #[doc(alias = "SecKeyCreatePair")]
+    pub unsafe fn create_pair(
         keychain_ref: Option<&SecKeychain>,
         algorithm: CSSM_ALGORITHMS,
         key_size_in_bits: uint32,
@@ -308,10 +311,39 @@ extern "C-unwind" {
         initial_access: Option<&SecAccess>,
         public_key: *mut *mut SecKey,
         private_key: *mut *mut SecKey,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeyCreatePair(
+                keychain_ref: Option<&SecKeychain>,
+                algorithm: CSSM_ALGORITHMS,
+                key_size_in_bits: uint32,
+                context_handle: CSSM_CC_HANDLE,
+                public_key_usage: CSSM_KEYUSE,
+                public_key_attr: uint32,
+                private_key_usage: CSSM_KEYUSE,
+                private_key_attr: uint32,
+                initial_access: Option<&SecAccess>,
+                public_key: *mut *mut SecKey,
+                private_key: *mut *mut SecKey,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeyCreatePair(
+                keychain_ref,
+                algorithm,
+                key_size_in_bits,
+                context_handle,
+                public_key_usage,
+                public_key_attr,
+                private_key_usage,
+                private_key_attr,
+                initial_access,
+                public_key,
+                private_key,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a symmetric key and optionally stores it in a specified keychain.
     ///
     /// Parameter `keychainRef`: (optional) A reference to the keychain in which to store the generated key. Specify NULL to generate a transient key.
@@ -335,7 +367,9 @@ extern "C-unwind" {
     /// This API is deprecated for 10.7.  Please use the SecKeyGenerateSymmetric API instead.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
-    pub fn SecKeyGenerate(
+    #[inline]
+    #[doc(alias = "SecKeyGenerate")]
+    pub unsafe fn generate(
         keychain_ref: Option<&SecKeychain>,
         algorithm: CSSM_ALGORITHMS,
         key_size_in_bits: uint32,
@@ -344,10 +378,33 @@ extern "C-unwind" {
         key_attr: uint32,
         initial_access: Option<&SecAccess>,
         key_ref: *mut *mut SecKey,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeyGenerate(
+                keychain_ref: Option<&SecKeychain>,
+                algorithm: CSSM_ALGORITHMS,
+                key_size_in_bits: uint32,
+                context_handle: CSSM_CC_HANDLE,
+                key_usage: CSSM_KEYUSE,
+                key_attr: uint32,
+                initial_access: Option<&SecAccess>,
+                key_ref: *mut *mut SecKey,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecKeyGenerate(
+                keychain_ref,
+                algorithm,
+                key_size_in_bits,
+                context_handle,
+                key_usage,
+                key_attr,
+                initial_access,
+                key_ref,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Returns a pointer to the CSSM_KEY for the given key item reference.
     ///
     /// Parameter `key`: A keychain key item reference. The key item must be of class type kSecPublicKeyItemClass, kSecPrivateKeyItemClass, or kSecSymmetricKeyItemClass.
@@ -364,10 +421,15 @@ extern "C-unwind" {
         feature = "cssmtype"
     ))]
     #[deprecated]
-    pub fn SecKeyGetCSSMKey(key: &SecKey, cssm_key: NonNull<*const CSSM_KEY>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeyGetCSSMKey")]
+    pub unsafe fn cssm_key(self: &SecKey, cssm_key: NonNull<*const CSSM_KEY>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeyGetCSSMKey(key: &SecKey, cssm_key: NonNull<*const CSSM_KEY>) -> OSStatus;
+        }
+        unsafe { SecKeyGetCSSMKey(self, cssm_key) }
+    }
 
-extern "C-unwind" {
     /// Returns the CSSM_CSP_HANDLE for the given key reference. The handle is valid until the key reference is released.
     ///
     /// Parameter `keyRef`: A key reference.
@@ -379,10 +441,18 @@ extern "C-unwind" {
     /// This API is deprecated in 10.7. Its use should no longer be needed.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
-    pub fn SecKeyGetCSPHandle(key_ref: &SecKey, csp_handle: NonNull<CSSM_CSP_HANDLE>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecKeyGetCSPHandle")]
+    pub unsafe fn csp_handle(self: &SecKey, csp_handle: NonNull<CSSM_CSP_HANDLE>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeyGetCSPHandle(
+                key_ref: &SecKey,
+                csp_handle: NonNull<CSSM_CSP_HANDLE>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeyGetCSPHandle(self, csp_handle) }
+    }
 
-extern "C-unwind" {
     /// For a given key, return a pointer to a CSSM_ACCESS_CREDENTIALS structure which will allow the key to be used.
     ///
     /// Parameter `keyRef`: The key for which a credential is requested.
@@ -401,113 +471,127 @@ extern "C-unwind" {
         feature = "cssmtype"
     ))]
     #[deprecated]
-    pub fn SecKeyGetCredentials(
-        key_ref: &SecKey,
+    #[inline]
+    #[doc(alias = "SecKeyGetCredentials")]
+    pub unsafe fn credentials(
+        self: &SecKey,
         operation: CSSM_ACL_AUTHORIZATION_TAG,
         credential_type: SecCredentialType,
         out_credentials: NonNull<*const CSSM_ACCESS_CREDENTIALS>,
-    ) -> OSStatus;
-}
-
-/// Generates a random symmetric key with the specified length
-/// and algorithm type.
-///
-///
-/// Parameter `parameters`: A dictionary containing one or more key-value pairs.
-/// See the discussion sections below for a complete overview of options.
-///
-/// Parameter `error`: An optional pointer to a CFErrorRef. This value is set
-/// if an error occurred. If not NULL, the caller is responsible for
-/// releasing the CFErrorRef.
-///
-/// Returns: On return, a SecKeyRef reference to the symmetric key, or
-/// NULL if the key could not be created.
-///
-///
-/// In order to generate a symmetric key, the parameters dictionary
-/// must at least contain the following keys:
-///
-/// kSecAttrKeyType with a value of kSecAttrKeyTypeAES or any other
-/// kSecAttrKeyType defined in SecItem.h
-/// kSecAttrKeySizeInBits with a value being a CFNumberRef containing
-/// the requested key size in bits.  Example sizes for AES keys are:
-/// 128, 192, 256, 512.
-///
-/// To store the generated symmetric key in a keychain, set these keys:
-/// kSecUseKeychain (value is a SecKeychainRef)
-/// kSecAttrLabel (a user-visible label whose value is a CFStringRef,
-/// e.g. "My App's Encryption Key")
-/// kSecAttrApplicationLabel (a label defined by your application, whose
-/// value is a CFDataRef and which can be used to find this key in a
-/// subsequent call to SecItemCopyMatching, e.g. "ID-1234567890-9876-0151")
-///
-/// To specify the generated key's access control settings, set this key:
-/// kSecAttrAccess (value is a SecAccessRef)
-///
-/// The keys below may be optionally set in the parameters dictionary
-/// (with a CFBooleanRef value) to override the default usage values:
-///
-/// kSecAttrCanEncrypt (defaults to true if not explicitly specified)
-/// kSecAttrCanDecrypt (defaults to true if not explicitly specified)
-/// kSecAttrCanWrap (defaults to true if not explicitly specified)
-/// kSecAttrCanUnwrap (defaults to true if not explicitly specified)
-#[cfg(feature = "SecBase")]
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyGenerateSymmetric(
-    parameters: &CFDictionary,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<SecKey>> {
-    extern "C-unwind" {
-        fn SecKeyGenerateSymmetric(
-            parameters: &CFDictionary,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<SecKey>>;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeyGetCredentials(
+                key_ref: &SecKey,
+                operation: CSSM_ACL_AUTHORIZATION_TAG,
+                credential_type: SecCredentialType,
+                out_credentials: NonNull<*const CSSM_ACCESS_CREDENTIALS>,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeyGetCredentials(self, operation, credential_type, out_credentials) }
     }
-    let ret = unsafe { SecKeyGenerateSymmetric(parameters, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Creates a symmetric key with the given data and sets the
-/// algorithm type specified.
-///
-///
-/// Parameter `parameters`: A dictionary containing one or more key-value pairs.
-/// See the discussion sections below for a complete overview of options.
-///
-/// Returns: On return, a SecKeyRef reference to the symmetric key.
-///
-///
-/// In order to generate a symmetric key the parameters dictionary must
-/// at least contain the following keys:
-///
-/// kSecAttrKeyType with a value of kSecAttrKeyTypeAES or any other
-/// kSecAttrKeyType defined in SecItem.h
-///
-/// The keys below may be optionally set in the parameters dictionary
-/// (with a CFBooleanRef value) to override the default usage values:
-///
-/// kSecAttrCanEncrypt (defaults to true if not explicitly specified)
-/// kSecAttrCanDecrypt (defaults to true if not explicitly specified)
-/// kSecAttrCanWrap (defaults to true if not explicitly specified)
-/// kSecAttrCanUnwrap (defaults to true if not explicitly specified)
-#[cfg(feature = "SecBase")]
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyCreateFromData(
-    parameters: &CFDictionary,
-    key_data: &CFData,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<SecKey>> {
-    extern "C-unwind" {
-        fn SecKeyCreateFromData(
-            parameters: &CFDictionary,
-            key_data: &CFData,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<SecKey>>;
+    /// Generates a random symmetric key with the specified length
+    /// and algorithm type.
+    ///
+    ///
+    /// Parameter `parameters`: A dictionary containing one or more key-value pairs.
+    /// See the discussion sections below for a complete overview of options.
+    ///
+    /// Parameter `error`: An optional pointer to a CFErrorRef. This value is set
+    /// if an error occurred. If not NULL, the caller is responsible for
+    /// releasing the CFErrorRef.
+    ///
+    /// Returns: On return, a SecKeyRef reference to the symmetric key, or
+    /// NULL if the key could not be created.
+    ///
+    ///
+    /// In order to generate a symmetric key, the parameters dictionary
+    /// must at least contain the following keys:
+    ///
+    /// kSecAttrKeyType with a value of kSecAttrKeyTypeAES or any other
+    /// kSecAttrKeyType defined in SecItem.h
+    /// kSecAttrKeySizeInBits with a value being a CFNumberRef containing
+    /// the requested key size in bits.  Example sizes for AES keys are:
+    /// 128, 192, 256, 512.
+    ///
+    /// To store the generated symmetric key in a keychain, set these keys:
+    /// kSecUseKeychain (value is a SecKeychainRef)
+    /// kSecAttrLabel (a user-visible label whose value is a CFStringRef,
+    /// e.g. "My App's Encryption Key")
+    /// kSecAttrApplicationLabel (a label defined by your application, whose
+    /// value is a CFDataRef and which can be used to find this key in a
+    /// subsequent call to SecItemCopyMatching, e.g. "ID-1234567890-9876-0151")
+    ///
+    /// To specify the generated key's access control settings, set this key:
+    /// kSecAttrAccess (value is a SecAccessRef)
+    ///
+    /// The keys below may be optionally set in the parameters dictionary
+    /// (with a CFBooleanRef value) to override the default usage values:
+    ///
+    /// kSecAttrCanEncrypt (defaults to true if not explicitly specified)
+    /// kSecAttrCanDecrypt (defaults to true if not explicitly specified)
+    /// kSecAttrCanWrap (defaults to true if not explicitly specified)
+    /// kSecAttrCanUnwrap (defaults to true if not explicitly specified)
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "SecKeyGenerateSymmetric")]
+    pub unsafe fn generate_symmetric(
+        parameters: &CFDictionary,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<SecKey>> {
+        extern "C-unwind" {
+            fn SecKeyGenerateSymmetric(
+                parameters: &CFDictionary,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<SecKey>>;
+        }
+        let ret = unsafe { SecKeyGenerateSymmetric(parameters, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecKeyCreateFromData(parameters, key_data, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    /// Creates a symmetric key with the given data and sets the
+    /// algorithm type specified.
+    ///
+    ///
+    /// Parameter `parameters`: A dictionary containing one or more key-value pairs.
+    /// See the discussion sections below for a complete overview of options.
+    ///
+    /// Returns: On return, a SecKeyRef reference to the symmetric key.
+    ///
+    ///
+    /// In order to generate a symmetric key the parameters dictionary must
+    /// at least contain the following keys:
+    ///
+    /// kSecAttrKeyType with a value of kSecAttrKeyTypeAES or any other
+    /// kSecAttrKeyType defined in SecItem.h
+    ///
+    /// The keys below may be optionally set in the parameters dictionary
+    /// (with a CFBooleanRef value) to override the default usage values:
+    ///
+    /// kSecAttrCanEncrypt (defaults to true if not explicitly specified)
+    /// kSecAttrCanDecrypt (defaults to true if not explicitly specified)
+    /// kSecAttrCanWrap (defaults to true if not explicitly specified)
+    /// kSecAttrCanUnwrap (defaults to true if not explicitly specified)
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "SecKeyCreateFromData")]
+    pub unsafe fn from_data(
+        parameters: &CFDictionary,
+        key_data: &CFData,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<SecKey>> {
+        extern "C-unwind" {
+            fn SecKeyCreateFromData(
+                parameters: &CFDictionary,
+                key_data: &CFData,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<SecKey>>;
+        }
+        let ret = unsafe { SecKeyCreateFromData(parameters, key_data, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
 /// Delivers the result from an asynchronous key pair generation.
@@ -523,134 +607,139 @@ pub unsafe extern "C-unwind" fn SecKeyCreateFromData(
 pub type SecKeyGeneratePairBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<SecKey>, NonNull<SecKey>, NonNull<CFError>)>;
 
-/// Derives a symmetric key from a password.
-///
-///
-/// Parameter `password`: The password from which the keyis to be derived.
-///
-/// Parameter `parameters`: A dictionary containing one or more key-value pairs.
-///
-/// Parameter `error`: If the call fails this will contain the error code.
-///
-///
-/// In order to derive a key the parameters dictionary must contain at least contain the following keys:
-/// kSecAttrSalt - a CFData for the salt value for mixing in the pseudo-random rounds.
-/// kSecAttrPRF - the algorithm to use for the pseudo-random-function.
-/// If 0, this defaults to kSecAttrPRFHmacAlgSHA1. Possible values are:
-///
-/// kSecAttrPRFHmacAlgSHA1
-/// kSecAttrPRFHmacAlgSHA224
-/// kSecAttrPRFHmacAlgSHA256
-/// kSecAttrPRFHmacAlgSHA384
-/// kSecAttrPRFHmacAlgSHA512
-///
-/// kSecAttrRounds - the number of rounds to call the pseudo random function.
-/// If 0, a count will be computed to average 1/10 of a second.
-/// kSecAttrKeySizeInBits with a value being a CFNumberRef
-/// containing the requested key size in bits.  Example sizes for RSA keys are:
-/// 512, 768, 1024, 2048.
-///
-///
-/// Returns: On success a SecKeyRef is returned.  On failure this result is NULL and the
-/// error parameter contains the reason.
 #[cfg(feature = "SecBase")]
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyDeriveFromPassword(
-    password: &CFString,
-    parameters: &CFDictionary,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<SecKey>> {
-    extern "C-unwind" {
-        fn SecKeyDeriveFromPassword(
-            password: &CFString,
-            parameters: &CFDictionary,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<SecKey>>;
+impl SecKey {
+    /// Derives a symmetric key from a password.
+    ///
+    ///
+    /// Parameter `password`: The password from which the keyis to be derived.
+    ///
+    /// Parameter `parameters`: A dictionary containing one or more key-value pairs.
+    ///
+    /// Parameter `error`: If the call fails this will contain the error code.
+    ///
+    ///
+    /// In order to derive a key the parameters dictionary must contain at least contain the following keys:
+    /// kSecAttrSalt - a CFData for the salt value for mixing in the pseudo-random rounds.
+    /// kSecAttrPRF - the algorithm to use for the pseudo-random-function.
+    /// If 0, this defaults to kSecAttrPRFHmacAlgSHA1. Possible values are:
+    ///
+    /// kSecAttrPRFHmacAlgSHA1
+    /// kSecAttrPRFHmacAlgSHA224
+    /// kSecAttrPRFHmacAlgSHA256
+    /// kSecAttrPRFHmacAlgSHA384
+    /// kSecAttrPRFHmacAlgSHA512
+    ///
+    /// kSecAttrRounds - the number of rounds to call the pseudo random function.
+    /// If 0, a count will be computed to average 1/10 of a second.
+    /// kSecAttrKeySizeInBits with a value being a CFNumberRef
+    /// containing the requested key size in bits.  Example sizes for RSA keys are:
+    /// 512, 768, 1024, 2048.
+    ///
+    ///
+    /// Returns: On success a SecKeyRef is returned.  On failure this result is NULL and the
+    /// error parameter contains the reason.
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "SecKeyDeriveFromPassword")]
+    pub unsafe fn derive_from_password(
+        password: &CFString,
+        parameters: &CFDictionary,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<SecKey>> {
+        extern "C-unwind" {
+            fn SecKeyDeriveFromPassword(
+                password: &CFString,
+                parameters: &CFDictionary,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<SecKey>>;
+        }
+        let ret = unsafe { SecKeyDeriveFromPassword(password, parameters, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecKeyDeriveFromPassword(password, parameters, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Wraps a symmetric key with a symmetric key.
-///
-///
-/// Parameter `keyToWrap`: The key which is to be wrapped.
-///
-/// Parameter `wrappingKey`: The key wrapping key.
-///
-/// Parameter `parameters`: The parameter list to use for wrapping the key.
-///
-/// Parameter `error`: If the call fails this will contain the error code.
-///
-///
-/// Returns: On success a CFDataRef is returned.  On failure this result is NULL and the
-/// error parameter contains the reason.
-///
-///
-/// In order to wrap a key the parameters dictionary may contain the following key:
-/// kSecSalt - a CFData for the salt value for the encrypt.
-#[cfg(feature = "SecBase")]
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyWrapSymmetric(
-    key_to_wrap: &SecKey,
-    wrapping_key: &SecKey,
-    parameters: &CFDictionary,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn SecKeyWrapSymmetric(
-            key_to_wrap: &SecKey,
-            wrapping_key: &SecKey,
-            parameters: &CFDictionary,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFData>>;
+    /// Wraps a symmetric key with a symmetric key.
+    ///
+    ///
+    /// Parameter `keyToWrap`: The key which is to be wrapped.
+    ///
+    /// Parameter `wrappingKey`: The key wrapping key.
+    ///
+    /// Parameter `parameters`: The parameter list to use for wrapping the key.
+    ///
+    /// Parameter `error`: If the call fails this will contain the error code.
+    ///
+    ///
+    /// Returns: On success a CFDataRef is returned.  On failure this result is NULL and the
+    /// error parameter contains the reason.
+    ///
+    ///
+    /// In order to wrap a key the parameters dictionary may contain the following key:
+    /// kSecSalt - a CFData for the salt value for the encrypt.
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "SecKeyWrapSymmetric")]
+    pub unsafe fn wrap_symmetric(
+        self: &SecKey,
+        wrapping_key: &SecKey,
+        parameters: &CFDictionary,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn SecKeyWrapSymmetric(
+                key_to_wrap: &SecKey,
+                wrapping_key: &SecKey,
+                parameters: &CFDictionary,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecKeyWrapSymmetric(self, wrapping_key, parameters, error) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SecKeyWrapSymmetric(key_to_wrap, wrapping_key, parameters, error) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Unwrap a wrapped symmetric key.
-///
-///
-/// Parameter `keyToUnwrap`: The wrapped key to unwrap.
-///
-/// Parameter `unwrappingKey`: The key unwrapping key.
-///
-/// Parameter `parameters`: The parameter list to use for unwrapping the key.
-///
-/// Parameter `error`: If the call fails this will contain the error code.
-///
-///
-/// Returns: On success a SecKeyRef is returned.  On failure this result is NULL and the
-/// error parameter contains the reason.
-///
-///
-/// In order to unwrap a key the parameters dictionary may contain the following key:
-/// kSecSalt - a CFData for the salt value for the decrypt.
-#[cfg(feature = "SecBase")]
-#[deprecated = "No longer supported"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyUnwrapSymmetric(
-    key_to_unwrap: NonNull<*const CFData>,
-    unwrapping_key: &SecKey,
-    parameters: &CFDictionary,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<SecKey>> {
-    extern "C-unwind" {
-        fn SecKeyUnwrapSymmetric(
-            key_to_unwrap: NonNull<*const CFData>,
-            unwrapping_key: &SecKey,
-            parameters: &CFDictionary,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<SecKey>>;
+    /// Unwrap a wrapped symmetric key.
+    ///
+    ///
+    /// Parameter `keyToUnwrap`: The wrapped key to unwrap.
+    ///
+    /// Parameter `unwrappingKey`: The key unwrapping key.
+    ///
+    /// Parameter `parameters`: The parameter list to use for unwrapping the key.
+    ///
+    /// Parameter `error`: If the call fails this will contain the error code.
+    ///
+    ///
+    /// Returns: On success a SecKeyRef is returned.  On failure this result is NULL and the
+    /// error parameter contains the reason.
+    ///
+    ///
+    /// In order to unwrap a key the parameters dictionary may contain the following key:
+    /// kSecSalt - a CFData for the salt value for the decrypt.
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "SecKeyUnwrapSymmetric")]
+    pub unsafe fn unwrap_symmetric(
+        key_to_unwrap: NonNull<*const CFData>,
+        unwrapping_key: &SecKey,
+        parameters: &CFDictionary,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<SecKey>> {
+        extern "C-unwind" {
+            fn SecKeyUnwrapSymmetric(
+                key_to_unwrap: NonNull<*const CFData>,
+                unwrapping_key: &SecKey,
+                parameters: &CFDictionary,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<SecKey>>;
+        }
+        let ret =
+            unsafe { SecKeyUnwrapSymmetric(key_to_unwrap, unwrapping_key, parameters, error) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { SecKeyUnwrapSymmetric(key_to_unwrap, unwrapping_key, parameters, error) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
     /// Generate a private/public keypair.
     ///
     /// Parameter `parameters`: A dictionary containing one or more key-value pairs.
@@ -705,108 +794,119 @@ extern "C-unwind" {
     /// on all platforms.
     #[cfg(feature = "SecBase")]
     #[deprecated = "Use SecKeyCreateRandomKey"]
-    pub fn SecKeyGeneratePair(
+    #[inline]
+    #[doc(alias = "SecKeyGeneratePair")]
+    pub unsafe fn generate_pair(
         parameters: &CFDictionary,
         public_key: *mut *mut SecKey,
         private_key: *mut *mut SecKey,
-    ) -> OSStatus;
-}
-
-/// Generates a new public/private key pair.
-///
-/// Parameter `parameters`: A dictionary containing one or more key-value pairs.
-/// See the discussion sections below for a complete overview of options.
-///
-/// Parameter `error`: On error, will be populated with an error object describing the failure.
-/// See "Security Error Codes" (SecBase.h).
-///
-/// Returns: Newly generated private key.  To get associated public key, use SecKeyCopyPublicKey().
-///
-/// In order to generate a keypair the parameters dictionary must
-/// at least contain the following keys:
-///
-/// kSecAttrKeyType with a value being kSecAttrKeyTypeRSA or any other
-/// kSecAttrKeyType defined in SecItem.h
-/// kSecAttrKeySizeInBits with a value being a CFNumberRef or CFStringRef
-/// containing the requested key size in bits.  Example sizes for RSA
-/// keys are: 512, 768, 1024, 2048.
-///
-/// The values below may be set either in the top-level dictionary or in a
-/// dictionary that is the value of the kSecPrivateKeyAttrs or
-/// kSecPublicKeyAttrs key in the top-level dictionary.  Setting these
-/// attributes explicitly will override the defaults below.  See SecItem.h
-/// for detailed information on these attributes including the types of
-/// the values.
-///
-/// kSecAttrLabel default NULL
-/// kSecAttrIsPermanent if this key is present and has a Boolean value of true,
-/// the key or key pair will be added to the default keychain.
-/// kSecAttrTokenID if this key should be generated on specified token.  This
-/// attribute can contain CFStringRef and can be present only in the top-level
-/// parameters dictionary.
-/// kSecAttrApplicationTag default NULL
-/// kSecAttrEffectiveKeySize default NULL same as kSecAttrKeySizeInBits
-/// kSecAttrCanEncrypt default false for private keys, true for public keys
-/// kSecAttrCanDecrypt default true for private keys, false for public keys
-/// kSecAttrCanDerive default true
-/// kSecAttrCanSign default true for private keys, false for public keys
-/// kSecAttrCanVerify default false for private keys, true for public keys
-/// kSecAttrCanWrap default false for private keys, true for public keys
-/// kSecAttrCanUnwrap default true for private keys, false for public keys
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyCreateRandomKey(
-    parameters: &CFDictionary,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<SecKey>> {
-    extern "C-unwind" {
-        fn SecKeyCreateRandomKey(
-            parameters: &CFDictionary,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<SecKey>>;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecKeyGeneratePair(
+                parameters: &CFDictionary,
+                public_key: *mut *mut SecKey,
+                private_key: *mut *mut SecKey,
+            ) -> OSStatus;
+        }
+        unsafe { SecKeyGeneratePair(parameters, public_key, private_key) }
     }
-    let ret = unsafe { SecKeyCreateRandomKey(parameters, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Create a SecKey from a well-defined external representation.
-///
-/// Parameter `keyData`: CFData representing the key. The format of the data depends on the type of key being created.
-///
-/// Parameter `attributes`: Dictionary containing attributes describing the key to be imported. The keys in this dictionary
-/// are kSecAttr* constants from SecItem.h.  Mandatory attributes are:
-/// kSecAttrKeyType
-/// kSecAttrKeyClass
-///
-/// Parameter `error`: On error, will be populated with an error object describing the failure.
-/// See "Security Error Codes" (SecBase.h).
-///
-/// Returns: A SecKey object representing the key, or NULL on failure.
-///
-/// This function does not add keys to any keychain, but the SecKey object it returns can be added
-/// to keychain using the SecItemAdd function.
-/// The requested data format depend on the type of key (kSecAttrKeyType) being created:
-/// kSecAttrKeyTypeRSA               PKCS#1 format, public key can be also in x509 public key format
-/// kSecAttrKeyTypeECSECPrimeRandom  ANSI X9.63 format (04 || X || Y [ || K])
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyCreateWithData(
-    key_data: &CFData,
-    attributes: &CFDictionary,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<SecKey>> {
-    extern "C-unwind" {
-        fn SecKeyCreateWithData(
-            key_data: &CFData,
-            attributes: &CFDictionary,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<SecKey>>;
+    /// Generates a new public/private key pair.
+    ///
+    /// Parameter `parameters`: A dictionary containing one or more key-value pairs.
+    /// See the discussion sections below for a complete overview of options.
+    ///
+    /// Parameter `error`: On error, will be populated with an error object describing the failure.
+    /// See "Security Error Codes" (SecBase.h).
+    ///
+    /// Returns: Newly generated private key.  To get associated public key, use SecKeyCopyPublicKey().
+    ///
+    /// In order to generate a keypair the parameters dictionary must
+    /// at least contain the following keys:
+    ///
+    /// kSecAttrKeyType with a value being kSecAttrKeyTypeRSA or any other
+    /// kSecAttrKeyType defined in SecItem.h
+    /// kSecAttrKeySizeInBits with a value being a CFNumberRef or CFStringRef
+    /// containing the requested key size in bits.  Example sizes for RSA
+    /// keys are: 512, 768, 1024, 2048.
+    ///
+    /// The values below may be set either in the top-level dictionary or in a
+    /// dictionary that is the value of the kSecPrivateKeyAttrs or
+    /// kSecPublicKeyAttrs key in the top-level dictionary.  Setting these
+    /// attributes explicitly will override the defaults below.  See SecItem.h
+    /// for detailed information on these attributes including the types of
+    /// the values.
+    ///
+    /// kSecAttrLabel default NULL
+    /// kSecAttrIsPermanent if this key is present and has a Boolean value of true,
+    /// the key or key pair will be added to the default keychain.
+    /// kSecAttrTokenID if this key should be generated on specified token.  This
+    /// attribute can contain CFStringRef and can be present only in the top-level
+    /// parameters dictionary.
+    /// kSecAttrApplicationTag default NULL
+    /// kSecAttrEffectiveKeySize default NULL same as kSecAttrKeySizeInBits
+    /// kSecAttrCanEncrypt default false for private keys, true for public keys
+    /// kSecAttrCanDecrypt default true for private keys, false for public keys
+    /// kSecAttrCanDerive default true
+    /// kSecAttrCanSign default true for private keys, false for public keys
+    /// kSecAttrCanVerify default false for private keys, true for public keys
+    /// kSecAttrCanWrap default false for private keys, true for public keys
+    /// kSecAttrCanUnwrap default true for private keys, false for public keys
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecKeyCreateRandomKey")]
+    pub unsafe fn new_random_key(
+        parameters: &CFDictionary,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<SecKey>> {
+        extern "C-unwind" {
+            fn SecKeyCreateRandomKey(
+                parameters: &CFDictionary,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<SecKey>>;
+        }
+        let ret = unsafe { SecKeyCreateRandomKey(parameters, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecKeyCreateWithData(key_data, attributes, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Create a SecKey from a well-defined external representation.
+    ///
+    /// Parameter `keyData`: CFData representing the key. The format of the data depends on the type of key being created.
+    ///
+    /// Parameter `attributes`: Dictionary containing attributes describing the key to be imported. The keys in this dictionary
+    /// are kSecAttr* constants from SecItem.h.  Mandatory attributes are:
+    /// kSecAttrKeyType
+    /// kSecAttrKeyClass
+    ///
+    /// Parameter `error`: On error, will be populated with an error object describing the failure.
+    /// See "Security Error Codes" (SecBase.h).
+    ///
+    /// Returns: A SecKey object representing the key, or NULL on failure.
+    ///
+    /// This function does not add keys to any keychain, but the SecKey object it returns can be added
+    /// to keychain using the SecItemAdd function.
+    /// The requested data format depend on the type of key (kSecAttrKeyType) being created:
+    /// kSecAttrKeyTypeRSA               PKCS#1 format, public key can be also in x509 public key format
+    /// kSecAttrKeyTypeECSECPrimeRandom  ANSI X9.63 format (04 || X || Y [ || K])
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecKeyCreateWithData")]
+    pub unsafe fn with_data(
+        key_data: &CFData,
+        attributes: &CFDictionary,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<SecKey>> {
+        extern "C-unwind" {
+            fn SecKeyCreateWithData(
+                key_data: &CFData,
+                attributes: &CFDictionary,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<SecKey>>;
+        }
+        let ret = unsafe { SecKeyCreateWithData(key_data, attributes, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Returns block length of the key in bytes.
     ///
     /// Parameter `key`: The key for which the block length is requested.
@@ -816,84 +916,92 @@ extern "C-unwind" {
     /// If for example key is an RSA key the value returned by
     /// this function is the size of the modulus.
     #[cfg(feature = "SecBase")]
-    pub fn SecKeyGetBlockSize(key: &SecKey) -> usize;
-}
-
-/// Create an external representation for the given key suitable for the key's type.
-///
-/// Parameter `key`: The key to be exported.
-///
-/// Parameter `error`: On error, will be populated with an error object describing the failure.
-/// See "Security Error Codes" (SecBase.h).
-///
-/// Returns: A CFData representing the key in a format suitable for that key type.
-///
-/// This function may fail if the key is not exportable (e.g., bound to a smart card or Secure Enclave).
-/// The format in which the key will be exported depends on the type of key:
-/// kSecAttrKeyTypeRSA               PKCS#1 format
-/// kSecAttrKeyTypeECSECPrimeRandom  ANSI X9.63 format (04 || X || Y [ || K])
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyCopyExternalRepresentation(
-    key: &SecKey,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn SecKeyCopyExternalRepresentation(
-            key: &SecKey,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFData>>;
+    #[inline]
+    #[doc(alias = "SecKeyGetBlockSize")]
+    pub unsafe fn block_size(self: &SecKey) -> usize {
+        extern "C-unwind" {
+            fn SecKeyGetBlockSize(key: &SecKey) -> usize;
+        }
+        unsafe { SecKeyGetBlockSize(self) }
     }
-    let ret = unsafe { SecKeyCopyExternalRepresentation(key, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Retrieve keychain attributes of a key.
-///
-/// Parameter `key`: The key whose attributes are to be retrieved.
-///
-/// Returns: Dictionary containing attributes of the key. The keys that populate this dictionary are defined
-/// and discussed in SecItem.h.
-///
-/// The attributes provided by this function are:
-/// kSecAttrCanEncrypt
-/// kSecAttrCanDecrypt
-/// kSecAttrCanDerive
-/// kSecAttrCanSign
-/// kSecAttrCanVerify
-/// kSecAttrKeyClass
-/// kSecAttrKeyType
-/// kSecAttrKeySizeInBits
-/// kSecAttrTokenID
-/// kSecAttrApplicationLabel
-/// The set of values is not fixed. Future versions may return more values in this dictionary.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyCopyAttributes(
-    key: &SecKey,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn SecKeyCopyAttributes(key: &SecKey) -> Option<NonNull<CFDictionary>>;
+    /// Create an external representation for the given key suitable for the key's type.
+    ///
+    /// Parameter `key`: The key to be exported.
+    ///
+    /// Parameter `error`: On error, will be populated with an error object describing the failure.
+    /// See "Security Error Codes" (SecBase.h).
+    ///
+    /// Returns: A CFData representing the key in a format suitable for that key type.
+    ///
+    /// This function may fail if the key is not exportable (e.g., bound to a smart card or Secure Enclave).
+    /// The format in which the key will be exported depends on the type of key:
+    /// kSecAttrKeyTypeRSA               PKCS#1 format
+    /// kSecAttrKeyTypeECSECPrimeRandom  ANSI X9.63 format (04 || X || Y [ || K])
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecKeyCopyExternalRepresentation")]
+    pub unsafe fn external_representation(
+        self: &SecKey,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn SecKeyCopyExternalRepresentation(
+                key: &SecKey,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecKeyCopyExternalRepresentation(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecKeyCopyAttributes(key) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Retrieve the public key from a key pair or private key.
-///
-/// Parameter `key`: The key from which to retrieve a public key.
-///
-/// Returns: The public key or NULL if public key is not available for specified key.
-///
-/// Fails if key does not contain a public key or no public key can be computed from it.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyCopyPublicKey(key: &SecKey) -> Option<CFRetained<SecKey>> {
-    extern "C-unwind" {
-        fn SecKeyCopyPublicKey(key: &SecKey) -> Option<NonNull<SecKey>>;
+    /// Retrieve keychain attributes of a key.
+    ///
+    /// Parameter `key`: The key whose attributes are to be retrieved.
+    ///
+    /// Returns: Dictionary containing attributes of the key. The keys that populate this dictionary are defined
+    /// and discussed in SecItem.h.
+    ///
+    /// The attributes provided by this function are:
+    /// kSecAttrCanEncrypt
+    /// kSecAttrCanDecrypt
+    /// kSecAttrCanDerive
+    /// kSecAttrCanSign
+    /// kSecAttrCanVerify
+    /// kSecAttrKeyClass
+    /// kSecAttrKeyType
+    /// kSecAttrKeySizeInBits
+    /// kSecAttrTokenID
+    /// kSecAttrApplicationLabel
+    /// The set of values is not fixed. Future versions may return more values in this dictionary.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecKeyCopyAttributes")]
+    pub unsafe fn attributes(self: &SecKey) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SecKeyCopyAttributes(key: &SecKey) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SecKeyCopyAttributes(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecKeyCopyPublicKey(key) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    /// Retrieve the public key from a key pair or private key.
+    ///
+    /// Parameter `key`: The key from which to retrieve a public key.
+    ///
+    /// Returns: The public key or NULL if public key is not available for specified key.
+    ///
+    /// Fails if key does not contain a public key or no public key can be computed from it.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecKeyCopyPublicKey")]
+    pub unsafe fn public_key(self: &SecKey) -> Option<CFRetained<SecKey>> {
+        extern "C-unwind" {
+            fn SecKeyCopyPublicKey(key: &SecKey) -> Option<NonNull<SecKey>>;
+        }
+        let ret = unsafe { SecKeyCopyPublicKey(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
 /// Available algorithms for performing cryptographic operations with SecKey object.  String representation
@@ -1772,150 +1880,157 @@ extern "C" {
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactorX963SHA512: &'static SecKeyAlgorithm;
 }
 
-/// Given a private key and data to sign, generate a digital signature.
-///
-/// Parameter `key`: Private key with which to sign.
-///
-/// Parameter `algorithm`: One of SecKeyAlgorithm constants suitable to generate signature with this key.
-///
-/// Parameter `dataToSign`: The data to be signed, typically the digest of the actual data.
-///
-/// Parameter `error`: On error, will be populated with an error object describing the failure.
-/// See "Security Error Codes" (SecBase.h).
-///
-/// Returns: The signature over dataToSign represented as a CFData, or NULL on failure.
-///
-/// Computes digital signature using specified key over input data.  The operation algorithm
-/// further defines the exact format of input data, operation to be performed and output signature.
 #[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyCreateSignature(
-    key: &SecKey,
-    algorithm: &SecKeyAlgorithm,
-    data_to_sign: &CFData,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn SecKeyCreateSignature(
-            key: &SecKey,
-            algorithm: &SecKeyAlgorithm,
-            data_to_sign: &CFData,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFData>>;
+impl SecKey {
+    /// Given a private key and data to sign, generate a digital signature.
+    ///
+    /// Parameter `key`: Private key with which to sign.
+    ///
+    /// Parameter `algorithm`: One of SecKeyAlgorithm constants suitable to generate signature with this key.
+    ///
+    /// Parameter `dataToSign`: The data to be signed, typically the digest of the actual data.
+    ///
+    /// Parameter `error`: On error, will be populated with an error object describing the failure.
+    /// See "Security Error Codes" (SecBase.h).
+    ///
+    /// Returns: The signature over dataToSign represented as a CFData, or NULL on failure.
+    ///
+    /// Computes digital signature using specified key over input data.  The operation algorithm
+    /// further defines the exact format of input data, operation to be performed and output signature.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecKeyCreateSignature")]
+    pub unsafe fn new_signature(
+        self: &SecKey,
+        algorithm: &SecKeyAlgorithm,
+        data_to_sign: &CFData,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn SecKeyCreateSignature(
+                key: &SecKey,
+                algorithm: &SecKeyAlgorithm,
+                data_to_sign: &CFData,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecKeyCreateSignature(self, algorithm, data_to_sign, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecKeyCreateSignature(key, algorithm, data_to_sign, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Given a public key, data which has been signed, and a signature, verify the signature.
-///
-/// Parameter `key`: Public key with which to verify the signature.
-///
-/// Parameter `algorithm`: One of SecKeyAlgorithm constants suitable to verify signature with this key.
-///
-/// Parameter `signedData`: The data over which sig is being verified, typically the digest of the actual data.
-///
-/// Parameter `signature`: The signature to verify.
-///
-/// Parameter `error`: On error, will be populated with an error object describing the failure.
-/// See "Security Error Codes" (SecBase.h).
-///
-/// Returns: True if the signature was valid, False otherwise.
-///
-/// Verifies digital signature operation using specified key and signed data.  The operation algorithm
-/// further defines the exact format of input data, signature and operation to be performed.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyVerifySignature(
-    key: &SecKey,
-    algorithm: &SecKeyAlgorithm,
-    signed_data: &CFData,
-    signature: &CFData,
-    error: *mut *mut CFError,
-) -> bool {
-    extern "C-unwind" {
-        fn SecKeyVerifySignature(
-            key: &SecKey,
-            algorithm: &SecKeyAlgorithm,
-            signed_data: &CFData,
-            signature: &CFData,
-            error: *mut *mut CFError,
-        ) -> Boolean;
+    /// Given a public key, data which has been signed, and a signature, verify the signature.
+    ///
+    /// Parameter `key`: Public key with which to verify the signature.
+    ///
+    /// Parameter `algorithm`: One of SecKeyAlgorithm constants suitable to verify signature with this key.
+    ///
+    /// Parameter `signedData`: The data over which sig is being verified, typically the digest of the actual data.
+    ///
+    /// Parameter `signature`: The signature to verify.
+    ///
+    /// Parameter `error`: On error, will be populated with an error object describing the failure.
+    /// See "Security Error Codes" (SecBase.h).
+    ///
+    /// Returns: True if the signature was valid, False otherwise.
+    ///
+    /// Verifies digital signature operation using specified key and signed data.  The operation algorithm
+    /// further defines the exact format of input data, signature and operation to be performed.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecKeyVerifySignature")]
+    pub unsafe fn verify_signature(
+        self: &SecKey,
+        algorithm: &SecKeyAlgorithm,
+        signed_data: &CFData,
+        signature: &CFData,
+        error: *mut *mut CFError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SecKeyVerifySignature(
+                key: &SecKey,
+                algorithm: &SecKeyAlgorithm,
+                signed_data: &CFData,
+                signature: &CFData,
+                error: *mut *mut CFError,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SecKeyVerifySignature(self, algorithm, signed_data, signature, error) };
+        ret != 0
     }
-    let ret = unsafe { SecKeyVerifySignature(key, algorithm, signed_data, signature, error) };
-    ret != 0
-}
 
-/// Encrypt a block of plaintext.
-///
-/// Parameter `key`: Public key with which to encrypt the data.
-///
-/// Parameter `algorithm`: One of SecKeyAlgorithm constants suitable to perform encryption with this key.
-///
-/// Parameter `plaintext`: The data to encrypt. The length and format of the data must conform to chosen algorithm,
-/// typically be less or equal to the value returned by SecKeyGetBlockSize().
-///
-/// Parameter `error`: On error, will be populated with an error object describing the failure.
-/// See "Security Error Codes" (SecBase.h).
-///
-/// Returns: The ciphertext represented as a CFData, or NULL on failure.
-///
-/// Encrypts plaintext data using specified key.  The exact type of the operation including the format
-/// of input and output data is specified by encryption algorithm.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyCreateEncryptedData(
-    key: &SecKey,
-    algorithm: &SecKeyAlgorithm,
-    plaintext: &CFData,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn SecKeyCreateEncryptedData(
-            key: &SecKey,
-            algorithm: &SecKeyAlgorithm,
-            plaintext: &CFData,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFData>>;
+    /// Encrypt a block of plaintext.
+    ///
+    /// Parameter `key`: Public key with which to encrypt the data.
+    ///
+    /// Parameter `algorithm`: One of SecKeyAlgorithm constants suitable to perform encryption with this key.
+    ///
+    /// Parameter `plaintext`: The data to encrypt. The length and format of the data must conform to chosen algorithm,
+    /// typically be less or equal to the value returned by SecKeyGetBlockSize().
+    ///
+    /// Parameter `error`: On error, will be populated with an error object describing the failure.
+    /// See "Security Error Codes" (SecBase.h).
+    ///
+    /// Returns: The ciphertext represented as a CFData, or NULL on failure.
+    ///
+    /// Encrypts plaintext data using specified key.  The exact type of the operation including the format
+    /// of input and output data is specified by encryption algorithm.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecKeyCreateEncryptedData")]
+    pub unsafe fn new_encrypted_data(
+        self: &SecKey,
+        algorithm: &SecKeyAlgorithm,
+        plaintext: &CFData,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn SecKeyCreateEncryptedData(
+                key: &SecKey,
+                algorithm: &SecKeyAlgorithm,
+                plaintext: &CFData,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecKeyCreateEncryptedData(self, algorithm, plaintext, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecKeyCreateEncryptedData(key, algorithm, plaintext, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Decrypt a block of ciphertext.
-///
-/// Parameter `key`: Private key with which to decrypt the data.
-///
-/// Parameter `algorithm`: One of SecKeyAlgorithm constants suitable to perform decryption with this key.
-///
-/// Parameter `ciphertext`: The data to decrypt. The length and format of the data must conform to chosen algorithm,
-/// typically be less or equal to the value returned by SecKeyGetBlockSize().
-///
-/// Parameter `error`: On error, will be populated with an error object describing the failure.
-/// See "Security Error Codes" (SecBase.h).
-///
-/// Returns: The plaintext represented as a CFData, or NULL on failure.
-///
-/// Decrypts ciphertext data using specified key.  The exact type of the operation including the format
-/// of input and output data is specified by decryption algorithm.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyCreateDecryptedData(
-    key: &SecKey,
-    algorithm: &SecKeyAlgorithm,
-    ciphertext: &CFData,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn SecKeyCreateDecryptedData(
-            key: &SecKey,
-            algorithm: &SecKeyAlgorithm,
-            ciphertext: &CFData,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFData>>;
+    /// Decrypt a block of ciphertext.
+    ///
+    /// Parameter `key`: Private key with which to decrypt the data.
+    ///
+    /// Parameter `algorithm`: One of SecKeyAlgorithm constants suitable to perform decryption with this key.
+    ///
+    /// Parameter `ciphertext`: The data to decrypt. The length and format of the data must conform to chosen algorithm,
+    /// typically be less or equal to the value returned by SecKeyGetBlockSize().
+    ///
+    /// Parameter `error`: On error, will be populated with an error object describing the failure.
+    /// See "Security Error Codes" (SecBase.h).
+    ///
+    /// Returns: The plaintext represented as a CFData, or NULL on failure.
+    ///
+    /// Decrypts ciphertext data using specified key.  The exact type of the operation including the format
+    /// of input and output data is specified by decryption algorithm.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecKeyCreateDecryptedData")]
+    pub unsafe fn new_decrypted_data(
+        self: &SecKey,
+        algorithm: &SecKeyAlgorithm,
+        ciphertext: &CFData,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn SecKeyCreateDecryptedData(
+                key: &SecKey,
+                algorithm: &SecKeyAlgorithm,
+                ciphertext: &CFData,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { SecKeyCreateDecryptedData(self, algorithm, ciphertext, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecKeyCreateDecryptedData(key, algorithm, ciphertext, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// for KDF (key derivation function).
@@ -1934,41 +2049,44 @@ extern "C" {
     pub static kSecKeyKeyExchangeParameterSharedInfo: &'static SecKeyKeyExchangeParameter;
 }
 
-/// Perform Diffie-Hellman style of key exchange operation, optionally with additional key-derivation steps.
-///
-/// Parameter `algorithm`: One of SecKeyAlgorithm constants suitable to perform this operation.
-///
-/// Parameter `publicKey`: Remote party's public key.
-///
-/// Parameter `parameters`: Dictionary with parameters, see SecKeyKeyExchangeParameter constants.  Used algorithm
-/// determines the set of required and optional parameters to be used.
-///
-/// Parameter `error`: Pointer to an error object on failure.
-/// See "Security Error Codes" (SecBase.h).
-///
-/// Returns: Result of key exchange operation as a CFDataRef, or NULL on failure.
 #[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecKeyCopyKeyExchangeResult(
-    private_key: &SecKey,
-    algorithm: &SecKeyAlgorithm,
-    public_key: &SecKey,
-    parameters: &CFDictionary,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn SecKeyCopyKeyExchangeResult(
-            private_key: &SecKey,
-            algorithm: &SecKeyAlgorithm,
-            public_key: &SecKey,
-            parameters: &CFDictionary,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFData>>;
+impl SecKey {
+    /// Perform Diffie-Hellman style of key exchange operation, optionally with additional key-derivation steps.
+    ///
+    /// Parameter `algorithm`: One of SecKeyAlgorithm constants suitable to perform this operation.
+    ///
+    /// Parameter `publicKey`: Remote party's public key.
+    ///
+    /// Parameter `parameters`: Dictionary with parameters, see SecKeyKeyExchangeParameter constants.  Used algorithm
+    /// determines the set of required and optional parameters to be used.
+    ///
+    /// Parameter `error`: Pointer to an error object on failure.
+    /// See "Security Error Codes" (SecBase.h).
+    ///
+    /// Returns: Result of key exchange operation as a CFDataRef, or NULL on failure.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecKeyCopyKeyExchangeResult")]
+    pub unsafe fn key_exchange_result(
+        self: &SecKey,
+        algorithm: &SecKeyAlgorithm,
+        public_key: &SecKey,
+        parameters: &CFDictionary,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn SecKeyCopyKeyExchangeResult(
+                private_key: &SecKey,
+                algorithm: &SecKeyAlgorithm,
+                public_key: &SecKey,
+                parameters: &CFDictionary,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret =
+            unsafe { SecKeyCopyKeyExchangeResult(self, algorithm, public_key, parameters, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe {
-        SecKeyCopyKeyExchangeResult(private_key, algorithm, public_key, parameters, error)
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Defines types of cryptographic operations available with SecKey instance.
@@ -2016,16 +2134,406 @@ unsafe impl RefEncode for SecKeyOperationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Checks whether key supports specified algorithm for specified operation.
-///
-/// Parameter `key`: Key to query
-///
-/// Parameter `operation`: Operation type for which the key is queried
-///
-/// Parameter `algorithm`: Algorithm which is queried
-///
-/// Returns: True if key supports specified algorithm for specified operation, False otherwise.
 #[cfg(feature = "SecBase")]
+impl SecKey {
+    /// Checks whether key supports specified algorithm for specified operation.
+    ///
+    /// Parameter `key`: Key to query
+    ///
+    /// Parameter `operation`: Operation type for which the key is queried
+    ///
+    /// Parameter `algorithm`: Algorithm which is queried
+    ///
+    /// Returns: True if key supports specified algorithm for specified operation, False otherwise.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecKeyIsAlgorithmSupported")]
+    pub unsafe fn is_algorithm_supported(
+        self: &SecKey,
+        operation: SecKeyOperationType,
+        algorithm: &SecKeyAlgorithm,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SecKeyIsAlgorithmSupported(
+                key: &SecKey,
+                operation: SecKeyOperationType,
+                algorithm: &SecKeyAlgorithm,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SecKeyIsAlgorithmSupported(self, operation, algorithm) };
+        ret != 0
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecKey::create_pair`"]
+    pub fn SecKeyCreatePair(
+        keychain_ref: Option<&SecKeychain>,
+        algorithm: CSSM_ALGORITHMS,
+        key_size_in_bits: uint32,
+        context_handle: CSSM_CC_HANDLE,
+        public_key_usage: CSSM_KEYUSE,
+        public_key_attr: uint32,
+        private_key_usage: CSSM_KEYUSE,
+        private_key_attr: uint32,
+        initial_access: Option<&SecAccess>,
+        public_key: *mut *mut SecKey,
+        private_key: *mut *mut SecKey,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecKey::generate`"]
+    pub fn SecKeyGenerate(
+        keychain_ref: Option<&SecKeychain>,
+        algorithm: CSSM_ALGORITHMS,
+        key_size_in_bits: uint32,
+        context_handle: CSSM_CC_HANDLE,
+        key_usage: CSSM_KEYUSE,
+        key_attr: uint32,
+        initial_access: Option<&SecAccess>,
+        key_ref: *mut *mut SecKey,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "SecAsn1Types",
+        feature = "SecBase",
+        feature = "cssmconfig",
+        feature = "cssmtype"
+    ))]
+    #[deprecated = "renamed to `SecKey::cssm_key`"]
+    pub fn SecKeyGetCSSMKey(key: &SecKey, cssm_key: NonNull<*const CSSM_KEY>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecKey::csp_handle`"]
+    pub fn SecKeyGetCSPHandle(key_ref: &SecKey, csp_handle: NonNull<CSSM_CSP_HANDLE>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "SecAsn1Types",
+        feature = "SecBase",
+        feature = "cssmconfig",
+        feature = "cssmtype"
+    ))]
+    #[deprecated = "renamed to `SecKey::credentials`"]
+    pub fn SecKeyGetCredentials(
+        key_ref: &SecKey,
+        operation: CSSM_ACL_AUTHORIZATION_TAG,
+        credential_type: SecCredentialType,
+        out_credentials: NonNull<*const CSSM_ACCESS_CREDENTIALS>,
+    ) -> OSStatus;
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::generate_symmetric`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyGenerateSymmetric(
+    parameters: &CFDictionary,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<SecKey>> {
+    extern "C-unwind" {
+        fn SecKeyGenerateSymmetric(
+            parameters: &CFDictionary,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<SecKey>>;
+    }
+    let ret = unsafe { SecKeyGenerateSymmetric(parameters, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::from_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyCreateFromData(
+    parameters: &CFDictionary,
+    key_data: &CFData,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<SecKey>> {
+    extern "C-unwind" {
+        fn SecKeyCreateFromData(
+            parameters: &CFDictionary,
+            key_data: &CFData,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<SecKey>>;
+    }
+    let ret = unsafe { SecKeyCreateFromData(parameters, key_data, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::derive_from_password`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyDeriveFromPassword(
+    password: &CFString,
+    parameters: &CFDictionary,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<SecKey>> {
+    extern "C-unwind" {
+        fn SecKeyDeriveFromPassword(
+            password: &CFString,
+            parameters: &CFDictionary,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<SecKey>>;
+    }
+    let ret = unsafe { SecKeyDeriveFromPassword(password, parameters, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::wrap_symmetric`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyWrapSymmetric(
+    key_to_wrap: &SecKey,
+    wrapping_key: &SecKey,
+    parameters: &CFDictionary,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn SecKeyWrapSymmetric(
+            key_to_wrap: &SecKey,
+            wrapping_key: &SecKey,
+            parameters: &CFDictionary,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { SecKeyWrapSymmetric(key_to_wrap, wrapping_key, parameters, error) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::unwrap_symmetric`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyUnwrapSymmetric(
+    key_to_unwrap: NonNull<*const CFData>,
+    unwrapping_key: &SecKey,
+    parameters: &CFDictionary,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<SecKey>> {
+    extern "C-unwind" {
+        fn SecKeyUnwrapSymmetric(
+            key_to_unwrap: NonNull<*const CFData>,
+            unwrapping_key: &SecKey,
+            parameters: &CFDictionary,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<SecKey>>;
+    }
+    let ret = unsafe { SecKeyUnwrapSymmetric(key_to_unwrap, unwrapping_key, parameters, error) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKey::generate_pair`"]
+    pub fn SecKeyGeneratePair(
+        parameters: &CFDictionary,
+        public_key: *mut *mut SecKey,
+        private_key: *mut *mut SecKey,
+    ) -> OSStatus;
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::new_random_key`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyCreateRandomKey(
+    parameters: &CFDictionary,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<SecKey>> {
+    extern "C-unwind" {
+        fn SecKeyCreateRandomKey(
+            parameters: &CFDictionary,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<SecKey>>;
+    }
+    let ret = unsafe { SecKeyCreateRandomKey(parameters, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::with_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyCreateWithData(
+    key_data: &CFData,
+    attributes: &CFDictionary,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<SecKey>> {
+    extern "C-unwind" {
+        fn SecKeyCreateWithData(
+            key_data: &CFData,
+            attributes: &CFDictionary,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<SecKey>>;
+    }
+    let ret = unsafe { SecKeyCreateWithData(key_data, attributes, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecKey::block_size`"]
+    pub fn SecKeyGetBlockSize(key: &SecKey) -> usize;
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::external_representation`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyCopyExternalRepresentation(
+    key: &SecKey,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn SecKeyCopyExternalRepresentation(
+            key: &SecKey,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { SecKeyCopyExternalRepresentation(key, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::attributes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyCopyAttributes(
+    key: &SecKey,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn SecKeyCopyAttributes(key: &SecKey) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { SecKeyCopyAttributes(key) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::public_key`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyCopyPublicKey(key: &SecKey) -> Option<CFRetained<SecKey>> {
+    extern "C-unwind" {
+        fn SecKeyCopyPublicKey(key: &SecKey) -> Option<NonNull<SecKey>>;
+    }
+    let ret = unsafe { SecKeyCopyPublicKey(key) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::new_signature`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyCreateSignature(
+    key: &SecKey,
+    algorithm: &SecKeyAlgorithm,
+    data_to_sign: &CFData,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn SecKeyCreateSignature(
+            key: &SecKey,
+            algorithm: &SecKeyAlgorithm,
+            data_to_sign: &CFData,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { SecKeyCreateSignature(key, algorithm, data_to_sign, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::verify_signature`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyVerifySignature(
+    key: &SecKey,
+    algorithm: &SecKeyAlgorithm,
+    signed_data: &CFData,
+    signature: &CFData,
+    error: *mut *mut CFError,
+) -> bool {
+    extern "C-unwind" {
+        fn SecKeyVerifySignature(
+            key: &SecKey,
+            algorithm: &SecKeyAlgorithm,
+            signed_data: &CFData,
+            signature: &CFData,
+            error: *mut *mut CFError,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SecKeyVerifySignature(key, algorithm, signed_data, signature, error) };
+    ret != 0
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::new_encrypted_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyCreateEncryptedData(
+    key: &SecKey,
+    algorithm: &SecKeyAlgorithm,
+    plaintext: &CFData,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn SecKeyCreateEncryptedData(
+            key: &SecKey,
+            algorithm: &SecKeyAlgorithm,
+            plaintext: &CFData,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { SecKeyCreateEncryptedData(key, algorithm, plaintext, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::new_decrypted_data`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyCreateDecryptedData(
+    key: &SecKey,
+    algorithm: &SecKeyAlgorithm,
+    ciphertext: &CFData,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn SecKeyCreateDecryptedData(
+            key: &SecKey,
+            algorithm: &SecKeyAlgorithm,
+            ciphertext: &CFData,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { SecKeyCreateDecryptedData(key, algorithm, ciphertext, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::key_exchange_result`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecKeyCopyKeyExchangeResult(
+    private_key: &SecKey,
+    algorithm: &SecKeyAlgorithm,
+    public_key: &SecKey,
+    parameters: &CFDictionary,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn SecKeyCopyKeyExchangeResult(
+            private_key: &SecKey,
+            algorithm: &SecKeyAlgorithm,
+            public_key: &SecKey,
+            parameters: &CFDictionary,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe {
+        SecKeyCopyKeyExchangeResult(private_key, algorithm, public_key, parameters, error)
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecKey::is_algorithm_supported`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecKeyIsAlgorithmSupported(
     key: &SecKey,

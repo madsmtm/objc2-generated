@@ -58,16 +58,70 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__DADissenter"> for DADissenter {}
 );
 
-/// Creates a new dissenter object.
-///
-/// Parameter `allocator`: The allocator object to be used to allocate memory.
-///
-/// Parameter `status`: The return code.
-///
-/// Parameter `string`: The return code string.  Pass NULL for no reason.
-///
-/// Returns: A reference to a new DADissenter.
+impl DADissenter {
+    /// Creates a new dissenter object.
+    ///
+    /// Parameter `allocator`: The allocator object to be used to allocate memory.
+    ///
+    /// Parameter `status`: The return code.
+    ///
+    /// Parameter `string`: The return code string.  Pass NULL for no reason.
+    ///
+    /// Returns: A reference to a new DADissenter.
+    #[cfg(feature = "libc")]
+    #[inline]
+    #[doc(alias = "DADissenterCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        status: DAReturn,
+        string: Option<&CFString>,
+    ) -> CFRetained<DADissenter> {
+        extern "C-unwind" {
+            fn DADissenterCreate(
+                allocator: Option<&CFAllocator>,
+                status: DAReturn,
+                string: Option<&CFString>,
+            ) -> Option<NonNull<DADissenter>>;
+        }
+        let ret = unsafe { DADissenterCreate(allocator, status, string) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Obtains the return code.
+    ///
+    /// Parameter `dissenter`: The DADissenter for which to obtain the return code.
+    ///
+    /// Returns: The return code.  A BSD return code, if applicable, is encoded with unix_err().
+    #[cfg(feature = "libc")]
+    #[inline]
+    #[doc(alias = "DADissenterGetStatus")]
+    pub unsafe fn status(self: &DADissenter) -> DAReturn {
+        extern "C-unwind" {
+            fn DADissenterGetStatus(dissenter: &DADissenter) -> DAReturn;
+        }
+        unsafe { DADissenterGetStatus(self) }
+    }
+
+    /// Obtains the return code string.
+    ///
+    /// Parameter `dissenter`: The DADissenter for which to obtain the return code string.
+    ///
+    /// Returns: The return code string.
+    #[inline]
+    #[doc(alias = "DADissenterGetStatusString")]
+    pub unsafe fn status_string(self: &DADissenter) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn DADissenterGetStatusString(dissenter: &DADissenter) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { DADissenterGetStatusString(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+}
+
 #[cfg(feature = "libc")]
+#[deprecated = "renamed to `DADissenter::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn DADissenterCreate(
     allocator: Option<&CFAllocator>,
@@ -87,20 +141,12 @@ pub unsafe extern "C-unwind" fn DADissenterCreate(
 }
 
 extern "C-unwind" {
-    /// Obtains the return code.
-    ///
-    /// Parameter `dissenter`: The DADissenter for which to obtain the return code.
-    ///
-    /// Returns: The return code.  A BSD return code, if applicable, is encoded with unix_err().
     #[cfg(feature = "libc")]
+    #[deprecated = "renamed to `DADissenter::status`"]
     pub fn DADissenterGetStatus(dissenter: &DADissenter) -> DAReturn;
 }
 
-/// Obtains the return code string.
-///
-/// Parameter `dissenter`: The DADissenter for which to obtain the return code string.
-///
-/// Returns: The return code string.
+#[deprecated = "renamed to `DADissenter::status_string`"]
 #[inline]
 pub unsafe extern "C-unwind" fn DADissenterGetStatusString(
     dissenter: &DADissenter,

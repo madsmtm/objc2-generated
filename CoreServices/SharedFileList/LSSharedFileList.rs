@@ -151,7 +151,390 @@ unsafe impl ConcreteType for LSSharedFileListItem {
     }
 }
 
-#[deprecated = "No longer supported"]
+impl LSSharedFileList {
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListCreate")]
+    pub unsafe fn new(
+        in_allocator: Option<&CFAllocator>,
+        in_list_type: &CFString,
+        list_options: Option<&CFType>,
+    ) -> Option<CFRetained<LSSharedFileList>> {
+        extern "C-unwind" {
+            fn LSSharedFileListCreate(
+                in_allocator: Option<&CFAllocator>,
+                in_list_type: &CFString,
+                list_options: Option<&CFType>,
+            ) -> Option<NonNull<LSSharedFileList>>;
+        }
+        let ret = unsafe { LSSharedFileListCreate(in_allocator, in_list_type, list_options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "objc2-security")]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListSetAuthorization")]
+    pub unsafe fn set_authorization(
+        self: &LSSharedFileList,
+        in_authorization: AuthorizationRef,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn LSSharedFileListSetAuthorization(
+                in_list: &LSSharedFileList,
+                in_authorization: AuthorizationRef,
+            ) -> OSStatus;
+        }
+        unsafe { LSSharedFileListSetAuthorization(self, in_authorization) }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListAddObserver")]
+    pub unsafe fn add_observer(
+        in_list: Option<&LSSharedFileList>,
+        in_runloop: &CFRunLoop,
+        in_runloop_mode: &CFString,
+        callback: LSSharedFileListChangedProcPtr,
+        context: *mut c_void,
+    ) {
+        extern "C-unwind" {
+            fn LSSharedFileListAddObserver(
+                in_list: Option<&LSSharedFileList>,
+                in_runloop: &CFRunLoop,
+                in_runloop_mode: &CFString,
+                callback: LSSharedFileListChangedProcPtr,
+                context: *mut c_void,
+            );
+        }
+        unsafe {
+            LSSharedFileListAddObserver(in_list, in_runloop, in_runloop_mode, callback, context)
+        }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListRemoveObserver")]
+    pub unsafe fn remove_observer(
+        self: &LSSharedFileList,
+        in_runloop: &CFRunLoop,
+        in_runloop_mode: &CFString,
+        callback: LSSharedFileListChangedProcPtr,
+        context: *mut c_void,
+    ) {
+        extern "C-unwind" {
+            fn LSSharedFileListRemoveObserver(
+                in_list: &LSSharedFileList,
+                in_runloop: &CFRunLoop,
+                in_runloop_mode: &CFString,
+                callback: LSSharedFileListChangedProcPtr,
+                context: *mut c_void,
+            );
+        }
+        unsafe {
+            LSSharedFileListRemoveObserver(self, in_runloop, in_runloop_mode, callback, context)
+        }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListGetSeedValue")]
+    pub unsafe fn seed_value(self: &LSSharedFileList) -> u32 {
+        extern "C-unwind" {
+            fn LSSharedFileListGetSeedValue(in_list: &LSSharedFileList) -> u32;
+        }
+        unsafe { LSSharedFileListGetSeedValue(self) }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListCopyProperty")]
+    pub unsafe fn property(
+        self: &LSSharedFileList,
+        in_property_name: &CFString,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn LSSharedFileListCopyProperty(
+                in_list: &LSSharedFileList,
+                in_property_name: &CFString,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { LSSharedFileListCopyProperty(self, in_property_name) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListSetProperty")]
+    pub unsafe fn set_property(
+        self: &LSSharedFileList,
+        in_property_name: &CFString,
+        in_property_data: Option<&CFType>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn LSSharedFileListSetProperty(
+                in_list: &LSSharedFileList,
+                in_property_name: &CFString,
+                in_property_data: Option<&CFType>,
+            ) -> OSStatus;
+        }
+        unsafe { LSSharedFileListSetProperty(self, in_property_name, in_property_data) }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListCopySnapshot")]
+    pub unsafe fn snapshot(
+        self: &LSSharedFileList,
+        out_snapshot_seed: *mut u32,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn LSSharedFileListCopySnapshot(
+                in_list: &LSSharedFileList,
+                out_snapshot_seed: *mut u32,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { LSSharedFileListCopySnapshot(self, out_snapshot_seed) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(all(feature = "IconsCore", feature = "LaunchServices"))]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListInsertItemURL")]
+    pub unsafe fn insert_item_url(
+        self: &LSSharedFileList,
+        insert_after_this_item: &LSSharedFileListItem,
+        in_display_name: Option<&CFString>,
+        in_icon_ref: IconRef,
+        in_url: &CFURL,
+        in_properties_to_set: Option<&CFDictionary>,
+        in_properties_to_clear: Option<&CFArray>,
+    ) -> Option<CFRetained<LSSharedFileListItem>> {
+        extern "C-unwind" {
+            fn LSSharedFileListInsertItemURL(
+                in_list: &LSSharedFileList,
+                insert_after_this_item: &LSSharedFileListItem,
+                in_display_name: Option<&CFString>,
+                in_icon_ref: IconRef,
+                in_url: &CFURL,
+                in_properties_to_set: Option<&CFDictionary>,
+                in_properties_to_clear: Option<&CFArray>,
+            ) -> Option<NonNull<LSSharedFileListItem>>;
+        }
+        let ret = unsafe {
+            LSSharedFileListInsertItemURL(
+                self,
+                insert_after_this_item,
+                in_display_name,
+                in_icon_ref,
+                in_url,
+                in_properties_to_set,
+                in_properties_to_clear,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(all(
+        feature = "CarbonCore",
+        feature = "Files",
+        feature = "IconsCore",
+        feature = "LaunchServices"
+    ))]
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "LSSharedFileListInsertItemFSRef")]
+    pub unsafe fn insert_item_fs_ref(
+        self: &LSSharedFileList,
+        insert_after_this_item: &LSSharedFileListItem,
+        in_display_name: Option<&CFString>,
+        in_icon_ref: IconRef,
+        in_fs_ref: NonNull<FSRef>,
+        in_properties_to_set: Option<&CFDictionary>,
+        in_properties_to_clear: Option<&CFArray>,
+    ) -> Option<CFRetained<LSSharedFileListItem>> {
+        extern "C-unwind" {
+            fn LSSharedFileListInsertItemFSRef(
+                in_list: &LSSharedFileList,
+                insert_after_this_item: &LSSharedFileListItem,
+                in_display_name: Option<&CFString>,
+                in_icon_ref: IconRef,
+                in_fs_ref: NonNull<FSRef>,
+                in_properties_to_set: Option<&CFDictionary>,
+                in_properties_to_clear: Option<&CFArray>,
+            ) -> Option<NonNull<LSSharedFileListItem>>;
+        }
+        let ret = unsafe {
+            LSSharedFileListInsertItemFSRef(
+                self,
+                insert_after_this_item,
+                in_display_name,
+                in_icon_ref,
+                in_fs_ref,
+                in_properties_to_set,
+                in_properties_to_clear,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListItemMove")]
+    pub unsafe fn item_move(
+        self: &LSSharedFileList,
+        in_item: &LSSharedFileListItem,
+        in_move_after_item: &LSSharedFileListItem,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn LSSharedFileListItemMove(
+                in_list: &LSSharedFileList,
+                in_item: &LSSharedFileListItem,
+                in_move_after_item: &LSSharedFileListItem,
+            ) -> OSStatus;
+        }
+        unsafe { LSSharedFileListItemMove(self, in_item, in_move_after_item) }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListItemRemove")]
+    pub unsafe fn item_remove(self: &LSSharedFileList, in_item: &LSSharedFileListItem) -> OSStatus {
+        extern "C-unwind" {
+            fn LSSharedFileListItemRemove(
+                in_list: &LSSharedFileList,
+                in_item: &LSSharedFileListItem,
+            ) -> OSStatus;
+        }
+        unsafe { LSSharedFileListItemRemove(self, in_item) }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListRemoveAllItems")]
+    pub unsafe fn remove_all_items(self: &LSSharedFileList) -> OSStatus {
+        extern "C-unwind" {
+            fn LSSharedFileListRemoveAllItems(in_list: &LSSharedFileList) -> OSStatus;
+        }
+        unsafe { LSSharedFileListRemoveAllItems(self) }
+    }
+}
+
+impl LSSharedFileListItem {
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListItemGetID")]
+    pub unsafe fn id(self: &LSSharedFileListItem) -> u32 {
+        extern "C-unwind" {
+            fn LSSharedFileListItemGetID(in_item: &LSSharedFileListItem) -> u32;
+        }
+        unsafe { LSSharedFileListItemGetID(self) }
+    }
+
+    #[cfg(all(feature = "IconsCore", feature = "LaunchServices"))]
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListItemCopyIconRef")]
+    pub unsafe fn copy_icon_ref(self: &LSSharedFileListItem) -> IconRef {
+        extern "C-unwind" {
+            fn LSSharedFileListItemCopyIconRef(in_item: &LSSharedFileListItem) -> IconRef;
+        }
+        unsafe { LSSharedFileListItemCopyIconRef(self) }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListItemCopyDisplayName")]
+    pub unsafe fn display_name(self: &LSSharedFileListItem) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn LSSharedFileListItemCopyDisplayName(
+                in_item: &LSSharedFileListItem,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { LSSharedFileListItemCopyDisplayName(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    #[cfg(all(feature = "CarbonCore", feature = "Files"))]
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "LSSharedFileListItemResolve")]
+    pub unsafe fn resolve(
+        self: &LSSharedFileListItem,
+        in_flags: LSSharedFileListResolutionFlags,
+        out_url: *mut *const CFURL,
+        out_ref: *mut FSRef,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn LSSharedFileListItemResolve(
+                in_item: &LSSharedFileListItem,
+                in_flags: LSSharedFileListResolutionFlags,
+                out_url: *mut *const CFURL,
+                out_ref: *mut FSRef,
+            ) -> OSStatus;
+        }
+        unsafe { LSSharedFileListItemResolve(self, in_flags, out_url, out_ref) }
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListItemCopyResolvedURL")]
+    pub unsafe fn resolved_url(
+        self: &LSSharedFileListItem,
+        in_flags: LSSharedFileListResolutionFlags,
+        out_error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFURL>> {
+        extern "C-unwind" {
+            fn LSSharedFileListItemCopyResolvedURL(
+                in_item: &LSSharedFileListItem,
+                in_flags: LSSharedFileListResolutionFlags,
+                out_error: *mut *mut CFError,
+            ) -> Option<NonNull<CFURL>>;
+        }
+        let ret = unsafe { LSSharedFileListItemCopyResolvedURL(self, in_flags, out_error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListItemCopyProperty")]
+    pub unsafe fn property(
+        self: &LSSharedFileListItem,
+        in_property_name: &CFString,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn LSSharedFileListItemCopyProperty(
+                in_item: &LSSharedFileListItem,
+                in_property_name: &CFString,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { LSSharedFileListItemCopyProperty(self, in_property_name) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[deprecated = "No longer supported"]
+    #[inline]
+    #[doc(alias = "LSSharedFileListItemSetProperty")]
+    pub unsafe fn set_property(
+        self: &LSSharedFileListItem,
+        in_property_name: &CFString,
+        in_property_data: &CFType,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn LSSharedFileListItemSetProperty(
+                in_item: &LSSharedFileListItem,
+                in_property_name: &CFString,
+                in_property_data: &CFType,
+            ) -> OSStatus;
+        }
+        unsafe { LSSharedFileListItemSetProperty(self, in_property_name, in_property_data) }
+    }
+}
+
+#[deprecated = "renamed to `LSSharedFileList::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSSharedFileListCreate(
     in_allocator: Option<&CFAllocator>,
@@ -171,7 +554,7 @@ pub unsafe extern "C-unwind" fn LSSharedFileListCreate(
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-security")]
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `LSSharedFileList::set_authorization`"]
     pub fn LSSharedFileListSetAuthorization(
         in_list: &LSSharedFileList,
         in_authorization: AuthorizationRef,
@@ -179,7 +562,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `LSSharedFileList::add_observer`"]
     pub fn LSSharedFileListAddObserver(
         in_list: Option<&LSSharedFileList>,
         in_runloop: &CFRunLoop,
@@ -190,7 +573,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `LSSharedFileList::remove_observer`"]
     pub fn LSSharedFileListRemoveObserver(
         in_list: &LSSharedFileList,
         in_runloop: &CFRunLoop,
@@ -201,11 +584,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `LSSharedFileList::seed_value`"]
     pub fn LSSharedFileListGetSeedValue(in_list: &LSSharedFileList) -> u32;
 }
 
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `LSSharedFileList::property`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSSharedFileListCopyProperty(
     in_list: &LSSharedFileList,
@@ -222,7 +605,7 @@ pub unsafe extern "C-unwind" fn LSSharedFileListCopyProperty(
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `LSSharedFileList::set_property`"]
     pub fn LSSharedFileListSetProperty(
         in_list: &LSSharedFileList,
         in_property_name: &CFString,
@@ -230,7 +613,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `LSSharedFileList::snapshot`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSSharedFileListCopySnapshot(
     in_list: &LSSharedFileList,
@@ -247,7 +630,7 @@ pub unsafe extern "C-unwind" fn LSSharedFileListCopySnapshot(
 }
 
 #[cfg(all(feature = "IconsCore", feature = "LaunchServices"))]
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `LSSharedFileList::insert_item_url`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSSharedFileListInsertItemURL(
     in_list: &LSSharedFileList,
@@ -289,7 +672,7 @@ pub unsafe extern "C-unwind" fn LSSharedFileListInsertItemURL(
     feature = "IconsCore",
     feature = "LaunchServices"
 ))]
-#[deprecated]
+#[deprecated = "renamed to `LSSharedFileList::insert_item_fs_ref`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSSharedFileListInsertItemFSRef(
     in_list: &LSSharedFileList,
@@ -326,7 +709,7 @@ pub unsafe extern "C-unwind" fn LSSharedFileListInsertItemFSRef(
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `LSSharedFileList::item_move`"]
     pub fn LSSharedFileListItemMove(
         in_list: &LSSharedFileList,
         in_item: &LSSharedFileListItem,
@@ -335,7 +718,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `LSSharedFileList::item_remove`"]
     pub fn LSSharedFileListItemRemove(
         in_list: &LSSharedFileList,
         in_item: &LSSharedFileListItem,
@@ -343,22 +726,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `LSSharedFileList::remove_all_items`"]
     pub fn LSSharedFileListRemoveAllItems(in_list: &LSSharedFileList) -> OSStatus;
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `LSSharedFileListItem::id`"]
     pub fn LSSharedFileListItemGetID(in_item: &LSSharedFileListItem) -> u32;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "IconsCore", feature = "LaunchServices"))]
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `LSSharedFileListItem::copy_icon_ref`"]
     pub fn LSSharedFileListItemCopyIconRef(in_item: &LSSharedFileListItem) -> IconRef;
 }
 
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `LSSharedFileListItem::display_name`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSSharedFileListItemCopyDisplayName(
     in_item: &LSSharedFileListItem,
@@ -375,7 +758,7 @@ pub unsafe extern "C-unwind" fn LSSharedFileListItemCopyDisplayName(
 
 extern "C-unwind" {
     #[cfg(all(feature = "CarbonCore", feature = "Files"))]
-    #[deprecated]
+    #[deprecated = "renamed to `LSSharedFileListItem::resolve`"]
     pub fn LSSharedFileListItemResolve(
         in_item: &LSSharedFileListItem,
         in_flags: LSSharedFileListResolutionFlags,
@@ -384,7 +767,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `LSSharedFileListItem::resolved_url`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSSharedFileListItemCopyResolvedURL(
     in_item: &LSSharedFileListItem,
@@ -402,7 +785,7 @@ pub unsafe extern "C-unwind" fn LSSharedFileListItemCopyResolvedURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "No longer supported"]
+#[deprecated = "renamed to `LSSharedFileListItem::property`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSSharedFileListItemCopyProperty(
     in_item: &LSSharedFileListItem,
@@ -419,7 +802,7 @@ pub unsafe extern "C-unwind" fn LSSharedFileListItemCopyProperty(
 }
 
 extern "C-unwind" {
-    #[deprecated = "No longer supported"]
+    #[deprecated = "renamed to `LSSharedFileListItem::set_property`"]
     pub fn LSSharedFileListItemSetProperty(
         in_item: &LSSharedFileListItem,
         in_property_name: &CFString,

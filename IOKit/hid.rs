@@ -1050,64 +1050,72 @@ unsafe impl ConcreteType for IOHIDQueue {
     }
 }
 
-/// Creates an IOHIDQueue object for the specified device.
-///
-/// Take care in specifying an appropriate depth to prevent dropping
-/// events.
-///
-/// Parameter `allocator`: Allocator to be used during creation.
-///
-/// Parameter `device`: IOHIDDevice object
-///
-/// Parameter `depth`: The number of values that can be handled by the queue.
-///
-/// Parameter `options`: Reserved for future use.
-///
-/// Returns: Returns a new IOHIDQueueRef.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDQueueCreate(
-    allocator: Option<&CFAllocator>,
-    device: &IOHIDDevice,
-    depth: CFIndex,
-    options: IOOptionBits,
-) -> Option<CFRetained<IOHIDQueue>> {
-    extern "C-unwind" {
-        fn IOHIDQueueCreate(
-            allocator: Option<&CFAllocator>,
-            device: &IOHIDDevice,
-            depth: CFIndex,
-            options: IOOptionBits,
-        ) -> Option<NonNull<IOHIDQueue>>;
+impl IOHIDQueue {
+    /// Creates an IOHIDQueue object for the specified device.
+    ///
+    /// Take care in specifying an appropriate depth to prevent dropping
+    /// events.
+    ///
+    /// Parameter `allocator`: Allocator to be used during creation.
+    ///
+    /// Parameter `device`: IOHIDDevice object
+    ///
+    /// Parameter `depth`: The number of values that can be handled by the queue.
+    ///
+    /// Parameter `options`: Reserved for future use.
+    ///
+    /// Returns: Returns a new IOHIDQueueRef.
+    #[inline]
+    #[doc(alias = "IOHIDQueueCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        device: &IOHIDDevice,
+        depth: CFIndex,
+        options: IOOptionBits,
+    ) -> Option<CFRetained<IOHIDQueue>> {
+        extern "C-unwind" {
+            fn IOHIDQueueCreate(
+                allocator: Option<&CFAllocator>,
+                device: &IOHIDDevice,
+                depth: CFIndex,
+                options: IOOptionBits,
+            ) -> Option<NonNull<IOHIDQueue>>;
+        }
+        let ret = unsafe { IOHIDQueueCreate(allocator, device, depth, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOHIDQueueCreate(allocator, device, depth, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Obtain the device associated with the queue.
-///
-/// Parameter `queue`: IOHIDQueue to be queried.
-///
-/// Returns: Returns the a reference to the device.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDQueueGetDevice(queue: &IOHIDQueue) -> CFRetained<IOHIDDevice> {
-    extern "C-unwind" {
-        fn IOHIDQueueGetDevice(queue: &IOHIDQueue) -> Option<NonNull<IOHIDDevice>>;
+    /// Obtain the device associated with the queue.
+    ///
+    /// Parameter `queue`: IOHIDQueue to be queried.
+    ///
+    /// Returns: Returns the a reference to the device.
+    #[inline]
+    #[doc(alias = "IOHIDQueueGetDevice")]
+    pub unsafe fn device(self: &IOHIDQueue) -> CFRetained<IOHIDDevice> {
+        extern "C-unwind" {
+            fn IOHIDQueueGetDevice(queue: &IOHIDQueue) -> Option<NonNull<IOHIDDevice>>;
+        }
+        let ret = unsafe { IOHIDQueueGetDevice(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
-    let ret = unsafe { IOHIDQueueGetDevice(queue) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-extern "C-unwind" {
     /// Obtain the depth of the queue.
     ///
     /// Parameter `queue`: IOHIDQueue to be queried.
     ///
     /// Returns: Returns the queue depth.
-    pub fn IOHIDQueueGetDepth(queue: &IOHIDQueue) -> CFIndex;
-}
+    #[inline]
+    #[doc(alias = "IOHIDQueueGetDepth")]
+    pub unsafe fn depth(self: &IOHIDQueue) -> CFIndex {
+        extern "C-unwind" {
+            fn IOHIDQueueGetDepth(queue: &IOHIDQueue) -> CFIndex;
+        }
+        unsafe { IOHIDQueueGetDepth(self) }
+    }
 
-extern "C-unwind" {
     /// Sets the depth of the queue.
     ///
     /// Set the appropriate depth value based on the number of elements
@@ -1116,47 +1124,60 @@ extern "C-unwind" {
     /// Parameter `queue`: IOHIDQueue object to be modified.
     ///
     /// Parameter `depth`: The new queue depth.
-    pub fn IOHIDQueueSetDepth(queue: &IOHIDQueue, depth: CFIndex);
-}
+    #[inline]
+    #[doc(alias = "IOHIDQueueSetDepth")]
+    pub unsafe fn set_depth(self: &IOHIDQueue, depth: CFIndex) {
+        extern "C-unwind" {
+            fn IOHIDQueueSetDepth(queue: &IOHIDQueue, depth: CFIndex);
+        }
+        unsafe { IOHIDQueueSetDepth(self, depth) }
+    }
 
-extern "C-unwind" {
     /// Adds an element to the queue
     ///
     /// Parameter `queue`: IOHIDQueue object to be modified.
     ///
     /// Parameter `element`: Element to be added to the queue.
-    pub fn IOHIDQueueAddElement(queue: &IOHIDQueue, element: &IOHIDElement);
-}
+    #[inline]
+    #[doc(alias = "IOHIDQueueAddElement")]
+    pub unsafe fn add_element(self: &IOHIDQueue, element: &IOHIDElement) {
+        extern "C-unwind" {
+            fn IOHIDQueueAddElement(queue: &IOHIDQueue, element: &IOHIDElement);
+        }
+        unsafe { IOHIDQueueAddElement(self, element) }
+    }
 
-extern "C-unwind" {
     /// Removes an element from the queue
     ///
     /// Parameter `queue`: IOHIDQueue object to be modified.
     ///
     /// Parameter `element`: Element to be removed from the queue.
-    pub fn IOHIDQueueRemoveElement(queue: &IOHIDQueue, element: &IOHIDElement);
-}
-
-/// Queries the queue to determine if elemement has been added.
-///
-/// Parameter `queue`: IOHIDQueue object to be queried.
-///
-/// Parameter `element`: Element to be queried.
-///
-/// Returns: Returns true or false depending if element is present.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDQueueContainsElement(
-    queue: &IOHIDQueue,
-    element: &IOHIDElement,
-) -> bool {
-    extern "C-unwind" {
-        fn IOHIDQueueContainsElement(queue: &IOHIDQueue, element: &IOHIDElement) -> Boolean;
+    #[inline]
+    #[doc(alias = "IOHIDQueueRemoveElement")]
+    pub unsafe fn remove_element(self: &IOHIDQueue, element: &IOHIDElement) {
+        extern "C-unwind" {
+            fn IOHIDQueueRemoveElement(queue: &IOHIDQueue, element: &IOHIDElement);
+        }
+        unsafe { IOHIDQueueRemoveElement(self, element) }
     }
-    let ret = unsafe { IOHIDQueueContainsElement(queue, element) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Queries the queue to determine if elemement has been added.
+    ///
+    /// Parameter `queue`: IOHIDQueue object to be queried.
+    ///
+    /// Parameter `element`: Element to be queried.
+    ///
+    /// Returns: Returns true or false depending if element is present.
+    #[inline]
+    #[doc(alias = "IOHIDQueueContainsElement")]
+    pub unsafe fn contains_element(self: &IOHIDQueue, element: &IOHIDElement) -> bool {
+        extern "C-unwind" {
+            fn IOHIDQueueContainsElement(queue: &IOHIDQueue, element: &IOHIDElement) -> Boolean;
+        }
+        let ret = unsafe { IOHIDQueueContainsElement(self, element) };
+        ret != 0
+    }
+
     /// Starts element value delivery to the queue.
     ///
     /// When a dispatch queue is assocaited with the IOHIDQueue
@@ -1165,10 +1186,15 @@ extern "C-unwind" {
     /// when IOHIDQueueActivate is called.
     ///
     /// Parameter `queue`: IOHIDQueue object to be started.
-    pub fn IOHIDQueueStart(queue: &IOHIDQueue);
-}
+    #[inline]
+    #[doc(alias = "IOHIDQueueStart")]
+    pub unsafe fn start(self: &IOHIDQueue) {
+        extern "C-unwind" {
+            fn IOHIDQueueStart(queue: &IOHIDQueue);
+        }
+        unsafe { IOHIDQueueStart(self) }
+    }
 
-extern "C-unwind" {
     /// Stops element value delivery to the queue.
     ///
     /// When a dispatch queue is assocaited with the IOHIDQueue
@@ -1177,10 +1203,15 @@ extern "C-unwind" {
     /// when IOHIDQueueCancel is called.
     ///
     /// Parameter `queue`: IOHIDQueue object to be stopped.
-    pub fn IOHIDQueueStop(queue: &IOHIDQueue);
-}
+    #[inline]
+    #[doc(alias = "IOHIDQueueStop")]
+    pub unsafe fn stop(self: &IOHIDQueue) {
+        extern "C-unwind" {
+            fn IOHIDQueueStop(queue: &IOHIDQueue);
+        }
+        unsafe { IOHIDQueueStop(self) }
+    }
 
-extern "C-unwind" {
     /// Schedules queue with run loop.
     ///
     /// Formally associates queue with client's run loop. Scheduling
@@ -1194,14 +1225,23 @@ extern "C-unwind" {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
-    pub fn IOHIDQueueScheduleWithRunLoop(
-        queue: &IOHIDQueue,
+    #[inline]
+    #[doc(alias = "IOHIDQueueScheduleWithRunLoop")]
+    pub unsafe fn schedule_with_run_loop(
+        self: &IOHIDQueue,
         run_loop: &CFRunLoop,
         run_loop_mode: &CFString,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDQueueScheduleWithRunLoop(
+                queue: &IOHIDQueue,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { IOHIDQueueScheduleWithRunLoop(self, run_loop, run_loop_mode) }
+    }
 
-extern "C-unwind" {
     /// Unschedules queue with run loop.
     ///
     /// Formally disassociates queue with client's run loop.
@@ -1213,14 +1253,23 @@ extern "C-unwind" {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
-    pub fn IOHIDQueueUnscheduleFromRunLoop(
-        queue: &IOHIDQueue,
+    #[inline]
+    #[doc(alias = "IOHIDQueueUnscheduleFromRunLoop")]
+    pub unsafe fn unschedule_from_run_loop(
+        self: &IOHIDQueue,
         run_loop: &CFRunLoop,
         run_loop_mode: &CFString,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDQueueUnscheduleFromRunLoop(
+                queue: &IOHIDQueue,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { IOHIDQueueUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
+    }
 
-extern "C-unwind" {
     /// Sets the dispatch queue to be associated with the IOHIDQueue.
     /// This is necessary in order to receive asynchronous events from the kernel.
     ///
@@ -1238,10 +1287,15 @@ extern "C-unwind" {
     ///
     /// Parameter `dispatchQueue`: The dispatch queue to which the event handler block will be submitted.
     #[cfg(feature = "dispatch2")]
-    pub fn IOHIDQueueSetDispatchQueue(queue: &IOHIDQueue, dispatch_queue: &DispatchQueue);
-}
+    #[inline]
+    #[doc(alias = "IOHIDQueueSetDispatchQueue")]
+    pub unsafe fn set_dispatch_queue(self: &IOHIDQueue, dispatch_queue: &DispatchQueue) {
+        extern "C-unwind" {
+            fn IOHIDQueueSetDispatchQueue(queue: &IOHIDQueue, dispatch_queue: &DispatchQueue);
+        }
+        unsafe { IOHIDQueueSetDispatchQueue(self, dispatch_queue) }
+    }
 
-extern "C-unwind" {
     /// Sets a cancellation handler for the dispatch queue associated with
     /// IOHIDQueueSetDispatchQueue.
     ///
@@ -1270,10 +1324,15 @@ extern "C-unwind" {
     ///
     /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
     #[cfg(feature = "dispatch2")]
-    pub fn IOHIDQueueSetCancelHandler(queue: &IOHIDQueue, handler: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "IOHIDQueueSetCancelHandler")]
+    pub unsafe fn set_cancel_handler(self: &IOHIDQueue, handler: dispatch_block_t) {
+        extern "C-unwind" {
+            fn IOHIDQueueSetCancelHandler(queue: &IOHIDQueue, handler: dispatch_block_t);
+        }
+        unsafe { IOHIDQueueSetCancelHandler(self, handler) }
+    }
 
-extern "C-unwind" {
     /// Activates the IOHIDQueue object.
     ///
     ///
@@ -1292,10 +1351,15 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `queue`: Reference to an IOHIDQueue
-    pub fn IOHIDQueueActivate(queue: &IOHIDQueue);
-}
+    #[inline]
+    #[doc(alias = "IOHIDQueueActivate")]
+    pub unsafe fn activate(self: &IOHIDQueue) {
+        extern "C-unwind" {
+            fn IOHIDQueueActivate(queue: &IOHIDQueue);
+        }
+        unsafe { IOHIDQueueActivate(self) }
+    }
 
-extern "C-unwind" {
     /// Cancels the IOHIDQueue preventing any further invocation
     /// of its event handler block.
     ///
@@ -1322,10 +1386,15 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `queue`: Reference to an IOHIDQueue
-    pub fn IOHIDQueueCancel(queue: &IOHIDQueue);
-}
+    #[inline]
+    #[doc(alias = "IOHIDQueueCancel")]
+    pub unsafe fn cancel(self: &IOHIDQueue) {
+        extern "C-unwind" {
+            fn IOHIDQueueCancel(queue: &IOHIDQueue);
+        }
+        unsafe { IOHIDQueueCancel(self) }
+    }
 
-extern "C-unwind" {
     /// Sets callback to be used when the queue transitions to non-empty.
     ///
     /// In order to make use of asynchronous behavior, the queue needs
@@ -1338,61 +1407,72 @@ extern "C-unwind" {
     /// placed on the queue.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
-    pub fn IOHIDQueueRegisterValueAvailableCallback(
-        queue: &IOHIDQueue,
+    #[inline]
+    #[doc(alias = "IOHIDQueueRegisterValueAvailableCallback")]
+    pub unsafe fn register_value_available_callback(
+        self: &IOHIDQueue,
         callback: IOHIDCallback,
         context: *mut c_void,
-    );
-}
-
-/// Dequeues a retained copy of an element value from the head of an
-/// IOHIDQueue.
-///
-/// Because the value is a retained copy, it is up to the caller to
-/// release the value using CFRelease. Use with setValueCallback to
-/// avoid polling the queue for data.
-///
-/// Parameter `queue`: IOHIDQueue object to be queried.
-///
-/// Returns: Returns valid IOHIDValueRef if data is available.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDQueueCopyNextValue(
-    queue: &IOHIDQueue,
-) -> Option<CFRetained<IOHIDValue>> {
-    extern "C-unwind" {
-        fn IOHIDQueueCopyNextValue(queue: &IOHIDQueue) -> Option<NonNull<IOHIDValue>>;
+    ) {
+        extern "C-unwind" {
+            fn IOHIDQueueRegisterValueAvailableCallback(
+                queue: &IOHIDQueue,
+                callback: IOHIDCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { IOHIDQueueRegisterValueAvailableCallback(self, callback, context) }
     }
-    let ret = unsafe { IOHIDQueueCopyNextValue(queue) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Dequeues a retained copy of an element value from the head of an
-/// IOHIDQueue.  This method will block until either a value is
-/// available or it times out.
-///
-/// Because the value is a retained copy, it is up to the caller to
-/// release the value using CFRelease. Use with setValueCallback to
-/// avoid polling the queue for data.
-///
-/// Parameter `queue`: IOHIDQueue object to be queried.
-///
-/// Parameter `timeout`: Timeout before aborting an attempt to dequeue a value
-/// from the head of a queue.
-///
-/// Returns: Returns valid IOHIDValueRef if data is available.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDQueueCopyNextValueWithTimeout(
-    queue: &IOHIDQueue,
-    timeout: CFTimeInterval,
-) -> Option<CFRetained<IOHIDValue>> {
-    extern "C-unwind" {
-        fn IOHIDQueueCopyNextValueWithTimeout(
-            queue: &IOHIDQueue,
-            timeout: CFTimeInterval,
-        ) -> Option<NonNull<IOHIDValue>>;
+    /// Dequeues a retained copy of an element value from the head of an
+    /// IOHIDQueue.
+    ///
+    /// Because the value is a retained copy, it is up to the caller to
+    /// release the value using CFRelease. Use with setValueCallback to
+    /// avoid polling the queue for data.
+    ///
+    /// Parameter `queue`: IOHIDQueue object to be queried.
+    ///
+    /// Returns: Returns valid IOHIDValueRef if data is available.
+    #[inline]
+    #[doc(alias = "IOHIDQueueCopyNextValue")]
+    pub unsafe fn next_value(self: &IOHIDQueue) -> Option<CFRetained<IOHIDValue>> {
+        extern "C-unwind" {
+            fn IOHIDQueueCopyNextValue(queue: &IOHIDQueue) -> Option<NonNull<IOHIDValue>>;
+        }
+        let ret = unsafe { IOHIDQueueCopyNextValue(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOHIDQueueCopyNextValueWithTimeout(queue, timeout) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    /// Dequeues a retained copy of an element value from the head of an
+    /// IOHIDQueue.  This method will block until either a value is
+    /// available or it times out.
+    ///
+    /// Because the value is a retained copy, it is up to the caller to
+    /// release the value using CFRelease. Use with setValueCallback to
+    /// avoid polling the queue for data.
+    ///
+    /// Parameter `queue`: IOHIDQueue object to be queried.
+    ///
+    /// Parameter `timeout`: Timeout before aborting an attempt to dequeue a value
+    /// from the head of a queue.
+    ///
+    /// Returns: Returns valid IOHIDValueRef if data is available.
+    #[inline]
+    #[doc(alias = "IOHIDQueueCopyNextValueWithTimeout")]
+    pub unsafe fn next_value_with_timeout(
+        self: &IOHIDQueue,
+        timeout: CFTimeInterval,
+    ) -> Option<CFRetained<IOHIDValue>> {
+        extern "C-unwind" {
+            fn IOHIDQueueCopyNextValueWithTimeout(
+                queue: &IOHIDQueue,
+                timeout: CFTimeInterval,
+            ) -> Option<NonNull<IOHIDValue>>;
+        }
+        let ret = unsafe { IOHIDQueueCopyNextValueWithTimeout(self, timeout) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
 unsafe impl ConcreteType for IOHIDDevice {
@@ -1407,33 +1487,34 @@ unsafe impl ConcreteType for IOHIDDevice {
     }
 }
 
-/// Creates an element from an io_service_t.
-///
-/// The io_service_t passed in this method must reference an object
-/// in the kernel of type IOHIDDevice.
-///
-/// Parameter `allocator`: Allocator to be used during creation.
-///
-/// Parameter `service`: Reference to service object in the kernel.
-///
-/// Returns: Returns a new IOHIDDeviceRef.
-#[cfg(feature = "libc")]
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDDeviceCreate(
-    allocator: Option<&CFAllocator>,
-    service: io_service_t,
-) -> Option<CFRetained<IOHIDDevice>> {
-    extern "C-unwind" {
-        fn IOHIDDeviceCreate(
-            allocator: Option<&CFAllocator>,
-            service: io_service_t,
-        ) -> Option<NonNull<IOHIDDevice>>;
+impl IOHIDDevice {
+    /// Creates an element from an io_service_t.
+    ///
+    /// The io_service_t passed in this method must reference an object
+    /// in the kernel of type IOHIDDevice.
+    ///
+    /// Parameter `allocator`: Allocator to be used during creation.
+    ///
+    /// Parameter `service`: Reference to service object in the kernel.
+    ///
+    /// Returns: Returns a new IOHIDDeviceRef.
+    #[cfg(feature = "libc")]
+    #[inline]
+    #[doc(alias = "IOHIDDeviceCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        service: io_service_t,
+    ) -> Option<CFRetained<IOHIDDevice>> {
+        extern "C-unwind" {
+            fn IOHIDDeviceCreate(
+                allocator: Option<&CFAllocator>,
+                service: io_service_t,
+            ) -> Option<NonNull<IOHIDDevice>>;
+        }
+        let ret = unsafe { IOHIDDeviceCreate(allocator, service) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOHIDDeviceCreate(allocator, service) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
     /// Returns the io_service_t for an IOHIDDevice, if it has one.
     ///
     /// If the IOHIDDevice references an object in the kernel, this is
@@ -1444,10 +1525,15 @@ extern "C-unwind" {
     /// Returns: Returns the io_service_t if the IOHIDDevice has one, or
     /// MACH_PORT_NULL if it does not.
     #[cfg(feature = "libc")]
-    pub fn IOHIDDeviceGetService(device: &IOHIDDevice) -> io_service_t;
-}
+    #[inline]
+    #[doc(alias = "IOHIDDeviceGetService")]
+    pub unsafe fn service(self: &IOHIDDevice) -> io_service_t {
+        extern "C-unwind" {
+            fn IOHIDDeviceGetService(device: &IOHIDDevice) -> io_service_t;
+        }
+        unsafe { IOHIDDeviceGetService(self) }
+    }
 
-extern "C-unwind" {
     /// Opens a HID device for communication.
     ///
     /// Before the client can issue commands that change the state of
@@ -1461,10 +1547,15 @@ extern "C-unwind" {
     /// Parameter `options`: Option bits to be sent down to the device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceOpen(device: &IOHIDDevice, options: IOOptionBits) -> IOReturn;
-}
+    #[inline]
+    #[doc(alias = "IOHIDDeviceOpen")]
+    pub unsafe fn open(self: &IOHIDDevice, options: IOOptionBits) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceOpen(device: &IOHIDDevice, options: IOOptionBits) -> IOReturn;
+        }
+        unsafe { IOHIDDeviceOpen(self, options) }
+    }
 
-extern "C-unwind" {
     /// Closes communication with a HID device.
     ///
     /// This closes a link between the client's task and the actual
@@ -1475,135 +1566,136 @@ extern "C-unwind" {
     /// Parameter `options`: Option bits to be sent down to the device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceClose(device: &IOHIDDevice, options: IOOptionBits) -> IOReturn;
-}
-
-/// Convenience function that scans the Application Collection
-/// elements to see if it conforms to the provided usagePage
-/// and usage.
-///
-/// Examples of Application Collection usages pairs are:
-/// <br>
-/// usagePage = kHIDPage_GenericDesktop
-/// <br>
-/// usage = kHIDUsage_GD_Mouse
-/// <br>
-/// <b>
-/// or
-/// </b>
-/// <br>
-/// usagePage = kHIDPage_GenericDesktop
-/// <br>
-/// usage = kHIDUsage_GD_Keyboard
-///
-/// Parameter `device`: Reference to an IOHIDDevice.
-///
-/// Parameter `usagePage`: Device usage page
-///
-/// Parameter `usage`: Device usage
-///
-/// Returns: Returns TRUE if device conforms to provided usage.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDDeviceConformsTo(
-    device: &IOHIDDevice,
-    usage_page: u32,
-    usage: u32,
-) -> bool {
-    extern "C-unwind" {
-        fn IOHIDDeviceConformsTo(device: &IOHIDDevice, usage_page: u32, usage: u32) -> Boolean;
+    #[inline]
+    #[doc(alias = "IOHIDDeviceClose")]
+    pub unsafe fn close(self: &IOHIDDevice, options: IOOptionBits) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceClose(device: &IOHIDDevice, options: IOOptionBits) -> IOReturn;
+        }
+        unsafe { IOHIDDeviceClose(self, options) }
     }
-    let ret = unsafe { IOHIDDeviceConformsTo(device, usage_page, usage) };
-    ret != 0
-}
 
-/// Obtains a property from an IOHIDDevice.
-///
-/// Property keys are prefixed by kIOHIDDevice and declared in
-/// <IOKit
-/// /hid/IOHIDKeys.h>.
-///
-/// Parameter `device`: Reference to an IOHIDDevice.
-///
-/// Parameter `key`: CFStringRef containing key to be used when querying the
-/// device.
-///
-/// Returns: Returns CFTypeRef containing the property.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDDeviceGetProperty(
-    device: &IOHIDDevice,
-    key: &CFString,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn IOHIDDeviceGetProperty(device: &IOHIDDevice, key: &CFString) -> Option<NonNull<CFType>>;
+    /// Convenience function that scans the Application Collection
+    /// elements to see if it conforms to the provided usagePage
+    /// and usage.
+    ///
+    /// Examples of Application Collection usages pairs are:
+    /// <br>
+    /// usagePage = kHIDPage_GenericDesktop
+    /// <br>
+    /// usage = kHIDUsage_GD_Mouse
+    /// <br>
+    /// <b>
+    /// or
+    /// </b>
+    /// <br>
+    /// usagePage = kHIDPage_GenericDesktop
+    /// <br>
+    /// usage = kHIDUsage_GD_Keyboard
+    ///
+    /// Parameter `device`: Reference to an IOHIDDevice.
+    ///
+    /// Parameter `usagePage`: Device usage page
+    ///
+    /// Parameter `usage`: Device usage
+    ///
+    /// Returns: Returns TRUE if device conforms to provided usage.
+    #[inline]
+    #[doc(alias = "IOHIDDeviceConformsTo")]
+    pub unsafe fn conforms_to(self: &IOHIDDevice, usage_page: u32, usage: u32) -> bool {
+        extern "C-unwind" {
+            fn IOHIDDeviceConformsTo(device: &IOHIDDevice, usage_page: u32, usage: u32) -> Boolean;
+        }
+        let ret = unsafe { IOHIDDeviceConformsTo(self, usage_page, usage) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDDeviceGetProperty(device, key) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Sets a property for an IOHIDDevice.
-///
-/// Property keys are prefixed by kIOHIDDevice and declared in
-/// <IOKit
-/// /hid/IOHIDKeys.h>.
-///
-/// Parameter `device`: Reference to an IOHIDDevice.
-///
-/// Parameter `key`: CFStringRef containing key to be used when modifiying the
-/// device property.
-///
-/// Parameter `property`: CFTypeRef containg the property to be set.
-///
-/// Returns: Returns TRUE if successful.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDDeviceSetProperty(
-    device: &IOHIDDevice,
-    key: &CFString,
-    property: &CFType,
-) -> bool {
-    extern "C-unwind" {
-        fn IOHIDDeviceSetProperty(
-            device: &IOHIDDevice,
-            key: &CFString,
-            property: &CFType,
-        ) -> Boolean;
+    /// Obtains a property from an IOHIDDevice.
+    ///
+    /// Property keys are prefixed by kIOHIDDevice and declared in
+    /// <IOKit
+    /// /hid/IOHIDKeys.h>.
+    ///
+    /// Parameter `device`: Reference to an IOHIDDevice.
+    ///
+    /// Parameter `key`: CFStringRef containing key to be used when querying the
+    /// device.
+    ///
+    /// Returns: Returns CFTypeRef containing the property.
+    #[inline]
+    #[doc(alias = "IOHIDDeviceGetProperty")]
+    pub unsafe fn property(self: &IOHIDDevice, key: &CFString) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn IOHIDDeviceGetProperty(
+                device: &IOHIDDevice,
+                key: &CFString,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { IOHIDDeviceGetProperty(self, key) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { IOHIDDeviceSetProperty(device, key, property) };
-    ret != 0
-}
 
-/// Obtains HID elements that match the criteria contained in the
-/// matching dictionary.
-///
-/// Matching keys are prefixed by kIOHIDElement and declared in
-/// <IOKit
-/// /hid/IOHIDKeys.h>. Passing a NULL dictionary will result
-/// in all device elements being returned.
-///
-/// Parameter `device`: Reference to an IOHIDDevice.
-///
-/// Parameter `matching`: CFDictionaryRef containg element matching criteria.
-///
-/// Parameter `options`: Reserved for future use.
-///
-/// Returns: Returns CFArrayRef containing multiple IOHIDElement object.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDDeviceCopyMatchingElements(
-    device: &IOHIDDevice,
-    matching: Option<&CFDictionary>,
-    options: IOOptionBits,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn IOHIDDeviceCopyMatchingElements(
-            device: &IOHIDDevice,
-            matching: Option<&CFDictionary>,
-            options: IOOptionBits,
-        ) -> Option<NonNull<CFArray>>;
+    /// Sets a property for an IOHIDDevice.
+    ///
+    /// Property keys are prefixed by kIOHIDDevice and declared in
+    /// <IOKit
+    /// /hid/IOHIDKeys.h>.
+    ///
+    /// Parameter `device`: Reference to an IOHIDDevice.
+    ///
+    /// Parameter `key`: CFStringRef containing key to be used when modifiying the
+    /// device property.
+    ///
+    /// Parameter `property`: CFTypeRef containg the property to be set.
+    ///
+    /// Returns: Returns TRUE if successful.
+    #[inline]
+    #[doc(alias = "IOHIDDeviceSetProperty")]
+    pub unsafe fn set_property(self: &IOHIDDevice, key: &CFString, property: &CFType) -> bool {
+        extern "C-unwind" {
+            fn IOHIDDeviceSetProperty(
+                device: &IOHIDDevice,
+                key: &CFString,
+                property: &CFType,
+            ) -> Boolean;
+        }
+        let ret = unsafe { IOHIDDeviceSetProperty(self, key, property) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDDeviceCopyMatchingElements(device, matching, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Obtains HID elements that match the criteria contained in the
+    /// matching dictionary.
+    ///
+    /// Matching keys are prefixed by kIOHIDElement and declared in
+    /// <IOKit
+    /// /hid/IOHIDKeys.h>. Passing a NULL dictionary will result
+    /// in all device elements being returned.
+    ///
+    /// Parameter `device`: Reference to an IOHIDDevice.
+    ///
+    /// Parameter `matching`: CFDictionaryRef containg element matching criteria.
+    ///
+    /// Parameter `options`: Reserved for future use.
+    ///
+    /// Returns: Returns CFArrayRef containing multiple IOHIDElement object.
+    #[inline]
+    #[doc(alias = "IOHIDDeviceCopyMatchingElements")]
+    pub unsafe fn matching_elements(
+        self: &IOHIDDevice,
+        matching: Option<&CFDictionary>,
+        options: IOOptionBits,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn IOHIDDeviceCopyMatchingElements(
+                device: &IOHIDDevice,
+                matching: Option<&CFDictionary>,
+                options: IOOptionBits,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { IOHIDDeviceCopyMatchingElements(self, matching, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Schedules HID device with run loop.
     ///
     /// Formally associates device with client's run loop. Scheduling
@@ -1617,14 +1709,23 @@ extern "C-unwind" {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
-    pub fn IOHIDDeviceScheduleWithRunLoop(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceScheduleWithRunLoop")]
+    pub unsafe fn schedule_with_run_loop(
+        self: &IOHIDDevice,
         run_loop: &CFRunLoop,
         run_loop_mode: &CFString,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDDeviceScheduleWithRunLoop(
+                device: &IOHIDDevice,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { IOHIDDeviceScheduleWithRunLoop(self, run_loop, run_loop_mode) }
+    }
 
-extern "C-unwind" {
     /// Unschedules HID device with run loop.
     ///
     /// Formally disassociates device with client's run loop.
@@ -1636,14 +1737,23 @@ extern "C-unwind" {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when unscheduling any
     /// asynchronous activity.
-    pub fn IOHIDDeviceUnscheduleFromRunLoop(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceUnscheduleFromRunLoop")]
+    pub unsafe fn unschedule_from_run_loop(
+        self: &IOHIDDevice,
         run_loop: &CFRunLoop,
         run_loop_mode: &CFString,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDDeviceUnscheduleFromRunLoop(
+                device: &IOHIDDevice,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { IOHIDDeviceUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
+    }
 
-extern "C-unwind" {
     /// Sets the dispatch queue to be associated with the IOHIDDevice.
     /// This is necessary in order to receive asynchronous events from the kernel.
     ///
@@ -1657,10 +1767,15 @@ extern "C-unwind" {
     ///
     /// Parameter `queue`: The dispatch queue to which the event handler block will be submitted.
     #[cfg(feature = "dispatch2")]
-    pub fn IOHIDDeviceSetDispatchQueue(device: &IOHIDDevice, queue: &DispatchQueue);
-}
+    #[inline]
+    #[doc(alias = "IOHIDDeviceSetDispatchQueue")]
+    pub unsafe fn set_dispatch_queue(self: &IOHIDDevice, queue: &DispatchQueue) {
+        extern "C-unwind" {
+            fn IOHIDDeviceSetDispatchQueue(device: &IOHIDDevice, queue: &DispatchQueue);
+        }
+        unsafe { IOHIDDeviceSetDispatchQueue(self, queue) }
+    }
 
-extern "C-unwind" {
     /// Sets a cancellation handler for the dispatch queue associated with
     /// IOHIDDeviceSetDispatchQueue.
     ///
@@ -1683,10 +1798,15 @@ extern "C-unwind" {
     ///
     /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
     #[cfg(feature = "dispatch2")]
-    pub fn IOHIDDeviceSetCancelHandler(device: &IOHIDDevice, handler: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "IOHIDDeviceSetCancelHandler")]
+    pub unsafe fn set_cancel_handler(self: &IOHIDDevice, handler: dispatch_block_t) {
+        extern "C-unwind" {
+            fn IOHIDDeviceSetCancelHandler(device: &IOHIDDevice, handler: dispatch_block_t);
+        }
+        unsafe { IOHIDDeviceSetCancelHandler(self, handler) }
+    }
 
-extern "C-unwind" {
     /// Activates the IOHIDDevice object.
     ///
     /// An IOHIDDevice object associated with a dispatch queue is created
@@ -1700,10 +1820,15 @@ extern "C-unwind" {
     /// Calling IOHIDDeviceActivate on an active IOHIDDevice has no effect.
     ///
     /// Parameter `device`: Reference to an IOHIDDevice
-    pub fn IOHIDDeviceActivate(device: &IOHIDDevice);
-}
+    #[inline]
+    #[doc(alias = "IOHIDDeviceActivate")]
+    pub unsafe fn activate(self: &IOHIDDevice) {
+        extern "C-unwind" {
+            fn IOHIDDeviceActivate(device: &IOHIDDevice);
+        }
+        unsafe { IOHIDDeviceActivate(self) }
+    }
 
-extern "C-unwind" {
     /// Cancels the IOHIDDevice preventing any further invocation
     /// of its event handler block.
     ///
@@ -1724,10 +1849,15 @@ extern "C-unwind" {
     /// IOHIDDeviceCancel(device);
     ///
     /// Parameter `device`: Reference to an IOHIDDevice
-    pub fn IOHIDDeviceCancel(device: &IOHIDDevice);
-}
+    #[inline]
+    #[doc(alias = "IOHIDDeviceCancel")]
+    pub unsafe fn cancel(self: &IOHIDDevice) {
+        extern "C-unwind" {
+            fn IOHIDDeviceCancel(device: &IOHIDDevice);
+        }
+        unsafe { IOHIDDeviceCancel(self) }
+    }
 
-extern "C-unwind" {
     /// Registers a callback to be used when a IOHIDDevice is removed.
     ///
     /// In most cases this occurs when a device is unplugged.
@@ -1738,14 +1868,23 @@ extern "C-unwind" {
     /// Parameter `callback`: Pointer to a callback method of type IOHIDCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
-    pub fn IOHIDDeviceRegisterRemovalCallback(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceRegisterRemovalCallback")]
+    pub unsafe fn register_removal_callback(
+        self: &IOHIDDevice,
         callback: IOHIDCallback,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDDeviceRegisterRemovalCallback(
+                device: &IOHIDDevice,
+                callback: IOHIDCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { IOHIDDeviceRegisterRemovalCallback(self, callback, context) }
+    }
 
-extern "C-unwind" {
     /// Registers a callback to be used when an input value is issued by
     /// the device.
     ///
@@ -1761,14 +1900,23 @@ extern "C-unwind" {
     /// Parameter `callback`: Pointer to a callback method of type IOHIDValueCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
-    pub fn IOHIDDeviceRegisterInputValueCallback(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceRegisterInputValueCallback")]
+    pub unsafe fn register_input_value_callback(
+        self: &IOHIDDevice,
         callback: IOHIDValueCallback,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDDeviceRegisterInputValueCallback(
+                device: &IOHIDDevice,
+                callback: IOHIDValueCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { IOHIDDeviceRegisterInputValueCallback(self, callback, context) }
+    }
 
-extern "C-unwind" {
     /// Registers a callback to be used when an input report is issued
     /// by the device.
     ///
@@ -1787,16 +1935,29 @@ extern "C-unwind" {
     /// IOHIDReportCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
-    pub fn IOHIDDeviceRegisterInputReportCallback(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceRegisterInputReportCallback")]
+    pub unsafe fn register_input_report_callback(
+        self: &IOHIDDevice,
         report: NonNull<u8>,
         report_length: CFIndex,
         callback: IOHIDReportCallback,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDDeviceRegisterInputReportCallback(
+                device: &IOHIDDevice,
+                report: NonNull<u8>,
+                report_length: CFIndex,
+                callback: IOHIDReportCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe {
+            IOHIDDeviceRegisterInputReportCallback(self, report, report_length, callback, context)
+        }
+    }
 
-extern "C-unwind" {
     /// Registers a timestamped callback to be used when an input report is issued
     /// by the device.
     ///
@@ -1815,16 +1976,35 @@ extern "C-unwind" {
     /// IOHIDReportWithTimeStampCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
-    pub fn IOHIDDeviceRegisterInputReportWithTimeStampCallback(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceRegisterInputReportWithTimeStampCallback")]
+    pub unsafe fn register_input_report_with_time_stamp_callback(
+        self: &IOHIDDevice,
         report: NonNull<u8>,
         report_length: CFIndex,
         callback: IOHIDReportWithTimeStampCallback,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDDeviceRegisterInputReportWithTimeStampCallback(
+                device: &IOHIDDevice,
+                report: NonNull<u8>,
+                report_length: CFIndex,
+                callback: IOHIDReportWithTimeStampCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe {
+            IOHIDDeviceRegisterInputReportWithTimeStampCallback(
+                self,
+                report,
+                report_length,
+                callback,
+                context,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Sets matching criteria for input values received via
     /// IOHIDDeviceRegisterInputValueCallback.
     ///
@@ -1841,10 +2021,18 @@ extern "C-unwind" {
     /// Parameter `device`: Reference to an IOHIDDevice.
     ///
     /// Parameter `matching`: CFDictionaryRef containg device matching criteria.
-    pub fn IOHIDDeviceSetInputValueMatching(device: &IOHIDDevice, matching: Option<&CFDictionary>);
-}
+    #[inline]
+    #[doc(alias = "IOHIDDeviceSetInputValueMatching")]
+    pub unsafe fn set_input_value_matching(self: &IOHIDDevice, matching: Option<&CFDictionary>) {
+        extern "C-unwind" {
+            fn IOHIDDeviceSetInputValueMatching(
+                device: &IOHIDDevice,
+                matching: Option<&CFDictionary>,
+            );
+        }
+        unsafe { IOHIDDeviceSetInputValueMatching(self, matching) }
+    }
 
-extern "C-unwind" {
     /// Sets multiple matching criteria for input values received via
     /// IOHIDDeviceRegisterInputValueCallback.
     ///
@@ -1858,13 +2046,21 @@ extern "C-unwind" {
     ///
     /// Parameter `multiple`: CFArrayRef containing multiple CFDictionaryRef objects
     /// containg input element matching criteria.
-    pub fn IOHIDDeviceSetInputValueMatchingMultiple(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceSetInputValueMatchingMultiple")]
+    pub unsafe fn set_input_value_matching_multiple(
+        self: &IOHIDDevice,
         multiple: Option<&CFArray>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDDeviceSetInputValueMatchingMultiple(
+                device: &IOHIDDevice,
+                multiple: Option<&CFArray>,
+            );
+        }
+        unsafe { IOHIDDeviceSetInputValueMatchingMultiple(self, multiple) }
+    }
 
-extern "C-unwind" {
     /// Sets a value for an element.
     ///
     /// This method behaves synchronously and will block until the
@@ -1880,14 +2076,23 @@ extern "C-unwind" {
     /// Parameter `value`: IOHIDValueRef containing value to be set.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceSetValue(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceSetValue")]
+    pub unsafe fn set_value(
+        self: &IOHIDDevice,
         element: &IOHIDElement,
         value: &IOHIDValue,
-    ) -> IOReturn;
-}
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceSetValue(
+                device: &IOHIDDevice,
+                element: &IOHIDElement,
+                value: &IOHIDValue,
+            ) -> IOReturn;
+        }
+        unsafe { IOHIDDeviceSetValue(self, element, value) }
+    }
 
-extern "C-unwind" {
     /// Sets multiple values for multiple elements.
     ///
     /// This method behaves synchronously and will block until the
@@ -1900,10 +2105,18 @@ extern "C-unwind" {
     /// value is IOHIDValueRef.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceSetValueMultiple(device: &IOHIDDevice, multiple: &CFDictionary) -> IOReturn;
-}
+    #[inline]
+    #[doc(alias = "IOHIDDeviceSetValueMultiple")]
+    pub unsafe fn set_value_multiple(self: &IOHIDDevice, multiple: &CFDictionary) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceSetValueMultiple(
+                device: &IOHIDDevice,
+                multiple: &CFDictionary,
+            ) -> IOReturn;
+        }
+        unsafe { IOHIDDeviceSetValueMultiple(self, multiple) }
+    }
 
-extern "C-unwind" {
     /// Sets a value for an element.
     ///
     /// This method currently only behaves synchronously and will not
@@ -1925,17 +2138,29 @@ extern "C-unwind" {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceSetValueWithCallback(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceSetValueWithCallback")]
+    pub unsafe fn set_value_with_callback(
+        self: &IOHIDDevice,
         element: &IOHIDElement,
         value: &IOHIDValue,
         timeout: CFTimeInterval,
         callback: IOHIDValueCallback,
         context: *mut c_void,
-    ) -> IOReturn;
-}
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceSetValueWithCallback(
+                device: &IOHIDDevice,
+                element: &IOHIDElement,
+                value: &IOHIDValue,
+                timeout: CFTimeInterval,
+                callback: IOHIDValueCallback,
+                context: *mut c_void,
+            ) -> IOReturn;
+        }
+        unsafe { IOHIDDeviceSetValueWithCallback(self, element, value, timeout, callback, context) }
+    }
 
-extern "C-unwind" {
     /// Sets multiple values for multiple elements and returns status
     /// via a completion callback.
     ///
@@ -1956,16 +2181,29 @@ extern "C-unwind" {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceSetValueMultipleWithCallback(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceSetValueMultipleWithCallback")]
+    pub unsafe fn set_value_multiple_with_callback(
+        self: &IOHIDDevice,
         multiple: &CFDictionary,
         timeout: CFTimeInterval,
         callback: IOHIDValueMultipleCallback,
         context: *mut c_void,
-    ) -> IOReturn;
-}
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceSetValueMultipleWithCallback(
+                device: &IOHIDDevice,
+                multiple: &CFDictionary,
+                timeout: CFTimeInterval,
+                callback: IOHIDValueMultipleCallback,
+                context: *mut c_void,
+            ) -> IOReturn;
+        }
+        unsafe {
+            IOHIDDeviceSetValueMultipleWithCallback(self, multiple, timeout, callback, context)
+        }
+    }
 
-extern "C-unwind" {
     /// Gets a value for an element.
     ///
     /// This method behaves synchronously and returns immediately
@@ -1981,11 +2219,22 @@ extern "C-unwind" {
     /// Parameter `pValue`: Pointer to IOHIDValueRef to be obtained.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceGetValue(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceGetValue")]
+    pub unsafe fn value(
+        self: &IOHIDDevice,
         element: &IOHIDElement,
         p_value: NonNull<NonNull<IOHIDValue>>,
-    ) -> IOReturn;
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceGetValue(
+                device: &IOHIDDevice,
+                element: &IOHIDElement,
+                p_value: NonNull<NonNull<IOHIDValue>>,
+            ) -> IOReturn;
+        }
+        unsafe { IOHIDDeviceGetValue(self, element, p_value) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicegetvalueoptions?language=objc)
@@ -2010,7 +2259,7 @@ unsafe impl RefEncode for IOHIDDeviceGetValueOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+impl IOHIDDevice {
     /// Gets a value for an element.
     ///
     /// This method behaves synchronously and returns immediately
@@ -2028,15 +2277,25 @@ extern "C-unwind" {
     /// Parameter `options`: (see IOHIDDeviceGetValueOptions).
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceGetValueWithOptions(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceGetValueWithOptions")]
+    pub unsafe fn value_with_options(
+        self: &IOHIDDevice,
         element: &IOHIDElement,
         p_value: NonNull<NonNull<IOHIDValue>>,
         options: u32,
-    ) -> IOReturn;
-}
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceGetValueWithOptions(
+                device: &IOHIDDevice,
+                element: &IOHIDElement,
+                p_value: NonNull<NonNull<IOHIDValue>>,
+                options: u32,
+            ) -> IOReturn;
+        }
+        unsafe { IOHIDDeviceGetValueWithOptions(self, element, p_value, options) }
+    }
 
-extern "C-unwind" {
     /// Copies a values for multiple elements.
     ///
     /// This method behaves synchronously and returns immediately
@@ -2053,14 +2312,23 @@ extern "C-unwind" {
     /// provided elements and the values are the requested values.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceCopyValueMultiple(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceCopyValueMultiple")]
+    pub unsafe fn copy_value_multiple(
+        self: &IOHIDDevice,
         elements: &CFArray,
         p_multiple: *mut *const CFDictionary,
-    ) -> IOReturn;
-}
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceCopyValueMultiple(
+                device: &IOHIDDevice,
+                elements: &CFArray,
+                p_multiple: *mut *const CFDictionary,
+            ) -> IOReturn;
+        }
+        unsafe { IOHIDDeviceCopyValueMultiple(self, elements, p_multiple) }
+    }
 
-extern "C-unwind" {
     /// Gets a value for an element.
     ///
     /// This method currently only behaves synchronously and will not
@@ -2082,17 +2350,31 @@ extern "C-unwind" {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceGetValueWithCallback(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceGetValueWithCallback")]
+    pub unsafe fn value_with_callback(
+        self: &IOHIDDevice,
         element: &IOHIDElement,
         p_value: NonNull<NonNull<IOHIDValue>>,
         timeout: CFTimeInterval,
         callback: IOHIDValueCallback,
         context: *mut c_void,
-    ) -> IOReturn;
-}
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceGetValueWithCallback(
+                device: &IOHIDDevice,
+                element: &IOHIDElement,
+                p_value: NonNull<NonNull<IOHIDValue>>,
+                timeout: CFTimeInterval,
+                callback: IOHIDValueCallback,
+                context: *mut c_void,
+            ) -> IOReturn;
+        }
+        unsafe {
+            IOHIDDeviceGetValueWithCallback(self, element, p_value, timeout, callback, context)
+        }
+    }
 
-extern "C-unwind" {
     /// Copies a values for multiple elements and returns status via a
     /// completion callback.
     ///
@@ -2115,17 +2397,33 @@ extern "C-unwind" {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceCopyValueMultipleWithCallback(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceCopyValueMultipleWithCallback")]
+    pub unsafe fn copy_value_multiple_with_callback(
+        self: &IOHIDDevice,
         elements: &CFArray,
         p_multiple: *mut *const CFDictionary,
         timeout: CFTimeInterval,
         callback: IOHIDValueMultipleCallback,
         context: *mut c_void,
-    ) -> IOReturn;
-}
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceCopyValueMultipleWithCallback(
+                device: &IOHIDDevice,
+                elements: &CFArray,
+                p_multiple: *mut *const CFDictionary,
+                timeout: CFTimeInterval,
+                callback: IOHIDValueMultipleCallback,
+                context: *mut c_void,
+            ) -> IOReturn;
+        }
+        unsafe {
+            IOHIDDeviceCopyValueMultipleWithCallback(
+                self, elements, p_multiple, timeout, callback, context,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Sends a report to the device.
     ///
     /// This method behaves synchronously and will block until the
@@ -2145,16 +2443,27 @@ extern "C-unwind" {
     /// Parameter `reportLength`: The length of the report to be sent to the device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceSetReport(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceSetReport")]
+    pub unsafe fn set_report(
+        self: &IOHIDDevice,
         report_type: IOHIDReportType,
         report_id: CFIndex,
         report: NonNull<u8>,
         report_length: CFIndex,
-    ) -> IOReturn;
-}
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceSetReport(
+                device: &IOHIDDevice,
+                report_type: IOHIDReportType,
+                report_id: CFIndex,
+                report: NonNull<u8>,
+                report_length: CFIndex,
+            ) -> IOReturn;
+        }
+        unsafe { IOHIDDeviceSetReport(self, report_type, report_id, report, report_length) }
+    }
 
-extern "C-unwind" {
     /// Sends a report to the device.
     ///
     /// This method behaves asynchronously. It is only relevent for
@@ -2180,8 +2489,10 @@ extern "C-unwind" {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceSetReportWithCallback(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceSetReportWithCallback")]
+    pub unsafe fn set_report_with_callback(
+        self: &IOHIDDevice,
         report_type: IOHIDReportType,
         report_id: CFIndex,
         report: NonNull<u8>,
@@ -2189,10 +2500,33 @@ extern "C-unwind" {
         timeout: CFTimeInterval,
         callback: IOHIDReportCallback,
         context: *mut c_void,
-    ) -> IOReturn;
-}
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceSetReportWithCallback(
+                device: &IOHIDDevice,
+                report_type: IOHIDReportType,
+                report_id: CFIndex,
+                report: NonNull<u8>,
+                report_length: CFIndex,
+                timeout: CFTimeInterval,
+                callback: IOHIDReportCallback,
+                context: *mut c_void,
+            ) -> IOReturn;
+        }
+        unsafe {
+            IOHIDDeviceSetReportWithCallback(
+                self,
+                report_type,
+                report_id,
+                report,
+                report_length,
+                timeout,
+                callback,
+                context,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Obtains a report from the device.
     ///
     /// This method behaves synchronously and will block until the
@@ -2215,16 +2549,27 @@ extern "C-unwind" {
     /// report.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceGetReport(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceGetReport")]
+    pub unsafe fn report(
+        self: &IOHIDDevice,
         report_type: IOHIDReportType,
         report_id: CFIndex,
         report: NonNull<u8>,
         p_report_length: NonNull<CFIndex>,
-    ) -> IOReturn;
-}
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceGetReport(
+                device: &IOHIDDevice,
+                report_type: IOHIDReportType,
+                report_id: CFIndex,
+                report: NonNull<u8>,
+                p_report_length: NonNull<CFIndex>,
+            ) -> IOReturn;
+        }
+        unsafe { IOHIDDeviceGetReport(self, report_type, report_id, report, p_report_length) }
+    }
 
-extern "C-unwind" {
     /// Obtains a report from the device.
     ///
     /// This method behaves asynchronously. It is only relevent for
@@ -2253,8 +2598,10 @@ extern "C-unwind" {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDDeviceGetReportWithCallback(
-        device: &IOHIDDevice,
+    #[inline]
+    #[doc(alias = "IOHIDDeviceGetReportWithCallback")]
+    pub unsafe fn report_with_callback(
+        self: &IOHIDDevice,
         report_type: IOHIDReportType,
         report_id: CFIndex,
         report: NonNull<u8>,
@@ -2262,7 +2609,32 @@ extern "C-unwind" {
         timeout: CFTimeInterval,
         callback: IOHIDReportCallback,
         context: NonNull<c_void>,
-    ) -> IOReturn;
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDDeviceGetReportWithCallback(
+                device: &IOHIDDevice,
+                report_type: IOHIDReportType,
+                report_id: CFIndex,
+                report: NonNull<u8>,
+                p_report_length: NonNull<CFIndex>,
+                timeout: CFTimeInterval,
+                callback: IOHIDReportCallback,
+                context: NonNull<c_void>,
+            ) -> IOReturn;
+        }
+        unsafe {
+            IOHIDDeviceGetReportWithCallback(
+                self,
+                report_type,
+                report_id,
+                report,
+                p_report_length,
+                timeout,
+                callback,
+                context,
+            )
+        }
+    }
 }
 
 unsafe impl ConcreteType for IOHIDElement {
@@ -2277,85 +2649,85 @@ unsafe impl ConcreteType for IOHIDElement {
     }
 }
 
-/// Creates an element from a dictionary.
-///
-/// The dictionary should contain keys defined in IOHIDKeys.h and start with kIOHIDElement.  This call is meant be used by a IOHIDDeviceDeviceInterface object.
-///
-/// Parameter `allocator`: Allocator to be used during creation.
-///
-/// Parameter `dictionary`: dictionary containing values in which to create element.
-///
-/// Returns: Returns a new IOHIDElementRef.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementCreateWithDictionary(
-    allocator: Option<&CFAllocator>,
-    dictionary: &CFDictionary,
-) -> CFRetained<IOHIDElement> {
-    extern "C-unwind" {
-        fn IOHIDElementCreateWithDictionary(
-            allocator: Option<&CFAllocator>,
-            dictionary: &CFDictionary,
-        ) -> Option<NonNull<IOHIDElement>>;
+impl IOHIDElement {
+    /// Creates an element from a dictionary.
+    ///
+    /// The dictionary should contain keys defined in IOHIDKeys.h and start with kIOHIDElement.  This call is meant be used by a IOHIDDeviceDeviceInterface object.
+    ///
+    /// Parameter `allocator`: Allocator to be used during creation.
+    ///
+    /// Parameter `dictionary`: dictionary containing values in which to create element.
+    ///
+    /// Returns: Returns a new IOHIDElementRef.
+    #[inline]
+    #[doc(alias = "IOHIDElementCreateWithDictionary")]
+    pub unsafe fn with_dictionary(
+        allocator: Option<&CFAllocator>,
+        dictionary: &CFDictionary,
+    ) -> CFRetained<IOHIDElement> {
+        extern "C-unwind" {
+            fn IOHIDElementCreateWithDictionary(
+                allocator: Option<&CFAllocator>,
+                dictionary: &CFDictionary,
+            ) -> Option<NonNull<IOHIDElement>>;
+        }
+        let ret = unsafe { IOHIDElementCreateWithDictionary(allocator, dictionary) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { IOHIDElementCreateWithDictionary(allocator, dictionary) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Obtain the device associated with the element.
-///
-/// Parameter `element`: IOHIDElement to be queried.
-///
-/// Returns: Returns the a reference to the device.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementGetDevice(
-    element: &IOHIDElement,
-) -> CFRetained<IOHIDDevice> {
-    extern "C-unwind" {
-        fn IOHIDElementGetDevice(element: &IOHIDElement) -> Option<NonNull<IOHIDDevice>>;
+    /// Obtain the device associated with the element.
+    ///
+    /// Parameter `element`: IOHIDElement to be queried.
+    ///
+    /// Returns: Returns the a reference to the device.
+    #[inline]
+    #[doc(alias = "IOHIDElementGetDevice")]
+    pub unsafe fn device(self: &IOHIDElement) -> CFRetained<IOHIDDevice> {
+        extern "C-unwind" {
+            fn IOHIDElementGetDevice(element: &IOHIDElement) -> Option<NonNull<IOHIDDevice>>;
+        }
+        let ret = unsafe { IOHIDElementGetDevice(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
-    let ret = unsafe { IOHIDElementGetDevice(element) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-/// Returns the parent for the element.
-///
-/// The parent element can be an element of type kIOHIDElementTypeCollection.
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Returns: Returns an IOHIDElementRef referencing the parent element.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementGetParent(
-    element: &IOHIDElement,
-) -> Option<CFRetained<IOHIDElement>> {
-    extern "C-unwind" {
-        fn IOHIDElementGetParent(element: &IOHIDElement) -> Option<NonNull<IOHIDElement>>;
+    /// Returns the parent for the element.
+    ///
+    /// The parent element can be an element of type kIOHIDElementTypeCollection.
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Returns: Returns an IOHIDElementRef referencing the parent element.
+    #[inline]
+    #[doc(alias = "IOHIDElementGetParent")]
+    pub unsafe fn parent(self: &IOHIDElement) -> Option<CFRetained<IOHIDElement>> {
+        extern "C-unwind" {
+            fn IOHIDElementGetParent(element: &IOHIDElement) -> Option<NonNull<IOHIDElement>>;
+        }
+        let ret = unsafe { IOHIDElementGetParent(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { IOHIDElementGetParent(element) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Returns the children for the element.
-///
-/// An element of type kIOHIDElementTypeCollection usually contains children.
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Returns: Returns an CFArrayRef containing element objects of type IOHIDElementRef.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementGetChildren(
-    element: &IOHIDElement,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn IOHIDElementGetChildren(element: &IOHIDElement) -> Option<NonNull<CFArray>>;
+    /// Returns the children for the element.
+    ///
+    /// An element of type kIOHIDElementTypeCollection usually contains children.
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Returns: Returns an CFArrayRef containing element objects of type IOHIDElementRef.
+    #[inline]
+    #[doc(alias = "IOHIDElementGetChildren")]
+    pub unsafe fn children(self: &IOHIDElement) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn IOHIDElementGetChildren(element: &IOHIDElement) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { IOHIDElementGetChildren(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { IOHIDElementGetChildren(element) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
     /// Establish a relationship between one or more elements.
     ///
     /// This is useful for grouping HID elements with related functionality.
@@ -2363,10 +2735,15 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Parameter `toAttach`: The element to be attached. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-    pub fn IOHIDElementAttach(element: &IOHIDElement, to_attach: &IOHIDElement);
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementAttach")]
+    pub unsafe fn attach(self: &IOHIDElement, to_attach: &IOHIDElement) {
+        extern "C-unwind" {
+            fn IOHIDElementAttach(element: &IOHIDElement, to_attach: &IOHIDElement);
+        }
+        unsafe { IOHIDElementAttach(self, to_attach) }
+    }
 
-extern "C-unwind" {
     /// Remove a relationship between one or more elements.
     ///
     /// This is useful for grouping HID elements with related functionality.
@@ -2374,28 +2751,32 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Parameter `toDetach`: The element to be detached. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-    pub fn IOHIDElementDetach(element: &IOHIDElement, to_detach: &IOHIDElement);
-}
-
-/// Obtain attached elements.
-///
-/// Attached elements are those that have been grouped via IOHIDElementAttach.
-///
-/// Parameter `element`: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Returns: Returns a copy of the current attached elements.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementCopyAttached(
-    element: &IOHIDElement,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn IOHIDElementCopyAttached(element: &IOHIDElement) -> Option<NonNull<CFArray>>;
+    #[inline]
+    #[doc(alias = "IOHIDElementDetach")]
+    pub unsafe fn detach(self: &IOHIDElement, to_detach: &IOHIDElement) {
+        extern "C-unwind" {
+            fn IOHIDElementDetach(element: &IOHIDElement, to_detach: &IOHIDElement);
+        }
+        unsafe { IOHIDElementDetach(self, to_detach) }
     }
-    let ret = unsafe { IOHIDElementCopyAttached(element) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Obtain attached elements.
+    ///
+    /// Attached elements are those that have been grouped via IOHIDElementAttach.
+    ///
+    /// Parameter `element`: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Returns: Returns a copy of the current attached elements.
+    #[inline]
+    #[doc(alias = "IOHIDElementCopyAttached")]
+    pub unsafe fn attached(self: &IOHIDElement) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn IOHIDElementCopyAttached(element: &IOHIDElement) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { IOHIDElementCopyAttached(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Retrieves the cookie for the element.
     ///
     /// The IOHIDElementCookie represent a unique identifier for an element within a device.
@@ -2403,19 +2784,29 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the IOHIDElementCookie for the element.
-    pub fn IOHIDElementGetCookie(element: &IOHIDElement) -> IOHIDElementCookie;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetCookie")]
+    pub unsafe fn cookie(self: &IOHIDElement) -> IOHIDElementCookie {
+        extern "C-unwind" {
+            fn IOHIDElementGetCookie(element: &IOHIDElement) -> IOHIDElementCookie;
+        }
+        unsafe { IOHIDElementGetCookie(self) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the type for the element.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the IOHIDElementType for the element.
-    pub fn IOHIDElementGetType(element: &IOHIDElement) -> IOHIDElementType;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetType")]
+    pub unsafe fn r#type(self: &IOHIDElement) -> IOHIDElementType {
+        extern "C-unwind" {
+            fn IOHIDElementGetType(element: &IOHIDElement) -> IOHIDElementType;
+        }
+        unsafe { IOHIDElementGetType(self) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the collection type for the element.
     ///
     /// The value returned by this method only makes sense if the element type is kIOHIDElementTypeCollection.
@@ -2423,168 +2814,190 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the IOHIDElementCollectionType for the element.
-    pub fn IOHIDElementGetCollectionType(element: &IOHIDElement) -> IOHIDElementCollectionType;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetCollectionType")]
+    pub unsafe fn collection_type(self: &IOHIDElement) -> IOHIDElementCollectionType {
+        extern "C-unwind" {
+            fn IOHIDElementGetCollectionType(element: &IOHIDElement) -> IOHIDElementCollectionType;
+        }
+        unsafe { IOHIDElementGetCollectionType(self) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the usage page for an element.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the usage page for the element.
-    pub fn IOHIDElementGetUsagePage(element: &IOHIDElement) -> u32;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetUsagePage")]
+    pub unsafe fn usage_page(self: &IOHIDElement) -> u32 {
+        extern "C-unwind" {
+            fn IOHIDElementGetUsagePage(element: &IOHIDElement) -> u32;
+        }
+        unsafe { IOHIDElementGetUsagePage(self) }
+    }
 
-extern "C-unwind" {
     /// Retrieves the usage for an element.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the usage for the element.
-    pub fn IOHIDElementGetUsage(element: &IOHIDElement) -> u32;
-}
-
-/// Returns the virtual property for the element.
-///
-/// Indicates whether the element is a virtual element.
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Returns: Returns the TRUE if virtual or FALSE if not.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementIsVirtual(element: &IOHIDElement) -> bool {
-    extern "C-unwind" {
-        fn IOHIDElementIsVirtual(element: &IOHIDElement) -> Boolean;
+    #[inline]
+    #[doc(alias = "IOHIDElementGetUsage")]
+    pub unsafe fn usage(self: &IOHIDElement) -> u32 {
+        extern "C-unwind" {
+            fn IOHIDElementGetUsage(element: &IOHIDElement) -> u32;
+        }
+        unsafe { IOHIDElementGetUsage(self) }
     }
-    let ret = unsafe { IOHIDElementIsVirtual(element) };
-    ret != 0
-}
 
-/// Returns the relative property for the element.
-///
-/// Indicates whether the data is relative (indicating the change in value from the last report) or absolute
-/// (based on a fixed origin).
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Returns: Returns TRUE if relative or FALSE if absolute.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementIsRelative(element: &IOHIDElement) -> bool {
-    extern "C-unwind" {
-        fn IOHIDElementIsRelative(element: &IOHIDElement) -> Boolean;
+    /// Returns the virtual property for the element.
+    ///
+    /// Indicates whether the element is a virtual element.
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Returns: Returns the TRUE if virtual or FALSE if not.
+    #[inline]
+    #[doc(alias = "IOHIDElementIsVirtual")]
+    pub unsafe fn is_virtual(self: &IOHIDElement) -> bool {
+        extern "C-unwind" {
+            fn IOHIDElementIsVirtual(element: &IOHIDElement) -> Boolean;
+        }
+        let ret = unsafe { IOHIDElementIsVirtual(self) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDElementIsRelative(element) };
-    ret != 0
-}
 
-/// Returns the wrap property for the element.
-///
-/// Wrap indicates whether the data "rolls over" when reaching either the extreme high or low value.
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Returns: Returns TRUE if wrapping or FALSE if non-wrapping.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementIsWrapping(element: &IOHIDElement) -> bool {
-    extern "C-unwind" {
-        fn IOHIDElementIsWrapping(element: &IOHIDElement) -> Boolean;
+    /// Returns the relative property for the element.
+    ///
+    /// Indicates whether the data is relative (indicating the change in value from the last report) or absolute
+    /// (based on a fixed origin).
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Returns: Returns TRUE if relative or FALSE if absolute.
+    #[inline]
+    #[doc(alias = "IOHIDElementIsRelative")]
+    pub unsafe fn is_relative(self: &IOHIDElement) -> bool {
+        extern "C-unwind" {
+            fn IOHIDElementIsRelative(element: &IOHIDElement) -> Boolean;
+        }
+        let ret = unsafe { IOHIDElementIsRelative(self) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDElementIsWrapping(element) };
-    ret != 0
-}
 
-/// Returns the array property for the element.
-///
-/// Indicates whether the element represents variable or array data values. Variable values represent data from a
-/// physical control.  An array returns an index in each field that corresponds to the pressed button
-/// (like keyboard scan codes).
-/// <br>
-/// <b>
-/// Note:
-/// </b>
-/// The HID Manager will represent most elements as "variable" including the possible usages of an array.
-/// Array indices will remain as "array" elements with a usage of 0xffffffff.
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Returns: Returns TRUE if array or FALSE if variable.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementIsArray(element: &IOHIDElement) -> bool {
-    extern "C-unwind" {
-        fn IOHIDElementIsArray(element: &IOHIDElement) -> Boolean;
+    /// Returns the wrap property for the element.
+    ///
+    /// Wrap indicates whether the data "rolls over" when reaching either the extreme high or low value.
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Returns: Returns TRUE if wrapping or FALSE if non-wrapping.
+    #[inline]
+    #[doc(alias = "IOHIDElementIsWrapping")]
+    pub unsafe fn is_wrapping(self: &IOHIDElement) -> bool {
+        extern "C-unwind" {
+            fn IOHIDElementIsWrapping(element: &IOHIDElement) -> Boolean;
+        }
+        let ret = unsafe { IOHIDElementIsWrapping(self) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDElementIsArray(element) };
-    ret != 0
-}
 
-/// Returns the linear property for the element.
-///
-/// Indicates whether the value for the element has been processed in some way, and no longer represents a linear
-/// relationship between what is measured and the value that is reported.
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Returns: Returns TRUE if non linear or FALSE if linear.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementIsNonLinear(element: &IOHIDElement) -> bool {
-    extern "C-unwind" {
-        fn IOHIDElementIsNonLinear(element: &IOHIDElement) -> Boolean;
+    /// Returns the array property for the element.
+    ///
+    /// Indicates whether the element represents variable or array data values. Variable values represent data from a
+    /// physical control.  An array returns an index in each field that corresponds to the pressed button
+    /// (like keyboard scan codes).
+    /// <br>
+    /// <b>
+    /// Note:
+    /// </b>
+    /// The HID Manager will represent most elements as "variable" including the possible usages of an array.
+    /// Array indices will remain as "array" elements with a usage of 0xffffffff.
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Returns: Returns TRUE if array or FALSE if variable.
+    #[inline]
+    #[doc(alias = "IOHIDElementIsArray")]
+    pub unsafe fn is_array(self: &IOHIDElement) -> bool {
+        extern "C-unwind" {
+            fn IOHIDElementIsArray(element: &IOHIDElement) -> Boolean;
+        }
+        let ret = unsafe { IOHIDElementIsArray(self) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDElementIsNonLinear(element) };
-    ret != 0
-}
 
-/// Returns the preferred state property for the element.
-///
-/// Indicates whether the element has a preferred state to which it will return when the user is not physically
-/// interacting with the control.
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Returns: Returns TRUE if preferred state or FALSE if no preferred state.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementHasPreferredState(element: &IOHIDElement) -> bool {
-    extern "C-unwind" {
-        fn IOHIDElementHasPreferredState(element: &IOHIDElement) -> Boolean;
+    /// Returns the linear property for the element.
+    ///
+    /// Indicates whether the value for the element has been processed in some way, and no longer represents a linear
+    /// relationship between what is measured and the value that is reported.
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Returns: Returns TRUE if non linear or FALSE if linear.
+    #[inline]
+    #[doc(alias = "IOHIDElementIsNonLinear")]
+    pub unsafe fn is_non_linear(self: &IOHIDElement) -> bool {
+        extern "C-unwind" {
+            fn IOHIDElementIsNonLinear(element: &IOHIDElement) -> Boolean;
+        }
+        let ret = unsafe { IOHIDElementIsNonLinear(self) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDElementHasPreferredState(element) };
-    ret != 0
-}
 
-/// Returns the null state property for the element.
-///
-/// Indicates whether the element has a state in which it is not sending meaningful data.
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Returns: Returns TRUE if null state or FALSE if no null state.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementHasNullState(element: &IOHIDElement) -> bool {
-    extern "C-unwind" {
-        fn IOHIDElementHasNullState(element: &IOHIDElement) -> Boolean;
+    /// Returns the preferred state property for the element.
+    ///
+    /// Indicates whether the element has a preferred state to which it will return when the user is not physically
+    /// interacting with the control.
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Returns: Returns TRUE if preferred state or FALSE if no preferred state.
+    #[inline]
+    #[doc(alias = "IOHIDElementHasPreferredState")]
+    pub unsafe fn has_preferred_state(self: &IOHIDElement) -> bool {
+        extern "C-unwind" {
+            fn IOHIDElementHasPreferredState(element: &IOHIDElement) -> Boolean;
+        }
+        let ret = unsafe { IOHIDElementHasPreferredState(self) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDElementHasNullState(element) };
-    ret != 0
-}
 
-/// Returns the name for the element.
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Returns: Returns CFStringRef containing the element name.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementGetName(
-    element: &IOHIDElement,
-) -> CFRetained<CFString> {
-    extern "C-unwind" {
-        fn IOHIDElementGetName(element: &IOHIDElement) -> Option<NonNull<CFString>>;
+    /// Returns the null state property for the element.
+    ///
+    /// Indicates whether the element has a state in which it is not sending meaningful data.
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Returns: Returns TRUE if null state or FALSE if no null state.
+    #[inline]
+    #[doc(alias = "IOHIDElementHasNullState")]
+    pub unsafe fn has_null_state(self: &IOHIDElement) -> bool {
+        extern "C-unwind" {
+            fn IOHIDElementHasNullState(element: &IOHIDElement) -> Boolean;
+        }
+        let ret = unsafe { IOHIDElementHasNullState(self) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDElementGetName(element) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-extern "C-unwind" {
+    /// Returns the name for the element.
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Returns: Returns CFStringRef containing the element name.
+    #[inline]
+    #[doc(alias = "IOHIDElementGetName")]
+    pub unsafe fn name(self: &IOHIDElement) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn IOHIDElementGetName(element: &IOHIDElement) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { IOHIDElementGetName(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
+    }
+
     /// Returns the report ID for the element.
     ///
     /// The report ID represents what report this particular element belongs to.
@@ -2592,10 +3005,15 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the report ID.
-    pub fn IOHIDElementGetReportID(element: &IOHIDElement) -> u32;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetReportID")]
+    pub unsafe fn report_id(self: &IOHIDElement) -> u32 {
+        extern "C-unwind" {
+            fn IOHIDElementGetReportID(element: &IOHIDElement) -> u32;
+        }
+        unsafe { IOHIDElementGetReportID(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the report size in bits for the element.
     ///
     /// If the element is an array type the total number of bit in the element is equal to
@@ -2606,10 +3024,15 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the report size.
-    pub fn IOHIDElementGetReportSize(element: &IOHIDElement) -> u32;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetReportSize")]
+    pub unsafe fn report_size(self: &IOHIDElement) -> u32 {
+        extern "C-unwind" {
+            fn IOHIDElementGetReportSize(element: &IOHIDElement) -> u32;
+        }
+        unsafe { IOHIDElementGetReportSize(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the report count for the element.
     ///
     /// If the IOHIDElementGetReportCount(element) is greater than one and the element does not represent an
@@ -2620,10 +3043,15 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the report count.
-    pub fn IOHIDElementGetReportCount(element: &IOHIDElement) -> u32;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetReportCount")]
+    pub unsafe fn report_count(self: &IOHIDElement) -> u32 {
+        extern "C-unwind" {
+            fn IOHIDElementGetReportCount(element: &IOHIDElement) -> u32;
+        }
+        unsafe { IOHIDElementGetReportCount(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the unit property for the element.
     ///
     /// The unit property is described in more detail in Section 6.2.2.7 of the
@@ -2632,10 +3060,15 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the unit.
-    pub fn IOHIDElementGetUnit(element: &IOHIDElement) -> u32;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetUnit")]
+    pub unsafe fn unit(self: &IOHIDElement) -> u32 {
+        extern "C-unwind" {
+            fn IOHIDElementGetUnit(element: &IOHIDElement) -> u32;
+        }
+        unsafe { IOHIDElementGetUnit(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the code associated with the unit exponent as outlined in the HID spec
     ///
     /// The unit exponent property is described in more detail in Section 6.2.2.7 of the
@@ -2644,10 +3077,15 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the unit exponent.
-    pub fn IOHIDElementGetUnitExponent(element: &IOHIDElement) -> u32;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetUnitExponent")]
+    pub unsafe fn unit_exponent(self: &IOHIDElement) -> u32 {
+        extern "C-unwind" {
+            fn IOHIDElementGetUnitExponent(element: &IOHIDElement) -> u32;
+        }
+        unsafe { IOHIDElementGetUnitExponent(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the minimum value possible for the element.
     ///
     /// This corresponds to the logical minimun, which indicates the lower bounds of a variable element.
@@ -2655,10 +3093,15 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the logical minimum.
-    pub fn IOHIDElementGetLogicalMin(element: &IOHIDElement) -> CFIndex;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetLogicalMin")]
+    pub unsafe fn logical_min(self: &IOHIDElement) -> CFIndex {
+        extern "C-unwind" {
+            fn IOHIDElementGetLogicalMin(element: &IOHIDElement) -> CFIndex;
+        }
+        unsafe { IOHIDElementGetLogicalMin(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the maximum value possible for the element.
     ///
     /// This corresponds to the logical maximum, which indicates the upper bounds of a variable element.
@@ -2666,10 +3109,15 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the logical maximum.
-    pub fn IOHIDElementGetLogicalMax(element: &IOHIDElement) -> CFIndex;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetLogicalMax")]
+    pub unsafe fn logical_max(self: &IOHIDElement) -> CFIndex {
+        extern "C-unwind" {
+            fn IOHIDElementGetLogicalMax(element: &IOHIDElement) -> CFIndex;
+        }
+        unsafe { IOHIDElementGetLogicalMax(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the scaled minimum value possible for the element.
     ///
     /// Minimum value for the physical extent of a variable element. This represents the value for the logical minimum with units applied to it.
@@ -2677,10 +3125,15 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the physical minimum.
-    pub fn IOHIDElementGetPhysicalMin(element: &IOHIDElement) -> CFIndex;
-}
+    #[inline]
+    #[doc(alias = "IOHIDElementGetPhysicalMin")]
+    pub unsafe fn physical_min(self: &IOHIDElement) -> CFIndex {
+        extern "C-unwind" {
+            fn IOHIDElementGetPhysicalMin(element: &IOHIDElement) -> CFIndex;
+        }
+        unsafe { IOHIDElementGetPhysicalMin(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the scaled maximum value possible for the element.
     ///
     /// Maximum value for the physical extent of a variable element.  This represents the value for the logical maximum with units applied to it.
@@ -2688,57 +3141,59 @@ extern "C-unwind" {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the physical maximum.
-    pub fn IOHIDElementGetPhysicalMax(element: &IOHIDElement) -> CFIndex;
-}
-
-/// Returns the an element property.
-///
-/// Property keys are prefixed by kIOHIDElement and declared in IOHIDKeys.h.
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Parameter `key`: The key to be used when querying the element.
-///
-/// Returns: Returns the property.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementGetProperty(
-    element: &IOHIDElement,
-    key: &CFString,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn IOHIDElementGetProperty(
-            element: &IOHIDElement,
-            key: &CFString,
-        ) -> Option<NonNull<CFType>>;
+    #[inline]
+    #[doc(alias = "IOHIDElementGetPhysicalMax")]
+    pub unsafe fn physical_max(self: &IOHIDElement) -> CFIndex {
+        extern "C-unwind" {
+            fn IOHIDElementGetPhysicalMax(element: &IOHIDElement) -> CFIndex;
+        }
+        unsafe { IOHIDElementGetPhysicalMax(self) }
     }
-    let ret = unsafe { IOHIDElementGetProperty(element, key) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Sets an element property.
-///
-/// This method can be used to set arbitrary element properties, such as application specific references.
-///
-/// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-///
-/// Parameter `key`: The key to be used when querying the element.
-///
-/// Returns: Returns TRUE if successful.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDElementSetProperty(
-    element: &IOHIDElement,
-    key: &CFString,
-    property: &CFType,
-) -> bool {
-    extern "C-unwind" {
-        fn IOHIDElementSetProperty(
-            element: &IOHIDElement,
-            key: &CFString,
-            property: &CFType,
-        ) -> Boolean;
+    /// Returns the an element property.
+    ///
+    /// Property keys are prefixed by kIOHIDElement and declared in IOHIDKeys.h.
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Parameter `key`: The key to be used when querying the element.
+    ///
+    /// Returns: Returns the property.
+    #[inline]
+    #[doc(alias = "IOHIDElementGetProperty")]
+    pub unsafe fn property(self: &IOHIDElement, key: &CFString) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn IOHIDElementGetProperty(
+                element: &IOHIDElement,
+                key: &CFString,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { IOHIDElementGetProperty(self, key) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { IOHIDElementSetProperty(element, key, property) };
-    ret != 0
+
+    /// Sets an element property.
+    ///
+    /// This method can be used to set arbitrary element properties, such as application specific references.
+    ///
+    /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// Parameter `key`: The key to be used when querying the element.
+    ///
+    /// Returns: Returns TRUE if successful.
+    #[inline]
+    #[doc(alias = "IOHIDElementSetProperty")]
+    pub unsafe fn set_property(self: &IOHIDElement, key: &CFString, property: &CFType) -> bool {
+        extern "C-unwind" {
+            fn IOHIDElementSetProperty(
+                element: &IOHIDElement,
+                key: &CFString,
+                property: &CFType,
+            ) -> Boolean;
+        }
+        let ret = unsafe { IOHIDElementSetProperty(self, key, property) };
+        ret != 0
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohideventstruct?language=objc)
@@ -3490,46 +3945,48 @@ unsafe impl ConcreteType for IOHIDManager {
     }
 }
 
-/// Creates an IOHIDManager object.
-///
-/// The IOHIDManager object is meant as a global management system
-/// for communicating with HID devices.
-///
-/// Parameter `allocator`: Allocator to be used during creation.
-///
-/// Parameter `options`: Supply
-///
-/// ```text
-///  kIOHIDManagerOptionUsePersistentProperties
-/// ```
-///
-/// to load
-/// properties from the default persistent property store. Otherwise supply
-///
-/// ```text
-///  kIOHIDManagerOptionNone
-/// ```
-///
-/// (or 0).
-///
-/// Returns: Returns a new IOHIDManagerRef.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDManagerCreate(
-    allocator: Option<&CFAllocator>,
-    options: IOOptionBits,
-) -> CFRetained<IOHIDManager> {
-    extern "C-unwind" {
-        fn IOHIDManagerCreate(
-            allocator: Option<&CFAllocator>,
-            options: IOOptionBits,
-        ) -> Option<NonNull<IOHIDManager>>;
+impl IOHIDManager {
+    /// Creates an IOHIDManager object.
+    ///
+    /// The IOHIDManager object is meant as a global management system
+    /// for communicating with HID devices.
+    ///
+    /// Parameter `allocator`: Allocator to be used during creation.
+    ///
+    /// Parameter `options`: Supply
+    ///
+    /// ```text
+    ///  kIOHIDManagerOptionUsePersistentProperties
+    /// ```
+    ///
+    /// to load
+    /// properties from the default persistent property store. Otherwise supply
+    ///
+    /// ```text
+    ///  kIOHIDManagerOptionNone
+    /// ```
+    ///
+    /// (or 0).
+    ///
+    /// Returns: Returns a new IOHIDManagerRef.
+    #[inline]
+    #[doc(alias = "IOHIDManagerCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        options: IOOptionBits,
+    ) -> CFRetained<IOHIDManager> {
+        extern "C-unwind" {
+            fn IOHIDManagerCreate(
+                allocator: Option<&CFAllocator>,
+                options: IOOptionBits,
+            ) -> Option<NonNull<IOHIDManager>>;
+        }
+        let ret = unsafe { IOHIDManagerCreate(allocator, options) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { IOHIDManagerCreate(allocator, options) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-extern "C-unwind" {
     /// Opens the IOHIDManager.
     ///
     /// This will open both current and future devices that are
@@ -3541,10 +3998,15 @@ extern "C-unwind" {
     /// Parameter `options`: Option bits to be sent down to the manager and device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDManagerOpen(manager: &IOHIDManager, options: IOOptionBits) -> IOReturn;
-}
+    #[inline]
+    #[doc(alias = "IOHIDManagerOpen")]
+    pub unsafe fn open(self: &IOHIDManager, options: IOOptionBits) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDManagerOpen(manager: &IOHIDManager, options: IOOptionBits) -> IOReturn;
+        }
+        unsafe { IOHIDManagerOpen(self, options) }
+    }
 
-extern "C-unwind" {
     /// Closes the IOHIDManager.
     ///
     /// This will also close all devices that are currently enumerated.
@@ -3554,71 +4016,71 @@ extern "C-unwind" {
     /// Parameter `options`: Option bits to be sent down to the manager and device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    pub fn IOHIDManagerClose(manager: &IOHIDManager, options: IOOptionBits) -> IOReturn;
-}
-
-/// Obtains a property of an IOHIDManager.
-///
-/// Property keys are prefixed by kIOHIDDevice and declared in
-/// <IOKit
-/// /hid/IOHIDKeys.h>.
-///
-/// Parameter `manager`: Reference to an IOHIDManager.
-///
-/// Parameter `key`: CFStringRef containing key to be used when querying the
-/// manager.
-///
-/// Returns: Returns CFTypeRef containing the property.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDManagerGetProperty(
-    manager: &IOHIDManager,
-    key: &CFString,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn IOHIDManagerGetProperty(
-            manager: &IOHIDManager,
-            key: &CFString,
-        ) -> Option<NonNull<CFType>>;
+    #[inline]
+    #[doc(alias = "IOHIDManagerClose")]
+    pub unsafe fn close(self: &IOHIDManager, options: IOOptionBits) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDManagerClose(manager: &IOHIDManager, options: IOOptionBits) -> IOReturn;
+        }
+        unsafe { IOHIDManagerClose(self, options) }
     }
-    let ret = unsafe { IOHIDManagerGetProperty(manager, key) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Sets a property for an IOHIDManager.
-///
-/// Property keys are prefixed by kIOHIDDevice and kIOHIDManager and
-/// declared in
-/// <IOKit
-/// /hid/IOHIDKeys.h>. This method will propagate
-/// any relevent properties to current and future devices that are
-/// enumerated.
-///
-/// Parameter `manager`: Reference to an IOHIDManager.
-///
-/// Parameter `key`: CFStringRef containing key to be used when modifiying the
-/// device property.
-///
-/// Parameter `value`: CFTypeRef containing the property value to be set.
-///
-/// Returns: Returns TRUE if successful.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDManagerSetProperty(
-    manager: &IOHIDManager,
-    key: &CFString,
-    value: &CFType,
-) -> bool {
-    extern "C-unwind" {
-        fn IOHIDManagerSetProperty(
-            manager: &IOHIDManager,
-            key: &CFString,
-            value: &CFType,
-        ) -> Boolean;
+    /// Obtains a property of an IOHIDManager.
+    ///
+    /// Property keys are prefixed by kIOHIDDevice and declared in
+    /// <IOKit
+    /// /hid/IOHIDKeys.h>.
+    ///
+    /// Parameter `manager`: Reference to an IOHIDManager.
+    ///
+    /// Parameter `key`: CFStringRef containing key to be used when querying the
+    /// manager.
+    ///
+    /// Returns: Returns CFTypeRef containing the property.
+    #[inline]
+    #[doc(alias = "IOHIDManagerGetProperty")]
+    pub unsafe fn property(self: &IOHIDManager, key: &CFString) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn IOHIDManagerGetProperty(
+                manager: &IOHIDManager,
+                key: &CFString,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { IOHIDManagerGetProperty(self, key) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { IOHIDManagerSetProperty(manager, key, value) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Sets a property for an IOHIDManager.
+    ///
+    /// Property keys are prefixed by kIOHIDDevice and kIOHIDManager and
+    /// declared in
+    /// <IOKit
+    /// /hid/IOHIDKeys.h>. This method will propagate
+    /// any relevent properties to current and future devices that are
+    /// enumerated.
+    ///
+    /// Parameter `manager`: Reference to an IOHIDManager.
+    ///
+    /// Parameter `key`: CFStringRef containing key to be used when modifiying the
+    /// device property.
+    ///
+    /// Parameter `value`: CFTypeRef containing the property value to be set.
+    ///
+    /// Returns: Returns TRUE if successful.
+    #[inline]
+    #[doc(alias = "IOHIDManagerSetProperty")]
+    pub unsafe fn set_property(self: &IOHIDManager, key: &CFString, value: &CFType) -> bool {
+        extern "C-unwind" {
+            fn IOHIDManagerSetProperty(
+                manager: &IOHIDManager,
+                key: &CFString,
+                value: &CFType,
+            ) -> Boolean;
+        }
+        let ret = unsafe { IOHIDManagerSetProperty(self, key, value) };
+        ret != 0
+    }
+
     /// Schedules HID manager with run loop.
     ///
     /// Formally associates manager with client's run loop. Scheduling
@@ -3633,14 +4095,23 @@ extern "C-unwind" {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
-    pub fn IOHIDManagerScheduleWithRunLoop(
-        manager: &IOHIDManager,
+    #[inline]
+    #[doc(alias = "IOHIDManagerScheduleWithRunLoop")]
+    pub unsafe fn schedule_with_run_loop(
+        self: &IOHIDManager,
         run_loop: &CFRunLoop,
         run_loop_mode: &CFString,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDManagerScheduleWithRunLoop(
+                manager: &IOHIDManager,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { IOHIDManagerScheduleWithRunLoop(self, run_loop, run_loop_mode) }
+    }
 
-extern "C-unwind" {
     /// Unschedules HID manager with run loop.
     ///
     /// Formally disassociates device with client's run loop. This will
@@ -3653,14 +4124,23 @@ extern "C-unwind" {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when unscheduling any
     /// asynchronous activity.
-    pub fn IOHIDManagerUnscheduleFromRunLoop(
-        manager: &IOHIDManager,
+    #[inline]
+    #[doc(alias = "IOHIDManagerUnscheduleFromRunLoop")]
+    pub unsafe fn unschedule_from_run_loop(
+        self: &IOHIDManager,
         run_loop: &CFRunLoop,
         run_loop_mode: &CFString,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDManagerUnscheduleFromRunLoop(
+                manager: &IOHIDManager,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { IOHIDManagerUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
+    }
 
-extern "C-unwind" {
     /// Sets the dispatch queue to be associated with the IOHIDManager.
     /// This is necessary in order to receive asynchronous events from the kernel.
     ///
@@ -3678,10 +4158,15 @@ extern "C-unwind" {
     ///
     /// Parameter `queue`: The dispatch queue to which the event handler block will be submitted.
     #[cfg(feature = "dispatch2")]
-    pub fn IOHIDManagerSetDispatchQueue(manager: &IOHIDManager, queue: &DispatchQueue);
-}
+    #[inline]
+    #[doc(alias = "IOHIDManagerSetDispatchQueue")]
+    pub unsafe fn set_dispatch_queue(self: &IOHIDManager, queue: &DispatchQueue) {
+        extern "C-unwind" {
+            fn IOHIDManagerSetDispatchQueue(manager: &IOHIDManager, queue: &DispatchQueue);
+        }
+        unsafe { IOHIDManagerSetDispatchQueue(self, queue) }
+    }
 
-extern "C-unwind" {
     /// Sets a cancellation handler for the dispatch queue associated with
     /// IOHIDManagerSetDispatchQueue.
     ///
@@ -3710,10 +4195,15 @@ extern "C-unwind" {
     ///
     /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
     #[cfg(feature = "dispatch2")]
-    pub fn IOHIDManagerSetCancelHandler(manager: &IOHIDManager, handler: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "IOHIDManagerSetCancelHandler")]
+    pub unsafe fn set_cancel_handler(self: &IOHIDManager, handler: dispatch_block_t) {
+        extern "C-unwind" {
+            fn IOHIDManagerSetCancelHandler(manager: &IOHIDManager, handler: dispatch_block_t);
+        }
+        unsafe { IOHIDManagerSetCancelHandler(self, handler) }
+    }
 
-extern "C-unwind" {
     /// Activates the IOHIDManager object.
     ///
     ///
@@ -3732,10 +4222,15 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `manager`: Reference to an IOHIDManager
-    pub fn IOHIDManagerActivate(manager: &IOHIDManager);
-}
+    #[inline]
+    #[doc(alias = "IOHIDManagerActivate")]
+    pub unsafe fn activate(self: &IOHIDManager) {
+        extern "C-unwind" {
+            fn IOHIDManagerActivate(manager: &IOHIDManager);
+        }
+        unsafe { IOHIDManagerActivate(self) }
+    }
 
-extern "C-unwind" {
     /// Cancels the IOHIDManager preventing any further invocation
     /// of its event handler block.
     ///
@@ -3762,10 +4257,15 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `manager`: Reference to an IOHIDManager
-    pub fn IOHIDManagerCancel(manager: &IOHIDManager);
-}
+    #[inline]
+    #[doc(alias = "IOHIDManagerCancel")]
+    pub unsafe fn cancel(self: &IOHIDManager) {
+        extern "C-unwind" {
+            fn IOHIDManagerCancel(manager: &IOHIDManager);
+        }
+        unsafe { IOHIDManagerCancel(self) }
+    }
 
-extern "C-unwind" {
     /// Sets matching criteria for device enumeration.
     ///
     /// Matching keys are prefixed by kIOHIDDevice and declared in
@@ -3781,10 +4281,18 @@ extern "C-unwind" {
     /// Parameter `manager`: Reference to an IOHIDManager.
     ///
     /// Parameter `matching`: CFDictionaryRef containg device matching criteria.
-    pub fn IOHIDManagerSetDeviceMatching(manager: &IOHIDManager, matching: Option<&CFDictionary>);
-}
+    #[inline]
+    #[doc(alias = "IOHIDManagerSetDeviceMatching")]
+    pub unsafe fn set_device_matching(self: &IOHIDManager, matching: Option<&CFDictionary>) {
+        extern "C-unwind" {
+            fn IOHIDManagerSetDeviceMatching(
+                manager: &IOHIDManager,
+                matching: Option<&CFDictionary>,
+            );
+        }
+        unsafe { IOHIDManagerSetDeviceMatching(self, matching) }
+    }
 
-extern "C-unwind" {
     /// Sets multiple matching criteria for device enumeration.
     ///
     /// Matching keys are prefixed by kIOHIDDevice and declared in
@@ -3797,29 +4305,33 @@ extern "C-unwind" {
     ///
     /// Parameter `multiple`: CFArrayRef containing multiple CFDictionaryRef objects
     /// containg device matching criteria.
-    pub fn IOHIDManagerSetDeviceMatchingMultiple(
-        manager: &IOHIDManager,
-        multiple: Option<&CFArray>,
-    );
-}
-
-/// Obtains currently enumerated devices.
-///
-/// Parameter `manager`: Reference to an IOHIDManager.
-///
-/// Returns: CFSetRef containing IOHIDDeviceRefs.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDManagerCopyDevices(
-    manager: &IOHIDManager,
-) -> Option<CFRetained<CFSet>> {
-    extern "C-unwind" {
-        fn IOHIDManagerCopyDevices(manager: &IOHIDManager) -> Option<NonNull<CFSet>>;
+    #[inline]
+    #[doc(alias = "IOHIDManagerSetDeviceMatchingMultiple")]
+    pub unsafe fn set_device_matching_multiple(self: &IOHIDManager, multiple: Option<&CFArray>) {
+        extern "C-unwind" {
+            fn IOHIDManagerSetDeviceMatchingMultiple(
+                manager: &IOHIDManager,
+                multiple: Option<&CFArray>,
+            );
+        }
+        unsafe { IOHIDManagerSetDeviceMatchingMultiple(self, multiple) }
     }
-    let ret = unsafe { IOHIDManagerCopyDevices(manager) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Obtains currently enumerated devices.
+    ///
+    /// Parameter `manager`: Reference to an IOHIDManager.
+    ///
+    /// Returns: CFSetRef containing IOHIDDeviceRefs.
+    #[inline]
+    #[doc(alias = "IOHIDManagerCopyDevices")]
+    pub unsafe fn devices(self: &IOHIDManager) -> Option<CFRetained<CFSet>> {
+        extern "C-unwind" {
+            fn IOHIDManagerCopyDevices(manager: &IOHIDManager) -> Option<NonNull<CFSet>>;
+        }
+        let ret = unsafe { IOHIDManagerCopyDevices(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Registers a callback to be used a device is enumerated.
     ///
     /// Only device matching the set criteria will be enumerated.
@@ -3834,14 +4346,23 @@ extern "C-unwind" {
     /// IOHIDDeviceCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
-    pub fn IOHIDManagerRegisterDeviceMatchingCallback(
-        manager: &IOHIDManager,
+    #[inline]
+    #[doc(alias = "IOHIDManagerRegisterDeviceMatchingCallback")]
+    pub unsafe fn register_device_matching_callback(
+        self: &IOHIDManager,
         callback: IOHIDDeviceCallback,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDManagerRegisterDeviceMatchingCallback(
+                manager: &IOHIDManager,
+                callback: IOHIDDeviceCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { IOHIDManagerRegisterDeviceMatchingCallback(self, callback, context) }
+    }
 
-extern "C-unwind" {
     /// Registers a callback to be used when any enumerated device is
     /// removed.
     ///
@@ -3854,14 +4375,23 @@ extern "C-unwind" {
     /// IOHIDDeviceCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
-    pub fn IOHIDManagerRegisterDeviceRemovalCallback(
-        manager: &IOHIDManager,
+    #[inline]
+    #[doc(alias = "IOHIDManagerRegisterDeviceRemovalCallback")]
+    pub unsafe fn register_device_removal_callback(
+        self: &IOHIDManager,
         callback: IOHIDDeviceCallback,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDManagerRegisterDeviceRemovalCallback(
+                manager: &IOHIDManager,
+                callback: IOHIDDeviceCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { IOHIDManagerRegisterDeviceRemovalCallback(self, callback, context) }
+    }
 
-extern "C-unwind" {
     /// Registers a callback to be used when an input report is issued by
     /// any enumerated device.
     ///
@@ -3873,14 +4403,23 @@ extern "C-unwind" {
     /// Parameter `callback`: Pointer to a callback method of type IOHIDReportCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
-    pub fn IOHIDManagerRegisterInputReportCallback(
-        manager: &IOHIDManager,
+    #[inline]
+    #[doc(alias = "IOHIDManagerRegisterInputReportCallback")]
+    pub unsafe fn register_input_report_callback(
+        self: &IOHIDManager,
         callback: IOHIDReportCallback,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDManagerRegisterInputReportCallback(
+                manager: &IOHIDManager,
+                callback: IOHIDReportCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { IOHIDManagerRegisterInputReportCallback(self, callback, context) }
+    }
 
-extern "C-unwind" {
     /// Registers a callback to be used when an input report is issued by
     /// any enumerated device.
     ///
@@ -3893,14 +4432,23 @@ extern "C-unwind" {
     /// IOHIDReportWithTimeStampCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
-    pub fn IOHIDManagerRegisterInputReportWithTimeStampCallback(
-        manager: &IOHIDManager,
+    #[inline]
+    #[doc(alias = "IOHIDManagerRegisterInputReportWithTimeStampCallback")]
+    pub unsafe fn register_input_report_with_time_stamp_callback(
+        self: &IOHIDManager,
         callback: IOHIDReportWithTimeStampCallback,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDManagerRegisterInputReportWithTimeStampCallback(
+                manager: &IOHIDManager,
+                callback: IOHIDReportWithTimeStampCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { IOHIDManagerRegisterInputReportWithTimeStampCallback(self, callback, context) }
+    }
 
-extern "C-unwind" {
     /// Registers a callback to be used when an input value is issued by
     /// any enumerated device.
     ///
@@ -3914,14 +4462,23 @@ extern "C-unwind" {
     /// Parameter `callback`: Pointer to a callback method of type IOHIDValueCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
-    pub fn IOHIDManagerRegisterInputValueCallback(
-        manager: &IOHIDManager,
+    #[inline]
+    #[doc(alias = "IOHIDManagerRegisterInputValueCallback")]
+    pub unsafe fn register_input_value_callback(
+        self: &IOHIDManager,
         callback: IOHIDValueCallback,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDManagerRegisterInputValueCallback(
+                manager: &IOHIDManager,
+                callback: IOHIDValueCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { IOHIDManagerRegisterInputValueCallback(self, callback, context) }
+    }
 
-extern "C-unwind" {
     /// Sets matching criteria for input values received via
     /// IOHIDManagerRegisterInputValueCallback.
     ///
@@ -3938,13 +4495,18 @@ extern "C-unwind" {
     /// Parameter `manager`: Reference to an IOHIDManager.
     ///
     /// Parameter `matching`: CFDictionaryRef containg device matching criteria.
-    pub fn IOHIDManagerSetInputValueMatching(
-        manager: &IOHIDManager,
-        matching: Option<&CFDictionary>,
-    );
-}
+    #[inline]
+    #[doc(alias = "IOHIDManagerSetInputValueMatching")]
+    pub unsafe fn set_input_value_matching(self: &IOHIDManager, matching: Option<&CFDictionary>) {
+        extern "C-unwind" {
+            fn IOHIDManagerSetInputValueMatching(
+                manager: &IOHIDManager,
+                matching: Option<&CFDictionary>,
+            );
+        }
+        unsafe { IOHIDManagerSetInputValueMatching(self, matching) }
+    }
 
-extern "C-unwind" {
     /// Sets multiple matching criteria for input values received via
     /// IOHIDManagerRegisterInputValueCallback.
     ///
@@ -3958,13 +4520,21 @@ extern "C-unwind" {
     ///
     /// Parameter `multiple`: CFArrayRef containing multiple CFDictionaryRef objects
     /// containing input element matching criteria.
-    pub fn IOHIDManagerSetInputValueMatchingMultiple(
-        manager: &IOHIDManager,
+    #[inline]
+    #[doc(alias = "IOHIDManagerSetInputValueMatchingMultiple")]
+    pub unsafe fn set_input_value_matching_multiple(
+        self: &IOHIDManager,
         multiple: Option<&CFArray>,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDManagerSetInputValueMatchingMultiple(
+                manager: &IOHIDManager,
+                multiple: Option<&CFArray>,
+            );
+        }
+        unsafe { IOHIDManagerSetInputValueMatchingMultiple(self, multiple) }
+    }
 
-extern "C-unwind" {
     /// Used to write out the current properties to a specific domain.
     ///
     /// Using this function will cause the persistent properties to be saved out
@@ -3980,13 +4550,28 @@ extern "C-unwind" {
     /// Parameter `hostName`: Reference to a CFPreferences hostName.
     ///
     /// Parameter `options`: Reserved for future use.
-    pub fn IOHIDManagerSaveToPropertyDomain(
-        manager: &IOHIDManager,
+    #[inline]
+    #[doc(alias = "IOHIDManagerSaveToPropertyDomain")]
+    pub unsafe fn save_to_property_domain(
+        self: &IOHIDManager,
         application_id: &CFString,
         user_name: &CFString,
         host_name: &CFString,
         options: IOOptionBits,
-    );
+    ) {
+        extern "C-unwind" {
+            fn IOHIDManagerSaveToPropertyDomain(
+                manager: &IOHIDManager,
+                application_id: &CFString,
+                user_name: &CFString,
+                host_name: &CFString,
+                options: IOOptionBits,
+            );
+        }
+        unsafe {
+            IOHIDManagerSaveToPropertyDomain(self, application_id, user_name, host_name, options)
+        }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidpage_undefined?language=objc)
@@ -8740,145 +9325,152 @@ unsafe impl ConcreteType for IOHIDValue {
     }
 }
 
-/// Creates a new element value using an integer value.
-///
-/// IOHIDValueGetTimeStamp should represent OS AbsoluteTime, not CFAbsoluteTime.
-/// To obtain the OS AbsoluteTime, please reference the APIs declared in
-/// <mach
-/// /mach_time.h>
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the value.  This
-/// parameter may be NULL in which case the current default CFAllocator is used. If this
-/// reference is not a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `element`: IOHIDElementRef associated with this value.
-///
-/// Parameter `timeStamp`: OS absolute time timestamp for this value.
-///
-/// Parameter `value`: Integer value to be copied to this object.
-///
-/// Returns: Returns a reference to a new IOHIDValueRef.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDValueCreateWithIntegerValue(
-    allocator: Option<&CFAllocator>,
-    element: &IOHIDElement,
-    time_stamp: u64,
-    value: CFIndex,
-) -> CFRetained<IOHIDValue> {
-    extern "C-unwind" {
-        fn IOHIDValueCreateWithIntegerValue(
-            allocator: Option<&CFAllocator>,
-            element: &IOHIDElement,
-            time_stamp: u64,
-            value: CFIndex,
-        ) -> Option<NonNull<IOHIDValue>>;
+impl IOHIDValue {
+    /// Creates a new element value using an integer value.
+    ///
+    /// IOHIDValueGetTimeStamp should represent OS AbsoluteTime, not CFAbsoluteTime.
+    /// To obtain the OS AbsoluteTime, please reference the APIs declared in
+    /// <mach
+    /// /mach_time.h>
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the value.  This
+    /// parameter may be NULL in which case the current default CFAllocator is used. If this
+    /// reference is not a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `element`: IOHIDElementRef associated with this value.
+    ///
+    /// Parameter `timeStamp`: OS absolute time timestamp for this value.
+    ///
+    /// Parameter `value`: Integer value to be copied to this object.
+    ///
+    /// Returns: Returns a reference to a new IOHIDValueRef.
+    #[inline]
+    #[doc(alias = "IOHIDValueCreateWithIntegerValue")]
+    pub unsafe fn with_integer_value(
+        allocator: Option<&CFAllocator>,
+        element: &IOHIDElement,
+        time_stamp: u64,
+        value: CFIndex,
+    ) -> CFRetained<IOHIDValue> {
+        extern "C-unwind" {
+            fn IOHIDValueCreateWithIntegerValue(
+                allocator: Option<&CFAllocator>,
+                element: &IOHIDElement,
+                time_stamp: u64,
+                value: CFIndex,
+            ) -> Option<NonNull<IOHIDValue>>;
+        }
+        let ret =
+            unsafe { IOHIDValueCreateWithIntegerValue(allocator, element, time_stamp, value) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { IOHIDValueCreateWithIntegerValue(allocator, element, time_stamp, value) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Creates a new element value using byte data.
-///
-/// IOHIDValueGetTimeStamp should represent OS AbsoluteTime, not CFAbsoluteTime.
-/// To obtain the OS AbsoluteTime, please reference the APIs declared in
-/// <mach
-/// /mach_time.h>
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the value.  This
-/// parameter may be NULL in which case the current default CFAllocator is used. If this
-/// reference is not a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `element`: IOHIDElementRef associated with this value.
-///
-/// Parameter `timeStamp`: OS absolute time timestamp for this value.
-///
-/// Parameter `bytes`: Pointer to a buffer of uint8_t to be copied to this object.
-///
-/// Parameter `length`: Number of bytes in the passed buffer.
-///
-/// Returns: Returns a reference to a new IOHIDValueRef.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDValueCreateWithBytes(
-    allocator: Option<&CFAllocator>,
-    element: &IOHIDElement,
-    time_stamp: u64,
-    bytes: NonNull<u8>,
-    length: CFIndex,
-) -> Option<CFRetained<IOHIDValue>> {
-    extern "C-unwind" {
-        fn IOHIDValueCreateWithBytes(
-            allocator: Option<&CFAllocator>,
-            element: &IOHIDElement,
-            time_stamp: u64,
-            bytes: NonNull<u8>,
-            length: CFIndex,
-        ) -> Option<NonNull<IOHIDValue>>;
+    /// Creates a new element value using byte data.
+    ///
+    /// IOHIDValueGetTimeStamp should represent OS AbsoluteTime, not CFAbsoluteTime.
+    /// To obtain the OS AbsoluteTime, please reference the APIs declared in
+    /// <mach
+    /// /mach_time.h>
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the value.  This
+    /// parameter may be NULL in which case the current default CFAllocator is used. If this
+    /// reference is not a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `element`: IOHIDElementRef associated with this value.
+    ///
+    /// Parameter `timeStamp`: OS absolute time timestamp for this value.
+    ///
+    /// Parameter `bytes`: Pointer to a buffer of uint8_t to be copied to this object.
+    ///
+    /// Parameter `length`: Number of bytes in the passed buffer.
+    ///
+    /// Returns: Returns a reference to a new IOHIDValueRef.
+    #[inline]
+    #[doc(alias = "IOHIDValueCreateWithBytes")]
+    pub unsafe fn with_bytes(
+        allocator: Option<&CFAllocator>,
+        element: &IOHIDElement,
+        time_stamp: u64,
+        bytes: NonNull<u8>,
+        length: CFIndex,
+    ) -> Option<CFRetained<IOHIDValue>> {
+        extern "C-unwind" {
+            fn IOHIDValueCreateWithBytes(
+                allocator: Option<&CFAllocator>,
+                element: &IOHIDElement,
+                time_stamp: u64,
+                bytes: NonNull<u8>,
+                length: CFIndex,
+            ) -> Option<NonNull<IOHIDValue>>;
+        }
+        let ret =
+            unsafe { IOHIDValueCreateWithBytes(allocator, element, time_stamp, bytes, length) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOHIDValueCreateWithBytes(allocator, element, time_stamp, bytes, length) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Creates a new element value using byte data without performing a copy.
-///
-/// The timestamp value passed should represent OS AbsoluteTime, not CFAbsoluteTime.
-/// To obtain the OS AbsoluteTime, please reference the APIs declared in
-/// <mach
-/// /mach_time.h>
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the value.  This
-/// parameter may be NULL in which case the current default CFAllocator is used. If this
-/// reference is not a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `element`: IOHIDElementRef associated with this value.
-///
-/// Parameter `timeStamp`: OS absolute time timestamp for this value.
-///
-/// Parameter `bytes`: Pointer to a buffer of uint8_t to be referenced by this object.
-///
-/// Parameter `length`: Number of bytes in the passed buffer.
-///
-/// Returns: Returns a reference to a new IOHIDValueRef.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDValueCreateWithBytesNoCopy(
-    allocator: Option<&CFAllocator>,
-    element: &IOHIDElement,
-    time_stamp: u64,
-    bytes: NonNull<u8>,
-    length: CFIndex,
-) -> Option<CFRetained<IOHIDValue>> {
-    extern "C-unwind" {
-        fn IOHIDValueCreateWithBytesNoCopy(
-            allocator: Option<&CFAllocator>,
-            element: &IOHIDElement,
-            time_stamp: u64,
-            bytes: NonNull<u8>,
-            length: CFIndex,
-        ) -> Option<NonNull<IOHIDValue>>;
+    /// Creates a new element value using byte data without performing a copy.
+    ///
+    /// The timestamp value passed should represent OS AbsoluteTime, not CFAbsoluteTime.
+    /// To obtain the OS AbsoluteTime, please reference the APIs declared in
+    /// <mach
+    /// /mach_time.h>
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the value.  This
+    /// parameter may be NULL in which case the current default CFAllocator is used. If this
+    /// reference is not a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `element`: IOHIDElementRef associated with this value.
+    ///
+    /// Parameter `timeStamp`: OS absolute time timestamp for this value.
+    ///
+    /// Parameter `bytes`: Pointer to a buffer of uint8_t to be referenced by this object.
+    ///
+    /// Parameter `length`: Number of bytes in the passed buffer.
+    ///
+    /// Returns: Returns a reference to a new IOHIDValueRef.
+    #[inline]
+    #[doc(alias = "IOHIDValueCreateWithBytesNoCopy")]
+    pub unsafe fn with_bytes_no_copy(
+        allocator: Option<&CFAllocator>,
+        element: &IOHIDElement,
+        time_stamp: u64,
+        bytes: NonNull<u8>,
+        length: CFIndex,
+    ) -> Option<CFRetained<IOHIDValue>> {
+        extern "C-unwind" {
+            fn IOHIDValueCreateWithBytesNoCopy(
+                allocator: Option<&CFAllocator>,
+                element: &IOHIDElement,
+                time_stamp: u64,
+                bytes: NonNull<u8>,
+                length: CFIndex,
+            ) -> Option<NonNull<IOHIDValue>>;
+        }
+        let ret = unsafe {
+            IOHIDValueCreateWithBytesNoCopy(allocator, element, time_stamp, bytes, length)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret =
-        unsafe { IOHIDValueCreateWithBytesNoCopy(allocator, element, time_stamp, bytes, length) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns the element value associated with this IOHIDValueRef.
-///
-/// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
-///
-/// Returns: Returns a IOHIDElementRef referenced by this value.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDValueGetElement(
-    value: &IOHIDValue,
-) -> CFRetained<IOHIDElement> {
-    extern "C-unwind" {
-        fn IOHIDValueGetElement(value: &IOHIDValue) -> Option<NonNull<IOHIDElement>>;
+    /// Returns the element value associated with this IOHIDValueRef.
+    ///
+    /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
+    ///
+    /// Returns: Returns a IOHIDElementRef referenced by this value.
+    #[inline]
+    #[doc(alias = "IOHIDValueGetElement")]
+    pub unsafe fn element(self: &IOHIDValue) -> CFRetained<IOHIDElement> {
+        extern "C-unwind" {
+            fn IOHIDValueGetElement(value: &IOHIDValue) -> Option<NonNull<IOHIDElement>>;
+        }
+        let ret = unsafe { IOHIDValueGetElement(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
-    let ret = unsafe { IOHIDValueGetElement(value) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-extern "C-unwind" {
     /// Returns the timestamp value contained in this IOHIDValueRef.
     ///
     /// The timestamp value returned represents OS AbsoluteTime, not CFAbsoluteTime.
@@ -8886,33 +9478,44 @@ extern "C-unwind" {
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns a uint64_t representing the timestamp of this value.
-    pub fn IOHIDValueGetTimeStamp(value: &IOHIDValue) -> u64;
-}
+    #[inline]
+    #[doc(alias = "IOHIDValueGetTimeStamp")]
+    pub unsafe fn time_stamp(self: &IOHIDValue) -> u64 {
+        extern "C-unwind" {
+            fn IOHIDValueGetTimeStamp(value: &IOHIDValue) -> u64;
+        }
+        unsafe { IOHIDValueGetTimeStamp(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the size, in bytes, of the value contained in this IOHIDValueRef.
     ///
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns length of the value.
-    pub fn IOHIDValueGetLength(value: &IOHIDValue) -> CFIndex;
-}
-
-/// Returns a byte pointer to the value contained in this IOHIDValueRef.
-///
-/// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
-///
-/// Returns: Returns a pointer to the value.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDValueGetBytePtr(value: &IOHIDValue) -> NonNull<u8> {
-    extern "C-unwind" {
-        fn IOHIDValueGetBytePtr(value: &IOHIDValue) -> Option<NonNull<u8>>;
+    #[inline]
+    #[doc(alias = "IOHIDValueGetLength")]
+    pub unsafe fn length(self: &IOHIDValue) -> CFIndex {
+        extern "C-unwind" {
+            fn IOHIDValueGetLength(value: &IOHIDValue) -> CFIndex;
+        }
+        unsafe { IOHIDValueGetLength(self) }
     }
-    let ret = unsafe { IOHIDValueGetBytePtr(value) };
-    ret.expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-extern "C-unwind" {
+    /// Returns a byte pointer to the value contained in this IOHIDValueRef.
+    ///
+    /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
+    ///
+    /// Returns: Returns a pointer to the value.
+    #[inline]
+    #[doc(alias = "IOHIDValueGetBytePtr")]
+    pub unsafe fn byte_ptr(self: &IOHIDValue) -> NonNull<u8> {
+        extern "C-unwind" {
+            fn IOHIDValueGetBytePtr(value: &IOHIDValue) -> Option<NonNull<u8>>;
+        }
+        let ret = unsafe { IOHIDValueGetBytePtr(self) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
+    }
+
     /// Returns an integer representaion of the value contained in this IOHIDValueRef.
     ///
     /// The value is based on the logical element value contained in the report returned by the device.
@@ -8920,10 +9523,15 @@ extern "C-unwind" {
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns an integer representation of the value.
-    pub fn IOHIDValueGetIntegerValue(value: &IOHIDValue) -> CFIndex;
-}
+    #[inline]
+    #[doc(alias = "IOHIDValueGetIntegerValue")]
+    pub unsafe fn integer_value(self: &IOHIDValue) -> CFIndex {
+        extern "C-unwind" {
+            fn IOHIDValueGetIntegerValue(value: &IOHIDValue) -> CFIndex;
+        }
+        unsafe { IOHIDValueGetIntegerValue(self) }
+    }
 
-extern "C-unwind" {
     /// Returns an scaled representaion of the value contained in this IOHIDValueRef based on the scale type.
     ///
     /// The scaled value is based on the range described by the scale type's min and max, such that:
@@ -8969,7 +9577,17 @@ extern "C-unwind" {
     /// Parameter `type`: The type of scaling to be performed.
     ///
     /// Returns: Returns an scaled floating point representation of the value.
-    pub fn IOHIDValueGetScaledValue(value: &IOHIDValue, r#type: IOHIDValueScaleType) -> c_double;
+    #[inline]
+    #[doc(alias = "IOHIDValueGetScaledValue")]
+    pub unsafe fn scaled_value(self: &IOHIDValue, r#type: IOHIDValueScaleType) -> c_double {
+        extern "C-unwind" {
+            fn IOHIDValueGetScaledValue(
+                value: &IOHIDValue,
+                r#type: IOHIDValueScaleType,
+            ) -> c_double;
+        }
+        unsafe { IOHIDValueGetScaledValue(self, r#type) }
+    }
 }
 
 /// Various options that can be supplied to IOHIDTransaction functions.
@@ -9032,71 +9650,77 @@ unsafe impl ConcreteType for IOHIDTransaction {
     }
 }
 
-/// Creates an IOHIDTransaction object for the specified device.
-///
-/// IOHIDTransaction objects can be used to either send or receive
-/// multiple element values.  As such the direction used should
-/// represent they type of objects added to the transaction.
-///
-/// Parameter `allocator`: Allocator to be used during creation.
-///
-/// Parameter `device`: IOHIDDevice object
-///
-/// Parameter `direction`: The direction, either in or out, for the transaction.
-///
-/// Parameter `options`: Reserved for future use.
-///
-/// Returns: Returns a new IOHIDTransactionRef.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDTransactionCreate(
-    allocator: Option<&CFAllocator>,
-    device: &IOHIDDevice,
-    direction: IOHIDTransactionDirectionType,
-    options: IOOptionBits,
-) -> Option<CFRetained<IOHIDTransaction>> {
-    extern "C-unwind" {
-        fn IOHIDTransactionCreate(
-            allocator: Option<&CFAllocator>,
-            device: &IOHIDDevice,
-            direction: IOHIDTransactionDirectionType,
-            options: IOOptionBits,
-        ) -> Option<NonNull<IOHIDTransaction>>;
+impl IOHIDTransaction {
+    /// Creates an IOHIDTransaction object for the specified device.
+    ///
+    /// IOHIDTransaction objects can be used to either send or receive
+    /// multiple element values.  As such the direction used should
+    /// represent they type of objects added to the transaction.
+    ///
+    /// Parameter `allocator`: Allocator to be used during creation.
+    ///
+    /// Parameter `device`: IOHIDDevice object
+    ///
+    /// Parameter `direction`: The direction, either in or out, for the transaction.
+    ///
+    /// Parameter `options`: Reserved for future use.
+    ///
+    /// Returns: Returns a new IOHIDTransactionRef.
+    #[inline]
+    #[doc(alias = "IOHIDTransactionCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        device: &IOHIDDevice,
+        direction: IOHIDTransactionDirectionType,
+        options: IOOptionBits,
+    ) -> Option<CFRetained<IOHIDTransaction>> {
+        extern "C-unwind" {
+            fn IOHIDTransactionCreate(
+                allocator: Option<&CFAllocator>,
+                device: &IOHIDDevice,
+                direction: IOHIDTransactionDirectionType,
+                options: IOOptionBits,
+            ) -> Option<NonNull<IOHIDTransaction>>;
+        }
+        let ret = unsafe { IOHIDTransactionCreate(allocator, device, direction, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOHIDTransactionCreate(allocator, device, direction, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Obtain the device associated with the transaction.
-///
-/// Parameter `transaction`: IOHIDTransaction to be queried.
-///
-/// Returns: Returns the a reference to the device.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDTransactionGetDevice(
-    transaction: &IOHIDTransaction,
-) -> CFRetained<IOHIDDevice> {
-    extern "C-unwind" {
-        fn IOHIDTransactionGetDevice(
-            transaction: &IOHIDTransaction,
-        ) -> Option<NonNull<IOHIDDevice>>;
+    /// Obtain the device associated with the transaction.
+    ///
+    /// Parameter `transaction`: IOHIDTransaction to be queried.
+    ///
+    /// Returns: Returns the a reference to the device.
+    #[inline]
+    #[doc(alias = "IOHIDTransactionGetDevice")]
+    pub unsafe fn device(self: &IOHIDTransaction) -> CFRetained<IOHIDDevice> {
+        extern "C-unwind" {
+            fn IOHIDTransactionGetDevice(
+                transaction: &IOHIDTransaction,
+            ) -> Option<NonNull<IOHIDDevice>>;
+        }
+        let ret = unsafe { IOHIDTransactionGetDevice(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
-    let ret = unsafe { IOHIDTransactionGetDevice(transaction) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-extern "C-unwind" {
     /// Obtain the direction of the transaction.
     ///
     /// Parameter `transaction`: IOHIDTransaction to be queried.
     ///
     /// Returns: Returns the transaction direction.
-    pub fn IOHIDTransactionGetDirection(
-        transaction: &IOHIDTransaction,
-    ) -> IOHIDTransactionDirectionType;
-}
+    #[inline]
+    #[doc(alias = "IOHIDTransactionGetDirection")]
+    pub unsafe fn direction(self: &IOHIDTransaction) -> IOHIDTransactionDirectionType {
+        extern "C-unwind" {
+            fn IOHIDTransactionGetDirection(
+                transaction: &IOHIDTransaction,
+            ) -> IOHIDTransactionDirectionType;
+        }
+        unsafe { IOHIDTransactionGetDirection(self) }
+    }
 
-extern "C-unwind" {
     /// Sets the direction of the transaction
     ///
     /// This method is useful for manipulating bi-direction (feature)
@@ -9106,13 +9730,18 @@ extern "C-unwind" {
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
     /// Parameter `direction`: The new transaction direction.
-    pub fn IOHIDTransactionSetDirection(
-        transaction: &IOHIDTransaction,
-        direction: IOHIDTransactionDirectionType,
-    );
-}
+    #[inline]
+    #[doc(alias = "IOHIDTransactionSetDirection")]
+    pub unsafe fn set_direction(self: &IOHIDTransaction, direction: IOHIDTransactionDirectionType) {
+        extern "C-unwind" {
+            fn IOHIDTransactionSetDirection(
+                transaction: &IOHIDTransaction,
+                direction: IOHIDTransactionDirectionType,
+            );
+        }
+        unsafe { IOHIDTransactionSetDirection(self, direction) }
+    }
 
-extern "C-unwind" {
     /// Adds an element to the transaction
     ///
     /// To minimize device traffic it is important to add elements that
@@ -9121,41 +9750,52 @@ extern "C-unwind" {
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
     /// Parameter `element`: Element to be added to the transaction.
-    pub fn IOHIDTransactionAddElement(transaction: &IOHIDTransaction, element: &IOHIDElement);
-}
+    #[inline]
+    #[doc(alias = "IOHIDTransactionAddElement")]
+    pub unsafe fn add_element(self: &IOHIDTransaction, element: &IOHIDElement) {
+        extern "C-unwind" {
+            fn IOHIDTransactionAddElement(transaction: &IOHIDTransaction, element: &IOHIDElement);
+        }
+        unsafe { IOHIDTransactionAddElement(self, element) }
+    }
 
-extern "C-unwind" {
     /// Removes an element to the transaction
     ///
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
     /// Parameter `element`: Element to be removed to the transaction.
-    pub fn IOHIDTransactionRemoveElement(transaction: &IOHIDTransaction, element: &IOHIDElement);
-}
-
-/// Queries the transaction to determine if elemement has been added.
-///
-/// Parameter `transaction`: IOHIDTransaction object to be queried.
-///
-/// Parameter `element`: Element to be queried.
-///
-/// Returns: Returns true or false depending if element is present.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDTransactionContainsElement(
-    transaction: &IOHIDTransaction,
-    element: &IOHIDElement,
-) -> bool {
-    extern "C-unwind" {
-        fn IOHIDTransactionContainsElement(
-            transaction: &IOHIDTransaction,
-            element: &IOHIDElement,
-        ) -> Boolean;
+    #[inline]
+    #[doc(alias = "IOHIDTransactionRemoveElement")]
+    pub unsafe fn remove_element(self: &IOHIDTransaction, element: &IOHIDElement) {
+        extern "C-unwind" {
+            fn IOHIDTransactionRemoveElement(
+                transaction: &IOHIDTransaction,
+                element: &IOHIDElement,
+            );
+        }
+        unsafe { IOHIDTransactionRemoveElement(self, element) }
     }
-    let ret = unsafe { IOHIDTransactionContainsElement(transaction, element) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Queries the transaction to determine if elemement has been added.
+    ///
+    /// Parameter `transaction`: IOHIDTransaction object to be queried.
+    ///
+    /// Parameter `element`: Element to be queried.
+    ///
+    /// Returns: Returns true or false depending if element is present.
+    #[inline]
+    #[doc(alias = "IOHIDTransactionContainsElement")]
+    pub unsafe fn contains_element(self: &IOHIDTransaction, element: &IOHIDElement) -> bool {
+        extern "C-unwind" {
+            fn IOHIDTransactionContainsElement(
+                transaction: &IOHIDTransaction,
+                element: &IOHIDElement,
+            ) -> Boolean;
+        }
+        let ret = unsafe { IOHIDTransactionContainsElement(self, element) };
+        ret != 0
+    }
+
     /// Schedules transaction with run loop.
     ///
     /// Formally associates transaction with client's run loop.
@@ -9169,14 +9809,23 @@ extern "C-unwind" {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
-    pub fn IOHIDTransactionScheduleWithRunLoop(
-        transaction: &IOHIDTransaction,
+    #[inline]
+    #[doc(alias = "IOHIDTransactionScheduleWithRunLoop")]
+    pub unsafe fn schedule_with_run_loop(
+        self: &IOHIDTransaction,
         run_loop: &CFRunLoop,
         run_loop_mode: &CFString,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDTransactionScheduleWithRunLoop(
+                transaction: &IOHIDTransaction,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { IOHIDTransactionScheduleWithRunLoop(self, run_loop, run_loop_mode) }
+    }
 
-extern "C-unwind" {
     /// Unschedules transaction with run loop.
     ///
     /// Formally disassociates transaction with client's run loop.
@@ -9188,14 +9837,23 @@ extern "C-unwind" {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
-    pub fn IOHIDTransactionUnscheduleFromRunLoop(
-        transaction: &IOHIDTransaction,
+    #[inline]
+    #[doc(alias = "IOHIDTransactionUnscheduleFromRunLoop")]
+    pub unsafe fn unschedule_from_run_loop(
+        self: &IOHIDTransaction,
         run_loop: &CFRunLoop,
         run_loop_mode: &CFString,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDTransactionUnscheduleFromRunLoop(
+                transaction: &IOHIDTransaction,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { IOHIDTransactionUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
+    }
 
-extern "C-unwind" {
     /// Sets the value for a transaction element.
     ///
     /// The value set is pended until the transaction is committed and
@@ -9211,60 +9869,76 @@ extern "C-unwind" {
     /// Parameter `value`: Value to be set for the given element.
     ///
     /// Parameter `options`: See IOHIDTransactionOption.
-    pub fn IOHIDTransactionSetValue(
-        transaction: &IOHIDTransaction,
+    #[inline]
+    #[doc(alias = "IOHIDTransactionSetValue")]
+    pub unsafe fn set_value(
+        self: &IOHIDTransaction,
         element: &IOHIDElement,
         value: &IOHIDValue,
         options: IOOptionBits,
-    );
-}
-
-/// Obtains the value for a transaction element.
-///
-/// If the transaction direction is
-/// kIOHIDTransactionDirectionTypeInput the value represents what
-/// was obtained from the device from the transaction.  Otherwise,
-/// if the transaction direction is
-/// kIOHIDTransactionDirectionTypeOutput the value represents the
-/// pending value to be sent to the device.  Use the
-/// kIOHIDTransactionOptionDefaultOutputValue option to get the
-/// default element value.
-///
-/// Parameter `transaction`: IOHIDTransaction object to be queried.
-///
-/// Parameter `element`: Element to be queried.
-///
-/// Parameter `options`: See IOHIDTransactionOption.
-///
-/// Returns: Returns IOHIDValueRef for the given element.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDTransactionGetValue(
-    transaction: &IOHIDTransaction,
-    element: &IOHIDElement,
-    options: IOOptionBits,
-) -> Option<CFRetained<IOHIDValue>> {
-    extern "C-unwind" {
-        fn IOHIDTransactionGetValue(
-            transaction: &IOHIDTransaction,
-            element: &IOHIDElement,
-            options: IOOptionBits,
-        ) -> Option<NonNull<IOHIDValue>>;
+    ) {
+        extern "C-unwind" {
+            fn IOHIDTransactionSetValue(
+                transaction: &IOHIDTransaction,
+                element: &IOHIDElement,
+                value: &IOHIDValue,
+                options: IOOptionBits,
+            );
+        }
+        unsafe { IOHIDTransactionSetValue(self, element, value, options) }
     }
-    let ret = unsafe { IOHIDTransactionGetValue(transaction, element, options) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
+    /// Obtains the value for a transaction element.
+    ///
+    /// If the transaction direction is
+    /// kIOHIDTransactionDirectionTypeInput the value represents what
+    /// was obtained from the device from the transaction.  Otherwise,
+    /// if the transaction direction is
+    /// kIOHIDTransactionDirectionTypeOutput the value represents the
+    /// pending value to be sent to the device.  Use the
+    /// kIOHIDTransactionOptionDefaultOutputValue option to get the
+    /// default element value.
+    ///
+    /// Parameter `transaction`: IOHIDTransaction object to be queried.
+    ///
+    /// Parameter `element`: Element to be queried.
+    ///
+    /// Parameter `options`: See IOHIDTransactionOption.
+    ///
+    /// Returns: Returns IOHIDValueRef for the given element.
+    #[inline]
+    #[doc(alias = "IOHIDTransactionGetValue")]
+    pub unsafe fn value(
+        self: &IOHIDTransaction,
+        element: &IOHIDElement,
+        options: IOOptionBits,
+    ) -> Option<CFRetained<IOHIDValue>> {
+        extern "C-unwind" {
+            fn IOHIDTransactionGetValue(
+                transaction: &IOHIDTransaction,
+                element: &IOHIDElement,
+                options: IOOptionBits,
+            ) -> Option<NonNull<IOHIDValue>>;
+        }
+        let ret = unsafe { IOHIDTransactionGetValue(self, element, options) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
     /// Synchronously commits element transaction to the device.
     ///
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
     /// Returns: Returns kIOReturnSuccess if successful or a kern_return_t if
     /// unsuccessful.
-    pub fn IOHIDTransactionCommit(transaction: &IOHIDTransaction) -> IOReturn;
-}
+    #[inline]
+    #[doc(alias = "IOHIDTransactionCommit")]
+    pub unsafe fn commit(self: &IOHIDTransaction) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDTransactionCommit(transaction: &IOHIDTransaction) -> IOReturn;
+        }
+        unsafe { IOHIDTransactionCommit(self) }
+    }
 
-extern "C-unwind" {
     /// Asynchronously commits element transaction to the device.
     ///
     /// It is possible for elements from different reports
@@ -9284,22 +9958,39 @@ extern "C-unwind" {
     ///
     /// Returns: Returns kIOReturnSuccess if successful or a kern_return_t if
     /// unsuccessful.
-    pub fn IOHIDTransactionCommitWithCallback(
-        transaction: &IOHIDTransaction,
+    #[inline]
+    #[doc(alias = "IOHIDTransactionCommitWithCallback")]
+    pub unsafe fn commit_with_callback(
+        self: &IOHIDTransaction,
         timeout: CFTimeInterval,
         callback: IOHIDCallback,
         context: *mut c_void,
-    ) -> IOReturn;
-}
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDTransactionCommitWithCallback(
+                transaction: &IOHIDTransaction,
+                timeout: CFTimeInterval,
+                callback: IOHIDCallback,
+                context: *mut c_void,
+            ) -> IOReturn;
+        }
+        unsafe { IOHIDTransactionCommitWithCallback(self, timeout, callback, context) }
+    }
 
-extern "C-unwind" {
     /// Clears element transaction values.
     ///
     /// In regards to kIOHIDTransactionDirectionTypeOutput direction,
     /// default element values will be preserved.
     ///
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
-    pub fn IOHIDTransactionClear(transaction: &IOHIDTransaction);
+    #[inline]
+    #[doc(alias = "IOHIDTransactionClear")]
+    pub unsafe fn clear(self: &IOHIDTransaction) {
+        extern "C-unwind" {
+            fn IOHIDTransactionClear(transaction: &IOHIDTransaction);
+        }
+        unsafe { IOHIDTransactionClear(self) }
+    }
 }
 
 /// The object you use to access HID devices from user space, returned by version 1.5 of the IOHIDFamily.
@@ -10019,4 +10710,1195 @@ unsafe impl Encode for IOHIDScrollEventOptions {
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOHIDScrollEventOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[deprecated = "renamed to `IOHIDQueue::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDQueueCreate(
+    allocator: Option<&CFAllocator>,
+    device: &IOHIDDevice,
+    depth: CFIndex,
+    options: IOOptionBits,
+) -> Option<CFRetained<IOHIDQueue>> {
+    extern "C-unwind" {
+        fn IOHIDQueueCreate(
+            allocator: Option<&CFAllocator>,
+            device: &IOHIDDevice,
+            depth: CFIndex,
+            options: IOOptionBits,
+        ) -> Option<NonNull<IOHIDQueue>>;
+    }
+    let ret = unsafe { IOHIDQueueCreate(allocator, device, depth, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDQueue::device`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDQueueGetDevice(queue: &IOHIDQueue) -> CFRetained<IOHIDDevice> {
+    extern "C-unwind" {
+        fn IOHIDQueueGetDevice(queue: &IOHIDQueue) -> Option<NonNull<IOHIDDevice>>;
+    }
+    let ret = unsafe { IOHIDQueueGetDevice(queue) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::retain(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDQueue::depth`"]
+    pub fn IOHIDQueueGetDepth(queue: &IOHIDQueue) -> CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDQueue::set_depth`"]
+    pub fn IOHIDQueueSetDepth(queue: &IOHIDQueue, depth: CFIndex);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDQueue::add_element`"]
+    pub fn IOHIDQueueAddElement(queue: &IOHIDQueue, element: &IOHIDElement);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDQueue::remove_element`"]
+    pub fn IOHIDQueueRemoveElement(queue: &IOHIDQueue, element: &IOHIDElement);
+}
+
+#[deprecated = "renamed to `IOHIDQueue::contains_element`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDQueueContainsElement(
+    queue: &IOHIDQueue,
+    element: &IOHIDElement,
+) -> bool {
+    extern "C-unwind" {
+        fn IOHIDQueueContainsElement(queue: &IOHIDQueue, element: &IOHIDElement) -> Boolean;
+    }
+    let ret = unsafe { IOHIDQueueContainsElement(queue, element) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDQueue::start`"]
+    pub fn IOHIDQueueStart(queue: &IOHIDQueue);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDQueue::stop`"]
+    pub fn IOHIDQueueStop(queue: &IOHIDQueue);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDQueue::schedule_with_run_loop`"]
+    pub fn IOHIDQueueScheduleWithRunLoop(
+        queue: &IOHIDQueue,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDQueue::unschedule_from_run_loop`"]
+    pub fn IOHIDQueueUnscheduleFromRunLoop(
+        queue: &IOHIDQueue,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `IOHIDQueue::set_dispatch_queue`"]
+    pub fn IOHIDQueueSetDispatchQueue(queue: &IOHIDQueue, dispatch_queue: &DispatchQueue);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `IOHIDQueue::set_cancel_handler`"]
+    pub fn IOHIDQueueSetCancelHandler(queue: &IOHIDQueue, handler: dispatch_block_t);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDQueue::activate`"]
+    pub fn IOHIDQueueActivate(queue: &IOHIDQueue);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDQueue::cancel`"]
+    pub fn IOHIDQueueCancel(queue: &IOHIDQueue);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDQueue::register_value_available_callback`"]
+    pub fn IOHIDQueueRegisterValueAvailableCallback(
+        queue: &IOHIDQueue,
+        callback: IOHIDCallback,
+        context: *mut c_void,
+    );
+}
+
+#[deprecated = "renamed to `IOHIDQueue::next_value`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDQueueCopyNextValue(
+    queue: &IOHIDQueue,
+) -> Option<CFRetained<IOHIDValue>> {
+    extern "C-unwind" {
+        fn IOHIDQueueCopyNextValue(queue: &IOHIDQueue) -> Option<NonNull<IOHIDValue>>;
+    }
+    let ret = unsafe { IOHIDQueueCopyNextValue(queue) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDQueue::next_value_with_timeout`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDQueueCopyNextValueWithTimeout(
+    queue: &IOHIDQueue,
+    timeout: CFTimeInterval,
+) -> Option<CFRetained<IOHIDValue>> {
+    extern "C-unwind" {
+        fn IOHIDQueueCopyNextValueWithTimeout(
+            queue: &IOHIDQueue,
+            timeout: CFTimeInterval,
+        ) -> Option<NonNull<IOHIDValue>>;
+    }
+    let ret = unsafe { IOHIDQueueCopyNextValueWithTimeout(queue, timeout) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "libc")]
+#[deprecated = "renamed to `IOHIDDevice::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDDeviceCreate(
+    allocator: Option<&CFAllocator>,
+    service: io_service_t,
+) -> Option<CFRetained<IOHIDDevice>> {
+    extern "C-unwind" {
+        fn IOHIDDeviceCreate(
+            allocator: Option<&CFAllocator>,
+            service: io_service_t,
+        ) -> Option<NonNull<IOHIDDevice>>;
+    }
+    let ret = unsafe { IOHIDDeviceCreate(allocator, service) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "libc")]
+    #[deprecated = "renamed to `IOHIDDevice::service`"]
+    pub fn IOHIDDeviceGetService(device: &IOHIDDevice) -> io_service_t;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::open`"]
+    pub fn IOHIDDeviceOpen(device: &IOHIDDevice, options: IOOptionBits) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::close`"]
+    pub fn IOHIDDeviceClose(device: &IOHIDDevice, options: IOOptionBits) -> IOReturn;
+}
+
+#[deprecated = "renamed to `IOHIDDevice::conforms_to`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDDeviceConformsTo(
+    device: &IOHIDDevice,
+    usage_page: u32,
+    usage: u32,
+) -> bool {
+    extern "C-unwind" {
+        fn IOHIDDeviceConformsTo(device: &IOHIDDevice, usage_page: u32, usage: u32) -> Boolean;
+    }
+    let ret = unsafe { IOHIDDeviceConformsTo(device, usage_page, usage) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDDevice::property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDDeviceGetProperty(
+    device: &IOHIDDevice,
+    key: &CFString,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn IOHIDDeviceGetProperty(device: &IOHIDDevice, key: &CFString) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { IOHIDDeviceGetProperty(device, key) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDDevice::set_property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDDeviceSetProperty(
+    device: &IOHIDDevice,
+    key: &CFString,
+    property: &CFType,
+) -> bool {
+    extern "C-unwind" {
+        fn IOHIDDeviceSetProperty(
+            device: &IOHIDDevice,
+            key: &CFString,
+            property: &CFType,
+        ) -> Boolean;
+    }
+    let ret = unsafe { IOHIDDeviceSetProperty(device, key, property) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDDevice::matching_elements`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDDeviceCopyMatchingElements(
+    device: &IOHIDDevice,
+    matching: Option<&CFDictionary>,
+    options: IOOptionBits,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn IOHIDDeviceCopyMatchingElements(
+            device: &IOHIDDevice,
+            matching: Option<&CFDictionary>,
+            options: IOOptionBits,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { IOHIDDeviceCopyMatchingElements(device, matching, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::schedule_with_run_loop`"]
+    pub fn IOHIDDeviceScheduleWithRunLoop(
+        device: &IOHIDDevice,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::unschedule_from_run_loop`"]
+    pub fn IOHIDDeviceUnscheduleFromRunLoop(
+        device: &IOHIDDevice,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `IOHIDDevice::set_dispatch_queue`"]
+    pub fn IOHIDDeviceSetDispatchQueue(device: &IOHIDDevice, queue: &DispatchQueue);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `IOHIDDevice::set_cancel_handler`"]
+    pub fn IOHIDDeviceSetCancelHandler(device: &IOHIDDevice, handler: dispatch_block_t);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::activate`"]
+    pub fn IOHIDDeviceActivate(device: &IOHIDDevice);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::cancel`"]
+    pub fn IOHIDDeviceCancel(device: &IOHIDDevice);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::register_removal_callback`"]
+    pub fn IOHIDDeviceRegisterRemovalCallback(
+        device: &IOHIDDevice,
+        callback: IOHIDCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::register_input_value_callback`"]
+    pub fn IOHIDDeviceRegisterInputValueCallback(
+        device: &IOHIDDevice,
+        callback: IOHIDValueCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::register_input_report_callback`"]
+    pub fn IOHIDDeviceRegisterInputReportCallback(
+        device: &IOHIDDevice,
+        report: NonNull<u8>,
+        report_length: CFIndex,
+        callback: IOHIDReportCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::register_input_report_with_time_stamp_callback`"]
+    pub fn IOHIDDeviceRegisterInputReportWithTimeStampCallback(
+        device: &IOHIDDevice,
+        report: NonNull<u8>,
+        report_length: CFIndex,
+        callback: IOHIDReportWithTimeStampCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::set_input_value_matching`"]
+    pub fn IOHIDDeviceSetInputValueMatching(device: &IOHIDDevice, matching: Option<&CFDictionary>);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::set_input_value_matching_multiple`"]
+    pub fn IOHIDDeviceSetInputValueMatchingMultiple(
+        device: &IOHIDDevice,
+        multiple: Option<&CFArray>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::set_value`"]
+    pub fn IOHIDDeviceSetValue(
+        device: &IOHIDDevice,
+        element: &IOHIDElement,
+        value: &IOHIDValue,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::set_value_multiple`"]
+    pub fn IOHIDDeviceSetValueMultiple(device: &IOHIDDevice, multiple: &CFDictionary) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::set_value_with_callback`"]
+    pub fn IOHIDDeviceSetValueWithCallback(
+        device: &IOHIDDevice,
+        element: &IOHIDElement,
+        value: &IOHIDValue,
+        timeout: CFTimeInterval,
+        callback: IOHIDValueCallback,
+        context: *mut c_void,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::set_value_multiple_with_callback`"]
+    pub fn IOHIDDeviceSetValueMultipleWithCallback(
+        device: &IOHIDDevice,
+        multiple: &CFDictionary,
+        timeout: CFTimeInterval,
+        callback: IOHIDValueMultipleCallback,
+        context: *mut c_void,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::value`"]
+    pub fn IOHIDDeviceGetValue(
+        device: &IOHIDDevice,
+        element: &IOHIDElement,
+        p_value: NonNull<NonNull<IOHIDValue>>,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::value_with_options`"]
+    pub fn IOHIDDeviceGetValueWithOptions(
+        device: &IOHIDDevice,
+        element: &IOHIDElement,
+        p_value: NonNull<NonNull<IOHIDValue>>,
+        options: u32,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::copy_value_multiple`"]
+    pub fn IOHIDDeviceCopyValueMultiple(
+        device: &IOHIDDevice,
+        elements: &CFArray,
+        p_multiple: *mut *const CFDictionary,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::value_with_callback`"]
+    pub fn IOHIDDeviceGetValueWithCallback(
+        device: &IOHIDDevice,
+        element: &IOHIDElement,
+        p_value: NonNull<NonNull<IOHIDValue>>,
+        timeout: CFTimeInterval,
+        callback: IOHIDValueCallback,
+        context: *mut c_void,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::copy_value_multiple_with_callback`"]
+    pub fn IOHIDDeviceCopyValueMultipleWithCallback(
+        device: &IOHIDDevice,
+        elements: &CFArray,
+        p_multiple: *mut *const CFDictionary,
+        timeout: CFTimeInterval,
+        callback: IOHIDValueMultipleCallback,
+        context: *mut c_void,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::set_report`"]
+    pub fn IOHIDDeviceSetReport(
+        device: &IOHIDDevice,
+        report_type: IOHIDReportType,
+        report_id: CFIndex,
+        report: NonNull<u8>,
+        report_length: CFIndex,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::set_report_with_callback`"]
+    pub fn IOHIDDeviceSetReportWithCallback(
+        device: &IOHIDDevice,
+        report_type: IOHIDReportType,
+        report_id: CFIndex,
+        report: NonNull<u8>,
+        report_length: CFIndex,
+        timeout: CFTimeInterval,
+        callback: IOHIDReportCallback,
+        context: *mut c_void,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::report`"]
+    pub fn IOHIDDeviceGetReport(
+        device: &IOHIDDevice,
+        report_type: IOHIDReportType,
+        report_id: CFIndex,
+        report: NonNull<u8>,
+        p_report_length: NonNull<CFIndex>,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDDevice::report_with_callback`"]
+    pub fn IOHIDDeviceGetReportWithCallback(
+        device: &IOHIDDevice,
+        report_type: IOHIDReportType,
+        report_id: CFIndex,
+        report: NonNull<u8>,
+        p_report_length: NonNull<CFIndex>,
+        timeout: CFTimeInterval,
+        callback: IOHIDReportCallback,
+        context: NonNull<c_void>,
+    ) -> IOReturn;
+}
+
+#[deprecated = "renamed to `IOHIDElement::with_dictionary`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementCreateWithDictionary(
+    allocator: Option<&CFAllocator>,
+    dictionary: &CFDictionary,
+) -> CFRetained<IOHIDElement> {
+    extern "C-unwind" {
+        fn IOHIDElementCreateWithDictionary(
+            allocator: Option<&CFAllocator>,
+            dictionary: &CFDictionary,
+        ) -> Option<NonNull<IOHIDElement>>;
+    }
+    let ret = unsafe { IOHIDElementCreateWithDictionary(allocator, dictionary) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `IOHIDElement::device`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementGetDevice(
+    element: &IOHIDElement,
+) -> CFRetained<IOHIDDevice> {
+    extern "C-unwind" {
+        fn IOHIDElementGetDevice(element: &IOHIDElement) -> Option<NonNull<IOHIDDevice>>;
+    }
+    let ret = unsafe { IOHIDElementGetDevice(element) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::retain(ret) }
+}
+
+#[deprecated = "renamed to `IOHIDElement::parent`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementGetParent(
+    element: &IOHIDElement,
+) -> Option<CFRetained<IOHIDElement>> {
+    extern "C-unwind" {
+        fn IOHIDElementGetParent(element: &IOHIDElement) -> Option<NonNull<IOHIDElement>>;
+    }
+    let ret = unsafe { IOHIDElementGetParent(element) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDElement::children`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementGetChildren(
+    element: &IOHIDElement,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn IOHIDElementGetChildren(element: &IOHIDElement) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { IOHIDElementGetChildren(element) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::attach`"]
+    pub fn IOHIDElementAttach(element: &IOHIDElement, to_attach: &IOHIDElement);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::detach`"]
+    pub fn IOHIDElementDetach(element: &IOHIDElement, to_detach: &IOHIDElement);
+}
+
+#[deprecated = "renamed to `IOHIDElement::attached`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementCopyAttached(
+    element: &IOHIDElement,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn IOHIDElementCopyAttached(element: &IOHIDElement) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { IOHIDElementCopyAttached(element) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::cookie`"]
+    pub fn IOHIDElementGetCookie(element: &IOHIDElement) -> IOHIDElementCookie;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::type`"]
+    pub fn IOHIDElementGetType(element: &IOHIDElement) -> IOHIDElementType;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::collection_type`"]
+    pub fn IOHIDElementGetCollectionType(element: &IOHIDElement) -> IOHIDElementCollectionType;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::usage_page`"]
+    pub fn IOHIDElementGetUsagePage(element: &IOHIDElement) -> u32;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::usage`"]
+    pub fn IOHIDElementGetUsage(element: &IOHIDElement) -> u32;
+}
+
+#[deprecated = "renamed to `IOHIDElement::is_virtual`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementIsVirtual(element: &IOHIDElement) -> bool {
+    extern "C-unwind" {
+        fn IOHIDElementIsVirtual(element: &IOHIDElement) -> Boolean;
+    }
+    let ret = unsafe { IOHIDElementIsVirtual(element) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDElement::is_relative`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementIsRelative(element: &IOHIDElement) -> bool {
+    extern "C-unwind" {
+        fn IOHIDElementIsRelative(element: &IOHIDElement) -> Boolean;
+    }
+    let ret = unsafe { IOHIDElementIsRelative(element) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDElement::is_wrapping`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementIsWrapping(element: &IOHIDElement) -> bool {
+    extern "C-unwind" {
+        fn IOHIDElementIsWrapping(element: &IOHIDElement) -> Boolean;
+    }
+    let ret = unsafe { IOHIDElementIsWrapping(element) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDElement::is_array`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementIsArray(element: &IOHIDElement) -> bool {
+    extern "C-unwind" {
+        fn IOHIDElementIsArray(element: &IOHIDElement) -> Boolean;
+    }
+    let ret = unsafe { IOHIDElementIsArray(element) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDElement::is_non_linear`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementIsNonLinear(element: &IOHIDElement) -> bool {
+    extern "C-unwind" {
+        fn IOHIDElementIsNonLinear(element: &IOHIDElement) -> Boolean;
+    }
+    let ret = unsafe { IOHIDElementIsNonLinear(element) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDElement::has_preferred_state`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementHasPreferredState(element: &IOHIDElement) -> bool {
+    extern "C-unwind" {
+        fn IOHIDElementHasPreferredState(element: &IOHIDElement) -> Boolean;
+    }
+    let ret = unsafe { IOHIDElementHasPreferredState(element) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDElement::has_null_state`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementHasNullState(element: &IOHIDElement) -> bool {
+    extern "C-unwind" {
+        fn IOHIDElementHasNullState(element: &IOHIDElement) -> Boolean;
+    }
+    let ret = unsafe { IOHIDElementHasNullState(element) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDElement::name`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementGetName(
+    element: &IOHIDElement,
+) -> CFRetained<CFString> {
+    extern "C-unwind" {
+        fn IOHIDElementGetName(element: &IOHIDElement) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { IOHIDElementGetName(element) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::retain(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::report_id`"]
+    pub fn IOHIDElementGetReportID(element: &IOHIDElement) -> u32;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::report_size`"]
+    pub fn IOHIDElementGetReportSize(element: &IOHIDElement) -> u32;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::report_count`"]
+    pub fn IOHIDElementGetReportCount(element: &IOHIDElement) -> u32;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::unit`"]
+    pub fn IOHIDElementGetUnit(element: &IOHIDElement) -> u32;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::unit_exponent`"]
+    pub fn IOHIDElementGetUnitExponent(element: &IOHIDElement) -> u32;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::logical_min`"]
+    pub fn IOHIDElementGetLogicalMin(element: &IOHIDElement) -> CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::logical_max`"]
+    pub fn IOHIDElementGetLogicalMax(element: &IOHIDElement) -> CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::physical_min`"]
+    pub fn IOHIDElementGetPhysicalMin(element: &IOHIDElement) -> CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDElement::physical_max`"]
+    pub fn IOHIDElementGetPhysicalMax(element: &IOHIDElement) -> CFIndex;
+}
+
+#[deprecated = "renamed to `IOHIDElement::property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementGetProperty(
+    element: &IOHIDElement,
+    key: &CFString,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn IOHIDElementGetProperty(
+            element: &IOHIDElement,
+            key: &CFString,
+        ) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { IOHIDElementGetProperty(element, key) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDElement::set_property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDElementSetProperty(
+    element: &IOHIDElement,
+    key: &CFString,
+    property: &CFType,
+) -> bool {
+    extern "C-unwind" {
+        fn IOHIDElementSetProperty(
+            element: &IOHIDElement,
+            key: &CFString,
+            property: &CFType,
+        ) -> Boolean;
+    }
+    let ret = unsafe { IOHIDElementSetProperty(element, key, property) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDManager::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDManagerCreate(
+    allocator: Option<&CFAllocator>,
+    options: IOOptionBits,
+) -> CFRetained<IOHIDManager> {
+    extern "C-unwind" {
+        fn IOHIDManagerCreate(
+            allocator: Option<&CFAllocator>,
+            options: IOOptionBits,
+        ) -> Option<NonNull<IOHIDManager>>;
+    }
+    let ret = unsafe { IOHIDManagerCreate(allocator, options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::open`"]
+    pub fn IOHIDManagerOpen(manager: &IOHIDManager, options: IOOptionBits) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::close`"]
+    pub fn IOHIDManagerClose(manager: &IOHIDManager, options: IOOptionBits) -> IOReturn;
+}
+
+#[deprecated = "renamed to `IOHIDManager::property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDManagerGetProperty(
+    manager: &IOHIDManager,
+    key: &CFString,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn IOHIDManagerGetProperty(
+            manager: &IOHIDManager,
+            key: &CFString,
+        ) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { IOHIDManagerGetProperty(manager, key) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDManager::set_property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDManagerSetProperty(
+    manager: &IOHIDManager,
+    key: &CFString,
+    value: &CFType,
+) -> bool {
+    extern "C-unwind" {
+        fn IOHIDManagerSetProperty(
+            manager: &IOHIDManager,
+            key: &CFString,
+            value: &CFType,
+        ) -> Boolean;
+    }
+    let ret = unsafe { IOHIDManagerSetProperty(manager, key, value) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::schedule_with_run_loop`"]
+    pub fn IOHIDManagerScheduleWithRunLoop(
+        manager: &IOHIDManager,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::unschedule_from_run_loop`"]
+    pub fn IOHIDManagerUnscheduleFromRunLoop(
+        manager: &IOHIDManager,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `IOHIDManager::set_dispatch_queue`"]
+    pub fn IOHIDManagerSetDispatchQueue(manager: &IOHIDManager, queue: &DispatchQueue);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `IOHIDManager::set_cancel_handler`"]
+    pub fn IOHIDManagerSetCancelHandler(manager: &IOHIDManager, handler: dispatch_block_t);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::activate`"]
+    pub fn IOHIDManagerActivate(manager: &IOHIDManager);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::cancel`"]
+    pub fn IOHIDManagerCancel(manager: &IOHIDManager);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::set_device_matching`"]
+    pub fn IOHIDManagerSetDeviceMatching(manager: &IOHIDManager, matching: Option<&CFDictionary>);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::set_device_matching_multiple`"]
+    pub fn IOHIDManagerSetDeviceMatchingMultiple(
+        manager: &IOHIDManager,
+        multiple: Option<&CFArray>,
+    );
+}
+
+#[deprecated = "renamed to `IOHIDManager::devices`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDManagerCopyDevices(
+    manager: &IOHIDManager,
+) -> Option<CFRetained<CFSet>> {
+    extern "C-unwind" {
+        fn IOHIDManagerCopyDevices(manager: &IOHIDManager) -> Option<NonNull<CFSet>>;
+    }
+    let ret = unsafe { IOHIDManagerCopyDevices(manager) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::register_device_matching_callback`"]
+    pub fn IOHIDManagerRegisterDeviceMatchingCallback(
+        manager: &IOHIDManager,
+        callback: IOHIDDeviceCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::register_device_removal_callback`"]
+    pub fn IOHIDManagerRegisterDeviceRemovalCallback(
+        manager: &IOHIDManager,
+        callback: IOHIDDeviceCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::register_input_report_callback`"]
+    pub fn IOHIDManagerRegisterInputReportCallback(
+        manager: &IOHIDManager,
+        callback: IOHIDReportCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::register_input_report_with_time_stamp_callback`"]
+    pub fn IOHIDManagerRegisterInputReportWithTimeStampCallback(
+        manager: &IOHIDManager,
+        callback: IOHIDReportWithTimeStampCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::register_input_value_callback`"]
+    pub fn IOHIDManagerRegisterInputValueCallback(
+        manager: &IOHIDManager,
+        callback: IOHIDValueCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::set_input_value_matching`"]
+    pub fn IOHIDManagerSetInputValueMatching(
+        manager: &IOHIDManager,
+        matching: Option<&CFDictionary>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::set_input_value_matching_multiple`"]
+    pub fn IOHIDManagerSetInputValueMatchingMultiple(
+        manager: &IOHIDManager,
+        multiple: Option<&CFArray>,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDManager::save_to_property_domain`"]
+    pub fn IOHIDManagerSaveToPropertyDomain(
+        manager: &IOHIDManager,
+        application_id: &CFString,
+        user_name: &CFString,
+        host_name: &CFString,
+        options: IOOptionBits,
+    );
+}
+
+#[deprecated = "renamed to `IOHIDValue::with_integer_value`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDValueCreateWithIntegerValue(
+    allocator: Option<&CFAllocator>,
+    element: &IOHIDElement,
+    time_stamp: u64,
+    value: CFIndex,
+) -> CFRetained<IOHIDValue> {
+    extern "C-unwind" {
+        fn IOHIDValueCreateWithIntegerValue(
+            allocator: Option<&CFAllocator>,
+            element: &IOHIDElement,
+            time_stamp: u64,
+            value: CFIndex,
+        ) -> Option<NonNull<IOHIDValue>>;
+    }
+    let ret = unsafe { IOHIDValueCreateWithIntegerValue(allocator, element, time_stamp, value) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `IOHIDValue::with_bytes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDValueCreateWithBytes(
+    allocator: Option<&CFAllocator>,
+    element: &IOHIDElement,
+    time_stamp: u64,
+    bytes: NonNull<u8>,
+    length: CFIndex,
+) -> Option<CFRetained<IOHIDValue>> {
+    extern "C-unwind" {
+        fn IOHIDValueCreateWithBytes(
+            allocator: Option<&CFAllocator>,
+            element: &IOHIDElement,
+            time_stamp: u64,
+            bytes: NonNull<u8>,
+            length: CFIndex,
+        ) -> Option<NonNull<IOHIDValue>>;
+    }
+    let ret = unsafe { IOHIDValueCreateWithBytes(allocator, element, time_stamp, bytes, length) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDValue::with_bytes_no_copy`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDValueCreateWithBytesNoCopy(
+    allocator: Option<&CFAllocator>,
+    element: &IOHIDElement,
+    time_stamp: u64,
+    bytes: NonNull<u8>,
+    length: CFIndex,
+) -> Option<CFRetained<IOHIDValue>> {
+    extern "C-unwind" {
+        fn IOHIDValueCreateWithBytesNoCopy(
+            allocator: Option<&CFAllocator>,
+            element: &IOHIDElement,
+            time_stamp: u64,
+            bytes: NonNull<u8>,
+            length: CFIndex,
+        ) -> Option<NonNull<IOHIDValue>>;
+    }
+    let ret =
+        unsafe { IOHIDValueCreateWithBytesNoCopy(allocator, element, time_stamp, bytes, length) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDValue::element`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDValueGetElement(
+    value: &IOHIDValue,
+) -> CFRetained<IOHIDElement> {
+    extern "C-unwind" {
+        fn IOHIDValueGetElement(value: &IOHIDValue) -> Option<NonNull<IOHIDElement>>;
+    }
+    let ret = unsafe { IOHIDValueGetElement(value) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::retain(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDValue::time_stamp`"]
+    pub fn IOHIDValueGetTimeStamp(value: &IOHIDValue) -> u64;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDValue::length`"]
+    pub fn IOHIDValueGetLength(value: &IOHIDValue) -> CFIndex;
+}
+
+#[deprecated = "renamed to `IOHIDValue::byte_ptr`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDValueGetBytePtr(value: &IOHIDValue) -> NonNull<u8> {
+    extern "C-unwind" {
+        fn IOHIDValueGetBytePtr(value: &IOHIDValue) -> Option<NonNull<u8>>;
+    }
+    let ret = unsafe { IOHIDValueGetBytePtr(value) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDValue::integer_value`"]
+    pub fn IOHIDValueGetIntegerValue(value: &IOHIDValue) -> CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDValue::scaled_value`"]
+    pub fn IOHIDValueGetScaledValue(value: &IOHIDValue, r#type: IOHIDValueScaleType) -> c_double;
+}
+
+#[deprecated = "renamed to `IOHIDTransaction::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDTransactionCreate(
+    allocator: Option<&CFAllocator>,
+    device: &IOHIDDevice,
+    direction: IOHIDTransactionDirectionType,
+    options: IOOptionBits,
+) -> Option<CFRetained<IOHIDTransaction>> {
+    extern "C-unwind" {
+        fn IOHIDTransactionCreate(
+            allocator: Option<&CFAllocator>,
+            device: &IOHIDDevice,
+            direction: IOHIDTransactionDirectionType,
+            options: IOOptionBits,
+        ) -> Option<NonNull<IOHIDTransaction>>;
+    }
+    let ret = unsafe { IOHIDTransactionCreate(allocator, device, direction, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDTransaction::device`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDTransactionGetDevice(
+    transaction: &IOHIDTransaction,
+) -> CFRetained<IOHIDDevice> {
+    extern "C-unwind" {
+        fn IOHIDTransactionGetDevice(
+            transaction: &IOHIDTransaction,
+        ) -> Option<NonNull<IOHIDDevice>>;
+    }
+    let ret = unsafe { IOHIDTransactionGetDevice(transaction) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::retain(ret) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDTransaction::direction`"]
+    pub fn IOHIDTransactionGetDirection(
+        transaction: &IOHIDTransaction,
+    ) -> IOHIDTransactionDirectionType;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDTransaction::set_direction`"]
+    pub fn IOHIDTransactionSetDirection(
+        transaction: &IOHIDTransaction,
+        direction: IOHIDTransactionDirectionType,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDTransaction::add_element`"]
+    pub fn IOHIDTransactionAddElement(transaction: &IOHIDTransaction, element: &IOHIDElement);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDTransaction::remove_element`"]
+    pub fn IOHIDTransactionRemoveElement(transaction: &IOHIDTransaction, element: &IOHIDElement);
+}
+
+#[deprecated = "renamed to `IOHIDTransaction::contains_element`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDTransactionContainsElement(
+    transaction: &IOHIDTransaction,
+    element: &IOHIDElement,
+) -> bool {
+    extern "C-unwind" {
+        fn IOHIDTransactionContainsElement(
+            transaction: &IOHIDTransaction,
+            element: &IOHIDElement,
+        ) -> Boolean;
+    }
+    let ret = unsafe { IOHIDTransactionContainsElement(transaction, element) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDTransaction::schedule_with_run_loop`"]
+    pub fn IOHIDTransactionScheduleWithRunLoop(
+        transaction: &IOHIDTransaction,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDTransaction::unschedule_from_run_loop`"]
+    pub fn IOHIDTransactionUnscheduleFromRunLoop(
+        transaction: &IOHIDTransaction,
+        run_loop: &CFRunLoop,
+        run_loop_mode: &CFString,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDTransaction::set_value`"]
+    pub fn IOHIDTransactionSetValue(
+        transaction: &IOHIDTransaction,
+        element: &IOHIDElement,
+        value: &IOHIDValue,
+        options: IOOptionBits,
+    );
+}
+
+#[deprecated = "renamed to `IOHIDTransaction::value`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDTransactionGetValue(
+    transaction: &IOHIDTransaction,
+    element: &IOHIDElement,
+    options: IOOptionBits,
+) -> Option<CFRetained<IOHIDValue>> {
+    extern "C-unwind" {
+        fn IOHIDTransactionGetValue(
+            transaction: &IOHIDTransaction,
+            element: &IOHIDElement,
+            options: IOOptionBits,
+        ) -> Option<NonNull<IOHIDValue>>;
+    }
+    let ret = unsafe { IOHIDTransactionGetValue(transaction, element, options) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDTransaction::commit`"]
+    pub fn IOHIDTransactionCommit(transaction: &IOHIDTransaction) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDTransaction::commit_with_callback`"]
+    pub fn IOHIDTransactionCommitWithCallback(
+        transaction: &IOHIDTransaction,
+        timeout: CFTimeInterval,
+        callback: IOHIDCallback,
+        context: *mut c_void,
+    ) -> IOReturn;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDTransaction::clear`"]
+    pub fn IOHIDTransactionClear(transaction: &IOHIDTransaction);
 }

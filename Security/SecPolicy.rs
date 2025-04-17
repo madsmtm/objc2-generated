@@ -182,70 +182,73 @@ unsafe impl ConcreteType for SecPolicy {
     }
 }
 
-/// Returns a dictionary of this policy's properties.
-///
-/// Parameter `policyRef`: A policy reference.
-///
-/// Returns: A properties dictionary. See "Policy Value Constants" for a list
-/// of currently defined property keys. It is the caller's responsibility to
-/// CFRelease this reference when it is no longer needed.
-///
-/// Returns: A result code. See "Security Error Codes" (SecBase.h).
-///
-/// This function returns the properties for a policy, as set by the
-/// policy's construction function or by a prior call to SecPolicySetProperties.
 #[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecPolicyCopyProperties(
-    policy_ref: &SecPolicy,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn SecPolicyCopyProperties(policy_ref: &SecPolicy) -> Option<NonNull<CFDictionary>>;
+impl SecPolicy {
+    /// Returns a dictionary of this policy's properties.
+    ///
+    /// Parameter `policyRef`: A policy reference.
+    ///
+    /// Returns: A properties dictionary. See "Policy Value Constants" for a list
+    /// of currently defined property keys. It is the caller's responsibility to
+    /// CFRelease this reference when it is no longer needed.
+    ///
+    /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// This function returns the properties for a policy, as set by the
+    /// policy's construction function or by a prior call to SecPolicySetProperties.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecPolicyCopyProperties")]
+    pub unsafe fn properties(self: &SecPolicy) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SecPolicyCopyProperties(policy_ref: &SecPolicy) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SecPolicyCopyProperties(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecPolicyCopyProperties(policy_ref) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns a policy object for the default X.509 policy.
-///
-/// Returns: A policy object. The caller is responsible for calling CFRelease
-/// on this when it is no longer needed.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecPolicyCreateBasicX509() -> CFRetained<SecPolicy> {
-    extern "C-unwind" {
-        fn SecPolicyCreateBasicX509() -> Option<NonNull<SecPolicy>>;
+    /// Returns a policy object for the default X.509 policy.
+    ///
+    /// Returns: A policy object. The caller is responsible for calling CFRelease
+    /// on this when it is no longer needed.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecPolicyCreateBasicX509")]
+    pub unsafe fn new_basic_x509() -> CFRetained<SecPolicy> {
+        extern "C-unwind" {
+            fn SecPolicyCreateBasicX509() -> Option<NonNull<SecPolicy>>;
+        }
+        let ret = unsafe { SecPolicyCreateBasicX509() };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { SecPolicyCreateBasicX509() };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Returns a policy object for evaluating SSL certificate chains.
-///
-/// Parameter `server`: Passing true for this parameter creates a policy for SSL
-/// server certificates.
-///
-/// Parameter `hostname`: (Optional) If present, the policy will require the specified
-/// hostname to match the hostname in the leaf certificate.
-///
-/// Returns: A policy object. The caller is responsible for calling CFRelease
-/// on this when it is no longer needed.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecPolicyCreateSSL(
-    server: bool,
-    hostname: Option<&CFString>,
-) -> CFRetained<SecPolicy> {
-    extern "C-unwind" {
-        fn SecPolicyCreateSSL(
-            server: Boolean,
-            hostname: Option<&CFString>,
-        ) -> Option<NonNull<SecPolicy>>;
+    /// Returns a policy object for evaluating SSL certificate chains.
+    ///
+    /// Parameter `server`: Passing true for this parameter creates a policy for SSL
+    /// server certificates.
+    ///
+    /// Parameter `hostname`: (Optional) If present, the policy will require the specified
+    /// hostname to match the hostname in the leaf certificate.
+    ///
+    /// Returns: A policy object. The caller is responsible for calling CFRelease
+    /// on this when it is no longer needed.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecPolicyCreateSSL")]
+    pub unsafe fn new_ssl(server: bool, hostname: Option<&CFString>) -> CFRetained<SecPolicy> {
+        extern "C-unwind" {
+            fn SecPolicyCreateSSL(
+                server: Boolean,
+                hostname: Option<&CFString>,
+            ) -> Option<NonNull<SecPolicy>>;
+        }
+        let ret = unsafe { SecPolicyCreateSSL(server as _, hostname) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { SecPolicyCreateSSL(server as _, hostname) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationocspmethod?language=objc)
@@ -261,57 +264,61 @@ pub const kSecRevocationNetworkAccessDisabled: CFOptionFlags = 16;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationuseanyavailablemethod?language=objc)
 pub const kSecRevocationUseAnyAvailableMethod: CFOptionFlags = 3;
 
-/// Returns a policy object for checking revocation of certificates.
-///
-/// Returns: A policy object. The caller is responsible for calling CFRelease
-/// on this when it is no longer needed.
-///
-/// Parameter `revocationFlags`: Flags to specify revocation checking options.
-///
-/// Use this function to create a revocation policy with behavior
-/// specified by revocationFlags. See the "Revocation Policy Constants" section
-/// for a description of these flags. Note: it is usually not necessary to
-/// create a revocation policy yourself unless you wish to override default
-/// system behavior (e.g. to force a particular method, or to disable
-/// revocation checking entirely.)
 #[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecPolicyCreateRevocation(
-    revocation_flags: CFOptionFlags,
-) -> Option<CFRetained<SecPolicy>> {
-    extern "C-unwind" {
-        fn SecPolicyCreateRevocation(revocation_flags: CFOptionFlags)
-            -> Option<NonNull<SecPolicy>>;
+impl SecPolicy {
+    /// Returns a policy object for checking revocation of certificates.
+    ///
+    /// Returns: A policy object. The caller is responsible for calling CFRelease
+    /// on this when it is no longer needed.
+    ///
+    /// Parameter `revocationFlags`: Flags to specify revocation checking options.
+    ///
+    /// Use this function to create a revocation policy with behavior
+    /// specified by revocationFlags. See the "Revocation Policy Constants" section
+    /// for a description of these flags. Note: it is usually not necessary to
+    /// create a revocation policy yourself unless you wish to override default
+    /// system behavior (e.g. to force a particular method, or to disable
+    /// revocation checking entirely.)
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecPolicyCreateRevocation")]
+    pub unsafe fn new_revocation(revocation_flags: CFOptionFlags) -> Option<CFRetained<SecPolicy>> {
+        extern "C-unwind" {
+            fn SecPolicyCreateRevocation(
+                revocation_flags: CFOptionFlags,
+            ) -> Option<NonNull<SecPolicy>>;
+        }
+        let ret = unsafe { SecPolicyCreateRevocation(revocation_flags) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecPolicyCreateRevocation(revocation_flags) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns a policy object based on an object identifier for the
-/// policy type. See the "Policy Constants" section for a list of defined
-/// policy object identifiers.
-///
-/// Parameter `policyIdentifier`: The identifier for the desired policy type.
-///
-/// Parameter `properties`: (Optional) A properties dictionary. See "Policy Value
-/// Constants" for a list of currently defined property keys.
-///
-/// Returns: The returned policy reference, or NULL if the policy could not be
-/// created.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecPolicyCreateWithProperties(
-    policy_identifier: &CFType,
-    properties: Option<&CFDictionary>,
-) -> Option<CFRetained<SecPolicy>> {
-    extern "C-unwind" {
-        fn SecPolicyCreateWithProperties(
-            policy_identifier: &CFType,
-            properties: Option<&CFDictionary>,
-        ) -> Option<NonNull<SecPolicy>>;
+    /// Returns a policy object based on an object identifier for the
+    /// policy type. See the "Policy Constants" section for a list of defined
+    /// policy object identifiers.
+    ///
+    /// Parameter `policyIdentifier`: The identifier for the desired policy type.
+    ///
+    /// Parameter `properties`: (Optional) A properties dictionary. See "Policy Value
+    /// Constants" for a list of currently defined property keys.
+    ///
+    /// Returns: The returned policy reference, or NULL if the policy could not be
+    /// created.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecPolicyCreateWithProperties")]
+    pub unsafe fn with_properties(
+        policy_identifier: &CFType,
+        properties: Option<&CFDictionary>,
+    ) -> Option<CFRetained<SecPolicy>> {
+        extern "C-unwind" {
+            fn SecPolicyCreateWithProperties(
+                policy_identifier: &CFType,
+                properties: Option<&CFDictionary>,
+            ) -> Option<NonNull<SecPolicy>>;
+        }
+        let ret = unsafe { SecPolicyCreateWithProperties(policy_identifier, properties) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecPolicyCreateWithProperties(policy_identifier, properties) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -412,32 +419,32 @@ extern "C" {
     pub static kSecPolicyKU_DecipherOnly: &'static CFString;
 }
 
-/// Returns a policy object based on an object identifier for the
-/// policy type. See the "Policy Constants" section for a list of defined
-/// policy object identifiers.
-///
-/// Parameter `policyOID`: The OID of the desired policy.
-///
-/// Returns: The returned policy reference, or NULL if the policy could not be
-/// created.
-///
-/// This function is deprecated in Mac OS X 10.9 and later;
-/// use SecPolicyCreateWithProperties (or a more specific policy creation
-/// function) instead.
 #[cfg(feature = "SecBase")]
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn SecPolicyCreateWithOID(
-    policy_oid: &CFType,
-) -> Option<CFRetained<SecPolicy>> {
-    extern "C-unwind" {
-        fn SecPolicyCreateWithOID(policy_oid: &CFType) -> Option<NonNull<SecPolicy>>;
+impl SecPolicy {
+    /// Returns a policy object based on an object identifier for the
+    /// policy type. See the "Policy Constants" section for a list of defined
+    /// policy object identifiers.
+    ///
+    /// Parameter `policyOID`: The OID of the desired policy.
+    ///
+    /// Returns: The returned policy reference, or NULL if the policy could not be
+    /// created.
+    ///
+    /// This function is deprecated in Mac OS X 10.9 and later;
+    /// use SecPolicyCreateWithProperties (or a more specific policy creation
+    /// function) instead.
+    #[cfg(feature = "SecBase")]
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "SecPolicyCreateWithOID")]
+    pub unsafe fn with_oid(policy_oid: &CFType) -> Option<CFRetained<SecPolicy>> {
+        extern "C-unwind" {
+            fn SecPolicyCreateWithOID(policy_oid: &CFType) -> Option<NonNull<SecPolicy>>;
+        }
+        let ret = unsafe { SecPolicyCreateWithOID(policy_oid) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { SecPolicyCreateWithOID(policy_oid) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
     /// Returns a policy's object identifier.
     ///
     /// Parameter `policyRef`: A policy reference.
@@ -450,10 +457,15 @@ extern "C-unwind" {
     /// use SecPolicyCopyProperties instead.
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
-    pub fn SecPolicyGetOID(policy_ref: &SecPolicy, oid: NonNull<SecAsn1Oid>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecPolicyGetOID")]
+    pub unsafe fn oid(self: &SecPolicy, oid: NonNull<SecAsn1Oid>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecPolicyGetOID(policy_ref: &SecPolicy, oid: NonNull<SecAsn1Oid>) -> OSStatus;
+        }
+        unsafe { SecPolicyGetOID(self, oid) }
+    }
 
-extern "C-unwind" {
     /// Returns a policy's value.
     ///
     /// Parameter `policyRef`: A policy reference.
@@ -466,10 +478,15 @@ extern "C-unwind" {
     /// use SecPolicyCopyProperties instead.
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
-    pub fn SecPolicyGetValue(policy_ref: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecPolicyGetValue")]
+    pub unsafe fn value(self: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecPolicyGetValue(policy_ref: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus;
+        }
+        unsafe { SecPolicyGetValue(self, value) }
+    }
 
-extern "C-unwind" {
     /// Sets a policy's value.
     ///
     /// Parameter `policyRef`: A policy reference.
@@ -485,10 +502,15 @@ extern "C-unwind" {
     /// policy instance with the desired properties.
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
-    pub fn SecPolicySetValue(policy_ref: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecPolicySetValue")]
+    pub unsafe fn set_value(self: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecPolicySetValue(policy_ref: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus;
+        }
+        unsafe { SecPolicySetValue(self, value) }
+    }
 
-extern "C-unwind" {
     /// Sets a policy's properties.
     ///
     /// Parameter `policyRef`: A policy reference.
@@ -506,10 +528,18 @@ extern "C-unwind" {
     /// policy instance with the desired properties.
     #[cfg(feature = "SecBase")]
     #[deprecated]
-    pub fn SecPolicySetProperties(policy_ref: &SecPolicy, properties: &CFDictionary) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "SecPolicySetProperties")]
+    pub unsafe fn set_properties(self: &SecPolicy, properties: &CFDictionary) -> OSStatus {
+        extern "C-unwind" {
+            fn SecPolicySetProperties(
+                policy_ref: &SecPolicy,
+                properties: &CFDictionary,
+            ) -> OSStatus;
+        }
+        unsafe { SecPolicySetProperties(self, properties) }
+    }
 
-extern "C-unwind" {
     /// Returns the CSSM trust policy handle for the given policy.
     ///
     /// Parameter `policyRef`: A policy reference.
@@ -521,6 +551,133 @@ extern "C-unwind" {
     /// This function is deprecated in Mac OS X 10.7 and later.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
+    #[inline]
+    #[doc(alias = "SecPolicyGetTPHandle")]
+    pub unsafe fn tp_handle(self: &SecPolicy, tp_handle: NonNull<CSSM_TP_HANDLE>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecPolicyGetTPHandle(
+                policy_ref: &SecPolicy,
+                tp_handle: NonNull<CSSM_TP_HANDLE>,
+            ) -> OSStatus;
+        }
+        unsafe { SecPolicyGetTPHandle(self, tp_handle) }
+    }
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecPolicy::properties`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecPolicyCopyProperties(
+    policy_ref: &SecPolicy,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn SecPolicyCopyProperties(policy_ref: &SecPolicy) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { SecPolicyCopyProperties(policy_ref) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecPolicy::new_basic_x509`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecPolicyCreateBasicX509() -> CFRetained<SecPolicy> {
+    extern "C-unwind" {
+        fn SecPolicyCreateBasicX509() -> Option<NonNull<SecPolicy>>;
+    }
+    let ret = unsafe { SecPolicyCreateBasicX509() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecPolicy::new_ssl`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecPolicyCreateSSL(
+    server: bool,
+    hostname: Option<&CFString>,
+) -> CFRetained<SecPolicy> {
+    extern "C-unwind" {
+        fn SecPolicyCreateSSL(
+            server: Boolean,
+            hostname: Option<&CFString>,
+        ) -> Option<NonNull<SecPolicy>>;
+    }
+    let ret = unsafe { SecPolicyCreateSSL(server as _, hostname) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecPolicy::new_revocation`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecPolicyCreateRevocation(
+    revocation_flags: CFOptionFlags,
+) -> Option<CFRetained<SecPolicy>> {
+    extern "C-unwind" {
+        fn SecPolicyCreateRevocation(revocation_flags: CFOptionFlags)
+            -> Option<NonNull<SecPolicy>>;
+    }
+    let ret = unsafe { SecPolicyCreateRevocation(revocation_flags) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecPolicy::with_properties`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecPolicyCreateWithProperties(
+    policy_identifier: &CFType,
+    properties: Option<&CFDictionary>,
+) -> Option<CFRetained<SecPolicy>> {
+    extern "C-unwind" {
+        fn SecPolicyCreateWithProperties(
+            policy_identifier: &CFType,
+            properties: Option<&CFDictionary>,
+        ) -> Option<NonNull<SecPolicy>>;
+    }
+    let ret = unsafe { SecPolicyCreateWithProperties(policy_identifier, properties) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecPolicy::with_oid`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecPolicyCreateWithOID(
+    policy_oid: &CFType,
+) -> Option<CFRetained<SecPolicy>> {
+    extern "C-unwind" {
+        fn SecPolicyCreateWithOID(policy_oid: &CFType) -> Option<NonNull<SecPolicy>>;
+    }
+    let ret = unsafe { SecPolicyCreateWithOID(policy_oid) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
+    #[deprecated = "renamed to `SecPolicy::oid`"]
+    pub fn SecPolicyGetOID(policy_ref: &SecPolicy, oid: NonNull<SecAsn1Oid>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
+    #[deprecated = "renamed to `SecPolicy::value`"]
+    pub fn SecPolicyGetValue(policy_ref: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
+    #[deprecated = "renamed to `SecPolicy::set_value`"]
+    pub fn SecPolicySetValue(policy_ref: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecPolicy::set_properties`"]
+    pub fn SecPolicySetProperties(policy_ref: &SecPolicy, properties: &CFDictionary) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecPolicy::tp_handle`"]
     pub fn SecPolicyGetTPHandle(
         policy_ref: &SecPolicy,
         tp_handle: NonNull<CSSM_TP_HANDLE>,

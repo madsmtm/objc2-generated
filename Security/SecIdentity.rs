@@ -20,7 +20,8 @@ unsafe impl ConcreteType for SecIdentity {
     }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "SecBase")]
+impl SecIdentity {
     /// Creates a new identity reference for the given certificate, assuming the associated private key is in one of the specified keychains.
     ///
     /// Parameter `keychainOrArray`: A reference to an array of keychains to search, a single keychain, or NULL to search the user's default keychain search list.
@@ -31,14 +32,25 @@ extern "C-unwind" {
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
-    pub fn SecIdentityCreateWithCertificate(
+    #[inline]
+    #[doc(alias = "SecIdentityCreateWithCertificate")]
+    pub unsafe fn create_with_certificate(
         keychain_or_array: Option<&CFType>,
         certificate_ref: &SecCertificate,
         identity_ref: NonNull<*mut SecIdentity>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecIdentityCreateWithCertificate(
+                keychain_or_array: Option<&CFType>,
+                certificate_ref: &SecCertificate,
+                identity_ref: NonNull<*mut SecIdentity>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecIdentityCreateWithCertificate(keychain_or_array, certificate_ref, identity_ref)
+        }
+    }
 
-extern "C-unwind" {
     /// Returns a reference to a certificate for the given identity
     /// reference.
     ///
@@ -50,13 +62,21 @@ extern "C-unwind" {
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
-    pub fn SecIdentityCopyCertificate(
-        identity_ref: &SecIdentity,
+    #[inline]
+    #[doc(alias = "SecIdentityCopyCertificate")]
+    pub unsafe fn copy_certificate(
+        self: &SecIdentity,
         certificate_ref: NonNull<*mut SecCertificate>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecIdentityCopyCertificate(
+                identity_ref: &SecIdentity,
+                certificate_ref: NonNull<*mut SecCertificate>,
+            ) -> OSStatus;
+        }
+        unsafe { SecIdentityCopyCertificate(self, certificate_ref) }
+    }
 
-extern "C-unwind" {
     /// Returns the private key associated with an identity.
     ///
     /// Parameter `identityRef`: An identity reference.
@@ -67,13 +87,21 @@ extern "C-unwind" {
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[cfg(feature = "SecBase")]
-    pub fn SecIdentityCopyPrivateKey(
-        identity_ref: &SecIdentity,
+    #[inline]
+    #[doc(alias = "SecIdentityCopyPrivateKey")]
+    pub unsafe fn copy_private_key(
+        self: &SecIdentity,
         private_key_ref: NonNull<*mut SecKey>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecIdentityCopyPrivateKey(
+                identity_ref: &SecIdentity,
+                private_key_ref: NonNull<*mut SecKey>,
+            ) -> OSStatus;
+        }
+        unsafe { SecIdentityCopyPrivateKey(self, private_key_ref) }
+    }
 
-extern "C-unwind" {
     /// Returns the preferred identity for the specified name and key usage, optionally limiting the result to an identity issued by a certificate whose subject is one of the distinguished names in validIssuers. If a preferred identity does not exist, NULL is returned.
     ///
     /// Parameter `name`: A string containing a URI, RFC822 email address, DNS hostname, or other name which uniquely identifies the service requiring an identity.
@@ -89,44 +117,55 @@ extern "C-unwind" {
     /// This API is deprecated in 10.7. Please use the SecIdentityCopyPreferred API instead.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
-    pub fn SecIdentityCopyPreference(
+    #[inline]
+    #[doc(alias = "SecIdentityCopyPreference")]
+    pub unsafe fn copy_preference(
         name: &CFString,
         key_usage: CSSM_KEYUSE,
         valid_issuers: Option<&CFArray>,
         identity: NonNull<*mut SecIdentity>,
-    ) -> OSStatus;
-}
-
-/// Returns the preferred identity for the specified name and key usage, optionally limiting the result to an identity issued by a certificate whose subject is one of the distinguished names in validIssuers. If a preferred identity does not exist, NULL is returned.
-///
-/// Parameter `name`: A string containing a URI, RFC822 email address, DNS hostname, or other name which uniquely identifies the service requiring an identity.
-///
-/// Parameter `keyUsage`: A CFArrayRef value, containing items defined in SecItem.h  Pass NULL to ignore this parameter. (kSecAttrCanEncrypt, kSecAttrCanDecrypt, kSecAttrCanDerive, kSecAttrCanSign, kSecAttrCanVerify, kSecAttrCanWrap, kSecAttrCanUnwrap)
-///
-/// Parameter `validIssuers`: (optional) An array of CFDataRef instances whose contents are the subject names of allowable issuers, as returned by a call to SSLCopyDistinguishedNames (SecureTransport.h). Pass NULL if any issuer is allowed.
-///
-/// Returns: An identity or NULL, if the preferred identity has not been set. Your code should then typically perform a search for possible identities using the SecItem APIs.
-///
-/// If a preferred identity has not been set for the supplied name, the returned identity reference will be NULL. Your code should then perform a search for possible identities, using the SecItemCopyMatching API. Note: in versions of macOS prior to 11.3, identity preferences are shared between processes running as the same user. Starting in 11.3, URI names are considered per-application preferences. An identity preference for a URI name may not be found if the calling application is different from the one which set the preference with SecIdentitySetPreferred.
-#[cfg(feature = "SecBase")]
-#[inline]
-pub unsafe extern "C-unwind" fn SecIdentityCopyPreferred(
-    name: &CFString,
-    key_usage: Option<&CFArray>,
-    valid_issuers: Option<&CFArray>,
-) -> Option<CFRetained<SecIdentity>> {
-    extern "C-unwind" {
-        fn SecIdentityCopyPreferred(
-            name: &CFString,
-            key_usage: Option<&CFArray>,
-            valid_issuers: Option<&CFArray>,
-        ) -> Option<NonNull<SecIdentity>>;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecIdentityCopyPreference(
+                name: &CFString,
+                key_usage: CSSM_KEYUSE,
+                valid_issuers: Option<&CFArray>,
+                identity: NonNull<*mut SecIdentity>,
+            ) -> OSStatus;
+        }
+        unsafe { SecIdentityCopyPreference(name, key_usage, valid_issuers, identity) }
     }
-    let ret = unsafe { SecIdentityCopyPreferred(name, key_usage, valid_issuers) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Returns the preferred identity for the specified name and key usage, optionally limiting the result to an identity issued by a certificate whose subject is one of the distinguished names in validIssuers. If a preferred identity does not exist, NULL is returned.
+    ///
+    /// Parameter `name`: A string containing a URI, RFC822 email address, DNS hostname, or other name which uniquely identifies the service requiring an identity.
+    ///
+    /// Parameter `keyUsage`: A CFArrayRef value, containing items defined in SecItem.h  Pass NULL to ignore this parameter. (kSecAttrCanEncrypt, kSecAttrCanDecrypt, kSecAttrCanDerive, kSecAttrCanSign, kSecAttrCanVerify, kSecAttrCanWrap, kSecAttrCanUnwrap)
+    ///
+    /// Parameter `validIssuers`: (optional) An array of CFDataRef instances whose contents are the subject names of allowable issuers, as returned by a call to SSLCopyDistinguishedNames (SecureTransport.h). Pass NULL if any issuer is allowed.
+    ///
+    /// Returns: An identity or NULL, if the preferred identity has not been set. Your code should then typically perform a search for possible identities using the SecItem APIs.
+    ///
+    /// If a preferred identity has not been set for the supplied name, the returned identity reference will be NULL. Your code should then perform a search for possible identities, using the SecItemCopyMatching API. Note: in versions of macOS prior to 11.3, identity preferences are shared between processes running as the same user. Starting in 11.3, URI names are considered per-application preferences. An identity preference for a URI name may not be found if the calling application is different from the one which set the preference with SecIdentitySetPreferred.
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecIdentityCopyPreferred")]
+    pub unsafe fn preferred(
+        name: &CFString,
+        key_usage: Option<&CFArray>,
+        valid_issuers: Option<&CFArray>,
+    ) -> Option<CFRetained<SecIdentity>> {
+        extern "C-unwind" {
+            fn SecIdentityCopyPreferred(
+                name: &CFString,
+                key_usage: Option<&CFArray>,
+                valid_issuers: Option<&CFArray>,
+            ) -> Option<NonNull<SecIdentity>>;
+        }
+        let ret = unsafe { SecIdentityCopyPreferred(name, key_usage, valid_issuers) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Sets the preferred identity for the specified name and key usage.
     ///
     /// Parameter `identity`: A reference to the identity which will be preferred.
@@ -140,14 +179,23 @@ extern "C-unwind" {
     /// This API is deprecated in 10.7. Please use the SecIdentitySetPreferred API instead.
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
-    pub fn SecIdentitySetPreference(
-        identity: &SecIdentity,
+    #[inline]
+    #[doc(alias = "SecIdentitySetPreference")]
+    pub unsafe fn set_preference(
+        self: &SecIdentity,
         name: &CFString,
         key_usage: CSSM_KEYUSE,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecIdentitySetPreference(
+                identity: &SecIdentity,
+                name: &CFString,
+                key_usage: CSSM_KEYUSE,
+            ) -> OSStatus;
+        }
+        unsafe { SecIdentitySetPreference(self, name, key_usage) }
+    }
 
-extern "C-unwind" {
     /// Sets the preferred identity for the specified name and key usage.
     ///
     /// Parameter `identity`: A reference to the identity which will be preferred. If NULL is passed, any existing preference for the specified name is cleared instead.
@@ -160,14 +208,23 @@ extern "C-unwind" {
     ///
     /// Note: in versions of macOS prior to 11.3, identity preferences are shared between processes running as the same user. Starting in 11.3, URI names are considered per-application preferences. An identity preference for a URI name will be scoped to the application which created it, such that a subsequent call to SecIdentityCopyPreferred will only return it for that same application.
     #[cfg(feature = "SecBase")]
-    pub fn SecIdentitySetPreferred(
+    #[inline]
+    #[doc(alias = "SecIdentitySetPreferred")]
+    pub unsafe fn set_preferred(
         identity: Option<&SecIdentity>,
         name: &CFString,
         key_usage: Option<&CFArray>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecIdentitySetPreferred(
+                identity: Option<&SecIdentity>,
+                name: &CFString,
+                key_usage: Option<&CFArray>,
+            ) -> OSStatus;
+        }
+        unsafe { SecIdentitySetPreferred(identity, name, key_usage) }
+    }
 
-extern "C-unwind" {
     /// Obtain the system-wide SecIdentityRef associated with
     /// a specified domain.
     ///
@@ -189,14 +246,23 @@ extern "C-unwind" {
     /// instead, typically (but not exclusively) the
     /// kSecIdentityDomainDefault SecIdentityRef.
     #[cfg(feature = "SecBase")]
-    pub fn SecIdentityCopySystemIdentity(
+    #[inline]
+    #[doc(alias = "SecIdentityCopySystemIdentity")]
+    pub unsafe fn copy_system_identity(
         domain: &CFString,
         id_ref: NonNull<*mut SecIdentity>,
         actual_domain: *mut *const CFString,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecIdentityCopySystemIdentity(
+                domain: &CFString,
+                id_ref: NonNull<*mut SecIdentity>,
+                actual_domain: *mut *const CFString,
+            ) -> OSStatus;
+        }
+        unsafe { SecIdentityCopySystemIdentity(domain, id_ref, actual_domain) }
+    }
 
-extern "C-unwind" {
     /// Assign the supplied SecIdentityRef to the specified
     /// domain.
     ///
@@ -212,10 +278,17 @@ extern "C-unwind" {
     ///
     /// The caller must be running as root.
     #[cfg(feature = "SecBase")]
-    pub fn SecIdentitySetSystemIdentity(
-        domain: &CFString,
-        id_ref: Option<&SecIdentity>,
-    ) -> OSStatus;
+    #[inline]
+    #[doc(alias = "SecIdentitySetSystemIdentity")]
+    pub unsafe fn set_system_identity(domain: &CFString, id_ref: Option<&SecIdentity>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecIdentitySetSystemIdentity(
+                domain: &CFString,
+                id_ref: Option<&SecIdentity>,
+            ) -> OSStatus;
+        }
+        unsafe { SecIdentitySetSystemIdentity(domain, id_ref) }
+    }
 }
 
 extern "C" {
@@ -226,4 +299,101 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecidentitydomainkerberoskdc?language=objc)
     pub static kSecIdentityDomainKerberosKDC: &'static CFString;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecIdentity::create_with_certificate`"]
+    pub fn SecIdentityCreateWithCertificate(
+        keychain_or_array: Option<&CFType>,
+        certificate_ref: &SecCertificate,
+        identity_ref: NonNull<*mut SecIdentity>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecIdentity::copy_certificate`"]
+    pub fn SecIdentityCopyCertificate(
+        identity_ref: &SecIdentity,
+        certificate_ref: NonNull<*mut SecCertificate>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecIdentity::copy_private_key`"]
+    pub fn SecIdentityCopyPrivateKey(
+        identity_ref: &SecIdentity,
+        private_key_ref: NonNull<*mut SecKey>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecIdentity::copy_preference`"]
+    pub fn SecIdentityCopyPreference(
+        name: &CFString,
+        key_usage: CSSM_KEYUSE,
+        valid_issuers: Option<&CFArray>,
+        identity: NonNull<*mut SecIdentity>,
+    ) -> OSStatus;
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecIdentity::preferred`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecIdentityCopyPreferred(
+    name: &CFString,
+    key_usage: Option<&CFArray>,
+    valid_issuers: Option<&CFArray>,
+) -> Option<CFRetained<SecIdentity>> {
+    extern "C-unwind" {
+        fn SecIdentityCopyPreferred(
+            name: &CFString,
+            key_usage: Option<&CFArray>,
+            valid_issuers: Option<&CFArray>,
+        ) -> Option<NonNull<SecIdentity>>;
+    }
+    let ret = unsafe { SecIdentityCopyPreferred(name, key_usage, valid_issuers) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecIdentity::set_preference`"]
+    pub fn SecIdentitySetPreference(
+        identity: &SecIdentity,
+        name: &CFString,
+        key_usage: CSSM_KEYUSE,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecIdentity::set_preferred`"]
+    pub fn SecIdentitySetPreferred(
+        identity: Option<&SecIdentity>,
+        name: &CFString,
+        key_usage: Option<&CFArray>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecIdentity::copy_system_identity`"]
+    pub fn SecIdentityCopySystemIdentity(
+        domain: &CFString,
+        id_ref: NonNull<*mut SecIdentity>,
+        actual_domain: *mut *const CFString,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecIdentity::set_system_identity`"]
+    pub fn SecIdentitySetSystemIdentity(
+        domain: &CFString,
+        id_ref: Option<&SecIdentity>,
+    ) -> OSStatus;
 }

@@ -28,20 +28,71 @@ pub type CGPDFOperatorTableRef = *mut CGPDFOperatorTable;
 #[cfg(feature = "CGPDFScanner")]
 pub type CGPDFOperatorCallback = Option<unsafe extern "C-unwind" fn(CGPDFScannerRef, *mut c_void)>;
 
+impl CGPDFOperatorTable {
+    #[inline]
+    #[doc(alias = "CGPDFOperatorTableCreate")]
+    pub unsafe fn create() -> CGPDFOperatorTableRef {
+        extern "C-unwind" {
+            fn CGPDFOperatorTableCreate() -> CGPDFOperatorTableRef;
+        }
+        unsafe { CGPDFOperatorTableCreate() }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFOperatorTableRetain")]
+    pub unsafe fn retain(table: CGPDFOperatorTableRef) -> CGPDFOperatorTableRef {
+        extern "C-unwind" {
+            fn CGPDFOperatorTableRetain(table: CGPDFOperatorTableRef) -> CGPDFOperatorTableRef;
+        }
+        unsafe { CGPDFOperatorTableRetain(table) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFOperatorTableRelease")]
+    pub unsafe fn release(table: CGPDFOperatorTableRef) {
+        extern "C-unwind" {
+            fn CGPDFOperatorTableRelease(table: CGPDFOperatorTableRef);
+        }
+        unsafe { CGPDFOperatorTableRelease(table) }
+    }
+
+    #[cfg(feature = "CGPDFScanner")]
+    #[inline]
+    #[doc(alias = "CGPDFOperatorTableSetCallback")]
+    pub unsafe fn set_callback(
+        table: CGPDFOperatorTableRef,
+        name: *const c_char,
+        callback: CGPDFOperatorCallback,
+    ) {
+        extern "C-unwind" {
+            fn CGPDFOperatorTableSetCallback(
+                table: CGPDFOperatorTableRef,
+                name: *const c_char,
+                callback: CGPDFOperatorCallback,
+            );
+        }
+        unsafe { CGPDFOperatorTableSetCallback(table, name, callback) }
+    }
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFOperatorTable::create`"]
     pub fn CGPDFOperatorTableCreate() -> CGPDFOperatorTableRef;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFOperatorTable::retain`"]
     pub fn CGPDFOperatorTableRetain(table: CGPDFOperatorTableRef) -> CGPDFOperatorTableRef;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFOperatorTable::release`"]
     pub fn CGPDFOperatorTableRelease(table: CGPDFOperatorTableRef);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFScanner")]
+    #[deprecated = "renamed to `CGPDFOperatorTable::set_callback`"]
     pub fn CGPDFOperatorTableSetCallback(
         table: CGPDFOperatorTableRef,
         name: *const c_char,

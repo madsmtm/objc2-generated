@@ -5,16 +5,159 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// Creates a new path component within the dictionary
-/// hierarchy.
-///
-/// Parameter `prefs`: The preferences session.
-///
-/// Parameter `prefix`: A string that represents the parent path.
-///
-/// Returns: Returns a string representing the new (unique) child path; NULL
-/// if the specified path does not exist.
 #[cfg(feature = "SCPreferences")]
+impl SCPreferences {
+    /// Creates a new path component within the dictionary
+    /// hierarchy.
+    ///
+    /// Parameter `prefs`: The preferences session.
+    ///
+    /// Parameter `prefix`: A string that represents the parent path.
+    ///
+    /// Returns: Returns a string representing the new (unique) child path; NULL
+    /// if the specified path does not exist.
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    #[doc(alias = "SCPreferencesPathCreateUniqueChild")]
+    pub fn path_create_unique_child(
+        self: &SCPreferences,
+        prefix: &CFString,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SCPreferencesPathCreateUniqueChild(
+                prefs: &SCPreferences,
+                prefix: &CFString,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SCPreferencesPathCreateUniqueChild(self, prefix) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the dictionary associated with the specified
+    /// path.
+    ///
+    /// Parameter `prefs`: The preferences session.
+    ///
+    /// Parameter `path`: A string that represents the path to be returned.
+    ///
+    /// Returns: Returns the dictionary associated with the specified path; NULL
+    /// if the path does not exist.
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    #[doc(alias = "SCPreferencesPathGetValue")]
+    pub fn path_get_value(
+        self: &SCPreferences,
+        path: &CFString,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SCPreferencesPathGetValue(
+                prefs: &SCPreferences,
+                path: &CFString,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SCPreferencesPathGetValue(self, path) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    /// Returns the link (if one exists) associated with the
+    /// specified path.
+    ///
+    /// Parameter `prefs`: The preferences session.
+    ///
+    /// Parameter `path`: A string that represents the path to be returned.
+    ///
+    /// Returns: Returns the dictionary associated with the specified path; NULL
+    /// if the path is not a link or does not exist.
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    #[doc(alias = "SCPreferencesPathGetLink")]
+    pub fn path_get_link(self: &SCPreferences, path: &CFString) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn SCPreferencesPathGetLink(
+                prefs: &SCPreferences,
+                path: &CFString,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { SCPreferencesPathGetLink(self, path) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    /// Associates a dictionary with the specified path.
+    ///
+    /// Parameter `prefs`: The preferences session.
+    ///
+    /// Parameter `path`: A string that represents the path to be updated.
+    ///
+    /// Parameter `value`: A dictionary that represents the data to be
+    /// stored at the specified path.
+    ///
+    /// Returns: Returns TRUE if successful; FALSE otherwise.
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    #[doc(alias = "SCPreferencesPathSetValue")]
+    pub unsafe fn path_set_value(
+        self: &SCPreferences,
+        path: &CFString,
+        value: &CFDictionary,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCPreferencesPathSetValue(
+                prefs: &SCPreferences,
+                path: &CFString,
+                value: &CFDictionary,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCPreferencesPathSetValue(self, path, value) };
+        ret != 0
+    }
+
+    /// Associates a link to a second dictionary at the
+    /// specified path.
+    ///
+    /// Parameter `prefs`: The preferences session.
+    ///
+    /// Parameter `path`: A string that represents the path to be updated.
+    ///
+    /// Parameter `link`: A string that represents the link to be stored
+    /// at the specified path.
+    ///
+    /// Returns: Returns TRUE if successful; FALSE otherwise.
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    #[doc(alias = "SCPreferencesPathSetLink")]
+    pub fn path_set_link(self: &SCPreferences, path: &CFString, link: &CFString) -> bool {
+        extern "C-unwind" {
+            fn SCPreferencesPathSetLink(
+                prefs: &SCPreferences,
+                path: &CFString,
+                link: &CFString,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCPreferencesPathSetLink(self, path, link) };
+        ret != 0
+    }
+
+    /// Removes the data associated with the specified path.
+    ///
+    /// Parameter `prefs`: The preferences session.
+    ///
+    /// Parameter `path`: A string that represents the path to be returned.
+    ///
+    /// Returns: Returns TRUE if successful; FALSE otherwise.
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    #[doc(alias = "SCPreferencesPathRemoveValue")]
+    pub fn path_remove_value(self: &SCPreferences, path: &CFString) -> bool {
+        extern "C-unwind" {
+            fn SCPreferencesPathRemoveValue(prefs: &SCPreferences, path: &CFString) -> Boolean;
+        }
+        let ret = unsafe { SCPreferencesPathRemoveValue(self, path) };
+        ret != 0
+    }
+}
+
+#[cfg(feature = "SCPreferences")]
+#[deprecated = "renamed to `SCPreferences::path_create_unique_child`"]
 #[inline]
 pub extern "C-unwind" fn SCPreferencesPathCreateUniqueChild(
     prefs: &SCPreferences,
@@ -30,16 +173,8 @@ pub extern "C-unwind" fn SCPreferencesPathCreateUniqueChild(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the dictionary associated with the specified
-/// path.
-///
-/// Parameter `prefs`: The preferences session.
-///
-/// Parameter `path`: A string that represents the path to be returned.
-///
-/// Returns: Returns the dictionary associated with the specified path; NULL
-/// if the path does not exist.
 #[cfg(feature = "SCPreferences")]
+#[deprecated = "renamed to `SCPreferences::path_get_value`"]
 #[inline]
 pub extern "C-unwind" fn SCPreferencesPathGetValue(
     prefs: &SCPreferences,
@@ -55,16 +190,8 @@ pub extern "C-unwind" fn SCPreferencesPathGetValue(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// Returns the link (if one exists) associated with the
-/// specified path.
-///
-/// Parameter `prefs`: The preferences session.
-///
-/// Parameter `path`: A string that represents the path to be returned.
-///
-/// Returns: Returns the dictionary associated with the specified path; NULL
-/// if the path is not a link or does not exist.
 #[cfg(feature = "SCPreferences")]
+#[deprecated = "renamed to `SCPreferences::path_get_link`"]
 #[inline]
 pub extern "C-unwind" fn SCPreferencesPathGetLink(
     prefs: &SCPreferences,
@@ -80,17 +207,8 @@ pub extern "C-unwind" fn SCPreferencesPathGetLink(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// Associates a dictionary with the specified path.
-///
-/// Parameter `prefs`: The preferences session.
-///
-/// Parameter `path`: A string that represents the path to be updated.
-///
-/// Parameter `value`: A dictionary that represents the data to be
-/// stored at the specified path.
-///
-/// Returns: Returns TRUE if successful; FALSE otherwise.
 #[cfg(feature = "SCPreferences")]
+#[deprecated = "renamed to `SCPreferences::path_set_value`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCPreferencesPathSetValue(
     prefs: &SCPreferences,
@@ -108,18 +226,8 @@ pub unsafe extern "C-unwind" fn SCPreferencesPathSetValue(
     ret != 0
 }
 
-/// Associates a link to a second dictionary at the
-/// specified path.
-///
-/// Parameter `prefs`: The preferences session.
-///
-/// Parameter `path`: A string that represents the path to be updated.
-///
-/// Parameter `link`: A string that represents the link to be stored
-/// at the specified path.
-///
-/// Returns: Returns TRUE if successful; FALSE otherwise.
 #[cfg(feature = "SCPreferences")]
+#[deprecated = "renamed to `SCPreferences::path_set_link`"]
 #[inline]
 pub extern "C-unwind" fn SCPreferencesPathSetLink(
     prefs: &SCPreferences,
@@ -137,14 +245,8 @@ pub extern "C-unwind" fn SCPreferencesPathSetLink(
     ret != 0
 }
 
-/// Removes the data associated with the specified path.
-///
-/// Parameter `prefs`: The preferences session.
-///
-/// Parameter `path`: A string that represents the path to be returned.
-///
-/// Returns: Returns TRUE if successful; FALSE otherwise.
 #[cfg(feature = "SCPreferences")]
+#[deprecated = "renamed to `SCPreferences::path_remove_value`"]
 #[inline]
 pub extern "C-unwind" fn SCPreferencesPathRemoveValue(
     prefs: &SCPreferences,

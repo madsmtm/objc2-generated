@@ -136,7 +136,439 @@ unsafe impl ConcreteType for LSMResult {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmcategory?language=objc)
 pub type LSMCategory = u32;
 
-/// Creates a new LSM map. Call CFRelease to dispose.
+impl LSMMap {
+    /// Creates a new LSM map. Call CFRelease to dispose.
+    #[inline]
+    #[doc(alias = "LSMMapCreate")]
+    pub unsafe fn new(alloc: Option<&CFAllocator>, flags: CFOptionFlags) -> CFRetained<LSMMap> {
+        extern "C-unwind" {
+            fn LSMMapCreate(
+                alloc: Option<&CFAllocator>,
+                flags: CFOptionFlags,
+            ) -> Option<NonNull<LSMMap>>;
+        }
+        let ret = unsafe { LSMMapCreate(alloc, flags) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmappairs?language=objc)
+pub const kLSMMapPairs: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaptriplets?language=objc)
+pub const kLSMMapTriplets: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaphashtext?language=objc)
+pub const kLSMMapHashText: c_uint = 256;
+
+impl LSMMap {
+    /// Set a dictionary of properties for the map. LSM makes its own copy
+    /// of the properties, there's no need to retain them past this call.
+    #[inline]
+    #[doc(alias = "LSMMapSetProperties")]
+    pub unsafe fn set_properties(self: &LSMMap, properties: &CFDictionary) {
+        extern "C-unwind" {
+            fn LSMMapSetProperties(mapref: &LSMMap, properties: &CFDictionary);
+        }
+        unsafe { LSMMapSetProperties(self, properties) }
+    }
+
+    /// Get a dictionary of properties for the map. LSM retains ownership of
+    /// this dictionary, do not release it.
+    #[inline]
+    #[doc(alias = "LSMMapGetProperties")]
+    pub unsafe fn properties(self: &LSMMap) -> CFRetained<CFDictionary> {
+        extern "C-unwind" {
+            fn LSMMapGetProperties(mapref: &LSMMap) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { LSMMapGetProperties(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
+    }
+
+    /// Puts the map into training mode, preparing it for the addition of more
+    /// categories and/or texts. This function will be somewhat expensive, as it
+    /// requires substantial data structure reorganization.
+    #[inline]
+    #[doc(alias = "LSMMapStartTraining")]
+    pub unsafe fn start_training(self: &LSMMap) -> OSStatus {
+        extern "C-unwind" {
+            fn LSMMapStartTraining(mapref: &LSMMap) -> OSStatus;
+        }
+        unsafe { LSMMapStartTraining(self) }
+    }
+
+    /// Adds another category and returns its category identifier.
+    #[inline]
+    #[doc(alias = "LSMMapAddCategory")]
+    pub unsafe fn add_category(self: &LSMMap) -> LSMCategory {
+        extern "C-unwind" {
+            fn LSMMapAddCategory(mapref: &LSMMap) -> LSMCategory;
+        }
+        unsafe { LSMMapAddCategory(self) }
+    }
+
+    /// Returns the number of categories in the map.
+    #[inline]
+    #[doc(alias = "LSMMapGetCategoryCount")]
+    pub unsafe fn category_count(self: &LSMMap) -> CFIndex {
+        extern "C-unwind" {
+            fn LSMMapGetCategoryCount(mapref: &LSMMap) -> CFIndex;
+        }
+        unsafe { LSMMapGetCategoryCount(self) }
+    }
+
+    /// The specified words will be omitted from all classification efforts.
+    /// Needs to be called before any other texts are created.
+    /// The textref is no longer needed after this call.
+    #[inline]
+    #[doc(alias = "LSMMapSetStopWords")]
+    pub unsafe fn set_stop_words(self: &LSMMap, textref: &LSMText) -> OSStatus {
+        extern "C-unwind" {
+            fn LSMMapSetStopWords(mapref: &LSMMap, textref: &LSMText) -> OSStatus;
+        }
+        unsafe { LSMMapSetStopWords(self, textref) }
+    }
+
+    /// Adds a training text to the given category.
+    /// The textref is no longer needed after this call.
+    #[inline]
+    #[doc(alias = "LSMMapAddText")]
+    pub unsafe fn add_text(self: &LSMMap, textref: &LSMText, category: LSMCategory) -> OSStatus {
+        extern "C-unwind" {
+            fn LSMMapAddText(mapref: &LSMMap, textref: &LSMText, category: LSMCategory)
+                -> OSStatus;
+        }
+        unsafe { LSMMapAddText(self, textref, category) }
+    }
+
+    /// Adds a training text to the given category with a weight different from 1.
+    /// The weight may be negative, but global counts will be pinned to 0.
+    /// The textref is no longer needed after this call.
+    #[inline]
+    #[doc(alias = "LSMMapAddTextWithWeight")]
+    pub unsafe fn add_text_with_weight(
+        self: &LSMMap,
+        textref: &LSMText,
+        category: LSMCategory,
+        weight: c_float,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn LSMMapAddTextWithWeight(
+                mapref: &LSMMap,
+                textref: &LSMText,
+                category: LSMCategory,
+                weight: c_float,
+            ) -> OSStatus;
+        }
+        unsafe { LSMMapAddTextWithWeight(self, textref, category, weight) }
+    }
+
+    /// Compiles the map into executable form and puts it into mapping mode,
+    /// preparing it for the classification of texts. This function is
+    /// computationally expensive.
+    #[inline]
+    #[doc(alias = "LSMMapCompile")]
+    pub unsafe fn compile(self: &LSMMap) -> OSStatus {
+        extern "C-unwind" {
+            fn LSMMapCompile(mapref: &LSMMap) -> OSStatus;
+        }
+        unsafe { LSMMapCompile(self) }
+    }
+
+    /// Compute a set of clusters grouping similar categories or words.
+    /// If subset is non-NULL, only perform clustering on the categories
+    /// or words listed.
+    #[inline]
+    #[doc(alias = "LSMMapCreateClusters")]
+    pub unsafe fn new_clusters(
+        alloc: Option<&CFAllocator>,
+        mapref: &LSMMap,
+        subset: Option<&CFArray>,
+        num_clusters: CFIndex,
+        flags: CFOptionFlags,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn LSMMapCreateClusters(
+                alloc: Option<&CFAllocator>,
+                mapref: &LSMMap,
+                subset: Option<&CFArray>,
+                num_clusters: CFIndex,
+                flags: CFOptionFlags,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { LSMMapCreateClusters(alloc, mapref, subset, num_clusters, flags) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclustercategories?language=objc)
+pub const kLSMClusterCategories: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclusterwords?language=objc)
+pub const kLSMClusterWords: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclustertokens?language=objc)
+pub const kLSMClusterTokens: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclusterkmeans?language=objc)
+pub const kLSMClusterKMeans: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclusteragglomerative?language=objc)
+pub const kLSMClusterAgglomerative: c_uint = 4;
+
+impl LSMMap {
+    /// Group categories or words (tokens) into the specified sets of clusters.
+    #[inline]
+    #[doc(alias = "LSMMapApplyClusters")]
+    pub unsafe fn apply_clusters(self: &LSMMap, clusters: &CFArray) -> OSStatus {
+        extern "C-unwind" {
+            fn LSMMapApplyClusters(mapref: &LSMMap, clusters: &CFArray) -> OSStatus;
+        }
+        unsafe { LSMMapApplyClusters(self, clusters) }
+    }
+}
+
+impl LSMResult {
+    /// Returns, in decreasing order of likelihood, the categories or words
+    /// that best match when a text is mapped into a map.
+    #[inline]
+    #[doc(alias = "LSMResultCreate")]
+    pub unsafe fn new(
+        alloc: Option<&CFAllocator>,
+        mapref: &LSMMap,
+        textref: &LSMText,
+        num_results: CFIndex,
+        flags: CFOptionFlags,
+    ) -> CFRetained<LSMResult> {
+        extern "C-unwind" {
+            fn LSMResultCreate(
+                alloc: Option<&CFAllocator>,
+                mapref: &LSMMap,
+                textref: &LSMText,
+                num_results: CFIndex,
+                flags: CFOptionFlags,
+            ) -> Option<NonNull<LSMResult>>;
+        }
+        let ret = unsafe { LSMResultCreate(alloc, mapref, textref, num_results, flags) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmresultbestwords?language=objc)
+pub const kLSMResultBestWords: c_uint = 1;
+
+impl LSMResult {
+    /// Returns the number of results.
+    #[inline]
+    #[doc(alias = "LSMResultGetCount")]
+    pub unsafe fn count(self: &LSMResult) -> CFIndex {
+        extern "C-unwind" {
+            fn LSMResultGetCount(result: &LSMResult) -> CFIndex;
+        }
+        unsafe { LSMResultGetCount(self) }
+    }
+
+    /// Returns the category of the n-th best (zero based) result.
+    #[inline]
+    #[doc(alias = "LSMResultGetCategory")]
+    pub unsafe fn category(self: &LSMResult, n: CFIndex) -> LSMCategory {
+        extern "C-unwind" {
+            fn LSMResultGetCategory(result: &LSMResult, n: CFIndex) -> LSMCategory;
+        }
+        unsafe { LSMResultGetCategory(self, n) }
+    }
+
+    /// Returns the likelihood of the n-th best (zero based) result.
+    /// A nan score often indicates that the category does not contain
+    /// any token.
+    #[inline]
+    #[doc(alias = "LSMResultGetScore")]
+    pub unsafe fn score(self: &LSMResult, n: CFIndex) -> c_float {
+        extern "C-unwind" {
+            fn LSMResultGetScore(result: &LSMResult, n: CFIndex) -> c_float;
+        }
+        unsafe { LSMResultGetScore(self, n) }
+    }
+
+    /// Returns the word for the n-th best (zero based) result.
+    #[inline]
+    #[doc(alias = "LSMResultCopyWord")]
+    pub unsafe fn word(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn LSMResultCopyWord(result: &LSMResult, n: CFIndex) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { LSMResultCopyWord(self, n) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the token for the n-th best (zero based) result.
+    #[inline]
+    #[doc(alias = "LSMResultCopyToken")]
+    pub unsafe fn token(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn LSMResultCopyToken(result: &LSMResult, n: CFIndex) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { LSMResultCopyToken(self, n) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the cluster of words for the n-th best (zero based) result.
+    #[inline]
+    #[doc(alias = "LSMResultCopyWordCluster")]
+    pub unsafe fn word_cluster(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn LSMResultCopyWordCluster(result: &LSMResult, n: CFIndex)
+                -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { LSMResultCopyWordCluster(self, n) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the cluster of tokens for the n-th best (zero based) result.
+    #[inline]
+    #[doc(alias = "LSMResultCopyTokenCluster")]
+    pub unsafe fn token_cluster(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn LSMResultCopyTokenCluster(
+                result: &LSMResult,
+                n: CFIndex,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { LSMResultCopyTokenCluster(self, n) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+impl LSMMap {
+    /// Compiles the map if necessary and then stores it into the given file.
+    #[inline]
+    #[doc(alias = "LSMMapWriteToURL")]
+    pub unsafe fn write_to_url(self: &LSMMap, file: &CFURL, flags: CFOptionFlags) -> OSStatus {
+        extern "C-unwind" {
+            fn LSMMapWriteToURL(mapref: &LSMMap, file: &CFURL, flags: CFOptionFlags) -> OSStatus;
+        }
+        unsafe { LSMMapWriteToURL(self, file, flags) }
+    }
+
+    /// Loads a map from a given file.
+    #[inline]
+    #[doc(alias = "LSMMapCreateFromURL")]
+    pub unsafe fn from_url(
+        alloc: Option<&CFAllocator>,
+        file: &CFURL,
+        flags: CFOptionFlags,
+    ) -> Option<CFRetained<LSMMap>> {
+        extern "C-unwind" {
+            fn LSMMapCreateFromURL(
+                alloc: Option<&CFAllocator>,
+                file: &CFURL,
+                flags: CFOptionFlags,
+            ) -> Option<NonNull<LSMMap>>;
+        }
+        let ret = unsafe { LSMMapCreateFromURL(alloc, file, flags) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapdiscardcounts?language=objc)
+pub const kLSMMapDiscardCounts: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaploadmutable?language=objc)
+pub const kLSMMapLoadMutable: c_uint = 2;
+
+impl LSMMap {
+    /// Writes information about a map and/or text to a stream in text form
+    #[inline]
+    #[doc(alias = "LSMMapWriteToStream")]
+    pub unsafe fn write_to_stream(
+        self: &LSMMap,
+        textref: Option<&LSMText>,
+        stream: &CFWriteStream,
+        options: CFOptionFlags,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn LSMMapWriteToStream(
+                mapref: &LSMMap,
+                textref: Option<&LSMText>,
+                stream: &CFWriteStream,
+                options: CFOptionFlags,
+            ) -> OSStatus;
+        }
+        unsafe { LSMMapWriteToStream(self, textref, stream, options) }
+    }
+}
+
+impl LSMText {
+    /// Creates a new text.
+    #[inline]
+    #[doc(alias = "LSMTextCreate")]
+    pub unsafe fn new(alloc: Option<&CFAllocator>, mapref: &LSMMap) -> CFRetained<LSMText> {
+        extern "C-unwind" {
+            fn LSMTextCreate(
+                alloc: Option<&CFAllocator>,
+                mapref: &LSMMap,
+            ) -> Option<NonNull<LSMText>>;
+        }
+        let ret = unsafe { LSMTextCreate(alloc, mapref) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+
+    /// Adds a word to the text. The order of words is significant if the map
+    /// uses pairs or triplets, and the count of words is always significant.
+    #[inline]
+    #[doc(alias = "LSMTextAddWord")]
+    pub unsafe fn add_word(self: &LSMText, word: &CFString) -> OSStatus {
+        extern "C-unwind" {
+            fn LSMTextAddWord(textref: &LSMText, word: &CFString) -> OSStatus;
+        }
+        unsafe { LSMTextAddWord(self, word) }
+    }
+
+    /// Breaks a string into words using the locale provided and adds the words
+    /// to the text.
+    #[inline]
+    #[doc(alias = "LSMTextAddWords")]
+    pub unsafe fn add_words(
+        self: &LSMText,
+        words: &CFString,
+        locale: Option<&CFLocale>,
+        flags: CFOptionFlags,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn LSMTextAddWords(
+                textref: &LSMText,
+                words: &CFString,
+                locale: Option<&CFLocale>,
+                flags: CFOptionFlags,
+            ) -> OSStatus;
+        }
+        unsafe { LSMTextAddWords(self, words, locale, flags) }
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextpreservecase?language=objc)
+pub const kLSMTextPreserveCase: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextpreserveacronyms?language=objc)
+pub const kLSMTextPreserveAcronyms: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextapplyspamheuristics?language=objc)
+pub const kLSMTextApplySpamHeuristics: c_uint = 4;
+
+impl LSMText {
+    /// Adds an arbitrary binary token to the text. The order of tokens is
+    /// significant if the map uses pairs or triplets, and the count of
+    /// tokens is always significant.
+    #[inline]
+    #[doc(alias = "LSMTextAddToken")]
+    pub unsafe fn add_token(self: &LSMText, token: &CFData) -> OSStatus {
+        extern "C-unwind" {
+            fn LSMTextAddToken(textref: &LSMText, token: &CFData) -> OSStatus;
+        }
+        unsafe { LSMTextAddToken(self, token) }
+    }
+}
+
+#[deprecated = "renamed to `LSMMap::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSMMapCreate(
     alloc: Option<&CFAllocator>,
@@ -153,21 +585,12 @@ pub unsafe extern "C-unwind" fn LSMMapCreate(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmappairs?language=objc)
-pub const kLSMMapPairs: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaptriplets?language=objc)
-pub const kLSMMapTriplets: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaphashtext?language=objc)
-pub const kLSMMapHashText: c_uint = 256;
-
 extern "C-unwind" {
-    /// Set a dictionary of properties for the map. LSM makes its own copy
-    /// of the properties, there's no need to retain them past this call.
+    #[deprecated = "renamed to `LSMMap::set_properties`"]
     pub fn LSMMapSetProperties(mapref: &LSMMap, properties: &CFDictionary);
 }
 
-/// Get a dictionary of properties for the map. LSM retains ownership of
-/// this dictionary, do not release it.
+#[deprecated = "renamed to `LSMMap::properties`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSMMapGetProperties(mapref: &LSMMap) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
@@ -179,39 +602,32 @@ pub unsafe extern "C-unwind" fn LSMMapGetProperties(mapref: &LSMMap) -> CFRetain
 }
 
 extern "C-unwind" {
-    /// Puts the map into training mode, preparing it for the addition of more
-    /// categories and/or texts. This function will be somewhat expensive, as it
-    /// requires substantial data structure reorganization.
+    #[deprecated = "renamed to `LSMMap::start_training`"]
     pub fn LSMMapStartTraining(mapref: &LSMMap) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// Adds another category and returns its category identifier.
+    #[deprecated = "renamed to `LSMMap::add_category`"]
     pub fn LSMMapAddCategory(mapref: &LSMMap) -> LSMCategory;
 }
 
 extern "C-unwind" {
-    /// Returns the number of categories in the map.
+    #[deprecated = "renamed to `LSMMap::category_count`"]
     pub fn LSMMapGetCategoryCount(mapref: &LSMMap) -> CFIndex;
 }
 
 extern "C-unwind" {
-    /// The specified words will be omitted from all classification efforts.
-    /// Needs to be called before any other texts are created.
-    /// The textref is no longer needed after this call.
+    #[deprecated = "renamed to `LSMMap::set_stop_words`"]
     pub fn LSMMapSetStopWords(mapref: &LSMMap, textref: &LSMText) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// Adds a training text to the given category.
-    /// The textref is no longer needed after this call.
+    #[deprecated = "renamed to `LSMMap::add_text`"]
     pub fn LSMMapAddText(mapref: &LSMMap, textref: &LSMText, category: LSMCategory) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// Adds a training text to the given category with a weight different from 1.
-    /// The weight may be negative, but global counts will be pinned to 0.
-    /// The textref is no longer needed after this call.
+    #[deprecated = "renamed to `LSMMap::add_text_with_weight`"]
     pub fn LSMMapAddTextWithWeight(
         mapref: &LSMMap,
         textref: &LSMText,
@@ -221,15 +637,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Compiles the map into executable form and puts it into mapping mode,
-    /// preparing it for the classification of texts. This function is
-    /// computationally expensive.
+    #[deprecated = "renamed to `LSMMap::compile`"]
     pub fn LSMMapCompile(mapref: &LSMMap) -> OSStatus;
 }
 
-/// Compute a set of clusters grouping similar categories or words.
-/// If subset is non-NULL, only perform clustering on the categories
-/// or words listed.
+#[deprecated = "renamed to `LSMMap::new_clusters`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSMMapCreateClusters(
     alloc: Option<&CFAllocator>,
@@ -251,24 +663,12 @@ pub unsafe extern "C-unwind" fn LSMMapCreateClusters(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclustercategories?language=objc)
-pub const kLSMClusterCategories: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclusterwords?language=objc)
-pub const kLSMClusterWords: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclustertokens?language=objc)
-pub const kLSMClusterTokens: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclusterkmeans?language=objc)
-pub const kLSMClusterKMeans: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclusteragglomerative?language=objc)
-pub const kLSMClusterAgglomerative: c_uint = 4;
-
 extern "C-unwind" {
-    /// Group categories or words (tokens) into the specified sets of clusters.
+    #[deprecated = "renamed to `LSMMap::apply_clusters`"]
     pub fn LSMMapApplyClusters(mapref: &LSMMap, clusters: &CFArray) -> OSStatus;
 }
 
-/// Returns, in decreasing order of likelihood, the categories or words
-/// that best match when a text is mapped into a map.
+#[deprecated = "renamed to `LSMResult::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSMResultCreate(
     alloc: Option<&CFAllocator>,
@@ -291,27 +691,22 @@ pub unsafe extern "C-unwind" fn LSMResultCreate(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmresultbestwords?language=objc)
-pub const kLSMResultBestWords: c_uint = 1;
-
 extern "C-unwind" {
-    /// Returns the number of results.
+    #[deprecated = "renamed to `LSMResult::count`"]
     pub fn LSMResultGetCount(result: &LSMResult) -> CFIndex;
 }
 
 extern "C-unwind" {
-    /// Returns the category of the n-th best (zero based) result.
+    #[deprecated = "renamed to `LSMResult::category`"]
     pub fn LSMResultGetCategory(result: &LSMResult, n: CFIndex) -> LSMCategory;
 }
 
 extern "C-unwind" {
-    /// Returns the likelihood of the n-th best (zero based) result.
-    /// A nan score often indicates that the category does not contain
-    /// any token.
+    #[deprecated = "renamed to `LSMResult::score`"]
     pub fn LSMResultGetScore(result: &LSMResult, n: CFIndex) -> c_float;
 }
 
-/// Returns the word for the n-th best (zero based) result.
+#[deprecated = "renamed to `LSMResult::word`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSMResultCopyWord(
     result: &LSMResult,
@@ -324,7 +719,7 @@ pub unsafe extern "C-unwind" fn LSMResultCopyWord(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the token for the n-th best (zero based) result.
+#[deprecated = "renamed to `LSMResult::token`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSMResultCopyToken(
     result: &LSMResult,
@@ -337,7 +732,7 @@ pub unsafe extern "C-unwind" fn LSMResultCopyToken(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the cluster of words for the n-th best (zero based) result.
+#[deprecated = "renamed to `LSMResult::word_cluster`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSMResultCopyWordCluster(
     result: &LSMResult,
@@ -350,7 +745,7 @@ pub unsafe extern "C-unwind" fn LSMResultCopyWordCluster(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Returns the cluster of tokens for the n-th best (zero based) result.
+#[deprecated = "renamed to `LSMResult::token_cluster`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSMResultCopyTokenCluster(
     result: &LSMResult,
@@ -364,11 +759,11 @@ pub unsafe extern "C-unwind" fn LSMResultCopyTokenCluster(
 }
 
 extern "C-unwind" {
-    /// Compiles the map if necessary and then stores it into the given file.
+    #[deprecated = "renamed to `LSMMap::write_to_url`"]
     pub fn LSMMapWriteToURL(mapref: &LSMMap, file: &CFURL, flags: CFOptionFlags) -> OSStatus;
 }
 
-/// Loads a map from a given file.
+#[deprecated = "renamed to `LSMMap::from_url`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSMMapCreateFromURL(
     alloc: Option<&CFAllocator>,
@@ -386,13 +781,8 @@ pub unsafe extern "C-unwind" fn LSMMapCreateFromURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapdiscardcounts?language=objc)
-pub const kLSMMapDiscardCounts: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaploadmutable?language=objc)
-pub const kLSMMapLoadMutable: c_uint = 2;
-
 extern "C-unwind" {
-    /// Writes information about a map and/or text to a stream in text form
+    #[deprecated = "renamed to `LSMMap::write_to_stream`"]
     pub fn LSMMapWriteToStream(
         mapref: &LSMMap,
         textref: Option<&LSMText>,
@@ -401,7 +791,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// Creates a new text.
+#[deprecated = "renamed to `LSMText::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn LSMTextCreate(
     alloc: Option<&CFAllocator>,
@@ -416,14 +806,12 @@ pub unsafe extern "C-unwind" fn LSMTextCreate(
 }
 
 extern "C-unwind" {
-    /// Adds a word to the text. The order of words is significant if the map
-    /// uses pairs or triplets, and the count of words is always significant.
+    #[deprecated = "renamed to `LSMText::add_word`"]
     pub fn LSMTextAddWord(textref: &LSMText, word: &CFString) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// Breaks a string into words using the locale provided and adds the words
-    /// to the text.
+    #[deprecated = "renamed to `LSMText::add_words`"]
     pub fn LSMTextAddWords(
         textref: &LSMText,
         words: &CFString,
@@ -432,16 +820,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextpreservecase?language=objc)
-pub const kLSMTextPreserveCase: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextpreserveacronyms?language=objc)
-pub const kLSMTextPreserveAcronyms: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextapplyspamheuristics?language=objc)
-pub const kLSMTextApplySpamHeuristics: c_uint = 4;
-
 extern "C-unwind" {
-    /// Adds an arbitrary binary token to the text. The order of tokens is
-    /// significant if the map uses pairs or triplets, and the count of
-    /// tokens is always significant.
+    #[deprecated = "renamed to `LSMText::add_token`"]
     pub fn LSMTextAddToken(textref: &LSMText, token: &CFData) -> OSStatus;
 }

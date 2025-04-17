@@ -70,11 +70,41 @@ unsafe impl RefEncode for CGPDFObjectType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+impl CGPDFObject {
+    #[inline]
+    #[doc(alias = "CGPDFObjectGetType")]
+    pub unsafe fn r#type(object: CGPDFObjectRef) -> CGPDFObjectType {
+        extern "C-unwind" {
+            fn CGPDFObjectGetType(object: CGPDFObjectRef) -> CGPDFObjectType;
+        }
+        unsafe { CGPDFObjectGetType(object) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFObjectGetValue")]
+    pub unsafe fn value(
+        object: CGPDFObjectRef,
+        r#type: CGPDFObjectType,
+        value: *mut c_void,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPDFObjectGetValue(
+                object: CGPDFObjectRef,
+                r#type: CGPDFObjectType,
+                value: *mut c_void,
+            ) -> bool;
+        }
+        unsafe { CGPDFObjectGetValue(object, r#type, value) }
+    }
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFObject::type`"]
     pub fn CGPDFObjectGetType(object: CGPDFObjectRef) -> CGPDFObjectType;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFObject::value`"]
     pub fn CGPDFObjectGetValue(
         object: CGPDFObjectRef,
         r#type: CGPDFObjectType,

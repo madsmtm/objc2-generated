@@ -77,6 +77,164 @@ unsafe impl ConcreteType for CFNotificationCenter {
     }
 }
 
+impl CFNotificationCenter {
+    #[inline]
+    #[doc(alias = "CFNotificationCenterGetLocalCenter")]
+    pub fn local_center() -> Option<CFRetained<CFNotificationCenter>> {
+        extern "C-unwind" {
+            fn CFNotificationCenterGetLocalCenter() -> Option<NonNull<CFNotificationCenter>>;
+        }
+        let ret = unsafe { CFNotificationCenterGetLocalCenter() };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CFNotificationCenterGetDistributedCenter")]
+    pub fn distributed_center() -> Option<CFRetained<CFNotificationCenter>> {
+        extern "C-unwind" {
+            fn CFNotificationCenterGetDistributedCenter() -> Option<NonNull<CFNotificationCenter>>;
+        }
+        let ret = unsafe { CFNotificationCenterGetDistributedCenter() };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CFNotificationCenterGetDarwinNotifyCenter")]
+    pub fn darwin_notify_center() -> Option<CFRetained<CFNotificationCenter>> {
+        extern "C-unwind" {
+            fn CFNotificationCenterGetDarwinNotifyCenter() -> Option<NonNull<CFNotificationCenter>>;
+        }
+        let ret = unsafe { CFNotificationCenterGetDarwinNotifyCenter() };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[cfg(feature = "CFDictionary")]
+    #[inline]
+    #[doc(alias = "CFNotificationCenterAddObserver")]
+    pub unsafe fn add_observer(
+        self: &CFNotificationCenter,
+        observer: *const c_void,
+        call_back: CFNotificationCallback,
+        name: Option<&CFString>,
+        object: *const c_void,
+        suspension_behavior: CFNotificationSuspensionBehavior,
+    ) {
+        extern "C-unwind" {
+            fn CFNotificationCenterAddObserver(
+                center: &CFNotificationCenter,
+                observer: *const c_void,
+                call_back: CFNotificationCallback,
+                name: Option<&CFString>,
+                object: *const c_void,
+                suspension_behavior: CFNotificationSuspensionBehavior,
+            );
+        }
+        unsafe {
+            CFNotificationCenterAddObserver(
+                self,
+                observer,
+                call_back,
+                name,
+                object,
+                suspension_behavior,
+            )
+        }
+    }
+
+    #[inline]
+    #[doc(alias = "CFNotificationCenterRemoveObserver")]
+    pub unsafe fn remove_observer(
+        self: &CFNotificationCenter,
+        observer: *const c_void,
+        name: Option<&CFNotificationName>,
+        object: *const c_void,
+    ) {
+        extern "C-unwind" {
+            fn CFNotificationCenterRemoveObserver(
+                center: &CFNotificationCenter,
+                observer: *const c_void,
+                name: Option<&CFNotificationName>,
+                object: *const c_void,
+            );
+        }
+        unsafe { CFNotificationCenterRemoveObserver(self, observer, name, object) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFNotificationCenterRemoveEveryObserver")]
+    pub unsafe fn remove_every_observer(self: &CFNotificationCenter, observer: *const c_void) {
+        extern "C-unwind" {
+            fn CFNotificationCenterRemoveEveryObserver(
+                center: &CFNotificationCenter,
+                observer: *const c_void,
+            );
+        }
+        unsafe { CFNotificationCenterRemoveEveryObserver(self, observer) }
+    }
+
+    #[cfg(feature = "CFDictionary")]
+    #[inline]
+    #[doc(alias = "CFNotificationCenterPostNotification")]
+    pub unsafe fn post_notification(
+        self: &CFNotificationCenter,
+        name: Option<&CFNotificationName>,
+        object: *const c_void,
+        user_info: Option<&CFDictionary>,
+        deliver_immediately: bool,
+    ) {
+        extern "C-unwind" {
+            fn CFNotificationCenterPostNotification(
+                center: &CFNotificationCenter,
+                name: Option<&CFNotificationName>,
+                object: *const c_void,
+                user_info: Option<&CFDictionary>,
+                deliver_immediately: Boolean,
+            );
+        }
+        unsafe {
+            CFNotificationCenterPostNotification(
+                self,
+                name,
+                object,
+                user_info,
+                deliver_immediately as _,
+            )
+        }
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotificationdeliverimmediately?language=objc)
+pub const kCFNotificationDeliverImmediately: CFOptionFlags = 1 << 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotificationposttoallsessions?language=objc)
+pub const kCFNotificationPostToAllSessions: CFOptionFlags = 1 << 1;
+
+impl CFNotificationCenter {
+    #[cfg(feature = "CFDictionary")]
+    #[inline]
+    #[doc(alias = "CFNotificationCenterPostNotificationWithOptions")]
+    pub unsafe fn post_notification_with_options(
+        self: &CFNotificationCenter,
+        name: Option<&CFNotificationName>,
+        object: *const c_void,
+        user_info: Option<&CFDictionary>,
+        options: CFOptionFlags,
+    ) {
+        extern "C-unwind" {
+            fn CFNotificationCenterPostNotificationWithOptions(
+                center: &CFNotificationCenter,
+                name: Option<&CFNotificationName>,
+                object: *const c_void,
+                user_info: Option<&CFDictionary>,
+                options: CFOptionFlags,
+            );
+        }
+        unsafe {
+            CFNotificationCenterPostNotificationWithOptions(self, name, object, user_info, options)
+        }
+    }
+}
+
+#[deprecated = "renamed to `CFNotificationCenter::local_center`"]
 #[inline]
 pub extern "C-unwind" fn CFNotificationCenterGetLocalCenter(
 ) -> Option<CFRetained<CFNotificationCenter>> {
@@ -87,6 +245,7 @@ pub extern "C-unwind" fn CFNotificationCenterGetLocalCenter(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+#[deprecated = "renamed to `CFNotificationCenter::distributed_center`"]
 #[inline]
 pub extern "C-unwind" fn CFNotificationCenterGetDistributedCenter(
 ) -> Option<CFRetained<CFNotificationCenter>> {
@@ -97,6 +256,7 @@ pub extern "C-unwind" fn CFNotificationCenterGetDistributedCenter(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+#[deprecated = "renamed to `CFNotificationCenter::darwin_notify_center`"]
 #[inline]
 pub extern "C-unwind" fn CFNotificationCenterGetDarwinNotifyCenter(
 ) -> Option<CFRetained<CFNotificationCenter>> {
@@ -109,6 +269,7 @@ pub extern "C-unwind" fn CFNotificationCenterGetDarwinNotifyCenter(
 
 extern "C-unwind" {
     #[cfg(feature = "CFDictionary")]
+    #[deprecated = "renamed to `CFNotificationCenter::add_observer`"]
     pub fn CFNotificationCenterAddObserver(
         center: &CFNotificationCenter,
         observer: *const c_void,
@@ -120,6 +281,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFNotificationCenter::remove_observer`"]
     pub fn CFNotificationCenterRemoveObserver(
         center: &CFNotificationCenter,
         observer: *const c_void,
@@ -129,6 +291,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFNotificationCenter::remove_every_observer`"]
     pub fn CFNotificationCenterRemoveEveryObserver(
         center: &CFNotificationCenter,
         observer: *const c_void,
@@ -136,6 +299,7 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "CFDictionary")]
+#[deprecated = "renamed to `CFNotificationCenter::post_notification`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNotificationCenterPostNotification(
     center: &CFNotificationCenter,
@@ -164,13 +328,9 @@ pub unsafe extern "C-unwind" fn CFNotificationCenterPostNotification(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotificationdeliverimmediately?language=objc)
-pub const kCFNotificationDeliverImmediately: CFOptionFlags = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotificationposttoallsessions?language=objc)
-pub const kCFNotificationPostToAllSessions: CFOptionFlags = 1 << 1;
-
 extern "C-unwind" {
     #[cfg(feature = "CFDictionary")]
+    #[deprecated = "renamed to `CFNotificationCenter::post_notification_with_options`"]
     pub fn CFNotificationCenterPostNotificationWithOptions(
         center: &CFNotificationCenter,
         name: Option<&CFNotificationName>,

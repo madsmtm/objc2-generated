@@ -33,7 +33,9 @@ unsafe impl RefEncode for MTLClearColor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn MTLClearColorMake(red: c_double,green: c_double,blue: c_double,alpha: c_double,) -> MTLClearColor;
+impl MTLClearColor {
+    // TODO: pub fn MTLClearColorMake(red: c_double,green: c_double,blue: c_double,alpha: c_double,) -> MTLClearColor;
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloadaction?language=objc)
 // NS_ENUM
@@ -935,4 +937,6 @@ impl MTLRenderPassDescriptor {
     );
 }
 
-// TODO: pub fn MTLClearColorMake(red: c_double,green: c_double,blue: c_double,alpha: c_double,) -> MTLClearColor;
+impl MTLClearColor {
+    // TODO: pub fn MTLClearColorMake(red: c_double,green: c_double,blue: c_double,alpha: c_double,) -> MTLClearColor;
+}

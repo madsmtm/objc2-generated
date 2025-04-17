@@ -1818,111 +1818,117 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__IOHIDEventSystemClient"> for IOHIDEventSystemClient {}
 );
 
-/// Creates a client of the HID event system that has to ability to read/write certain
-/// properties.
-///
-///
-/// Certain properties have the ability to be set/read by clients, see
-/// <code>
-/// IOHIDProperties.h
-/// </code>
-/// for a list of these properties.
-///
-///
-/// Parameter `allocator`: a custom allocator reference to be used for allocation of the result.
-///
-///
-/// Returns: Returns a
-/// <code>
-/// IOHIDEventSystemClientRef
-/// </code>
-/// on success.
-/// Caller should CFRelease the client when they are finished with it, or keep a
-/// reference to the client if multiple properties need to be set/read.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDEventSystemClientCreateSimpleClient(
-    allocator: Option<&CFAllocator>,
-) -> CFRetained<IOHIDEventSystemClient> {
-    extern "C-unwind" {
-        fn IOHIDEventSystemClientCreateSimpleClient(
-            allocator: Option<&CFAllocator>,
-        ) -> Option<NonNull<IOHIDEventSystemClient>>;
+impl IOHIDEventSystemClient {
+    /// Creates a client of the HID event system that has to ability to read/write certain
+    /// properties.
+    ///
+    ///
+    /// Certain properties have the ability to be set/read by clients, see
+    /// <code>
+    /// IOHIDProperties.h
+    /// </code>
+    /// for a list of these properties.
+    ///
+    ///
+    /// Parameter `allocator`: a custom allocator reference to be used for allocation of the result.
+    ///
+    ///
+    /// Returns: Returns a
+    /// <code>
+    /// IOHIDEventSystemClientRef
+    /// </code>
+    /// on success.
+    /// Caller should CFRelease the client when they are finished with it, or keep a
+    /// reference to the client if multiple properties need to be set/read.
+    #[inline]
+    #[doc(alias = "IOHIDEventSystemClientCreateSimpleClient")]
+    pub unsafe fn new_simple_client(
+        allocator: Option<&CFAllocator>,
+    ) -> CFRetained<IOHIDEventSystemClient> {
+        extern "C-unwind" {
+            fn IOHIDEventSystemClientCreateSimpleClient(
+                allocator: Option<&CFAllocator>,
+            ) -> Option<NonNull<IOHIDEventSystemClient>>;
+        }
+        let ret = unsafe { IOHIDEventSystemClientCreateSimpleClient(allocator) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { IOHIDEventSystemClientCreateSimpleClient(allocator) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// Sets a property on the HID event system.
-///
-///
-/// Parameter `client`: the HID client that created via
-/// <code>
-/// IOHIDEventSystemClientCreateSimpleClient()
-/// </code>
-/// .
-///
-///
-/// Parameter `key`: the property key to set. A list of keys can be found in
-/// <code>
-/// HIDProperties.h
-/// </code>
-/// .
-///
-///
-/// Parameter `property`: the value to set the property.
-///
-///
-/// Returns: Returns true on success.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDEventSystemClientSetProperty(
-    client: &IOHIDEventSystemClient,
-    key: &CFString,
-    property: &CFType,
-) -> bool {
-    extern "C-unwind" {
-        fn IOHIDEventSystemClientSetProperty(
-            client: &IOHIDEventSystemClient,
-            key: &CFString,
-            property: &CFType,
-        ) -> Boolean;
+    /// Sets a property on the HID event system.
+    ///
+    ///
+    /// Parameter `client`: the HID client that created via
+    /// <code>
+    /// IOHIDEventSystemClientCreateSimpleClient()
+    /// </code>
+    /// .
+    ///
+    ///
+    /// Parameter `key`: the property key to set. A list of keys can be found in
+    /// <code>
+    /// HIDProperties.h
+    /// </code>
+    /// .
+    ///
+    ///
+    /// Parameter `property`: the value to set the property.
+    ///
+    ///
+    /// Returns: Returns true on success.
+    #[inline]
+    #[doc(alias = "IOHIDEventSystemClientSetProperty")]
+    pub unsafe fn set_property(
+        self: &IOHIDEventSystemClient,
+        key: &CFString,
+        property: &CFType,
+    ) -> bool {
+        extern "C-unwind" {
+            fn IOHIDEventSystemClientSetProperty(
+                client: &IOHIDEventSystemClient,
+                key: &CFString,
+                property: &CFType,
+            ) -> Boolean;
+        }
+        let ret = unsafe { IOHIDEventSystemClientSetProperty(self, key, property) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDEventSystemClientSetProperty(client, key, property) };
-    ret != 0
-}
 
-/// Copies a property from the HID event system.
-///
-///
-/// Parameter `client`: the HID client created via
-/// <code>
-/// IOHIDEventSystemClientCreateSimpleClient()
-/// </code>
-/// .
-///
-///
-/// Parameter `key`: the property key to copy. A list of keys can be found in
-/// <code>
-/// HIDProperties.h
-/// </code>
-/// .
-///
-///
-/// Returns: Returns a CFTypeRef of the property to be copied on success, otherwise NULL.
-/// Caller is responsible for calling CFRelease on the property.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDEventSystemClientCopyProperty(
-    client: &IOHIDEventSystemClient,
-    key: &CFString,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn IOHIDEventSystemClientCopyProperty(
-            client: &IOHIDEventSystemClient,
-            key: &CFString,
-        ) -> Option<NonNull<CFType>>;
+    /// Copies a property from the HID event system.
+    ///
+    ///
+    /// Parameter `client`: the HID client created via
+    /// <code>
+    /// IOHIDEventSystemClientCreateSimpleClient()
+    /// </code>
+    /// .
+    ///
+    ///
+    /// Parameter `key`: the property key to copy. A list of keys can be found in
+    /// <code>
+    /// HIDProperties.h
+    /// </code>
+    /// .
+    ///
+    ///
+    /// Returns: Returns a CFTypeRef of the property to be copied on success, otherwise NULL.
+    /// Caller is responsible for calling CFRelease on the property.
+    #[inline]
+    #[doc(alias = "IOHIDEventSystemClientCopyProperty")]
+    pub unsafe fn property(
+        self: &IOHIDEventSystemClient,
+        key: &CFString,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn IOHIDEventSystemClientCopyProperty(
+                client: &IOHIDEventSystemClient,
+                key: &CFString,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { IOHIDEventSystemClientCopyProperty(self, key) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOHIDEventSystemClientCopyProperty(client, key) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 unsafe impl ConcreteType for IOHIDEventSystemClient {
@@ -1941,41 +1947,42 @@ unsafe impl ConcreteType for IOHIDEventSystemClient {
     }
 }
 
-/// Copies all services available to the client.
-///
-///
-/// Useful for seeing services that are available. Clients can further probe
-/// the services with the APIs available in
-/// <code>
-/// IOHIDServiceClient.h
-/// </code>
-/// .
-///
-///
-/// Parameter `client`: the HID client that created via
-/// <code>
-/// IOHIDEventSystemClientCreateSimpleClient()
-/// </code>
-/// .
-///
-///
-/// Returns: On success, returns a CFArrayRef of
-/// <code>
-/// IOHIDServiceClientRefs
-/// </code>
-/// that are
-/// available to the client. Caller is responsible for releasing the array.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDEventSystemClientCopyServices(
-    client: &IOHIDEventSystemClient,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn IOHIDEventSystemClientCopyServices(
-            client: &IOHIDEventSystemClient,
-        ) -> Option<NonNull<CFArray>>;
+impl IOHIDEventSystemClient {
+    /// Copies all services available to the client.
+    ///
+    ///
+    /// Useful for seeing services that are available. Clients can further probe
+    /// the services with the APIs available in
+    /// <code>
+    /// IOHIDServiceClient.h
+    /// </code>
+    /// .
+    ///
+    ///
+    /// Parameter `client`: the HID client that created via
+    /// <code>
+    /// IOHIDEventSystemClientCreateSimpleClient()
+    /// </code>
+    /// .
+    ///
+    ///
+    /// Returns: On success, returns a CFArrayRef of
+    /// <code>
+    /// IOHIDServiceClientRefs
+    /// </code>
+    /// that are
+    /// available to the client. Caller is responsible for releasing the array.
+    #[inline]
+    #[doc(alias = "IOHIDEventSystemClientCopyServices")]
+    pub unsafe fn services(self: &IOHIDEventSystemClient) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn IOHIDEventSystemClientCopyServices(
+                client: &IOHIDEventSystemClient,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { IOHIDEventSystemClientCopyServices(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOHIDEventSystemClientCopyServices(client) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// IOHIDServiceClient
@@ -2003,68 +2010,72 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__IOHIDServiceClient"> for IOHIDServiceClient {}
 );
 
-/// Sets a property on the HID service.
-///
-///
-/// Parameter `service`: the HID service to set the property on.
-///
-///
-/// Parameter `key`: the property key to set. A list of keys can be found in
-/// <code>
-/// HIDProperties.h
-/// </code>
-/// .
-///
-///
-/// Parameter `property`: the value to set the property.
-///
-///
-/// Returns: Returns true on success.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDServiceClientSetProperty(
-    service: &IOHIDServiceClient,
-    key: &CFString,
-    property: &CFType,
-) -> bool {
-    extern "C-unwind" {
-        fn IOHIDServiceClientSetProperty(
-            service: &IOHIDServiceClient,
-            key: &CFString,
-            property: &CFType,
-        ) -> Boolean;
+impl IOHIDServiceClient {
+    /// Sets a property on the HID service.
+    ///
+    ///
+    /// Parameter `service`: the HID service to set the property on.
+    ///
+    ///
+    /// Parameter `key`: the property key to set. A list of keys can be found in
+    /// <code>
+    /// HIDProperties.h
+    /// </code>
+    /// .
+    ///
+    ///
+    /// Parameter `property`: the value to set the property.
+    ///
+    ///
+    /// Returns: Returns true on success.
+    #[inline]
+    #[doc(alias = "IOHIDServiceClientSetProperty")]
+    pub unsafe fn set_property(
+        self: &IOHIDServiceClient,
+        key: &CFString,
+        property: &CFType,
+    ) -> bool {
+        extern "C-unwind" {
+            fn IOHIDServiceClientSetProperty(
+                service: &IOHIDServiceClient,
+                key: &CFString,
+                property: &CFType,
+            ) -> Boolean;
+        }
+        let ret = unsafe { IOHIDServiceClientSetProperty(self, key, property) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDServiceClientSetProperty(service, key, property) };
-    ret != 0
-}
 
-/// Copies a property from the HID service.
-///
-///
-/// Parameter `service`: the HID service to copy the property from.
-///
-///
-/// Parameter `key`: the property key to copy. A list of keys can be found in
-/// <code>
-/// HIDProperties.h
-/// </code>
-/// .
-///
-///
-/// Returns: Returns a CFTypeRef of the property to be copied on success, otherwise NULL.
-/// Caller is responsible for calling CFRelease on the property.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDServiceClientCopyProperty(
-    service: &IOHIDServiceClient,
-    key: &CFString,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn IOHIDServiceClientCopyProperty(
-            service: &IOHIDServiceClient,
-            key: &CFString,
-        ) -> Option<NonNull<CFType>>;
+    /// Copies a property from the HID service.
+    ///
+    ///
+    /// Parameter `service`: the HID service to copy the property from.
+    ///
+    ///
+    /// Parameter `key`: the property key to copy. A list of keys can be found in
+    /// <code>
+    /// HIDProperties.h
+    /// </code>
+    /// .
+    ///
+    ///
+    /// Returns: Returns a CFTypeRef of the property to be copied on success, otherwise NULL.
+    /// Caller is responsible for calling CFRelease on the property.
+    #[inline]
+    #[doc(alias = "IOHIDServiceClientCopyProperty")]
+    pub unsafe fn property(
+        self: &IOHIDServiceClient,
+        key: &CFString,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn IOHIDServiceClientCopyProperty(
+                service: &IOHIDServiceClient,
+                key: &CFString,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { IOHIDServiceClientCopyProperty(self, key) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOHIDServiceClientCopyProperty(service, key) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 unsafe impl ConcreteType for IOHIDServiceClient {
@@ -2083,57 +2094,57 @@ unsafe impl ConcreteType for IOHIDServiceClient {
     }
 }
 
-/// Parameter `service`: the HID service to get the registry ID for.
-///
-///
-/// Returns: Returns a CFTypeRef containing the registry ID for the service.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDServiceClientGetRegistryID(
-    service: &IOHIDServiceClient,
-) -> CFRetained<CFType> {
-    extern "C-unwind" {
-        fn IOHIDServiceClientGetRegistryID(service: &IOHIDServiceClient)
-            -> Option<NonNull<CFType>>;
+impl IOHIDServiceClient {
+    /// Parameter `service`: the HID service to get the registry ID for.
+    ///
+    ///
+    /// Returns: Returns a CFTypeRef containing the registry ID for the service.
+    #[inline]
+    #[doc(alias = "IOHIDServiceClientGetRegistryID")]
+    pub unsafe fn registry_id(self: &IOHIDServiceClient) -> CFRetained<CFType> {
+        extern "C-unwind" {
+            fn IOHIDServiceClientGetRegistryID(
+                service: &IOHIDServiceClient,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { IOHIDServiceClientGetRegistryID(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::retain(ret) }
     }
-    let ret = unsafe { IOHIDServiceClientGetRegistryID(service) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::retain(ret) }
-}
 
-/// Determines if a HID service conforms to a specific usage page and usage.
-///
-///
-/// Parameter `usagePage`: A usage page defined in
-/// <code>
-/// IOHIDUsageTables.h
-/// </code>
-/// .
-///
-///
-/// Parameter `usage`: A usage defined in
-/// <code>
-/// IOHIDUsageTables.h
-/// </code>
-/// .
-///
-///
-/// Returns: Returns true if the service conforms to the provided usage page and usage.
-#[cfg(feature = "libc")]
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDServiceClientConformsTo(
-    service: &IOHIDServiceClient,
-    usage_page: u32,
-    usage: u32,
-) -> bool {
-    extern "C-unwind" {
-        fn IOHIDServiceClientConformsTo(
-            service: &IOHIDServiceClient,
-            usage_page: u32,
-            usage: u32,
-        ) -> libc::boolean_t;
+    /// Determines if a HID service conforms to a specific usage page and usage.
+    ///
+    ///
+    /// Parameter `usagePage`: A usage page defined in
+    /// <code>
+    /// IOHIDUsageTables.h
+    /// </code>
+    /// .
+    ///
+    ///
+    /// Parameter `usage`: A usage defined in
+    /// <code>
+    /// IOHIDUsageTables.h
+    /// </code>
+    /// .
+    ///
+    ///
+    /// Returns: Returns true if the service conforms to the provided usage page and usage.
+    #[cfg(feature = "libc")]
+    #[inline]
+    #[doc(alias = "IOHIDServiceClientConformsTo")]
+    pub unsafe fn conforms_to(self: &IOHIDServiceClient, usage_page: u32, usage: u32) -> bool {
+        extern "C-unwind" {
+            fn IOHIDServiceClientConformsTo(
+                service: &IOHIDServiceClient,
+                usage_page: u32,
+                usage: u32,
+            ) -> libc::boolean_t;
+        }
+        let ret = unsafe { IOHIDServiceClientConformsTo(self, usage_page, usage) };
+        ret != 0
     }
-    let ret = unsafe { IOHIDServiceClientConformsTo(service, usage_page, usage) };
-    ret != 0
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiduserdevice?language=objc)
@@ -2231,45 +2242,46 @@ unsafe impl ConcreteType for IOHIDUserDevice {
     }
 }
 
-/// Creates a virtual IOHIDDevice in the kernel.
-///
-///
-/// The IOHIDUserDeviceRef represents a virtual IOHIDDevice. In order to create
-/// the device, the entitlement "com.apple.developer.hid.virtual.device" is
-/// required to validate the source of the device.
-///
-///
-/// Parameter `allocator`: Allocator to be used during creation.
-///
-///
-/// Parameter `properties`: Dictionary containing device properties indexed by keys defined in
-/// IOHIDKeys.h. At the bare minimum, the kIOHIDReportDescriptorKey key must be
-/// provided, where the value represents a CFData representation of the device's
-/// report descriptor.
-///
-///
-/// Parameter `options`: Options to be used when creating the device.
-///
-///
-/// Returns: Returns a IOHIDUserDeviceRef on success.
-#[inline]
-pub unsafe extern "C-unwind" fn IOHIDUserDeviceCreateWithProperties(
-    allocator: Option<&CFAllocator>,
-    properties: &CFDictionary,
-    options: IOOptionBits,
-) -> Option<CFRetained<IOHIDUserDevice>> {
-    extern "C-unwind" {
-        fn IOHIDUserDeviceCreateWithProperties(
-            allocator: Option<&CFAllocator>,
-            properties: &CFDictionary,
-            options: IOOptionBits,
-        ) -> Option<NonNull<IOHIDUserDevice>>;
+impl IOHIDUserDevice {
+    /// Creates a virtual IOHIDDevice in the kernel.
+    ///
+    ///
+    /// The IOHIDUserDeviceRef represents a virtual IOHIDDevice. In order to create
+    /// the device, the entitlement "com.apple.developer.hid.virtual.device" is
+    /// required to validate the source of the device.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to be used during creation.
+    ///
+    ///
+    /// Parameter `properties`: Dictionary containing device properties indexed by keys defined in
+    /// IOHIDKeys.h. At the bare minimum, the kIOHIDReportDescriptorKey key must be
+    /// provided, where the value represents a CFData representation of the device's
+    /// report descriptor.
+    ///
+    ///
+    /// Parameter `options`: Options to be used when creating the device.
+    ///
+    ///
+    /// Returns: Returns a IOHIDUserDeviceRef on success.
+    #[inline]
+    #[doc(alias = "IOHIDUserDeviceCreateWithProperties")]
+    pub unsafe fn with_properties(
+        allocator: Option<&CFAllocator>,
+        properties: &CFDictionary,
+        options: IOOptionBits,
+    ) -> Option<CFRetained<IOHIDUserDevice>> {
+        extern "C-unwind" {
+            fn IOHIDUserDeviceCreateWithProperties(
+                allocator: Option<&CFAllocator>,
+                properties: &CFDictionary,
+                options: IOOptionBits,
+            ) -> Option<NonNull<IOHIDUserDevice>>;
+        }
+        let ret = unsafe { IOHIDUserDeviceCreateWithProperties(allocator, properties, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { IOHIDUserDeviceCreateWithProperties(allocator, properties, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
     /// Registers a block to receive get report requests.
     ///
     ///
@@ -2283,13 +2295,21 @@ extern "C-unwind" {
     ///
     /// Parameter `block`: The block to be invoked for get report calls.
     #[cfg(all(feature = "block2", feature = "hid"))]
-    pub fn IOHIDUserDeviceRegisterGetReportBlock(
-        device: &IOHIDUserDevice,
+    #[inline]
+    #[doc(alias = "IOHIDUserDeviceRegisterGetReportBlock")]
+    pub unsafe fn register_get_report_block(
+        self: &IOHIDUserDevice,
         block: IOHIDUserDeviceGetReportBlock,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDUserDeviceRegisterGetReportBlock(
+                device: &IOHIDUserDevice,
+                block: IOHIDUserDeviceGetReportBlock,
+            );
+        }
+        unsafe { IOHIDUserDeviceRegisterGetReportBlock(self, block) }
+    }
 
-extern "C-unwind" {
     /// Registers a block to receive set report requests.
     ///
     ///
@@ -2303,13 +2323,21 @@ extern "C-unwind" {
     ///
     /// Parameter `block`: The block to be invoked for set report calls.
     #[cfg(all(feature = "block2", feature = "hid"))]
-    pub fn IOHIDUserDeviceRegisterSetReportBlock(
-        device: &IOHIDUserDevice,
+    #[inline]
+    #[doc(alias = "IOHIDUserDeviceRegisterSetReportBlock")]
+    pub unsafe fn register_set_report_block(
+        self: &IOHIDUserDevice,
         block: IOHIDUserDeviceSetReportBlock,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn IOHIDUserDeviceRegisterSetReportBlock(
+                device: &IOHIDUserDevice,
+                block: IOHIDUserDeviceSetReportBlock,
+            );
+        }
+        unsafe { IOHIDUserDeviceRegisterSetReportBlock(self, block) }
+    }
 
-extern "C-unwind" {
     /// Sets the dispatch queue to be associated with the IOHIDUserDevice.
     /// This is necessary in order to receive asynchronous events from the kernel.
     ///
@@ -2327,10 +2355,15 @@ extern "C-unwind" {
     ///
     /// Parameter `queue`: The dispatch queue to which the event handler block will be submitted.
     #[cfg(feature = "dispatch2")]
-    pub fn IOHIDUserDeviceSetDispatchQueue(device: &IOHIDUserDevice, queue: &DispatchQueue);
-}
+    #[inline]
+    #[doc(alias = "IOHIDUserDeviceSetDispatchQueue")]
+    pub unsafe fn set_dispatch_queue(self: &IOHIDUserDevice, queue: &DispatchQueue) {
+        extern "C-unwind" {
+            fn IOHIDUserDeviceSetDispatchQueue(device: &IOHIDUserDevice, queue: &DispatchQueue);
+        }
+        unsafe { IOHIDUserDeviceSetDispatchQueue(self, queue) }
+    }
 
-extern "C-unwind" {
     /// Sets a cancellation handler for the dispatch queue associated with
     /// IOHIDUserDeviceScheduleWithDispatchQueue.
     ///
@@ -2356,10 +2389,15 @@ extern "C-unwind" {
     ///
     /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
     #[cfg(feature = "dispatch2")]
-    pub fn IOHIDUserDeviceSetCancelHandler(device: &IOHIDUserDevice, handler: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "IOHIDUserDeviceSetCancelHandler")]
+    pub unsafe fn set_cancel_handler(self: &IOHIDUserDevice, handler: dispatch_block_t) {
+        extern "C-unwind" {
+            fn IOHIDUserDeviceSetCancelHandler(device: &IOHIDUserDevice, handler: dispatch_block_t);
+        }
+        unsafe { IOHIDUserDeviceSetCancelHandler(self, handler) }
+    }
 
-extern "C-unwind" {
     /// Activates the IOHIDUserDevice object.
     ///
     ///
@@ -2378,10 +2416,15 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `device`: Reference to an IOHIDUserDevice.
-    pub fn IOHIDUserDeviceActivate(device: &IOHIDUserDevice);
-}
+    #[inline]
+    #[doc(alias = "IOHIDUserDeviceActivate")]
+    pub unsafe fn activate(self: &IOHIDUserDevice) {
+        extern "C-unwind" {
+            fn IOHIDUserDeviceActivate(device: &IOHIDUserDevice);
+        }
+        unsafe { IOHIDUserDeviceActivate(self) }
+    }
 
-extern "C-unwind" {
     /// Cancels the IOHIDUserDevice preventing any further invocation of its event
     /// handler block.
     ///
@@ -2408,16 +2451,284 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `device`: Reference to an IOHIDUserDevice
+    #[inline]
+    #[doc(alias = "IOHIDUserDeviceCancel")]
+    pub unsafe fn cancel(self: &IOHIDUserDevice) {
+        extern "C-unwind" {
+            fn IOHIDUserDeviceCancel(device: &IOHIDUserDevice);
+        }
+        unsafe { IOHIDUserDeviceCancel(self) }
+    }
+
+    /// Obtains a property from the device.
+    ///
+    ///
+    /// Parameter `key`: The property key.
+    ///
+    ///
+    /// Returns: Returns the property on success.
+    #[inline]
+    #[doc(alias = "IOHIDUserDeviceCopyProperty")]
+    pub unsafe fn property(self: &IOHIDUserDevice, key: &CFString) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn IOHIDUserDeviceCopyProperty(
+                device: &IOHIDUserDevice,
+                key: &CFString,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { IOHIDUserDeviceCopyProperty(self, key) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Sets a property on the device.
+    ///
+    ///
+    /// Parameter `key`: The property key.
+    ///
+    ///
+    /// Parameter `value`: The value of the property.
+    ///
+    ///
+    /// Returns: Returns true on success.
+    #[inline]
+    #[doc(alias = "IOHIDUserDeviceSetProperty")]
+    pub unsafe fn set_property(self: &IOHIDUserDevice, key: &CFString, property: &CFType) -> bool {
+        extern "C-unwind" {
+            fn IOHIDUserDeviceSetProperty(
+                device: &IOHIDUserDevice,
+                key: &CFString,
+                property: &CFType,
+            ) -> Boolean;
+        }
+        let ret = unsafe { IOHIDUserDeviceSetProperty(self, key, property) };
+        ret != 0
+    }
+
+    /// Dispatches a report on behalf of the device.
+    ///
+    ///
+    /// Parameter `device`: Reference to a IOHIDUserDeviceRef.
+    ///
+    ///
+    /// Parameter `timestamp`: mach_absolute_time() based timestamp.
+    ///
+    ///
+    /// Parameter `report`: Buffer containing a HID report.
+    ///
+    ///
+    /// Parameter `reportLength`: The report buffer length.
+    ///
+    ///
+    /// Returns: Returns kIOReturnSuccess on success.
+    #[inline]
+    #[doc(alias = "IOHIDUserDeviceHandleReportWithTimeStamp")]
+    pub unsafe fn handle_report_with_time_stamp(
+        self: &IOHIDUserDevice,
+        timestamp: u64,
+        report: NonNull<u8>,
+        report_length: CFIndex,
+    ) -> IOReturn {
+        extern "C-unwind" {
+            fn IOHIDUserDeviceHandleReportWithTimeStamp(
+                device: &IOHIDUserDevice,
+                timestamp: u64,
+                report: NonNull<u8>,
+                report_length: CFIndex,
+            ) -> IOReturn;
+        }
+        unsafe { IOHIDUserDeviceHandleReportWithTimeStamp(self, timestamp, report, report_length) }
+    }
+}
+
+#[deprecated = "renamed to `IOHIDEventSystemClient::new_simple_client`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDEventSystemClientCreateSimpleClient(
+    allocator: Option<&CFAllocator>,
+) -> CFRetained<IOHIDEventSystemClient> {
+    extern "C-unwind" {
+        fn IOHIDEventSystemClientCreateSimpleClient(
+            allocator: Option<&CFAllocator>,
+        ) -> Option<NonNull<IOHIDEventSystemClient>>;
+    }
+    let ret = unsafe { IOHIDEventSystemClientCreateSimpleClient(allocator) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+#[deprecated = "renamed to `IOHIDEventSystemClient::set_property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDEventSystemClientSetProperty(
+    client: &IOHIDEventSystemClient,
+    key: &CFString,
+    property: &CFType,
+) -> bool {
+    extern "C-unwind" {
+        fn IOHIDEventSystemClientSetProperty(
+            client: &IOHIDEventSystemClient,
+            key: &CFString,
+            property: &CFType,
+        ) -> Boolean;
+    }
+    let ret = unsafe { IOHIDEventSystemClientSetProperty(client, key, property) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDEventSystemClient::property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDEventSystemClientCopyProperty(
+    client: &IOHIDEventSystemClient,
+    key: &CFString,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn IOHIDEventSystemClientCopyProperty(
+            client: &IOHIDEventSystemClient,
+            key: &CFString,
+        ) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { IOHIDEventSystemClientCopyProperty(client, key) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDEventSystemClient::services`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDEventSystemClientCopyServices(
+    client: &IOHIDEventSystemClient,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn IOHIDEventSystemClientCopyServices(
+            client: &IOHIDEventSystemClient,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { IOHIDEventSystemClientCopyServices(client) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDServiceClient::set_property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDServiceClientSetProperty(
+    service: &IOHIDServiceClient,
+    key: &CFString,
+    property: &CFType,
+) -> bool {
+    extern "C-unwind" {
+        fn IOHIDServiceClientSetProperty(
+            service: &IOHIDServiceClient,
+            key: &CFString,
+            property: &CFType,
+        ) -> Boolean;
+    }
+    let ret = unsafe { IOHIDServiceClientSetProperty(service, key, property) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDServiceClient::property`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDServiceClientCopyProperty(
+    service: &IOHIDServiceClient,
+    key: &CFString,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn IOHIDServiceClientCopyProperty(
+            service: &IOHIDServiceClient,
+            key: &CFString,
+        ) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { IOHIDServiceClientCopyProperty(service, key) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `IOHIDServiceClient::registry_id`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDServiceClientGetRegistryID(
+    service: &IOHIDServiceClient,
+) -> CFRetained<CFType> {
+    extern "C-unwind" {
+        fn IOHIDServiceClientGetRegistryID(service: &IOHIDServiceClient)
+            -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { IOHIDServiceClientGetRegistryID(service) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::retain(ret) }
+}
+
+#[cfg(feature = "libc")]
+#[deprecated = "renamed to `IOHIDServiceClient::conforms_to`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDServiceClientConformsTo(
+    service: &IOHIDServiceClient,
+    usage_page: u32,
+    usage: u32,
+) -> bool {
+    extern "C-unwind" {
+        fn IOHIDServiceClientConformsTo(
+            service: &IOHIDServiceClient,
+            usage_page: u32,
+            usage: u32,
+        ) -> libc::boolean_t;
+    }
+    let ret = unsafe { IOHIDServiceClientConformsTo(service, usage_page, usage) };
+    ret != 0
+}
+
+#[deprecated = "renamed to `IOHIDUserDevice::with_properties`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IOHIDUserDeviceCreateWithProperties(
+    allocator: Option<&CFAllocator>,
+    properties: &CFDictionary,
+    options: IOOptionBits,
+) -> Option<CFRetained<IOHIDUserDevice>> {
+    extern "C-unwind" {
+        fn IOHIDUserDeviceCreateWithProperties(
+            allocator: Option<&CFAllocator>,
+            properties: &CFDictionary,
+            options: IOOptionBits,
+        ) -> Option<NonNull<IOHIDUserDevice>>;
+    }
+    let ret = unsafe { IOHIDUserDeviceCreateWithProperties(allocator, properties, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "block2", feature = "hid"))]
+    #[deprecated = "renamed to `IOHIDUserDevice::register_get_report_block`"]
+    pub fn IOHIDUserDeviceRegisterGetReportBlock(
+        device: &IOHIDUserDevice,
+        block: IOHIDUserDeviceGetReportBlock,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "block2", feature = "hid"))]
+    #[deprecated = "renamed to `IOHIDUserDevice::register_set_report_block`"]
+    pub fn IOHIDUserDeviceRegisterSetReportBlock(
+        device: &IOHIDUserDevice,
+        block: IOHIDUserDeviceSetReportBlock,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `IOHIDUserDevice::set_dispatch_queue`"]
+    pub fn IOHIDUserDeviceSetDispatchQueue(device: &IOHIDUserDevice, queue: &DispatchQueue);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `IOHIDUserDevice::set_cancel_handler`"]
+    pub fn IOHIDUserDeviceSetCancelHandler(device: &IOHIDUserDevice, handler: dispatch_block_t);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDUserDevice::activate`"]
+    pub fn IOHIDUserDeviceActivate(device: &IOHIDUserDevice);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IOHIDUserDevice::cancel`"]
     pub fn IOHIDUserDeviceCancel(device: &IOHIDUserDevice);
 }
 
-/// Obtains a property from the device.
-///
-///
-/// Parameter `key`: The property key.
-///
-///
-/// Returns: Returns the property on success.
+#[deprecated = "renamed to `IOHIDUserDevice::property`"]
 #[inline]
 pub unsafe extern "C-unwind" fn IOHIDUserDeviceCopyProperty(
     device: &IOHIDUserDevice,
@@ -2433,16 +2744,7 @@ pub unsafe extern "C-unwind" fn IOHIDUserDeviceCopyProperty(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Sets a property on the device.
-///
-///
-/// Parameter `key`: The property key.
-///
-///
-/// Parameter `value`: The value of the property.
-///
-///
-/// Returns: Returns true on success.
+#[deprecated = "renamed to `IOHIDUserDevice::set_property`"]
 #[inline]
 pub unsafe extern "C-unwind" fn IOHIDUserDeviceSetProperty(
     device: &IOHIDUserDevice,
@@ -2461,22 +2763,7 @@ pub unsafe extern "C-unwind" fn IOHIDUserDeviceSetProperty(
 }
 
 extern "C-unwind" {
-    /// Dispatches a report on behalf of the device.
-    ///
-    ///
-    /// Parameter `device`: Reference to a IOHIDUserDeviceRef.
-    ///
-    ///
-    /// Parameter `timestamp`: mach_absolute_time() based timestamp.
-    ///
-    ///
-    /// Parameter `report`: Buffer containing a HID report.
-    ///
-    ///
-    /// Parameter `reportLength`: The report buffer length.
-    ///
-    ///
-    /// Returns: Returns kIOReturnSuccess on success.
+    #[deprecated = "renamed to `IOHIDUserDevice::handle_report_with_time_stamp`"]
     pub fn IOHIDUserDeviceHandleReportWithTimeStamp(
         device: &IOHIDUserDevice,
         timestamp: u64,

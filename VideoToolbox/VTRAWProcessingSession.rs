@@ -45,7 +45,7 @@ cf_objc2_type!(
 #[cfg(feature = "block2")]
 pub type VTRAWProcessingParameterChangeHandler = *mut block2::DynBlock<dyn Fn(*const CFArray)>;
 
-extern "C-unwind" {
+impl VTRAWProcessingSession {
     /// Creates a RAW video frame processing session.
     ///
     /// .
@@ -63,16 +63,35 @@ extern "C-unwind" {
     /// When you are done with the session, call VTRAWProcessingSessionInvalidate
     /// to tear it down and then CFRelease to release your object reference.
     #[cfg(feature = "objc2-core-media")]
-    pub fn VTRAWProcessingSessionCreate(
+    #[inline]
+    #[doc(alias = "VTRAWProcessingSessionCreate")]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         format_description: &CMVideoFormatDescription,
         output_pixel_buffer_attributes: Option<&CFDictionary>,
         processing_session_options: Option<&CFDictionary>,
         processing_session_out: NonNull<*mut VTRAWProcessingSession>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTRAWProcessingSessionCreate(
+                allocator: Option<&CFAllocator>,
+                format_description: &CMVideoFormatDescription,
+                output_pixel_buffer_attributes: Option<&CFDictionary>,
+                processing_session_options: Option<&CFDictionary>,
+                processing_session_out: NonNull<*mut VTRAWProcessingSession>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTRAWProcessingSessionCreate(
+                allocator,
+                format_description,
+                output_pixel_buffer_attributes,
+                processing_session_options,
+                processing_session_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Tears down a RAW processing session.
     ///
     /// When you are done with a decompression session you created, call VTRAWProcessingSessionInvalidate
@@ -80,7 +99,14 @@ extern "C-unwind" {
     /// When a  session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTRAWProcessingSessionInvalidate ensures a deterministic, orderly teardown.
-    pub fn VTRAWProcessingSessionInvalidate(session: &VTRAWProcessingSession);
+    #[inline]
+    #[doc(alias = "VTRAWProcessingSessionInvalidate")]
+    pub unsafe fn invalidate(self: &VTRAWProcessingSession) {
+        extern "C-unwind" {
+            fn VTRAWProcessingSessionInvalidate(session: &VTRAWProcessingSession);
+        }
+        unsafe { VTRAWProcessingSessionInvalidate(self) }
+    }
 }
 
 unsafe impl ConcreteType for VTRAWProcessingSession {
@@ -95,7 +121,7 @@ unsafe impl ConcreteType for VTRAWProcessingSession {
     }
 }
 
-extern "C-unwind" {
+impl VTRAWProcessingSession {
     /// Provides a block which will be called when the VTRAWProcessingPlugin changes the set of processing parameters..
     ///
     /// This block will be called the VTRAWProcessingPlugin either changes the set of available processing parameters, or changes the current value of parameters.
@@ -107,10 +133,20 @@ extern "C-unwind" {
     /// Parameter `parameterChangeHandler`: A VTRAWProcessingParameterChangeHandler block which will be called when the set of processing parameters changes, or the value of a parameter changes without the client explicitly requesting it.
     /// Setting this to NULL removes the current handler.
     #[cfg(feature = "block2")]
-    pub fn VTRAWProcessingSessionSetParameterChangedHander(
-        session: &VTRAWProcessingSession,
+    #[inline]
+    #[doc(alias = "VTRAWProcessingSessionSetParameterChangedHander")]
+    pub unsafe fn set_parameter_changed_hander(
+        self: &VTRAWProcessingSession,
         parameter_change_handler: VTRAWProcessingParameterChangeHandler,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTRAWProcessingSessionSetParameterChangedHander(
+                session: &VTRAWProcessingSession,
+                parameter_change_handler: VTRAWProcessingParameterChangeHandler,
+            ) -> OSStatus;
+        }
+        unsafe { VTRAWProcessingSessionSetParameterChangedHander(self, parameter_change_handler) }
+    }
 }
 
 /// Block invoked when frame processing is complete.
@@ -126,7 +162,7 @@ extern "C-unwind" {
 #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
 pub type VTRAWProcessingOutputHandler = *mut block2::DynBlock<dyn Fn(OSStatus, *mut CVPixelBuffer)>;
 
-extern "C-unwind" {
+impl VTRAWProcessingSession {
     /// Call this function to submit RAW frames for format-specific processing using sequence and frame level parameters.
     ///
     /// Processed frames may or may not be output before the function returns,
@@ -146,25 +182,47 @@ extern "C-unwind" {
     ///
     /// Parameter `outputHandler`: A VTRAWProcessingOutputHandler block which will be called once when processing is complete.
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
-    pub fn VTRAWProcessingSessionProcessFrame(
-        session: &VTRAWProcessingSession,
+    #[inline]
+    #[doc(alias = "VTRAWProcessingSessionProcessFrame")]
+    pub unsafe fn process_frame(
+        self: &VTRAWProcessingSession,
         input_pixel_buffer: &CVPixelBuffer,
         frame_options: Option<&CFDictionary>,
         output_handler: VTRAWProcessingOutputHandler,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTRAWProcessingSessionProcessFrame(
+                session: &VTRAWProcessingSession,
+                input_pixel_buffer: &CVPixelBuffer,
+                frame_options: Option<&CFDictionary>,
+                output_handler: VTRAWProcessingOutputHandler,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTRAWProcessingSessionProcessFrame(
+                self,
+                input_pixel_buffer,
+                frame_options,
+                output_handler,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Forces the RAW Processor to complete processing frames.
     ///
     /// Call this after calling a set of VTRAWProcessingSessionProcessFrame calls to ensure that all frames have been processed.
     /// Before VTRAWProcessingSessionCompleteFrames returns, the output handler will be invoked for all pending frames.
     ///
     /// Parameter `session`: The RAW processing session.
-    pub fn VTRAWProcessingSessionCompleteFrames(session: &VTRAWProcessingSession) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "VTRAWProcessingSessionCompleteFrames")]
+    pub unsafe fn complete_frames(self: &VTRAWProcessingSession) -> OSStatus {
+        extern "C-unwind" {
+            fn VTRAWProcessingSessionCompleteFrames(session: &VTRAWProcessingSession) -> OSStatus;
+        }
+        unsafe { VTRAWProcessingSessionCompleteFrames(self) }
+    }
 
-extern "C-unwind" {
     /// Copies an array of dictionaries describing the parameters provided by the RAW Processor for frame processing
     ///
     /// This will return an array of dictionaries, one dictionary for each parameter that can be controlled in the RAW Processing operation.
@@ -177,13 +235,21 @@ extern "C-unwind" {
     /// Parameter `session`: The RAW processing session.
     ///
     /// Parameter `outParameterArray`: Pointer for receiving the RAW Processing parameter array..
-    pub fn VTRAWProcessingSessionCopyProcessingParameters(
-        session: &VTRAWProcessingSession,
+    #[inline]
+    #[doc(alias = "VTRAWProcessingSessionCopyProcessingParameters")]
+    pub unsafe fn copy_processing_parameters(
+        self: &VTRAWProcessingSession,
         out_parameter_array: NonNull<*const CFArray>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTRAWProcessingSessionCopyProcessingParameters(
+                session: &VTRAWProcessingSession,
+                out_parameter_array: NonNull<*const CFArray>,
+            ) -> OSStatus;
+        }
+        unsafe { VTRAWProcessingSessionCopyProcessingParameters(self, out_parameter_array) }
+    }
 
-extern "C-unwind" {
     /// Sets a collection of RAW Processing parameters
     ///
     /// This call will set a collection of RAW Processing parameters on the RAW Processor.  These are set as a dictionary where the keys match
@@ -203,10 +269,20 @@ extern "C-unwind" {
     ///
     /// Returns: Returns an error if any of the provided parameters are invalid, disabled or outside of the declared valid range.
     /// None of the provided parameters will be set on the processor if an error is returned.
-    pub fn VTRAWProcessingSessionSetProcessingParameters(
-        session: &VTRAWProcessingSession,
+    #[inline]
+    #[doc(alias = "VTRAWProcessingSessionSetProcessingParameters")]
+    pub unsafe fn set_processing_parameters(
+        self: &VTRAWProcessingSession,
         processing_parameters: &CFDictionary,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTRAWProcessingSessionSetProcessingParameters(
+                session: &VTRAWProcessingSession,
+                processing_parameters: &CFDictionary,
+            ) -> OSStatus;
+        }
+        unsafe { VTRAWProcessingSessionSetProcessingParameters(self, processing_parameters) }
+    }
 }
 
 extern "C" {
@@ -343,4 +419,62 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_currentvalue?language=objc)
     pub static kVTRAWProcessingParameter_CurrentValue: &'static CFString;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-media")]
+    #[deprecated = "renamed to `VTRAWProcessingSession::create`"]
+    pub fn VTRAWProcessingSessionCreate(
+        allocator: Option<&CFAllocator>,
+        format_description: &CMVideoFormatDescription,
+        output_pixel_buffer_attributes: Option<&CFDictionary>,
+        processing_session_options: Option<&CFDictionary>,
+        processing_session_out: NonNull<*mut VTRAWProcessingSession>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTRAWProcessingSession::invalidate`"]
+    pub fn VTRAWProcessingSessionInvalidate(session: &VTRAWProcessingSession);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `VTRAWProcessingSession::set_parameter_changed_hander`"]
+    pub fn VTRAWProcessingSessionSetParameterChangedHander(
+        session: &VTRAWProcessingSession,
+        parameter_change_handler: VTRAWProcessingParameterChangeHandler,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
+    #[deprecated = "renamed to `VTRAWProcessingSession::process_frame`"]
+    pub fn VTRAWProcessingSessionProcessFrame(
+        session: &VTRAWProcessingSession,
+        input_pixel_buffer: &CVPixelBuffer,
+        frame_options: Option<&CFDictionary>,
+        output_handler: VTRAWProcessingOutputHandler,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTRAWProcessingSession::complete_frames`"]
+    pub fn VTRAWProcessingSessionCompleteFrames(session: &VTRAWProcessingSession) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTRAWProcessingSession::copy_processing_parameters`"]
+    pub fn VTRAWProcessingSessionCopyProcessingParameters(
+        session: &VTRAWProcessingSession,
+        out_parameter_array: NonNull<*const CFArray>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTRAWProcessingSession::set_processing_parameters`"]
+    pub fn VTRAWProcessingSessionSetProcessingParameters(
+        session: &VTRAWProcessingSession,
+        processing_parameters: &CFDictionary,
+    ) -> OSStatus;
 }

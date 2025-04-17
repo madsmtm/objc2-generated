@@ -59,7 +59,51 @@ unsafe impl ConcreteType for CGGradient {
     }
 }
 
+impl CGGradient {
+    #[cfg(feature = "CGColorSpace")]
+    #[inline]
+    #[doc(alias = "CGGradientCreateWithColorComponents")]
+    pub unsafe fn with_color_components(
+        space: Option<&CGColorSpace>,
+        components: *const CGFloat,
+        locations: *const CGFloat,
+        count: usize,
+    ) -> Option<CFRetained<CGGradient>> {
+        extern "C-unwind" {
+            fn CGGradientCreateWithColorComponents(
+                space: Option<&CGColorSpace>,
+                components: *const CGFloat,
+                locations: *const CGFloat,
+                count: usize,
+            ) -> Option<NonNull<CGGradient>>;
+        }
+        let ret =
+            unsafe { CGGradientCreateWithColorComponents(space, components, locations, count) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CGColorSpace")]
+    #[inline]
+    #[doc(alias = "CGGradientCreateWithColors")]
+    pub unsafe fn with_colors(
+        space: Option<&CGColorSpace>,
+        colors: Option<&CFArray>,
+        locations: *const CGFloat,
+    ) -> Option<CFRetained<CGGradient>> {
+        extern "C-unwind" {
+            fn CGGradientCreateWithColors(
+                space: Option<&CGColorSpace>,
+                colors: Option<&CFArray>,
+                locations: *const CGFloat,
+            ) -> Option<NonNull<CGGradient>>;
+        }
+        let ret = unsafe { CGGradientCreateWithColors(space, colors, locations) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
 #[cfg(feature = "CGColorSpace")]
+#[deprecated = "renamed to `CGGradient::with_color_components`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGGradientCreateWithColorComponents(
     space: Option<&CGColorSpace>,
@@ -80,6 +124,7 @@ pub unsafe extern "C-unwind" fn CGGradientCreateWithColorComponents(
 }
 
 #[cfg(feature = "CGColorSpace")]
+#[deprecated = "renamed to `CGGradient::with_colors`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGGradientCreateWithColors(
     space: Option<&CGColorSpace>,

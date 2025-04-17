@@ -29,9 +29,11 @@ extern "C" {
     pub static GCPoint2Zero: GCPoint2;
 }
 
-// TODO: pub fn GCPoint2Make(x: c_float,y: c_float,) -> GCPoint2;
+impl GCPoint2 {
+    // TODO: pub fn GCPoint2Make(x: c_float,y: c_float,) -> GCPoint2;
 
-// TODO: pub fn GCPoint2Equal(point1: GCPoint2,point2: GCPoint2,) -> bool;
+    // TODO: pub fn GCPoint2Equal(point1: GCPoint2,point2: GCPoint2,) -> bool;
+}
 
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromGCPoint2(point: GCPoint2) -> Retained<NSString> {

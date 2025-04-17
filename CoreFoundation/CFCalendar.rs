@@ -35,113 +35,126 @@ unsafe impl ConcreteType for CFCalendar {
     }
 }
 
-#[inline]
-pub extern "C-unwind" fn CFCalendarCopyCurrent() -> Option<CFRetained<CFCalendar>> {
-    extern "C-unwind" {
-        fn CFCalendarCopyCurrent() -> Option<NonNull<CFCalendar>>;
+impl CFCalendar {
+    #[inline]
+    #[doc(alias = "CFCalendarCopyCurrent")]
+    pub fn current() -> Option<CFRetained<CFCalendar>> {
+        extern "C-unwind" {
+            fn CFCalendarCopyCurrent() -> Option<NonNull<CFCalendar>>;
+        }
+        let ret = unsafe { CFCalendarCopyCurrent() };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFCalendarCopyCurrent() };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Creates a calendar.  The identifiers are the `kCF*Calendar` constants in CFLocale.h.
-#[cfg(feature = "CFLocale")]
-#[inline]
-pub extern "C-unwind" fn CFCalendarCreateWithIdentifier(
-    allocator: Option<&CFAllocator>,
-    identifier: Option<&CFCalendarIdentifier>,
-) -> Option<CFRetained<CFCalendar>> {
-    extern "C-unwind" {
-        fn CFCalendarCreateWithIdentifier(
-            allocator: Option<&CFAllocator>,
-            identifier: Option<&CFCalendarIdentifier>,
-        ) -> Option<NonNull<CFCalendar>>;
-    }
-    let ret = unsafe { CFCalendarCreateWithIdentifier(allocator, identifier) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-/// Returns the calendar's identifier.
-#[cfg(feature = "CFLocale")]
-#[inline]
-pub extern "C-unwind" fn CFCalendarGetIdentifier(
-    calendar: &CFCalendar,
-) -> Option<CFRetained<CFCalendarIdentifier>> {
-    extern "C-unwind" {
-        fn CFCalendarGetIdentifier(calendar: &CFCalendar) -> Option<NonNull<CFCalendarIdentifier>>;
-    }
-    let ret = unsafe { CFCalendarGetIdentifier(calendar) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
-
-#[cfg(feature = "CFLocale")]
-#[inline]
-pub extern "C-unwind" fn CFCalendarCopyLocale(
-    calendar: &CFCalendar,
-) -> Option<CFRetained<CFLocale>> {
-    extern "C-unwind" {
-        fn CFCalendarCopyLocale(calendar: &CFCalendar) -> Option<NonNull<CFLocale>>;
-    }
-    let ret = unsafe { CFCalendarCopyLocale(calendar) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-extern "C-unwind" {
+    /// Creates a calendar.  The identifiers are the `kCF*Calendar` constants in CFLocale.h.
     #[cfg(feature = "CFLocale")]
-    pub fn CFCalendarSetLocale(calendar: &CFCalendar, locale: Option<&CFLocale>);
-}
-
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFCalendarCopyTimeZone(
-    calendar: &CFCalendar,
-) -> Option<CFRetained<CFTimeZone>> {
-    extern "C-unwind" {
-        fn CFCalendarCopyTimeZone(calendar: &CFCalendar) -> Option<NonNull<CFTimeZone>>;
+    #[inline]
+    #[doc(alias = "CFCalendarCreateWithIdentifier")]
+    pub fn with_identifier(
+        allocator: Option<&CFAllocator>,
+        identifier: Option<&CFCalendarIdentifier>,
+    ) -> Option<CFRetained<CFCalendar>> {
+        extern "C-unwind" {
+            fn CFCalendarCreateWithIdentifier(
+                allocator: Option<&CFAllocator>,
+                identifier: Option<&CFCalendarIdentifier>,
+            ) -> Option<NonNull<CFCalendar>>;
+        }
+        let ret = unsafe { CFCalendarCreateWithIdentifier(allocator, identifier) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFCalendarCopyTimeZone(calendar) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CFDate")]
-#[inline]
-pub extern "C-unwind" fn CFCalendarSetTimeZone(calendar: &CFCalendar, tz: Option<&CFTimeZone>) {
-    extern "C-unwind" {
-        fn CFCalendarSetTimeZone(calendar: &CFCalendar, tz: Option<&CFTimeZone>);
+    /// Returns the calendar's identifier.
+    #[cfg(feature = "CFLocale")]
+    #[inline]
+    #[doc(alias = "CFCalendarGetIdentifier")]
+    pub fn identifier(self: &CFCalendar) -> Option<CFRetained<CFCalendarIdentifier>> {
+        extern "C-unwind" {
+            fn CFCalendarGetIdentifier(
+                calendar: &CFCalendar,
+            ) -> Option<NonNull<CFCalendarIdentifier>>;
+        }
+        let ret = unsafe { CFCalendarGetIdentifier(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    unsafe { CFCalendarSetTimeZone(calendar, tz) }
-}
 
-#[inline]
-pub extern "C-unwind" fn CFCalendarGetFirstWeekday(calendar: &CFCalendar) -> CFIndex {
-    extern "C-unwind" {
-        fn CFCalendarGetFirstWeekday(calendar: &CFCalendar) -> CFIndex;
+    #[cfg(feature = "CFLocale")]
+    #[inline]
+    #[doc(alias = "CFCalendarCopyLocale")]
+    pub fn locale(self: &CFCalendar) -> Option<CFRetained<CFLocale>> {
+        extern "C-unwind" {
+            fn CFCalendarCopyLocale(calendar: &CFCalendar) -> Option<NonNull<CFLocale>>;
+        }
+        let ret = unsafe { CFCalendarCopyLocale(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    unsafe { CFCalendarGetFirstWeekday(calendar) }
-}
 
-#[inline]
-pub extern "C-unwind" fn CFCalendarSetFirstWeekday(calendar: &CFCalendar, wkdy: CFIndex) {
-    extern "C-unwind" {
-        fn CFCalendarSetFirstWeekday(calendar: &CFCalendar, wkdy: CFIndex);
+    #[cfg(feature = "CFLocale")]
+    #[inline]
+    #[doc(alias = "CFCalendarSetLocale")]
+    pub unsafe fn set_locale(self: &CFCalendar, locale: Option<&CFLocale>) {
+        extern "C-unwind" {
+            fn CFCalendarSetLocale(calendar: &CFCalendar, locale: Option<&CFLocale>);
+        }
+        unsafe { CFCalendarSetLocale(self, locale) }
     }
-    unsafe { CFCalendarSetFirstWeekday(calendar, wkdy) }
-}
 
-#[inline]
-pub extern "C-unwind" fn CFCalendarGetMinimumDaysInFirstWeek(calendar: &CFCalendar) -> CFIndex {
-    extern "C-unwind" {
-        fn CFCalendarGetMinimumDaysInFirstWeek(calendar: &CFCalendar) -> CFIndex;
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFCalendarCopyTimeZone")]
+    pub fn time_zone(self: &CFCalendar) -> Option<CFRetained<CFTimeZone>> {
+        extern "C-unwind" {
+            fn CFCalendarCopyTimeZone(calendar: &CFCalendar) -> Option<NonNull<CFTimeZone>>;
+        }
+        let ret = unsafe { CFCalendarCopyTimeZone(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    unsafe { CFCalendarGetMinimumDaysInFirstWeek(calendar) }
-}
 
-#[inline]
-pub extern "C-unwind" fn CFCalendarSetMinimumDaysInFirstWeek(calendar: &CFCalendar, mwd: CFIndex) {
-    extern "C-unwind" {
-        fn CFCalendarSetMinimumDaysInFirstWeek(calendar: &CFCalendar, mwd: CFIndex);
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFCalendarSetTimeZone")]
+    pub fn set_time_zone(self: &CFCalendar, tz: Option<&CFTimeZone>) {
+        extern "C-unwind" {
+            fn CFCalendarSetTimeZone(calendar: &CFCalendar, tz: Option<&CFTimeZone>);
+        }
+        unsafe { CFCalendarSetTimeZone(self, tz) }
     }
-    unsafe { CFCalendarSetMinimumDaysInFirstWeek(calendar, mwd) }
+
+    #[inline]
+    #[doc(alias = "CFCalendarGetFirstWeekday")]
+    pub fn first_weekday(self: &CFCalendar) -> CFIndex {
+        extern "C-unwind" {
+            fn CFCalendarGetFirstWeekday(calendar: &CFCalendar) -> CFIndex;
+        }
+        unsafe { CFCalendarGetFirstWeekday(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFCalendarSetFirstWeekday")]
+    pub fn set_first_weekday(self: &CFCalendar, wkdy: CFIndex) {
+        extern "C-unwind" {
+            fn CFCalendarSetFirstWeekday(calendar: &CFCalendar, wkdy: CFIndex);
+        }
+        unsafe { CFCalendarSetFirstWeekday(self, wkdy) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFCalendarGetMinimumDaysInFirstWeek")]
+    pub fn minimum_days_in_first_week(self: &CFCalendar) -> CFIndex {
+        extern "C-unwind" {
+            fn CFCalendarGetMinimumDaysInFirstWeek(calendar: &CFCalendar) -> CFIndex;
+        }
+        unsafe { CFCalendarGetMinimumDaysInFirstWeek(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFCalendarSetMinimumDaysInFirstWeek")]
+    pub fn set_minimum_days_in_first_week(self: &CFCalendar, mwd: CFIndex) {
+        extern "C-unwind" {
+            fn CFCalendarSetMinimumDaysInFirstWeek(calendar: &CFCalendar, mwd: CFIndex);
+        }
+        unsafe { CFCalendarSetMinimumDaysInFirstWeek(self, mwd) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit?language=objc)
@@ -195,6 +208,217 @@ unsafe impl RefEncode for CFCalendarUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+impl CFCalendar {
+    #[inline]
+    #[doc(alias = "CFCalendarGetMinimumRangeOfUnit")]
+    pub fn minimum_range_of_unit(self: &CFCalendar, unit: CFCalendarUnit) -> CFRange {
+        extern "C-unwind" {
+            fn CFCalendarGetMinimumRangeOfUnit(
+                calendar: &CFCalendar,
+                unit: CFCalendarUnit,
+            ) -> CFRange;
+        }
+        unsafe { CFCalendarGetMinimumRangeOfUnit(self, unit) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFCalendarGetMaximumRangeOfUnit")]
+    pub fn maximum_range_of_unit(self: &CFCalendar, unit: CFCalendarUnit) -> CFRange {
+        extern "C-unwind" {
+            fn CFCalendarGetMaximumRangeOfUnit(
+                calendar: &CFCalendar,
+                unit: CFCalendarUnit,
+            ) -> CFRange;
+        }
+        unsafe { CFCalendarGetMaximumRangeOfUnit(self, unit) }
+    }
+
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFCalendarGetRangeOfUnit")]
+    pub fn range_of_unit(
+        self: &CFCalendar,
+        smaller_unit: CFCalendarUnit,
+        bigger_unit: CFCalendarUnit,
+        at: CFAbsoluteTime,
+    ) -> CFRange {
+        extern "C-unwind" {
+            fn CFCalendarGetRangeOfUnit(
+                calendar: &CFCalendar,
+                smaller_unit: CFCalendarUnit,
+                bigger_unit: CFCalendarUnit,
+                at: CFAbsoluteTime,
+            ) -> CFRange;
+        }
+        unsafe { CFCalendarGetRangeOfUnit(self, smaller_unit, bigger_unit, at) }
+    }
+
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFCalendarGetOrdinalityOfUnit")]
+    pub fn ordinality_of_unit(
+        self: &CFCalendar,
+        smaller_unit: CFCalendarUnit,
+        bigger_unit: CFCalendarUnit,
+        at: CFAbsoluteTime,
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn CFCalendarGetOrdinalityOfUnit(
+                calendar: &CFCalendar,
+                smaller_unit: CFCalendarUnit,
+                bigger_unit: CFCalendarUnit,
+                at: CFAbsoluteTime,
+            ) -> CFIndex;
+        }
+        unsafe { CFCalendarGetOrdinalityOfUnit(self, smaller_unit, bigger_unit, at) }
+    }
+
+    #[cfg(feature = "CFDate")]
+    #[inline]
+    #[doc(alias = "CFCalendarGetTimeRangeOfUnit")]
+    pub unsafe fn time_range_of_unit(
+        self: &CFCalendar,
+        unit: CFCalendarUnit,
+        at: CFAbsoluteTime,
+        startp: *mut CFAbsoluteTime,
+        tip: *mut CFTimeInterval,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFCalendarGetTimeRangeOfUnit(
+                calendar: &CFCalendar,
+                unit: CFCalendarUnit,
+                at: CFAbsoluteTime,
+                startp: *mut CFAbsoluteTime,
+                tip: *mut CFTimeInterval,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFCalendarGetTimeRangeOfUnit(self, unit, at, startp, tip) };
+        ret != 0
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcalendarcomponentswrap?language=objc)
+pub const kCFCalendarComponentsWrap: CFOptionFlags = 1 << 0;
+
+#[deprecated = "renamed to `CFCalendar::current`"]
+#[inline]
+pub extern "C-unwind" fn CFCalendarCopyCurrent() -> Option<CFRetained<CFCalendar>> {
+    extern "C-unwind" {
+        fn CFCalendarCopyCurrent() -> Option<NonNull<CFCalendar>>;
+    }
+    let ret = unsafe { CFCalendarCopyCurrent() };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFLocale")]
+#[deprecated = "renamed to `CFCalendar::with_identifier`"]
+#[inline]
+pub extern "C-unwind" fn CFCalendarCreateWithIdentifier(
+    allocator: Option<&CFAllocator>,
+    identifier: Option<&CFCalendarIdentifier>,
+) -> Option<CFRetained<CFCalendar>> {
+    extern "C-unwind" {
+        fn CFCalendarCreateWithIdentifier(
+            allocator: Option<&CFAllocator>,
+            identifier: Option<&CFCalendarIdentifier>,
+        ) -> Option<NonNull<CFCalendar>>;
+    }
+    let ret = unsafe { CFCalendarCreateWithIdentifier(allocator, identifier) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFLocale")]
+#[deprecated = "renamed to `CFCalendar::identifier`"]
+#[inline]
+pub extern "C-unwind" fn CFCalendarGetIdentifier(
+    calendar: &CFCalendar,
+) -> Option<CFRetained<CFCalendarIdentifier>> {
+    extern "C-unwind" {
+        fn CFCalendarGetIdentifier(calendar: &CFCalendar) -> Option<NonNull<CFCalendarIdentifier>>;
+    }
+    let ret = unsafe { CFCalendarGetIdentifier(calendar) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[cfg(feature = "CFLocale")]
+#[deprecated = "renamed to `CFCalendar::locale`"]
+#[inline]
+pub extern "C-unwind" fn CFCalendarCopyLocale(
+    calendar: &CFCalendar,
+) -> Option<CFRetained<CFLocale>> {
+    extern "C-unwind" {
+        fn CFCalendarCopyLocale(calendar: &CFCalendar) -> Option<NonNull<CFLocale>>;
+    }
+    let ret = unsafe { CFCalendarCopyLocale(calendar) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CFLocale")]
+    #[deprecated = "renamed to `CFCalendar::set_locale`"]
+    pub fn CFCalendarSetLocale(calendar: &CFCalendar, locale: Option<&CFLocale>);
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFCalendar::time_zone`"]
+#[inline]
+pub extern "C-unwind" fn CFCalendarCopyTimeZone(
+    calendar: &CFCalendar,
+) -> Option<CFRetained<CFTimeZone>> {
+    extern "C-unwind" {
+        fn CFCalendarCopyTimeZone(calendar: &CFCalendar) -> Option<NonNull<CFTimeZone>>;
+    }
+    let ret = unsafe { CFCalendarCopyTimeZone(calendar) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFCalendar::set_time_zone`"]
+#[inline]
+pub extern "C-unwind" fn CFCalendarSetTimeZone(calendar: &CFCalendar, tz: Option<&CFTimeZone>) {
+    extern "C-unwind" {
+        fn CFCalendarSetTimeZone(calendar: &CFCalendar, tz: Option<&CFTimeZone>);
+    }
+    unsafe { CFCalendarSetTimeZone(calendar, tz) }
+}
+
+#[deprecated = "renamed to `CFCalendar::first_weekday`"]
+#[inline]
+pub extern "C-unwind" fn CFCalendarGetFirstWeekday(calendar: &CFCalendar) -> CFIndex {
+    extern "C-unwind" {
+        fn CFCalendarGetFirstWeekday(calendar: &CFCalendar) -> CFIndex;
+    }
+    unsafe { CFCalendarGetFirstWeekday(calendar) }
+}
+
+#[deprecated = "renamed to `CFCalendar::set_first_weekday`"]
+#[inline]
+pub extern "C-unwind" fn CFCalendarSetFirstWeekday(calendar: &CFCalendar, wkdy: CFIndex) {
+    extern "C-unwind" {
+        fn CFCalendarSetFirstWeekday(calendar: &CFCalendar, wkdy: CFIndex);
+    }
+    unsafe { CFCalendarSetFirstWeekday(calendar, wkdy) }
+}
+
+#[deprecated = "renamed to `CFCalendar::minimum_days_in_first_week`"]
+#[inline]
+pub extern "C-unwind" fn CFCalendarGetMinimumDaysInFirstWeek(calendar: &CFCalendar) -> CFIndex {
+    extern "C-unwind" {
+        fn CFCalendarGetMinimumDaysInFirstWeek(calendar: &CFCalendar) -> CFIndex;
+    }
+    unsafe { CFCalendarGetMinimumDaysInFirstWeek(calendar) }
+}
+
+#[deprecated = "renamed to `CFCalendar::set_minimum_days_in_first_week`"]
+#[inline]
+pub extern "C-unwind" fn CFCalendarSetMinimumDaysInFirstWeek(calendar: &CFCalendar, mwd: CFIndex) {
+    extern "C-unwind" {
+        fn CFCalendarSetMinimumDaysInFirstWeek(calendar: &CFCalendar, mwd: CFIndex);
+    }
+    unsafe { CFCalendarSetMinimumDaysInFirstWeek(calendar, mwd) }
+}
+
+#[deprecated = "renamed to `CFCalendar::minimum_range_of_unit`"]
 #[inline]
 pub extern "C-unwind" fn CFCalendarGetMinimumRangeOfUnit(
     calendar: &CFCalendar,
@@ -206,6 +430,7 @@ pub extern "C-unwind" fn CFCalendarGetMinimumRangeOfUnit(
     unsafe { CFCalendarGetMinimumRangeOfUnit(calendar, unit) }
 }
 
+#[deprecated = "renamed to `CFCalendar::maximum_range_of_unit`"]
 #[inline]
 pub extern "C-unwind" fn CFCalendarGetMaximumRangeOfUnit(
     calendar: &CFCalendar,
@@ -218,6 +443,7 @@ pub extern "C-unwind" fn CFCalendarGetMaximumRangeOfUnit(
 }
 
 #[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFCalendar::range_of_unit`"]
 #[inline]
 pub extern "C-unwind" fn CFCalendarGetRangeOfUnit(
     calendar: &CFCalendar,
@@ -237,6 +463,7 @@ pub extern "C-unwind" fn CFCalendarGetRangeOfUnit(
 }
 
 #[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFCalendar::ordinality_of_unit`"]
 #[inline]
 pub extern "C-unwind" fn CFCalendarGetOrdinalityOfUnit(
     calendar: &CFCalendar,
@@ -256,6 +483,7 @@ pub extern "C-unwind" fn CFCalendarGetOrdinalityOfUnit(
 }
 
 #[cfg(feature = "CFDate")]
+#[deprecated = "renamed to `CFCalendar::time_range_of_unit`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCalendarGetTimeRangeOfUnit(
     calendar: &CFCalendar,
@@ -276,6 +504,3 @@ pub unsafe extern "C-unwind" fn CFCalendarGetTimeRangeOfUnit(
     let ret = unsafe { CFCalendarGetTimeRangeOfUnit(calendar, unit, at, startp, tip) };
     ret != 0
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcalendarcomponentswrap?language=objc)
-pub const kCFCalendarComponentsWrap: CFOptionFlags = 1 << 0;

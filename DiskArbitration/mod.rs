@@ -382,7 +382,8 @@ extern "C-unwind" {
 pub type DADiskMountCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
-extern "C-unwind" {
+#[cfg(feature = "DADisk")]
+impl DADisk {
     /// Mounts the volume at the specified disk object.
     ///
     /// Parameter `disk`: The disk object.
@@ -395,16 +396,27 @@ extern "C-unwind" {
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    pub fn DADiskMount(
-        disk: &DADisk,
+    #[inline]
+    #[doc(alias = "DADiskMount")]
+    pub unsafe fn mount(
+        self: &DADisk,
         path: Option<&CFURL>,
         options: DADiskMountOptions,
         callback: DADiskMountCallback,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn DADiskMount(
+                disk: &DADisk,
+                path: Option<&CFURL>,
+                options: DADiskMountOptions,
+                callback: DADiskMountCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { DADiskMount(self, path, options, callback, context) }
+    }
 
-extern "C-unwind" {
     /// Mounts the volume at the specified disk object, with the specified mount options.
     ///
     /// Parameter `disk`: The disk object.
@@ -419,14 +431,28 @@ extern "C-unwind" {
     ///
     /// Parameter `arguments`: The null-terminated list of mount options to pass to /sbin/mount -o.
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    pub fn DADiskMountWithArguments(
-        disk: &DADisk,
+    #[inline]
+    #[doc(alias = "DADiskMountWithArguments")]
+    pub unsafe fn mount_with_arguments(
+        self: &DADisk,
         path: Option<&CFURL>,
         options: DADiskMountOptions,
         callback: DADiskMountCallback,
         context: *mut c_void,
         arguments: *mut *const CFString,
-    );
+    ) {
+        extern "C-unwind" {
+            fn DADiskMountWithArguments(
+                disk: &DADisk,
+                path: Option<&CFURL>,
+                options: DADiskMountOptions,
+                callback: DADiskMountCallback,
+                context: *mut c_void,
+                arguments: *mut *const CFString,
+            );
+        }
+        unsafe { DADiskMountWithArguments(self, path, options, callback, context, arguments) }
+    }
 }
 
 /// Type of the callback function used by DARegisterDiskMountApprovalCallback().
@@ -478,7 +504,8 @@ extern "C-unwind" {
 pub type DADiskRenameCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
-extern "C-unwind" {
+#[cfg(feature = "DADisk")]
+impl DADisk {
     /// Renames the volume at the specified disk object.
     ///
     /// Parameter `disk`: The disk object.
@@ -489,13 +516,26 @@ extern "C-unwind" {
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    pub fn DADiskRename(
-        disk: &DADisk,
+    #[inline]
+    #[doc(alias = "DADiskRename")]
+    pub unsafe fn rename(
+        self: &DADisk,
         name: &CFString,
         options: DADiskRenameOptions,
         callback: DADiskRenameCallback,
         context: *mut c_void,
-    );
+    ) {
+        extern "C-unwind" {
+            fn DADiskRename(
+                disk: &DADisk,
+                name: &CFString,
+                options: DADiskRenameOptions,
+                callback: DADiskRenameCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { DADiskRename(self, name, options, callback, context) }
+    }
 }
 
 /// Type of the callback function used by DADiskUnmount().
@@ -511,7 +551,8 @@ extern "C-unwind" {
 pub type DADiskUnmountCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
-extern "C-unwind" {
+#[cfg(feature = "DADisk")]
+impl DADisk {
     /// Unmounts the volume at the specified disk object.
     ///
     /// Parameter `disk`: The disk object.
@@ -522,12 +563,24 @@ extern "C-unwind" {
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    pub fn DADiskUnmount(
-        disk: &DADisk,
+    #[inline]
+    #[doc(alias = "DADiskUnmount")]
+    pub unsafe fn unmount(
+        self: &DADisk,
         options: DADiskUnmountOptions,
         callback: DADiskUnmountCallback,
         context: *mut c_void,
-    );
+    ) {
+        extern "C-unwind" {
+            fn DADiskUnmount(
+                disk: &DADisk,
+                options: DADiskUnmountOptions,
+                callback: DADiskUnmountCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { DADiskUnmount(self, options, callback, context) }
+    }
 }
 
 /// Type of the callback function used by DARegisterDiskUnmountApprovalCallback().
@@ -579,7 +632,8 @@ extern "C-unwind" {
 pub type DADiskEjectCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
-extern "C-unwind" {
+#[cfg(feature = "DADisk")]
+impl DADisk {
     /// Ejects the specified disk object.
     ///
     /// Parameter `disk`: The disk object.
@@ -590,12 +644,24 @@ extern "C-unwind" {
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    pub fn DADiskEject(
-        disk: &DADisk,
+    #[inline]
+    #[doc(alias = "DADiskEject")]
+    pub unsafe fn eject(
+        self: &DADisk,
         options: DADiskEjectOptions,
         callback: DADiskEjectCallback,
         context: *mut c_void,
-    );
+    ) {
+        extern "C-unwind" {
+            fn DADiskEject(
+                disk: &DADisk,
+                options: DADiskEjectOptions,
+                callback: DADiskEjectCallback,
+                context: *mut c_void,
+            );
+        }
+        unsafe { DADiskEject(self, options, callback, context) }
+    }
 }
 
 /// Type of the callback function used by DARegisterDiskEjectApprovalCallback().
@@ -664,7 +730,8 @@ pub type DADiskClaimCallback =
 pub type DADiskClaimReleaseCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
-extern "C-unwind" {
+#[cfg(feature = "DADisk")]
+impl DADisk {
     /// Claims the specified disk object for exclusive use.
     ///
     /// Parameter `disk`: The disk object.
@@ -679,37 +746,66 @@ extern "C-unwind" {
     ///
     /// Parameter `callbackContext`: The user-defined context parameter to pass to the callback function.
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    pub fn DADiskClaim(
-        disk: &DADisk,
+    #[inline]
+    #[doc(alias = "DADiskClaim")]
+    pub unsafe fn claim(
+        self: &DADisk,
         options: DADiskClaimOptions,
         release: DADiskClaimReleaseCallback,
         release_context: *mut c_void,
         callback: DADiskClaimCallback,
         callback_context: *mut c_void,
-    );
-}
-
-/// Reports whether or not the disk is claimed.
-///
-/// Parameter `disk`: The disk object.
-///
-/// Returns: TRUE if the disk is claimed, otherwise FALSE.
-#[cfg(feature = "DADisk")]
-#[inline]
-pub unsafe extern "C-unwind" fn DADiskIsClaimed(disk: &DADisk) -> bool {
-    extern "C-unwind" {
-        fn DADiskIsClaimed(disk: &DADisk) -> Boolean;
+    ) {
+        extern "C-unwind" {
+            fn DADiskClaim(
+                disk: &DADisk,
+                options: DADiskClaimOptions,
+                release: DADiskClaimReleaseCallback,
+                release_context: *mut c_void,
+                callback: DADiskClaimCallback,
+                callback_context: *mut c_void,
+            );
+        }
+        unsafe {
+            DADiskClaim(
+                self,
+                options,
+                release,
+                release_context,
+                callback,
+                callback_context,
+            )
+        }
     }
-    let ret = unsafe { DADiskIsClaimed(disk) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Reports whether or not the disk is claimed.
+    ///
+    /// Parameter `disk`: The disk object.
+    ///
+    /// Returns: TRUE if the disk is claimed, otherwise FALSE.
+    #[cfg(feature = "DADisk")]
+    #[inline]
+    #[doc(alias = "DADiskIsClaimed")]
+    pub unsafe fn is_claimed(self: &DADisk) -> bool {
+        extern "C-unwind" {
+            fn DADiskIsClaimed(disk: &DADisk) -> Boolean;
+        }
+        let ret = unsafe { DADiskIsClaimed(self) };
+        ret != 0
+    }
+
     /// Unclaims the specified disk object.
     ///
     /// Parameter `disk`: The disk object.
     #[cfg(feature = "DADisk")]
-    pub fn DADiskUnclaim(disk: &DADisk);
+    #[inline]
+    #[doc(alias = "DADiskUnclaim")]
+    pub unsafe fn unclaim(self: &DADisk) {
+        extern "C-unwind" {
+            fn DADiskUnclaim(disk: &DADisk);
+        }
+        unsafe { DADiskUnclaim(self) }
+    }
 }
 
 /// Type of the callback function used by DARegisterDiskPeekCallback().
@@ -748,36 +844,41 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
+#[cfg(feature = "DADisk")]
+impl DADisk {
     /// Obtains the options for the specified disk.
     ///
     /// Parameter `disk`: The disk object for which to obtain the options.
     ///
     /// Returns: The options.
     #[cfg(feature = "DADisk")]
-    pub fn DADiskGetOptions(disk: &DADisk) -> DADiskOptions;
-}
-
-/// Sets the options for the specified disk.
-///
-/// Parameter `disk`: The disk object for which to set the options.
-///
-/// Parameter `options`: The options to set or clear.
-///
-/// Parameter `value`: Pass TRUE to set options; otherwise pass FALSE to clear options.
-///
-/// Returns: A result code.
-#[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "libc"))]
-#[inline]
-pub unsafe extern "C-unwind" fn DADiskSetOptions(
-    disk: &DADisk,
-    options: DADiskOptions,
-    value: bool,
-) -> DAReturn {
-    extern "C-unwind" {
-        fn DADiskSetOptions(disk: &DADisk, options: DADiskOptions, value: Boolean) -> DAReturn;
+    #[inline]
+    #[doc(alias = "DADiskGetOptions")]
+    pub unsafe fn options(self: &DADisk) -> DADiskOptions {
+        extern "C-unwind" {
+            fn DADiskGetOptions(disk: &DADisk) -> DADiskOptions;
+        }
+        unsafe { DADiskGetOptions(self) }
     }
-    unsafe { DADiskSetOptions(disk, options, value as _) }
+
+    /// Sets the options for the specified disk.
+    ///
+    /// Parameter `disk`: The disk object for which to set the options.
+    ///
+    /// Parameter `options`: The options to set or clear.
+    ///
+    /// Parameter `value`: Pass TRUE to set options; otherwise pass FALSE to clear options.
+    ///
+    /// Returns: A result code.
+    #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "libc"))]
+    #[inline]
+    #[doc(alias = "DADiskSetOptions")]
+    pub unsafe fn set_options(self: &DADisk, options: DADiskOptions, value: bool) -> DAReturn {
+        extern "C-unwind" {
+            fn DADiskSetOptions(disk: &DADisk, options: DADiskOptions, value: Boolean) -> DAReturn;
+        }
+        unsafe { DADiskSetOptions(self, options, value as _) }
+    }
 }
 
 extern "C-unwind" {
@@ -803,4 +904,113 @@ extern "C-unwind" {
         callback: NonNull<c_void>,
         context: *mut c_void,
     );
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
+    #[deprecated = "renamed to `DADisk::mount`"]
+    pub fn DADiskMount(
+        disk: &DADisk,
+        path: Option<&CFURL>,
+        options: DADiskMountOptions,
+        callback: DADiskMountCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
+    #[deprecated = "renamed to `DADisk::mount_with_arguments`"]
+    pub fn DADiskMountWithArguments(
+        disk: &DADisk,
+        path: Option<&CFURL>,
+        options: DADiskMountOptions,
+        callback: DADiskMountCallback,
+        context: *mut c_void,
+        arguments: *mut *const CFString,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
+    #[deprecated = "renamed to `DADisk::rename`"]
+    pub fn DADiskRename(
+        disk: &DADisk,
+        name: &CFString,
+        options: DADiskRenameOptions,
+        callback: DADiskRenameCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
+    #[deprecated = "renamed to `DADisk::unmount`"]
+    pub fn DADiskUnmount(
+        disk: &DADisk,
+        options: DADiskUnmountOptions,
+        callback: DADiskUnmountCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
+    #[deprecated = "renamed to `DADisk::eject`"]
+    pub fn DADiskEject(
+        disk: &DADisk,
+        options: DADiskEjectOptions,
+        callback: DADiskEjectCallback,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
+    #[deprecated = "renamed to `DADisk::claim`"]
+    pub fn DADiskClaim(
+        disk: &DADisk,
+        options: DADiskClaimOptions,
+        release: DADiskClaimReleaseCallback,
+        release_context: *mut c_void,
+        callback: DADiskClaimCallback,
+        callback_context: *mut c_void,
+    );
+}
+
+#[cfg(feature = "DADisk")]
+#[deprecated = "renamed to `DADisk::is_claimed`"]
+#[inline]
+pub unsafe extern "C-unwind" fn DADiskIsClaimed(disk: &DADisk) -> bool {
+    extern "C-unwind" {
+        fn DADiskIsClaimed(disk: &DADisk) -> Boolean;
+    }
+    let ret = unsafe { DADiskIsClaimed(disk) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "DADisk")]
+    #[deprecated = "renamed to `DADisk::unclaim`"]
+    pub fn DADiskUnclaim(disk: &DADisk);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "DADisk")]
+    #[deprecated = "renamed to `DADisk::options`"]
+    pub fn DADiskGetOptions(disk: &DADisk) -> DADiskOptions;
+}
+
+#[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "libc"))]
+#[deprecated = "renamed to `DADisk::set_options`"]
+#[inline]
+pub unsafe extern "C-unwind" fn DADiskSetOptions(
+    disk: &DADisk,
+    options: DADiskOptions,
+    value: bool,
+) -> DAReturn {
+    extern "C-unwind" {
+        fn DADiskSetOptions(disk: &DADisk, options: DADiskOptions, value: Boolean) -> DAReturn;
+    }
+    unsafe { DADiskSetOptions(disk, options, value as _) }
 }

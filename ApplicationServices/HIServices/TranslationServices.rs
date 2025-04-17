@@ -47,7 +47,145 @@ unsafe impl ConcreteType for Translation {
     }
 }
 
+impl Translation {
+    #[inline]
+    #[doc(alias = "TranslationCreate")]
+    pub unsafe fn create(
+        in_source_type: Option<&CFString>,
+        in_destination_type: Option<&CFString>,
+        in_translation_flags: TranslationFlags,
+        out_translation: *mut *mut Translation,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn TranslationCreate(
+                in_source_type: Option<&CFString>,
+                in_destination_type: Option<&CFString>,
+                in_translation_flags: TranslationFlags,
+                out_translation: *mut *mut Translation,
+            ) -> OSStatus;
+        }
+        unsafe {
+            TranslationCreate(
+                in_source_type,
+                in_destination_type,
+                in_translation_flags,
+                out_translation,
+            )
+        }
+    }
+
+    #[inline]
+    #[doc(alias = "TranslationCreateWithSourceArray")]
+    pub unsafe fn create_with_source_array(
+        in_source_types: Option<&CFArray>,
+        in_translation_flags: TranslationFlags,
+        out_destination_types: *mut *const CFArray,
+        out_translations: *mut *const CFDictionary,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn TranslationCreateWithSourceArray(
+                in_source_types: Option<&CFArray>,
+                in_translation_flags: TranslationFlags,
+                out_destination_types: *mut *const CFArray,
+                out_translations: *mut *const CFDictionary,
+            ) -> OSStatus;
+        }
+        unsafe {
+            TranslationCreateWithSourceArray(
+                in_source_types,
+                in_translation_flags,
+                out_destination_types,
+                out_translations,
+            )
+        }
+    }
+
+    #[inline]
+    #[doc(alias = "TranslationPerformForData")]
+    pub unsafe fn perform_for_data(
+        self: &Translation,
+        in_source_data: Option<&CFData>,
+        out_destination_data: *mut *const CFData,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn TranslationPerformForData(
+                in_translation: &Translation,
+                in_source_data: Option<&CFData>,
+                out_destination_data: *mut *const CFData,
+            ) -> OSStatus;
+        }
+        unsafe { TranslationPerformForData(self, in_source_data, out_destination_data) }
+    }
+
+    #[inline]
+    #[doc(alias = "TranslationPerformForURL")]
+    pub unsafe fn perform_for_url(
+        self: &Translation,
+        in_source_url: Option<&CFURL>,
+        in_destination_url: Option<&CFURL>,
+        out_translated_url: *mut *const CFURL,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn TranslationPerformForURL(
+                in_translation: &Translation,
+                in_source_url: Option<&CFURL>,
+                in_destination_url: Option<&CFURL>,
+                out_translated_url: *mut *const CFURL,
+            ) -> OSStatus;
+        }
+        unsafe {
+            TranslationPerformForURL(self, in_source_url, in_destination_url, out_translated_url)
+        }
+    }
+
+    #[inline]
+    #[doc(alias = "TranslationCopySourceType")]
+    pub unsafe fn copy_source_type(
+        self: &Translation,
+        out_source_type: *mut *const CFString,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn TranslationCopySourceType(
+                in_translation: &Translation,
+                out_source_type: *mut *const CFString,
+            ) -> OSStatus;
+        }
+        unsafe { TranslationCopySourceType(self, out_source_type) }
+    }
+
+    #[inline]
+    #[doc(alias = "TranslationCopyDestinationType")]
+    pub unsafe fn copy_destination_type(
+        self: &Translation,
+        out_destination_type: *mut *const CFString,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn TranslationCopyDestinationType(
+                in_translation: &Translation,
+                out_destination_type: *mut *const CFString,
+            ) -> OSStatus;
+        }
+        unsafe { TranslationCopyDestinationType(self, out_destination_type) }
+    }
+
+    #[inline]
+    #[doc(alias = "TranslationGetTranslationFlags")]
+    pub unsafe fn translation_flags(
+        self: &Translation,
+        out_translation_flags: *mut TranslationFlags,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn TranslationGetTranslationFlags(
+                in_translation: &Translation,
+                out_translation_flags: *mut TranslationFlags,
+            ) -> OSStatus;
+        }
+        unsafe { TranslationGetTranslationFlags(self, out_translation_flags) }
+    }
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `Translation::create`"]
     pub fn TranslationCreate(
         in_source_type: Option<&CFString>,
         in_destination_type: Option<&CFString>,
@@ -57,6 +195,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `Translation::create_with_source_array`"]
     pub fn TranslationCreateWithSourceArray(
         in_source_types: Option<&CFArray>,
         in_translation_flags: TranslationFlags,
@@ -66,6 +205,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `Translation::perform_for_data`"]
     pub fn TranslationPerformForData(
         in_translation: &Translation,
         in_source_data: Option<&CFData>,
@@ -74,6 +214,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `Translation::perform_for_url`"]
     pub fn TranslationPerformForURL(
         in_translation: &Translation,
         in_source_url: Option<&CFURL>,
@@ -83,6 +224,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `Translation::copy_source_type`"]
     pub fn TranslationCopySourceType(
         in_translation: &Translation,
         out_source_type: *mut *const CFString,
@@ -90,6 +232,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `Translation::copy_destination_type`"]
     pub fn TranslationCopyDestinationType(
         in_translation: &Translation,
         out_destination_type: *mut *const CFString,
@@ -97,6 +240,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `Translation::translation_flags`"]
     pub fn TranslationGetTranslationFlags(
         in_translation: &Translation,
         out_translation_flags: *mut TranslationFlags,

@@ -59,49 +59,57 @@ unsafe impl ConcreteType for CFDate {
     }
 }
 
-#[inline]
-pub extern "C-unwind" fn CFDateCreate(
-    allocator: Option<&CFAllocator>,
-    at: CFAbsoluteTime,
-) -> Option<CFRetained<CFDate>> {
-    extern "C-unwind" {
-        fn CFDateCreate(
-            allocator: Option<&CFAllocator>,
-            at: CFAbsoluteTime,
-        ) -> Option<NonNull<CFDate>>;
+impl CFDate {
+    #[inline]
+    #[doc(alias = "CFDateCreate")]
+    pub fn new(allocator: Option<&CFAllocator>, at: CFAbsoluteTime) -> Option<CFRetained<CFDate>> {
+        extern "C-unwind" {
+            fn CFDateCreate(
+                allocator: Option<&CFAllocator>,
+                at: CFAbsoluteTime,
+            ) -> Option<NonNull<CFDate>>;
+        }
+        let ret = unsafe { CFDateCreate(allocator, at) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFDateCreate(allocator, at) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[inline]
-pub extern "C-unwind" fn CFDateGetAbsoluteTime(the_date: &CFDate) -> CFAbsoluteTime {
-    extern "C-unwind" {
-        fn CFDateGetAbsoluteTime(the_date: &CFDate) -> CFAbsoluteTime;
+    #[inline]
+    #[doc(alias = "CFDateGetAbsoluteTime")]
+    pub fn absolute_time(self: &CFDate) -> CFAbsoluteTime {
+        extern "C-unwind" {
+            fn CFDateGetAbsoluteTime(the_date: &CFDate) -> CFAbsoluteTime;
+        }
+        unsafe { CFDateGetAbsoluteTime(self) }
     }
-    unsafe { CFDateGetAbsoluteTime(the_date) }
-}
 
-#[inline]
-pub extern "C-unwind" fn CFDateGetTimeIntervalSinceDate(
-    the_date: &CFDate,
-    other_date: Option<&CFDate>,
-) -> CFTimeInterval {
-    extern "C-unwind" {
-        fn CFDateGetTimeIntervalSinceDate(
-            the_date: &CFDate,
-            other_date: Option<&CFDate>,
-        ) -> CFTimeInterval;
+    #[inline]
+    #[doc(alias = "CFDateGetTimeIntervalSinceDate")]
+    pub fn time_interval_since_date(self: &CFDate, other_date: Option<&CFDate>) -> CFTimeInterval {
+        extern "C-unwind" {
+            fn CFDateGetTimeIntervalSinceDate(
+                the_date: &CFDate,
+                other_date: Option<&CFDate>,
+            ) -> CFTimeInterval;
+        }
+        unsafe { CFDateGetTimeIntervalSinceDate(self, other_date) }
     }
-    unsafe { CFDateGetTimeIntervalSinceDate(the_date, other_date) }
-}
 
-extern "C-unwind" {
-    pub fn CFDateCompare(
-        the_date: &CFDate,
+    #[inline]
+    #[doc(alias = "CFDateCompare")]
+    pub unsafe fn compare(
+        self: &CFDate,
         other_date: Option<&CFDate>,
         context: *mut c_void,
-    ) -> CFComparisonResult;
+    ) -> CFComparisonResult {
+        extern "C-unwind" {
+            fn CFDateCompare(
+                the_date: &CFDate,
+                other_date: Option<&CFDate>,
+                context: *mut c_void,
+            ) -> CFComparisonResult;
+        }
+        unsafe { CFDateCompare(self, other_date, context) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezone?language=objc)
@@ -224,25 +232,31 @@ unsafe impl RefEncode for CFGregorianUnitFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[deprecated = "Use CFCalendar or NSCalendar API instead"]
-#[inline]
-pub unsafe extern "C-unwind" fn CFGregorianDateIsValid(
-    gdate: CFGregorianDate,
-    unit_flags: CFOptionFlags,
-) -> bool {
-    extern "C-unwind" {
-        fn CFGregorianDateIsValid(gdate: CFGregorianDate, unit_flags: CFOptionFlags) -> Boolean;
-    }
-    let ret = unsafe { CFGregorianDateIsValid(gdate, unit_flags) };
-    ret != 0
-}
-
-extern "C-unwind" {
+impl CFGregorianDate {
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-    pub fn CFGregorianDateGetAbsoluteTime(
-        gdate: CFGregorianDate,
-        tz: Option<&CFTimeZone>,
-    ) -> CFAbsoluteTime;
+    #[inline]
+    #[doc(alias = "CFGregorianDateIsValid")]
+    pub unsafe fn is_valid(gdate: CFGregorianDate, unit_flags: CFOptionFlags) -> bool {
+        extern "C-unwind" {
+            fn CFGregorianDateIsValid(gdate: CFGregorianDate, unit_flags: CFOptionFlags)
+                -> Boolean;
+        }
+        let ret = unsafe { CFGregorianDateIsValid(gdate, unit_flags) };
+        ret != 0
+    }
+
+    #[deprecated = "Use CFCalendar or NSCalendar API instead"]
+    #[inline]
+    #[doc(alias = "CFGregorianDateGetAbsoluteTime")]
+    pub unsafe fn absolute_time(gdate: CFGregorianDate, tz: Option<&CFTimeZone>) -> CFAbsoluteTime {
+        extern "C-unwind" {
+            fn CFGregorianDateGetAbsoluteTime(
+                gdate: CFGregorianDate,
+                tz: Option<&CFTimeZone>,
+            ) -> CFAbsoluteTime;
+        }
+        unsafe { CFGregorianDateGetAbsoluteTime(gdate, tz) }
+    }
 }
 
 extern "C-unwind" {
@@ -285,4 +299,74 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     pub fn CFAbsoluteTimeGetWeekOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
+}
+
+#[deprecated = "renamed to `CFDate::new`"]
+#[inline]
+pub extern "C-unwind" fn CFDateCreate(
+    allocator: Option<&CFAllocator>,
+    at: CFAbsoluteTime,
+) -> Option<CFRetained<CFDate>> {
+    extern "C-unwind" {
+        fn CFDateCreate(
+            allocator: Option<&CFAllocator>,
+            at: CFAbsoluteTime,
+        ) -> Option<NonNull<CFDate>>;
+    }
+    let ret = unsafe { CFDateCreate(allocator, at) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CFDate::absolute_time`"]
+#[inline]
+pub extern "C-unwind" fn CFDateGetAbsoluteTime(the_date: &CFDate) -> CFAbsoluteTime {
+    extern "C-unwind" {
+        fn CFDateGetAbsoluteTime(the_date: &CFDate) -> CFAbsoluteTime;
+    }
+    unsafe { CFDateGetAbsoluteTime(the_date) }
+}
+
+#[deprecated = "renamed to `CFDate::time_interval_since_date`"]
+#[inline]
+pub extern "C-unwind" fn CFDateGetTimeIntervalSinceDate(
+    the_date: &CFDate,
+    other_date: Option<&CFDate>,
+) -> CFTimeInterval {
+    extern "C-unwind" {
+        fn CFDateGetTimeIntervalSinceDate(
+            the_date: &CFDate,
+            other_date: Option<&CFDate>,
+        ) -> CFTimeInterval;
+    }
+    unsafe { CFDateGetTimeIntervalSinceDate(the_date, other_date) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFDate::compare`"]
+    pub fn CFDateCompare(
+        the_date: &CFDate,
+        other_date: Option<&CFDate>,
+        context: *mut c_void,
+    ) -> CFComparisonResult;
+}
+
+#[deprecated = "renamed to `CFGregorianDate::is_valid`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFGregorianDateIsValid(
+    gdate: CFGregorianDate,
+    unit_flags: CFOptionFlags,
+) -> bool {
+    extern "C-unwind" {
+        fn CFGregorianDateIsValid(gdate: CFGregorianDate, unit_flags: CFOptionFlags) -> Boolean;
+    }
+    let ret = unsafe { CFGregorianDateIsValid(gdate, unit_flags) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFGregorianDate::absolute_time`"]
+    pub fn CFGregorianDateGetAbsoluteTime(
+        gdate: CFGregorianDate,
+        tz: Option<&CFTimeZone>,
+    ) -> CFAbsoluteTime;
 }

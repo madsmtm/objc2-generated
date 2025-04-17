@@ -37,19 +37,27 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueVTPixelRotationSession"> for VTPixelRotationSession {}
 );
 
-extern "C-unwind" {
+impl VTPixelRotationSession {
     /// Creates a session for rotating images between CVPixelBuffers.
     ///
     /// Parameter `allocator`: An allocator for the session.  Pass NULL to use the default allocator.
     ///
     /// Parameter `pixelRotationSessionOut`: Points to a variable to receive the new pixel rotation session.
-    pub fn VTPixelRotationSessionCreate(
+    #[inline]
+    #[doc(alias = "VTPixelRotationSessionCreate")]
+    pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         pixel_rotation_session_out: NonNull<*mut VTPixelRotationSession>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTPixelRotationSessionCreate(
+                allocator: Option<&CFAllocator>,
+                pixel_rotation_session_out: NonNull<*mut VTPixelRotationSession>,
+            ) -> OSStatus;
+        }
+        unsafe { VTPixelRotationSessionCreate(allocator, pixel_rotation_session_out) }
+    }
 
-extern "C-unwind" {
     /// Tears down a pixel rotation session.
     ///
     /// When you are done with an image rotation session you created, call VTPixelRotationSessionInvalidate
@@ -57,7 +65,14 @@ extern "C-unwind" {
     /// When an pixel rotation session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTPixelRotationSessionInvalidate ensures a deterministic, orderly teardown.
-    pub fn VTPixelRotationSessionInvalidate(session: &VTPixelRotationSession);
+    #[inline]
+    #[doc(alias = "VTPixelRotationSessionInvalidate")]
+    pub unsafe fn invalidate(self: &VTPixelRotationSession) {
+        extern "C-unwind" {
+            fn VTPixelRotationSessionInvalidate(session: &VTPixelRotationSession);
+        }
+        unsafe { VTPixelRotationSessionInvalidate(self) }
+    }
 }
 
 unsafe impl ConcreteType for VTPixelRotationSession {
@@ -72,7 +87,7 @@ unsafe impl ConcreteType for VTPixelRotationSession {
     }
 }
 
-extern "C-unwind" {
+impl VTPixelRotationSession {
     /// Rotates a pixel buffer.
     ///
     /// Rotates sourceBuffer and places the output in destinationBuffer.
@@ -92,6 +107,40 @@ extern "C-unwind" {
     ///
     /// Returns: If the transfer was successful, noErr; otherwise an error code, such as kVTPixelRotationNotSupportedErr.
     #[cfg(feature = "objc2-core-video")]
+    #[inline]
+    #[doc(alias = "VTPixelRotationSessionRotateImage")]
+    pub unsafe fn rotate_image(
+        self: &VTPixelRotationSession,
+        source_buffer: &CVPixelBuffer,
+        destination_buffer: &CVPixelBuffer,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTPixelRotationSessionRotateImage(
+                session: &VTPixelRotationSession,
+                source_buffer: &CVPixelBuffer,
+                destination_buffer: &CVPixelBuffer,
+            ) -> OSStatus;
+        }
+        unsafe { VTPixelRotationSessionRotateImage(self, source_buffer, destination_buffer) }
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTPixelRotationSession::create`"]
+    pub fn VTPixelRotationSessionCreate(
+        allocator: Option<&CFAllocator>,
+        pixel_rotation_session_out: NonNull<*mut VTPixelRotationSession>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `VTPixelRotationSession::invalidate`"]
+    pub fn VTPixelRotationSessionInvalidate(session: &VTPixelRotationSession);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-video")]
+    #[deprecated = "renamed to `VTPixelRotationSession::rotate_image`"]
     pub fn VTPixelRotationSessionRotateImage(
         session: &VTPixelRotationSession,
         source_buffer: &CVPixelBuffer,

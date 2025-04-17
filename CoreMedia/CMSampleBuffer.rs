@@ -131,241 +131,243 @@ pub type CMSampleBufferMakeDataReadyCallback =
 pub type CMSampleBufferMakeDataReadyHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus>;
 
-/// Creates a CMSampleBuffer.
-///
-/// Array parameters (sampleSizeArray, sampleTimingArray) should have only one element if that same
-/// element applies to all samples. All parameters are copied; on return, the caller can release them,
-/// free them, reuse them or whatever.  On return, the caller owns the returned CMSampleBuffer, and
-/// must release it when done with it.
-///
-/// Example of usage for in-display-order video frames:
-/// <ul>
-/// dataBuffer: contains 7 Motion JPEG frames
-/// <li>
-/// dataFormatDescription: describes Motion JPEG video
-/// <li>
-/// numSamples: 7
-/// <li>
-/// numSampleTimingEntries: 1
-/// <li>
-/// sampleTimingArray: one entry = {duration = 1001/30000, presentationTimeStamp = 0/30000, decodeTimeStamp = invalid }
-/// <li>
-/// numSampleSizeEntries: 7
-/// <li>
-/// sampleSizeArray: {105840, 104456, 103464, 116460, 100412, 94808, 120400}
-/// </ul>
-/// Example of usage for out-of-display-order video frames:
-/// <ul>
-/// dataBuffer: contains 6 H.264 frames in decode order (P2,B0,B1,I5,B3,B4)
-/// <li>
-/// dataFormatDescription: describes H.264 video
-/// <li>
-/// numSamples: 6
-/// <li>
-/// numSampleTimingEntries: 6
-/// <li>
-/// sampleTimingArray: 6 entries = {
-/// <ul>
-/// {duration = 1001/30000, presentationTimeStamp = 12012/30000, decodeTimeStamp = 10010/30000},
-/// <li>
-/// {duration = 1001/30000, presentationTimeStamp = 10010/30000, decodeTimeStamp = 11011/30000},
-/// <li>
-/// {duration = 1001/30000, presentationTimeStamp = 11011/30000, decodeTimeStamp = 12012/30000},
-/// <li>
-/// {duration = 1001/30000, presentationTimeStamp = 15015/30000, decodeTimeStamp = 13013/30000},
-/// <li>
-/// {duration = 1001/30000, presentationTimeStamp = 13013/30000, decodeTimeStamp = 14014/30000},
-/// <li>
-/// {duration = 1001/30000, presentationTimeStamp = 14014/30000, decodeTimeStamp = 15015/30000}}
-/// </ul>
-/// <li>
-/// numSampleSizeEntries: 6
-/// <li>
-/// sampleSizeArray: {10580, 1234, 1364, 75660, 1012, 988}
-/// </ul>
-/// Example of usage for compressed audio:
-/// <ul>
-/// dataBuffer: contains 24 compressed AAC packets
-/// <li>
-/// dataFormatDescription: describes 44.1kHz AAC audio
-/// <li>
-/// numSamples: 24
-/// <li>
-/// numSampleTimingEntries: 1
-/// <li>
-/// sampleTimingArray: one entry = {
-/// <ul>
-/// {duration = 1024/44100, presentationTimeStamp = 0/44100, decodeTimeStamp = invalid }}
-/// </ul>
-/// <li>
-/// numSampleSizeEntries: 24
-/// <li>
-/// sampleSizeArray:
-/// <ul>
-/// {191, 183, 208, 213, 202, 206, 209, 206, 204, 192, 202, 277,
-/// <li>
-/// 282, 240, 209, 194, 193, 197, 196, 198, 168, 199, 171, 194}
-/// </ul>
-/// </ul>
-/// Example of usage for uncompressed interleaved audio:
-/// <ul>
-/// dataBuffer: contains 24000 uncompressed interleaved stereo frames, each containing 2 Float32s =
-/// <ul>
-/// {{L,R},
-/// <li>
-/// {L,R},
-/// <li>
-/// {L,R}, ...}
-/// </ul>
-/// <li>
-/// dataFormatDescription: describes 48kHz Float32 interleaved audio
-/// <li>
-/// numSamples: 24000
-/// <li>
-/// numSampleTimingEntries: 1
-/// <li>
-/// sampleTimingArray: one entry = {
-/// <ul>
-/// {duration = 1/48000, presentationTimeStamp = 0/48000, decodeTimeStamp = invalid }}
-/// </ul>
-/// <li>
-/// numSampleSizeEntries: 1
-/// <li>
-/// sampleSizeArray: {8}
-/// </ul>
-/// Example of usage for uncompressed non-interleaved audio:
-/// <ul>
-/// dataBuffer: contains 24000 uncompressed non-interleaved stereo frames, each containing 2 (non-contiguous) Float32s =
-/// <ul>
-/// {{L,L,L,L,L,...},
-/// <li>
-/// {R,R,R,R,R,...}}
-/// </ul>
-/// <li>
-/// dataFormatDescription: describes 48kHz Float32 non-interleaved audio
-/// <li>
-/// numSamples: 24000
-/// <li>
-/// numSampleTimingEntries: 1
-/// <li>
-/// sampleTimingArray: one entry = {duration = 1/48000, presentationTimeStamp = 0/48000, decodeTimeStamp = invalid }
-/// <li>
-/// numSampleSizeEntries: 0
-/// <li>
-/// sampleSizeArray: NULL (because the samples are not contiguous)
-/// </ul>
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMTime"
-))]
-#[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferCreate(
-    allocator: Option<&CFAllocator>,
-    data_buffer: Option<&CMBlockBuffer>,
-    data_ready: bool,
-    make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
-    make_data_ready_refcon: *mut c_void,
-    format_description: Option<&CMFormatDescription>,
-    num_samples: CMItemCount,
-    num_sample_timing_entries: CMItemCount,
-    sample_timing_array: *const CMSampleTimingInfo,
-    num_sample_size_entries: CMItemCount,
-    sample_size_array: *const usize,
-    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CMSampleBufferCreate(
-            allocator: Option<&CFAllocator>,
-            data_buffer: Option<&CMBlockBuffer>,
-            data_ready: Boolean,
-            make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
-            make_data_ready_refcon: *mut c_void,
-            format_description: Option<&CMFormatDescription>,
-            num_samples: CMItemCount,
-            num_sample_timing_entries: CMItemCount,
-            sample_timing_array: *const CMSampleTimingInfo,
-            num_sample_size_entries: CMItemCount,
-            sample_size_array: *const usize,
-            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-        ) -> OSStatus;
+impl CMSampleBuffer {
+    /// Creates a CMSampleBuffer.
+    ///
+    /// Array parameters (sampleSizeArray, sampleTimingArray) should have only one element if that same
+    /// element applies to all samples. All parameters are copied; on return, the caller can release them,
+    /// free them, reuse them or whatever.  On return, the caller owns the returned CMSampleBuffer, and
+    /// must release it when done with it.
+    ///
+    /// Example of usage for in-display-order video frames:
+    /// <ul>
+    /// dataBuffer: contains 7 Motion JPEG frames
+    /// <li>
+    /// dataFormatDescription: describes Motion JPEG video
+    /// <li>
+    /// numSamples: 7
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {duration = 1001/30000, presentationTimeStamp = 0/30000, decodeTimeStamp = invalid }
+    /// <li>
+    /// numSampleSizeEntries: 7
+    /// <li>
+    /// sampleSizeArray: {105840, 104456, 103464, 116460, 100412, 94808, 120400}
+    /// </ul>
+    /// Example of usage for out-of-display-order video frames:
+    /// <ul>
+    /// dataBuffer: contains 6 H.264 frames in decode order (P2,B0,B1,I5,B3,B4)
+    /// <li>
+    /// dataFormatDescription: describes H.264 video
+    /// <li>
+    /// numSamples: 6
+    /// <li>
+    /// numSampleTimingEntries: 6
+    /// <li>
+    /// sampleTimingArray: 6 entries = {
+    /// <ul>
+    /// {duration = 1001/30000, presentationTimeStamp = 12012/30000, decodeTimeStamp = 10010/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 10010/30000, decodeTimeStamp = 11011/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 11011/30000, decodeTimeStamp = 12012/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 15015/30000, decodeTimeStamp = 13013/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 13013/30000, decodeTimeStamp = 14014/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 14014/30000, decodeTimeStamp = 15015/30000}}
+    /// </ul>
+    /// <li>
+    /// numSampleSizeEntries: 6
+    /// <li>
+    /// sampleSizeArray: {10580, 1234, 1364, 75660, 1012, 988}
+    /// </ul>
+    /// Example of usage for compressed audio:
+    /// <ul>
+    /// dataBuffer: contains 24 compressed AAC packets
+    /// <li>
+    /// dataFormatDescription: describes 44.1kHz AAC audio
+    /// <li>
+    /// numSamples: 24
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {
+    /// <ul>
+    /// {duration = 1024/44100, presentationTimeStamp = 0/44100, decodeTimeStamp = invalid }}
+    /// </ul>
+    /// <li>
+    /// numSampleSizeEntries: 24
+    /// <li>
+    /// sampleSizeArray:
+    /// <ul>
+    /// {191, 183, 208, 213, 202, 206, 209, 206, 204, 192, 202, 277,
+    /// <li>
+    /// 282, 240, 209, 194, 193, 197, 196, 198, 168, 199, 171, 194}
+    /// </ul>
+    /// </ul>
+    /// Example of usage for uncompressed interleaved audio:
+    /// <ul>
+    /// dataBuffer: contains 24000 uncompressed interleaved stereo frames, each containing 2 Float32s =
+    /// <ul>
+    /// {{L,R},
+    /// <li>
+    /// {L,R},
+    /// <li>
+    /// {L,R}, ...}
+    /// </ul>
+    /// <li>
+    /// dataFormatDescription: describes 48kHz Float32 interleaved audio
+    /// <li>
+    /// numSamples: 24000
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {
+    /// <ul>
+    /// {duration = 1/48000, presentationTimeStamp = 0/48000, decodeTimeStamp = invalid }}
+    /// </ul>
+    /// <li>
+    /// numSampleSizeEntries: 1
+    /// <li>
+    /// sampleSizeArray: {8}
+    /// </ul>
+    /// Example of usage for uncompressed non-interleaved audio:
+    /// <ul>
+    /// dataBuffer: contains 24000 uncompressed non-interleaved stereo frames, each containing 2 (non-contiguous) Float32s =
+    /// <ul>
+    /// {{L,L,L,L,L,...},
+    /// <li>
+    /// {R,R,R,R,R,...}}
+    /// </ul>
+    /// <li>
+    /// dataFormatDescription: describes 48kHz Float32 non-interleaved audio
+    /// <li>
+    /// numSamples: 24000
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {duration = 1/48000, presentationTimeStamp = 0/48000, decodeTimeStamp = invalid }
+    /// <li>
+    /// numSampleSizeEntries: 0
+    /// <li>
+    /// sampleSizeArray: NULL (because the samples are not contiguous)
+    /// </ul>
+    #[cfg(all(
+        feature = "CMBase",
+        feature = "CMBlockBuffer",
+        feature = "CMFormatDescription",
+        feature = "CMTime"
+    ))]
+    #[inline]
+    #[doc(alias = "CMSampleBufferCreate")]
+    pub unsafe fn create(
+        allocator: Option<&CFAllocator>,
+        data_buffer: Option<&CMBlockBuffer>,
+        data_ready: bool,
+        make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+        make_data_ready_refcon: *mut c_void,
+        format_description: Option<&CMFormatDescription>,
+        num_samples: CMItemCount,
+        num_sample_timing_entries: CMItemCount,
+        sample_timing_array: *const CMSampleTimingInfo,
+        num_sample_size_entries: CMItemCount,
+        sample_size_array: *const usize,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCreate(
+                allocator: Option<&CFAllocator>,
+                data_buffer: Option<&CMBlockBuffer>,
+                data_ready: Boolean,
+                make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+                make_data_ready_refcon: *mut c_void,
+                format_description: Option<&CMFormatDescription>,
+                num_samples: CMItemCount,
+                num_sample_timing_entries: CMItemCount,
+                sample_timing_array: *const CMSampleTimingInfo,
+                num_sample_size_entries: CMItemCount,
+                sample_size_array: *const usize,
+                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferCreate(
+                allocator,
+                data_buffer,
+                data_ready as _,
+                make_data_ready_callback,
+                make_data_ready_refcon,
+                format_description,
+                num_samples,
+                num_sample_timing_entries,
+                sample_timing_array,
+                num_sample_size_entries,
+                sample_size_array,
+                sample_buffer_out,
+            )
+        }
     }
-    unsafe {
-        CMSampleBufferCreate(
-            allocator,
-            data_buffer,
-            data_ready as _,
-            make_data_ready_callback,
-            make_data_ready_refcon,
-            format_description,
-            num_samples,
-            num_sample_timing_entries,
-            sample_timing_array,
-            num_sample_size_entries,
-            sample_size_array,
-            sample_buffer_out,
-        )
-    }
-}
 
-/// Creates a CMSampleBuffer.
-///
-/// See CMSampleBufferCreate; this variant allows for passing a block to make the data ready.
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescription",
-    feature = "CMTime",
-    feature = "block2"
-))]
-#[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferCreateWithMakeDataReadyHandler(
-    allocator: Option<&CFAllocator>,
-    data_buffer: Option<&CMBlockBuffer>,
-    data_ready: bool,
-    format_description: Option<&CMFormatDescription>,
-    num_samples: CMItemCount,
-    num_sample_timing_entries: CMItemCount,
-    sample_timing_array: *const CMSampleTimingInfo,
-    num_sample_size_entries: CMItemCount,
-    sample_size_array: *const usize,
-    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-    make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CMSampleBufferCreateWithMakeDataReadyHandler(
-            allocator: Option<&CFAllocator>,
-            data_buffer: Option<&CMBlockBuffer>,
-            data_ready: Boolean,
-            format_description: Option<&CMFormatDescription>,
-            num_samples: CMItemCount,
-            num_sample_timing_entries: CMItemCount,
-            sample_timing_array: *const CMSampleTimingInfo,
-            num_sample_size_entries: CMItemCount,
-            sample_size_array: *const usize,
-            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-            make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
-        ) -> OSStatus;
+    /// Creates a CMSampleBuffer.
+    ///
+    /// See CMSampleBufferCreate; this variant allows for passing a block to make the data ready.
+    #[cfg(all(
+        feature = "CMBase",
+        feature = "CMBlockBuffer",
+        feature = "CMFormatDescription",
+        feature = "CMTime",
+        feature = "block2"
+    ))]
+    #[inline]
+    #[doc(alias = "CMSampleBufferCreateWithMakeDataReadyHandler")]
+    pub unsafe fn create_with_make_data_ready_handler(
+        allocator: Option<&CFAllocator>,
+        data_buffer: Option<&CMBlockBuffer>,
+        data_ready: bool,
+        format_description: Option<&CMFormatDescription>,
+        num_samples: CMItemCount,
+        num_sample_timing_entries: CMItemCount,
+        sample_timing_array: *const CMSampleTimingInfo,
+        num_sample_size_entries: CMItemCount,
+        sample_size_array: *const usize,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCreateWithMakeDataReadyHandler(
+                allocator: Option<&CFAllocator>,
+                data_buffer: Option<&CMBlockBuffer>,
+                data_ready: Boolean,
+                format_description: Option<&CMFormatDescription>,
+                num_samples: CMItemCount,
+                num_sample_timing_entries: CMItemCount,
+                sample_timing_array: *const CMSampleTimingInfo,
+                num_sample_size_entries: CMItemCount,
+                sample_size_array: *const usize,
+                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+                make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferCreateWithMakeDataReadyHandler(
+                allocator,
+                data_buffer,
+                data_ready as _,
+                format_description,
+                num_samples,
+                num_sample_timing_entries,
+                sample_timing_array,
+                num_sample_size_entries,
+                sample_size_array,
+                sample_buffer_out,
+                make_data_ready_handler,
+            )
+        }
     }
-    unsafe {
-        CMSampleBufferCreateWithMakeDataReadyHandler(
-            allocator,
-            data_buffer,
-            data_ready as _,
-            format_description,
-            num_samples,
-            num_sample_timing_entries,
-            sample_timing_array,
-            num_sample_size_entries,
-            sample_size_array,
-            sample_buffer_out,
-            make_data_ready_handler,
-        )
-    }
-}
 
-extern "C-unwind" {
     /// Creates a CMSampleBuffer.
     ///
     /// Array parameters (sampleSizeArray, sampleTimingArray) should have only one element if that same
@@ -497,7 +499,9 @@ extern "C-unwind" {
         feature = "CMFormatDescription",
         feature = "CMTime"
     ))]
-    pub fn CMSampleBufferCreateReady(
+    #[inline]
+    #[doc(alias = "CMSampleBufferCreateReady")]
+    pub unsafe fn create_ready(
         allocator: Option<&CFAllocator>,
         data_buffer: Option<&CMBlockBuffer>,
         format_description: Option<&CMFormatDescription>,
@@ -507,7 +511,34 @@ extern "C-unwind" {
         num_sample_size_entries: CMItemCount,
         sample_size_array: *const usize,
         sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCreateReady(
+                allocator: Option<&CFAllocator>,
+                data_buffer: Option<&CMBlockBuffer>,
+                format_description: Option<&CMFormatDescription>,
+                num_samples: CMItemCount,
+                num_sample_timing_entries: CMItemCount,
+                sample_timing_array: *const CMSampleTimingInfo,
+                num_sample_size_entries: CMItemCount,
+                sample_size_array: *const usize,
+                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferCreateReady(
+                allocator,
+                data_buffer,
+                format_description,
+                num_samples,
+                num_sample_timing_entries,
+                sample_timing_array,
+                num_sample_size_entries,
+                sample_size_array,
+                sample_buffer_out,
+            )
+        }
+    }
 }
 
 /// Creates an CMSampleBuffer containing audio given packetDescriptions instead of sizing and timing info
@@ -642,113 +673,115 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// Creates a CMSampleBuffer that contains a CVImageBuffer instead of a CMBlockBuffer.
-///
-/// Unlike a CMBlockBuffer which can reference many samples, a CVImageBuffer is defined to
-/// reference only one sample;  therefore this routine has fewer parameters then
-/// CMSampleBufferCreate.
-///
-/// Sample timing information, which is a vector for CMSampleBufferCreate,
-/// consists of only one value for this routine.
-///
-/// The concept of sample size does not apply to CVImageBuffers.  As such, CMSampleBufferGetSampleSizeArray
-/// will return kCMSampleBufferError_BufferHasNoSampleSizes, and CMSampleBufferGetSampleSize
-/// will return 0.
-///
-/// Because CVImageBuffers hold visual data, the format description provided is a
-/// CMVideoFormatDescription.  The format description must be consistent with the attributes
-/// and formatting information attached to the CVImageBuffer. The width, height, and codecType must
-/// match (for CVPixelBuffers the codec type is given by CVPixelBufferGetPixelFormatType(pixelBuffer);
-/// for other CVImageBuffers, the codecType must be 0). The format description extensions must
-/// match the image buffer attachments for all the keys in the list returned by
-/// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers (if absent in either they
-/// must be absent in both).
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "CMTime",
-    feature = "objc2-core-video"
-))]
-#[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferCreateForImageBuffer(
-    allocator: Option<&CFAllocator>,
-    image_buffer: &CVImageBuffer,
-    data_ready: bool,
-    make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
-    make_data_ready_refcon: *mut c_void,
-    format_description: &CMVideoFormatDescription,
-    sample_timing: NonNull<CMSampleTimingInfo>,
-    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CMSampleBufferCreateForImageBuffer(
-            allocator: Option<&CFAllocator>,
-            image_buffer: &CVImageBuffer,
-            data_ready: Boolean,
-            make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
-            make_data_ready_refcon: *mut c_void,
-            format_description: &CMVideoFormatDescription,
-            sample_timing: NonNull<CMSampleTimingInfo>,
-            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-        ) -> OSStatus;
+impl CMSampleBuffer {
+    /// Creates a CMSampleBuffer that contains a CVImageBuffer instead of a CMBlockBuffer.
+    ///
+    /// Unlike a CMBlockBuffer which can reference many samples, a CVImageBuffer is defined to
+    /// reference only one sample;  therefore this routine has fewer parameters then
+    /// CMSampleBufferCreate.
+    ///
+    /// Sample timing information, which is a vector for CMSampleBufferCreate,
+    /// consists of only one value for this routine.
+    ///
+    /// The concept of sample size does not apply to CVImageBuffers.  As such, CMSampleBufferGetSampleSizeArray
+    /// will return kCMSampleBufferError_BufferHasNoSampleSizes, and CMSampleBufferGetSampleSize
+    /// will return 0.
+    ///
+    /// Because CVImageBuffers hold visual data, the format description provided is a
+    /// CMVideoFormatDescription.  The format description must be consistent with the attributes
+    /// and formatting information attached to the CVImageBuffer. The width, height, and codecType must
+    /// match (for CVPixelBuffers the codec type is given by CVPixelBufferGetPixelFormatType(pixelBuffer);
+    /// for other CVImageBuffers, the codecType must be 0). The format description extensions must
+    /// match the image buffer attachments for all the keys in the list returned by
+    /// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers (if absent in either they
+    /// must be absent in both).
+    #[cfg(all(
+        feature = "CMFormatDescription",
+        feature = "CMTime",
+        feature = "objc2-core-video"
+    ))]
+    #[inline]
+    #[doc(alias = "CMSampleBufferCreateForImageBuffer")]
+    pub unsafe fn create_for_image_buffer(
+        allocator: Option<&CFAllocator>,
+        image_buffer: &CVImageBuffer,
+        data_ready: bool,
+        make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+        make_data_ready_refcon: *mut c_void,
+        format_description: &CMVideoFormatDescription,
+        sample_timing: NonNull<CMSampleTimingInfo>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCreateForImageBuffer(
+                allocator: Option<&CFAllocator>,
+                image_buffer: &CVImageBuffer,
+                data_ready: Boolean,
+                make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+                make_data_ready_refcon: *mut c_void,
+                format_description: &CMVideoFormatDescription,
+                sample_timing: NonNull<CMSampleTimingInfo>,
+                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferCreateForImageBuffer(
+                allocator,
+                image_buffer,
+                data_ready as _,
+                make_data_ready_callback,
+                make_data_ready_refcon,
+                format_description,
+                sample_timing,
+                sample_buffer_out,
+            )
+        }
     }
-    unsafe {
-        CMSampleBufferCreateForImageBuffer(
-            allocator,
-            image_buffer,
-            data_ready as _,
-            make_data_ready_callback,
-            make_data_ready_refcon,
-            format_description,
-            sample_timing,
-            sample_buffer_out,
-        )
-    }
-}
 
-/// Creates a CMSampleBuffer that contains a CVImageBuffer instead of a CMBlockBuffer.
-///
-/// See CMSampleBufferCreateForImageBuffer; this variant allows for passing a block to make the data ready.
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "CMTime",
-    feature = "block2",
-    feature = "objc2-core-video"
-))]
-#[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
-    allocator: Option<&CFAllocator>,
-    image_buffer: &CVImageBuffer,
-    data_ready: bool,
-    format_description: &CMVideoFormatDescription,
-    sample_timing: NonNull<CMSampleTimingInfo>,
-    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-    make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
-            allocator: Option<&CFAllocator>,
-            image_buffer: &CVImageBuffer,
-            data_ready: Boolean,
-            format_description: &CMVideoFormatDescription,
-            sample_timing: NonNull<CMSampleTimingInfo>,
-            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-            make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
-        ) -> OSStatus;
+    /// Creates a CMSampleBuffer that contains a CVImageBuffer instead of a CMBlockBuffer.
+    ///
+    /// See CMSampleBufferCreateForImageBuffer; this variant allows for passing a block to make the data ready.
+    #[cfg(all(
+        feature = "CMFormatDescription",
+        feature = "CMTime",
+        feature = "block2",
+        feature = "objc2-core-video"
+    ))]
+    #[inline]
+    #[doc(alias = "CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler")]
+    pub unsafe fn create_for_image_buffer_with_make_data_ready_handler(
+        allocator: Option<&CFAllocator>,
+        image_buffer: &CVImageBuffer,
+        data_ready: bool,
+        format_description: &CMVideoFormatDescription,
+        sample_timing: NonNull<CMSampleTimingInfo>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
+                allocator: Option<&CFAllocator>,
+                image_buffer: &CVImageBuffer,
+                data_ready: Boolean,
+                format_description: &CMVideoFormatDescription,
+                sample_timing: NonNull<CMSampleTimingInfo>,
+                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+                make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
+                allocator,
+                image_buffer,
+                data_ready as _,
+                format_description,
+                sample_timing,
+                sample_buffer_out,
+                make_data_ready_handler,
+            )
+        }
     }
-    unsafe {
-        CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
-            allocator,
-            image_buffer,
-            data_ready as _,
-            format_description,
-            sample_timing,
-            sample_buffer_out,
-            make_data_ready_handler,
-        )
-    }
-}
 
-extern "C-unwind" {
     /// Creates a CMSampleBuffer that contains a CVImageBuffer instead of a CMBlockBuffer.
     ///
     /// Unlike a CMBlockBuffer which can reference many samples, a CVImageBuffer is defined to
@@ -778,30 +811,58 @@ extern "C-unwind" {
         feature = "CMTime",
         feature = "objc2-core-video"
     ))]
-    pub fn CMSampleBufferCreateReadyWithImageBuffer(
+    #[inline]
+    #[doc(alias = "CMSampleBufferCreateReadyWithImageBuffer")]
+    pub unsafe fn create_ready_with_image_buffer(
         allocator: Option<&CFAllocator>,
         image_buffer: &CVImageBuffer,
         format_description: &CMVideoFormatDescription,
         sample_timing: NonNull<CMSampleTimingInfo>,
         sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCreateReadyWithImageBuffer(
+                allocator: Option<&CFAllocator>,
+                image_buffer: &CVImageBuffer,
+                format_description: &CMVideoFormatDescription,
+                sample_timing: NonNull<CMSampleTimingInfo>,
+                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferCreateReadyWithImageBuffer(
+                allocator,
+                image_buffer,
+                format_description,
+                sample_timing,
+                sample_buffer_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a copy of a CMSampleBuffer.
     ///
     /// The copy is shallow: scalar properties (sizes and timing) are copied directly,
     /// the data buffer and format description are retained, and
     /// the propogatable attachments are retained by the copy's dictionary.
     /// If sbuf's data is not ready, the copy will be set to track its readiness.
-    pub fn CMSampleBufferCreateCopy(
+    #[inline]
+    #[doc(alias = "CMSampleBufferCreateCopy")]
+    pub unsafe fn create_copy(
         allocator: Option<&CFAllocator>,
         sbuf: &CMSampleBuffer,
         sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCreateCopy(
+                allocator: Option<&CFAllocator>,
+                sbuf: &CMSampleBuffer,
+                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe { CMSampleBufferCreateCopy(allocator, sbuf, sample_buffer_out) }
+    }
 
-extern "C-unwind" {
     /// Creates a CMSampleBuffer with new timing information from another sample buffer.
     ///
     /// This emulates CMSampleBufferCreateCopy, but changes the timing.
@@ -811,25 +872,58 @@ extern "C-unwind" {
     /// will not be copied because it is no longer relevant.    On return, the caller owns the returned
     /// CMSampleBuffer, and must release it when done with it.
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
-    pub fn CMSampleBufferCreateCopyWithNewTiming(
+    #[inline]
+    #[doc(alias = "CMSampleBufferCreateCopyWithNewTiming")]
+    pub unsafe fn create_copy_with_new_timing(
         allocator: Option<&CFAllocator>,
         original_s_buf: &CMSampleBuffer,
         num_sample_timing_entries: CMItemCount,
         sample_timing_array: *const CMSampleTimingInfo,
         sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCreateCopyWithNewTiming(
+                allocator: Option<&CFAllocator>,
+                original_s_buf: &CMSampleBuffer,
+                num_sample_timing_entries: CMItemCount,
+                sample_timing_array: *const CMSampleTimingInfo,
+                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferCreateCopyWithNewTiming(
+                allocator,
+                original_s_buf,
+                num_sample_timing_entries,
+                sample_timing_array,
+                sample_buffer_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates a CMSampleBuffer containing a range of samples from an existing CMSampleBuffer.
     ///
     /// Samples containing non-interleaved audio are currently not supported.
-    pub fn CMSampleBufferCopySampleBufferForRange(
+    #[inline]
+    #[doc(alias = "CMSampleBufferCopySampleBufferForRange")]
+    pub unsafe fn copy_sample_buffer_for_range(
         allocator: Option<&CFAllocator>,
         sbuf: &CMSampleBuffer,
         sample_range: CFRange,
         sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCopySampleBufferForRange(
+                allocator: Option<&CFAllocator>,
+                sbuf: &CMSampleBuffer,
+                sample_range: CFRange,
+                sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferCopySampleBufferForRange(allocator, sbuf, sample_range, sample_buffer_out)
+        }
+    }
 }
 
 unsafe impl ConcreteType for CMSampleBuffer {
@@ -848,7 +942,7 @@ unsafe impl ConcreteType for CMSampleBuffer {
     }
 }
 
-extern "C-unwind" {
+impl CMSampleBuffer {
     /// Associates a CMSampleBuffer with its CMBlockBuffer of media data.
     ///
     /// If successful, this operation retains the dataBuffer thereafter, so the caller can release the dataBuffer
@@ -859,64 +953,89 @@ extern "C-unwind" {
     /// information and insert them into queues early, and use this API to attach the CMBlockBuffers later, when the data
     /// becomes ready.
     #[cfg(feature = "CMBlockBuffer")]
-    pub fn CMSampleBufferSetDataBuffer(
-        sbuf: &CMSampleBuffer,
-        data_buffer: &CMBlockBuffer,
-    ) -> OSStatus;
-}
-
-/// Returns a CMSampleBuffer's CMBlockBuffer of media data.
-///
-/// The caller does not own the returned dataBuffer, and must retain it explicitly if the caller needs to maintain a reference to it.
-///
-/// Returns: CMBlockBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CMBlockBuffer, if the
-/// CMSampleBuffer contains a CVImageBuffer, or if there is some other error.
-#[cfg(feature = "CMBlockBuffer")]
-#[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferGetDataBuffer(
-    sbuf: &CMSampleBuffer,
-) -> Option<CFRetained<CMBlockBuffer>> {
-    extern "C-unwind" {
-        fn CMSampleBufferGetDataBuffer(sbuf: &CMSampleBuffer) -> Option<NonNull<CMBlockBuffer>>;
+    #[inline]
+    #[doc(alias = "CMSampleBufferSetDataBuffer")]
+    pub unsafe fn set_data_buffer(self: &CMSampleBuffer, data_buffer: &CMBlockBuffer) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferSetDataBuffer(
+                sbuf: &CMSampleBuffer,
+                data_buffer: &CMBlockBuffer,
+            ) -> OSStatus;
+        }
+        unsafe { CMSampleBufferSetDataBuffer(self, data_buffer) }
     }
-    let ret = unsafe { CMSampleBufferGetDataBuffer(sbuf) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Returns a CMSampleBuffer's CVImageBuffer of media data.
-///
-/// The caller does not own the returned dataBuffer, and must retain it explicitly if the caller needs to maintain a reference to it.
-///
-/// Returns: CVImageBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CVImageBuffer, if the
-/// CMSampleBuffer contains a CMBlockBuffer, or if there is some other error.
-#[cfg(feature = "objc2-core-video")]
-#[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferGetImageBuffer(
-    sbuf: &CMSampleBuffer,
-) -> Option<CFRetained<CVImageBuffer>> {
-    extern "C-unwind" {
-        fn CMSampleBufferGetImageBuffer(sbuf: &CMSampleBuffer) -> Option<NonNull<CVImageBuffer>>;
+    /// Returns a CMSampleBuffer's CMBlockBuffer of media data.
+    ///
+    /// The caller does not own the returned dataBuffer, and must retain it explicitly if the caller needs to maintain a reference to it.
+    ///
+    /// Returns: CMBlockBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CMBlockBuffer, if the
+    /// CMSampleBuffer contains a CVImageBuffer, or if there is some other error.
+    #[cfg(feature = "CMBlockBuffer")]
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetDataBuffer")]
+    pub unsafe fn data_buffer(self: &CMSampleBuffer) -> Option<CFRetained<CMBlockBuffer>> {
+        extern "C-unwind" {
+            fn CMSampleBufferGetDataBuffer(sbuf: &CMSampleBuffer)
+                -> Option<NonNull<CMBlockBuffer>>;
+        }
+        let ret = unsafe { CMSampleBufferGetDataBuffer(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { CMSampleBufferGetImageBuffer(sbuf) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
+    /// Returns a CMSampleBuffer's CVImageBuffer of media data.
+    ///
+    /// The caller does not own the returned dataBuffer, and must retain it explicitly if the caller needs to maintain a reference to it.
+    ///
+    /// Returns: CVImageBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CVImageBuffer, if the
+    /// CMSampleBuffer contains a CMBlockBuffer, or if there is some other error.
+    #[cfg(feature = "objc2-core-video")]
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetImageBuffer")]
+    pub unsafe fn image_buffer(self: &CMSampleBuffer) -> Option<CFRetained<CVImageBuffer>> {
+        extern "C-unwind" {
+            fn CMSampleBufferGetImageBuffer(
+                sbuf: &CMSampleBuffer,
+            ) -> Option<NonNull<CVImageBuffer>>;
+        }
+        let ret = unsafe { CMSampleBufferGetImageBuffer(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
     /// Creates a CMBlockBuffer containing a copy of the data from the AudioBufferList,
     /// and sets that as the CMSampleBuffer's data buffer. The resulting buffer(s) in the
     /// sample buffer will be 16-byte-aligned if
     /// kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment is passed in.
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CMSampleBufferSetDataBufferFromAudioBufferList(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferSetDataBufferFromAudioBufferList")]
+    pub unsafe fn set_data_buffer_from_audio_buffer_list(
+        self: &CMSampleBuffer,
         block_buffer_structure_allocator: Option<&CFAllocator>,
         block_buffer_block_allocator: Option<&CFAllocator>,
         flags: u32,
         buffer_list: NonNull<AudioBufferList>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferSetDataBufferFromAudioBufferList(
+                sbuf: &CMSampleBuffer,
+                block_buffer_structure_allocator: Option<&CFAllocator>,
+                block_buffer_block_allocator: Option<&CFAllocator>,
+                flags: u32,
+                buffer_list: NonNull<AudioBufferList>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferSetDataBufferFromAudioBufferList(
+                self,
+                block_buffer_structure_allocator,
+                block_buffer_block_allocator,
+                flags,
+                buffer_list,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates an AudioBufferList containing the data from the CMSampleBuffer,
     /// and a CMBlockBuffer which references (and manages the lifetime of) the
     /// data in that AudioBufferList.  The data may or may not be copied,
@@ -925,8 +1044,10 @@ extern "C-unwind" {
     /// The buffers in the AudioBufferList will be 16-byte-aligned if
     /// kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment is passed in.
     #[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-audio-types"))]
-    pub fn CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer")]
+    pub unsafe fn audio_buffer_list_with_retained_block_buffer(
+        self: &CMSampleBuffer,
         buffer_list_size_needed_out: *mut usize,
         buffer_list_out: *mut AudioBufferList,
         buffer_list_size: usize,
@@ -934,10 +1055,33 @@ extern "C-unwind" {
         block_buffer_block_allocator: Option<&CFAllocator>,
         flags: u32,
         block_buffer_out: *mut *mut CMBlockBuffer,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
+                sbuf: &CMSampleBuffer,
+                buffer_list_size_needed_out: *mut usize,
+                buffer_list_out: *mut AudioBufferList,
+                buffer_list_size: usize,
+                block_buffer_structure_allocator: Option<&CFAllocator>,
+                block_buffer_block_allocator: Option<&CFAllocator>,
+                flags: u32,
+                block_buffer_out: *mut *mut CMBlockBuffer,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
+                self,
+                buffer_list_size_needed_out,
+                buffer_list_out,
+                buffer_list_size,
+                block_buffer_structure_allocator,
+                block_buffer_block_allocator,
+                flags,
+                block_buffer_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Creates an array of AudioStreamPacketDescriptions for the
     /// variable bytes per packet or variable frames per packet
     /// audio data in the provided CMSampleBuffer.  Constant bitrate,
@@ -946,15 +1090,32 @@ extern "C-unwind" {
     /// sample buffers, and will return kCMSampleBufferError_InvalidMediaTypeForOperation
     /// if called with a non-audio sample buffer.
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CMSampleBufferGetAudioStreamPacketDescriptions(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetAudioStreamPacketDescriptions")]
+    pub unsafe fn audio_stream_packet_descriptions(
+        self: &CMSampleBuffer,
         packet_descriptions_size: usize,
         packet_descriptions_out: *mut AudioStreamPacketDescription,
         packet_descriptions_size_needed_out: *mut usize,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferGetAudioStreamPacketDescriptions(
+                sbuf: &CMSampleBuffer,
+                packet_descriptions_size: usize,
+                packet_descriptions_out: *mut AudioStreamPacketDescription,
+                packet_descriptions_size_needed_out: *mut usize,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferGetAudioStreamPacketDescriptions(
+                self,
+                packet_descriptions_size,
+                packet_descriptions_out,
+                packet_descriptions_size_needed_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Returns a pointer to (and size of) a constant array of
     /// AudioStreamPacketDescriptions for the variable bytes per
     /// packet or variable frames per packet audio data in the
@@ -966,14 +1127,29 @@ extern "C-unwind" {
     /// kCMSampleBufferError_InvalidMediaTypeForOperation if called
     /// with a non-audio sample buffer.
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CMSampleBufferGetAudioStreamPacketDescriptionsPtr(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetAudioStreamPacketDescriptionsPtr")]
+    pub unsafe fn audio_stream_packet_descriptions_ptr(
+        self: &CMSampleBuffer,
         packet_descriptions_pointer_out: *mut *const AudioStreamPacketDescription,
         packet_descriptions_size_out: *mut usize,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferGetAudioStreamPacketDescriptionsPtr(
+                sbuf: &CMSampleBuffer,
+                packet_descriptions_pointer_out: *mut *const AudioStreamPacketDescription,
+                packet_descriptions_size_out: *mut usize,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferGetAudioStreamPacketDescriptionsPtr(
+                self,
+                packet_descriptions_pointer_out,
+                packet_descriptions_size_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Copies PCM audio data from the given CMSampleBuffer into
     /// a pre-populated AudioBufferList. The AudioBufferList must
     /// contain the same number of channels and its data buffers
@@ -984,56 +1160,84 @@ extern "C-unwind" {
     /// error if the CMSampleBuffer does not contain PCM audio data
     /// or if its dataBuffer is not ready.
     #[cfg(feature = "objc2-core-audio-types")]
-    pub fn CMSampleBufferCopyPCMDataIntoAudioBufferList(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferCopyPCMDataIntoAudioBufferList")]
+    pub unsafe fn copy_pcm_data_into_audio_buffer_list(
+        self: &CMSampleBuffer,
         frame_offset: i32,
         num_frames: i32,
         buffer_list: NonNull<AudioBufferList>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCopyPCMDataIntoAudioBufferList(
+                sbuf: &CMSampleBuffer,
+                frame_offset: i32,
+                num_frames: i32,
+                buffer_list: NonNull<AudioBufferList>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferCopyPCMDataIntoAudioBufferList(
+                self,
+                frame_offset,
+                num_frames,
+                buffer_list,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Marks a CMSampleBuffer's data as "ready".
     ///
     /// There is no way to undo this operation.  The only way to get an "unready"
     /// CMSampleBuffer is to call CMSampleBufferCreate with the dataReady parameter
     /// set to false. Example of usage: in a read completion routine.
-    pub fn CMSampleBufferSetDataReady(sbuf: &CMSampleBuffer) -> OSStatus;
-}
-
-/// Returns whether or not a CMSampleBuffer's data is ready.
-///
-/// Returns: Whether or not the CMSampleBuffer's data is ready.  True is returned for special marker buffers, even
-/// though they have no data. False is returned if there is an error.
-#[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferDataIsReady(sbuf: &CMSampleBuffer) -> bool {
-    extern "C-unwind" {
-        fn CMSampleBufferDataIsReady(sbuf: &CMSampleBuffer) -> Boolean;
+    #[inline]
+    #[doc(alias = "CMSampleBufferSetDataReady")]
+    pub unsafe fn set_data_ready(self: &CMSampleBuffer) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferSetDataReady(sbuf: &CMSampleBuffer) -> OSStatus;
+        }
+        unsafe { CMSampleBufferSetDataReady(self) }
     }
-    let ret = unsafe { CMSampleBufferDataIsReady(sbuf) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Returns whether or not a CMSampleBuffer's data is ready.
+    ///
+    /// Returns: Whether or not the CMSampleBuffer's data is ready.  True is returned for special marker buffers, even
+    /// though they have no data. False is returned if there is an error.
+    #[inline]
+    #[doc(alias = "CMSampleBufferDataIsReady")]
+    pub unsafe fn data_is_ready(self: &CMSampleBuffer) -> bool {
+        extern "C-unwind" {
+            fn CMSampleBufferDataIsReady(sbuf: &CMSampleBuffer) -> Boolean;
+        }
+        let ret = unsafe { CMSampleBufferDataIsReady(self) };
+        ret != 0
+    }
+
     /// Marks a CMSampleBuffer's data as "failed", to indicate that the data will not become ready.
-    pub fn CMSampleBufferSetDataFailed(sbuf: &CMSampleBuffer, status: OSStatus) -> OSStatus;
-}
-
-/// Returns whether or not a CMSampleBuffer's data loading request has failed.
-#[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferHasDataFailed(
-    sbuf: &CMSampleBuffer,
-    status_out: *mut OSStatus,
-) -> bool {
-    extern "C-unwind" {
-        fn CMSampleBufferHasDataFailed(sbuf: &CMSampleBuffer, status_out: *mut OSStatus)
-            -> Boolean;
+    #[inline]
+    #[doc(alias = "CMSampleBufferSetDataFailed")]
+    pub unsafe fn set_data_failed(self: &CMSampleBuffer, status: OSStatus) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferSetDataFailed(sbuf: &CMSampleBuffer, status: OSStatus) -> OSStatus;
+        }
+        unsafe { CMSampleBufferSetDataFailed(self, status) }
     }
-    let ret = unsafe { CMSampleBufferHasDataFailed(sbuf, status_out) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Returns whether or not a CMSampleBuffer's data loading request has failed.
+    #[inline]
+    #[doc(alias = "CMSampleBufferHasDataFailed")]
+    pub unsafe fn has_data_failed(self: &CMSampleBuffer, status_out: *mut OSStatus) -> bool {
+        extern "C-unwind" {
+            fn CMSampleBufferHasDataFailed(
+                sbuf: &CMSampleBuffer,
+                status_out: *mut OSStatus,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CMSampleBufferHasDataFailed(self, status_out) };
+        ret != 0
+    }
+
     /// Makes a CMSampleBuffer's data ready, by calling the client's CMSampleBufferMakeDataReadyCallback.
     ///
     /// The CMSampleBufferMakeDataReadyCallback is passed in by the client during creation. It must return
@@ -1043,10 +1247,15 @@ extern "C-unwind" {
     /// ready, and there is no CMSampleBufferMakeDataReadyCallback to call, kCMSampleBufferError_BufferNotReady
     /// will be returned. Similarly, if the CMSampleBuffer is not ready, and the CMSampleBufferMakeDataReadyCallback
     /// fails and returns an error, kCMSampleBufferError_BufferNotReady will be returned.
-    pub fn CMSampleBufferMakeDataReady(sbuf: &CMSampleBuffer) -> OSStatus;
-}
+    #[inline]
+    #[doc(alias = "CMSampleBufferMakeDataReady")]
+    pub unsafe fn new_data_ready(self: &CMSampleBuffer) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferMakeDataReady(sbuf: &CMSampleBuffer) -> OSStatus;
+        }
+        unsafe { CMSampleBufferMakeDataReady(self) }
+    }
 
-extern "C-unwind" {
     /// Associates a CMSampleBuffer's data readiness with another CMSampleBuffer's data readiness.
     ///
     /// After calling this API, if CMSampleBufferDataIsReady(sbuf) is called, it will return sbufToTrack's data
@@ -1054,19 +1263,34 @@ extern "C-unwind" {
     /// Example of use: This allows bursting a multi-sample CMSampleBuffer into single-sample CMSampleBuffers
     /// before the data is ready. The single-sample CMSampleBuffers will all track the multi-sample
     /// CMSampleBuffer's data readiness.
-    pub fn CMSampleBufferTrackDataReadiness(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferTrackDataReadiness")]
+    pub unsafe fn track_data_readiness(
+        self: &CMSampleBuffer,
         sample_buffer_to_track: &CMSampleBuffer,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferTrackDataReadiness(
+                sbuf: &CMSampleBuffer,
+                sample_buffer_to_track: &CMSampleBuffer,
+            ) -> OSStatus;
+        }
+        unsafe { CMSampleBufferTrackDataReadiness(self, sample_buffer_to_track) }
+    }
 
-extern "C-unwind" {
     /// Makes the sample buffer invalid, calling any installed invalidation callback.
     ///
     /// An invalid sample buffer cannot be used -- all accessors will return kCMSampleBufferError_Invalidated.
     /// It is not a good idea to do this to a sample buffer that another module may be accessing concurrently.
     /// Example of use: the invalidation callback could cancel pending I/O.
-    pub fn CMSampleBufferInvalidate(sbuf: &CMSampleBuffer) -> OSStatus;
+    #[inline]
+    #[doc(alias = "CMSampleBufferInvalidate")]
+    pub unsafe fn invalidate(self: &CMSampleBuffer) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferInvalidate(sbuf: &CMSampleBuffer) -> OSStatus;
+        }
+        unsafe { CMSampleBufferInvalidate(self) }
+    }
 }
 
 /// Client callback called by CMSampleBufferInvalidate.
@@ -1075,16 +1299,29 @@ extern "C-unwind" {
 pub type CMSampleBufferInvalidateCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<CMSampleBuffer>, u64)>;
 
-extern "C-unwind" {
+impl CMSampleBuffer {
     /// Sets the sample buffer's invalidation callback, which is called during CMSampleBufferInvalidate.
     ///
     /// A sample buffer can only have one invalidation callback.
     /// The invalidation callback is NOT called during ordinary sample buffer finalization.
-    pub fn CMSampleBufferSetInvalidateCallback(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferSetInvalidateCallback")]
+    pub unsafe fn set_invalidate_callback(
+        self: &CMSampleBuffer,
         invalidate_callback: CMSampleBufferInvalidateCallback,
         invalidate_ref_con: u64,
-    ) -> OSStatus;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferSetInvalidateCallback(
+                sbuf: &CMSampleBuffer,
+                invalidate_callback: CMSampleBufferInvalidateCallback,
+                invalidate_ref_con: u64,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferSetInvalidateCallback(self, invalidate_callback, invalidate_ref_con)
+        }
+    }
 }
 
 /// Client callback called by CMSampleBufferInvalidate.
@@ -1093,29 +1330,40 @@ extern "C-unwind" {
 #[cfg(feature = "block2")]
 pub type CMSampleBufferInvalidateHandler = *mut block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>)>;
 
-extern "C-unwind" {
+impl CMSampleBuffer {
     /// Sets the sample buffer's invalidation handler block, which is called during CMSampleBufferInvalidate.
     ///
     /// A sample buffer can only have one invalidation callback.
     /// The invalidation callback is NOT called during ordinary sample buffer finalization.
     #[cfg(feature = "block2")]
-    pub fn CMSampleBufferSetInvalidateHandler(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferSetInvalidateHandler")]
+    pub unsafe fn set_invalidate_handler(
+        self: &CMSampleBuffer,
         invalidate_handler: CMSampleBufferInvalidateHandler,
-    ) -> OSStatus;
-}
-
-/// Queries whether a sample buffer is still valid.
-///
-/// Returns false if sbuf is NULL or CMSampleBufferInvalidate(sbuf) was called, true otherwise.
-/// Does not perform any kind of exhaustive validation of the sample buffer.
-#[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferIsValid(sbuf: &CMSampleBuffer) -> bool {
-    extern "C-unwind" {
-        fn CMSampleBufferIsValid(sbuf: &CMSampleBuffer) -> Boolean;
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferSetInvalidateHandler(
+                sbuf: &CMSampleBuffer,
+                invalidate_handler: CMSampleBufferInvalidateHandler,
+            ) -> OSStatus;
+        }
+        unsafe { CMSampleBufferSetInvalidateHandler(self, invalidate_handler) }
     }
-    let ret = unsafe { CMSampleBufferIsValid(sbuf) };
-    ret != 0
+
+    /// Queries whether a sample buffer is still valid.
+    ///
+    /// Returns false if sbuf is NULL or CMSampleBufferInvalidate(sbuf) was called, true otherwise.
+    /// Does not perform any kind of exhaustive validation of the sample buffer.
+    #[inline]
+    #[doc(alias = "CMSampleBufferIsValid")]
+    pub unsafe fn is_valid(self: &CMSampleBuffer) -> bool {
+        extern "C-unwind" {
+            fn CMSampleBufferIsValid(sbuf: &CMSampleBuffer) -> Boolean;
+        }
+        let ret = unsafe { CMSampleBufferIsValid(self) };
+        ret != 0
+    }
 }
 
 extern "C" {
@@ -1201,15 +1449,20 @@ extern "C" {
     pub static kCMSampleBufferConsumerNotification_BufferConsumed: &'static CFString;
 }
 
-extern "C-unwind" {
+impl CMSampleBuffer {
     /// Returns the number of media samples in a CMSampleBuffer.
     ///
     /// Returns: The number of media samples in the CMSampleBuffer. 0 is returned if there is an error.
     #[cfg(feature = "CMBase")]
-    pub fn CMSampleBufferGetNumSamples(sbuf: &CMSampleBuffer) -> CMItemCount;
-}
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetNumSamples")]
+    pub unsafe fn num_samples(self: &CMSampleBuffer) -> CMItemCount {
+        extern "C-unwind" {
+            fn CMSampleBufferGetNumSamples(sbuf: &CMSampleBuffer) -> CMItemCount;
+        }
+        unsafe { CMSampleBufferGetNumSamples(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the total duration of a CMSampleBuffer.
     ///
     /// If the buffer contains out-of-presentation-order samples, any gaps in the presentation timeline are not represented in the returned duration.
@@ -1217,10 +1470,15 @@ extern "C-unwind" {
     ///
     /// Returns: The duration of the CMSampleBuffer. kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetDuration(sbuf: &CMSampleBuffer) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetDuration")]
+    pub unsafe fn duration(self: &CMSampleBuffer) -> CMTime {
+        extern "C-unwind" {
+            fn CMSampleBufferGetDuration(sbuf: &CMSampleBuffer) -> CMTime;
+        }
+        unsafe { CMSampleBufferGetDuration(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the numerically earliest presentation timestamp of all the samples in a CMSampleBuffer.
     ///
     /// For in-presentation-order samples, this is the presentation timestamp of the first sample.
@@ -1229,10 +1487,15 @@ extern "C-unwind" {
     ///
     /// Returns: Numerically earliest sample presentation timestamp in the CMSampleBuffer.  kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetPresentationTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetPresentationTimeStamp")]
+    pub unsafe fn presentation_time_stamp(self: &CMSampleBuffer) -> CMTime {
+        extern "C-unwind" {
+            fn CMSampleBufferGetPresentationTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
+        }
+        unsafe { CMSampleBufferGetPresentationTimeStamp(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the numerically earliest decode timestamp of all the samples in a CMSampleBuffer.
     ///
     /// The returned decode timestamp is always the decode timestamp of the first sample in the buffer,
@@ -1240,10 +1503,15 @@ extern "C-unwind" {
     ///
     /// Returns: Numerically earliest sample decode timestamp in the CMSampleBuffer.  kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetDecodeTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetDecodeTimeStamp")]
+    pub unsafe fn decode_time_stamp(self: &CMSampleBuffer) -> CMTime {
+        extern "C-unwind" {
+            fn CMSampleBufferGetDecodeTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
+        }
+        unsafe { CMSampleBufferGetDecodeTimeStamp(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the output duration of a CMSampleBuffer.
     ///
     /// The OutputDuration is the duration minus any trimmed duration, all divided by the SpeedMultiplier:
@@ -1251,10 +1519,15 @@ extern "C-unwind" {
     ///
     /// Returns: The output duration of the CMSampleBuffer. kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetOutputDuration(sbuf: &CMSampleBuffer) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetOutputDuration")]
+    pub unsafe fn output_duration(self: &CMSampleBuffer) -> CMTime {
+        extern "C-unwind" {
+            fn CMSampleBufferGetOutputDuration(sbuf: &CMSampleBuffer) -> CMTime;
+        }
+        unsafe { CMSampleBufferGetOutputDuration(self) }
+    }
 
-extern "C-unwind" {
     /// Returns the output presentation timestamp of the CMSampleBuffer.
     ///
     /// The output presentation timestamp is the time at which the decoded, trimmed, stretched
@@ -1273,10 +1546,15 @@ extern "C-unwind" {
     ///
     /// Returns: kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetOutputPresentationTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetOutputPresentationTimeStamp")]
+    pub unsafe fn output_presentation_time_stamp(self: &CMSampleBuffer) -> CMTime {
+        extern "C-unwind" {
+            fn CMSampleBufferGetOutputPresentationTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
+        }
+        unsafe { CMSampleBufferGetOutputPresentationTimeStamp(self) }
+    }
 
-extern "C-unwind" {
     /// Sets an output presentation timestamp to be used in place of a calculated value.
     ///
     /// The output presentation timestamp is the time at which the decoded, trimmed, stretched
@@ -1289,13 +1567,23 @@ extern "C-unwind" {
     /// For general reversed playback:
     /// ((PresentationTimeStamp + Duration - TrimDurationAtEnd - EditStartMediaTime) / EditSpeedMultiplier) + EditStartTrackTime.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferSetOutputPresentationTimeStamp(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferSetOutputPresentationTimeStamp")]
+    pub unsafe fn set_output_presentation_time_stamp(
+        self: &CMSampleBuffer,
         output_presentation_time_stamp: CMTime,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferSetOutputPresentationTimeStamp(
+                sbuf: &CMSampleBuffer,
+                output_presentation_time_stamp: CMTime,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferSetOutputPresentationTimeStamp(self, output_presentation_time_stamp)
+        }
+    }
 
-extern "C-unwind" {
     /// Returns the output decode timestamp of the CMSampleBuffer.
     ///
     /// For consistency with CMSampleBufferGetOutputPresentationTimeStamp, this is calculated as:
@@ -1303,10 +1591,15 @@ extern "C-unwind" {
     ///
     /// Returns: CMInvalidTime is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetOutputDecodeTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetOutputDecodeTimeStamp")]
+    pub unsafe fn output_decode_time_stamp(self: &CMSampleBuffer) -> CMTime {
+        extern "C-unwind" {
+            fn CMSampleBufferGetOutputDecodeTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
+        }
+        unsafe { CMSampleBufferGetOutputDecodeTimeStamp(self) }
+    }
 
-extern "C-unwind" {
     /// Returns an array of CMSampleTimingInfo structs, one for each sample in a CMSampleBuffer.
     ///
     /// If only one CMSampleTimingInfo struct is returned, it applies to all samples in the buffer.
@@ -1323,15 +1616,32 @@ extern "C-unwind" {
     /// If there is no timingInfo in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleTimingInfo will be returned, and
     /// timingArrayEntriesNeededOut will be set to 0.
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
-    pub fn CMSampleBufferGetSampleTimingInfoArray(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetSampleTimingInfoArray")]
+    pub unsafe fn sample_timing_info_array(
+        self: &CMSampleBuffer,
         num_sample_timing_entries: CMItemCount,
         timing_array_out: *mut CMSampleTimingInfo,
         timing_array_entries_needed_out: *mut CMItemCount,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferGetSampleTimingInfoArray(
+                sbuf: &CMSampleBuffer,
+                num_sample_timing_entries: CMItemCount,
+                timing_array_out: *mut CMSampleTimingInfo,
+                timing_array_entries_needed_out: *mut CMItemCount,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferGetSampleTimingInfoArray(
+                self,
+                num_sample_timing_entries,
+                timing_array_out,
+                timing_array_entries_needed_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Returns an array of output CMSampleTimingInfo structs, one for each sample in a CMSampleBuffer.
     ///
     /// If only one CMSampleTimingInfo struct is returned, it applies to all samples in the buffer.
@@ -1348,15 +1658,32 @@ extern "C-unwind" {
     /// If there is no timingInfo in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleTimingInfo will be returned,
     /// and *timingArrayEntriesNeededOut will be set to 0.
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
-    pub fn CMSampleBufferGetOutputSampleTimingInfoArray(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetOutputSampleTimingInfoArray")]
+    pub unsafe fn output_sample_timing_info_array(
+        self: &CMSampleBuffer,
         timing_array_entries: CMItemCount,
         timing_array_out: *mut CMSampleTimingInfo,
         timing_array_entries_needed_out: *mut CMItemCount,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferGetOutputSampleTimingInfoArray(
+                sbuf: &CMSampleBuffer,
+                timing_array_entries: CMItemCount,
+                timing_array_out: *mut CMSampleTimingInfo,
+                timing_array_entries_needed_out: *mut CMItemCount,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferGetOutputSampleTimingInfoArray(
+                self,
+                timing_array_entries,
+                timing_array_out,
+                timing_array_entries_needed_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Returns a CMSampleTimingInfo struct describing a specified sample in a CMSampleBuffer.
     ///
     /// A sample-specific CMSampleTimingInfo struct will be returned (ie. with a sample-specific
@@ -1366,14 +1693,23 @@ extern "C-unwind" {
     /// kCMSampleBufferError_SampleIndexOutOfRange will be returned.  If there is no timingInfo
     /// in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleTimingInfo will be returned.
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
-    pub fn CMSampleBufferGetSampleTimingInfo(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetSampleTimingInfo")]
+    pub unsafe fn sample_timing_info(
+        self: &CMSampleBuffer,
         sample_index: CMItemIndex,
         timing_info_out: NonNull<CMSampleTimingInfo>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferGetSampleTimingInfo(
+                sbuf: &CMSampleBuffer,
+                sample_index: CMItemIndex,
+                timing_info_out: NonNull<CMSampleTimingInfo>,
+            ) -> OSStatus;
+        }
+        unsafe { CMSampleBufferGetSampleTimingInfo(self, sample_index, timing_info_out) }
+    }
 
-extern "C-unwind" {
     /// Returns an array of sample sizes, one for each sample in a CMSampleBuffer.
     ///
     /// If only one size entry is returned, all samples in the buffer are of this size.
@@ -1393,15 +1729,32 @@ extern "C-unwind" {
     /// the channel values for a single sample are scattered through the buffer), or if
     /// this CMSampleBuffer contains a CVImageBuffer.
     #[cfg(feature = "CMBase")]
-    pub fn CMSampleBufferGetSampleSizeArray(
-        sbuf: &CMSampleBuffer,
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetSampleSizeArray")]
+    pub unsafe fn sample_size_array(
+        self: &CMSampleBuffer,
         size_array_entries: CMItemCount,
         size_array_out: *mut usize,
         size_array_entries_needed_out: *mut CMItemCount,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferGetSampleSizeArray(
+                sbuf: &CMSampleBuffer,
+                size_array_entries: CMItemCount,
+                size_array_out: *mut usize,
+                size_array_entries_needed_out: *mut CMItemCount,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMSampleBufferGetSampleSizeArray(
+                self,
+                size_array_entries,
+                size_array_out,
+                size_array_entries_needed_out,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Returns the size in bytes of a specified sample in a CMSampleBuffer.
     ///
     /// Returns: Size in bytes of the specified sample in the CMSampleBuffer.
@@ -1412,62 +1765,80 @@ extern "C-unwind" {
     /// the channel values for a single sample are scattered through the buffer),
     /// or if this CMSampleBuffer contains a CVImageBuffer.
     #[cfg(feature = "CMBase")]
-    pub fn CMSampleBufferGetSampleSize(sbuf: &CMSampleBuffer, sample_index: CMItemIndex) -> usize;
-}
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetSampleSize")]
+    pub unsafe fn sample_size(self: &CMSampleBuffer, sample_index: CMItemIndex) -> usize {
+        extern "C-unwind" {
+            fn CMSampleBufferGetSampleSize(
+                sbuf: &CMSampleBuffer,
+                sample_index: CMItemIndex,
+            ) -> usize;
+        }
+        unsafe { CMSampleBufferGetSampleSize(self, sample_index) }
+    }
 
-extern "C-unwind" {
     /// Returns the total size in bytes of sample data in a CMSampleBuffer.
     ///
     /// Returns: Total size in bytes of sample data in the CMSampleBuffer.
     /// If there are no sample sizes in this CMSampleBuffer, a size of 0 will be returned.
-    pub fn CMSampleBufferGetTotalSampleSize(sbuf: &CMSampleBuffer) -> usize;
-}
-
-/// Returns the format description of the samples in a CMSampleBuffer.
-///
-/// On return, the caller does not own the returned formatDesc, and must retain it explicitly if the caller needs to maintain a reference to it.
-///
-/// Returns: The format description of the samples in the CMSampleBuffer.  NULL is returned if there is an error.
-#[cfg(feature = "CMFormatDescription")]
-#[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferGetFormatDescription(
-    sbuf: &CMSampleBuffer,
-) -> Option<CFRetained<CMFormatDescription>> {
-    extern "C-unwind" {
-        fn CMSampleBufferGetFormatDescription(
-            sbuf: &CMSampleBuffer,
-        ) -> Option<NonNull<CMFormatDescription>>;
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetTotalSampleSize")]
+    pub unsafe fn total_sample_size(self: &CMSampleBuffer) -> usize {
+        extern "C-unwind" {
+            fn CMSampleBufferGetTotalSampleSize(sbuf: &CMSampleBuffer) -> usize;
+        }
+        unsafe { CMSampleBufferGetTotalSampleSize(self) }
     }
-    let ret = unsafe { CMSampleBufferGetFormatDescription(sbuf) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Returns a reference to a CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary
-/// per sample in the CMSampleBuffer).
-///
-/// Attachments can then be added/removed directly by the caller, using CF APIs. On return, the caller does not
-/// own the returned array of attachments dictionaries, and must retain it if the caller needs to maintain a
-/// reference to it. If there are no sample attachments yet, and createIfNecessary is true, a new CFArray containing N empty
-/// CFMutableDictionaries is returned (where N is the number of samples in the CMSampleBuffer), so that
-/// attachments can be added directly by the caller. If there are no sample attachments yet, and createIfNecessary is
-/// false, NULL is returned.  Once the CFArray has been created, subsequent calls will return it, even if there are still
-/// no sample attachments in the array.
-///
-/// Returns: A reference to the CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary per sample
-/// in the CMSampleBuffer). NULL is returned if there is an error.
-#[inline]
-pub unsafe extern "C-unwind" fn CMSampleBufferGetSampleAttachmentsArray(
-    sbuf: &CMSampleBuffer,
-    create_if_necessary: bool,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CMSampleBufferGetSampleAttachmentsArray(
-            sbuf: &CMSampleBuffer,
-            create_if_necessary: Boolean,
-        ) -> Option<NonNull<CFArray>>;
+    /// Returns the format description of the samples in a CMSampleBuffer.
+    ///
+    /// On return, the caller does not own the returned formatDesc, and must retain it explicitly if the caller needs to maintain a reference to it.
+    ///
+    /// Returns: The format description of the samples in the CMSampleBuffer.  NULL is returned if there is an error.
+    #[cfg(feature = "CMFormatDescription")]
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetFormatDescription")]
+    pub unsafe fn format_description(
+        self: &CMSampleBuffer,
+    ) -> Option<CFRetained<CMFormatDescription>> {
+        extern "C-unwind" {
+            fn CMSampleBufferGetFormatDescription(
+                sbuf: &CMSampleBuffer,
+            ) -> Option<NonNull<CMFormatDescription>>;
+        }
+        let ret = unsafe { CMSampleBufferGetFormatDescription(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { CMSampleBufferGetSampleAttachmentsArray(sbuf, create_if_necessary as _) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+
+    /// Returns a reference to a CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary
+    /// per sample in the CMSampleBuffer).
+    ///
+    /// Attachments can then be added/removed directly by the caller, using CF APIs. On return, the caller does not
+    /// own the returned array of attachments dictionaries, and must retain it if the caller needs to maintain a
+    /// reference to it. If there are no sample attachments yet, and createIfNecessary is true, a new CFArray containing N empty
+    /// CFMutableDictionaries is returned (where N is the number of samples in the CMSampleBuffer), so that
+    /// attachments can be added directly by the caller. If there are no sample attachments yet, and createIfNecessary is
+    /// false, NULL is returned.  Once the CFArray has been created, subsequent calls will return it, even if there are still
+    /// no sample attachments in the array.
+    ///
+    /// Returns: A reference to the CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary per sample
+    /// in the CMSampleBuffer). NULL is returned if there is an error.
+    #[inline]
+    #[doc(alias = "CMSampleBufferGetSampleAttachmentsArray")]
+    pub unsafe fn sample_attachments_array(
+        self: &CMSampleBuffer,
+        create_if_necessary: bool,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CMSampleBufferGetSampleAttachmentsArray(
+                sbuf: &CMSampleBuffer,
+                create_if_necessary: Boolean,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret =
+            unsafe { CMSampleBufferGetSampleAttachmentsArray(self, create_if_necessary as _) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
 }
 
 extern "C" {
@@ -1920,7 +2291,7 @@ extern "C" {
     pub static kCMSampleAttachmentKey_PostDecodeProcessingMetadata: &'static CFString;
 }
 
-extern "C-unwind" {
+impl CMSampleBuffer {
     /// Calls a function for every individual sample in a sample buffer.
     ///
     /// Temporary sample buffers will be created for individual samples,
@@ -1932,6 +2303,635 @@ extern "C-unwind" {
     /// This will happen, for example, if the samples in the buffer are non-contiguous (eg. non-interleaved audio, where
     /// the channel values for a single sample are scattered through the buffer).
     #[cfg(feature = "CMBase")]
+    #[inline]
+    #[doc(alias = "CMSampleBufferCallForEachSample")]
+    pub unsafe fn call_for_each_sample(
+        self: &CMSampleBuffer,
+        callback: unsafe extern "C-unwind" fn(
+            NonNull<CMSampleBuffer>,
+            CMItemCount,
+            *mut c_void,
+        ) -> OSStatus,
+        refcon: *mut c_void,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCallForEachSample(
+                sbuf: &CMSampleBuffer,
+                callback: unsafe extern "C-unwind" fn(
+                    NonNull<CMSampleBuffer>,
+                    CMItemCount,
+                    *mut c_void,
+                ) -> OSStatus,
+                refcon: *mut c_void,
+            ) -> OSStatus;
+        }
+        unsafe { CMSampleBufferCallForEachSample(self, callback, refcon) }
+    }
+
+    /// Calls a block for every individual sample in a sample buffer.
+    ///
+    /// Temporary sample buffers will be created for individual samples,
+    /// referring to the sample data and containing its timing, size and attachments.
+    /// The block may retain these sample buffers if desired.
+    /// If the block returns an error, iteration will stop immediately
+    /// and the error will be returned.
+    /// If there are no sample sizes in the provided sample buffer, kCMSampleBufferError_CannotSubdivide will be returned.
+    /// This will happen, for example, if the samples in the buffer are non-contiguous (eg. non-interleaved audio, where
+    /// the channel values for a single sample are scattered through the buffer).
+    #[cfg(all(feature = "CMBase", feature = "block2"))]
+    #[inline]
+    #[doc(alias = "CMSampleBufferCallBlockForEachSample")]
+    pub unsafe fn call_block_for_each_sample(
+        self: &CMSampleBuffer,
+        handler: &block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMSampleBufferCallBlockForEachSample(
+                sbuf: &CMSampleBuffer,
+                handler: &block2::DynBlock<
+                    dyn Fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus,
+                >,
+            ) -> OSStatus;
+        }
+        unsafe { CMSampleBufferCallBlockForEachSample(self, handler) }
+    }
+}
+
+#[cfg(all(
+    feature = "CMBase",
+    feature = "CMBlockBuffer",
+    feature = "CMFormatDescription",
+    feature = "CMTime"
+))]
+#[deprecated = "renamed to `CMSampleBuffer::create`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferCreate(
+    allocator: Option<&CFAllocator>,
+    data_buffer: Option<&CMBlockBuffer>,
+    data_ready: bool,
+    make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+    make_data_ready_refcon: *mut c_void,
+    format_description: Option<&CMFormatDescription>,
+    num_samples: CMItemCount,
+    num_sample_timing_entries: CMItemCount,
+    sample_timing_array: *const CMSampleTimingInfo,
+    num_sample_size_entries: CMItemCount,
+    sample_size_array: *const usize,
+    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSampleBufferCreate(
+            allocator: Option<&CFAllocator>,
+            data_buffer: Option<&CMBlockBuffer>,
+            data_ready: Boolean,
+            make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+            make_data_ready_refcon: *mut c_void,
+            format_description: Option<&CMFormatDescription>,
+            num_samples: CMItemCount,
+            num_sample_timing_entries: CMItemCount,
+            sample_timing_array: *const CMSampleTimingInfo,
+            num_sample_size_entries: CMItemCount,
+            sample_size_array: *const usize,
+            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSampleBufferCreate(
+            allocator,
+            data_buffer,
+            data_ready as _,
+            make_data_ready_callback,
+            make_data_ready_refcon,
+            format_description,
+            num_samples,
+            num_sample_timing_entries,
+            sample_timing_array,
+            num_sample_size_entries,
+            sample_size_array,
+            sample_buffer_out,
+        )
+    }
+}
+
+#[cfg(all(
+    feature = "CMBase",
+    feature = "CMBlockBuffer",
+    feature = "CMFormatDescription",
+    feature = "CMTime",
+    feature = "block2"
+))]
+#[deprecated = "renamed to `CMSampleBuffer::create_with_make_data_ready_handler`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferCreateWithMakeDataReadyHandler(
+    allocator: Option<&CFAllocator>,
+    data_buffer: Option<&CMBlockBuffer>,
+    data_ready: bool,
+    format_description: Option<&CMFormatDescription>,
+    num_samples: CMItemCount,
+    num_sample_timing_entries: CMItemCount,
+    sample_timing_array: *const CMSampleTimingInfo,
+    num_sample_size_entries: CMItemCount,
+    sample_size_array: *const usize,
+    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSampleBufferCreateWithMakeDataReadyHandler(
+            allocator: Option<&CFAllocator>,
+            data_buffer: Option<&CMBlockBuffer>,
+            data_ready: Boolean,
+            format_description: Option<&CMFormatDescription>,
+            num_samples: CMItemCount,
+            num_sample_timing_entries: CMItemCount,
+            sample_timing_array: *const CMSampleTimingInfo,
+            num_sample_size_entries: CMItemCount,
+            sample_size_array: *const usize,
+            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSampleBufferCreateWithMakeDataReadyHandler(
+            allocator,
+            data_buffer,
+            data_ready as _,
+            format_description,
+            num_samples,
+            num_sample_timing_entries,
+            sample_timing_array,
+            num_sample_size_entries,
+            sample_size_array,
+            sample_buffer_out,
+            make_data_ready_handler,
+        )
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CMBase",
+        feature = "CMBlockBuffer",
+        feature = "CMFormatDescription",
+        feature = "CMTime"
+    ))]
+    #[deprecated = "renamed to `CMSampleBuffer::create_ready`"]
+    pub fn CMSampleBufferCreateReady(
+        allocator: Option<&CFAllocator>,
+        data_buffer: Option<&CMBlockBuffer>,
+        format_description: Option<&CMFormatDescription>,
+        num_samples: CMItemCount,
+        num_sample_timing_entries: CMItemCount,
+        sample_timing_array: *const CMSampleTimingInfo,
+        num_sample_size_entries: CMItemCount,
+        sample_size_array: *const usize,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    ) -> OSStatus;
+}
+
+#[cfg(all(
+    feature = "CMFormatDescription",
+    feature = "CMTime",
+    feature = "objc2-core-video"
+))]
+#[deprecated = "renamed to `CMSampleBuffer::create_for_image_buffer`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferCreateForImageBuffer(
+    allocator: Option<&CFAllocator>,
+    image_buffer: &CVImageBuffer,
+    data_ready: bool,
+    make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+    make_data_ready_refcon: *mut c_void,
+    format_description: &CMVideoFormatDescription,
+    sample_timing: NonNull<CMSampleTimingInfo>,
+    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSampleBufferCreateForImageBuffer(
+            allocator: Option<&CFAllocator>,
+            image_buffer: &CVImageBuffer,
+            data_ready: Boolean,
+            make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+            make_data_ready_refcon: *mut c_void,
+            format_description: &CMVideoFormatDescription,
+            sample_timing: NonNull<CMSampleTimingInfo>,
+            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSampleBufferCreateForImageBuffer(
+            allocator,
+            image_buffer,
+            data_ready as _,
+            make_data_ready_callback,
+            make_data_ready_refcon,
+            format_description,
+            sample_timing,
+            sample_buffer_out,
+        )
+    }
+}
+
+#[cfg(all(
+    feature = "CMFormatDescription",
+    feature = "CMTime",
+    feature = "block2",
+    feature = "objc2-core-video"
+))]
+#[deprecated = "renamed to `CMSampleBuffer::create_for_image_buffer_with_make_data_ready_handler`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
+    allocator: Option<&CFAllocator>,
+    image_buffer: &CVImageBuffer,
+    data_ready: bool,
+    format_description: &CMVideoFormatDescription,
+    sample_timing: NonNull<CMSampleTimingInfo>,
+    sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
+            allocator: Option<&CFAllocator>,
+            image_buffer: &CVImageBuffer,
+            data_ready: Boolean,
+            format_description: &CMVideoFormatDescription,
+            sample_timing: NonNull<CMSampleTimingInfo>,
+            sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+            make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
+            allocator,
+            image_buffer,
+            data_ready as _,
+            format_description,
+            sample_timing,
+            sample_buffer_out,
+            make_data_ready_handler,
+        )
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CMFormatDescription",
+        feature = "CMTime",
+        feature = "objc2-core-video"
+    ))]
+    #[deprecated = "renamed to `CMSampleBuffer::create_ready_with_image_buffer`"]
+    pub fn CMSampleBufferCreateReadyWithImageBuffer(
+        allocator: Option<&CFAllocator>,
+        image_buffer: &CVImageBuffer,
+        format_description: &CMVideoFormatDescription,
+        sample_timing: NonNull<CMSampleTimingInfo>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMSampleBuffer::create_copy`"]
+    pub fn CMSampleBufferCreateCopy(
+        allocator: Option<&CFAllocator>,
+        sbuf: &CMSampleBuffer,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CMBase", feature = "CMTime"))]
+    #[deprecated = "renamed to `CMSampleBuffer::create_copy_with_new_timing`"]
+    pub fn CMSampleBufferCreateCopyWithNewTiming(
+        allocator: Option<&CFAllocator>,
+        original_s_buf: &CMSampleBuffer,
+        num_sample_timing_entries: CMItemCount,
+        sample_timing_array: *const CMSampleTimingInfo,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMSampleBuffer::copy_sample_buffer_for_range`"]
+    pub fn CMSampleBufferCopySampleBufferForRange(
+        allocator: Option<&CFAllocator>,
+        sbuf: &CMSampleBuffer,
+        sample_range: CFRange,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMBlockBuffer")]
+    #[deprecated = "renamed to `CMSampleBuffer::set_data_buffer`"]
+    pub fn CMSampleBufferSetDataBuffer(
+        sbuf: &CMSampleBuffer,
+        data_buffer: &CMBlockBuffer,
+    ) -> OSStatus;
+}
+
+#[cfg(feature = "CMBlockBuffer")]
+#[deprecated = "renamed to `CMSampleBuffer::data_buffer`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferGetDataBuffer(
+    sbuf: &CMSampleBuffer,
+) -> Option<CFRetained<CMBlockBuffer>> {
+    extern "C-unwind" {
+        fn CMSampleBufferGetDataBuffer(sbuf: &CMSampleBuffer) -> Option<NonNull<CMBlockBuffer>>;
+    }
+    let ret = unsafe { CMSampleBufferGetDataBuffer(sbuf) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[cfg(feature = "objc2-core-video")]
+#[deprecated = "renamed to `CMSampleBuffer::image_buffer`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferGetImageBuffer(
+    sbuf: &CMSampleBuffer,
+) -> Option<CFRetained<CVImageBuffer>> {
+    extern "C-unwind" {
+        fn CMSampleBufferGetImageBuffer(sbuf: &CMSampleBuffer) -> Option<NonNull<CVImageBuffer>>;
+    }
+    let ret = unsafe { CMSampleBufferGetImageBuffer(sbuf) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[deprecated = "renamed to `CMSampleBuffer::set_data_buffer_from_audio_buffer_list`"]
+    pub fn CMSampleBufferSetDataBufferFromAudioBufferList(
+        sbuf: &CMSampleBuffer,
+        block_buffer_structure_allocator: Option<&CFAllocator>,
+        block_buffer_block_allocator: Option<&CFAllocator>,
+        flags: u32,
+        buffer_list: NonNull<AudioBufferList>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-audio-types"))]
+    #[deprecated = "renamed to `CMSampleBuffer::audio_buffer_list_with_retained_block_buffer`"]
+    pub fn CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
+        sbuf: &CMSampleBuffer,
+        buffer_list_size_needed_out: *mut usize,
+        buffer_list_out: *mut AudioBufferList,
+        buffer_list_size: usize,
+        block_buffer_structure_allocator: Option<&CFAllocator>,
+        block_buffer_block_allocator: Option<&CFAllocator>,
+        flags: u32,
+        block_buffer_out: *mut *mut CMBlockBuffer,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[deprecated = "renamed to `CMSampleBuffer::audio_stream_packet_descriptions`"]
+    pub fn CMSampleBufferGetAudioStreamPacketDescriptions(
+        sbuf: &CMSampleBuffer,
+        packet_descriptions_size: usize,
+        packet_descriptions_out: *mut AudioStreamPacketDescription,
+        packet_descriptions_size_needed_out: *mut usize,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[deprecated = "renamed to `CMSampleBuffer::audio_stream_packet_descriptions_ptr`"]
+    pub fn CMSampleBufferGetAudioStreamPacketDescriptionsPtr(
+        sbuf: &CMSampleBuffer,
+        packet_descriptions_pointer_out: *mut *const AudioStreamPacketDescription,
+        packet_descriptions_size_out: *mut usize,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[deprecated = "renamed to `CMSampleBuffer::copy_pcm_data_into_audio_buffer_list`"]
+    pub fn CMSampleBufferCopyPCMDataIntoAudioBufferList(
+        sbuf: &CMSampleBuffer,
+        frame_offset: i32,
+        num_frames: i32,
+        buffer_list: NonNull<AudioBufferList>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMSampleBuffer::set_data_ready`"]
+    pub fn CMSampleBufferSetDataReady(sbuf: &CMSampleBuffer) -> OSStatus;
+}
+
+#[deprecated = "renamed to `CMSampleBuffer::data_is_ready`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferDataIsReady(sbuf: &CMSampleBuffer) -> bool {
+    extern "C-unwind" {
+        fn CMSampleBufferDataIsReady(sbuf: &CMSampleBuffer) -> Boolean;
+    }
+    let ret = unsafe { CMSampleBufferDataIsReady(sbuf) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMSampleBuffer::set_data_failed`"]
+    pub fn CMSampleBufferSetDataFailed(sbuf: &CMSampleBuffer, status: OSStatus) -> OSStatus;
+}
+
+#[deprecated = "renamed to `CMSampleBuffer::has_data_failed`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferHasDataFailed(
+    sbuf: &CMSampleBuffer,
+    status_out: *mut OSStatus,
+) -> bool {
+    extern "C-unwind" {
+        fn CMSampleBufferHasDataFailed(sbuf: &CMSampleBuffer, status_out: *mut OSStatus)
+            -> Boolean;
+    }
+    let ret = unsafe { CMSampleBufferHasDataFailed(sbuf, status_out) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMSampleBuffer::new_data_ready`"]
+    pub fn CMSampleBufferMakeDataReady(sbuf: &CMSampleBuffer) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMSampleBuffer::track_data_readiness`"]
+    pub fn CMSampleBufferTrackDataReadiness(
+        sbuf: &CMSampleBuffer,
+        sample_buffer_to_track: &CMSampleBuffer,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMSampleBuffer::invalidate`"]
+    pub fn CMSampleBufferInvalidate(sbuf: &CMSampleBuffer) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMSampleBuffer::set_invalidate_callback`"]
+    pub fn CMSampleBufferSetInvalidateCallback(
+        sbuf: &CMSampleBuffer,
+        invalidate_callback: CMSampleBufferInvalidateCallback,
+        invalidate_ref_con: u64,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `CMSampleBuffer::set_invalidate_handler`"]
+    pub fn CMSampleBufferSetInvalidateHandler(
+        sbuf: &CMSampleBuffer,
+        invalidate_handler: CMSampleBufferInvalidateHandler,
+    ) -> OSStatus;
+}
+
+#[deprecated = "renamed to `CMSampleBuffer::is_valid`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferIsValid(sbuf: &CMSampleBuffer) -> bool {
+    extern "C-unwind" {
+        fn CMSampleBufferIsValid(sbuf: &CMSampleBuffer) -> Boolean;
+    }
+    let ret = unsafe { CMSampleBufferIsValid(sbuf) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMBase")]
+    #[deprecated = "renamed to `CMSampleBuffer::num_samples`"]
+    pub fn CMSampleBufferGetNumSamples(sbuf: &CMSampleBuffer) -> CMItemCount;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMSampleBuffer::duration`"]
+    pub fn CMSampleBufferGetDuration(sbuf: &CMSampleBuffer) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMSampleBuffer::presentation_time_stamp`"]
+    pub fn CMSampleBufferGetPresentationTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMSampleBuffer::decode_time_stamp`"]
+    pub fn CMSampleBufferGetDecodeTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMSampleBuffer::output_duration`"]
+    pub fn CMSampleBufferGetOutputDuration(sbuf: &CMSampleBuffer) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMSampleBuffer::output_presentation_time_stamp`"]
+    pub fn CMSampleBufferGetOutputPresentationTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMSampleBuffer::set_output_presentation_time_stamp`"]
+    pub fn CMSampleBufferSetOutputPresentationTimeStamp(
+        sbuf: &CMSampleBuffer,
+        output_presentation_time_stamp: CMTime,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMSampleBuffer::output_decode_time_stamp`"]
+    pub fn CMSampleBufferGetOutputDecodeTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CMBase", feature = "CMTime"))]
+    #[deprecated = "renamed to `CMSampleBuffer::sample_timing_info_array`"]
+    pub fn CMSampleBufferGetSampleTimingInfoArray(
+        sbuf: &CMSampleBuffer,
+        num_sample_timing_entries: CMItemCount,
+        timing_array_out: *mut CMSampleTimingInfo,
+        timing_array_entries_needed_out: *mut CMItemCount,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CMBase", feature = "CMTime"))]
+    #[deprecated = "renamed to `CMSampleBuffer::output_sample_timing_info_array`"]
+    pub fn CMSampleBufferGetOutputSampleTimingInfoArray(
+        sbuf: &CMSampleBuffer,
+        timing_array_entries: CMItemCount,
+        timing_array_out: *mut CMSampleTimingInfo,
+        timing_array_entries_needed_out: *mut CMItemCount,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CMBase", feature = "CMTime"))]
+    #[deprecated = "renamed to `CMSampleBuffer::sample_timing_info`"]
+    pub fn CMSampleBufferGetSampleTimingInfo(
+        sbuf: &CMSampleBuffer,
+        sample_index: CMItemIndex,
+        timing_info_out: NonNull<CMSampleTimingInfo>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMBase")]
+    #[deprecated = "renamed to `CMSampleBuffer::sample_size_array`"]
+    pub fn CMSampleBufferGetSampleSizeArray(
+        sbuf: &CMSampleBuffer,
+        size_array_entries: CMItemCount,
+        size_array_out: *mut usize,
+        size_array_entries_needed_out: *mut CMItemCount,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMBase")]
+    #[deprecated = "renamed to `CMSampleBuffer::sample_size`"]
+    pub fn CMSampleBufferGetSampleSize(sbuf: &CMSampleBuffer, sample_index: CMItemIndex) -> usize;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMSampleBuffer::total_sample_size`"]
+    pub fn CMSampleBufferGetTotalSampleSize(sbuf: &CMSampleBuffer) -> usize;
+}
+
+#[cfg(feature = "CMFormatDescription")]
+#[deprecated = "renamed to `CMSampleBuffer::format_description`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferGetFormatDescription(
+    sbuf: &CMSampleBuffer,
+) -> Option<CFRetained<CMFormatDescription>> {
+    extern "C-unwind" {
+        fn CMSampleBufferGetFormatDescription(
+            sbuf: &CMSampleBuffer,
+        ) -> Option<NonNull<CMFormatDescription>>;
+    }
+    let ret = unsafe { CMSampleBufferGetFormatDescription(sbuf) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[deprecated = "renamed to `CMSampleBuffer::sample_attachments_array`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferGetSampleAttachmentsArray(
+    sbuf: &CMSampleBuffer,
+    create_if_necessary: bool,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CMSampleBufferGetSampleAttachmentsArray(
+            sbuf: &CMSampleBuffer,
+            create_if_necessary: Boolean,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CMSampleBufferGetSampleAttachmentsArray(sbuf, create_if_necessary as _) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMBase")]
+    #[deprecated = "renamed to `CMSampleBuffer::call_for_each_sample`"]
     pub fn CMSampleBufferCallForEachSample(
         sbuf: &CMSampleBuffer,
         callback: unsafe extern "C-unwind" fn(
@@ -1944,17 +2944,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Calls a block for every individual sample in a sample buffer.
-    ///
-    /// Temporary sample buffers will be created for individual samples,
-    /// referring to the sample data and containing its timing, size and attachments.
-    /// The block may retain these sample buffers if desired.
-    /// If the block returns an error, iteration will stop immediately
-    /// and the error will be returned.
-    /// If there are no sample sizes in the provided sample buffer, kCMSampleBufferError_CannotSubdivide will be returned.
-    /// This will happen, for example, if the samples in the buffer are non-contiguous (eg. non-interleaved audio, where
-    /// the channel values for a single sample are scattered through the buffer).
     #[cfg(all(feature = "CMBase", feature = "block2"))]
+    #[deprecated = "renamed to `CMSampleBuffer::call_block_for_each_sample`"]
     pub fn CMSampleBufferCallBlockForEachSample(
         sbuf: &CMSampleBuffer,
         handler: &block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus>,

@@ -37,7 +37,7 @@ unsafe impl RefEncode for cp_texture_topology {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_texture_topology_t?language=objc)
 pub type cp_texture_topology_t = *mut cp_texture_topology;
 
-extern "C-unwind" {
+impl cp_texture_topology {
     /// Returns the number of items in the texture array.
     ///
     /// - Parameters:
@@ -52,10 +52,16 @@ extern "C-unwind" {
     /// manage one or more images of the same size. This function returns the
     /// number of separate images the texture manages. Other array types store
     /// only one image.
-    pub fn cp_texture_topology_get_array_length(texture_topology: cp_texture_topology_t) -> u64;
-}
+    #[inline]
+    #[doc(alias = "cp_texture_topology_get_array_length")]
+    pub unsafe fn get_array_length(texture_topology: cp_texture_topology_t) -> u64 {
+        extern "C-unwind" {
+            fn cp_texture_topology_get_array_length(texture_topology: cp_texture_topology_t)
+                -> u64;
+        }
+        unsafe { cp_texture_topology_get_array_length(texture_topology) }
+    }
 
-extern "C-unwind" {
     /// Returns the type value that specifies how the underlying texture
     /// organizes its views.
     ///
@@ -71,9 +77,16 @@ extern "C-unwind" {
     /// and right eyes of a head-mounted display. The texture type indicates
     /// this content organization strategy.
     #[cfg(feature = "objc2-metal")]
-    pub fn cp_texture_topology_get_texture_type(
-        texture_topology: cp_texture_topology_t,
-    ) -> MTLTextureType;
+    #[inline]
+    #[doc(alias = "cp_texture_topology_get_texture_type")]
+    pub unsafe fn get_texture_type(texture_topology: cp_texture_topology_t) -> MTLTextureType {
+        extern "C-unwind" {
+            fn cp_texture_topology_get_texture_type(
+                texture_topology: cp_texture_topology_t,
+            ) -> MTLTextureType;
+        }
+        unsafe { cp_texture_topology_get_texture_type(texture_topology) }
+    }
 }
 
 extern_class!(
@@ -211,4 +224,17 @@ extern "C-unwind" {
     pub fn cp_layer_renderer_properties_get_view_count(
         layer_properties: &cp_layer_renderer_properties_t,
     ) -> usize;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_texture_topology::get_array_length`"]
+    pub fn cp_texture_topology_get_array_length(texture_topology: cp_texture_topology_t) -> u64;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-metal")]
+    #[deprecated = "renamed to `cp_texture_topology::get_texture_type`"]
+    pub fn cp_texture_topology_get_texture_type(
+        texture_topology: cp_texture_topology_t,
+    ) -> MTLTextureType;
 }

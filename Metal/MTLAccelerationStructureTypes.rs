@@ -31,7 +31,9 @@ unsafe impl RefEncode for MTLPackedFloatQuaternion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn MTLPackedFloatQuaternionMake(x: c_float,y: c_float,z: c_float,w: c_float,) -> MTLPackedFloatQuaternion;
+impl MTLPackedFloatQuaternion {
+    // TODO: pub fn MTLPackedFloatQuaternionMake(x: c_float,y: c_float,z: c_float,w: c_float,) -> MTLPackedFloatQuaternion;
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpackedfloat4x3?language=objc)
 #[repr(C)]

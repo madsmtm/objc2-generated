@@ -89,12 +89,65 @@ unsafe impl ConcreteType for AXValue {
     }
 }
 
-/// Encodes a structure pointed to by valuePtr into a CFTypeRef.
-///
-///
-/// Parameter `theType`:
-/// Parameter `valuePtr`:
-/// Returns:
+impl AXValue {
+    /// Encodes a structure pointed to by valuePtr into a CFTypeRef.
+    ///
+    ///
+    /// Parameter `theType`:
+    /// Parameter `valuePtr`:
+    /// Returns:
+    #[inline]
+    #[doc(alias = "AXValueCreate")]
+    pub unsafe fn new(
+        the_type: AXValueType,
+        value_ptr: NonNull<c_void>,
+    ) -> Option<CFRetained<AXValue>> {
+        extern "C-unwind" {
+            fn AXValueCreate(
+                the_type: AXValueType,
+                value_ptr: NonNull<c_void>,
+            ) -> Option<NonNull<AXValue>>;
+        }
+        let ret = unsafe { AXValueCreate(the_type, value_ptr) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Returns the structure type encoded in value. If the type is not recognized, it returns kAXValueIllegalType.
+    ///
+    ///
+    /// Parameter `value`:
+    /// Returns:
+    #[inline]
+    #[doc(alias = "AXValueGetType")]
+    pub unsafe fn r#type(self: &AXValue) -> AXValueType {
+        extern "C-unwind" {
+            fn AXValueGetType(value: &AXValue) -> AXValueType;
+        }
+        unsafe { AXValueGetType(self) }
+    }
+
+    /// Decodes the structure stored in value and copies it into valuePtr. If the structure stored in value is not
+    /// the same as requested by theType, the function returns false.
+    ///
+    ///
+    /// Parameter `value`:
+    /// Returns:
+    #[inline]
+    #[doc(alias = "AXValueGetValue")]
+    pub unsafe fn value(self: &AXValue, the_type: AXValueType, value_ptr: NonNull<c_void>) -> bool {
+        extern "C-unwind" {
+            fn AXValueGetValue(
+                value: &AXValue,
+                the_type: AXValueType,
+                value_ptr: NonNull<c_void>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { AXValueGetValue(self, the_type, value_ptr) };
+        ret != 0
+    }
+}
+
+#[deprecated = "renamed to `AXValue::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn AXValueCreate(
     the_type: AXValueType,
@@ -111,20 +164,11 @@ pub unsafe extern "C-unwind" fn AXValueCreate(
 }
 
 extern "C-unwind" {
-    /// Returns the structure type encoded in value. If the type is not recognized, it returns kAXValueIllegalType.
-    ///
-    ///
-    /// Parameter `value`:
-    /// Returns:
+    #[deprecated = "renamed to `AXValue::type`"]
     pub fn AXValueGetType(value: &AXValue) -> AXValueType;
 }
 
-/// Decodes the structure stored in value and copies it into valuePtr. If the structure stored in value is not
-/// the same as requested by theType, the function returns false.
-///
-///
-/// Parameter `value`:
-/// Returns:
+#[deprecated = "renamed to `AXValue::value`"]
 #[inline]
 pub unsafe extern "C-unwind" fn AXValueGetValue(
     value: &AXValue,

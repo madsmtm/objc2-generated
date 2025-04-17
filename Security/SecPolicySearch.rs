@@ -42,7 +42,7 @@ unsafe impl ConcreteType for SecPolicySearch {
     }
 }
 
-extern "C-unwind" {
+impl SecPolicySearch {
     /// Creates a search reference for finding a policy by specifying its object identifier.
     ///
     /// Parameter `certType`: The type of certificates a policy uses.
@@ -58,15 +58,25 @@ extern "C-unwind" {
     /// This function is deprecated in 10.7. To create a SecPolicyRef, use one of the SecPolicyCreate functions in SecPolicy.h.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
-    pub fn SecPolicySearchCreate(
+    #[inline]
+    #[doc(alias = "SecPolicySearchCreate")]
+    pub unsafe fn create(
         cert_type: CSSM_CERT_TYPE,
         policy_oid: NonNull<SecAsn1Oid>,
         value: *const SecAsn1Item,
         search_ref: NonNull<*mut SecPolicySearch>,
-    ) -> OSStatus;
-}
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecPolicySearchCreate(
+                cert_type: CSSM_CERT_TYPE,
+                policy_oid: NonNull<SecAsn1Oid>,
+                value: *const SecAsn1Item,
+                search_ref: NonNull<*mut SecPolicySearch>,
+            ) -> OSStatus;
+        }
+        unsafe { SecPolicySearchCreate(cert_type, policy_oid, value, search_ref) }
+    }
 
-extern "C-unwind" {
     /// Finds the next policy matching the given search criteria
     ///
     /// Parameter `searchRef`: A reference to the current policy search criteria.    You create the policy search  reference by a calling the SecPolicySearchCreate function. You are responsible for releasing the policy by calling the CFRelease function when finished with it.
@@ -78,6 +88,36 @@ extern "C-unwind" {
     /// This function is deprecated in 10.7. To create a SecPolicyRef, use one of the SecPolicyCreate functions in SecPolicy.h.
     #[cfg(feature = "SecBase")]
     #[deprecated]
+    #[inline]
+    #[doc(alias = "SecPolicySearchCopyNext")]
+    pub unsafe fn copy_next(
+        self: &SecPolicySearch,
+        policy_ref: NonNull<*mut SecPolicy>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecPolicySearchCopyNext(
+                search_ref: &SecPolicySearch,
+                policy_ref: NonNull<*mut SecPolicy>,
+            ) -> OSStatus;
+        }
+        unsafe { SecPolicySearchCopyNext(self, policy_ref) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
+    #[deprecated = "renamed to `SecPolicySearch::create`"]
+    pub fn SecPolicySearchCreate(
+        cert_type: CSSM_CERT_TYPE,
+        policy_oid: NonNull<SecAsn1Oid>,
+        value: *const SecAsn1Item,
+        search_ref: NonNull<*mut SecPolicySearch>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecPolicySearch::copy_next`"]
     pub fn SecPolicySearchCopyNext(
         search_ref: &SecPolicySearch,
         policy_ref: NonNull<*mut SecPolicy>,

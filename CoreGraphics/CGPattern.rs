@@ -95,7 +95,43 @@ unsafe impl ConcreteType for CGPattern {
     }
 }
 
+impl CGPattern {
+    #[cfg(feature = "CGContext")]
+    #[inline]
+    #[doc(alias = "CGPatternCreate")]
+    pub unsafe fn new(
+        info: *mut c_void,
+        bounds: CGRect,
+        matrix: CGAffineTransform,
+        x_step: CGFloat,
+        y_step: CGFloat,
+        tiling: CGPatternTiling,
+        is_colored: bool,
+        callbacks: *const CGPatternCallbacks,
+    ) -> Option<CFRetained<CGPattern>> {
+        extern "C-unwind" {
+            fn CGPatternCreate(
+                info: *mut c_void,
+                bounds: CGRect,
+                matrix: CGAffineTransform,
+                x_step: CGFloat,
+                y_step: CGFloat,
+                tiling: CGPatternTiling,
+                is_colored: bool,
+                callbacks: *const CGPatternCallbacks,
+            ) -> Option<NonNull<CGPattern>>;
+        }
+        let ret = unsafe {
+            CGPatternCreate(
+                info, bounds, matrix, x_step, y_step, tiling, is_colored, callbacks,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
 #[cfg(feature = "CGContext")]
+#[deprecated = "renamed to `CGPattern::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPatternCreate(
     info: *mut c_void,

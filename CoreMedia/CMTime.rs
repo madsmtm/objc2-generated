@@ -135,21 +135,31 @@ extern "C" {
     pub static kCMTimeZero: CMTime;
 }
 
-extern "C-unwind" {
+impl CMTime {
     /// Make a valid CMTime with value and timescale.  Epoch is implied to be 0.
     ///
     /// Returns: The resulting CMTime.
-    pub fn CMTimeMake(value: i64, timescale: i32) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimeMake")]
+    pub unsafe fn new(value: i64, timescale: i32) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeMake(value: i64, timescale: i32) -> CMTime;
+        }
+        unsafe { CMTimeMake(value, timescale) }
+    }
 
-extern "C-unwind" {
     /// Make a valid CMTime with value, scale and epoch.
     ///
     /// Returns: The resulting CMTime.
-    pub fn CMTimeMakeWithEpoch(value: i64, timescale: i32, epoch: i64) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimeMakeWithEpoch")]
+    pub unsafe fn with_epoch(value: i64, timescale: i32, epoch: i64) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeMakeWithEpoch(value: i64, timescale: i32, epoch: i64) -> CMTime;
+        }
+        unsafe { CMTimeMakeWithEpoch(value, timescale, epoch) }
+    }
 
-extern "C-unwind" {
     /// Make a CMTime from a Float64 number of seconds, and a preferred timescale.
     ///
     /// The epoch of the result will be zero.  If preferredTimescale is
@@ -162,10 +172,15 @@ extern "C-unwind" {
     /// seconds, is not exactly equal to the original seconds value.
     ///
     /// Returns: The resulting CMTime.
-    pub fn CMTimeMakeWithSeconds(seconds: f64, preferred_timescale: i32) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimeMakeWithSeconds")]
+    pub unsafe fn with_seconds(seconds: f64, preferred_timescale: i32) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeMakeWithSeconds(seconds: f64, preferred_timescale: i32) -> CMTime;
+        }
+        unsafe { CMTimeMakeWithSeconds(seconds, preferred_timescale) }
+    }
 
-extern "C-unwind" {
     /// Converts a CMTime to seconds.
     ///
     /// If the CMTime is invalid or indefinite, NAN is returned.  If the CMTime is infinite, +/- __inf()
@@ -173,7 +188,14 @@ extern "C-unwind" {
     /// returned.  The division is done in Float64, so the fraction is not lost in the returned result.
     ///
     /// Returns: The resulting Float64 number of seconds.
-    pub fn CMTimeGetSeconds(time: CMTime) -> f64;
+    #[inline]
+    #[doc(alias = "CMTimeGetSeconds")]
+    pub unsafe fn seconds(time: CMTime) -> f64 {
+        extern "C-unwind" {
+            fn CMTimeGetSeconds(time: CMTime) -> f64;
+        }
+        unsafe { CMTimeGetSeconds(time) }
+    }
 }
 
 /// Rounding method to use when computing time.value during timescale conversions.
@@ -223,7 +245,7 @@ unsafe impl RefEncode for CMTimeRoundingMethod {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+impl CMTime {
     /// Returns a new CMTime containing the source CMTime converted to a new timescale (rounding as requested).
     ///
     /// If the value needs to be rounded, the kCMTimeFlags_HasBeenRounded flag will be set.
@@ -231,14 +253,23 @@ extern "C-unwind" {
     /// the source time is non-numeric (ie. infinite, indefinite, invalid), the result will be similarly non-numeric.
     ///
     /// Returns: The converted result CMTime.
-    pub fn CMTimeConvertScale(
+    #[inline]
+    #[doc(alias = "CMTimeConvertScale")]
+    pub unsafe fn convert_scale(
         time: CMTime,
         new_timescale: i32,
         method: CMTimeRoundingMethod,
-    ) -> CMTime;
-}
+    ) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeConvertScale(
+                time: CMTime,
+                new_timescale: i32,
+                method: CMTimeRoundingMethod,
+            ) -> CMTime;
+        }
+        unsafe { CMTimeConvertScale(time, new_timescale, method) }
+    }
 
-extern "C-unwind" {
     /// Returns the sum of two CMTimes.
     ///
     /// If the operands both have the same timescale, the timescale of the result will be the same as
@@ -281,10 +312,15 @@ extern "C-unwind" {
     /// epochs always occur after numerically lesser epochs.
     ///
     /// Returns: The sum of the two CMTimes (lhs + rhs).
-    pub fn CMTimeAdd(lhs: CMTime, rhs: CMTime) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimeAdd")]
+    pub unsafe fn add(lhs: CMTime, rhs: CMTime) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeAdd(lhs: CMTime, rhs: CMTime) -> CMTime;
+        }
+        unsafe { CMTimeAdd(lhs, rhs) }
+    }
 
-extern "C-unwind" {
     /// Returns the difference of two CMTimes.
     ///
     /// If the operands both have the same timescale, the timescale of the result will be the same as
@@ -327,10 +363,15 @@ extern "C-unwind" {
     /// epochs always occur after numerically lesser epochs.
     ///
     /// Returns: The difference of the two CMTimes (lhs - rhs).
-    pub fn CMTimeSubtract(lhs: CMTime, rhs: CMTime) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimeSubtract")]
+    pub unsafe fn subtract(lhs: CMTime, rhs: CMTime) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeSubtract(lhs: CMTime, rhs: CMTime) -> CMTime;
+        }
+        unsafe { CMTimeSubtract(lhs, rhs) }
+    }
 
-extern "C-unwind" {
     /// Returns the product of a CMTime and a 32-bit integer.
     ///
     /// The result will have the same timescale as the CMTime operand. If the result value overflows,
@@ -351,10 +392,15 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The product of the CMTime and the 32-bit integer.
-    pub fn CMTimeMultiply(time: CMTime, multiplier: i32) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimeMultiply")]
+    pub unsafe fn multiply(time: CMTime, multiplier: i32) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeMultiply(time: CMTime, multiplier: i32) -> CMTime;
+        }
+        unsafe { CMTimeMultiply(time, multiplier) }
+    }
 
-extern "C-unwind" {
     /// Returns the product of a CMTime and a 64-bit float.
     ///
     /// The result will initially have the same timescale as the CMTime operand.
@@ -377,10 +423,15 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The product of the CMTime and the 64-bit float.
-    pub fn CMTimeMultiplyByFloat64(time: CMTime, multiplier: f64) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimeMultiplyByFloat64")]
+    pub unsafe fn multiply_by_float64(time: CMTime, multiplier: f64) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeMultiplyByFloat64(time: CMTime, multiplier: f64) -> CMTime;
+        }
+        unsafe { CMTimeMultiplyByFloat64(time, multiplier) }
+    }
 
-extern "C-unwind" {
     /// Returns the result of multiplying a CMTime by an integer, then dividing by another integer.
     ///
     /// The exact rational value will be preserved, if possible without overflow.  If an overflow
@@ -401,10 +452,15 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: (time * multiplier) / divisor
-    pub fn CMTimeMultiplyByRatio(time: CMTime, multiplier: i32, divisor: i32) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimeMultiplyByRatio")]
+    pub unsafe fn multiply_by_ratio(time: CMTime, multiplier: i32, divisor: i32) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeMultiplyByRatio(time: CMTime, multiplier: i32, divisor: i32) -> CMTime;
+        }
+        unsafe { CMTimeMultiplyByRatio(time, multiplier, divisor) }
+    }
 
-extern "C-unwind" {
     /// Returns the numerical relationship (-1 = less than, 1 = greater than, 0 = equal) of two CMTimes.
     ///
     /// If the two CMTimes are numeric (ie. not invalid, infinite, or indefinite), and have
@@ -436,58 +492,87 @@ extern "C-unwind" {
     /// are equal. 1 is returned if time1 is greater than time2.
     ///
     /// Returns: The numerical relationship of the two CMTimes (-1 = less than, 1 = greater than, 0 = equal).
-    pub fn CMTimeCompare(time1: CMTime, time2: CMTime) -> i32;
-}
+    #[inline]
+    #[doc(alias = "CMTimeCompare")]
+    pub unsafe fn compare(time1: CMTime, time2: CMTime) -> i32 {
+        extern "C-unwind" {
+            fn CMTimeCompare(time1: CMTime, time2: CMTime) -> i32;
+        }
+        unsafe { CMTimeCompare(time1, time2) }
+    }
 
-extern "C-unwind" {
     /// Returns the lesser of two CMTimes (as defined by CMTimeCompare).
     ///
     /// Returns: The lesser of the two CMTimes.
-    pub fn CMTimeMinimum(time1: CMTime, time2: CMTime) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimeMinimum")]
+    pub unsafe fn minimum(time1: CMTime, time2: CMTime) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeMinimum(time1: CMTime, time2: CMTime) -> CMTime;
+        }
+        unsafe { CMTimeMinimum(time1, time2) }
+    }
 
-extern "C-unwind" {
     /// Returns the greater of two CMTimes (as defined by CMTimeCompare).
     ///
     /// Returns: The greater of the two CMTimes.
-    pub fn CMTimeMaximum(time1: CMTime, time2: CMTime) -> CMTime;
-}
+    #[inline]
+    #[doc(alias = "CMTimeMaximum")]
+    pub unsafe fn maximum(time1: CMTime, time2: CMTime) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeMaximum(time1: CMTime, time2: CMTime) -> CMTime;
+        }
+        unsafe { CMTimeMaximum(time1, time2) }
+    }
 
-extern "C-unwind" {
     /// Returns the absolute value of a CMTime.
     ///
     /// Returns: Same as the argument time, with sign inverted if negative.
-    pub fn CMTimeAbsoluteValue(time: CMTime) -> CMTime;
-}
-
-/// Returns a CFDictionary version of a CMTime.
-///
-/// This is useful when putting CMTimes in CF container types.
-///
-/// Returns: A CFDictionary version of the CMTime.
-#[inline]
-pub unsafe extern "C-unwind" fn CMTimeCopyAsDictionary(
-    time: CMTime,
-    allocator: Option<&CFAllocator>,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn CMTimeCopyAsDictionary(
-            time: CMTime,
-            allocator: Option<&CFAllocator>,
-        ) -> Option<NonNull<CFDictionary>>;
+    #[inline]
+    #[doc(alias = "CMTimeAbsoluteValue")]
+    pub unsafe fn absolute_value(time: CMTime) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeAbsoluteValue(time: CMTime) -> CMTime;
+        }
+        unsafe { CMTimeAbsoluteValue(time) }
     }
-    let ret = unsafe { CMTimeCopyAsDictionary(time, allocator) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// Returns a CFDictionary version of a CMTime.
+    ///
+    /// This is useful when putting CMTimes in CF container types.
+    ///
+    /// Returns: A CFDictionary version of the CMTime.
+    #[inline]
+    #[doc(alias = "CMTimeCopyAsDictionary")]
+    pub unsafe fn as_dictionary(
+        time: CMTime,
+        allocator: Option<&CFAllocator>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn CMTimeCopyAsDictionary(
+                time: CMTime,
+                allocator: Option<&CFAllocator>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { CMTimeCopyAsDictionary(time, allocator) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Reconstitutes a CMTime struct from a CFDictionary previously created by CMTimeCopyAsDictionary.
     ///
     /// This is useful when getting CMTimes from CF container types.  If the CFDictionary does not
     /// have the requisite keyed values, an invalid time is returned.
     ///
     /// Returns: The created CMTime.
-    pub fn CMTimeMakeFromDictionary(dictionary_representation: Option<&CFDictionary>) -> CMTime;
+    #[inline]
+    #[doc(alias = "CMTimeMakeFromDictionary")]
+    pub unsafe fn from_dictionary(dictionary_representation: Option<&CFDictionary>) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeMakeFromDictionary(dictionary_representation: Option<&CFDictionary>)
+                -> CMTime;
+        }
+        unsafe { CMTimeMakeFromDictionary(dictionary_representation) }
+    }
 }
 
 extern "C" {
@@ -518,13 +603,139 @@ extern "C" {
     pub static kCMTimeFlagsKey: &'static CFString;
 }
 
-/// Creates a CFString with a description of a CMTime (just like CFCopyDescription).
-///
-/// This is used from within CFShow on an object that contains CMTime fields. It is
-/// also useful from other client debugging code.  The caller owns the returned
-/// CFString, and is responsible for releasing it.
-///
-/// Returns: The created CFString description.
+impl CMTime {
+    /// Creates a CFString with a description of a CMTime (just like CFCopyDescription).
+    ///
+    /// This is used from within CFShow on an object that contains CMTime fields. It is
+    /// also useful from other client debugging code.  The caller owns the returned
+    /// CFString, and is responsible for releasing it.
+    ///
+    /// Returns: The created CFString description.
+    #[inline]
+    #[doc(alias = "CMTimeCopyDescription")]
+    pub unsafe fn description(
+        allocator: Option<&CFAllocator>,
+        time: CMTime,
+    ) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CMTimeCopyDescription(
+                allocator: Option<&CFAllocator>,
+                time: CMTime,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CMTimeCopyDescription(allocator, time) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Prints a description of the CMTime (just like CFShow).
+    ///
+    /// This is most useful from within gdb.
+    #[inline]
+    #[doc(alias = "CMTimeShow")]
+    pub unsafe fn show(time: CMTime) {
+        extern "C-unwind" {
+            fn CMTimeShow(time: CMTime);
+        }
+        unsafe { CMTimeShow(time) }
+    }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::new`"]
+    pub fn CMTimeMake(value: i64, timescale: i32) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::with_epoch`"]
+    pub fn CMTimeMakeWithEpoch(value: i64, timescale: i32, epoch: i64) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::with_seconds`"]
+    pub fn CMTimeMakeWithSeconds(seconds: f64, preferred_timescale: i32) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::seconds`"]
+    pub fn CMTimeGetSeconds(time: CMTime) -> f64;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::convert_scale`"]
+    pub fn CMTimeConvertScale(
+        time: CMTime,
+        new_timescale: i32,
+        method: CMTimeRoundingMethod,
+    ) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::add`"]
+    pub fn CMTimeAdd(lhs: CMTime, rhs: CMTime) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::subtract`"]
+    pub fn CMTimeSubtract(lhs: CMTime, rhs: CMTime) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::multiply`"]
+    pub fn CMTimeMultiply(time: CMTime, multiplier: i32) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::multiply_by_float64`"]
+    pub fn CMTimeMultiplyByFloat64(time: CMTime, multiplier: f64) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::multiply_by_ratio`"]
+    pub fn CMTimeMultiplyByRatio(time: CMTime, multiplier: i32, divisor: i32) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::compare`"]
+    pub fn CMTimeCompare(time1: CMTime, time2: CMTime) -> i32;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::minimum`"]
+    pub fn CMTimeMinimum(time1: CMTime, time2: CMTime) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::maximum`"]
+    pub fn CMTimeMaximum(time1: CMTime, time2: CMTime) -> CMTime;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::absolute_value`"]
+    pub fn CMTimeAbsoluteValue(time: CMTime) -> CMTime;
+}
+
+#[deprecated = "renamed to `CMTime::as_dictionary`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeCopyAsDictionary(
+    time: CMTime,
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMTimeCopyAsDictionary(
+            time: CMTime,
+            allocator: Option<&CFAllocator>,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { CMTimeCopyAsDictionary(time, allocator) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CMTime::from_dictionary`"]
+    pub fn CMTimeMakeFromDictionary(dictionary_representation: Option<&CFDictionary>) -> CMTime;
+}
+
+#[deprecated = "renamed to `CMTime::description`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CMTimeCopyDescription(
     allocator: Option<&CFAllocator>,
@@ -541,8 +752,6 @@ pub unsafe extern "C-unwind" fn CMTimeCopyDescription(
 }
 
 extern "C-unwind" {
-    /// Prints a description of the CMTime (just like CFShow).
-    ///
-    /// This is most useful from within gdb.
+    #[deprecated = "renamed to `CMTime::show`"]
     pub fn CMTimeShow(time: CMTime);
 }

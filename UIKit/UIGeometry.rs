@@ -290,19 +290,40 @@ unsafe impl RefEncode for NSRectAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn UIEdgeInsetsMake(top: CGFloat,left: CGFloat,bottom: CGFloat,right: CGFloat,) -> UIEdgeInsets;
+#[cfg(feature = "objc2-core-foundation")]
+impl UIEdgeInsets {
+    // TODO: pub fn UIEdgeInsetsMake(top: CGFloat,left: CGFloat,bottom: CGFloat,right: CGFloat,) -> UIEdgeInsets;
+}
 
-// TODO: pub fn NSDirectionalEdgeInsetsMake(top: CGFloat,leading: CGFloat,bottom: CGFloat,trailing: CGFloat,) -> NSDirectionalEdgeInsets;
+#[cfg(feature = "objc2-core-foundation")]
+impl NSDirectionalEdgeInsets {
+    // TODO: pub fn NSDirectionalEdgeInsetsMake(top: CGFloat,leading: CGFloat,bottom: CGFloat,trailing: CGFloat,) -> NSDirectionalEdgeInsets;
+}
 
-// TODO: pub fn UIEdgeInsetsInsetRect(rect: CGRect,insets: UIEdgeInsets,) -> CGRect;
+#[cfg(feature = "objc2-core-foundation")]
+impl UIEdgeInsets {
+    // TODO: pub fn UIEdgeInsetsInsetRect(rect: CGRect,insets: UIEdgeInsets,) -> CGRect;
+}
 
-// TODO: pub fn UIOffsetMake(horizontal: CGFloat,vertical: CGFloat,) -> UIOffset;
+#[cfg(feature = "objc2-core-foundation")]
+impl UIOffset {
+    // TODO: pub fn UIOffsetMake(horizontal: CGFloat,vertical: CGFloat,) -> UIOffset;
+}
 
-// TODO: pub fn UIEdgeInsetsEqualToEdgeInsets(insets1: UIEdgeInsets,insets2: UIEdgeInsets,) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+impl UIEdgeInsets {
+    // TODO: pub fn UIEdgeInsetsEqualToEdgeInsets(insets1: UIEdgeInsets,insets2: UIEdgeInsets,) -> Bool;
+}
 
-// TODO: pub fn NSDirectionalEdgeInsetsEqualToDirectionalEdgeInsets(insets1: NSDirectionalEdgeInsets,insets2: NSDirectionalEdgeInsets,) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+impl NSDirectionalEdgeInsets {
+    // TODO: pub fn NSDirectionalEdgeInsetsEqualToDirectionalEdgeInsets(insets1: NSDirectionalEdgeInsets,insets2: NSDirectionalEdgeInsets,) -> Bool;
+}
 
-// TODO: pub fn UIOffsetEqualToOffset(offset1: UIOffset,offset2: UIOffset,) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+impl UIOffset {
+    // TODO: pub fn UIOffsetEqualToOffset(offset1: UIOffset,offset2: UIOffset,) -> Bool;
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiedgeinsetszero?language=objc)
@@ -441,19 +462,43 @@ extern "C-unwind" {
     pub fn CGAffineTransformFromString(string: &NSString) -> CGAffineTransform;
 }
 
-extern "C-unwind" {
+#[cfg(feature = "objc2-core-foundation")]
+impl UIEdgeInsets {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn UIEdgeInsetsFromString(string: &NSString) -> UIEdgeInsets;
+    #[inline]
+    #[doc(alias = "UIEdgeInsetsFromString")]
+    pub unsafe fn from_string(string: &NSString) -> UIEdgeInsets {
+        extern "C-unwind" {
+            fn UIEdgeInsetsFromString(string: &NSString) -> UIEdgeInsets;
+        }
+        unsafe { UIEdgeInsetsFromString(string) }
+    }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "objc2-core-foundation")]
+impl NSDirectionalEdgeInsets {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSDirectionalEdgeInsetsFromString(string: &NSString) -> NSDirectionalEdgeInsets;
+    #[inline]
+    #[doc(alias = "NSDirectionalEdgeInsetsFromString")]
+    pub unsafe fn from_string(string: &NSString) -> NSDirectionalEdgeInsets {
+        extern "C-unwind" {
+            fn NSDirectionalEdgeInsetsFromString(string: &NSString) -> NSDirectionalEdgeInsets;
+        }
+        unsafe { NSDirectionalEdgeInsetsFromString(string) }
+    }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "objc2-core-foundation")]
+impl UIOffset {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn UIOffsetFromString(string: &NSString) -> UIOffset;
+    #[inline]
+    #[doc(alias = "UIOffsetFromString")]
+    pub unsafe fn from_string(string: &NSString) -> UIOffset {
+        extern "C-unwind" {
+            fn UIOffsetFromString(string: &NSString) -> UIOffset;
+        }
+        unsafe { UIOffsetFromString(string) }
+    }
 }
 
 mod private_NSValueUIGeometryExtensions {
@@ -657,3 +702,21 @@ pub unsafe trait NSCoderUIGeometryKeyedCoding:
 
 impl private_NSCoderUIGeometryKeyedCoding::Sealed for NSCoder {}
 unsafe impl NSCoderUIGeometryKeyedCoding for NSCoder {}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `UIEdgeInsets::from_string`"]
+    pub fn UIEdgeInsetsFromString(string: &NSString) -> UIEdgeInsets;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `NSDirectionalEdgeInsets::from_string`"]
+    pub fn NSDirectionalEdgeInsetsFromString(string: &NSString) -> NSDirectionalEdgeInsets;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `UIOffset::from_string`"]
+    pub fn UIOffsetFromString(string: &NSString) -> UIOffset;
+}

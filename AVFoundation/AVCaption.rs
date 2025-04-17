@@ -129,25 +129,52 @@ unsafe impl RefEncode for AVCaptionSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+#[cfg(feature = "objc2-core-foundation")]
+impl AVCaptionDimension {
     /// Makes an AVCaptionDimension from a value and units.
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn AVCaptionDimensionMake(value: CGFloat, units: AVCaptionUnitsType) -> AVCaptionDimension;
+    #[inline]
+    #[doc(alias = "AVCaptionDimensionMake")]
+    pub unsafe fn new(value: CGFloat, units: AVCaptionUnitsType) -> AVCaptionDimension {
+        extern "C-unwind" {
+            fn AVCaptionDimensionMake(
+                value: CGFloat,
+                units: AVCaptionUnitsType,
+            ) -> AVCaptionDimension;
+        }
+        unsafe { AVCaptionDimensionMake(value, units) }
+    }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "objc2-core-foundation")]
+impl AVCaptionPoint {
     /// Makes an AVCaptionPoint from x and y coordinate AVCaptionDimensions.
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn AVCaptionPointMake(x: AVCaptionDimension, y: AVCaptionDimension) -> AVCaptionPoint;
+    #[inline]
+    #[doc(alias = "AVCaptionPointMake")]
+    pub unsafe fn new(x: AVCaptionDimension, y: AVCaptionDimension) -> AVCaptionPoint {
+        extern "C-unwind" {
+            fn AVCaptionPointMake(x: AVCaptionDimension, y: AVCaptionDimension) -> AVCaptionPoint;
+        }
+        unsafe { AVCaptionPointMake(x, y) }
+    }
 }
 
-extern "C-unwind" {
+#[cfg(feature = "objc2-core-foundation")]
+impl AVCaptionSize {
     /// Makes an AVCaptionSize from width and height AVCaptionDimensions.
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn AVCaptionSizeMake(
-        width: AVCaptionDimension,
-        height: AVCaptionDimension,
-    ) -> AVCaptionSize;
+    #[inline]
+    #[doc(alias = "AVCaptionSizeMake")]
+    pub unsafe fn new(width: AVCaptionDimension, height: AVCaptionDimension) -> AVCaptionSize {
+        extern "C-unwind" {
+            fn AVCaptionSizeMake(
+                width: AVCaptionDimension,
+                height: AVCaptionDimension,
+            ) -> AVCaptionSize;
+        }
+        unsafe { AVCaptionSizeMake(width, height) }
+    }
 }
 
 /// Choices for region display alignment
@@ -1356,4 +1383,25 @@ impl AVCaptionRuby {
         #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> AVCaptionRubyAlignment;
     );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `AVCaptionDimension::new`"]
+    pub fn AVCaptionDimensionMake(value: CGFloat, units: AVCaptionUnitsType) -> AVCaptionDimension;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `AVCaptionPoint::new`"]
+    pub fn AVCaptionPointMake(x: AVCaptionDimension, y: AVCaptionDimension) -> AVCaptionPoint;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `AVCaptionSize::new`"]
+    pub fn AVCaptionSizeMake(
+        width: AVCaptionDimension,
+        height: AVCaptionDimension,
+    ) -> AVCaptionSize;
 }

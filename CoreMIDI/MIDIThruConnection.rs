@@ -363,9 +363,10 @@ unsafe impl RefEncode for MIDIThruConnectionParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn MIDIThruConnectionParamsSize(ptr: NonNull<MIDIThruConnectionParams>,) -> usize;
+#[cfg(feature = "MIDIServices")]
+impl MIDIThruConnectionParams {
+    // TODO: pub fn MIDIThruConnectionParamsSize(ptr: NonNull<MIDIThruConnectionParams>,) -> usize;
 
-extern "C-unwind" {
     /// Fills a MIDIThruConnectionParams with default values.
     ///
     /// Parameter `inConnectionParams`: The struct to be initialized.
@@ -374,9 +375,16 @@ extern "C-unwind" {
     /// no transformations (mostly zeroes except for the channel map). Then, just filling in the
     /// source and adding one destination will create a simple, unmodified thru connection.
     #[cfg(feature = "MIDIServices")]
-    pub fn MIDIThruConnectionParamsInitialize(
-        in_connection_params: NonNull<MIDIThruConnectionParams>,
-    );
+    #[inline]
+    #[doc(alias = "MIDIThruConnectionParamsInitialize")]
+    pub unsafe fn initialize(in_connection_params: NonNull<MIDIThruConnectionParams>) {
+        extern "C-unwind" {
+            fn MIDIThruConnectionParamsInitialize(
+                in_connection_params: NonNull<MIDIThruConnectionParams>,
+            );
+        }
+        unsafe { MIDIThruConnectionParamsInitialize(in_connection_params) }
+    }
 }
 
 extern "C-unwind" {
@@ -455,4 +463,12 @@ extern "C-unwind" {
         in_persistent_owner_id: &CFString,
         out_connection_list: NonNull<NonNull<CFData>>,
     ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "MIDIServices")]
+    #[deprecated = "renamed to `MIDIThruConnectionParams::initialize`"]
+    pub fn MIDIThruConnectionParamsInitialize(
+        in_connection_params: NonNull<MIDIThruConnectionParams>,
+    );
 }

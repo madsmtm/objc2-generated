@@ -7036,6 +7036,14 @@ pub use self::__hid::IOHIDValueMultipleCallback;
 pub use self::__hid::IOHIDValueOptions;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDValueScaleType;
+#[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_NXEvent_location;
+#[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_NXParsedKeyMapping_;
+#[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_NXTabletPointData_tilt;
+#[cfg(feature = "hidsystem")]
+pub(crate) use self::__hidsystem::_evOffsets;
 #[cfg(all(feature = "graphics", feature = "hidsystem"))]
 pub use self::__hidsystem::evioLLEvent;
 #[cfg(feature = "hidsystem")]
@@ -7450,14 +7458,6 @@ pub use self::__hidsystem::NXSize;
 pub use self::__hidsystem::NXTabletPointData;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::NXTabletProximityData;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_NXEvent_location;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_NXParsedKeyMapping_;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_NXTabletPointData_tilt;
-#[cfg(feature = "hidsystem")]
-pub(crate) use self::__hidsystem::_evOffsets;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::EVENT_SYSTEM_VERSION;
 #[cfg(feature = "usb")]
@@ -8523,7 +8523,7 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
+impl IONotificationPort {
     /// Creates and returns a notification object for receiving IOKit notifications of new devices or state changes.
     ///
     /// Creates the notification object to receive notifications from IOKit of new device arrivals or state changes. The notification object can be supply a CFRunLoopSource, or mach_port_t to be used to listen for events.
@@ -8532,10 +8532,15 @@ extern "C-unwind" {
     ///
     /// Returns: A reference to the notification object.
     #[cfg(feature = "libc")]
-    pub fn IONotificationPortCreate(main_port: libc::mach_port_t) -> IONotificationPortRef;
-}
+    #[inline]
+    #[doc(alias = "IONotificationPortCreate")]
+    pub unsafe fn create(main_port: libc::mach_port_t) -> IONotificationPortRef {
+        extern "C-unwind" {
+            fn IONotificationPortCreate(main_port: libc::mach_port_t) -> IONotificationPortRef;
+        }
+        unsafe { IONotificationPortCreate(main_port) }
+    }
 
-extern "C-unwind" {
     /// Destroys a notification object created with IONotificationPortCreate.
     /// Also destroys any mach_port's or CFRunLoopSources obtained from
     /// <code>
@@ -8555,42 +8560,48 @@ extern "C-unwind" {
     /// </code>
     ///
     /// Parameter `notify`: A reference to the notification object.
-    pub fn IONotificationPortDestroy(notify: IONotificationPortRef);
-}
-
-/// Returns a CFRunLoopSource to be used to listen for notifications.
-///
-/// A notification object may deliver notifications to a CFRunLoop
-/// by adding the run loop source returned by this function to the run loop.
-///
-/// The caller should not release this CFRunLoopSource. Just call
-/// <code>
-///
-/// ```text
-///  IONotificationPortDestroy
-/// ```
-///
-/// </code>
-/// to dispose of the
-/// IONotificationPortRef and the CFRunLoopSource when done.
-///
-/// Parameter `notify`: The notification object.
-///
-/// Returns: A CFRunLoopSourceRef for the notification object.
-#[inline]
-pub unsafe extern "C-unwind" fn IONotificationPortGetRunLoopSource(
-    notify: IONotificationPortRef,
-) -> Option<CFRetained<CFRunLoopSource>> {
-    extern "C-unwind" {
-        fn IONotificationPortGetRunLoopSource(
-            notify: IONotificationPortRef,
-        ) -> Option<NonNull<CFRunLoopSource>>;
+    #[inline]
+    #[doc(alias = "IONotificationPortDestroy")]
+    pub unsafe fn destroy(notify: IONotificationPortRef) {
+        extern "C-unwind" {
+            fn IONotificationPortDestroy(notify: IONotificationPortRef);
+        }
+        unsafe { IONotificationPortDestroy(notify) }
     }
-    let ret = unsafe { IONotificationPortGetRunLoopSource(notify) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-extern "C-unwind" {
+    /// Returns a CFRunLoopSource to be used to listen for notifications.
+    ///
+    /// A notification object may deliver notifications to a CFRunLoop
+    /// by adding the run loop source returned by this function to the run loop.
+    ///
+    /// The caller should not release this CFRunLoopSource. Just call
+    /// <code>
+    ///
+    /// ```text
+    ///  IONotificationPortDestroy
+    /// ```
+    ///
+    /// </code>
+    /// to dispose of the
+    /// IONotificationPortRef and the CFRunLoopSource when done.
+    ///
+    /// Parameter `notify`: The notification object.
+    ///
+    /// Returns: A CFRunLoopSourceRef for the notification object.
+    #[inline]
+    #[doc(alias = "IONotificationPortGetRunLoopSource")]
+    pub unsafe fn run_loop_source(
+        notify: IONotificationPortRef,
+    ) -> Option<CFRetained<CFRunLoopSource>> {
+        extern "C-unwind" {
+            fn IONotificationPortGetRunLoopSource(
+                notify: IONotificationPortRef,
+            ) -> Option<NonNull<CFRunLoopSource>>;
+        }
+        let ret = unsafe { IONotificationPortGetRunLoopSource(notify) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
     /// Returns a mach_port to be used to listen for notifications.
     ///
     /// A notification object may deliver notifications to a mach messaging client
@@ -8613,10 +8624,15 @@ extern "C-unwind" {
     ///
     /// Returns: A mach_port for the notification object.
     #[cfg(feature = "libc")]
-    pub fn IONotificationPortGetMachPort(notify: IONotificationPortRef) -> libc::mach_port_t;
-}
+    #[inline]
+    #[doc(alias = "IONotificationPortGetMachPort")]
+    pub unsafe fn mach_port(notify: IONotificationPortRef) -> libc::mach_port_t {
+        extern "C-unwind" {
+            fn IONotificationPortGetMachPort(notify: IONotificationPortRef) -> libc::mach_port_t;
+        }
+        unsafe { IONotificationPortGetMachPort(notify) }
+    }
 
-extern "C-unwind" {
     /// Configure a notification port to be an importance receiver.
     ///
     /// Sets the MACH_PORT_IMPORTANCE_RECEIVER attribute on the underlying mach port.
@@ -8628,12 +8644,17 @@ extern "C-unwind" {
     ///
     /// Returns: A kern_return_t error code.
     #[cfg(feature = "libc")]
-    pub fn IONotificationPortSetImportanceReceiver(
-        notify: IONotificationPortRef,
-    ) -> libc::kern_return_t;
-}
+    #[inline]
+    #[doc(alias = "IONotificationPortSetImportanceReceiver")]
+    pub unsafe fn set_importance_receiver(notify: IONotificationPortRef) -> libc::kern_return_t {
+        extern "C-unwind" {
+            fn IONotificationPortSetImportanceReceiver(
+                notify: IONotificationPortRef,
+            ) -> libc::kern_return_t;
+        }
+        unsafe { IONotificationPortSetImportanceReceiver(notify) }
+    }
 
-extern "C-unwind" {
     /// Sets a dispatch queue to be used to listen for notifications.
     ///
     /// A notification object may deliver notifications to a dispatch client.
@@ -8642,10 +8663,17 @@ extern "C-unwind" {
     ///
     /// Parameter `queue`: A dispatch queue.
     #[cfg(feature = "dispatch2")]
-    pub fn IONotificationPortSetDispatchQueue(
-        notify: IONotificationPortRef,
-        queue: Option<&DispatchQueue>,
-    );
+    #[inline]
+    #[doc(alias = "IONotificationPortSetDispatchQueue")]
+    pub unsafe fn set_dispatch_queue(notify: IONotificationPortRef, queue: Option<&DispatchQueue>) {
+        extern "C-unwind" {
+            fn IONotificationPortSetDispatchQueue(
+                notify: IONotificationPortRef,
+                queue: Option<&DispatchQueue>,
+            );
+        }
+        unsafe { IONotificationPortSetDispatchQueue(notify, queue) }
+    }
 }
 
 extern "C-unwind" {
@@ -10712,4 +10740,52 @@ unsafe impl Encode for OSClassDescription {
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for OSClassDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "libc")]
+    #[deprecated = "renamed to `IONotificationPort::create`"]
+    pub fn IONotificationPortCreate(main_port: libc::mach_port_t) -> IONotificationPortRef;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `IONotificationPort::destroy`"]
+    pub fn IONotificationPortDestroy(notify: IONotificationPortRef);
+}
+
+#[deprecated = "renamed to `IONotificationPort::run_loop_source`"]
+#[inline]
+pub unsafe extern "C-unwind" fn IONotificationPortGetRunLoopSource(
+    notify: IONotificationPortRef,
+) -> Option<CFRetained<CFRunLoopSource>> {
+    extern "C-unwind" {
+        fn IONotificationPortGetRunLoopSource(
+            notify: IONotificationPortRef,
+        ) -> Option<NonNull<CFRunLoopSource>>;
+    }
+    let ret = unsafe { IONotificationPortGetRunLoopSource(notify) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "libc")]
+    #[deprecated = "renamed to `IONotificationPort::mach_port`"]
+    pub fn IONotificationPortGetMachPort(notify: IONotificationPortRef) -> libc::mach_port_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "libc")]
+    #[deprecated = "renamed to `IONotificationPort::set_importance_receiver`"]
+    pub fn IONotificationPortSetImportanceReceiver(
+        notify: IONotificationPortRef,
+    ) -> libc::kern_return_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "dispatch2")]
+    #[deprecated = "renamed to `IONotificationPort::set_dispatch_queue`"]
+    pub fn IONotificationPortSetDispatchQueue(
+        notify: IONotificationPortRef,
+        queue: Option<&DispatchQueue>,
+    );
 }

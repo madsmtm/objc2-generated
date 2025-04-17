@@ -1445,13 +1445,26 @@ impl UIApplication {
     );
 }
 
-extern "C-unwind" {
-    pub fn UIApplicationMain(
+#[cfg(feature = "UIResponder")]
+impl UIApplication {
+    #[inline]
+    #[doc(alias = "UIApplicationMain")]
+    pub unsafe fn main(
         argc: c_int,
         argv: NonNull<*mut c_char>,
         principal_class_name: Option<&NSString>,
         delegate_class_name: Option<&NSString>,
-    ) -> c_int;
+    ) -> c_int {
+        extern "C-unwind" {
+            fn UIApplicationMain(
+                argc: c_int,
+                argv: NonNull<*mut c_char>,
+                principal_class_name: Option<&NSString>,
+                delegate_class_name: Option<&NSString>,
+            ) -> c_int;
+        }
+        unsafe { UIApplicationMain(argc, argv, principal_class_name, delegate_class_name) }
+    }
 }
 
 extern "C" {
@@ -1685,4 +1698,14 @@ extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenexternalurloptionseventattributionkey?language=objc)
     pub static UIApplicationOpenExternalURLOptionsEventAttributionKey:
         &'static UIApplicationOpenExternalURLOptionsKey;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `UIApplication::main`"]
+    pub fn UIApplicationMain(
+        argc: c_int,
+        argv: NonNull<*mut c_char>,
+        principal_class_name: Option<&NSString>,
+        delegate_class_name: Option<&NSString>,
+    ) -> c_int;
 }

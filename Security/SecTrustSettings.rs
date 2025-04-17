@@ -95,8 +95,127 @@ unsafe impl RefEncode for SecTrustSettingsDomain {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+#[cfg(feature = "SecTrust")]
+impl SecTrust {
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecTrustSettingsCopyTrustSettings")]
+    pub unsafe fn settings_copy_trust_settings(
+        cert_ref: &SecCertificate,
+        domain: SecTrustSettingsDomain,
+        trust_settings: NonNull<*const CFArray>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecTrustSettingsCopyTrustSettings(
+                cert_ref: &SecCertificate,
+                domain: SecTrustSettingsDomain,
+                trust_settings: NonNull<*const CFArray>,
+            ) -> OSStatus;
+        }
+        unsafe { SecTrustSettingsCopyTrustSettings(cert_ref, domain, trust_settings) }
+    }
+
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecTrustSettingsSetTrustSettings")]
+    pub unsafe fn settings_set_trust_settings(
+        cert_ref: &SecCertificate,
+        domain: SecTrustSettingsDomain,
+        trust_settings_dict_or_array: Option<&CFType>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecTrustSettingsSetTrustSettings(
+                cert_ref: &SecCertificate,
+                domain: SecTrustSettingsDomain,
+                trust_settings_dict_or_array: Option<&CFType>,
+            ) -> OSStatus;
+        }
+        unsafe { SecTrustSettingsSetTrustSettings(cert_ref, domain, trust_settings_dict_or_array) }
+    }
+
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecTrustSettingsRemoveTrustSettings")]
+    pub unsafe fn settings_remove_trust_settings(
+        cert_ref: &SecCertificate,
+        domain: SecTrustSettingsDomain,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecTrustSettingsRemoveTrustSettings(
+                cert_ref: &SecCertificate,
+                domain: SecTrustSettingsDomain,
+            ) -> OSStatus;
+        }
+        unsafe { SecTrustSettingsRemoveTrustSettings(cert_ref, domain) }
+    }
+
+    #[inline]
+    #[doc(alias = "SecTrustSettingsCopyCertificates")]
+    pub unsafe fn settings_copy_certificates(
+        domain: SecTrustSettingsDomain,
+        cert_array: *mut *const CFArray,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecTrustSettingsCopyCertificates(
+                domain: SecTrustSettingsDomain,
+                cert_array: *mut *const CFArray,
+            ) -> OSStatus;
+        }
+        unsafe { SecTrustSettingsCopyCertificates(domain, cert_array) }
+    }
+
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    #[doc(alias = "SecTrustSettingsCopyModificationDate")]
+    pub unsafe fn settings_copy_modification_date(
+        cert_ref: &SecCertificate,
+        domain: SecTrustSettingsDomain,
+        modification_date: NonNull<*const CFDate>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecTrustSettingsCopyModificationDate(
+                cert_ref: &SecCertificate,
+                domain: SecTrustSettingsDomain,
+                modification_date: NonNull<*const CFDate>,
+            ) -> OSStatus;
+        }
+        unsafe { SecTrustSettingsCopyModificationDate(cert_ref, domain, modification_date) }
+    }
+
+    #[inline]
+    #[doc(alias = "SecTrustSettingsCreateExternalRepresentation")]
+    pub unsafe fn settings_create_external_representation(
+        domain: SecTrustSettingsDomain,
+        trust_settings: NonNull<*const CFData>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecTrustSettingsCreateExternalRepresentation(
+                domain: SecTrustSettingsDomain,
+                trust_settings: NonNull<*const CFData>,
+            ) -> OSStatus;
+        }
+        unsafe { SecTrustSettingsCreateExternalRepresentation(domain, trust_settings) }
+    }
+
+    #[inline]
+    #[doc(alias = "SecTrustSettingsImportExternalRepresentation")]
+    pub unsafe fn settings_import_external_representation(
+        domain: SecTrustSettingsDomain,
+        trust_settings: &CFData,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecTrustSettingsImportExternalRepresentation(
+                domain: SecTrustSettingsDomain,
+                trust_settings: &CFData,
+            ) -> OSStatus;
+        }
+        unsafe { SecTrustSettingsImportExternalRepresentation(domain, trust_settings) }
+    }
+}
+
 extern "C-unwind" {
     #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecTrust::settings_copy_trust_settings`"]
     pub fn SecTrustSettingsCopyTrustSettings(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
@@ -106,6 +225,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecTrust::settings_set_trust_settings`"]
     pub fn SecTrustSettingsSetTrustSettings(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
@@ -115,6 +235,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecTrust::settings_remove_trust_settings`"]
     pub fn SecTrustSettingsRemoveTrustSettings(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
@@ -122,6 +243,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SecTrust::settings_copy_certificates`"]
     pub fn SecTrustSettingsCopyCertificates(
         domain: SecTrustSettingsDomain,
         cert_array: *mut *const CFArray,
@@ -130,6 +252,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "SecBase")]
+    #[deprecated = "renamed to `SecTrust::settings_copy_modification_date`"]
     pub fn SecTrustSettingsCopyModificationDate(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
@@ -138,6 +261,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SecTrust::settings_create_external_representation`"]
     pub fn SecTrustSettingsCreateExternalRepresentation(
         domain: SecTrustSettingsDomain,
         trust_settings: NonNull<*const CFData>,
@@ -145,6 +269,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `SecTrust::settings_import_external_representation`"]
     pub fn SecTrustSettingsImportExternalRepresentation(
         domain: SecTrustSettingsDomain,
         trust_settings: &CFData,

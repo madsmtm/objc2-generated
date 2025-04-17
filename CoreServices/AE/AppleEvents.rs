@@ -361,33 +361,57 @@ extern "C-unwind" {
     pub fn AEDisposeRemoteProcessResolver(r#ref: AERemoteProcessResolverRef);
 }
 
-#[inline]
-pub unsafe extern "C-unwind" fn AERemoteProcessResolverGetProcesses(
-    r#ref: AERemoteProcessResolverRef,
-    out_error: *mut CFStreamError,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn AERemoteProcessResolverGetProcesses(
-            r#ref: AERemoteProcessResolverRef,
-            out_error: *mut CFStreamError,
-        ) -> Option<NonNull<CFArray>>;
+impl AERemoteProcessResolver {
+    #[inline]
+    #[doc(alias = "AERemoteProcessResolverGetProcesses")]
+    pub unsafe fn processes(
+        r#ref: AERemoteProcessResolverRef,
+        out_error: *mut CFStreamError,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn AERemoteProcessResolverGetProcesses(
+                r#ref: AERemoteProcessResolverRef,
+                out_error: *mut CFStreamError,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { AERemoteProcessResolverGetProcesses(r#ref, out_error) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { AERemoteProcessResolverGetProcesses(r#ref, out_error) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercallback?language=objc)
 pub type AERemoteProcessResolverCallback =
     Option<unsafe extern "C-unwind" fn(AERemoteProcessResolverRef, *mut c_void)>;
 
-extern "C-unwind" {
-    pub fn AERemoteProcessResolverScheduleWithRunLoop(
+impl AERemoteProcessResolver {
+    #[inline]
+    #[doc(alias = "AERemoteProcessResolverScheduleWithRunLoop")]
+    pub unsafe fn schedule_with_run_loop(
         r#ref: AERemoteProcessResolverRef,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
         callback: AERemoteProcessResolverCallback,
         ctx: *const AERemoteProcessResolverContext,
-    );
+    ) {
+        extern "C-unwind" {
+            fn AERemoteProcessResolverScheduleWithRunLoop(
+                r#ref: AERemoteProcessResolverRef,
+                run_loop: Option<&CFRunLoop>,
+                run_loop_mode: Option<&CFString>,
+                callback: AERemoteProcessResolverCallback,
+                ctx: *const AERemoteProcessResolverContext,
+            );
+        }
+        unsafe {
+            AERemoteProcessResolverScheduleWithRunLoop(
+                r#ref,
+                run_loop,
+                run_loop_mode,
+                callback,
+                ctx,
+            )
+        }
+    }
 }
 
 /// Determines whether the current application is able to send an AppleEvent with the given eventClass and eventID to the application described as targetAddressDesc.
@@ -467,3 +491,30 @@ pub const errAEEventWouldRequireUserConsent: c_int = -1744;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedonotpromptforuserconsent?language=objc)
 pub const kAEDoNotPromptForUserConsent: c_uint = 0x00020000;
+
+#[deprecated = "renamed to `AERemoteProcessResolver::processes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn AERemoteProcessResolverGetProcesses(
+    r#ref: AERemoteProcessResolverRef,
+    out_error: *mut CFStreamError,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn AERemoteProcessResolverGetProcesses(
+            r#ref: AERemoteProcessResolverRef,
+            out_error: *mut CFStreamError,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { AERemoteProcessResolverGetProcesses(r#ref, out_error) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `AERemoteProcessResolver::schedule_with_run_loop`"]
+    pub fn AERemoteProcessResolverScheduleWithRunLoop(
+        r#ref: AERemoteProcessResolverRef,
+        run_loop: Option<&CFRunLoop>,
+        run_loop_mode: Option<&CFString>,
+        callback: AERemoteProcessResolverCallback,
+        ctx: *const AERemoteProcessResolverContext,
+    );
+}

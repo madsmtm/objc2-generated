@@ -23,268 +23,277 @@ unsafe impl ConcreteType for ODNodeRef {
     }
 }
 
-/// Creates an ODNodeRef based on a specific node type
-///
-/// Creates an ODNodeRef based on a specific node type
-///
-/// Parameter `allocator`: a memory allocator to use for this object
-///
-/// Parameter `session`: an ODSessionRef, either kODSessionDefault or a valid ODSessionRef can be passed
-///
-/// Parameter `nodeType`: an ODNodeType of the node to open
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a valid ODNodeRef if successful, otherwise returns NULL.  outError can be checked for details upon
-/// failure.
-#[cfg(all(
-    feature = "CFOpenDirectoryConstants",
-    feature = "objc2-core-foundation"
-))]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCreateWithNodeType(
-    allocator: Option<&CFAllocator>,
-    session: Option<&ODSessionRef>,
-    node_type: ODNodeType,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<ODNodeRef>> {
-    extern "C-unwind" {
-        fn ODNodeCreateWithNodeType(
-            allocator: Option<&CFAllocator>,
-            session: Option<&ODSessionRef>,
-            node_type: ODNodeType,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<ODNodeRef>>;
+impl ODNodeRef {
+    /// Creates an ODNodeRef based on a specific node type
+    ///
+    /// Creates an ODNodeRef based on a specific node type
+    ///
+    /// Parameter `allocator`: a memory allocator to use for this object
+    ///
+    /// Parameter `session`: an ODSessionRef, either kODSessionDefault or a valid ODSessionRef can be passed
+    ///
+    /// Parameter `nodeType`: an ODNodeType of the node to open
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a valid ODNodeRef if successful, otherwise returns NULL.  outError can be checked for details upon
+    /// failure.
+    #[cfg(all(
+        feature = "CFOpenDirectoryConstants",
+        feature = "objc2-core-foundation"
+    ))]
+    #[inline]
+    #[doc(alias = "ODNodeCreateWithNodeType")]
+    pub unsafe fn with_node_type(
+        allocator: Option<&CFAllocator>,
+        session: Option<&ODSessionRef>,
+        node_type: ODNodeType,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<ODNodeRef>> {
+        extern "C-unwind" {
+            fn ODNodeCreateWithNodeType(
+                allocator: Option<&CFAllocator>,
+                session: Option<&ODSessionRef>,
+                node_type: ODNodeType,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<ODNodeRef>>;
+        }
+        let ret = unsafe { ODNodeCreateWithNodeType(allocator, session, node_type, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCreateWithNodeType(allocator, session, node_type, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Creates an ODNodeRef based on a partciular node name
-///
-/// Creates an ODNodeRef based on a particular node name
-///
-/// Parameter `allocator`: a memory allocator to use for this object
-///
-/// Parameter `session`: an ODSessionRef, either kODSessionDefault or a valid ODSessionRef can be passed
-///
-/// Parameter `nodeName`: a CFStringRef of the name of the node to open
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a valid ODNodeRef if successful, otherwise returns NULL. outError can be checked for specific
-/// error
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCreateWithName(
-    allocator: Option<&CFAllocator>,
-    session: Option<&ODSessionRef>,
-    node_name: Option<&CFString>,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<ODNodeRef>> {
-    extern "C-unwind" {
-        fn ODNodeCreateWithName(
-            allocator: Option<&CFAllocator>,
-            session: Option<&ODSessionRef>,
-            node_name: Option<&CFString>,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<ODNodeRef>>;
+    /// Creates an ODNodeRef based on a partciular node name
+    ///
+    /// Creates an ODNodeRef based on a particular node name
+    ///
+    /// Parameter `allocator`: a memory allocator to use for this object
+    ///
+    /// Parameter `session`: an ODSessionRef, either kODSessionDefault or a valid ODSessionRef can be passed
+    ///
+    /// Parameter `nodeName`: a CFStringRef of the name of the node to open
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a valid ODNodeRef if successful, otherwise returns NULL. outError can be checked for specific
+    /// error
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODNodeCreateWithName")]
+    pub unsafe fn with_name(
+        allocator: Option<&CFAllocator>,
+        session: Option<&ODSessionRef>,
+        node_name: Option<&CFString>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<ODNodeRef>> {
+        extern "C-unwind" {
+            fn ODNodeCreateWithName(
+                allocator: Option<&CFAllocator>,
+                session: Option<&ODSessionRef>,
+                node_name: Option<&CFString>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<ODNodeRef>>;
+        }
+        let ret = unsafe { ODNodeCreateWithName(allocator, session, node_name, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCreateWithName(allocator, session, node_name, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Creates a copy, including any remote credentials used for Proxy and/or Node authentication
-///
-/// Creates a copy of the object including all credentials used for the original.  Can be used for future
-/// references to the same node setup.
-///
-/// Parameter `allocator`: a memory allocator to use for this object
-///
-/// Parameter `node`: an ODNodeRef to make a copy of
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a valid ODNodeRef if successful, otherwise returns NULL, with outError set to a CFErrorRef
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCreateCopy(
-    allocator: Option<&CFAllocator>,
-    node: Option<&ODNodeRef>,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<ODNodeRef>> {
-    extern "C-unwind" {
-        fn ODNodeCreateCopy(
-            allocator: Option<&CFAllocator>,
-            node: Option<&ODNodeRef>,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<ODNodeRef>>;
+    /// Creates a copy, including any remote credentials used for Proxy and/or Node authentication
+    ///
+    /// Creates a copy of the object including all credentials used for the original.  Can be used for future
+    /// references to the same node setup.
+    ///
+    /// Parameter `allocator`: a memory allocator to use for this object
+    ///
+    /// Parameter `node`: an ODNodeRef to make a copy of
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a valid ODNodeRef if successful, otherwise returns NULL, with outError set to a CFErrorRef
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODNodeCreateCopy")]
+    pub unsafe fn new_copy(
+        allocator: Option<&CFAllocator>,
+        node: Option<&ODNodeRef>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<ODNodeRef>> {
+        extern "C-unwind" {
+            fn ODNodeCreateCopy(
+                allocator: Option<&CFAllocator>,
+                node: Option<&ODNodeRef>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<ODNodeRef>>;
+        }
+        let ret = unsafe { ODNodeCreateCopy(allocator, node, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCreateCopy(allocator, node, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns a CFArray of subnode names for this node, which may contain sub-nodes or search policy nodes
-///
-/// Returns a CFArray of subnode names for this node, which may contain sub-nodes or search policy nodes.
-/// Commonly used with Search policy nodes.
-///
-/// Parameter `node`: an ODNodeRef to use
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a CFArrayRef with the list of nodes, otherwise NULL, with outError set to a CFErrorRef
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCopySubnodeNames(
-    node: &ODNodeRef,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn ODNodeCopySubnodeNames(
-            node: &ODNodeRef,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFArray>>;
+    /// Returns a CFArray of subnode names for this node, which may contain sub-nodes or search policy nodes
+    ///
+    /// Returns a CFArray of subnode names for this node, which may contain sub-nodes or search policy nodes.
+    /// Commonly used with Search policy nodes.
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a CFArrayRef with the list of nodes, otherwise NULL, with outError set to a CFErrorRef
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODNodeCopySubnodeNames")]
+    pub unsafe fn subnode_names(
+        self: &ODNodeRef,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn ODNodeCopySubnodeNames(
+                node: &ODNodeRef,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { ODNodeCopySubnodeNames(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCopySubnodeNames(node, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Will return names of subnodes that are not currently reachable.
-///
-/// Will return names of subnodes that are not currently reachable.  Commonly used with Search policy nodes
-/// to determine if any nodes are currently unreachable, but may also return other subnodes if the
-/// Open Directory plugin supports.
-///
-/// Parameter `node`: an ODNodeRef to use
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a CFArrayRef with the list of unreachable nodes or NULL if no bad nodes
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCopyUnreachableSubnodeNames(
-    node: &ODNodeRef,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn ODNodeCopyUnreachableSubnodeNames(
-            node: &ODNodeRef,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFArray>>;
+    /// Will return names of subnodes that are not currently reachable.
+    ///
+    /// Will return names of subnodes that are not currently reachable.  Commonly used with Search policy nodes
+    /// to determine if any nodes are currently unreachable, but may also return other subnodes if the
+    /// Open Directory plugin supports.
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a CFArrayRef with the list of unreachable nodes or NULL if no bad nodes
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODNodeCopyUnreachableSubnodeNames")]
+    pub unsafe fn unreachable_subnode_names(
+        self: &ODNodeRef,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn ODNodeCopyUnreachableSubnodeNames(
+                node: &ODNodeRef,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { ODNodeCopyUnreachableSubnodeNames(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCopyUnreachableSubnodeNames(node, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns the node name of the node that was opened
-///
-/// Returns the node name of the node that was opened
-///
-/// Parameter `node`: an ODNodeRef to use
-///
-/// Returns: a CFStringRef of the node name that is current or NULL if no open node
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeGetName(node: &ODNodeRef) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn ODNodeGetName(node: &ODNodeRef) -> Option<NonNull<CFString>>;
+    /// Returns the node name of the node that was opened
+    ///
+    /// Returns the node name of the node that was opened
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Returns: a CFStringRef of the node name that is current or NULL if no open node
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODNodeGetName")]
+    pub unsafe fn name(self: &ODNodeRef) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn ODNodeGetName(node: &ODNodeRef) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { ODNodeGetName(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-    let ret = unsafe { ODNodeGetName(node) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-/// Returns a dictionary with details about the node in dictionary form
-///
-/// Returns a dictionary with details about the node in dictionary form.
-///
-/// Parameter `node`: an ODNodeRef to use
-///
-/// Parameter `keys`: a CFArrayRef listing the keys the user wants returned, such as
-/// kODAttributeTypeStreet
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a CFDictionaryRef containing the requested key and values in form of a CFArray
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCopyDetails(
-    node: &ODNodeRef,
-    keys: Option<&CFArray>,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn ODNodeCopyDetails(
-            node: &ODNodeRef,
-            keys: Option<&CFArray>,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFDictionary>>;
+    /// Returns a dictionary with details about the node in dictionary form
+    ///
+    /// Returns a dictionary with details about the node in dictionary form.
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Parameter `keys`: a CFArrayRef listing the keys the user wants returned, such as
+    /// kODAttributeTypeStreet
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a CFDictionaryRef containing the requested key and values in form of a CFArray
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODNodeCopyDetails")]
+    pub unsafe fn details(
+        self: &ODNodeRef,
+        keys: Option<&CFArray>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn ODNodeCopyDetails(
+                node: &ODNodeRef,
+                keys: Option<&CFArray>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { ODNodeCopyDetails(self, keys, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCopyDetails(node, keys, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Returns a CFArrayRef of the record types supported by this node.
-///
-/// Returns a CFArrayRef of the record types supported by this node.  If node does not support the check
-/// then all possible types will be returned.
-///
-/// Parameter `node`: an ODNodeRef to use
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a valid CFArrayRef of CFStrings listing the supported Record types on this node.
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCopySupportedRecordTypes(
-    node: &ODNodeRef,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn ODNodeCopySupportedRecordTypes(
-            node: &ODNodeRef,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFArray>>;
+    /// Returns a CFArrayRef of the record types supported by this node.
+    ///
+    /// Returns a CFArrayRef of the record types supported by this node.  If node does not support the check
+    /// then all possible types will be returned.
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a valid CFArrayRef of CFStrings listing the supported Record types on this node.
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODNodeCopySupportedRecordTypes")]
+    pub unsafe fn supported_record_types(
+        self: &ODNodeRef,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn ODNodeCopySupportedRecordTypes(
+                node: &ODNodeRef,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { ODNodeCopySupportedRecordTypes(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCopySupportedRecordTypes(node, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Will return a list of attribute types supported for that attribute if possible
-///
-/// Will return a list of attribute types supported for that attribute if possible.  If no specific
-/// types are available, then all possible values will be returned instead.
-///
-/// Parameter `node`: an ODNodeRef to use
-///
-/// Parameter `recordType`: a ODRecordTypeRef with the type of record to check attribute types.  If NULL is passed it will
-/// return all possible attributes that are available.
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a valid CFArrayRef of CFStrings listing the attributes supported for the requested record type
-#[cfg(all(
-    feature = "CFOpenDirectoryConstants",
-    feature = "objc2-core-foundation"
-))]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCopySupportedAttributes(
-    node: &ODNodeRef,
-    record_type: Option<&ODRecordType>,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn ODNodeCopySupportedAttributes(
-            node: &ODNodeRef,
-            record_type: Option<&ODRecordType>,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFArray>>;
+    /// Will return a list of attribute types supported for that attribute if possible
+    ///
+    /// Will return a list of attribute types supported for that attribute if possible.  If no specific
+    /// types are available, then all possible values will be returned instead.
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Parameter `recordType`: a ODRecordTypeRef with the type of record to check attribute types.  If NULL is passed it will
+    /// return all possible attributes that are available.
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a valid CFArrayRef of CFStrings listing the attributes supported for the requested record type
+    #[cfg(all(
+        feature = "CFOpenDirectoryConstants",
+        feature = "objc2-core-foundation"
+    ))]
+    #[inline]
+    #[doc(alias = "ODNodeCopySupportedAttributes")]
+    pub unsafe fn supported_attributes(
+        self: &ODNodeRef,
+        record_type: Option<&ODRecordType>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn ODNodeCopySupportedAttributes(
+                node: &ODNodeRef,
+                record_type: Option<&ODRecordType>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { ODNodeCopySupportedAttributes(self, record_type, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCopySupportedAttributes(node, record_type, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
     /// Sets the credentials for interaction with the ODNode
     ///
     /// Sets the credentials for interaction with the ODNode.  Record references, etc. will use these credentials
@@ -308,16 +317,27 @@ extern "C-unwind" {
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
-    pub fn ODNodeSetCredentials(
-        node: &ODNodeRef,
+    #[inline]
+    #[doc(alias = "ODNodeSetCredentials")]
+    pub unsafe fn set_credentials(
+        self: &ODNodeRef,
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         password: Option<&CFString>,
         error: *mut *mut CFError,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn ODNodeSetCredentials(
+                node: &ODNodeRef,
+                record_type: Option<&ODRecordType>,
+                record_name: Option<&CFString>,
+                password: Option<&CFString>,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ODNodeSetCredentials(self, record_type, record_name, password, error) }
+    }
 
-extern "C-unwind" {
     /// Allows use of other Open Directory types of authentications to set the credentials for an ODNode
     ///
     /// Allows the caller to use other types of authentications that are available in Open Directory, that may
@@ -346,248 +366,287 @@ extern "C-unwind" {
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
-    pub fn ODNodeSetCredentialsExtended(
-        node: &ODNodeRef,
+    #[inline]
+    #[doc(alias = "ODNodeSetCredentialsExtended")]
+    pub unsafe fn set_credentials_extended(
+        self: &ODNodeRef,
         record_type: Option<&ODRecordType>,
         auth_type: Option<&ODAuthenticationType>,
         auth_items: Option<&CFArray>,
         out_auth_items: *mut *const CFArray,
         out_context: *mut *const ODContextRef,
         error: *mut *mut CFError,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn ODNodeSetCredentialsExtended(
+                node: &ODNodeRef,
+                record_type: Option<&ODRecordType>,
+                auth_type: Option<&ODAuthenticationType>,
+                auth_items: Option<&CFArray>,
+                out_auth_items: *mut *const CFArray,
+                out_context: *mut *const ODContextRef,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe {
+            ODNodeSetCredentialsExtended(
+                self,
+                record_type,
+                auth_type,
+                auth_items,
+                out_auth_items,
+                out_context,
+                error,
+            )
+        }
+    }
 
-extern "C-unwind" {
     /// Unsupported function.
     ///
     /// Unsupported function.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
-    pub fn ODNodeSetCredentialsUsingKerberosCache(
-        node: &ODNodeRef,
+    #[inline]
+    #[doc(alias = "ODNodeSetCredentialsUsingKerberosCache")]
+    pub unsafe fn set_credentials_using_kerberos_cache(
+        self: &ODNodeRef,
         cache_name: Option<&CFString>,
         error: *mut *mut CFError,
-    ) -> bool;
-}
-
-/// Takes a record and all of the provided attributes and creates the record in the node
-///
-/// Takes all the provided attributes and type to create an entire record.  The function will assign a
-/// UUID to the record automatically.  This UUID can be overwritten by the client by passing with the
-/// other attributes.
-///
-/// Parameter `node`: an ODNodeRef to use
-///
-/// Parameter `recordType`: a ODRecordTypeRef of the type of record (e.g., kODRecordTypeUsers, etc.)
-///
-/// Parameter `recordName`: a CFStringRef of the name of record
-///
-/// Parameter `attributeDict`: a CFDictionaryRef of key-value pairs for attribute values.  The key is a CFStringRef of the
-/// attribute name or ODRecordType constant such as kODAttributeTypeRecordName.  The value must be a CFArrayRef of
-/// CFDataRef or CFStringRef.  If additional kODAttributeTypeRecordName are to be set, they can be passed in the
-/// inAttributes list.  This parameter is optional and can be NULL.  If any of the attributes passed
-/// fail to be set, the record will be deleted and outError will be set with the appropriate error.
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: returns a valid ODRecordRef.  If the add fails, outError can be checked for details.
-#[cfg(all(
-    feature = "CFOpenDirectoryConstants",
-    feature = "objc2-core-foundation"
-))]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCreateRecord(
-    node: &ODNodeRef,
-    record_type: Option<&ODRecordType>,
-    record_name: Option<&CFString>,
-    attribute_dict: Option<&CFDictionary>,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<ODRecordRef>> {
-    extern "C-unwind" {
-        fn ODNodeCreateRecord(
-            node: &ODNodeRef,
-            record_type: Option<&ODRecordType>,
-            record_name: Option<&CFString>,
-            attribute_dict: Option<&CFDictionary>,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<ODRecordRef>>;
+    ) -> bool {
+        extern "C-unwind" {
+            fn ODNodeSetCredentialsUsingKerberosCache(
+                node: &ODNodeRef,
+                cache_name: Option<&CFString>,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ODNodeSetCredentialsUsingKerberosCache(self, cache_name, error) }
     }
-    let ret = unsafe { ODNodeCreateRecord(node, record_type, record_name, attribute_dict, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Simple API to open / create a references to a particular record on a Node
-///
-/// Simple API to open / create a references to a particular record on a Node
-///
-/// Parameter `node`: an ODNodeRef to use
-///
-/// Parameter `recordType`: a ODRecordTypeRef of the record type to copy
-///
-/// Parameter `recordName`: a CFStringRef of the record name to copy
-///
-/// Parameter `attributes`: (optional) a CFArrayRef (or single ODAttributeType) of the attributes to copy from the directory.  Can be NULL when no
-/// attributes are needed.  Any standard types can be passed, for example
-/// kODAttributeTypeAllAttributes will fetch all attributes up front.  If just standard attributes are needed, then
-/// kODAttributeTypeStandardOnly can be passed.
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: returns a valid ODRecordRef.  If the record copy fails, the error can be checked for details.
-/// If the record is not found, will return NULL with a NULL error.
-#[cfg(all(
-    feature = "CFOpenDirectoryConstants",
-    feature = "objc2-core-foundation"
-))]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCopyRecord(
-    node: &ODNodeRef,
-    record_type: Option<&ODRecordType>,
-    record_name: Option<&CFString>,
-    attributes: Option<&CFType>,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<ODRecordRef>> {
-    extern "C-unwind" {
-        fn ODNodeCopyRecord(
-            node: &ODNodeRef,
-            record_type: Option<&ODRecordType>,
-            record_name: Option<&CFString>,
-            attributes: Option<&CFType>,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<ODRecordRef>>;
+    /// Takes a record and all of the provided attributes and creates the record in the node
+    ///
+    /// Takes all the provided attributes and type to create an entire record.  The function will assign a
+    /// UUID to the record automatically.  This UUID can be overwritten by the client by passing with the
+    /// other attributes.
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Parameter `recordType`: a ODRecordTypeRef of the type of record (e.g., kODRecordTypeUsers, etc.)
+    ///
+    /// Parameter `recordName`: a CFStringRef of the name of record
+    ///
+    /// Parameter `attributeDict`: a CFDictionaryRef of key-value pairs for attribute values.  The key is a CFStringRef of the
+    /// attribute name or ODRecordType constant such as kODAttributeTypeRecordName.  The value must be a CFArrayRef of
+    /// CFDataRef or CFStringRef.  If additional kODAttributeTypeRecordName are to be set, they can be passed in the
+    /// inAttributes list.  This parameter is optional and can be NULL.  If any of the attributes passed
+    /// fail to be set, the record will be deleted and outError will be set with the appropriate error.
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: returns a valid ODRecordRef.  If the add fails, outError can be checked for details.
+    #[cfg(all(
+        feature = "CFOpenDirectoryConstants",
+        feature = "objc2-core-foundation"
+    ))]
+    #[inline]
+    #[doc(alias = "ODNodeCreateRecord")]
+    pub unsafe fn new_record(
+        self: &ODNodeRef,
+        record_type: Option<&ODRecordType>,
+        record_name: Option<&CFString>,
+        attribute_dict: Option<&CFDictionary>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<ODRecordRef>> {
+        extern "C-unwind" {
+            fn ODNodeCreateRecord(
+                node: &ODNodeRef,
+                record_type: Option<&ODRecordType>,
+                record_name: Option<&CFString>,
+                attribute_dict: Option<&CFDictionary>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<ODRecordRef>>;
+        }
+        let ret =
+            unsafe { ODNodeCreateRecord(self, record_type, record_name, attribute_dict, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCopyRecord(node, record_type, record_name, attributes, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Sends a custom call to a node.
-///
-/// This will send a custom call to a node along with the specified data, returning the result.
-///
-/// Parameter `node`: an ODNodeRef to use
-///
-/// Parameter `customCode`: the custom code to be sent to the node
-///
-/// Parameter `data`: a data blob expected by the custom code, can be NULL of no send data
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a CFDataRef with the result of the operation, otherwise outError can be checked for specific details
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCustomCall(
-    node: &ODNodeRef,
-    custom_code: CFIndex,
-    data: Option<&CFData>,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn ODNodeCustomCall(
-            node: &ODNodeRef,
-            custom_code: CFIndex,
-            data: Option<&CFData>,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFData>>;
+    /// Simple API to open / create a references to a particular record on a Node
+    ///
+    /// Simple API to open / create a references to a particular record on a Node
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Parameter `recordType`: a ODRecordTypeRef of the record type to copy
+    ///
+    /// Parameter `recordName`: a CFStringRef of the record name to copy
+    ///
+    /// Parameter `attributes`: (optional) a CFArrayRef (or single ODAttributeType) of the attributes to copy from the directory.  Can be NULL when no
+    /// attributes are needed.  Any standard types can be passed, for example
+    /// kODAttributeTypeAllAttributes will fetch all attributes up front.  If just standard attributes are needed, then
+    /// kODAttributeTypeStandardOnly can be passed.
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: returns a valid ODRecordRef.  If the record copy fails, the error can be checked for details.
+    /// If the record is not found, will return NULL with a NULL error.
+    #[cfg(all(
+        feature = "CFOpenDirectoryConstants",
+        feature = "objc2-core-foundation"
+    ))]
+    #[inline]
+    #[doc(alias = "ODNodeCopyRecord")]
+    pub unsafe fn record(
+        self: &ODNodeRef,
+        record_type: Option<&ODRecordType>,
+        record_name: Option<&CFString>,
+        attributes: Option<&CFType>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<ODRecordRef>> {
+        extern "C-unwind" {
+            fn ODNodeCopyRecord(
+                node: &ODNodeRef,
+                record_type: Option<&ODRecordType>,
+                record_name: Option<&CFString>,
+                attributes: Option<&CFType>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<ODRecordRef>>;
+        }
+        let ret = unsafe { ODNodeCopyRecord(self, record_type, record_name, attributes, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCustomCall(node, custom_code, data, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Sends a named custom function call to a node.
-///
-///
-/// Sends a named custom function call to a node.  Custom functions are defined by the modules that implement them
-/// and the parameter is defined by the module.
-///
-///
-/// Parameter `node`: An ODNodeRef to use
-///
-///
-/// Parameter `function`: A CFStringRef that specifies the name of the function
-///
-///
-/// Parameter `payload`: A CFType appropriate for the custom function.  The type is dictated by the module implementing the function.
-///
-///
-/// Parameter `error`: An optional CFErrorRef reference to receive any errors from the custom function call.
-///
-///
-/// Returns: Returns a CFType appropriate for the function.
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCustomFunction(
-    node: &ODNodeRef,
-    function: Option<&CFString>,
-    payload: Option<&CFType>,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn ODNodeCustomFunction(
-            node: &ODNodeRef,
-            function: Option<&CFString>,
-            payload: Option<&CFType>,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFType>>;
+    /// Sends a custom call to a node.
+    ///
+    /// This will send a custom call to a node along with the specified data, returning the result.
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Parameter `customCode`: the custom code to be sent to the node
+    ///
+    /// Parameter `data`: a data blob expected by the custom code, can be NULL of no send data
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a CFDataRef with the result of the operation, otherwise outError can be checked for specific details
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODNodeCustomCall")]
+    pub unsafe fn custom_call(
+        self: &ODNodeRef,
+        custom_code: CFIndex,
+        data: Option<&CFData>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn ODNodeCustomCall(
+                node: &ODNodeRef,
+                custom_code: CFIndex,
+                data: Option<&CFData>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { ODNodeCustomCall(self, custom_code, data, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCustomFunction(node, function, payload, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// This will copy any policies configured for the node.
-///
-/// This will copy any policies configured for the node.
-///
-/// Parameter `node`: an ODNodeRef to use
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a CFDictionaryRef containing all currently set policies
-#[cfg(feature = "objc2-core-foundation")]
-#[deprecated = "use ODNodeCopyAccountPolicies"]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCopyPolicies(
-    node: &ODNodeRef,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn ODNodeCopyPolicies(
-            node: &ODNodeRef,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFDictionary>>;
+    /// Sends a named custom function call to a node.
+    ///
+    ///
+    /// Sends a named custom function call to a node.  Custom functions are defined by the modules that implement them
+    /// and the parameter is defined by the module.
+    ///
+    ///
+    /// Parameter `node`: An ODNodeRef to use
+    ///
+    ///
+    /// Parameter `function`: A CFStringRef that specifies the name of the function
+    ///
+    ///
+    /// Parameter `payload`: A CFType appropriate for the custom function.  The type is dictated by the module implementing the function.
+    ///
+    ///
+    /// Parameter `error`: An optional CFErrorRef reference to receive any errors from the custom function call.
+    ///
+    ///
+    /// Returns: Returns a CFType appropriate for the function.
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODNodeCustomFunction")]
+    pub unsafe fn custom_function(
+        self: &ODNodeRef,
+        function: Option<&CFString>,
+        payload: Option<&CFType>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn ODNodeCustomFunction(
+                node: &ODNodeRef,
+                function: Option<&CFString>,
+                payload: Option<&CFType>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { ODNodeCustomFunction(self, function, payload, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCopyPolicies(node, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// This will return a dictionary of supported policies.
-///
-/// This will return a dictionary of supported policies, if appropriate, the value will be the maximum value allowed
-/// for the policy in question.  For example, if password history is available, it will state how much history is
-/// supported.
-///
-/// Parameter `node`: an ODNodeRef to use
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details
-///
-/// Returns: a CFDictionaryRef containing all currently supported policies.  The values will be the maximum value allowed.
-#[cfg(feature = "objc2-core-foundation")]
-#[deprecated]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCopySupportedPolicies(
-    node: &ODNodeRef,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn ODNodeCopySupportedPolicies(
-            node: &ODNodeRef,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFDictionary>>;
+    /// This will copy any policies configured for the node.
+    ///
+    /// This will copy any policies configured for the node.
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a CFDictionaryRef containing all currently set policies
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "use ODNodeCopyAccountPolicies"]
+    #[inline]
+    #[doc(alias = "ODNodeCopyPolicies")]
+    pub unsafe fn policies(
+        self: &ODNodeRef,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn ODNodeCopyPolicies(
+                node: &ODNodeRef,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { ODNodeCopyPolicies(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { ODNodeCopySupportedPolicies(node, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// This will return a dictionary of supported policies.
+    ///
+    /// This will return a dictionary of supported policies, if appropriate, the value will be the maximum value allowed
+    /// for the policy in question.  For example, if password history is available, it will state how much history is
+    /// supported.
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a CFDictionaryRef containing all currently supported policies.  The values will be the maximum value allowed.
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated]
+    #[inline]
+    #[doc(alias = "ODNodeCopySupportedPolicies")]
+    pub unsafe fn supported_policies(
+        self: &ODNodeRef,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn ODNodeCopySupportedPolicies(
+                node: &ODNodeRef,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { ODNodeCopySupportedPolicies(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// This will set the policy for the node.
     ///
     /// This will set the policy for the node.  Policies are evaluated in combination with record-level policies.
@@ -601,14 +660,23 @@ extern "C-unwind" {
     /// Returns: a bool which signifies if the policy set succeeded, otherwise error is set.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODNodeSetAccountPolicies"]
-    pub fn ODNodeSetPolicies(
-        node: &ODNodeRef,
+    #[inline]
+    #[doc(alias = "ODNodeSetPolicies")]
+    pub unsafe fn set_policies(
+        self: &ODNodeRef,
         policies: Option<&CFDictionary>,
         error: *mut *mut CFError,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn ODNodeSetPolicies(
+                node: &ODNodeRef,
+                policies: Option<&CFDictionary>,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ODNodeSetPolicies(self, policies, error) }
+    }
 
-extern "C-unwind" {
     /// This will set a specific policy setting for the node.
     ///
     /// This will set a specific policy setting for the node.
@@ -627,15 +695,25 @@ extern "C-unwind" {
         feature = "objc2-core-foundation"
     ))]
     #[deprecated = "use ODNodeAddAccountPolicy"]
-    pub fn ODNodeSetPolicy(
-        node: &ODNodeRef,
+    #[inline]
+    #[doc(alias = "ODNodeSetPolicy")]
+    pub unsafe fn set_policy(
+        self: &ODNodeRef,
         policy_type: Option<&ODPolicyType>,
         value: Option<&CFType>,
         error: *mut *mut CFError,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn ODNodeSetPolicy(
+                node: &ODNodeRef,
+                policy_type: Option<&ODPolicyType>,
+                value: Option<&CFType>,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ODNodeSetPolicy(self, policy_type, value, error) }
+    }
 
-extern "C-unwind" {
     /// This will remove a specific policy setting from the node.
     ///
     /// This will remove a specific policy setting from the node.
@@ -652,14 +730,23 @@ extern "C-unwind" {
         feature = "objc2-core-foundation"
     ))]
     #[deprecated = "use ODNodeRemoveAccountPolicy"]
-    pub fn ODNodeRemovePolicy(
-        node: &ODNodeRef,
+    #[inline]
+    #[doc(alias = "ODNodeRemovePolicy")]
+    pub unsafe fn remove_policy(
+        self: &ODNodeRef,
         policy_type: Option<&ODPolicyType>,
         error: *mut *mut CFError,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn ODNodeRemovePolicy(
+                node: &ODNodeRef,
+                policy_type: Option<&ODPolicyType>,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ODNodeRemovePolicy(self, policy_type, error) }
+    }
 
-extern "C-unwind" {
     /// This will add an account policy to the node for the specified category.
     ///
     /// This will add an account policy to the node for the specified category.
@@ -687,15 +774,25 @@ extern "C-unwind" {
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
-    pub fn ODNodeAddAccountPolicy(
-        node: &ODNodeRef,
+    #[inline]
+    #[doc(alias = "ODNodeAddAccountPolicy")]
+    pub unsafe fn add_account_policy(
+        self: &ODNodeRef,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
         error: *mut *mut CFError,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn ODNodeAddAccountPolicy(
+                node: &ODNodeRef,
+                policy: Option<&CFDictionary>,
+                category: Option<&ODPolicyCategoryType>,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ODNodeAddAccountPolicy(self, policy, category, error) }
+    }
 
-extern "C-unwind" {
     /// This will remove an account policy from the node for the specified category.
     ///
     /// This will remove an account policy from the node for the specified category.
@@ -714,15 +811,25 @@ extern "C-unwind" {
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
-    pub fn ODNodeRemoveAccountPolicy(
-        node: &ODNodeRef,
+    #[inline]
+    #[doc(alias = "ODNodeRemoveAccountPolicy")]
+    pub unsafe fn remove_account_policy(
+        self: &ODNodeRef,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
         error: *mut *mut CFError,
-    ) -> bool;
-}
+    ) -> bool {
+        extern "C-unwind" {
+            fn ODNodeRemoveAccountPolicy(
+                node: &ODNodeRef,
+                policy: Option<&CFDictionary>,
+                category: Option<&ODPolicyCategoryType>,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ODNodeRemoveAccountPolicy(self, policy, category, error) }
+    }
 
-extern "C-unwind" {
     /// This will set the policies for the node.
     ///
     /// This will set the policies for the node, replacing any existing
@@ -746,41 +853,51 @@ extern "C-unwind" {
     ///
     /// Returns: a bool which signifies if the policy set succeeded, otherwise error is set.
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn ODNodeSetAccountPolicies(
-        node: &ODNodeRef,
+    #[inline]
+    #[doc(alias = "ODNodeSetAccountPolicies")]
+    pub unsafe fn set_account_policies(
+        self: &ODNodeRef,
         policies: Option<&CFDictionary>,
         error: *mut *mut CFError,
-    ) -> bool;
-}
-
-/// This will copy any policies configured for the node.
-///
-/// This will copy any policies configured for the node.
-///
-/// Parameter `node`: an ODNodeRef to use.
-///
-/// Parameter `error`: an optional CFErrorRef reference for error details.
-///
-/// Returns: a CFDictionaryRef containing all currently set policies.  The
-/// format of the dictionary is the same as described in
-/// ODNodeSetAccountPolicies().
-#[cfg(feature = "objc2-core-foundation")]
-#[inline]
-pub unsafe extern "C-unwind" fn ODNodeCopyAccountPolicies(
-    node: &ODNodeRef,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn ODNodeCopyAccountPolicies(
-            node: &ODNodeRef,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<CFDictionary>>;
+    ) -> bool {
+        extern "C-unwind" {
+            fn ODNodeSetAccountPolicies(
+                node: &ODNodeRef,
+                policies: Option<&CFDictionary>,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ODNodeSetAccountPolicies(self, policies, error) }
     }
-    let ret = unsafe { ODNodeCopyAccountPolicies(node, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-extern "C-unwind" {
+    /// This will copy any policies configured for the node.
+    ///
+    /// This will copy any policies configured for the node.
+    ///
+    /// Parameter `node`: an ODNodeRef to use.
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details.
+    ///
+    /// Returns: a CFDictionaryRef containing all currently set policies.  The
+    /// format of the dictionary is the same as described in
+    /// ODNodeSetAccountPolicies().
+    #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODNodeCopyAccountPolicies")]
+    pub unsafe fn account_policies(
+        self: &ODNodeRef,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn ODNodeCopyAccountPolicies(
+                node: &ODNodeRef,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { ODNodeCopyAccountPolicies(self, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Validates a password against the node's password content policies.
     ///
     /// Validates a password against the node's password content policies.
@@ -804,6 +921,458 @@ extern "C-unwind" {
     ///
     /// Returns: a bool which signifies if the password passes all content policies, otherwise error is set.
     #[cfg(feature = "objc2-core-foundation")]
+    #[inline]
+    #[doc(alias = "ODNodePasswordContentCheck")]
+    pub unsafe fn password_content_check(
+        self: &ODNodeRef,
+        password: Option<&CFString>,
+        record_name: Option<&CFString>,
+        error: *mut *mut CFError,
+    ) -> bool {
+        extern "C-unwind" {
+            fn ODNodePasswordContentCheck(
+                node: &ODNodeRef,
+                password: Option<&CFString>,
+                record_name: Option<&CFString>,
+                error: *mut *mut CFError,
+            ) -> bool;
+        }
+        unsafe { ODNodePasswordContentCheck(self, password, record_name, error) }
+    }
+}
+
+#[cfg(all(
+    feature = "CFOpenDirectoryConstants",
+    feature = "objc2-core-foundation"
+))]
+#[deprecated = "renamed to `ODNodeRef::with_node_type`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCreateWithNodeType(
+    allocator: Option<&CFAllocator>,
+    session: Option<&ODSessionRef>,
+    node_type: ODNodeType,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<ODNodeRef>> {
+    extern "C-unwind" {
+        fn ODNodeCreateWithNodeType(
+            allocator: Option<&CFAllocator>,
+            session: Option<&ODSessionRef>,
+            node_type: ODNodeType,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<ODNodeRef>>;
+    }
+    let ret = unsafe { ODNodeCreateWithNodeType(allocator, session, node_type, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::with_name`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCreateWithName(
+    allocator: Option<&CFAllocator>,
+    session: Option<&ODSessionRef>,
+    node_name: Option<&CFString>,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<ODNodeRef>> {
+    extern "C-unwind" {
+        fn ODNodeCreateWithName(
+            allocator: Option<&CFAllocator>,
+            session: Option<&ODSessionRef>,
+            node_name: Option<&CFString>,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<ODNodeRef>>;
+    }
+    let ret = unsafe { ODNodeCreateWithName(allocator, session, node_name, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::new_copy`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCreateCopy(
+    allocator: Option<&CFAllocator>,
+    node: Option<&ODNodeRef>,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<ODNodeRef>> {
+    extern "C-unwind" {
+        fn ODNodeCreateCopy(
+            allocator: Option<&CFAllocator>,
+            node: Option<&ODNodeRef>,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<ODNodeRef>>;
+    }
+    let ret = unsafe { ODNodeCreateCopy(allocator, node, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::subnode_names`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCopySubnodeNames(
+    node: &ODNodeRef,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn ODNodeCopySubnodeNames(
+            node: &ODNodeRef,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { ODNodeCopySubnodeNames(node, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::unreachable_subnode_names`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCopyUnreachableSubnodeNames(
+    node: &ODNodeRef,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn ODNodeCopyUnreachableSubnodeNames(
+            node: &ODNodeRef,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { ODNodeCopyUnreachableSubnodeNames(node, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::name`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeGetName(node: &ODNodeRef) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn ODNodeGetName(node: &ODNodeRef) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { ODNodeGetName(node) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::details`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCopyDetails(
+    node: &ODNodeRef,
+    keys: Option<&CFArray>,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn ODNodeCopyDetails(
+            node: &ODNodeRef,
+            keys: Option<&CFArray>,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { ODNodeCopyDetails(node, keys, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::supported_record_types`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCopySupportedRecordTypes(
+    node: &ODNodeRef,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn ODNodeCopySupportedRecordTypes(
+            node: &ODNodeRef,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { ODNodeCopySupportedRecordTypes(node, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(all(
+    feature = "CFOpenDirectoryConstants",
+    feature = "objc2-core-foundation"
+))]
+#[deprecated = "renamed to `ODNodeRef::supported_attributes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCopySupportedAttributes(
+    node: &ODNodeRef,
+    record_type: Option<&ODRecordType>,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn ODNodeCopySupportedAttributes(
+            node: &ODNodeRef,
+            record_type: Option<&ODRecordType>,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { ODNodeCopySupportedAttributes(node, record_type, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CFOpenDirectoryConstants",
+        feature = "objc2-core-foundation"
+    ))]
+    #[deprecated = "renamed to `ODNodeRef::set_credentials`"]
+    pub fn ODNodeSetCredentials(
+        node: &ODNodeRef,
+        record_type: Option<&ODRecordType>,
+        record_name: Option<&CFString>,
+        password: Option<&CFString>,
+        error: *mut *mut CFError,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CFOpenDirectoryConstants",
+        feature = "objc2-core-foundation"
+    ))]
+    #[deprecated = "renamed to `ODNodeRef::set_credentials_extended`"]
+    pub fn ODNodeSetCredentialsExtended(
+        node: &ODNodeRef,
+        record_type: Option<&ODRecordType>,
+        auth_type: Option<&ODAuthenticationType>,
+        auth_items: Option<&CFArray>,
+        out_auth_items: *mut *const CFArray,
+        out_context: *mut *const ODContextRef,
+        error: *mut *mut CFError,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `ODNodeRef::set_credentials_using_kerberos_cache`"]
+    pub fn ODNodeSetCredentialsUsingKerberosCache(
+        node: &ODNodeRef,
+        cache_name: Option<&CFString>,
+        error: *mut *mut CFError,
+    ) -> bool;
+}
+
+#[cfg(all(
+    feature = "CFOpenDirectoryConstants",
+    feature = "objc2-core-foundation"
+))]
+#[deprecated = "renamed to `ODNodeRef::new_record`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCreateRecord(
+    node: &ODNodeRef,
+    record_type: Option<&ODRecordType>,
+    record_name: Option<&CFString>,
+    attribute_dict: Option<&CFDictionary>,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<ODRecordRef>> {
+    extern "C-unwind" {
+        fn ODNodeCreateRecord(
+            node: &ODNodeRef,
+            record_type: Option<&ODRecordType>,
+            record_name: Option<&CFString>,
+            attribute_dict: Option<&CFDictionary>,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<ODRecordRef>>;
+    }
+    let ret = unsafe { ODNodeCreateRecord(node, record_type, record_name, attribute_dict, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(all(
+    feature = "CFOpenDirectoryConstants",
+    feature = "objc2-core-foundation"
+))]
+#[deprecated = "renamed to `ODNodeRef::record`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCopyRecord(
+    node: &ODNodeRef,
+    record_type: Option<&ODRecordType>,
+    record_name: Option<&CFString>,
+    attributes: Option<&CFType>,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<ODRecordRef>> {
+    extern "C-unwind" {
+        fn ODNodeCopyRecord(
+            node: &ODNodeRef,
+            record_type: Option<&ODRecordType>,
+            record_name: Option<&CFString>,
+            attributes: Option<&CFType>,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<ODRecordRef>>;
+    }
+    let ret = unsafe { ODNodeCopyRecord(node, record_type, record_name, attributes, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::custom_call`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCustomCall(
+    node: &ODNodeRef,
+    custom_code: CFIndex,
+    data: Option<&CFData>,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn ODNodeCustomCall(
+            node: &ODNodeRef,
+            custom_code: CFIndex,
+            data: Option<&CFData>,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFData>>;
+    }
+    let ret = unsafe { ODNodeCustomCall(node, custom_code, data, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::custom_function`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCustomFunction(
+    node: &ODNodeRef,
+    function: Option<&CFString>,
+    payload: Option<&CFType>,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn ODNodeCustomFunction(
+            node: &ODNodeRef,
+            function: Option<&CFString>,
+            payload: Option<&CFType>,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { ODNodeCustomFunction(node, function, payload, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::policies`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCopyPolicies(
+    node: &ODNodeRef,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn ODNodeCopyPolicies(
+            node: &ODNodeRef,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { ODNodeCopyPolicies(node, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::supported_policies`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCopySupportedPolicies(
+    node: &ODNodeRef,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn ODNodeCopySupportedPolicies(
+            node: &ODNodeRef,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { ODNodeCopySupportedPolicies(node, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `ODNodeRef::set_policies`"]
+    pub fn ODNodeSetPolicies(
+        node: &ODNodeRef,
+        policies: Option<&CFDictionary>,
+        error: *mut *mut CFError,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CFOpenDirectoryConstants",
+        feature = "objc2-core-foundation"
+    ))]
+    #[deprecated = "renamed to `ODNodeRef::set_policy`"]
+    pub fn ODNodeSetPolicy(
+        node: &ODNodeRef,
+        policy_type: Option<&ODPolicyType>,
+        value: Option<&CFType>,
+        error: *mut *mut CFError,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CFOpenDirectoryConstants",
+        feature = "objc2-core-foundation"
+    ))]
+    #[deprecated = "renamed to `ODNodeRef::remove_policy`"]
+    pub fn ODNodeRemovePolicy(
+        node: &ODNodeRef,
+        policy_type: Option<&ODPolicyType>,
+        error: *mut *mut CFError,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CFOpenDirectoryConstants",
+        feature = "objc2-core-foundation"
+    ))]
+    #[deprecated = "renamed to `ODNodeRef::add_account_policy`"]
+    pub fn ODNodeAddAccountPolicy(
+        node: &ODNodeRef,
+        policy: Option<&CFDictionary>,
+        category: Option<&ODPolicyCategoryType>,
+        error: *mut *mut CFError,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "CFOpenDirectoryConstants",
+        feature = "objc2-core-foundation"
+    ))]
+    #[deprecated = "renamed to `ODNodeRef::remove_account_policy`"]
+    pub fn ODNodeRemoveAccountPolicy(
+        node: &ODNodeRef,
+        policy: Option<&CFDictionary>,
+        category: Option<&ODPolicyCategoryType>,
+        error: *mut *mut CFError,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `ODNodeRef::set_account_policies`"]
+    pub fn ODNodeSetAccountPolicies(
+        node: &ODNodeRef,
+        policies: Option<&CFDictionary>,
+        error: *mut *mut CFError,
+    ) -> bool;
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "renamed to `ODNodeRef::account_policies`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ODNodeCopyAccountPolicies(
+    node: &ODNodeRef,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn ODNodeCopyAccountPolicies(
+            node: &ODNodeRef,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { ODNodeCopyAccountPolicies(node, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "renamed to `ODNodeRef::password_content_check`"]
     pub fn ODNodePasswordContentCheck(
         node: &ODNodeRef,
         password: Option<&CFString>,

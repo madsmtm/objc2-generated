@@ -323,7 +323,9 @@ pub static NSOtherMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::Other
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanyeventmask?language=objc)
 pub static NSAnyEventMask: NSEventMask = NSEventMask(NSUIntegerMax as _);
 
-// TODO: pub fn NSEventMaskFromType(r#type: NSEventType,) -> NSEventMask;
+impl NSEventMask {
+    // TODO: pub fn NSEventMaskFromType(r#type: NSEventType,) -> NSEventMask;
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventmodifierflags?language=objc)
 // NS_OPTIONS

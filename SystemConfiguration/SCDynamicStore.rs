@@ -112,27 +112,501 @@ unsafe impl ConcreteType for SCDynamicStore {
     }
 }
 
-/// Creates a new session used to interact with the dynamic
-/// store maintained by the System Configuration server.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for the local dynamic store object.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `name`: A string that describes the name of the calling
-/// process or plug-in of the caller.
-///
-/// Parameter `callout`: The function to be called when a watched value
-/// in the dynamic store is changed.
-/// A NULL value can be specified if no callouts are
-/// desired.
-///
-/// Parameter `context`: The SCDynamicStoreContext associated with the callout.
-///
-/// Returns: Returns a reference to the new SCDynamicStore session.
-/// You must release the returned value.
+impl SCDynamicStore {
+    /// Creates a new session used to interact with the dynamic
+    /// store maintained by the System Configuration server.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for the local dynamic store object.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `name`: A string that describes the name of the calling
+    /// process or plug-in of the caller.
+    ///
+    /// Parameter `callout`: The function to be called when a watched value
+    /// in the dynamic store is changed.
+    /// A NULL value can be specified if no callouts are
+    /// desired.
+    ///
+    /// Parameter `context`: The SCDynamicStoreContext associated with the callout.
+    ///
+    /// Returns: Returns a reference to the new SCDynamicStore session.
+    /// You must release the returned value.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        name: &CFString,
+        callout: SCDynamicStoreCallBack,
+        context: *mut SCDynamicStoreContext,
+    ) -> Option<CFRetained<SCDynamicStore>> {
+        extern "C-unwind" {
+            fn SCDynamicStoreCreate(
+                allocator: Option<&CFAllocator>,
+                name: &CFString,
+                callout: SCDynamicStoreCallBack,
+                context: *mut SCDynamicStoreContext,
+            ) -> Option<NonNull<SCDynamicStore>>;
+        }
+        let ret = unsafe { SCDynamicStoreCreate(allocator, name, callout, context) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Creates a new session used to interact with the dynamic
+    /// store maintained by the System Configuration server.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for the local dynamic store object.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `name`: A string that describes the name of the calling
+    /// process or plug-in of the caller.
+    ///
+    /// Parameter `storeOptions`: A CFDictionary containing options for the
+    /// dynamic store session (such as whether all keys added or set
+    /// into the dynamic store should be per-session keys).
+    ///
+    /// Currently available options include:
+    ///
+    /// <TABLE
+    /// BORDER>
+    /// <TR
+    /// >
+    /// <TH
+    /// >key
+    /// </TD
+    /// >
+    /// <TH
+    /// >value
+    /// </TD
+    /// >
+    /// </TR
+    /// >
+    /// <TR
+    /// >
+    /// <TD
+    /// >kSCDynamicStoreUseSessionKeys
+    /// </TD
+    /// >
+    /// <TD
+    /// >CFBooleanRef
+    /// </TD
+    /// >
+    /// </TR
+    /// >
+    /// </TABLE
+    /// >
+    ///
+    /// A NULL value can be specified if no options are desired.
+    ///
+    /// Parameter `callout`: The function to be called when a watched value
+    /// in the dynamic store is changed.
+    /// A NULL value can be specified if no callouts are
+    /// desired.
+    ///
+    /// Parameter `context`: The SCDynamicStoreContext associated with the callout.
+    ///
+    /// Returns: Returns a reference to the new SCDynamicStore session.
+    /// You must release the returned value.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreCreateWithOptions")]
+    pub unsafe fn with_options(
+        allocator: Option<&CFAllocator>,
+        name: &CFString,
+        store_options: Option<&CFDictionary>,
+        callout: SCDynamicStoreCallBack,
+        context: *mut SCDynamicStoreContext,
+    ) -> Option<CFRetained<SCDynamicStore>> {
+        extern "C-unwind" {
+            fn SCDynamicStoreCreateWithOptions(
+                allocator: Option<&CFAllocator>,
+                name: &CFString,
+                store_options: Option<&CFDictionary>,
+                callout: SCDynamicStoreCallBack,
+                context: *mut SCDynamicStoreContext,
+            ) -> Option<NonNull<SCDynamicStore>>;
+        }
+        let ret = unsafe {
+            SCDynamicStoreCreateWithOptions(allocator, name, store_options, callout, context)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstoreusesessionkeys?language=objc)
+    pub static kSCDynamicStoreUseSessionKeys: &'static CFString;
+}
+
+impl SCDynamicStore {
+    /// Creates a CFRunLoopSource object that can be added to the
+    /// application's run loop.  All dynamic store notifications are
+    /// delivered using this run loop source.
+    ///
+    /// Parameter `allocator`: The CFAllocator that should be used to allocate
+    /// memory for this run loop source.
+    /// This parameter may be NULL in which case the current
+    /// default CFAllocator is used. If this reference is not
+    /// a valid CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `store`: A reference to the dynamic store session.
+    ///
+    /// Parameter `order`: On platforms which support it, for source versions
+    /// which support it, this parameter determines the order in
+    /// which the sources which are ready to be processed are
+    /// handled. A lower order number causes processing before
+    /// higher order number sources. It is inadvisable to depend
+    /// on the order number for any architectural or design aspect
+    /// of code. In the absence of any reason to do otherwise,
+    /// zero should be used.
+    ///
+    /// Returns: A reference to the new CFRunLoopSource.
+    /// You must release the returned value.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreCreateRunLoopSource")]
+    pub fn new_run_loop_source(
+        allocator: Option<&CFAllocator>,
+        store: &SCDynamicStore,
+        order: CFIndex,
+    ) -> Option<CFRetained<CFRunLoopSource>> {
+        extern "C-unwind" {
+            fn SCDynamicStoreCreateRunLoopSource(
+                allocator: Option<&CFAllocator>,
+                store: &SCDynamicStore,
+                order: CFIndex,
+            ) -> Option<NonNull<CFRunLoopSource>>;
+        }
+        let ret = unsafe { SCDynamicStoreCreateRunLoopSource(allocator, store, order) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Initiates notifications for the Notification
+    /// Keys in store to the callback contained in store.
+    ///
+    /// Parameter `store`: A reference to the dynamic store session.
+    ///
+    /// Parameter `queue`: The dispatch queue to run the callback function on.
+    /// Pass NULL to disable notifications, and release the queue.
+    ///
+    /// Returns: Returns TRUE on success, FALSE on failure.
+    #[cfg(feature = "dispatch2")]
+    #[inline]
+    #[doc(alias = "SCDynamicStoreSetDispatchQueue")]
+    pub unsafe fn set_dispatch_queue(self: &SCDynamicStore, queue: Option<&DispatchQueue>) -> bool {
+        extern "C-unwind" {
+            fn SCDynamicStoreSetDispatchQueue(
+                store: &SCDynamicStore,
+                queue: Option<&DispatchQueue>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCDynamicStoreSetDispatchQueue(self, queue) };
+        ret != 0
+    }
+
+    /// Returns an array of CFString keys representing the
+    /// current dynamic store entries that match a specified pattern.
+    ///
+    /// Parameter `store`: The dynamic store session.
+    ///
+    /// Parameter `pattern`: A regex(3) regular expression pattern
+    /// used to match the dynamic store keys.
+    ///
+    /// Returns: Returns the list of matching keys; NULL if an error was
+    /// encountered.
+    /// You must release the returned value.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreCopyKeyList")]
+    pub fn key_list(
+        store: Option<&SCDynamicStore>,
+        pattern: &CFString,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn SCDynamicStoreCopyKeyList(
+                store: Option<&SCDynamicStore>,
+                pattern: &CFString,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { SCDynamicStoreCopyKeyList(store, pattern) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Adds the key-value pair to the dynamic store if no
+    /// such key already exists.
+    ///
+    /// Parameter `store`: The dynamic store session.
+    ///
+    /// Parameter `key`: The key of the value to add to the dynamic store.
+    ///
+    /// Parameter `value`: The value to add to the dynamic store.
+    ///
+    /// Returns: Returns TRUE if the key was added; FALSE if the key was already
+    /// present in the dynamic store or if an error was encountered.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreAddValue")]
+    pub unsafe fn add_value(
+        store: Option<&SCDynamicStore>,
+        key: &CFString,
+        value: &CFPropertyList,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCDynamicStoreAddValue(
+                store: Option<&SCDynamicStore>,
+                key: &CFString,
+                value: &CFPropertyList,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCDynamicStoreAddValue(store, key, value) };
+        ret != 0
+    }
+
+    /// Temporarily adds the key-value pair to the dynamic store
+    /// if no such key already exists.  Unless the key is updated by another
+    /// session, the key-value pair will be removed automatically when the
+    /// session is closed.
+    ///
+    /// Parameter `store`: The dynamic store session.
+    ///
+    /// Parameter `key`: The key of the value to add to the dynamic store.
+    ///
+    /// Parameter `value`: The value to add to the dynamic store.
+    ///
+    /// Returns: Returns TRUE if the key was added; FALSE if the key was already
+    /// present in the dynamic store or if an error was encountered.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreAddTemporaryValue")]
+    pub unsafe fn add_temporary_value(
+        self: &SCDynamicStore,
+        key: &CFString,
+        value: &CFPropertyList,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCDynamicStoreAddTemporaryValue(
+                store: &SCDynamicStore,
+                key: &CFString,
+                value: &CFPropertyList,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCDynamicStoreAddTemporaryValue(self, key, value) };
+        ret != 0
+    }
+
+    /// Gets the value of the specified key from the dynamic store.
+    ///
+    /// Parameter `store`: The dynamic store session.
+    ///
+    /// Parameter `key`: The key associated with the value you want to get.
+    ///
+    /// Returns: Returns the value from the dynamic store that is associated with the given
+    /// key; NULL if no value was located or an error was encountered.
+    /// You must release the returned value.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreCopyValue")]
+    pub fn value(
+        store: Option<&SCDynamicStore>,
+        key: &CFString,
+    ) -> Option<CFRetained<CFPropertyList>> {
+        extern "C-unwind" {
+            fn SCDynamicStoreCopyValue(
+                store: Option<&SCDynamicStore>,
+                key: &CFString,
+            ) -> Option<NonNull<CFPropertyList>>;
+        }
+        let ret = unsafe { SCDynamicStoreCopyValue(store, key) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Gets the values of multiple keys in the dynamic store.
+    ///
+    /// Parameter `store`: The dynamic store session.
+    ///
+    /// Parameter `keys`: The keys associated with the values you want to get; NULL if no specific
+    /// keys are requested.
+    ///
+    /// Parameter `patterns`: An array of regex(3) pattern strings used to match the keys; NULL
+    /// if no key patterns are requested.
+    ///
+    /// Returns: Returns a dictionary containing the key-value pairs of specific keys and the
+    /// key-value pairs of keys that matched the specified patterns;
+    /// NULL if an error was encountered.
+    /// You must release the returned value.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreCopyMultiple")]
+    pub unsafe fn multiple(
+        store: Option<&SCDynamicStore>,
+        keys: Option<&CFArray>,
+        patterns: Option<&CFArray>,
+    ) -> Option<CFRetained<CFDictionary>> {
+        extern "C-unwind" {
+            fn SCDynamicStoreCopyMultiple(
+                store: Option<&SCDynamicStore>,
+                keys: Option<&CFArray>,
+                patterns: Option<&CFArray>,
+            ) -> Option<NonNull<CFDictionary>>;
+        }
+        let ret = unsafe { SCDynamicStoreCopyMultiple(store, keys, patterns) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// Adds or replaces a value in the dynamic store for
+    /// the specified key.
+    ///
+    /// Parameter `store`: The dynamic store session.
+    ///
+    /// Parameter `key`: The key you want to set.
+    ///
+    /// Parameter `value`: The value to add to or replace in the dynamic store.
+    ///
+    /// Returns: Returns TRUE if the key was updated; FALSE if an error was encountered.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreSetValue")]
+    pub unsafe fn set_value(
+        store: Option<&SCDynamicStore>,
+        key: &CFString,
+        value: &CFPropertyList,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCDynamicStoreSetValue(
+                store: Option<&SCDynamicStore>,
+                key: &CFString,
+                value: &CFPropertyList,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCDynamicStoreSetValue(store, key, value) };
+        ret != 0
+    }
+
+    /// Updates multiple values in the dynamic store.
+    ///
+    /// Parameter `store`: The dynamic store session.
+    ///
+    /// Parameter `keysToSet`: A dictionary of key-value pairs you want to set into the dynamic store.
+    ///
+    /// Parameter `keysToRemove`: An array of keys you want to remove from the dynamic store.
+    ///
+    /// Parameter `keysToNotify`: An array of keys to flag as changed (without changing their values).
+    ///
+    /// Returns: Returns TRUE if the dynamic store updates were successful; FALSE if an error was encountered.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreSetMultiple")]
+    pub unsafe fn set_multiple(
+        store: Option<&SCDynamicStore>,
+        keys_to_set: Option<&CFDictionary>,
+        keys_to_remove: Option<&CFArray>,
+        keys_to_notify: Option<&CFArray>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCDynamicStoreSetMultiple(
+                store: Option<&SCDynamicStore>,
+                keys_to_set: Option<&CFDictionary>,
+                keys_to_remove: Option<&CFArray>,
+                keys_to_notify: Option<&CFArray>,
+            ) -> Boolean;
+        }
+        let ret = unsafe {
+            SCDynamicStoreSetMultiple(store, keys_to_set, keys_to_remove, keys_to_notify)
+        };
+        ret != 0
+    }
+
+    /// Removes the value of the specified key from the
+    /// dynamic store.
+    ///
+    /// Parameter `store`: The dynamic store session.
+    ///
+    /// Parameter `key`: The key of the value you want to remove.
+    ///
+    /// Returns: Returns TRUE if the key was removed; FALSE if no value was
+    /// located or an error was encountered.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreRemoveValue")]
+    pub fn remove_value(store: Option<&SCDynamicStore>, key: &CFString) -> bool {
+        extern "C-unwind" {
+            fn SCDynamicStoreRemoveValue(store: Option<&SCDynamicStore>, key: &CFString)
+                -> Boolean;
+        }
+        let ret = unsafe { SCDynamicStoreRemoveValue(store, key) };
+        ret != 0
+    }
+
+    /// Triggers a notification to be delivered for the
+    /// specified key in the dynamic store.
+    ///
+    /// Parameter `store`: The dynamic store session.
+    ///
+    /// Parameter `key`: The key that should be flagged as changed.  Any dynamic store sessions
+    /// that are monitoring this key will received a notification.  Note that the
+    /// key's value is not updated.
+    ///
+    /// Returns: Returns TRUE if the notification was processed; FALSE if an error was encountered.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreNotifyValue")]
+    pub fn notify_value(store: Option<&SCDynamicStore>, key: &CFString) -> bool {
+        extern "C-unwind" {
+            fn SCDynamicStoreNotifyValue(store: Option<&SCDynamicStore>, key: &CFString)
+                -> Boolean;
+        }
+        let ret = unsafe { SCDynamicStoreNotifyValue(store, key) };
+        ret != 0
+    }
+
+    /// Specifies a set of specific keys and key patterns
+    /// that should be monitored for changes.
+    ///
+    /// Parameter `store`: The dynamic store session being watched.
+    ///
+    /// Parameter `keys`: An array of keys to be monitored; NULL if no specific keys
+    /// are to be monitored.
+    ///
+    /// Parameter `patterns`: An array of regex(3) pattern strings used to match keys to be monitored;
+    /// NULL if no key patterns are to be monitored.
+    ///
+    /// Returns: Returns TRUE if the set of notification keys and patterns was successfully
+    /// updated; FALSE if an error was encountered.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreSetNotificationKeys")]
+    pub unsafe fn set_notification_keys(
+        self: &SCDynamicStore,
+        keys: Option<&CFArray>,
+        patterns: Option<&CFArray>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCDynamicStoreSetNotificationKeys(
+                store: &SCDynamicStore,
+                keys: Option<&CFArray>,
+                patterns: Option<&CFArray>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCDynamicStoreSetNotificationKeys(self, keys, patterns) };
+        ret != 0
+    }
+
+    /// Returns an array of CFString keys representing the
+    /// dynamic store entries that have changed since this
+    /// function was last called.  If possible, your application should
+    /// use the notification functions instead of polling for the list
+    /// of changed keys returned by this function.
+    ///
+    /// Parameter `store`: The dynamic store session.
+    ///
+    /// Returns: Returns the list of changed keys;
+    /// NULL if an error was encountered.
+    /// You must release the returned value.
+    #[inline]
+    #[doc(alias = "SCDynamicStoreCopyNotifiedKeys")]
+    pub fn notified_keys(self: &SCDynamicStore) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn SCDynamicStoreCopyNotifiedKeys(store: &SCDynamicStore) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { SCDynamicStoreCopyNotifiedKeys(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+#[deprecated = "renamed to `SCDynamicStore::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCDynamicStoreCreate(
     allocator: Option<&CFAllocator>,
@@ -152,64 +626,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Creates a new session used to interact with the dynamic
-/// store maintained by the System Configuration server.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for the local dynamic store object.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `name`: A string that describes the name of the calling
-/// process or plug-in of the caller.
-///
-/// Parameter `storeOptions`: A CFDictionary containing options for the
-/// dynamic store session (such as whether all keys added or set
-/// into the dynamic store should be per-session keys).
-///
-/// Currently available options include:
-///
-/// <TABLE
-/// BORDER>
-/// <TR
-/// >
-/// <TH
-/// >key
-/// </TD
-/// >
-/// <TH
-/// >value
-/// </TD
-/// >
-/// </TR
-/// >
-/// <TR
-/// >
-/// <TD
-/// >kSCDynamicStoreUseSessionKeys
-/// </TD
-/// >
-/// <TD
-/// >CFBooleanRef
-/// </TD
-/// >
-/// </TR
-/// >
-/// </TABLE
-/// >
-///
-/// A NULL value can be specified if no options are desired.
-///
-/// Parameter `callout`: The function to be called when a watched value
-/// in the dynamic store is changed.
-/// A NULL value can be specified if no callouts are
-/// desired.
-///
-/// Parameter `context`: The SCDynamicStoreContext associated with the callout.
-///
-/// Returns: Returns a reference to the new SCDynamicStore session.
-/// You must release the returned value.
+#[deprecated = "renamed to `SCDynamicStore::with_options`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCDynamicStoreCreateWithOptions(
     allocator: Option<&CFAllocator>,
@@ -233,34 +650,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCreateWithOptions(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstoreusesessionkeys?language=objc)
-    pub static kSCDynamicStoreUseSessionKeys: &'static CFString;
-}
-
-/// Creates a CFRunLoopSource object that can be added to the
-/// application's run loop.  All dynamic store notifications are
-/// delivered using this run loop source.
-///
-/// Parameter `allocator`: The CFAllocator that should be used to allocate
-/// memory for this run loop source.
-/// This parameter may be NULL in which case the current
-/// default CFAllocator is used. If this reference is not
-/// a valid CFAllocator, the behavior is undefined.
-///
-/// Parameter `store`: A reference to the dynamic store session.
-///
-/// Parameter `order`: On platforms which support it, for source versions
-/// which support it, this parameter determines the order in
-/// which the sources which are ready to be processed are
-/// handled. A lower order number causes processing before
-/// higher order number sources. It is inadvisable to depend
-/// on the order number for any architectural or design aspect
-/// of code. In the absence of any reason to do otherwise,
-/// zero should be used.
-///
-/// Returns: A reference to the new CFRunLoopSource.
-/// You must release the returned value.
+#[deprecated = "renamed to `SCDynamicStore::new_run_loop_source`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreCreateRunLoopSource(
     allocator: Option<&CFAllocator>,
@@ -278,16 +668,8 @@ pub extern "C-unwind" fn SCDynamicStoreCreateRunLoopSource(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Initiates notifications for the Notification
-/// Keys in store to the callback contained in store.
-///
-/// Parameter `store`: A reference to the dynamic store session.
-///
-/// Parameter `queue`: The dispatch queue to run the callback function on.
-/// Pass NULL to disable notifications, and release the queue.
-///
-/// Returns: Returns TRUE on success, FALSE on failure.
 #[cfg(feature = "dispatch2")]
+#[deprecated = "renamed to `SCDynamicStore::set_dispatch_queue`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCDynamicStoreSetDispatchQueue(
     store: &SCDynamicStore,
@@ -303,17 +685,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreSetDispatchQueue(
     ret != 0
 }
 
-/// Returns an array of CFString keys representing the
-/// current dynamic store entries that match a specified pattern.
-///
-/// Parameter `store`: The dynamic store session.
-///
-/// Parameter `pattern`: A regex(3) regular expression pattern
-/// used to match the dynamic store keys.
-///
-/// Returns: Returns the list of matching keys; NULL if an error was
-/// encountered.
-/// You must release the returned value.
+#[deprecated = "renamed to `SCDynamicStore::key_list`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreCopyKeyList(
     store: Option<&SCDynamicStore>,
@@ -329,17 +701,7 @@ pub extern "C-unwind" fn SCDynamicStoreCopyKeyList(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Adds the key-value pair to the dynamic store if no
-/// such key already exists.
-///
-/// Parameter `store`: The dynamic store session.
-///
-/// Parameter `key`: The key of the value to add to the dynamic store.
-///
-/// Parameter `value`: The value to add to the dynamic store.
-///
-/// Returns: Returns TRUE if the key was added; FALSE if the key was already
-/// present in the dynamic store or if an error was encountered.
+#[deprecated = "renamed to `SCDynamicStore::add_value`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCDynamicStoreAddValue(
     store: Option<&SCDynamicStore>,
@@ -357,19 +719,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreAddValue(
     ret != 0
 }
 
-/// Temporarily adds the key-value pair to the dynamic store
-/// if no such key already exists.  Unless the key is updated by another
-/// session, the key-value pair will be removed automatically when the
-/// session is closed.
-///
-/// Parameter `store`: The dynamic store session.
-///
-/// Parameter `key`: The key of the value to add to the dynamic store.
-///
-/// Parameter `value`: The value to add to the dynamic store.
-///
-/// Returns: Returns TRUE if the key was added; FALSE if the key was already
-/// present in the dynamic store or if an error was encountered.
+#[deprecated = "renamed to `SCDynamicStore::add_temporary_value`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCDynamicStoreAddTemporaryValue(
     store: &SCDynamicStore,
@@ -387,15 +737,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreAddTemporaryValue(
     ret != 0
 }
 
-/// Gets the value of the specified key from the dynamic store.
-///
-/// Parameter `store`: The dynamic store session.
-///
-/// Parameter `key`: The key associated with the value you want to get.
-///
-/// Returns: Returns the value from the dynamic store that is associated with the given
-/// key; NULL if no value was located or an error was encountered.
-/// You must release the returned value.
+#[deprecated = "renamed to `SCDynamicStore::value`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreCopyValue(
     store: Option<&SCDynamicStore>,
@@ -411,20 +753,7 @@ pub extern "C-unwind" fn SCDynamicStoreCopyValue(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Gets the values of multiple keys in the dynamic store.
-///
-/// Parameter `store`: The dynamic store session.
-///
-/// Parameter `keys`: The keys associated with the values you want to get; NULL if no specific
-/// keys are requested.
-///
-/// Parameter `patterns`: An array of regex(3) pattern strings used to match the keys; NULL
-/// if no key patterns are requested.
-///
-/// Returns: Returns a dictionary containing the key-value pairs of specific keys and the
-/// key-value pairs of keys that matched the specified patterns;
-/// NULL if an error was encountered.
-/// You must release the returned value.
+#[deprecated = "renamed to `SCDynamicStore::multiple`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCDynamicStoreCopyMultiple(
     store: Option<&SCDynamicStore>,
@@ -442,16 +771,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyMultiple(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// Adds or replaces a value in the dynamic store for
-/// the specified key.
-///
-/// Parameter `store`: The dynamic store session.
-///
-/// Parameter `key`: The key you want to set.
-///
-/// Parameter `value`: The value to add to or replace in the dynamic store.
-///
-/// Returns: Returns TRUE if the key was updated; FALSE if an error was encountered.
+#[deprecated = "renamed to `SCDynamicStore::set_value`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCDynamicStoreSetValue(
     store: Option<&SCDynamicStore>,
@@ -469,17 +789,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreSetValue(
     ret != 0
 }
 
-/// Updates multiple values in the dynamic store.
-///
-/// Parameter `store`: The dynamic store session.
-///
-/// Parameter `keysToSet`: A dictionary of key-value pairs you want to set into the dynamic store.
-///
-/// Parameter `keysToRemove`: An array of keys you want to remove from the dynamic store.
-///
-/// Parameter `keysToNotify`: An array of keys to flag as changed (without changing their values).
-///
-/// Returns: Returns TRUE if the dynamic store updates were successful; FALSE if an error was encountered.
+#[deprecated = "renamed to `SCDynamicStore::set_multiple`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCDynamicStoreSetMultiple(
     store: Option<&SCDynamicStore>,
@@ -500,15 +810,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreSetMultiple(
     ret != 0
 }
 
-/// Removes the value of the specified key from the
-/// dynamic store.
-///
-/// Parameter `store`: The dynamic store session.
-///
-/// Parameter `key`: The key of the value you want to remove.
-///
-/// Returns: Returns TRUE if the key was removed; FALSE if no value was
-/// located or an error was encountered.
+#[deprecated = "renamed to `SCDynamicStore::remove_value`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreRemoveValue(
     store: Option<&SCDynamicStore>,
@@ -521,16 +823,7 @@ pub extern "C-unwind" fn SCDynamicStoreRemoveValue(
     ret != 0
 }
 
-/// Triggers a notification to be delivered for the
-/// specified key in the dynamic store.
-///
-/// Parameter `store`: The dynamic store session.
-///
-/// Parameter `key`: The key that should be flagged as changed.  Any dynamic store sessions
-/// that are monitoring this key will received a notification.  Note that the
-/// key's value is not updated.
-///
-/// Returns: Returns TRUE if the notification was processed; FALSE if an error was encountered.
+#[deprecated = "renamed to `SCDynamicStore::notify_value`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreNotifyValue(
     store: Option<&SCDynamicStore>,
@@ -543,19 +836,7 @@ pub extern "C-unwind" fn SCDynamicStoreNotifyValue(
     ret != 0
 }
 
-/// Specifies a set of specific keys and key patterns
-/// that should be monitored for changes.
-///
-/// Parameter `store`: The dynamic store session being watched.
-///
-/// Parameter `keys`: An array of keys to be monitored; NULL if no specific keys
-/// are to be monitored.
-///
-/// Parameter `patterns`: An array of regex(3) pattern strings used to match keys to be monitored;
-/// NULL if no key patterns are to be monitored.
-///
-/// Returns: Returns TRUE if the set of notification keys and patterns was successfully
-/// updated; FALSE if an error was encountered.
+#[deprecated = "renamed to `SCDynamicStore::set_notification_keys`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCDynamicStoreSetNotificationKeys(
     store: &SCDynamicStore,
@@ -573,17 +854,7 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreSetNotificationKeys(
     ret != 0
 }
 
-/// Returns an array of CFString keys representing the
-/// dynamic store entries that have changed since this
-/// function was last called.  If possible, your application should
-/// use the notification functions instead of polling for the list
-/// of changed keys returned by this function.
-///
-/// Parameter `store`: The dynamic store session.
-///
-/// Returns: Returns the list of changed keys;
-/// NULL if an error was encountered.
-/// You must release the returned value.
+#[deprecated = "renamed to `SCDynamicStore::notified_keys`"]
 #[inline]
 pub extern "C-unwind" fn SCDynamicStoreCopyNotifiedKeys(
     store: &SCDynamicStore,

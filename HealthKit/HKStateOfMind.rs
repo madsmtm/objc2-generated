@@ -39,18 +39,19 @@ unsafe impl RefEncode for HKStateOfMindValenceClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Returns the valence classification appropriate for a valence value.
-/// If the given valence is outside the supported range of values, this function returns
-/// `nil.`
-#[inline]
-pub unsafe extern "C-unwind" fn HKStateOfMindValenceClassificationForValence(
-    valence: c_double,
-) -> Option<Retained<NSNumber>> {
-    extern "C-unwind" {
-        fn HKStateOfMindValenceClassificationForValence(valence: c_double) -> *mut NSNumber;
+impl HKStateOfMindValenceClassification {
+    /// Returns the valence classification appropriate for a valence value.
+    /// If the given valence is outside the supported range of values, this function returns
+    /// `nil.`
+    #[inline]
+    #[doc(alias = "HKStateOfMindValenceClassificationForValence")]
+    pub unsafe fn for_valence(valence: c_double) -> Option<Retained<NSNumber>> {
+        extern "C-unwind" {
+            fn HKStateOfMindValenceClassificationForValence(valence: c_double) -> *mut NSNumber;
+        }
+        let ret = unsafe { HKStateOfMindValenceClassificationForValence(valence) };
+        unsafe { Retained::retain_autoreleased(ret) }
     }
-    let ret = unsafe { HKStateOfMindValenceClassificationForValence(valence) };
-    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 /// A specific word describing a felt experience.
@@ -327,4 +328,16 @@ impl HKStateOfMind {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     );
+}
+
+#[deprecated = "renamed to `HKStateOfMindValenceClassification::for_valence`"]
+#[inline]
+pub unsafe extern "C-unwind" fn HKStateOfMindValenceClassificationForValence(
+    valence: c_double,
+) -> Option<Retained<NSNumber>> {
+    extern "C-unwind" {
+        fn HKStateOfMindValenceClassificationForValence(valence: c_double) -> *mut NSNumber;
+    }
+    let ret = unsafe { HKStateOfMindValenceClassificationForValence(valence) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }

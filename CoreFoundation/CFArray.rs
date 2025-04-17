@@ -142,229 +142,238 @@ unsafe impl ConcreteType for CFArray {
     }
 }
 
-/// Creates a new immutable array with the given values.
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate
-/// memory for the array and its storage for values. This
-/// parameter may be NULL in which case the current default
-/// CFAllocator is used. If this reference is not a valid
-/// CFAllocator, the behavior is undefined.
-///
-/// Parameter `values`: A C array of the pointer-sized values to be in the
-/// array. The values in the array are ordered in the same order
-/// in which they appear in this C array. This parameter may be
-/// NULL if the numValues parameter is 0. This C array is not
-/// changed or freed by this function. If this parameter is not
-/// a valid pointer to a C array of at least numValues pointers,
-/// the behavior is undefined.
-///
-/// Parameter `numValues`: The number of values to copy from the values C
-/// array into the CFArray. This number will be the count of the
-/// array.
-/// If this parameter is negative, or greater than the number of
-/// values actually in the value's C array, the behavior is
-/// undefined.
-///
-/// Parameter `callBacks`: A pointer to a CFArrayCallBacks structure
-/// initialized with the callbacks for the array to use on each
-/// value in the array. The retain callback will be used within
-/// this function, for example, to retain all of the new values
-/// from the values C array. A copy of the contents of the
-/// callbacks structure is made, so that a pointer to a
-/// structure on the stack can be passed in, or can be reused
-/// for multiple array creations. If the version field of this
-/// callbacks structure is not one of the defined ones for
-/// CFArray, the behavior is undefined. The retain field may be
-/// NULL, in which case the CFArray will do nothing to add a
-/// retain to the contained values for the array. The release
-/// field may be NULL, in which case the CFArray will do nothing
-/// to remove the array's retain (if any) on the values when the
-/// array is destroyed. If the copyDescription field is NULL,
-/// the array will create a simple description for the value. If
-/// the equal field is NULL, the array will use pointer equality
-/// to test for equality of values. This callbacks parameter
-/// itself may be NULL, which is treated as if a valid structure
-/// of version 0 with all fields NULL had been passed in.
-/// Otherwise, if any of the fields are not valid pointers to
-/// functions of the correct type, or this parameter is not a
-/// valid pointer to a  CFArrayCallBacks callbacks structure,
-/// the behavior is undefined. If any of the values put into the
-/// array is not one understood by one of the callback functions
-/// the behavior when that callback function is used is
-/// undefined.
-///
-/// Returns: A reference to the new immutable CFArray.
-#[inline]
-pub unsafe extern "C-unwind" fn CFArrayCreate(
-    allocator: Option<&CFAllocator>,
-    values: *mut *const c_void,
-    num_values: CFIndex,
-    call_backs: *const CFArrayCallBacks,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CFArrayCreate(
-            allocator: Option<&CFAllocator>,
-            values: *mut *const c_void,
-            num_values: CFIndex,
-            call_backs: *const CFArrayCallBacks,
-        ) -> Option<NonNull<CFArray>>;
+impl CFArray {
+    /// Creates a new immutable array with the given values.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `values`: A C array of the pointer-sized values to be in the
+    /// array. The values in the array are ordered in the same order
+    /// in which they appear in this C array. This parameter may be
+    /// NULL if the numValues parameter is 0. This C array is not
+    /// changed or freed by this function. If this parameter is not
+    /// a valid pointer to a C array of at least numValues pointers,
+    /// the behavior is undefined.
+    ///
+    /// Parameter `numValues`: The number of values to copy from the values C
+    /// array into the CFArray. This number will be the count of the
+    /// array.
+    /// If this parameter is negative, or greater than the number of
+    /// values actually in the value's C array, the behavior is
+    /// undefined.
+    ///
+    /// Parameter `callBacks`: A pointer to a CFArrayCallBacks structure
+    /// initialized with the callbacks for the array to use on each
+    /// value in the array. The retain callback will be used within
+    /// this function, for example, to retain all of the new values
+    /// from the values C array. A copy of the contents of the
+    /// callbacks structure is made, so that a pointer to a
+    /// structure on the stack can be passed in, or can be reused
+    /// for multiple array creations. If the version field of this
+    /// callbacks structure is not one of the defined ones for
+    /// CFArray, the behavior is undefined. The retain field may be
+    /// NULL, in which case the CFArray will do nothing to add a
+    /// retain to the contained values for the array. The release
+    /// field may be NULL, in which case the CFArray will do nothing
+    /// to remove the array's retain (if any) on the values when the
+    /// array is destroyed. If the copyDescription field is NULL,
+    /// the array will create a simple description for the value. If
+    /// the equal field is NULL, the array will use pointer equality
+    /// to test for equality of values. This callbacks parameter
+    /// itself may be NULL, which is treated as if a valid structure
+    /// of version 0 with all fields NULL had been passed in.
+    /// Otherwise, if any of the fields are not valid pointers to
+    /// functions of the correct type, or this parameter is not a
+    /// valid pointer to a  CFArrayCallBacks callbacks structure,
+    /// the behavior is undefined. If any of the values put into the
+    /// array is not one understood by one of the callback functions
+    /// the behavior when that callback function is used is
+    /// undefined.
+    ///
+    /// Returns: A reference to the new immutable CFArray.
+    #[inline]
+    #[doc(alias = "CFArrayCreate")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        values: *mut *const c_void,
+        num_values: CFIndex,
+        call_backs: *const CFArrayCallBacks,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CFArrayCreate(
+                allocator: Option<&CFAllocator>,
+                values: *mut *const c_void,
+                num_values: CFIndex,
+                call_backs: *const CFArrayCallBacks,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CFArrayCreate(allocator, values, num_values, call_backs) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFArrayCreate(allocator, values, num_values, call_backs) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    /// Creates a new immutable array with the values from the given array.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `theArray`: The array which is to be copied. The values from the
+    /// array are copied as pointers into the new array (that is,
+    /// the values themselves are copied, not that which the values
+    /// point to, if anything). However, the values are also
+    /// retained by the new array. The count of the new array will
+    /// be the same as the given array. The new array uses the same
+    /// callbacks as the array to be copied. If this parameter is
+    /// not a valid CFArray, the behavior is undefined.
+    ///
+    /// Returns: A reference to the new immutable CFArray.
+    #[inline]
+    #[doc(alias = "CFArrayCreateCopy")]
+    pub unsafe fn new_copy(
+        allocator: Option<&CFAllocator>,
+        the_array: Option<&CFArray>,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CFArrayCreateCopy(
+                allocator: Option<&CFAllocator>,
+                the_array: Option<&CFArray>,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CFArrayCreateCopy(allocator, the_array) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
-/// Creates a new immutable array with the values from the given array.
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate
-/// memory for the array and its storage for values. This
-/// parameter may be NULL in which case the current default
-/// CFAllocator is used. If this reference is not a valid
-/// CFAllocator, the behavior is undefined.
-///
-/// Parameter `theArray`: The array which is to be copied. The values from the
-/// array are copied as pointers into the new array (that is,
-/// the values themselves are copied, not that which the values
-/// point to, if anything). However, the values are also
-/// retained by the new array. The count of the new array will
-/// be the same as the given array. The new array uses the same
-/// callbacks as the array to be copied. If this parameter is
-/// not a valid CFArray, the behavior is undefined.
-///
-/// Returns: A reference to the new immutable CFArray.
-#[inline]
-pub unsafe extern "C-unwind" fn CFArrayCreateCopy(
-    allocator: Option<&CFAllocator>,
-    the_array: Option<&CFArray>,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CFArrayCreateCopy(
-            allocator: Option<&CFAllocator>,
-            the_array: Option<&CFArray>,
-        ) -> Option<NonNull<CFArray>>;
+impl CFMutableArray {
+    /// Creates a new empty mutable array.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `capacity`: A hint about the number of values that will be held
+    /// by the CFArray. Pass 0 for no hint. The implementation may
+    /// ignore this hint, or may use it to optimize various
+    /// operations. An array's actual capacity is only limited by
+    /// address space and available memory constraints). If this
+    /// parameter is negative, the behavior is undefined.
+    ///
+    /// Parameter `callBacks`: A pointer to a CFArrayCallBacks structure
+    /// initialized with the callbacks for the array to use on each
+    /// value in the array. A copy of the contents of the
+    /// callbacks structure is made, so that a pointer to a
+    /// structure on the stack can be passed in, or can be reused
+    /// for multiple array creations. If the version field of this
+    /// callbacks structure is not one of the defined ones for
+    /// CFArray, the behavior is undefined. The retain field may be
+    /// NULL, in which case the CFArray will do nothing to add a
+    /// retain to the contained values for the array. The release
+    /// field may be NULL, in which case the CFArray will do nothing
+    /// to remove the array's retain (if any) on the values when the
+    /// array is destroyed. If the copyDescription field is NULL,
+    /// the array will create a simple description for the value. If
+    /// the equal field is NULL, the array will use pointer equality
+    /// to test for equality of values. This callbacks parameter
+    /// itself may be NULL, which is treated as if a valid structure
+    /// of version 0 with all fields NULL had been passed in.
+    /// Otherwise, if any of the fields are not valid pointers to
+    /// functions of the correct type, or this parameter is not a
+    /// valid pointer to a  CFArrayCallBacks callbacks structure,
+    /// the behavior is undefined. If any of the values put into the
+    /// array is not one understood by one of the callback functions
+    /// the behavior when that callback function is used is
+    /// undefined.
+    ///
+    /// Returns: A reference to the new mutable CFArray.
+    #[inline]
+    #[doc(alias = "CFArrayCreateMutable")]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        capacity: CFIndex,
+        call_backs: *const CFArrayCallBacks,
+    ) -> Option<CFRetained<CFMutableArray>> {
+        extern "C-unwind" {
+            fn CFArrayCreateMutable(
+                allocator: Option<&CFAllocator>,
+                capacity: CFIndex,
+                call_backs: *const CFArrayCallBacks,
+            ) -> Option<NonNull<CFMutableArray>>;
+        }
+        let ret = unsafe { CFArrayCreateMutable(allocator, capacity, call_backs) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFArrayCreateCopy(allocator, the_array) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    /// Creates a new mutable array with the values from the given array.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `capacity`: A hint about the number of values that will be held
+    /// by the CFArray. Pass 0 for no hint. The implementation may
+    /// ignore this hint, or may use it to optimize various
+    /// operations. An array's actual capacity is only limited by
+    /// address space and available memory constraints).
+    /// This parameter must be greater than or equal
+    /// to the count of the array which is to be copied, or the
+    /// behavior is undefined. If this parameter is negative, the
+    /// behavior is undefined.
+    ///
+    /// Parameter `theArray`: The array which is to be copied. The values from the
+    /// array are copied as pointers into the new array (that is,
+    /// the values themselves are copied, not that which the values
+    /// point to, if anything). However, the values are also
+    /// retained by the new array. The count of the new array will
+    /// be the same as the given array. The new array uses the same
+    /// callbacks as the array to be copied. If this parameter is
+    /// not a valid CFArray, the behavior is undefined.
+    ///
+    /// Returns: A reference to the new mutable CFArray.
+    #[inline]
+    #[doc(alias = "CFArrayCreateMutableCopy")]
+    pub unsafe fn new_copy(
+        allocator: Option<&CFAllocator>,
+        capacity: CFIndex,
+        the_array: Option<&CFArray>,
+    ) -> Option<CFRetained<CFMutableArray>> {
+        extern "C-unwind" {
+            fn CFArrayCreateMutableCopy(
+                allocator: Option<&CFAllocator>,
+                capacity: CFIndex,
+                the_array: Option<&CFArray>,
+            ) -> Option<NonNull<CFMutableArray>>;
+        }
+        let ret = unsafe { CFArrayCreateMutableCopy(allocator, capacity, the_array) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
-/// Creates a new empty mutable array.
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate
-/// memory for the array and its storage for values. This
-/// parameter may be NULL in which case the current default
-/// CFAllocator is used. If this reference is not a valid
-/// CFAllocator, the behavior is undefined.
-///
-/// Parameter `capacity`: A hint about the number of values that will be held
-/// by the CFArray. Pass 0 for no hint. The implementation may
-/// ignore this hint, or may use it to optimize various
-/// operations. An array's actual capacity is only limited by
-/// address space and available memory constraints). If this
-/// parameter is negative, the behavior is undefined.
-///
-/// Parameter `callBacks`: A pointer to a CFArrayCallBacks structure
-/// initialized with the callbacks for the array to use on each
-/// value in the array. A copy of the contents of the
-/// callbacks structure is made, so that a pointer to a
-/// structure on the stack can be passed in, or can be reused
-/// for multiple array creations. If the version field of this
-/// callbacks structure is not one of the defined ones for
-/// CFArray, the behavior is undefined. The retain field may be
-/// NULL, in which case the CFArray will do nothing to add a
-/// retain to the contained values for the array. The release
-/// field may be NULL, in which case the CFArray will do nothing
-/// to remove the array's retain (if any) on the values when the
-/// array is destroyed. If the copyDescription field is NULL,
-/// the array will create a simple description for the value. If
-/// the equal field is NULL, the array will use pointer equality
-/// to test for equality of values. This callbacks parameter
-/// itself may be NULL, which is treated as if a valid structure
-/// of version 0 with all fields NULL had been passed in.
-/// Otherwise, if any of the fields are not valid pointers to
-/// functions of the correct type, or this parameter is not a
-/// valid pointer to a  CFArrayCallBacks callbacks structure,
-/// the behavior is undefined. If any of the values put into the
-/// array is not one understood by one of the callback functions
-/// the behavior when that callback function is used is
-/// undefined.
-///
-/// Returns: A reference to the new mutable CFArray.
-#[inline]
-pub unsafe extern "C-unwind" fn CFArrayCreateMutable(
-    allocator: Option<&CFAllocator>,
-    capacity: CFIndex,
-    call_backs: *const CFArrayCallBacks,
-) -> Option<CFRetained<CFMutableArray>> {
-    extern "C-unwind" {
-        fn CFArrayCreateMutable(
-            allocator: Option<&CFAllocator>,
-            capacity: CFIndex,
-            call_backs: *const CFArrayCallBacks,
-        ) -> Option<NonNull<CFMutableArray>>;
+impl CFArray {
+    /// Returns the number of values currently in the array.
+    ///
+    /// Parameter `theArray`: The array to be queried. If this parameter is not a valid
+    /// CFArray, the behavior is undefined.
+    ///
+    /// Returns: The number of values in the array.
+    #[inline]
+    #[doc(alias = "CFArrayGetCount")]
+    pub fn count(self: &CFArray) -> CFIndex {
+        extern "C-unwind" {
+            fn CFArrayGetCount(the_array: &CFArray) -> CFIndex;
+        }
+        unsafe { CFArrayGetCount(self) }
     }
-    let ret = unsafe { CFArrayCreateMutable(allocator, capacity, call_backs) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-/// Creates a new mutable array with the values from the given array.
-///
-/// Parameter `allocator`: The CFAllocator which should be used to allocate
-/// memory for the array and its storage for values. This
-/// parameter may be NULL in which case the current default
-/// CFAllocator is used. If this reference is not a valid
-/// CFAllocator, the behavior is undefined.
-///
-/// Parameter `capacity`: A hint about the number of values that will be held
-/// by the CFArray. Pass 0 for no hint. The implementation may
-/// ignore this hint, or may use it to optimize various
-/// operations. An array's actual capacity is only limited by
-/// address space and available memory constraints).
-/// This parameter must be greater than or equal
-/// to the count of the array which is to be copied, or the
-/// behavior is undefined. If this parameter is negative, the
-/// behavior is undefined.
-///
-/// Parameter `theArray`: The array which is to be copied. The values from the
-/// array are copied as pointers into the new array (that is,
-/// the values themselves are copied, not that which the values
-/// point to, if anything). However, the values are also
-/// retained by the new array. The count of the new array will
-/// be the same as the given array. The new array uses the same
-/// callbacks as the array to be copied. If this parameter is
-/// not a valid CFArray, the behavior is undefined.
-///
-/// Returns: A reference to the new mutable CFArray.
-#[inline]
-pub unsafe extern "C-unwind" fn CFArrayCreateMutableCopy(
-    allocator: Option<&CFAllocator>,
-    capacity: CFIndex,
-    the_array: Option<&CFArray>,
-) -> Option<CFRetained<CFMutableArray>> {
-    extern "C-unwind" {
-        fn CFArrayCreateMutableCopy(
-            allocator: Option<&CFAllocator>,
-            capacity: CFIndex,
-            the_array: Option<&CFArray>,
-        ) -> Option<NonNull<CFMutableArray>>;
-    }
-    let ret = unsafe { CFArrayCreateMutableCopy(allocator, capacity, the_array) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-/// Returns the number of values currently in the array.
-///
-/// Parameter `theArray`: The array to be queried. If this parameter is not a valid
-/// CFArray, the behavior is undefined.
-///
-/// Returns: The number of values in the array.
-#[inline]
-pub extern "C-unwind" fn CFArrayGetCount(the_array: &CFArray) -> CFIndex {
-    extern "C-unwind" {
-        fn CFArrayGetCount(the_array: &CFArray) -> CFIndex;
-    }
-    unsafe { CFArrayGetCount(the_array) }
-}
-
-extern "C-unwind" {
     /// Counts the number of times the given value occurs in the array.
     ///
     /// Parameter `theArray`: The array to be searched. If this parameter is not a
@@ -386,52 +395,54 @@ extern "C-unwind" {
     ///
     /// Returns: The number of times the given value occurs in the array,
     /// within the specified range.
-    pub fn CFArrayGetCountOfValue(
-        the_array: &CFArray,
-        range: CFRange,
-        value: *const c_void,
-    ) -> CFIndex;
-}
-
-/// Reports whether or not the value is in the array.
-///
-/// Parameter `theArray`: The array to be searched. If this parameter is not a
-/// valid CFArray, the behavior is undefined.
-///
-/// Parameter `range`: The range within the array to search. If the range
-/// location or end point (defined by the location plus length
-/// minus 1) is outside the index space of the array (0 to
-/// N-1 inclusive, where N is the count of the array), the
-/// behavior is undefined. If the range length is negative, the
-/// behavior is undefined. The range may be empty (length 0).
-///
-/// Parameter `value`: The value for which to find matches in the array. The
-/// equal() callback provided when the array was created is
-/// used to compare. If the equal() callback was NULL, pointer
-/// equality (in C, ==) is used. If value, or any of the values
-/// in the array, are not understood by the equal() callback,
-/// the behavior is undefined.
-///
-/// Returns: true, if the value is in the specified range of the array,
-/// otherwise false.
-#[inline]
-pub unsafe extern "C-unwind" fn CFArrayContainsValue(
-    the_array: &CFArray,
-    range: CFRange,
-    value: *const c_void,
-) -> bool {
-    extern "C-unwind" {
-        fn CFArrayContainsValue(
-            the_array: &CFArray,
-            range: CFRange,
-            value: *const c_void,
-        ) -> Boolean;
+    #[inline]
+    #[doc(alias = "CFArrayGetCountOfValue")]
+    pub unsafe fn count_of_value(self: &CFArray, range: CFRange, value: *const c_void) -> CFIndex {
+        extern "C-unwind" {
+            fn CFArrayGetCountOfValue(
+                the_array: &CFArray,
+                range: CFRange,
+                value: *const c_void,
+            ) -> CFIndex;
+        }
+        unsafe { CFArrayGetCountOfValue(self, range, value) }
     }
-    let ret = unsafe { CFArrayContainsValue(the_array, range, value) };
-    ret != 0
-}
 
-extern "C-unwind" {
+    /// Reports whether or not the value is in the array.
+    ///
+    /// Parameter `theArray`: The array to be searched. If this parameter is not a
+    /// valid CFArray, the behavior is undefined.
+    ///
+    /// Parameter `range`: The range within the array to search. If the range
+    /// location or end point (defined by the location plus length
+    /// minus 1) is outside the index space of the array (0 to
+    /// N-1 inclusive, where N is the count of the array), the
+    /// behavior is undefined. If the range length is negative, the
+    /// behavior is undefined. The range may be empty (length 0).
+    ///
+    /// Parameter `value`: The value for which to find matches in the array. The
+    /// equal() callback provided when the array was created is
+    /// used to compare. If the equal() callback was NULL, pointer
+    /// equality (in C, ==) is used. If value, or any of the values
+    /// in the array, are not understood by the equal() callback,
+    /// the behavior is undefined.
+    ///
+    /// Returns: true, if the value is in the specified range of the array,
+    /// otherwise false.
+    #[inline]
+    #[doc(alias = "CFArrayContainsValue")]
+    pub unsafe fn contains_value(self: &CFArray, range: CFRange, value: *const c_void) -> bool {
+        extern "C-unwind" {
+            fn CFArrayContainsValue(
+                the_array: &CFArray,
+                range: CFRange,
+                value: *const c_void,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFArrayContainsValue(self, range, value) };
+        ret != 0
+    }
+
     /// Retrieves the value at the given index.
     ///
     /// Parameter `theArray`: The array to be queried. If this parameter is not a
@@ -443,10 +454,15 @@ extern "C-unwind" {
     /// undefined.
     ///
     /// Returns: The value with the given index in the array.
-    pub fn CFArrayGetValueAtIndex(the_array: &CFArray, idx: CFIndex) -> *const c_void;
-}
+    #[inline]
+    #[doc(alias = "CFArrayGetValueAtIndex")]
+    pub unsafe fn value_at_index(self: &CFArray, idx: CFIndex) -> *const c_void {
+        extern "C-unwind" {
+            fn CFArrayGetValueAtIndex(the_array: &CFArray, idx: CFIndex) -> *const c_void;
+        }
+        unsafe { CFArrayGetValueAtIndex(self, idx) }
+    }
 
-extern "C-unwind" {
     /// Fills the buffer with values from the array.
     ///
     /// Parameter `theArray`: The array to be queried. If this parameter is not a
@@ -465,10 +481,15 @@ extern "C-unwind" {
     /// in the same order in which they appear in the array. If this
     /// parameter is not a valid pointer to a C array of at least
     /// range.length pointers, the behavior is undefined.
-    pub fn CFArrayGetValues(the_array: &CFArray, range: CFRange, values: *mut *const c_void);
-}
+    #[inline]
+    #[doc(alias = "CFArrayGetValues")]
+    pub unsafe fn values(self: &CFArray, range: CFRange, values: *mut *const c_void) {
+        extern "C-unwind" {
+            fn CFArrayGetValues(the_array: &CFArray, range: CFRange, values: *mut *const c_void);
+        }
+        unsafe { CFArrayGetValues(self, range, values) }
+    }
 
-extern "C-unwind" {
     /// Calls a function once for each value in the array.
     ///
     /// Parameter `theArray`: The array to be operated upon. If this parameter is not
@@ -494,15 +515,25 @@ extern "C-unwind" {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the applier function, the behavior is
     /// undefined.
-    pub fn CFArrayApplyFunction(
-        the_array: &CFArray,
+    #[inline]
+    #[doc(alias = "CFArrayApplyFunction")]
+    pub unsafe fn apply_function(
+        self: &CFArray,
         range: CFRange,
         applier: CFArrayApplierFunction,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn CFArrayApplyFunction(
+                the_array: &CFArray,
+                range: CFRange,
+                applier: CFArrayApplierFunction,
+                context: *mut c_void,
+            );
+        }
+        unsafe { CFArrayApplyFunction(self, range, applier, context) }
+    }
 
-extern "C-unwind" {
     /// Searches the array for the value.
     ///
     /// Parameter `theArray`: The array to be searched. If this parameter is not a
@@ -526,14 +557,23 @@ extern "C-unwind" {
     ///
     /// Returns: The lowest index of the matching values in the range, or
     /// kCFNotFound if no value in the range matched.
-    pub fn CFArrayGetFirstIndexOfValue(
-        the_array: &CFArray,
+    #[inline]
+    #[doc(alias = "CFArrayGetFirstIndexOfValue")]
+    pub unsafe fn first_index_of_value(
+        self: &CFArray,
         range: CFRange,
         value: *const c_void,
-    ) -> CFIndex;
-}
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn CFArrayGetFirstIndexOfValue(
+                the_array: &CFArray,
+                range: CFRange,
+                value: *const c_void,
+            ) -> CFIndex;
+        }
+        unsafe { CFArrayGetFirstIndexOfValue(self, range, value) }
+    }
 
-extern "C-unwind" {
     /// Searches the array for the value.
     ///
     /// Parameter `theArray`: The array to be searched. If this parameter is not a
@@ -557,14 +597,23 @@ extern "C-unwind" {
     ///
     /// Returns: The highest index of the matching values in the range, or
     /// kCFNotFound if no value in the range matched.
-    pub fn CFArrayGetLastIndexOfValue(
-        the_array: &CFArray,
+    #[inline]
+    #[doc(alias = "CFArrayGetLastIndexOfValue")]
+    pub unsafe fn last_index_of_value(
+        self: &CFArray,
         range: CFRange,
         value: *const c_void,
-    ) -> CFIndex;
-}
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn CFArrayGetLastIndexOfValue(
+                the_array: &CFArray,
+                range: CFRange,
+                value: *const c_void,
+            ) -> CFIndex;
+        }
+        unsafe { CFArrayGetLastIndexOfValue(self, range, value) }
+    }
 
-extern "C-unwind" {
     /// Searches the array for the value using a binary search algorithm.
     ///
     /// Parameter `theArray`: The array to be searched. If this parameter is not a
@@ -604,16 +653,29 @@ extern "C-unwind" {
     /// range, or 3) the index of the value greater than the target
     /// value, if the value lies between two of (or less than all
     /// of) the values in the range.
-    pub fn CFArrayBSearchValues(
-        the_array: &CFArray,
+    #[inline]
+    #[doc(alias = "CFArrayBSearchValues")]
+    pub unsafe fn b_search_values(
+        self: &CFArray,
         range: CFRange,
         value: *const c_void,
         comparator: CFComparatorFunction,
         context: *mut c_void,
-    ) -> CFIndex;
+    ) -> CFIndex {
+        extern "C-unwind" {
+            fn CFArrayBSearchValues(
+                the_array: &CFArray,
+                range: CFRange,
+                value: *const c_void,
+                comparator: CFComparatorFunction,
+                context: *mut c_void,
+            ) -> CFIndex;
+        }
+        unsafe { CFArrayBSearchValues(self, range, value, comparator, context) }
+    }
 }
 
-extern "C-unwind" {
+impl CFMutableArray {
     /// Adds the value to the array giving it a new largest index.
     ///
     /// Parameter `theArray`: The array to which the value is to be added. If this
@@ -626,10 +688,15 @@ extern "C-unwind" {
     /// retain callback, the behavior is undefined. The value is
     /// assigned to the index one larger than the previous largest
     /// index, and the count of the array is increased by one.
-    pub fn CFArrayAppendValue(the_array: Option<&CFMutableArray>, value: *const c_void);
-}
+    #[inline]
+    #[doc(alias = "CFArrayAppendValue")]
+    pub unsafe fn append_value(the_array: Option<&CFMutableArray>, value: *const c_void) {
+        extern "C-unwind" {
+            fn CFArrayAppendValue(the_array: Option<&CFMutableArray>, value: *const c_void);
+        }
+        unsafe { CFArrayAppendValue(the_array, value) }
+    }
 
-extern "C-unwind" {
     /// Adds the value to the array, giving it the given index.
     ///
     /// Parameter `theArray`: The array to which the value is to be added. If this
@@ -648,14 +715,23 @@ extern "C-unwind" {
     /// retain callback, the behavior is undefined. The value is
     /// assigned to the given index, and all values with equal and
     /// larger indices have their indexes increased by one.
-    pub fn CFArrayInsertValueAtIndex(
+    #[inline]
+    #[doc(alias = "CFArrayInsertValueAtIndex")]
+    pub unsafe fn insert_value_at_index(
         the_array: Option<&CFMutableArray>,
         idx: CFIndex,
         value: *const c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn CFArrayInsertValueAtIndex(
+                the_array: Option<&CFMutableArray>,
+                idx: CFIndex,
+                value: *const c_void,
+            );
+        }
+        unsafe { CFArrayInsertValueAtIndex(the_array, idx, value) }
+    }
 
-extern "C-unwind" {
     /// Changes the value with the given index in the array.
     ///
     /// Parameter `theArray`: The array in which the value is to be changed. If this
@@ -674,14 +750,23 @@ extern "C-unwind" {
     /// released. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The indices of
     /// other values is not affected.
-    pub fn CFArraySetValueAtIndex(
+    #[inline]
+    #[doc(alias = "CFArraySetValueAtIndex")]
+    pub unsafe fn set_value_at_index(
         the_array: Option<&CFMutableArray>,
         idx: CFIndex,
         value: *const c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn CFArraySetValueAtIndex(
+                the_array: Option<&CFMutableArray>,
+                idx: CFIndex,
+                value: *const c_void,
+            );
+        }
+        unsafe { CFArraySetValueAtIndex(the_array, idx, value) }
+    }
 
-extern "C-unwind" {
     /// Removes the value with the given index from the array.
     ///
     /// Parameter `theArray`: The array from which the value is to be removed. If
@@ -692,23 +777,29 @@ extern "C-unwind" {
     /// outside the index space of the array (0 to N-1 inclusive,
     /// where N is the count of the array before the operation), the
     /// behavior is undefined.
-    pub fn CFArrayRemoveValueAtIndex(the_array: Option<&CFMutableArray>, idx: CFIndex);
-}
-
-/// Removes all the values from the array, making it empty.
-///
-/// Parameter `theArray`: The array from which all of the values are to be
-/// removed. If this parameter is not a valid mutable CFArray,
-/// the behavior is undefined.
-#[inline]
-pub extern "C-unwind" fn CFArrayRemoveAllValues(the_array: Option<&CFMutableArray>) {
-    extern "C-unwind" {
-        fn CFArrayRemoveAllValues(the_array: Option<&CFMutableArray>);
+    #[inline]
+    #[doc(alias = "CFArrayRemoveValueAtIndex")]
+    pub unsafe fn remove_value_at_index(the_array: Option<&CFMutableArray>, idx: CFIndex) {
+        extern "C-unwind" {
+            fn CFArrayRemoveValueAtIndex(the_array: Option<&CFMutableArray>, idx: CFIndex);
+        }
+        unsafe { CFArrayRemoveValueAtIndex(the_array, idx) }
     }
-    unsafe { CFArrayRemoveAllValues(the_array) }
-}
 
-extern "C-unwind" {
+    /// Removes all the values from the array, making it empty.
+    ///
+    /// Parameter `theArray`: The array from which all of the values are to be
+    /// removed. If this parameter is not a valid mutable CFArray,
+    /// the behavior is undefined.
+    #[inline]
+    #[doc(alias = "CFArrayRemoveAllValues")]
+    pub fn remove_all_values(the_array: Option<&CFMutableArray>) {
+        extern "C-unwind" {
+            fn CFArrayRemoveAllValues(the_array: Option<&CFMutableArray>);
+        }
+        unsafe { CFArrayRemoveAllValues(the_array) }
+    }
+
     /// Replaces a range of values in the array.
     ///
     /// Parameter `theArray`: The array from which all of the values are to be
@@ -741,15 +832,25 @@ extern "C-unwind" {
     /// range are simply removed. If this parameter is negative, or
     /// greater than the number of values actually in the newValues
     /// C array, the behavior is undefined.
-    pub fn CFArrayReplaceValues(
+    #[inline]
+    #[doc(alias = "CFArrayReplaceValues")]
+    pub unsafe fn replace_values(
         the_array: Option<&CFMutableArray>,
         range: CFRange,
         new_values: *mut *const c_void,
         new_count: CFIndex,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn CFArrayReplaceValues(
+                the_array: Option<&CFMutableArray>,
+                range: CFRange,
+                new_values: *mut *const c_void,
+                new_count: CFIndex,
+            );
+        }
+        unsafe { CFArrayReplaceValues(the_array, range, new_values, new_count) }
+    }
 
-extern "C-unwind" {
     /// Exchanges the values at two indices of the array.
     ///
     /// Parameter `theArray`: The array of which the values are to be swapped. If
@@ -765,14 +866,23 @@ extern "C-unwind" {
     /// index is outside the index space of the array (0 to N-1
     /// inclusive, where N is the count of the array before the
     /// operation), the behavior is undefined.
-    pub fn CFArrayExchangeValuesAtIndices(
+    #[inline]
+    #[doc(alias = "CFArrayExchangeValuesAtIndices")]
+    pub unsafe fn exchange_values_at_indices(
         the_array: Option<&CFMutableArray>,
         idx1: CFIndex,
         idx2: CFIndex,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn CFArrayExchangeValuesAtIndices(
+                the_array: Option<&CFMutableArray>,
+                idx1: CFIndex,
+                idx2: CFIndex,
+            );
+        }
+        unsafe { CFArrayExchangeValuesAtIndices(the_array, idx1, idx2) }
+    }
 
-extern "C-unwind" {
     /// Sorts the values in the array using the given comparison function.
     ///
     /// Parameter `theArray`: The array whose values are to be sorted. If this
@@ -801,15 +911,25 @@ extern "C-unwind" {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the comparator function, the behavior is
     /// undefined.
-    pub fn CFArraySortValues(
+    #[inline]
+    #[doc(alias = "CFArraySortValues")]
+    pub unsafe fn sort_values(
         the_array: Option<&CFMutableArray>,
         range: CFRange,
         comparator: CFComparatorFunction,
         context: *mut c_void,
-    );
-}
+    ) {
+        extern "C-unwind" {
+            fn CFArraySortValues(
+                the_array: Option<&CFMutableArray>,
+                range: CFRange,
+                comparator: CFComparatorFunction,
+                context: *mut c_void,
+            );
+        }
+        unsafe { CFArraySortValues(the_array, range, comparator, context) }
+    }
 
-extern "C-unwind" {
     /// Adds the values from an array to another array.
     ///
     /// Parameter `theArray`: The array to which values from the otherArray are to
@@ -834,6 +954,249 @@ extern "C-unwind" {
     /// increased by range.length. The values are assigned new
     /// indices in the array from smallest to largest index in the
     /// order in which they appear in the otherArray.
+    #[inline]
+    #[doc(alias = "CFArrayAppendArray")]
+    pub unsafe fn append_array(
+        the_array: Option<&CFMutableArray>,
+        other_array: Option<&CFArray>,
+        other_range: CFRange,
+    ) {
+        extern "C-unwind" {
+            fn CFArrayAppendArray(
+                the_array: Option<&CFMutableArray>,
+                other_array: Option<&CFArray>,
+                other_range: CFRange,
+            );
+        }
+        unsafe { CFArrayAppendArray(the_array, other_array, other_range) }
+    }
+}
+
+#[deprecated = "renamed to `CFArray::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFArrayCreate(
+    allocator: Option<&CFAllocator>,
+    values: *mut *const c_void,
+    num_values: CFIndex,
+    call_backs: *const CFArrayCallBacks,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CFArrayCreate(
+            allocator: Option<&CFAllocator>,
+            values: *mut *const c_void,
+            num_values: CFIndex,
+            call_backs: *const CFArrayCallBacks,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CFArrayCreate(allocator, values, num_values, call_backs) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CFArray::new_copy`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFArrayCreateCopy(
+    allocator: Option<&CFAllocator>,
+    the_array: Option<&CFArray>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CFArrayCreateCopy(
+            allocator: Option<&CFAllocator>,
+            the_array: Option<&CFArray>,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CFArrayCreateCopy(allocator, the_array) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CFMutableArray::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFArrayCreateMutable(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    call_backs: *const CFArrayCallBacks,
+) -> Option<CFRetained<CFMutableArray>> {
+    extern "C-unwind" {
+        fn CFArrayCreateMutable(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            call_backs: *const CFArrayCallBacks,
+        ) -> Option<NonNull<CFMutableArray>>;
+    }
+    let ret = unsafe { CFArrayCreateMutable(allocator, capacity, call_backs) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CFMutableArray::new_copy`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFArrayCreateMutableCopy(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    the_array: Option<&CFArray>,
+) -> Option<CFRetained<CFMutableArray>> {
+    extern "C-unwind" {
+        fn CFArrayCreateMutableCopy(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            the_array: Option<&CFArray>,
+        ) -> Option<NonNull<CFMutableArray>>;
+    }
+    let ret = unsafe { CFArrayCreateMutableCopy(allocator, capacity, the_array) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CFArray::count`"]
+#[inline]
+pub extern "C-unwind" fn CFArrayGetCount(the_array: &CFArray) -> CFIndex {
+    extern "C-unwind" {
+        fn CFArrayGetCount(the_array: &CFArray) -> CFIndex;
+    }
+    unsafe { CFArrayGetCount(the_array) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFArray::count_of_value`"]
+    pub fn CFArrayGetCountOfValue(
+        the_array: &CFArray,
+        range: CFRange,
+        value: *const c_void,
+    ) -> CFIndex;
+}
+
+#[deprecated = "renamed to `CFArray::contains_value`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFArrayContainsValue(
+    the_array: &CFArray,
+    range: CFRange,
+    value: *const c_void,
+) -> bool {
+    extern "C-unwind" {
+        fn CFArrayContainsValue(
+            the_array: &CFArray,
+            range: CFRange,
+            value: *const c_void,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFArrayContainsValue(the_array, range, value) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFArray::value_at_index`"]
+    pub fn CFArrayGetValueAtIndex(the_array: &CFArray, idx: CFIndex) -> *const c_void;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFArray::values`"]
+    pub fn CFArrayGetValues(the_array: &CFArray, range: CFRange, values: *mut *const c_void);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFArray::apply_function`"]
+    pub fn CFArrayApplyFunction(
+        the_array: &CFArray,
+        range: CFRange,
+        applier: CFArrayApplierFunction,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFArray::first_index_of_value`"]
+    pub fn CFArrayGetFirstIndexOfValue(
+        the_array: &CFArray,
+        range: CFRange,
+        value: *const c_void,
+    ) -> CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFArray::last_index_of_value`"]
+    pub fn CFArrayGetLastIndexOfValue(
+        the_array: &CFArray,
+        range: CFRange,
+        value: *const c_void,
+    ) -> CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFArray::b_search_values`"]
+    pub fn CFArrayBSearchValues(
+        the_array: &CFArray,
+        range: CFRange,
+        value: *const c_void,
+        comparator: CFComparatorFunction,
+        context: *mut c_void,
+    ) -> CFIndex;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableArray::append_value`"]
+    pub fn CFArrayAppendValue(the_array: Option<&CFMutableArray>, value: *const c_void);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableArray::insert_value_at_index`"]
+    pub fn CFArrayInsertValueAtIndex(
+        the_array: Option<&CFMutableArray>,
+        idx: CFIndex,
+        value: *const c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableArray::set_value_at_index`"]
+    pub fn CFArraySetValueAtIndex(
+        the_array: Option<&CFMutableArray>,
+        idx: CFIndex,
+        value: *const c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableArray::remove_value_at_index`"]
+    pub fn CFArrayRemoveValueAtIndex(the_array: Option<&CFMutableArray>, idx: CFIndex);
+}
+
+#[deprecated = "renamed to `CFMutableArray::remove_all_values`"]
+#[inline]
+pub extern "C-unwind" fn CFArrayRemoveAllValues(the_array: Option<&CFMutableArray>) {
+    extern "C-unwind" {
+        fn CFArrayRemoveAllValues(the_array: Option<&CFMutableArray>);
+    }
+    unsafe { CFArrayRemoveAllValues(the_array) }
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableArray::replace_values`"]
+    pub fn CFArrayReplaceValues(
+        the_array: Option<&CFMutableArray>,
+        range: CFRange,
+        new_values: *mut *const c_void,
+        new_count: CFIndex,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableArray::exchange_values_at_indices`"]
+    pub fn CFArrayExchangeValuesAtIndices(
+        the_array: Option<&CFMutableArray>,
+        idx1: CFIndex,
+        idx2: CFIndex,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableArray::sort_values`"]
+    pub fn CFArraySortValues(
+        the_array: Option<&CFMutableArray>,
+        range: CFRange,
+        comparator: CFComparatorFunction,
+        context: *mut c_void,
+    );
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFMutableArray::append_array`"]
     pub fn CFArrayAppendArray(
         the_array: Option<&CFMutableArray>,
         other_array: Option<&CFArray>,

@@ -36,15 +36,18 @@ unsafe impl RefEncode for DDEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Converts an event to a string for logging, etc.
-#[inline]
-pub unsafe extern "C-unwind" fn DDEventTypeToString(in_value: DDEventType) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn DDEventTypeToString(in_value: DDEventType) -> *mut NSString;
+impl DDEventType {
+    /// Converts an event to a string for logging, etc.
+    #[inline]
+    #[doc(alias = "DDEventTypeToString")]
+    pub unsafe fn to_string(in_value: DDEventType) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn DDEventTypeToString(in_value: DDEventType) -> *mut NSString;
+        }
+        let ret = unsafe { DDEventTypeToString(in_value) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { DDEventTypeToString(in_value) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 /// Invoked when an event occurs.
@@ -102,4 +105,15 @@ impl DDDeviceEvent {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     );
+}
+
+#[deprecated = "renamed to `DDEventType::to_string`"]
+#[inline]
+pub unsafe extern "C-unwind" fn DDEventTypeToString(in_value: DDEventType) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn DDEventTypeToString(in_value: DDEventType) -> *mut NSString;
+    }
+    let ret = unsafe { DDEventTypeToString(in_value) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

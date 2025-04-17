@@ -42,7 +42,7 @@ unsafe impl ConcreteType for VTMultiPassStorage {
     }
 }
 
-extern "C-unwind" {
+impl VTMultiPassStorage {
     /// Creates a VTMultiPassStorage object using a temporary file.
     ///
     /// The returned VTMultiPassStorage object may be used to perform multi-pass encoding; see kVTCompressionPropertyKey_MultiPassStorage.
@@ -55,6 +55,59 @@ extern "C-unwind" {
     ///
     /// Parameter `options`: If the file did not exist when the storage was created, the file will be deleted when the VTMultiPassStorage object is finalized, unless you set the kVTMultiPassStorageCreationOption_DoNotDelete option to kCFBooleanTrue in the options dictionary.
     #[cfg(feature = "objc2-core-media")]
+    #[inline]
+    #[doc(alias = "VTMultiPassStorageCreate")]
+    pub unsafe fn create(
+        allocator: Option<&CFAllocator>,
+        file_url: Option<&CFURL>,
+        time_range: CMTimeRange,
+        options: Option<&CFDictionary>,
+        multi_pass_storage_out: NonNull<*mut VTMultiPassStorage>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTMultiPassStorageCreate(
+                allocator: Option<&CFAllocator>,
+                file_url: Option<&CFURL>,
+                time_range: CMTimeRange,
+                options: Option<&CFDictionary>,
+                multi_pass_storage_out: NonNull<*mut VTMultiPassStorage>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTMultiPassStorageCreate(
+                allocator,
+                file_url,
+                time_range,
+                options,
+                multi_pass_storage_out,
+            )
+        }
+    }
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtmultipassstoragecreationoption_donotdelete?language=objc)
+    pub static kVTMultiPassStorageCreationOption_DoNotDelete: &'static CFString;
+}
+
+impl VTMultiPassStorage {
+    /// Ensures that any pending data is written to the multipass storage file and closes the file.
+    ///
+    /// After this function is called, all methods on the multipass storage object will fail.
+    /// It is still necessary to release the object by calling CFRelease.
+    #[inline]
+    #[doc(alias = "VTMultiPassStorageClose")]
+    pub unsafe fn close(self: &VTMultiPassStorage) -> OSStatus {
+        extern "C-unwind" {
+            fn VTMultiPassStorageClose(multi_pass_storage: &VTMultiPassStorage) -> OSStatus;
+        }
+        unsafe { VTMultiPassStorageClose(self) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "objc2-core-media")]
+    #[deprecated = "renamed to `VTMultiPassStorage::create`"]
     pub fn VTMultiPassStorageCreate(
         allocator: Option<&CFAllocator>,
         file_url: Option<&CFURL>,
@@ -64,15 +117,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtmultipassstoragecreationoption_donotdelete?language=objc)
-    pub static kVTMultiPassStorageCreationOption_DoNotDelete: &'static CFString;
-}
-
 extern "C-unwind" {
-    /// Ensures that any pending data is written to the multipass storage file and closes the file.
-    ///
-    /// After this function is called, all methods on the multipass storage object will fail.
-    /// It is still necessary to release the object by calling CFRelease.
+    #[deprecated = "renamed to `VTMultiPassStorage::close`"]
     pub fn VTMultiPassStorageClose(multi_pass_storage: &VTMultiPassStorage) -> OSStatus;
 }

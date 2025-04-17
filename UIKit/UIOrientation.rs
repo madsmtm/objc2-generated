@@ -34,13 +34,15 @@ unsafe impl RefEncode for UIDeviceOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn UIDeviceOrientationIsPortrait(orientation: UIDeviceOrientation,) -> Bool;
+impl UIDeviceOrientation {
+    // TODO: pub fn UIDeviceOrientationIsPortrait(orientation: UIDeviceOrientation,) -> Bool;
 
-// TODO: pub fn UIDeviceOrientationIsLandscape(orientation: UIDeviceOrientation,) -> Bool;
+    // TODO: pub fn UIDeviceOrientationIsLandscape(orientation: UIDeviceOrientation,) -> Bool;
 
-// TODO: pub fn UIDeviceOrientationIsFlat(orientation: UIDeviceOrientation,) -> Bool;
+    // TODO: pub fn UIDeviceOrientationIsFlat(orientation: UIDeviceOrientation,) -> Bool;
 
-// TODO: pub fn UIDeviceOrientationIsValidInterfaceOrientation(orientation: UIDeviceOrientation,) -> Bool;
+    // TODO: pub fn UIDeviceOrientationIsValidInterfaceOrientation(orientation: UIDeviceOrientation,) -> Bool;
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation?language=objc)
 // NS_ENUM
@@ -100,6 +102,8 @@ unsafe impl RefEncode for UIInterfaceOrientationMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn UIInterfaceOrientationIsPortrait(orientation: UIInterfaceOrientation,) -> Bool;
+impl UIInterfaceOrientation {
+    // TODO: pub fn UIInterfaceOrientationIsPortrait(orientation: UIInterfaceOrientation,) -> Bool;
 
-// TODO: pub fn UIInterfaceOrientationIsLandscape(orientation: UIInterfaceOrientation,) -> Bool;
+    // TODO: pub fn UIInterfaceOrientationIsLandscape(orientation: UIInterfaceOrientation,) -> Bool;
+}

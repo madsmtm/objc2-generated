@@ -940,20 +940,36 @@ unsafe impl RefEncode for UICellAccessoryPlacement {
 pub type UICellAccessoryPosition =
     *mut block2::DynBlock<dyn Fn(NonNull<NSArray<UICellAccessory>>) -> NSUInteger>;
 
-extern "C-unwind" {
+impl UICellAccessory {
     /// Positions the accessory before the accessory matching the class specified, or at the beginning if not found.
     #[cfg(feature = "block2")]
-    pub fn UICellAccessoryPositionBeforeAccessoryOfClass(
+    #[inline]
+    #[doc(alias = "UICellAccessoryPositionBeforeAccessoryOfClass")]
+    pub unsafe fn position_before_accessory_of_class(
         accessory_class: &AnyClass,
-    ) -> UICellAccessoryPosition;
-}
+    ) -> UICellAccessoryPosition {
+        extern "C-unwind" {
+            fn UICellAccessoryPositionBeforeAccessoryOfClass(
+                accessory_class: &AnyClass,
+            ) -> UICellAccessoryPosition;
+        }
+        unsafe { UICellAccessoryPositionBeforeAccessoryOfClass(accessory_class) }
+    }
 
-extern "C-unwind" {
     /// Positions the accessory after the accessory matching the class specified, or at the end if not found.
     #[cfg(feature = "block2")]
-    pub fn UICellAccessoryPositionAfterAccessoryOfClass(
+    #[inline]
+    #[doc(alias = "UICellAccessoryPositionAfterAccessoryOfClass")]
+    pub unsafe fn position_after_accessory_of_class(
         accessory_class: &AnyClass,
-    ) -> UICellAccessoryPosition;
+    ) -> UICellAccessoryPosition {
+        extern "C-unwind" {
+            fn UICellAccessoryPositionAfterAccessoryOfClass(
+                accessory_class: &AnyClass,
+            ) -> UICellAccessoryPosition;
+        }
+        unsafe { UICellAccessoryPositionAfterAccessoryOfClass(accessory_class) }
+    }
 }
 
 extern_class!(
@@ -1046,4 +1062,20 @@ impl UICellAccessoryCustomView {
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `UICellAccessory::position_before_accessory_of_class`"]
+    pub fn UICellAccessoryPositionBeforeAccessoryOfClass(
+        accessory_class: &AnyClass,
+    ) -> UICellAccessoryPosition;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `UICellAccessory::position_after_accessory_of_class`"]
+    pub fn UICellAccessoryPositionAfterAccessoryOfClass(
+        accessory_class: &AnyClass,
+    ) -> UICellAccessoryPosition;
 }

@@ -59,191 +59,213 @@ unsafe impl ConcreteType for CFPlugIn {
     }
 }
 
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-#[inline]
-pub extern "C-unwind" fn CFPlugInCreate(
-    allocator: Option<&CFAllocator>,
-    plug_in_url: Option<&CFURL>,
-) -> Option<CFRetained<CFPlugIn>> {
-    extern "C-unwind" {
-        fn CFPlugInCreate(
-            allocator: Option<&CFAllocator>,
-            plug_in_url: Option<&CFURL>,
-        ) -> Option<NonNull<CFPlugIn>>;
+#[cfg(feature = "CFBundle")]
+impl CFPlugIn {
+    #[cfg(all(feature = "CFBundle", feature = "CFURL"))]
+    #[inline]
+    #[doc(alias = "CFPlugInCreate")]
+    pub fn new(
+        allocator: Option<&CFAllocator>,
+        plug_in_url: Option<&CFURL>,
+    ) -> Option<CFRetained<CFPlugIn>> {
+        extern "C-unwind" {
+            fn CFPlugInCreate(
+                allocator: Option<&CFAllocator>,
+                plug_in_url: Option<&CFURL>,
+            ) -> Option<NonNull<CFPlugIn>>;
+        }
+        let ret = unsafe { CFPlugInCreate(allocator, plug_in_url) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFPlugInCreate(allocator, plug_in_url) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    #[cfg(feature = "CFBundle")]
+    #[inline]
+    #[doc(alias = "CFPlugInGetBundle")]
+    pub fn bundle(self: &CFPlugIn) -> Option<CFRetained<CFBundle>> {
+        extern "C-unwind" {
+            fn CFPlugInGetBundle(plug_in: &CFPlugIn) -> Option<NonNull<CFBundle>>;
+        }
+        let ret = unsafe { CFPlugInGetBundle(self) };
+        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+    }
+
+    #[cfg(feature = "CFBundle")]
+    #[inline]
+    #[doc(alias = "CFPlugInSetLoadOnDemand")]
+    pub fn set_load_on_demand(self: &CFPlugIn, flag: bool) {
+        extern "C-unwind" {
+            fn CFPlugInSetLoadOnDemand(plug_in: &CFPlugIn, flag: Boolean);
+        }
+        unsafe { CFPlugInSetLoadOnDemand(self, flag as _) }
+    }
+
+    #[cfg(feature = "CFBundle")]
+    #[inline]
+    #[doc(alias = "CFPlugInIsLoadOnDemand")]
+    pub fn is_load_on_demand(self: &CFPlugIn) -> bool {
+        extern "C-unwind" {
+            fn CFPlugInIsLoadOnDemand(plug_in: &CFPlugIn) -> Boolean;
+        }
+        let ret = unsafe { CFPlugInIsLoadOnDemand(self) };
+        ret != 0
+    }
+
+    #[cfg(all(feature = "CFArray", feature = "CFUUID"))]
+    #[inline]
+    #[doc(alias = "CFPlugInFindFactoriesForPlugInType")]
+    pub fn find_factories_for_plug_in_type(
+        type_uuid: Option<&CFUUID>,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CFPlugInFindFactoriesForPlugInType(
+                type_uuid: Option<&CFUUID>,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CFPlugInFindFactoriesForPlugInType(type_uuid) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(all(feature = "CFArray", feature = "CFBundle", feature = "CFUUID"))]
+    #[inline]
+    #[doc(alias = "CFPlugInFindFactoriesForPlugInTypeInPlugIn")]
+    pub fn find_factories_for_plug_in_type_in_plug_in(
+        type_uuid: Option<&CFUUID>,
+        plug_in: Option<&CFPlugIn>,
+    ) -> Option<CFRetained<CFArray>> {
+        extern "C-unwind" {
+            fn CFPlugInFindFactoriesForPlugInTypeInPlugIn(
+                type_uuid: Option<&CFUUID>,
+                plug_in: Option<&CFPlugIn>,
+            ) -> Option<NonNull<CFArray>>;
+        }
+        let ret = unsafe { CFPlugInFindFactoriesForPlugInTypeInPlugIn(type_uuid, plug_in) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+impl CFPlugInInstance {
+    #[cfg(feature = "CFUUID")]
+    #[inline]
+    #[doc(alias = "CFPlugInInstanceCreate")]
+    pub fn create(
+        allocator: Option<&CFAllocator>,
+        factory_uuid: Option<&CFUUID>,
+        type_uuid: Option<&CFUUID>,
+    ) -> *mut c_void {
+        extern "C-unwind" {
+            fn CFPlugInInstanceCreate(
+                allocator: Option<&CFAllocator>,
+                factory_uuid: Option<&CFUUID>,
+                type_uuid: Option<&CFUUID>,
+            ) -> *mut c_void;
+        }
+        unsafe { CFPlugInInstanceCreate(allocator, factory_uuid, type_uuid) }
+    }
 }
 
 #[cfg(feature = "CFBundle")]
-#[inline]
-pub extern "C-unwind" fn CFPlugInGetBundle(plug_in: &CFPlugIn) -> Option<CFRetained<CFBundle>> {
-    extern "C-unwind" {
-        fn CFPlugInGetBundle(plug_in: &CFPlugIn) -> Option<NonNull<CFBundle>>;
+impl CFPlugIn {
+    #[cfg(feature = "CFUUID")]
+    #[inline]
+    #[doc(alias = "CFPlugInRegisterFactoryFunction")]
+    pub fn register_factory_function(
+        factory_uuid: Option<&CFUUID>,
+        func: CFPlugInFactoryFunction,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFPlugInRegisterFactoryFunction(
+                factory_uuid: Option<&CFUUID>,
+                func: CFPlugInFactoryFunction,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFPlugInRegisterFactoryFunction(factory_uuid, func) };
+        ret != 0
     }
-    let ret = unsafe { CFPlugInGetBundle(plug_in) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
 
-#[cfg(feature = "CFBundle")]
-#[inline]
-pub extern "C-unwind" fn CFPlugInSetLoadOnDemand(plug_in: &CFPlugIn, flag: bool) {
-    extern "C-unwind" {
-        fn CFPlugInSetLoadOnDemand(plug_in: &CFPlugIn, flag: Boolean);
+    #[cfg(all(feature = "CFBundle", feature = "CFUUID"))]
+    #[inline]
+    #[doc(alias = "CFPlugInRegisterFactoryFunctionByName")]
+    pub fn register_factory_function_by_name(
+        factory_uuid: Option<&CFUUID>,
+        plug_in: Option<&CFPlugIn>,
+        function_name: Option<&CFString>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFPlugInRegisterFactoryFunctionByName(
+                factory_uuid: Option<&CFUUID>,
+                plug_in: Option<&CFPlugIn>,
+                function_name: Option<&CFString>,
+            ) -> Boolean;
+        }
+        let ret =
+            unsafe { CFPlugInRegisterFactoryFunctionByName(factory_uuid, plug_in, function_name) };
+        ret != 0
     }
-    unsafe { CFPlugInSetLoadOnDemand(plug_in, flag as _) }
-}
 
-#[cfg(feature = "CFBundle")]
-#[inline]
-pub extern "C-unwind" fn CFPlugInIsLoadOnDemand(plug_in: &CFPlugIn) -> bool {
-    extern "C-unwind" {
-        fn CFPlugInIsLoadOnDemand(plug_in: &CFPlugIn) -> Boolean;
+    #[cfg(feature = "CFUUID")]
+    #[inline]
+    #[doc(alias = "CFPlugInUnregisterFactory")]
+    pub fn unregister_factory(factory_uuid: Option<&CFUUID>) -> bool {
+        extern "C-unwind" {
+            fn CFPlugInUnregisterFactory(factory_uuid: Option<&CFUUID>) -> Boolean;
+        }
+        let ret = unsafe { CFPlugInUnregisterFactory(factory_uuid) };
+        ret != 0
     }
-    let ret = unsafe { CFPlugInIsLoadOnDemand(plug_in) };
-    ret != 0
-}
 
-#[cfg(all(feature = "CFArray", feature = "CFUUID"))]
-#[inline]
-pub extern "C-unwind" fn CFPlugInFindFactoriesForPlugInType(
-    type_uuid: Option<&CFUUID>,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CFPlugInFindFactoriesForPlugInType(
-            type_uuid: Option<&CFUUID>,
-        ) -> Option<NonNull<CFArray>>;
+    #[cfg(feature = "CFUUID")]
+    #[inline]
+    #[doc(alias = "CFPlugInRegisterPlugInType")]
+    pub fn register_plug_in_type(
+        factory_uuid: Option<&CFUUID>,
+        type_uuid: Option<&CFUUID>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFPlugInRegisterPlugInType(
+                factory_uuid: Option<&CFUUID>,
+                type_uuid: Option<&CFUUID>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFPlugInRegisterPlugInType(factory_uuid, type_uuid) };
+        ret != 0
     }
-    let ret = unsafe { CFPlugInFindFactoriesForPlugInType(type_uuid) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(all(feature = "CFArray", feature = "CFBundle", feature = "CFUUID"))]
-#[inline]
-pub extern "C-unwind" fn CFPlugInFindFactoriesForPlugInTypeInPlugIn(
-    type_uuid: Option<&CFUUID>,
-    plug_in: Option<&CFPlugIn>,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn CFPlugInFindFactoriesForPlugInTypeInPlugIn(
-            type_uuid: Option<&CFUUID>,
-            plug_in: Option<&CFPlugIn>,
-        ) -> Option<NonNull<CFArray>>;
+    #[cfg(feature = "CFUUID")]
+    #[inline]
+    #[doc(alias = "CFPlugInUnregisterPlugInType")]
+    pub fn unregister_plug_in_type(
+        factory_uuid: Option<&CFUUID>,
+        type_uuid: Option<&CFUUID>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFPlugInUnregisterPlugInType(
+                factory_uuid: Option<&CFUUID>,
+                type_uuid: Option<&CFUUID>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFPlugInUnregisterPlugInType(factory_uuid, type_uuid) };
+        ret != 0
     }
-    let ret = unsafe { CFPlugInFindFactoriesForPlugInTypeInPlugIn(type_uuid, plug_in) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CFUUID")]
-#[inline]
-pub extern "C-unwind" fn CFPlugInInstanceCreate(
-    allocator: Option<&CFAllocator>,
-    factory_uuid: Option<&CFUUID>,
-    type_uuid: Option<&CFUUID>,
-) -> *mut c_void {
-    extern "C-unwind" {
-        fn CFPlugInInstanceCreate(
-            allocator: Option<&CFAllocator>,
-            factory_uuid: Option<&CFUUID>,
-            type_uuid: Option<&CFUUID>,
-        ) -> *mut c_void;
+    #[cfg(feature = "CFUUID")]
+    #[inline]
+    #[doc(alias = "CFPlugInAddInstanceForFactory")]
+    pub fn add_instance_for_factory(factory_id: Option<&CFUUID>) {
+        extern "C-unwind" {
+            fn CFPlugInAddInstanceForFactory(factory_id: Option<&CFUUID>);
+        }
+        unsafe { CFPlugInAddInstanceForFactory(factory_id) }
     }
-    unsafe { CFPlugInInstanceCreate(allocator, factory_uuid, type_uuid) }
-}
 
-#[cfg(feature = "CFUUID")]
-#[inline]
-pub extern "C-unwind" fn CFPlugInRegisterFactoryFunction(
-    factory_uuid: Option<&CFUUID>,
-    func: CFPlugInFactoryFunction,
-) -> bool {
-    extern "C-unwind" {
-        fn CFPlugInRegisterFactoryFunction(
-            factory_uuid: Option<&CFUUID>,
-            func: CFPlugInFactoryFunction,
-        ) -> Boolean;
+    #[cfg(feature = "CFUUID")]
+    #[inline]
+    #[doc(alias = "CFPlugInRemoveInstanceForFactory")]
+    pub fn remove_instance_for_factory(factory_id: Option<&CFUUID>) {
+        extern "C-unwind" {
+            fn CFPlugInRemoveInstanceForFactory(factory_id: Option<&CFUUID>);
+        }
+        unsafe { CFPlugInRemoveInstanceForFactory(factory_id) }
     }
-    let ret = unsafe { CFPlugInRegisterFactoryFunction(factory_uuid, func) };
-    ret != 0
-}
-
-#[cfg(all(feature = "CFBundle", feature = "CFUUID"))]
-#[inline]
-pub extern "C-unwind" fn CFPlugInRegisterFactoryFunctionByName(
-    factory_uuid: Option<&CFUUID>,
-    plug_in: Option<&CFPlugIn>,
-    function_name: Option<&CFString>,
-) -> bool {
-    extern "C-unwind" {
-        fn CFPlugInRegisterFactoryFunctionByName(
-            factory_uuid: Option<&CFUUID>,
-            plug_in: Option<&CFPlugIn>,
-            function_name: Option<&CFString>,
-        ) -> Boolean;
-    }
-    let ret =
-        unsafe { CFPlugInRegisterFactoryFunctionByName(factory_uuid, plug_in, function_name) };
-    ret != 0
-}
-
-#[cfg(feature = "CFUUID")]
-#[inline]
-pub extern "C-unwind" fn CFPlugInUnregisterFactory(factory_uuid: Option<&CFUUID>) -> bool {
-    extern "C-unwind" {
-        fn CFPlugInUnregisterFactory(factory_uuid: Option<&CFUUID>) -> Boolean;
-    }
-    let ret = unsafe { CFPlugInUnregisterFactory(factory_uuid) };
-    ret != 0
-}
-
-#[cfg(feature = "CFUUID")]
-#[inline]
-pub extern "C-unwind" fn CFPlugInRegisterPlugInType(
-    factory_uuid: Option<&CFUUID>,
-    type_uuid: Option<&CFUUID>,
-) -> bool {
-    extern "C-unwind" {
-        fn CFPlugInRegisterPlugInType(
-            factory_uuid: Option<&CFUUID>,
-            type_uuid: Option<&CFUUID>,
-        ) -> Boolean;
-    }
-    let ret = unsafe { CFPlugInRegisterPlugInType(factory_uuid, type_uuid) };
-    ret != 0
-}
-
-#[cfg(feature = "CFUUID")]
-#[inline]
-pub extern "C-unwind" fn CFPlugInUnregisterPlugInType(
-    factory_uuid: Option<&CFUUID>,
-    type_uuid: Option<&CFUUID>,
-) -> bool {
-    extern "C-unwind" {
-        fn CFPlugInUnregisterPlugInType(
-            factory_uuid: Option<&CFUUID>,
-            type_uuid: Option<&CFUUID>,
-        ) -> Boolean;
-    }
-    let ret = unsafe { CFPlugInUnregisterPlugInType(factory_uuid, type_uuid) };
-    ret != 0
-}
-
-#[cfg(feature = "CFUUID")]
-#[inline]
-pub extern "C-unwind" fn CFPlugInAddInstanceForFactory(factory_id: Option<&CFUUID>) {
-    extern "C-unwind" {
-        fn CFPlugInAddInstanceForFactory(factory_id: Option<&CFUUID>);
-    }
-    unsafe { CFPlugInAddInstanceForFactory(factory_id) }
-}
-
-#[cfg(feature = "CFUUID")]
-#[inline]
-pub extern "C-unwind" fn CFPlugInRemoveInstanceForFactory(factory_id: Option<&CFUUID>) {
-    extern "C-unwind" {
-        fn CFPlugInRemoveInstanceForFactory(factory_id: Option<&CFUUID>);
-    }
-    unsafe { CFPlugInRemoveInstanceForFactory(factory_id) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstance?language=objc)
@@ -274,6 +296,292 @@ pub type CFPlugInInstanceGetInterfaceFunction = Option<
 pub type CFPlugInInstanceDeallocateInstanceDataFunction =
     Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
+impl CFPlugInInstance {
+    #[inline]
+    #[doc(alias = "CFPlugInInstanceGetInterfaceFunctionTable")]
+    pub unsafe fn interface_function_table(
+        self: &CFPlugInInstance,
+        interface_name: Option<&CFString>,
+        ftbl: *mut *mut c_void,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFPlugInInstanceGetInterfaceFunctionTable(
+                instance: &CFPlugInInstance,
+                interface_name: Option<&CFString>,
+                ftbl: *mut *mut c_void,
+            ) -> Boolean;
+        }
+        let ret = unsafe { CFPlugInInstanceGetInterfaceFunctionTable(self, interface_name, ftbl) };
+        ret != 0
+    }
+
+    #[inline]
+    #[doc(alias = "CFPlugInInstanceGetFactoryName")]
+    pub fn factory_name(self: &CFPlugInInstance) -> Option<CFRetained<CFString>> {
+        extern "C-unwind" {
+            fn CFPlugInInstanceGetFactoryName(
+                instance: &CFPlugInInstance,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { CFPlugInInstanceGetFactoryName(self) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[inline]
+    #[doc(alias = "CFPlugInInstanceGetInstanceData")]
+    pub fn instance_data(self: &CFPlugInInstance) -> *mut c_void {
+        extern "C-unwind" {
+            fn CFPlugInInstanceGetInstanceData(instance: &CFPlugInInstance) -> *mut c_void;
+        }
+        unsafe { CFPlugInInstanceGetInstanceData(self) }
+    }
+}
+
+unsafe impl ConcreteType for CFPlugInInstance {
+    #[doc(alias = "CFPlugInInstanceGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFPlugInInstanceGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFPlugInInstanceGetTypeID() }
+    }
+}
+
+impl CFPlugInInstance {
+    #[inline]
+    #[doc(alias = "CFPlugInInstanceCreateWithInstanceDataSize")]
+    pub unsafe fn with_instance_data_size(
+        allocator: Option<&CFAllocator>,
+        instance_data_size: CFIndex,
+        deallocate_instance_function: CFPlugInInstanceDeallocateInstanceDataFunction,
+        factory_name: Option<&CFString>,
+        get_interface_function: CFPlugInInstanceGetInterfaceFunction,
+    ) -> Option<CFRetained<CFPlugInInstance>> {
+        extern "C-unwind" {
+            fn CFPlugInInstanceCreateWithInstanceDataSize(
+                allocator: Option<&CFAllocator>,
+                instance_data_size: CFIndex,
+                deallocate_instance_function: CFPlugInInstanceDeallocateInstanceDataFunction,
+                factory_name: Option<&CFString>,
+                get_interface_function: CFPlugInInstanceGetInterfaceFunction,
+            ) -> Option<NonNull<CFPlugInInstance>>;
+        }
+        let ret = unsafe {
+            CFPlugInInstanceCreateWithInstanceDataSize(
+                allocator,
+                instance_data_size,
+                deallocate_instance_function,
+                factory_name,
+                get_interface_function,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
+#[deprecated = "renamed to `CFPlugIn::new`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInCreate(
+    allocator: Option<&CFAllocator>,
+    plug_in_url: Option<&CFURL>,
+) -> Option<CFRetained<CFPlugIn>> {
+    extern "C-unwind" {
+        fn CFPlugInCreate(
+            allocator: Option<&CFAllocator>,
+            plug_in_url: Option<&CFURL>,
+        ) -> Option<NonNull<CFPlugIn>>;
+    }
+    let ret = unsafe { CFPlugInCreate(allocator, plug_in_url) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFBundle")]
+#[deprecated = "renamed to `CFPlugIn::bundle`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInGetBundle(plug_in: &CFPlugIn) -> Option<CFRetained<CFBundle>> {
+    extern "C-unwind" {
+        fn CFPlugInGetBundle(plug_in: &CFPlugIn) -> Option<NonNull<CFBundle>>;
+    }
+    let ret = unsafe { CFPlugInGetBundle(plug_in) };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+#[cfg(feature = "CFBundle")]
+#[deprecated = "renamed to `CFPlugIn::set_load_on_demand`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInSetLoadOnDemand(plug_in: &CFPlugIn, flag: bool) {
+    extern "C-unwind" {
+        fn CFPlugInSetLoadOnDemand(plug_in: &CFPlugIn, flag: Boolean);
+    }
+    unsafe { CFPlugInSetLoadOnDemand(plug_in, flag as _) }
+}
+
+#[cfg(feature = "CFBundle")]
+#[deprecated = "renamed to `CFPlugIn::is_load_on_demand`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInIsLoadOnDemand(plug_in: &CFPlugIn) -> bool {
+    extern "C-unwind" {
+        fn CFPlugInIsLoadOnDemand(plug_in: &CFPlugIn) -> Boolean;
+    }
+    let ret = unsafe { CFPlugInIsLoadOnDemand(plug_in) };
+    ret != 0
+}
+
+#[cfg(all(feature = "CFArray", feature = "CFUUID"))]
+#[deprecated = "renamed to `CFPlugIn::find_factories_for_plug_in_type`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInFindFactoriesForPlugInType(
+    type_uuid: Option<&CFUUID>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CFPlugInFindFactoriesForPlugInType(
+            type_uuid: Option<&CFUUID>,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CFPlugInFindFactoriesForPlugInType(type_uuid) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(all(feature = "CFArray", feature = "CFBundle", feature = "CFUUID"))]
+#[deprecated = "renamed to `CFPlugIn::find_factories_for_plug_in_type_in_plug_in`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInFindFactoriesForPlugInTypeInPlugIn(
+    type_uuid: Option<&CFUUID>,
+    plug_in: Option<&CFPlugIn>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CFPlugInFindFactoriesForPlugInTypeInPlugIn(
+            type_uuid: Option<&CFUUID>,
+            plug_in: Option<&CFPlugIn>,
+        ) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { CFPlugInFindFactoriesForPlugInTypeInPlugIn(type_uuid, plug_in) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFUUID")]
+#[deprecated = "renamed to `CFPlugInInstance::create`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInInstanceCreate(
+    allocator: Option<&CFAllocator>,
+    factory_uuid: Option<&CFUUID>,
+    type_uuid: Option<&CFUUID>,
+) -> *mut c_void {
+    extern "C-unwind" {
+        fn CFPlugInInstanceCreate(
+            allocator: Option<&CFAllocator>,
+            factory_uuid: Option<&CFUUID>,
+            type_uuid: Option<&CFUUID>,
+        ) -> *mut c_void;
+    }
+    unsafe { CFPlugInInstanceCreate(allocator, factory_uuid, type_uuid) }
+}
+
+#[cfg(feature = "CFUUID")]
+#[deprecated = "renamed to `CFPlugIn::register_factory_function`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInRegisterFactoryFunction(
+    factory_uuid: Option<&CFUUID>,
+    func: CFPlugInFactoryFunction,
+) -> bool {
+    extern "C-unwind" {
+        fn CFPlugInRegisterFactoryFunction(
+            factory_uuid: Option<&CFUUID>,
+            func: CFPlugInFactoryFunction,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFPlugInRegisterFactoryFunction(factory_uuid, func) };
+    ret != 0
+}
+
+#[cfg(all(feature = "CFBundle", feature = "CFUUID"))]
+#[deprecated = "renamed to `CFPlugIn::register_factory_function_by_name`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInRegisterFactoryFunctionByName(
+    factory_uuid: Option<&CFUUID>,
+    plug_in: Option<&CFPlugIn>,
+    function_name: Option<&CFString>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFPlugInRegisterFactoryFunctionByName(
+            factory_uuid: Option<&CFUUID>,
+            plug_in: Option<&CFPlugIn>,
+            function_name: Option<&CFString>,
+        ) -> Boolean;
+    }
+    let ret =
+        unsafe { CFPlugInRegisterFactoryFunctionByName(factory_uuid, plug_in, function_name) };
+    ret != 0
+}
+
+#[cfg(feature = "CFUUID")]
+#[deprecated = "renamed to `CFPlugIn::unregister_factory`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInUnregisterFactory(factory_uuid: Option<&CFUUID>) -> bool {
+    extern "C-unwind" {
+        fn CFPlugInUnregisterFactory(factory_uuid: Option<&CFUUID>) -> Boolean;
+    }
+    let ret = unsafe { CFPlugInUnregisterFactory(factory_uuid) };
+    ret != 0
+}
+
+#[cfg(feature = "CFUUID")]
+#[deprecated = "renamed to `CFPlugIn::register_plug_in_type`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInRegisterPlugInType(
+    factory_uuid: Option<&CFUUID>,
+    type_uuid: Option<&CFUUID>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFPlugInRegisterPlugInType(
+            factory_uuid: Option<&CFUUID>,
+            type_uuid: Option<&CFUUID>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFPlugInRegisterPlugInType(factory_uuid, type_uuid) };
+    ret != 0
+}
+
+#[cfg(feature = "CFUUID")]
+#[deprecated = "renamed to `CFPlugIn::unregister_plug_in_type`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInUnregisterPlugInType(
+    factory_uuid: Option<&CFUUID>,
+    type_uuid: Option<&CFUUID>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFPlugInUnregisterPlugInType(
+            factory_uuid: Option<&CFUUID>,
+            type_uuid: Option<&CFUUID>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFPlugInUnregisterPlugInType(factory_uuid, type_uuid) };
+    ret != 0
+}
+
+#[cfg(feature = "CFUUID")]
+#[deprecated = "renamed to `CFPlugIn::add_instance_for_factory`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInAddInstanceForFactory(factory_id: Option<&CFUUID>) {
+    extern "C-unwind" {
+        fn CFPlugInAddInstanceForFactory(factory_id: Option<&CFUUID>);
+    }
+    unsafe { CFPlugInAddInstanceForFactory(factory_id) }
+}
+
+#[cfg(feature = "CFUUID")]
+#[deprecated = "renamed to `CFPlugIn::remove_instance_for_factory`"]
+#[inline]
+pub extern "C-unwind" fn CFPlugInRemoveInstanceForFactory(factory_id: Option<&CFUUID>) {
+    extern "C-unwind" {
+        fn CFPlugInRemoveInstanceForFactory(factory_id: Option<&CFUUID>);
+    }
+    unsafe { CFPlugInRemoveInstanceForFactory(factory_id) }
+}
+
+#[deprecated = "renamed to `CFPlugInInstance::interface_function_table`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPlugInInstanceGetInterfaceFunctionTable(
     instance: &CFPlugInInstance,
@@ -291,6 +599,7 @@ pub unsafe extern "C-unwind" fn CFPlugInInstanceGetInterfaceFunctionTable(
     ret != 0
 }
 
+#[deprecated = "renamed to `CFPlugInInstance::factory_name`"]
 #[inline]
 pub extern "C-unwind" fn CFPlugInInstanceGetFactoryName(
     instance: &CFPlugInInstance,
@@ -303,6 +612,7 @@ pub extern "C-unwind" fn CFPlugInInstanceGetFactoryName(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `CFPlugInInstance::instance_data`"]
 #[inline]
 pub extern "C-unwind" fn CFPlugInInstanceGetInstanceData(
     instance: &CFPlugInInstance,
@@ -313,17 +623,7 @@ pub extern "C-unwind" fn CFPlugInInstanceGetInstanceData(
     unsafe { CFPlugInInstanceGetInstanceData(instance) }
 }
 
-unsafe impl ConcreteType for CFPlugInInstance {
-    #[doc(alias = "CFPlugInInstanceGetTypeID")]
-    #[inline]
-    fn type_id() -> CFTypeID {
-        extern "C-unwind" {
-            fn CFPlugInInstanceGetTypeID() -> CFTypeID;
-        }
-        unsafe { CFPlugInInstanceGetTypeID() }
-    }
-}
-
+#[deprecated = "renamed to `CFPlugInInstance::with_instance_data_size`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPlugInInstanceCreateWithInstanceDataSize(
     allocator: Option<&CFAllocator>,

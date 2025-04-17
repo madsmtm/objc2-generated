@@ -39,8 +39,15 @@ extern "C" {
     pub static NSStackTraceKey: Option<&'static NSString>;
 }
 
-extern "C-unwind" {
-    pub fn NSExceptionHandlerResume();
+impl NSExceptionHandler {
+    #[inline]
+    #[doc(alias = "NSExceptionHandlerResume")]
+    pub unsafe fn resume() {
+        extern "C-unwind" {
+            fn NSExceptionHandlerResume();
+        }
+        unsafe { NSExceptionHandlerResume() }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsloguncaughtexceptionmask?language=objc)
@@ -163,3 +170,8 @@ pub unsafe trait NSObjectNSExceptionHandlerDelegate:
 
 impl private_NSObjectNSExceptionHandlerDelegate::Sealed for NSObject {}
 unsafe impl NSObjectNSExceptionHandlerDelegate for NSObject {}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `NSExceptionHandler::resume`"]
+    pub fn NSExceptionHandlerResume();
+}

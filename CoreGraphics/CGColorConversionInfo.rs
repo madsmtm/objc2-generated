@@ -60,7 +60,158 @@ unsafe impl RefEncode for CGColorConversionInfoTransformType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+impl CGColorConversionInfo {
+    #[cfg(feature = "CGColorSpace")]
+    #[inline]
+    #[doc(alias = "CGColorConversionInfoCreate")]
+    pub unsafe fn new(
+        src: Option<&CGColorSpace>,
+        dst: Option<&CGColorSpace>,
+    ) -> Option<CFRetained<CGColorConversionInfo>> {
+        extern "C-unwind" {
+            fn CGColorConversionInfoCreate(
+                src: Option<&CGColorSpace>,
+                dst: Option<&CGColorSpace>,
+            ) -> Option<NonNull<CGColorConversionInfo>>;
+        }
+        let ret = unsafe { CGColorConversionInfoCreate(src, dst) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(feature = "CGColorSpace")]
+    #[inline]
+    #[doc(alias = "CGColorConversionInfoCreateWithOptions")]
+    pub unsafe fn with_options(
+        src: &CGColorSpace,
+        dst: &CGColorSpace,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGColorConversionInfo>> {
+        extern "C-unwind" {
+            fn CGColorConversionInfoCreateWithOptions(
+                src: &CGColorSpace,
+                dst: &CGColorSpace,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGColorConversionInfo>>;
+        }
+        let ret = unsafe { CGColorConversionInfoCreateWithOptions(src, dst, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[cfg(all(feature = "CGColorSpace", feature = "CGToneMapping"))]
+    #[inline]
+    #[doc(alias = "CGColorConversionInfoCreateForToneMapping")]
+    pub unsafe fn new_for_tone_mapping(
+        from: &CGColorSpace,
+        source_headroom: c_float,
+        to: &CGColorSpace,
+        target_headroom: c_float,
+        method: CGToneMapping,
+        options: Option<&CFDictionary>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<CGColorConversionInfo>> {
+        extern "C-unwind" {
+            fn CGColorConversionInfoCreateForToneMapping(
+                from: &CGColorSpace,
+                source_headroom: c_float,
+                to: &CGColorSpace,
+                target_headroom: c_float,
+                method: CGToneMapping,
+                options: Option<&CFDictionary>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<CGColorConversionInfo>>;
+        }
+        let ret = unsafe {
+            CGColorConversionInfoCreateForToneMapping(
+                from,
+                source_headroom,
+                to,
+                target_headroom,
+                method,
+                options,
+                error,
+            )
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorbufferformat?language=objc)
+#[cfg(feature = "CGImage")]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct CGColorBufferFormat {
+    pub version: u32,
+    pub bitmapInfo: CGBitmapInfo,
+    pub bitsPerComponent: usize,
+    pub bitsPerPixel: usize,
+    pub bytesPerRow: usize,
+}
+
+#[cfg(all(feature = "CGImage", feature = "objc2"))]
+unsafe impl Encode for CGColorBufferFormat {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u32>::ENCODING,
+            <CGBitmapInfo>::ENCODING,
+            <usize>::ENCODING,
+            <usize>::ENCODING,
+            <usize>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(all(feature = "CGImage", feature = "objc2"))]
+unsafe impl RefEncode for CGColorBufferFormat {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+impl CGColorConversionInfo {
+    #[cfg(feature = "CGImage")]
+    #[inline]
+    #[doc(alias = "CGColorConversionInfoConvertData")]
+    pub unsafe fn convert_data(
+        self: &CGColorConversionInfo,
+        width: usize,
+        height: usize,
+        dst_data: NonNull<c_void>,
+        dst_format: CGColorBufferFormat,
+        src_data: NonNull<c_void>,
+        src_format: CGColorBufferFormat,
+        options: Option<&CFDictionary>,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGColorConversionInfoConvertData(
+                info: &CGColorConversionInfo,
+                width: usize,
+                height: usize,
+                dst_data: NonNull<c_void>,
+                dst_format: CGColorBufferFormat,
+                src_data: NonNull<c_void>,
+                src_format: CGColorBufferFormat,
+                options: Option<&CFDictionary>,
+            ) -> bool;
+        }
+        unsafe {
+            CGColorConversionInfoConvertData(
+                self, width, height, dst_data, dst_format, src_data, src_format, options,
+            )
+        }
+    }
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorconversionblackpointcompensation?language=objc)
+    pub static kCGColorConversionBlackPointCompensation: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorconversiontrcsize?language=objc)
+    pub static kCGColorConversionTRCSize: &'static CFString;
+}
+
 #[cfg(feature = "CGColorSpace")]
+#[deprecated = "renamed to `CGColorConversionInfo::new`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorConversionInfoCreate(
     src: Option<&CGColorSpace>,
@@ -77,6 +228,7 @@ pub unsafe extern "C-unwind" fn CGColorConversionInfoCreate(
 }
 
 #[cfg(feature = "CGColorSpace")]
+#[deprecated = "renamed to `CGColorConversionInfo::with_options`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorConversionInfoCreateWithOptions(
     src: &CGColorSpace,
@@ -95,6 +247,7 @@ pub unsafe extern "C-unwind" fn CGColorConversionInfoCreateWithOptions(
 }
 
 #[cfg(all(feature = "CGColorSpace", feature = "CGToneMapping"))]
+#[deprecated = "renamed to `CGColorConversionInfo::new_for_tone_mapping`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorConversionInfoCreateForToneMapping(
     from: &CGColorSpace,
@@ -130,39 +283,9 @@ pub unsafe extern "C-unwind" fn CGColorConversionInfoCreateForToneMapping(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorbufferformat?language=objc)
-#[cfg(feature = "CGImage")]
-#[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub struct CGColorBufferFormat {
-    pub version: u32,
-    pub bitmapInfo: CGBitmapInfo,
-    pub bitsPerComponent: usize,
-    pub bitsPerPixel: usize,
-    pub bytesPerRow: usize,
-}
-
-#[cfg(all(feature = "CGImage", feature = "objc2"))]
-unsafe impl Encode for CGColorBufferFormat {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[
-            <u32>::ENCODING,
-            <CGBitmapInfo>::ENCODING,
-            <usize>::ENCODING,
-            <usize>::ENCODING,
-            <usize>::ENCODING,
-        ],
-    );
-}
-
-#[cfg(all(feature = "CGImage", feature = "objc2"))]
-unsafe impl RefEncode for CGColorBufferFormat {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 extern "C-unwind" {
     #[cfg(feature = "CGImage")]
+    #[deprecated = "renamed to `CGColorConversionInfo::convert_data`"]
     pub fn CGColorConversionInfoConvertData(
         info: &CGColorConversionInfo,
         width: usize,
@@ -173,14 +296,4 @@ extern "C-unwind" {
         src_format: CGColorBufferFormat,
         options: Option<&CFDictionary>,
     ) -> bool;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorconversionblackpointcompensation?language=objc)
-    pub static kCGColorConversionBlackPointCompensation: &'static CFString;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorconversiontrcsize?language=objc)
-    pub static kCGColorConversionTRCSize: &'static CFString;
 }

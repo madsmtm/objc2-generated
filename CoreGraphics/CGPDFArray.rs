@@ -24,12 +24,187 @@ unsafe impl RefEncode for CGPDFArray {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarrayref?language=objc)
 pub type CGPDFArrayRef = *mut CGPDFArray;
 
+impl CGPDFArray {
+    #[inline]
+    #[doc(alias = "CGPDFArrayGetCount")]
+    pub unsafe fn count(array: CGPDFArrayRef) -> usize {
+        extern "C-unwind" {
+            fn CGPDFArrayGetCount(array: CGPDFArrayRef) -> usize;
+        }
+        unsafe { CGPDFArrayGetCount(array) }
+    }
+
+    #[cfg(feature = "CGPDFObject")]
+    #[inline]
+    #[doc(alias = "CGPDFArrayGetObject")]
+    pub unsafe fn object(array: CGPDFArrayRef, index: usize, value: *mut CGPDFObjectRef) -> bool {
+        extern "C-unwind" {
+            fn CGPDFArrayGetObject(
+                array: CGPDFArrayRef,
+                index: usize,
+                value: *mut CGPDFObjectRef,
+            ) -> bool;
+        }
+        unsafe { CGPDFArrayGetObject(array, index, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFArrayGetNull")]
+    pub unsafe fn null(array: CGPDFArrayRef, index: usize) -> bool {
+        extern "C-unwind" {
+            fn CGPDFArrayGetNull(array: CGPDFArrayRef, index: usize) -> bool;
+        }
+        unsafe { CGPDFArrayGetNull(array, index) }
+    }
+
+    #[cfg(feature = "CGPDFObject")]
+    #[inline]
+    #[doc(alias = "CGPDFArrayGetBoolean")]
+    pub unsafe fn boolean(array: CGPDFArrayRef, index: usize, value: *mut CGPDFBoolean) -> bool {
+        extern "C-unwind" {
+            fn CGPDFArrayGetBoolean(
+                array: CGPDFArrayRef,
+                index: usize,
+                value: *mut CGPDFBoolean,
+            ) -> bool;
+        }
+        unsafe { CGPDFArrayGetBoolean(array, index, value) }
+    }
+
+    #[cfg(feature = "CGPDFObject")]
+    #[inline]
+    #[doc(alias = "CGPDFArrayGetInteger")]
+    pub unsafe fn integer(array: CGPDFArrayRef, index: usize, value: *mut CGPDFInteger) -> bool {
+        extern "C-unwind" {
+            fn CGPDFArrayGetInteger(
+                array: CGPDFArrayRef,
+                index: usize,
+                value: *mut CGPDFInteger,
+            ) -> bool;
+        }
+        unsafe { CGPDFArrayGetInteger(array, index, value) }
+    }
+
+    #[cfg(feature = "CGPDFObject")]
+    #[inline]
+    #[doc(alias = "CGPDFArrayGetNumber")]
+    pub unsafe fn number(array: CGPDFArrayRef, index: usize, value: *mut CGPDFReal) -> bool {
+        extern "C-unwind" {
+            fn CGPDFArrayGetNumber(
+                array: CGPDFArrayRef,
+                index: usize,
+                value: *mut CGPDFReal,
+            ) -> bool;
+        }
+        unsafe { CGPDFArrayGetNumber(array, index, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFArrayGetName")]
+    pub unsafe fn name(array: CGPDFArrayRef, index: usize, value: *mut *const c_char) -> bool {
+        extern "C-unwind" {
+            fn CGPDFArrayGetName(
+                array: CGPDFArrayRef,
+                index: usize,
+                value: *mut *const c_char,
+            ) -> bool;
+        }
+        unsafe { CGPDFArrayGetName(array, index, value) }
+    }
+
+    #[cfg(feature = "CGPDFString")]
+    #[inline]
+    #[doc(alias = "CGPDFArrayGetString")]
+    pub unsafe fn string(array: CGPDFArrayRef, index: usize, value: *mut CGPDFStringRef) -> bool {
+        extern "C-unwind" {
+            fn CGPDFArrayGetString(
+                array: CGPDFArrayRef,
+                index: usize,
+                value: *mut CGPDFStringRef,
+            ) -> bool;
+        }
+        unsafe { CGPDFArrayGetString(array, index, value) }
+    }
+
+    #[inline]
+    #[doc(alias = "CGPDFArrayGetArray")]
+    pub unsafe fn array(array: CGPDFArrayRef, index: usize, value: *mut CGPDFArrayRef) -> bool {
+        extern "C-unwind" {
+            fn CGPDFArrayGetArray(
+                array: CGPDFArrayRef,
+                index: usize,
+                value: *mut CGPDFArrayRef,
+            ) -> bool;
+        }
+        unsafe { CGPDFArrayGetArray(array, index, value) }
+    }
+
+    #[cfg(feature = "CGPDFDictionary")]
+    #[inline]
+    #[doc(alias = "CGPDFArrayGetDictionary")]
+    pub unsafe fn dictionary(
+        array: CGPDFArrayRef,
+        index: usize,
+        value: *mut CGPDFDictionaryRef,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CGPDFArrayGetDictionary(
+                array: CGPDFArrayRef,
+                index: usize,
+                value: *mut CGPDFDictionaryRef,
+            ) -> bool;
+        }
+        unsafe { CGPDFArrayGetDictionary(array, index, value) }
+    }
+
+    #[cfg(feature = "CGPDFStream")]
+    #[inline]
+    #[doc(alias = "CGPDFArrayGetStream")]
+    pub unsafe fn stream(array: CGPDFArrayRef, index: usize, value: *mut CGPDFStreamRef) -> bool {
+        extern "C-unwind" {
+            fn CGPDFArrayGetStream(
+                array: CGPDFArrayRef,
+                index: usize,
+                value: *mut CGPDFStreamRef,
+            ) -> bool;
+        }
+        unsafe { CGPDFArrayGetStream(array, index, value) }
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarrayapplierblock?language=objc)
+#[cfg(all(feature = "CGPDFObject", feature = "block2"))]
+pub type CGPDFArrayApplierBlock =
+    *mut block2::DynBlock<dyn Fn(usize, CGPDFObjectRef, *mut c_void) -> bool>;
+
+impl CGPDFArray {
+    #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
+    #[inline]
+    #[doc(alias = "CGPDFArrayApplyBlock")]
+    pub unsafe fn apply_block(
+        array: CGPDFArrayRef,
+        block: CGPDFArrayApplierBlock,
+        info: *mut c_void,
+    ) {
+        extern "C-unwind" {
+            fn CGPDFArrayApplyBlock(
+                array: CGPDFArrayRef,
+                block: CGPDFArrayApplierBlock,
+                info: *mut c_void,
+            );
+        }
+        unsafe { CGPDFArrayApplyBlock(array, block, info) }
+    }
+}
+
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFArray::count`"]
     pub fn CGPDFArrayGetCount(array: CGPDFArrayRef) -> usize;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFObject")]
+    #[deprecated = "renamed to `CGPDFArray::object`"]
     pub fn CGPDFArrayGetObject(
         array: CGPDFArrayRef,
         index: usize,
@@ -38,11 +213,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFArray::null`"]
     pub fn CGPDFArrayGetNull(array: CGPDFArrayRef, index: usize) -> bool;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFObject")]
+    #[deprecated = "renamed to `CGPDFArray::boolean`"]
     pub fn CGPDFArrayGetBoolean(
         array: CGPDFArrayRef,
         index: usize,
@@ -52,6 +229,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFObject")]
+    #[deprecated = "renamed to `CGPDFArray::integer`"]
     pub fn CGPDFArrayGetInteger(
         array: CGPDFArrayRef,
         index: usize,
@@ -61,16 +239,19 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFObject")]
+    #[deprecated = "renamed to `CGPDFArray::number`"]
     pub fn CGPDFArrayGetNumber(array: CGPDFArrayRef, index: usize, value: *mut CGPDFReal) -> bool;
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFArray::name`"]
     pub fn CGPDFArrayGetName(array: CGPDFArrayRef, index: usize, value: *mut *const c_char)
         -> bool;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFString")]
+    #[deprecated = "renamed to `CGPDFArray::string`"]
     pub fn CGPDFArrayGetString(
         array: CGPDFArrayRef,
         index: usize,
@@ -79,6 +260,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CGPDFArray::array`"]
     pub fn CGPDFArrayGetArray(
         array: CGPDFArrayRef,
         index: usize,
@@ -88,6 +270,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFDictionary")]
+    #[deprecated = "renamed to `CGPDFArray::dictionary`"]
     pub fn CGPDFArrayGetDictionary(
         array: CGPDFArrayRef,
         index: usize,
@@ -97,6 +280,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFStream")]
+    #[deprecated = "renamed to `CGPDFArray::stream`"]
     pub fn CGPDFArrayGetStream(
         array: CGPDFArrayRef,
         index: usize,
@@ -104,13 +288,9 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarrayapplierblock?language=objc)
-#[cfg(all(feature = "CGPDFObject", feature = "block2"))]
-pub type CGPDFArrayApplierBlock =
-    *mut block2::DynBlock<dyn Fn(usize, CGPDFObjectRef, *mut c_void) -> bool>;
-
 extern "C-unwind" {
     #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
+    #[deprecated = "renamed to `CGPDFArray::apply_block`"]
     pub fn CGPDFArrayApplyBlock(
         array: CGPDFArrayRef,
         block: CGPDFArrayApplierBlock,

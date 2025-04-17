@@ -568,6 +568,8 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsshape?language=objc)
 pub type MPSShape = NSArray<NSNumber>;
 
-// TODO: pub fn MPSDataTypeBitsCount(t: MPSDataType,) -> usize;
+impl MPSDataType {
+    // TODO: pub fn MPSDataTypeBitsCount(t: MPSDataType,) -> usize;
+}
 
 // TODO: pub fn MPSSizeofMPSDataType(t: MPSDataType,) -> usize;

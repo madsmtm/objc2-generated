@@ -6,98 +6,110 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-#[cfg(all(
-    feature = "CFArray",
-    feature = "CFData",
-    feature = "CFDictionary",
-    feature = "CFURL"
-))]
-#[deprecated = "For resource data, use the CFReadStream API. For file resource properties, use CFURLCopyResourcePropertiesForKeys."]
-#[inline]
-pub unsafe extern "C-unwind" fn CFURLCreateDataAndPropertiesFromResource(
-    alloc: Option<&CFAllocator>,
-    url: Option<&CFURL>,
-    resource_data: *mut *const CFData,
-    properties: *mut *const CFDictionary,
-    desired_properties: Option<&CFArray>,
-    error_code: *mut i32,
-) -> bool {
-    extern "C-unwind" {
-        fn CFURLCreateDataAndPropertiesFromResource(
-            alloc: Option<&CFAllocator>,
-            url: Option<&CFURL>,
-            resource_data: *mut *const CFData,
-            properties: *mut *const CFDictionary,
-            desired_properties: Option<&CFArray>,
-            error_code: *mut i32,
-        ) -> Boolean;
-    }
-    let ret = unsafe {
-        CFURLCreateDataAndPropertiesFromResource(
-            alloc,
-            url,
-            resource_data,
-            properties,
-            desired_properties,
-            error_code,
-        )
-    };
-    ret != 0
-}
-
-#[cfg(all(feature = "CFData", feature = "CFDictionary", feature = "CFURL"))]
-#[deprecated = "For resource data, use the CFWriteStream API. For file resource properties, use CFURLSetResourcePropertiesForKeys."]
-#[inline]
-pub unsafe extern "C-unwind" fn CFURLWriteDataAndPropertiesToResource(
-    url: &CFURL,
-    data_to_write: Option<&CFData>,
-    properties_to_write: Option<&CFDictionary>,
-    error_code: *mut i32,
-) -> bool {
-    extern "C-unwind" {
-        fn CFURLWriteDataAndPropertiesToResource(
-            url: &CFURL,
-            data_to_write: Option<&CFData>,
-            properties_to_write: Option<&CFDictionary>,
-            error_code: *mut i32,
-        ) -> Boolean;
-    }
-    let ret = unsafe {
-        CFURLWriteDataAndPropertiesToResource(url, data_to_write, properties_to_write, error_code)
-    };
-    ret != 0
-}
-
 #[cfg(feature = "CFURL")]
-#[deprecated = "Use CFURLGetFileSystemRepresentation and removefile(3) instead."]
-#[inline]
-pub unsafe extern "C-unwind" fn CFURLDestroyResource(url: &CFURL, error_code: *mut i32) -> bool {
-    extern "C-unwind" {
-        fn CFURLDestroyResource(url: &CFURL, error_code: *mut i32) -> Boolean;
+impl CFURL {
+    #[cfg(all(
+        feature = "CFArray",
+        feature = "CFData",
+        feature = "CFDictionary",
+        feature = "CFURL"
+    ))]
+    #[deprecated = "For resource data, use the CFReadStream API. For file resource properties, use CFURLCopyResourcePropertiesForKeys."]
+    #[inline]
+    #[doc(alias = "CFURLCreateDataAndPropertiesFromResource")]
+    pub unsafe fn new_data_and_properties_from_resource(
+        alloc: Option<&CFAllocator>,
+        url: Option<&CFURL>,
+        resource_data: *mut *const CFData,
+        properties: *mut *const CFDictionary,
+        desired_properties: Option<&CFArray>,
+        error_code: *mut i32,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFURLCreateDataAndPropertiesFromResource(
+                alloc: Option<&CFAllocator>,
+                url: Option<&CFURL>,
+                resource_data: *mut *const CFData,
+                properties: *mut *const CFDictionary,
+                desired_properties: Option<&CFArray>,
+                error_code: *mut i32,
+            ) -> Boolean;
+        }
+        let ret = unsafe {
+            CFURLCreateDataAndPropertiesFromResource(
+                alloc,
+                url,
+                resource_data,
+                properties,
+                desired_properties,
+                error_code,
+            )
+        };
+        ret != 0
     }
-    let ret = unsafe { CFURLDestroyResource(url, error_code) };
-    ret != 0
-}
 
-#[cfg(feature = "CFURL")]
-#[deprecated = "For file resource properties, use CFURLCopyResourcePropertyForKey."]
-#[inline]
-pub unsafe extern "C-unwind" fn CFURLCreatePropertyFromResource(
-    alloc: Option<&CFAllocator>,
-    url: Option<&CFURL>,
-    property: Option<&CFString>,
-    error_code: *mut i32,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn CFURLCreatePropertyFromResource(
-            alloc: Option<&CFAllocator>,
-            url: Option<&CFURL>,
-            property: Option<&CFString>,
-            error_code: *mut i32,
-        ) -> Option<NonNull<CFType>>;
+    #[cfg(all(feature = "CFData", feature = "CFDictionary", feature = "CFURL"))]
+    #[deprecated = "For resource data, use the CFWriteStream API. For file resource properties, use CFURLSetResourcePropertiesForKeys."]
+    #[inline]
+    #[doc(alias = "CFURLWriteDataAndPropertiesToResource")]
+    pub unsafe fn write_data_and_properties_to_resource(
+        self: &CFURL,
+        data_to_write: Option<&CFData>,
+        properties_to_write: Option<&CFDictionary>,
+        error_code: *mut i32,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFURLWriteDataAndPropertiesToResource(
+                url: &CFURL,
+                data_to_write: Option<&CFData>,
+                properties_to_write: Option<&CFDictionary>,
+                error_code: *mut i32,
+            ) -> Boolean;
+        }
+        let ret = unsafe {
+            CFURLWriteDataAndPropertiesToResource(
+                self,
+                data_to_write,
+                properties_to_write,
+                error_code,
+            )
+        };
+        ret != 0
     }
-    let ret = unsafe { CFURLCreatePropertyFromResource(alloc, url, property, error_code) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+
+    #[cfg(feature = "CFURL")]
+    #[deprecated = "Use CFURLGetFileSystemRepresentation and removefile(3) instead."]
+    #[inline]
+    #[doc(alias = "CFURLDestroyResource")]
+    pub unsafe fn destroy_resource(self: &CFURL, error_code: *mut i32) -> bool {
+        extern "C-unwind" {
+            fn CFURLDestroyResource(url: &CFURL, error_code: *mut i32) -> Boolean;
+        }
+        let ret = unsafe { CFURLDestroyResource(self, error_code) };
+        ret != 0
+    }
+
+    #[cfg(feature = "CFURL")]
+    #[deprecated = "For file resource properties, use CFURLCopyResourcePropertyForKey."]
+    #[inline]
+    #[doc(alias = "CFURLCreatePropertyFromResource")]
+    pub unsafe fn new_property_from_resource(
+        alloc: Option<&CFAllocator>,
+        url: Option<&CFURL>,
+        property: Option<&CFString>,
+        error_code: *mut i32,
+    ) -> Option<CFRetained<CFType>> {
+        extern "C-unwind" {
+            fn CFURLCreatePropertyFromResource(
+                alloc: Option<&CFAllocator>,
+                url: Option<&CFURL>,
+                property: Option<&CFString>,
+                error_code: *mut i32,
+            ) -> Option<NonNull<CFType>>;
+        }
+        let ret = unsafe { CFURLCreatePropertyFromResource(alloc, url, property, error_code) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror?language=objc)
@@ -184,4 +196,98 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhttpstatusline?language=objc)
     pub static kCFURLHTTPStatusLine: Option<&'static CFString>;
+}
+
+#[cfg(all(
+    feature = "CFArray",
+    feature = "CFData",
+    feature = "CFDictionary",
+    feature = "CFURL"
+))]
+#[deprecated = "renamed to `CFURL::new_data_and_properties_from_resource`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFURLCreateDataAndPropertiesFromResource(
+    alloc: Option<&CFAllocator>,
+    url: Option<&CFURL>,
+    resource_data: *mut *const CFData,
+    properties: *mut *const CFDictionary,
+    desired_properties: Option<&CFArray>,
+    error_code: *mut i32,
+) -> bool {
+    extern "C-unwind" {
+        fn CFURLCreateDataAndPropertiesFromResource(
+            alloc: Option<&CFAllocator>,
+            url: Option<&CFURL>,
+            resource_data: *mut *const CFData,
+            properties: *mut *const CFDictionary,
+            desired_properties: Option<&CFArray>,
+            error_code: *mut i32,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CFURLCreateDataAndPropertiesFromResource(
+            alloc,
+            url,
+            resource_data,
+            properties,
+            desired_properties,
+            error_code,
+        )
+    };
+    ret != 0
+}
+
+#[cfg(all(feature = "CFData", feature = "CFDictionary", feature = "CFURL"))]
+#[deprecated = "renamed to `CFURL::write_data_and_properties_to_resource`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFURLWriteDataAndPropertiesToResource(
+    url: &CFURL,
+    data_to_write: Option<&CFData>,
+    properties_to_write: Option<&CFDictionary>,
+    error_code: *mut i32,
+) -> bool {
+    extern "C-unwind" {
+        fn CFURLWriteDataAndPropertiesToResource(
+            url: &CFURL,
+            data_to_write: Option<&CFData>,
+            properties_to_write: Option<&CFDictionary>,
+            error_code: *mut i32,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CFURLWriteDataAndPropertiesToResource(url, data_to_write, properties_to_write, error_code)
+    };
+    ret != 0
+}
+
+#[cfg(feature = "CFURL")]
+#[deprecated = "renamed to `CFURL::destroy_resource`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFURLDestroyResource(url: &CFURL, error_code: *mut i32) -> bool {
+    extern "C-unwind" {
+        fn CFURLDestroyResource(url: &CFURL, error_code: *mut i32) -> Boolean;
+    }
+    let ret = unsafe { CFURLDestroyResource(url, error_code) };
+    ret != 0
+}
+
+#[cfg(feature = "CFURL")]
+#[deprecated = "renamed to `CFURL::new_property_from_resource`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFURLCreatePropertyFromResource(
+    alloc: Option<&CFAllocator>,
+    url: Option<&CFURL>,
+    property: Option<&CFString>,
+    error_code: *mut i32,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn CFURLCreatePropertyFromResource(
+            alloc: Option<&CFAllocator>,
+            url: Option<&CFURL>,
+            property: Option<&CFString>,
+            error_code: *mut i32,
+        ) -> Option<NonNull<CFType>>;
+    }
+    let ret = unsafe { CFURLCreatePropertyFromResource(alloc, url, property, error_code) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

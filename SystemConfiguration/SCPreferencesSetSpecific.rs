@@ -5,21 +5,73 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// Updates the computer name preference.
-///
-/// Note: To commit these changes to permanent storage you must
-/// call the SCPreferencesCommitChanges function.
-/// In addition, you must call the SCPreferencesApplyChanges
-/// function for the new name to become active.
-///
-/// Parameter `prefs`: The preferences session.
-///
-/// Parameter `name`: The computer name to be set.
-///
-/// Parameter `nameEncoding`: The encoding associated with the computer name.
-///
-/// Returns: Returns TRUE if successful; FALSE otherwise.
 #[cfg(feature = "SCPreferences")]
+impl SCPreferences {
+    /// Updates the computer name preference.
+    ///
+    /// Note: To commit these changes to permanent storage you must
+    /// call the SCPreferencesCommitChanges function.
+    /// In addition, you must call the SCPreferencesApplyChanges
+    /// function for the new name to become active.
+    ///
+    /// Parameter `prefs`: The preferences session.
+    ///
+    /// Parameter `name`: The computer name to be set.
+    ///
+    /// Parameter `nameEncoding`: The encoding associated with the computer name.
+    ///
+    /// Returns: Returns TRUE if successful; FALSE otherwise.
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    #[doc(alias = "SCPreferencesSetComputerName")]
+    pub fn set_computer_name(
+        self: &SCPreferences,
+        name: Option<&CFString>,
+        name_encoding: CFStringEncoding,
+    ) -> bool {
+        extern "C-unwind" {
+            fn SCPreferencesSetComputerName(
+                prefs: &SCPreferences,
+                name: Option<&CFString>,
+                name_encoding: CFStringEncoding,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCPreferencesSetComputerName(self, name, name_encoding) };
+        ret != 0
+    }
+
+    /// Updates the local host name.
+    ///
+    /// Note: To commit these changes to permanent storage you must
+    /// call the SCPreferencesCommitChanges function.
+    /// In addition, you must call the SCPreferencesApplyChanges
+    /// function for the new name to become active.
+    ///
+    /// Parameter `prefs`: The preferences session.
+    ///
+    /// Parameter `name`: The local host name to be set.
+    ///
+    /// Note: this string must conform to the naming conventions of a DNS host
+    /// name as specified in RFC 1034 (section 3.5).
+    ///
+    /// Returns: Returns TRUE if successful; FALSE otherwise.
+    #[cfg(feature = "SCPreferences")]
+    #[inline]
+    #[doc(alias = "SCPreferencesSetLocalHostName")]
+    pub fn set_local_host_name(self: &SCPreferences, name: Option<&CFString>) -> bool {
+        extern "C-unwind" {
+            fn SCPreferencesSetLocalHostName(
+                prefs: &SCPreferences,
+                name: Option<&CFString>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { SCPreferencesSetLocalHostName(self, name) };
+        ret != 0
+    }
+}
+
+#[cfg(feature = "SCPreferences")]
+#[deprecated = "renamed to `SCPreferences::set_computer_name`"]
 #[inline]
 pub extern "C-unwind" fn SCPreferencesSetComputerName(
     prefs: &SCPreferences,
@@ -37,22 +89,8 @@ pub extern "C-unwind" fn SCPreferencesSetComputerName(
     ret != 0
 }
 
-/// Updates the local host name.
-///
-/// Note: To commit these changes to permanent storage you must
-/// call the SCPreferencesCommitChanges function.
-/// In addition, you must call the SCPreferencesApplyChanges
-/// function for the new name to become active.
-///
-/// Parameter `prefs`: The preferences session.
-///
-/// Parameter `name`: The local host name to be set.
-///
-/// Note: this string must conform to the naming conventions of a DNS host
-/// name as specified in RFC 1034 (section 3.5).
-///
-/// Returns: Returns TRUE if successful; FALSE otherwise.
 #[cfg(feature = "SCPreferences")]
+#[deprecated = "renamed to `SCPreferences::set_local_host_name`"]
 #[inline]
 pub extern "C-unwind" fn SCPreferencesSetLocalHostName(
     prefs: &SCPreferences,

@@ -7,22 +7,61 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// Creates a thumbnail for the designated file. Returns NULL if Quick Look does not support this file type.
-///
-/// Parameter `allocator`: The allocator to use to create the image.
-///
-/// Parameter `url`: The URL to the file.
-///
-/// Parameter `maxThumbnailSize`: The maximum desired size.
-///
-/// Parameter `options`: See options below.
-///
-/// Returns: The thumbnail image. NULL if not available.
-///
-/// QLThumbnailImageCreate() does not replace IconServices.
-/// Also QLThumbnailImageCreate() will block until the thumbnail is generated so you should consider calling it in a thread.
+#[cfg(feature = "QLThumbnail")]
+impl QLThumbnail {
+    /// Creates a thumbnail for the designated file. Returns NULL if Quick Look does not support this file type.
+    ///
+    /// Parameter `allocator`: The allocator to use to create the image.
+    ///
+    /// Parameter `url`: The URL to the file.
+    ///
+    /// Parameter `maxThumbnailSize`: The maximum desired size.
+    ///
+    /// Parameter `options`: See options below.
+    ///
+    /// Returns: The thumbnail image. NULL if not available.
+    ///
+    /// QLThumbnailImageCreate() does not replace IconServices.
+    /// Also QLThumbnailImageCreate() will block until the thumbnail is generated so you should consider calling it in a thread.
+    #[cfg(feature = "objc2-core-graphics")]
+    #[deprecated = "Use QuickLookThumbnailing to generate thumbnails for files."]
+    #[inline]
+    #[doc(alias = "QLThumbnailImageCreate")]
+    pub unsafe fn image_create(
+        allocator: Option<&CFAllocator>,
+        url: Option<&CFURL>,
+        max_thumbnail_size: CGSize,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGImage>> {
+        extern "C-unwind" {
+            fn QLThumbnailImageCreate(
+                allocator: Option<&CFAllocator>,
+                url: Option<&CFURL>,
+                max_thumbnail_size: CGSize,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGImage>>;
+        }
+        let ret = unsafe { QLThumbnailImageCreate(allocator, url, max_thumbnail_size, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+}
+
+extern "C" {
+    /// If kCFBooleanTrue, QL will produce an icon (ie a thumbnail and all the icon decor, like shadows, curled corner, etc.).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptioniconmodekey?language=objc)
+    pub static kQLThumbnailOptionIconModeKey: Option<&'static CFString>;
+}
+
+extern "C" {
+    /// This is the user scale factor (as a CFNumber). If absent, default value is 1.0
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptionscalefactorkey?language=objc)
+    pub static kQLThumbnailOptionScaleFactorKey: Option<&'static CFString>;
+}
+
 #[cfg(feature = "objc2-core-graphics")]
-#[deprecated = "Use QuickLookThumbnailing to generate thumbnails for files."]
+#[deprecated = "renamed to `QLThumbnail::image_create`"]
 #[inline]
 pub unsafe extern "C-unwind" fn QLThumbnailImageCreate(
     allocator: Option<&CFAllocator>,
@@ -40,18 +79,4 @@ pub unsafe extern "C-unwind" fn QLThumbnailImageCreate(
     }
     let ret = unsafe { QLThumbnailImageCreate(allocator, url, max_thumbnail_size, options) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-extern "C" {
-    /// If kCFBooleanTrue, QL will produce an icon (ie a thumbnail and all the icon decor, like shadows, curled corner, etc.).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptioniconmodekey?language=objc)
-    pub static kQLThumbnailOptionIconModeKey: Option<&'static CFString>;
-}
-
-extern "C" {
-    /// This is the user scale factor (as a CFNumber). If absent, default value is 1.0
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptionscalefactorkey?language=objc)
-    pub static kQLThumbnailOptionScaleFactorKey: Option<&'static CFString>;
 }

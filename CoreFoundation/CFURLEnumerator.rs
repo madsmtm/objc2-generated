@@ -71,44 +71,48 @@ unsafe impl RefEncode for CFURLEnumeratorOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFURL"))]
-#[inline]
-pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForDirectoryURL(
-    alloc: Option<&CFAllocator>,
-    directory_url: Option<&CFURL>,
-    option: CFURLEnumeratorOptions,
-    property_keys: Option<&CFArray>,
-) -> Option<CFRetained<CFURLEnumerator>> {
-    extern "C-unwind" {
-        fn CFURLEnumeratorCreateForDirectoryURL(
-            alloc: Option<&CFAllocator>,
-            directory_url: Option<&CFURL>,
-            option: CFURLEnumeratorOptions,
-            property_keys: Option<&CFArray>,
-        ) -> Option<NonNull<CFURLEnumerator>>;
+impl CFURLEnumerator {
+    #[cfg(all(feature = "CFArray", feature = "CFURL"))]
+    #[inline]
+    #[doc(alias = "CFURLEnumeratorCreateForDirectoryURL")]
+    pub unsafe fn new_for_directory_url(
+        alloc: Option<&CFAllocator>,
+        directory_url: Option<&CFURL>,
+        option: CFURLEnumeratorOptions,
+        property_keys: Option<&CFArray>,
+    ) -> Option<CFRetained<CFURLEnumerator>> {
+        extern "C-unwind" {
+            fn CFURLEnumeratorCreateForDirectoryURL(
+                alloc: Option<&CFAllocator>,
+                directory_url: Option<&CFURL>,
+                option: CFURLEnumeratorOptions,
+                property_keys: Option<&CFArray>,
+            ) -> Option<NonNull<CFURLEnumerator>>;
+        }
+        let ret = unsafe {
+            CFURLEnumeratorCreateForDirectoryURL(alloc, directory_url, option, property_keys)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe {
-        CFURLEnumeratorCreateForDirectoryURL(alloc, directory_url, option, property_keys)
-    };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-#[cfg(feature = "CFArray")]
-#[inline]
-pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForMountedVolumes(
-    alloc: Option<&CFAllocator>,
-    option: CFURLEnumeratorOptions,
-    property_keys: Option<&CFArray>,
-) -> Option<CFRetained<CFURLEnumerator>> {
-    extern "C-unwind" {
-        fn CFURLEnumeratorCreateForMountedVolumes(
-            alloc: Option<&CFAllocator>,
-            option: CFURLEnumeratorOptions,
-            property_keys: Option<&CFArray>,
-        ) -> Option<NonNull<CFURLEnumerator>>;
+    #[cfg(feature = "CFArray")]
+    #[inline]
+    #[doc(alias = "CFURLEnumeratorCreateForMountedVolumes")]
+    pub unsafe fn new_for_mounted_volumes(
+        alloc: Option<&CFAllocator>,
+        option: CFURLEnumeratorOptions,
+        property_keys: Option<&CFArray>,
+    ) -> Option<CFRetained<CFURLEnumerator>> {
+        extern "C-unwind" {
+            fn CFURLEnumeratorCreateForMountedVolumes(
+                alloc: Option<&CFAllocator>,
+                option: CFURLEnumeratorOptions,
+                property_keys: Option<&CFArray>,
+            ) -> Option<NonNull<CFURLEnumerator>>;
+        }
+        let ret = unsafe { CFURLEnumeratorCreateForMountedVolumes(alloc, option, property_keys) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CFURLEnumeratorCreateForMountedVolumes(alloc, option, property_keys) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult?language=objc)
@@ -137,8 +141,100 @@ unsafe impl RefEncode for CFURLEnumeratorResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+impl CFURLEnumerator {
+    #[cfg(all(feature = "CFError", feature = "CFURL"))]
+    #[inline]
+    #[doc(alias = "CFURLEnumeratorGetNextURL")]
+    pub unsafe fn next_url(
+        self: &CFURLEnumerator,
+        url: *mut *const CFURL,
+        error: *mut *mut CFError,
+    ) -> CFURLEnumeratorResult {
+        extern "C-unwind" {
+            fn CFURLEnumeratorGetNextURL(
+                enumerator: &CFURLEnumerator,
+                url: *mut *const CFURL,
+                error: *mut *mut CFError,
+            ) -> CFURLEnumeratorResult;
+        }
+        unsafe { CFURLEnumeratorGetNextURL(self, url, error) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFURLEnumeratorSkipDescendents")]
+    pub unsafe fn skip_descendents(self: &CFURLEnumerator) {
+        extern "C-unwind" {
+            fn CFURLEnumeratorSkipDescendents(enumerator: &CFURLEnumerator);
+        }
+        unsafe { CFURLEnumeratorSkipDescendents(self) }
+    }
+
+    #[inline]
+    #[doc(alias = "CFURLEnumeratorGetDescendentLevel")]
+    pub unsafe fn descendent_level(self: &CFURLEnumerator) -> CFIndex {
+        extern "C-unwind" {
+            fn CFURLEnumeratorGetDescendentLevel(enumerator: &CFURLEnumerator) -> CFIndex;
+        }
+        unsafe { CFURLEnumeratorGetDescendentLevel(self) }
+    }
+
+    #[deprecated = "Use File System Events API instead"]
+    #[inline]
+    #[doc(alias = "CFURLEnumeratorGetSourceDidChange")]
+    pub unsafe fn source_did_change(self: &CFURLEnumerator) -> bool {
+        extern "C-unwind" {
+            fn CFURLEnumeratorGetSourceDidChange(enumerator: &CFURLEnumerator) -> Boolean;
+        }
+        let ret = unsafe { CFURLEnumeratorGetSourceDidChange(self) };
+        ret != 0
+    }
+}
+
+#[cfg(all(feature = "CFArray", feature = "CFURL"))]
+#[deprecated = "renamed to `CFURLEnumerator::new_for_directory_url`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForDirectoryURL(
+    alloc: Option<&CFAllocator>,
+    directory_url: Option<&CFURL>,
+    option: CFURLEnumeratorOptions,
+    property_keys: Option<&CFArray>,
+) -> Option<CFRetained<CFURLEnumerator>> {
+    extern "C-unwind" {
+        fn CFURLEnumeratorCreateForDirectoryURL(
+            alloc: Option<&CFAllocator>,
+            directory_url: Option<&CFURL>,
+            option: CFURLEnumeratorOptions,
+            property_keys: Option<&CFArray>,
+        ) -> Option<NonNull<CFURLEnumerator>>;
+    }
+    let ret = unsafe {
+        CFURLEnumeratorCreateForDirectoryURL(alloc, directory_url, option, property_keys)
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CFArray")]
+#[deprecated = "renamed to `CFURLEnumerator::new_for_mounted_volumes`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForMountedVolumes(
+    alloc: Option<&CFAllocator>,
+    option: CFURLEnumeratorOptions,
+    property_keys: Option<&CFArray>,
+) -> Option<CFRetained<CFURLEnumerator>> {
+    extern "C-unwind" {
+        fn CFURLEnumeratorCreateForMountedVolumes(
+            alloc: Option<&CFAllocator>,
+            option: CFURLEnumeratorOptions,
+            property_keys: Option<&CFArray>,
+        ) -> Option<NonNull<CFURLEnumerator>>;
+    }
+    let ret = unsafe { CFURLEnumeratorCreateForMountedVolumes(alloc, option, property_keys) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
 extern "C-unwind" {
     #[cfg(all(feature = "CFError", feature = "CFURL"))]
+    #[deprecated = "renamed to `CFURLEnumerator::next_url`"]
     pub fn CFURLEnumeratorGetNextURL(
         enumerator: &CFURLEnumerator,
         url: *mut *const CFURL,
@@ -147,14 +243,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFURLEnumerator::skip_descendents`"]
     pub fn CFURLEnumeratorSkipDescendents(enumerator: &CFURLEnumerator);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `CFURLEnumerator::descendent_level`"]
     pub fn CFURLEnumeratorGetDescendentLevel(enumerator: &CFURLEnumerator) -> CFIndex;
 }
 
-#[deprecated = "Use File System Events API instead"]
+#[deprecated = "renamed to `CFURLEnumerator::source_did_change`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFURLEnumeratorGetSourceDidChange(
     enumerator: &CFURLEnumerator,
