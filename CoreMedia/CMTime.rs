@@ -190,11 +190,11 @@ impl CMTime {
     /// Returns: The resulting Float64 number of seconds.
     #[inline]
     #[doc(alias = "CMTimeGetSeconds")]
-    pub unsafe fn seconds(time: CMTime) -> f64 {
+    pub unsafe fn seconds(self: CMTime) -> f64 {
         extern "C-unwind" {
             fn CMTimeGetSeconds(time: CMTime) -> f64;
         }
-        unsafe { CMTimeGetSeconds(time) }
+        unsafe { CMTimeGetSeconds(self) }
     }
 }
 
@@ -256,7 +256,7 @@ impl CMTime {
     #[inline]
     #[doc(alias = "CMTimeConvertScale")]
     pub unsafe fn convert_scale(
-        time: CMTime,
+        self: CMTime,
         new_timescale: i32,
         method: CMTimeRoundingMethod,
     ) -> CMTime {
@@ -267,7 +267,7 @@ impl CMTime {
                 method: CMTimeRoundingMethod,
             ) -> CMTime;
         }
-        unsafe { CMTimeConvertScale(time, new_timescale, method) }
+        unsafe { CMTimeConvertScale(self, new_timescale, method) }
     }
 
     /// Returns the sum of two CMTimes.
@@ -314,11 +314,11 @@ impl CMTime {
     /// Returns: The sum of the two CMTimes (lhs + rhs).
     #[inline]
     #[doc(alias = "CMTimeAdd")]
-    pub unsafe fn add(lhs: CMTime, rhs: CMTime) -> CMTime {
+    pub unsafe fn add(self: CMTime, rhs: CMTime) -> CMTime {
         extern "C-unwind" {
             fn CMTimeAdd(lhs: CMTime, rhs: CMTime) -> CMTime;
         }
-        unsafe { CMTimeAdd(lhs, rhs) }
+        unsafe { CMTimeAdd(self, rhs) }
     }
 
     /// Returns the difference of two CMTimes.
@@ -365,11 +365,11 @@ impl CMTime {
     /// Returns: The difference of the two CMTimes (lhs - rhs).
     #[inline]
     #[doc(alias = "CMTimeSubtract")]
-    pub unsafe fn subtract(lhs: CMTime, rhs: CMTime) -> CMTime {
+    pub unsafe fn subtract(self: CMTime, rhs: CMTime) -> CMTime {
         extern "C-unwind" {
             fn CMTimeSubtract(lhs: CMTime, rhs: CMTime) -> CMTime;
         }
-        unsafe { CMTimeSubtract(lhs, rhs) }
+        unsafe { CMTimeSubtract(self, rhs) }
     }
 
     /// Returns the product of a CMTime and a 32-bit integer.
@@ -394,11 +394,11 @@ impl CMTime {
     /// Returns: The product of the CMTime and the 32-bit integer.
     #[inline]
     #[doc(alias = "CMTimeMultiply")]
-    pub unsafe fn multiply(time: CMTime, multiplier: i32) -> CMTime {
+    pub unsafe fn multiply(self: CMTime, multiplier: i32) -> CMTime {
         extern "C-unwind" {
             fn CMTimeMultiply(time: CMTime, multiplier: i32) -> CMTime;
         }
-        unsafe { CMTimeMultiply(time, multiplier) }
+        unsafe { CMTimeMultiply(self, multiplier) }
     }
 
     /// Returns the product of a CMTime and a 64-bit float.
@@ -425,11 +425,11 @@ impl CMTime {
     /// Returns: The product of the CMTime and the 64-bit float.
     #[inline]
     #[doc(alias = "CMTimeMultiplyByFloat64")]
-    pub unsafe fn multiply_by_float64(time: CMTime, multiplier: f64) -> CMTime {
+    pub unsafe fn multiply_by_float64(self: CMTime, multiplier: f64) -> CMTime {
         extern "C-unwind" {
             fn CMTimeMultiplyByFloat64(time: CMTime, multiplier: f64) -> CMTime;
         }
-        unsafe { CMTimeMultiplyByFloat64(time, multiplier) }
+        unsafe { CMTimeMultiplyByFloat64(self, multiplier) }
     }
 
     /// Returns the result of multiplying a CMTime by an integer, then dividing by another integer.
@@ -454,11 +454,11 @@ impl CMTime {
     /// Returns: (time * multiplier) / divisor
     #[inline]
     #[doc(alias = "CMTimeMultiplyByRatio")]
-    pub unsafe fn multiply_by_ratio(time: CMTime, multiplier: i32, divisor: i32) -> CMTime {
+    pub unsafe fn multiply_by_ratio(self: CMTime, multiplier: i32, divisor: i32) -> CMTime {
         extern "C-unwind" {
             fn CMTimeMultiplyByRatio(time: CMTime, multiplier: i32, divisor: i32) -> CMTime;
         }
-        unsafe { CMTimeMultiplyByRatio(time, multiplier, divisor) }
+        unsafe { CMTimeMultiplyByRatio(self, multiplier, divisor) }
     }
 
     /// Returns the numerical relationship (-1 = less than, 1 = greater than, 0 = equal) of two CMTimes.
@@ -494,11 +494,11 @@ impl CMTime {
     /// Returns: The numerical relationship of the two CMTimes (-1 = less than, 1 = greater than, 0 = equal).
     #[inline]
     #[doc(alias = "CMTimeCompare")]
-    pub unsafe fn compare(time1: CMTime, time2: CMTime) -> i32 {
+    pub unsafe fn compare(self: CMTime, time2: CMTime) -> i32 {
         extern "C-unwind" {
             fn CMTimeCompare(time1: CMTime, time2: CMTime) -> i32;
         }
-        unsafe { CMTimeCompare(time1, time2) }
+        unsafe { CMTimeCompare(self, time2) }
     }
 
     /// Returns the lesser of two CMTimes (as defined by CMTimeCompare).
@@ -506,11 +506,11 @@ impl CMTime {
     /// Returns: The lesser of the two CMTimes.
     #[inline]
     #[doc(alias = "CMTimeMinimum")]
-    pub unsafe fn minimum(time1: CMTime, time2: CMTime) -> CMTime {
+    pub unsafe fn minimum(self: CMTime, time2: CMTime) -> CMTime {
         extern "C-unwind" {
             fn CMTimeMinimum(time1: CMTime, time2: CMTime) -> CMTime;
         }
-        unsafe { CMTimeMinimum(time1, time2) }
+        unsafe { CMTimeMinimum(self, time2) }
     }
 
     /// Returns the greater of two CMTimes (as defined by CMTimeCompare).
@@ -518,11 +518,11 @@ impl CMTime {
     /// Returns: The greater of the two CMTimes.
     #[inline]
     #[doc(alias = "CMTimeMaximum")]
-    pub unsafe fn maximum(time1: CMTime, time2: CMTime) -> CMTime {
+    pub unsafe fn maximum(self: CMTime, time2: CMTime) -> CMTime {
         extern "C-unwind" {
             fn CMTimeMaximum(time1: CMTime, time2: CMTime) -> CMTime;
         }
-        unsafe { CMTimeMaximum(time1, time2) }
+        unsafe { CMTimeMaximum(self, time2) }
     }
 
     /// Returns the absolute value of a CMTime.
@@ -530,11 +530,11 @@ impl CMTime {
     /// Returns: Same as the argument time, with sign inverted if negative.
     #[inline]
     #[doc(alias = "CMTimeAbsoluteValue")]
-    pub unsafe fn absolute_value(time: CMTime) -> CMTime {
+    pub unsafe fn absolute_value(self: CMTime) -> CMTime {
         extern "C-unwind" {
             fn CMTimeAbsoluteValue(time: CMTime) -> CMTime;
         }
-        unsafe { CMTimeAbsoluteValue(time) }
+        unsafe { CMTimeAbsoluteValue(self) }
     }
 
     /// Returns a CFDictionary version of a CMTime.
@@ -545,7 +545,7 @@ impl CMTime {
     #[inline]
     #[doc(alias = "CMTimeCopyAsDictionary")]
     pub unsafe fn as_dictionary(
-        time: CMTime,
+        self: CMTime,
         allocator: Option<&CFAllocator>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -554,7 +554,7 @@ impl CMTime {
                 allocator: Option<&CFAllocator>,
             ) -> Option<NonNull<CFDictionary>>;
         }
-        let ret = unsafe { CMTimeCopyAsDictionary(time, allocator) };
+        let ret = unsafe { CMTimeCopyAsDictionary(self, allocator) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -632,11 +632,11 @@ impl CMTime {
     /// This is most useful from within gdb.
     #[inline]
     #[doc(alias = "CMTimeShow")]
-    pub unsafe fn show(time: CMTime) {
+    pub unsafe fn show(self: CMTime) {
         extern "C-unwind" {
             fn CMTimeShow(time: CMTime);
         }
-        unsafe { CMTimeShow(time) }
+        unsafe { CMTimeShow(self) }
     }
 }
 

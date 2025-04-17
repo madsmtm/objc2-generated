@@ -266,14 +266,11 @@ impl CFDateFormatter {
         let ret = unsafe { CFDateFormatterCreateStringWithAbsoluteTime(allocator, formatter, at) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-}
 
-#[cfg(feature = "CFDate")]
-impl CFDate {
     #[cfg(feature = "CFDate")]
     #[inline]
     #[doc(alias = "CFDateFormatterCreateDateFromString")]
-    pub unsafe fn from_formatter(
+    pub unsafe fn new_date_from_string(
         allocator: Option<&CFAllocator>,
         formatter: Option<&CFDateFormatter>,
         string: Option<&CFString>,
@@ -291,9 +288,7 @@ impl CFDate {
             unsafe { CFDateFormatterCreateDateFromString(allocator, formatter, string, rangep) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-}
 
-impl CFDateFormatter {
     #[cfg(feature = "CFDate")]
     #[inline]
     #[doc(alias = "CFDateFormatterGetAbsoluteTimeFromString")]
@@ -633,7 +628,7 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCreateStringWithAbsoluteTime(
 }
 
 #[cfg(feature = "CFDate")]
-#[deprecated = "renamed to `CFDate::formatter_create_date_from_string`"]
+#[deprecated = "renamed to `CFDateFormatter::new_date_from_string`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterCreateDateFromString(
     allocator: Option<&CFAllocator>,

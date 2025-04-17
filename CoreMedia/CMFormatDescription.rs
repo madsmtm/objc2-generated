@@ -1909,12 +1909,22 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CMTime")]
+impl CMTime {
     /// Returns the duration of each frame (eg. 100/2997)
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeCodeFormatDescriptionGetFrameDuration(
+    #[inline]
+    #[doc(alias = "CMTimeCodeFormatDescriptionGetFrameDuration")]
+    pub unsafe fn code_format_description_get_frame_duration(
         time_code_format_description: &CMTimeCodeFormatDescription,
-    ) -> CMTime;
+    ) -> CMTime {
+        extern "C-unwind" {
+            fn CMTimeCodeFormatDescriptionGetFrameDuration(
+                time_code_format_description: &CMTimeCodeFormatDescription,
+            ) -> CMTime;
+        }
+        unsafe { CMTimeCodeFormatDescriptionGetFrameDuration(time_code_format_description) }
+    }
 }
 
 extern "C-unwind" {
@@ -2202,4 +2212,12 @@ pub unsafe extern "C-unwind" fn CMFormatDescriptionGetExtension(
     }
     let ret = unsafe { CMFormatDescriptionGetExtension(desc, extension_key) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMTime")]
+    #[deprecated = "renamed to `CMTime::code_format_description_get_frame_duration`"]
+    pub fn CMTimeCodeFormatDescriptionGetFrameDuration(
+        time_code_format_description: &CMTimeCodeFormatDescription,
+    ) -> CMTime;
 }

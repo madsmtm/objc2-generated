@@ -105,11 +105,11 @@ extern "C" {
 impl CLLocationCoordinate2D {
     #[inline]
     #[doc(alias = "CLLocationCoordinate2DIsValid")]
-    pub unsafe fn is_valid(coord: CLLocationCoordinate2D) -> bool {
+    pub unsafe fn is_valid(self: CLLocationCoordinate2D) -> bool {
         extern "C-unwind" {
             fn CLLocationCoordinate2DIsValid(coord: CLLocationCoordinate2D) -> Bool;
         }
-        unsafe { CLLocationCoordinate2DIsValid(coord) }.as_bool()
+        unsafe { CLLocationCoordinate2DIsValid(self) }.as_bool()
     }
 
     #[inline]

@@ -734,7 +734,8 @@ unsafe impl RefEncode for MIDIUniversalMessage {
 pub type MIDIEventVisitor =
     Option<unsafe extern "C-unwind" fn(*mut c_void, MIDITimeStamp, MIDIUniversalMessage)>;
 
-extern "C-unwind" {
+#[cfg(feature = "MIDIServices")]
+impl MIDIEventList {
     /// Parses UMPs from a MIDIEventList.
     ///
     /// MIDIEventListForEachEvent iterates over all UMPs in the provided MIDIEventList.
@@ -750,6 +751,27 @@ extern "C-unwind" {
     ///
     /// Parameter `visitorContext`: A context for the visitor that is passed to it when being called.
     #[cfg(feature = "MIDIServices")]
+    #[inline]
+    #[doc(alias = "MIDIEventListForEachEvent")]
+    pub unsafe fn for_each_event(
+        evtlist: *const MIDIEventList,
+        visitor: MIDIEventVisitor,
+        visitor_context: *mut c_void,
+    ) {
+        extern "C-unwind" {
+            fn MIDIEventListForEachEvent(
+                evtlist: *const MIDIEventList,
+                visitor: MIDIEventVisitor,
+                visitor_context: *mut c_void,
+            );
+        }
+        unsafe { MIDIEventListForEachEvent(evtlist, visitor, visitor_context) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "MIDIServices")]
+    #[deprecated = "renamed to `MIDIEventList::for_each_event`"]
     pub fn MIDIEventListForEachEvent(
         evtlist: *const MIDIEventList,
         visitor: MIDIEventVisitor,

@@ -593,14 +593,14 @@ impl UIWritingToolsCoordinatorTextAnimation {
     #[inline]
     #[doc(alias = "UIWritingToolsCoordinatorTextAnimationDebugDescription")]
     pub unsafe fn debug_description(
-        animation_type: UIWritingToolsCoordinatorTextAnimation,
+        self: UIWritingToolsCoordinatorTextAnimation,
     ) -> Retained<NSString> {
         extern "C-unwind" {
             fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
                 animation_type: UIWritingToolsCoordinatorTextAnimation,
             ) -> *mut NSString;
         }
-        let ret = unsafe { UIWritingToolsCoordinatorTextAnimationDebugDescription(animation_type) };
+        let ret = unsafe { UIWritingToolsCoordinatorTextAnimationDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }

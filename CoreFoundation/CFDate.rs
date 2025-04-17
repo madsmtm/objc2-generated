@@ -236,26 +236,26 @@ impl CFGregorianDate {
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     #[inline]
     #[doc(alias = "CFGregorianDateIsValid")]
-    pub unsafe fn is_valid(gdate: CFGregorianDate, unit_flags: CFOptionFlags) -> bool {
+    pub unsafe fn is_valid(self: CFGregorianDate, unit_flags: CFOptionFlags) -> bool {
         extern "C-unwind" {
             fn CFGregorianDateIsValid(gdate: CFGregorianDate, unit_flags: CFOptionFlags)
                 -> Boolean;
         }
-        let ret = unsafe { CFGregorianDateIsValid(gdate, unit_flags) };
+        let ret = unsafe { CFGregorianDateIsValid(self, unit_flags) };
         ret != 0
     }
 
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     #[inline]
     #[doc(alias = "CFGregorianDateGetAbsoluteTime")]
-    pub unsafe fn absolute_time(gdate: CFGregorianDate, tz: Option<&CFTimeZone>) -> CFAbsoluteTime {
+    pub unsafe fn absolute_time(self: CFGregorianDate, tz: Option<&CFTimeZone>) -> CFAbsoluteTime {
         extern "C-unwind" {
             fn CFGregorianDateGetAbsoluteTime(
                 gdate: CFGregorianDate,
                 tz: Option<&CFTimeZone>,
             ) -> CFAbsoluteTime;
         }
-        unsafe { CFGregorianDateGetAbsoluteTime(gdate, tz) }
+        unsafe { CFGregorianDateGetAbsoluteTime(self, tz) }
     }
 }
 

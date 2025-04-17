@@ -251,27 +251,26 @@ impl CGImageSource {
         let ret = unsafe { CGImageSourceCopyMetadataAtIndex(self, index, options) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-}
 
-#[cfg(feature = "objc2-core-graphics")]
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceCreateImageAtIndex(
-    isrc: &CGImageSource,
-    index: usize,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CGImage>> {
-    extern "C-unwind" {
-        fn CGImageSourceCreateImageAtIndex(
-            isrc: &CGImageSource,
-            index: usize,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGImage>>;
+    #[cfg(feature = "objc2-core-graphics")]
+    #[inline]
+    #[doc(alias = "CGImageSourceCreateImageAtIndex")]
+    pub unsafe fn new_image_at_index(
+        self: &CGImageSource,
+        index: usize,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGImage>> {
+        extern "C-unwind" {
+            fn CGImageSourceCreateImageAtIndex(
+                isrc: &CGImageSource,
+                index: usize,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGImage>>;
+        }
+        let ret = unsafe { CGImageSourceCreateImageAtIndex(self, index, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageSourceCreateImageAtIndex(isrc, index, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-impl CGImageSource {
     #[inline]
     #[doc(alias = "CGImageSourceRemoveCacheAtIndex")]
     pub unsafe fn remove_cache_at_index(self: &CGImageSource, index: usize) {
@@ -280,27 +279,26 @@ impl CGImageSource {
         }
         unsafe { CGImageSourceRemoveCacheAtIndex(self, index) }
     }
-}
 
-#[cfg(feature = "objc2-core-graphics")]
-#[inline]
-pub unsafe extern "C-unwind" fn CGImageSourceCreateThumbnailAtIndex(
-    isrc: &CGImageSource,
-    index: usize,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CGImage>> {
-    extern "C-unwind" {
-        fn CGImageSourceCreateThumbnailAtIndex(
-            isrc: &CGImageSource,
-            index: usize,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGImage>>;
+    #[cfg(feature = "objc2-core-graphics")]
+    #[inline]
+    #[doc(alias = "CGImageSourceCreateThumbnailAtIndex")]
+    pub unsafe fn new_thumbnail_at_index(
+        self: &CGImageSource,
+        index: usize,
+        options: Option<&CFDictionary>,
+    ) -> Option<CFRetained<CGImage>> {
+        extern "C-unwind" {
+            fn CGImageSourceCreateThumbnailAtIndex(
+                isrc: &CGImageSource,
+                index: usize,
+                options: Option<&CFDictionary>,
+            ) -> Option<NonNull<CGImage>>;
+        }
+        let ret = unsafe { CGImageSourceCreateThumbnailAtIndex(self, index, options) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-    let ret = unsafe { CGImageSourceCreateThumbnailAtIndex(isrc, index, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
 
-impl CGImageSource {
     #[inline]
     #[doc(alias = "CGImageSourceCreateIncremental")]
     pub unsafe fn new_incremental(options: Option<&CFDictionary>) -> CFRetained<CGImageSource> {
@@ -559,9 +557,47 @@ pub unsafe extern "C-unwind" fn CGImageSourceCopyMetadataAtIndex(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `CGImageSource::new_image_at_index`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceCreateImageAtIndex(
+    isrc: &CGImageSource,
+    index: usize,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageSourceCreateImageAtIndex(
+            isrc: &CGImageSource,
+            index: usize,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGImage>>;
+    }
+    let ret = unsafe { CGImageSourceCreateImageAtIndex(isrc, index, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
 extern "C-unwind" {
     #[deprecated = "renamed to `CGImageSource::remove_cache_at_index`"]
     pub fn CGImageSourceRemoveCacheAtIndex(isrc: &CGImageSource, index: usize);
+}
+
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `CGImageSource::new_thumbnail_at_index`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageSourceCreateThumbnailAtIndex(
+    isrc: &CGImageSource,
+    index: usize,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageSourceCreateThumbnailAtIndex(
+            isrc: &CGImageSource,
+            index: usize,
+            options: Option<&CFDictionary>,
+        ) -> Option<NonNull<CGImage>>;
+    }
+    let ret = unsafe { CGImageSourceCreateThumbnailAtIndex(isrc, index, options) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[deprecated = "renamed to `CGImageSource::new_incremental`"]

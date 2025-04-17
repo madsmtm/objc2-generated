@@ -77,11 +77,11 @@ impl CMTimeRange {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMTimeRangeGetUnion")]
-    pub unsafe fn union(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange {
+    pub unsafe fn union(self: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange {
         extern "C-unwind" {
             fn CMTimeRangeGetUnion(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange;
         }
-        unsafe { CMTimeRangeGetUnion(range, other_range) }
+        unsafe { CMTimeRangeGetUnion(self, other_range) }
     }
 
     /// Returns the intersection of two CMTimeRanges.
@@ -101,14 +101,14 @@ impl CMTimeRange {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMTimeRangeGetIntersection")]
-    pub unsafe fn intersection(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange {
+    pub unsafe fn intersection(self: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange {
         extern "C-unwind" {
             fn CMTimeRangeGetIntersection(
                 range: CMTimeRange,
                 other_range: CMTimeRange,
             ) -> CMTimeRange;
         }
-        unsafe { CMTimeRangeGetIntersection(range, other_range) }
+        unsafe { CMTimeRangeGetIntersection(self, other_range) }
     }
 
     /// Returns a Boolean value that indicates whether two CMTimeRanges are identical.
@@ -127,11 +127,11 @@ impl CMTimeRange {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMTimeRangeEqual")]
-    pub unsafe fn equal(range1: CMTimeRange, range2: CMTimeRange) -> bool {
+    pub unsafe fn equal(self: CMTimeRange, range2: CMTimeRange) -> bool {
         extern "C-unwind" {
             fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> Boolean;
         }
-        let ret = unsafe { CMTimeRangeEqual(range1, range2) };
+        let ret = unsafe { CMTimeRangeEqual(self, range2) };
         ret != 0
     }
 
@@ -152,11 +152,11 @@ impl CMTimeRange {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMTimeRangeContainsTime")]
-    pub unsafe fn contains_time(range: CMTimeRange, time: CMTime) -> bool {
+    pub unsafe fn contains_time(self: CMTimeRange, time: CMTime) -> bool {
         extern "C-unwind" {
             fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> Boolean;
         }
-        let ret = unsafe { CMTimeRangeContainsTime(range, time) };
+        let ret = unsafe { CMTimeRangeContainsTime(self, time) };
         ret != 0
     }
 
@@ -177,14 +177,14 @@ impl CMTimeRange {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMTimeRangeContainsTimeRange")]
-    pub unsafe fn contains_time_range(range: CMTimeRange, other_range: CMTimeRange) -> bool {
+    pub unsafe fn contains_time_range(self: CMTimeRange, other_range: CMTimeRange) -> bool {
         extern "C-unwind" {
             fn CMTimeRangeContainsTimeRange(
                 range: CMTimeRange,
                 other_range: CMTimeRange,
             ) -> Boolean;
         }
-        let ret = unsafe { CMTimeRangeContainsTimeRange(range, other_range) };
+        let ret = unsafe { CMTimeRangeContainsTimeRange(self, other_range) };
         ret != 0
     }
 
@@ -201,11 +201,11 @@ impl CMTimeRange {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMTimeRangeGetEnd")]
-    pub unsafe fn end(range: CMTimeRange) -> CMTime {
+    pub unsafe fn end(self: CMTimeRange) -> CMTime {
         extern "C-unwind" {
             fn CMTimeRangeGetEnd(range: CMTimeRange) -> CMTime;
         }
-        unsafe { CMTimeRangeGetEnd(range) }
+        unsafe { CMTimeRangeGetEnd(self) }
     }
 }
 
@@ -226,7 +226,7 @@ impl CMTime {
     #[inline]
     #[doc(alias = "CMTimeMapTimeFromRangeToRange")]
     pub unsafe fn map_time_from_range_to_range(
-        t: CMTime,
+        self: CMTime,
         from_range: CMTimeRange,
         to_range: CMTimeRange,
     ) -> CMTime {
@@ -237,7 +237,7 @@ impl CMTime {
                 to_range: CMTimeRange,
             ) -> CMTime;
         }
-        unsafe { CMTimeMapTimeFromRangeToRange(t, from_range, to_range) }
+        unsafe { CMTimeMapTimeFromRangeToRange(self, from_range, to_range) }
     }
 
     /// For a given CMTime and CMTimeRange, returns the nearest CMTime inside that time range.
@@ -252,11 +252,11 @@ impl CMTime {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMTimeClampToRange")]
-    pub unsafe fn clamp_to_range(time: CMTime, range: CMTimeRange) -> CMTime {
+    pub unsafe fn clamp_to_range(self: CMTime, range: CMTimeRange) -> CMTime {
         extern "C-unwind" {
             fn CMTimeClampToRange(time: CMTime, range: CMTimeRange) -> CMTime;
         }
-        unsafe { CMTimeClampToRange(time, range) }
+        unsafe { CMTimeClampToRange(self, range) }
     }
 
     /// Translates a duration through a mapping from CMTimeRange to CMTimeRange.
@@ -270,7 +270,7 @@ impl CMTime {
     #[inline]
     #[doc(alias = "CMTimeMapDurationFromRangeToRange")]
     pub unsafe fn map_duration_from_range_to_range(
-        dur: CMTime,
+        self: CMTime,
         from_range: CMTimeRange,
         to_range: CMTimeRange,
     ) -> CMTime {
@@ -281,7 +281,7 @@ impl CMTime {
                 to_range: CMTimeRange,
             ) -> CMTime;
         }
-        unsafe { CMTimeMapDurationFromRangeToRange(dur, from_range, to_range) }
+        unsafe { CMTimeMapDurationFromRangeToRange(self, from_range, to_range) }
     }
 
     /// Folds a time into the given range.  This can be used in looping time calculations.
@@ -293,11 +293,11 @@ impl CMTime {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMTimeFoldIntoRange")]
-    pub unsafe fn fold_into_range(time: CMTime, fold_range: CMTimeRange) -> CMTime {
+    pub unsafe fn fold_into_range(self: CMTime, fold_range: CMTimeRange) -> CMTime {
         extern "C-unwind" {
             fn CMTimeFoldIntoRange(time: CMTime, fold_range: CMTimeRange) -> CMTime;
         }
-        unsafe { CMTimeFoldIntoRange(time, fold_range) }
+        unsafe { CMTimeFoldIntoRange(self, fold_range) }
     }
 }
 
@@ -325,7 +325,7 @@ impl CMTimeRange {
     #[inline]
     #[doc(alias = "CMTimeRangeCopyAsDictionary")]
     pub unsafe fn as_dictionary(
-        range: CMTimeRange,
+        self: CMTimeRange,
         allocator: Option<&CFAllocator>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -334,7 +334,7 @@ impl CMTimeRange {
                 allocator: Option<&CFAllocator>,
             ) -> Option<NonNull<CFDictionary>>;
         }
-        let ret = unsafe { CMTimeRangeCopyAsDictionary(range, allocator) };
+        let ret = unsafe { CMTimeRangeCopyAsDictionary(self, allocator) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -402,11 +402,11 @@ impl CMTimeRange {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMTimeRangeShow")]
-    pub unsafe fn show(range: CMTimeRange) {
+    pub unsafe fn show(self: CMTimeRange) {
         extern "C-unwind" {
             fn CMTimeRangeShow(range: CMTimeRange);
         }
-        unsafe { CMTimeRangeShow(range) }
+        unsafe { CMTimeRangeShow(self) }
     }
 }
 
@@ -490,7 +490,7 @@ impl CMTimeMapping {
     #[inline]
     #[doc(alias = "CMTimeMappingCopyAsDictionary")]
     pub unsafe fn as_dictionary(
-        mapping: CMTimeMapping,
+        self: CMTimeMapping,
         allocator: Option<&CFAllocator>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -499,7 +499,7 @@ impl CMTimeMapping {
                 allocator: Option<&CFAllocator>,
             ) -> Option<NonNull<CFDictionary>>;
         }
-        let ret = unsafe { CMTimeMappingCopyAsDictionary(mapping, allocator) };
+        let ret = unsafe { CMTimeMappingCopyAsDictionary(self, allocator) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -567,11 +567,11 @@ impl CMTimeMapping {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMTimeMappingShow")]
-    pub unsafe fn show(mapping: CMTimeMapping) {
+    pub unsafe fn show(self: CMTimeMapping) {
         extern "C-unwind" {
             fn CMTimeMappingShow(mapping: CMTimeMapping);
         }
-        unsafe { CMTimeMappingShow(mapping) }
+        unsafe { CMTimeMappingShow(self) }
     }
 }
 

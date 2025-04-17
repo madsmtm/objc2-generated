@@ -9,7 +9,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-impl CFString {
+impl CFStringTokenizer {
     /// Guesses the language of a string and returns the BCP 47 string of the
     /// language.
     ///
@@ -26,8 +26,8 @@ impl CFString {
     /// characters are required to reliably guess the language of a string.
     #[inline]
     #[doc(alias = "CFStringTokenizerCopyBestStringLanguage")]
-    pub unsafe fn tokenizer_copy_best_string_language(
-        self: &CFString,
+    pub unsafe fn best_string_language(
+        string: &CFString,
         range: CFRange,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
@@ -36,7 +36,7 @@ impl CFString {
                 range: CFRange,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CFStringTokenizerCopyBestStringLanguage(self, range) };
+        let ret = unsafe { CFStringTokenizerCopyBestStringLanguage(string, range) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }
@@ -390,7 +390,7 @@ impl CFStringTokenizer {
     }
 }
 
-#[deprecated = "renamed to `CFString::tokenizer_copy_best_string_language`"]
+#[deprecated = "renamed to `CFStringTokenizer::best_string_language`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFStringTokenizerCopyBestStringLanguage(
     string: &CFString,

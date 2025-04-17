@@ -71,11 +71,11 @@ impl UIFloatRange {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     #[doc(alias = "UIFloatRangeIsInfinite")]
-    pub unsafe fn is_infinite(range: UIFloatRange) -> bool {
+    pub unsafe fn is_infinite(self: UIFloatRange) -> bool {
         extern "C-unwind" {
             fn UIFloatRangeIsInfinite(range: UIFloatRange) -> Bool;
         }
-        unsafe { UIFloatRangeIsInfinite(range) }.as_bool()
+        unsafe { UIFloatRangeIsInfinite(self) }.as_bool()
     }
 
     // TODO: pub fn UIFloatRangeMake(minimum: CGFloat,maximum: CGFloat,) -> UIFloatRange;

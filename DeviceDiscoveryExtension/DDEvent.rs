@@ -40,11 +40,11 @@ impl DDEventType {
     /// Converts an event to a string for logging, etc.
     #[inline]
     #[doc(alias = "DDEventTypeToString")]
-    pub unsafe fn to_string(in_value: DDEventType) -> Retained<NSString> {
+    pub unsafe fn to_string(self: DDEventType) -> Retained<NSString> {
         extern "C-unwind" {
             fn DDEventTypeToString(in_value: DDEventType) -> *mut NSString;
         }
-        let ret = unsafe { DDEventTypeToString(in_value) };
+        let ret = unsafe { DDEventTypeToString(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }

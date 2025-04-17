@@ -378,12 +378,14 @@ impl LSSharedFileList {
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
+}
 
+impl LSSharedFileListItem {
     #[deprecated = "No longer supported"]
     #[inline]
     #[doc(alias = "LSSharedFileListItemMove")]
-    pub unsafe fn item_move(
-        self: &LSSharedFileList,
+    pub unsafe fn r#move(
+        in_list: &LSSharedFileList,
         in_item: &LSSharedFileListItem,
         in_move_after_item: &LSSharedFileListItem,
     ) -> OSStatus {
@@ -394,22 +396,24 @@ impl LSSharedFileList {
                 in_move_after_item: &LSSharedFileListItem,
             ) -> OSStatus;
         }
-        unsafe { LSSharedFileListItemMove(self, in_item, in_move_after_item) }
+        unsafe { LSSharedFileListItemMove(in_list, in_item, in_move_after_item) }
     }
 
     #[deprecated = "No longer supported"]
     #[inline]
     #[doc(alias = "LSSharedFileListItemRemove")]
-    pub unsafe fn item_remove(self: &LSSharedFileList, in_item: &LSSharedFileListItem) -> OSStatus {
+    pub unsafe fn remove(in_list: &LSSharedFileList, in_item: &LSSharedFileListItem) -> OSStatus {
         extern "C-unwind" {
             fn LSSharedFileListItemRemove(
                 in_list: &LSSharedFileList,
                 in_item: &LSSharedFileListItem,
             ) -> OSStatus;
         }
-        unsafe { LSSharedFileListItemRemove(self, in_item) }
+        unsafe { LSSharedFileListItemRemove(in_list, in_item) }
     }
+}
 
+impl LSSharedFileList {
     #[deprecated = "No longer supported"]
     #[inline]
     #[doc(alias = "LSSharedFileListRemoveAllItems")]
@@ -709,7 +713,7 @@ pub unsafe extern "C-unwind" fn LSSharedFileListInsertItemFSRef(
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `LSSharedFileList::item_move`"]
+    #[deprecated = "renamed to `LSSharedFileListItem::move`"]
     pub fn LSSharedFileListItemMove(
         in_list: &LSSharedFileList,
         in_item: &LSSharedFileListItem,
@@ -718,7 +722,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `LSSharedFileList::item_remove`"]
+    #[deprecated = "renamed to `LSSharedFileListItem::remove`"]
     pub fn LSSharedFileListItemRemove(
         in_list: &LSSharedFileList,
         in_item: &LSSharedFileListItem,

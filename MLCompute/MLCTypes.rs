@@ -979,13 +979,13 @@ impl MLCActivationType {
     /// Returns a textual description of the activation type, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCActivationTypeDebugDescription")]
-    pub unsafe fn debug_description(activation_type: MLCActivationType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCActivationType) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCActivationTypeDebugDescription(
                 activation_type: MLCActivationType,
             ) -> *mut NSString;
         }
-        let ret = unsafe { MLCActivationTypeDebugDescription(activation_type) };
+        let ret = unsafe { MLCActivationTypeDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -995,13 +995,13 @@ impl MLCArithmeticOperation {
     /// Returns a textual description of the arithmetic operation, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCArithmeticOperationDebugDescription")]
-    pub unsafe fn debug_description(operation: MLCArithmeticOperation) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCArithmeticOperation) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCArithmeticOperationDebugDescription(
                 operation: MLCArithmeticOperation,
             ) -> *mut NSString;
         }
-        let ret = unsafe { MLCArithmeticOperationDebugDescription(operation) };
+        let ret = unsafe { MLCArithmeticOperationDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -1011,11 +1011,11 @@ impl MLCPaddingPolicy {
     /// Returns a textual description of the padding policy, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCPaddingPolicyDebugDescription")]
-    pub unsafe fn debug_description(padding_policy: MLCPaddingPolicy) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCPaddingPolicy) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCPaddingPolicyDebugDescription(padding_policy: MLCPaddingPolicy) -> *mut NSString;
         }
-        let ret = unsafe { MLCPaddingPolicyDebugDescription(padding_policy) };
+        let ret = unsafe { MLCPaddingPolicyDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -1025,11 +1025,11 @@ impl MLCLossType {
     /// Returns a textual description of the loss type, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCLossTypeDebugDescription")]
-    pub unsafe fn debug_description(loss_type: MLCLossType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCLossType) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCLossTypeDebugDescription(loss_type: MLCLossType) -> *mut NSString;
         }
-        let ret = unsafe { MLCLossTypeDebugDescription(loss_type) };
+        let ret = unsafe { MLCLossTypeDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -1039,11 +1039,11 @@ impl MLCReductionType {
     /// Returns a textual description of the reduction type, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCReductionTypeDebugDescription")]
-    pub unsafe fn debug_description(reduction_type: MLCReductionType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCReductionType) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCReductionTypeDebugDescription(reduction_type: MLCReductionType) -> *mut NSString;
         }
-        let ret = unsafe { MLCReductionTypeDebugDescription(reduction_type) };
+        let ret = unsafe { MLCReductionTypeDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -1053,11 +1053,11 @@ impl MLCPaddingType {
     /// Returns a textual description of the padding type, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCPaddingTypeDebugDescription")]
-    pub unsafe fn debug_description(padding_type: MLCPaddingType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCPaddingType) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCPaddingTypeDebugDescription(padding_type: MLCPaddingType) -> *mut NSString;
         }
-        let ret = unsafe { MLCPaddingTypeDebugDescription(padding_type) };
+        let ret = unsafe { MLCPaddingTypeDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -1067,13 +1067,13 @@ impl MLCConvolutionType {
     /// Returns a textual description of the convolution type, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCConvolutionTypeDebugDescription")]
-    pub unsafe fn debug_description(convolution_type: MLCConvolutionType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCConvolutionType) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCConvolutionTypeDebugDescription(
                 convolution_type: MLCConvolutionType,
             ) -> *mut NSString;
         }
-        let ret = unsafe { MLCConvolutionTypeDebugDescription(convolution_type) };
+        let ret = unsafe { MLCConvolutionTypeDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -1083,11 +1083,11 @@ impl MLCPoolingType {
     /// Returns a textual description of the pooling type, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCPoolingTypeDebugDescription")]
-    pub unsafe fn debug_description(pooling_type: MLCPoolingType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCPoolingType) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCPoolingTypeDebugDescription(pooling_type: MLCPoolingType) -> *mut NSString;
         }
-        let ret = unsafe { MLCPoolingTypeDebugDescription(pooling_type) };
+        let ret = unsafe { MLCPoolingTypeDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -1097,12 +1097,12 @@ impl MLCSoftmaxOperation {
     /// Returns a textual description of the softmax operation, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCSoftmaxOperationDebugDescription")]
-    pub unsafe fn debug_description(operation: MLCSoftmaxOperation) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCSoftmaxOperation) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCSoftmaxOperationDebugDescription(operation: MLCSoftmaxOperation)
                 -> *mut NSString;
         }
-        let ret = unsafe { MLCSoftmaxOperationDebugDescription(operation) };
+        let ret = unsafe { MLCSoftmaxOperationDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -1112,11 +1112,11 @@ impl MLCSampleMode {
     /// Returns a textual description of the sample mode, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCSampleModeDebugDescription")]
-    pub unsafe fn debug_description(mode: MLCSampleMode) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCSampleMode) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCSampleModeDebugDescription(mode: MLCSampleMode) -> *mut NSString;
         }
-        let ret = unsafe { MLCSampleModeDebugDescription(mode) };
+        let ret = unsafe { MLCSampleModeDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -1126,11 +1126,11 @@ impl MLCLSTMResultMode {
     /// Returns a textual description of the LSTM result mode, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCLSTMResultModeDebugDescription")]
-    pub unsafe fn debug_description(mode: MLCLSTMResultMode) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCLSTMResultMode) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCLSTMResultModeDebugDescription(mode: MLCLSTMResultMode) -> *mut NSString;
         }
-        let ret = unsafe { MLCLSTMResultModeDebugDescription(mode) };
+        let ret = unsafe { MLCLSTMResultModeDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -1140,13 +1140,13 @@ impl MLCComparisonOperation {
     /// Returns a textual description of the comparison operation, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCComparisonOperationDebugDescription")]
-    pub unsafe fn debug_description(operation: MLCComparisonOperation) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCComparisonOperation) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCComparisonOperationDebugDescription(
                 operation: MLCComparisonOperation,
             ) -> *mut NSString;
         }
-        let ret = unsafe { MLCComparisonOperationDebugDescription(operation) };
+        let ret = unsafe { MLCComparisonOperationDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -1156,15 +1156,13 @@ impl MLCGradientClippingType {
     /// Returns a textual description of the gradient clipping type, suitable for debugging.
     #[inline]
     #[doc(alias = "MLCGradientClippingTypeDebugDescription")]
-    pub unsafe fn debug_description(
-        gradient_clipping_type: MLCGradientClippingType,
-    ) -> Retained<NSString> {
+    pub unsafe fn debug_description(self: MLCGradientClippingType) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCGradientClippingTypeDebugDescription(
                 gradient_clipping_type: MLCGradientClippingType,
             ) -> *mut NSString;
         }
-        let ret = unsafe { MLCGradientClippingTypeDebugDescription(gradient_clipping_type) };
+        let ret = unsafe { MLCGradientClippingTypeDebugDescription(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }

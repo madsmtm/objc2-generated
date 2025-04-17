@@ -1720,9 +1720,7 @@ impl AXTextMarkerRange {
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { CFRetained::from_raw(ret) }
     }
-}
 
-impl AXTextMarker {
     /// Copies the start marker from a text marker range
     ///
     ///
@@ -1732,15 +1730,13 @@ impl AXTextMarker {
     /// Returns: The start text marker object
     #[inline]
     #[doc(alias = "AXTextMarkerRangeCopyStartMarker")]
-    pub unsafe fn range_copy_start_marker(
-        text_marker_range: &AXTextMarkerRange,
-    ) -> CFRetained<AXTextMarker> {
+    pub unsafe fn start_marker(self: &AXTextMarkerRange) -> CFRetained<AXTextMarker> {
         extern "C-unwind" {
             fn AXTextMarkerRangeCopyStartMarker(
                 text_marker_range: &AXTextMarkerRange,
             ) -> Option<NonNull<AXTextMarker>>;
         }
-        let ret = unsafe { AXTextMarkerRangeCopyStartMarker(text_marker_range) };
+        let ret = unsafe { AXTextMarkerRangeCopyStartMarker(self) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { CFRetained::from_raw(ret) }
@@ -1755,15 +1751,13 @@ impl AXTextMarker {
     /// Returns: The end text marker object
     #[inline]
     #[doc(alias = "AXTextMarkerRangeCopyEndMarker")]
-    pub unsafe fn range_copy_end_marker(
-        text_marker_range: &AXTextMarkerRange,
-    ) -> CFRetained<AXTextMarker> {
+    pub unsafe fn end_marker(self: &AXTextMarkerRange) -> CFRetained<AXTextMarker> {
         extern "C-unwind" {
             fn AXTextMarkerRangeCopyEndMarker(
                 text_marker_range: &AXTextMarkerRange,
             ) -> Option<NonNull<AXTextMarker>>;
         }
-        let ret = unsafe { AXTextMarkerRangeCopyEndMarker(text_marker_range) };
+        let ret = unsafe { AXTextMarkerRangeCopyEndMarker(self) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { CFRetained::from_raw(ret) }
@@ -2477,7 +2471,7 @@ pub unsafe extern "C-unwind" fn AXTextMarkerRangeCreateWithBytes(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "renamed to `AXTextMarker::range_copy_start_marker`"]
+#[deprecated = "renamed to `AXTextMarkerRange::start_marker`"]
 #[inline]
 pub unsafe extern "C-unwind" fn AXTextMarkerRangeCopyStartMarker(
     text_marker_range: &AXTextMarkerRange,
@@ -2492,7 +2486,7 @@ pub unsafe extern "C-unwind" fn AXTextMarkerRangeCopyStartMarker(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "renamed to `AXTextMarker::range_copy_end_marker`"]
+#[deprecated = "renamed to `AXTextMarkerRange::end_marker`"]
 #[inline]
 pub unsafe extern "C-unwind" fn AXTextMarkerRangeCopyEndMarker(
     text_marker_range: &AXTextMarkerRange,

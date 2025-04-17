@@ -58,19 +58,226 @@ unsafe impl RefEncode for NSCalculationError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn NSDecimalIsNotANumber(dcm: NonNull<NSDecimal>,) -> Bool;
+impl NSDecimal {
+    // TODO: pub fn NSDecimalIsNotANumber(dcm: NonNull<NSDecimal>,) -> Bool;
+
+    /// *************    Operations        **********
+    #[inline]
+    #[doc(alias = "NSDecimalCopy")]
+    pub unsafe fn copy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>) {
+        extern "C-unwind" {
+            fn NSDecimalCopy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>);
+        }
+        unsafe { NSDecimalCopy(destination, source) }
+    }
+
+    #[inline]
+    #[doc(alias = "NSDecimalCompact")]
+    pub unsafe fn compact(number: NonNull<NSDecimal>) {
+        extern "C-unwind" {
+            fn NSDecimalCompact(number: NonNull<NSDecimal>);
+        }
+        unsafe { NSDecimalCompact(number) }
+    }
+
+    #[cfg(feature = "NSObjCRuntime")]
+    #[inline]
+    #[doc(alias = "NSDecimalCompare")]
+    pub unsafe fn compare(
+        left_operand: NonNull<NSDecimal>,
+        right_operand: NonNull<NSDecimal>,
+    ) -> NSComparisonResult {
+        extern "C-unwind" {
+            fn NSDecimalCompare(
+                left_operand: NonNull<NSDecimal>,
+                right_operand: NonNull<NSDecimal>,
+            ) -> NSComparisonResult;
+        }
+        unsafe { NSDecimalCompare(left_operand, right_operand) }
+    }
+
+    #[inline]
+    #[doc(alias = "NSDecimalRound")]
+    pub unsafe fn round(
+        result: NonNull<NSDecimal>,
+        number: NonNull<NSDecimal>,
+        scale: NSInteger,
+        rounding_mode: NSRoundingMode,
+    ) {
+        extern "C-unwind" {
+            fn NSDecimalRound(
+                result: NonNull<NSDecimal>,
+                number: NonNull<NSDecimal>,
+                scale: NSInteger,
+                rounding_mode: NSRoundingMode,
+            );
+        }
+        unsafe { NSDecimalRound(result, number, scale, rounding_mode) }
+    }
+
+    #[inline]
+    #[doc(alias = "NSDecimalNormalize")]
+    pub unsafe fn normalize(
+        number1: NonNull<NSDecimal>,
+        number2: NonNull<NSDecimal>,
+        rounding_mode: NSRoundingMode,
+    ) -> NSCalculationError {
+        extern "C-unwind" {
+            fn NSDecimalNormalize(
+                number1: NonNull<NSDecimal>,
+                number2: NonNull<NSDecimal>,
+                rounding_mode: NSRoundingMode,
+            ) -> NSCalculationError;
+        }
+        unsafe { NSDecimalNormalize(number1, number2, rounding_mode) }
+    }
+
+    #[inline]
+    #[doc(alias = "NSDecimalAdd")]
+    pub unsafe fn add(
+        result: NonNull<NSDecimal>,
+        left_operand: NonNull<NSDecimal>,
+        right_operand: NonNull<NSDecimal>,
+        rounding_mode: NSRoundingMode,
+    ) -> NSCalculationError {
+        extern "C-unwind" {
+            fn NSDecimalAdd(
+                result: NonNull<NSDecimal>,
+                left_operand: NonNull<NSDecimal>,
+                right_operand: NonNull<NSDecimal>,
+                rounding_mode: NSRoundingMode,
+            ) -> NSCalculationError;
+        }
+        unsafe { NSDecimalAdd(result, left_operand, right_operand, rounding_mode) }
+    }
+
+    #[inline]
+    #[doc(alias = "NSDecimalSubtract")]
+    pub unsafe fn subtract(
+        result: NonNull<NSDecimal>,
+        left_operand: NonNull<NSDecimal>,
+        right_operand: NonNull<NSDecimal>,
+        rounding_mode: NSRoundingMode,
+    ) -> NSCalculationError {
+        extern "C-unwind" {
+            fn NSDecimalSubtract(
+                result: NonNull<NSDecimal>,
+                left_operand: NonNull<NSDecimal>,
+                right_operand: NonNull<NSDecimal>,
+                rounding_mode: NSRoundingMode,
+            ) -> NSCalculationError;
+        }
+        unsafe { NSDecimalSubtract(result, left_operand, right_operand, rounding_mode) }
+    }
+
+    #[inline]
+    #[doc(alias = "NSDecimalMultiply")]
+    pub unsafe fn multiply(
+        result: NonNull<NSDecimal>,
+        left_operand: NonNull<NSDecimal>,
+        right_operand: NonNull<NSDecimal>,
+        rounding_mode: NSRoundingMode,
+    ) -> NSCalculationError {
+        extern "C-unwind" {
+            fn NSDecimalMultiply(
+                result: NonNull<NSDecimal>,
+                left_operand: NonNull<NSDecimal>,
+                right_operand: NonNull<NSDecimal>,
+                rounding_mode: NSRoundingMode,
+            ) -> NSCalculationError;
+        }
+        unsafe { NSDecimalMultiply(result, left_operand, right_operand, rounding_mode) }
+    }
+
+    #[inline]
+    #[doc(alias = "NSDecimalDivide")]
+    pub unsafe fn divide(
+        result: NonNull<NSDecimal>,
+        left_operand: NonNull<NSDecimal>,
+        right_operand: NonNull<NSDecimal>,
+        rounding_mode: NSRoundingMode,
+    ) -> NSCalculationError {
+        extern "C-unwind" {
+            fn NSDecimalDivide(
+                result: NonNull<NSDecimal>,
+                left_operand: NonNull<NSDecimal>,
+                right_operand: NonNull<NSDecimal>,
+                rounding_mode: NSRoundingMode,
+            ) -> NSCalculationError;
+        }
+        unsafe { NSDecimalDivide(result, left_operand, right_operand, rounding_mode) }
+    }
+
+    #[inline]
+    #[doc(alias = "NSDecimalPower")]
+    pub unsafe fn power(
+        result: NonNull<NSDecimal>,
+        number: NonNull<NSDecimal>,
+        power: NSUInteger,
+        rounding_mode: NSRoundingMode,
+    ) -> NSCalculationError {
+        extern "C-unwind" {
+            fn NSDecimalPower(
+                result: NonNull<NSDecimal>,
+                number: NonNull<NSDecimal>,
+                power: NSUInteger,
+                rounding_mode: NSRoundingMode,
+            ) -> NSCalculationError;
+        }
+        unsafe { NSDecimalPower(result, number, power, rounding_mode) }
+    }
+
+    #[inline]
+    #[doc(alias = "NSDecimalMultiplyByPowerOf10")]
+    pub unsafe fn multiply_by_power_of10(
+        result: NonNull<NSDecimal>,
+        number: NonNull<NSDecimal>,
+        power: c_short,
+        rounding_mode: NSRoundingMode,
+    ) -> NSCalculationError {
+        extern "C-unwind" {
+            fn NSDecimalMultiplyByPowerOf10(
+                result: NonNull<NSDecimal>,
+                number: NonNull<NSDecimal>,
+                power: c_short,
+                rounding_mode: NSRoundingMode,
+            ) -> NSCalculationError;
+        }
+        unsafe { NSDecimalMultiplyByPowerOf10(result, number, power, rounding_mode) }
+    }
+
+    #[cfg(feature = "NSString")]
+    #[inline]
+    #[doc(alias = "NSDecimalString")]
+    pub unsafe fn string(
+        dcm: NonNull<NSDecimal>,
+        locale: Option<&AnyObject>,
+    ) -> Retained<NSString> {
+        extern "C-unwind" {
+            fn NSDecimalString(
+                dcm: NonNull<NSDecimal>,
+                locale: Option<&AnyObject>,
+            ) -> *mut NSString;
+        }
+        let ret = unsafe { NSDecimalString(dcm, locale) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+}
 
 extern "C-unwind" {
-    /// *************    Operations        **********
+    #[deprecated = "renamed to `NSDecimal::copy`"]
     pub fn NSDecimalCopy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>);
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `NSDecimal::compact`"]
     pub fn NSDecimalCompact(number: NonNull<NSDecimal>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "NSObjCRuntime")]
+    #[deprecated = "renamed to `NSDecimal::compare`"]
     pub fn NSDecimalCompare(
         left_operand: NonNull<NSDecimal>,
         right_operand: NonNull<NSDecimal>,
@@ -78,6 +285,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `NSDecimal::round`"]
     pub fn NSDecimalRound(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
@@ -87,6 +295,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `NSDecimal::normalize`"]
     pub fn NSDecimalNormalize(
         number1: NonNull<NSDecimal>,
         number2: NonNull<NSDecimal>,
@@ -95,6 +304,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `NSDecimal::add`"]
     pub fn NSDecimalAdd(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -104,6 +314,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `NSDecimal::subtract`"]
     pub fn NSDecimalSubtract(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -113,6 +324,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `NSDecimal::multiply`"]
     pub fn NSDecimalMultiply(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -122,6 +334,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `NSDecimal::divide`"]
     pub fn NSDecimalDivide(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -131,6 +344,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `NSDecimal::power`"]
     pub fn NSDecimalPower(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
@@ -140,6 +354,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `NSDecimal::multiply_by_power_of10`"]
     pub fn NSDecimalMultiplyByPowerOf10(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
@@ -149,6 +364,7 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "NSString")]
+#[deprecated = "renamed to `NSDecimal::string`"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDecimalString(
     dcm: NonNull<NSDecimal>,

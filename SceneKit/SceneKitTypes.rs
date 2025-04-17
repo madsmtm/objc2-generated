@@ -143,11 +143,11 @@ impl SCNVector3 {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     #[doc(alias = "SCNVector3EqualToVector3")]
-    pub unsafe fn equal_to_vector3(a: SCNVector3, b: SCNVector3) -> bool {
+    pub unsafe fn equal_to_vector3(self: SCNVector3, b: SCNVector3) -> bool {
         extern "C-unwind" {
             fn SCNVector3EqualToVector3(a: SCNVector3, b: SCNVector3) -> bool;
         }
-        unsafe { SCNVector3EqualToVector3(a, b) }
+        unsafe { SCNVector3EqualToVector3(self, b) }
     }
 }
 
@@ -156,11 +156,11 @@ impl SCNVector4 {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     #[doc(alias = "SCNVector4EqualToVector4")]
-    pub unsafe fn equal_to_vector4(a: SCNVector4, b: SCNVector4) -> bool {
+    pub unsafe fn equal_to_vector4(self: SCNVector4, b: SCNVector4) -> bool {
         extern "C-unwind" {
             fn SCNVector4EqualToVector4(a: SCNVector4, b: SCNVector4) -> bool;
         }
-        unsafe { SCNVector4EqualToVector4(a, b) }
+        unsafe { SCNVector4EqualToVector4(self, b) }
     }
 }
 

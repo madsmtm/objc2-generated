@@ -218,7 +218,8 @@ extern "C-unwind" {
     ) -> CGRect;
 }
 
-extern "C-unwind" {
+#[cfg(feature = "VNTypes")]
+impl VNElementType {
     /// Obtain the size, in bytes, of a given element type.
     ///
     ///
@@ -227,5 +228,18 @@ extern "C-unwind" {
     ///
     /// Returns: a byte count, or 0 if the element type is unknown.
     #[cfg(feature = "VNTypes")]
+    #[inline]
+    #[doc(alias = "VNElementTypeSize")]
+    pub unsafe fn size(self: VNElementType) -> NSUInteger {
+        extern "C-unwind" {
+            fn VNElementTypeSize(element_type: VNElementType) -> NSUInteger;
+        }
+        unsafe { VNElementTypeSize(self) }
+    }
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "VNTypes")]
+    #[deprecated = "renamed to `VNElementType::size`"]
     pub fn VNElementTypeSize(element_type: VNElementType) -> NSUInteger;
 }

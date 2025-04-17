@@ -48,11 +48,11 @@ impl DDDeviceProtocol {
     /// Converts a device protocol type to a string for logging, etc.
     #[inline]
     #[doc(alias = "DDDeviceProtocolToString")]
-    pub unsafe fn to_string(in_value: DDDeviceProtocol) -> Retained<NSString> {
+    pub unsafe fn to_string(self: DDDeviceProtocol) -> Retained<NSString> {
         extern "C-unwind" {
             fn DDDeviceProtocolToString(in_value: DDDeviceProtocol) -> *mut NSString;
         }
-        let ret = unsafe { DDDeviceProtocolToString(in_value) };
+        let ret = unsafe { DDDeviceProtocolToString(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -100,11 +100,11 @@ impl DDDeviceCategory {
     /// Converts a device category to a string for logging, etc.
     #[inline]
     #[doc(alias = "DDDeviceCategoryToString")]
-    pub unsafe fn to_string(in_value: DDDeviceCategory) -> Retained<NSString> {
+    pub unsafe fn to_string(self: DDDeviceCategory) -> Retained<NSString> {
         extern "C-unwind" {
             fn DDDeviceCategoryToString(in_value: DDDeviceCategory) -> *mut NSString;
         }
-        let ret = unsafe { DDDeviceCategoryToString(in_value) };
+        let ret = unsafe { DDDeviceCategoryToString(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -146,11 +146,11 @@ impl DDDeviceState {
     /// Converts a device state to a string for logging, etc.
     #[inline]
     #[doc(alias = "DDDeviceStateToString")]
-    pub unsafe fn to_string(in_value: DDDeviceState) -> Retained<NSString> {
+    pub unsafe fn to_string(self: DDDeviceState) -> Retained<NSString> {
         extern "C-unwind" {
             fn DDDeviceStateToString(in_value: DDDeviceState) -> *mut NSString;
         }
-        let ret = unsafe { DDDeviceStateToString(in_value) };
+        let ret = unsafe { DDDeviceStateToString(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
@@ -211,13 +211,13 @@ impl DDDeviceMediaPlaybackState {
     /// Converts a device media playback state to a string for logging, etc.
     #[inline]
     #[doc(alias = "DDDeviceMediaPlaybackStateToString")]
-    pub unsafe fn to_string(in_value: DDDeviceMediaPlaybackState) -> Retained<NSString> {
+    pub unsafe fn to_string(self: DDDeviceMediaPlaybackState) -> Retained<NSString> {
         extern "C-unwind" {
             fn DDDeviceMediaPlaybackStateToString(
                 in_value: DDDeviceMediaPlaybackState,
             ) -> *mut NSString;
         }
-        let ret = unsafe { DDDeviceMediaPlaybackStateToString(in_value) };
+        let ret = unsafe { DDDeviceMediaPlaybackStateToString(self) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
     }

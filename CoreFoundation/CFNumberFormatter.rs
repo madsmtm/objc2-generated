@@ -208,12 +208,11 @@ unsafe impl RefEncode for CFNumberFormatterOptionFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "CFNumber")]
-impl CFNumber {
+impl CFNumberFormatter {
     #[cfg(feature = "CFNumber")]
     #[inline]
     #[doc(alias = "CFNumberFormatterCreateNumberFromString")]
-    pub unsafe fn from_formatter(
+    pub unsafe fn new_number_from_string(
         allocator: Option<&CFAllocator>,
         formatter: Option<&CFNumberFormatter>,
         string: Option<&CFString>,
@@ -234,9 +233,7 @@ impl CFNumber {
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
-}
 
-impl CFNumberFormatter {
     #[cfg(feature = "CFNumber")]
     #[inline]
     #[doc(alias = "CFNumberFormatterGetValueFromString")]
@@ -675,7 +672,7 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreateStringWithValue(
 }
 
 #[cfg(feature = "CFNumber")]
-#[deprecated = "renamed to `CFNumber::formatter_create_number_from_string`"]
+#[deprecated = "renamed to `CFNumberFormatter::new_number_from_string`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterCreateNumberFromString(
     allocator: Option<&CFAllocator>,
