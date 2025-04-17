@@ -1686,7 +1686,7 @@ impl NSApplication {
     /// An Application's startup function.
     #[inline]
     #[doc(alias = "NSApplicationMain")]
-    pub unsafe fn main(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int {
+    pub(crate) unsafe fn __main(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int {
         extern "C-unwind" {
             fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
         }

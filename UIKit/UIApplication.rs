@@ -1449,7 +1449,7 @@ impl UIApplication {
 impl UIApplication {
     #[inline]
     #[doc(alias = "UIApplicationMain")]
-    pub unsafe fn main(
+    pub(crate) unsafe fn __main(
         argc: c_int,
         argv: NonNull<*mut c_char>,
         principal_class_name: Option<&NSString>,

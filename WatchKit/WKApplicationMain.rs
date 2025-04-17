@@ -10,7 +10,7 @@ use crate::*;
 impl WKApplication {
     #[inline]
     #[doc(alias = "WKApplicationMain")]
-    pub unsafe fn main(
+    pub(crate) unsafe fn __main(
         argc: c_int,
         argv: NonNull<*mut c_char>,
         application_delegate_class_name: Option<&NSString>,

@@ -210,7 +210,7 @@ impl NSString {
     #[cfg(feature = "NSString")]
     #[inline]
     #[doc(alias = "NSStringFromClass")]
-    pub unsafe fn from_class(a_class: &AnyClass) -> Retained<NSString> {
+    pub fn from_class(a_class: &AnyClass) -> Retained<NSString> {
         extern "C-unwind" {
             fn NSStringFromClass(a_class: &AnyClass) -> *mut NSString;
         }
@@ -362,7 +362,7 @@ pub unsafe extern "C-unwind" fn NSStringFromSelector(a_selector: Sel) -> Retaine
 #[cfg(feature = "NSString")]
 #[deprecated = "renamed to `NSString::from_class`"]
 #[inline]
-pub unsafe extern "C-unwind" fn NSStringFromClass(a_class: &AnyClass) -> Retained<NSString> {
+pub extern "C-unwind" fn NSStringFromClass(a_class: &AnyClass) -> Retained<NSString> {
     extern "C-unwind" {
         fn NSStringFromClass(a_class: &AnyClass) -> *mut NSString;
     }
