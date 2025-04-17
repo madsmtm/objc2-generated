@@ -473,7 +473,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated = "renamed to `SecACL::authorizations`"]
+    #[deprecated = "renamed to `SecACL::get_authorizations`"]
     pub fn SecACLGetAuthorizations(
         acl: &SecACL,
         tags: NonNull<CSSM_ACL_AUTHORIZATION_TAG>,

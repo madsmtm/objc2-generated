@@ -1960,7 +1960,7 @@ impl NSApplication {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `NSApplication::main`"]
+    #[deprecated = "renamed to `NSApplication::__main`"]
     pub fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
 }
 

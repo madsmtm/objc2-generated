@@ -727,7 +727,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CMTime")]
-    #[deprecated = "renamed to `CMTimeMapping::new_empty`"]
+    #[deprecated = "renamed to `CMTimeMapping::empty`"]
     pub fn CMTimeMappingMakeEmpty(target: CMTimeRange) -> CMTimeMapping;
 }
 

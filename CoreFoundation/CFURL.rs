@@ -1888,7 +1888,7 @@ pub extern "C-unwind" fn CFURLCreateData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CFURL::with_string`"]
+#[deprecated = "renamed to `CFURL::__from_string`"]
 #[inline]
 pub extern "C-unwind" fn CFURLCreateWithString(
     allocator: Option<&CFAllocator>,
@@ -2076,7 +2076,7 @@ pub extern "C-unwind" fn CFURLCopyAbsoluteURL(relative_url: &CFURL) -> Option<CF
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CFURL::string`"]
+#[deprecated = "renamed to `CFURL::__string`"]
 #[inline]
 pub extern "C-unwind" fn CFURLGetString(an_url: &CFURL) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {

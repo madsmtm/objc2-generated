@@ -1220,7 +1220,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase", feature = "cssmtype"))]
-    #[deprecated = "renamed to `SecCertificate::data`"]
+    #[deprecated = "renamed to `SecCertificate::get_data`"]
     pub fn SecCertificateGetData(certificate: &SecCertificate, data: CSSM_DATA_PTR) -> OSStatus;
 }
 

@@ -785,7 +785,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithName(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CGColorSpace::name`"]
+#[deprecated = "renamed to `CGColorSpace::get_name`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorSpaceGetName(
     space: Option<&CGColorSpace>,
@@ -833,7 +833,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceGetBaseColorSpace(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[deprecated = "renamed to `CGColorSpace::base_color_space`"]
+#[deprecated = "renamed to `CGColorSpace::copy_base_color_space`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorSpaceCopyBaseColorSpace(
     space: &CGColorSpace,

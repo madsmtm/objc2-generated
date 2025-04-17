@@ -1154,7 +1154,7 @@ extern "C-unwind" {
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
-#[deprecated = "renamed to `ODNodeRef::record`"]
+#[deprecated = "renamed to `ODNodeRef::create_record`"]
 #[inline]
 pub unsafe extern "C-unwind" fn ODNodeCreateRecord(
     node: &ODNodeRef,
@@ -1180,7 +1180,7 @@ pub unsafe extern "C-unwind" fn ODNodeCreateRecord(
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
-#[deprecated = "renamed to `ODNodeRef::record`"]
+#[deprecated = "renamed to `ODNodeRef::copy_record`"]
 #[inline]
 pub unsafe extern "C-unwind" fn ODNodeCopyRecord(
     node: &ODNodeRef,

@@ -313,7 +313,7 @@ extern "C-unwind" {
     );
 }
 
-#[deprecated = "renamed to `CVBuffer::attachment`"]
+#[deprecated = "renamed to `CVBuffer::get_attachment`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CVBufferGetAttachment(
     buffer: &CVBuffer,
@@ -341,7 +341,7 @@ extern "C-unwind" {
     pub fn CVBufferRemoveAllAttachments(buffer: &CVBuffer);
 }
 
-#[deprecated = "renamed to `CVBuffer::attachments`"]
+#[deprecated = "renamed to `CVBuffer::get_attachments`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CVBufferGetAttachments(
     buffer: &CVBuffer,

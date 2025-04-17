@@ -1029,7 +1029,7 @@ extern "C-unwind" {
     pub fn CFDictionaryGetCountOfValue(the_dict: &CFDictionary, value: *const c_void) -> CFIndex;
 }
 
-#[deprecated = "renamed to `CFDictionary::contains_key`"]
+#[deprecated = "renamed to `CFDictionary::contains_ptr_key`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDictionaryContainsKey(
     the_dict: &CFDictionary,
@@ -1042,7 +1042,7 @@ pub unsafe extern "C-unwind" fn CFDictionaryContainsKey(
     ret != 0
 }
 
-#[deprecated = "renamed to `CFDictionary::contains_value`"]
+#[deprecated = "renamed to `CFDictionary::contains_ptr_value`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDictionaryContainsValue(
     the_dict: &CFDictionary,

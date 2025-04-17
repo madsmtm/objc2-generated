@@ -919,7 +919,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CMTime")]
-    #[deprecated = "renamed to `CMClock::new_host_time_from_system_units`"]
+    #[deprecated = "renamed to `CMClock::make_host_time_from_system_units`"]
     pub fn CMClockMakeHostTimeFromSystemUnits(host_time: u64) -> CMTime;
 }
 
@@ -1022,7 +1022,7 @@ pub unsafe extern "C-unwind" fn CMTimebaseCopyUltimateMasterClock(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "renamed to `CMTimebase::master_timebase`"]
+#[deprecated = "renamed to `CMTimebase::get_master_timebase`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CMTimebaseGetMasterTimebase(
     timebase: &CMTimebase,
@@ -1034,7 +1034,7 @@ pub unsafe extern "C-unwind" fn CMTimebaseGetMasterTimebase(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[deprecated = "renamed to `CMTimebase::master_clock`"]
+#[deprecated = "renamed to `CMTimebase::get_master_clock`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CMTimebaseGetMasterClock(
     timebase: &CMTimebase,
@@ -1046,7 +1046,7 @@ pub unsafe extern "C-unwind" fn CMTimebaseGetMasterClock(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[deprecated = "renamed to `CMTimebase::master`"]
+#[deprecated = "renamed to `CMTimebase::get_master`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CMTimebaseGetMaster(
     timebase: &CMTimebase,
@@ -1058,7 +1058,7 @@ pub unsafe extern "C-unwind" fn CMTimebaseGetMaster(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[deprecated = "renamed to `CMTimebase::ultimate_master_clock`"]
+#[deprecated = "renamed to `CMTimebase::get_ultimate_master_clock`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CMTimebaseGetUltimateMasterClock(
     timebase: &CMTimebase,

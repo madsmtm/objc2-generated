@@ -872,7 +872,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `sec_protocol_options::enable_encrypted_client_hello`"]
+    #[deprecated = "renamed to `sec_protocol_options::enabled_encrypted_client_hello`"]
     pub fn sec_protocol_options_get_enable_encrypted_client_hello(
         options: sec_protocol_options_t,
     ) -> bool;

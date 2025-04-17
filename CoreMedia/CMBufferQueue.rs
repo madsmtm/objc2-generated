@@ -1109,7 +1109,7 @@ pub unsafe extern "C-unwind" fn CMBufferQueueDequeueIfDataReadyAndRetain(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CMBufferQueue::head`"]
+#[deprecated = "renamed to `CMBufferQueue::get_head`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CMBufferQueueGetHead(
     queue: &CMBufferQueue,

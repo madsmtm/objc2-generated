@@ -1386,7 +1386,7 @@ extern "C-unwind" {
         feature = "cssmconfig",
         feature = "cssmtype"
     ))]
-    #[deprecated = "renamed to `SecTrust::result`"]
+    #[deprecated = "renamed to `SecTrust::get_trust`"]
     pub fn SecTrustGetResult(
         trust_ref: &SecTrust,
         result: *mut SecTrustResultType,

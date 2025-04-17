@@ -468,7 +468,7 @@ extern "C-unwind" {
         feature = "cssmconfig",
         feature = "cssmtype"
     ))]
-    #[deprecated = "renamed to `SecAccess::owner_and_acl`"]
+    #[deprecated = "renamed to `SecAccess::get_owner_and_acl`"]
     pub fn SecAccessGetOwnerAndACL(
         access_ref: &SecAccess,
         owner: NonNull<CSSM_ACL_OWNER_PROTOTYPE_PTR>,

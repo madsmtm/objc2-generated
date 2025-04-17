@@ -1701,7 +1701,7 @@ extern "C" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `UIApplication::main`"]
+    #[deprecated = "renamed to `UIApplication::__main`"]
     pub fn UIApplicationMain(
         argc: c_int,
         argv: NonNull<*mut c_char>,

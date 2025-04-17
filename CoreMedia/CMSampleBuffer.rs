@@ -2748,7 +2748,7 @@ pub unsafe extern "C-unwind" fn CMSampleBufferHasDataFailed(
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `CMSampleBuffer::data_ready`"]
+    #[deprecated = "renamed to `CMSampleBuffer::make_data_ready`"]
     pub fn CMSampleBufferMakeDataReady(sbuf: &CMSampleBuffer) -> OSStatus;
 }
 

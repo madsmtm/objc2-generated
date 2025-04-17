@@ -27,7 +27,7 @@ impl WKApplication {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `WKApplication::main`"]
+    #[deprecated = "renamed to `WKApplication::__main`"]
     pub fn WKApplicationMain(
         argc: c_int,
         argv: NonNull<*mut c_char>,

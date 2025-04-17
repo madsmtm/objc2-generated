@@ -187,7 +187,9 @@ extern_protocol!(
     }
 );
 
-// TODO: pub fn UI_USER_INTERFACE_IDIOM() -> UIUserInterfaceIdiom;
+impl UIUserInterfaceIdiom {
+    // TODO: pub fn UI_USER_INTERFACE_IDIOM() -> UIUserInterfaceIdiom;
+}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientationdidchangenotification?language=objc)

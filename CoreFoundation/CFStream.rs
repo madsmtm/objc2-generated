@@ -1015,7 +1015,7 @@ pub extern "C-unwind" fn CFWriteStreamGetStatus(stream: &CFWriteStream) -> CFStr
 }
 
 #[cfg(feature = "CFError")]
-#[deprecated = "renamed to `CFReadStream::error`"]
+#[deprecated = "renamed to `CFReadStream::copy_error`"]
 #[inline]
 pub extern "C-unwind" fn CFReadStreamCopyError(
     stream: &CFReadStream,
@@ -1028,7 +1028,7 @@ pub extern "C-unwind" fn CFReadStreamCopyError(
 }
 
 #[cfg(feature = "CFError")]
-#[deprecated = "renamed to `CFWriteStream::error`"]
+#[deprecated = "renamed to `CFWriteStream::copy_error`"]
 #[inline]
 pub extern "C-unwind" fn CFWriteStreamCopyError(
     stream: &CFWriteStream,
