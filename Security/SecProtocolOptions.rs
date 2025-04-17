@@ -227,7 +227,7 @@ impl sec_protocol_options {
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
     #[doc(alias = "sec_protocol_options_get_default_min_tls_protocol_version")]
-    pub unsafe fn get_default_min_tls_protocol_version() -> tls_protocol_version_t {
+    pub unsafe fn default_min_tls_protocol_version() -> tls_protocol_version_t {
         extern "C-unwind" {
             fn sec_protocol_options_get_default_min_tls_protocol_version() -> tls_protocol_version_t;
         }
@@ -241,7 +241,7 @@ impl sec_protocol_options {
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
     #[doc(alias = "sec_protocol_options_get_default_min_dtls_protocol_version")]
-    pub unsafe fn get_default_min_dtls_protocol_version() -> tls_protocol_version_t {
+    pub unsafe fn default_min_dtls_protocol_version() -> tls_protocol_version_t {
         extern "C-unwind" {
             fn sec_protocol_options_get_default_min_dtls_protocol_version() -> tls_protocol_version_t;
         }
@@ -299,7 +299,7 @@ impl sec_protocol_options {
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
     #[doc(alias = "sec_protocol_options_get_default_max_tls_protocol_version")]
-    pub unsafe fn get_default_max_tls_protocol_version() -> tls_protocol_version_t {
+    pub unsafe fn default_max_tls_protocol_version() -> tls_protocol_version_t {
         extern "C-unwind" {
             fn sec_protocol_options_get_default_max_tls_protocol_version() -> tls_protocol_version_t;
         }
@@ -313,7 +313,7 @@ impl sec_protocol_options {
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
     #[doc(alias = "sec_protocol_options_get_default_max_dtls_protocol_version")]
-    pub unsafe fn get_default_max_dtls_protocol_version() -> tls_protocol_version_t {
+    pub unsafe fn default_max_dtls_protocol_version() -> tls_protocol_version_t {
         extern "C-unwind" {
             fn sec_protocol_options_get_default_max_dtls_protocol_version() -> tls_protocol_version_t;
         }
@@ -326,7 +326,7 @@ impl sec_protocol_options {
     /// Returns: A boolean that indicates whether or not Encrypted Client Hello has been enabled.
     #[inline]
     #[doc(alias = "sec_protocol_options_get_enable_encrypted_client_hello")]
-    pub unsafe fn get_enable_encrypted_client_hello(options: sec_protocol_options_t) -> bool {
+    pub unsafe fn enabled_encrypted_client_hello(options: sec_protocol_options_t) -> bool {
         extern "C-unwind" {
             fn sec_protocol_options_get_enable_encrypted_client_hello(
                 options: sec_protocol_options_t,
@@ -342,7 +342,7 @@ impl sec_protocol_options {
     /// enabled.
     #[inline]
     #[doc(alias = "sec_protocol_options_get_quic_use_legacy_codepoint")]
-    pub unsafe fn get_quic_use_legacy_codepoint(options: sec_protocol_options_t) -> bool {
+    pub unsafe fn quic_use_legacy_codepoint(options: sec_protocol_options_t) -> bool {
         extern "C-unwind" {
             fn sec_protocol_options_get_quic_use_legacy_codepoint(
                 options: sec_protocol_options_t,
@@ -831,13 +831,13 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "SecProtocolTypes")]
-    #[deprecated = "renamed to `sec_protocol_options::get_default_min_tls_protocol_version`"]
+    #[deprecated = "renamed to `sec_protocol_options::default_min_tls_protocol_version`"]
     pub fn sec_protocol_options_get_default_min_tls_protocol_version() -> tls_protocol_version_t;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "SecProtocolTypes")]
-    #[deprecated = "renamed to `sec_protocol_options::get_default_min_dtls_protocol_version`"]
+    #[deprecated = "renamed to `sec_protocol_options::default_min_dtls_protocol_version`"]
     pub fn sec_protocol_options_get_default_min_dtls_protocol_version() -> tls_protocol_version_t;
 }
 
@@ -861,25 +861,25 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "SecProtocolTypes")]
-    #[deprecated = "renamed to `sec_protocol_options::get_default_max_tls_protocol_version`"]
+    #[deprecated = "renamed to `sec_protocol_options::default_max_tls_protocol_version`"]
     pub fn sec_protocol_options_get_default_max_tls_protocol_version() -> tls_protocol_version_t;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "SecProtocolTypes")]
-    #[deprecated = "renamed to `sec_protocol_options::get_default_max_dtls_protocol_version`"]
+    #[deprecated = "renamed to `sec_protocol_options::default_max_dtls_protocol_version`"]
     pub fn sec_protocol_options_get_default_max_dtls_protocol_version() -> tls_protocol_version_t;
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `sec_protocol_options::get_enable_encrypted_client_hello`"]
+    #[deprecated = "renamed to `sec_protocol_options::enable_encrypted_client_hello`"]
     pub fn sec_protocol_options_get_enable_encrypted_client_hello(
         options: sec_protocol_options_t,
     ) -> bool;
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `sec_protocol_options::get_quic_use_legacy_codepoint`"]
+    #[deprecated = "renamed to `sec_protocol_options::quic_use_legacy_codepoint`"]
     pub fn sec_protocol_options_get_quic_use_legacy_codepoint(
         options: sec_protocol_options_t,
     ) -> bool;

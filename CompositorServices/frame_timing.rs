@@ -45,7 +45,7 @@ impl cp_frame_timing {
     #[cfg(feature = "cp_types")]
     #[inline]
     #[doc(alias = "cp_frame_timing_get_optimal_input_time")]
-    pub unsafe fn get_optimal_input_time(frame_timing: cp_frame_timing_t) -> cp_time_t {
+    pub unsafe fn optimal_input_time(frame_timing: cp_frame_timing_t) -> cp_time_t {
         extern "C-unwind" {
             fn cp_frame_timing_get_optimal_input_time(frame_timing: cp_frame_timing_t)
                 -> cp_time_t;
@@ -72,7 +72,7 @@ impl cp_frame_timing {
     #[cfg(feature = "cp_types")]
     #[inline]
     #[doc(alias = "cp_frame_timing_get_rendering_deadline")]
-    pub unsafe fn get_rendering_deadline(frame_timing: cp_frame_timing_t) -> cp_time_t {
+    pub unsafe fn rendering_deadline(frame_timing: cp_frame_timing_t) -> cp_time_t {
         extern "C-unwind" {
             fn cp_frame_timing_get_rendering_deadline(frame_timing: cp_frame_timing_t)
                 -> cp_time_t;
@@ -98,7 +98,7 @@ impl cp_frame_timing {
     #[cfg(feature = "cp_types")]
     #[inline]
     #[doc(alias = "cp_frame_timing_get_presentation_time")]
-    pub unsafe fn get_presentation_time(frame_timing: cp_frame_timing_t) -> cp_time_t {
+    pub unsafe fn presentation_time(frame_timing: cp_frame_timing_t) -> cp_time_t {
         extern "C-unwind" {
             fn cp_frame_timing_get_presentation_time(frame_timing: cp_frame_timing_t) -> cp_time_t;
         }
@@ -125,7 +125,7 @@ impl cp_frame_timing {
     #[cfg(feature = "cp_types")]
     #[inline]
     #[doc(alias = "cp_frame_timing_get_trackable_anchor_time")]
-    pub unsafe fn get_trackable_anchor_time(frame_timing: cp_frame_timing_t) -> cp_time_t {
+    pub unsafe fn trackable_anchor_time(frame_timing: cp_frame_timing_t) -> cp_time_t {
         extern "C-unwind" {
             fn cp_frame_timing_get_trackable_anchor_time(
                 frame_timing: cp_frame_timing_t,
@@ -137,24 +137,24 @@ impl cp_frame_timing {
 
 extern "C-unwind" {
     #[cfg(feature = "cp_types")]
-    #[deprecated = "renamed to `cp_frame_timing::get_optimal_input_time`"]
+    #[deprecated = "renamed to `cp_frame_timing::optimal_input_time`"]
     pub fn cp_frame_timing_get_optimal_input_time(frame_timing: cp_frame_timing_t) -> cp_time_t;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "cp_types")]
-    #[deprecated = "renamed to `cp_frame_timing::get_rendering_deadline`"]
+    #[deprecated = "renamed to `cp_frame_timing::rendering_deadline`"]
     pub fn cp_frame_timing_get_rendering_deadline(frame_timing: cp_frame_timing_t) -> cp_time_t;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "cp_types")]
-    #[deprecated = "renamed to `cp_frame_timing::get_presentation_time`"]
+    #[deprecated = "renamed to `cp_frame_timing::presentation_time`"]
     pub fn cp_frame_timing_get_presentation_time(frame_timing: cp_frame_timing_t) -> cp_time_t;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "cp_types")]
-    #[deprecated = "renamed to `cp_frame_timing::get_trackable_anchor_time`"]
+    #[deprecated = "renamed to `cp_frame_timing::trackable_anchor_time`"]
     pub fn cp_frame_timing_get_trackable_anchor_time(frame_timing: cp_frame_timing_t) -> cp_time_t;
 }

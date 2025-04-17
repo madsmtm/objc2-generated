@@ -44,7 +44,7 @@ impl sec_protocol_metadata {
     /// Returns: A NULL-terminated string carrying the negotiated protocol.
     #[inline]
     #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol")]
-    pub unsafe fn get_negotiated_protocol(metadata: sec_protocol_metadata_t) -> *const c_char {
+    pub unsafe fn negotiated_protocol(metadata: sec_protocol_metadata_t) -> *const c_char {
         extern "C-unwind" {
             fn sec_protocol_metadata_get_negotiated_protocol(
                 metadata: sec_protocol_metadata_t,
@@ -63,7 +63,7 @@ impl sec_protocol_metadata {
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
     #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_protocol_version")]
-    pub unsafe fn get_negotiated_tls_protocol_version(
+    pub unsafe fn negotiated_tls_protocol_version(
         metadata: sec_protocol_metadata_t,
     ) -> tls_protocol_version_t {
         extern "C-unwind" {
@@ -85,9 +85,7 @@ impl sec_protocol_metadata {
     #[deprecated]
     #[inline]
     #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol_version")]
-    pub unsafe fn get_negotiated_protocol_version(
-        metadata: sec_protocol_metadata_t,
-    ) -> SSLProtocol {
+    pub unsafe fn negotiated_protocol_version(metadata: sec_protocol_metadata_t) -> SSLProtocol {
         extern "C-unwind" {
             fn sec_protocol_metadata_get_negotiated_protocol_version(
                 metadata: sec_protocol_metadata_t,
@@ -106,7 +104,7 @@ impl sec_protocol_metadata {
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
     #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_ciphersuite")]
-    pub unsafe fn get_negotiated_tls_ciphersuite(
+    pub unsafe fn negotiated_tls_ciphersuite(
         metadata: sec_protocol_metadata_t,
     ) -> tls_ciphersuite_t {
         extern "C-unwind" {
@@ -128,7 +126,7 @@ impl sec_protocol_metadata {
     #[deprecated]
     #[inline]
     #[doc(alias = "sec_protocol_metadata_get_negotiated_ciphersuite")]
-    pub unsafe fn get_negotiated_ciphersuite(metadata: sec_protocol_metadata_t) -> SSLCipherSuite {
+    pub unsafe fn negotiated_ciphersuite(metadata: sec_protocol_metadata_t) -> SSLCipherSuite {
         extern "C-unwind" {
             fn sec_protocol_metadata_get_negotiated_ciphersuite(
                 metadata: sec_protocol_metadata_t,
@@ -146,7 +144,7 @@ impl sec_protocol_metadata {
     /// Returns: A bool indicating if early data was accepted.
     #[inline]
     #[doc(alias = "sec_protocol_metadata_get_early_data_accepted")]
-    pub unsafe fn get_early_data_accepted(metadata: sec_protocol_metadata_t) -> bool {
+    pub unsafe fn early_data_accepted(metadata: sec_protocol_metadata_t) -> bool {
         extern "C-unwind" {
             fn sec_protocol_metadata_get_early_data_accepted(
                 metadata: sec_protocol_metadata_t,
@@ -220,7 +218,7 @@ impl sec_protocol_metadata {
     /// if none was provided.
     #[inline]
     #[doc(alias = "sec_protocol_metadata_get_server_name")]
-    pub unsafe fn get_server_name(metadata: sec_protocol_metadata_t) -> *const c_char {
+    pub unsafe fn server_name(metadata: sec_protocol_metadata_t) -> *const c_char {
         extern "C-unwind" {
             fn sec_protocol_metadata_get_server_name(
                 metadata: sec_protocol_metadata_t,
@@ -286,7 +284,7 @@ impl sec_protocol_metadata {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `sec_protocol_metadata::get_negotiated_protocol`"]
+    #[deprecated = "renamed to `sec_protocol_metadata::negotiated_protocol`"]
     pub fn sec_protocol_metadata_get_negotiated_protocol(
         metadata: sec_protocol_metadata_t,
     ) -> *const c_char;
@@ -294,7 +292,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "SecProtocolTypes")]
-    #[deprecated = "renamed to `sec_protocol_metadata::get_negotiated_tls_protocol_version`"]
+    #[deprecated = "renamed to `sec_protocol_metadata::negotiated_tls_protocol_version`"]
     pub fn sec_protocol_metadata_get_negotiated_tls_protocol_version(
         metadata: sec_protocol_metadata_t,
     ) -> tls_protocol_version_t;
@@ -302,7 +300,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "SecProtocolTypes")]
-    #[deprecated = "renamed to `sec_protocol_metadata::get_negotiated_protocol_version`"]
+    #[deprecated = "renamed to `sec_protocol_metadata::negotiated_protocol_version`"]
     pub fn sec_protocol_metadata_get_negotiated_protocol_version(
         metadata: sec_protocol_metadata_t,
     ) -> SSLProtocol;
@@ -310,7 +308,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "SecProtocolTypes")]
-    #[deprecated = "renamed to `sec_protocol_metadata::get_negotiated_tls_ciphersuite`"]
+    #[deprecated = "renamed to `sec_protocol_metadata::negotiated_tls_ciphersuite`"]
     pub fn sec_protocol_metadata_get_negotiated_tls_ciphersuite(
         metadata: sec_protocol_metadata_t,
     ) -> tls_ciphersuite_t;
@@ -318,14 +316,14 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CipherSuite")]
-    #[deprecated = "renamed to `sec_protocol_metadata::get_negotiated_ciphersuite`"]
+    #[deprecated = "renamed to `sec_protocol_metadata::negotiated_ciphersuite`"]
     pub fn sec_protocol_metadata_get_negotiated_ciphersuite(
         metadata: sec_protocol_metadata_t,
     ) -> SSLCipherSuite;
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `sec_protocol_metadata::get_early_data_accepted`"]
+    #[deprecated = "renamed to `sec_protocol_metadata::early_data_accepted`"]
     pub fn sec_protocol_metadata_get_early_data_accepted(metadata: sec_protocol_metadata_t)
         -> bool;
 }
@@ -349,7 +347,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `sec_protocol_metadata::get_server_name`"]
+    #[deprecated = "renamed to `sec_protocol_metadata::server_name`"]
     pub fn sec_protocol_metadata_get_server_name(
         metadata: sec_protocol_metadata_t,
     ) -> *const c_char;

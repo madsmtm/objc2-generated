@@ -82,7 +82,7 @@ impl cp_drawable {
     /// functions.
     #[inline]
     #[doc(alias = "cp_drawable_get_texture_count")]
-    pub unsafe fn get_texture_count(drawable: cp_drawable_t) -> usize {
+    pub unsafe fn texture_count(drawable: cp_drawable_t) -> usize {
         extern "C-unwind" {
             fn cp_drawable_get_texture_count(drawable: cp_drawable_t) -> usize;
         }
@@ -105,7 +105,7 @@ impl cp_drawable {
     #[cfg(feature = "objc2-metal")]
     #[inline]
     #[doc(alias = "cp_drawable_get_depth_texture")]
-    pub unsafe fn get_depth_texture(
+    pub unsafe fn depth_texture(
         drawable: cp_drawable_t,
         index: usize,
     ) -> Retained<ProtocolObject<dyn MTLTexture>> {
@@ -136,7 +136,7 @@ impl cp_drawable {
     #[cfg(feature = "objc2-metal")]
     #[inline]
     #[doc(alias = "cp_drawable_get_color_texture")]
-    pub unsafe fn get_color_texture(
+    pub unsafe fn color_texture(
         drawable: cp_drawable_t,
         index: usize,
     ) -> Retained<ProtocolObject<dyn MTLTexture>> {
@@ -162,7 +162,7 @@ impl cp_drawable {
     /// from the ``cp_drawable_get_rasterization_rate_map`` function.
     #[inline]
     #[doc(alias = "cp_drawable_get_rasterization_rate_map_count")]
-    pub unsafe fn get_rasterization_rate_map_count(drawable: cp_drawable_t) -> usize {
+    pub unsafe fn rasterization_rate_map_count(drawable: cp_drawable_t) -> usize {
         extern "C-unwind" {
             fn cp_drawable_get_rasterization_rate_map_count(drawable: cp_drawable_t) -> usize;
         }
@@ -188,7 +188,7 @@ impl cp_drawable {
     #[cfg(feature = "objc2-metal")]
     #[inline]
     #[doc(alias = "cp_drawable_get_rasterization_rate_map")]
-    pub unsafe fn get_rasterization_rate_map(
+    pub unsafe fn rasterization_rate_map(
         drawable: cp_drawable_t,
         index: usize,
     ) -> Retained<ProtocolObject<dyn MTLRasterizationRateMap>> {
@@ -229,7 +229,7 @@ impl cp_drawable {
     #[cfg(feature = "objc2-metal")]
     #[inline]
     #[doc(alias = "cp_drawable_get_flipped_rasterization_rate_map")]
-    pub unsafe fn get_flipped_rasterization_rate_map(
+    pub unsafe fn flipped_rasterization_rate_map(
         drawable: cp_drawable_t,
         index: usize,
     ) -> Retained<ProtocolObject<dyn MTLRasterizationRateMap>> {
@@ -260,7 +260,7 @@ impl cp_drawable {
     /// Fetch the actual views using the ``cp_drawable_get_view`` function.
     #[inline]
     #[doc(alias = "cp_drawable_get_view_count")]
-    pub unsafe fn get_view_count(drawable: cp_drawable_t) -> usize {
+    pub unsafe fn view_count(drawable: cp_drawable_t) -> usize {
         extern "C-unwind" {
             fn cp_drawable_get_view_count(drawable: cp_drawable_t) -> usize;
         }
@@ -281,7 +281,7 @@ impl cp_drawable {
     #[cfg(feature = "view")]
     #[inline]
     #[doc(alias = "cp_drawable_get_view")]
-    pub unsafe fn get_view(drawable: cp_drawable_t, index: usize) -> cp_view_t {
+    pub unsafe fn view(drawable: cp_drawable_t, index: usize) -> cp_view_t {
         extern "C-unwind" {
             fn cp_drawable_get_view(drawable: cp_drawable_t, index: usize) -> cp_view_t;
         }
@@ -335,7 +335,7 @@ impl cp_drawable {
     /// when the drawable is in the ``cp_drawable_state/cp_drawable_state_rendering`` state.
     #[inline]
     #[doc(alias = "cp_drawable_get_state")]
-    pub unsafe fn get_state(drawable: cp_drawable_t) -> cp_drawable_state {
+    pub unsafe fn state(drawable: cp_drawable_t) -> cp_drawable_state {
         extern "C-unwind" {
             fn cp_drawable_get_state(drawable: cp_drawable_t) -> cp_drawable_state;
         }
@@ -357,9 +357,7 @@ impl cp_drawable {
     #[cfg(feature = "cp_types")]
     #[inline]
     #[doc(alias = "cp_drawable_get_presentation_frame_index")]
-    pub unsafe fn get_presentation_frame_index(
-        drawable: cp_drawable_t,
-    ) -> cp_compositor_frame_index_t {
+    pub unsafe fn presentation_frame_index(drawable: cp_drawable_t) -> cp_compositor_frame_index_t {
         extern "C-unwind" {
             fn cp_drawable_get_presentation_frame_index(
                 drawable: cp_drawable_t,
@@ -380,7 +378,7 @@ impl cp_drawable {
     #[cfg(feature = "frame_timing")]
     #[inline]
     #[doc(alias = "cp_drawable_get_frame_timing")]
-    pub unsafe fn get_frame_timing(drawable: cp_drawable_t) -> cp_frame_timing_t {
+    pub unsafe fn frame_timing(drawable: cp_drawable_t) -> cp_frame_timing_t {
         extern "C-unwind" {
             fn cp_drawable_get_frame_timing(drawable: cp_drawable_t) -> cp_frame_timing_t;
         }
@@ -389,12 +387,12 @@ impl cp_drawable {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `cp_drawable::get_texture_count`"]
+    #[deprecated = "renamed to `cp_drawable::texture_count`"]
     pub fn cp_drawable_get_texture_count(drawable: cp_drawable_t) -> usize;
 }
 
 #[cfg(feature = "objc2-metal")]
-#[deprecated = "renamed to `cp_drawable::get_depth_texture`"]
+#[deprecated = "renamed to `cp_drawable::depth_texture`"]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_drawable_get_depth_texture(
     drawable: cp_drawable_t,
@@ -412,7 +410,7 @@ pub unsafe extern "C-unwind" fn cp_drawable_get_depth_texture(
 }
 
 #[cfg(feature = "objc2-metal")]
-#[deprecated = "renamed to `cp_drawable::get_color_texture`"]
+#[deprecated = "renamed to `cp_drawable::color_texture`"]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_drawable_get_color_texture(
     drawable: cp_drawable_t,
@@ -430,12 +428,12 @@ pub unsafe extern "C-unwind" fn cp_drawable_get_color_texture(
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `cp_drawable::get_rasterization_rate_map_count`"]
+    #[deprecated = "renamed to `cp_drawable::rasterization_rate_map_count`"]
     pub fn cp_drawable_get_rasterization_rate_map_count(drawable: cp_drawable_t) -> usize;
 }
 
 #[cfg(feature = "objc2-metal")]
-#[deprecated = "renamed to `cp_drawable::get_rasterization_rate_map`"]
+#[deprecated = "renamed to `cp_drawable::rasterization_rate_map`"]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_drawable_get_rasterization_rate_map(
     drawable: cp_drawable_t,
@@ -453,7 +451,7 @@ pub unsafe extern "C-unwind" fn cp_drawable_get_rasterization_rate_map(
 }
 
 #[cfg(feature = "objc2-metal")]
-#[deprecated = "renamed to `cp_drawable::get_flipped_rasterization_rate_map`"]
+#[deprecated = "renamed to `cp_drawable::flipped_rasterization_rate_map`"]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_drawable_get_flipped_rasterization_rate_map(
     drawable: cp_drawable_t,
@@ -471,13 +469,13 @@ pub unsafe extern "C-unwind" fn cp_drawable_get_flipped_rasterization_rate_map(
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `cp_drawable::get_view_count`"]
+    #[deprecated = "renamed to `cp_drawable::view_count`"]
     pub fn cp_drawable_get_view_count(drawable: cp_drawable_t) -> usize;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "view")]
-    #[deprecated = "renamed to `cp_drawable::get_view`"]
+    #[deprecated = "renamed to `cp_drawable::view`"]
     pub fn cp_drawable_get_view(drawable: cp_drawable_t, index: usize) -> cp_view_t;
 }
 
@@ -491,13 +489,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `cp_drawable::get_state`"]
+    #[deprecated = "renamed to `cp_drawable::state`"]
     pub fn cp_drawable_get_state(drawable: cp_drawable_t) -> cp_drawable_state;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "cp_types")]
-    #[deprecated = "renamed to `cp_drawable::get_presentation_frame_index`"]
+    #[deprecated = "renamed to `cp_drawable::presentation_frame_index`"]
     pub fn cp_drawable_get_presentation_frame_index(
         drawable: cp_drawable_t,
     ) -> cp_compositor_frame_index_t;
@@ -505,6 +503,6 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "frame_timing")]
-    #[deprecated = "renamed to `cp_drawable::get_frame_timing`"]
+    #[deprecated = "renamed to `cp_drawable::frame_timing`"]
     pub fn cp_drawable_get_frame_timing(drawable: cp_drawable_t) -> cp_frame_timing_t;
 }

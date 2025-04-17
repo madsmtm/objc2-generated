@@ -55,7 +55,7 @@ impl cp_frame {
     #[cfg(feature = "cp_types")]
     #[inline]
     #[doc(alias = "cp_frame_get_frame_index")]
-    pub unsafe fn get_frame_index(frame: cp_frame_t) -> cp_layer_frame_index_t {
+    pub unsafe fn frame_index(frame: cp_frame_t) -> cp_layer_frame_index_t {
         extern "C-unwind" {
             fn cp_frame_get_frame_index(frame: cp_frame_t) -> cp_layer_frame_index_t;
         }
@@ -220,7 +220,7 @@ impl cp_frame {
 
 extern "C-unwind" {
     #[cfg(feature = "cp_types")]
-    #[deprecated = "renamed to `cp_frame::get_frame_index`"]
+    #[deprecated = "renamed to `cp_frame::frame_index`"]
     pub fn cp_frame_get_frame_index(frame: cp_frame_t) -> cp_layer_frame_index_t;
 }
 

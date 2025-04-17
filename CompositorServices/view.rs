@@ -45,7 +45,7 @@ impl cp_view_texture_map {
     /// or ``cp_drawable_get_depth_texture`` function.
     #[inline]
     #[doc(alias = "cp_view_texture_map_get_texture_index")]
-    pub unsafe fn get_texture_index(view_texture_map: cp_view_texture_map_t) -> usize {
+    pub unsafe fn texture_index(view_texture_map: cp_view_texture_map_t) -> usize {
         extern "C-unwind" {
             fn cp_view_texture_map_get_texture_index(
                 view_texture_map: cp_view_texture_map_t,
@@ -73,7 +73,7 @@ impl cp_view_texture_map {
     /// with the ``cp_layer_renderer_layout/cp_layer_renderer_layout_dedicated`` layout option.
     #[inline]
     #[doc(alias = "cp_view_texture_map_get_slice_index")]
-    pub unsafe fn get_slice_index(view_texture_map: cp_view_texture_map_t) -> usize {
+    pub unsafe fn slice_index(view_texture_map: cp_view_texture_map_t) -> usize {
         extern "C-unwind" {
             fn cp_view_texture_map_get_slice_index(
                 view_texture_map: cp_view_texture_map_t,
@@ -97,7 +97,7 @@ impl cp_view_texture_map {
     #[cfg(feature = "objc2-metal")]
     #[inline]
     #[doc(alias = "cp_view_texture_map_get_viewport")]
-    pub unsafe fn get_viewport(view_texture_map: cp_view_texture_map_t) -> MTLViewport {
+    pub unsafe fn viewport(view_texture_map: cp_view_texture_map_t) -> MTLViewport {
         extern "C-unwind" {
             fn cp_view_texture_map_get_viewport(
                 view_texture_map: cp_view_texture_map_t,
@@ -143,7 +143,7 @@ impl cp_view {
     /// use for drawing in the associated texture.
     #[inline]
     #[doc(alias = "cp_view_get_view_texture_map")]
-    pub unsafe fn get_view_texture_map(view: cp_view_t) -> cp_view_texture_map_t {
+    pub unsafe fn view_texture_map(view: cp_view_t) -> cp_view_texture_map_t {
         extern "C-unwind" {
             fn cp_view_get_view_texture_map(view: cp_view_t) -> cp_view_texture_map_t;
         }
@@ -152,23 +152,23 @@ impl cp_view {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `cp_view_texture_map::get_texture_index`"]
+    #[deprecated = "renamed to `cp_view_texture_map::texture_index`"]
     pub fn cp_view_texture_map_get_texture_index(view_texture_map: cp_view_texture_map_t) -> usize;
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `cp_view_texture_map::get_slice_index`"]
+    #[deprecated = "renamed to `cp_view_texture_map::slice_index`"]
     pub fn cp_view_texture_map_get_slice_index(view_texture_map: cp_view_texture_map_t) -> usize;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-metal")]
-    #[deprecated = "renamed to `cp_view_texture_map::get_viewport`"]
+    #[deprecated = "renamed to `cp_view_texture_map::viewport`"]
     pub fn cp_view_texture_map_get_viewport(view_texture_map: cp_view_texture_map_t)
         -> MTLViewport;
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `cp_view::get_view_texture_map`"]
+    #[deprecated = "renamed to `cp_view::view_texture_map`"]
     pub fn cp_view_get_view_texture_map(view: cp_view_t) -> cp_view_texture_map_t;
 }

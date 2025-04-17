@@ -54,7 +54,7 @@ impl cp_texture_topology {
     /// only one image.
     #[inline]
     #[doc(alias = "cp_texture_topology_get_array_length")]
-    pub unsafe fn get_array_length(texture_topology: cp_texture_topology_t) -> u64 {
+    pub unsafe fn array_length(texture_topology: cp_texture_topology_t) -> u64 {
         extern "C-unwind" {
             fn cp_texture_topology_get_array_length(texture_topology: cp_texture_topology_t)
                 -> u64;
@@ -79,7 +79,7 @@ impl cp_texture_topology {
     #[cfg(feature = "objc2-metal")]
     #[inline]
     #[doc(alias = "cp_texture_topology_get_texture_type")]
-    pub unsafe fn get_texture_type(texture_topology: cp_texture_topology_t) -> MTLTextureType {
+    pub unsafe fn texture_type(texture_topology: cp_texture_topology_t) -> MTLTextureType {
         extern "C-unwind" {
             fn cp_texture_topology_get_texture_type(
                 texture_topology: cp_texture_topology_t,
@@ -227,13 +227,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `cp_texture_topology::get_array_length`"]
+    #[deprecated = "renamed to `cp_texture_topology::array_length`"]
     pub fn cp_texture_topology_get_array_length(texture_topology: cp_texture_topology_t) -> u64;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-metal")]
-    #[deprecated = "renamed to `cp_texture_topology::get_texture_type`"]
+    #[deprecated = "renamed to `cp_texture_topology::texture_type`"]
     pub fn cp_texture_topology_get_texture_type(
         texture_topology: cp_texture_topology_t,
     ) -> MTLTextureType;

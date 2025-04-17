@@ -302,7 +302,7 @@ impl sec_trust {
     #[cfg(feature = "SecTrust")]
     #[inline]
     #[doc(alias = "sec_trust_copy_ref")]
-    pub unsafe fn copy_ref(trust: sec_trust_t) -> CFRetained<SecTrust> {
+    pub unsafe fn r#ref(trust: sec_trust_t) -> CFRetained<SecTrust> {
         extern "C-unwind" {
             fn sec_trust_copy_ref(trust: sec_trust_t) -> Option<NonNull<SecTrust>>;
         }
@@ -394,7 +394,7 @@ impl sec_identity {
     #[cfg(feature = "SecBase")]
     #[inline]
     #[doc(alias = "sec_identity_copy_ref")]
-    pub unsafe fn copy_ref(identity: sec_identity_t) -> Option<CFRetained<SecIdentity>> {
+    pub unsafe fn r#ref(identity: sec_identity_t) -> Option<CFRetained<SecIdentity>> {
         extern "C-unwind" {
             fn sec_identity_copy_ref(identity: sec_identity_t) -> Option<NonNull<SecIdentity>>;
         }
@@ -411,7 +411,7 @@ impl sec_identity {
     /// Returns: The underlying `CFArrayRef` container with `SecCertificateRef` instances.
     #[inline]
     #[doc(alias = "sec_identity_copy_certificates_ref")]
-    pub unsafe fn copy_certificates_ref(identity: sec_identity_t) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn certificates_ref(identity: sec_identity_t) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn sec_identity_copy_certificates_ref(
                 identity: sec_identity_t,
@@ -450,7 +450,7 @@ impl sec_certificate {
     #[cfg(feature = "SecBase")]
     #[inline]
     #[doc(alias = "sec_certificate_copy_ref")]
-    pub unsafe fn copy_ref(certificate: sec_certificate_t) -> CFRetained<SecCertificate> {
+    pub unsafe fn r#ref(certificate: sec_certificate_t) -> CFRetained<SecCertificate> {
         extern "C-unwind" {
             fn sec_certificate_copy_ref(
                 certificate: sec_certificate_t,
@@ -470,7 +470,7 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "SecTrust")]
-#[deprecated = "renamed to `sec_trust::copy_ref`"]
+#[deprecated = "renamed to `sec_trust::ref`"]
 #[inline]
 pub unsafe extern "C-unwind" fn sec_trust_copy_ref(trust: sec_trust_t) -> CFRetained<SecTrust> {
     extern "C-unwind" {
@@ -506,7 +506,7 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "SecBase")]
-#[deprecated = "renamed to `sec_identity::copy_ref`"]
+#[deprecated = "renamed to `sec_identity::ref`"]
 #[inline]
 pub unsafe extern "C-unwind" fn sec_identity_copy_ref(
     identity: sec_identity_t,
@@ -518,7 +518,7 @@ pub unsafe extern "C-unwind" fn sec_identity_copy_ref(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `sec_identity::copy_certificates_ref`"]
+#[deprecated = "renamed to `sec_identity::certificates_ref`"]
 #[inline]
 pub unsafe extern "C-unwind" fn sec_identity_copy_certificates_ref(
     identity: sec_identity_t,
@@ -538,7 +538,7 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "SecBase")]
-#[deprecated = "renamed to `sec_certificate::copy_ref`"]
+#[deprecated = "renamed to `sec_certificate::ref`"]
 #[inline]
 pub unsafe extern "C-unwind" fn sec_certificate_copy_ref(
     certificate: sec_certificate_t,
