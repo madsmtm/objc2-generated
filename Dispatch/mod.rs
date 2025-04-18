@@ -512,43 +512,47 @@ extern "C" {
     pub static _dispatch_queue_attr_concurrent: dispatch_queue_attr_s;
 }
 
-/// Returns an attribute value which may be provided to dispatch_queue_create()
-/// or dispatch_queue_create_with_target(), in order to make the created queue
-/// initially inactive.
-///
-///
-/// Dispatch queues may be created in an inactive state. Queues in this state
-/// have to be activated before any blocks associated with them will be invoked.
-///
-/// A queue in inactive state cannot be deallocated, dispatch_activate() must be
-/// called before the last reference to a queue created with this attribute is
-/// released.
-///
-/// The target queue of a queue in inactive state can be changed using
-/// dispatch_set_target_queue(). Change of target queue is no longer permitted
-/// once an initially inactive queue has been activated.
-///
-///
-/// Parameter `attr`: A queue attribute value to be combined with the initially inactive attribute.
-///
-///
-/// Returns: Returns an attribute value which may be provided to dispatch_queue_create()
-/// and dispatch_queue_create_with_target().
-/// The new value combines the attributes specified by the 'attr' parameter with
-/// the initially inactive attribute.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_queue_attr_make_initially_inactive(
-    attr: Option<&DispatchQueueAttr>,
-) -> DispatchRetained<DispatchQueueAttr> {
-    extern "C" {
-        fn dispatch_queue_attr_make_initially_inactive(
-            attr: Option<&DispatchQueueAttr>,
-        ) -> Option<NonNull<DispatchQueueAttr>>;
+impl DispatchQueueAttr {
+    /// Returns an attribute value which may be provided to dispatch_queue_create()
+    /// or dispatch_queue_create_with_target(), in order to make the created queue
+    /// initially inactive.
+    ///
+    ///
+    /// Dispatch queues may be created in an inactive state. Queues in this state
+    /// have to be activated before any blocks associated with them will be invoked.
+    ///
+    /// A queue in inactive state cannot be deallocated, dispatch_activate() must be
+    /// called before the last reference to a queue created with this attribute is
+    /// released.
+    ///
+    /// The target queue of a queue in inactive state can be changed using
+    /// dispatch_set_target_queue(). Change of target queue is no longer permitted
+    /// once an initially inactive queue has been activated.
+    ///
+    ///
+    /// Parameter `attr`: A queue attribute value to be combined with the initially inactive attribute.
+    ///
+    ///
+    /// Returns: Returns an attribute value which may be provided to dispatch_queue_create()
+    /// and dispatch_queue_create_with_target().
+    /// The new value combines the attributes specified by the 'attr' parameter with
+    /// the initially inactive attribute.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_queue_attr_make_initially_inactive")]
+    pub unsafe fn new_initially_inactive(
+        attr: Option<&DispatchQueueAttr>,
+    ) -> DispatchRetained<DispatchQueueAttr> {
+        extern "C" {
+            fn dispatch_queue_attr_make_initially_inactive(
+                attr: Option<&DispatchQueueAttr>,
+            ) -> Option<NonNull<DispatchQueueAttr>>;
+        }
+        let ret = unsafe { dispatch_queue_attr_make_initially_inactive(attr) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::retain(ret) }
     }
-    let ret = unsafe { dispatch_queue_attr_make_initially_inactive(attr) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::retain(ret) }
 }
 
 /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
@@ -645,128 +649,134 @@ unsafe impl RefEncode for dispatch_autorelease_frequency_t {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Returns a dispatch queue attribute value with the autorelease frequency
-/// set to the specified value.
-///
-///
-/// When a queue uses the per-workitem autorelease frequency (either directly
-/// or inherited from its target queue), any block submitted asynchronously to
-/// this queue (via dispatch_async(), dispatch_barrier_async(),
-/// dispatch_group_notify(), etc...) is executed as if surrounded by a individual
-/// Objective-C
-/// <code>
-/// objc2::rc::autoreleasepool</code>
-/// scope.
-///
-/// Autorelease frequency has no effect on blocks that are submitted
-/// synchronously to a queue (via dispatch_sync(), dispatch_barrier_sync()).
-///
-/// The global concurrent queues have the DISPATCH_AUTORELEASE_FREQUENCY_NEVER
-/// behavior. Manually created dispatch queues use
-/// DISPATCH_AUTORELEASE_FREQUENCY_INHERIT by default.
-///
-/// Queues created with this attribute cannot change target queues after having
-/// been activated. See dispatch_set_target_queue() and dispatch_activate().
-///
-///
-/// Parameter `attr`: A queue attribute value to be combined with the specified autorelease
-/// frequency or NULL.
-///
-///
-/// Parameter `frequency`: The requested autorelease frequency.
-///
-///
-/// Returns: Returns an attribute value which may be provided to dispatch_queue_create()
-/// or NULL if an invalid autorelease frequency was requested.
-/// This new value combines the attributes specified by the 'attr' parameter and
-/// the chosen autorelease frequency.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_queue_attr_make_with_autorelease_frequency(
-    attr: Option<&DispatchQueueAttr>,
-    frequency: dispatch_autorelease_frequency_t,
-) -> DispatchRetained<DispatchQueueAttr> {
-    extern "C" {
-        fn dispatch_queue_attr_make_with_autorelease_frequency(
-            attr: Option<&DispatchQueueAttr>,
-            frequency: dispatch_autorelease_frequency_t,
-        ) -> Option<NonNull<DispatchQueueAttr>>;
+impl DispatchQueueAttr {
+    /// Returns a dispatch queue attribute value with the autorelease frequency
+    /// set to the specified value.
+    ///
+    ///
+    /// When a queue uses the per-workitem autorelease frequency (either directly
+    /// or inherited from its target queue), any block submitted asynchronously to
+    /// this queue (via dispatch_async(), dispatch_barrier_async(),
+    /// dispatch_group_notify(), etc...) is executed as if surrounded by a individual
+    /// Objective-C
+    /// <code>
+    /// objc2::rc::autoreleasepool</code>
+    /// scope.
+    ///
+    /// Autorelease frequency has no effect on blocks that are submitted
+    /// synchronously to a queue (via dispatch_sync(), dispatch_barrier_sync()).
+    ///
+    /// The global concurrent queues have the DISPATCH_AUTORELEASE_FREQUENCY_NEVER
+    /// behavior. Manually created dispatch queues use
+    /// DISPATCH_AUTORELEASE_FREQUENCY_INHERIT by default.
+    ///
+    /// Queues created with this attribute cannot change target queues after having
+    /// been activated. See dispatch_set_target_queue() and dispatch_activate().
+    ///
+    ///
+    /// Parameter `attr`: A queue attribute value to be combined with the specified autorelease
+    /// frequency or NULL.
+    ///
+    ///
+    /// Parameter `frequency`: The requested autorelease frequency.
+    ///
+    ///
+    /// Returns: Returns an attribute value which may be provided to dispatch_queue_create()
+    /// or NULL if an invalid autorelease frequency was requested.
+    /// This new value combines the attributes specified by the 'attr' parameter and
+    /// the chosen autorelease frequency.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_queue_attr_make_with_autorelease_frequency")]
+    pub unsafe fn with_autorelease_frequency(
+        attr: Option<&DispatchQueueAttr>,
+        frequency: dispatch_autorelease_frequency_t,
+    ) -> DispatchRetained<DispatchQueueAttr> {
+        extern "C" {
+            fn dispatch_queue_attr_make_with_autorelease_frequency(
+                attr: Option<&DispatchQueueAttr>,
+                frequency: dispatch_autorelease_frequency_t,
+            ) -> Option<NonNull<DispatchQueueAttr>>;
+        }
+        let ret = unsafe { dispatch_queue_attr_make_with_autorelease_frequency(attr, frequency) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::retain(ret) }
     }
-    let ret = unsafe { dispatch_queue_attr_make_with_autorelease_frequency(attr, frequency) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::retain(ret) }
-}
 
-/// Returns an attribute value which may be provided to dispatch_queue_create()
-/// or dispatch_queue_create_with_target(), in order to assign a QOS class and
-/// relative priority to the queue.
-///
-///
-/// When specified in this manner, the QOS class and relative priority take
-/// precedence over those inherited from the dispatch queue's target queue (if
-/// any) as long that does not result in a lower QOS class and relative priority.
-///
-/// The global queue priorities map to the following QOS classes:
-/// - DISPATCH_QUEUE_PRIORITY_HIGH:         QOS_CLASS_USER_INITIATED
-/// - DISPATCH_QUEUE_PRIORITY_DEFAULT:      QOS_CLASS_DEFAULT
-/// - DISPATCH_QUEUE_PRIORITY_LOW:          QOS_CLASS_UTILITY
-/// - DISPATCH_QUEUE_PRIORITY_BACKGROUND:   QOS_CLASS_BACKGROUND
-///
-/// Example:
-/// <code>
-/// dispatch_queue_t queue;
-/// dispatch_queue_attr_t attr;
-/// attr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL,
-/// QOS_CLASS_UTILITY, 0);
-/// queue = dispatch_queue_create("com.example.myqueue", attr);
-/// </code>
-///
-/// The QOS class and relative priority set this way on a queue have no effect on
-/// blocks that are submitted synchronously to a queue (via dispatch_sync(),
-/// dispatch_barrier_sync()).
-///
-///
-/// Parameter `attr`: A queue attribute value to be combined with the QOS class, or NULL.
-///
-///
-/// Parameter `qos_class`: A QOS class value:
-/// - QOS_CLASS_USER_INTERACTIVE
-/// - QOS_CLASS_USER_INITIATED
-/// - QOS_CLASS_DEFAULT
-/// - QOS_CLASS_UTILITY
-/// - QOS_CLASS_BACKGROUND
-/// Passing any other value results in NULL being returned.
-///
-///
-/// Parameter `relative_priority`: A relative priority within the QOS class. This value is a negative
-/// offset from the maximum supported scheduler priority for the given class.
-/// Passing a value greater than zero or less than QOS_MIN_RELATIVE_PRIORITY
-/// results in NULL being returned.
-///
-///
-/// Returns: Returns an attribute value which may be provided to dispatch_queue_create()
-/// and dispatch_queue_create_with_target(), or NULL if an invalid QOS class was
-/// requested.
-/// The new value combines the attributes specified by the 'attr' parameter and
-/// the new QOS class and relative priority.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_queue_attr_make_with_qos_class(
-    attr: Option<&DispatchQueueAttr>,
-    qos_class: dispatch_qos_class_t,
-    relative_priority: c_int,
-) -> DispatchRetained<DispatchQueueAttr> {
-    extern "C" {
-        fn dispatch_queue_attr_make_with_qos_class(
-            attr: Option<&DispatchQueueAttr>,
-            qos_class: dispatch_qos_class_t,
-            relative_priority: c_int,
-        ) -> Option<NonNull<DispatchQueueAttr>>;
+    /// Returns an attribute value which may be provided to dispatch_queue_create()
+    /// or dispatch_queue_create_with_target(), in order to assign a QOS class and
+    /// relative priority to the queue.
+    ///
+    ///
+    /// When specified in this manner, the QOS class and relative priority take
+    /// precedence over those inherited from the dispatch queue's target queue (if
+    /// any) as long that does not result in a lower QOS class and relative priority.
+    ///
+    /// The global queue priorities map to the following QOS classes:
+    /// - DISPATCH_QUEUE_PRIORITY_HIGH:         QOS_CLASS_USER_INITIATED
+    /// - DISPATCH_QUEUE_PRIORITY_DEFAULT:      QOS_CLASS_DEFAULT
+    /// - DISPATCH_QUEUE_PRIORITY_LOW:          QOS_CLASS_UTILITY
+    /// - DISPATCH_QUEUE_PRIORITY_BACKGROUND:   QOS_CLASS_BACKGROUND
+    ///
+    /// Example:
+    /// <code>
+    /// dispatch_queue_t queue;
+    /// dispatch_queue_attr_t attr;
+    /// attr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL,
+    /// QOS_CLASS_UTILITY, 0);
+    /// queue = dispatch_queue_create("com.example.myqueue", attr);
+    /// </code>
+    ///
+    /// The QOS class and relative priority set this way on a queue have no effect on
+    /// blocks that are submitted synchronously to a queue (via dispatch_sync(),
+    /// dispatch_barrier_sync()).
+    ///
+    ///
+    /// Parameter `attr`: A queue attribute value to be combined with the QOS class, or NULL.
+    ///
+    ///
+    /// Parameter `qos_class`: A QOS class value:
+    /// - QOS_CLASS_USER_INTERACTIVE
+    /// - QOS_CLASS_USER_INITIATED
+    /// - QOS_CLASS_DEFAULT
+    /// - QOS_CLASS_UTILITY
+    /// - QOS_CLASS_BACKGROUND
+    /// Passing any other value results in NULL being returned.
+    ///
+    ///
+    /// Parameter `relative_priority`: A relative priority within the QOS class. This value is a negative
+    /// offset from the maximum supported scheduler priority for the given class.
+    /// Passing a value greater than zero or less than QOS_MIN_RELATIVE_PRIORITY
+    /// results in NULL being returned.
+    ///
+    ///
+    /// Returns: Returns an attribute value which may be provided to dispatch_queue_create()
+    /// and dispatch_queue_create_with_target(), or NULL if an invalid QOS class was
+    /// requested.
+    /// The new value combines the attributes specified by the 'attr' parameter and
+    /// the new QOS class and relative priority.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_queue_attr_make_with_qos_class")]
+    pub unsafe fn with_qos_class(
+        attr: Option<&DispatchQueueAttr>,
+        qos_class: dispatch_qos_class_t,
+        relative_priority: c_int,
+    ) -> DispatchRetained<DispatchQueueAttr> {
+        extern "C" {
+            fn dispatch_queue_attr_make_with_qos_class(
+                attr: Option<&DispatchQueueAttr>,
+                qos_class: dispatch_qos_class_t,
+                relative_priority: c_int,
+            ) -> Option<NonNull<DispatchQueueAttr>>;
+        }
+        let ret =
+            unsafe { dispatch_queue_attr_make_with_qos_class(attr, qos_class, relative_priority) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::retain(ret) }
     }
-    let ret =
-        unsafe { dispatch_queue_attr_make_with_qos_class(attr, qos_class, relative_priority) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::retain(ret) }
 }
 
 /// Creates a new dispatch queue with a specified target queue.
@@ -896,30 +906,29 @@ pub unsafe extern "C" fn dispatch_queue_create(
     unsafe { DispatchRetained::from_raw(ret) }
 }
 
-/// Returns the label of the given queue, as specified when the queue was
-/// created, or the empty string if a NULL label was specified.
-///
-/// Passing DISPATCH_CURRENT_QUEUE_LABEL will return the label of the current
-/// queue.
-///
-///
-/// Parameter `queue`: The queue to query, or DISPATCH_CURRENT_QUEUE_LABEL.
-///
-///
-/// Returns: The label of the queue.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_queue_get_label(
-    queue: Option<&DispatchQueue>,
-) -> NonNull<c_char> {
-    extern "C" {
-        fn dispatch_queue_get_label(queue: Option<&DispatchQueue>) -> Option<NonNull<c_char>>;
+impl DispatchQueue {
+    /// Returns the label of the given queue, as specified when the queue was
+    /// created, or the empty string if a NULL label was specified.
+    ///
+    /// Passing DISPATCH_CURRENT_QUEUE_LABEL will return the label of the current
+    /// queue.
+    ///
+    ///
+    /// Parameter `queue`: The queue to query, or DISPATCH_CURRENT_QUEUE_LABEL.
+    ///
+    ///
+    /// Returns: The label of the queue.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_queue_get_label")]
+    pub unsafe fn label(queue: Option<&DispatchQueue>) -> NonNull<c_char> {
+        extern "C" {
+            fn dispatch_queue_get_label(queue: Option<&DispatchQueue>) -> Option<NonNull<c_char>>;
+        }
+        let ret = unsafe { dispatch_queue_get_label(queue) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { dispatch_queue_get_label(queue) };
-    ret.expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-extern "C" {
     /// Returns the QOS class and relative priority of the given queue.
     ///
     ///
@@ -950,10 +959,20 @@ extern "C" {
     /// - QOS_CLASS_BACKGROUND
     /// - QOS_CLASS_UNSPECIFIED
     #[must_use]
-    pub fn dispatch_queue_get_qos_class(
-        queue: &DispatchQueue,
+    #[inline]
+    #[doc(alias = "dispatch_queue_get_qos_class")]
+    pub unsafe fn qos_class(
+        self: &DispatchQueue,
         relative_priority_ptr: *mut c_int,
-    ) -> dispatch_qos_class_t;
+    ) -> dispatch_qos_class_t {
+        extern "C" {
+            fn dispatch_queue_get_qos_class(
+                queue: &DispatchQueue,
+                relative_priority_ptr: *mut c_int,
+            ) -> dispatch_qos_class_t;
+        }
+        unsafe { dispatch_queue_get_qos_class(self, relative_priority_ptr) }
+    }
 }
 
 extern "C" {
@@ -1190,7 +1209,7 @@ extern "C" {
     );
 }
 
-extern "C" {
+impl DispatchQueue {
     /// Returns the subsystem-specific context associated with a dispatch queue, for
     /// a key unique to the subsystem.
     ///
@@ -1210,7 +1229,17 @@ extern "C" {
     ///
     /// Returns: The context for the specified key or NULL if no context was found.
     #[must_use]
-    pub fn dispatch_queue_get_specific(queue: &DispatchQueue, key: NonNull<c_void>) -> *mut c_void;
+    #[inline]
+    #[doc(alias = "dispatch_queue_get_specific")]
+    pub unsafe fn specific(self: &DispatchQueue, key: NonNull<c_void>) -> *mut c_void {
+        extern "C" {
+            fn dispatch_queue_get_specific(
+                queue: &DispatchQueue,
+                key: NonNull<c_void>,
+            ) -> *mut c_void;
+        }
+        unsafe { dispatch_queue_get_specific(self, key) }
+    }
 }
 
 extern "C" {
@@ -2105,74 +2134,84 @@ extern "C" {
     pub static _dispatch_source_type_write: dispatch_source_type_s;
 }
 
-/// Creates a new dispatch source to monitor low-level system objects and auto-
-/// matically submit a handler block to a dispatch queue in response to events.
-///
-///
-/// Dispatch sources are not reentrant. Any events received while the dispatch
-/// source is suspended or while the event handler block is currently executing
-/// will be coalesced and delivered after the dispatch source is resumed or the
-/// event handler block has returned.
-///
-/// Dispatch sources are created in an inactive state. After creating the
-/// source and setting any desired attributes (i.e. the handler, context, etc.),
-/// a call must be made to dispatch_activate() in order to begin event delivery.
-///
-/// A source must have been activated before being disposed.
-///
-/// Calling dispatch_set_target_queue() on a source once it has been activated
-/// is not allowed (see dispatch_activate() and dispatch_set_target_queue()).
-///
-/// For backward compatibility reasons, dispatch_resume() on an inactive,
-/// and not otherwise suspended source has the same effect as calling
-/// dispatch_activate(). For new code, using dispatch_activate() is preferred.
-///
-///
-/// Parameter `type`: Declares the type of the dispatch source. Must be one of the defined
-/// dispatch_source_type_t constants.
-///
-///
-/// Parameter `handle`: The underlying system handle to monitor. The interpretation of this argument
-/// is determined by the constant provided in the type parameter.
-///
-///
-/// Parameter `mask`: A mask of flags specifying which events are desired. The interpretation of
-/// this argument is determined by the constant provided in the type parameter.
-///
-///
-/// Parameter `queue`: The dispatch queue to which the event handler block will be submitted.
-/// If queue is DISPATCH_TARGET_QUEUE_DEFAULT, the source will submit the event
-/// handler block to the default priority global queue.
-///
-///
-/// Returns: The newly created dispatch source. Or NULL if invalid arguments are passed.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_source_create(
-    r#type: dispatch_source_type_t,
-    handle: usize,
-    mask: usize,
-    queue: Option<&DispatchQueue>,
-) -> DispatchRetained<DispatchSource> {
-    extern "C" {
-        fn dispatch_source_create(
-            r#type: dispatch_source_type_t,
-            handle: usize,
-            mask: usize,
-            queue: Option<&DispatchQueue>,
-        ) -> Option<NonNull<DispatchSource>>;
+impl DispatchSource {
+    /// Creates a new dispatch source to monitor low-level system objects and auto-
+    /// matically submit a handler block to a dispatch queue in response to events.
+    ///
+    ///
+    /// Dispatch sources are not reentrant. Any events received while the dispatch
+    /// source is suspended or while the event handler block is currently executing
+    /// will be coalesced and delivered after the dispatch source is resumed or the
+    /// event handler block has returned.
+    ///
+    /// Dispatch sources are created in an inactive state. After creating the
+    /// source and setting any desired attributes (i.e. the handler, context, etc.),
+    /// a call must be made to dispatch_activate() in order to begin event delivery.
+    ///
+    /// A source must have been activated before being disposed.
+    ///
+    /// Calling dispatch_set_target_queue() on a source once it has been activated
+    /// is not allowed (see dispatch_activate() and dispatch_set_target_queue()).
+    ///
+    /// For backward compatibility reasons, dispatch_resume() on an inactive,
+    /// and not otherwise suspended source has the same effect as calling
+    /// dispatch_activate(). For new code, using dispatch_activate() is preferred.
+    ///
+    ///
+    /// Parameter `type`: Declares the type of the dispatch source. Must be one of the defined
+    /// dispatch_source_type_t constants.
+    ///
+    ///
+    /// Parameter `handle`: The underlying system handle to monitor. The interpretation of this argument
+    /// is determined by the constant provided in the type parameter.
+    ///
+    ///
+    /// Parameter `mask`: A mask of flags specifying which events are desired. The interpretation of
+    /// this argument is determined by the constant provided in the type parameter.
+    ///
+    ///
+    /// Parameter `queue`: The dispatch queue to which the event handler block will be submitted.
+    /// If queue is DISPATCH_TARGET_QUEUE_DEFAULT, the source will submit the event
+    /// handler block to the default priority global queue.
+    ///
+    ///
+    /// Returns: The newly created dispatch source. Or NULL if invalid arguments are passed.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_source_create")]
+    pub unsafe fn new(
+        r#type: dispatch_source_type_t,
+        handle: usize,
+        mask: usize,
+        queue: Option<&DispatchQueue>,
+    ) -> DispatchRetained<DispatchSource> {
+        extern "C" {
+            fn dispatch_source_create(
+                r#type: dispatch_source_type_t,
+                handle: usize,
+                mask: usize,
+                queue: Option<&DispatchQueue>,
+            ) -> Option<NonNull<DispatchSource>>;
+        }
+        let ret = unsafe { dispatch_source_create(r#type, handle, mask, queue) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
     }
-    let ret = unsafe { dispatch_source_create(r#type, handle, mask, queue) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
-}
 
-extern "C" {
     #[cfg(feature = "block2")]
-    pub fn dispatch_source_set_event_handler(source: &DispatchSource, handler: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_source_set_event_handler")]
+    pub unsafe fn set_event_handler_block(self: &DispatchSource, handler: dispatch_block_t) {
+        extern "C" {
+            fn dispatch_source_set_event_handler(
+                source: &DispatchSource,
+                handler: dispatch_block_t,
+            );
+        }
+        unsafe { dispatch_source_set_event_handler(self, handler) }
+    }
 
-extern "C" {
     /// Sets the event handler function for the given dispatch source.
     ///
     ///
@@ -2183,18 +2222,31 @@ extern "C" {
     /// Parameter `handler`: The event handler function to submit to the source's target queue.
     /// The context parameter passed to the event handler function is the context of
     /// the dispatch source current at the time the event handler was set.
-    pub fn dispatch_source_set_event_handler_f(
-        source: &DispatchSource,
-        handler: dispatch_function_t,
-    );
-}
+    #[inline]
+    #[doc(alias = "dispatch_source_set_event_handler_f")]
+    pub unsafe fn set_event_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
+        extern "C" {
+            fn dispatch_source_set_event_handler_f(
+                source: &DispatchSource,
+                handler: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_source_set_event_handler_f(self, handler) }
+    }
 
-extern "C" {
     #[cfg(feature = "block2")]
-    pub fn dispatch_source_set_cancel_handler(source: &DispatchSource, handler: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_source_set_cancel_handler")]
+    pub unsafe fn set_cancel_handler_block(self: &DispatchSource, handler: dispatch_block_t) {
+        extern "C" {
+            fn dispatch_source_set_cancel_handler(
+                source: &DispatchSource,
+                handler: dispatch_block_t,
+            );
+        }
+        unsafe { dispatch_source_set_cancel_handler(self, handler) }
+    }
 
-extern "C" {
     /// Sets the cancellation handler function for the given dispatch source.
     ///
     ///
@@ -2208,13 +2260,18 @@ extern "C" {
     /// Parameter `handler`: The cancellation handler function to submit to the source's target queue.
     /// The context parameter passed to the event handler function is the current
     /// context of the dispatch source at the time the handler call is made.
-    pub fn dispatch_source_set_cancel_handler_f(
-        source: &DispatchSource,
-        handler: dispatch_function_t,
-    );
-}
+    #[inline]
+    #[doc(alias = "dispatch_source_set_cancel_handler_f")]
+    pub unsafe fn set_cancel_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
+        extern "C" {
+            fn dispatch_source_set_cancel_handler_f(
+                source: &DispatchSource,
+                handler: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_source_set_cancel_handler_f(self, handler) }
+    }
 
-extern "C" {
     /// Asynchronously cancel the dispatch source, preventing any further invocation
     /// of its event handler block.
     ///
@@ -2232,10 +2289,15 @@ extern "C" {
     ///
     /// Parameter `source`: The dispatch source to be canceled.
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_source_cancel(source: &DispatchSource);
-}
+    #[inline]
+    #[doc(alias = "dispatch_source_cancel")]
+    pub unsafe fn cancel(self: &DispatchSource) {
+        extern "C" {
+            fn dispatch_source_cancel(source: &DispatchSource);
+        }
+        unsafe { dispatch_source_cancel(self) }
+    }
 
-extern "C" {
     /// Tests whether the given dispatch source has been canceled.
     ///
     ///
@@ -2245,10 +2307,15 @@ extern "C" {
     ///
     /// Returns: Non-zero if canceled and zero if not canceled.
     #[must_use]
-    pub fn dispatch_source_testcancel(source: &DispatchSource) -> isize;
-}
+    #[inline]
+    #[doc(alias = "dispatch_source_testcancel")]
+    pub unsafe fn testcancel(self: &DispatchSource) -> isize {
+        extern "C" {
+            fn dispatch_source_testcancel(source: &DispatchSource) -> isize;
+        }
+        unsafe { dispatch_source_testcancel(self) }
+    }
 
-extern "C" {
     /// Returns the underlying system handle associated with this dispatch source.
     ///
     ///
@@ -2271,10 +2338,15 @@ extern "C" {
     /// DISPATCH_SOURCE_TYPE_VNODE:           file descriptor (int)
     /// DISPATCH_SOURCE_TYPE_WRITE:           file descriptor (int)
     #[must_use]
-    pub fn dispatch_source_get_handle(source: &DispatchSource) -> usize;
-}
+    #[inline]
+    #[doc(alias = "dispatch_source_get_handle")]
+    pub unsafe fn handle(self: &DispatchSource) -> usize {
+        extern "C" {
+            fn dispatch_source_get_handle(source: &DispatchSource) -> usize;
+        }
+        unsafe { dispatch_source_get_handle(self) }
+    }
 
-extern "C" {
     /// Returns the mask of events monitored by the dispatch source.
     ///
     ///
@@ -2297,10 +2369,15 @@ extern "C" {
     /// DISPATCH_SOURCE_TYPE_VNODE:           dispatch_source_vnode_flags_t
     /// DISPATCH_SOURCE_TYPE_WRITE:           n/a
     #[must_use]
-    pub fn dispatch_source_get_mask(source: &DispatchSource) -> usize;
-}
+    #[inline]
+    #[doc(alias = "dispatch_source_get_mask")]
+    pub unsafe fn mask(self: &DispatchSource) -> usize {
+        extern "C" {
+            fn dispatch_source_get_mask(source: &DispatchSource) -> usize;
+        }
+        unsafe { dispatch_source_get_mask(self) }
+    }
 
-extern "C" {
     /// Returns pending data for the dispatch source.
     ///
     ///
@@ -2330,10 +2407,15 @@ extern "C" {
     /// DISPATCH_SOURCE_TYPE_VNODE:           dispatch_source_vnode_flags_t
     /// DISPATCH_SOURCE_TYPE_WRITE:           estimated buffer space available
     #[must_use]
-    pub fn dispatch_source_get_data(source: &DispatchSource) -> usize;
-}
+    #[inline]
+    #[doc(alias = "dispatch_source_get_data")]
+    pub unsafe fn data(self: &DispatchSource) -> usize {
+        extern "C" {
+            fn dispatch_source_get_data(source: &DispatchSource) -> usize;
+        }
+        unsafe { dispatch_source_get_data(self) }
+    }
 
-extern "C" {
     /// Merges data into a dispatch source of type DISPATCH_SOURCE_TYPE_DATA_ADD,
     /// DISPATCH_SOURCE_TYPE_DATA_OR or DISPATCH_SOURCE_TYPE_DATA_REPLACE,
     /// and submits its event handler block to its target queue.
@@ -2345,10 +2427,15 @@ extern "C" {
     /// Parameter `value`: The value to coalesce with the pending data using a logical OR or an ADD
     /// as specified by the dispatch source type. A value of zero has no effect
     /// and will not result in the submission of the event handler block.
-    pub fn dispatch_source_merge_data(source: &DispatchSource, value: usize);
-}
+    #[inline]
+    #[doc(alias = "dispatch_source_merge_data")]
+    pub unsafe fn merge_data(self: &DispatchSource, value: usize) {
+        extern "C" {
+            fn dispatch_source_merge_data(source: &DispatchSource, value: usize);
+        }
+        unsafe { dispatch_source_merge_data(self, value) }
+    }
 
-extern "C" {
     /// Sets a start time, interval, and leeway value for a timer source.
     ///
     ///
@@ -2392,23 +2479,38 @@ extern "C" {
     ///
     ///
     /// Parameter `leeway`: The nanosecond leeway for the timer.
-    pub fn dispatch_source_set_timer(
-        source: &DispatchSource,
+    #[inline]
+    #[doc(alias = "dispatch_source_set_timer")]
+    pub unsafe fn set_timer(
+        self: &DispatchSource,
         start: dispatch_time_t,
         interval: u64,
         leeway: u64,
-    );
-}
+    ) {
+        extern "C" {
+            fn dispatch_source_set_timer(
+                source: &DispatchSource,
+                start: dispatch_time_t,
+                interval: u64,
+                leeway: u64,
+            );
+        }
+        unsafe { dispatch_source_set_timer(self, start, interval, leeway) }
+    }
 
-extern "C" {
     #[cfg(feature = "block2")]
-    pub fn dispatch_source_set_registration_handler(
-        source: &DispatchSource,
-        handler: dispatch_block_t,
-    );
-}
+    #[inline]
+    #[doc(alias = "dispatch_source_set_registration_handler")]
+    pub unsafe fn set_registration_handler_block(self: &DispatchSource, handler: dispatch_block_t) {
+        extern "C" {
+            fn dispatch_source_set_registration_handler(
+                source: &DispatchSource,
+                handler: dispatch_block_t,
+            );
+        }
+        unsafe { dispatch_source_set_registration_handler(self, handler) }
+    }
 
-extern "C" {
     /// Sets the registration handler function for the given dispatch source.
     ///
     ///
@@ -2422,10 +2524,17 @@ extern "C" {
     /// Parameter `handler`: The registration handler function to submit to the source's target queue.
     /// The context parameter passed to the registration handler function is the
     /// current context of the dispatch source at the time the handler call is made.
-    pub fn dispatch_source_set_registration_handler_f(
-        source: &DispatchSource,
-        handler: dispatch_function_t,
-    );
+    #[inline]
+    #[doc(alias = "dispatch_source_set_registration_handler_f")]
+    pub unsafe fn set_registration_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
+        extern "C" {
+            fn dispatch_source_set_registration_handler_f(
+                source: &DispatchSource,
+                handler: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_source_set_registration_handler_f(self, handler) }
+    }
 }
 
 /// Creates new group with which blocks may be associated.
@@ -2448,16 +2557,25 @@ pub unsafe extern "C" fn dispatch_group_create() -> DispatchRetained<DispatchGro
     unsafe { DispatchRetained::from_raw(ret) }
 }
 
-extern "C" {
+impl DispatchGroup {
     #[cfg(feature = "block2")]
-    pub fn dispatch_group_async(
-        group: &DispatchGroup,
+    #[inline]
+    #[doc(alias = "dispatch_group_async")]
+    pub unsafe fn async_block(
+        self: &DispatchGroup,
         queue: &DispatchQueue,
         block: dispatch_block_t,
-    );
-}
+    ) {
+        extern "C" {
+            fn dispatch_group_async(
+                group: &DispatchGroup,
+                queue: &DispatchQueue,
+                block: dispatch_block_t,
+            );
+        }
+        unsafe { dispatch_group_async(self, queue, block) }
+    }
 
-extern "C" {
     /// Submits a function to a dispatch queue and associates the block with the
     /// given dispatch group.
     ///
@@ -2479,12 +2597,24 @@ extern "C" {
     /// Parameter `work`: The application-defined function to invoke on the target queue. The first
     /// parameter passed to this function is the context provided to
     /// dispatch_group_async_f().
-    pub fn dispatch_group_async_f(
-        group: &DispatchGroup,
+    #[inline]
+    #[doc(alias = "dispatch_group_async_f")]
+    pub unsafe fn async_f(
+        self: &DispatchGroup,
         queue: &DispatchQueue,
         context: *mut c_void,
         work: dispatch_function_t,
-    );
+    ) {
+        extern "C" {
+            fn dispatch_group_async_f(
+                group: &DispatchGroup,
+                queue: &DispatchQueue,
+                context: *mut c_void,
+                work: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_group_async_f(self, queue, context, work) }
+    }
 }
 
 extern "C" {
@@ -2520,16 +2650,25 @@ extern "C" {
     pub fn dispatch_group_wait(group: &DispatchGroup, timeout: dispatch_time_t) -> isize;
 }
 
-extern "C" {
+impl DispatchGroup {
     #[cfg(feature = "block2")]
-    pub fn dispatch_group_notify(
-        group: &DispatchGroup,
+    #[inline]
+    #[doc(alias = "dispatch_group_notify")]
+    pub unsafe fn notify_block(
+        self: &DispatchGroup,
         queue: &DispatchQueue,
         block: dispatch_block_t,
-    );
-}
+    ) {
+        extern "C" {
+            fn dispatch_group_notify(
+                group: &DispatchGroup,
+                queue: &DispatchQueue,
+                block: dispatch_block_t,
+            );
+        }
+        unsafe { dispatch_group_notify(self, queue, block) }
+    }
 
-extern "C" {
     /// Schedule a function to be submitted to a queue when all the blocks
     /// associated with a group have completed.
     ///
@@ -2547,12 +2686,24 @@ extern "C" {
     /// Parameter `work`: The application-defined function to invoke on the target queue. The first
     /// parameter passed to this function is the context provided to
     /// dispatch_group_notify_f().
-    pub fn dispatch_group_notify_f(
-        group: &DispatchGroup,
+    #[inline]
+    #[doc(alias = "dispatch_group_notify_f")]
+    pub unsafe fn notify_f(
+        self: &DispatchGroup,
         queue: &DispatchQueue,
         context: *mut c_void,
         work: dispatch_function_t,
-    );
+    ) {
+        extern "C" {
+            fn dispatch_group_notify_f(
+                group: &DispatchGroup,
+                queue: &DispatchQueue,
+                context: *mut c_void,
+                work: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_group_notify_f(self, queue, context, work) }
+    }
 }
 
 extern "C" {
@@ -2569,7 +2720,7 @@ extern "C" {
     pub fn dispatch_group_enter(group: &DispatchGroup);
 }
 
-extern "C" {
+impl DispatchGroup {
     /// Manually indicate a block in the group has completed
     ///
     ///
@@ -2579,7 +2730,14 @@ extern "C" {
     ///
     /// Parameter `group`: The dispatch group to update.
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_group_leave(group: &DispatchGroup);
+    #[inline]
+    #[doc(alias = "dispatch_group_leave")]
+    pub unsafe fn leave(self: &DispatchGroup) {
+        extern "C" {
+            fn dispatch_group_leave(group: &DispatchGroup);
+        }
+        unsafe { dispatch_group_leave(self) }
+    }
 }
 
 /// Creates new counting semaphore with an initial value.
@@ -2609,7 +2767,7 @@ pub unsafe extern "C" fn dispatch_semaphore_create(
     unsafe { DispatchRetained::from_raw(ret) }
 }
 
-extern "C" {
+impl DispatchSemaphore {
     /// Wait (decrement) for a semaphore.
     ///
     ///
@@ -2627,10 +2785,18 @@ extern "C" {
     ///
     ///
     /// Returns: Returns zero on success, or non-zero if the timeout occurred.
-    pub fn dispatch_semaphore_wait(dsema: &DispatchSemaphore, timeout: dispatch_time_t) -> isize;
-}
+    #[inline]
+    #[doc(alias = "dispatch_semaphore_wait")]
+    pub unsafe fn wait(self: &DispatchSemaphore, timeout: dispatch_time_t) -> isize {
+        extern "C" {
+            fn dispatch_semaphore_wait(
+                dsema: &DispatchSemaphore,
+                timeout: dispatch_time_t,
+            ) -> isize;
+        }
+        unsafe { dispatch_semaphore_wait(self, timeout) }
+    }
 
-extern "C" {
     /// Signal (increment) a semaphore.
     ///
     ///
@@ -2644,7 +2810,14 @@ extern "C" {
     ///
     /// Returns: This function returns non-zero if a thread is woken. Otherwise, zero is
     /// returned.
-    pub fn dispatch_semaphore_signal(dsema: &DispatchSemaphore) -> isize;
+    #[inline]
+    #[doc(alias = "dispatch_semaphore_signal")]
+    pub unsafe fn signal(self: &DispatchSemaphore) -> isize {
+        extern "C" {
+            fn dispatch_semaphore_signal(dsema: &DispatchSemaphore) -> isize;
+        }
+        unsafe { dispatch_semaphore_signal(self) }
+    }
 }
 
 /// A predicate for use with dispatch_once(). It must be initialized to zero.
@@ -2683,52 +2856,54 @@ extern "C" {
     pub static _dispatch_data_destructor_munmap: dispatch_block_t;
 }
 
-/// Creates a dispatch data object from the given contiguous buffer of memory. If
-/// a non-default destructor is provided, ownership of the buffer remains with
-/// the caller (i.e. the bytes will not be copied). The last release of the data
-/// object will result in the invocation of the specified destructor on the
-/// specified queue to free the buffer.
-///
-/// If the DISPATCH_DATA_DESTRUCTOR_FREE destructor is provided the buffer will
-/// be freed via free(3) and the queue argument ignored.
-///
-/// If the DISPATCH_DATA_DESTRUCTOR_DEFAULT destructor is provided, data object
-/// creation will copy the buffer into internal memory managed by the system.
-///
-///
-/// Parameter `buffer`: A contiguous buffer of data.
-///
-/// Parameter `size`: The size of the contiguous buffer of data.
-///
-/// Parameter `queue`: The queue to which the destructor should be submitted.
-///
-/// Parameter `destructor`: The destructor responsible for freeing the data when it
-/// is no longer needed.
-///
-/// Returns: A newly created dispatch data object.
-#[cfg(feature = "block2")]
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_data_create(
-    buffer: NonNull<c_void>,
-    size: usize,
-    queue: Option<&DispatchQueue>,
-    destructor: dispatch_block_t,
-) -> DispatchRetained<DispatchData> {
-    extern "C" {
-        fn dispatch_data_create(
-            buffer: NonNull<c_void>,
-            size: usize,
-            queue: Option<&DispatchQueue>,
-            destructor: dispatch_block_t,
-        ) -> Option<NonNull<DispatchData>>;
+impl DispatchData {
+    /// Creates a dispatch data object from the given contiguous buffer of memory. If
+    /// a non-default destructor is provided, ownership of the buffer remains with
+    /// the caller (i.e. the bytes will not be copied). The last release of the data
+    /// object will result in the invocation of the specified destructor on the
+    /// specified queue to free the buffer.
+    ///
+    /// If the DISPATCH_DATA_DESTRUCTOR_FREE destructor is provided the buffer will
+    /// be freed via free(3) and the queue argument ignored.
+    ///
+    /// If the DISPATCH_DATA_DESTRUCTOR_DEFAULT destructor is provided, data object
+    /// creation will copy the buffer into internal memory managed by the system.
+    ///
+    ///
+    /// Parameter `buffer`: A contiguous buffer of data.
+    ///
+    /// Parameter `size`: The size of the contiguous buffer of data.
+    ///
+    /// Parameter `queue`: The queue to which the destructor should be submitted.
+    ///
+    /// Parameter `destructor`: The destructor responsible for freeing the data when it
+    /// is no longer needed.
+    ///
+    /// Returns: A newly created dispatch data object.
+    #[cfg(feature = "block2")]
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_data_create")]
+    pub unsafe fn new(
+        buffer: NonNull<c_void>,
+        size: usize,
+        queue: Option<&DispatchQueue>,
+        destructor: dispatch_block_t,
+    ) -> DispatchRetained<DispatchData> {
+        extern "C" {
+            fn dispatch_data_create(
+                buffer: NonNull<c_void>,
+                size: usize,
+                queue: Option<&DispatchQueue>,
+                destructor: dispatch_block_t,
+            ) -> Option<NonNull<DispatchData>>;
+        }
+        let ret = unsafe { dispatch_data_create(buffer, size, queue, destructor) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
     }
-    let ret = unsafe { dispatch_data_create(buffer, size, queue, destructor) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
-}
 
-extern "C" {
     /// Returns the logical size of the memory region(s) represented by the specified
     /// dispatch data object.
     ///
@@ -2736,113 +2911,126 @@ extern "C" {
     /// Parameter `data`: The dispatch data object to query.
     ///
     /// Returns: The number of bytes represented by the data object.
-    pub fn dispatch_data_get_size(data: &DispatchData) -> usize;
-}
-
-/// Maps the memory represented by the specified dispatch data object as a single
-/// contiguous memory region and returns a new data object representing it.
-/// If non-NULL references to a pointer and a size variable are provided, they
-/// are filled with the location and extent of that region. These allow direct
-/// read access to the represented memory, but are only valid until the returned
-/// object is released. Under ARC, if that object is held in a variable with
-/// automatic storage, care needs to be taken to ensure that it is not released
-/// by the compiler before memory access via the pointer has been completed.
-///
-///
-/// Parameter `data`: The dispatch data object to map.
-///
-/// Parameter `buffer_ptr`: A pointer to a pointer variable to be filled with the
-/// location of the mapped contiguous memory region, or
-/// NULL.
-///
-/// Parameter `size_ptr`: A pointer to a size_t variable to be filled with the
-/// size of the mapped contiguous memory region, or NULL.
-///
-/// Returns: A newly created dispatch data object.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_data_create_map(
-    data: &DispatchData,
-    buffer_ptr: *mut *const c_void,
-    size_ptr: *mut usize,
-) -> DispatchRetained<DispatchData> {
-    extern "C" {
-        fn dispatch_data_create_map(
-            data: &DispatchData,
-            buffer_ptr: *mut *const c_void,
-            size_ptr: *mut usize,
-        ) -> Option<NonNull<DispatchData>>;
+    #[inline]
+    #[doc(alias = "dispatch_data_get_size")]
+    pub unsafe fn size(self: &DispatchData) -> usize {
+        extern "C" {
+            fn dispatch_data_get_size(data: &DispatchData) -> usize;
+        }
+        unsafe { dispatch_data_get_size(self) }
     }
-    let ret = unsafe { dispatch_data_create_map(data, buffer_ptr, size_ptr) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
-}
 
-/// Returns a new dispatch data object representing the concatenation of the
-/// specified data objects. Those objects may be released by the application
-/// after the call returns (however, the system might not deallocate the memory
-/// region(s) described by them until the newly created object has also been
-/// released).
-///
-///
-/// Parameter `data1`: The data object representing the region(s) of memory to place
-/// at the beginning of the newly created object.
-///
-/// Parameter `data2`: The data object representing the region(s) of memory to place
-/// at the end of the newly created object.
-///
-/// Returns: A newly created object representing the concatenation of the
-/// data1 and data2 objects.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_data_create_concat(
-    data1: &DispatchData,
-    data2: &DispatchData,
-) -> DispatchRetained<DispatchData> {
-    extern "C" {
-        fn dispatch_data_create_concat(
-            data1: &DispatchData,
-            data2: &DispatchData,
-        ) -> Option<NonNull<DispatchData>>;
+    /// Maps the memory represented by the specified dispatch data object as a single
+    /// contiguous memory region and returns a new data object representing it.
+    /// If non-NULL references to a pointer and a size variable are provided, they
+    /// are filled with the location and extent of that region. These allow direct
+    /// read access to the represented memory, but are only valid until the returned
+    /// object is released. Under ARC, if that object is held in a variable with
+    /// automatic storage, care needs to be taken to ensure that it is not released
+    /// by the compiler before memory access via the pointer has been completed.
+    ///
+    ///
+    /// Parameter `data`: The dispatch data object to map.
+    ///
+    /// Parameter `buffer_ptr`: A pointer to a pointer variable to be filled with the
+    /// location of the mapped contiguous memory region, or
+    /// NULL.
+    ///
+    /// Parameter `size_ptr`: A pointer to a size_t variable to be filled with the
+    /// size of the mapped contiguous memory region, or NULL.
+    ///
+    /// Returns: A newly created dispatch data object.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_data_create_map")]
+    pub unsafe fn map(
+        self: &DispatchData,
+        buffer_ptr: *mut *const c_void,
+        size_ptr: *mut usize,
+    ) -> DispatchRetained<DispatchData> {
+        extern "C" {
+            fn dispatch_data_create_map(
+                data: &DispatchData,
+                buffer_ptr: *mut *const c_void,
+                size_ptr: *mut usize,
+            ) -> Option<NonNull<DispatchData>>;
+        }
+        let ret = unsafe { dispatch_data_create_map(self, buffer_ptr, size_ptr) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
     }
-    let ret = unsafe { dispatch_data_create_concat(data1, data2) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
-}
 
-/// Returns a new dispatch data object representing a subrange of the specified
-/// data object, which may be released by the application after the call returns
-/// (however, the system might not deallocate the memory region(s) described by
-/// that object until the newly created object has also been released).
-///
-///
-/// Parameter `data`: The data object representing the region(s) of memory to
-/// create a subrange of.
-///
-/// Parameter `offset`: The offset into the data object where the subrange
-/// starts.
-///
-/// Parameter `length`: The length of the range.
-///
-/// Returns: A newly created object representing the specified
-/// subrange of the data object.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_data_create_subrange(
-    data: &DispatchData,
-    offset: usize,
-    length: usize,
-) -> DispatchRetained<DispatchData> {
-    extern "C" {
-        fn dispatch_data_create_subrange(
-            data: &DispatchData,
-            offset: usize,
-            length: usize,
-        ) -> Option<NonNull<DispatchData>>;
+    /// Returns a new dispatch data object representing the concatenation of the
+    /// specified data objects. Those objects may be released by the application
+    /// after the call returns (however, the system might not deallocate the memory
+    /// region(s) described by them until the newly created object has also been
+    /// released).
+    ///
+    ///
+    /// Parameter `data1`: The data object representing the region(s) of memory to place
+    /// at the beginning of the newly created object.
+    ///
+    /// Parameter `data2`: The data object representing the region(s) of memory to place
+    /// at the end of the newly created object.
+    ///
+    /// Returns: A newly created object representing the concatenation of the
+    /// data1 and data2 objects.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_data_create_concat")]
+    pub unsafe fn concat(
+        self: &DispatchData,
+        data2: &DispatchData,
+    ) -> DispatchRetained<DispatchData> {
+        extern "C" {
+            fn dispatch_data_create_concat(
+                data1: &DispatchData,
+                data2: &DispatchData,
+            ) -> Option<NonNull<DispatchData>>;
+        }
+        let ret = unsafe { dispatch_data_create_concat(self, data2) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
     }
-    let ret = unsafe { dispatch_data_create_subrange(data, offset, length) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
+
+    /// Returns a new dispatch data object representing a subrange of the specified
+    /// data object, which may be released by the application after the call returns
+    /// (however, the system might not deallocate the memory region(s) described by
+    /// that object until the newly created object has also been released).
+    ///
+    ///
+    /// Parameter `data`: The data object representing the region(s) of memory to
+    /// create a subrange of.
+    ///
+    /// Parameter `offset`: The offset into the data object where the subrange
+    /// starts.
+    ///
+    /// Parameter `length`: The length of the range.
+    ///
+    /// Returns: A newly created object representing the specified
+    /// subrange of the data object.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_data_create_subrange")]
+    pub unsafe fn subrange(
+        self: &DispatchData,
+        offset: usize,
+        length: usize,
+    ) -> DispatchRetained<DispatchData> {
+        extern "C" {
+            fn dispatch_data_create_subrange(
+                data: &DispatchData,
+                offset: usize,
+                length: usize,
+            ) -> Option<NonNull<DispatchData>>;
+        }
+        let ret = unsafe { dispatch_data_create_subrange(self, offset, length) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
+    }
 }
 
 /// A block to be invoked for every contiguous memory region in a data object.
@@ -2864,7 +3052,7 @@ pub unsafe extern "C" fn dispatch_data_create_subrange(
 pub type dispatch_data_applier_t =
     *mut block2::DynBlock<dyn Fn(NonNull<DispatchData>, usize, NonNull<c_void>, usize) -> bool>;
 
-extern "C" {
+impl DispatchData {
     /// Traverse the memory regions represented by the specified dispatch data object
     /// in logical order and invoke the specified block once for every contiguous
     /// memory region encountered.
@@ -2886,41 +3074,50 @@ extern "C" {
     /// Returns: A Boolean indicating whether traversal completed
     /// successfully.
     #[cfg(feature = "block2")]
-    pub fn dispatch_data_apply(data: &DispatchData, applier: dispatch_data_applier_t) -> bool;
-}
-
-/// Finds the contiguous memory region containing the specified location among
-/// the regions represented by the specified object and returns a copy of the
-/// internal dispatch data object representing that region along with its logical
-/// offset in the specified object.
-///
-///
-/// Parameter `data`: The dispatch data object to query.
-///
-/// Parameter `location`: The logical position in the data object to query.
-///
-/// Parameter `offset_ptr`: A pointer to a size_t variable to be filled with the
-/// logical offset of the returned region object to the
-/// start of the queried data object.
-///
-/// Returns: A newly created dispatch data object.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_data_copy_region(
-    data: &DispatchData,
-    location: usize,
-    offset_ptr: NonNull<usize>,
-) -> DispatchRetained<DispatchData> {
-    extern "C" {
-        fn dispatch_data_copy_region(
-            data: &DispatchData,
-            location: usize,
-            offset_ptr: NonNull<usize>,
-        ) -> Option<NonNull<DispatchData>>;
+    #[inline]
+    #[doc(alias = "dispatch_data_apply")]
+    pub unsafe fn apply(self: &DispatchData, applier: dispatch_data_applier_t) -> bool {
+        extern "C" {
+            fn dispatch_data_apply(data: &DispatchData, applier: dispatch_data_applier_t) -> bool;
+        }
+        unsafe { dispatch_data_apply(self, applier) }
     }
-    let ret = unsafe { dispatch_data_copy_region(data, location, offset_ptr) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
+
+    /// Finds the contiguous memory region containing the specified location among
+    /// the regions represented by the specified object and returns a copy of the
+    /// internal dispatch data object representing that region along with its logical
+    /// offset in the specified object.
+    ///
+    ///
+    /// Parameter `data`: The dispatch data object to query.
+    ///
+    /// Parameter `location`: The logical position in the data object to query.
+    ///
+    /// Parameter `offset_ptr`: A pointer to a size_t variable to be filled with the
+    /// logical offset of the returned region object to the
+    /// start of the queried data object.
+    ///
+    /// Returns: A newly created dispatch data object.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_data_copy_region")]
+    pub unsafe fn region(
+        self: &DispatchData,
+        location: usize,
+        offset_ptr: NonNull<usize>,
+    ) -> DispatchRetained<DispatchData> {
+        extern "C" {
+            fn dispatch_data_copy_region(
+                data: &DispatchData,
+                location: usize,
+                offset_ptr: NonNull<usize>,
+            ) -> Option<NonNull<DispatchData>>;
+        }
+        let ret = unsafe { dispatch_data_copy_region(self, location, offset_ptr) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_fd_t?language=objc)
@@ -3018,166 +3215,175 @@ extern "C" {
     );
 }
 
-/// Create a dispatch I/O channel associated with a file descriptor. The system
-/// takes control of the file descriptor until the channel is closed, an error
-/// occurs on the file descriptor or all references to the channel are released.
-/// At that time the specified cleanup handler will be enqueued and control over
-/// the file descriptor relinquished.
-///
-/// While a file descriptor is under the control of a dispatch I/O channel, file
-/// descriptor flags such as O_NONBLOCK will be modified by the system on behalf
-/// of the application. It is an error for the application to modify a file
-/// descriptor directly while it is under the control of a dispatch I/O channel,
-/// but it may create additional channels associated with that file descriptor.
-///
-///
-/// Parameter `type`: The desired type of I/O channel (DISPATCH_IO_STREAM
-/// or DISPATCH_IO_RANDOM).
-///
-/// Parameter `fd`: The file descriptor to associate with the I/O channel.
-///
-/// Parameter `queue`: The dispatch queue to which the handler should be submitted.
-///
-/// Parameter `cleanup_handler`: The handler to enqueue when the system
-/// relinquishes control over the file descriptor.
-/// param error        An errno condition if control is relinquished
-/// because channel creation failed, zero otherwise.
-///
-/// Returns: The newly created dispatch I/O channel or NULL if an error
-/// occurred (invalid type specified).
-#[cfg(feature = "block2")]
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_io_create(
-    r#type: dispatch_io_type_t,
-    fd: dispatch_fd_t,
-    queue: &DispatchQueue,
-    cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
-) -> DispatchRetained<DispatchIO> {
-    extern "C" {
-        fn dispatch_io_create(
-            r#type: dispatch_io_type_t,
-            fd: dispatch_fd_t,
-            queue: &DispatchQueue,
-            cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
-        ) -> Option<NonNull<DispatchIO>>;
+impl DispatchIO {
+    /// Create a dispatch I/O channel associated with a file descriptor. The system
+    /// takes control of the file descriptor until the channel is closed, an error
+    /// occurs on the file descriptor or all references to the channel are released.
+    /// At that time the specified cleanup handler will be enqueued and control over
+    /// the file descriptor relinquished.
+    ///
+    /// While a file descriptor is under the control of a dispatch I/O channel, file
+    /// descriptor flags such as O_NONBLOCK will be modified by the system on behalf
+    /// of the application. It is an error for the application to modify a file
+    /// descriptor directly while it is under the control of a dispatch I/O channel,
+    /// but it may create additional channels associated with that file descriptor.
+    ///
+    ///
+    /// Parameter `type`: The desired type of I/O channel (DISPATCH_IO_STREAM
+    /// or DISPATCH_IO_RANDOM).
+    ///
+    /// Parameter `fd`: The file descriptor to associate with the I/O channel.
+    ///
+    /// Parameter `queue`: The dispatch queue to which the handler should be submitted.
+    ///
+    /// Parameter `cleanup_handler`: The handler to enqueue when the system
+    /// relinquishes control over the file descriptor.
+    /// param error        An errno condition if control is relinquished
+    /// because channel creation failed, zero otherwise.
+    ///
+    /// Returns: The newly created dispatch I/O channel or NULL if an error
+    /// occurred (invalid type specified).
+    #[cfg(feature = "block2")]
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_io_create")]
+    pub unsafe fn new(
+        r#type: dispatch_io_type_t,
+        fd: dispatch_fd_t,
+        queue: &DispatchQueue,
+        cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+    ) -> DispatchRetained<DispatchIO> {
+        extern "C" {
+            fn dispatch_io_create(
+                r#type: dispatch_io_type_t,
+                fd: dispatch_fd_t,
+                queue: &DispatchQueue,
+                cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+            ) -> Option<NonNull<DispatchIO>>;
+        }
+        let ret = unsafe { dispatch_io_create(r#type, fd, queue, cleanup_handler) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
     }
-    let ret = unsafe { dispatch_io_create(r#type, fd, queue, cleanup_handler) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
-}
 
-/// Create a dispatch I/O channel associated with a path name. The specified
-/// path, oflag and mode parameters will be passed to open(2) when the first I/O
-/// operation on the channel is ready to execute and the resulting file
-/// descriptor will remain open and under the control of the system until the
-/// channel is closed, an error occurs on the file descriptor or all references
-/// to the channel are released. At that time the file descriptor will be closed
-/// and the specified cleanup handler will be enqueued.
-///
-///
-/// Parameter `type`: The desired type of I/O channel (DISPATCH_IO_STREAM
-/// or DISPATCH_IO_RANDOM).
-///
-/// Parameter `path`: The absolute path to associate with the I/O channel.
-///
-/// Parameter `oflag`: The flags to pass to open(2) when opening the file at
-/// path.
-///
-/// Parameter `mode`: The mode to pass to open(2) when creating the file at
-/// path (i.e. with flag O_CREAT), zero otherwise.
-///
-/// Parameter `queue`: The dispatch queue to which the handler should be
-/// submitted.
-///
-/// Parameter `cleanup_handler`: The handler to enqueue when the system
-/// has closed the file at path.
-/// param error        An errno condition if control is relinquished
-/// because channel creation or opening of the
-/// specified file failed, zero otherwise.
-///
-/// Returns: The newly created dispatch I/O channel or NULL if an error
-/// occurred (invalid type or non-absolute path specified).
-#[cfg(all(feature = "block2", feature = "libc"))]
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_io_create_with_path(
-    r#type: dispatch_io_type_t,
-    path: NonNull<c_char>,
-    oflag: c_int,
-    mode: libc::mode_t,
-    queue: &DispatchQueue,
-    cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
-) -> DispatchRetained<DispatchIO> {
-    extern "C" {
-        fn dispatch_io_create_with_path(
-            r#type: dispatch_io_type_t,
-            path: NonNull<c_char>,
-            oflag: c_int,
-            mode: libc::mode_t,
-            queue: &DispatchQueue,
-            cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
-        ) -> Option<NonNull<DispatchIO>>;
+    /// Create a dispatch I/O channel associated with a path name. The specified
+    /// path, oflag and mode parameters will be passed to open(2) when the first I/O
+    /// operation on the channel is ready to execute and the resulting file
+    /// descriptor will remain open and under the control of the system until the
+    /// channel is closed, an error occurs on the file descriptor or all references
+    /// to the channel are released. At that time the file descriptor will be closed
+    /// and the specified cleanup handler will be enqueued.
+    ///
+    ///
+    /// Parameter `type`: The desired type of I/O channel (DISPATCH_IO_STREAM
+    /// or DISPATCH_IO_RANDOM).
+    ///
+    /// Parameter `path`: The absolute path to associate with the I/O channel.
+    ///
+    /// Parameter `oflag`: The flags to pass to open(2) when opening the file at
+    /// path.
+    ///
+    /// Parameter `mode`: The mode to pass to open(2) when creating the file at
+    /// path (i.e. with flag O_CREAT), zero otherwise.
+    ///
+    /// Parameter `queue`: The dispatch queue to which the handler should be
+    /// submitted.
+    ///
+    /// Parameter `cleanup_handler`: The handler to enqueue when the system
+    /// has closed the file at path.
+    /// param error        An errno condition if control is relinquished
+    /// because channel creation or opening of the
+    /// specified file failed, zero otherwise.
+    ///
+    /// Returns: The newly created dispatch I/O channel or NULL if an error
+    /// occurred (invalid type or non-absolute path specified).
+    #[cfg(all(feature = "block2", feature = "libc"))]
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_io_create_with_path")]
+    pub unsafe fn with_path(
+        r#type: dispatch_io_type_t,
+        path: NonNull<c_char>,
+        oflag: c_int,
+        mode: libc::mode_t,
+        queue: &DispatchQueue,
+        cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+    ) -> DispatchRetained<DispatchIO> {
+        extern "C" {
+            fn dispatch_io_create_with_path(
+                r#type: dispatch_io_type_t,
+                path: NonNull<c_char>,
+                oflag: c_int,
+                mode: libc::mode_t,
+                queue: &DispatchQueue,
+                cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+            ) -> Option<NonNull<DispatchIO>>;
+        }
+        let ret = unsafe {
+            dispatch_io_create_with_path(r#type, path, oflag, mode, queue, cleanup_handler)
+        };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
     }
-    let ret =
-        unsafe { dispatch_io_create_with_path(r#type, path, oflag, mode, queue, cleanup_handler) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
-}
 
-/// Create a new dispatch I/O channel from an existing dispatch I/O channel.
-/// The new channel inherits the file descriptor or path name associated with
-/// the existing channel, but not its channel type or policies.
-///
-/// If the existing channel is associated with a file descriptor, control by the
-/// system over that file descriptor is extended until the new channel is also
-/// closed, an error occurs on the file descriptor, or all references to both
-/// channels are released. At that time the specified cleanup handler will be
-/// enqueued and control over the file descriptor relinquished.
-///
-/// While a file descriptor is under the control of a dispatch I/O channel, file
-/// descriptor flags such as O_NONBLOCK will be modified by the system on behalf
-/// of the application. It is an error for the application to modify a file
-/// descriptor directly while it is under the control of a dispatch I/O channel,
-/// but it may create additional channels associated with that file descriptor.
-///
-///
-/// Parameter `type`: The desired type of I/O channel (DISPATCH_IO_STREAM
-/// or DISPATCH_IO_RANDOM).
-///
-/// Parameter `io`: The existing channel to create the new I/O channel from.
-///
-/// Parameter `queue`: The dispatch queue to which the handler should be submitted.
-///
-/// Parameter `cleanup_handler`: The handler to enqueue when the system
-/// relinquishes control over the file descriptor
-/// (resp. closes the file at path) associated with
-/// the existing channel.
-/// param error        An errno condition if control is relinquished
-/// because channel creation failed, zero otherwise.
-///
-/// Returns: The newly created dispatch I/O channel or NULL if an error
-/// occurred (invalid type specified).
-#[cfg(feature = "block2")]
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_io_create_with_io(
-    r#type: dispatch_io_type_t,
-    io: &DispatchIO,
-    queue: &DispatchQueue,
-    cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
-) -> DispatchRetained<DispatchIO> {
-    extern "C" {
-        fn dispatch_io_create_with_io(
-            r#type: dispatch_io_type_t,
-            io: &DispatchIO,
-            queue: &DispatchQueue,
-            cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
-        ) -> Option<NonNull<DispatchIO>>;
+    /// Create a new dispatch I/O channel from an existing dispatch I/O channel.
+    /// The new channel inherits the file descriptor or path name associated with
+    /// the existing channel, but not its channel type or policies.
+    ///
+    /// If the existing channel is associated with a file descriptor, control by the
+    /// system over that file descriptor is extended until the new channel is also
+    /// closed, an error occurs on the file descriptor, or all references to both
+    /// channels are released. At that time the specified cleanup handler will be
+    /// enqueued and control over the file descriptor relinquished.
+    ///
+    /// While a file descriptor is under the control of a dispatch I/O channel, file
+    /// descriptor flags such as O_NONBLOCK will be modified by the system on behalf
+    /// of the application. It is an error for the application to modify a file
+    /// descriptor directly while it is under the control of a dispatch I/O channel,
+    /// but it may create additional channels associated with that file descriptor.
+    ///
+    ///
+    /// Parameter `type`: The desired type of I/O channel (DISPATCH_IO_STREAM
+    /// or DISPATCH_IO_RANDOM).
+    ///
+    /// Parameter `io`: The existing channel to create the new I/O channel from.
+    ///
+    /// Parameter `queue`: The dispatch queue to which the handler should be submitted.
+    ///
+    /// Parameter `cleanup_handler`: The handler to enqueue when the system
+    /// relinquishes control over the file descriptor
+    /// (resp. closes the file at path) associated with
+    /// the existing channel.
+    /// param error        An errno condition if control is relinquished
+    /// because channel creation failed, zero otherwise.
+    ///
+    /// Returns: The newly created dispatch I/O channel or NULL if an error
+    /// occurred (invalid type specified).
+    #[cfg(feature = "block2")]
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_io_create_with_io")]
+    pub unsafe fn with_io(
+        r#type: dispatch_io_type_t,
+        io: &DispatchIO,
+        queue: &DispatchQueue,
+        cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+    ) -> DispatchRetained<DispatchIO> {
+        extern "C" {
+            fn dispatch_io_create_with_io(
+                r#type: dispatch_io_type_t,
+                io: &DispatchIO,
+                queue: &DispatchQueue,
+                cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
+            ) -> Option<NonNull<DispatchIO>>;
+        }
+        let ret = unsafe { dispatch_io_create_with_io(r#type, io, queue, cleanup_handler) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
     }
-    let ret = unsafe { dispatch_io_create_with_io(r#type, io, queue, cleanup_handler) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
 }
 
 /// The prototype of I/O handler blocks for dispatch I/O operations.
@@ -3193,7 +3399,7 @@ pub unsafe extern "C" fn dispatch_io_create_with_io(
 #[cfg(feature = "block2")]
 pub type dispatch_io_handler_t = *mut block2::DynBlock<dyn Fn(bool, *mut DispatchData, c_int)>;
 
-extern "C" {
+impl DispatchIO {
     /// Schedule a read operation for asynchronous execution on the specified I/O
     /// channel. The I/O handler is enqueued one or more times depending on the
     /// general load of the system and the policy specified on the I/O channel.
@@ -3239,16 +3445,27 @@ extern "C" {
     /// param error    An errno condition for the read operation or zero if
     /// the read was successful.
     #[cfg(all(feature = "block2", feature = "libc"))]
-    pub fn dispatch_io_read(
-        channel: &DispatchIO,
+    #[inline]
+    #[doc(alias = "dispatch_io_read")]
+    pub unsafe fn read(
+        self: &DispatchIO,
         offset: libc::off_t,
         length: usize,
         queue: &DispatchQueue,
         io_handler: dispatch_io_handler_t,
-    );
-}
+    ) {
+        extern "C" {
+            fn dispatch_io_read(
+                channel: &DispatchIO,
+                offset: libc::off_t,
+                length: usize,
+                queue: &DispatchQueue,
+                io_handler: dispatch_io_handler_t,
+            );
+        }
+        unsafe { dispatch_io_read(self, offset, length, queue, io_handler) }
+    }
 
-extern "C" {
     /// Schedule a write operation for asynchronous execution on the specified I/O
     /// channel. The I/O handler is enqueued one or more times depending on the
     /// general load of the system and the policy specified on the I/O channel.
@@ -3295,16 +3512,27 @@ extern "C" {
     /// param error    An errno condition for the write operation or zero
     /// if the write was successful.
     #[cfg(all(feature = "block2", feature = "libc"))]
-    pub fn dispatch_io_write(
-        channel: &DispatchIO,
+    #[inline]
+    #[doc(alias = "dispatch_io_write")]
+    pub unsafe fn write(
+        self: &DispatchIO,
         offset: libc::off_t,
         data: &DispatchData,
         queue: &DispatchQueue,
         io_handler: dispatch_io_handler_t,
-    );
-}
+    ) {
+        extern "C" {
+            fn dispatch_io_write(
+                channel: &DispatchIO,
+                offset: libc::off_t,
+                data: &DispatchData,
+                queue: &DispatchQueue,
+                io_handler: dispatch_io_handler_t,
+            );
+        }
+        unsafe { dispatch_io_write(self, offset, data, queue, io_handler) }
+    }
 
-extern "C" {
     /// Close the specified I/O channel to new read or write operations; scheduling
     /// operations on a closed channel results in their handler returning an error.
     ///
@@ -3321,10 +3549,15 @@ extern "C" {
     /// Parameter `channel`: The dispatch I/O channel to close.
     ///
     /// Parameter `flags`: The flags for the close operation.
-    pub fn dispatch_io_close(channel: &DispatchIO, flags: dispatch_io_close_flags_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_io_close")]
+    pub unsafe fn close(self: &DispatchIO, flags: dispatch_io_close_flags_t) {
+        extern "C" {
+            fn dispatch_io_close(channel: &DispatchIO, flags: dispatch_io_close_flags_t);
+        }
+        unsafe { dispatch_io_close(self, flags) }
+    }
 
-extern "C" {
     /// Schedule a barrier operation on the specified I/O channel; all previously
     /// scheduled operations on the channel will complete before the provided
     /// barrier block is enqueued onto the global queue determined by the channel's
@@ -3346,10 +3579,15 @@ extern "C" {
     ///
     /// Parameter `barrier`: The barrier block.
     #[cfg(feature = "block2")]
-    pub fn dispatch_io_barrier(channel: &DispatchIO, barrier: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_io_barrier")]
+    pub unsafe fn barrier(self: &DispatchIO, barrier: dispatch_block_t) {
+        extern "C" {
+            fn dispatch_io_barrier(channel: &DispatchIO, barrier: dispatch_block_t);
+        }
+        unsafe { dispatch_io_barrier(self, barrier) }
+    }
 
-extern "C" {
     /// Returns the file descriptor underlying a dispatch I/O channel.
     ///
     /// Will return -1 for a channel closed with dispatch_io_close() and for a
@@ -3364,10 +3602,15 @@ extern "C" {
     ///
     /// Returns: The file descriptor underlying the channel, or -1.
     #[must_use]
-    pub fn dispatch_io_get_descriptor(channel: &DispatchIO) -> dispatch_fd_t;
-}
+    #[inline]
+    #[doc(alias = "dispatch_io_get_descriptor")]
+    pub unsafe fn descriptor(self: &DispatchIO) -> dispatch_fd_t {
+        extern "C" {
+            fn dispatch_io_get_descriptor(channel: &DispatchIO) -> dispatch_fd_t;
+        }
+        unsafe { dispatch_io_get_descriptor(self) }
+    }
 
-extern "C" {
     /// Set a high water mark on the I/O channel for all operations.
     ///
     /// The system will make a best effort to enqueue I/O handlers with partial
@@ -3383,10 +3626,15 @@ extern "C" {
     /// Parameter `channel`: The dispatch I/O channel on which to set the policy.
     ///
     /// Parameter `high_water`: The number of bytes to use as a high water mark.
-    pub fn dispatch_io_set_high_water(channel: &DispatchIO, high_water: usize);
-}
+    #[inline]
+    #[doc(alias = "dispatch_io_set_high_water")]
+    pub unsafe fn set_high_water(self: &DispatchIO, high_water: usize) {
+        extern "C" {
+            fn dispatch_io_set_high_water(channel: &DispatchIO, high_water: usize);
+        }
+        unsafe { dispatch_io_set_high_water(self, high_water) }
+    }
 
-extern "C" {
     /// Set a low water mark on the I/O channel for all operations.
     ///
     /// The system will process (i.e. read or write) at least the low water mark
@@ -3412,10 +3660,15 @@ extern "C" {
     /// Parameter `channel`: The dispatch I/O channel on which to set the policy.
     ///
     /// Parameter `low_water`: The number of bytes to use as a low water mark.
-    pub fn dispatch_io_set_low_water(channel: &DispatchIO, low_water: usize);
-}
+    #[inline]
+    #[doc(alias = "dispatch_io_set_low_water")]
+    pub unsafe fn set_low_water(self: &DispatchIO, low_water: usize) {
+        extern "C" {
+            fn dispatch_io_set_low_water(channel: &DispatchIO, low_water: usize);
+        }
+        unsafe { dispatch_io_set_low_water(self, low_water) }
+    }
 
-extern "C" {
     /// Set a nanosecond interval at which I/O handlers are to be enqueued on the
     /// I/O channel for all operations.
     ///
@@ -3438,11 +3691,22 @@ extern "C" {
     ///
     /// Parameter `flags`: Flags indicating desired data delivery behavior at
     /// interval time.
-    pub fn dispatch_io_set_interval(
-        channel: &DispatchIO,
+    #[inline]
+    #[doc(alias = "dispatch_io_set_interval")]
+    pub unsafe fn set_interval(
+        self: &DispatchIO,
         interval: u64,
         flags: dispatch_io_interval_flags_t,
-    );
+    ) {
+        extern "C" {
+            fn dispatch_io_set_interval(
+                channel: &DispatchIO,
+                interval: u64,
+                flags: dispatch_io_interval_flags_t,
+            );
+        }
+        unsafe { dispatch_io_set_interval(self, interval, flags) }
+    }
 }
 
 /// Creates a new dispatch workloop to which workitems may be submitted.
@@ -3465,34 +3729,36 @@ pub unsafe extern "C" fn dispatch_workloop_create(
     unsafe { DispatchRetained::from_raw(ret) }
 }
 
-/// Creates a new inactive dispatch workloop that can be setup and then
-/// activated.
-///
-///
-/// Creating an inactive workloop allows for it to receive further configuration
-/// before it is activated, and workitems can be submitted to it.
-///
-/// Submitting workitems to an inactive workloop is undefined and will cause the
-/// process to be terminated.
-///
-///
-/// Parameter `label`: A string label to attach to the workloop.
-///
-///
-/// Returns: The newly created dispatch workloop.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_workloop_create_inactive(
-    label: *const c_char,
-) -> DispatchRetained<DispatchWorkloop> {
-    extern "C" {
-        fn dispatch_workloop_create_inactive(
-            label: *const c_char,
-        ) -> Option<NonNull<DispatchWorkloop>>;
+impl DispatchWorkloop {
+    /// Creates a new inactive dispatch workloop that can be setup and then
+    /// activated.
+    ///
+    ///
+    /// Creating an inactive workloop allows for it to receive further configuration
+    /// before it is activated, and workitems can be submitted to it.
+    ///
+    /// Submitting workitems to an inactive workloop is undefined and will cause the
+    /// process to be terminated.
+    ///
+    ///
+    /// Parameter `label`: A string label to attach to the workloop.
+    ///
+    ///
+    /// Returns: The newly created dispatch workloop.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_workloop_create_inactive")]
+    pub unsafe fn new_inactive(label: *const c_char) -> DispatchRetained<DispatchWorkloop> {
+        extern "C" {
+            fn dispatch_workloop_create_inactive(
+                label: *const c_char,
+            ) -> Option<NonNull<DispatchWorkloop>>;
+        }
+        let ret = unsafe { dispatch_workloop_create_inactive(label) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
     }
-    let ret = unsafe { dispatch_workloop_create_inactive(label) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
 }
 
 extern "C" {
