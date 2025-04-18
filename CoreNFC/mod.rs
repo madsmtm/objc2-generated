@@ -116,6 +116,7 @@ extern_protocol!(
     /// General reader session functions
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadersessionprotocol?language=objc)
+    #[doc(alias = "NFCReaderSession")]
     #[name = "NFCReaderSession"]
     pub unsafe trait NFCReaderSessionProtocol: NSObjectProtocol {
         /// Returns: <i>

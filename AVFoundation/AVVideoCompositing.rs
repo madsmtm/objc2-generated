@@ -486,6 +486,7 @@ extern_protocol!(
     /// The AVVideoCompositionInstruction protocol is implemented by objects to represent operations to be performed by a compositor.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositioninstructionprotocol?language=objc)
+    #[doc(alias = "AVVideoCompositionInstruction")]
     #[name = "AVVideoCompositionInstruction"]
     pub unsafe trait AVVideoCompositionInstructionProtocol: NSObjectProtocol {
         #[cfg(feature = "objc2-core-media")]

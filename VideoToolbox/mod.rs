@@ -752,6 +752,8 @@ pub use self::__VTErrors::kVTVideoEncoderNeedsRosettaErr;
 #[cfg(feature = "VTErrors")]
 pub use self::__VTErrors::kVTVideoEncoderNotAvailableNowErr;
 #[cfg(feature = "VTErrors")]
+pub use self::__VTErrors::VTDecodeFrameFlags;
+#[cfg(feature = "VTErrors")]
 pub use self::__VTErrors::VTDecodeInfoFlags;
 #[cfg(feature = "VTErrors")]
 pub use self::__VTErrors::VTEncodeInfoFlags;

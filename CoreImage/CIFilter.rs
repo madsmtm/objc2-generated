@@ -640,6 +640,7 @@ impl CIFilter {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilterprotocol?language=objc)
+    #[doc(alias = "CIFilter")]
     #[name = "CIFilter"]
     pub unsafe trait CIFilterProtocol {
         #[cfg(feature = "CIImage")]

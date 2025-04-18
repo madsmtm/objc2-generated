@@ -510,7 +510,7 @@ pub unsafe extern "C-unwind" fn SecTransformCustomGetAttribute(
     r#type: SecTransformMetaAttributeType,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
-        #[cfg_attr(target_vendor = "apple", link_name = "SecTranformCustomGetAttribute")]
+        #[link_name = "SecTranformCustomGetAttribute"]
         fn SecTransformCustomGetAttribute(
             r#ref: SecTransformImplementationRef,
             attribute: &SecTransformStringOrAttribute,

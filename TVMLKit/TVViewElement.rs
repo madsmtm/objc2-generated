@@ -64,6 +64,10 @@ impl TVElementUpdateType {
     #[doc(alias = "TVElementUpdateTypeChildren")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Children: Self = Self(3);
+    /// Signifies that the node itself and its subtree is modified.
+    #[doc(alias = "TVElementUpdateTypeSelf")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const Node: Self = Self(4);
 }
 
 unsafe impl Encode for TVElementUpdateType {

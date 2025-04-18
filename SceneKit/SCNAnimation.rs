@@ -14,6 +14,7 @@ use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationprotocol?language=objc)
+    #[doc(alias = "SCNAnimation")]
     #[name = "SCNAnimation"]
     pub unsafe trait SCNAnimationProtocol: NSObjectProtocol {}
 );

@@ -9,6 +9,7 @@ use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentcellprotocol?language=objc)
+    #[doc(alias = "NSTextAttachmentCell")]
     #[name = "NSTextAttachmentCell"]
     pub unsafe trait NSTextAttachmentCellProtocol: NSObjectProtocol {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]

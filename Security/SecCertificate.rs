@@ -214,7 +214,7 @@ impl SecCertificate {
     pub unsafe fn copy_public_key(self: &SecCertificate, key: NonNull<*mut SecKey>) -> OSStatus {
         extern "C-unwind" {
             #[cfg_attr(
-                target_vendor = "apple",
+                target_os = "macos",
                 link_name = "SecCertificateCopyPublicKey$LEGACYMAC"
             )]
             fn SecCertificateCopyPublicKey(
@@ -304,7 +304,7 @@ impl SecCertificate {
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             #[cfg_attr(
-                target_vendor = "apple",
+                target_os = "macos",
                 link_name = "SecCertificateCopySerialNumber$LEGACYMAC"
             )]
             fn SecCertificateCopySerialNumber(
@@ -1116,7 +1116,7 @@ extern "C-unwind" {
     #[cfg(feature = "SecBase")]
     #[deprecated = "renamed to `SecCertificate::copy_public_key`"]
     #[cfg_attr(
-        target_vendor = "apple",
+        target_os = "macos",
         link_name = "SecCertificateCopyPublicKey$LEGACYMAC"
     )]
     pub fn SecCertificateCopyPublicKey(
@@ -1181,7 +1181,7 @@ pub unsafe extern "C-unwind" fn SecCertificateCopySerialNumber(
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
         #[cfg_attr(
-            target_vendor = "apple",
+            target_os = "macos",
             link_name = "SecCertificateCopySerialNumber$LEGACYMAC"
         )]
         fn SecCertificateCopySerialNumber(

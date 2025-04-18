@@ -192,7 +192,12 @@ pub const kMIDIInvalidUniqueID: MIDIUniqueID = 0;
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MIDIProtocolID(pub i32);
-impl MIDIProtocolID {}
+impl MIDIProtocolID {
+    #[doc(alias = "kMIDIProtocol_1_0")]
+    pub const Protocol_1_0: Self = Self(1);
+    #[doc(alias = "kMIDIProtocol_2_0")]
+    pub const Protocol_2_0: Self = Self(2);
+}
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for MIDIProtocolID {

@@ -9,6 +9,7 @@ use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityelementprotocol?language=objc)
+    #[doc(alias = "NSAccessibilityElement")]
     #[name = "NSAccessibilityElement"]
     pub unsafe trait NSAccessibilityElementProtocol: NSObjectProtocol {
         #[unsafe(method(accessibilityFrame))]
