@@ -487,14 +487,14 @@ impl CLKTimeIntervalTextProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLKRelativeDateStyle(pub NSInteger);
 impl CLKRelativeDateStyle {
-    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     #[doc(alias = "CLKRelativeDateStyleNatural")]
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Natural: Self = Self(0);
-    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     #[doc(alias = "CLKRelativeDateStyleOffset")]
-    pub const Offset: Self = Self(1);
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
+    pub const Offset: Self = Self(1);
     #[doc(alias = "CLKRelativeDateStyleTimer")]
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Timer: Self = Self(2);
     #[doc(alias = "CLKRelativeDateStyleNaturalAbbreviated")]
     pub const NaturalAbbreviated: Self = Self(3);

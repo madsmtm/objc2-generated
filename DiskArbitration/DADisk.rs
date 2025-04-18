@@ -248,9 +248,9 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
+    #[doc(alias = "DADiskCreateFromBSDName")]
     #[cfg(feature = "DASession")]
     #[inline]
-    #[doc(alias = "DADiskCreateFromBSDName")]
     pub unsafe fn from_bsd_name(
         allocator: Option<&CFAllocator>,
         session: &DASession,
@@ -280,9 +280,9 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
+    #[doc(alias = "DADiskCreateFromVolumePath")]
     #[cfg(feature = "DASession")]
     #[inline]
-    #[doc(alias = "DADiskCreateFromVolumePath")]
     pub unsafe fn from_volume_path(
         allocator: Option<&CFAllocator>,
         session: &DASession,
@@ -306,8 +306,8 @@ impl DADisk {
     /// Returns: The disk's BSD device name.
     ///
     /// The BSD device name can be used with opendev() to open the BSD device.
-    #[inline]
     #[doc(alias = "DADiskGetBSDName")]
+    #[inline]
     pub unsafe fn bsd_name(self: &DADisk) -> *const c_char {
         extern "C-unwind" {
             fn DADiskGetBSDName(disk: &DADisk) -> *const c_char;
@@ -329,8 +329,8 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
-    #[inline]
     #[doc(alias = "DADiskCopyDescription")]
+    #[inline]
     pub unsafe fn description(self: &DADisk) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn DADiskCopyDescription(disk: &DADisk) -> Option<NonNull<CFDictionary>>;
@@ -348,8 +348,8 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
-    #[inline]
     #[doc(alias = "DADiskCopyWholeDisk")]
+    #[inline]
     pub unsafe fn whole_disk(self: &DADisk) -> Option<CFRetained<DADisk>> {
         extern "C-unwind" {
             fn DADiskCopyWholeDisk(disk: &DADisk) -> Option<NonNull<DADisk>>;

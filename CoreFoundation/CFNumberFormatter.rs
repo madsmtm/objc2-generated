@@ -78,9 +78,9 @@ unsafe impl RefEncode for CFNumberFormatterStyle {
 }
 
 impl CFNumberFormatter {
+    #[doc(alias = "CFNumberFormatterCreate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    #[doc(alias = "CFNumberFormatterCreate")]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         locale: Option<&CFLocale>,
@@ -97,9 +97,9 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFNumberFormatterGetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    #[doc(alias = "CFNumberFormatterGetLocale")]
     pub unsafe fn locale(self: &CFNumberFormatter) -> Option<CFRetained<CFLocale>> {
         extern "C-unwind" {
             fn CFNumberFormatterGetLocale(
@@ -110,8 +110,8 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFNumberFormatterGetStyle")]
+    #[inline]
     pub unsafe fn style(self: &CFNumberFormatter) -> CFNumberFormatterStyle {
         extern "C-unwind" {
             fn CFNumberFormatterGetStyle(formatter: &CFNumberFormatter) -> CFNumberFormatterStyle;
@@ -119,8 +119,8 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterGetStyle(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFNumberFormatterGetFormat")]
+    #[inline]
     pub unsafe fn format(self: &CFNumberFormatter) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFNumberFormatterGetFormat(
@@ -131,8 +131,8 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFNumberFormatterSetFormat")]
+    #[inline]
     pub unsafe fn set_format(self: &CFNumberFormatter, format_string: Option<&CFString>) {
         extern "C-unwind" {
             fn CFNumberFormatterSetFormat(
@@ -143,9 +143,9 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterSetFormat(self, format_string) }
     }
 
+    #[doc(alias = "CFNumberFormatterCreateStringWithNumber")]
     #[cfg(feature = "CFNumber")]
     #[inline]
-    #[doc(alias = "CFNumberFormatterCreateStringWithNumber")]
     pub unsafe fn new_string_with_number(
         allocator: Option<&CFAllocator>,
         formatter: Option<&CFNumberFormatter>,
@@ -162,9 +162,9 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFNumberFormatterCreateStringWithValue")]
     #[cfg(feature = "CFNumber")]
     #[inline]
-    #[doc(alias = "CFNumberFormatterCreateStringWithValue")]
     pub unsafe fn new_string_with_value(
         allocator: Option<&CFAllocator>,
         formatter: Option<&CFNumberFormatter>,
@@ -209,9 +209,9 @@ unsafe impl RefEncode for CFNumberFormatterOptionFlags {
 }
 
 impl CFNumberFormatter {
+    #[doc(alias = "CFNumberFormatterCreateNumberFromString")]
     #[cfg(feature = "CFNumber")]
     #[inline]
-    #[doc(alias = "CFNumberFormatterCreateNumberFromString")]
     pub unsafe fn new_number_from_string(
         allocator: Option<&CFAllocator>,
         formatter: Option<&CFNumberFormatter>,
@@ -234,9 +234,9 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFNumberFormatterGetValueFromString")]
     #[cfg(feature = "CFNumber")]
     #[inline]
-    #[doc(alias = "CFNumberFormatterGetValueFromString")]
     pub unsafe fn value_from_string(
         self: &CFNumberFormatter,
         string: Option<&CFString>,
@@ -259,8 +259,8 @@ impl CFNumberFormatter {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CFNumberFormatterSetProperty")]
+    #[inline]
     pub unsafe fn set_property(
         self: &CFNumberFormatter,
         key: Option<&CFNumberFormatterKey>,
@@ -276,8 +276,8 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterSetProperty(self, key, value) }
     }
 
-    #[inline]
     #[doc(alias = "CFNumberFormatterCopyProperty")]
+    #[inline]
     pub unsafe fn property(
         self: &CFNumberFormatter,
         key: Option<&CFNumberFormatterKey>,
@@ -547,8 +547,8 @@ unsafe impl RefEncode for CFNumberFormatterPadPosition {
 }
 
 impl CFNumberFormatter {
-    #[inline]
     #[doc(alias = "CFNumberFormatterGetDecimalInfoForCurrencyCode")]
+    #[inline]
     pub unsafe fn decimal_info_for_currency_code(
         currency_code: Option<&CFString>,
         default_fraction_digits: *mut i32,

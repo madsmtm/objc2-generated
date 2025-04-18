@@ -153,6 +153,7 @@ impl ARSkeleton {
     /// Parameter `recognizedPointKey`: Recognized key point.
     ///
     /// Returns: Joint name that could be mapped to a ARSkeleton2D. Nil if no mapping exists.
+    #[doc(alias = "ARSkeletonJointNameForRecognizedPointKey")]
     #[cfg(all(
         feature = "ARSkeletonDefinition",
         feature = "objc2",
@@ -160,7 +161,6 @@ impl ARSkeleton {
         feature = "objc2-vision"
     ))]
     #[inline]
-    #[doc(alias = "ARSkeletonJointNameForRecognizedPointKey")]
     pub unsafe fn joint_name_for_recognized_point_key(
         recognized_point_key: &VNRecognizedPointKey,
     ) -> Option<Retained<ARSkeletonJointName>> {

@@ -195,8 +195,8 @@ impl CFArray {
     /// undefined.
     ///
     /// Returns: A reference to the new immutable CFArray.
-    #[inline]
     #[doc(alias = "CFArrayCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         values: *mut *const c_void,
@@ -233,8 +233,8 @@ impl CFArray {
     /// not a valid CFArray, the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFArray.
-    #[inline]
     #[doc(alias = "CFArrayCreateCopy")]
+    #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         the_array: Option<&CFArray>,
@@ -293,8 +293,8 @@ impl CFMutableArray {
     /// undefined.
     ///
     /// Returns: A reference to the new mutable CFArray.
-    #[inline]
     #[doc(alias = "CFArrayCreateMutable")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
@@ -339,8 +339,8 @@ impl CFMutableArray {
     /// not a valid CFArray, the behavior is undefined.
     ///
     /// Returns: A reference to the new mutable CFArray.
-    #[inline]
     #[doc(alias = "CFArrayCreateMutableCopy")]
+    #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
@@ -365,8 +365,8 @@ impl CFArray {
     /// CFArray, the behavior is undefined.
     ///
     /// Returns: The number of values in the array.
-    #[inline]
     #[doc(alias = "CFArrayGetCount")]
+    #[inline]
     pub fn count(self: &CFArray) -> CFIndex {
         extern "C-unwind" {
             fn CFArrayGetCount(the_array: &CFArray) -> CFIndex;
@@ -395,8 +395,8 @@ impl CFArray {
     ///
     /// Returns: The number of times the given value occurs in the array,
     /// within the specified range.
-    #[inline]
     #[doc(alias = "CFArrayGetCountOfValue")]
+    #[inline]
     pub unsafe fn count_of_value(self: &CFArray, range: CFRange, value: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFArrayGetCountOfValue(
@@ -429,8 +429,8 @@ impl CFArray {
     ///
     /// Returns: true, if the value is in the specified range of the array,
     /// otherwise false.
-    #[inline]
     #[doc(alias = "CFArrayContainsValue")]
+    #[inline]
     pub unsafe fn contains_value(self: &CFArray, range: CFRange, value: *const c_void) -> bool {
         extern "C-unwind" {
             fn CFArrayContainsValue(
@@ -454,8 +454,8 @@ impl CFArray {
     /// undefined.
     ///
     /// Returns: The value with the given index in the array.
-    #[inline]
     #[doc(alias = "CFArrayGetValueAtIndex")]
+    #[inline]
     pub unsafe fn value_at_index(self: &CFArray, idx: CFIndex) -> *const c_void {
         extern "C-unwind" {
             fn CFArrayGetValueAtIndex(the_array: &CFArray, idx: CFIndex) -> *const c_void;
@@ -481,8 +481,8 @@ impl CFArray {
     /// in the same order in which they appear in the array. If this
     /// parameter is not a valid pointer to a C array of at least
     /// range.length pointers, the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFArrayGetValues")]
+    #[inline]
     pub unsafe fn values(self: &CFArray, range: CFRange, values: *mut *const c_void) {
         extern "C-unwind" {
             fn CFArrayGetValues(the_array: &CFArray, range: CFRange, values: *mut *const c_void);
@@ -515,8 +515,8 @@ impl CFArray {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the applier function, the behavior is
     /// undefined.
-    #[inline]
     #[doc(alias = "CFArrayApplyFunction")]
+    #[inline]
     pub unsafe fn apply_function(
         self: &CFArray,
         range: CFRange,
@@ -557,8 +557,8 @@ impl CFArray {
     ///
     /// Returns: The lowest index of the matching values in the range, or
     /// kCFNotFound if no value in the range matched.
-    #[inline]
     #[doc(alias = "CFArrayGetFirstIndexOfValue")]
+    #[inline]
     pub unsafe fn first_index_of_value(
         self: &CFArray,
         range: CFRange,
@@ -597,8 +597,8 @@ impl CFArray {
     ///
     /// Returns: The highest index of the matching values in the range, or
     /// kCFNotFound if no value in the range matched.
-    #[inline]
     #[doc(alias = "CFArrayGetLastIndexOfValue")]
+    #[inline]
     pub unsafe fn last_index_of_value(
         self: &CFArray,
         range: CFRange,
@@ -653,8 +653,8 @@ impl CFArray {
     /// range, or 3) the index of the value greater than the target
     /// value, if the value lies between two of (or less than all
     /// of) the values in the range.
-    #[inline]
     #[doc(alias = "CFArrayBSearchValues")]
+    #[inline]
     pub unsafe fn b_search_values(
         self: &CFArray,
         range: CFRange,
@@ -688,8 +688,8 @@ impl CFMutableArray {
     /// retain callback, the behavior is undefined. The value is
     /// assigned to the index one larger than the previous largest
     /// index, and the count of the array is increased by one.
-    #[inline]
     #[doc(alias = "CFArrayAppendValue")]
+    #[inline]
     pub unsafe fn append_value(the_array: Option<&CFMutableArray>, value: *const c_void) {
         extern "C-unwind" {
             fn CFArrayAppendValue(the_array: Option<&CFMutableArray>, value: *const c_void);
@@ -715,8 +715,8 @@ impl CFMutableArray {
     /// retain callback, the behavior is undefined. The value is
     /// assigned to the given index, and all values with equal and
     /// larger indices have their indexes increased by one.
-    #[inline]
     #[doc(alias = "CFArrayInsertValueAtIndex")]
+    #[inline]
     pub unsafe fn insert_value_at_index(
         the_array: Option<&CFMutableArray>,
         idx: CFIndex,
@@ -750,8 +750,8 @@ impl CFMutableArray {
     /// released. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The indices of
     /// other values is not affected.
-    #[inline]
     #[doc(alias = "CFArraySetValueAtIndex")]
+    #[inline]
     pub unsafe fn set_value_at_index(
         the_array: Option<&CFMutableArray>,
         idx: CFIndex,
@@ -777,8 +777,8 @@ impl CFMutableArray {
     /// outside the index space of the array (0 to N-1 inclusive,
     /// where N is the count of the array before the operation), the
     /// behavior is undefined.
-    #[inline]
     #[doc(alias = "CFArrayRemoveValueAtIndex")]
+    #[inline]
     pub unsafe fn remove_value_at_index(the_array: Option<&CFMutableArray>, idx: CFIndex) {
         extern "C-unwind" {
             fn CFArrayRemoveValueAtIndex(the_array: Option<&CFMutableArray>, idx: CFIndex);
@@ -791,8 +791,8 @@ impl CFMutableArray {
     /// Parameter `theArray`: The array from which all of the values are to be
     /// removed. If this parameter is not a valid mutable CFArray,
     /// the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFArrayRemoveAllValues")]
+    #[inline]
     pub fn remove_all_values(the_array: Option<&CFMutableArray>) {
         extern "C-unwind" {
             fn CFArrayRemoveAllValues(the_array: Option<&CFMutableArray>);
@@ -832,8 +832,8 @@ impl CFMutableArray {
     /// range are simply removed. If this parameter is negative, or
     /// greater than the number of values actually in the newValues
     /// C array, the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFArrayReplaceValues")]
+    #[inline]
     pub unsafe fn replace_values(
         the_array: Option<&CFMutableArray>,
         range: CFRange,
@@ -866,8 +866,8 @@ impl CFMutableArray {
     /// index is outside the index space of the array (0 to N-1
     /// inclusive, where N is the count of the array before the
     /// operation), the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFArrayExchangeValuesAtIndices")]
+    #[inline]
     pub unsafe fn exchange_values_at_indices(
         the_array: Option<&CFMutableArray>,
         idx1: CFIndex,
@@ -911,8 +911,8 @@ impl CFMutableArray {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the comparator function, the behavior is
     /// undefined.
-    #[inline]
     #[doc(alias = "CFArraySortValues")]
+    #[inline]
     pub unsafe fn sort_values(
         the_array: Option<&CFMutableArray>,
         range: CFRange,
@@ -954,8 +954,8 @@ impl CFMutableArray {
     /// increased by range.length. The values are assigned new
     /// indices in the array from smallest to largest index in the
     /// order in which they appear in the otherArray.
-    #[inline]
     #[doc(alias = "CFArrayAppendArray")]
+    #[inline]
     pub unsafe fn append_array(
         the_array: Option<&CFMutableArray>,
         other_array: Option<&CFArray>,

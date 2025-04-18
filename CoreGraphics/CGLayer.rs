@@ -26,9 +26,9 @@ cf_objc2_type!(
 );
 
 impl CGLayer {
+    #[doc(alias = "CGLayerCreateWithContext")]
     #[cfg(feature = "CGContext")]
     #[inline]
-    #[doc(alias = "CGLayerCreateWithContext")]
     pub unsafe fn with_context(
         context: Option<&CGContext>,
         size: CGSize,
@@ -45,8 +45,8 @@ impl CGLayer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGLayerGetSize")]
+    #[inline]
     pub unsafe fn size(layer: Option<&CGLayer>) -> CGSize {
         extern "C-unwind" {
             fn CGLayerGetSize(layer: Option<&CGLayer>) -> CGSize;
@@ -54,9 +54,9 @@ impl CGLayer {
         unsafe { CGLayerGetSize(layer) }
     }
 
+    #[doc(alias = "CGLayerGetContext")]
     #[cfg(feature = "CGContext")]
     #[inline]
-    #[doc(alias = "CGLayerGetContext")]
     pub unsafe fn context(layer: Option<&CGLayer>) -> Option<CFRetained<CGContext>> {
         extern "C-unwind" {
             fn CGLayerGetContext(layer: Option<&CGLayer>) -> Option<NonNull<CGContext>>;
@@ -68,9 +68,9 @@ impl CGLayer {
 
 #[cfg(feature = "CGContext")]
 impl CGContext {
+    #[doc(alias = "CGContextDrawLayerInRect")]
     #[cfg(feature = "CGContext")]
     #[inline]
-    #[doc(alias = "CGContextDrawLayerInRect")]
     pub unsafe fn draw_layer_in_rect(
         context: Option<&CGContext>,
         rect: CGRect,
@@ -86,9 +86,9 @@ impl CGContext {
         unsafe { CGContextDrawLayerInRect(context, rect, layer) }
     }
 
+    #[doc(alias = "CGContextDrawLayerAtPoint")]
     #[cfg(feature = "CGContext")]
     #[inline]
-    #[doc(alias = "CGContextDrawLayerAtPoint")]
     pub unsafe fn draw_layer_at_point(
         context: Option<&CGContext>,
         point: CGPoint,

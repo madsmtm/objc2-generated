@@ -169,9 +169,9 @@ unsafe impl ConcreteType for CGImage {
 }
 
 impl CGImage {
+    #[doc(alias = "CGImageCreate")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     #[inline]
-    #[doc(alias = "CGImageCreate")]
     pub unsafe fn new(
         width: usize,
         height: usize,
@@ -218,9 +218,9 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CGImageMaskCreate")]
     #[cfg(feature = "CGDataProvider")]
     #[inline]
-    #[doc(alias = "CGImageMaskCreate")]
     pub unsafe fn mask_create(
         width: usize,
         height: usize,
@@ -258,8 +258,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGImageCreateCopy")]
+    #[inline]
     pub unsafe fn new_copy(image: Option<&CGImage>) -> Option<CFRetained<CGImage>> {
         extern "C-unwind" {
             fn CGImageCreateCopy(image: Option<&CGImage>) -> Option<NonNull<CGImage>>;
@@ -268,9 +268,9 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CGImageCreateWithJPEGDataProvider")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     #[inline]
-    #[doc(alias = "CGImageCreateWithJPEGDataProvider")]
     pub unsafe fn with_jpeg_data_provider(
         source: Option<&CGDataProvider>,
         decode: *const CGFloat,
@@ -291,9 +291,9 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CGImageCreateWithPNGDataProvider")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     #[inline]
-    #[doc(alias = "CGImageCreateWithPNGDataProvider")]
     pub unsafe fn with_png_data_provider(
         source: Option<&CGDataProvider>,
         decode: *const CGFloat,
@@ -313,8 +313,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGImageCreateWithImageInRect")]
+    #[inline]
     pub unsafe fn with_image_in_rect(
         image: Option<&CGImage>,
         rect: CGRect,
@@ -329,8 +329,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGImageCreateWithMask")]
+    #[inline]
     pub unsafe fn with_mask(
         image: Option<&CGImage>,
         mask: Option<&CGImage>,
@@ -345,8 +345,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGImageCreateWithMaskingColors")]
+    #[inline]
     pub unsafe fn with_masking_colors(
         image: Option<&CGImage>,
         components: *const CGFloat,
@@ -361,9 +361,9 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CGImageCreateCopyWithColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
-    #[doc(alias = "CGImageCreateCopyWithColorSpace")]
     pub unsafe fn new_copy_with_color_space(
         image: Option<&CGImage>,
         space: Option<&CGColorSpace>,
@@ -378,9 +378,9 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CGImageCreateWithContentHeadroom")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     #[inline]
-    #[doc(alias = "CGImageCreateWithContentHeadroom")]
     pub unsafe fn with_content_headroom(
         headroom: c_float,
         width: usize,
@@ -430,8 +430,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGImageCreateCopyWithContentHeadroom")]
+    #[inline]
     pub unsafe fn new_copy_with_content_headroom(
         headroom: c_float,
         image: Option<&CGImage>,
@@ -453,8 +453,8 @@ extern "C" {
 }
 
 impl CGImage {
-    #[inline]
     #[doc(alias = "CGImageGetContentHeadroom")]
+    #[inline]
     pub unsafe fn content_headroom(image: Option<&CGImage>) -> c_float {
         extern "C-unwind" {
             fn CGImageGetContentHeadroom(image: Option<&CGImage>) -> c_float;
@@ -462,8 +462,8 @@ impl CGImage {
         unsafe { CGImageGetContentHeadroom(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageIsMask")]
+    #[inline]
     pub unsafe fn is_mask(image: Option<&CGImage>) -> bool {
         extern "C-unwind" {
             fn CGImageIsMask(image: Option<&CGImage>) -> bool;
@@ -471,8 +471,8 @@ impl CGImage {
         unsafe { CGImageIsMask(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetWidth")]
+    #[inline]
     pub unsafe fn width(image: Option<&CGImage>) -> usize {
         extern "C-unwind" {
             fn CGImageGetWidth(image: Option<&CGImage>) -> usize;
@@ -480,8 +480,8 @@ impl CGImage {
         unsafe { CGImageGetWidth(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetHeight")]
+    #[inline]
     pub unsafe fn height(image: Option<&CGImage>) -> usize {
         extern "C-unwind" {
             fn CGImageGetHeight(image: Option<&CGImage>) -> usize;
@@ -489,8 +489,8 @@ impl CGImage {
         unsafe { CGImageGetHeight(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetBitsPerComponent")]
+    #[inline]
     pub unsafe fn bits_per_component(image: Option<&CGImage>) -> usize {
         extern "C-unwind" {
             fn CGImageGetBitsPerComponent(image: Option<&CGImage>) -> usize;
@@ -498,8 +498,8 @@ impl CGImage {
         unsafe { CGImageGetBitsPerComponent(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetBitsPerPixel")]
+    #[inline]
     pub unsafe fn bits_per_pixel(image: Option<&CGImage>) -> usize {
         extern "C-unwind" {
             fn CGImageGetBitsPerPixel(image: Option<&CGImage>) -> usize;
@@ -507,8 +507,8 @@ impl CGImage {
         unsafe { CGImageGetBitsPerPixel(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetBytesPerRow")]
+    #[inline]
     pub unsafe fn bytes_per_row(image: Option<&CGImage>) -> usize {
         extern "C-unwind" {
             fn CGImageGetBytesPerRow(image: Option<&CGImage>) -> usize;
@@ -516,9 +516,9 @@ impl CGImage {
         unsafe { CGImageGetBytesPerRow(image) }
     }
 
+    #[doc(alias = "CGImageGetColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
-    #[doc(alias = "CGImageGetColorSpace")]
     pub unsafe fn color_space(image: Option<&CGImage>) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGImageGetColorSpace(image: Option<&CGImage>) -> Option<NonNull<CGColorSpace>>;
@@ -527,8 +527,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetAlphaInfo")]
+    #[inline]
     pub unsafe fn alpha_info(image: Option<&CGImage>) -> CGImageAlphaInfo {
         extern "C-unwind" {
             fn CGImageGetAlphaInfo(image: Option<&CGImage>) -> CGImageAlphaInfo;
@@ -536,9 +536,9 @@ impl CGImage {
         unsafe { CGImageGetAlphaInfo(image) }
     }
 
+    #[doc(alias = "CGImageGetDataProvider")]
     #[cfg(feature = "CGDataProvider")]
     #[inline]
-    #[doc(alias = "CGImageGetDataProvider")]
     pub unsafe fn data_provider(image: Option<&CGImage>) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGImageGetDataProvider(image: Option<&CGImage>) -> Option<NonNull<CGDataProvider>>;
@@ -547,8 +547,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetDecode")]
+    #[inline]
     pub unsafe fn decode(image: Option<&CGImage>) -> *const CGFloat {
         extern "C-unwind" {
             fn CGImageGetDecode(image: Option<&CGImage>) -> *const CGFloat;
@@ -556,8 +556,8 @@ impl CGImage {
         unsafe { CGImageGetDecode(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetShouldInterpolate")]
+    #[inline]
     pub unsafe fn should_interpolate(image: Option<&CGImage>) -> bool {
         extern "C-unwind" {
             fn CGImageGetShouldInterpolate(image: Option<&CGImage>) -> bool;
@@ -565,9 +565,9 @@ impl CGImage {
         unsafe { CGImageGetShouldInterpolate(image) }
     }
 
+    #[doc(alias = "CGImageGetRenderingIntent")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
-    #[doc(alias = "CGImageGetRenderingIntent")]
     pub unsafe fn rendering_intent(image: Option<&CGImage>) -> CGColorRenderingIntent {
         extern "C-unwind" {
             fn CGImageGetRenderingIntent(image: Option<&CGImage>) -> CGColorRenderingIntent;
@@ -575,8 +575,8 @@ impl CGImage {
         unsafe { CGImageGetRenderingIntent(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetBitmapInfo")]
+    #[inline]
     pub unsafe fn bitmap_info(image: Option<&CGImage>) -> CGBitmapInfo {
         extern "C-unwind" {
             fn CGImageGetBitmapInfo(image: Option<&CGImage>) -> CGBitmapInfo;
@@ -584,8 +584,8 @@ impl CGImage {
         unsafe { CGImageGetBitmapInfo(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetByteOrderInfo")]
+    #[inline]
     pub unsafe fn byte_order_info(image: Option<&CGImage>) -> CGImageByteOrderInfo {
         extern "C-unwind" {
             fn CGImageGetByteOrderInfo(image: Option<&CGImage>) -> CGImageByteOrderInfo;
@@ -593,8 +593,8 @@ impl CGImage {
         unsafe { CGImageGetByteOrderInfo(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetPixelFormatInfo")]
+    #[inline]
     pub unsafe fn pixel_format_info(image: Option<&CGImage>) -> CGImagePixelFormatInfo {
         extern "C-unwind" {
             fn CGImageGetPixelFormatInfo(image: Option<&CGImage>) -> CGImagePixelFormatInfo;
@@ -602,8 +602,8 @@ impl CGImage {
         unsafe { CGImageGetPixelFormatInfo(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageShouldToneMap")]
+    #[inline]
     pub unsafe fn should_tone_map(image: Option<&CGImage>) -> bool {
         extern "C-unwind" {
             fn CGImageShouldToneMap(image: Option<&CGImage>) -> bool;
@@ -611,8 +611,8 @@ impl CGImage {
         unsafe { CGImageShouldToneMap(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageContainsImageSpecificToneMappingMetadata")]
+    #[inline]
     pub unsafe fn contains_image_specific_tone_mapping_metadata(image: Option<&CGImage>) -> bool {
         extern "C-unwind" {
             fn CGImageContainsImageSpecificToneMappingMetadata(image: Option<&CGImage>) -> bool;
@@ -620,8 +620,8 @@ impl CGImage {
         unsafe { CGImageContainsImageSpecificToneMappingMetadata(image) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageGetUTType")]
+    #[inline]
     pub unsafe fn ut_type(image: Option<&CGImage>) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CGImageGetUTType(image: Option<&CGImage>) -> Option<NonNull<CFString>>;

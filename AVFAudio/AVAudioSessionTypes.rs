@@ -672,8 +672,8 @@ pub struct AVAudioSessionInterruptionReason(pub NSUInteger);
 impl AVAudioSessionInterruptionReason {
     #[doc(alias = "AVAudioSessionInterruptionReasonDefault")]
     pub const Default: Self = Self(0);
-    #[deprecated = "wasSuspended reason no longer present"]
     #[doc(alias = "AVAudioSessionInterruptionReasonAppWasSuspended")]
+    #[deprecated = "wasSuspended reason no longer present"]
     pub const AppWasSuspended: Self = Self(1);
     #[doc(alias = "AVAudioSessionInterruptionReasonBuiltInMicMuted")]
     pub const BuiltInMicMuted: Self = Self(2);
@@ -842,8 +842,8 @@ impl AVAudioSessionRouteSharingPolicy {
     pub const Default: Self = Self(0);
     #[doc(alias = "AVAudioSessionRouteSharingPolicyLongFormAudio")]
     pub const LongFormAudio: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "AVAudioSessionRouteSharingPolicyLongForm")]
+    #[deprecated]
     pub const LongForm: Self = Self(AVAudioSessionRouteSharingPolicy::LongFormAudio.0);
     #[doc(alias = "AVAudioSessionRouteSharingPolicyIndependent")]
     pub const Independent: Self = Self(2);
@@ -952,14 +952,14 @@ unsafe impl RefEncode for AVAudioStereoOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionRecordPermission(pub NSUInteger);
 impl AVAudioSessionRecordPermission {
-    #[deprecated]
     #[doc(alias = "AVAudioSessionRecordPermissionUndetermined")]
+    #[deprecated]
     pub const Undetermined: Self = Self(0x756e6474);
-    #[deprecated]
     #[doc(alias = "AVAudioSessionRecordPermissionDenied")]
-    pub const Denied: Self = Self(0x64656e79);
     #[deprecated]
+    pub const Denied: Self = Self(0x64656e79);
     #[doc(alias = "AVAudioSessionRecordPermissionGranted")]
+    #[deprecated]
     pub const Granted: Self = Self(0x67726e74);
 }
 

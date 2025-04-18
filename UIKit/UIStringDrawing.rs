@@ -32,23 +32,23 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UILineBreakMode(pub NSInteger);
 impl UILineBreakMode {
-    #[deprecated]
     #[doc(alias = "UILineBreakModeWordWrap")]
+    #[deprecated]
     pub const WordWrap: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "UILineBreakModeCharacterWrap")]
+    #[deprecated]
     pub const CharacterWrap: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "UILineBreakModeClip")]
+    #[deprecated]
     pub const Clip: Self = Self(2);
-    #[deprecated]
     #[doc(alias = "UILineBreakModeHeadTruncation")]
+    #[deprecated]
     pub const HeadTruncation: Self = Self(3);
-    #[deprecated]
     #[doc(alias = "UILineBreakModeTailTruncation")]
-    pub const TailTruncation: Self = Self(4);
     #[deprecated]
+    pub const TailTruncation: Self = Self(4);
     #[doc(alias = "UILineBreakModeMiddleTruncation")]
+    #[deprecated]
     pub const MiddleTruncation: Self = Self(5);
 }
 
@@ -67,14 +67,14 @@ unsafe impl RefEncode for UILineBreakMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITextAlignment(pub NSInteger);
 impl UITextAlignment {
-    #[deprecated]
     #[doc(alias = "UITextAlignmentLeft")]
+    #[deprecated]
     pub const Left: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "UITextAlignmentCenter")]
-    pub const Center: Self = Self(1);
     #[deprecated]
+    pub const Center: Self = Self(1);
     #[doc(alias = "UITextAlignmentRight")]
+    #[deprecated]
     pub const Right: Self = Self(2);
 }
 

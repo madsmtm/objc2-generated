@@ -20,9 +20,9 @@ impl JSContext {
     /// JSContextGroup's run loop once it has been created.
     ///
     /// Returns: The created JSContextGroup.
+    #[doc(alias = "JSContextGroupCreate")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSContextGroupCreate")]
     pub unsafe fn group_create() -> JSContextGroupRef {
         extern "C-unwind" {
             fn JSContextGroupCreate() -> JSContextGroupRef;
@@ -35,9 +35,9 @@ impl JSContext {
     /// Parameter `group`: The JSContextGroup to retain.
     ///
     /// Returns: A JSContextGroup that is the same as group.
+    #[doc(alias = "JSContextGroupRetain")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSContextGroupRetain")]
     pub unsafe fn group_retain(group: JSContextGroupRef) -> JSContextGroupRef {
         extern "C-unwind" {
             fn JSContextGroupRetain(group: JSContextGroupRef) -> JSContextGroupRef;
@@ -48,9 +48,9 @@ impl JSContext {
     /// Releases a JavaScript context group.
     ///
     /// Parameter `group`: The JSContextGroup to release.
+    #[doc(alias = "JSContextGroupRelease")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSContextGroupRelease")]
     pub unsafe fn group_release(group: JSContextGroupRef) {
         extern "C-unwind" {
             fn JSContextGroupRelease(group: JSContextGroupRef);
@@ -123,9 +123,9 @@ impl JSContext {
     /// Parameter `ctx`: The JSContext whose global object you want to get.
     ///
     /// Returns: ctx's global object.
+    #[doc(alias = "JSContextGetGlobalObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSContextGetGlobalObject")]
     pub unsafe fn global_object(ctx: JSContextRef) -> JSObjectRef {
         extern "C-unwind" {
             fn JSContextGetGlobalObject(ctx: JSContextRef) -> JSObjectRef;
@@ -138,9 +138,9 @@ impl JSContext {
     /// Parameter `ctx`: The JSContext whose group you want to get.
     ///
     /// Returns: ctx's group.
+    #[doc(alias = "JSContextGetGroup")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSContextGetGroup")]
     pub unsafe fn group(ctx: JSContextRef) -> JSContextGroupRef {
         extern "C-unwind" {
             fn JSContextGetGroup(ctx: JSContextRef) -> JSContextGroupRef;
@@ -153,9 +153,9 @@ impl JSContext {
     /// Parameter `ctx`: The JSContext whose global context you want to get.
     ///
     /// Returns: ctx's global context.
+    #[doc(alias = "JSContextGetGlobalContext")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSContextGetGlobalContext")]
     pub unsafe fn global_context(ctx: JSContextRef) -> JSGlobalContextRef {
         extern "C-unwind" {
             fn JSContextGetGlobalContext(ctx: JSContextRef) -> JSGlobalContextRef;

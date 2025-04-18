@@ -11,14 +11,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITextItemInteraction(pub NSInteger);
 impl UITextItemInteraction {
-    #[deprecated = "UITextItemInteraction has been replaced by text item methods on UITextViewDelegate"]
     #[doc(alias = "UITextItemInteractionInvokeDefaultAction")]
+    #[deprecated = "UITextItemInteraction has been replaced by text item methods on UITextViewDelegate"]
     pub const InvokeDefaultAction: Self = Self(0);
-    #[deprecated = "UITextItemInteraction has been replaced by text item methods on UITextViewDelegate"]
     #[doc(alias = "UITextItemInteractionPresentActions")]
-    pub const PresentActions: Self = Self(1);
     #[deprecated = "UITextItemInteraction has been replaced by text item methods on UITextViewDelegate"]
+    pub const PresentActions: Self = Self(1);
     #[doc(alias = "UITextItemInteractionPreview")]
+    #[deprecated = "UITextItemInteraction has been replaced by text item methods on UITextViewDelegate"]
     pub const Preview: Self = Self(2);
 }
 

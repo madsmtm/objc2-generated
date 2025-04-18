@@ -106,8 +106,8 @@ pub struct NSURLRequestNetworkServiceType(pub NSUInteger);
 impl NSURLRequestNetworkServiceType {
     #[doc(alias = "NSURLNetworkServiceTypeDefault")]
     pub const NetworkServiceTypeDefault: Self = Self(0);
-    #[deprecated = "Use PushKit for VoIP control purposes"]
     #[doc(alias = "NSURLNetworkServiceTypeVoIP")]
+    #[deprecated = "Use PushKit for VoIP control purposes"]
     pub const NetworkServiceTypeVoIP: Self = Self(1);
     #[doc(alias = "NSURLNetworkServiceTypeVideo")]
     pub const NetworkServiceTypeVideo: Self = Self(2);

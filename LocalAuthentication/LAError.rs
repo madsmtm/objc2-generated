@@ -35,18 +35,18 @@ impl LAError {
     #[doc(alias = "LAErrorPasscodeNotSet")]
     pub const PasscodeNotSet: Self = Self(-5);
     /// Authentication could not start because Touch ID is not available on the device.
-    #[deprecated = "use LAErrorBiometryNotAvailable"]
     #[doc(alias = "LAErrorTouchIDNotAvailable")]
+    #[deprecated = "use LAErrorBiometryNotAvailable"]
     pub const TouchIDNotAvailable: Self = Self(-6);
     /// Authentication could not start because Touch ID has no enrolled fingers.
-    #[deprecated = "use LAErrorBiometryNotEnrolled"]
     #[doc(alias = "LAErrorTouchIDNotEnrolled")]
+    #[deprecated = "use LAErrorBiometryNotEnrolled"]
     pub const TouchIDNotEnrolled: Self = Self(-7);
     /// Authentication was not successful because there were too many failed Touch ID attempts and
     /// Touch ID is now locked. Passcode is required to unlock Touch ID, e.g. evaluating
     /// LAPolicyDeviceOwnerAuthenticationWithBiometrics will ask for passcode as a prerequisite.
-    #[deprecated = "use LAErrorBiometryLockout"]
     #[doc(alias = "LAErrorTouchIDLockout")]
+    #[deprecated = "use LAErrorBiometryLockout"]
     pub const TouchIDLockout: Self = Self(-8);
     /// Authentication was canceled by application (e.g. invalidate was called while
     /// authentication was in progress).
@@ -71,8 +71,8 @@ impl LAError {
     #[doc(alias = "LAErrorNotInteractive")]
     pub const NotInteractive: Self = Self(-1004);
     /// Authentication could not start because there was no paired watch device nearby.
-    #[deprecated]
     #[doc(alias = "LAErrorWatchNotAvailable")]
+    #[deprecated]
     pub const WatchNotAvailable: Self = Self(-11);
     /// Authentication could not start because there was no paired companion device nearby.
     #[doc(alias = "LAErrorCompanionNotAvailable")]

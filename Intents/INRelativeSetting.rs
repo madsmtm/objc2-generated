@@ -11,20 +11,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INRelativeSetting(pub NSInteger);
 impl INRelativeSetting {
-    #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     #[doc(alias = "INRelativeSettingUnknown")]
+    #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     #[doc(alias = "INRelativeSettingLowest")]
+    #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Lowest: Self = Self(1);
-    #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     #[doc(alias = "INRelativeSettingLower")]
+    #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Lower: Self = Self(2);
-    #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     #[doc(alias = "INRelativeSettingHigher")]
-    pub const Higher: Self = Self(3);
     #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
+    pub const Higher: Self = Self(3);
     #[doc(alias = "INRelativeSettingHighest")]
+    #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Highest: Self = Self(4);
 }
 

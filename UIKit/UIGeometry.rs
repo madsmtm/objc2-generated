@@ -227,23 +227,23 @@ unsafe impl RefEncode for NSDirectionalRectEdge {
 pub struct UIDirectionalRectEdge(pub NSUInteger);
 bitflags::bitflags! {
     impl UIDirectionalRectEdge: NSUInteger {
-#[deprecated]
         #[doc(alias = "UIDirectionalRectEdgeNone")]
+#[deprecated]
         const None = 0;
-#[deprecated]
         #[doc(alias = "UIDirectionalRectEdgeTop")]
+#[deprecated]
         const Top = 1<<0;
-#[deprecated]
         #[doc(alias = "UIDirectionalRectEdgeLeading")]
+#[deprecated]
         const Leading = 1<<1;
-#[deprecated]
         #[doc(alias = "UIDirectionalRectEdgeBottom")]
+#[deprecated]
         const Bottom = 1<<2;
-#[deprecated]
         #[doc(alias = "UIDirectionalRectEdgeTrailing")]
-        const Trailing = 1<<3;
 #[deprecated]
+        const Trailing = 1<<3;
         #[doc(alias = "UIDirectionalRectEdgeAll")]
+#[deprecated]
         const All = UIDirectionalRectEdge::Top.0|UIDirectionalRectEdge::Leading.0|UIDirectionalRectEdge::Bottom.0|UIDirectionalRectEdge::Trailing.0;
     }
 }
@@ -464,9 +464,9 @@ extern "C-unwind" {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl UIEdgeInsets {
+    #[doc(alias = "UIEdgeInsetsFromString")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "UIEdgeInsetsFromString")]
     pub unsafe fn from_string(string: &NSString) -> UIEdgeInsets {
         extern "C-unwind" {
             fn UIEdgeInsetsFromString(string: &NSString) -> UIEdgeInsets;
@@ -477,9 +477,9 @@ impl UIEdgeInsets {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl NSDirectionalEdgeInsets {
+    #[doc(alias = "NSDirectionalEdgeInsetsFromString")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "NSDirectionalEdgeInsetsFromString")]
     pub unsafe fn from_string(string: &NSString) -> NSDirectionalEdgeInsets {
         extern "C-unwind" {
             fn NSDirectionalEdgeInsetsFromString(string: &NSString) -> NSDirectionalEdgeInsets;
@@ -490,9 +490,9 @@ impl NSDirectionalEdgeInsets {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl UIOffset {
+    #[doc(alias = "UIOffsetFromString")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "UIOffsetFromString")]
     pub unsafe fn from_string(string: &NSString) -> UIOffset {
         extern "C-unwind" {
             fn UIOffsetFromString(string: &NSString) -> UIOffset;

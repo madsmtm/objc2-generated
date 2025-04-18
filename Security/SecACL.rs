@@ -72,10 +72,10 @@ impl SecACL {
     ///
     /// This function is deprecated in 10.7 and later;
     /// use SecACLCreateWithSimpleContents instead.
+    #[doc(alias = "SecACLCreateFromSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    #[doc(alias = "SecACLCreateFromSimpleContents")]
     pub unsafe fn create_from_simple_contents(
         access: &SecAccess,
         application_list: Option<&CFArray>,
@@ -116,10 +116,10 @@ impl SecACL {
     /// Parameter `newAcl`: A pointer to an access control list entry.  On return, this points to the reference of the new access control list entry.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecACLCreateWithSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecACLCreateWithSimpleContents")]
     pub unsafe fn create_with_simple_contents(
         access: &SecAccess,
         application_list: Option<&CFArray>,
@@ -152,10 +152,10 @@ impl SecACL {
     /// Parameter `aclRef`: The reference to the access control list entry to remove.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecACLRemove")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecACLRemove")]
     pub unsafe fn remove(self: &SecACL) -> OSStatus {
         extern "C-unwind" {
             fn SecACLRemove(acl_ref: &SecACL) -> OSStatus;
@@ -177,10 +177,10 @@ impl SecACL {
     ///
     /// This function is deprecated in 10.7 and later;
     /// use SecACLCopyContents instead.
+    #[doc(alias = "SecACLCopySimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    #[doc(alias = "SecACLCopySimpleContents")]
     pub unsafe fn copy_simple_contents(
         self: &SecACL,
         application_list: NonNull<*const CFArray>,
@@ -209,10 +209,10 @@ impl SecACL {
     /// Parameter `promptSelector`: A pointer to a SecKeychainPromptSelector.  On return, this points to the SecKeychainPromptSelector for the given access control list entry.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecACLCopyContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecACLCopyContents")]
     pub unsafe fn copy_contents(
         self: &SecACL,
         application_list: NonNull<*const CFArray>,
@@ -244,10 +244,10 @@ impl SecACL {
     ///
     /// This function is deprecated in 10.7 and later;
     /// use SecACLSetContents instead.
+    #[doc(alias = "SecACLSetSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    #[doc(alias = "SecACLSetSimpleContents")]
     pub unsafe fn set_simple_contents(
         self: &SecACL,
         application_list: Option<&CFArray>,
@@ -276,10 +276,10 @@ impl SecACL {
     /// Parameter `promptSelector`: A SecKeychainPromptSelector selector.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecACLSetContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecACLSetContents")]
     pub unsafe fn set_contents(
         self: &SecACL,
         application_list: Option<&CFArray>,
@@ -309,10 +309,10 @@ impl SecACL {
     ///
     /// This function is deprecated in 10.7 and later;
     /// use SecACLCopyAuthorizations instead.
+    #[doc(alias = "SecACLGetAuthorizations")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    #[doc(alias = "SecACLGetAuthorizations")]
     pub unsafe fn get_authorizations(
         self: &SecACL,
         tags: NonNull<CSSM_ACL_AUTHORIZATION_TAG>,
@@ -333,10 +333,10 @@ impl SecACL {
     /// Parameter `acl`: An access control list entry reference.
     ///
     /// Returns: On return, a CFArrayRef of the authorizations for this ACL.
+    #[doc(alias = "SecACLCopyAuthorizations")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecACLCopyAuthorizations")]
     pub unsafe fn authorizations(self: &SecACL) -> CFRetained<CFArray> {
         extern "C-unwind" {
             fn SecACLCopyAuthorizations(acl: &SecACL) -> Option<NonNull<CFArray>>;
@@ -359,10 +359,10 @@ impl SecACL {
     ///
     /// This function is deprecated in 10.7 and later;
     /// use SecACLUpdateAuthorizations instead.
+    #[doc(alias = "SecACLSetAuthorizations")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    #[doc(alias = "SecACLSetAuthorizations")]
     pub unsafe fn set_authorizations(
         self: &SecACL,
         tags: NonNull<CSSM_ACL_AUTHORIZATION_TAG>,
@@ -385,10 +385,10 @@ impl SecACL {
     /// Parameter `authorizations`: A pointer to an array of authorization tags.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecACLUpdateAuthorizations")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecACLUpdateAuthorizations")]
     pub unsafe fn update_authorizations(self: &SecACL, authorizations: &CFArray) -> OSStatus {
         extern "C-unwind" {
             fn SecACLUpdateAuthorizations(acl: &SecACL, authorizations: &CFArray) -> OSStatus;

@@ -46,8 +46,8 @@ impl SecTask {
     /// Returns: The newly created SecTask object or NULL on error.  The caller must
     /// CFRelease the returned object.
     /// #ifndef LEFT
-    #[inline]
     #[doc(alias = "SecTaskCreateFromSelf")]
+    #[inline]
     pub unsafe fn from_self(allocator: Option<&CFAllocator>) -> Option<CFRetained<SecTask>> {
         extern "C-unwind" {
             fn SecTaskCreateFromSelf(allocator: Option<&CFAllocator>) -> Option<NonNull<SecTask>>;
@@ -75,8 +75,8 @@ impl SecTask {
     /// A NULL return may indicate an error, or it may indicate that
     /// the entitlement is simply not present.  In the latter case, no CFError is
     /// returned.
-    #[inline]
     #[doc(alias = "SecTaskCopyValueForEntitlement")]
+    #[inline]
     pub unsafe fn value_for_entitlement(
         self: &SecTask,
         entitlement: &CFString,
@@ -105,8 +105,8 @@ impl SecTask {
     /// detailed errors.  If a requested entitlement is not present for the
     /// returned dictionary, the entitlement is not set on the task.  The caller
     /// must CFRelease the returned value
-    #[inline]
     #[doc(alias = "SecTaskCopyValuesForEntitlements")]
+    #[inline]
     pub unsafe fn values_for_entitlements(
         self: &SecTask,
         entitlements: &CFArray,
@@ -130,8 +130,8 @@ impl SecTask {
     /// Parameter `error`: On a NULL return, this will contain a CFError describing
     /// the problem.  This argument may be NULL if the caller is not interested in
     /// detailed errors. The caller must CFRelease the returned value
-    #[inline]
     #[doc(alias = "SecTaskCopySigningIdentifier")]
+    #[inline]
     pub unsafe fn signing_identifier(
         self: &SecTask,
         error: *mut *mut CFError,
@@ -149,8 +149,8 @@ impl SecTask {
     /// Return the code sign status flags
     ///
     /// Parameter `task`: A previously created SecTask object
-    #[inline]
     #[doc(alias = "SecTaskGetCodeSignStatus")]
+    #[inline]
     pub unsafe fn code_sign_status(self: &SecTask) -> u32 {
         extern "C-unwind" {
             fn SecTaskGetCodeSignStatus(task: &SecTask) -> u32;

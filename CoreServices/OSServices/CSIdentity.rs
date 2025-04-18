@@ -75,9 +75,9 @@ unsafe impl ConcreteType for CSIdentity {
 }
 
 impl CSIdentity {
+    #[doc(alias = "CSIdentityCreate")]
     #[cfg(feature = "CSIdentityAuthority")]
     #[inline]
-    #[doc(alias = "CSIdentityCreate")]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         identity_class: CSIdentityClass,
@@ -109,8 +109,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityCreateCopy")]
+    #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         identity: Option<&CSIdentity>,
@@ -125,8 +125,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityGetClass")]
+    #[inline]
     pub unsafe fn class(self: &CSIdentity) -> CSIdentityClass {
         extern "C-unwind" {
             fn CSIdentityGetClass(identity: &CSIdentity) -> CSIdentityClass;
@@ -134,9 +134,9 @@ impl CSIdentity {
         unsafe { CSIdentityGetClass(self) }
     }
 
+    #[doc(alias = "CSIdentityGetAuthority")]
     #[cfg(feature = "CSIdentityAuthority")]
     #[inline]
-    #[doc(alias = "CSIdentityGetAuthority")]
     pub unsafe fn authority(self: &CSIdentity) -> Option<CFRetained<CSIdentityAuthority>> {
         extern "C-unwind" {
             fn CSIdentityGetAuthority(
@@ -147,8 +147,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityGetUUID")]
+    #[inline]
     pub unsafe fn uuid(self: &CSIdentity) -> Option<CFRetained<CFUUID>> {
         extern "C-unwind" {
             fn CSIdentityGetUUID(identity: &CSIdentity) -> Option<NonNull<CFUUID>>;
@@ -157,8 +157,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityGetFullName")]
+    #[inline]
     pub unsafe fn full_name(self: &CSIdentity) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CSIdentityGetFullName(identity: &CSIdentity) -> Option<NonNull<CFString>>;
@@ -167,9 +167,9 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    #[doc(alias = "CSIdentityGetPosixID")]
     #[cfg(feature = "libc")]
     #[inline]
-    #[doc(alias = "CSIdentityGetPosixID")]
     pub unsafe fn posix_id(self: &CSIdentity) -> libc::id_t {
         extern "C-unwind" {
             fn CSIdentityGetPosixID(identity: &CSIdentity) -> libc::id_t;
@@ -177,8 +177,8 @@ impl CSIdentity {
         unsafe { CSIdentityGetPosixID(self) }
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityGetPosixName")]
+    #[inline]
     pub unsafe fn posix_name(self: &CSIdentity) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CSIdentityGetPosixName(identity: &CSIdentity) -> Option<NonNull<CFString>>;
@@ -187,8 +187,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityGetEmailAddress")]
+    #[inline]
     pub unsafe fn email_address(self: &CSIdentity) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CSIdentityGetEmailAddress(identity: &CSIdentity) -> Option<NonNull<CFString>>;
@@ -197,8 +197,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityGetImageURL")]
+    #[inline]
     pub unsafe fn image_url(self: &CSIdentity) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CSIdentityGetImageURL(identity: &CSIdentity) -> Option<NonNull<CFURL>>;
@@ -207,8 +207,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityGetImageData")]
+    #[inline]
     pub unsafe fn image_data(self: &CSIdentity) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CSIdentityGetImageData(identity: &CSIdentity) -> Option<NonNull<CFData>>;
@@ -217,8 +217,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityGetImageDataType")]
+    #[inline]
     pub unsafe fn image_data_type(self: &CSIdentity) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CSIdentityGetImageDataType(identity: &CSIdentity) -> Option<NonNull<CFString>>;
@@ -227,8 +227,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityGetAliases")]
+    #[inline]
     pub unsafe fn aliases(self: &CSIdentity) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CSIdentityGetAliases(identity: &CSIdentity) -> Option<NonNull<CFArray>>;
@@ -237,8 +237,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityIsMemberOfGroup")]
+    #[inline]
     pub unsafe fn is_member_of_group(self: &CSIdentity, group: Option<&CSIdentity>) -> bool {
         extern "C-unwind" {
             fn CSIdentityIsMemberOfGroup(
@@ -250,8 +250,8 @@ impl CSIdentity {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityIsHidden")]
+    #[inline]
     pub unsafe fn is_hidden(self: &CSIdentity) -> bool {
         extern "C-unwind" {
             fn CSIdentityIsHidden(identity: &CSIdentity) -> Boolean;
@@ -260,8 +260,8 @@ impl CSIdentity {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityCreatePersistentReference")]
+    #[inline]
     pub unsafe fn new_persistent_reference(
         allocator: Option<&CFAllocator>,
         identity: Option<&CSIdentity>,
@@ -276,8 +276,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityIsEnabled")]
+    #[inline]
     pub unsafe fn is_enabled(self: &CSIdentity) -> bool {
         extern "C-unwind" {
             fn CSIdentityIsEnabled(user: &CSIdentity) -> Boolean;
@@ -286,8 +286,8 @@ impl CSIdentity {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityAuthenticateUsingPassword")]
+    #[inline]
     pub unsafe fn authenticate_using_password(
         self: &CSIdentity,
         password: Option<&CFString>,
@@ -302,9 +302,9 @@ impl CSIdentity {
         ret != 0
     }
 
+    #[doc(alias = "CSIdentityGetCertificate")]
     #[cfg(feature = "objc2-security")]
     #[inline]
-    #[doc(alias = "CSIdentityGetCertificate")]
     pub unsafe fn certificate(self: &CSIdentity) -> Option<CFRetained<SecCertificate>> {
         extern "C-unwind" {
             fn CSIdentityGetCertificate(user: &CSIdentity) -> Option<NonNull<SecCertificate>>;
@@ -313,8 +313,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityCreateGroupMembershipQuery")]
+    #[inline]
     pub unsafe fn new_group_membership_query(
         allocator: Option<&CFAllocator>,
         group: Option<&CSIdentity>,
@@ -329,8 +329,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CSIdentitySetFullName")]
+    #[inline]
     pub unsafe fn set_full_name(self: &CSIdentity, full_name: Option<&CFString>) {
         extern "C-unwind" {
             fn CSIdentitySetFullName(identity: &CSIdentity, full_name: Option<&CFString>);
@@ -338,8 +338,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetFullName(self, full_name) }
     }
 
-    #[inline]
     #[doc(alias = "CSIdentitySetEmailAddress")]
+    #[inline]
     pub unsafe fn set_email_address(self: &CSIdentity, email_address: Option<&CFString>) {
         extern "C-unwind" {
             fn CSIdentitySetEmailAddress(identity: &CSIdentity, email_address: Option<&CFString>);
@@ -347,8 +347,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetEmailAddress(self, email_address) }
     }
 
-    #[inline]
     #[doc(alias = "CSIdentitySetImageURL")]
+    #[inline]
     pub unsafe fn set_image_url(self: &CSIdentity, url: Option<&CFURL>) {
         extern "C-unwind" {
             fn CSIdentitySetImageURL(identity: &CSIdentity, url: Option<&CFURL>);
@@ -356,8 +356,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetImageURL(self, url) }
     }
 
-    #[inline]
     #[doc(alias = "CSIdentitySetImageData")]
+    #[inline]
     pub unsafe fn set_image_data(
         self: &CSIdentity,
         image_data: Option<&CFData>,
@@ -373,8 +373,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetImageData(self, image_data, image_data_type) }
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityAddAlias")]
+    #[inline]
     pub unsafe fn add_alias(self: &CSIdentity, alias: Option<&CFString>) {
         extern "C-unwind" {
             fn CSIdentityAddAlias(identity: &CSIdentity, alias: Option<&CFString>);
@@ -382,8 +382,8 @@ impl CSIdentity {
         unsafe { CSIdentityAddAlias(self, alias) }
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityRemoveAlias")]
+    #[inline]
     pub unsafe fn remove_alias(self: &CSIdentity, alias: Option<&CFString>) {
         extern "C-unwind" {
             fn CSIdentityRemoveAlias(identity: &CSIdentity, alias: Option<&CFString>);
@@ -391,8 +391,8 @@ impl CSIdentity {
         unsafe { CSIdentityRemoveAlias(self, alias) }
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityAddMember")]
+    #[inline]
     pub unsafe fn add_member(self: &CSIdentity, member: Option<&CSIdentity>) {
         extern "C-unwind" {
             fn CSIdentityAddMember(group: &CSIdentity, member: Option<&CSIdentity>);
@@ -400,8 +400,8 @@ impl CSIdentity {
         unsafe { CSIdentityAddMember(self, member) }
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityRemoveMember")]
+    #[inline]
     pub unsafe fn remove_member(self: &CSIdentity, member: Option<&CSIdentity>) {
         extern "C-unwind" {
             fn CSIdentityRemoveMember(group: &CSIdentity, member: Option<&CSIdentity>);
@@ -409,8 +409,8 @@ impl CSIdentity {
         unsafe { CSIdentityRemoveMember(self, member) }
     }
 
-    #[inline]
     #[doc(alias = "CSIdentitySetIsEnabled")]
+    #[inline]
     pub unsafe fn set_is_enabled(self: &CSIdentity, is_enabled: bool) {
         extern "C-unwind" {
             fn CSIdentitySetIsEnabled(user: &CSIdentity, is_enabled: Boolean);
@@ -418,8 +418,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetIsEnabled(self, is_enabled as _) }
     }
 
-    #[inline]
     #[doc(alias = "CSIdentitySetPassword")]
+    #[inline]
     pub unsafe fn set_password(self: &CSIdentity, password: Option<&CFString>) {
         extern "C-unwind" {
             fn CSIdentitySetPassword(user: &CSIdentity, password: Option<&CFString>);
@@ -427,9 +427,9 @@ impl CSIdentity {
         unsafe { CSIdentitySetPassword(self, password) }
     }
 
+    #[doc(alias = "CSIdentitySetCertificate")]
     #[cfg(feature = "objc2-security")]
     #[inline]
-    #[doc(alias = "CSIdentitySetCertificate")]
     pub unsafe fn set_certificate(self: &CSIdentity, certificate: Option<&SecCertificate>) {
         extern "C-unwind" {
             fn CSIdentitySetCertificate(user: &CSIdentity, certificate: Option<&SecCertificate>);
@@ -437,8 +437,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetCertificate(self, certificate) }
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityDelete")]
+    #[inline]
     pub unsafe fn delete(self: &CSIdentity) {
         extern "C-unwind" {
             fn CSIdentityDelete(identity: &CSIdentity);
@@ -446,9 +446,9 @@ impl CSIdentity {
         unsafe { CSIdentityDelete(self) }
     }
 
+    #[doc(alias = "CSIdentityCommit")]
     #[cfg(feature = "objc2-security")]
     #[inline]
-    #[doc(alias = "CSIdentityCommit")]
     pub unsafe fn commit(
         self: &CSIdentity,
         authorization: AuthorizationRef,
@@ -506,9 +506,9 @@ unsafe impl RefEncode for CSIdentityClientContext {
 }
 
 impl CSIdentity {
+    #[doc(alias = "CSIdentityCommitAsynchronously")]
     #[cfg(feature = "objc2-security")]
     #[inline]
-    #[doc(alias = "CSIdentityCommitAsynchronously")]
     pub unsafe fn commit_asynchronously(
         self: &CSIdentity,
         client_context: *const CSIdentityClientContext,
@@ -537,8 +537,8 @@ impl CSIdentity {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityIsCommitting")]
+    #[inline]
     pub unsafe fn is_committing(self: &CSIdentity) -> bool {
         extern "C-unwind" {
             fn CSIdentityIsCommitting(identity: &CSIdentity) -> Boolean;
@@ -547,8 +547,8 @@ impl CSIdentity {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CSIdentityRemoveClient")]
+    #[inline]
     pub unsafe fn remove_client(self: &CSIdentity) {
         extern "C-unwind" {
             fn CSIdentityRemoveClient(identity: &CSIdentity);

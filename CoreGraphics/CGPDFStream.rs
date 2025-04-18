@@ -50,9 +50,9 @@ unsafe impl RefEncode for CGPDFDataFormat {
 }
 
 impl CGPDFStream {
+    #[doc(alias = "CGPDFStreamGetDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
-    #[doc(alias = "CGPDFStreamGetDictionary")]
     pub unsafe fn dictionary(stream: CGPDFStreamRef) -> CGPDFDictionaryRef {
         extern "C-unwind" {
             fn CGPDFStreamGetDictionary(stream: CGPDFStreamRef) -> CGPDFDictionaryRef;
@@ -60,8 +60,8 @@ impl CGPDFStream {
         unsafe { CGPDFStreamGetDictionary(stream) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFStreamCopyData")]
+    #[inline]
     pub unsafe fn data(
         stream: CGPDFStreamRef,
         format: *mut CGPDFDataFormat,

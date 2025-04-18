@@ -17,8 +17,8 @@ mod private_NSExtensionContextRPBroadcastExtension {
 }
 
 /// Category "RPBroadcastExtension" on [`NSExtensionContext`].
-#[doc(alias = "RPBroadcastExtension")]
 /// Category which defines the method to call from on an extension context object when user interaction is complete during the broadcast setup flow.
+#[doc(alias = "RPBroadcastExtension")]
 pub unsafe trait NSExtensionContextRPBroadcastExtension:
     ClassType + Sized + private_NSExtensionContextRPBroadcastExtension::Sealed
 {

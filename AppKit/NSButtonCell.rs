@@ -88,40 +88,40 @@ impl NSBezelStyle {
     #[doc(alias = "NSBezelStyleBadge")]
     pub const Badge: Self = Self(15);
     /// A bezel style that is typically used in table rows to display information about the row, such as a count.
-    #[deprecated]
     #[doc(alias = "NSBezelStyleShadowlessSquare")]
+    #[deprecated]
     pub const ShadowlessSquare: Self = Self(6);
     /// A bezel style that is typically used in table rows to display information about the row, such as a count.
-    #[deprecated]
     #[doc(alias = "NSBezelStyleTexturedSquare")]
+    #[deprecated]
     pub const TexturedSquare: Self = Self(8);
     /// A bezel style that is typically used in table rows to display information about the row, such as a count.
-    #[deprecated]
     #[doc(alias = "NSBezelStyleRounded")]
+    #[deprecated]
     pub const Rounded: Self = Self(NSBezelStyle::Push.0);
     /// A bezel style that is typically used in table rows to display information about the row, such as a count.
-    #[deprecated]
     #[doc(alias = "NSBezelStyleRegularSquare")]
+    #[deprecated]
     pub const RegularSquare: Self = Self(NSBezelStyle::FlexiblePush.0);
     /// A bezel style that is typically used in table rows to display information about the row, such as a count.
-    #[deprecated]
     #[doc(alias = "NSBezelStyleTexturedRounded")]
+    #[deprecated]
     pub const TexturedRounded: Self = Self(NSBezelStyle::Toolbar.0);
     /// A bezel style that is typically used in table rows to display information about the row, such as a count.
-    #[deprecated]
     #[doc(alias = "NSBezelStyleRoundRect")]
+    #[deprecated]
     pub const RoundRect: Self = Self(NSBezelStyle::AccessoryBarAction.0);
     /// A bezel style that is typically used in table rows to display information about the row, such as a count.
-    #[deprecated]
     #[doc(alias = "NSBezelStyleRecessed")]
+    #[deprecated]
     pub const Recessed: Self = Self(NSBezelStyle::AccessoryBar.0);
     /// A bezel style that is typically used in table rows to display information about the row, such as a count.
-    #[deprecated]
     #[doc(alias = "NSBezelStyleRoundedDisclosure")]
+    #[deprecated]
     pub const RoundedDisclosure: Self = Self(NSBezelStyle::PushDisclosure.0);
     /// A bezel style that is typically used in table rows to display information about the row, such as a count.
-    #[deprecated]
     #[doc(alias = "NSBezelStyleInline")]
+    #[deprecated]
     pub const Inline: Self = Self(NSBezelStyle::Badge.0);
 }
 

@@ -60,8 +60,8 @@ impl CMSimpleQueue {
     ///
     /// Returns: Returns noErr if the call succeeds.  Returns kCMSimpleQueueError_ParameterOutOfRange if
     /// capacity is negative.
-    #[inline]
     #[doc(alias = "CMSimpleQueueCreate")]
+    #[inline]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         capacity: i32,
@@ -82,8 +82,8 @@ impl CMSimpleQueue {
     /// If the queue is full, this operation will fail.
     ///
     /// Returns: Returns noErr if the call succeeds, kCMSimpleQueueError_QueueIsFull if the queue is full.
-    #[inline]
     #[doc(alias = "CMSimpleQueueEnqueue")]
+    #[inline]
     pub unsafe fn enqueue(self: &CMSimpleQueue, element: NonNull<c_void>) -> OSStatus {
         extern "C-unwind" {
             fn CMSimpleQueueEnqueue(queue: &CMSimpleQueue, element: NonNull<c_void>) -> OSStatus;
@@ -96,8 +96,8 @@ impl CMSimpleQueue {
     /// If the queue is empty, NULL will be returned.
     ///
     /// Returns: The dequeued element.  NULL if the queue was empty, or if there was some other error.
-    #[inline]
     #[doc(alias = "CMSimpleQueueDequeue")]
+    #[inline]
     pub unsafe fn dequeue(self: &CMSimpleQueue) -> *const c_void {
         extern "C-unwind" {
             fn CMSimpleQueueDequeue(queue: &CMSimpleQueue) -> *const c_void;
@@ -110,8 +110,8 @@ impl CMSimpleQueue {
     /// If the queue is empty, NULL will be returned.
     ///
     /// Returns: The head element.  NULL if the queue was empty, or if there was some other error.
-    #[inline]
     #[doc(alias = "CMSimpleQueueGetHead")]
+    #[inline]
     pub unsafe fn head(self: &CMSimpleQueue) -> *const c_void {
         extern "C-unwind" {
             fn CMSimpleQueueGetHead(queue: &CMSimpleQueue) -> *const c_void;
@@ -127,8 +127,8 @@ impl CMSimpleQueue {
     /// must be held off by the client during this operation.
     ///
     /// Returns: Returns noErr if the call succeeds.
-    #[inline]
     #[doc(alias = "CMSimpleQueueReset")]
+    #[inline]
     pub unsafe fn reset(self: &CMSimpleQueue) -> OSStatus {
         extern "C-unwind" {
             fn CMSimpleQueueReset(queue: &CMSimpleQueue) -> OSStatus;
@@ -140,8 +140,8 @@ impl CMSimpleQueue {
     ///
     /// Returns: The number of elements that can be held in the queue.  Returns
     /// 0 if there is an error.
-    #[inline]
     #[doc(alias = "CMSimpleQueueGetCapacity")]
+    #[inline]
     pub unsafe fn capacity(self: &CMSimpleQueue) -> i32 {
         extern "C-unwind" {
             fn CMSimpleQueueGetCapacity(queue: &CMSimpleQueue) -> i32;
@@ -152,8 +152,8 @@ impl CMSimpleQueue {
     /// Returns the number of elements currently on the queue.
     ///
     /// Returns: The number of elements currently in the queue. Returns 0 if there is an error.
-    #[inline]
     #[doc(alias = "CMSimpleQueueGetCount")]
+    #[inline]
     pub unsafe fn count(self: &CMSimpleQueue) -> i32 {
         extern "C-unwind" {
             fn CMSimpleQueueGetCount(queue: &CMSimpleQueue) -> i32;

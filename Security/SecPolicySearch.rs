@@ -56,10 +56,10 @@ impl SecPolicySearch {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in 10.7. To create a SecPolicyRef, use one of the SecPolicyCreate functions in SecPolicy.h.
+    #[doc(alias = "SecPolicySearchCreate")]
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecPolicySearchCreate")]
     pub unsafe fn create(
         cert_type: CSSM_CERT_TYPE,
         policy_oid: NonNull<SecAsn1Oid>,
@@ -86,10 +86,10 @@ impl SecPolicySearch {
     /// Returns: A result code.  When there are no more policies that match the parameters specified to SecPolicySearchCreate, errSecPolicyNotFound is returned. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in 10.7. To create a SecPolicyRef, use one of the SecPolicyCreate functions in SecPolicy.h.
+    #[doc(alias = "SecPolicySearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecPolicySearchCopyNext")]
     pub unsafe fn copy_next(
         self: &SecPolicySearch,
         policy_ref: NonNull<*mut SecPolicy>,

@@ -16,9 +16,9 @@ impl SCPreferences {
     ///
     /// Returns: Returns a string representing the new (unique) child path; NULL
     /// if the specified path does not exist.
+    #[doc(alias = "SCPreferencesPathCreateUniqueChild")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    #[doc(alias = "SCPreferencesPathCreateUniqueChild")]
     pub fn path_create_unique_child(
         self: &SCPreferences,
         prefix: &CFString,
@@ -42,9 +42,9 @@ impl SCPreferences {
     ///
     /// Returns: Returns the dictionary associated with the specified path; NULL
     /// if the path does not exist.
+    #[doc(alias = "SCPreferencesPathGetValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    #[doc(alias = "SCPreferencesPathGetValue")]
     pub fn path_get_value(
         self: &SCPreferences,
         path: &CFString,
@@ -68,9 +68,9 @@ impl SCPreferences {
     ///
     /// Returns: Returns the dictionary associated with the specified path; NULL
     /// if the path is not a link or does not exist.
+    #[doc(alias = "SCPreferencesPathGetLink")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    #[doc(alias = "SCPreferencesPathGetLink")]
     pub fn path_get_link(self: &SCPreferences, path: &CFString) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCPreferencesPathGetLink(
@@ -92,9 +92,9 @@ impl SCPreferences {
     /// stored at the specified path.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
+    #[doc(alias = "SCPreferencesPathSetValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    #[doc(alias = "SCPreferencesPathSetValue")]
     pub unsafe fn path_set_value(
         self: &SCPreferences,
         path: &CFString,
@@ -122,9 +122,9 @@ impl SCPreferences {
     /// at the specified path.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
+    #[doc(alias = "SCPreferencesPathSetLink")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    #[doc(alias = "SCPreferencesPathSetLink")]
     pub fn path_set_link(self: &SCPreferences, path: &CFString, link: &CFString) -> bool {
         extern "C-unwind" {
             fn SCPreferencesPathSetLink(
@@ -144,9 +144,9 @@ impl SCPreferences {
     /// Parameter `path`: A string that represents the path to be returned.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
+    #[doc(alias = "SCPreferencesPathRemoveValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    #[doc(alias = "SCPreferencesPathRemoveValue")]
     pub fn path_remove_value(self: &SCPreferences, path: &CFString) -> bool {
         extern "C-unwind" {
             fn SCPreferencesPathRemoveValue(prefs: &SCPreferences, path: &CFString) -> Boolean;

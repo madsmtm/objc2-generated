@@ -13,17 +13,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKProductPeriodUnit(pub NSUInteger);
 impl SKProductPeriodUnit {
-    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     #[doc(alias = "SKProductPeriodUnitDay")]
+    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     pub const Day: Self = Self(0);
-    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     #[doc(alias = "SKProductPeriodUnitWeek")]
+    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     pub const Week: Self = Self(1);
-    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     #[doc(alias = "SKProductPeriodUnitMonth")]
-    pub const Month: Self = Self(2);
     #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
+    pub const Month: Self = Self(2);
     #[doc(alias = "SKProductPeriodUnitYear")]
+    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     pub const Year: Self = Self(3);
 }
 

@@ -80,8 +80,8 @@ impl VTHDRPerFrameMetadataGenerationSession {
     /// Parameter `framesPerSecond`: Value must be greater than 0.0
     ///
     /// Parameter `options`: CFDictionary may contain the key kVTHDRPerFrameMetadataGenerationOptionsHDRFormatsKey.
-    #[inline]
     #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionCreate")]
+    #[inline]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         frames_per_second: c_float,
@@ -118,9 +118,9 @@ impl VTHDRPerFrameMetadataGenerationSession {
     /// Parameter `pixelBuffer`:
     /// Parameter `sceneChange`: If this frame changes significantly in brightness from the previous frame, for example going from an indoor scene to an outdoor scene or
     /// from a night scene to a daytime scene, set this to true.
+    #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionAttachMetadata")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
-    #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionAttachMetadata")]
     pub unsafe fn attach_metadata(
         self: &VTHDRPerFrameMetadataGenerationSession,
         pixel_buffer: &CVPixelBuffer,

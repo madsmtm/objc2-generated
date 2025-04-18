@@ -68,8 +68,8 @@ unsafe impl ConcreteType for CGImageDestination {
 }
 
 impl CGImageDestination {
-    #[inline]
     #[doc(alias = "CGImageDestinationCopyTypeIdentifiers")]
+    #[inline]
     pub unsafe fn type_identifiers() -> CFRetained<CFArray> {
         extern "C-unwind" {
             fn CGImageDestinationCopyTypeIdentifiers() -> Option<NonNull<CFArray>>;
@@ -80,9 +80,9 @@ impl CGImageDestination {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    #[doc(alias = "CGImageDestinationCreateWithDataConsumer")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CGImageDestinationCreateWithDataConsumer")]
     pub unsafe fn with_data_consumer(
         consumer: &CGDataConsumer,
         r#type: &CFString,
@@ -102,8 +102,8 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGImageDestinationCreateWithData")]
+    #[inline]
     pub unsafe fn with_data(
         data: &CFMutableData,
         r#type: &CFString,
@@ -122,8 +122,8 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGImageDestinationCreateWithURL")]
+    #[inline]
     pub unsafe fn with_url(
         url: &CFURL,
         r#type: &CFString,
@@ -142,8 +142,8 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGImageDestinationSetProperties")]
+    #[inline]
     pub unsafe fn set_properties(self: &CGImageDestination, properties: Option<&CFDictionary>) {
         extern "C-unwind" {
             fn CGImageDestinationSetProperties(
@@ -154,9 +154,9 @@ impl CGImageDestination {
         unsafe { CGImageDestinationSetProperties(self, properties) }
     }
 
+    #[doc(alias = "CGImageDestinationAddImage")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CGImageDestinationAddImage")]
     pub unsafe fn add_image(
         self: &CGImageDestination,
         image: &CGImage,
@@ -172,9 +172,9 @@ impl CGImageDestination {
         unsafe { CGImageDestinationAddImage(self, image, properties) }
     }
 
+    #[doc(alias = "CGImageDestinationAddImageFromSource")]
     #[cfg(feature = "CGImageSource")]
     #[inline]
-    #[doc(alias = "CGImageDestinationAddImageFromSource")]
     pub unsafe fn add_image_from_source(
         self: &CGImageDestination,
         isrc: &CGImageSource,
@@ -192,8 +192,8 @@ impl CGImageDestination {
         unsafe { CGImageDestinationAddImageFromSource(self, isrc, index, properties) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageDestinationFinalize")]
+    #[inline]
     pub unsafe fn finalize(self: &CGImageDestination) -> bool {
         extern "C-unwind" {
             fn CGImageDestinationFinalize(idst: &CGImageDestination) -> bool;
@@ -201,9 +201,9 @@ impl CGImageDestination {
         unsafe { CGImageDestinationFinalize(self) }
     }
 
+    #[doc(alias = "CGImageDestinationAddImageAndMetadata")]
     #[cfg(all(feature = "CGImageMetadata", feature = "objc2-core-graphics"))]
     #[inline]
-    #[doc(alias = "CGImageDestinationAddImageAndMetadata")]
     pub unsafe fn add_image_and_metadata(
         self: &CGImageDestination,
         image: &CGImage,
@@ -261,9 +261,9 @@ extern "C" {
 }
 
 impl CGImageDestination {
+    #[doc(alias = "CGImageDestinationCopyImageSource")]
     #[cfg(feature = "CGImageSource")]
     #[inline]
-    #[doc(alias = "CGImageDestinationCopyImageSource")]
     pub unsafe fn copy_image_source(
         self: &CGImageDestination,
         isrc: &CGImageSource,
@@ -281,8 +281,8 @@ impl CGImageDestination {
         unsafe { CGImageDestinationCopyImageSource(self, isrc, options, err) }
     }
 
-    #[inline]
     #[doc(alias = "CGImageDestinationAddAuxiliaryDataInfo")]
+    #[inline]
     pub unsafe fn add_auxiliary_data_info(
         self: &CGImageDestination,
         auxiliary_image_data_type: &CFString,

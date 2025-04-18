@@ -13,29 +13,29 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INStartVideoCallIntentResponseCode(pub NSInteger);
 impl INStartVideoCallIntentResponseCode {
-    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartVideoCallIntentResponseCodeUnspecified")]
+    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartVideoCallIntentResponseCodeReady")]
+    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartVideoCallIntentResponseCodeContinueInApp")]
+    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const ContinueInApp: Self = Self(2);
-    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailure")]
+    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Failure: Self = Self(3);
-    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureRequiringAppLaunch: Self = Self(4);
-    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureAppConfigurationRequired")]
+    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureAppConfigurationRequired: Self = Self(5);
-    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureCallingServiceNotAvailable")]
-    pub const FailureCallingServiceNotAvailable: Self = Self(6);
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
+    pub const FailureCallingServiceNotAvailable: Self = Self(6);
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureContactNotSupportedByApp")]
+    #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureContactNotSupportedByApp: Self = Self(7);
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureInvalidNumber")]
     pub const FailureInvalidNumber: Self = Self(8);

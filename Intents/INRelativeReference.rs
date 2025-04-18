@@ -11,14 +11,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INRelativeReference(pub NSInteger);
 impl INRelativeReference {
-    #[deprecated = "INRelativeReference is deprecated. There is no replacement."]
     #[doc(alias = "INRelativeReferenceUnknown")]
+    #[deprecated = "INRelativeReference is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    #[deprecated = "INRelativeReference is deprecated. There is no replacement."]
     #[doc(alias = "INRelativeReferenceNext")]
-    pub const Next: Self = Self(1);
     #[deprecated = "INRelativeReference is deprecated. There is no replacement."]
+    pub const Next: Self = Self(1);
     #[doc(alias = "INRelativeReferencePrevious")]
+    #[deprecated = "INRelativeReference is deprecated. There is no replacement."]
     pub const Previous: Self = Self(2);
 }
 

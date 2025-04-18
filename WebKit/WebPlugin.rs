@@ -11,9 +11,9 @@ mod private_NSObjectWebPlugIn {
 }
 
 /// Category "WebPlugIn" on [`NSObject`].
-#[doc(alias = "WebPlugIn")]
 /// WebPlugIn is an informal protocol that enables interaction between an application
 /// and web related plug-ins it may contain.
+#[doc(alias = "WebPlugIn")]
 pub unsafe trait NSObjectWebPlugIn:
     ClassType + Sized + private_NSObjectWebPlugIn::Sealed
 {

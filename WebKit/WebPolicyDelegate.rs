@@ -15,23 +15,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WebNavigationType(pub NSInteger);
 impl WebNavigationType {
-    #[deprecated]
     #[doc(alias = "WebNavigationTypeLinkClicked")]
+    #[deprecated]
     pub const LinkClicked: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "WebNavigationTypeFormSubmitted")]
+    #[deprecated]
     pub const FormSubmitted: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "WebNavigationTypeBackForward")]
+    #[deprecated]
     pub const BackForward: Self = Self(2);
-    #[deprecated]
     #[doc(alias = "WebNavigationTypeReload")]
+    #[deprecated]
     pub const Reload: Self = Self(3);
-    #[deprecated]
     #[doc(alias = "WebNavigationTypeFormResubmitted")]
-    pub const FormResubmitted: Self = Self(4);
     #[deprecated]
+    pub const FormResubmitted: Self = Self(4);
     #[doc(alias = "WebNavigationTypeOther")]
+    #[deprecated]
     pub const Other: Self = Self(5);
 }
 

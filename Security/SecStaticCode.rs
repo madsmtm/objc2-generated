@@ -44,9 +44,9 @@ impl SecStaticCode {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    #[doc(alias = "SecStaticCodeCreateWithPath")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecStaticCodeCreateWithPath")]
     pub unsafe fn create_with_path(
         path: &CFURL,
         flags: SecCSFlags,
@@ -124,9 +124,9 @@ impl SecStaticCode {
     ///
     ///
     /// then select the specified framework version. This key is otherwise ignored.
+    #[doc(alias = "SecStaticCodeCreateWithPathAndAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecStaticCodeCreateWithPathAndAttributes")]
     pub unsafe fn create_with_path_and_attributes(
         path: &CFURL,
         flags: SecCSFlags,
@@ -180,9 +180,9 @@ pub const kSecCSFastExecutableValidation: u32 = 131072;
 
 #[cfg(feature = "CSCommon")]
 impl SecStaticCode {
+    #[doc(alias = "SecStaticCodeCheckValidity")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecStaticCodeCheckValidity")]
     pub unsafe fn check_validity(
         self: &SecStaticCode,
         flags: SecCSFlags,
@@ -198,9 +198,9 @@ impl SecStaticCode {
         unsafe { SecStaticCodeCheckValidity(self, flags, requirement) }
     }
 
+    #[doc(alias = "SecStaticCodeCheckValidityWithErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecStaticCodeCheckValidityWithErrors")]
     pub unsafe fn check_validity_with_errors(
         self: &SecStaticCode,
         flags: SecCSFlags,

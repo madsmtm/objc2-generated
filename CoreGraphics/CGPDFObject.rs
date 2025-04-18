@@ -71,8 +71,8 @@ unsafe impl RefEncode for CGPDFObjectType {
 }
 
 impl CGPDFObject {
-    #[inline]
     #[doc(alias = "CGPDFObjectGetType")]
+    #[inline]
     pub unsafe fn r#type(object: CGPDFObjectRef) -> CGPDFObjectType {
         extern "C-unwind" {
             fn CGPDFObjectGetType(object: CGPDFObjectRef) -> CGPDFObjectType;
@@ -80,8 +80,8 @@ impl CGPDFObject {
         unsafe { CGPDFObjectGetType(object) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFObjectGetValue")]
+    #[inline]
     pub unsafe fn value(
         object: CGPDFObjectRef,
         r#type: CGPDFObjectType,

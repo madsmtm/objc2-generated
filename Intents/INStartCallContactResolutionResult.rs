@@ -22,8 +22,8 @@ impl INStartCallContactUnsupportedReason {
     pub const InvalidHandle: Self = Self(4);
     #[doc(alias = "INStartCallContactUnsupportedReasonUnsupportedMmiUssd")]
     pub const UnsupportedMmiUssd: Self = Self(5);
-    #[deprecated]
     #[doc(alias = "INStartCallContactUnsupportedReasonNoCallHistoryForRedial")]
+    #[deprecated]
     pub const NoCallHistoryForRedial: Self = Self(6);
     #[doc(alias = "INStartCallContactUnsupportedReasonNoUsableHandleForRedial")]
     pub const NoUsableHandleForRedial: Self = Self(7);

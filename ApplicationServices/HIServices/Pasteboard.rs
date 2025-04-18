@@ -135,8 +135,8 @@ unsafe impl ConcreteType for Pasteboard {
 }
 
 impl Pasteboard {
-    #[inline]
     #[doc(alias = "PasteboardCreate")]
+    #[inline]
     pub unsafe fn create(
         in_name: Option<&CFString>,
         out_pasteboard: NonNull<*mut Pasteboard>,
@@ -150,8 +150,8 @@ impl Pasteboard {
         unsafe { PasteboardCreate(in_name, out_pasteboard) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardSynchronize")]
+    #[inline]
     pub unsafe fn synchronize(self: &Pasteboard) -> PasteboardSyncFlags {
         extern "C-unwind" {
             fn PasteboardSynchronize(in_pasteboard: &Pasteboard) -> PasteboardSyncFlags;
@@ -159,8 +159,8 @@ impl Pasteboard {
         unsafe { PasteboardSynchronize(self) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardClear")]
+    #[inline]
     pub unsafe fn clear(self: &Pasteboard) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardClear(in_pasteboard: &Pasteboard) -> OSStatus;
@@ -168,8 +168,8 @@ impl Pasteboard {
         unsafe { PasteboardClear(self) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardCopyName")]
+    #[inline]
     pub unsafe fn copy_name(self: &Pasteboard, out_name: NonNull<*const CFString>) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardCopyName(
@@ -180,8 +180,8 @@ impl Pasteboard {
         unsafe { PasteboardCopyName(self, out_name) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardGetItemCount")]
+    #[inline]
     pub unsafe fn item_count(self: &Pasteboard, out_item_count: NonNull<ItemCount>) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardGetItemCount(
@@ -192,8 +192,8 @@ impl Pasteboard {
         unsafe { PasteboardGetItemCount(self, out_item_count) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardGetItemIdentifier")]
+    #[inline]
     pub unsafe fn item_identifier(
         self: &Pasteboard,
         in_index: CFIndex,
@@ -209,8 +209,8 @@ impl Pasteboard {
         unsafe { PasteboardGetItemIdentifier(self, in_index, out_item) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardCopyItemFlavors")]
+    #[inline]
     pub unsafe fn copy_item_flavors(
         self: &Pasteboard,
         in_item: PasteboardItemID,
@@ -226,8 +226,8 @@ impl Pasteboard {
         unsafe { PasteboardCopyItemFlavors(self, in_item, out_flavor_types) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardGetItemFlavorFlags")]
+    #[inline]
     pub unsafe fn item_flavor_flags(
         self: &Pasteboard,
         in_item: PasteboardItemID,
@@ -245,8 +245,8 @@ impl Pasteboard {
         unsafe { PasteboardGetItemFlavorFlags(self, in_item, in_flavor_type, out_flags) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardCopyItemFlavorData")]
+    #[inline]
     pub unsafe fn copy_item_flavor_data(
         self: &Pasteboard,
         in_item: PasteboardItemID,
@@ -264,8 +264,8 @@ impl Pasteboard {
         unsafe { PasteboardCopyItemFlavorData(self, in_item, in_flavor_type, out_data) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardPutItemFlavor")]
+    #[inline]
     pub unsafe fn put_item_flavor(
         self: &Pasteboard,
         in_item: PasteboardItemID,
@@ -285,8 +285,8 @@ impl Pasteboard {
         unsafe { PasteboardPutItemFlavor(self, in_item, in_flavor_type, in_data, in_flags) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardCopyPasteLocation")]
+    #[inline]
     pub unsafe fn copy_paste_location(
         self: &Pasteboard,
         out_paste_location: NonNull<*const CFURL>,
@@ -300,8 +300,8 @@ impl Pasteboard {
         unsafe { PasteboardCopyPasteLocation(self, out_paste_location) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardSetPasteLocation")]
+    #[inline]
     pub unsafe fn set_paste_location(self: &Pasteboard, in_paste_location: &CFURL) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardSetPasteLocation(
@@ -324,8 +324,8 @@ pub type PasteboardPromiseKeeperProcPtr = Option<
 >;
 
 impl Pasteboard {
-    #[inline]
     #[doc(alias = "PasteboardSetPromiseKeeper")]
+    #[inline]
     pub unsafe fn set_promise_keeper(
         self: &Pasteboard,
         in_promise_keeper: PasteboardPromiseKeeperProcPtr,
@@ -341,8 +341,8 @@ impl Pasteboard {
         unsafe { PasteboardSetPromiseKeeper(self, in_promise_keeper, in_context) }
     }
 
-    #[inline]
     #[doc(alias = "PasteboardResolvePromises")]
+    #[inline]
     pub unsafe fn resolve_promises(self: &Pasteboard) -> OSStatus {
         extern "C-unwind" {
             fn PasteboardResolvePromises(in_pasteboard: &Pasteboard) -> OSStatus;

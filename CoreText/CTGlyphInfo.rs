@@ -121,9 +121,9 @@ impl CTGlyphInfo {
     ///
     ///
     /// Returns: This function will return a reference to a CTGlyphInfo object.
+    #[doc(alias = "CTGlyphInfoCreateWithGlyphName")]
     #[cfg(feature = "CTFont")]
     #[inline]
-    #[doc(alias = "CTGlyphInfoCreateWithGlyphName")]
     pub unsafe fn with_glyph_name(
         glyph_name: &CFString,
         font: &CTFont,
@@ -158,9 +158,9 @@ impl CTGlyphInfo {
     ///
     ///
     /// Returns: This function will return a reference to a CTGlyphInfo object.
+    #[doc(alias = "CTGlyphInfoCreateWithGlyph")]
     #[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
     #[inline]
-    #[doc(alias = "CTGlyphInfoCreateWithGlyph")]
     pub unsafe fn with_glyph(
         glyph: CGGlyph,
         font: &CTFont,
@@ -195,9 +195,9 @@ impl CTGlyphInfo {
     ///
     ///
     /// Returns: This function will return a reference to a CTGlyphInfo object.
+    #[doc(alias = "CTGlyphInfoCreateWithCharacterIdentifier")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CTGlyphInfoCreateWithCharacterIdentifier")]
     pub unsafe fn with_character_identifier(
         cid: CGFontIndex,
         collection: CTCharacterCollection,
@@ -225,8 +225,8 @@ impl CTGlyphInfo {
     ///
     /// Returns: If the glyph info object was created with a glyph name, it will
     /// be returned. Otherwise, this function will return NULL.
-    #[inline]
     #[doc(alias = "CTGlyphInfoGetGlyphName")]
+    #[inline]
     pub unsafe fn glyph_name(self: &CTGlyphInfo) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CTGlyphInfoGetGlyphName(glyph_info: &CTGlyphInfo) -> Option<NonNull<CFString>>;
@@ -246,9 +246,9 @@ impl CTGlyphInfo {
     ///
     /// Returns: If the glyph info object was created with a font, it will be
     /// returned. Otherwise, this function will return 0.
+    #[doc(alias = "CTGlyphInfoGetGlyph")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CTGlyphInfoGetGlyph")]
     pub unsafe fn glyph(self: &CTGlyphInfo) -> CGGlyph {
         extern "C-unwind" {
             fn CTGlyphInfoGetGlyph(glyph_info: &CTGlyphInfo) -> CGGlyph;
@@ -267,9 +267,9 @@ impl CTGlyphInfo {
     ///
     /// Returns: If the glyph info object was created with a character identifier,
     /// it will be returned. Otherwise, this function will return 0.
+    #[doc(alias = "CTGlyphInfoGetCharacterIdentifier")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CTGlyphInfoGetCharacterIdentifier")]
     pub unsafe fn character_identifier(self: &CTGlyphInfo) -> CGFontIndex {
         extern "C-unwind" {
             fn CTGlyphInfoGetCharacterIdentifier(glyph_info: &CTGlyphInfo) -> CGFontIndex;
@@ -291,8 +291,8 @@ impl CTGlyphInfo {
     ///
     /// Returns: This function will return the character collection of the given
     /// glyph info.
-    #[inline]
     #[doc(alias = "CTGlyphInfoGetCharacterCollection")]
+    #[inline]
     pub unsafe fn character_collection(self: &CTGlyphInfo) -> CTCharacterCollection {
         extern "C-unwind" {
             fn CTGlyphInfoGetCharacterCollection(glyph_info: &CTGlyphInfo)

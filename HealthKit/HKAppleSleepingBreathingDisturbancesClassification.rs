@@ -34,9 +34,9 @@ impl HKAppleSleepingBreathingDisturbancesClassification {
     /// Parameter `value`: Breathing Disturbances quantity
     ///
     /// Returns: A Breathing Disturbances classification if one can be created, otherwise nil.
+    #[doc(alias = "HKAppleSleepingBreathingDisturbancesClassificationForQuantity")]
     #[cfg(feature = "HKQuantity")]
     #[inline]
-    #[doc(alias = "HKAppleSleepingBreathingDisturbancesClassificationForQuantity")]
     pub unsafe fn for_quantity(value: &HKQuantity) -> Option<Retained<NSNumber>> {
         extern "C-unwind" {
             fn HKAppleSleepingBreathingDisturbancesClassificationForQuantity(

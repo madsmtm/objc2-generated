@@ -21,9 +21,9 @@ impl SCPreferences {
     /// Parameter `nameEncoding`: The encoding associated with the computer name.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
+    #[doc(alias = "SCPreferencesSetComputerName")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    #[doc(alias = "SCPreferencesSetComputerName")]
     pub fn set_computer_name(
         self: &SCPreferences,
         name: Option<&CFString>,
@@ -55,9 +55,9 @@ impl SCPreferences {
     /// name as specified in RFC 1034 (section 3.5).
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
+    #[doc(alias = "SCPreferencesSetLocalHostName")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    #[doc(alias = "SCPreferencesSetLocalHostName")]
     pub fn set_local_host_name(self: &SCPreferences, name: Option<&CFString>) -> bool {
         extern "C-unwind" {
             fn SCPreferencesSetLocalHostName(

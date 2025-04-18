@@ -1544,14 +1544,14 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIPreviewActionStyle(pub NSInteger);
 impl UIPreviewActionStyle {
-    #[deprecated = "Please use UIContextMenuInteraction."]
     #[doc(alias = "UIPreviewActionStyleDefault")]
+    #[deprecated = "Please use UIContextMenuInteraction."]
     pub const Default: Self = Self(0);
-    #[deprecated = "Please use UIContextMenuInteraction."]
     #[doc(alias = "UIPreviewActionStyleSelected")]
-    pub const Selected: Self = Self(1);
     #[deprecated = "Please use UIContextMenuInteraction."]
+    pub const Selected: Self = Self(1);
     #[doc(alias = "UIPreviewActionStyleDestructive")]
+    #[deprecated = "Please use UIContextMenuInteraction."]
     pub const Destructive: Self = Self(2);
 }
 

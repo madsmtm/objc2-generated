@@ -50,8 +50,8 @@ unsafe impl RefEncode for CGError {
 pub type CGErrorCallback = Option<unsafe extern "C-unwind" fn()>;
 
 impl CGError {
-    #[inline]
     #[doc(alias = "CGErrorSetCallback")]
+    #[inline]
     pub unsafe fn set_callback(callback: CGErrorCallback) {
         extern "C-unwind" {
             fn CGErrorSetCallback(callback: CGErrorCallback);

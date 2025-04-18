@@ -154,17 +154,17 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCaptureVideoOrientation(pub NSInteger);
 impl AVCaptureVideoOrientation {
-    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     #[doc(alias = "AVCaptureVideoOrientationPortrait")]
+    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const Portrait: Self = Self(1);
-    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     #[doc(alias = "AVCaptureVideoOrientationPortraitUpsideDown")]
+    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const PortraitUpsideDown: Self = Self(2);
-    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     #[doc(alias = "AVCaptureVideoOrientationLandscapeRight")]
-    pub const LandscapeRight: Self = Self(3);
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
+    pub const LandscapeRight: Self = Self(3);
     #[doc(alias = "AVCaptureVideoOrientationLandscapeLeft")]
+    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const LandscapeLeft: Self = Self(4);
 }
 

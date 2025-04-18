@@ -37,9 +37,9 @@ unsafe impl ConcreteType for WSProtocolHandler {
 }
 
 impl WSProtocolHandler {
+    #[doc(alias = "WSProtocolHandlerCreate")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "WSProtocolHandlerCreate")]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         protocol: Option<&CFString>,
@@ -54,9 +54,9 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "WSProtocolHandlerCopyRequestDictionary")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "WSProtocolHandlerCopyRequestDictionary")]
     pub unsafe fn request_dictionary(
         self: &WSProtocolHandler,
         data: Option<&CFData>,
@@ -71,9 +71,9 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "WSProtocolHandlerCopyReplyDictionary")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "WSProtocolHandlerCopyReplyDictionary")]
     pub unsafe fn reply_dictionary(
         self: &WSProtocolHandler,
         method_name: Option<&CFString>,
@@ -90,9 +90,9 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "WSProtocolHandlerCopyReplyDocument")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "WSProtocolHandlerCopyReplyDocument")]
     pub unsafe fn reply_document(
         self: &WSProtocolHandler,
         method_context: Option<&CFDictionary>,
@@ -109,9 +109,9 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "WSProtocolHandlerCopyFaultDocument")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "WSProtocolHandlerCopyFaultDocument")]
     pub unsafe fn fault_document(
         self: &WSProtocolHandler,
         method_context: Option<&CFDictionary>,
@@ -128,9 +128,9 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "WSProtocolHandlerCopyRequestDocument")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "WSProtocolHandlerCopyRequestDocument")]
     pub unsafe fn request_document(
         self: &WSProtocolHandler,
         method_name: Option<&CFString>,
@@ -159,9 +159,9 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "WSProtocolHandlerCopyProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "WSProtocolHandlerCopyProperty")]
     pub unsafe fn property(
         self: &WSProtocolHandler,
         property_name: Option<&CFString>,
@@ -176,9 +176,9 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "WSProtocolHandlerSetProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "WSProtocolHandlerSetProperty")]
     pub unsafe fn set_property(
         self: &WSProtocolHandler,
         property_name: Option<&CFString>,
@@ -205,10 +205,10 @@ pub type WSProtocolHandlerSerializationProcPtr = Option<
 >;
 
 impl WSProtocolHandler {
+    #[doc(alias = "WSProtocolHandlerSetSerializationOverride")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "WSProtocolHandlerSetSerializationOverride")]
     pub unsafe fn set_serialization_override(
         self: &WSProtocolHandler,
         obj_type: CFTypeID,
@@ -240,10 +240,10 @@ pub type WSProtocolHandlerDeserializationProcPtr = Option<
 >;
 
 impl WSProtocolHandler {
+    #[doc(alias = "WSProtocolHandlerSetDeserializationOverride")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "WSProtocolHandlerSetDeserializationOverride")]
     pub unsafe fn set_deserialization_override(
         self: &WSProtocolHandler,
         type_namespace: Option<&CFString>,

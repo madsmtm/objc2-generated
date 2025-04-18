@@ -31,8 +31,8 @@ bitflags::bitflags! {
 /// This flag is optional and only supported in the context of binary archives.
 ///
 /// This flag is required for inspecting and consuming binary archives with specialized MTLFunctions via the metal-source tool. It is not required for recompilation, nor for storing functions in binary archives. Set this flag only if you intend to use metal-source on a serialized binary archive.
-#[deprecated]
         #[doc(alias = "MTLFunctionOptionStoreFunctionInMetalScript")]
+#[deprecated]
         const StoreFunctionInMetalScript = 1<<1;
 /// Function creation fails (i.e nil is returned) if:
 /// - A lookup binary archive has been specified

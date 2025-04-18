@@ -59,10 +59,10 @@ impl CVOpenGLBufferPool {
     /// Parameter `poolOut`: The newly created pool will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    #[doc(alias = "CVOpenGLBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    #[doc(alias = "CVOpenGLBufferPoolCreate")]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         pool_attributes: Option<&CFDictionary>,
@@ -92,9 +92,9 @@ impl CVOpenGLBufferPool {
     /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
+    #[doc(alias = "CVOpenGLBufferPoolGetAttributes")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    #[doc(alias = "CVOpenGLBufferPoolGetAttributes")]
     pub unsafe fn attributes(self: &CVOpenGLBufferPool) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CVOpenGLBufferPoolGetAttributes(
@@ -113,9 +113,9 @@ impl CVOpenGLBufferPool {
     /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the OpenGL buffer attributes dictionary, or NULL on failure.
+    #[doc(alias = "CVOpenGLBufferPoolGetOpenGLBufferAttributes")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    #[doc(alias = "CVOpenGLBufferPoolGetOpenGLBufferAttributes")]
     pub unsafe fn open_gl_buffer_attributes(
         self: &CVOpenGLBufferPool,
     ) -> Option<CFRetained<CFDictionary>> {
@@ -139,6 +139,7 @@ impl CVOpenGLBufferPool {
     /// Parameter `openGLBufferOut`: The newly created OpenGL buffer will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    #[doc(alias = "CVOpenGLBufferPoolCreateOpenGLBuffer")]
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -147,7 +148,6 @@ impl CVOpenGLBufferPool {
     ))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    #[doc(alias = "CVOpenGLBufferPoolCreateOpenGLBuffer")]
     pub unsafe fn create_open_gl_buffer(
         allocator: Option<&CFAllocator>,
         open_gl_buffer_pool: &CVOpenGLBufferPool,

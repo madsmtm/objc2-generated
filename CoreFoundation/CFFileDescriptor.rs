@@ -78,8 +78,8 @@ unsafe impl ConcreteType for CFFileDescriptor {
 }
 
 impl CFFileDescriptor {
-    #[inline]
     #[doc(alias = "CFFileDescriptorCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         fd: CFFileDescriptorNativeDescriptor,
@@ -102,8 +102,8 @@ impl CFFileDescriptor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFFileDescriptorGetNativeDescriptor")]
+    #[inline]
     pub fn native_descriptor(self: &CFFileDescriptor) -> CFFileDescriptorNativeDescriptor {
         extern "C-unwind" {
             fn CFFileDescriptorGetNativeDescriptor(
@@ -113,8 +113,8 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorGetNativeDescriptor(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFFileDescriptorGetContext")]
+    #[inline]
     pub unsafe fn context(self: &CFFileDescriptor, context: *mut CFFileDescriptorContext) {
         extern "C-unwind" {
             fn CFFileDescriptorGetContext(
@@ -125,8 +125,8 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorGetContext(self, context) }
     }
 
-    #[inline]
     #[doc(alias = "CFFileDescriptorEnableCallBacks")]
+    #[inline]
     pub fn enable_call_backs(self: &CFFileDescriptor, call_back_types: CFOptionFlags) {
         extern "C-unwind" {
             fn CFFileDescriptorEnableCallBacks(
@@ -137,8 +137,8 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorEnableCallBacks(self, call_back_types) }
     }
 
-    #[inline]
     #[doc(alias = "CFFileDescriptorDisableCallBacks")]
+    #[inline]
     pub fn disable_call_backs(self: &CFFileDescriptor, call_back_types: CFOptionFlags) {
         extern "C-unwind" {
             fn CFFileDescriptorDisableCallBacks(
@@ -149,8 +149,8 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorDisableCallBacks(self, call_back_types) }
     }
 
-    #[inline]
     #[doc(alias = "CFFileDescriptorInvalidate")]
+    #[inline]
     pub fn invalidate(self: &CFFileDescriptor) {
         extern "C-unwind" {
             fn CFFileDescriptorInvalidate(f: &CFFileDescriptor);
@@ -158,8 +158,8 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorInvalidate(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFFileDescriptorIsValid")]
+    #[inline]
     pub fn is_valid(self: &CFFileDescriptor) -> bool {
         extern "C-unwind" {
             fn CFFileDescriptorIsValid(f: &CFFileDescriptor) -> Boolean;
@@ -168,9 +168,9 @@ impl CFFileDescriptor {
         ret != 0
     }
 
+    #[doc(alias = "CFFileDescriptorCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
-    #[doc(alias = "CFFileDescriptorCreateRunLoopSource")]
     pub fn new_run_loop_source(
         allocator: Option<&CFAllocator>,
         f: Option<&CFFileDescriptor>,

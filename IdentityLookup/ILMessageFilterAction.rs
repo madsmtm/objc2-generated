@@ -22,8 +22,8 @@ impl ILMessageFilterAction {
     #[doc(alias = "ILMessageFilterActionJunk")]
     pub const Junk: Self = Self(2);
     /// Prevent the message from being shown normally, filtered as Junk message.
-    #[deprecated]
     #[doc(alias = "ILMessageFilterActionFilter")]
+    #[deprecated]
     pub const Filter: Self = Self(ILMessageFilterAction::Junk.0);
     /// Prevent the message from being shown normally, filtered as Promotional message.
     #[doc(alias = "ILMessageFilterActionPromotion")]

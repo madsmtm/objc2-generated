@@ -18,17 +18,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CBPeripheralManagerAuthorizationStatus(pub NSInteger);
 impl CBPeripheralManagerAuthorizationStatus {
-    #[deprecated = "Use CBManagerAuthorization instead"]
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusNotDetermined")]
+    #[deprecated = "Use CBManagerAuthorization instead"]
     pub const NotDetermined: Self = Self(0);
-    #[deprecated = "Use CBManagerAuthorization instead"]
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusRestricted")]
+    #[deprecated = "Use CBManagerAuthorization instead"]
     pub const Restricted: Self = Self(1);
-    #[deprecated = "Use CBManagerAuthorization instead"]
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusDenied")]
-    pub const Denied: Self = Self(2);
     #[deprecated = "Use CBManagerAuthorization instead"]
+    pub const Denied: Self = Self(2);
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusAuthorized")]
+    #[deprecated = "Use CBManagerAuthorization instead"]
     pub const Authorized: Self = Self(3);
 }
 
@@ -49,29 +49,29 @@ unsafe impl RefEncode for CBPeripheralManagerAuthorizationStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CBPeripheralManagerState(pub NSInteger);
 impl CBPeripheralManagerState {
-    #[cfg(feature = "CBManager")]
-    #[deprecated = "Use CBManagerState instead"]
     #[doc(alias = "CBPeripheralManagerStateUnknown")]
+    #[cfg(feature = "CBManager")]
+    #[deprecated = "Use CBManagerState instead"]
     pub const Unknown: Self = Self(CBManagerState::Unknown.0);
-    #[cfg(feature = "CBManager")]
-    #[deprecated = "Use CBManagerState instead"]
     #[doc(alias = "CBPeripheralManagerStateResetting")]
+    #[cfg(feature = "CBManager")]
+    #[deprecated = "Use CBManagerState instead"]
     pub const Resetting: Self = Self(CBManagerState::Resetting.0);
-    #[cfg(feature = "CBManager")]
-    #[deprecated = "Use CBManagerState instead"]
     #[doc(alias = "CBPeripheralManagerStateUnsupported")]
+    #[cfg(feature = "CBManager")]
+    #[deprecated = "Use CBManagerState instead"]
     pub const Unsupported: Self = Self(CBManagerState::Unsupported.0);
-    #[cfg(feature = "CBManager")]
-    #[deprecated = "Use CBManagerState instead"]
     #[doc(alias = "CBPeripheralManagerStateUnauthorized")]
+    #[cfg(feature = "CBManager")]
+    #[deprecated = "Use CBManagerState instead"]
     pub const Unauthorized: Self = Self(CBManagerState::Unauthorized.0);
-    #[cfg(feature = "CBManager")]
-    #[deprecated = "Use CBManagerState instead"]
     #[doc(alias = "CBPeripheralManagerStatePoweredOff")]
-    pub const PoweredOff: Self = Self(CBManagerState::PoweredOff.0);
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
+    pub const PoweredOff: Self = Self(CBManagerState::PoweredOff.0);
     #[doc(alias = "CBPeripheralManagerStatePoweredOn")]
+    #[cfg(feature = "CBManager")]
+    #[deprecated = "Use CBManagerState instead"]
     pub const PoweredOn: Self = Self(CBManagerState::PoweredOn.0);
 }
 

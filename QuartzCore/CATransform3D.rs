@@ -69,9 +69,9 @@ extern "C" {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl CATransform3D {
+    #[doc(alias = "CATransform3DIsIdentity")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DIsIdentity")]
     pub fn is_identity(self: CATransform3D) -> bool {
         extern "C-unwind" {
             fn CATransform3DIsIdentity(t: CATransform3D) -> bool;
@@ -79,9 +79,9 @@ impl CATransform3D {
         unsafe { CATransform3DIsIdentity(self) }
     }
 
+    #[doc(alias = "CATransform3DEqualToTransform")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DEqualToTransform")]
     pub fn equal_to_transform(self: CATransform3D, b: CATransform3D) -> bool {
         extern "C-unwind" {
             fn CATransform3DEqualToTransform(a: CATransform3D, b: CATransform3D) -> bool;
@@ -89,9 +89,9 @@ impl CATransform3D {
         unsafe { CATransform3DEqualToTransform(self, b) }
     }
 
+    #[doc(alias = "CATransform3DMakeTranslation")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DMakeTranslation")]
     pub fn new_translation(tx: CGFloat, ty: CGFloat, tz: CGFloat) -> CATransform3D {
         extern "C-unwind" {
             fn CATransform3DMakeTranslation(tx: CGFloat, ty: CGFloat, tz: CGFloat)
@@ -100,9 +100,9 @@ impl CATransform3D {
         unsafe { CATransform3DMakeTranslation(tx, ty, tz) }
     }
 
+    #[doc(alias = "CATransform3DMakeScale")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DMakeScale")]
     pub fn new_scale(sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D {
         extern "C-unwind" {
             fn CATransform3DMakeScale(sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D;
@@ -110,9 +110,9 @@ impl CATransform3D {
         unsafe { CATransform3DMakeScale(sx, sy, sz) }
     }
 
+    #[doc(alias = "CATransform3DMakeRotation")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DMakeRotation")]
     pub fn new_rotation(angle: CGFloat, x: CGFloat, y: CGFloat, z: CGFloat) -> CATransform3D {
         extern "C-unwind" {
             fn CATransform3DMakeRotation(
@@ -125,9 +125,9 @@ impl CATransform3D {
         unsafe { CATransform3DMakeRotation(angle, x, y, z) }
     }
 
+    #[doc(alias = "CATransform3DTranslate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DTranslate")]
     pub fn translate(self: CATransform3D, tx: CGFloat, ty: CGFloat, tz: CGFloat) -> CATransform3D {
         extern "C-unwind" {
             fn CATransform3DTranslate(
@@ -140,9 +140,9 @@ impl CATransform3D {
         unsafe { CATransform3DTranslate(self, tx, ty, tz) }
     }
 
+    #[doc(alias = "CATransform3DScale")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DScale")]
     pub fn scale(self: CATransform3D, sx: CGFloat, sy: CGFloat, sz: CGFloat) -> CATransform3D {
         extern "C-unwind" {
             fn CATransform3DScale(
@@ -155,9 +155,9 @@ impl CATransform3D {
         unsafe { CATransform3DScale(self, sx, sy, sz) }
     }
 
+    #[doc(alias = "CATransform3DRotate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DRotate")]
     pub fn rotate(
         self: CATransform3D,
         angle: CGFloat,
@@ -177,9 +177,9 @@ impl CATransform3D {
         unsafe { CATransform3DRotate(self, angle, x, y, z) }
     }
 
+    #[doc(alias = "CATransform3DConcat")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DConcat")]
     pub fn concat(self: CATransform3D, b: CATransform3D) -> CATransform3D {
         extern "C-unwind" {
             fn CATransform3DConcat(a: CATransform3D, b: CATransform3D) -> CATransform3D;
@@ -187,9 +187,9 @@ impl CATransform3D {
         unsafe { CATransform3DConcat(self, b) }
     }
 
+    #[doc(alias = "CATransform3DInvert")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DInvert")]
     pub fn invert(self: CATransform3D) -> CATransform3D {
         extern "C-unwind" {
             fn CATransform3DInvert(t: CATransform3D) -> CATransform3D;
@@ -197,9 +197,9 @@ impl CATransform3D {
         unsafe { CATransform3DInvert(self) }
     }
 
+    #[doc(alias = "CATransform3DMakeAffineTransform")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DMakeAffineTransform")]
     pub fn new_affine_transform(m: CGAffineTransform) -> CATransform3D {
         extern "C-unwind" {
             fn CATransform3DMakeAffineTransform(m: CGAffineTransform) -> CATransform3D;
@@ -207,9 +207,9 @@ impl CATransform3D {
         unsafe { CATransform3DMakeAffineTransform(m) }
     }
 
+    #[doc(alias = "CATransform3DIsAffine")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DIsAffine")]
     pub fn is_affine(self: CATransform3D) -> bool {
         extern "C-unwind" {
             fn CATransform3DIsAffine(t: CATransform3D) -> bool;
@@ -217,9 +217,9 @@ impl CATransform3D {
         unsafe { CATransform3DIsAffine(self) }
     }
 
+    #[doc(alias = "CATransform3DGetAffineTransform")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "CATransform3DGetAffineTransform")]
     pub fn affine_transform(self: CATransform3D) -> CGAffineTransform {
         extern "C-unwind" {
             fn CATransform3DGetAffineTransform(t: CATransform3D) -> CGAffineTransform;

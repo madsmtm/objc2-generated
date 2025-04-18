@@ -72,9 +72,9 @@ unsafe impl RefEncode for CFURLEnumeratorOptions {
 }
 
 impl CFURLEnumerator {
+    #[doc(alias = "CFURLEnumeratorCreateForDirectoryURL")]
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
     #[inline]
-    #[doc(alias = "CFURLEnumeratorCreateForDirectoryURL")]
     pub unsafe fn new_for_directory_url(
         alloc: Option<&CFAllocator>,
         directory_url: Option<&CFURL>,
@@ -95,9 +95,9 @@ impl CFURLEnumerator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFURLEnumeratorCreateForMountedVolumes")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    #[doc(alias = "CFURLEnumeratorCreateForMountedVolumes")]
     pub unsafe fn new_for_mounted_volumes(
         alloc: Option<&CFAllocator>,
         option: CFURLEnumeratorOptions,
@@ -142,9 +142,9 @@ unsafe impl RefEncode for CFURLEnumeratorResult {
 }
 
 impl CFURLEnumerator {
+    #[doc(alias = "CFURLEnumeratorGetNextURL")]
     #[cfg(all(feature = "CFError", feature = "CFURL"))]
     #[inline]
-    #[doc(alias = "CFURLEnumeratorGetNextURL")]
     pub unsafe fn next_url(
         self: &CFURLEnumerator,
         url: *mut *const CFURL,
@@ -160,8 +160,8 @@ impl CFURLEnumerator {
         unsafe { CFURLEnumeratorGetNextURL(self, url, error) }
     }
 
-    #[inline]
     #[doc(alias = "CFURLEnumeratorSkipDescendents")]
+    #[inline]
     pub unsafe fn skip_descendents(self: &CFURLEnumerator) {
         extern "C-unwind" {
             fn CFURLEnumeratorSkipDescendents(enumerator: &CFURLEnumerator);
@@ -169,8 +169,8 @@ impl CFURLEnumerator {
         unsafe { CFURLEnumeratorSkipDescendents(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFURLEnumeratorGetDescendentLevel")]
+    #[inline]
     pub unsafe fn descendent_level(self: &CFURLEnumerator) -> CFIndex {
         extern "C-unwind" {
             fn CFURLEnumeratorGetDescendentLevel(enumerator: &CFURLEnumerator) -> CFIndex;
@@ -178,9 +178,9 @@ impl CFURLEnumerator {
         unsafe { CFURLEnumeratorGetDescendentLevel(self) }
     }
 
+    #[doc(alias = "CFURLEnumeratorGetSourceDidChange")]
     #[deprecated = "Use File System Events API instead"]
     #[inline]
-    #[doc(alias = "CFURLEnumeratorGetSourceDidChange")]
     pub unsafe fn source_did_change(self: &CFURLEnumerator) -> bool {
         extern "C-unwind" {
             fn CFURLEnumeratorGetSourceDidChange(enumerator: &CFURLEnumerator) -> Boolean;

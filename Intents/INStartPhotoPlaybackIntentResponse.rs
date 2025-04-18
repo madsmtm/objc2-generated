@@ -14,23 +14,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INStartPhotoPlaybackIntentResponseCode(pub NSInteger);
 impl INStartPhotoPlaybackIntentResponseCode {
-    #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeUnspecified")]
+    #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeReady")]
+    #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeContinueInApp")]
+    #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
-    #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeFailure")]
+    #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(3);
-    #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeFailureRequiringAppLaunch")]
-    pub const FailureRequiringAppLaunch: Self = Self(4);
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
+    pub const FailureRequiringAppLaunch: Self = Self(4);
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeFailureAppConfigurationRequired")]
+    #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(5);
 }
 

@@ -36,8 +36,8 @@ unsafe impl ConcreteType for SKSummary {
 }
 
 impl SKSummary {
-    #[inline]
     #[doc(alias = "SKSummaryCreateWithString")]
+    #[inline]
     pub unsafe fn with_string(in_string: Option<&CFString>) -> Option<CFRetained<SKSummary>> {
         extern "C-unwind" {
             fn SKSummaryCreateWithString(
@@ -48,8 +48,8 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "SKSummaryGetSentenceCount")]
+    #[inline]
     pub unsafe fn sentence_count(self: &SKSummary) -> CFIndex {
         extern "C-unwind" {
             fn SKSummaryGetSentenceCount(summary: &SKSummary) -> CFIndex;
@@ -57,8 +57,8 @@ impl SKSummary {
         unsafe { SKSummaryGetSentenceCount(self) }
     }
 
-    #[inline]
     #[doc(alias = "SKSummaryGetParagraphCount")]
+    #[inline]
     pub unsafe fn paragraph_count(self: &SKSummary) -> CFIndex {
         extern "C-unwind" {
             fn SKSummaryGetParagraphCount(summary: &SKSummary) -> CFIndex;
@@ -66,8 +66,8 @@ impl SKSummary {
         unsafe { SKSummaryGetParagraphCount(self) }
     }
 
-    #[inline]
     #[doc(alias = "SKSummaryCopySentenceAtIndex")]
+    #[inline]
     pub unsafe fn sentence_at_index(self: &SKSummary, i: CFIndex) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SKSummaryCopySentenceAtIndex(
@@ -79,8 +79,8 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "SKSummaryCopyParagraphAtIndex")]
+    #[inline]
     pub unsafe fn paragraph_at_index(self: &SKSummary, i: CFIndex) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SKSummaryCopyParagraphAtIndex(
@@ -92,8 +92,8 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "SKSummaryCopySentenceSummaryString")]
+    #[inline]
     pub unsafe fn sentence_summary_string(
         self: &SKSummary,
         num_sentences: CFIndex,
@@ -108,8 +108,8 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "SKSummaryCopyParagraphSummaryString")]
+    #[inline]
     pub unsafe fn paragraph_summary_string(
         self: &SKSummary,
         num_paragraphs: CFIndex,
@@ -124,8 +124,8 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "SKSummaryGetSentenceSummaryInfo")]
+    #[inline]
     pub unsafe fn sentence_summary_info(
         self: &SKSummary,
         num_sentences_in_summary: CFIndex,
@@ -153,8 +153,8 @@ impl SKSummary {
         }
     }
 
-    #[inline]
     #[doc(alias = "SKSummaryGetParagraphSummaryInfo")]
+    #[inline]
     pub unsafe fn paragraph_summary_info(
         self: &SKSummary,
         num_paragraphs_in_summary: CFIndex,

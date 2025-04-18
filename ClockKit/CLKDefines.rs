@@ -54,14 +54,14 @@ unsafe impl RefEncode for CLKComplicationFamily {
 pub struct CLKComplicationTimeTravelDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl CLKComplicationTimeTravelDirections: NSUInteger {
-#[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[doc(alias = "CLKComplicationTimeTravelDirectionNone")]
+#[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         const None = 0;
-#[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[doc(alias = "CLKComplicationTimeTravelDirectionForward")]
-        const Forward = 1<<0;
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
+        const Forward = 1<<0;
         #[doc(alias = "CLKComplicationTimeTravelDirectionBackward")]
+#[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         const Backward = 1<<1;
     }
 }
@@ -81,11 +81,11 @@ unsafe impl RefEncode for CLKComplicationTimeTravelDirections {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLKComplicationPrivacyBehavior(pub NSUInteger);
 impl CLKComplicationPrivacyBehavior {
-    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     #[doc(alias = "CLKComplicationPrivacyBehaviorShowOnLockScreen")]
-    pub const ShowOnLockScreen: Self = Self(0);
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
+    pub const ShowOnLockScreen: Self = Self(0);
     #[doc(alias = "CLKComplicationPrivacyBehaviorHideOnLockScreen")]
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const HideOnLockScreen: Self = Self(1);
 }
 
@@ -104,14 +104,14 @@ unsafe impl RefEncode for CLKComplicationPrivacyBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLKComplicationTimelineAnimationBehavior(pub NSUInteger);
 impl CLKComplicationTimelineAnimationBehavior {
-    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     #[doc(alias = "CLKComplicationTimelineAnimationBehaviorNever")]
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Never: Self = Self(0);
-    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     #[doc(alias = "CLKComplicationTimelineAnimationBehaviorGrouped")]
-    pub const Grouped: Self = Self(1);
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
+    pub const Grouped: Self = Self(1);
     #[doc(alias = "CLKComplicationTimelineAnimationBehaviorAlways")]
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Always: Self = Self(2);
 }
 
@@ -130,17 +130,17 @@ unsafe impl RefEncode for CLKComplicationTimelineAnimationBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLKComplicationColumnAlignment(pub NSInteger);
 impl CLKComplicationColumnAlignment {
-    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     #[doc(alias = "CLKComplicationColumnAlignmentLeading")]
-    pub const Leading: Self = Self(0);
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
+    pub const Leading: Self = Self(0);
     #[doc(alias = "CLKComplicationColumnAlignmentTrailing")]
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Trailing: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "CLKComplicationColumnAlignmentLeft")]
-    pub const Left: Self = Self(CLKComplicationColumnAlignment::Leading.0);
     #[deprecated]
+    pub const Left: Self = Self(CLKComplicationColumnAlignment::Leading.0);
     #[doc(alias = "CLKComplicationColumnAlignmentRight")]
+    #[deprecated]
     pub const Right: Self = Self(CLKComplicationColumnAlignment::Trailing.0);
 }
 
@@ -159,11 +159,11 @@ unsafe impl RefEncode for CLKComplicationColumnAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLKComplicationRingStyle(pub NSInteger);
 impl CLKComplicationRingStyle {
-    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     #[doc(alias = "CLKComplicationRingStyleClosed")]
-    pub const Closed: Self = Self(0);
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
+    pub const Closed: Self = Self(0);
     #[doc(alias = "CLKComplicationRingStyleOpen")]
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Open: Self = Self(1);
 }
 
@@ -182,11 +182,11 @@ unsafe impl RefEncode for CLKComplicationRingStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLKGaugeProviderStyle(pub NSInteger);
 impl CLKGaugeProviderStyle {
-    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     #[doc(alias = "CLKGaugeProviderStyleRing")]
-    pub const Ring: Self = Self(0);
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
+    pub const Ring: Self = Self(0);
     #[doc(alias = "CLKGaugeProviderStyleFill")]
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Fill: Self = Self(1);
 }
 

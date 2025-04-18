@@ -13,23 +13,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSetClimateSettingsInCarIntentResponseCode(pub NSInteger);
 impl INSetClimateSettingsInCarIntentResponseCode {
-    #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeUnspecified")]
+    #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeReady")]
+    #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeInProgress")]
+    #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeSuccess")]
+    #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeFailure")]
-    pub const Failure: Self = Self(4);
     #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
+    pub const Failure: Self = Self(4);
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
 

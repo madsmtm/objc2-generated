@@ -107,11 +107,11 @@ unsafe impl RefEncode for SCPresenterOverlayAlertSetting {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCStreamType(pub NSInteger);
 impl SCStreamType {
-    #[deprecated = "Use SCShareableContentStyle instead"]
     #[doc(alias = "SCStreamTypeWindow")]
-    pub const Window: Self = Self(0);
     #[deprecated = "Use SCShareableContentStyle instead"]
+    pub const Window: Self = Self(0);
     #[doc(alias = "SCStreamTypeDisplay")]
+    #[deprecated = "Use SCShareableContentStyle instead"]
     pub const Display: Self = Self(1);
 }
 

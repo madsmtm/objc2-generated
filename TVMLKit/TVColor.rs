@@ -15,17 +15,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVColorType(pub NSInteger);
 impl TVColorType {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVColorTypeNone")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const None: Self = Self(0);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVColorTypePlain")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Plain: Self = Self(1);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVColorTypeLinearGradientTopToBottom")]
-    pub const LinearGradientTopToBottom: Self = Self(2);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const LinearGradientTopToBottom: Self = Self(2);
     #[doc(alias = "TVColorTypeLinearGradientLeftToRight")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const LinearGradientLeftToRight: Self = Self(3);
 }
 

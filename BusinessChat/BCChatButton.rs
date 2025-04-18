@@ -17,11 +17,11 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BCChatButtonStyle(pub NSInteger);
 impl BCChatButtonStyle {
-    #[deprecated]
     #[doc(alias = "BCChatButtonStyleLight")]
-    pub const Light: Self = Self(0);
     #[deprecated]
+    pub const Light: Self = Self(0);
     #[doc(alias = "BCChatButtonStyleDark")]
+    #[deprecated]
     pub const Dark: Self = Self(1);
 }
 

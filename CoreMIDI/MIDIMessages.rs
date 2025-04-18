@@ -750,9 +750,9 @@ impl MIDIEventList {
     ///
     ///
     /// Parameter `visitorContext`: A context for the visitor that is passed to it when being called.
+    #[doc(alias = "MIDIEventListForEachEvent")]
     #[cfg(feature = "MIDIServices")]
     #[inline]
-    #[doc(alias = "MIDIEventListForEachEvent")]
     pub unsafe fn for_each_event(
         evtlist: *const MIDIEventList,
         visitor: MIDIEventVisitor,

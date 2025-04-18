@@ -16,8 +16,8 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIMenuControllerArrowDirection(pub NSInteger);
 impl UIMenuControllerArrowDirection {
-    #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     #[doc(alias = "UIMenuControllerArrowDefault")]
+    #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub const Default: Self = Self(0);
     #[doc(alias = "UIMenuControllerArrowUp")]
     pub const Up: Self = Self(1);

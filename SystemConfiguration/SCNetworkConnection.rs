@@ -255,8 +255,8 @@ impl SCNetworkConnection {
     ///
     /// Returns: Returns TRUE if there is a valid service to dial;
     /// FALSE if the function was unable to retrieve a service to dial.
-    #[inline]
     #[doc(alias = "SCNetworkConnectionCopyUserPreferences")]
+    #[inline]
     pub unsafe fn user_preferences(
         selection_options: Option<&CFDictionary>,
         service_id: NonNull<*const CFString>,
@@ -298,8 +298,8 @@ impl SCNetworkConnection {
     /// callout.
     ///
     /// Returns: Returns a reference to the new SCNetworkConnection.
-    #[inline]
     #[doc(alias = "SCNetworkConnectionCreateWithServiceID")]
+    #[inline]
     pub unsafe fn with_service_id(
         allocator: Option<&CFAllocator>,
         service_id: &CFString,
@@ -325,8 +325,8 @@ impl SCNetworkConnection {
     /// Parameter `connection`: The SCNetworkConnection to obtain status from.
     ///
     /// Returns: Returns the service ID associated with the SCNetworkConnection.
-    #[inline]
     #[doc(alias = "SCNetworkConnectionCopyServiceID")]
+    #[inline]
     pub fn service_id(self: &SCNetworkConnection) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCNetworkConnectionCopyServiceID(
@@ -355,8 +355,8 @@ impl SCNetworkConnection {
     /// Parameter `connection`: The SCNetworkConnection to obtain status from.
     ///
     /// Returns: Returns the status value.
-    #[inline]
     #[doc(alias = "SCNetworkConnectionGetStatus")]
+    #[inline]
     pub fn status(self: &SCNetworkConnection) -> SCNetworkConnectionStatus {
         extern "C-unwind" {
             fn SCNetworkConnectionGetStatus(
@@ -409,8 +409,8 @@ impl SCNetworkConnection {
     ///
     /// Returns: Returns the status dictionary.
     /// If NULL is returned, the error can be retrieved using the SCError function.
-    #[inline]
     #[doc(alias = "SCNetworkConnectionCopyExtendedStatus")]
+    #[inline]
     pub fn extended_status(self: &SCNetworkConnection) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SCNetworkConnectionCopyExtendedStatus(
@@ -458,8 +458,8 @@ impl SCNetworkConnection {
     ///
     /// Returns: Returns the statistics dictionary.
     /// If NULL is returned, the error can be retrieved using the SCError function.
-    #[inline]
     #[doc(alias = "SCNetworkConnectionCopyStatistics")]
+    #[inline]
     pub fn statistics(self: &SCNetworkConnection) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SCNetworkConnectionCopyStatistics(
@@ -515,8 +515,8 @@ impl SCNetworkConnection {
     /// status needs to be periodically checked); FALSE if the
     /// connection request was not started.  The error must be
     /// retrieved from the SCError function.
-    #[inline]
     #[doc(alias = "SCNetworkConnectionStart")]
+    #[inline]
     pub unsafe fn start(
         self: &SCNetworkConnection,
         user_options: Option<&CFDictionary>,
@@ -551,8 +551,8 @@ impl SCNetworkConnection {
     /// Returns: Returns TRUE if the disconnection request succeeded;
     /// FALSE if the disconnection request failed.
     /// The error must be retrieved from the SCError function.
-    #[inline]
     #[doc(alias = "SCNetworkConnectionStop")]
+    #[inline]
     pub fn stop(self: &SCNetworkConnection, force_disconnect: bool) -> bool {
         extern "C-unwind" {
             fn SCNetworkConnectionStop(
@@ -573,8 +573,8 @@ impl SCNetworkConnection {
     /// Returns: Returns the service dictionary containing the connection options.
     /// The dictionary can be empty if no user options were used.
     /// If NULL is returned, the error can be retrieved using the SCError function.
-    #[inline]
     #[doc(alias = "SCNetworkConnectionCopyUserOptions")]
+    #[inline]
     pub fn user_options(self: &SCNetworkConnection) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SCNetworkConnectionCopyUserOptions(
@@ -596,8 +596,8 @@ impl SCNetworkConnection {
     /// Returns: Returns TRUE if the connection is scheduled successfully;
     /// FALSE if the scheduling failed.
     /// The error can be retrieved using the SCError function.
-    #[inline]
     #[doc(alias = "SCNetworkConnectionScheduleWithRunLoop")]
+    #[inline]
     pub fn schedule_with_run_loop(
         self: &SCNetworkConnection,
         run_loop: &CFRunLoop,
@@ -625,8 +625,8 @@ impl SCNetworkConnection {
     /// Returns: Returns TRUE if the connection is unscheduled successfully;
     /// FALSE if the unscheduling failed.
     /// The error can be retrieved using the SCError function.
-    #[inline]
     #[doc(alias = "SCNetworkConnectionUnscheduleFromRunLoop")]
+    #[inline]
     pub fn unschedule_from_run_loop(
         self: &SCNetworkConnection,
         run_loop: &CFRunLoop,
@@ -654,9 +654,9 @@ impl SCNetworkConnection {
     /// Returns: Returns TRUE if the notifications have been enabled/disabled as desired;
     /// FALSE if not.
     /// The error can be retrieved using the SCError function.
+    #[doc(alias = "SCNetworkConnectionSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    #[doc(alias = "SCNetworkConnectionSetDispatchQueue")]
     pub unsafe fn set_dispatch_queue(
         self: &SCNetworkConnection,
         queue: Option<&DispatchQueue>,

@@ -98,8 +98,8 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSManagedObjectContextConcurrencyType(pub NSUInteger);
 impl NSManagedObjectContextConcurrencyType {
-    #[deprecated = "Use another NSManagedObjectContextConcurrencyType"]
     #[doc(alias = "NSConfinementConcurrencyType")]
+    #[deprecated = "Use another NSManagedObjectContextConcurrencyType"]
     pub const ConfinementConcurrencyType: Self = Self(0x00);
     #[doc(alias = "NSPrivateQueueConcurrencyType")]
     pub const PrivateQueueConcurrencyType: Self = Self(0x01);

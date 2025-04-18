@@ -32,10 +32,10 @@ impl SecTrustedApplication {
     /// Parameter `app`: On return, a pointer to the trusted application reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecTrustedApplicationCreateFromPath")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecTrustedApplicationCreateFromPath")]
     pub unsafe fn create_from_path(
         path: *const c_char,
         app: NonNull<*mut SecTrustedApplication>,
@@ -56,10 +56,10 @@ impl SecTrustedApplication {
     /// Parameter `data`: On return, a pointer to a data reference of the trusted application.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecTrustedApplicationCopyData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecTrustedApplicationCopyData")]
     pub unsafe fn copy_data(
         self: &SecTrustedApplication,
         data: NonNull<*const CFData>,
@@ -80,10 +80,10 @@ impl SecTrustedApplication {
     /// Parameter `data`: A reference to the data to set in the trusted application.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecTrustedApplicationSetData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecTrustedApplicationSetData")]
     pub unsafe fn set_data(self: &SecTrustedApplication, data: &CFData) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustedApplicationSetData(

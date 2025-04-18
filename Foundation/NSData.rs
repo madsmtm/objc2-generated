@@ -21,8 +21,8 @@ bitflags::bitflags! {
         const Uncached = 1<<1;
         #[doc(alias = "NSDataReadingMappedAlways")]
         const MappedAlways = 1<<3;
-#[deprecated]
         #[doc(alias = "NSDataReadingMapped")]
+#[deprecated]
         const Mapped = NSDataReadingOptions::MappedIfSafe.0;
 #[deprecated]
         const NSMappedRead = NSDataReadingOptions::Mapped.0;

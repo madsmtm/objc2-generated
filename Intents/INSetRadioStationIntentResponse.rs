@@ -13,26 +13,26 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSetRadioStationIntentResponseCode(pub NSInteger);
 impl INSetRadioStationIntentResponseCode {
-    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetRadioStationIntentResponseCodeUnspecified")]
+    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetRadioStationIntentResponseCodeReady")]
+    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetRadioStationIntentResponseCodeInProgress")]
+    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetRadioStationIntentResponseCodeSuccess")]
+    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetRadioStationIntentResponseCodeFailure")]
+    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetRadioStationIntentResponseCodeFailureRequiringAppLaunch")]
-    pub const FailureRequiringAppLaunch: Self = Self(5);
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
+    pub const FailureRequiringAppLaunch: Self = Self(5);
     #[doc(alias = "INSetRadioStationIntentResponseCodeFailureNotSubscribed")]
+    #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureNotSubscribed: Self = Self(6);
 }
 

@@ -60,9 +60,9 @@ unsafe impl ConcreteType for CGGradient {
 }
 
 impl CGGradient {
+    #[doc(alias = "CGGradientCreateWithColorComponents")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
-    #[doc(alias = "CGGradientCreateWithColorComponents")]
     pub unsafe fn with_color_components(
         space: Option<&CGColorSpace>,
         components: *const CGFloat,
@@ -82,9 +82,9 @@ impl CGGradient {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CGGradientCreateWithColors")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
-    #[doc(alias = "CGGradientCreateWithColors")]
     pub unsafe fn with_colors(
         space: Option<&CGColorSpace>,
         colors: Option<&CFArray>,

@@ -128,8 +128,8 @@ impl CKErrorCode {
     #[doc(alias = "CKErrorInvalidArguments")]
     pub const InvalidArguments: Self = Self(12);
     /// Bad client request (bad record graph, malformed predicate)
-    #[deprecated = "Will not be returned"]
     #[doc(alias = "CKErrorResultsTruncated")]
+    #[deprecated = "Will not be returned"]
     pub const ResultsTruncated: Self = Self(13);
     /// The record was rejected because the version on the server was different
     #[doc(alias = "CKErrorServerRecordChanged")]

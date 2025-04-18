@@ -61,14 +61,14 @@ unsafe impl RefEncode for NSToolbarDisplayMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSToolbarSizeMode(pub NSUInteger);
 impl NSToolbarSizeMode {
-    #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     #[doc(alias = "NSToolbarSizeModeDefault")]
+    #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     pub const Default: Self = Self(0);
-    #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     #[doc(alias = "NSToolbarSizeModeRegular")]
-    pub const Regular: Self = Self(1);
     #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
+    pub const Regular: Self = Self(1);
     #[doc(alias = "NSToolbarSizeModeSmall")]
+    #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     pub const Small: Self = Self(2);
 }
 

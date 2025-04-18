@@ -38,9 +38,9 @@ pub type CSIdentityQueryStringComparisonMethod = CFIndex;
 
 #[cfg(feature = "CSIdentity")]
 impl CSIdentityQuery {
+    #[doc(alias = "CSIdentityQueryCreate")]
     #[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
     #[inline]
-    #[doc(alias = "CSIdentityQueryCreate")]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         identity_class: CSIdentityClass,
@@ -57,9 +57,9 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CSIdentityQueryCreateForName")]
     #[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
     #[inline]
-    #[doc(alias = "CSIdentityQueryCreateForName")]
     pub unsafe fn new_for_name(
         allocator: Option<&CFAllocator>,
         name: Option<&CFString>,
@@ -88,9 +88,9 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CSIdentityQueryCreateForUUID")]
     #[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
     #[inline]
-    #[doc(alias = "CSIdentityQueryCreateForUUID")]
     pub unsafe fn new_for_uuid(
         allocator: Option<&CFAllocator>,
         uuid: Option<&CFUUID>,
@@ -107,13 +107,13 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CSIdentityQueryCreateForPosixID")]
     #[cfg(all(
         feature = "CSIdentity",
         feature = "CSIdentityAuthority",
         feature = "libc"
     ))]
     #[inline]
-    #[doc(alias = "CSIdentityQueryCreateForPosixID")]
     pub unsafe fn new_for_posix_id(
         allocator: Option<&CFAllocator>,
         posix_id: libc::id_t,
@@ -134,9 +134,9 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CSIdentityQueryCreateForPersistentReference")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    #[doc(alias = "CSIdentityQueryCreateForPersistentReference")]
     pub unsafe fn new_for_persistent_reference(
         allocator: Option<&CFAllocator>,
         reference_data: Option<&CFData>,
@@ -151,9 +151,9 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CSIdentityQueryCreateForCurrentUser")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    #[doc(alias = "CSIdentityQueryCreateForCurrentUser")]
     pub unsafe fn new_for_current_user(
         allocator: Option<&CFAllocator>,
     ) -> Option<CFRetained<CSIdentityQuery>> {
@@ -166,9 +166,9 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CSIdentityQueryCopyResults")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    #[doc(alias = "CSIdentityQueryCopyResults")]
     pub unsafe fn results(self: &CSIdentityQuery) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CSIdentityQueryCopyResults(query: &CSIdentityQuery) -> Option<NonNull<CFArray>>;
@@ -177,9 +177,9 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CSIdentityQueryExecute")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    #[doc(alias = "CSIdentityQueryExecute")]
     pub unsafe fn execute(
         self: &CSIdentityQuery,
         flags: CSIdentityQueryFlags,
@@ -258,9 +258,9 @@ unsafe impl RefEncode for CSIdentityQueryClientContext {
 
 #[cfg(feature = "CSIdentity")]
 impl CSIdentityQuery {
+    #[doc(alias = "CSIdentityQueryExecuteAsynchronously")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    #[doc(alias = "CSIdentityQueryExecuteAsynchronously")]
     pub unsafe fn execute_asynchronously(
         self: &CSIdentityQuery,
         flags: CSIdentityQueryFlags,
@@ -289,9 +289,9 @@ impl CSIdentityQuery {
         ret != 0
     }
 
+    #[doc(alias = "CSIdentityQueryStop")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    #[doc(alias = "CSIdentityQueryStop")]
     pub unsafe fn stop(self: &CSIdentityQuery) {
         extern "C-unwind" {
             fn CSIdentityQueryStop(query: &CSIdentityQuery);

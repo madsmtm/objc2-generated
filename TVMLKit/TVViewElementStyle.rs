@@ -17,23 +17,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVElementAlignment(pub NSInteger);
 impl TVElementAlignment {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementAlignmentUndefined")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Undefined: Self = Self(0);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementAlignmentLeft")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Left: Self = Self(1);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementAlignmentCenter")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Center: Self = Self(2);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementAlignmentRight")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Right: Self = Self(3);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementAlignmentLeading")]
-    pub const Leading: Self = Self(4);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const Leading: Self = Self(4);
     #[doc(alias = "TVElementAlignmentTrailing")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Trailing: Self = Self(5);
 }
 
@@ -52,17 +52,17 @@ unsafe impl RefEncode for TVElementAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVElementContentAlignment(pub NSInteger);
 impl TVElementContentAlignment {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementContentAlignmentUndefined")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Undefined: Self = Self(0);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementContentAlignmentTop")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Top: Self = Self(1);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementContentAlignmentCenter")]
-    pub const Center: Self = Self(2);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const Center: Self = Self(2);
     #[doc(alias = "TVElementContentAlignmentBottom")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Bottom: Self = Self(3);
 }
 
@@ -81,59 +81,59 @@ unsafe impl RefEncode for TVElementContentAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVElementPosition(pub NSInteger);
 impl TVElementPosition {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionUndefined")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Undefined: Self = Self(0);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionCenter")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Center: Self = Self(1);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionTop")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Top: Self = Self(2);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionBottom")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Bottom: Self = Self(3);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionLeft")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Left: Self = Self(4);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionRight")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Right: Self = Self(5);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionTopLeft")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const TopLeft: Self = Self(6);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionTopRight")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const TopRight: Self = Self(7);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionBottomLeft")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const BottomLeft: Self = Self(8);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionBottomRight")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const BottomRight: Self = Self(9);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionHeader")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Header: Self = Self(10);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionFooter")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Footer: Self = Self(11);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionLeading")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Leading: Self = Self(12);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionTrailing")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Trailing: Self = Self(13);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionTopLeading")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const TopLeading: Self = Self(14);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionTopTrailing")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const TopTrailing: Self = Self(15);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementPositionBottomLeading")]
-    pub const BottomLeading: Self = Self(16);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const BottomLeading: Self = Self(16);
     #[doc(alias = "TVElementPositionBottomTrailing")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const BottomTrailing: Self = Self(17);
 }
 

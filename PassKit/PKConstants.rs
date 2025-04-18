@@ -242,14 +242,14 @@ impl PKPaymentAuthorizationStatus {
     pub const Success: Self = Self(0);
     #[doc(alias = "PKPaymentAuthorizationStatusFailure")]
     pub const Failure: Self = Self(1);
-    #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentBillingAddressInvalidErrorWithKey:localizedDescription: in the errors array."]
     #[doc(alias = "PKPaymentAuthorizationStatusInvalidBillingPostalAddress")]
+    #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentBillingAddressInvalidErrorWithKey:localizedDescription: in the errors array."]
     pub const InvalidBillingPostalAddress: Self = Self(2);
-    #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentShippingAddressInvalidErrorWithKey:localizedDescription: in the errors array."]
     #[doc(alias = "PKPaymentAuthorizationStatusInvalidShippingPostalAddress")]
+    #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentShippingAddressInvalidErrorWithKey:localizedDescription: in the errors array."]
     pub const InvalidShippingPostalAddress: Self = Self(3);
-    #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentContactInvalidErrorWithContactField:localizedDescription: in the errors array."]
     #[doc(alias = "PKPaymentAuthorizationStatusInvalidShippingContact")]
+    #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentContactInvalidErrorWithContactField:localizedDescription: in the errors array."]
     pub const InvalidShippingContact: Self = Self(4);
     #[doc(alias = "PKPaymentAuthorizationStatusPINRequired")]
     pub const PINRequired: Self = Self(5);

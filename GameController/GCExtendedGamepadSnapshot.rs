@@ -84,11 +84,11 @@ impl GCExtendedGamepadSnapshot {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCExtendedGamepadSnapshotDataVersion(pub NSInteger);
 impl GCExtendedGamepadSnapshotDataVersion {
-    #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[doc(alias = "GCExtendedGamepadSnapshotDataVersion1")]
-    pub const Version1: Self = Self(0x0100);
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
+    pub const Version1: Self = Self(0x0100);
     #[doc(alias = "GCExtendedGamepadSnapshotDataVersion2")]
+    #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     pub const Version2: Self = Self(0x0101);
 }
 
@@ -166,9 +166,9 @@ impl GCExtendedGamepadSnapshotData {
     ///
     ///
     /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    #[doc(alias = "GCExtendedGamepadSnapshotDataFromNSData")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[inline]
-    #[doc(alias = "GCExtendedGamepadSnapshotDataFromNSData")]
     pub unsafe fn from_ns_data(
         snapshot_data: *mut GCExtendedGamepadSnapshotData,
         data: Option<&NSData>,
@@ -257,9 +257,9 @@ impl GCExtendedGamepadSnapShotDataV100 {
     ///
     ///
     /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    #[doc(alias = "GCExtendedGamepadSnapShotDataV100FromNSData")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[inline]
-    #[doc(alias = "GCExtendedGamepadSnapShotDataV100FromNSData")]
     pub unsafe fn from_ns_data(
         snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
         data: Option<&NSData>,

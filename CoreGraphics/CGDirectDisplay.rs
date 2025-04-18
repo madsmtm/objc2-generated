@@ -149,8 +149,8 @@ extern "C-unwind" {
 }
 
 impl CGDisplayMode {
-    #[inline]
     #[doc(alias = "CGDisplayModeGetWidth")]
+    #[inline]
     pub unsafe fn width(mode: Option<&CGDisplayMode>) -> usize {
         extern "C-unwind" {
             fn CGDisplayModeGetWidth(mode: Option<&CGDisplayMode>) -> usize;
@@ -158,8 +158,8 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetWidth(mode) }
     }
 
-    #[inline]
     #[doc(alias = "CGDisplayModeGetHeight")]
+    #[inline]
     pub unsafe fn height(mode: Option<&CGDisplayMode>) -> usize {
         extern "C-unwind" {
             fn CGDisplayModeGetHeight(mode: Option<&CGDisplayMode>) -> usize;
@@ -167,9 +167,9 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetHeight(mode) }
     }
 
+    #[doc(alias = "CGDisplayModeCopyPixelEncoding")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "CGDisplayModeCopyPixelEncoding")]
     pub unsafe fn pixel_encoding(mode: Option<&CGDisplayMode>) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CGDisplayModeCopyPixelEncoding(
@@ -180,8 +180,8 @@ impl CGDisplayMode {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGDisplayModeGetRefreshRate")]
+    #[inline]
     pub unsafe fn refresh_rate(mode: Option<&CGDisplayMode>) -> c_double {
         extern "C-unwind" {
             fn CGDisplayModeGetRefreshRate(mode: Option<&CGDisplayMode>) -> c_double;
@@ -189,8 +189,8 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetRefreshRate(mode) }
     }
 
-    #[inline]
     #[doc(alias = "CGDisplayModeGetIOFlags")]
+    #[inline]
     pub unsafe fn io_flags(mode: Option<&CGDisplayMode>) -> u32 {
         extern "C-unwind" {
             fn CGDisplayModeGetIOFlags(mode: Option<&CGDisplayMode>) -> u32;
@@ -198,8 +198,8 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetIOFlags(mode) }
     }
 
-    #[inline]
     #[doc(alias = "CGDisplayModeGetIODisplayModeID")]
+    #[inline]
     pub unsafe fn io_display_mode_id(mode: Option<&CGDisplayMode>) -> i32 {
         extern "C-unwind" {
             fn CGDisplayModeGetIODisplayModeID(mode: Option<&CGDisplayMode>) -> i32;
@@ -207,8 +207,8 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetIODisplayModeID(mode) }
     }
 
-    #[inline]
     #[doc(alias = "CGDisplayModeIsUsableForDesktopGUI")]
+    #[inline]
     pub unsafe fn is_usable_for_desktop_gui(mode: Option<&CGDisplayMode>) -> bool {
         extern "C-unwind" {
             fn CGDisplayModeIsUsableForDesktopGUI(mode: Option<&CGDisplayMode>) -> bool;
@@ -229,8 +229,8 @@ unsafe impl ConcreteType for CGDisplayMode {
 }
 
 impl CGDisplayMode {
-    #[inline]
     #[doc(alias = "CGDisplayModeGetPixelWidth")]
+    #[inline]
     pub unsafe fn pixel_width(mode: Option<&CGDisplayMode>) -> usize {
         extern "C-unwind" {
             fn CGDisplayModeGetPixelWidth(mode: Option<&CGDisplayMode>) -> usize;
@@ -238,8 +238,8 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetPixelWidth(mode) }
     }
 
-    #[inline]
     #[doc(alias = "CGDisplayModeGetPixelHeight")]
+    #[inline]
     pub unsafe fn pixel_height(mode: Option<&CGDisplayMode>) -> usize {
         extern "C-unwind" {
             fn CGDisplayModeGetPixelHeight(mode: Option<&CGDisplayMode>) -> usize;

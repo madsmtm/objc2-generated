@@ -11,20 +11,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSOpenGLGlobalOption(pub u32);
 impl NSOpenGLGlobalOption {
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLGOFormatCacheSize")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const GLGOFormatCacheSize: Self = Self(501);
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLGOClearFormatCache")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const GLGOClearFormatCache: Self = Self(502);
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLGORetainRenderers")]
-    pub const GLGORetainRenderers: Self = Self(503);
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+    pub const GLGORetainRenderers: Self = Self(503);
     #[doc(alias = "NSOpenGLGOUseBuildCache")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const GLGOUseBuildCache: Self = Self(506);
-    #[deprecated]
     #[doc(alias = "NSOpenGLGOResetLibrary")]
+    #[deprecated]
     pub const GLGOResetLibrary: Self = Self(504);
 }
 
@@ -178,50 +178,50 @@ pub const NSOpenGLProfileVersion4_1Core: c_uint = 0x4100;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSOpenGLContextParameter(pub NSInteger);
 impl NSOpenGLContextParameter {
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLContextParameterSwapInterval")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const SwapInterval: Self = Self(222);
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLContextParameterSurfaceOrder")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const SurfaceOrder: Self = Self(235);
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLContextParameterSurfaceOpacity")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const SurfaceOpacity: Self = Self(236);
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLContextParameterSurfaceBackingSize")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const SurfaceBackingSize: Self = Self(304);
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLContextParameterReclaimResources")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const ReclaimResources: Self = Self(308);
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLContextParameterCurrentRendererID")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const CurrentRendererID: Self = Self(309);
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLContextParameterGPUVertexProcessing")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const GPUVertexProcessing: Self = Self(310);
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLContextParameterGPUFragmentProcessing")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const GPUFragmentProcessing: Self = Self(311);
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     #[doc(alias = "NSOpenGLContextParameterHasDrawable")]
-    pub const HasDrawable: Self = Self(314);
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+    pub const HasDrawable: Self = Self(314);
     #[doc(alias = "NSOpenGLContextParameterMPSwapsInFlight")]
+    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const MPSwapsInFlight: Self = Self(315);
-    #[deprecated]
     #[doc(alias = "NSOpenGLContextParameterSwapRectangle")]
+    #[deprecated]
     pub const SwapRectangle: Self = Self(200);
-    #[deprecated]
     #[doc(alias = "NSOpenGLContextParameterSwapRectangleEnable")]
+    #[deprecated]
     pub const SwapRectangleEnable: Self = Self(201);
-    #[deprecated]
     #[doc(alias = "NSOpenGLContextParameterRasterizationEnable")]
+    #[deprecated]
     pub const RasterizationEnable: Self = Self(221);
-    #[deprecated]
     #[doc(alias = "NSOpenGLContextParameterStateValidation")]
-    pub const StateValidation: Self = Self(301);
     #[deprecated]
+    pub const StateValidation: Self = Self(301);
     #[doc(alias = "NSOpenGLContextParameterSurfaceSurfaceVolatile")]
+    #[deprecated]
     pub const SurfaceSurfaceVolatile: Self = Self(306);
 }
 

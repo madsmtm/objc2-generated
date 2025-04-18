@@ -66,10 +66,10 @@ mod private_CIFilterIKFilterUIAddition {
 }
 
 /// Category "IKFilterUIAddition" on [`CIFilter`].
-#[doc(alias = "IKFilterUIAddition")]
 /// The IKFilterUIAddition category to IKFilter provides the API for the Image Unit UI generation.
 ///
 /// (comprehensive description)
+#[doc(alias = "IKFilterUIAddition")]
 pub unsafe trait CIFilterIKFilterUIAddition:
     ClassType + Sized + private_CIFilterIKFilterUIAddition::Sealed
 {

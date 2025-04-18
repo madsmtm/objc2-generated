@@ -61,9 +61,9 @@ unsafe impl RefEncode for CGColorConversionInfoTransformType {
 }
 
 impl CGColorConversionInfo {
+    #[doc(alias = "CGColorConversionInfoCreate")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
-    #[doc(alias = "CGColorConversionInfoCreate")]
     pub unsafe fn new(
         src: Option<&CGColorSpace>,
         dst: Option<&CGColorSpace>,
@@ -78,9 +78,9 @@ impl CGColorConversionInfo {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CGColorConversionInfoCreateWithOptions")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
-    #[doc(alias = "CGColorConversionInfoCreateWithOptions")]
     pub unsafe fn with_options(
         src: &CGColorSpace,
         dst: &CGColorSpace,
@@ -97,9 +97,9 @@ impl CGColorConversionInfo {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CGColorConversionInfoCreateForToneMapping")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGToneMapping"))]
     #[inline]
-    #[doc(alias = "CGColorConversionInfoCreateForToneMapping")]
     pub unsafe fn new_for_tone_mapping(
         from: &CGColorSpace,
         source_headroom: c_float,
@@ -167,9 +167,9 @@ unsafe impl RefEncode for CGColorBufferFormat {
 }
 
 impl CGColorConversionInfo {
+    #[doc(alias = "CGColorConversionInfoConvertData")]
     #[cfg(feature = "CGImage")]
     #[inline]
-    #[doc(alias = "CGColorConversionInfoConvertData")]
     pub unsafe fn convert_data(
         self: &CGColorConversionInfo,
         width: usize,

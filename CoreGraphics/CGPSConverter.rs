@@ -86,8 +86,8 @@ unsafe impl RefEncode for CGPSConverterCallbacks {
 }
 
 impl CGPSConverter {
-    #[inline]
     #[doc(alias = "CGPSConverterCreate")]
+    #[inline]
     pub unsafe fn new(
         info: *mut c_void,
         callbacks: NonNull<CGPSConverterCallbacks>,
@@ -104,9 +104,9 @@ impl CGPSConverter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CGPSConverterConvert")]
     #[cfg(all(feature = "CGDataConsumer", feature = "CGDataProvider"))]
     #[inline]
-    #[doc(alias = "CGPSConverterConvert")]
     pub unsafe fn convert(
         self: &CGPSConverter,
         provider: &CGDataProvider,
@@ -124,8 +124,8 @@ impl CGPSConverter {
         unsafe { CGPSConverterConvert(self, provider, consumer, options) }
     }
 
-    #[inline]
     #[doc(alias = "CGPSConverterAbort")]
+    #[inline]
     pub unsafe fn abort(self: &CGPSConverter) -> bool {
         extern "C-unwind" {
             fn CGPSConverterAbort(converter: &CGPSConverter) -> bool;
@@ -133,8 +133,8 @@ impl CGPSConverter {
         unsafe { CGPSConverterAbort(self) }
     }
 
-    #[inline]
     #[doc(alias = "CGPSConverterIsConverting")]
+    #[inline]
     pub unsafe fn is_converting(self: &CGPSConverter) -> bool {
         extern "C-unwind" {
             fn CGPSConverterIsConverting(converter: &CGPSConverter) -> bool;

@@ -43,8 +43,8 @@ impl HKStateOfMindValenceClassification {
     /// Returns the valence classification appropriate for a valence value.
     /// If the given valence is outside the supported range of values, this function returns
     /// `nil.`
-    #[inline]
     #[doc(alias = "HKStateOfMindValenceClassificationForValence")]
+    #[inline]
     pub unsafe fn for_valence(valence: c_double) -> Option<Retained<NSNumber>> {
         extern "C-unwind" {
             fn HKStateOfMindValenceClassificationForValence(valence: c_double) -> *mut NSNumber;

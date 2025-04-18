@@ -208,8 +208,8 @@ impl HMErrorCode {
     pub const NoCompatibleHomeHub: Self = Self(92);
     #[doc(alias = "HMErrorCodeIncompatibleAccessory")]
     pub const IncompatibleAccessory: Self = Self(93);
-    #[deprecated]
     #[doc(alias = "HMErrorCodeIncompatibleHomeHub")]
+    #[deprecated]
     pub const IncompatibleHomeHub: Self = Self(HMErrorCode::NoCompatibleHomeHub.0);
     #[doc(alias = "HMErrorCodeObjectWithSimilarNameExists")]
     pub const ObjectWithSimilarNameExists: Self = Self(95);

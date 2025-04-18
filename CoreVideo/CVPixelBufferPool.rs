@@ -56,9 +56,9 @@ impl CVPixelBufferPool {
     /// Parameter `poolOut`: The newly created pool will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    #[doc(alias = "CVPixelBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
     #[inline]
-    #[doc(alias = "CVPixelBufferPoolCreate")]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         pool_attributes: Option<&CFDictionary>,
@@ -88,8 +88,8 @@ impl CVPixelBufferPool {
     /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
-    #[inline]
     #[doc(alias = "CVPixelBufferPoolGetAttributes")]
+    #[inline]
     pub unsafe fn attributes(self: &CVPixelBufferPool) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CVPixelBufferPoolGetAttributes(
@@ -108,8 +108,8 @@ impl CVPixelBufferPool {
     /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
-    #[inline]
     #[doc(alias = "CVPixelBufferPoolGetPixelBufferAttributes")]
+    #[inline]
     pub unsafe fn pixel_buffer_attributes(
         self: &CVPixelBufferPool,
     ) -> Option<CFRetained<CFDictionary>> {
@@ -133,6 +133,7 @@ impl CVPixelBufferPool {
     /// Parameter `pixelBufferOut`: The newly created pixel buffer will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    #[doc(alias = "CVPixelBufferPoolCreatePixelBuffer")]
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -140,7 +141,6 @@ impl CVPixelBufferPool {
         feature = "CVReturn"
     ))]
     #[inline]
-    #[doc(alias = "CVPixelBufferPoolCreatePixelBuffer")]
     pub unsafe fn create_pixel_buffer(
         allocator: Option<&CFAllocator>,
         pixel_buffer_pool: &CVPixelBufferPool,
@@ -158,6 +158,7 @@ impl CVPixelBufferPool {
         }
     }
 
+    #[doc(alias = "CVPixelBufferPoolCreatePixelBufferWithAuxAttributes")]
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -165,7 +166,6 @@ impl CVPixelBufferPool {
         feature = "CVReturn"
     ))]
     #[inline]
-    #[doc(alias = "CVPixelBufferPoolCreatePixelBufferWithAuxAttributes")]
     pub unsafe fn create_pixel_buffer_with_aux_attributes(
         allocator: Option<&CFAllocator>,
         pixel_buffer_pool: &CVPixelBufferPool,
@@ -240,9 +240,9 @@ impl CVPixelBufferPool {
     ///
     /// Parameter `options`: Set to kCVPixelBufferPoolFlushExcessBuffers to free all unused buffers
     /// regardless of their age.
+    #[doc(alias = "CVPixelBufferPoolFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]
-    #[doc(alias = "CVPixelBufferPoolFlush")]
     pub unsafe fn flush(self: &CVPixelBufferPool, options: CVPixelBufferPoolFlushFlags) {
         extern "C-unwind" {
             fn CVPixelBufferPoolFlush(

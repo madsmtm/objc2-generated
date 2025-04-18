@@ -48,8 +48,8 @@ unsafe impl ConcreteType for Translation {
 }
 
 impl Translation {
-    #[inline]
     #[doc(alias = "TranslationCreate")]
+    #[inline]
     pub unsafe fn create(
         in_source_type: Option<&CFString>,
         in_destination_type: Option<&CFString>,
@@ -74,8 +74,8 @@ impl Translation {
         }
     }
 
-    #[inline]
     #[doc(alias = "TranslationCreateWithSourceArray")]
+    #[inline]
     pub unsafe fn create_with_source_array(
         in_source_types: Option<&CFArray>,
         in_translation_flags: TranslationFlags,
@@ -100,8 +100,8 @@ impl Translation {
         }
     }
 
-    #[inline]
     #[doc(alias = "TranslationPerformForData")]
+    #[inline]
     pub unsafe fn perform_for_data(
         self: &Translation,
         in_source_data: Option<&CFData>,
@@ -117,8 +117,8 @@ impl Translation {
         unsafe { TranslationPerformForData(self, in_source_data, out_destination_data) }
     }
 
-    #[inline]
     #[doc(alias = "TranslationPerformForURL")]
+    #[inline]
     pub unsafe fn perform_for_url(
         self: &Translation,
         in_source_url: Option<&CFURL>,
@@ -138,8 +138,8 @@ impl Translation {
         }
     }
 
-    #[inline]
     #[doc(alias = "TranslationCopySourceType")]
+    #[inline]
     pub unsafe fn copy_source_type(
         self: &Translation,
         out_source_type: *mut *const CFString,
@@ -153,8 +153,8 @@ impl Translation {
         unsafe { TranslationCopySourceType(self, out_source_type) }
     }
 
-    #[inline]
     #[doc(alias = "TranslationCopyDestinationType")]
+    #[inline]
     pub unsafe fn copy_destination_type(
         self: &Translation,
         out_destination_type: *mut *const CFString,
@@ -168,8 +168,8 @@ impl Translation {
         unsafe { TranslationCopyDestinationType(self, out_destination_type) }
     }
 
-    #[inline]
     #[doc(alias = "TranslationGetTranslationFlags")]
+    #[inline]
     pub unsafe fn translation_flags(
         self: &Translation,
         out_translation_flags: *mut TranslationFlags,

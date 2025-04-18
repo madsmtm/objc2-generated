@@ -52,8 +52,8 @@ impl cp_texture_topology {
     /// manage one or more images of the same size. This function returns the
     /// number of separate images the texture manages. Other array types store
     /// only one image.
-    #[inline]
     #[doc(alias = "cp_texture_topology_get_array_length")]
+    #[inline]
     pub unsafe fn array_length(texture_topology: cp_texture_topology_t) -> u64 {
         extern "C-unwind" {
             fn cp_texture_topology_get_array_length(texture_topology: cp_texture_topology_t)
@@ -76,9 +76,9 @@ impl cp_texture_topology {
     /// example, a single texture might store one or both views for the left
     /// and right eyes of a head-mounted display. The texture type indicates
     /// this content organization strategy.
+    #[doc(alias = "cp_texture_topology_get_texture_type")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
-    #[doc(alias = "cp_texture_topology_get_texture_type")]
     pub unsafe fn texture_type(texture_topology: cp_texture_topology_t) -> MTLTextureType {
         extern "C-unwind" {
             fn cp_texture_topology_get_texture_type(

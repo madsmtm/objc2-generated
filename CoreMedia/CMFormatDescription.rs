@@ -75,8 +75,8 @@ impl CMFormatDescription {
     /// creations routines such as CMVideoFormatDescriptionCreate, CMAudioFormatDescriptionCreate, etc.
     ///
     /// Returns: A new CMFormatDescription object.
-    #[inline]
     #[doc(alias = "CMFormatDescriptionCreate")]
+    #[inline]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         media_type: CMMediaType,
@@ -125,8 +125,8 @@ impl CMFormatDescription {
     ///
     /// This calls CFEqual on the provided CMFormatDescription objects.
     /// In contrast to the CF call it is NULL safe.
-    #[inline]
     #[doc(alias = "CMFormatDescriptionEqual")]
+    #[inline]
     pub unsafe fn equal(
         format_description: Option<&CMFormatDescription>,
         other_format_description: Option<&CMFormatDescription>,
@@ -154,8 +154,8 @@ impl CMFormatDescription {
     /// Parameter `sampleDescriptionExtensionAtomKeysToIgnore`: Either a single sample description extension atom key (four-character CFString)
     /// or a CFArray of such keys.
     /// See kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms.
-    #[inline]
     #[doc(alias = "CMFormatDescriptionEqualIgnoringExtensionKeys")]
+    #[inline]
     pub unsafe fn equal_ignoring_extension_keys(
         format_description: Option<&CMFormatDescription>,
         other_format_description: Option<&CMFormatDescription>,
@@ -186,8 +186,8 @@ impl CMFormatDescription {
     /// For example, returns kCMMediaType_Audio for a description of an audio stream.
     ///
     /// Returns: The media type of the CMFormatDescription.
-    #[inline]
     #[doc(alias = "CMFormatDescriptionGetMediaType")]
+    #[inline]
     pub unsafe fn media_type(self: &CMFormatDescription) -> CMMediaType {
         extern "C-unwind" {
             fn CMFormatDescriptionGetMediaType(desc: &CMFormatDescription) -> CMMediaType;
@@ -208,8 +208,8 @@ impl CMFormatDescription {
     /// does not have subtypes, this API may return 0.
     ///
     /// Returns: The media subtype of the CMFormatDescription.
-    #[inline]
     #[doc(alias = "CMFormatDescriptionGetMediaSubType")]
+    #[inline]
     pub unsafe fn media_sub_type(self: &CMFormatDescription) -> FourCharCode {
         extern "C-unwind" {
             fn CMFormatDescriptionGetMediaSubType(desc: &CMFormatDescription) -> FourCharCode;
@@ -226,8 +226,8 @@ impl CMFormatDescription {
     /// need to keep it longer.
     ///
     /// Returns: An immutable dictionary containing all the extensions of the CMFormatDescription.  May be NULL.
-    #[inline]
     #[doc(alias = "CMFormatDescriptionGetExtensions")]
+    #[inline]
     pub unsafe fn extensions(self: &CMFormatDescription) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CMFormatDescriptionGetExtensions(
@@ -309,8 +309,8 @@ impl CMFormatDescription {
     /// need to keep it longer.
     ///
     /// Returns: The specified extension of the CMFormatDescription.  May be NULL.
-    #[inline]
     #[doc(alias = "CMFormatDescriptionGetExtension")]
+    #[inline]
     pub unsafe fn extension(
         self: &CMFormatDescription,
         extension_key: &CFString,
@@ -1912,9 +1912,9 @@ extern "C-unwind" {
 #[cfg(feature = "CMTime")]
 impl CMTime {
     /// Returns the duration of each frame (eg. 100/2997)
+    #[doc(alias = "CMTimeCodeFormatDescriptionGetFrameDuration")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeCodeFormatDescriptionGetFrameDuration")]
     pub unsafe fn code_format_description_get_frame_duration(
         time_code_format_description: &CMTimeCodeFormatDescription,
     ) -> CMTime {

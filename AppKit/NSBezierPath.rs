@@ -92,8 +92,8 @@ impl NSBezierPathElement {
     pub const ClosePath: Self = Self(3);
     #[doc(alias = "NSBezierPathElementQuadraticCurveTo")]
     pub const QuadraticCurveTo: Self = Self(4);
-    #[deprecated]
     #[doc(alias = "NSBezierPathElementCurveTo")]
+    #[deprecated]
     pub const CurveTo: Self = Self(NSBezierPathElement::CubicCurveTo.0);
 }
 

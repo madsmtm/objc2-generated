@@ -54,9 +54,9 @@ impl VTMultiPassStorage {
     /// Parameter `timeRange`: Gives a hint to the multi pass storage about valid time stamps for data.
     ///
     /// Parameter `options`: If the file did not exist when the storage was created, the file will be deleted when the VTMultiPassStorage object is finalized, unless you set the kVTMultiPassStorageCreationOption_DoNotDelete option to kCFBooleanTrue in the options dictionary.
+    #[doc(alias = "VTMultiPassStorageCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    #[doc(alias = "VTMultiPassStorageCreate")]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         file_url: Option<&CFURL>,
@@ -95,8 +95,8 @@ impl VTMultiPassStorage {
     ///
     /// After this function is called, all methods on the multipass storage object will fail.
     /// It is still necessary to release the object by calling CFRelease.
-    #[inline]
     #[doc(alias = "VTMultiPassStorageClose")]
+    #[inline]
     pub unsafe fn close(self: &VTMultiPassStorage) -> OSStatus {
         extern "C-unwind" {
             fn VTMultiPassStorageClose(multi_pass_storage: &VTMultiPassStorage) -> OSStatus;

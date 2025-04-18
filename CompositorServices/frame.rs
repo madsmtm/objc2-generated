@@ -52,9 +52,9 @@ impl cp_frame {
     ///
     /// The layer assigns a unique index number to each frame, starting at
     /// the first frame and incrementing the index by 1 for each new frame.
+    #[doc(alias = "cp_frame_get_frame_index")]
     #[cfg(feature = "cp_types")]
     #[inline]
-    #[doc(alias = "cp_frame_get_frame_index")]
     pub unsafe fn frame_index(frame: cp_frame_t) -> cp_layer_frame_index_t {
         extern "C-unwind" {
             fn cp_frame_get_frame_index(frame: cp_frame_t) -> cp_layer_frame_index_t;
@@ -82,9 +82,9 @@ impl cp_frame {
     /// retrieve the frame's ``cp_drawable_t`` type, save the return value
     /// of this function, or call ``cp_drawable_get_frame_timing`` to get
     /// the information from the drawable instead.
+    #[doc(alias = "cp_frame_predict_timing")]
     #[cfg(feature = "frame_timing")]
     #[inline]
-    #[doc(alias = "cp_frame_predict_timing")]
     pub unsafe fn predict_timing(frame: cp_frame_t) -> cp_frame_timing_t {
         extern "C-unwind" {
             fn cp_frame_predict_timing(frame: cp_frame_t) -> cp_frame_timing_t;
@@ -107,9 +107,9 @@ impl cp_frame {
     ///
     /// Note: This function isn't safe to be called concurrently. Always ensure a
     /// single thread call this function at a time.
+    #[doc(alias = "cp_frame_query_drawable")]
     #[cfg(feature = "drawable")]
     #[inline]
-    #[doc(alias = "cp_frame_query_drawable")]
     pub unsafe fn query_drawable(frame: cp_frame_t) -> cp_drawable_t {
         extern "C-unwind" {
             fn cp_frame_query_drawable(frame: cp_frame_t) -> cp_drawable_t;
@@ -135,8 +135,8 @@ impl cp_frame {
     /// time. Don't do any work that relies on the current pose information during
     /// the update phase. Instead, make any pose-related changes during the
     /// encoding phase.
-    #[inline]
     #[doc(alias = "cp_frame_start_update")]
+    #[inline]
     pub unsafe fn start_update(frame: cp_frame_t) {
         extern "C-unwind" {
             fn cp_frame_start_update(frame: cp_frame_t);
@@ -162,8 +162,8 @@ impl cp_frame {
     /// time. Don't do any work that relies on the current pose information during
     /// the update phase. Instead, make any pose-related changes during the
     /// encoding phase.
-    #[inline]
     #[doc(alias = "cp_frame_end_update")]
+    #[inline]
     pub unsafe fn end_update(frame: cp_frame_t) {
         extern "C-unwind" {
             fn cp_frame_end_update(frame: cp_frame_t);
@@ -185,8 +185,8 @@ impl cp_frame {
     /// for when to start the frame submission process. Those predictions help
     /// you schedule the encoding process at a more optimal time for the
     /// system.
-    #[inline]
     #[doc(alias = "cp_frame_start_submission")]
+    #[inline]
     pub unsafe fn start_submission(frame: cp_frame_t) {
         extern "C-unwind" {
             fn cp_frame_start_submission(frame: cp_frame_t);
@@ -208,8 +208,8 @@ impl cp_frame {
     /// for when to start the frame submission process. Those predictions help
     /// you schedule the encoding process at a more optimal time for the
     /// system.
-    #[inline]
     #[doc(alias = "cp_frame_end_submission")]
+    #[inline]
     pub unsafe fn end_submission(frame: cp_frame_t) {
         extern "C-unwind" {
             fn cp_frame_end_submission(frame: cp_frame_t);

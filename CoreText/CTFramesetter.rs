@@ -55,9 +55,9 @@ impl CTFramesetter {
     ///
     ///
     /// See also: CTTypesetterCreateWithAttributedStringAndOptions
+    #[doc(alias = "CTFramesetterCreateWithTypesetter")]
     #[cfg(feature = "CTTypesetter")]
     #[inline]
-    #[doc(alias = "CTFramesetterCreateWithTypesetter")]
     pub unsafe fn with_typesetter(typesetter: &CTTypesetter) -> CFRetained<CTFramesetter> {
         extern "C-unwind" {
             fn CTFramesetterCreateWithTypesetter(
@@ -82,8 +82,8 @@ impl CTFramesetter {
     ///
     ///
     /// Returns: This function will return a reference to a CTFramesetter object.
-    #[inline]
     #[doc(alias = "CTFramesetterCreateWithAttributedString")]
+    #[inline]
     pub unsafe fn with_attributed_string(
         attr_string: &CFAttributedString,
     ) -> CFRetained<CTFramesetter> {
@@ -127,9 +127,9 @@ impl CTFramesetter {
     ///
     ///
     /// Returns: This function will return a reference to a new CTFrame object.
+    #[doc(alias = "CTFramesetterCreateFrame")]
     #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
     #[inline]
-    #[doc(alias = "CTFramesetterCreateFrame")]
     pub unsafe fn frame(
         self: &CTFramesetter,
         string_range: CFRange,
@@ -165,9 +165,9 @@ impl CTFramesetter {
     ///
     /// Returns: This function will return a reference to a CTTypesetter
     /// object, which should not be released by the caller.
+    #[doc(alias = "CTFramesetterGetTypesetter")]
     #[cfg(feature = "CTTypesetter")]
     #[inline]
-    #[doc(alias = "CTFramesetterGetTypesetter")]
     pub unsafe fn typesetter(self: &CTFramesetter) -> CFRetained<CTTypesetter> {
         extern "C-unwind" {
             fn CTFramesetterGetTypesetter(
@@ -211,8 +211,8 @@ impl CTFramesetter {
     ///
     ///
     /// Returns: The actual dimensions for the given string range and constraints.
-    #[inline]
     #[doc(alias = "CTFramesetterSuggestFrameSizeWithConstraints")]
+    #[inline]
     pub unsafe fn suggest_frame_size_with_constraints(
         self: &CTFramesetter,
         string_range: CFRange,

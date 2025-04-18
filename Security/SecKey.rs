@@ -101,14 +101,14 @@ pub const kSecKeyUnwrap: c_int = 26;
 pub struct SecCredentialType(pub uint32);
 #[cfg(feature = "cssmconfig")]
 impl SecCredentialType {
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSecCredentialTypeDefault")]
+    #[deprecated = "No longer supported"]
     pub const Default: Self = Self(0);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSecCredentialTypeWithUI")]
-    pub const WithUI: Self = Self(1);
     #[deprecated = "No longer supported"]
+    pub const WithUI: Self = Self(1);
     #[doc(alias = "kSecCredentialTypeNoUI")]
+    #[deprecated = "No longer supported"]
     pub const NoUI: Self = Self(2);
 }
 
@@ -132,38 +132,38 @@ unsafe impl RefEncode for SecCredentialType {
 pub struct SecPadding(pub u32);
 bitflags::bitflags! {
     impl SecPadding: u32 {
-#[deprecated = "Replaced with SecKeyAlgorithm"]
         #[doc(alias = "kSecPaddingNone")]
+#[deprecated = "Replaced with SecKeyAlgorithm"]
         const None = 0;
-#[deprecated = "Replaced with SecKeyAlgorithm"]
         #[doc(alias = "kSecPaddingPKCS1")]
+#[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1 = 1;
-#[deprecated = "Replaced with SecKeyAlgorithm"]
         #[doc(alias = "kSecPaddingOAEP")]
+#[deprecated = "Replaced with SecKeyAlgorithm"]
         const OAEP = 2;
-#[deprecated = "Replaced with SecKeyAlgorithm"]
         #[doc(alias = "kSecPaddingSigRaw")]
+#[deprecated = "Replaced with SecKeyAlgorithm"]
         const SigRaw = 0x4000;
-#[deprecated = "Replaced with SecKeyAlgorithm"]
         #[doc(alias = "kSecPaddingPKCS1MD2")]
+#[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1MD2 = 0x8000;
-#[deprecated = "Replaced with SecKeyAlgorithm"]
         #[doc(alias = "kSecPaddingPKCS1MD5")]
+#[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1MD5 = 0x8001;
-#[deprecated = "Replaced with SecKeyAlgorithm"]
         #[doc(alias = "kSecPaddingPKCS1SHA1")]
+#[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA1 = 0x8002;
-#[deprecated = "Replaced with SecKeyAlgorithm"]
         #[doc(alias = "kSecPaddingPKCS1SHA224")]
+#[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA224 = 0x8003;
-#[deprecated = "Replaced with SecKeyAlgorithm"]
         #[doc(alias = "kSecPaddingPKCS1SHA256")]
+#[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA256 = 0x8004;
-#[deprecated = "Replaced with SecKeyAlgorithm"]
         #[doc(alias = "kSecPaddingPKCS1SHA384")]
-        const PKCS1SHA384 = 0x8005;
 #[deprecated = "Replaced with SecKeyAlgorithm"]
+        const PKCS1SHA384 = 0x8005;
         #[doc(alias = "kSecPaddingPKCS1SHA512")]
+#[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA512 = 0x8006;
     }
 }
@@ -187,38 +187,38 @@ unsafe impl RefEncode for SecPadding {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecKeySizes(pub u32);
 impl SecKeySizes {
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSecDefaultKeySize")]
+    #[deprecated = "No longer supported"]
     pub const SecDefaultKeySize: Self = Self(0);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSec3DES192")]
+    #[deprecated = "No longer supported"]
     pub const Sec3DES192: Self = Self(192);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSecAES128")]
+    #[deprecated = "No longer supported"]
     pub const SecAES128: Self = Self(128);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSecAES192")]
+    #[deprecated = "No longer supported"]
     pub const SecAES192: Self = Self(192);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSecAES256")]
+    #[deprecated = "No longer supported"]
     pub const SecAES256: Self = Self(256);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSecp192r1")]
+    #[deprecated = "No longer supported"]
     pub const Secp192r1: Self = Self(192);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSecp256r1")]
+    #[deprecated = "No longer supported"]
     pub const Secp256r1: Self = Self(256);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSecp384r1")]
+    #[deprecated = "No longer supported"]
     pub const Secp384r1: Self = Self(384);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSecp521r1")]
+    #[deprecated = "No longer supported"]
     pub const Secp521r1: Self = Self(521);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "kSecRSAMin")]
-    pub const SecRSAMin: Self = Self(1024);
     #[deprecated = "No longer supported"]
+    pub const SecRSAMin: Self = Self(1024);
     #[doc(alias = "kSecRSAMax")]
+    #[deprecated = "No longer supported"]
     pub const SecRSAMax: Self = Self(4096);
 }
 
@@ -295,10 +295,10 @@ impl SecKey {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7. Please use the SecKeyGeneratePair API instead.
+    #[doc(alias = "SecKeyCreatePair")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    #[doc(alias = "SecKeyCreatePair")]
     pub unsafe fn create_pair(
         keychain_ref: Option<&SecKeychain>,
         algorithm: CSSM_ALGORITHMS,
@@ -365,10 +365,10 @@ impl SecKey {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7.  Please use the SecKeyGenerateSymmetric API instead.
+    #[doc(alias = "SecKeyGenerate")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    #[doc(alias = "SecKeyGenerate")]
     pub unsafe fn generate(
         keychain_ref: Option<&SecKeychain>,
         algorithm: CSSM_ALGORITHMS,
@@ -414,6 +414,7 @@ impl SecKey {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// The CSSM_KEY is valid until the key item reference is released. This API is deprecated in 10.7. Its use should no longer be needed.
+    #[doc(alias = "SecKeyGetCSSMKey")]
     #[cfg(all(
         feature = "SecAsn1Types",
         feature = "SecBase",
@@ -422,7 +423,6 @@ impl SecKey {
     ))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecKeyGetCSSMKey")]
     pub unsafe fn cssm_key(self: &SecKey, cssm_key: NonNull<*const CSSM_KEY>) -> OSStatus {
         extern "C-unwind" {
             fn SecKeyGetCSSMKey(key: &SecKey, cssm_key: NonNull<*const CSSM_KEY>) -> OSStatus;
@@ -439,10 +439,10 @@ impl SecKey {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Its use should no longer be needed.
+    #[doc(alias = "SecKeyGetCSPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecKeyGetCSPHandle")]
     pub unsafe fn csp_handle(self: &SecKey, csp_handle: NonNull<CSSM_CSP_HANDLE>) -> OSStatus {
         extern "C-unwind" {
             fn SecKeyGetCSPHandle(
@@ -464,6 +464,7 @@ impl SecKey {
     /// Parameter `outCredentials`: On return, a pointer to a CSSM_ACCESS_CREDENTIALS structure. This pointer remains valid until the key reference is released. The caller should not attempt to modify or free this data.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecKeyGetCredentials")]
     #[cfg(all(
         feature = "SecAsn1Types",
         feature = "SecBase",
@@ -472,7 +473,6 @@ impl SecKey {
     ))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecKeyGetCredentials")]
     pub unsafe fn credentials(
         self: &SecKey,
         operation: CSSM_ACL_AUTHORIZATION_TAG,
@@ -532,10 +532,10 @@ impl SecKey {
     /// kSecAttrCanDecrypt (defaults to true if not explicitly specified)
     /// kSecAttrCanWrap (defaults to true if not explicitly specified)
     /// kSecAttrCanUnwrap (defaults to true if not explicitly specified)
+    #[doc(alias = "SecKeyGenerateSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "SecKeyGenerateSymmetric")]
     pub unsafe fn generate_symmetric(
         parameters: &CFDictionary,
         error: *mut *mut CFError,
@@ -573,10 +573,10 @@ impl SecKey {
     /// kSecAttrCanDecrypt (defaults to true if not explicitly specified)
     /// kSecAttrCanWrap (defaults to true if not explicitly specified)
     /// kSecAttrCanUnwrap (defaults to true if not explicitly specified)
+    #[doc(alias = "SecKeyCreateFromData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "SecKeyCreateFromData")]
     pub unsafe fn from_data(
         parameters: &CFDictionary,
         key_data: &CFData,
@@ -639,10 +639,10 @@ impl SecKey {
     ///
     /// Returns: On success a SecKeyRef is returned.  On failure this result is NULL and the
     /// error parameter contains the reason.
+    #[doc(alias = "SecKeyDeriveFromPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "SecKeyDeriveFromPassword")]
     pub unsafe fn derive_from_password(
         password: &CFString,
         parameters: &CFDictionary,
@@ -677,10 +677,10 @@ impl SecKey {
     ///
     /// In order to wrap a key the parameters dictionary may contain the following key:
     /// kSecSalt - a CFData for the salt value for the encrypt.
+    #[doc(alias = "SecKeyWrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "SecKeyWrapSymmetric")]
     pub unsafe fn wrap_symmetric(
         self: &SecKey,
         wrapping_key: &SecKey,
@@ -717,10 +717,10 @@ impl SecKey {
     ///
     /// In order to unwrap a key the parameters dictionary may contain the following key:
     /// kSecSalt - a CFData for the salt value for the decrypt.
+    #[doc(alias = "SecKeyUnwrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "SecKeyUnwrapSymmetric")]
     pub unsafe fn unwrap_symmetric(
         key_to_unwrap: NonNull<*const CFData>,
         unwrapping_key: &SecKey,
@@ -792,10 +792,10 @@ impl SecKey {
     /// on iOS, tvOS and watchOS.
     /// It is recommended to use SecKeyCreateRandomKey() which respects kSecAttrIsPermanent
     /// on all platforms.
+    #[doc(alias = "SecKeyGeneratePair")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "Use SecKeyCreateRandomKey"]
     #[inline]
-    #[doc(alias = "SecKeyGeneratePair")]
     pub unsafe fn generate_pair(
         parameters: &CFDictionary,
         public_key: *mut *mut SecKey,
@@ -852,9 +852,9 @@ impl SecKey {
     /// kSecAttrCanVerify default false for private keys, true for public keys
     /// kSecAttrCanWrap default false for private keys, true for public keys
     /// kSecAttrCanUnwrap default true for private keys, false for public keys
+    #[doc(alias = "SecKeyCreateRandomKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyCreateRandomKey")]
     pub unsafe fn new_random_key(
         parameters: &CFDictionary,
         error: *mut *mut CFError,
@@ -888,9 +888,9 @@ impl SecKey {
     /// The requested data format depend on the type of key (kSecAttrKeyType) being created:
     /// kSecAttrKeyTypeRSA               PKCS#1 format, public key can be also in x509 public key format
     /// kSecAttrKeyTypeECSECPrimeRandom  ANSI X9.63 format (04 || X || Y [ || K])
+    #[doc(alias = "SecKeyCreateWithData")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyCreateWithData")]
     pub unsafe fn with_data(
         key_data: &CFData,
         attributes: &CFDictionary,
@@ -915,9 +915,9 @@ impl SecKey {
     ///
     /// If for example key is an RSA key the value returned by
     /// this function is the size of the modulus.
+    #[doc(alias = "SecKeyGetBlockSize")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyGetBlockSize")]
     pub unsafe fn block_size(self: &SecKey) -> usize {
         extern "C-unwind" {
             fn SecKeyGetBlockSize(key: &SecKey) -> usize;
@@ -938,9 +938,9 @@ impl SecKey {
     /// The format in which the key will be exported depends on the type of key:
     /// kSecAttrKeyTypeRSA               PKCS#1 format
     /// kSecAttrKeyTypeECSECPrimeRandom  ANSI X9.63 format (04 || X || Y [ || K])
+    #[doc(alias = "SecKeyCopyExternalRepresentation")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyCopyExternalRepresentation")]
     pub unsafe fn external_representation(
         self: &SecKey,
         error: *mut *mut CFError,
@@ -974,9 +974,9 @@ impl SecKey {
     /// kSecAttrTokenID
     /// kSecAttrApplicationLabel
     /// The set of values is not fixed. Future versions may return more values in this dictionary.
+    #[doc(alias = "SecKeyCopyAttributes")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyCopyAttributes")]
     pub unsafe fn attributes(self: &SecKey) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SecKeyCopyAttributes(key: &SecKey) -> Option<NonNull<CFDictionary>>;
@@ -992,9 +992,9 @@ impl SecKey {
     /// Returns: The public key or NULL if public key is not available for specified key.
     ///
     /// Fails if key does not contain a public key or no public key can be computed from it.
+    #[doc(alias = "SecKeyCopyPublicKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyCopyPublicKey")]
     pub unsafe fn public_key(self: &SecKey) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyCopyPublicKey(key: &SecKey) -> Option<NonNull<SecKey>>;
@@ -1897,9 +1897,9 @@ impl SecKey {
     ///
     /// Computes digital signature using specified key over input data.  The operation algorithm
     /// further defines the exact format of input data, operation to be performed and output signature.
+    #[doc(alias = "SecKeyCreateSignature")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyCreateSignature")]
     pub unsafe fn signature(
         self: &SecKey,
         algorithm: &SecKeyAlgorithm,
@@ -1935,9 +1935,9 @@ impl SecKey {
     ///
     /// Verifies digital signature operation using specified key and signed data.  The operation algorithm
     /// further defines the exact format of input data, signature and operation to be performed.
+    #[doc(alias = "SecKeyVerifySignature")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyVerifySignature")]
     pub unsafe fn verify_signature(
         self: &SecKey,
         algorithm: &SecKeyAlgorithm,
@@ -1974,9 +1974,9 @@ impl SecKey {
     ///
     /// Encrypts plaintext data using specified key.  The exact type of the operation including the format
     /// of input and output data is specified by encryption algorithm.
+    #[doc(alias = "SecKeyCreateEncryptedData")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyCreateEncryptedData")]
     pub unsafe fn encrypted_data(
         self: &SecKey,
         algorithm: &SecKeyAlgorithm,
@@ -2011,9 +2011,9 @@ impl SecKey {
     ///
     /// Decrypts ciphertext data using specified key.  The exact type of the operation including the format
     /// of input and output data is specified by decryption algorithm.
+    #[doc(alias = "SecKeyCreateDecryptedData")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyCreateDecryptedData")]
     pub unsafe fn decrypted_data(
         self: &SecKey,
         algorithm: &SecKeyAlgorithm,
@@ -2064,9 +2064,9 @@ impl SecKey {
     /// See "Security Error Codes" (SecBase.h).
     ///
     /// Returns: Result of key exchange operation as a CFDataRef, or NULL on failure.
+    #[doc(alias = "SecKeyCopyKeyExchangeResult")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyCopyKeyExchangeResult")]
     pub unsafe fn key_exchange_result(
         self: &SecKey,
         algorithm: &SecKeyAlgorithm,
@@ -2145,9 +2145,9 @@ impl SecKey {
     /// Parameter `algorithm`: Algorithm which is queried
     ///
     /// Returns: True if key supports specified algorithm for specified operation, False otherwise.
+    #[doc(alias = "SecKeyIsAlgorithmSupported")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecKeyIsAlgorithmSupported")]
     pub unsafe fn is_algorithm_supported(
         self: &SecKey,
         operation: SecKeyOperationType,

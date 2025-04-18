@@ -58,24 +58,24 @@ impl NSVisualEffectMaterial {
     #[doc(alias = "NSVisualEffectMaterialUnderPageBackground")]
     pub const UnderPageBackground: Self = Self(22);
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
-    #[deprecated = "Use a specific semantic material instead."]
     #[doc(alias = "NSVisualEffectMaterialAppearanceBased")]
+    #[deprecated = "Use a specific semantic material instead."]
     pub const AppearanceBased: Self = Self(0);
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
-    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     #[doc(alias = "NSVisualEffectMaterialLight")]
+    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const Light: Self = Self(1);
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
-    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     #[doc(alias = "NSVisualEffectMaterialDark")]
+    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const Dark: Self = Self(2);
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
-    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     #[doc(alias = "NSVisualEffectMaterialMediumLight")]
+    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const MediumLight: Self = Self(8);
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
-    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     #[doc(alias = "NSVisualEffectMaterialUltraDark")]
+    #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const UltraDark: Self = Self(9);
 }
 

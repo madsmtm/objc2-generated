@@ -13,29 +13,29 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INStartAudioCallIntentResponseCode(pub NSInteger);
 impl INStartAudioCallIntentResponseCode {
-    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartAudioCallIntentResponseCodeUnspecified")]
+    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartAudioCallIntentResponseCodeReady")]
+    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartAudioCallIntentResponseCodeContinueInApp")]
+    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const ContinueInApp: Self = Self(2);
-    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailure")]
+    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Failure: Self = Self(3);
-    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureRequiringAppLaunch: Self = Self(4);
-    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureAppConfigurationRequired")]
+    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureAppConfigurationRequired: Self = Self(5);
-    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureCallingServiceNotAvailable")]
-    pub const FailureCallingServiceNotAvailable: Self = Self(6);
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
+    pub const FailureCallingServiceNotAvailable: Self = Self(6);
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureContactNotSupportedByApp")]
+    #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureContactNotSupportedByApp: Self = Self(7);
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureNoValidNumber")]
     pub const FailureNoValidNumber: Self = Self(8);

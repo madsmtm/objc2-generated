@@ -45,8 +45,8 @@ mod private_NSObjectCIImageProvider {
 }
 
 /// Category "CIImageProvider" on [`NSObject`].
-#[doc(alias = "CIImageProvider")]
 /// Informal protocol used to lazily supply image data.
+#[doc(alias = "CIImageProvider")]
 pub unsafe trait NSObjectCIImageProvider:
     ClassType + Sized + private_NSObjectCIImageProvider::Sealed
 {

@@ -56,10 +56,10 @@ impl CVMetalBufferCache {
     /// Parameter `cacheOut`: The newly created buffer cache will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    #[doc(alias = "CVMetalBufferCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
     #[inline]
-    #[doc(alias = "CVMetalBufferCacheCreate")]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         cache_attributes: Option<&CFDictionary>,
@@ -94,6 +94,7 @@ impl CVMetalBufferCache {
     ///
     /// IMPORTANT NOTE: Clients should retain CVMetalBuffer objects until they are done using the images in them.
     /// Retaining a CVMetalBuffer is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
+    #[doc(alias = "CVMetalBufferCacheCreateBufferFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -101,7 +102,6 @@ impl CVMetalBufferCache {
         feature = "CVReturn"
     ))]
     #[inline]
-    #[doc(alias = "CVMetalBufferCacheCreateBufferFromImage")]
     pub unsafe fn create_buffer_from_image(
         allocator: Option<&CFAllocator>,
         buffer_cache: &CVMetalBufferCache,
@@ -133,9 +133,9 @@ impl CVMetalBufferCache {
     /// Parameter `bufferCache`: The buffer cache object to flush
     ///
     /// Parameter `options`: Currently unused, set to 0.
+    #[doc(alias = "CVMetalBufferCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]
-    #[doc(alias = "CVMetalBufferCacheFlush")]
     pub unsafe fn flush(self: &CVMetalBufferCache, options: CVOptionFlags) {
         extern "C-unwind" {
             fn CVMetalBufferCacheFlush(buffer_cache: &CVMetalBufferCache, options: CVOptionFlags);

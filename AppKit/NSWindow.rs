@@ -37,8 +37,8 @@ bitflags::bitflags! {
         const Miniaturizable = 1<<2;
         #[doc(alias = "NSWindowStyleMaskResizable")]
         const Resizable = 1<<3;
-#[deprecated = "Textured window style should no longer be used"]
         #[doc(alias = "NSWindowStyleMaskTexturedBackground")]
+#[deprecated = "Textured window style should no longer be used"]
         const TexturedBackground = 1<<8;
         #[doc(alias = "NSWindowStyleMaskUnifiedTitleAndToolbar")]
         const UnifiedTitleAndToolbar = 1<<12;

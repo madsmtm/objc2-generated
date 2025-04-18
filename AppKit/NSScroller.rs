@@ -17,8 +17,8 @@ pub struct NSUsableScrollerParts(pub NSUInteger);
 impl NSUsableScrollerParts {
     #[doc(alias = "NSNoScrollerParts")]
     pub const NoScrollerParts: Self = Self(0);
-    #[deprecated = "Scroller arrows are not used anymore."]
     #[doc(alias = "NSOnlyScrollerArrows")]
+    #[deprecated = "Scroller arrows are not used anymore."]
     pub const OnlyScrollerArrows: Self = Self(1);
     #[doc(alias = "NSAllScrollerParts")]
     pub const AllScrollerParts: Self = Self(2);
@@ -46,11 +46,11 @@ impl NSScrollerPart {
     pub const Knob: Self = Self(2);
     #[doc(alias = "NSScrollerIncrementPage")]
     pub const IncrementPage: Self = Self(3);
-    #[deprecated = "Scroller arrows are not used anymore."]
     #[doc(alias = "NSScrollerDecrementLine")]
-    pub const DecrementLine: Self = Self(4);
     #[deprecated = "Scroller arrows are not used anymore."]
+    pub const DecrementLine: Self = Self(4);
     #[doc(alias = "NSScrollerIncrementLine")]
+    #[deprecated = "Scroller arrows are not used anymore."]
     pub const IncrementLine: Self = Self(5);
     #[doc(alias = "NSScrollerKnobSlot")]
     pub const KnobSlot: Self = Self(6);

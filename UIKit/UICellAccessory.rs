@@ -942,9 +942,9 @@ pub type UICellAccessoryPosition =
 
 impl UICellAccessory {
     /// Positions the accessory before the accessory matching the class specified, or at the beginning if not found.
+    #[doc(alias = "UICellAccessoryPositionBeforeAccessoryOfClass")]
     #[cfg(feature = "block2")]
     #[inline]
-    #[doc(alias = "UICellAccessoryPositionBeforeAccessoryOfClass")]
     pub unsafe fn position_before_accessory_of_class(
         accessory_class: &AnyClass,
     ) -> UICellAccessoryPosition {
@@ -957,9 +957,9 @@ impl UICellAccessory {
     }
 
     /// Positions the accessory after the accessory matching the class specified, or at the end if not found.
+    #[doc(alias = "UICellAccessoryPositionAfterAccessoryOfClass")]
     #[cfg(feature = "block2")]
     #[inline]
-    #[doc(alias = "UICellAccessoryPositionAfterAccessoryOfClass")]
     pub unsafe fn position_after_accessory_of_class(
         accessory_class: &AnyClass,
     ) -> UICellAccessoryPosition {

@@ -90,8 +90,8 @@ impl CTTypesetter {
     ///
     ///
     /// Returns: This function will return a reference to a CTTypesetter.
-    #[inline]
     #[doc(alias = "CTTypesetterCreateWithAttributedString")]
+    #[inline]
     pub unsafe fn with_attributed_string(string: &CFAttributedString) -> CFRetained<CTTypesetter> {
         extern "C-unwind" {
             fn CTTypesetterCreateWithAttributedString(
@@ -126,8 +126,8 @@ impl CTTypesetter {
     ///
     ///
     /// See also: kCTTypesetterOptionAllowUnboundedLayout
-    #[inline]
     #[doc(alias = "CTTypesetterCreateWithAttributedStringAndOptions")]
+    #[inline]
     pub unsafe fn with_attributed_string_and_options(
         string: &CFAttributedString,
         options: Option<&CFDictionary>,
@@ -163,9 +163,9 @@ impl CTTypesetter {
     ///
     ///
     /// Returns: This function will return a reference to a CTLine.
+    #[doc(alias = "CTTypesetterCreateLineWithOffset")]
     #[cfg(feature = "CTLine")]
     #[inline]
-    #[doc(alias = "CTTypesetterCreateLineWithOffset")]
     pub unsafe fn line_with_offset(
         self: &CTTypesetter,
         string_range: CFRange,
@@ -185,9 +185,9 @@ impl CTTypesetter {
     }
 
     /// Equivalent to CTTypesetterCreateLineWithOffset with offset = 0.0.
+    #[doc(alias = "CTTypesetterCreateLine")]
     #[cfg(feature = "CTLine")]
     #[inline]
-    #[doc(alias = "CTTypesetterCreateLine")]
     pub unsafe fn line(self: &CTTypesetter, string_range: CFRange) -> CFRetained<CTLine> {
         extern "C-unwind" {
             fn CTTypesetterCreateLine(
@@ -225,8 +225,8 @@ impl CTTypesetter {
     /// Returns: The value returned is a count of the characters from startIndex
     /// that would cause the line break. This value returned can be used
     /// to construct a character range for CTTypesetterCreateLine.
-    #[inline]
     #[doc(alias = "CTTypesetterSuggestLineBreakWithOffset")]
+    #[inline]
     pub unsafe fn suggest_line_break_with_offset(
         self: &CTTypesetter,
         start_index: CFIndex,
@@ -245,8 +245,8 @@ impl CTTypesetter {
     }
 
     /// Equivalent to CTTypesetterSuggestLineBreakWithOffset with offset = 0.0.
-    #[inline]
     #[doc(alias = "CTTypesetterSuggestLineBreak")]
+    #[inline]
     pub unsafe fn suggest_line_break(
         self: &CTTypesetter,
         start_index: CFIndex,
@@ -291,8 +291,8 @@ impl CTTypesetter {
     /// Returns: The value returned is a count of the characters from startIndex
     /// that would cause the cluster break. This value returned can be
     /// used to construct a character range for CTTypesetterCreateLine.
-    #[inline]
     #[doc(alias = "CTTypesetterSuggestClusterBreakWithOffset")]
+    #[inline]
     pub unsafe fn suggest_cluster_break_with_offset(
         self: &CTTypesetter,
         start_index: CFIndex,
@@ -311,8 +311,8 @@ impl CTTypesetter {
     }
 
     /// Equivalent to CTTypesetterSuggestClusterBreakWithOffset with offset = 0.0.
-    #[inline]
     #[doc(alias = "CTTypesetterSuggestClusterBreak")]
+    #[inline]
     pub unsafe fn suggest_cluster_break(
         self: &CTTypesetter,
         start_index: CFIndex,

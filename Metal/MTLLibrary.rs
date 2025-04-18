@@ -323,8 +323,8 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLLanguageVersion(pub NSUInteger);
 impl MTLLanguageVersion {
-    #[deprecated = "Use a newer language standard"]
     #[doc(alias = "MTLLanguageVersion1_0")]
+    #[deprecated = "Use a newer language standard"]
     pub const Version1_0: Self = Self(1 << 16);
     #[doc(alias = "MTLLanguageVersion1_1")]
     pub const Version1_1: Self = Self((1 << 16) + 1);

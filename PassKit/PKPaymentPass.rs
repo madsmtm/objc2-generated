@@ -13,20 +13,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKPaymentPassActivationState(pub NSUInteger);
 impl PKPaymentPassActivationState {
-    #[deprecated = "Use PKSecureElementPassActivationState instead"]
     #[doc(alias = "PKPaymentPassActivationStateActivated")]
+    #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const Activated: Self = Self(0);
-    #[deprecated = "Use PKSecureElementPassActivationState instead"]
     #[doc(alias = "PKPaymentPassActivationStateRequiresActivation")]
+    #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const RequiresActivation: Self = Self(1);
-    #[deprecated = "Use PKSecureElementPassActivationState instead"]
     #[doc(alias = "PKPaymentPassActivationStateActivating")]
+    #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const Activating: Self = Self(2);
-    #[deprecated = "Use PKSecureElementPassActivationState instead"]
     #[doc(alias = "PKPaymentPassActivationStateSuspended")]
-    pub const Suspended: Self = Self(3);
     #[deprecated = "Use PKSecureElementPassActivationState instead"]
+    pub const Suspended: Self = Self(3);
     #[doc(alias = "PKPaymentPassActivationStateDeactivated")]
+    #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const Deactivated: Self = Self(4);
 }
 

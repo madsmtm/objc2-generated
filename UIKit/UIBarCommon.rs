@@ -19,11 +19,11 @@ impl UIBarMetrics {
     pub const DefaultPrompt: Self = Self(101);
     #[doc(alias = "UIBarMetricsCompactPrompt")]
     pub const CompactPrompt: Self = Self(102);
-    #[deprecated]
     #[doc(alias = "UIBarMetricsLandscapePhone")]
-    pub const LandscapePhone: Self = Self(UIBarMetrics::Compact.0);
     #[deprecated]
+    pub const LandscapePhone: Self = Self(UIBarMetrics::Compact.0);
     #[doc(alias = "UIBarMetricsLandscapePhonePrompt")]
+    #[deprecated]
     pub const LandscapePhonePrompt: Self = Self(UIBarMetrics::CompactPrompt.0);
 }
 

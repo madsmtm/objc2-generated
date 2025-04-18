@@ -62,9 +62,9 @@ impl cp_time {
     /// - time: The time value to convert.
     /// - Returns: The elapsed time in seconds that correspond to the specified
     /// time value.
+    #[doc(alias = "cp_time_to_cf_time_interval")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "cp_time_to_cf_time_interval")]
     pub unsafe fn to_cf_time_interval(time: cp_time_t) -> CFTimeInterval {
         extern "C-unwind" {
             fn cp_time_to_cf_time_interval(time: cp_time_t) -> CFTimeInterval;
@@ -76,8 +76,8 @@ impl cp_time {
     ///
     /// - Parameters:
     /// - time: The Mach absolute time at which to wake up the thread.
-    #[inline]
     #[doc(alias = "cp_time_wait_until")]
+    #[inline]
     pub unsafe fn wait_until(time: cp_time_t) {
         extern "C-unwind" {
             fn cp_time_wait_until(time: cp_time_t);

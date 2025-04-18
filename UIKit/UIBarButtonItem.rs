@@ -19,8 +19,8 @@ pub struct UIBarButtonItemStyle(pub NSInteger);
 impl UIBarButtonItemStyle {
     #[doc(alias = "UIBarButtonItemStylePlain")]
     pub const Plain: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "UIBarButtonItemStyleBordered")]
+    #[deprecated]
     pub const Bordered: Self = Self(1);
     #[doc(alias = "UIBarButtonItemStyleDone")]
     pub const Done: Self = Self(2);
@@ -86,8 +86,8 @@ impl UIBarButtonSystemItem {
     pub const Undo: Self = Self(21);
     #[doc(alias = "UIBarButtonSystemItemRedo")]
     pub const Redo: Self = Self(22);
-    #[deprecated]
     #[doc(alias = "UIBarButtonSystemItemPageCurl")]
+    #[deprecated]
     pub const PageCurl: Self = Self(23);
     #[doc(alias = "UIBarButtonSystemItemClose")]
     pub const Close: Self = Self(24);

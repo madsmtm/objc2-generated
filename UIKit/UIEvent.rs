@@ -112,8 +112,8 @@ impl UIEventButtonMask {
     /// Convenience initializer for a button mask where `buttonNumber` is a one-based index of the button on the input device
     /// .button(1) == .primary
     /// .button(2) == .secondary
-    #[inline]
     #[doc(alias = "UIEventButtonMaskForButtonNumber")]
+    #[inline]
     pub unsafe fn for_button_number(button_number: NSInteger) -> UIEventButtonMask {
         extern "C-unwind" {
             fn UIEventButtonMaskForButtonNumber(button_number: NSInteger) -> UIEventButtonMask;

@@ -313,8 +313,8 @@ impl CFDictionary {
     /// the behavior when that callback function is used is undefined.
     ///
     /// Returns: A reference to the new immutable CFDictionary.
-    #[inline]
     #[doc(alias = "CFDictionaryCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         keys: *mut *const c_void,
@@ -367,8 +367,8 @@ impl CFDictionary {
     /// not a valid CFDictionary, the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFDictionary.
-    #[inline]
     #[doc(alias = "CFDictionaryCreateCopy")]
+    #[inline]
     pub fn new_copy(
         allocator: Option<&CFAllocator>,
         the_dict: Option<&CFDictionary>,
@@ -456,8 +456,8 @@ impl CFMutableDictionary {
     /// the behavior when that callback function is used is undefined.
     ///
     /// Returns: A reference to the new mutable CFDictionary.
-    #[inline]
     #[doc(alias = "CFDictionaryCreateMutable")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
@@ -509,8 +509,8 @@ impl CFMutableDictionary {
     /// not a valid CFDictionary, the behavior is undefined.
     ///
     /// Returns: A reference to the new mutable CFDictionary.
-    #[inline]
     #[doc(alias = "CFDictionaryCreateMutableCopy")]
+    #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
@@ -535,8 +535,8 @@ impl CFDictionary {
     /// not a valid CFDictionary, the behavior is undefined.
     ///
     /// Returns: The number of values in the dictionary.
-    #[inline]
     #[doc(alias = "CFDictionaryGetCount")]
+    #[inline]
     pub fn count(self: &CFDictionary) -> CFIndex {
         extern "C-unwind" {
             fn CFDictionaryGetCount(the_dict: &CFDictionary) -> CFIndex;
@@ -560,8 +560,8 @@ impl CFDictionary {
     ///
     /// Returns: Returns 1 if a matching key is used by the dictionary,
     /// 0 otherwise.
-    #[inline]
     #[doc(alias = "CFDictionaryGetCountOfKey")]
+    #[inline]
     pub unsafe fn count_of_key(self: &CFDictionary, key: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFDictionaryGetCountOfKey(the_dict: &CFDictionary, key: *const c_void) -> CFIndex;
@@ -582,8 +582,8 @@ impl CFDictionary {
     /// the behavior is undefined.
     ///
     /// Returns: The number of times the given value occurs in the dictionary.
-    #[inline]
     #[doc(alias = "CFDictionaryGetCountOfValue")]
+    #[inline]
     pub unsafe fn count_of_value(self: &CFDictionary, value: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFDictionaryGetCountOfValue(
@@ -609,8 +609,8 @@ impl CFDictionary {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the key is in the dictionary, otherwise false.
-    #[inline]
     #[doc(alias = "CFDictionaryContainsKey")]
+    #[inline]
     pub unsafe fn contains_ptr_key(self: &CFDictionary, key: *const c_void) -> bool {
         extern "C-unwind" {
             fn CFDictionaryContainsKey(the_dict: &CFDictionary, key: *const c_void) -> Boolean;
@@ -632,8 +632,8 @@ impl CFDictionary {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the value is in the dictionary, otherwise false.
-    #[inline]
     #[doc(alias = "CFDictionaryContainsValue")]
+    #[inline]
     pub unsafe fn contains_ptr_value(self: &CFDictionary, value: *const c_void) -> bool {
         extern "C-unwind" {
             fn CFDictionaryContainsValue(the_dict: &CFDictionary, value: *const c_void) -> Boolean;
@@ -661,8 +661,8 @@ impl CFDictionary {
     /// can be a valid value in some dictionaries, the function
     /// CFDictionaryGetValueIfPresent() must be used to distinguish
     /// NULL-no-found from NULL-is-the-value.
-    #[inline]
     #[doc(alias = "CFDictionaryGetValue")]
+    #[inline]
     pub unsafe fn value(self: &CFDictionary, key: *const c_void) -> *const c_void {
         extern "C-unwind" {
             fn CFDictionaryGetValue(the_dict: &CFDictionary, key: *const c_void) -> *const c_void;
@@ -693,8 +693,8 @@ impl CFDictionary {
     /// whether or not the key-value pair was present).
     ///
     /// Returns: true, if a matching key was found, false otherwise.
-    #[inline]
     #[doc(alias = "CFDictionaryGetValueIfPresent")]
+    #[inline]
     pub unsafe fn value_if_present(
         self: &CFDictionary,
         key: *const c_void,
@@ -731,8 +731,8 @@ impl CFDictionary {
     /// if the values are not desired. If this parameter is not a valid
     /// pointer to a C array of at least CFDictionaryGetCount() pointers,
     /// or NULL, the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFDictionaryGetKeysAndValues")]
+    #[inline]
     pub unsafe fn keys_and_values(
         self: &CFDictionary,
         keys: *mut *const c_void,
@@ -765,8 +765,8 @@ impl CFDictionary {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the applier function, the behavior is
     /// undefined.
-    #[inline]
     #[doc(alias = "CFDictionaryApplyFunction")]
+    #[inline]
     pub unsafe fn apply_function(
         self: &CFDictionary,
         applier: CFDictionaryApplierFunction,
@@ -801,8 +801,8 @@ impl CFMutableDictionary {
     /// by the dictionary using the retain callback provided when the
     /// dictionary was created. If the value is not of the sort expected
     /// by the retain callback, the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFDictionaryAddValue")]
+    #[inline]
     pub unsafe fn add_value(
         the_dict: Option<&CFMutableDictionary>,
         key: *const c_void,
@@ -838,8 +838,8 @@ impl CFMutableDictionary {
     /// when the dictionary was created, and the previous value if any is
     /// released. If the value is not of the sort expected by the
     /// retain or release callbacks, the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFDictionarySetValue")]
+    #[inline]
     pub unsafe fn set_value(
         the_dict: Option<&CFMutableDictionary>,
         key: *const c_void,
@@ -871,8 +871,8 @@ impl CFMutableDictionary {
     /// when the dictionary was created, and the previous value is
     /// released. If the value is not of the sort expected by the
     /// retain or release callbacks, the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFDictionaryReplaceValue")]
+    #[inline]
     pub unsafe fn replace_value(
         the_dict: Option<&CFMutableDictionary>,
         key: *const c_void,
@@ -898,8 +898,8 @@ impl CFMutableDictionary {
     /// which matches this key is present in the dictionary, the key-value
     /// pair is removed from the dictionary, otherwise this function does
     /// nothing ("remove if present").
-    #[inline]
     #[doc(alias = "CFDictionaryRemoveValue")]
+    #[inline]
     pub unsafe fn remove_value(the_dict: Option<&CFMutableDictionary>, key: *const c_void) {
         extern "C-unwind" {
             fn CFDictionaryRemoveValue(the_dict: Option<&CFMutableDictionary>, key: *const c_void);
@@ -912,8 +912,8 @@ impl CFMutableDictionary {
     /// Parameter `theDict`: The dictionary from which all of the values are to be
     /// removed. If this parameter is not a valid mutable
     /// CFDictionary, the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFDictionaryRemoveAllValues")]
+    #[inline]
     pub fn remove_all_values(the_dict: Option<&CFMutableDictionary>) {
         extern "C-unwind" {
             fn CFDictionaryRemoveAllValues(the_dict: Option<&CFMutableDictionary>);

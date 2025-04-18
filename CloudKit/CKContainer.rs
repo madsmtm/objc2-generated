@@ -194,8 +194,8 @@ pub struct CKApplicationPermissions(pub NSUInteger);
 bitflags::bitflags! {
     impl CKApplicationPermissions: NSUInteger {
 /// Allows the user's record in CloudKit to be discoverable via the user's email address
-#[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[doc(alias = "CKApplicationPermissionUserDiscoverability")]
+#[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         const UserDiscoverability = 1<<0;
     }
 }
@@ -215,17 +215,17 @@ unsafe impl RefEncode for CKApplicationPermissions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKApplicationPermissionStatus(pub NSInteger);
 impl CKApplicationPermissionStatus {
-    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     #[doc(alias = "CKApplicationPermissionStatusInitialState")]
+    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub const InitialState: Self = Self(0);
-    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     #[doc(alias = "CKApplicationPermissionStatusCouldNotComplete")]
+    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub const CouldNotComplete: Self = Self(1);
-    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     #[doc(alias = "CKApplicationPermissionStatusDenied")]
-    pub const Denied: Self = Self(2);
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
+    pub const Denied: Self = Self(2);
     #[doc(alias = "CKApplicationPermissionStatusGranted")]
+    #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub const Granted: Self = Self(3);
 }
 

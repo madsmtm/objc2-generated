@@ -62,8 +62,8 @@ impl NSDecimal {
     // TODO: pub fn NSDecimalIsNotANumber(dcm: NonNull<NSDecimal>,) -> Bool;
 
     /// *************    Operations        **********
-    #[inline]
     #[doc(alias = "NSDecimalCopy")]
+    #[inline]
     pub unsafe fn copy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>) {
         extern "C-unwind" {
             fn NSDecimalCopy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>);
@@ -71,8 +71,8 @@ impl NSDecimal {
         unsafe { NSDecimalCopy(destination, source) }
     }
 
-    #[inline]
     #[doc(alias = "NSDecimalCompact")]
+    #[inline]
     pub unsafe fn compact(number: NonNull<NSDecimal>) {
         extern "C-unwind" {
             fn NSDecimalCompact(number: NonNull<NSDecimal>);
@@ -80,9 +80,9 @@ impl NSDecimal {
         unsafe { NSDecimalCompact(number) }
     }
 
+    #[doc(alias = "NSDecimalCompare")]
     #[cfg(feature = "NSObjCRuntime")]
     #[inline]
-    #[doc(alias = "NSDecimalCompare")]
     pub unsafe fn compare(
         left_operand: NonNull<NSDecimal>,
         right_operand: NonNull<NSDecimal>,
@@ -96,8 +96,8 @@ impl NSDecimal {
         unsafe { NSDecimalCompare(left_operand, right_operand) }
     }
 
-    #[inline]
     #[doc(alias = "NSDecimalRound")]
+    #[inline]
     pub unsafe fn round(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
@@ -115,8 +115,8 @@ impl NSDecimal {
         unsafe { NSDecimalRound(result, number, scale, rounding_mode) }
     }
 
-    #[inline]
     #[doc(alias = "NSDecimalNormalize")]
+    #[inline]
     pub unsafe fn normalize(
         number1: NonNull<NSDecimal>,
         number2: NonNull<NSDecimal>,
@@ -132,8 +132,8 @@ impl NSDecimal {
         unsafe { NSDecimalNormalize(number1, number2, rounding_mode) }
     }
 
-    #[inline]
     #[doc(alias = "NSDecimalAdd")]
+    #[inline]
     pub unsafe fn add(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -151,8 +151,8 @@ impl NSDecimal {
         unsafe { NSDecimalAdd(result, left_operand, right_operand, rounding_mode) }
     }
 
-    #[inline]
     #[doc(alias = "NSDecimalSubtract")]
+    #[inline]
     pub unsafe fn subtract(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -170,8 +170,8 @@ impl NSDecimal {
         unsafe { NSDecimalSubtract(result, left_operand, right_operand, rounding_mode) }
     }
 
-    #[inline]
     #[doc(alias = "NSDecimalMultiply")]
+    #[inline]
     pub unsafe fn multiply(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -189,8 +189,8 @@ impl NSDecimal {
         unsafe { NSDecimalMultiply(result, left_operand, right_operand, rounding_mode) }
     }
 
-    #[inline]
     #[doc(alias = "NSDecimalDivide")]
+    #[inline]
     pub unsafe fn divide(
         result: NonNull<NSDecimal>,
         left_operand: NonNull<NSDecimal>,
@@ -208,8 +208,8 @@ impl NSDecimal {
         unsafe { NSDecimalDivide(result, left_operand, right_operand, rounding_mode) }
     }
 
-    #[inline]
     #[doc(alias = "NSDecimalPower")]
+    #[inline]
     pub unsafe fn power(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
@@ -227,8 +227,8 @@ impl NSDecimal {
         unsafe { NSDecimalPower(result, number, power, rounding_mode) }
     }
 
-    #[inline]
     #[doc(alias = "NSDecimalMultiplyByPowerOf10")]
+    #[inline]
     pub unsafe fn multiply_by_power_of10(
         result: NonNull<NSDecimal>,
         number: NonNull<NSDecimal>,
@@ -246,9 +246,9 @@ impl NSDecimal {
         unsafe { NSDecimalMultiplyByPowerOf10(result, number, power, rounding_mode) }
     }
 
+    #[doc(alias = "NSDecimalString")]
     #[cfg(feature = "NSString")]
     #[inline]
-    #[doc(alias = "NSDecimalString")]
     pub unsafe fn string(
         dcm: NonNull<NSDecimal>,
         locale: Option<&AnyObject>,

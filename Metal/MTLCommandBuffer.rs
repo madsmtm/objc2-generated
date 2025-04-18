@@ -110,8 +110,8 @@ impl MTLCommandBufferError {
     pub const Timeout: Self = Self(2);
     #[doc(alias = "MTLCommandBufferErrorPageFault")]
     pub const PageFault: Self = Self(3);
-    #[deprecated]
     #[doc(alias = "MTLCommandBufferErrorBlacklisted")]
+    #[deprecated]
     pub const Blacklisted: Self = Self(4);
     #[doc(alias = "MTLCommandBufferErrorAccessRevoked")]
     pub const AccessRevoked: Self = Self(4);

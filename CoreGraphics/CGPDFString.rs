@@ -27,8 +27,8 @@ unsafe impl RefEncode for CGPDFString {
 pub type CGPDFStringRef = *mut CGPDFString;
 
 impl CGPDFString {
-    #[inline]
     #[doc(alias = "CGPDFStringGetLength")]
+    #[inline]
     pub unsafe fn length(string: CGPDFStringRef) -> usize {
         extern "C-unwind" {
             fn CGPDFStringGetLength(string: CGPDFStringRef) -> usize;
@@ -36,8 +36,8 @@ impl CGPDFString {
         unsafe { CGPDFStringGetLength(string) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFStringGetBytePtr")]
+    #[inline]
     pub unsafe fn byte_ptr(string: CGPDFStringRef) -> *const c_uchar {
         extern "C-unwind" {
             fn CGPDFStringGetBytePtr(string: CGPDFStringRef) -> *const c_uchar;
@@ -45,8 +45,8 @@ impl CGPDFString {
         unsafe { CGPDFStringGetBytePtr(string) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFStringCopyTextString")]
+    #[inline]
     pub unsafe fn text_string(string: CGPDFStringRef) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CGPDFStringCopyTextString(string: CGPDFStringRef) -> Option<NonNull<CFString>>;
@@ -55,8 +55,8 @@ impl CGPDFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGPDFStringCopyDate")]
+    #[inline]
     pub unsafe fn date(string: CGPDFStringRef) -> Option<CFRetained<CFDate>> {
         extern "C-unwind" {
             fn CGPDFStringCopyDate(string: CGPDFStringRef) -> Option<NonNull<CFDate>>;

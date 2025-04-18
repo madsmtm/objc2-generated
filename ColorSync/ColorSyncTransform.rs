@@ -37,8 +37,8 @@ unsafe impl ConcreteType for ColorSyncTransform {
 }
 
 impl ColorSyncTransform {
-    #[inline]
     #[doc(alias = "ColorSyncTransformCreate")]
+    #[inline]
     pub unsafe fn new(
         profile_sequence: Option<&CFArray>,
         options: Option<&CFDictionary>,
@@ -53,8 +53,8 @@ impl ColorSyncTransform {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "ColorSyncTransformCopyProperty")]
+    #[inline]
     pub unsafe fn property(
         self: &ColorSyncTransform,
         key: &CFType,
@@ -71,8 +71,8 @@ impl ColorSyncTransform {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "ColorSyncTransformSetProperty")]
+    #[inline]
     pub unsafe fn set_property(self: &ColorSyncTransform, key: &CFType, property: Option<&CFType>) {
         extern "C-unwind" {
             fn ColorSyncTransformSetProperty(
@@ -84,8 +84,8 @@ impl ColorSyncTransform {
         unsafe { ColorSyncTransformSetProperty(self, key, property) }
     }
 
-    #[inline]
     #[doc(alias = "ColorSyncTransformGetProfileSequence")]
+    #[inline]
     pub unsafe fn profile_sequence(self: &ColorSyncTransform) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn ColorSyncTransformGetProfileSequence(
@@ -180,8 +180,8 @@ pub const kColorSyncByteOrder32Big: c_uint = 4 << 12;
 pub type ColorSyncDataLayout = u32;
 
 impl ColorSyncTransform {
-    #[inline]
     #[doc(alias = "ColorSyncTransformConvert")]
+    #[inline]
     pub unsafe fn convert(
         self: &ColorSyncTransform,
         width: usize,

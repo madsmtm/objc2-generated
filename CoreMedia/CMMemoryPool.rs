@@ -81,8 +81,8 @@ extern "C" {
 
 impl CMMemoryPool {
     /// Creates a new CMMemoryPool.
-    #[inline]
     #[doc(alias = "CMMemoryPoolCreate")]
+    #[inline]
     pub unsafe fn new(options: Option<&CFDictionary>) -> CFRetained<CMMemoryPool> {
         extern "C-unwind" {
             fn CMMemoryPoolCreate(options: Option<&CFDictionary>) -> Option<NonNull<CMMemoryPool>>;
@@ -94,8 +94,8 @@ impl CMMemoryPool {
     }
 
     /// Returns the pool's CFAllocator.
-    #[inline]
     #[doc(alias = "CMMemoryPoolGetAllocator")]
+    #[inline]
     pub unsafe fn allocator(self: &CMMemoryPool) -> CFRetained<CFAllocator> {
         extern "C-unwind" {
             fn CMMemoryPoolGetAllocator(pool: &CMMemoryPool) -> Option<NonNull<CFAllocator>>;
@@ -107,8 +107,8 @@ impl CMMemoryPool {
     }
 
     /// Deallocates all memory the pool was holding for recycling.
-    #[inline]
     #[doc(alias = "CMMemoryPoolFlush")]
+    #[inline]
     pub unsafe fn flush(self: &CMMemoryPool) {
         extern "C-unwind" {
             fn CMMemoryPoolFlush(pool: &CMMemoryPool);
@@ -122,8 +122,8 @@ impl CMMemoryPool {
     /// The pool deallocates any memory it was holding for recycling.
     /// This also happens when the retain count of the CMMemoryPool drops to zero,
     /// except that under GC it may be delayed.
-    #[inline]
     #[doc(alias = "CMMemoryPoolInvalidate")]
+    #[inline]
     pub unsafe fn invalidate(self: &CMMemoryPool) {
         extern "C-unwind" {
             fn CMMemoryPoolInvalidate(pool: &CMMemoryPool);

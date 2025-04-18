@@ -20,29 +20,29 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CBCentralManagerState(pub NSInteger);
 impl CBCentralManagerState {
-    #[cfg(feature = "CBManager")]
-    #[deprecated = "Use CBManagerState instead"]
     #[doc(alias = "CBCentralManagerStateUnknown")]
+    #[cfg(feature = "CBManager")]
+    #[deprecated = "Use CBManagerState instead"]
     pub const Unknown: Self = Self(CBManagerState::Unknown.0);
-    #[cfg(feature = "CBManager")]
-    #[deprecated = "Use CBManagerState instead"]
     #[doc(alias = "CBCentralManagerStateResetting")]
+    #[cfg(feature = "CBManager")]
+    #[deprecated = "Use CBManagerState instead"]
     pub const Resetting: Self = Self(CBManagerState::Resetting.0);
-    #[cfg(feature = "CBManager")]
-    #[deprecated = "Use CBManagerState instead"]
     #[doc(alias = "CBCentralManagerStateUnsupported")]
+    #[cfg(feature = "CBManager")]
+    #[deprecated = "Use CBManagerState instead"]
     pub const Unsupported: Self = Self(CBManagerState::Unsupported.0);
-    #[cfg(feature = "CBManager")]
-    #[deprecated = "Use CBManagerState instead"]
     #[doc(alias = "CBCentralManagerStateUnauthorized")]
+    #[cfg(feature = "CBManager")]
+    #[deprecated = "Use CBManagerState instead"]
     pub const Unauthorized: Self = Self(CBManagerState::Unauthorized.0);
-    #[cfg(feature = "CBManager")]
-    #[deprecated = "Use CBManagerState instead"]
     #[doc(alias = "CBCentralManagerStatePoweredOff")]
-    pub const PoweredOff: Self = Self(CBManagerState::PoweredOff.0);
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
+    pub const PoweredOff: Self = Self(CBManagerState::PoweredOff.0);
     #[doc(alias = "CBCentralManagerStatePoweredOn")]
+    #[cfg(feature = "CBManager")]
+    #[deprecated = "Use CBManagerState instead"]
     pub const PoweredOn: Self = Self(CBManagerState::PoweredOn.0);
 }
 

@@ -170,8 +170,8 @@ impl CTRunDelegate {
     /// Returns: If run delegate creation was successful, this function will
     /// return a valid reference to an immutable CTRunDelegate
     /// object. Otherwise, this function will return NULL.
-    #[inline]
     #[doc(alias = "CTRunDelegateCreate")]
+    #[inline]
     pub unsafe fn new(
         callbacks: NonNull<CTRunDelegateCallbacks>,
         ref_con: *mut c_void,
@@ -197,8 +197,8 @@ impl CTRunDelegate {
     ///
     ///
     /// Returns: The refCon value of the supplied run delegate.
-    #[inline]
     #[doc(alias = "CTRunDelegateGetRefCon")]
+    #[inline]
     pub unsafe fn ref_con(self: &CTRunDelegate) -> NonNull<c_void> {
         extern "C-unwind" {
             fn CTRunDelegateGetRefCon(run_delegate: &CTRunDelegate) -> Option<NonNull<c_void>>;

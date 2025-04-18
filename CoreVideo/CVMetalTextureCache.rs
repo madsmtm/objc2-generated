@@ -60,10 +60,10 @@ impl CVMetalTextureCache {
     /// Parameter `cacheOut`: The newly created texture cache will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    #[doc(alias = "CVMetalTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
     #[inline]
-    #[doc(alias = "CVMetalTextureCacheCreate")]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         cache_attributes: Option<&CFDictionary>,
@@ -146,6 +146,7 @@ impl CVMetalTextureCache {
     /// CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, NULL, MTLPixelFormatGBGR422, width, height, 1,
     /// &outTexture
     /// );
+    #[doc(alias = "CVMetalTextureCacheCreateTextureFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -155,7 +156,6 @@ impl CVMetalTextureCache {
     ))]
     #[cfg(not(target_os = "watchos"))]
     #[inline]
-    #[doc(alias = "CVMetalTextureCacheCreateTextureFromImage")]
     pub unsafe fn create_texture_from_image(
         allocator: Option<&CFAllocator>,
         texture_cache: &CVMetalTextureCache,
@@ -202,9 +202,9 @@ impl CVMetalTextureCache {
     /// Parameter `textureCache`: The texture cache object to flush
     ///
     /// Parameter `options`: Currently unused, set to 0.
+    #[doc(alias = "CVMetalTextureCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]
-    #[doc(alias = "CVMetalTextureCacheFlush")]
     pub unsafe fn flush(self: &CVMetalTextureCache, options: CVOptionFlags) {
         extern "C-unwind" {
             fn CVMetalTextureCacheFlush(

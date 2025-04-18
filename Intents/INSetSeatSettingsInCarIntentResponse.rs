@@ -13,23 +13,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSetSeatSettingsInCarIntentResponseCode(pub NSInteger);
 impl INSetSeatSettingsInCarIntentResponseCode {
-    #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeUnspecified")]
+    #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeReady")]
+    #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeInProgress")]
+    #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeSuccess")]
+    #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeFailure")]
-    pub const Failure: Self = Self(4);
     #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
+    pub const Failure: Self = Self(4);
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
 

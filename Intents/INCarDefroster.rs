@@ -11,17 +11,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INCarDefroster(pub NSInteger);
 impl INCarDefroster {
-    #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     #[doc(alias = "INCarDefrosterUnknown")]
+    #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     #[doc(alias = "INCarDefrosterFront")]
+    #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     pub const Front: Self = Self(1);
-    #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     #[doc(alias = "INCarDefrosterRear")]
-    pub const Rear: Self = Self(2);
     #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
+    pub const Rear: Self = Self(2);
     #[doc(alias = "INCarDefrosterAll")]
+    #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     pub const All: Self = Self(3);
 }
 

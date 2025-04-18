@@ -26,8 +26,8 @@ unsafe impl RefEncode for CGPDFDictionary {
 pub type CGPDFDictionaryRef = *mut CGPDFDictionary;
 
 impl CGPDFDictionary {
-    #[inline]
     #[doc(alias = "CGPDFDictionaryGetCount")]
+    #[inline]
     pub unsafe fn count(dict: CGPDFDictionaryRef) -> usize {
         extern "C-unwind" {
             fn CGPDFDictionaryGetCount(dict: CGPDFDictionaryRef) -> usize;
@@ -35,9 +35,9 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetCount(dict) }
     }
 
+    #[doc(alias = "CGPDFDictionaryGetObject")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    #[doc(alias = "CGPDFDictionaryGetObject")]
     pub unsafe fn object(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -53,9 +53,9 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetObject(dict, key, value) }
     }
 
+    #[doc(alias = "CGPDFDictionaryGetBoolean")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    #[doc(alias = "CGPDFDictionaryGetBoolean")]
     pub unsafe fn boolean(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -71,9 +71,9 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetBoolean(dict, key, value) }
     }
 
+    #[doc(alias = "CGPDFDictionaryGetInteger")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    #[doc(alias = "CGPDFDictionaryGetInteger")]
     pub unsafe fn integer(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -89,9 +89,9 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetInteger(dict, key, value) }
     }
 
+    #[doc(alias = "CGPDFDictionaryGetNumber")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    #[doc(alias = "CGPDFDictionaryGetNumber")]
     pub unsafe fn number(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -107,8 +107,8 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetNumber(dict, key, value) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFDictionaryGetName")]
+    #[inline]
     pub unsafe fn name(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -124,9 +124,9 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetName(dict, key, value) }
     }
 
+    #[doc(alias = "CGPDFDictionaryGetString")]
     #[cfg(feature = "CGPDFString")]
     #[inline]
-    #[doc(alias = "CGPDFDictionaryGetString")]
     pub unsafe fn string(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -142,9 +142,9 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetString(dict, key, value) }
     }
 
+    #[doc(alias = "CGPDFDictionaryGetArray")]
     #[cfg(feature = "CGPDFArray")]
     #[inline]
-    #[doc(alias = "CGPDFDictionaryGetArray")]
     pub unsafe fn array(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -160,8 +160,8 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetArray(dict, key, value) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFDictionaryGetDictionary")]
+    #[inline]
     pub unsafe fn dictionary(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -177,9 +177,9 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetDictionary(dict, key, value) }
     }
 
+    #[doc(alias = "CGPDFDictionaryGetStream")]
     #[cfg(feature = "CGPDFStream")]
     #[inline]
-    #[doc(alias = "CGPDFDictionaryGetStream")]
     pub unsafe fn stream(
         dict: CGPDFDictionaryRef,
         key: NonNull<c_char>,
@@ -202,9 +202,9 @@ pub type CGPDFDictionaryApplierFunction =
     Option<unsafe extern "C-unwind" fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void)>;
 
 impl CGPDFDictionary {
+    #[doc(alias = "CGPDFDictionaryApplyFunction")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    #[doc(alias = "CGPDFDictionaryApplyFunction")]
     pub unsafe fn apply_function(
         dict: CGPDFDictionaryRef,
         function: CGPDFDictionaryApplierFunction,
@@ -227,9 +227,9 @@ pub type CGPDFDictionaryApplierBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
 
 impl CGPDFDictionary {
+    #[doc(alias = "CGPDFDictionaryApplyBlock")]
     #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
     #[inline]
-    #[doc(alias = "CGPDFDictionaryApplyBlock")]
     pub unsafe fn apply_block(
         dict: CGPDFDictionaryRef,
         block: CGPDFDictionaryApplierBlock,

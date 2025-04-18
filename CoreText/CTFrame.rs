@@ -202,8 +202,8 @@ impl CTFrame {
     /// store range of characters that were originally requested
     /// to fill the frame. If the function call is not successful,
     /// then an empty range will be returned.
-    #[inline]
     #[doc(alias = "CTFrameGetStringRange")]
+    #[inline]
     pub unsafe fn string_range(self: &CTFrame) -> CFRange {
         extern "C-unwind" {
             fn CTFrameGetStringRange(frame: &CTFrame) -> CFRange;
@@ -228,8 +228,8 @@ impl CTFrame {
     /// store range of characters that fit into the frame. If the
     /// function call is not successful, or if no characters fit
     /// in the frame, then an empty range will be returned.
-    #[inline]
     #[doc(alias = "CTFrameGetVisibleStringRange")]
+    #[inline]
     pub unsafe fn visible_string_range(self: &CTFrame) -> CFRange {
         extern "C-unwind" {
             fn CTFrameGetVisibleStringRange(frame: &CTFrame) -> CFRange;
@@ -241,9 +241,9 @@ impl CTFrame {
     ///
     ///
     /// Parameter `frame`: The frame that you want to obtain the path from.
+    #[doc(alias = "CTFrameGetPath")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CTFrameGetPath")]
     pub unsafe fn path(self: &CTFrame) -> CFRetained<CGPath> {
         extern "C-unwind" {
             fn CTFrameGetPath(frame: &CTFrame) -> Option<NonNull<CGPath>>;
@@ -270,8 +270,8 @@ impl CTFrame {
     /// frame attributes that were used to create the frame. If the
     /// frame was created without any frame attributes, this function
     /// will return NULL.
-    #[inline]
     #[doc(alias = "CTFrameGetFrameAttributes")]
+    #[inline]
     pub unsafe fn frame_attributes(self: &CTFrame) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CTFrameGetFrameAttributes(frame: &CTFrame) -> Option<NonNull<CFDictionary>>;
@@ -296,8 +296,8 @@ impl CTFrame {
     ///
     /// Returns: This function will return a CFArray object containing the
     /// CTLine objects that make up the frame.
-    #[inline]
     #[doc(alias = "CTFrameGetLines")]
+    #[inline]
     pub unsafe fn lines(self: &CTFrame) -> CFRetained<CFArray> {
         extern "C-unwind" {
             fn CTFrameGetLines(frame: &CTFrame) -> Option<NonNull<CFArray>>;
@@ -336,8 +336,8 @@ impl CTFrame {
     /// the descent of the last line. This will obviously exclude any
     /// spacing following the last line, but such spacing has no effect
     /// on framesetting in the first place.
-    #[inline]
     #[doc(alias = "CTFrameGetLineOrigins")]
+    #[inline]
     pub unsafe fn line_origins(self: &CTFrame, range: CFRange, origins: NonNull<CGPoint>) {
         extern "C-unwind" {
             fn CTFrameGetLineOrigins(frame: &CTFrame, range: CFRange, origins: NonNull<CGPoint>);
@@ -361,9 +361,9 @@ impl CTFrame {
     ///
     /// If both the frame and the context are valid, the frame will be
     /// drawn in the context.
+    #[doc(alias = "CTFrameDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CTFrameDraw")]
     pub unsafe fn draw(self: &CTFrame, context: &CGContext) {
         extern "C-unwind" {
             fn CTFrameDraw(frame: &CTFrame, context: &CGContext);

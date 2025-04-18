@@ -16,16 +16,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VSSubscriptionAccessLevel(pub NSInteger);
 impl VSSubscriptionAccessLevel {
-    #[deprecated]
     #[doc(alias = "VSSubscriptionAccessLevelUnknown")]
+    #[deprecated]
     pub const Unknown: Self = Self(0);
     /// The default access level. Setting a subscription with this level will raise an exception.
-    #[deprecated]
     #[doc(alias = "VSSubscriptionAccessLevelFreeWithAccount")]
+    #[deprecated]
     pub const FreeWithAccount: Self = Self(1);
     /// The customer has access to content that is offered for free to users with a valid account.  This value corresponds content in your availability feed with the "account" offering type.
-    #[deprecated]
     #[doc(alias = "VSSubscriptionAccessLevelPaid")]
+    #[deprecated]
     pub const Paid: Self = Self(2);
 }
 

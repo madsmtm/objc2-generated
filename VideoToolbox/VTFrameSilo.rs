@@ -63,9 +63,9 @@ impl VTFrameSilo {
     ///
     /// Parameter `frameSiloOut`: Points to a VTFrameSiloRef to receive the newly created object.
     /// Call CFRelease to release your retain on the created VTFrameSilo object when you are done with it.
+    #[doc(alias = "VTFrameSiloCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    #[doc(alias = "VTFrameSiloCreate")]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         file_url: Option<&CFURL>,
@@ -94,9 +94,9 @@ impl VTFrameSilo {
     /// Note that CMTimeRanges are considered to contain their start times but not their end times.
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeStampErr if an attempt is made to add a sample buffer with an inappropriate decode timestamp.
+    #[doc(alias = "VTFrameSiloAddSampleBuffer")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    #[doc(alias = "VTFrameSiloAddSampleBuffer")]
     pub unsafe fn add_sample_buffer(
         self: &VTFrameSilo,
         sample_buffer: &CMSampleBuffer,
@@ -116,9 +116,9 @@ impl VTFrameSilo {
     /// It is not necessary to call VTFrameSiloSetTimeRangesForNextPass before adding the first pass' sample buffers.
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
+    #[doc(alias = "VTFrameSiloSetTimeRangesForNextPass")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    #[doc(alias = "VTFrameSiloSetTimeRangesForNextPass")]
     pub unsafe fn set_time_ranges_for_next_pass(
         self: &VTFrameSilo,
         time_range_count: CMItemCount,
@@ -139,8 +139,8 @@ impl VTFrameSilo {
     /// Calculates the current progress based on the most recent sample buffer added and the current pass time ranges.
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
-    #[inline]
     #[doc(alias = "VTFrameSiloGetProgressOfCurrentPass")]
+    #[inline]
     pub unsafe fn progress_of_current_pass(
         self: &VTFrameSilo,
         progress_out: NonNull<f32>,
@@ -168,9 +168,9 @@ impl VTFrameSilo {
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
     /// Returns any nonzero status returned by the callback function.
+    #[doc(alias = "VTFrameSiloCallFunctionForEachSampleBuffer")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    #[doc(alias = "VTFrameSiloCallFunctionForEachSampleBuffer")]
     pub unsafe fn call_function_for_each_sample_buffer(
         self: &VTFrameSilo,
         time_range: CMTimeRange,
@@ -205,9 +205,9 @@ impl VTFrameSilo {
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
     /// Returns any nonzero status returned by the handler block.
+    #[doc(alias = "VTFrameSiloCallBlockForEachSampleBuffer")]
     #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
     #[inline]
-    #[doc(alias = "VTFrameSiloCallBlockForEachSampleBuffer")]
     pub unsafe fn call_block_for_each_sample_buffer(
         self: &VTFrameSilo,
         time_range: CMTimeRange,

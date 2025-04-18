@@ -13,23 +13,23 @@ use crate::*;
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum SKDownloadState {
-    #[deprecated = "Hosted content is no longer supported"]
     #[doc(alias = "SKDownloadStateWaiting")]
+    #[deprecated = "Hosted content is no longer supported"]
     Waiting = 0,
-    #[deprecated = "Hosted content is no longer supported"]
     #[doc(alias = "SKDownloadStateActive")]
+    #[deprecated = "Hosted content is no longer supported"]
     Active = 1,
-    #[deprecated = "Hosted content is no longer supported"]
     #[doc(alias = "SKDownloadStatePaused")]
+    #[deprecated = "Hosted content is no longer supported"]
     Paused = 2,
-    #[deprecated = "Hosted content is no longer supported"]
     #[doc(alias = "SKDownloadStateFinished")]
+    #[deprecated = "Hosted content is no longer supported"]
     Finished = 3,
-    #[deprecated = "Hosted content is no longer supported"]
     #[doc(alias = "SKDownloadStateFailed")]
-    Failed = 4,
     #[deprecated = "Hosted content is no longer supported"]
+    Failed = 4,
     #[doc(alias = "SKDownloadStateCancelled")]
+    #[deprecated = "Hosted content is no longer supported"]
     Cancelled = 5,
 }
 

@@ -13,17 +13,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVImageType(pub NSInteger);
 impl TVImageType {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVImageTypeImage")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Image: Self = Self(0);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVImageTypeFullscreen")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Fullscreen: Self = Self(1);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVImageTypeDecoration")]
-    pub const Decoration: Self = Self(2);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const Decoration: Self = Self(2);
     #[doc(alias = "TVImageTypeHero")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Hero: Self = Self(3);
 }
 

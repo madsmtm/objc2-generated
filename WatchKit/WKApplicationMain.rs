@@ -8,8 +8,8 @@ use crate::*;
 
 #[cfg(feature = "WKApplication")]
 impl WKApplication {
-    #[inline]
     #[doc(alias = "WKApplicationMain")]
+    #[inline]
     pub(crate) unsafe fn __main(
         argc: c_int,
         argv: NonNull<*mut c_char>,

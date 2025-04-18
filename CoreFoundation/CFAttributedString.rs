@@ -53,9 +53,9 @@ unsafe impl ConcreteType for CFAttributedString {
 
 impl CFAttributedString {
     /// Creates an attributed string with the specified string and attributes (both copied).
+    #[doc(alias = "CFAttributedStringCreate")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFAttributedStringCreate")]
     pub unsafe fn new(
         alloc: Option<&CFAllocator>,
         str: Option<&CFString>,
@@ -73,8 +73,8 @@ impl CFAttributedString {
     }
 
     /// Creates a sub-attributed string from the specified range. It's a programming error for range to specify characters outside the bounds of aStr.
-    #[inline]
     #[doc(alias = "CFAttributedStringCreateWithSubstring")]
+    #[inline]
     pub unsafe fn with_substring(
         alloc: Option<&CFAllocator>,
         a_str: Option<&CFAttributedString>,
@@ -92,8 +92,8 @@ impl CFAttributedString {
     }
 
     /// Creates an immutable attributed string copy.
-    #[inline]
     #[doc(alias = "CFAttributedStringCreateCopy")]
+    #[inline]
     pub fn new_copy(
         alloc: Option<&CFAllocator>,
         a_str: Option<&CFAttributedString>,
@@ -109,8 +109,8 @@ impl CFAttributedString {
     }
 
     /// Returns the string for the attributed string. For performance reasons, this will often point at the backing store of the attributed string, and it might change if the attributed string is edited.  However, this is an implementation detail, and definitely not something that should be counted on.
-    #[inline]
     #[doc(alias = "CFAttributedStringGetString")]
+    #[inline]
     pub fn string(self: &CFAttributedString) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFAttributedStringGetString(a_str: &CFAttributedString)
@@ -121,8 +121,8 @@ impl CFAttributedString {
     }
 
     /// Returns the length of the attributed string in characters; same as CFStringGetLength(CFAttributedStringGetString(aStr))
-    #[inline]
     #[doc(alias = "CFAttributedStringGetLength")]
+    #[inline]
     pub fn length(self: &CFAttributedString) -> CFIndex {
         extern "C-unwind" {
             fn CFAttributedStringGetLength(a_str: &CFAttributedString) -> CFIndex;
@@ -133,9 +133,9 @@ impl CFAttributedString {
     /// Returns the attributes at the specified location. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same set of attributes apply. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributesAndLongestEffectiveRange().  It's a programming error for loc to specify a location outside the bounds of the attributed string.
     ///
     /// Note that the returned attribute dictionary might change in unpredictable ways from under the caller if the attributed string is edited after this call. If you wish to hang on to the dictionary long-term, you should make an actual copy of it rather than just retaining it.  Also, no assumptions should be made about the relationship of the actual CFDictionaryRef returned by this call and the dictionary originally used to set the attributes, other than the fact that the values stored in the dictionary will be identical (that is, ==) to those originally specified.
+    #[doc(alias = "CFAttributedStringGetAttributes")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFAttributedStringGetAttributes")]
     pub unsafe fn attributes(
         self: &CFAttributedString,
         loc: CFIndex,
@@ -153,8 +153,8 @@ impl CFAttributedString {
     }
 
     /// Returns the value of a single attribute at the specified location. If the specified attribute doesn't exist at the location, returns NULL. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same attribute value applies. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributeAndLongestEffectiveRange(). It's a programming error for loc to specify a location outside the bounds of the attributed string.
-    #[inline]
     #[doc(alias = "CFAttributedStringGetAttribute")]
+    #[inline]
     pub unsafe fn attribute(
         self: &CFAttributedString,
         loc: CFIndex,
@@ -174,9 +174,9 @@ impl CFAttributedString {
     }
 
     /// Returns the attributes at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same set of attributes apply. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
+    #[doc(alias = "CFAttributedStringGetAttributesAndLongestEffectiveRange")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFAttributedStringGetAttributesAndLongestEffectiveRange")]
     pub unsafe fn attributes_and_longest_effective_range(
         self: &CFAttributedString,
         loc: CFIndex,
@@ -203,8 +203,8 @@ impl CFAttributedString {
     }
 
     /// Returns the value of a single attribute at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same attribute value applies. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
-    #[inline]
     #[doc(alias = "CFAttributedStringGetAttributeAndLongestEffectiveRange")]
+    #[inline]
     pub unsafe fn attribute_and_longest_effective_range(
         self: &CFAttributedString,
         loc: CFIndex,
@@ -236,8 +236,8 @@ impl CFAttributedString {
 
 impl CFMutableAttributedString {
     /// Creates a mutable attributed string copy. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
-    #[inline]
     #[doc(alias = "CFAttributedStringCreateMutableCopy")]
+    #[inline]
     pub fn new_copy(
         alloc: Option<&CFAllocator>,
         max_length: CFIndex,
@@ -255,8 +255,8 @@ impl CFMutableAttributedString {
     }
 
     /// Creates a mutable empty attributed string. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
-    #[inline]
     #[doc(alias = "CFAttributedStringCreateMutable")]
+    #[inline]
     pub fn new(
         alloc: Option<&CFAllocator>,
         max_length: CFIndex,
@@ -274,8 +274,8 @@ impl CFMutableAttributedString {
     /// Modifies the string for the attributed string, much like CFStringReplace().  It's an error for range to specify characters outside the bounds of aStr.
     ///
     /// (Note: This function is a convenience on CFAttributedStringGetMutableString(); however, until CFAttributedStringGetMutableString() is implemented, it remains the only way to edit the string of the attributed string.)
-    #[inline]
     #[doc(alias = "CFAttributedStringReplaceString")]
+    #[inline]
     pub unsafe fn replace_string(
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
@@ -294,8 +294,8 @@ impl CFMutableAttributedString {
     /// Gets the string for the attributed string as a mutable string, allowing editing the character contents of the string as if it were an CFMutableString. Attributes corresponding to the edited range are appropriately modified. If, as a result of the edit, new characters are introduced into the string, they inherit the attributes of the first replaced character from range. If no existing characters are replaced by the edit, the new characters inherit the attributes of the character preceding range if it has any, otherwise of the character following range. If the initial string is empty, the attributes for the new characters are also empty.
     ///
     /// (Note: This function is not yet implemented and will return NULL except for toll-free bridged instances.)
-    #[inline]
     #[doc(alias = "CFAttributedStringGetMutableString")]
+    #[inline]
     pub fn mutable_string(
         a_str: Option<&CFMutableAttributedString>,
     ) -> Option<CFRetained<CFMutableString>> {
@@ -309,9 +309,9 @@ impl CFMutableAttributedString {
     }
 
     /// Sets the value of multiple attributes over the specified range, which should be valid. If clearOtherAttributes is false, existing attributes (which aren't being replaced) are left alone; otherwise they are cleared. The dictionary should be setup for "usual" CF type usage --- CFString keys, and arbitrary CFType values. Note that after this call, further mutations to the replacement dictionary argument by the caller will not affect the contents of the attributed string.
+    #[doc(alias = "CFAttributedStringSetAttributes")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFAttributedStringSetAttributes")]
     pub unsafe fn set_attributes(
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
@@ -332,8 +332,8 @@ impl CFMutableAttributedString {
     }
 
     /// Sets the value of a single attribute over the specified range, which should be valid. value should not be NULL.
-    #[inline]
     #[doc(alias = "CFAttributedStringSetAttribute")]
+    #[inline]
     pub unsafe fn set_attribute(
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
@@ -352,8 +352,8 @@ impl CFMutableAttributedString {
     }
 
     /// Removes the value of a single attribute over the specified range, which should be valid. It's OK for the attribute not the exist over the specified range.
-    #[inline]
     #[doc(alias = "CFAttributedStringRemoveAttribute")]
+    #[inline]
     pub unsafe fn remove_attribute(
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
@@ -370,8 +370,8 @@ impl CFMutableAttributedString {
     }
 
     /// Replaces the attributed substring over the specified range with the attributed string specified in replacement. range should be valid. To delete a range of the attributed string, call CFAttributedStringReplaceString() with empty string and specified range.
-    #[inline]
     #[doc(alias = "CFAttributedStringReplaceAttributedString")]
+    #[inline]
     pub unsafe fn replace_attributed_string(
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
@@ -388,8 +388,8 @@ impl CFMutableAttributedString {
     }
 
     /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
-    #[inline]
     #[doc(alias = "CFAttributedStringBeginEditing")]
+    #[inline]
     pub fn begin_editing(a_str: Option<&CFMutableAttributedString>) {
         extern "C-unwind" {
             fn CFAttributedStringBeginEditing(a_str: Option<&CFMutableAttributedString>);
@@ -398,8 +398,8 @@ impl CFMutableAttributedString {
     }
 
     /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
-    #[inline]
     #[doc(alias = "CFAttributedStringEndEditing")]
+    #[inline]
     pub fn end_editing(a_str: Option<&CFMutableAttributedString>) {
         extern "C-unwind" {
             fn CFAttributedStringEndEditing(a_str: Option<&CFMutableAttributedString>);
@@ -410,8 +410,8 @@ impl CFMutableAttributedString {
 
 impl CFAttributedString {
     /// Fills bidiLevels by applying the Unicode Bidi Algorithm (P, X, W, N, and I) to the characters in range. Returns true if the result is not uni-level LTR (in other words, needing further Bidi processing). baseDirection is NSWritingDirection (NSWritingDirectionNatural, NSWritingDirectionLeftToRight, and NSWritingDirectionRightToLeft).  Understands NSWritingDirectionAttributeName values.
-    #[inline]
     #[doc(alias = "CFAttributedStringGetBidiLevelsAndResolvedDirections")]
+    #[inline]
     pub unsafe fn bidi_levels_and_resolved_directions(
         self: &CFAttributedString,
         range: CFRange,

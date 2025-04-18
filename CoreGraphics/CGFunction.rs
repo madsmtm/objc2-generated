@@ -70,8 +70,8 @@ unsafe impl ConcreteType for CGFunction {
 }
 
 impl CGFunction {
-    #[inline]
     #[doc(alias = "CGFunctionCreate")]
+    #[inline]
     pub unsafe fn new(
         info: *mut c_void,
         domain_dimension: usize,

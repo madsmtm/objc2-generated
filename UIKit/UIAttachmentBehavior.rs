@@ -68,9 +68,9 @@ extern "C" {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl UIFloatRange {
+    #[doc(alias = "UIFloatRangeIsInfinite")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "UIFloatRangeIsInfinite")]
     pub unsafe fn is_infinite(self: UIFloatRange) -> bool {
         extern "C-unwind" {
             fn UIFloatRangeIsInfinite(range: UIFloatRange) -> Bool;

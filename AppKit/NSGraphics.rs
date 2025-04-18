@@ -39,8 +39,8 @@ impl NSCompositingOperation {
     pub const XOR: Self = Self(10);
     #[doc(alias = "NSCompositingOperationPlusDarker")]
     pub const PlusDarker: Self = Self(11);
-    #[deprecated = "Use NSCompositingOperationSourceOver instead"]
     #[doc(alias = "NSCompositingOperationHighlight")]
+    #[deprecated = "Use NSCompositingOperationSourceOver instead"]
     pub const Highlight: Self = Self(12);
     #[doc(alias = "NSCompositingOperationPlusLighter")]
     pub const PlusLighter: Self = Self(13);
@@ -206,11 +206,11 @@ pub static NSCompositeLuminosity: NSCompositingOperation =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSBackingStoreType(pub NSUInteger);
 impl NSBackingStoreType {
-    #[deprecated]
     #[doc(alias = "NSBackingStoreRetained")]
-    pub const Retained: Self = Self(0);
     #[deprecated]
+    pub const Retained: Self = Self(0);
     #[doc(alias = "NSBackingStoreNonretained")]
+    #[deprecated]
     pub const Nonretained: Self = Self(1);
     #[doc(alias = "NSBackingStoreBuffered")]
     pub const Buffered: Self = Self(2);

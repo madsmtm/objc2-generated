@@ -14,20 +14,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVElementEventType(pub NSInteger);
 impl TVElementEventType {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementEventTypePlay")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Play: Self = Self(1);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementEventTypeSelect")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Select: Self = Self(2);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementEventTypeHoldSelect")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const HoldSelect: Self = Self(3);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementEventTypeHighlight")]
-    pub const Highlight: Self = Self(4);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const Highlight: Self = Self(4);
     #[doc(alias = "TVElementEventTypeChange")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Change: Self = Self(5);
 }
 
@@ -46,23 +46,23 @@ unsafe impl RefEncode for TVElementEventType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVElementUpdateType(pub NSInteger);
 impl TVElementUpdateType {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementUpdateTypeNone")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const None: Self = Self(0);
     /// Signifies that one of the elements in the subtree is updated without
     /// affecting the order of immediate children.
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementUpdateTypeSubtree")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Subtree: Self = Self(1);
     /// Signifies that style property on view elements could have changed as
     /// a result of reevaluating media queries.
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementUpdateTypeStyles")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Styles: Self = Self(2);
     /// Signifies that the order of children is updated due to addition,
     /// removal or replacement of child nodes.
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementUpdateTypeChildren")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Children: Self = Self(3);
 }
 
@@ -87,12 +87,12 @@ unsafe impl RefEncode for TVElementUpdateType {
 pub struct TVElementResettableProperty(pub NSInteger);
 impl TVElementResettableProperty {
     /// Maps to updateType property.
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementResettablePropertyUpdateType")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const UpdateType: Self = Self(0);
     /// Maps to autoHighlightIdentifier.
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVElementResettablePropertyAutoHighlightIdentifier")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const AutoHighlightIdentifier: Self = Self(1);
 }
 

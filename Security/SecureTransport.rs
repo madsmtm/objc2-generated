@@ -34,35 +34,35 @@ pub type SSLConnectionRef = *const c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SSLSessionOption(pub c_int);
 impl SSLSessionOption {
-    #[deprecated]
     #[doc(alias = "kSSLSessionOptionBreakOnServerAuth")]
+    #[deprecated]
     pub const BreakOnServerAuth: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "kSSLSessionOptionBreakOnCertRequested")]
+    #[deprecated]
     pub const BreakOnCertRequested: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "kSSLSessionOptionBreakOnClientAuth")]
+    #[deprecated]
     pub const BreakOnClientAuth: Self = Self(2);
-    #[deprecated]
     #[doc(alias = "kSSLSessionOptionFalseStart")]
+    #[deprecated]
     pub const FalseStart: Self = Self(3);
-    #[deprecated]
     #[doc(alias = "kSSLSessionOptionSendOneByteRecord")]
+    #[deprecated]
     pub const SendOneByteRecord: Self = Self(4);
-    #[deprecated]
     #[doc(alias = "kSSLSessionOptionAllowServerIdentityChange")]
+    #[deprecated]
     pub const AllowServerIdentityChange: Self = Self(5);
-    #[deprecated]
     #[doc(alias = "kSSLSessionOptionFallback")]
+    #[deprecated]
     pub const Fallback: Self = Self(6);
-    #[deprecated]
     #[doc(alias = "kSSLSessionOptionBreakOnClientHello")]
+    #[deprecated]
     pub const BreakOnClientHello: Self = Self(7);
-    #[deprecated]
     #[doc(alias = "kSSLSessionOptionAllowRenegotiation")]
-    pub const AllowRenegotiation: Self = Self(8);
     #[deprecated]
+    pub const AllowRenegotiation: Self = Self(8);
     #[doc(alias = "kSSLSessionOptionEnableSessionTickets")]
+    #[deprecated]
     pub const EnableSessionTickets: Self = Self(9);
 }
 
@@ -81,20 +81,20 @@ unsafe impl RefEncode for SSLSessionOption {
 #[repr(i32)] // c_int
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum SSLSessionState {
-    #[deprecated]
     #[doc(alias = "kSSLIdle")]
+    #[deprecated]
     Idle = 0,
-    #[deprecated]
     #[doc(alias = "kSSLHandshake")]
+    #[deprecated]
     Handshake = 1,
-    #[deprecated]
     #[doc(alias = "kSSLConnected")]
+    #[deprecated]
     Connected = 2,
-    #[deprecated]
     #[doc(alias = "kSSLClosed")]
-    Closed = 3,
     #[deprecated]
+    Closed = 3,
     #[doc(alias = "kSSLAborted")]
+    #[deprecated]
     Aborted = 4,
 }
 
@@ -114,17 +114,17 @@ unsafe impl RefEncode for SSLSessionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SSLClientCertificateState(pub c_int);
 impl SSLClientCertificateState {
-    #[deprecated]
     #[doc(alias = "kSSLClientCertNone")]
+    #[deprecated]
     pub const CertNone: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "kSSLClientCertRequested")]
+    #[deprecated]
     pub const CertRequested: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "kSSLClientCertSent")]
-    pub const CertSent: Self = Self(2);
     #[deprecated]
+    pub const CertSent: Self = Self(2);
     #[doc(alias = "kSSLClientCertRejected")]
+    #[deprecated]
     pub const CertRejected: Self = Self(3);
 }
 
@@ -153,11 +153,11 @@ pub type SSLWriteFunc = Option<
 #[repr(i32)] // c_int
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum SSLProtocolSide {
-    #[deprecated]
     #[doc(alias = "kSSLServerSide")]
-    ServerSide = 0,
     #[deprecated]
+    ServerSide = 0,
     #[doc(alias = "kSSLClientSide")]
+    #[deprecated]
     ClientSide = 1,
 }
 
@@ -177,11 +177,11 @@ unsafe impl RefEncode for SSLProtocolSide {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SSLConnectionType(pub c_int);
 impl SSLConnectionType {
-    #[deprecated]
     #[doc(alias = "kSSLStreamType")]
-    pub const StreamType: Self = Self(0);
     #[deprecated]
+    pub const StreamType: Self = Self(0);
     #[doc(alias = "kSSLDatagramType")]
+    #[deprecated]
     pub const DatagramType: Self = Self(1);
 }
 

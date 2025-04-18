@@ -206,8 +206,8 @@ impl MPSImage {
     /// Parameter `amount`: The value to add to the read count for each unique image in the batch
     ///
     /// Returns: The number of different images in the batch
-    #[inline]
     #[doc(alias = "MPSImageBatchIncrementReadCount")]
+    #[inline]
     pub unsafe fn batch_increment_read_count(
         batch: &MPSImageBatch,
         amount: NSInteger,
@@ -222,8 +222,8 @@ impl MPSImage {
     }
 
     /// Call [MTLBlitEncoder synchronizeResource:] on unique resources
-    #[inline]
     #[doc(alias = "MPSImageBatchSynchronize")]
+    #[inline]
     pub unsafe fn batch_synchronize(
         batch: &MPSImageBatch,
         cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -238,8 +238,8 @@ impl MPSImage {
     }
 
     /// Call [MTLBlitEncoder resourceSize] on unique resources and return sum
-    #[inline]
     #[doc(alias = "MPSImageBatchResourceSize")]
+    #[inline]
     pub unsafe fn batch_resource_size(batch: &MPSImageBatch) -> NSUInteger {
         extern "C-unwind" {
             fn MPSImageBatchResourceSize(batch: &MPSImageBatch) -> NSUInteger;
@@ -261,9 +261,9 @@ impl MPSImage {
     /// Behavior is undefined if MPSImageBatchIterate is called recursively on the same images.
     ///
     /// Returns: The value returned by the iterator block for the last image on which it ran
+    #[doc(alias = "MPSImageBatchIterate")]
     #[cfg(feature = "block2")]
     #[inline]
-    #[doc(alias = "MPSImageBatchIterate")]
     pub unsafe fn batch_iterate(
         batch: &MPSImageBatch,
         iterator_block: &block2::DynBlock<dyn Fn(NonNull<MPSImage>, NSUInteger) -> NSInteger>,

@@ -50,9 +50,9 @@ impl CMTimeRange {
     /// Returns: The resulting CMTimeRange.
     ///
     /// The duration parameter must have an epoch of 0; otherwise an invalid time range will be returned.
+    #[doc(alias = "CMTimeRangeMake")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeMake")]
     pub unsafe fn new(start: CMTime, duration: CMTime) -> CMTimeRange {
         extern "C-unwind" {
             fn CMTimeRangeMake(start: CMTime, duration: CMTime) -> CMTimeRange;
@@ -74,9 +74,9 @@ impl CMTimeRange {
     /// This is the smallest range that includes all times that are in either range.
     ///
     /// Returns: The union of the two CMTimeRanges.
+    #[doc(alias = "CMTimeRangeGetUnion")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeGetUnion")]
     pub unsafe fn union(self: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange {
         extern "C-unwind" {
             fn CMTimeRangeGetUnion(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange;
@@ -98,9 +98,9 @@ impl CMTimeRange {
     /// This is the largest range that both ranges include.
     ///
     /// Returns: The intersection of the two CMTimeRanges.
+    #[doc(alias = "CMTimeRangeGetIntersection")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeGetIntersection")]
     pub unsafe fn intersection(self: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange {
         extern "C-unwind" {
             fn CMTimeRangeGetIntersection(
@@ -124,9 +124,9 @@ impl CMTimeRange {
     /// parameters are identical.
     ///
     /// Returns: Returns true if the two time ranges are identical, false if they differ.
+    #[doc(alias = "CMTimeRangeEqual")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeEqual")]
     pub unsafe fn equal(self: CMTimeRange, range2: CMTimeRange) -> bool {
         extern "C-unwind" {
             fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> Boolean;
@@ -149,9 +149,9 @@ impl CMTimeRange {
     /// parameter.
     ///
     /// Returns: Returns true if the specified time is contained within the specified time range, false if it is not.
+    #[doc(alias = "CMTimeRangeContainsTime")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeContainsTime")]
     pub unsafe fn contains_time(self: CMTimeRange, time: CMTime) -> bool {
         extern "C-unwind" {
             fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> Boolean;
@@ -174,9 +174,9 @@ impl CMTimeRange {
     /// parameter.
     ///
     /// Returns: Returns true if the second time range is contained within the first time range, false if it is not.
+    #[doc(alias = "CMTimeRangeContainsTimeRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeContainsTimeRange")]
     pub unsafe fn contains_time_range(self: CMTimeRange, other_range: CMTimeRange) -> bool {
         extern "C-unwind" {
             fn CMTimeRangeContainsTimeRange(
@@ -198,9 +198,9 @@ impl CMTimeRange {
     /// </i>
     /// parameter.
     /// CMTimeRangeContainsTime(range, CMTimeRangeGetEnd(range)) is always false.
+    #[doc(alias = "CMTimeRangeGetEnd")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeGetEnd")]
     pub unsafe fn end(self: CMTimeRange) -> CMTime {
         extern "C-unwind" {
             fn CMTimeRangeGetEnd(range: CMTimeRange) -> CMTime;
@@ -222,9 +222,9 @@ impl CMTime {
     /// If t does not have the same epoch as fromRange.start, an invalid CMTime will be returned.
     /// If both fromRange and toRange have duration kCMTimePositiveInfinity,
     /// t will be offset relative to the differences between their starts, but not scaled.
+    #[doc(alias = "CMTimeMapTimeFromRangeToRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeMapTimeFromRangeToRange")]
     pub unsafe fn map_time_from_range_to_range(
         self: CMTime,
         from_range: CMTimeRange,
@@ -249,9 +249,9 @@ impl CMTime {
     /// the range respectively.
     /// If the CMTimeRange argument is empty, an invalid CMTime will be returned.
     /// If the given CMTime is invalid, the returned CMTime will be invalid,
+    #[doc(alias = "CMTimeClampToRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeClampToRange")]
     pub unsafe fn clamp_to_range(self: CMTime, range: CMTimeRange) -> CMTime {
         extern "C-unwind" {
             fn CMTimeClampToRange(time: CMTime, range: CMTimeRange) -> CMTime;
@@ -266,9 +266,9 @@ impl CMTime {
     /// The duration will be scaled in proportion to the ratio between the ranges' durations:
     /// result = dur*(toRange.duration/fromRange.duration)
     /// If dur does not have the epoch zero, an invalid CMTime will be returned.
+    #[doc(alias = "CMTimeMapDurationFromRangeToRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeMapDurationFromRangeToRange")]
     pub unsafe fn map_duration_from_range_to_range(
         self: CMTime,
         from_range: CMTimeRange,
@@ -290,9 +290,9 @@ impl CMTime {
     ///
     /// Note that for certain types of looping, you may want to NOT fold times that are prior
     /// to the loop range.  That's up to the client.
+    #[doc(alias = "CMTimeFoldIntoRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeFoldIntoRange")]
     pub unsafe fn fold_into_range(self: CMTime, fold_range: CMTimeRange) -> CMTime {
         extern "C-unwind" {
             fn CMTimeFoldIntoRange(time: CMTime, fold_range: CMTimeRange) -> CMTime;
@@ -306,9 +306,9 @@ impl CMTimeRange {
     /// Make a valid CMTimeRange with the given starting and ending times.
     ///
     /// Returns: The resulting CMTimeRange.
+    #[doc(alias = "CMTimeRangeFromTimeToTime")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeFromTimeToTime")]
     pub unsafe fn from_time_to_time(start: CMTime, end: CMTime) -> CMTimeRange {
         extern "C-unwind" {
             fn CMTimeRangeFromTimeToTime(start: CMTime, end: CMTime) -> CMTimeRange;
@@ -321,9 +321,9 @@ impl CMTimeRange {
     /// This is useful when putting CMTimeRanges in CF container types.
     ///
     /// Returns: A CFDictionary version of the CMTimeRange.
+    #[doc(alias = "CMTimeRangeCopyAsDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeCopyAsDictionary")]
     pub unsafe fn as_dictionary(
         self: CMTimeRange,
         allocator: Option<&CFAllocator>,
@@ -344,9 +344,9 @@ impl CMTimeRange {
     /// have the requisite keyed values, an invalid time range is returned.
     ///
     /// Returns: The created CMTimeRange.
+    #[doc(alias = "CMTimeRangeMakeFromDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeMakeFromDictionary")]
     pub unsafe fn from_dictionary(dictionary_representation: &CFDictionary) -> CMTimeRange {
         extern "C-unwind" {
             fn CMTimeRangeMakeFromDictionary(
@@ -379,9 +379,9 @@ impl CMTimeRange {
     /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
     ///
     /// Returns: The created CFString description.
+    #[doc(alias = "CMTimeRangeCopyDescription")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeCopyDescription")]
     pub unsafe fn description(
         allocator: Option<&CFAllocator>,
         range: CMTimeRange,
@@ -399,9 +399,9 @@ impl CMTimeRange {
     /// Prints a description of the CMTimeRange (just like CFShow).
     ///
     /// This is most useful from within gdb.
+    #[doc(alias = "CMTimeRangeShow")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeRangeShow")]
     pub unsafe fn show(self: CMTimeRange) {
         extern "C-unwind" {
             fn CMTimeRangeShow(range: CMTimeRange);
@@ -456,9 +456,9 @@ impl CMTimeMapping {
     /// Returns: The resulting CMTimeMapping.
     ///
     /// The source and target parameters must have durations whose epoch is 0; otherwise an invalid time mapping will be returned.
+    #[doc(alias = "CMTimeMappingMake")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeMappingMake")]
     pub unsafe fn new(source: CMTimeRange, target: CMTimeRange) -> CMTimeMapping {
         extern "C-unwind" {
             fn CMTimeMappingMake(source: CMTimeRange, target: CMTimeRange) -> CMTimeMapping;
@@ -471,9 +471,9 @@ impl CMTimeMapping {
     /// Returns: The resulting CMTimeMapping.
     ///
     /// The target parameter must have a duration whose epoch is 0; otherwise an invalid time mapping will be returned.
+    #[doc(alias = "CMTimeMappingMakeEmpty")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeMappingMakeEmpty")]
     pub unsafe fn empty(target: CMTimeRange) -> CMTimeMapping {
         extern "C-unwind" {
             fn CMTimeMappingMakeEmpty(target: CMTimeRange) -> CMTimeMapping;
@@ -486,9 +486,9 @@ impl CMTimeMapping {
     /// This is useful when putting CMTimeMappings in CF container types.
     ///
     /// Returns: A CFDictionary version of the CMTimeMapping.
+    #[doc(alias = "CMTimeMappingCopyAsDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeMappingCopyAsDictionary")]
     pub unsafe fn as_dictionary(
         self: CMTimeMapping,
         allocator: Option<&CFAllocator>,
@@ -509,9 +509,9 @@ impl CMTimeMapping {
     /// have the requisite keyed values, an invalid time mapping is returned.
     ///
     /// Returns: The created CMTimeMapping.
+    #[doc(alias = "CMTimeMappingMakeFromDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeMappingMakeFromDictionary")]
     pub unsafe fn from_dictionary(dictionary_representation: &CFDictionary) -> CMTimeMapping {
         extern "C-unwind" {
             fn CMTimeMappingMakeFromDictionary(
@@ -544,9 +544,9 @@ impl CMTimeMapping {
     /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
     ///
     /// Returns: The created CFString description.
+    #[doc(alias = "CMTimeMappingCopyDescription")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeMappingCopyDescription")]
     pub unsafe fn description(
         allocator: Option<&CFAllocator>,
         mapping: CMTimeMapping,
@@ -564,9 +564,9 @@ impl CMTimeMapping {
     /// Prints a description of a CMTimeMapping (just like CFShow).
     ///
     /// This is most useful from within gdb.
+    #[doc(alias = "CMTimeMappingShow")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    #[doc(alias = "CMTimeMappingShow")]
     pub unsafe fn show(self: CMTimeMapping) {
         extern "C-unwind" {
             fn CMTimeMappingShow(mapping: CMTimeMapping);

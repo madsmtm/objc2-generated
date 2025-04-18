@@ -37,10 +37,10 @@ impl SecKeychainSearch {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in Mac OS X 10.7 and later; to find keychain items which match specified attributes, please use the SecItemCopyMatching API (see SecItem.h).
+    #[doc(alias = "SecKeychainSearchCreateFromAttributes")]
     #[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
     #[deprecated = "SecKeychainSearch is not supported"]
     #[inline]
-    #[doc(alias = "SecKeychainSearchCreateFromAttributes")]
     pub unsafe fn create_from_attributes(
         keychain_or_array: Option<&CFType>,
         item_class: SecItemClass,
@@ -74,10 +74,10 @@ impl SecKeychainSearch {
     /// Returns: A result code.  When there are no more items that match the parameters specified to SecPolicySearchCreate, errSecItemNotFound is returned. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in Mac OS X 10.7 and later; to find keychain items which match specified attributes, please use the SecItemCopyMatching API (see SecItem.h).
+    #[doc(alias = "SecKeychainSearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychainSearch is not supported"]
     #[inline]
-    #[doc(alias = "SecKeychainSearchCopyNext")]
     pub unsafe fn copy_next(
         self: &SecKeychainSearch,
         item_ref: NonNull<*mut SecKeychainItem>,

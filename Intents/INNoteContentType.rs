@@ -11,14 +11,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INNoteContentType(pub NSInteger);
 impl INNoteContentType {
-    #[deprecated = "This enum is no longer used"]
     #[doc(alias = "INNoteContentTypeUnknown")]
+    #[deprecated = "This enum is no longer used"]
     pub const Unknown: Self = Self(0);
-    #[deprecated = "This enum is no longer used"]
     #[doc(alias = "INNoteContentTypeText")]
-    pub const Text: Self = Self(1);
     #[deprecated = "This enum is no longer used"]
+    pub const Text: Self = Self(1);
     #[doc(alias = "INNoteContentTypeImage")]
+    #[deprecated = "This enum is no longer used"]
     pub const Image: Self = Self(2);
 }
 

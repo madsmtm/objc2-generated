@@ -164,10 +164,10 @@ impl SecAccess {
     /// Parameter `accessRef`: On return, a pointer to the new access reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecAccessCreate")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecAccessCreate")]
     pub unsafe fn create(
         descriptor: &CFString,
         trustedlist: Option<&CFArray>,
@@ -196,6 +196,7 @@ impl SecAccess {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// For 10.7 and later please use the SecAccessCreateWithOwnerAndACL API
+    #[doc(alias = "SecAccessCreateFromOwnerAndACL")]
     #[cfg(all(
         feature = "SecAsn1Types",
         feature = "SecBase",
@@ -204,7 +205,6 @@ impl SecAccess {
     ))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    #[doc(alias = "SecAccessCreateFromOwnerAndACL")]
     pub unsafe fn create_from_owner_and_acl(
         owner: NonNull<CSSM_ACL_OWNER_PROTOTYPE>,
         acl_count: uint32,
@@ -235,10 +235,10 @@ impl SecAccess {
     /// Parameter `error`: Optionally a pointer to a CFErrorRef to return any errors with may have occured
     ///
     /// Returns: A pointer to the new access reference.
+    #[doc(alias = "SecAccessCreateWithOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecAccessCreateWithOwnerAndACL")]
     pub unsafe fn with_owner_and_acl(
         user_id: libc::uid_t,
         group_id: libc::gid_t,
@@ -273,6 +273,7 @@ impl SecAccess {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// For 10.7 and later please use the SecAccessCopyOwnerAndACL API
+    #[doc(alias = "SecAccessGetOwnerAndACL")]
     #[cfg(all(
         feature = "SecAsn1Types",
         feature = "SecBase",
@@ -281,7 +282,6 @@ impl SecAccess {
     ))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    #[doc(alias = "SecAccessGetOwnerAndACL")]
     pub unsafe fn get_owner_and_acl(
         self: &SecAccess,
         owner: NonNull<CSSM_ACL_OWNER_PROTOTYPE_PTR>,
@@ -312,10 +312,10 @@ impl SecAccess {
     /// Parameter `aclList`: On return, a pointer to a new created CFArray of SecACL instances.  The caller is responsible for calling CFRelease on this array.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecAccessCopyOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecAccessCopyOwnerAndACL")]
     pub unsafe fn copy_owner_and_acl(
         self: &SecAccess,
         user_id: *mut libc::uid_t,
@@ -342,10 +342,10 @@ impl SecAccess {
     /// Parameter `aclList`: On return, a pointer to a new created CFArray of SecACL instances.  The caller is responsible for calling CFRelease on this array.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecAccessCopyACLList")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecAccessCopyACLList")]
     pub unsafe fn copy_acl_list(self: &SecAccess, acl_list: NonNull<*const CFArray>) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCopyACLList(
@@ -367,10 +367,10 @@ impl SecAccess {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// For 10.7 and later please use the SecAccessCopyMatchingACLList API
+    #[doc(alias = "SecAccessCopySelectedACLList")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    #[doc(alias = "SecAccessCopySelectedACLList")]
     pub unsafe fn copy_selected_acl_list(
         self: &SecAccess,
         action: CSSM_ACL_AUTHORIZATION_TAG,
@@ -393,10 +393,10 @@ impl SecAccess {
     /// Parameter `authorizationTag`: An authorization tag specifying what action with which to select the action control lists.
     ///
     /// Returns: A pointer to the selected access control lists.
+    #[doc(alias = "SecAccessCopyMatchingACLList")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    #[doc(alias = "SecAccessCopyMatchingACLList")]
     pub unsafe fn matching_acl_list(
         self: &SecAccess,
         authorization_tag: &CFType,

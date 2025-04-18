@@ -14,23 +14,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSearchCallHistoryIntentResponseCode(pub NSInteger);
 impl INSearchCallHistoryIntentResponseCode {
-    #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeUnspecified")]
+    #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeReady")]
+    #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeContinueInApp")]
+    #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
-    #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeFailure")]
+    #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(3);
-    #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeFailureRequiringAppLaunch")]
-    pub const FailureRequiringAppLaunch: Self = Self(4);
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
+    pub const FailureRequiringAppLaunch: Self = Self(4);
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeFailureAppConfigurationRequired")]
+    #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(5);
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(6);

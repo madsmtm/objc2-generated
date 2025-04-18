@@ -16,12 +16,12 @@ use crate::*;
 pub struct MPSPolygonType(pub NSUInteger);
 impl MPSPolygonType {
     /// Triangles with three vertices
-    #[deprecated]
     #[doc(alias = "MPSPolygonTypeTriangle")]
+    #[deprecated]
     pub const Triangle: Self = Self(0);
     /// Quadrilaterals with four vertices
-    #[deprecated]
     #[doc(alias = "MPSPolygonTypeQuadrilateral")]
+    #[deprecated]
     pub const Quadrilateral: Self = Self(1);
 }
 

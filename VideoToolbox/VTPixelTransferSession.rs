@@ -46,8 +46,8 @@ impl VTPixelTransferSession {
     /// Parameter `allocator`: An allocator for the session.  Pass NULL to use the default allocator.
     ///
     /// Parameter `pixelTransferSessionOut`: Points to a variable to receive the new pixel transfer session.
-    #[inline]
     #[doc(alias = "VTPixelTransferSessionCreate")]
+    #[inline]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         pixel_transfer_session_out: NonNull<*mut VTPixelTransferSession>,
@@ -68,8 +68,8 @@ impl VTPixelTransferSession {
     /// When a pixel transfer session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTPixelTransferSessionInvalidate ensures a deterministic, orderly teardown.
-    #[inline]
     #[doc(alias = "VTPixelTransferSessionInvalidate")]
+    #[inline]
     pub unsafe fn invalidate(self: &VTPixelTransferSession) {
         extern "C-unwind" {
             fn VTPixelTransferSessionInvalidate(session: &VTPixelTransferSession);
@@ -107,9 +107,9 @@ impl VTPixelTransferSession {
     /// Parameter `destinationBuffer`: The destination buffer.
     ///
     /// Returns: If the transfer was successful, noErr; otherwise an error code, such as kVTPixelTransferNotSupportedErr.
+    #[doc(alias = "VTPixelTransferSessionTransferImage")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
-    #[doc(alias = "VTPixelTransferSessionTransferImage")]
     pub unsafe fn transfer_image(
         self: &VTPixelTransferSession,
         source_buffer: &CVPixelBuffer,

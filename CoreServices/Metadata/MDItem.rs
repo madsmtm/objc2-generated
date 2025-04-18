@@ -52,8 +52,8 @@ impl MDItem {
     /// may not be uniqued. Use CFEqual() to compare them.]]
     ///
     /// Returns: An MDItemRef, or NULL on failure.
-    #[inline]
     #[doc(alias = "MDItemCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         path: Option<&CFString>,
@@ -80,8 +80,8 @@ impl MDItem {
     /// may not be uniqued. Use CFEqual() to compare them.]]
     ///
     /// Returns: An MDItemRef, or NULL on failure.
-    #[inline]
     #[doc(alias = "MDItemCreateWithURL")]
+    #[inline]
     pub unsafe fn with_url(
         allocator: Option<&CFAllocator>,
         url: Option<&CFURL>,
@@ -130,8 +130,8 @@ impl MDItem {
     ///
     /// Returns: A CFTypeRef, or NULL on failure, or if the attribute
     /// does not exist, of if the attribute is not readable.
-    #[inline]
     #[doc(alias = "MDItemCopyAttribute")]
+    #[inline]
     pub unsafe fn attribute(self: &MDItem, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn MDItemCopyAttribute(
@@ -154,8 +154,8 @@ impl MDItem {
     /// failure. If an attribute does not exist, or is
     /// unreadable, there will be no key-value pair for it
     /// in the dictionary.
-    #[inline]
     #[doc(alias = "MDItemCopyAttributes")]
+    #[inline]
     pub unsafe fn attributes(
         self: &MDItem,
         names: Option<&CFArray>,
@@ -176,8 +176,8 @@ impl MDItem {
     ///
     /// Returns: A CFArray of CFString attribute names, or NULL on
     /// failure.
-    #[inline]
     #[doc(alias = "MDItemCopyAttributeNames")]
+    #[inline]
     pub unsafe fn attribute_names(self: &MDItem) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn MDItemCopyAttributeNames(item: &MDItem) -> Option<NonNull<CFArray>>;
@@ -213,9 +213,9 @@ pub unsafe extern "C-unwind" fn MDItemsCopyAttributes(
 }
 
 impl MDItem {
+    #[doc(alias = "MDItemGetCacheFileDescriptors")]
     #[cfg(feature = "block2")]
     #[inline]
-    #[doc(alias = "MDItemGetCacheFileDescriptors")]
     pub unsafe fn cache_file_descriptors(
         items: Option<&CFArray>,
         completion_handler: Option<&block2::DynBlock<dyn Fn(*const CFArray)>>,

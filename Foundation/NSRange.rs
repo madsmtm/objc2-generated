@@ -26,9 +26,9 @@ extern "C-unwind" {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    #[doc(alias = "NSStringFromRange")]
     #[cfg(feature = "NSString")]
     #[inline]
-    #[doc(alias = "NSStringFromRange")]
     pub unsafe fn from_range(range: NSRange) -> Retained<NSString> {
         extern "C-unwind" {
             fn NSStringFromRange(range: NSRange) -> *mut NSString;

@@ -11,35 +11,35 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INCarAudioSource(pub NSInteger);
 impl INCarAudioSource {
-    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     #[doc(alias = "INCarAudioSourceUnknown")]
+    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceUnknown: Self = Self(0);
-    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     #[doc(alias = "INCarAudioSourceCarPlay")]
+    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceCarPlay: Self = Self(1);
-    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     #[doc(alias = "INCarAudioSourceiPod")]
+    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceiPod: Self = Self(2);
-    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     #[doc(alias = "INCarAudioSourceRadio")]
+    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceRadio: Self = Self(3);
-    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     #[doc(alias = "INCarAudioSourceBluetooth")]
+    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceBluetooth: Self = Self(4);
-    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     #[doc(alias = "INCarAudioSourceAUX")]
+    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceAUX: Self = Self(5);
-    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     #[doc(alias = "INCarAudioSourceUSB")]
+    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceUSB: Self = Self(6);
-    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     #[doc(alias = "INCarAudioSourceMemoryCard")]
+    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceMemoryCard: Self = Self(7);
-    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     #[doc(alias = "INCarAudioSourceOpticalDrive")]
-    pub const SourceOpticalDrive: Self = Self(8);
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
+    pub const SourceOpticalDrive: Self = Self(8);
     #[doc(alias = "INCarAudioSourceHardDrive")]
+    #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceHardDrive: Self = Self(9);
 }
 

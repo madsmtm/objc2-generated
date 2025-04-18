@@ -76,9 +76,9 @@ extern "C-unwind" {
 }
 
 impl UIImageSymbolWeight {
+    #[doc(alias = "UIImageSymbolWeightForFontWeight")]
     #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
     #[inline]
-    #[doc(alias = "UIImageSymbolWeightForFontWeight")]
     pub unsafe fn for_font_weight(font_weight: UIFontWeight) -> UIImageSymbolWeight {
         extern "C-unwind" {
             fn UIImageSymbolWeightForFontWeight(font_weight: UIFontWeight) -> UIImageSymbolWeight;

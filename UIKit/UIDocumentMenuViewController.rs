@@ -14,11 +14,11 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIDocumentMenuOrder(pub NSUInteger);
 impl UIDocumentMenuOrder {
-    #[deprecated]
     #[doc(alias = "UIDocumentMenuOrderFirst")]
-    pub const First: Self = Self(0);
     #[deprecated]
+    pub const First: Self = Self(0);
     #[doc(alias = "UIDocumentMenuOrderLast")]
+    #[deprecated]
     pub const Last: Self = Self(1);
 }
 

@@ -253,17 +253,17 @@ impl NSProgressIndicator {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSProgressIndicatorThickness(pub NSUInteger);
 impl NSProgressIndicatorThickness {
-    #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     #[doc(alias = "NSProgressIndicatorPreferredThickness")]
+    #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     pub const PreferredThickness: Self = Self(14);
-    #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     #[doc(alias = "NSProgressIndicatorPreferredSmallThickness")]
+    #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     pub const PreferredSmallThickness: Self = Self(10);
-    #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     #[doc(alias = "NSProgressIndicatorPreferredLargeThickness")]
-    pub const PreferredLargeThickness: Self = Self(18);
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
+    pub const PreferredLargeThickness: Self = Self(18);
     #[doc(alias = "NSProgressIndicatorPreferredAquaThickness")]
+    #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     pub const PreferredAquaThickness: Self = Self(12);
 }
 

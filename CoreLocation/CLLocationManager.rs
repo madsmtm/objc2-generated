@@ -53,8 +53,8 @@ impl CLAuthorizationStatus {
     pub const AuthorizedAlways: Self = Self(3);
     #[doc(alias = "kCLAuthorizationStatusAuthorizedWhenInUse")]
     pub const AuthorizedWhenInUse: Self = Self(4);
-    #[deprecated = "Use kCLAuthorizationStatusAuthorizedAlways"]
     #[doc(alias = "kCLAuthorizationStatusAuthorized")]
+    #[deprecated = "Use kCLAuthorizationStatusAuthorizedAlways"]
     pub const Authorized: Self = Self(CLAuthorizationStatus::AuthorizedAlways.0);
 }
 

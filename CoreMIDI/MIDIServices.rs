@@ -2535,9 +2535,9 @@ impl MIDIEventPacket {
     ///
     ///
     /// pkt must contain a single MIDI system-exclusive message on groupIndex, or portion thereof.
+    #[doc(alias = "MIDIEventPacketSysexBytesForGroup")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "MIDIEventPacketSysexBytesForGroup")]
     pub unsafe fn sysex_bytes_for_group(
         pkt: NonNull<MIDIEventPacket>,
         group_index: u8,
@@ -2637,8 +2637,8 @@ impl MIDIEventList {
     ///
     ///
     /// Returns: A pointer to the first MIDIEventPacket in the event list.
-    #[inline]
     #[doc(alias = "MIDIEventListInit")]
+    #[inline]
     pub unsafe fn init(
         evtlist: NonNull<MIDIEventList>,
         protocol: MIDIProtocolID,
@@ -2684,8 +2684,8 @@ impl MIDIEventList {
     /// smaller event lists.
     ///
     /// Note that events must use the same protocol as was passed to MIDIEventListInit().
-    #[inline]
     #[doc(alias = "MIDIEventListAdd")]
+    #[inline]
     pub unsafe fn add(
         evtlist: NonNull<MIDIEventList>,
         list_size: ByteCount,
@@ -2722,9 +2722,9 @@ impl MIDIPacketList {
     ///
     ///
     /// Returns: A pointer to the first MIDIPacket in the packet list.
+    #[doc(alias = "MIDIPacketListInit")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "MIDIPacketListInit")]
     pub unsafe fn init(pktlist: NonNull<MIDIPacketList>) -> NonNull<MIDIPacket> {
         extern "C-unwind" {
             fn MIDIPacketListInit(pktlist: NonNull<MIDIPacketList>) -> Option<NonNull<MIDIPacket>>;
@@ -2762,9 +2762,9 @@ impl MIDIPacketList {
     ///
     /// The maximum size of a packet list is 65536 bytes. Large sysex messages must be sent in
     /// smaller packet lists.
+    #[doc(alias = "MIDIPacketListAdd")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "MIDIPacketListAdd")]
     pub unsafe fn add(
         pktlist: NonNull<MIDIPacketList>,
         list_size: ByteCount,

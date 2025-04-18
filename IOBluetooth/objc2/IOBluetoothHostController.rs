@@ -110,11 +110,11 @@ mod private_NSObjectIOBluetoothHostControllerDelegate {
 }
 
 /// Category "IOBluetoothHostControllerDelegate" on [`NSObject`].
-#[doc(alias = "IOBluetoothHostControllerDelegate")]
 /// This category on NSObject describes the delegate methods for the IOBluetoothHostController object. All
 /// methods are optional, but it is highly recommended you implement them all. Do NOT invoke remote name
 /// requests on found IOBluetoothDevice objects unless the controller object has been stopped. Doing so may
 /// deadlock your process.
+#[doc(alias = "IOBluetoothHostControllerDelegate")]
 pub unsafe trait NSObjectIOBluetoothHostControllerDelegate:
     ClassType + Sized + private_NSObjectIOBluetoothHostControllerDelegate::Sealed
 {

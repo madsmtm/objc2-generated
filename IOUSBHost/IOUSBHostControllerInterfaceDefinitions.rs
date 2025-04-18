@@ -228,27 +228,27 @@ unsafe impl RefEncode for IOUSBHostCIMessageStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOUSBHostCIDeviceSpeed(pub c_uint);
 impl IOUSBHostCIDeviceSpeed {
-    #[cfg(feature = "objc2-io-kit")]
     #[doc(alias = "IOUSBHostCIDeviceSpeedNone")]
+    #[cfg(feature = "objc2-io-kit")]
     pub const None: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedNone.0);
-    #[cfg(feature = "objc2-io-kit")]
     #[doc(alias = "IOUSBHostCIDeviceSpeedFull")]
+    #[cfg(feature = "objc2-io-kit")]
     pub const Full: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedFull.0);
-    #[cfg(feature = "objc2-io-kit")]
     #[doc(alias = "IOUSBHostCIDeviceSpeedLow")]
+    #[cfg(feature = "objc2-io-kit")]
     pub const Low: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedLow.0);
-    #[cfg(feature = "objc2-io-kit")]
     #[doc(alias = "IOUSBHostCIDeviceSpeedHigh")]
+    #[cfg(feature = "objc2-io-kit")]
     pub const High: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedHigh.0);
-    #[cfg(feature = "objc2-io-kit")]
     #[doc(alias = "IOUSBHostCIDeviceSpeedSuper")]
-    pub const Super: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuper.0);
     #[cfg(feature = "objc2-io-kit")]
+    pub const Super: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuper.0);
     #[doc(alias = "IOUSBHostCIDeviceSpeedSuperPlus")]
+    #[cfg(feature = "objc2-io-kit")]
     pub const SuperPlus: Self =
         Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuperPlus.0);
-    #[cfg(feature = "objc2-io-kit")]
     #[doc(alias = "IOUSBHostCIDeviceSpeedSuperPlusBy2")]
+    #[cfg(feature = "objc2-io-kit")]
     pub const SuperPlusBy2: Self =
         Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuperPlusBy2.0);
 }

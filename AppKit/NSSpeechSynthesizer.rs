@@ -208,14 +208,14 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSpeechBoundary(pub NSUInteger);
 impl NSSpeechBoundary {
-    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     #[doc(alias = "NSSpeechImmediateBoundary")]
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub const ImmediateBoundary: Self = Self(0);
-    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     #[doc(alias = "NSSpeechWordBoundary")]
-    pub const WordBoundary: Self = Self(1);
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
+    pub const WordBoundary: Self = Self(1);
     #[doc(alias = "NSSpeechSentenceBoundary")]
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub const SentenceBoundary: Self = Self(2);
 }
 

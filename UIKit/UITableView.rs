@@ -134,14 +134,14 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITableViewRowActionStyle(pub NSInteger);
 impl UITableViewRowActionStyle {
-    #[deprecated = "Use UIContextualAction and related APIs instead."]
     #[doc(alias = "UITableViewRowActionStyleDefault")]
+    #[deprecated = "Use UIContextualAction and related APIs instead."]
     pub const Default: Self = Self(0);
-    #[deprecated = "Use UIContextualAction and related APIs instead."]
     #[doc(alias = "UITableViewRowActionStyleDestructive")]
-    pub const Destructive: Self = Self(UITableViewRowActionStyle::Default.0);
     #[deprecated = "Use UIContextualAction and related APIs instead."]
+    pub const Destructive: Self = Self(UITableViewRowActionStyle::Default.0);
     #[doc(alias = "UITableViewRowActionStyleNormal")]
+    #[deprecated = "Use UIContextualAction and related APIs instead."]
     pub const Normal: Self = Self(1);
 }
 

@@ -23,11 +23,11 @@ impl UIStatusBarStyle {
     pub const LightContent: Self = Self(1);
     #[doc(alias = "UIStatusBarStyleDarkContent")]
     pub const DarkContent: Self = Self(3);
-    #[deprecated]
     #[doc(alias = "UIStatusBarStyleBlackTranslucent")]
-    pub const BlackTranslucent: Self = Self(1);
     #[deprecated]
+    pub const BlackTranslucent: Self = Self(1);
     #[doc(alias = "UIStatusBarStyleBlackOpaque")]
+    #[deprecated]
     pub const BlackOpaque: Self = Self(2);
 }
 
@@ -74,20 +74,20 @@ extern "C" {
 pub struct UIRemoteNotificationType(pub NSUInteger);
 bitflags::bitflags! {
     impl UIRemoteNotificationType: NSUInteger {
-#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         #[doc(alias = "UIRemoteNotificationTypeNone")]
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const None = 0;
-#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         #[doc(alias = "UIRemoteNotificationTypeBadge")]
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const Badge = 1<<0;
-#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         #[doc(alias = "UIRemoteNotificationTypeSound")]
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const Sound = 1<<1;
-#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         #[doc(alias = "UIRemoteNotificationTypeAlert")]
-        const Alert = 1<<2;
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
+        const Alert = 1<<2;
         #[doc(alias = "UIRemoteNotificationTypeNewsstandContentAvailability")]
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const NewsstandContentAvailability = 1<<3;
     }
 }
@@ -1447,8 +1447,8 @@ impl UIApplication {
 
 #[cfg(feature = "UIResponder")]
 impl UIApplication {
-    #[inline]
     #[doc(alias = "UIApplicationMain")]
+    #[inline]
     pub(crate) unsafe fn __main(
         argc: c_int,
         argv: NonNull<*mut c_char>,

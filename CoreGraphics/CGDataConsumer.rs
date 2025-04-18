@@ -68,8 +68,8 @@ unsafe impl ConcreteType for CGDataConsumer {
 }
 
 impl CGDataConsumer {
-    #[inline]
     #[doc(alias = "CGDataConsumerCreate")]
+    #[inline]
     pub unsafe fn new(
         info: *mut c_void,
         cbks: *const CGDataConsumerCallbacks,
@@ -84,8 +84,8 @@ impl CGDataConsumer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGDataConsumerCreateWithURL")]
+    #[inline]
     pub unsafe fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataConsumer>> {
         extern "C-unwind" {
             fn CGDataConsumerCreateWithURL(url: Option<&CFURL>) -> Option<NonNull<CGDataConsumer>>;
@@ -94,8 +94,8 @@ impl CGDataConsumer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGDataConsumerCreateWithCFData")]
+    #[inline]
     pub unsafe fn with_cf_data(data: Option<&CFMutableData>) -> Option<CFRetained<CGDataConsumer>> {
         extern "C-unwind" {
             fn CGDataConsumerCreateWithCFData(

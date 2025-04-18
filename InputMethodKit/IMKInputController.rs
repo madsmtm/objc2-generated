@@ -14,7 +14,6 @@ mod private_NSObjectIMKServerInput {
 }
 
 /// Category "IMKServerInput" on [`NSObject`].
-#[doc(alias = "IMKServerInput")]
 /// Informal protocol which is used to send user events to an input method.
 ///
 /// This is not a formal protocol by choice.  The reason for that is that there are three ways to receive events here. An input method should choose one of those ways and  implement the appropriate methods.
@@ -32,6 +31,7 @@ mod private_NSObjectIMKServerInput {
 ///
 /// 3. Receive events directly from the Text Services Manager as NSEvent objects.  For this approach implement:
 /// -(BOOL)handleEvent:(NSEvent*)event client:(id)sender;
+#[doc(alias = "IMKServerInput")]
 pub unsafe trait NSObjectIMKServerInput:
     ClassType + Sized + private_NSObjectIMKServerInput::Sealed
 {

@@ -70,9 +70,9 @@ impl CTTextTab {
     ///
     ///
     /// Returns: The new CTTextTab.
+    #[doc(alias = "CTTextTabCreate")]
     #[cfg(feature = "CTParagraphStyle")]
     #[inline]
-    #[doc(alias = "CTTextTabCreate")]
     pub unsafe fn new(
         alignment: CTTextAlignment,
         location: c_double,
@@ -98,9 +98,9 @@ impl CTTextTab {
     ///
     ///
     /// Returns: The tab's text alignment value.
+    #[doc(alias = "CTTextTabGetAlignment")]
     #[cfg(feature = "CTParagraphStyle")]
     #[inline]
-    #[doc(alias = "CTTextTabGetAlignment")]
     pub unsafe fn alignment(self: &CTTextTab) -> CTTextAlignment {
         extern "C-unwind" {
             fn CTTextTabGetAlignment(tab: &CTTextTab) -> CTTextAlignment;
@@ -115,8 +115,8 @@ impl CTTextTab {
     ///
     ///
     /// Returns: The tab's ruler location relative to the back margin.
-    #[inline]
     #[doc(alias = "CTTextTabGetLocation")]
+    #[inline]
     pub unsafe fn location(self: &CTTextTab) -> c_double {
         extern "C-unwind" {
             fn CTTextTabGetLocation(tab: &CTTextTab) -> c_double;
@@ -132,8 +132,8 @@ impl CTTextTab {
     ///
     /// Returns: The dictionary of attributes associated with the tab or NULL if
     /// no dictionary is present.
-    #[inline]
     #[doc(alias = "CTTextTabGetOptions")]
+    #[inline]
     pub unsafe fn options(self: &CTTextTab) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CTTextTabGetOptions(tab: &CTTextTab) -> Option<NonNull<CFDictionary>>;

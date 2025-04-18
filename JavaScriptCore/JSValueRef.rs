@@ -127,9 +127,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue whose type you want to obtain.
     ///
     /// Returns: A value of type JSType that identifies value's type.
+    #[doc(alias = "JSValueGetType")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueGetType")]
     pub unsafe fn r#type(ctx: JSContextRef, value: JSValueRef) -> JSType {
         extern "C-unwind" {
             fn JSValueGetType(ctx: JSContextRef, value: JSValueRef) -> JSType;
@@ -144,9 +144,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the undefined type, otherwise false.
+    #[doc(alias = "JSValueIsUndefined")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsUndefined")]
     pub unsafe fn is_undefined(ctx: JSContextRef, value: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueIsUndefined(ctx: JSContextRef, value: JSValueRef) -> bool;
@@ -161,9 +161,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the null type, otherwise false.
+    #[doc(alias = "JSValueIsNull")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsNull")]
     pub unsafe fn is_null(ctx: JSContextRef, value: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueIsNull(ctx: JSContextRef, value: JSValueRef) -> bool;
@@ -178,9 +178,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the boolean type, otherwise false.
+    #[doc(alias = "JSValueIsBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsBoolean")]
     pub unsafe fn is_boolean(ctx: JSContextRef, value: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueIsBoolean(ctx: JSContextRef, value: JSValueRef) -> bool;
@@ -195,9 +195,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the number type, otherwise false.
+    #[doc(alias = "JSValueIsNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsNumber")]
     pub unsafe fn is_number(ctx: JSContextRef, value: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueIsNumber(ctx: JSContextRef, value: JSValueRef) -> bool;
@@ -212,9 +212,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the string type, otherwise false.
+    #[doc(alias = "JSValueIsString")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsString")]
     pub unsafe fn is_string(ctx: JSContextRef, value: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueIsString(ctx: JSContextRef, value: JSValueRef) -> bool;
@@ -229,9 +229,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the symbol type, otherwise false.
+    #[doc(alias = "JSValueIsSymbol")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsSymbol")]
     pub unsafe fn is_symbol(ctx: JSContextRef, value: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueIsSymbol(ctx: JSContextRef, value: JSValueRef) -> bool;
@@ -246,9 +246,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the BigInt type, otherwise false.
+    #[doc(alias = "JSValueIsBigInt")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsBigInt")]
     pub unsafe fn is_big_int(ctx: JSContextRef, value: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueIsBigInt(ctx: JSContextRef, value: JSValueRef) -> bool;
@@ -263,9 +263,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the object type, otherwise false.
+    #[doc(alias = "JSValueIsObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsObject")]
     pub unsafe fn is_object(ctx: JSContextRef, value: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueIsObject(ctx: JSContextRef, value: JSValueRef) -> bool;
@@ -282,9 +282,9 @@ impl JSValue {
     /// Parameter `jsClass`: The JSClass to test against.
     ///
     /// Returns: true if value is an object and has jsClass in its class chain, otherwise false.
+    #[doc(alias = "JSValueIsObjectOfClass")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsObjectOfClass")]
     pub unsafe fn is_object_of_class(
         ctx: JSContextRef,
         value: JSValueRef,
@@ -307,9 +307,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value is an array, otherwise false.
+    #[doc(alias = "JSValueIsArray")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsArray")]
     pub unsafe fn is_array(ctx: JSContextRef, value: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueIsArray(ctx: JSContextRef, value: JSValueRef) -> bool;
@@ -324,9 +324,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value is a date, otherwise false.
+    #[doc(alias = "JSValueIsDate")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsDate")]
     pub unsafe fn is_date(ctx: JSContextRef, value: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueIsDate(ctx: JSContextRef, value: JSValueRef) -> bool;
@@ -343,9 +343,9 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A value of type JSTypedArrayType that identifies value's Typed Array type, or kJSTypedArrayTypeNone if the value is not a Typed Array object.
+    #[doc(alias = "JSValueGetTypedArrayType")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueGetTypedArrayType")]
     pub unsafe fn typed_array_type(
         ctx: JSContextRef,
         value: JSValueRef,
@@ -372,9 +372,9 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: true if the two values are equal, false if they are not equal or an exception is thrown.
+    #[doc(alias = "JSValueIsEqual")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsEqual")]
     pub unsafe fn is_equal(
         ctx: JSContextRef,
         a: JSValueRef,
@@ -401,9 +401,9 @@ impl JSValue {
     /// Parameter `b`: The second value to test.
     ///
     /// Returns: true if the two values are strict equal, otherwise false.
+    #[doc(alias = "JSValueIsStrictEqual")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsStrictEqual")]
     pub unsafe fn is_strict_equal(ctx: JSContextRef, a: JSValueRef, b: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueIsStrictEqual(ctx: JSContextRef, a: JSValueRef, b: JSValueRef) -> bool;
@@ -422,9 +422,9 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: true if value is an object constructed by constructor, as compared by the JS instanceof operator, otherwise false.
+    #[doc(alias = "JSValueIsInstanceOfConstructor")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueIsInstanceOfConstructor")]
     pub unsafe fn is_instance_of_constructor(
         ctx: JSContextRef,
         value: JSValueRef,
@@ -457,9 +457,9 @@ impl JSValue {
     /// The result is computed by comparing the results of JavaScript's `==`, `
     /// <
     /// `, and `>` operators. If either `left` or `right` is (or would coerce to) `NaN` in JavaScript, then the result is kJSRelationConditionUndefined.
+    #[doc(alias = "JSValueCompare")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueCompare")]
     pub unsafe fn compare(
         ctx: JSContextRef,
         left: JSValueRef,
@@ -490,9 +490,9 @@ impl JSValue {
     /// Returns: A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
     ///
     /// `left` is converted to an integer according to the rules specified by the JavaScript language then compared with `right`.
+    #[doc(alias = "JSValueCompareInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueCompareInt64")]
     pub unsafe fn compare_int64(
         ctx: JSContextRef,
         left: JSValueRef,
@@ -523,9 +523,9 @@ impl JSValue {
     /// Returns: A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
     ///
     /// `left` is converted to an integer according to the rules specified by the JavaScript language then compared with `right`.
+    #[doc(alias = "JSValueCompareUInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueCompareUInt64")]
     pub unsafe fn compare_u_int64(
         ctx: JSContextRef,
         left: JSValueRef,
@@ -556,9 +556,9 @@ impl JSValue {
     /// Returns: A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
     ///
     /// `left` is converted to a double according to the rules specified by the JavaScript language then compared with `right`.
+    #[doc(alias = "JSValueCompareDouble")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueCompareDouble")]
     pub unsafe fn compare_double(
         ctx: JSContextRef,
         left: JSValueRef,
@@ -581,9 +581,9 @@ impl JSValue {
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Returns: The unique undefined value.
+    #[doc(alias = "JSValueMakeUndefined")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueMakeUndefined")]
     pub unsafe fn new_undefined(ctx: JSContextRef) -> JSValueRef {
         extern "C-unwind" {
             fn JSValueMakeUndefined(ctx: JSContextRef) -> JSValueRef;
@@ -596,9 +596,9 @@ impl JSValue {
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Returns: The unique null value.
+    #[doc(alias = "JSValueMakeNull")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueMakeNull")]
     pub unsafe fn new_null(ctx: JSContextRef) -> JSValueRef {
         extern "C-unwind" {
             fn JSValueMakeNull(ctx: JSContextRef) -> JSValueRef;
@@ -613,9 +613,9 @@ impl JSValue {
     /// Parameter `boolean`: The bool to assign to the newly created JSValue.
     ///
     /// Returns: A JSValue of the boolean type, representing the value of boolean.
+    #[doc(alias = "JSValueMakeBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueMakeBoolean")]
     pub unsafe fn new_boolean(ctx: JSContextRef, boolean: bool) -> JSValueRef {
         extern "C-unwind" {
             fn JSValueMakeBoolean(ctx: JSContextRef, boolean: bool) -> JSValueRef;
@@ -630,9 +630,9 @@ impl JSValue {
     /// Parameter `number`: The double to assign to the newly created JSValue.
     ///
     /// Returns: A JSValue of the number type, representing the value of number.
+    #[doc(alias = "JSValueMakeNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueMakeNumber")]
     pub unsafe fn new_number(ctx: JSContextRef, number: c_double) -> JSValueRef {
         extern "C-unwind" {
             fn JSValueMakeNumber(ctx: JSContextRef, number: c_double) -> JSValueRef;
@@ -648,9 +648,9 @@ impl JSValue {
     /// newly created JSValue retains string, and releases it upon garbage collection.
     ///
     /// Returns: A JSValue of the string type, representing the value of string.
+    #[doc(alias = "JSValueMakeString")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueMakeString")]
     pub unsafe fn new_string(ctx: JSContextRef, string: JSStringRef) -> JSValueRef {
         extern "C-unwind" {
             fn JSValueMakeString(ctx: JSContextRef, string: JSStringRef) -> JSValueRef;
@@ -665,9 +665,9 @@ impl JSValue {
     /// Parameter `description`: A description of the newly created symbol value.
     ///
     /// Returns: A unique JSValue of the symbol type, whose description matches the one provided.
+    #[doc(alias = "JSValueMakeSymbol")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueMakeSymbol")]
     pub unsafe fn new_symbol(ctx: JSContextRef, description: JSStringRef) -> JSValueRef {
         extern "C-unwind" {
             fn JSValueMakeSymbol(ctx: JSContextRef, description: JSStringRef) -> JSValueRef;
@@ -761,9 +761,9 @@ impl JSValue {
     /// Parameter `string`: The JSString containing the JSON string to be parsed.
     ///
     /// Returns: A JSValue containing the parsed value, or NULL if the input is invalid.
+    #[doc(alias = "JSValueMakeFromJSONString")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueMakeFromJSONString")]
     pub unsafe fn from_json_string(ctx: JSContextRef, string: JSStringRef) -> JSValueRef {
         extern "C-unwind" {
             fn JSValueMakeFromJSONString(ctx: JSContextRef, string: JSStringRef) -> JSValueRef;
@@ -782,9 +782,9 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSString with the result of serialization, or NULL if an exception is thrown.
+    #[doc(alias = "JSValueCreateJSONString")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueCreateJSONString")]
     pub unsafe fn create_json_string(
         ctx: JSContextRef,
         value: JSValueRef,
@@ -809,9 +809,9 @@ impl JSValue {
     /// Parameter `value`: The JSValue to convert.
     ///
     /// Returns: The boolean result of conversion.
+    #[doc(alias = "JSValueToBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueToBoolean")]
     pub unsafe fn to_boolean(ctx: JSContextRef, value: JSValueRef) -> bool {
         extern "C-unwind" {
             fn JSValueToBoolean(ctx: JSContextRef, value: JSValueRef) -> bool;
@@ -830,9 +830,9 @@ impl JSValue {
     /// Returns: The numeric result of conversion, or NaN if an exception is thrown.
     ///
     /// The result is equivalent to `Number(value)` in JavaScript.
+    #[doc(alias = "JSValueToNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueToNumber")]
     pub unsafe fn to_number(
         ctx: JSContextRef,
         value: JSValueRef,
@@ -859,9 +859,9 @@ impl JSValue {
     /// Returns: An int32_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to an int32_t.
+    #[doc(alias = "JSValueToInt32")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueToInt32")]
     pub unsafe fn to_int32(
         ctx: JSContextRef,
         value: JSValueRef,
@@ -888,9 +888,9 @@ impl JSValue {
     /// Returns: A uint32_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to a uint32_t.
+    #[doc(alias = "JSValueToUInt32")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueToUInt32")]
     pub unsafe fn to_u_int32(
         ctx: JSContextRef,
         value: JSValueRef,
@@ -917,9 +917,9 @@ impl JSValue {
     /// Returns: An int64_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to an int64_t.
+    #[doc(alias = "JSValueToInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueToInt64")]
     pub unsafe fn to_int64(
         ctx: JSContextRef,
         value: JSValueRef,
@@ -946,9 +946,9 @@ impl JSValue {
     /// Returns: A uint64_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to a uint64_t.
+    #[doc(alias = "JSValueToUInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueToUInt64")]
     pub unsafe fn to_u_int64(
         ctx: JSContextRef,
         value: JSValueRef,
@@ -973,9 +973,9 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSString with the result of conversion, or NULL if an exception is thrown. Ownership follows the Create Rule.
+    #[doc(alias = "JSValueToStringCopy")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueToStringCopy")]
     pub unsafe fn to_string_copy(
         ctx: JSContextRef,
         value: JSValueRef,
@@ -1000,9 +1000,9 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: The JSObject result of conversion, or NULL if an exception is thrown.
+    #[doc(alias = "JSValueToObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueToObject")]
     pub unsafe fn to_object(
         ctx: JSContextRef,
         value: JSValueRef,
@@ -1027,9 +1027,9 @@ impl JSValue {
     /// Use this method when you want to store a JSValue in a global or on the heap, where the garbage collector will not be able to discover your reference to it.
     ///
     /// A value may be protected multiple times and must be unprotected an equal number of times before becoming eligible for garbage collection.
+    #[doc(alias = "JSValueProtect")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueProtect")]
     pub unsafe fn protect(ctx: JSContextRef, value: JSValueRef) {
         extern "C-unwind" {
             fn JSValueProtect(ctx: JSContextRef, value: JSValueRef);
@@ -1045,9 +1045,9 @@ impl JSValue {
     ///
     /// A value may be protected multiple times and must be unprotected an
     /// equal number of times before becoming eligible for garbage collection.
+    #[doc(alias = "JSValueUnprotect")]
     #[cfg(feature = "JSBase")]
     #[inline]
-    #[doc(alias = "JSValueUnprotect")]
     pub unsafe fn unprotect(ctx: JSContextRef, value: JSValueRef) {
         extern "C-unwind" {
             fn JSValueUnprotect(ctx: JSContextRef, value: JSValueRef);

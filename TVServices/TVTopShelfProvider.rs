@@ -15,11 +15,11 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVTopShelfContentStyle(pub NSInteger);
 impl TVTopShelfContentStyle {
-    #[deprecated = "TVTopShelfProvider has been replaced by TVTopShelfContent"]
     #[doc(alias = "TVTopShelfContentStyleInset")]
-    pub const Inset: Self = Self(1);
     #[deprecated = "TVTopShelfProvider has been replaced by TVTopShelfContent"]
+    pub const Inset: Self = Self(1);
     #[doc(alias = "TVTopShelfContentStyleSectioned")]
+    #[deprecated = "TVTopShelfProvider has been replaced by TVTopShelfContent"]
     pub const Sectioned: Self = Self(2);
 }
 

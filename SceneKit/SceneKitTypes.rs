@@ -140,9 +140,9 @@ extern "C" {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl SCNVector3 {
+    #[doc(alias = "SCNVector3EqualToVector3")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "SCNVector3EqualToVector3")]
     pub unsafe fn equal_to_vector3(self: SCNVector3, b: SCNVector3) -> bool {
         extern "C-unwind" {
             fn SCNVector3EqualToVector3(a: SCNVector3, b: SCNVector3) -> bool;
@@ -153,9 +153,9 @@ impl SCNVector3 {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl SCNVector4 {
+    #[doc(alias = "SCNVector4EqualToVector4")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "SCNVector4EqualToVector4")]
     pub unsafe fn equal_to_vector4(self: SCNVector4, b: SCNVector4) -> bool {
         extern "C-unwind" {
             fn SCNVector4EqualToVector4(a: SCNVector4, b: SCNVector4) -> bool;
@@ -250,8 +250,8 @@ mod private_NSValueSceneKitAdditions {
 }
 
 /// Category "SceneKitAdditions" on [`NSValue`].
-#[doc(alias = "SceneKitAdditions")]
 /// Adds methods to wrap vectors in NSValue objects.
+#[doc(alias = "SceneKitAdditions")]
 pub unsafe trait NSValueSceneKitAdditions:
     ClassType + Sized + private_NSValueSceneKitAdditions::Sealed
 {

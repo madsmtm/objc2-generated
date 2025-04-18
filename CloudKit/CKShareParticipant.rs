@@ -95,17 +95,17 @@ unsafe impl RefEncode for CKShareParticipantRole {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKShareParticipantType(pub NSInteger);
 impl CKShareParticipantType {
-    #[deprecated]
     #[doc(alias = "CKShareParticipantTypeUnknown")]
+    #[deprecated]
     pub const Unknown: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "CKShareParticipantTypeOwner")]
+    #[deprecated]
     pub const Owner: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "CKShareParticipantTypePrivateUser")]
-    pub const PrivateUser: Self = Self(3);
     #[deprecated]
+    pub const PrivateUser: Self = Self(3);
     #[doc(alias = "CKShareParticipantTypePublicUser")]
+    #[deprecated]
     pub const PublicUser: Self = Self(4);
 }
 

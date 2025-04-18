@@ -76,18 +76,18 @@ pub type sec_certificate_t = *mut sec_certificate;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct tls_protocol_version_t(pub u16);
 impl tls_protocol_version_t {
-    #[deprecated = "Use tls_protocol_version_TLSv12 or tls_protocol_version_TLSv13 instead."]
     #[doc(alias = "tls_protocol_version_TLSv10")]
-    pub const TLSv10: Self = Self(0x0301);
     #[deprecated = "Use tls_protocol_version_TLSv12 or tls_protocol_version_TLSv13 instead."]
+    pub const TLSv10: Self = Self(0x0301);
     #[doc(alias = "tls_protocol_version_TLSv11")]
+    #[deprecated = "Use tls_protocol_version_TLSv12 or tls_protocol_version_TLSv13 instead."]
     pub const TLSv11: Self = Self(0x0302);
     #[doc(alias = "tls_protocol_version_TLSv12")]
     pub const TLSv12: Self = Self(0x0303);
     #[doc(alias = "tls_protocol_version_TLSv13")]
     pub const TLSv13: Self = Self(0x0304);
-    #[deprecated = "Use tls_protocol_version_DTLSv12 instead."]
     #[doc(alias = "tls_protocol_version_DTLSv10")]
+    #[deprecated = "Use tls_protocol_version_DTLSv12 instead."]
     pub const DTLSv10: Self = Self(0xfeff);
     #[doc(alias = "tls_protocol_version_DTLSv12")]
     pub const DTLSv12: Self = Self(0xfefd);
@@ -114,8 +114,8 @@ unsafe impl RefEncode for tls_protocol_version_t {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct tls_ciphersuite_t(pub u16);
 impl tls_ciphersuite_t {
-    #[deprecated]
     #[doc(alias = "tls_ciphersuite_RSA_WITH_3DES_EDE_CBC_SHA")]
+    #[deprecated]
     pub const RSA_WITH_3DES_EDE_CBC_SHA: Self = Self(0x000A);
     #[doc(alias = "tls_ciphersuite_RSA_WITH_AES_128_CBC_SHA")]
     pub const RSA_WITH_AES_128_CBC_SHA: Self = Self(0x002F);
@@ -129,15 +129,15 @@ impl tls_ciphersuite_t {
     pub const RSA_WITH_AES_128_CBC_SHA256: Self = Self(0x003C);
     #[doc(alias = "tls_ciphersuite_RSA_WITH_AES_256_CBC_SHA256")]
     pub const RSA_WITH_AES_256_CBC_SHA256: Self = Self(0x003D);
-    #[deprecated]
     #[doc(alias = "tls_ciphersuite_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA")]
+    #[deprecated]
     pub const ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA: Self = Self(0xC008);
     #[doc(alias = "tls_ciphersuite_ECDHE_ECDSA_WITH_AES_128_CBC_SHA")]
     pub const ECDHE_ECDSA_WITH_AES_128_CBC_SHA: Self = Self(0xC009);
     #[doc(alias = "tls_ciphersuite_ECDHE_ECDSA_WITH_AES_256_CBC_SHA")]
     pub const ECDHE_ECDSA_WITH_AES_256_CBC_SHA: Self = Self(0xC00A);
-    #[deprecated]
     #[doc(alias = "tls_ciphersuite_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA")]
+    #[deprecated]
     pub const ECDHE_RSA_WITH_3DES_EDE_CBC_SHA: Self = Self(0xC012);
     #[doc(alias = "tls_ciphersuite_ECDHE_RSA_WITH_AES_128_CBC_SHA")]
     pub const ECDHE_RSA_WITH_AES_128_CBC_SHA: Self = Self(0xC013);
@@ -223,44 +223,44 @@ unsafe impl RefEncode for tls_ciphersuite_group_t {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SSLProtocol(pub c_int);
 impl SSLProtocol {
-    #[deprecated]
     #[doc(alias = "kSSLProtocolUnknown")]
+    #[deprecated]
     pub const SSLProtocolUnknown: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "kTLSProtocol1")]
+    #[deprecated]
     pub const TLSProtocol1: Self = Self(4);
-    #[deprecated]
     #[doc(alias = "kTLSProtocol11")]
+    #[deprecated]
     pub const TLSProtocol11: Self = Self(7);
-    #[deprecated]
     #[doc(alias = "kTLSProtocol12")]
+    #[deprecated]
     pub const TLSProtocol12: Self = Self(8);
-    #[deprecated]
     #[doc(alias = "kDTLSProtocol1")]
+    #[deprecated]
     pub const DTLSProtocol1: Self = Self(9);
-    #[deprecated]
     #[doc(alias = "kTLSProtocol13")]
+    #[deprecated]
     pub const TLSProtocol13: Self = Self(10);
-    #[deprecated]
     #[doc(alias = "kDTLSProtocol12")]
+    #[deprecated]
     pub const DTLSProtocol12: Self = Self(11);
-    #[deprecated]
     #[doc(alias = "kTLSProtocolMaxSupported")]
+    #[deprecated]
     pub const TLSProtocolMaxSupported: Self = Self(999);
-    #[deprecated]
     #[doc(alias = "kSSLProtocol2")]
+    #[deprecated]
     pub const SSLProtocol2: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "kSSLProtocol3")]
+    #[deprecated]
     pub const SSLProtocol3: Self = Self(2);
-    #[deprecated]
     #[doc(alias = "kSSLProtocol3Only")]
+    #[deprecated]
     pub const SSLProtocol3Only: Self = Self(3);
-    #[deprecated]
     #[doc(alias = "kTLSProtocol1Only")]
-    pub const TLSProtocol1Only: Self = Self(5);
     #[deprecated]
+    pub const TLSProtocol1Only: Self = Self(5);
     #[doc(alias = "kSSLProtocolAll")]
+    #[deprecated]
     pub const SSLProtocolAll: Self = Self(6);
 }
 
@@ -282,9 +282,9 @@ impl sec_trust {
     ///
     ///
     /// Returns: a `sec_trust_t` instance.
+    #[doc(alias = "sec_trust_create")]
     #[cfg(feature = "SecTrust")]
     #[inline]
-    #[doc(alias = "sec_trust_create")]
     pub unsafe fn create(trust: &SecTrust) -> sec_trust_t {
         extern "C-unwind" {
             fn sec_trust_create(trust: &SecTrust) -> sec_trust_t;
@@ -299,9 +299,9 @@ impl sec_trust {
     ///
     ///
     /// Returns: The underlying `SecTrustRef` instance.
+    #[doc(alias = "sec_trust_copy_ref")]
     #[cfg(feature = "SecTrust")]
     #[inline]
-    #[doc(alias = "sec_trust_copy_ref")]
     pub unsafe fn r#ref(trust: sec_trust_t) -> CFRetained<SecTrust> {
         extern "C-unwind" {
             fn sec_trust_copy_ref(trust: sec_trust_t) -> Option<NonNull<SecTrust>>;
@@ -321,9 +321,9 @@ impl sec_identity {
     ///
     ///
     /// Returns: a `sec_identity_t` instance.
+    #[doc(alias = "sec_identity_create")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "sec_identity_create")]
     pub unsafe fn create(identity: &SecIdentity) -> sec_identity_t {
         extern "C-unwind" {
             fn sec_identity_create(identity: &SecIdentity) -> sec_identity_t;
@@ -342,9 +342,9 @@ impl sec_identity {
     ///
     ///
     /// Returns: a `sec_identity_t` instance.
+    #[doc(alias = "sec_identity_create_with_certificates")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "sec_identity_create_with_certificates")]
     pub unsafe fn create_with_certificates(
         identity: &SecIdentity,
         certificates: &CFArray,
@@ -368,9 +368,9 @@ impl sec_identity {
     ///
     ///
     /// Returns: Returns true if the peer certificates were accessible, false otherwise.
+    #[doc(alias = "sec_identity_access_certificates")]
     #[cfg(feature = "block2")]
     #[inline]
-    #[doc(alias = "sec_identity_access_certificates")]
     pub unsafe fn access_certificates(
         identity: sec_identity_t,
         handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
@@ -391,9 +391,9 @@ impl sec_identity {
     ///
     ///
     /// Returns: The underlying `SecIdentityRef` instance.
+    #[doc(alias = "sec_identity_copy_ref")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "sec_identity_copy_ref")]
     pub unsafe fn r#ref(identity: sec_identity_t) -> Option<CFRetained<SecIdentity>> {
         extern "C-unwind" {
             fn sec_identity_copy_ref(identity: sec_identity_t) -> Option<NonNull<SecIdentity>>;
@@ -409,8 +409,8 @@ impl sec_identity {
     ///
     ///
     /// Returns: The underlying `CFArrayRef` container with `SecCertificateRef` instances.
-    #[inline]
     #[doc(alias = "sec_identity_copy_certificates_ref")]
+    #[inline]
     pub unsafe fn certificates_ref(identity: sec_identity_t) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn sec_identity_copy_certificates_ref(
@@ -430,9 +430,9 @@ impl sec_certificate {
     ///
     ///
     /// Returns: a `sec_certificate_t` instance.
+    #[doc(alias = "sec_certificate_create")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "sec_certificate_create")]
     pub unsafe fn create(certificate: &SecCertificate) -> sec_certificate_t {
         extern "C-unwind" {
             fn sec_certificate_create(certificate: &SecCertificate) -> sec_certificate_t;
@@ -447,9 +447,9 @@ impl sec_certificate {
     ///
     ///
     /// Returns: The underlying `SecCertificateRef` instance.
+    #[doc(alias = "sec_certificate_copy_ref")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "sec_certificate_copy_ref")]
     pub unsafe fn r#ref(certificate: sec_certificate_t) -> CFRetained<SecCertificate> {
         extern "C-unwind" {
             fn sec_certificate_copy_ref(

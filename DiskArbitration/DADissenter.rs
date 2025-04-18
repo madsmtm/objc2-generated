@@ -68,9 +68,9 @@ impl DADissenter {
     /// Parameter `string`: The return code string.  Pass NULL for no reason.
     ///
     /// Returns: A reference to a new DADissenter.
+    #[doc(alias = "DADissenterCreate")]
     #[cfg(feature = "libc")]
     #[inline]
-    #[doc(alias = "DADissenterCreate")]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         status: DAReturn,
@@ -94,9 +94,9 @@ impl DADissenter {
     /// Parameter `dissenter`: The DADissenter for which to obtain the return code.
     ///
     /// Returns: The return code.  A BSD return code, if applicable, is encoded with unix_err().
+    #[doc(alias = "DADissenterGetStatus")]
     #[cfg(feature = "libc")]
     #[inline]
-    #[doc(alias = "DADissenterGetStatus")]
     pub unsafe fn status(self: &DADissenter) -> DAReturn {
         extern "C-unwind" {
             fn DADissenterGetStatus(dissenter: &DADissenter) -> DAReturn;
@@ -109,8 +109,8 @@ impl DADissenter {
     /// Parameter `dissenter`: The DADissenter for which to obtain the return code string.
     ///
     /// Returns: The return code string.
-    #[inline]
     #[doc(alias = "DADissenterGetStatusString")]
+    #[inline]
     pub unsafe fn status_string(self: &DADissenter) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn DADissenterGetStatusString(dissenter: &DADissenter) -> Option<NonNull<CFString>>;

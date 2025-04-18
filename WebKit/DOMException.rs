@@ -17,50 +17,50 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct DOMExceptionCode(pub c_uint);
 impl DOMExceptionCode {
-    #[deprecated]
     #[doc(alias = "DOM_INDEX_SIZE_ERR")]
+    #[deprecated]
     pub const INDEX_SIZE_ERR: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "DOM_DOMSTRING_SIZE_ERR")]
+    #[deprecated]
     pub const DOMSTRING_SIZE_ERR: Self = Self(2);
-    #[deprecated]
     #[doc(alias = "DOM_HIERARCHY_REQUEST_ERR")]
+    #[deprecated]
     pub const HIERARCHY_REQUEST_ERR: Self = Self(3);
-    #[deprecated]
     #[doc(alias = "DOM_WRONG_DOCUMENT_ERR")]
+    #[deprecated]
     pub const WRONG_DOCUMENT_ERR: Self = Self(4);
-    #[deprecated]
     #[doc(alias = "DOM_INVALID_CHARACTER_ERR")]
+    #[deprecated]
     pub const INVALID_CHARACTER_ERR: Self = Self(5);
-    #[deprecated]
     #[doc(alias = "DOM_NO_DATA_ALLOWED_ERR")]
+    #[deprecated]
     pub const NO_DATA_ALLOWED_ERR: Self = Self(6);
-    #[deprecated]
     #[doc(alias = "DOM_NO_MODIFICATION_ALLOWED_ERR")]
+    #[deprecated]
     pub const NO_MODIFICATION_ALLOWED_ERR: Self = Self(7);
-    #[deprecated]
     #[doc(alias = "DOM_NOT_FOUND_ERR")]
+    #[deprecated]
     pub const NOT_FOUND_ERR: Self = Self(8);
-    #[deprecated]
     #[doc(alias = "DOM_NOT_SUPPORTED_ERR")]
+    #[deprecated]
     pub const NOT_SUPPORTED_ERR: Self = Self(9);
-    #[deprecated]
     #[doc(alias = "DOM_INUSE_ATTRIBUTE_ERR")]
+    #[deprecated]
     pub const INUSE_ATTRIBUTE_ERR: Self = Self(10);
-    #[deprecated]
     #[doc(alias = "DOM_INVALID_STATE_ERR")]
+    #[deprecated]
     pub const INVALID_STATE_ERR: Self = Self(11);
-    #[deprecated]
     #[doc(alias = "DOM_SYNTAX_ERR")]
+    #[deprecated]
     pub const SYNTAX_ERR: Self = Self(12);
-    #[deprecated]
     #[doc(alias = "DOM_INVALID_MODIFICATION_ERR")]
+    #[deprecated]
     pub const INVALID_MODIFICATION_ERR: Self = Self(13);
-    #[deprecated]
     #[doc(alias = "DOM_NAMESPACE_ERR")]
-    pub const NAMESPACE_ERR: Self = Self(14);
     #[deprecated]
+    pub const NAMESPACE_ERR: Self = Self(14);
     #[doc(alias = "DOM_INVALID_ACCESS_ERR")]
+    #[deprecated]
     pub const INVALID_ACCESS_ERR: Self = Self(15);
 }
 

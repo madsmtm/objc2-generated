@@ -908,14 +908,14 @@ impl AVPlayer {
 pub struct AVPlayerHDRMode(pub NSInteger);
 bitflags::bitflags! {
     impl AVPlayerHDRMode: NSInteger {
-#[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
         #[doc(alias = "AVPlayerHDRModeHLG")]
+#[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
         const HLG = 0x1;
-#[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
         #[doc(alias = "AVPlayerHDRModeHDR10")]
-        const HDR10 = 0x2;
 #[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
+        const HDR10 = 0x2;
         #[doc(alias = "AVPlayerHDRModeDolbyVision")]
+#[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
         const DolbyVision = 0x4;
     }
 }

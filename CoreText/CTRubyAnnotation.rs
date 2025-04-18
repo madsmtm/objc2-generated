@@ -227,8 +227,8 @@ impl CTRubyAnnotation {
     ///
     ///
     /// Returns: This function will return a reference to a CTRubyAnnotation object.
-    #[inline]
     #[doc(alias = "CTRubyAnnotationCreateWithAttributes")]
+    #[inline]
     pub unsafe fn with_attributes(
         alignment: CTRubyAlignment,
         overhang: CTRubyOverhang,
@@ -263,8 +263,8 @@ impl CTRubyAnnotation {
     /// function will return valid reference to an immutable
     /// CTRubyAnnotation object that is a copy of the one passed into
     /// "rubyAnnotation".
-    #[inline]
     #[doc(alias = "CTRubyAnnotationCreateCopy")]
+    #[inline]
     pub unsafe fn copy(self: &CTRubyAnnotation) -> CFRetained<CTRubyAnnotation> {
         extern "C-unwind" {
             fn CTRubyAnnotationCreateCopy(
@@ -285,8 +285,8 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its alignment. Otherwise it will return kCTRubyAlignmentInvalid.
-    #[inline]
     #[doc(alias = "CTRubyAnnotationGetAlignment")]
+    #[inline]
     pub unsafe fn alignment(self: &CTRubyAnnotation) -> CTRubyAlignment {
         extern "C-unwind" {
             fn CTRubyAnnotationGetAlignment(ruby_annotation: &CTRubyAnnotation) -> CTRubyAlignment;
@@ -302,8 +302,8 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its overhang value. Otherwise it will return kCTRubyOverhangInvalid.
-    #[inline]
     #[doc(alias = "CTRubyAnnotationGetOverhang")]
+    #[inline]
     pub unsafe fn overhang(self: &CTRubyAnnotation) -> CTRubyOverhang {
         extern "C-unwind" {
             fn CTRubyAnnotationGetOverhang(ruby_annotation: &CTRubyAnnotation) -> CTRubyOverhang;
@@ -319,8 +319,8 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its sizeFactor. Otherwise it will return 0.
-    #[inline]
     #[doc(alias = "CTRubyAnnotationGetSizeFactor")]
+    #[inline]
     pub unsafe fn size_factor(self: &CTRubyAnnotation) -> CGFloat {
         extern "C-unwind" {
             fn CTRubyAnnotationGetSizeFactor(ruby_annotation: &CTRubyAnnotation) -> CGFloat;
@@ -339,8 +339,8 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference and the position are valid, then this
     /// function will return a CFStringRef for the text. Otherwise it will return NULL.
-    #[inline]
     #[doc(alias = "CTRubyAnnotationGetTextForPosition")]
+    #[inline]
     pub unsafe fn text_for_position(
         self: &CTRubyAnnotation,
         position: CTRubyPosition,

@@ -22,8 +22,8 @@ bitflags::bitflags! {
         const JSON5Allowed = 1<<3;
         #[doc(alias = "NSJSONReadingTopLevelDictionaryAssumed")]
         const TopLevelDictionaryAssumed = 1<<4;
-#[deprecated]
         #[doc(alias = "NSJSONReadingAllowFragments")]
+#[deprecated]
         const AllowFragments = NSJSONReadingOptions::FragmentsAllowed.0;
     }
 }

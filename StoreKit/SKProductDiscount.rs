@@ -13,14 +13,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKProductDiscountPaymentMode(pub NSUInteger);
 impl SKProductDiscountPaymentMode {
-    #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     #[doc(alias = "SKProductDiscountPaymentModePayAsYouGo")]
+    #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     pub const PayAsYouGo: Self = Self(0);
-    #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     #[doc(alias = "SKProductDiscountPaymentModePayUpFront")]
-    pub const PayUpFront: Self = Self(1);
     #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
+    pub const PayUpFront: Self = Self(1);
     #[doc(alias = "SKProductDiscountPaymentModeFreeTrial")]
+    #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     pub const FreeTrial: Self = Self(2);
 }
 
@@ -39,11 +39,11 @@ unsafe impl RefEncode for SKProductDiscountPaymentMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKProductDiscountType(pub NSUInteger);
 impl SKProductDiscountType {
-    #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
     #[doc(alias = "SKProductDiscountTypeIntroductory")]
-    pub const Introductory: Self = Self(0);
     #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
+    pub const Introductory: Self = Self(0);
     #[doc(alias = "SKProductDiscountTypeSubscription")]
+    #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
     pub const Subscription: Self = Self(1);
 }
 

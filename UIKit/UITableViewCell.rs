@@ -46,8 +46,8 @@ impl UITableViewCellSeparatorStyle {
     pub const None: Self = Self(0);
     #[doc(alias = "UITableViewCellSeparatorStyleSingleLine")]
     pub const SingleLine: Self = Self(1);
-    #[deprecated = "Use UITableViewCellSeparatorStyleSingleLine for a single line separator."]
     #[doc(alias = "UITableViewCellSeparatorStyleSingleLineEtched")]
+    #[deprecated = "Use UITableViewCellSeparatorStyleSingleLine for a single line separator."]
     pub const SingleLineEtched: Self = Self(2);
 }
 

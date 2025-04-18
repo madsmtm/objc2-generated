@@ -306,17 +306,17 @@ unsafe impl RefEncode for MTLBindingType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLArgumentType(pub NSUInteger);
 impl MTLArgumentType {
-    #[deprecated]
     #[doc(alias = "MTLArgumentTypeBuffer")]
+    #[deprecated]
     pub const Buffer: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "MTLArgumentTypeThreadgroupMemory")]
+    #[deprecated]
     pub const ThreadgroupMemory: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "MTLArgumentTypeTexture")]
-    pub const Texture: Self = Self(2);
     #[deprecated]
+    pub const Texture: Self = Self(2);
     #[doc(alias = "MTLArgumentTypeSampler")]
+    #[deprecated]
     pub const Sampler: Self = Self(3);
     #[doc(alias = "MTLArgumentTypeImageblockData")]
     pub const ImageblockData: Self = Self(16);

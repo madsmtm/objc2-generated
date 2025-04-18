@@ -552,11 +552,11 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPrintingOrientation(pub NSUInteger);
 impl NSPrintingOrientation {
-    #[deprecated]
     #[doc(alias = "NSPortraitOrientation")]
-    pub const PortraitOrientation: Self = Self(0);
     #[deprecated]
+    pub const PortraitOrientation: Self = Self(0);
     #[doc(alias = "NSLandscapeOrientation")]
+    #[deprecated]
     pub const LandscapeOrientation: Self = Self(1);
 }
 

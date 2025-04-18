@@ -14,9 +14,9 @@ mod private_NSObjectWebPlugInContainer {
 }
 
 /// Category "WebPlugInContainer" on [`NSObject`].
-#[doc(alias = "WebPlugInContainer")]
 /// This informal protocol enables a plug-in to request that its containing application
 /// perform certain operations.
+#[doc(alias = "WebPlugInContainer")]
 pub unsafe trait NSObjectWebPlugInContainer:
     ClassType + Sized + private_NSObjectWebPlugInContainer::Sealed
 {

@@ -15,12 +15,12 @@ use crate::*;
 pub struct NSPopoverAppearance(pub NSInteger);
 impl NSPopoverAppearance {
     /// The popover will use the default, light content appearance.
-    #[deprecated]
     #[doc(alias = "NSPopoverAppearanceMinimal")]
+    #[deprecated]
     pub const Minimal: Self = Self(0);
     /// The popover will draw with a HUD appearance.
-    #[deprecated]
     #[doc(alias = "NSPopoverAppearanceHUD")]
+    #[deprecated]
     pub const HUD: Self = Self(1);
 }
 

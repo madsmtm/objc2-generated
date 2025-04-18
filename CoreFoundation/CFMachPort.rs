@@ -74,8 +74,8 @@ unsafe impl ConcreteType for CFMachPort {
 }
 
 impl CFMachPort {
-    #[inline]
     #[doc(alias = "CFMachPortCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         callout: CFMachPortCallBack,
@@ -94,9 +94,9 @@ impl CFMachPort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFMachPortCreateWithPort")]
     #[cfg(feature = "libc")]
     #[inline]
-    #[doc(alias = "CFMachPortCreateWithPort")]
     pub unsafe fn with_port(
         allocator: Option<&CFAllocator>,
         port_num: libc::mach_port_t,
@@ -119,9 +119,9 @@ impl CFMachPort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFMachPortGetPort")]
     #[cfg(feature = "libc")]
     #[inline]
-    #[doc(alias = "CFMachPortGetPort")]
     pub fn port(self: &CFMachPort) -> libc::mach_port_t {
         extern "C-unwind" {
             fn CFMachPortGetPort(port: &CFMachPort) -> libc::mach_port_t;
@@ -129,8 +129,8 @@ impl CFMachPort {
         unsafe { CFMachPortGetPort(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFMachPortGetContext")]
+    #[inline]
     pub unsafe fn context(self: &CFMachPort, context: *mut CFMachPortContext) {
         extern "C-unwind" {
             fn CFMachPortGetContext(port: &CFMachPort, context: *mut CFMachPortContext);
@@ -138,8 +138,8 @@ impl CFMachPort {
         unsafe { CFMachPortGetContext(self, context) }
     }
 
-    #[inline]
     #[doc(alias = "CFMachPortInvalidate")]
+    #[inline]
     pub fn invalidate(self: &CFMachPort) {
         extern "C-unwind" {
             fn CFMachPortInvalidate(port: &CFMachPort);
@@ -147,8 +147,8 @@ impl CFMachPort {
         unsafe { CFMachPortInvalidate(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFMachPortIsValid")]
+    #[inline]
     pub fn is_valid(self: &CFMachPort) -> bool {
         extern "C-unwind" {
             fn CFMachPortIsValid(port: &CFMachPort) -> Boolean;
@@ -157,8 +157,8 @@ impl CFMachPort {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CFMachPortGetInvalidationCallBack")]
+    #[inline]
     pub fn invalidation_call_back(self: &CFMachPort) -> CFMachPortInvalidationCallBack {
         extern "C-unwind" {
             fn CFMachPortGetInvalidationCallBack(
@@ -168,8 +168,8 @@ impl CFMachPort {
         unsafe { CFMachPortGetInvalidationCallBack(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFMachPortSetInvalidationCallBack")]
+    #[inline]
     pub unsafe fn set_invalidation_call_back(
         self: &CFMachPort,
         callout: CFMachPortInvalidationCallBack,
@@ -183,9 +183,9 @@ impl CFMachPort {
         unsafe { CFMachPortSetInvalidationCallBack(self, callout) }
     }
 
+    #[doc(alias = "CFMachPortCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
-    #[doc(alias = "CFMachPortCreateRunLoopSource")]
     pub fn new_run_loop_source(
         allocator: Option<&CFAllocator>,
         port: Option<&CFMachPort>,

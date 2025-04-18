@@ -55,8 +55,8 @@ impl NSSaveOperationType {
     pub const AutosaveElsewhereOperation: Self = Self(3);
     #[doc(alias = "NSAutosaveAsOperation")]
     pub const AutosaveAsOperation: Self = Self(5);
-    #[deprecated = "Use NSAutosaveElsewhereOperation instead"]
     #[doc(alias = "NSAutosaveOperation")]
+    #[deprecated = "Use NSAutosaveElsewhereOperation instead"]
     pub const AutosaveOperation: Self = Self(3);
 }
 

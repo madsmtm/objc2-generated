@@ -1930,8 +1930,8 @@ impl NSURLSessionTaskMetricsResourceFetchType {
     pub const Unknown: Self = Self(0);
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeNetworkLoad")]
     pub const NetworkLoad: Self = Self(1);
-    #[deprecated = "Server push is no longer supported as of iOS 17 and aligned releases"]
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeServerPush")]
+    #[deprecated = "Server push is no longer supported as of iOS 17 and aligned releases"]
     pub const ServerPush: Self = Self(2);
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeLocalCache")]
     pub const LocalCache: Self = Self(3);

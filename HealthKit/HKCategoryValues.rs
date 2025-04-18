@@ -266,20 +266,20 @@ unsafe impl RefEncode for HKCategoryValueLowCardioFitnessEvent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueMenstrualFlow(pub NSInteger);
 impl HKCategoryValueMenstrualFlow {
-    #[deprecated]
     #[doc(alias = "HKCategoryValueMenstrualFlowUnspecified")]
+    #[deprecated]
     pub const Unspecified: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "HKCategoryValueMenstrualFlowLight")]
+    #[deprecated]
     pub const Light: Self = Self(2);
-    #[deprecated]
     #[doc(alias = "HKCategoryValueMenstrualFlowMedium")]
+    #[deprecated]
     pub const Medium: Self = Self(3);
-    #[deprecated]
     #[doc(alias = "HKCategoryValueMenstrualFlowHeavy")]
-    pub const Heavy: Self = Self(4);
     #[deprecated]
+    pub const Heavy: Self = Self(4);
     #[doc(alias = "HKCategoryValueMenstrualFlowNone")]
+    #[deprecated]
     pub const None: Self = Self(5);
 }
 
@@ -307,8 +307,8 @@ impl HKCategoryValueOvulationTestResult {
     pub const Negative: Self = Self(1);
     #[doc(alias = "HKCategoryValueOvulationTestResultLuteinizingHormoneSurge")]
     pub const LuteinizingHormoneSurge: Self = Self(2);
-    #[deprecated]
     #[doc(alias = "HKCategoryValueOvulationTestResultPositive")]
+    #[deprecated]
     pub const Positive: Self = Self(HKCategoryValueOvulationTestResult::LuteinizingHormoneSurge.0);
     #[doc(alias = "HKCategoryValueOvulationTestResultIndeterminate")]
     pub const Indeterminate: Self = Self(3);
@@ -451,8 +451,8 @@ impl HKCategoryValueSleepAnalysis {
     pub const InBed: Self = Self(0);
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleepUnspecified")]
     pub const AsleepUnspecified: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleep")]
+    #[deprecated]
     pub const Asleep: Self = Self(HKCategoryValueSleepAnalysis::AsleepUnspecified.0);
     #[doc(alias = "HKCategoryValueSleepAnalysisAwake")]
     pub const Awake: Self = Self(2);
@@ -509,8 +509,8 @@ unsafe impl RefEncode for HKCategoryValueVaginalBleeding {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueAudioExposureEvent(pub NSInteger);
 impl HKCategoryValueAudioExposureEvent {
-    #[deprecated]
     #[doc(alias = "HKCategoryValueAudioExposureEventLoudEnvironment")]
+    #[deprecated]
     pub const LoudEnvironment: Self = Self(1);
 }
 

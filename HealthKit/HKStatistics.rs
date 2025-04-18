@@ -36,8 +36,8 @@ bitflags::bitflags! {
         const CumulativeSum = 1<<4;
         #[doc(alias = "HKStatisticsOptionMostRecent")]
         const MostRecent = 1<<5;
-#[deprecated]
         #[doc(alias = "HKStatisticsOptionDiscreteMostRecent")]
+#[deprecated]
         const DiscreteMostRecent = HKStatisticsOptions::MostRecent.0;
         #[doc(alias = "HKStatisticsOptionDuration")]
         const Duration = 1<<6;

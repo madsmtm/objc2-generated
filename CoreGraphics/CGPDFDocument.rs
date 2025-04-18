@@ -82,9 +82,9 @@ extern "C" {
 }
 
 impl CGPDFDocument {
+    #[doc(alias = "CGPDFDocumentCreateWithProvider")]
     #[cfg(feature = "CGDataProvider")]
     #[inline]
-    #[doc(alias = "CGPDFDocumentCreateWithProvider")]
     pub unsafe fn with_provider(
         provider: Option<&CGDataProvider>,
     ) -> Option<CFRetained<CGPDFDocument>> {
@@ -97,8 +97,8 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGPDFDocumentCreateWithURL")]
+    #[inline]
     pub unsafe fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGPDFDocument>> {
         extern "C-unwind" {
             fn CGPDFDocumentCreateWithURL(url: Option<&CFURL>) -> Option<NonNull<CGPDFDocument>>;
@@ -107,8 +107,8 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGPDFDocumentGetVersion")]
+    #[inline]
     pub unsafe fn version(
         document: Option<&CGPDFDocument>,
         major_version: NonNull<c_int>,
@@ -124,8 +124,8 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetVersion(document, major_version, minor_version) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFDocumentIsEncrypted")]
+    #[inline]
     pub unsafe fn is_encrypted(document: Option<&CGPDFDocument>) -> bool {
         extern "C-unwind" {
             fn CGPDFDocumentIsEncrypted(document: Option<&CGPDFDocument>) -> bool;
@@ -133,8 +133,8 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentIsEncrypted(document) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFDocumentUnlockWithPassword")]
+    #[inline]
     pub unsafe fn unlock_with_password(
         document: Option<&CGPDFDocument>,
         password: NonNull<c_char>,
@@ -148,8 +148,8 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentUnlockWithPassword(document, password) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFDocumentIsUnlocked")]
+    #[inline]
     pub unsafe fn is_unlocked(document: Option<&CGPDFDocument>) -> bool {
         extern "C-unwind" {
             fn CGPDFDocumentIsUnlocked(document: Option<&CGPDFDocument>) -> bool;
@@ -157,8 +157,8 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentIsUnlocked(document) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFDocumentAllowsPrinting")]
+    #[inline]
     pub unsafe fn allows_printing(document: Option<&CGPDFDocument>) -> bool {
         extern "C-unwind" {
             fn CGPDFDocumentAllowsPrinting(document: Option<&CGPDFDocument>) -> bool;
@@ -166,8 +166,8 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentAllowsPrinting(document) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFDocumentAllowsCopying")]
+    #[inline]
     pub unsafe fn allows_copying(document: Option<&CGPDFDocument>) -> bool {
         extern "C-unwind" {
             fn CGPDFDocumentAllowsCopying(document: Option<&CGPDFDocument>) -> bool;
@@ -175,8 +175,8 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentAllowsCopying(document) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFDocumentGetNumberOfPages")]
+    #[inline]
     pub unsafe fn number_of_pages(document: Option<&CGPDFDocument>) -> usize {
         extern "C-unwind" {
             fn CGPDFDocumentGetNumberOfPages(document: Option<&CGPDFDocument>) -> usize;
@@ -184,9 +184,9 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetNumberOfPages(document) }
     }
 
+    #[doc(alias = "CGPDFDocumentGetPage")]
     #[cfg(feature = "CGPDFPage")]
     #[inline]
-    #[doc(alias = "CGPDFDocumentGetPage")]
     pub unsafe fn page(
         document: Option<&CGPDFDocument>,
         page_number: usize,
@@ -201,9 +201,9 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    #[doc(alias = "CGPDFDocumentGetCatalog")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
-    #[doc(alias = "CGPDFDocumentGetCatalog")]
     pub unsafe fn catalog(document: Option<&CGPDFDocument>) -> CGPDFDictionaryRef {
         extern "C-unwind" {
             fn CGPDFDocumentGetCatalog(document: Option<&CGPDFDocument>) -> CGPDFDictionaryRef;
@@ -211,9 +211,9 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetCatalog(document) }
     }
 
+    #[doc(alias = "CGPDFDocumentGetInfo")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
-    #[doc(alias = "CGPDFDocumentGetInfo")]
     pub unsafe fn info(document: Option<&CGPDFDocument>) -> CGPDFDictionaryRef {
         extern "C-unwind" {
             fn CGPDFDocumentGetInfo(document: Option<&CGPDFDocument>) -> CGPDFDictionaryRef;
@@ -221,9 +221,9 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetInfo(document) }
     }
 
+    #[doc(alias = "CGPDFDocumentGetID")]
     #[cfg(feature = "CGPDFArray")]
     #[inline]
-    #[doc(alias = "CGPDFDocumentGetID")]
     pub unsafe fn id(document: Option<&CGPDFDocument>) -> CGPDFArrayRef {
         extern "C-unwind" {
             fn CGPDFDocumentGetID(document: Option<&CGPDFDocument>) -> CGPDFArrayRef;
@@ -244,8 +244,8 @@ unsafe impl ConcreteType for CGPDFDocument {
 }
 
 impl CGPDFDocument {
-    #[inline]
     #[doc(alias = "CGPDFDocumentGetOutline")]
+    #[inline]
     pub unsafe fn outline(self: &CGPDFDocument) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CGPDFDocumentGetOutline(document: &CGPDFDocument) -> Option<NonNull<CFDictionary>>;
@@ -254,8 +254,8 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGPDFDocumentGetAccessPermissions")]
+    #[inline]
     pub unsafe fn access_permissions(self: &CGPDFDocument) -> CGPDFAccessPermissions {
         extern "C-unwind" {
             fn CGPDFDocumentGetAccessPermissions(
@@ -265,9 +265,9 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetAccessPermissions(self) }
     }
 
+    #[doc(alias = "CGPDFDocumentGetMediaBox")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "CGPDFDocumentGetMediaBox")]
     pub unsafe fn media_box(document: Option<&CGPDFDocument>, page: c_int) -> CGRect {
         extern "C-unwind" {
             fn CGPDFDocumentGetMediaBox(document: Option<&CGPDFDocument>, page: c_int) -> CGRect;
@@ -275,9 +275,9 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetMediaBox(document, page) }
     }
 
+    #[doc(alias = "CGPDFDocumentGetCropBox")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "CGPDFDocumentGetCropBox")]
     pub unsafe fn crop_box(document: Option<&CGPDFDocument>, page: c_int) -> CGRect {
         extern "C-unwind" {
             fn CGPDFDocumentGetCropBox(document: Option<&CGPDFDocument>, page: c_int) -> CGRect;
@@ -285,9 +285,9 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetCropBox(document, page) }
     }
 
+    #[doc(alias = "CGPDFDocumentGetBleedBox")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "CGPDFDocumentGetBleedBox")]
     pub unsafe fn bleed_box(document: Option<&CGPDFDocument>, page: c_int) -> CGRect {
         extern "C-unwind" {
             fn CGPDFDocumentGetBleedBox(document: Option<&CGPDFDocument>, page: c_int) -> CGRect;
@@ -295,9 +295,9 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetBleedBox(document, page) }
     }
 
+    #[doc(alias = "CGPDFDocumentGetTrimBox")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "CGPDFDocumentGetTrimBox")]
     pub unsafe fn trim_box(document: Option<&CGPDFDocument>, page: c_int) -> CGRect {
         extern "C-unwind" {
             fn CGPDFDocumentGetTrimBox(document: Option<&CGPDFDocument>, page: c_int) -> CGRect;
@@ -305,9 +305,9 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetTrimBox(document, page) }
     }
 
+    #[doc(alias = "CGPDFDocumentGetArtBox")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "CGPDFDocumentGetArtBox")]
     pub unsafe fn art_box(document: Option<&CGPDFDocument>, page: c_int) -> CGRect {
         extern "C-unwind" {
             fn CGPDFDocumentGetArtBox(document: Option<&CGPDFDocument>, page: c_int) -> CGRect;
@@ -315,9 +315,9 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetArtBox(document, page) }
     }
 
+    #[doc(alias = "CGPDFDocumentGetRotationAngle")]
     #[deprecated = "No longer supported"]
     #[inline]
-    #[doc(alias = "CGPDFDocumentGetRotationAngle")]
     pub unsafe fn rotation_angle(document: Option<&CGPDFDocument>, page: c_int) -> c_int {
         extern "C-unwind" {
             fn CGPDFDocumentGetRotationAngle(

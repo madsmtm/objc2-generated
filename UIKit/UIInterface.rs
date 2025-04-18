@@ -17,11 +17,11 @@ impl UIBarStyle {
     pub const Default: Self = Self(0);
     #[doc(alias = "UIBarStyleBlack")]
     pub const Black: Self = Self(1);
-    #[deprecated = "Use UIBarStyleBlack instead."]
     #[doc(alias = "UIBarStyleBlackOpaque")]
+    #[deprecated = "Use UIBarStyleBlack instead."]
     pub const BlackOpaque: Self = Self(1);
-    #[deprecated = "Use UIBarStyleBlack and set the translucent property to YES instead."]
     #[doc(alias = "UIBarStyleBlackTranslucent")]
+    #[deprecated = "Use UIBarStyleBlack and set the translucent property to YES instead."]
     pub const BlackTranslucent: Self = Self(2);
 }
 

@@ -19,17 +19,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UISegmentedControlStyle(pub NSInteger);
 impl UISegmentedControlStyle {
-    #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     #[doc(alias = "UISegmentedControlStylePlain")]
+    #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     pub const Plain: Self = Self(0);
-    #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     #[doc(alias = "UISegmentedControlStyleBordered")]
+    #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     pub const Bordered: Self = Self(1);
-    #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     #[doc(alias = "UISegmentedControlStyleBar")]
-    pub const Bar: Self = Self(2);
     #[deprecated = "The segmentedControlStyle property no longer has any effect"]
+    pub const Bar: Self = Self(2);
     #[doc(alias = "UISegmentedControlStyleBezeled")]
+    #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     pub const Bezeled: Self = Self(3);
 }
 

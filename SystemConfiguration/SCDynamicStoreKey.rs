@@ -25,8 +25,8 @@ impl SCDynamicStore {
     /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
     ///
     /// Returns: Returns a string containing the formatted key.
-    #[inline]
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkGlobalEntity")]
+    #[inline]
     pub fn key_create_network_global_entity(
         allocator: Option<&CFAllocator>,
         domain: &CFString,
@@ -60,8 +60,8 @@ impl SCDynamicStore {
     /// actual state (kSCDynamicStoreDomainState).
     ///
     /// Returns: Returns a string containing the formatted key.
-    #[inline]
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkInterface")]
+    #[inline]
     pub fn key_create_network_interface(
         allocator: Option<&CFAllocator>,
         domain: &CFString,
@@ -99,8 +99,8 @@ impl SCDynamicStore {
     /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
     ///
     /// Returns: Returns a string containing the formatted key.
-    #[inline]
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkInterfaceEntity")]
+    #[inline]
     pub fn key_create_network_interface_entity(
         allocator: Option<&CFAllocator>,
         domain: &CFString,
@@ -144,8 +144,8 @@ impl SCDynamicStore {
     /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
     ///
     /// Returns: Returns a string containing the formatted key.
-    #[inline]
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkServiceEntity")]
+    #[inline]
     pub fn key_create_network_service_entity(
         allocator: Option<&CFAllocator>,
         domain: &CFString,
@@ -180,8 +180,8 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns a notification string for the current computer or
     /// host name.
-    #[inline]
     #[doc(alias = "SCDynamicStoreKeyCreateComputerName")]
+    #[inline]
     pub fn key_create_computer_name(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn SCDynamicStoreKeyCreateComputerName(
@@ -205,8 +205,8 @@ impl SCDynamicStore {
     /// a valid CFAllocator, the behavior is undefined.
     ///
     /// Returns: Returns a notification string for the current console user.
-    #[inline]
     #[doc(alias = "SCDynamicStoreKeyCreateConsoleUser")]
+    #[inline]
     pub fn key_create_console_user(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn SCDynamicStoreKeyCreateConsoleUser(
@@ -231,8 +231,8 @@ impl SCDynamicStore {
     /// a valid CFAllocator, the behavior is undefined.
     ///
     /// Returns: Returns a notification string for the HostNames entity.
-    #[inline]
     #[doc(alias = "SCDynamicStoreKeyCreateHostNames")]
+    #[inline]
     pub fn key_create_host_names(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn SCDynamicStoreKeyCreateHostNames(
@@ -257,8 +257,8 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns a notification string for the current location
     /// identifier.
-    #[inline]
     #[doc(alias = "SCDynamicStoreKeyCreateLocation")]
+    #[inline]
     pub fn key_create_location(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn SCDynamicStoreKeyCreateLocation(
@@ -283,8 +283,8 @@ impl SCDynamicStore {
     /// a valid CFAllocator, the behavior is undefined.
     ///
     /// Returns: Returns a notification string for the current proxy settings.
-    #[inline]
     #[doc(alias = "SCDynamicStoreKeyCreateProxies")]
+    #[inline]
     pub fn key_create_proxies(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn SCDynamicStoreKeyCreateProxies(

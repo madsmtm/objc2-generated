@@ -28,8 +28,8 @@ impl EKAuthorizationStatus {
     pub const FullAccess: Self = Self(3);
     #[doc(alias = "EKAuthorizationStatusWriteOnly")]
     pub const WriteOnly: Self = Self(4);
-    #[deprecated = "Check for full access or write only access"]
     #[doc(alias = "EKAuthorizationStatusAuthorized")]
+    #[deprecated = "Check for full access or write only access"]
     pub const Authorized: Self = Self(EKAuthorizationStatus::FullAccess.0);
 }
 

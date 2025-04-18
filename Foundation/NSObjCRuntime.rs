@@ -187,9 +187,9 @@ pub type NSRunLoopMode = NSString;
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    #[doc(alias = "NSStringFromSelector")]
     #[cfg(feature = "NSString")]
     #[inline]
-    #[doc(alias = "NSStringFromSelector")]
     pub unsafe fn from_selector(a_selector: Sel) -> Retained<NSString> {
         extern "C-unwind" {
             fn NSStringFromSelector(a_selector: Sel) -> *mut NSString;
@@ -207,9 +207,9 @@ extern "C-unwind" {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    #[doc(alias = "NSStringFromClass")]
     #[cfg(feature = "NSString")]
     #[inline]
-    #[doc(alias = "NSStringFromClass")]
     pub fn from_class(a_class: &AnyClass) -> Retained<NSString> {
         extern "C-unwind" {
             fn NSStringFromClass(a_class: &AnyClass) -> *mut NSString;
@@ -227,9 +227,9 @@ extern "C-unwind" {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    #[doc(alias = "NSStringFromProtocol")]
     #[cfg(feature = "NSString")]
     #[inline]
-    #[doc(alias = "NSStringFromProtocol")]
     pub unsafe fn from_protocol(proto: &AnyProtocol) -> Retained<NSString> {
         extern "C-unwind" {
             fn NSStringFromProtocol(proto: &AnyProtocol) -> *mut NSString;

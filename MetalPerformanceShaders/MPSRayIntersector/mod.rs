@@ -159,14 +159,14 @@ unsafe impl RefEncode for MPSIntersectionType {
 pub struct MPSTriangleIntersectionTestType(pub NSUInteger);
 impl MPSTriangleIntersectionTestType {
     /// Use the default ray/triangle intersection test
-    #[deprecated]
     #[doc(alias = "MPSTriangleIntersectionTestTypeDefault")]
+    #[deprecated]
     pub const Default: Self = Self(0);
     /// Use a watertight ray/triangle intersection test which avoids gaps along shared
     /// triangle edges. Shared vertices may still have gaps. This intersection test may be slower
     /// than MPSTriangleIntersectionTestTypeDefault.
-    #[deprecated]
     #[doc(alias = "MPSTriangleIntersectionTestTypeWatertight")]
+    #[deprecated]
     pub const Watertight: Self = Self(1);
 }
 
@@ -195,8 +195,8 @@ impl MPSBoundingBoxIntersectionTestType {
     /// rays correctly by default. The old behavior can be restored by explicitly setting the
     /// intersection test type to MPSBoundingBoxIntersectionTestTypeFast on macOS 10.15/iOS 13.0
     /// and above.
-    #[deprecated]
     #[doc(alias = "MPSBoundingBoxIntersectionTestTypeDefault")]
+    #[deprecated]
     pub const Default: Self = Self(0);
     /// This intersection test is potentially slower than
     /// MPSBoundingBoxIntersectionTestTypeFast but does not generate false negatives for
@@ -205,8 +205,8 @@ impl MPSBoundingBoxIntersectionTestType {
     /// randomized ray distributions. However, synthetic ray distributions or orthographic
     /// projections can generate these rays. It may be faster to slightly perturb the ray
     /// direction and use the fast intersection test type.
-    #[deprecated]
     #[doc(alias = "MPSBoundingBoxIntersectionTestTypeAxisAligned")]
+    #[deprecated]
     pub const AxisAligned: Self = Self(1);
     /// This intersection test is potentially faster than
     /// MPSBoundingBoxIntersectionTestTypeAxisAligned but can generate false negatives for
@@ -214,8 +214,8 @@ impl MPSBoundingBoxIntersectionTestType {
     /// zero). These rays often do not come up in practice due to perspective projections and
     /// randomized ray distributions. However, synthetic ray distributions or orthographic
     /// projections can generate these rays.
-    #[deprecated]
     #[doc(alias = "MPSBoundingBoxIntersectionTestTypeFast")]
+    #[deprecated]
     pub const Fast: Self = Self(2);
 }
 
@@ -238,16 +238,16 @@ pub struct MPSRayMaskOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSRayMaskOptions: NSUInteger {
 /// Disable primitive and instance masks
-#[deprecated]
         #[doc(alias = "MPSRayMaskOptionNone")]
+#[deprecated]
         const None = 0;
 /// Enable primitive masks
-#[deprecated]
         #[doc(alias = "MPSRayMaskOptionPrimitive")]
+#[deprecated]
         const Primitive = 1;
 /// Enable instance masks
-#[deprecated]
         #[doc(alias = "MPSRayMaskOptionInstance")]
+#[deprecated]
         const Instance = 2;
     }
 }
@@ -349,58 +349,58 @@ impl MPSRayMaskOperator {
     /// Accept the intersection if (primitive mask
     /// &
     /// ray mask) != 0.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorAnd")]
+    #[deprecated]
     pub const And: Self = Self(0);
     /// Accept the intersection if ~(primitive mask
     /// &
     /// ray mask) != 0.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorNotAnd")]
+    #[deprecated]
     pub const NotAnd: Self = Self(1);
     /// Accept the intersection if (primitive mask | ray mask) != 0.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorOr")]
+    #[deprecated]
     pub const Or: Self = Self(2);
     /// Accept the intersection if ~(primitive mask | ray mask) != 0.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorNotOr")]
+    #[deprecated]
     pub const NotOr: Self = Self(3);
     /// Accept the intersection if (primitive mask ^ ray mask) != 0.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorXor")]
+    #[deprecated]
     pub const Xor: Self = Self(4);
     /// Accept the intersection if ~(primitive mask ^ ray mask) != 0.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorNotXor")]
+    #[deprecated]
     pub const NotXor: Self = Self(5);
     /// Accept the intersection if primitive mask
     /// <
     /// ray mask.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorLessThan")]
+    #[deprecated]
     pub const LessThan: Self = Self(6);
     /// Accept the intersection if primitive mask
     /// <
     /// = ray mask.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorLessThanOrEqualTo")]
+    #[deprecated]
     pub const LessThanOrEqualTo: Self = Self(7);
     /// Accept the intersection if primitive mask > ray mask.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorGreaterThan")]
+    #[deprecated]
     pub const GreaterThan: Self = Self(8);
     /// Accept the intersection if primitive mask >= ray mask.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorGreaterThanOrEqualTo")]
+    #[deprecated]
     pub const GreaterThanOrEqualTo: Self = Self(9);
     /// Accept the intersection if primitive mask == ray mask.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorEqual")]
+    #[deprecated]
     pub const Equal: Self = Self(10);
     /// Accept the intersection if primitive mask != ray mask.
-    #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorNotEqual")]
+    #[deprecated]
     pub const NotEqual: Self = Self(11);
 }
 

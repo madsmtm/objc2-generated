@@ -106,9 +106,9 @@ unsafe impl ConcreteType for CFHost {
 }
 
 impl CFHost {
+    #[doc(alias = "CFHostCreateWithName")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    #[doc(alias = "CFHostCreateWithName")]
     pub unsafe fn with_name(
         allocator: Option<&CFAllocator>,
         hostname: &CFString,
@@ -125,9 +125,9 @@ impl CFHost {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    #[doc(alias = "CFHostCreateWithAddress")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    #[doc(alias = "CFHostCreateWithAddress")]
     pub unsafe fn with_address(
         allocator: Option<&CFAllocator>,
         addr: &CFData,
@@ -144,9 +144,9 @@ impl CFHost {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    #[doc(alias = "CFHostCreateCopy")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    #[doc(alias = "CFHostCreateCopy")]
     pub unsafe fn new_copy(alloc: Option<&CFAllocator>, host: &CFHost) -> CFRetained<CFHost> {
         extern "C-unwind" {
             fn CFHostCreateCopy(
@@ -160,9 +160,9 @@ impl CFHost {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    #[doc(alias = "CFHostStartInfoResolution")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    #[doc(alias = "CFHostStartInfoResolution")]
     pub unsafe fn start_info_resolution(
         self: &CFHost,
         info: CFHostInfoType,
@@ -179,9 +179,9 @@ impl CFHost {
         ret != 0
     }
 
+    #[doc(alias = "CFHostGetAddressing")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    #[doc(alias = "CFHostGetAddressing")]
     pub unsafe fn addressing(
         self: &CFHost,
         has_been_resolved: *mut Boolean,
@@ -196,9 +196,9 @@ impl CFHost {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    #[doc(alias = "CFHostGetNames")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    #[doc(alias = "CFHostGetNames")]
     pub unsafe fn names(
         self: &CFHost,
         has_been_resolved: *mut Boolean,
@@ -213,9 +213,9 @@ impl CFHost {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    #[doc(alias = "CFHostGetReachability")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    #[doc(alias = "CFHostGetReachability")]
     pub unsafe fn reachability(
         self: &CFHost,
         has_been_resolved: *mut Boolean,
@@ -230,9 +230,9 @@ impl CFHost {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    #[doc(alias = "CFHostCancelInfoResolution")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    #[doc(alias = "CFHostCancelInfoResolution")]
     pub unsafe fn cancel_info_resolution(self: &CFHost, info: CFHostInfoType) {
         extern "C-unwind" {
             fn CFHostCancelInfoResolution(the_host: &CFHost, info: CFHostInfoType);
@@ -240,9 +240,9 @@ impl CFHost {
         unsafe { CFHostCancelInfoResolution(self, info) }
     }
 
+    #[doc(alias = "CFHostSetClient")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    #[doc(alias = "CFHostSetClient")]
     pub unsafe fn set_client(
         self: &CFHost,
         client_cb: CFHostClientCallBack,
@@ -259,9 +259,9 @@ impl CFHost {
         ret != 0
     }
 
+    #[doc(alias = "CFHostScheduleWithRunLoop")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    #[doc(alias = "CFHostScheduleWithRunLoop")]
     pub unsafe fn schedule_with_run_loop(
         self: &CFHost,
         run_loop: &CFRunLoop,
@@ -277,9 +277,9 @@ impl CFHost {
         unsafe { CFHostScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    #[doc(alias = "CFHostUnscheduleFromRunLoop")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    #[doc(alias = "CFHostUnscheduleFromRunLoop")]
     pub unsafe fn unschedule_from_run_loop(
         self: &CFHost,
         run_loop: &CFRunLoop,

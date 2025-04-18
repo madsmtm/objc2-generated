@@ -577,8 +577,8 @@ impl CTFontManagerAutoActivationSetting {
     pub const Disabled: Self = Self(1);
     #[doc(alias = "kCTFontManagerAutoActivationEnabled")]
     pub const Enabled: Self = Self(2);
-    #[deprecated = "Deprecated"]
     #[doc(alias = "kCTFontManagerAutoActivationPromptUser")]
+    #[deprecated = "Deprecated"]
     pub const PromptUser: Self = Self(3);
 }
 

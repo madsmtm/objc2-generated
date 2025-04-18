@@ -132,9 +132,9 @@ unsafe impl RefEncode for AVCaptionSize {
 #[cfg(feature = "objc2-core-foundation")]
 impl AVCaptionDimension {
     /// Makes an AVCaptionDimension from a value and units.
+    #[doc(alias = "AVCaptionDimensionMake")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "AVCaptionDimensionMake")]
     pub unsafe fn new(value: CGFloat, units: AVCaptionUnitsType) -> AVCaptionDimension {
         extern "C-unwind" {
             fn AVCaptionDimensionMake(
@@ -149,9 +149,9 @@ impl AVCaptionDimension {
 #[cfg(feature = "objc2-core-foundation")]
 impl AVCaptionPoint {
     /// Makes an AVCaptionPoint from x and y coordinate AVCaptionDimensions.
+    #[doc(alias = "AVCaptionPointMake")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "AVCaptionPointMake")]
     pub unsafe fn new(x: AVCaptionDimension, y: AVCaptionDimension) -> AVCaptionPoint {
         extern "C-unwind" {
             fn AVCaptionPointMake(x: AVCaptionDimension, y: AVCaptionDimension) -> AVCaptionPoint;
@@ -163,9 +163,9 @@ impl AVCaptionPoint {
 #[cfg(feature = "objc2-core-foundation")]
 impl AVCaptionSize {
     /// Makes an AVCaptionSize from width and height AVCaptionDimensions.
+    #[doc(alias = "AVCaptionSizeMake")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "AVCaptionSizeMake")]
     pub unsafe fn new(width: AVCaptionDimension, height: AVCaptionDimension) -> AVCaptionSize {
         extern "C-unwind" {
             fn AVCaptionSizeMake(

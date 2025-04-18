@@ -230,9 +230,9 @@ pub unsafe extern "C-unwind" fn NSIsEmptyRect(a_rect: NSRect) -> bool {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl NSEdgeInsets {
+    #[doc(alias = "NSEdgeInsetsEqual")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "NSEdgeInsetsEqual")]
     pub unsafe fn equal(self: NSEdgeInsets, b_insets: NSEdgeInsets) -> bool {
         extern "C-unwind" {
             fn NSEdgeInsetsEqual(a_insets: NSEdgeInsets, b_insets: NSEdgeInsets) -> Bool;
@@ -324,9 +324,9 @@ pub unsafe extern "C-unwind" fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect)
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    #[doc(alias = "NSStringFromPoint")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
-    #[doc(alias = "NSStringFromPoint")]
     pub unsafe fn from_point(a_point: NSPoint) -> Retained<NSString> {
         extern "C-unwind" {
             fn NSStringFromPoint(a_point: NSPoint) -> *mut NSString;
@@ -336,9 +336,9 @@ impl NSString {
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    #[doc(alias = "NSStringFromSize")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
-    #[doc(alias = "NSStringFromSize")]
     pub unsafe fn from_size(a_size: NSSize) -> Retained<NSString> {
         extern "C-unwind" {
             fn NSStringFromSize(a_size: NSSize) -> *mut NSString;
@@ -348,9 +348,9 @@ impl NSString {
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    #[doc(alias = "NSStringFromRect")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
-    #[doc(alias = "NSStringFromRect")]
     pub unsafe fn from_rect(a_rect: NSRect) -> Retained<NSString> {
         extern "C-unwind" {
             fn NSStringFromRect(a_rect: NSRect) -> *mut NSString;

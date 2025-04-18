@@ -22,14 +22,14 @@ impl UIActivityIndicatorViewStyle {
     pub const Medium: Self = Self(100);
     #[doc(alias = "UIActivityIndicatorViewStyleLarge")]
     pub const Large: Self = Self(101);
-    #[deprecated]
     #[doc(alias = "UIActivityIndicatorViewStyleWhiteLarge")]
+    #[deprecated]
     pub const WhiteLarge: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "UIActivityIndicatorViewStyleWhite")]
-    pub const White: Self = Self(1);
     #[deprecated]
+    pub const White: Self = Self(1);
     #[doc(alias = "UIActivityIndicatorViewStyleGray")]
+    #[deprecated]
     pub const Gray: Self = Self(2);
 }
 

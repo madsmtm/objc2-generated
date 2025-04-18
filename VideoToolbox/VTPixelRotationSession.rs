@@ -43,8 +43,8 @@ impl VTPixelRotationSession {
     /// Parameter `allocator`: An allocator for the session.  Pass NULL to use the default allocator.
     ///
     /// Parameter `pixelRotationSessionOut`: Points to a variable to receive the new pixel rotation session.
-    #[inline]
     #[doc(alias = "VTPixelRotationSessionCreate")]
+    #[inline]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         pixel_rotation_session_out: NonNull<*mut VTPixelRotationSession>,
@@ -65,8 +65,8 @@ impl VTPixelRotationSession {
     /// When an pixel rotation session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTPixelRotationSessionInvalidate ensures a deterministic, orderly teardown.
-    #[inline]
     #[doc(alias = "VTPixelRotationSessionInvalidate")]
+    #[inline]
     pub unsafe fn invalidate(self: &VTPixelRotationSession) {
         extern "C-unwind" {
             fn VTPixelRotationSessionInvalidate(session: &VTPixelRotationSession);
@@ -106,9 +106,9 @@ impl VTPixelRotationSession {
     /// Parameter `destinationBuffer`: The destination buffer.
     ///
     /// Returns: If the transfer was successful, noErr; otherwise an error code, such as kVTPixelRotationNotSupportedErr.
+    #[doc(alias = "VTPixelRotationSessionRotateImage")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
-    #[doc(alias = "VTPixelRotationSessionRotateImage")]
     pub unsafe fn rotate_image(
         self: &VTPixelRotationSession,
         source_buffer: &CVPixelBuffer,

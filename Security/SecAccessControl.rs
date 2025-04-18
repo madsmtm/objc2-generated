@@ -73,18 +73,18 @@ bitflags::bitflags! {
         const UserPresence = 1<<0;
         #[doc(alias = "kSecAccessControlBiometryAny")]
         const BiometryAny = 1<<1;
-#[deprecated]
         #[doc(alias = "kSecAccessControlTouchIDAny")]
+#[deprecated]
         const TouchIDAny = 1<<1;
         #[doc(alias = "kSecAccessControlBiometryCurrentSet")]
         const BiometryCurrentSet = 1<<3;
-#[deprecated]
         #[doc(alias = "kSecAccessControlTouchIDCurrentSet")]
+#[deprecated]
         const TouchIDCurrentSet = 1<<3;
         #[doc(alias = "kSecAccessControlDevicePasscode")]
         const DevicePasscode = 1<<4;
-#[deprecated]
         #[doc(alias = "kSecAccessControlWatch")]
+#[deprecated]
         const Watch = 1<<5;
         #[doc(alias = "kSecAccessControlCompanion")]
         const Companion = 1<<5;
@@ -129,9 +129,9 @@ impl SecAccessControl {
     /// Parameter `error`: Additional error information filled in case of failure.
     ///
     /// Returns: Newly created access control object.
+    #[doc(alias = "SecAccessControlCreateWithFlags")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecAccessControlCreateWithFlags")]
     pub unsafe fn with_flags(
         allocator: Option<&CFAllocator>,
         protection: &CFType,

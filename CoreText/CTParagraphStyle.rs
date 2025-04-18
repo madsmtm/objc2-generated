@@ -379,8 +379,8 @@ impl CTParagraphStyleSpecifier {
     pub const MaximumLineHeight: Self = Self(8);
     #[doc(alias = "kCTParagraphStyleSpecifierMinimumLineHeight")]
     pub const MinimumLineHeight: Self = Self(9);
-    #[deprecated = "See documentation for replacements"]
     #[doc(alias = "kCTParagraphStyleSpecifierLineSpacing")]
+    #[deprecated = "See documentation for replacements"]
     pub const LineSpacing: Self = Self(10);
     #[doc(alias = "kCTParagraphStyleSpecifierParagraphSpacing")]
     pub const ParagraphSpacing: Self = Self(11);
@@ -479,8 +479,8 @@ impl CTParagraphStyle {
     /// Returns: If the paragraph style creation was successful, this function
     /// will return a valid reference to an immutable CTParagraphStyle
     /// object. Otherwise, this function will return NULL.
-    #[inline]
     #[doc(alias = "CTParagraphStyleCreate")]
+    #[inline]
     pub unsafe fn new(
         settings: *const CTParagraphStyleSetting,
         setting_count: usize,
@@ -507,8 +507,8 @@ impl CTParagraphStyle {
     /// function will return valid reference to an immutable
     /// CTParagraphStyle object that is a copy of the one passed into
     /// "paragraphStyle".
-    #[inline]
     #[doc(alias = "CTParagraphStyleCreateCopy")]
+    #[inline]
     pub unsafe fn copy(self: &CTParagraphStyle) -> CFRetained<CTParagraphStyle> {
         extern "C-unwind" {
             fn CTParagraphStyleCreateCopy(
@@ -554,8 +554,8 @@ impl CTParagraphStyle {
     /// Returns: This function will return "true" if the valueBuffer had been
     /// successfully filled. Otherwise, this function will return false,
     /// indicating that one or more of the parameters is not valid.
-    #[inline]
     #[doc(alias = "CTParagraphStyleGetValueForSpecifier")]
+    #[inline]
     pub unsafe fn value_for_specifier(
         self: &CTParagraphStyle,
         spec: CTParagraphStyleSpecifier,

@@ -54,8 +54,8 @@ impl UIScreenOverscanCompensation {
     pub const InsetBounds: Self = Self(1);
     #[doc(alias = "UIScreenOverscanCompensationNone")]
     pub const None: Self = Self(2);
-    #[deprecated]
     #[doc(alias = "UIScreenOverscanCompensationInsetApplicationFrame")]
+    #[deprecated]
     pub const InsetApplicationFrame: Self = Self(2);
 }
 

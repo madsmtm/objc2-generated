@@ -15,13 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIImagePickerControllerSourceType(pub NSInteger);
 impl UIImagePickerControllerSourceType {
-    #[deprecated = "Will be removed in a future release, use PHPicker."]
     #[doc(alias = "UIImagePickerControllerSourceTypePhotoLibrary")]
+    #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub const PhotoLibrary: Self = Self(0);
     #[doc(alias = "UIImagePickerControllerSourceTypeCamera")]
     pub const Camera: Self = Self(1);
-    #[deprecated = "Will be removed in a future release, use PHPicker."]
     #[doc(alias = "UIImagePickerControllerSourceTypeSavedPhotosAlbum")]
+    #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub const SavedPhotosAlbum: Self = Self(2);
 }
 
@@ -130,11 +130,11 @@ unsafe impl RefEncode for UIImagePickerControllerCameraFlashMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIImagePickerControllerImageURLExportPreset(pub NSInteger);
 impl UIImagePickerControllerImageURLExportPreset {
-    #[deprecated = "Will be removed in a future release, use PHPicker."]
     #[doc(alias = "UIImagePickerControllerImageURLExportPresetCompatible")]
-    pub const Compatible: Self = Self(0);
     #[deprecated = "Will be removed in a future release, use PHPicker."]
+    pub const Compatible: Self = Self(0);
     #[doc(alias = "UIImagePickerControllerImageURLExportPresetCurrent")]
+    #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub const Current: Self = Self(1);
 }
 
@@ -609,9 +609,9 @@ extern_protocol!(
 
 #[cfg(feature = "UIImage")]
 impl UIImage {
+    #[doc(alias = "UIImageWriteToSavedPhotosAlbum")]
     #[cfg(feature = "UIImage")]
     #[inline]
-    #[doc(alias = "UIImageWriteToSavedPhotosAlbum")]
     pub unsafe fn write_to_saved_photos_album(
         self: &UIImage,
         completion_target: Option<&AnyObject>,

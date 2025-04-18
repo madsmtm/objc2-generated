@@ -226,8 +226,8 @@ impl MTLGPUFamily {
     pub const Apple8: Self = Self(1008);
     #[doc(alias = "MTLGPUFamilyApple9")]
     pub const Apple9: Self = Self(1009);
-    #[deprecated]
     #[doc(alias = "MTLGPUFamilyMac1")]
+    #[deprecated]
     pub const Mac1: Self = Self(2001);
     #[doc(alias = "MTLGPUFamilyMac2")]
     pub const Mac2: Self = Self(2002);
@@ -237,11 +237,11 @@ impl MTLGPUFamily {
     pub const Common2: Self = Self(3002);
     #[doc(alias = "MTLGPUFamilyCommon3")]
     pub const Common3: Self = Self(3003);
-    #[deprecated]
     #[doc(alias = "MTLGPUFamilyMacCatalyst1")]
-    pub const MacCatalyst1: Self = Self(4001);
     #[deprecated]
+    pub const MacCatalyst1: Self = Self(4001);
     #[doc(alias = "MTLGPUFamilyMacCatalyst2")]
+    #[deprecated]
     pub const MacCatalyst2: Self = Self(4002);
     #[doc(alias = "MTLGPUFamilyMetal3")]
     pub const Metal3: Self = Self(5001);
@@ -292,8 +292,8 @@ bitflags::bitflags! {
     impl MTLPipelineOption: NSUInteger {
         #[doc(alias = "MTLPipelineOptionNone")]
         const None = 0;
-#[deprecated]
         #[doc(alias = "MTLPipelineOptionArgumentInfo")]
+#[deprecated]
         const ArgumentInfo = 1<<0;
         #[doc(alias = "MTLPipelineOptionBindingInfo")]
         const BindingInfo = 1<<0;

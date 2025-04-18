@@ -29,8 +29,8 @@ pub type CGPDFOperatorTableRef = *mut CGPDFOperatorTable;
 pub type CGPDFOperatorCallback = Option<unsafe extern "C-unwind" fn(CGPDFScannerRef, *mut c_void)>;
 
 impl CGPDFOperatorTable {
-    #[inline]
     #[doc(alias = "CGPDFOperatorTableCreate")]
+    #[inline]
     pub unsafe fn create() -> CGPDFOperatorTableRef {
         extern "C-unwind" {
             fn CGPDFOperatorTableCreate() -> CGPDFOperatorTableRef;
@@ -38,8 +38,8 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableCreate() }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFOperatorTableRetain")]
+    #[inline]
     pub unsafe fn retain(table: CGPDFOperatorTableRef) -> CGPDFOperatorTableRef {
         extern "C-unwind" {
             fn CGPDFOperatorTableRetain(table: CGPDFOperatorTableRef) -> CGPDFOperatorTableRef;
@@ -47,8 +47,8 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableRetain(table) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFOperatorTableRelease")]
+    #[inline]
     pub unsafe fn release(table: CGPDFOperatorTableRef) {
         extern "C-unwind" {
             fn CGPDFOperatorTableRelease(table: CGPDFOperatorTableRef);
@@ -56,9 +56,9 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableRelease(table) }
     }
 
+    #[doc(alias = "CGPDFOperatorTableSetCallback")]
     #[cfg(feature = "CGPDFScanner")]
     #[inline]
-    #[doc(alias = "CGPDFOperatorTableSetCallback")]
     pub unsafe fn set_callback(
         table: CGPDFOperatorTableRef,
         name: *const c_char,

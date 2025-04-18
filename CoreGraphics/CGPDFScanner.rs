@@ -25,9 +25,9 @@ unsafe impl RefEncode for CGPDFScanner {
 pub type CGPDFScannerRef = *mut CGPDFScanner;
 
 impl CGPDFScanner {
+    #[doc(alias = "CGPDFScannerCreate")]
     #[cfg(all(feature = "CGPDFContentStream", feature = "CGPDFOperatorTable"))]
     #[inline]
-    #[doc(alias = "CGPDFScannerCreate")]
     pub unsafe fn create(
         cs: CGPDFContentStreamRef,
         table: CGPDFOperatorTableRef,
@@ -43,8 +43,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerCreate(cs, table, info) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFScannerRetain")]
+    #[inline]
     pub unsafe fn retain(scanner: CGPDFScannerRef) -> CGPDFScannerRef {
         extern "C-unwind" {
             fn CGPDFScannerRetain(scanner: CGPDFScannerRef) -> CGPDFScannerRef;
@@ -52,8 +52,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerRetain(scanner) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFScannerRelease")]
+    #[inline]
     pub unsafe fn release(scanner: CGPDFScannerRef) {
         extern "C-unwind" {
             fn CGPDFScannerRelease(scanner: CGPDFScannerRef);
@@ -61,8 +61,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerRelease(scanner) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFScannerScan")]
+    #[inline]
     pub unsafe fn scan(scanner: CGPDFScannerRef) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerScan(scanner: CGPDFScannerRef) -> bool;
@@ -70,9 +70,9 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerScan(scanner) }
     }
 
+    #[doc(alias = "CGPDFScannerGetContentStream")]
     #[cfg(feature = "CGPDFContentStream")]
     #[inline]
-    #[doc(alias = "CGPDFScannerGetContentStream")]
     pub unsafe fn content_stream(scanner: CGPDFScannerRef) -> CGPDFContentStreamRef {
         extern "C-unwind" {
             fn CGPDFScannerGetContentStream(scanner: CGPDFScannerRef) -> CGPDFContentStreamRef;
@@ -80,9 +80,9 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerGetContentStream(scanner) }
     }
 
+    #[doc(alias = "CGPDFScannerPopObject")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    #[doc(alias = "CGPDFScannerPopObject")]
     pub unsafe fn pop_object(scanner: CGPDFScannerRef, value: *mut CGPDFObjectRef) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopObject(scanner: CGPDFScannerRef, value: *mut CGPDFObjectRef) -> bool;
@@ -90,9 +90,9 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopObject(scanner, value) }
     }
 
+    #[doc(alias = "CGPDFScannerPopBoolean")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    #[doc(alias = "CGPDFScannerPopBoolean")]
     pub unsafe fn pop_boolean(scanner: CGPDFScannerRef, value: *mut CGPDFBoolean) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopBoolean(scanner: CGPDFScannerRef, value: *mut CGPDFBoolean) -> bool;
@@ -100,9 +100,9 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopBoolean(scanner, value) }
     }
 
+    #[doc(alias = "CGPDFScannerPopInteger")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    #[doc(alias = "CGPDFScannerPopInteger")]
     pub unsafe fn pop_integer(scanner: CGPDFScannerRef, value: *mut CGPDFInteger) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopInteger(scanner: CGPDFScannerRef, value: *mut CGPDFInteger) -> bool;
@@ -110,9 +110,9 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopInteger(scanner, value) }
     }
 
+    #[doc(alias = "CGPDFScannerPopNumber")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    #[doc(alias = "CGPDFScannerPopNumber")]
     pub unsafe fn pop_number(scanner: CGPDFScannerRef, value: *mut CGPDFReal) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopNumber(scanner: CGPDFScannerRef, value: *mut CGPDFReal) -> bool;
@@ -120,8 +120,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopNumber(scanner, value) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFScannerPopName")]
+    #[inline]
     pub unsafe fn pop_name(scanner: CGPDFScannerRef, value: *mut *const c_char) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopName(scanner: CGPDFScannerRef, value: *mut *const c_char) -> bool;
@@ -129,9 +129,9 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopName(scanner, value) }
     }
 
+    #[doc(alias = "CGPDFScannerPopString")]
     #[cfg(feature = "CGPDFString")]
     #[inline]
-    #[doc(alias = "CGPDFScannerPopString")]
     pub unsafe fn pop_string(scanner: CGPDFScannerRef, value: *mut CGPDFStringRef) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopString(scanner: CGPDFScannerRef, value: *mut CGPDFStringRef) -> bool;
@@ -139,9 +139,9 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopString(scanner, value) }
     }
 
+    #[doc(alias = "CGPDFScannerPopArray")]
     #[cfg(feature = "CGPDFArray")]
     #[inline]
-    #[doc(alias = "CGPDFScannerPopArray")]
     pub unsafe fn pop_array(scanner: CGPDFScannerRef, value: *mut CGPDFArrayRef) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopArray(scanner: CGPDFScannerRef, value: *mut CGPDFArrayRef) -> bool;
@@ -149,9 +149,9 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopArray(scanner, value) }
     }
 
+    #[doc(alias = "CGPDFScannerPopDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
-    #[doc(alias = "CGPDFScannerPopDictionary")]
     pub unsafe fn pop_dictionary(scanner: CGPDFScannerRef, value: *mut CGPDFDictionaryRef) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopDictionary(
@@ -162,9 +162,9 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopDictionary(scanner, value) }
     }
 
+    #[doc(alias = "CGPDFScannerPopStream")]
     #[cfg(feature = "CGPDFStream")]
     #[inline]
-    #[doc(alias = "CGPDFScannerPopStream")]
     pub unsafe fn pop_stream(scanner: CGPDFScannerRef, value: *mut CGPDFStreamRef) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopStream(scanner: CGPDFScannerRef, value: *mut CGPDFStreamRef) -> bool;
@@ -172,8 +172,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopStream(scanner, value) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFScannerStop")]
+    #[inline]
     pub unsafe fn stop(s: CGPDFScannerRef) {
         extern "C-unwind" {
             fn CGPDFScannerStop(s: CGPDFScannerRef);

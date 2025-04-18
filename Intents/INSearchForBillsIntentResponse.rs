@@ -14,29 +14,29 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSearchForBillsIntentResponseCode(pub NSInteger);
 impl INSearchForBillsIntentResponseCode {
-    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForBillsIntentResponseCodeUnspecified")]
+    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForBillsIntentResponseCodeReady")]
+    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForBillsIntentResponseCodeInProgress")]
+    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForBillsIntentResponseCodeSuccess")]
+    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailure")]
+    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailureCredentialsUnverified")]
-    pub const FailureCredentialsUnverified: Self = Self(6);
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
+    pub const FailureCredentialsUnverified: Self = Self(6);
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailureBillNotFound")]
+    #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureBillNotFound: Self = Self(7);
 }
 

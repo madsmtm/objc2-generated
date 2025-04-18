@@ -51,8 +51,8 @@ unsafe impl ConcreteType for CFData {
 }
 
 impl CFData {
-    #[inline]
     #[doc(alias = "CFDataCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         bytes: *const u8,
@@ -69,8 +69,8 @@ impl CFData {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFDataCreateWithBytesNoCopy")]
+    #[inline]
     pub unsafe fn with_bytes_no_copy(
         allocator: Option<&CFAllocator>,
         bytes: *const u8,
@@ -90,8 +90,8 @@ impl CFData {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFDataCreateCopy")]
+    #[inline]
     pub fn new_copy(
         allocator: Option<&CFAllocator>,
         the_data: Option<&CFData>,
@@ -108,8 +108,8 @@ impl CFData {
 }
 
 impl CFMutableData {
-    #[inline]
     #[doc(alias = "CFDataCreateMutable")]
+    #[inline]
     pub fn new(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
@@ -124,8 +124,8 @@ impl CFMutableData {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFDataCreateMutableCopy")]
+    #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
@@ -144,8 +144,8 @@ impl CFMutableData {
 }
 
 impl CFData {
-    #[inline]
     #[doc(alias = "CFDataGetLength")]
+    #[inline]
     pub fn length(self: &CFData) -> CFIndex {
         extern "C-unwind" {
             fn CFDataGetLength(the_data: &CFData) -> CFIndex;
@@ -153,8 +153,8 @@ impl CFData {
         unsafe { CFDataGetLength(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFDataGetBytePtr")]
+    #[inline]
     pub fn byte_ptr(self: &CFData) -> *const u8 {
         extern "C-unwind" {
             fn CFDataGetBytePtr(the_data: &CFData) -> *const u8;
@@ -164,8 +164,8 @@ impl CFData {
 }
 
 impl CFMutableData {
-    #[inline]
     #[doc(alias = "CFDataGetMutableBytePtr")]
+    #[inline]
     pub fn mutable_byte_ptr(the_data: Option<&CFMutableData>) -> *mut u8 {
         extern "C-unwind" {
             fn CFDataGetMutableBytePtr(the_data: Option<&CFMutableData>) -> *mut u8;
@@ -175,8 +175,8 @@ impl CFMutableData {
 }
 
 impl CFData {
-    #[inline]
     #[doc(alias = "CFDataGetBytes")]
+    #[inline]
     pub unsafe fn bytes(self: &CFData, range: CFRange, buffer: *mut u8) {
         extern "C-unwind" {
             fn CFDataGetBytes(the_data: &CFData, range: CFRange, buffer: *mut u8);
@@ -186,8 +186,8 @@ impl CFData {
 }
 
 impl CFMutableData {
-    #[inline]
     #[doc(alias = "CFDataSetLength")]
+    #[inline]
     pub fn set_length(the_data: Option<&CFMutableData>, length: CFIndex) {
         extern "C-unwind" {
             fn CFDataSetLength(the_data: Option<&CFMutableData>, length: CFIndex);
@@ -195,8 +195,8 @@ impl CFMutableData {
         unsafe { CFDataSetLength(the_data, length) }
     }
 
-    #[inline]
     #[doc(alias = "CFDataIncreaseLength")]
+    #[inline]
     pub fn increase_length(the_data: Option<&CFMutableData>, extra_length: CFIndex) {
         extern "C-unwind" {
             fn CFDataIncreaseLength(the_data: Option<&CFMutableData>, extra_length: CFIndex);
@@ -204,8 +204,8 @@ impl CFMutableData {
         unsafe { CFDataIncreaseLength(the_data, extra_length) }
     }
 
-    #[inline]
     #[doc(alias = "CFDataAppendBytes")]
+    #[inline]
     pub unsafe fn append_bytes(
         the_data: Option<&CFMutableData>,
         bytes: *const u8,
@@ -221,8 +221,8 @@ impl CFMutableData {
         unsafe { CFDataAppendBytes(the_data, bytes, length) }
     }
 
-    #[inline]
     #[doc(alias = "CFDataReplaceBytes")]
+    #[inline]
     pub unsafe fn replace_bytes(
         the_data: Option<&CFMutableData>,
         range: CFRange,
@@ -240,8 +240,8 @@ impl CFMutableData {
         unsafe { CFDataReplaceBytes(the_data, range, new_bytes, new_length) }
     }
 
-    #[inline]
     #[doc(alias = "CFDataDeleteBytes")]
+    #[inline]
     pub fn delete_bytes(the_data: Option<&CFMutableData>, range: CFRange) {
         extern "C-unwind" {
             fn CFDataDeleteBytes(the_data: Option<&CFMutableData>, range: CFRange);
@@ -275,8 +275,8 @@ unsafe impl RefEncode for CFDataSearchFlags {
 }
 
 impl CFData {
-    #[inline]
     #[doc(alias = "CFDataFind")]
+    #[inline]
     pub unsafe fn find(
         self: &CFData,
         data_to_find: Option<&CFData>,

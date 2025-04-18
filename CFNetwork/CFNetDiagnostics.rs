@@ -32,20 +32,20 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNetDiagnosticStatusValues(pub c_int);
 impl CFNetDiagnosticStatusValues {
-    #[deprecated]
     #[doc(alias = "kCFNetDiagnosticNoErr")]
+    #[deprecated]
     pub const NoErr: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "kCFNetDiagnosticErr")]
+    #[deprecated]
     pub const Err: Self = Self(-66560);
-    #[deprecated]
     #[doc(alias = "kCFNetDiagnosticConnectionUp")]
+    #[deprecated]
     pub const ConnectionUp: Self = Self(-66559);
-    #[deprecated]
     #[doc(alias = "kCFNetDiagnosticConnectionIndeterminate")]
-    pub const ConnectionIndeterminate: Self = Self(-66558);
     #[deprecated]
+    pub const ConnectionIndeterminate: Self = Self(-66558);
     #[doc(alias = "kCFNetDiagnosticConnectionDown")]
+    #[deprecated]
     pub const ConnectionDown: Self = Self(-66557);
 }
 
@@ -63,9 +63,9 @@ unsafe impl RefEncode for CFNetDiagnosticStatusValues {
 pub type CFNetDiagnosticStatus = CFIndex;
 
 impl CFNetDiagnostic {
+    #[doc(alias = "CFNetDiagnosticCreateWithStreams")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "CFNetDiagnosticCreateWithStreams")]
     pub unsafe fn with_streams(
         alloc: Option<&CFAllocator>,
         read_stream: Option<&CFReadStream>,
@@ -84,9 +84,9 @@ impl CFNetDiagnostic {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    #[doc(alias = "CFNetDiagnosticCreateWithURL")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "CFNetDiagnosticCreateWithURL")]
     pub unsafe fn with_url(alloc: &CFAllocator, url: &CFURL) -> CFRetained<CFNetDiagnostic> {
         extern "C-unwind" {
             fn CFNetDiagnosticCreateWithURL(
@@ -100,9 +100,9 @@ impl CFNetDiagnostic {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    #[doc(alias = "CFNetDiagnosticSetName")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "CFNetDiagnosticSetName")]
     pub unsafe fn set_name(self: &CFNetDiagnostic, name: &CFString) {
         extern "C-unwind" {
             fn CFNetDiagnosticSetName(details: &CFNetDiagnostic, name: &CFString);
@@ -110,9 +110,9 @@ impl CFNetDiagnostic {
         unsafe { CFNetDiagnosticSetName(self, name) }
     }
 
+    #[doc(alias = "CFNetDiagnosticDiagnoseProblemInteractively")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "CFNetDiagnosticDiagnoseProblemInteractively")]
     pub unsafe fn diagnose_problem_interactively(self: &CFNetDiagnostic) -> CFNetDiagnosticStatus {
         extern "C-unwind" {
             fn CFNetDiagnosticDiagnoseProblemInteractively(
@@ -122,9 +122,9 @@ impl CFNetDiagnostic {
         unsafe { CFNetDiagnosticDiagnoseProblemInteractively(self) }
     }
 
+    #[doc(alias = "CFNetDiagnosticCopyNetworkStatusPassively")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "CFNetDiagnosticCopyNetworkStatusPassively")]
     pub unsafe fn copy_network_status_passively(
         self: &CFNetDiagnostic,
         description: *mut *const CFString,

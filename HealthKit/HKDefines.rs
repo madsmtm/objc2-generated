@@ -29,8 +29,8 @@ pub struct HKErrorCode(pub NSInteger);
 impl HKErrorCode {
     #[doc(alias = "HKUnknownError")]
     pub const UnknownError: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "HKNoError")]
+    #[deprecated]
     pub const NoError: Self = Self(HKErrorCode::UnknownError.0);
     #[doc(alias = "HKErrorHealthDataUnavailable")]
     pub const ErrorHealthDataUnavailable: Self = Self(1);

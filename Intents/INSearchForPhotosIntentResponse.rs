@@ -14,23 +14,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSearchForPhotosIntentResponseCode(pub NSInteger);
 impl INSearchForPhotosIntentResponseCode {
-    #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForPhotosIntentResponseCodeUnspecified")]
+    #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForPhotosIntentResponseCodeReady")]
+    #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForPhotosIntentResponseCodeContinueInApp")]
+    #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
-    #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForPhotosIntentResponseCodeFailure")]
+    #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(3);
-    #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSearchForPhotosIntentResponseCodeFailureRequiringAppLaunch")]
-    pub const FailureRequiringAppLaunch: Self = Self(4);
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
+    pub const FailureRequiringAppLaunch: Self = Self(4);
     #[doc(alias = "INSearchForPhotosIntentResponseCodeFailureAppConfigurationRequired")]
+    #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(5);
 }
 

@@ -43,8 +43,8 @@ impl CBError {
     pub const ConnectionFailed: Self = Self(10);
     #[doc(alias = "CBErrorConnectionLimitReached")]
     pub const ConnectionLimitReached: Self = Self(11);
-    #[deprecated = "Use CBErrorUnknownDevice instead"]
     #[doc(alias = "CBErrorUnkownDevice")]
+    #[deprecated = "Use CBErrorUnknownDevice instead"]
     pub const UnkownDevice: Self = Self(12);
     #[doc(alias = "CBErrorUnknownDevice")]
     pub const UnknownDevice: Self = Self(12);

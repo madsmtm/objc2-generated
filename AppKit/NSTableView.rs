@@ -145,8 +145,8 @@ impl NSTableViewSelectionHighlightStyle {
     pub const None: Self = Self(-1);
     #[doc(alias = "NSTableViewSelectionHighlightStyleRegular")]
     pub const Regular: Self = Self(0);
-    #[deprecated = "Set the NSTableView.style property to NSTableViewStyleSourceList instead."]
     #[doc(alias = "NSTableViewSelectionHighlightStyleSourceList")]
+    #[deprecated = "Set the NSTableView.style property to NSTableViewStyleSourceList instead."]
     pub const SourceList: Self = Self(1);
 }
 

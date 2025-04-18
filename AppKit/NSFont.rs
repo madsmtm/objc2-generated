@@ -432,8 +432,8 @@ unsafe impl RefEncode for NSFontRenderingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMultibyteGlyphPacking(pub NSUInteger);
 impl NSMultibyteGlyphPacking {
-    #[deprecated]
     #[doc(alias = "NSNativeShortGlyphPacking")]
+    #[deprecated]
     pub const NativeShortGlyphPacking: Self = Self(5);
 }
 

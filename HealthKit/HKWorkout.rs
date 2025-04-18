@@ -40,11 +40,11 @@ impl HKWorkoutActivityType {
     pub const Curling: Self = Self(12);
     #[doc(alias = "HKWorkoutActivityTypeCycling")]
     pub const Cycling: Self = Self(13);
-    #[deprecated = "Use HKWorkoutActivityTypeSocialDance or HKWorkoutActivityTypeCardioDance"]
     #[doc(alias = "HKWorkoutActivityTypeDance")]
+    #[deprecated = "Use HKWorkoutActivityTypeSocialDance or HKWorkoutActivityTypeCardioDance"]
     pub const Dance: Self = Self(14);
-    #[deprecated = "Use HKWorkoutActivityTypeSocialDance, HKWorkoutActivityTypeCardioDance, HKWorkoutActivityTypeBarre or HKWorkoutActivityTypePilates"]
     #[doc(alias = "HKWorkoutActivityTypeDanceInspiredTraining")]
+    #[deprecated = "Use HKWorkoutActivityTypeSocialDance, HKWorkoutActivityTypeCardioDance, HKWorkoutActivityTypeBarre or HKWorkoutActivityTypePilates"]
     pub const DanceInspiredTraining: Self = Self(15);
     #[doc(alias = "HKWorkoutActivityTypeElliptical")]
     pub const Elliptical: Self = Self(16);
@@ -74,8 +74,8 @@ impl HKWorkoutActivityType {
     pub const MartialArts: Self = Self(28);
     #[doc(alias = "HKWorkoutActivityTypeMindAndBody")]
     pub const MindAndBody: Self = Self(29);
-    #[deprecated = "Use HKWorkoutActivityTypeMixedCardio or HKWorkoutActivityTypeHighIntensityIntervalTraining"]
     #[doc(alias = "HKWorkoutActivityTypeMixedMetabolicCardioTraining")]
+    #[deprecated = "Use HKWorkoutActivityTypeMixedCardio or HKWorkoutActivityTypeHighIntensityIntervalTraining"]
     pub const MixedMetabolicCardioTraining: Self = Self(30);
     #[doc(alias = "HKWorkoutActivityTypePaddleSports")]
     pub const PaddleSports: Self = Self(31);

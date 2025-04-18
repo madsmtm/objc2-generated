@@ -60,8 +60,8 @@ impl SecTrustResultType {
     pub const Invalid: Self = Self(0);
     #[doc(alias = "kSecTrustResultProceed")]
     pub const Proceed: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "kSecTrustResultConfirm")]
+    #[deprecated]
     pub const Confirm: Self = Self(2);
     #[doc(alias = "kSecTrustResultDeny")]
     pub const Deny: Self = Self(3);
@@ -265,8 +265,8 @@ impl SecTrust {
     ///
     /// If multiple policies are passed in, all policies must verify
     /// for the chain to be considered valid.
-    #[inline]
     #[doc(alias = "SecTrustCreateWithCertificates")]
+    #[inline]
     pub unsafe fn create_with_certificates(
         certificates: &CFType,
         policies: Option<&CFType>,
@@ -293,8 +293,8 @@ impl SecTrust {
     ///
     /// This function will invalidate the existing trust result,
     /// requiring a fresh evaluation for the newly-set policies.
-    #[inline]
     #[doc(alias = "SecTrustSetPolicies")]
+    #[inline]
     pub unsafe fn set_policies(self: &SecTrust, policies: &CFType) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetPolicies(trust: &SecTrust, policies: &CFType) -> OSStatus;
@@ -310,8 +310,8 @@ impl SecTrust {
     /// Call the CFRelease function to release this reference.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    #[inline]
     #[doc(alias = "SecTrustCopyPolicies")]
+    #[inline]
     pub unsafe fn copy_policies(self: &SecTrust, policies: NonNull<*const CFArray>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustCopyPolicies(
@@ -336,8 +336,8 @@ impl SecTrust {
     ///
     /// By default, network fetch of missing certificates is enabled if
     /// the trust evaluation includes the SSL policy, otherwise it is disabled.
-    #[inline]
     #[doc(alias = "SecTrustSetNetworkFetchAllowed")]
+    #[inline]
     pub unsafe fn set_network_fetch_allowed(self: &SecTrust, allow_fetch: bool) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetNetworkFetchAllowed(trust: &SecTrust, allow_fetch: Boolean) -> OSStatus;
@@ -357,8 +357,8 @@ impl SecTrust {
     ///
     /// By default, network fetch of missing certificates is enabled if
     /// the trust evaluation includes the SSL policy, otherwise it is disabled.
-    #[inline]
     #[doc(alias = "SecTrustGetNetworkFetchAllowed")]
+    #[inline]
     pub unsafe fn network_fetch_allowed(
         self: &SecTrust,
         allow_fetch: NonNull<Boolean>,
@@ -384,8 +384,8 @@ impl SecTrust {
     /// Calling this function without also calling
     /// SecTrustSetAnchorCertificatesOnly() will disable trusting any
     /// anchors other than the ones in anchorCertificates.
-    #[inline]
     #[doc(alias = "SecTrustSetAnchorCertificates")]
+    #[inline]
     pub unsafe fn set_anchor_certificates(
         self: &SecTrust,
         anchor_certificates: Option<&CFArray>,
@@ -409,8 +409,8 @@ impl SecTrust {
     /// the built in anchor certificates are also trusted.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    #[inline]
     #[doc(alias = "SecTrustSetAnchorCertificatesOnly")]
+    #[inline]
     pub unsafe fn set_anchor_certificates_only(
         self: &SecTrust,
         anchor_certificates_only: bool,
@@ -435,8 +435,8 @@ impl SecTrust {
     /// the CFRelease function to release this reference.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    #[inline]
     #[doc(alias = "SecTrustCopyCustomAnchorCertificates")]
+    #[inline]
     pub unsafe fn copy_custom_anchor_certificates(
         self: &SecTrust,
         anchors: NonNull<*const CFArray>,
@@ -463,8 +463,8 @@ impl SecTrust {
     /// it was signed, even if the certificate has since expired.) If this function
     /// is not called, the time at which SecTrustEvaluate() is called is used
     /// implicitly as the verification time.
-    #[inline]
     #[doc(alias = "SecTrustSetVerifyDate")]
+    #[inline]
     pub unsafe fn set_verify_date(self: &SecTrust, verify_date: &CFDate) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetVerifyDate(trust: &SecTrust, verify_date: &CFDate) -> OSStatus;
@@ -483,8 +483,8 @@ impl SecTrust {
     /// trust reference, as set by a prior call to SecTrustSetVerifyDate(). If the
     /// verification time has not been set, this function returns a value of 0,
     /// indicating that the current date/time is implicitly used for verification.
-    #[inline]
     #[doc(alias = "SecTrustGetVerifyTime")]
+    #[inline]
     pub unsafe fn verify_time(self: &SecTrust) -> CFAbsoluteTime {
         extern "C-unwind" {
             fn SecTrustGetVerifyTime(trust: &SecTrust) -> CFAbsoluteTime;
@@ -506,9 +506,9 @@ impl SecTrust {
     /// operations, you should call it from within a function that is placed on a
     /// dispatch queue, or in a separate thread from your application's main
     /// run loop. Alternatively, you can use the SecTrustEvaluateAsync function.
+    #[doc(alias = "SecTrustEvaluate")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecTrustEvaluate")]
     pub unsafe fn evaluate(self: &SecTrust, result: NonNull<SecTrustResultType>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustEvaluate(trust: &SecTrust, result: NonNull<SecTrustResultType>) -> OSStatus;
@@ -538,9 +538,9 @@ impl SecTrust {
     /// serious problem and the type of error. The underlying error contains a localized
     /// description of each certificate in the chain that had an error and all errors found
     /// with that certificate.
+    #[doc(alias = "SecTrustEvaluateWithError")]
     #[must_use]
     #[inline]
-    #[doc(alias = "SecTrustEvaluateWithError")]
     pub unsafe fn evaluate_with_error(self: &SecTrust, error: *mut *mut CFError) -> bool {
         extern "C-unwind" {
             fn SecTrustEvaluateWithError(trust: &SecTrust, error: *mut *mut CFError) -> bool;
@@ -573,8 +573,8 @@ impl SecTrust {
     ///
     /// This function replaces SecTrustGetResult for the purpose of
     /// obtaining the current evaluation result of a given trust reference.
-    #[inline]
     #[doc(alias = "SecTrustGetTrustResult")]
+    #[inline]
     pub unsafe fn trust_result(self: &SecTrust, result: NonNull<SecTrustResultType>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetTrustResult(
@@ -594,10 +594,10 @@ impl SecTrust {
     /// not be extracted (this can happen if the public key algorithm is not
     /// supported).  The caller is responsible for calling CFRelease on the
     /// returned key when it is no longer needed.
+    #[doc(alias = "SecTrustCopyPublicKey")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecTrustCopyPublicKey")]
     pub unsafe fn public_key(self: &SecTrust) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecTrustCopyPublicKey(trust: &SecTrust) -> Option<NonNull<SecKey>>;
@@ -617,9 +617,9 @@ impl SecTrust {
     /// returned key when it is no longer needed.
     ///
     /// RSA and ECDSA public keys are supported. All other public key algorithms are unsupported.
+    #[doc(alias = "SecTrustCopyKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecTrustCopyKey")]
     pub unsafe fn key(self: &SecTrust) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecTrustCopyKey(trust: &SecTrust) -> Option<NonNull<SecKey>>;
@@ -639,8 +639,8 @@ impl SecTrust {
     /// this function will evaluate it first before returning. If speed is critical,
     /// you may want to call SecTrustGetTrustResult first to make sure that a
     /// result other than kSecTrustResultInvalid is present for the trust object.
-    #[inline]
     #[doc(alias = "SecTrustGetCertificateCount")]
+    #[inline]
     pub unsafe fn certificate_count(self: &SecTrust) -> CFIndex {
         extern "C-unwind" {
             fn SecTrustGetCertificateCount(trust: &SecTrust) -> CFIndex;
@@ -663,10 +663,10 @@ impl SecTrust {
     /// trust object may trigger trust evaluations that release the returned certificate or change the
     /// certificate chain as a thread is iterating through the certificate chain. The replacement function
     /// SecTrustCopyCertificateChain provides thread-safe results.
+    #[doc(alias = "SecTrustGetCertificateAtIndex")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecTrustGetCertificateAtIndex")]
     pub unsafe fn certificate_at_index(
         self: &SecTrust,
         ix: CFIndex,
@@ -697,8 +697,8 @@ impl SecTrust {
     /// been presented to the user and the user decided to trust the current
     /// certificate chain regardless of the errors being presented, for the
     /// current application/server/protocol combination.
-    #[inline]
     #[doc(alias = "SecTrustCopyExceptions")]
+    #[inline]
     pub unsafe fn exceptions(self: &SecTrust) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecTrustCopyExceptions(trust: &SecTrust) -> Option<NonNull<CFData>>;
@@ -733,8 +733,8 @@ impl SecTrust {
     /// Examples of this context would be the server we are connecting to, the ssid
     /// of the wireless network for which this cert is needed, the account for which
     /// this cert should be considered valid, and so on.
-    #[inline]
     #[doc(alias = "SecTrustSetExceptions")]
+    #[inline]
     pub unsafe fn set_exceptions(self: &SecTrust, exceptions: Option<&CFData>) -> bool {
         extern "C-unwind" {
             fn SecTrustSetExceptions(trust: &SecTrust, exceptions: Option<&CFData>) -> bool;
@@ -757,9 +757,9 @@ impl SecTrust {
     /// See the "Trust Property Constants" section for a list of currently defined keys.
     /// The error information conveyed via this interface is also conveyed via the
     /// returned error of SecTrustEvaluateWithError.
+    #[doc(alias = "SecTrustCopyProperties")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecTrustCopyProperties")]
     pub unsafe fn properties(self: &SecTrust) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SecTrustCopyProperties(trust: &SecTrust) -> Option<NonNull<CFArray>>;
@@ -780,8 +780,8 @@ impl SecTrust {
     ///
     /// Returns a dictionary for the overall trust evaluation. See the
     /// "Trust Result Constants" section for a list of currently defined keys.
-    #[inline]
     #[doc(alias = "SecTrustCopyResult")]
+    #[inline]
     pub unsafe fn result(self: &SecTrust) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SecTrustCopyResult(trust: &SecTrust) -> Option<NonNull<CFDictionary>>;
@@ -803,8 +803,8 @@ impl SecTrust {
     /// obtained during a TLS/SSL handshake, per RFC 3546) as input to a trust
     /// evaluation. If this data is available, it can obviate the need to contact
     /// an OCSP server for current revocation information.
-    #[inline]
     #[doc(alias = "SecTrustSetOCSPResponse")]
+    #[inline]
     pub unsafe fn set_ocsp_response(self: &SecTrust, response_data: Option<&CFType>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetOCSPResponse(
@@ -826,8 +826,8 @@ impl SecTrust {
     /// Allows the caller to provide SCT data (which may be
     /// obtained during a TLS/SSL handshake, per RFC 6962) as input to a trust
     /// evaluation.
-    #[inline]
     #[doc(alias = "SecTrustSetSignedCertificateTimestamps")]
+    #[inline]
     pub unsafe fn set_signed_certificate_timestamps(
         self: &SecTrust,
         sct_array: Option<&CFArray>,
@@ -846,8 +846,8 @@ impl SecTrust {
     /// Parameter `trust`: Reference to a trust object.
     ///
     /// Returns: A CFArray of the SecCertificateRefs for the resulting certificate chain
-    #[inline]
     #[doc(alias = "SecTrustCopyCertificateChain")]
+    #[inline]
     pub unsafe fn certificate_chain(self: &SecTrust) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SecTrustCopyCertificateChain(trust: &SecTrust) -> Option<NonNull<CFArray>>;
@@ -927,8 +927,8 @@ impl SecTrust {
     /// and SecTrustCopyExceptions to modify default trust results, and
     /// SecTrustSetNetworkFetchAllowed to specify whether missing CA certificates
     /// can be fetched from the network.
-    #[inline]
     #[doc(alias = "SecTrustSetOptions")]
+    #[inline]
     pub unsafe fn set_options(self: &SecTrust, options: SecTrustOptionFlags) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetOptions(trust_ref: &SecTrust, options: SecTrustOptionFlags) -> OSStatus;
@@ -951,10 +951,10 @@ impl SecTrust {
     /// should use SecTrustSetExceptions and SecTrustCopyExceptions to modify default
     /// trust results, and SecTrustSetNetworkFetchAllowed to specify whether missing
     /// CA certificates can be fetched from the network.
+    #[doc(alias = "SecTrustSetParameters")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecTrustSetParameters")]
     pub unsafe fn set_parameters(
         self: &SecTrust,
         action: CSSM_TP_ACTION,
@@ -986,9 +986,9 @@ impl SecTrust {
     /// the keychains that are searched, callers must use SecKeychainSetSearchList to
     /// change the user's keychain search list.
     /// Note: this function was never applicable to iOS.
+    #[doc(alias = "SecTrustSetKeychains")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecTrustSetKeychains")]
     pub unsafe fn set_keychains(self: &SecTrust, keychain_or_array: Option<&CFType>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetKeychains(
@@ -1021,6 +1021,7 @@ impl SecTrust {
     /// To get detailed status information for each certificate, use
     /// SecTrustCopyProperties. To get the overall trust result for the evaluation,
     /// use SecTrustGetTrustResult.
+    #[doc(alias = "SecTrustGetResult")]
     #[cfg(all(
         feature = "SecAsn1Types",
         feature = "cssmapple",
@@ -1029,7 +1030,6 @@ impl SecTrust {
     ))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecTrustGetResult")]
     pub unsafe fn get_trust(
         self: &SecTrust,
         result: *mut SecTrustResultType,
@@ -1060,10 +1060,10 @@ impl SecTrust {
     /// To get detailed status information for each certificate, use
     /// SecTrustCopyProperties. To get the overall trust result for the evaluation,
     /// use SecTrustGetTrustResult.
+    #[doc(alias = "SecTrustGetCssmResult")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecTrustGetCssmResult")]
     pub unsafe fn cssm_result(
         self: &SecTrust,
         result: NonNull<CSSM_TP_VERIFY_CONTEXT_RESULT_PTR>,
@@ -1095,9 +1095,9 @@ impl SecTrust {
     /// To get detailed status information for each certificate, use
     /// SecTrustCopyProperties. To get the overall trust result for the evaluation,
     /// use SecTrustGetTrustResult.
+    #[doc(alias = "SecTrustGetCssmResultCode")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecTrustGetCssmResultCode")]
     pub unsafe fn cssm_result_code(self: &SecTrust, result_code: NonNull<OSStatus>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetCssmResultCode(
@@ -1117,10 +1117,10 @@ impl SecTrust {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in OS X 10.7 and later.
+    #[doc(alias = "SecTrustGetTPHandle")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecTrustGetTPHandle")]
     pub unsafe fn tp_handle(self: &SecTrust, handle: NonNull<CSSM_TP_HANDLE>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetTPHandle(trust: &SecTrust, handle: NonNull<CSSM_TP_HANDLE>) -> OSStatus;
@@ -1138,8 +1138,8 @@ impl SecTrust {
     ///
     /// This function is not available on iOS, as certificate data
     /// for system-trusted roots is currently unavailable on that platform.
-    #[inline]
     #[doc(alias = "SecTrustCopyAnchorCertificates")]
+    #[inline]
     pub unsafe fn copy_anchor_certificates(anchors: NonNull<*const CFArray>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustCopyAnchorCertificates(anchors: NonNull<*const CFArray>) -> OSStatus;

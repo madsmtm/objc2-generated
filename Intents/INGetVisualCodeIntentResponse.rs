@@ -14,29 +14,29 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INGetVisualCodeIntentResponseCode(pub NSInteger);
 impl INGetVisualCodeIntentResponseCode {
-    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INGetVisualCodeIntentResponseCodeUnspecified")]
+    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INGetVisualCodeIntentResponseCodeReady")]
+    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INGetVisualCodeIntentResponseCodeContinueInApp")]
+    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
-    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INGetVisualCodeIntentResponseCodeInProgress")]
+    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(3);
-    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INGetVisualCodeIntentResponseCodeSuccess")]
+    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(4);
-    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INGetVisualCodeIntentResponseCodeFailure")]
+    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(5);
-    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INGetVisualCodeIntentResponseCodeFailureRequiringAppLaunch")]
-    pub const FailureRequiringAppLaunch: Self = Self(6);
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
+    pub const FailureRequiringAppLaunch: Self = Self(6);
     #[doc(alias = "INGetVisualCodeIntentResponseCodeFailureAppConfigurationRequired")]
+    #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(7);
 }
 

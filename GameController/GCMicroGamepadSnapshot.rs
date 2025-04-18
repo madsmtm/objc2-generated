@@ -85,8 +85,8 @@ impl GCMicroGamepadSnapshot {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCMicroGamepadSnapshotDataVersion(pub NSInteger);
 impl GCMicroGamepadSnapshotDataVersion {
-    #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     #[doc(alias = "GCMicroGamepadSnapshotDataVersion1")]
+    #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     pub const Version1: Self = Self(0x0100);
 }
 
@@ -138,9 +138,9 @@ impl GCMicroGamepadSnapshotData {
     ///
     ///
     /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    #[doc(alias = "GCMicroGamepadSnapshotDataFromNSData")]
     #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     #[inline]
-    #[doc(alias = "GCMicroGamepadSnapshotDataFromNSData")]
     pub unsafe fn from_ns_data(
         snapshot_data: *mut GCMicroGamepadSnapshotData,
         data: Option<&NSData>,
@@ -209,9 +209,9 @@ impl GCMicroGamepadSnapShotDataV100 {
     ///
     ///
     /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    #[doc(alias = "GCMicroGamepadSnapShotDataV100FromNSData")]
     #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     #[inline]
-    #[doc(alias = "GCMicroGamepadSnapShotDataV100FromNSData")]
     pub unsafe fn from_ns_data(
         snapshot_data: *mut GCMicroGamepadSnapShotDataV100,
         data: Option<&NSData>,

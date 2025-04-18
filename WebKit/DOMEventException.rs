@@ -17,8 +17,8 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct DOMEventExceptionCode(pub c_uint);
 impl DOMEventExceptionCode {
-    #[deprecated]
     #[doc(alias = "DOM_UNSPECIFIED_EVENT_TYPE_ERR")]
+    #[deprecated]
     pub const UNSPECIFIED_EVENT_TYPE_ERR: Self = Self(0);
 }
 

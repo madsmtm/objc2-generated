@@ -23,8 +23,8 @@ bitflags::bitflags! {
         const ActivateAllWindows = 1<<0;
 /// The application is activated regardless of the currently
 /// active app.
-#[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
         #[doc(alias = "NSApplicationActivateIgnoringOtherApps")]
+#[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
         const ActivateIgnoringOtherApps = 1<<1;
     }
 }

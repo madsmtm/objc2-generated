@@ -130,8 +130,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    #[inline]
     #[doc(alias = "CMBlockBufferCreateEmpty")]
+    #[inline]
     pub unsafe fn create_empty(
         structure_allocator: Option<&CFAllocator>,
         sub_block_capacity: u32,
@@ -196,8 +196,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    #[inline]
     #[doc(alias = "CMBlockBufferCreateWithMemoryBlock")]
+    #[inline]
     pub unsafe fn create_with_memory_block(
         structure_allocator: Option<&CFAllocator>,
         memory_block: *mut c_void,
@@ -260,8 +260,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    #[inline]
     #[doc(alias = "CMBlockBufferCreateWithBufferReference")]
+    #[inline]
     pub unsafe fn create_with_buffer_reference(
         structure_allocator: Option<&CFAllocator>,
         buffer_reference: &CMBlockBuffer,
@@ -325,8 +325,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful
-    #[inline]
     #[doc(alias = "CMBlockBufferCreateContiguous")]
+    #[inline]
     pub unsafe fn create_contiguous(
         structure_allocator: Option<&CFAllocator>,
         source_buffer: &CMBlockBuffer,
@@ -421,8 +421,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    #[inline]
     #[doc(alias = "CMBlockBufferAppendMemoryBlock")]
+    #[inline]
     pub unsafe fn append_memory_block(
         self: &CMBlockBuffer,
         memory_block: *mut c_void,
@@ -481,8 +481,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    #[inline]
     #[doc(alias = "CMBlockBufferAppendBufferReference")]
+    #[inline]
     pub unsafe fn append_buffer_reference(
         self: &CMBlockBuffer,
         target_b_buf: &CMBlockBuffer,
@@ -520,8 +520,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    #[inline]
     #[doc(alias = "CMBlockBufferAssureBlockMemory")]
+    #[inline]
     pub unsafe fn assure_block_memory(self: &CMBlockBuffer) -> OSStatus {
         extern "C-unwind" {
             fn CMBlockBufferAssureBlockMemory(the_buffer: &CMBlockBuffer) -> OSStatus;
@@ -550,8 +550,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the desired amount of data could be accessed at the given offset.
-    #[inline]
     #[doc(alias = "CMBlockBufferAccessDataBytes")]
+    #[inline]
     pub unsafe fn access_data_bytes(
         self: &CMBlockBuffer,
         offset: usize,
@@ -598,8 +598,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the copy succeeded, returns an error otherwise.
-    #[inline]
     #[doc(alias = "CMBlockBufferCopyDataBytes")]
+    #[inline]
     pub unsafe fn copy_data_bytes(
         self: &CMBlockBuffer,
         offset_to_data: usize,
@@ -635,8 +635,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the replacement succeeded, returns an error otherwise.
-    #[inline]
     #[doc(alias = "CMBlockBufferReplaceDataBytes")]
+    #[inline]
     pub unsafe fn replace_data_bytes(
         source_bytes: NonNull<c_void>,
         destination_buffer: &CMBlockBuffer,
@@ -680,8 +680,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the fill succeeded, returns an error otherwise.
-    #[inline]
     #[doc(alias = "CMBlockBufferFillDataBytes")]
+    #[inline]
     pub unsafe fn fill_data_bytes(
         fill_byte: c_char,
         destination_buffer: &CMBlockBuffer,
@@ -733,8 +733,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if data was accessible at the specified offset within the given CMBlockBuffer, false otherwise.
-    #[inline]
     #[doc(alias = "CMBlockBufferGetDataPointer")]
+    #[inline]
     pub unsafe fn data_pointer(
         self: &CMBlockBuffer,
         offset: usize,
@@ -774,8 +774,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns the total data length available via this CMBlockBuffer, or zero if it is empty, NULL, or somehow invalid.
-    #[inline]
     #[doc(alias = "CMBlockBufferGetDataLength")]
+    #[inline]
     pub unsafe fn data_length(self: &CMBlockBuffer) -> usize {
         extern "C-unwind" {
             fn CMBlockBufferGetDataLength(the_buffer: &CMBlockBuffer) -> usize;
@@ -799,8 +799,8 @@ impl CMBlockBuffer {
     ///
     /// Returns: Returns true if the specified range is contiguous within the CMBlockBuffer, false otherwise. Also returns false if the
     /// CMBlockBuffer is NULL or empty.
-    #[inline]
     #[doc(alias = "CMBlockBufferIsRangeContiguous")]
+    #[inline]
     pub unsafe fn is_range_contiguous(self: &CMBlockBuffer, offset: usize, length: usize) -> bool {
         extern "C-unwind" {
             fn CMBlockBufferIsRangeContiguous(
@@ -823,8 +823,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns the result of the emptiness test. Will return false if the CMBlockBuffer is NULL.
-    #[inline]
     #[doc(alias = "CMBlockBufferIsEmpty")]
+    #[inline]
     pub unsafe fn is_empty(self: &CMBlockBuffer) -> bool {
         extern "C-unwind" {
             fn CMBlockBufferIsEmpty(the_buffer: &CMBlockBuffer) -> Boolean;

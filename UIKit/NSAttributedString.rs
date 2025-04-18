@@ -615,11 +615,11 @@ pub static NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineSty
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextWritingDirection(pub NSInteger);
 impl NSTextWritingDirection {
-    #[deprecated]
     #[doc(alias = "NSTextWritingDirectionEmbedding")]
-    pub const Embedding: Self = Self(0 << 1);
     #[deprecated]
+    pub const Embedding: Self = Self(0 << 1);
     #[doc(alias = "NSTextWritingDirectionOverride")]
+    #[deprecated]
     pub const Override: Self = Self(1 << 1);
 }
 

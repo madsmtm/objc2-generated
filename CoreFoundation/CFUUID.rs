@@ -87,8 +87,8 @@ unsafe impl ConcreteType for CFUUID {
 }
 
 impl CFUUID {
-    #[inline]
     #[doc(alias = "CFUUIDCreate")]
+    #[inline]
     pub fn new(alloc: Option<&CFAllocator>) -> Option<CFRetained<CFUUID>> {
         extern "C-unwind" {
             fn CFUUIDCreate(alloc: Option<&CFAllocator>) -> Option<NonNull<CFUUID>>;
@@ -97,8 +97,8 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFUUIDCreateWithBytes")]
+    #[inline]
     pub fn with_bytes(
         alloc: Option<&CFAllocator>,
         byte0: u8,
@@ -148,8 +148,8 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFUUIDCreateFromString")]
+    #[inline]
     pub fn from_string(
         alloc: Option<&CFAllocator>,
         uuid_str: Option<&CFString>,
@@ -164,8 +164,8 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFUUIDCreateString")]
+    #[inline]
     pub fn new_string(
         alloc: Option<&CFAllocator>,
         uuid: Option<&CFUUID>,
@@ -180,8 +180,8 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFUUIDGetConstantUUIDWithBytes")]
+    #[inline]
     pub fn constant_uuid_with_bytes(
         alloc: Option<&CFAllocator>,
         byte0: u8,
@@ -231,8 +231,8 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFUUIDGetUUIDBytes")]
+    #[inline]
     pub fn uuid_bytes(self: &CFUUID) -> CFUUIDBytes {
         extern "C-unwind" {
             fn CFUUIDGetUUIDBytes(uuid: &CFUUID) -> CFUUIDBytes;
@@ -240,8 +240,8 @@ impl CFUUID {
         unsafe { CFUUIDGetUUIDBytes(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFUUIDCreateFromUUIDBytes")]
+    #[inline]
     pub fn from_uuid_bytes(
         alloc: Option<&CFAllocator>,
         bytes: CFUUIDBytes,

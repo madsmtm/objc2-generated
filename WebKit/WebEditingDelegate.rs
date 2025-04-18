@@ -16,14 +16,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WebViewInsertAction(pub NSInteger);
 impl WebViewInsertAction {
-    #[deprecated]
     #[doc(alias = "WebViewInsertActionTyped")]
+    #[deprecated]
     pub const Typed: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "WebViewInsertActionPasted")]
-    pub const Pasted: Self = Self(1);
     #[deprecated]
+    pub const Pasted: Self = Self(1);
     #[doc(alias = "WebViewInsertActionDropped")]
+    #[deprecated]
     pub const Dropped: Self = Self(2);
 }
 

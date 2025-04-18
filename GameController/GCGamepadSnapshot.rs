@@ -121,9 +121,9 @@ impl GCGamepadSnapShotDataV100 {
     ///
     ///
     /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    #[doc(alias = "GCGamepadSnapShotDataV100FromNSData")]
     #[deprecated = "Use GCExtendedGamepad instead"]
     #[inline]
-    #[doc(alias = "GCGamepadSnapShotDataV100FromNSData")]
     pub unsafe fn from_ns_data(
         snapshot_data: *mut GCGamepadSnapShotDataV100,
         data: Option<&NSData>,

@@ -13,8 +13,8 @@ use crate::*;
 pub struct MPSCNNConvolutionFlags(pub NSUInteger);
 impl MPSCNNConvolutionFlags {
     /// Use default options
-    #[deprecated]
     #[doc(alias = "MPSCNNConvolutionFlagsNone")]
+    #[deprecated]
     pub const None: Self = Self(0);
 }
 
@@ -201,8 +201,8 @@ bitflags::bitflags! {
         const SizeFull = 2<<4;
         #[doc(alias = "MPSNNPaddingMethodSize_reserved")]
         const Size_reserved = 3<<4;
-#[deprecated]
         #[doc(alias = "MPSNNPaddingMethodCustomWhitelistForNodeFusion")]
+#[deprecated]
         const CustomWhitelistForNodeFusion = 1<<13;
 /// By itself, MPSNNPaddingMethodCustom will inhibit automatic fusion between nodes producing and consuming the image described by the padding policy. MPSNNPaddingMethodCustomAllowForNodeFusion signals that the custom method is benign and fusion may go ahead.
         #[doc(alias = "MPSNNPaddingMethodCustomAllowForNodeFusion")]

@@ -563,8 +563,8 @@ impl MPSState {
     /// Parameter `amount`: The value to add to the read count for each unique state in the batch
     ///
     /// Returns: The number of different objects in the batch
-    #[inline]
     #[doc(alias = "MPSStateBatchIncrementReadCount")]
+    #[inline]
     pub unsafe fn batch_increment_read_count(
         batch: Option<&MPSStateBatch>,
         amount: NSInteger,
@@ -579,8 +579,8 @@ impl MPSState {
     }
 
     /// Call [MTLBlitEncoder synchronizeResource:] on unique resources
-    #[inline]
     #[doc(alias = "MPSStateBatchSynchronize")]
+    #[inline]
     pub unsafe fn batch_synchronize(
         batch: &MPSStateBatch,
         cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -595,8 +595,8 @@ impl MPSState {
     }
 
     /// Call [MTLBlitEncoder resourceSize] on unique resources
-    #[inline]
     #[doc(alias = "MPSStateBatchResourceSize")]
+    #[inline]
     pub unsafe fn batch_resource_size(batch: Option<&MPSStateBatch>) -> NSUInteger {
         extern "C-unwind" {
             fn MPSStateBatchResourceSize(batch: Option<&MPSStateBatch>) -> NSUInteger;

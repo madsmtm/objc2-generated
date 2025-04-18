@@ -23,9 +23,9 @@ impl SCDynamicStore {
     /// individual options from the returned dictionary.
     ///
     /// A non-NULL return value must be released using CFRelease().
+    #[doc(alias = "SCDynamicStoreCopyDHCPInfo")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
-    #[doc(alias = "SCDynamicStoreCopyDHCPInfo")]
     pub fn dhcp_info(
         store: Option<&SCDynamicStore>,
         service_id: Option<&CFString>,

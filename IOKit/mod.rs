@@ -8531,9 +8531,9 @@ impl IONotificationPort {
     /// Parameter `mainPort`: The main port obtained from IOMainPort(). Pass kIOMainPortDefault to look up the default main port.
     ///
     /// Returns: A reference to the notification object.
+    #[doc(alias = "IONotificationPortCreate")]
     #[cfg(feature = "libc")]
     #[inline]
-    #[doc(alias = "IONotificationPortCreate")]
     pub unsafe fn create(main_port: libc::mach_port_t) -> IONotificationPortRef {
         extern "C-unwind" {
             fn IONotificationPortCreate(main_port: libc::mach_port_t) -> IONotificationPortRef;
@@ -8560,8 +8560,8 @@ impl IONotificationPort {
     /// </code>
     ///
     /// Parameter `notify`: A reference to the notification object.
-    #[inline]
     #[doc(alias = "IONotificationPortDestroy")]
+    #[inline]
     pub unsafe fn destroy(notify: IONotificationPortRef) {
         extern "C-unwind" {
             fn IONotificationPortDestroy(notify: IONotificationPortRef);
@@ -8588,8 +8588,8 @@ impl IONotificationPort {
     /// Parameter `notify`: The notification object.
     ///
     /// Returns: A CFRunLoopSourceRef for the notification object.
-    #[inline]
     #[doc(alias = "IONotificationPortGetRunLoopSource")]
+    #[inline]
     pub unsafe fn run_loop_source(
         notify: IONotificationPortRef,
     ) -> Option<CFRetained<CFRunLoopSource>> {
@@ -8623,9 +8623,9 @@ impl IONotificationPort {
     /// Parameter `notify`: The notification object.
     ///
     /// Returns: A mach_port for the notification object.
+    #[doc(alias = "IONotificationPortGetMachPort")]
     #[cfg(feature = "libc")]
     #[inline]
-    #[doc(alias = "IONotificationPortGetMachPort")]
     pub unsafe fn mach_port(notify: IONotificationPortRef) -> libc::mach_port_t {
         extern "C-unwind" {
             fn IONotificationPortGetMachPort(notify: IONotificationPortRef) -> libc::mach_port_t;
@@ -8643,9 +8643,9 @@ impl IONotificationPort {
     /// Parameter `notify`: The notification object.
     ///
     /// Returns: A kern_return_t error code.
+    #[doc(alias = "IONotificationPortSetImportanceReceiver")]
     #[cfg(feature = "libc")]
     #[inline]
-    #[doc(alias = "IONotificationPortSetImportanceReceiver")]
     pub unsafe fn set_importance_receiver(notify: IONotificationPortRef) -> libc::kern_return_t {
         extern "C-unwind" {
             fn IONotificationPortSetImportanceReceiver(
@@ -8662,9 +8662,9 @@ impl IONotificationPort {
     /// Parameter `notify`: The notification object.
     ///
     /// Parameter `queue`: A dispatch queue.
+    #[doc(alias = "IONotificationPortSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    #[doc(alias = "IONotificationPortSetDispatchQueue")]
     pub unsafe fn set_dispatch_queue(notify: IONotificationPortRef, queue: Option<&DispatchQueue>) {
         extern "C-unwind" {
             fn IONotificationPortSetDispatchQueue(

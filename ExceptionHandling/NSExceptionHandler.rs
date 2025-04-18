@@ -40,8 +40,8 @@ extern "C" {
 }
 
 impl NSExceptionHandler {
-    #[inline]
     #[doc(alias = "NSExceptionHandlerResume")]
+    #[inline]
     pub unsafe fn resume() {
         extern "C-unwind" {
             fn NSExceptionHandlerResume();

@@ -81,38 +81,38 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecTransformMetaAttributeType(pub CFIndex);
 impl SecTransformMetaAttributeType {
-    #[deprecated = "SecTransform is no longer supported"]
     #[doc(alias = "kSecTransformMetaAttributeValue")]
+    #[deprecated = "SecTransform is no longer supported"]
     pub const Value: Self = Self(0);
-    #[deprecated = "SecTransform is no longer supported"]
     #[doc(alias = "kSecTransformMetaAttributeName")]
+    #[deprecated = "SecTransform is no longer supported"]
     pub const Name: Self = Self(1);
-    #[deprecated = "SecTransform is no longer supported"]
     #[doc(alias = "kSecTransformMetaAttributeRef")]
+    #[deprecated = "SecTransform is no longer supported"]
     pub const Ref: Self = Self(2);
-    #[deprecated = "SecTransform is no longer supported"]
     #[doc(alias = "kSecTransformMetaAttributeRequired")]
+    #[deprecated = "SecTransform is no longer supported"]
     pub const Required: Self = Self(3);
-    #[deprecated = "SecTransform is no longer supported"]
     #[doc(alias = "kSecTransformMetaAttributeRequiresOutboundConnection")]
+    #[deprecated = "SecTransform is no longer supported"]
     pub const RequiresOutboundConnection: Self = Self(4);
-    #[deprecated = "SecTransform is no longer supported"]
     #[doc(alias = "kSecTransformMetaAttributeDeferred")]
+    #[deprecated = "SecTransform is no longer supported"]
     pub const Deferred: Self = Self(5);
-    #[deprecated = "SecTransform is no longer supported"]
     #[doc(alias = "kSecTransformMetaAttributeStream")]
+    #[deprecated = "SecTransform is no longer supported"]
     pub const Stream: Self = Self(6);
-    #[deprecated = "SecTransform is no longer supported"]
     #[doc(alias = "kSecTransformMetaAttributeCanCycle")]
+    #[deprecated = "SecTransform is no longer supported"]
     pub const CanCycle: Self = Self(7);
-    #[deprecated = "SecTransform is no longer supported"]
     #[doc(alias = "kSecTransformMetaAttributeExternalize")]
+    #[deprecated = "SecTransform is no longer supported"]
     pub const Externalize: Self = Self(8);
-    #[deprecated = "SecTransform is no longer supported"]
     #[doc(alias = "kSecTransformMetaAttributeHasOutboundConnections")]
-    pub const HasOutboundConnections: Self = Self(9);
     #[deprecated = "SecTransform is no longer supported"]
+    pub const HasOutboundConnections: Self = Self(9);
     #[doc(alias = "kSecTransformMetaAttributeHasInboundConnection")]
+    #[deprecated = "SecTransform is no longer supported"]
     pub const HasInboundConnection: Self = Self(10);
 }
 

@@ -28,11 +28,11 @@ bitflags::bitflags! {
         const ProvidesAppNotificationSettings = 1<<5;
         #[doc(alias = "UNAuthorizationOptionProvisional")]
         const Provisional = 1<<6;
-#[deprecated = "Announcement authorization is always included"]
         #[doc(alias = "UNAuthorizationOptionAnnouncement")]
+#[deprecated = "Announcement authorization is always included"]
         const Announcement = 1<<7;
-#[deprecated = "Use time-sensitive entitlement"]
         #[doc(alias = "UNAuthorizationOptionTimeSensitive")]
+#[deprecated = "Use time-sensitive entitlement"]
         const TimeSensitive = 1<<8;
     }
 }
@@ -196,8 +196,8 @@ bitflags::bitflags! {
         const Badge = 1<<0;
         #[doc(alias = "UNNotificationPresentationOptionSound")]
         const Sound = 1<<1;
-#[deprecated]
         #[doc(alias = "UNNotificationPresentationOptionAlert")]
+#[deprecated]
         const Alert = 1<<2;
         #[doc(alias = "UNNotificationPresentationOptionList")]
         const List = 1<<3;

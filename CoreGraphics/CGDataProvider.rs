@@ -127,9 +127,9 @@ unsafe impl ConcreteType for CGDataProvider {
 }
 
 impl CGDataProvider {
+    #[doc(alias = "CGDataProviderCreateSequential")]
     #[cfg(feature = "libc")]
     #[inline]
-    #[doc(alias = "CGDataProviderCreateSequential")]
     pub unsafe fn new_sequential(
         info: *mut c_void,
         callbacks: *const CGDataProviderSequentialCallbacks,
@@ -144,9 +144,9 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CGDataProviderCreateDirect")]
     #[cfg(feature = "libc")]
     #[inline]
-    #[doc(alias = "CGDataProviderCreateDirect")]
     pub unsafe fn new_direct(
         info: *mut c_void,
         size: libc::off_t,
@@ -169,8 +169,8 @@ pub type CGDataProviderReleaseDataCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize)>;
 
 impl CGDataProvider {
-    #[inline]
     #[doc(alias = "CGDataProviderCreateWithData")]
+    #[inline]
     pub unsafe fn with_data(
         info: *mut c_void,
         data: *const c_void,
@@ -189,8 +189,8 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGDataProviderCreateWithCFData")]
+    #[inline]
     pub unsafe fn with_cf_data(data: Option<&CFData>) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateWithCFData(
@@ -201,8 +201,8 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGDataProviderCreateWithURL")]
+    #[inline]
     pub unsafe fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateWithURL(url: Option<&CFURL>) -> Option<NonNull<CGDataProvider>>;
@@ -211,8 +211,8 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGDataProviderCreateWithFilename")]
+    #[inline]
     pub unsafe fn with_filename(filename: *const c_char) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateWithFilename(
@@ -223,8 +223,8 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGDataProviderCopyData")]
+    #[inline]
     pub unsafe fn data(provider: Option<&CGDataProvider>) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CGDataProviderCopyData(provider: Option<&CGDataProvider>)
@@ -234,8 +234,8 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGDataProviderGetInfo")]
+    #[inline]
     pub unsafe fn info(provider: Option<&CGDataProvider>) -> *mut c_void {
         extern "C-unwind" {
             fn CGDataProviderGetInfo(provider: Option<&CGDataProvider>) -> *mut c_void;

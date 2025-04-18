@@ -96,9 +96,9 @@ unsafe impl ConcreteType for CFMessagePort {
 }
 
 impl CFMessagePort {
+    #[doc(alias = "CFMessagePortCreateLocal")]
     #[cfg(feature = "CFData")]
     #[inline]
-    #[doc(alias = "CFMessagePortCreateLocal")]
     pub unsafe fn new_local(
         allocator: Option<&CFAllocator>,
         name: Option<&CFString>,
@@ -121,8 +121,8 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFMessagePortCreateRemote")]
+    #[inline]
     pub fn new_remote(
         allocator: Option<&CFAllocator>,
         name: Option<&CFString>,
@@ -137,8 +137,8 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFMessagePortIsRemote")]
+    #[inline]
     pub fn is_remote(self: &CFMessagePort) -> bool {
         extern "C-unwind" {
             fn CFMessagePortIsRemote(ms: &CFMessagePort) -> Boolean;
@@ -147,8 +147,8 @@ impl CFMessagePort {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CFMessagePortGetName")]
+    #[inline]
     pub fn name(self: &CFMessagePort) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFMessagePortGetName(ms: &CFMessagePort) -> Option<NonNull<CFString>>;
@@ -157,8 +157,8 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFMessagePortSetName")]
+    #[inline]
     pub fn set_name(self: &CFMessagePort, new_name: Option<&CFString>) -> bool {
         extern "C-unwind" {
             fn CFMessagePortSetName(ms: &CFMessagePort, new_name: Option<&CFString>) -> Boolean;
@@ -167,8 +167,8 @@ impl CFMessagePort {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CFMessagePortGetContext")]
+    #[inline]
     pub unsafe fn context(self: &CFMessagePort, context: *mut CFMessagePortContext) {
         extern "C-unwind" {
             fn CFMessagePortGetContext(ms: &CFMessagePort, context: *mut CFMessagePortContext);
@@ -176,8 +176,8 @@ impl CFMessagePort {
         unsafe { CFMessagePortGetContext(self, context) }
     }
 
-    #[inline]
     #[doc(alias = "CFMessagePortInvalidate")]
+    #[inline]
     pub fn invalidate(self: &CFMessagePort) {
         extern "C-unwind" {
             fn CFMessagePortInvalidate(ms: &CFMessagePort);
@@ -185,8 +185,8 @@ impl CFMessagePort {
         unsafe { CFMessagePortInvalidate(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFMessagePortIsValid")]
+    #[inline]
     pub fn is_valid(self: &CFMessagePort) -> bool {
         extern "C-unwind" {
             fn CFMessagePortIsValid(ms: &CFMessagePort) -> Boolean;
@@ -195,8 +195,8 @@ impl CFMessagePort {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CFMessagePortGetInvalidationCallBack")]
+    #[inline]
     pub fn invalidation_call_back(self: &CFMessagePort) -> CFMessagePortInvalidationCallBack {
         extern "C-unwind" {
             fn CFMessagePortGetInvalidationCallBack(
@@ -206,8 +206,8 @@ impl CFMessagePort {
         unsafe { CFMessagePortGetInvalidationCallBack(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFMessagePortSetInvalidationCallBack")]
+    #[inline]
     pub unsafe fn set_invalidation_call_back(
         self: &CFMessagePort,
         callout: CFMessagePortInvalidationCallBack,
@@ -221,9 +221,9 @@ impl CFMessagePort {
         unsafe { CFMessagePortSetInvalidationCallBack(self, callout) }
     }
 
+    #[doc(alias = "CFMessagePortSendRequest")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
-    #[doc(alias = "CFMessagePortSendRequest")]
     pub unsafe fn send_request(
         self: &CFMessagePort,
         msgid: i32,
@@ -257,9 +257,9 @@ impl CFMessagePort {
         }
     }
 
+    #[doc(alias = "CFMessagePortCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
-    #[doc(alias = "CFMessagePortCreateRunLoopSource")]
     pub fn new_run_loop_source(
         allocator: Option<&CFAllocator>,
         local: Option<&CFMessagePort>,
@@ -276,9 +276,9 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFMessagePortSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    #[doc(alias = "CFMessagePortSetDispatchQueue")]
     pub unsafe fn set_dispatch_queue(self: &CFMessagePort, queue: Option<&DispatchQueue>) {
         extern "C-unwind" {
             fn CFMessagePortSetDispatchQueue(ms: &CFMessagePort, queue: Option<&DispatchQueue>);

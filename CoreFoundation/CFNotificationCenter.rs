@@ -78,8 +78,8 @@ unsafe impl ConcreteType for CFNotificationCenter {
 }
 
 impl CFNotificationCenter {
-    #[inline]
     #[doc(alias = "CFNotificationCenterGetLocalCenter")]
+    #[inline]
     pub fn local_center() -> Option<CFRetained<CFNotificationCenter>> {
         extern "C-unwind" {
             fn CFNotificationCenterGetLocalCenter() -> Option<NonNull<CFNotificationCenter>>;
@@ -88,8 +88,8 @@ impl CFNotificationCenter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFNotificationCenterGetDistributedCenter")]
+    #[inline]
     pub fn distributed_center() -> Option<CFRetained<CFNotificationCenter>> {
         extern "C-unwind" {
             fn CFNotificationCenterGetDistributedCenter() -> Option<NonNull<CFNotificationCenter>>;
@@ -98,8 +98,8 @@ impl CFNotificationCenter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFNotificationCenterGetDarwinNotifyCenter")]
+    #[inline]
     pub fn darwin_notify_center() -> Option<CFRetained<CFNotificationCenter>> {
         extern "C-unwind" {
             fn CFNotificationCenterGetDarwinNotifyCenter() -> Option<NonNull<CFNotificationCenter>>;
@@ -108,9 +108,9 @@ impl CFNotificationCenter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    #[doc(alias = "CFNotificationCenterAddObserver")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFNotificationCenterAddObserver")]
     pub unsafe fn add_observer(
         self: &CFNotificationCenter,
         observer: *const c_void,
@@ -141,8 +141,8 @@ impl CFNotificationCenter {
         }
     }
 
-    #[inline]
     #[doc(alias = "CFNotificationCenterRemoveObserver")]
+    #[inline]
     pub unsafe fn remove_observer(
         self: &CFNotificationCenter,
         observer: *const c_void,
@@ -160,8 +160,8 @@ impl CFNotificationCenter {
         unsafe { CFNotificationCenterRemoveObserver(self, observer, name, object) }
     }
 
-    #[inline]
     #[doc(alias = "CFNotificationCenterRemoveEveryObserver")]
+    #[inline]
     pub unsafe fn remove_every_observer(self: &CFNotificationCenter, observer: *const c_void) {
         extern "C-unwind" {
             fn CFNotificationCenterRemoveEveryObserver(
@@ -172,9 +172,9 @@ impl CFNotificationCenter {
         unsafe { CFNotificationCenterRemoveEveryObserver(self, observer) }
     }
 
+    #[doc(alias = "CFNotificationCenterPostNotification")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFNotificationCenterPostNotification")]
     pub unsafe fn post_notification(
         self: &CFNotificationCenter,
         name: Option<&CFNotificationName>,
@@ -209,9 +209,9 @@ pub const kCFNotificationDeliverImmediately: CFOptionFlags = 1 << 0;
 pub const kCFNotificationPostToAllSessions: CFOptionFlags = 1 << 1;
 
 impl CFNotificationCenter {
+    #[doc(alias = "CFNotificationCenterPostNotificationWithOptions")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFNotificationCenterPostNotificationWithOptions")]
     pub unsafe fn post_notification_with_options(
         self: &CFNotificationCenter,
         name: Option<&CFNotificationName>,

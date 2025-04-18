@@ -35,9 +35,9 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    #[doc(alias = "SecRequirementCreateWithData")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecRequirementCreateWithData")]
     pub unsafe fn create_with_data(
         data: &CFData,
         flags: SecCSFlags,
@@ -66,9 +66,9 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    #[doc(alias = "SecRequirementCreateWithString")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecRequirementCreateWithString")]
     pub unsafe fn create_with_string(
         text: &CFString,
         flags: SecCSFlags,
@@ -84,9 +84,9 @@ impl SecRequirement {
         unsafe { SecRequirementCreateWithString(text, flags, requirement) }
     }
 
+    #[doc(alias = "SecRequirementCreateWithStringAndErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecRequirementCreateWithStringAndErrors")]
     pub unsafe fn create_with_string_and_errors(
         text: &CFString,
         flags: SecCSFlags,
@@ -118,9 +118,9 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    #[doc(alias = "SecRequirementCopyData")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecRequirementCopyData")]
     pub unsafe fn copy_data(
         self: &SecRequirement,
         flags: SecCSFlags,
@@ -155,9 +155,9 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    #[doc(alias = "SecRequirementCopyString")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecRequirementCopyString")]
     pub unsafe fn copy_string(
         self: &SecRequirement,
         flags: SecCSFlags,

@@ -17,11 +17,11 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct DOMRangeExceptionCode(pub c_uint);
 impl DOMRangeExceptionCode {
-    #[deprecated]
     #[doc(alias = "DOM_BAD_BOUNDARYPOINTS_ERR")]
-    pub const BAD_BOUNDARYPOINTS_ERR: Self = Self(1);
     #[deprecated]
+    pub const BAD_BOUNDARYPOINTS_ERR: Self = Self(1);
     #[doc(alias = "DOM_INVALID_NODE_TYPE_ERR")]
+    #[deprecated]
     pub const INVALID_NODE_TYPE_ERR: Self = Self(2);
 }
 

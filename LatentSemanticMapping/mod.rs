@@ -138,8 +138,8 @@ pub type LSMCategory = u32;
 
 impl LSMMap {
     /// Creates a new LSM map. Call CFRelease to dispose.
-    #[inline]
     #[doc(alias = "LSMMapCreate")]
+    #[inline]
     pub unsafe fn new(alloc: Option<&CFAllocator>, flags: CFOptionFlags) -> CFRetained<LSMMap> {
         extern "C-unwind" {
             fn LSMMapCreate(
@@ -164,8 +164,8 @@ pub const kLSMMapHashText: c_uint = 256;
 impl LSMMap {
     /// Set a dictionary of properties for the map. LSM makes its own copy
     /// of the properties, there's no need to retain them past this call.
-    #[inline]
     #[doc(alias = "LSMMapSetProperties")]
+    #[inline]
     pub unsafe fn set_properties(self: &LSMMap, properties: &CFDictionary) {
         extern "C-unwind" {
             fn LSMMapSetProperties(mapref: &LSMMap, properties: &CFDictionary);
@@ -175,8 +175,8 @@ impl LSMMap {
 
     /// Get a dictionary of properties for the map. LSM retains ownership of
     /// this dictionary, do not release it.
-    #[inline]
     #[doc(alias = "LSMMapGetProperties")]
+    #[inline]
     pub unsafe fn properties(self: &LSMMap) -> CFRetained<CFDictionary> {
         extern "C-unwind" {
             fn LSMMapGetProperties(mapref: &LSMMap) -> Option<NonNull<CFDictionary>>;
@@ -190,8 +190,8 @@ impl LSMMap {
     /// Puts the map into training mode, preparing it for the addition of more
     /// categories and/or texts. This function will be somewhat expensive, as it
     /// requires substantial data structure reorganization.
-    #[inline]
     #[doc(alias = "LSMMapStartTraining")]
+    #[inline]
     pub unsafe fn start_training(self: &LSMMap) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapStartTraining(mapref: &LSMMap) -> OSStatus;
@@ -200,8 +200,8 @@ impl LSMMap {
     }
 
     /// Adds another category and returns its category identifier.
-    #[inline]
     #[doc(alias = "LSMMapAddCategory")]
+    #[inline]
     pub unsafe fn add_category(self: &LSMMap) -> LSMCategory {
         extern "C-unwind" {
             fn LSMMapAddCategory(mapref: &LSMMap) -> LSMCategory;
@@ -210,8 +210,8 @@ impl LSMMap {
     }
 
     /// Returns the number of categories in the map.
-    #[inline]
     #[doc(alias = "LSMMapGetCategoryCount")]
+    #[inline]
     pub unsafe fn category_count(self: &LSMMap) -> CFIndex {
         extern "C-unwind" {
             fn LSMMapGetCategoryCount(mapref: &LSMMap) -> CFIndex;
@@ -222,8 +222,8 @@ impl LSMMap {
     /// The specified words will be omitted from all classification efforts.
     /// Needs to be called before any other texts are created.
     /// The textref is no longer needed after this call.
-    #[inline]
     #[doc(alias = "LSMMapSetStopWords")]
+    #[inline]
     pub unsafe fn set_stop_words(self: &LSMMap, textref: &LSMText) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapSetStopWords(mapref: &LSMMap, textref: &LSMText) -> OSStatus;
@@ -233,8 +233,8 @@ impl LSMMap {
 
     /// Adds a training text to the given category.
     /// The textref is no longer needed after this call.
-    #[inline]
     #[doc(alias = "LSMMapAddText")]
+    #[inline]
     pub unsafe fn add_text(self: &LSMMap, textref: &LSMText, category: LSMCategory) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapAddText(mapref: &LSMMap, textref: &LSMText, category: LSMCategory)
@@ -246,8 +246,8 @@ impl LSMMap {
     /// Adds a training text to the given category with a weight different from 1.
     /// The weight may be negative, but global counts will be pinned to 0.
     /// The textref is no longer needed after this call.
-    #[inline]
     #[doc(alias = "LSMMapAddTextWithWeight")]
+    #[inline]
     pub unsafe fn add_text_with_weight(
         self: &LSMMap,
         textref: &LSMText,
@@ -268,8 +268,8 @@ impl LSMMap {
     /// Compiles the map into executable form and puts it into mapping mode,
     /// preparing it for the classification of texts. This function is
     /// computationally expensive.
-    #[inline]
     #[doc(alias = "LSMMapCompile")]
+    #[inline]
     pub unsafe fn compile(self: &LSMMap) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapCompile(mapref: &LSMMap) -> OSStatus;
@@ -280,8 +280,8 @@ impl LSMMap {
     /// Compute a set of clusters grouping similar categories or words.
     /// If subset is non-NULL, only perform clustering on the categories
     /// or words listed.
-    #[inline]
     #[doc(alias = "LSMMapCreateClusters")]
+    #[inline]
     pub unsafe fn new_clusters(
         alloc: Option<&CFAllocator>,
         mapref: &LSMMap,
@@ -316,8 +316,8 @@ pub const kLSMClusterAgglomerative: c_uint = 4;
 
 impl LSMMap {
     /// Group categories or words (tokens) into the specified sets of clusters.
-    #[inline]
     #[doc(alias = "LSMMapApplyClusters")]
+    #[inline]
     pub unsafe fn apply_clusters(self: &LSMMap, clusters: &CFArray) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapApplyClusters(mapref: &LSMMap, clusters: &CFArray) -> OSStatus;
@@ -329,8 +329,8 @@ impl LSMMap {
 impl LSMResult {
     /// Returns, in decreasing order of likelihood, the categories or words
     /// that best match when a text is mapped into a map.
-    #[inline]
     #[doc(alias = "LSMResultCreate")]
+    #[inline]
     pub unsafe fn new(
         alloc: Option<&CFAllocator>,
         mapref: &LSMMap,
@@ -359,8 +359,8 @@ pub const kLSMResultBestWords: c_uint = 1;
 
 impl LSMResult {
     /// Returns the number of results.
-    #[inline]
     #[doc(alias = "LSMResultGetCount")]
+    #[inline]
     pub unsafe fn count(self: &LSMResult) -> CFIndex {
         extern "C-unwind" {
             fn LSMResultGetCount(result: &LSMResult) -> CFIndex;
@@ -369,8 +369,8 @@ impl LSMResult {
     }
 
     /// Returns the category of the n-th best (zero based) result.
-    #[inline]
     #[doc(alias = "LSMResultGetCategory")]
+    #[inline]
     pub unsafe fn category(self: &LSMResult, n: CFIndex) -> LSMCategory {
         extern "C-unwind" {
             fn LSMResultGetCategory(result: &LSMResult, n: CFIndex) -> LSMCategory;
@@ -381,8 +381,8 @@ impl LSMResult {
     /// Returns the likelihood of the n-th best (zero based) result.
     /// A nan score often indicates that the category does not contain
     /// any token.
-    #[inline]
     #[doc(alias = "LSMResultGetScore")]
+    #[inline]
     pub unsafe fn score(self: &LSMResult, n: CFIndex) -> c_float {
         extern "C-unwind" {
             fn LSMResultGetScore(result: &LSMResult, n: CFIndex) -> c_float;
@@ -391,8 +391,8 @@ impl LSMResult {
     }
 
     /// Returns the word for the n-th best (zero based) result.
-    #[inline]
     #[doc(alias = "LSMResultCopyWord")]
+    #[inline]
     pub unsafe fn word(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn LSMResultCopyWord(result: &LSMResult, n: CFIndex) -> Option<NonNull<CFString>>;
@@ -402,8 +402,8 @@ impl LSMResult {
     }
 
     /// Returns the token for the n-th best (zero based) result.
-    #[inline]
     #[doc(alias = "LSMResultCopyToken")]
+    #[inline]
     pub unsafe fn token(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn LSMResultCopyToken(result: &LSMResult, n: CFIndex) -> Option<NonNull<CFData>>;
@@ -413,8 +413,8 @@ impl LSMResult {
     }
 
     /// Returns the cluster of words for the n-th best (zero based) result.
-    #[inline]
     #[doc(alias = "LSMResultCopyWordCluster")]
+    #[inline]
     pub unsafe fn word_cluster(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn LSMResultCopyWordCluster(result: &LSMResult, n: CFIndex)
@@ -425,8 +425,8 @@ impl LSMResult {
     }
 
     /// Returns the cluster of tokens for the n-th best (zero based) result.
-    #[inline]
     #[doc(alias = "LSMResultCopyTokenCluster")]
+    #[inline]
     pub unsafe fn token_cluster(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn LSMResultCopyTokenCluster(
@@ -441,8 +441,8 @@ impl LSMResult {
 
 impl LSMMap {
     /// Compiles the map if necessary and then stores it into the given file.
-    #[inline]
     #[doc(alias = "LSMMapWriteToURL")]
+    #[inline]
     pub unsafe fn write_to_url(self: &LSMMap, file: &CFURL, flags: CFOptionFlags) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapWriteToURL(mapref: &LSMMap, file: &CFURL, flags: CFOptionFlags) -> OSStatus;
@@ -451,8 +451,8 @@ impl LSMMap {
     }
 
     /// Loads a map from a given file.
-    #[inline]
     #[doc(alias = "LSMMapCreateFromURL")]
+    #[inline]
     pub unsafe fn from_url(
         alloc: Option<&CFAllocator>,
         file: &CFURL,
@@ -477,8 +477,8 @@ pub const kLSMMapLoadMutable: c_uint = 2;
 
 impl LSMMap {
     /// Writes information about a map and/or text to a stream in text form
-    #[inline]
     #[doc(alias = "LSMMapWriteToStream")]
+    #[inline]
     pub unsafe fn write_to_stream(
         self: &LSMMap,
         textref: Option<&LSMText>,
@@ -499,8 +499,8 @@ impl LSMMap {
 
 impl LSMText {
     /// Creates a new text.
-    #[inline]
     #[doc(alias = "LSMTextCreate")]
+    #[inline]
     pub unsafe fn new(alloc: Option<&CFAllocator>, mapref: &LSMMap) -> CFRetained<LSMText> {
         extern "C-unwind" {
             fn LSMTextCreate(
@@ -516,8 +516,8 @@ impl LSMText {
 
     /// Adds a word to the text. The order of words is significant if the map
     /// uses pairs or triplets, and the count of words is always significant.
-    #[inline]
     #[doc(alias = "LSMTextAddWord")]
+    #[inline]
     pub unsafe fn add_word(self: &LSMText, word: &CFString) -> OSStatus {
         extern "C-unwind" {
             fn LSMTextAddWord(textref: &LSMText, word: &CFString) -> OSStatus;
@@ -527,8 +527,8 @@ impl LSMText {
 
     /// Breaks a string into words using the locale provided and adds the words
     /// to the text.
-    #[inline]
     #[doc(alias = "LSMTextAddWords")]
+    #[inline]
     pub unsafe fn add_words(
         self: &LSMText,
         words: &CFString,
@@ -558,8 +558,8 @@ impl LSMText {
     /// Adds an arbitrary binary token to the text. The order of tokens is
     /// significant if the map uses pairs or triplets, and the count of
     /// tokens is always significant.
-    #[inline]
     #[doc(alias = "LSMTextAddToken")]
+    #[inline]
     pub unsafe fn add_token(self: &LSMText, token: &CFData) -> OSStatus {
         extern "C-unwind" {
             fn LSMTextAddToken(textref: &LSMText, token: &CFData) -> OSStatus;

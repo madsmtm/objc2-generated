@@ -15,12 +15,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKSendDataMode(pub c_int);
 impl GKSendDataMode {
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSendDataReliable")]
+    #[deprecated = "No longer supported"]
     pub const Reliable: Self = Self(0);
     /// a.s.a.p. but requires fragmentation and reassembly for large messages, may stall if network congestion occurs
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSendDataUnreliable")]
+    #[deprecated = "No longer supported"]
     pub const Unreliable: Self = Self(1);
 }
 
@@ -39,16 +39,16 @@ unsafe impl RefEncode for GKSendDataMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKSessionMode(pub c_int);
 impl GKSessionMode {
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionModeServer")]
+    #[deprecated = "No longer supported"]
     pub const Server: Self = Self(0);
     /// delegate will get -didReceiveConnectionRequestFromPeer callback when a client wants to connect
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionModeClient")]
+    #[deprecated = "No longer supported"]
     pub const Client: Self = Self(1);
     /// delegate will get -session:peer:didChangeState: callback with GKPeerStateAvailable, or GKPeerStateUnavailable for discovered servers
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKSessionModePeer")]
+    #[deprecated = "No longer supported"]
     pub const Peer: Self = Self(2);
 }
 
@@ -69,28 +69,28 @@ unsafe impl RefEncode for GKSessionMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKPeerConnectionState(pub c_int);
 impl GKPeerConnectionState {
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKPeerStateAvailable")]
+    #[deprecated = "No longer supported"]
     pub const StateAvailable: Self = Self(0);
     /// not connected to session, but available for connectToPeer:withTimeout:
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKPeerStateUnavailable")]
+    #[deprecated = "No longer supported"]
     pub const StateUnavailable: Self = Self(1);
     /// no longer available
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKPeerStateConnected")]
+    #[deprecated = "No longer supported"]
     pub const StateConnected: Self = Self(2);
     /// connected to the session
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKPeerStateDisconnected")]
+    #[deprecated = "No longer supported"]
     pub const StateDisconnected: Self = Self(3);
     /// disconnected from the session
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKPeerStateConnecting")]
+    #[deprecated = "No longer supported"]
     pub const StateConnecting: Self = Self(4);
     /// waiting for accept, or deny response
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKPeerStateConnectedRelay")]
+    #[deprecated = "No longer supported"]
     pub const StateConnectedRelay: Self = Self(5);
 }
 
@@ -114,56 +114,56 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKVoiceChatServiceError(pub c_int);
 impl GKVoiceChatServiceError {
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceInternalError")]
+    #[deprecated = "No longer supported"]
     pub const InternalError: Self = Self(32000);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceNoRemotePacketsError")]
+    #[deprecated = "No longer supported"]
     pub const NoRemotePacketsError: Self = Self(32001);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceUnableToConnectError")]
+    #[deprecated = "No longer supported"]
     pub const UnableToConnectError: Self = Self(32002);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceRemoteParticipantHangupError")]
+    #[deprecated = "No longer supported"]
     pub const RemoteParticipantHangupError: Self = Self(32003);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceInvalidCallIDError")]
+    #[deprecated = "No longer supported"]
     pub const InvalidCallIDError: Self = Self(32004);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceAudioUnavailableError")]
+    #[deprecated = "No longer supported"]
     pub const AudioUnavailableError: Self = Self(32005);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceUninitializedClientError")]
+    #[deprecated = "No longer supported"]
     pub const UninitializedClientError: Self = Self(32006);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceClientMissingRequiredMethodsError")]
+    #[deprecated = "No longer supported"]
     pub const ClientMissingRequiredMethodsError: Self = Self(32007);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceRemoteParticipantBusyError")]
+    #[deprecated = "No longer supported"]
     pub const RemoteParticipantBusyError: Self = Self(32008);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceRemoteParticipantCancelledError")]
+    #[deprecated = "No longer supported"]
     pub const RemoteParticipantCancelledError: Self = Self(32009);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceRemoteParticipantResponseInvalidError")]
+    #[deprecated = "No longer supported"]
     pub const RemoteParticipantResponseInvalidError: Self = Self(32010);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceRemoteParticipantDeclinedInviteError")]
+    #[deprecated = "No longer supported"]
     pub const RemoteParticipantDeclinedInviteError: Self = Self(32011);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceMethodCurrentlyInvalidError")]
+    #[deprecated = "No longer supported"]
     pub const MethodCurrentlyInvalidError: Self = Self(32012);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceNetworkConfigurationError")]
+    #[deprecated = "No longer supported"]
     pub const NetworkConfigurationError: Self = Self(32013);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceUnsupportedRemoteVersionError")]
+    #[deprecated = "No longer supported"]
     pub const UnsupportedRemoteVersionError: Self = Self(32014);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatServiceOutOfMemoryError")]
-    pub const OutOfMemoryError: Self = Self(32015);
     #[deprecated = "No longer supported"]
+    pub const OutOfMemoryError: Self = Self(32015);
     #[doc(alias = "GKVoiceChatServiceInvalidParameterError")]
+    #[deprecated = "No longer supported"]
     pub const InvalidParameterError: Self = Self(32016);
 }
 

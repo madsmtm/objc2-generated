@@ -14,20 +14,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKVoiceChatPlayerState(pub NSInteger);
 impl GKVoiceChatPlayerState {
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatPlayerConnected")]
+    #[deprecated = "No longer supported"]
     pub const Connected: Self = Self(0);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatPlayerDisconnected")]
+    #[deprecated = "No longer supported"]
     pub const Disconnected: Self = Self(1);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatPlayerSpeaking")]
+    #[deprecated = "No longer supported"]
     pub const Speaking: Self = Self(2);
-    #[deprecated = "No longer supported"]
     #[doc(alias = "GKVoiceChatPlayerSilent")]
-    pub const Silent: Self = Self(3);
     #[deprecated = "No longer supported"]
+    pub const Silent: Self = Self(3);
     #[doc(alias = "GKVoiceChatPlayerConnecting")]
+    #[deprecated = "No longer supported"]
     pub const Connecting: Self = Self(4);
 }
 

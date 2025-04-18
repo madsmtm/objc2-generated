@@ -24,8 +24,8 @@ impl CFStringTokenizer {
     ///
     /// The result is not guaranteed to be accurate. Typically 200-400
     /// characters are required to reliably guess the language of a string.
-    #[inline]
     #[doc(alias = "CFStringTokenizerCopyBestStringLanguage")]
+    #[inline]
     pub unsafe fn best_string_language(
         string: &CFString,
         range: CFRange,
@@ -190,9 +190,9 @@ impl CFStringTokenizer {
     /// NULL if you want tokenizer to identify the locale automatically.
     ///
     /// Returns: A reference to the new CFStringTokenizer.
+    #[doc(alias = "CFStringTokenizerCreate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    #[doc(alias = "CFStringTokenizerCreate")]
     pub unsafe fn new(
         alloc: Option<&CFAllocator>,
         string: Option<&CFString>,
@@ -222,8 +222,8 @@ impl CFStringTokenizer {
     ///
     /// Parameter `range`: The range of characters within the string to be tokenized. The
     /// specified range must not exceed the length of the string.
-    #[inline]
     #[doc(alias = "CFStringTokenizerSetString")]
+    #[inline]
     pub unsafe fn set_string(self: &CFStringTokenizer, string: Option<&CFString>, range: CFRange) {
         extern "C-unwind" {
             fn CFStringTokenizerSetString(
@@ -251,8 +251,8 @@ impl CFStringTokenizer {
     /// If the token is a compound (with type kCFStringTokenizerTokenHasSubTokensMask or
     /// kCFStringTokenizerTokenHasDerivedSubTokensMask), its subtokens and
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
-    #[inline]
     #[doc(alias = "CFStringTokenizerGoToTokenAtIndex")]
+    #[inline]
     pub unsafe fn go_to_token_at_index(
         self: &CFStringTokenizer,
         index: CFIndex,
@@ -287,8 +287,8 @@ impl CFStringTokenizer {
     /// (with type kCFStringTokenizerTokenHasSubTokensMask or
     /// kCFStringTokenizerTokenHasDerivedSubTokensMask), its subtokens and
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
-    #[inline]
     #[doc(alias = "CFStringTokenizerAdvanceToNextToken")]
+    #[inline]
     pub unsafe fn advance_to_next_token(self: &CFStringTokenizer) -> CFStringTokenizerTokenType {
         extern "C-unwind" {
             fn CFStringTokenizerAdvanceToNextToken(
@@ -304,8 +304,8 @@ impl CFStringTokenizer {
     /// CFStringTokenizerCreate.
     ///
     /// Returns: Range of current token, or {kCFNotFound,0} if there is no current token.
-    #[inline]
     #[doc(alias = "CFStringTokenizerGetCurrentTokenRange")]
+    #[inline]
     pub unsafe fn current_token_range(self: &CFStringTokenizer) -> CFRange {
         extern "C-unwind" {
             fn CFStringTokenizerGetCurrentTokenRange(tokenizer: &CFStringTokenizer) -> CFRange;
@@ -324,8 +324,8 @@ impl CFStringTokenizer {
     ///
     /// Returns: Token attribute, or NULL if current token does not have the specified
     /// attribute or if there is no current token.
-    #[inline]
     #[doc(alias = "CFStringTokenizerCopyCurrentTokenAttribute")]
+    #[inline]
     pub unsafe fn current_token_attribute(
         self: &CFStringTokenizer,
         attribute: CFOptionFlags,
@@ -367,9 +367,9 @@ impl CFStringTokenizer {
     /// The derivedSubTokens array will have sub tokens added even when the sub token is a
     /// substring of the token. If token type is kCFStringTokenizerTokenHasSubTokensMask,
     /// the ordinary non-derived subtokens are added to the derivedSubTokens array.
+    #[doc(alias = "CFStringTokenizerGetCurrentSubTokens")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    #[doc(alias = "CFStringTokenizerGetCurrentSubTokens")]
     pub unsafe fn current_sub_tokens(
         self: &CFStringTokenizer,
         ranges: *mut CFRange,

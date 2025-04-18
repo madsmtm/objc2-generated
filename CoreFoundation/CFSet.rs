@@ -243,8 +243,8 @@ impl CFSet {
     /// undefined.
     ///
     /// Returns: A reference to the new immutable CFSet.
-    #[inline]
     #[doc(alias = "CFSetCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         values: *mut *const c_void,
@@ -281,8 +281,8 @@ impl CFSet {
     /// not a valid CFSet, the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFSet.
-    #[inline]
     #[doc(alias = "CFSetCreateCopy")]
+    #[inline]
     pub fn new_copy(
         allocator: Option<&CFAllocator>,
         the_set: Option<&CFSet>,
@@ -343,8 +343,8 @@ impl CFMutableSet {
     /// undefined.
     ///
     /// Returns: A reference to the new mutable CFSet.
-    #[inline]
     #[doc(alias = "CFSetCreateMutable")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
@@ -389,8 +389,8 @@ impl CFMutableSet {
     /// not a valid CFSet, the behavior is undefined.
     ///
     /// Returns: A reference to the new mutable CFSet.
-    #[inline]
     #[doc(alias = "CFSetCreateMutableCopy")]
+    #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
@@ -415,8 +415,8 @@ impl CFSet {
     /// CFSet, the behavior is undefined.
     ///
     /// Returns: The number of values in the set.
-    #[inline]
     #[doc(alias = "CFSetGetCount")]
+    #[inline]
     pub fn count(self: &CFSet) -> CFIndex {
         extern "C-unwind" {
             fn CFSetGetCount(the_set: &CFSet) -> CFIndex;
@@ -439,8 +439,8 @@ impl CFSet {
     /// the behavior is undefined.
     ///
     /// Returns: The number of times the given value occurs in the set.
-    #[inline]
     #[doc(alias = "CFSetGetCountOfValue")]
+    #[inline]
     pub unsafe fn count_of_value(self: &CFSet, value: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFSetGetCountOfValue(the_set: &CFSet, value: *const c_void) -> CFIndex;
@@ -461,8 +461,8 @@ impl CFSet {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the value is in the set, otherwise false.
-    #[inline]
     #[doc(alias = "CFSetContainsValue")]
+    #[inline]
     pub unsafe fn contains_value(self: &CFSet, value: *const c_void) -> bool {
         extern "C-unwind" {
             fn CFSetContainsValue(the_set: &CFSet, value: *const c_void) -> Boolean;
@@ -483,8 +483,8 @@ impl CFSet {
     /// callback, the behavior is undefined.
     ///
     /// Returns: The value in the set with the given hash.
-    #[inline]
     #[doc(alias = "CFSetGetValue")]
+    #[inline]
     pub unsafe fn value(self: &CFSet, value: *const c_void) -> *const c_void {
         extern "C-unwind" {
             fn CFSetGetValue(the_set: &CFSet, value: *const c_void) -> *const c_void;
@@ -514,8 +514,8 @@ impl CFSet {
     /// whether or not the value was present).
     ///
     /// Returns: True if the value was present in the set, otherwise false.
-    #[inline]
     #[doc(alias = "CFSetGetValueIfPresent")]
+    #[inline]
     pub unsafe fn value_if_present(
         self: &CFSet,
         candidate: *const c_void,
@@ -542,8 +542,8 @@ impl CFSet {
     /// in the same order in which they appear in the set. If this
     /// parameter is not a valid pointer to a C array of at least
     /// CFSetGetCount() pointers, the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFSetGetValues")]
+    #[inline]
     pub unsafe fn values(self: &CFSet, values: *mut *const c_void) {
         extern "C-unwind" {
             fn CFSetGetValues(the_set: &CFSet, values: *mut *const c_void);
@@ -568,8 +568,8 @@ impl CFSet {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the applier function, the behavior is
     /// undefined.
-    #[inline]
     #[doc(alias = "CFSetApplyFunction")]
+    #[inline]
     pub unsafe fn apply_function(
         self: &CFSet,
         applier: CFSetApplierFunction,
@@ -598,8 +598,8 @@ impl CFMutableSet {
     /// was created. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The count of the
     /// set is increased by one.
-    #[inline]
     #[doc(alias = "CFSetAddValue")]
+    #[inline]
     pub unsafe fn add_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
         extern "C-unwind" {
             fn CFSetAddValue(the_set: Option<&CFMutableSet>, value: *const c_void);
@@ -622,8 +622,8 @@ impl CFMutableSet {
     /// was created. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The count of the
     /// set is increased by one.
-    #[inline]
     #[doc(alias = "CFSetReplaceValue")]
+    #[inline]
     pub unsafe fn replace_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
         extern "C-unwind" {
             fn CFSetReplaceValue(the_set: Option<&CFMutableSet>, value: *const c_void);
@@ -647,8 +647,8 @@ impl CFMutableSet {
     /// was created. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The count of the
     /// set is increased by one.
-    #[inline]
     #[doc(alias = "CFSetSetValue")]
+    #[inline]
     pub unsafe fn set_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
         extern "C-unwind" {
             fn CFSetSetValue(the_set: Option<&CFMutableSet>, value: *const c_void);
@@ -667,8 +667,8 @@ impl CFMutableSet {
     /// was NULL, pointer equality (in C, ==) is used. If a value, or
     /// any of the values in the set, are not understood by the equal()
     /// callback, the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFSetRemoveValue")]
+    #[inline]
     pub unsafe fn remove_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
         extern "C-unwind" {
             fn CFSetRemoveValue(the_set: Option<&CFMutableSet>, value: *const c_void);
@@ -681,8 +681,8 @@ impl CFMutableSet {
     /// Parameter `theSet`: The set from which all of the values are to be
     /// removed. If this parameter is not a valid mutable CFSet,
     /// the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFSetRemoveAllValues")]
+    #[inline]
     pub fn remove_all_values(the_set: Option<&CFMutableSet>) {
         extern "C-unwind" {
             fn CFSetRemoveAllValues(the_set: Option<&CFMutableSet>);

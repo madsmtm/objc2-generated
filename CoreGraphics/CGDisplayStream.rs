@@ -144,9 +144,9 @@ impl CGDisplayStreamUpdate {
     /// Parameter `rectCount`: A pointer to where the count of the number of rectangles in the array is to be returned. Must not be NULL.
     ///
     /// Returns: A pointer to the array of CGRectangles.  This array should not be freed by the caller.
+    #[doc(alias = "CGDisplayStreamUpdateGetRects")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    #[doc(alias = "CGDisplayStreamUpdateGetRects")]
     pub unsafe fn rects(
         update_ref: Option<&CGDisplayStreamUpdate>,
         rect_type: CGDisplayStreamUpdateRectType,
@@ -175,9 +175,9 @@ impl CGDisplayStreamUpdate {
     /// Parameter `secondUpdate`: The second update (in a temporal sense)
     ///
     /// Returns: The new CGDisplayStreamUpdateRef
+    #[doc(alias = "CGDisplayStreamUpdateCreateMergedUpdate")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    #[doc(alias = "CGDisplayStreamUpdateCreateMergedUpdate")]
     pub unsafe fn new_merged_update(
         first_update: Option<&CGDisplayStreamUpdate>,
         second_update: Option<&CGDisplayStreamUpdate>,
@@ -201,9 +201,9 @@ impl CGDisplayStreamUpdate {
     /// Parameter `dy`: A pointer to a CGFloat to store the y component of the movement delta
     ///
     /// The delta values describe the offset from the moved rectangles back to the source location.
+    #[doc(alias = "CGDisplayStreamUpdateGetMovedRectsDelta")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    #[doc(alias = "CGDisplayStreamUpdateGetMovedRectsDelta")]
     pub unsafe fn moved_rects_delta(
         update_ref: Option<&CGDisplayStreamUpdate>,
         dx: NonNull<CGFloat>,
@@ -227,9 +227,9 @@ impl CGDisplayStreamUpdate {
     ///
     /// This call is primarily useful for performance measurement to determine if the client is keeping up with
     /// all WindowServer updates.
+    #[doc(alias = "CGDisplayStreamUpdateGetDropCount")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    #[doc(alias = "CGDisplayStreamUpdateGetDropCount")]
     pub unsafe fn drop_count(update_ref: Option<&CGDisplayStreamUpdate>) -> usize {
         extern "C-unwind" {
             fn CGDisplayStreamUpdateGetDropCount(
@@ -361,6 +361,7 @@ impl CGDisplayStream {
     /// Parameter `handler`: A block that will be called for frame deliver.
     ///
     /// Returns: The new CGDisplayStream object.
+    #[doc(alias = "CGDisplayStreamCreate")]
     #[cfg(all(
         feature = "CGDirectDisplay",
         feature = "block2",
@@ -369,7 +370,6 @@ impl CGDisplayStream {
     #[cfg(not(target_os = "watchos"))]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    #[doc(alias = "CGDisplayStreamCreate")]
     pub unsafe fn new(
         display: CGDirectDisplayID,
         output_width: usize,
@@ -421,6 +421,7 @@ impl CGDisplayStream {
     /// Parameter `handler`: A block that will be called for frame deliver.
     ///
     /// Returns: The new CGDisplayStream object.
+    #[doc(alias = "CGDisplayStreamCreateWithDispatchQueue")]
     #[cfg(all(
         feature = "CGDirectDisplay",
         feature = "block2",
@@ -430,7 +431,6 @@ impl CGDisplayStream {
     #[cfg(not(target_os = "watchos"))]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    #[doc(alias = "CGDisplayStreamCreateWithDispatchQueue")]
     pub unsafe fn with_dispatch_queue(
         display: CGDirectDisplayID,
         output_width: usize,
@@ -470,10 +470,10 @@ impl CGDisplayStream {
     /// Parameter `displayStream`: to be started
     ///
     /// Returns: kCGErrorSuccess If the display stream was started, otherwise an error.
+    #[doc(alias = "CGDisplayStreamStart")]
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    #[doc(alias = "CGDisplayStreamStart")]
     pub unsafe fn start(display_stream: Option<&CGDisplayStream>) -> CGError {
         extern "C-unwind" {
             fn CGDisplayStreamStart(display_stream: Option<&CGDisplayStream>) -> CGError;
@@ -490,10 +490,10 @@ impl CGDisplayStream {
     /// After this call returns, the CGDisplayStream callback function will eventually be called with a
     /// status of kCGDisplayStreamFrameStatusStopped.  After that point it is safe to release the CGDisplayStream.
     /// It is safe to call this function from within the handler block, but the previous caveat still applies.
+    #[doc(alias = "CGDisplayStreamStop")]
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    #[doc(alias = "CGDisplayStreamStop")]
     pub unsafe fn stop(display_stream: Option<&CGDisplayStream>) -> CGError {
         extern "C-unwind" {
             fn CGDisplayStreamStop(display_stream: Option<&CGDisplayStream>) -> CGError;
@@ -507,9 +507,9 @@ impl CGDisplayStream {
     ///
     /// Returns: The CFRunLoopSource for this displayStream.  Note: This function will return NULL if the
     /// display stream was created via  CGDisplayStreamCreateWithDispatchQueue().
+    #[doc(alias = "CGDisplayStreamGetRunLoopSource")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    #[doc(alias = "CGDisplayStreamGetRunLoopSource")]
     pub unsafe fn run_loop_source(
         display_stream: Option<&CGDisplayStream>,
     ) -> Option<CFRetained<CFRunLoopSource>> {

@@ -14,8 +14,8 @@ impl PKPassType {
     pub const Barcode: Self = Self(0);
     #[doc(alias = "PKPassTypeSecureElement")]
     pub const SecureElement: Self = Self(1);
-    #[deprecated = "Use PKPassTypeSecureElement instead"]
     #[doc(alias = "PKPassTypePayment")]
+    #[deprecated = "Use PKPassTypeSecureElement instead"]
     pub const Payment: Self = Self(PKPassType::SecureElement.0);
 }
 

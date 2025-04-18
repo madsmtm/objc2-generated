@@ -15,8 +15,8 @@ bitflags::bitflags! {
     impl NSPointerFunctionsOptions: NSUInteger {
         #[doc(alias = "NSPointerFunctionsStrongMemory")]
         const StrongMemory = 0<<0;
-#[deprecated = "GC no longer supported"]
         #[doc(alias = "NSPointerFunctionsZeroingWeakMemory")]
+#[deprecated = "GC no longer supported"]
         const ZeroingWeakMemory = 1<<0;
         #[doc(alias = "NSPointerFunctionsOpaqueMemory")]
         const OpaqueMemory = 2<<0;

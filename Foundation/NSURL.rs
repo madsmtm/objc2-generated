@@ -937,8 +937,8 @@ extern "C" {
 pub struct NSURLBookmarkCreationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSURLBookmarkCreationOptions: NSUInteger {
-#[deprecated = "Not supported"]
         #[doc(alias = "NSURLBookmarkCreationPreferFileIDResolution")]
+#[deprecated = "Not supported"]
         const PreferFileIDResolution = 1<<8;
         #[doc(alias = "NSURLBookmarkCreationMinimalBookmark")]
         const MinimalBookmark = 1<<9;

@@ -14,14 +14,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKAudioFilePlayerStatus(pub NSInteger);
 impl WKAudioFilePlayerStatus {
-    #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     #[doc(alias = "WKAudioFilePlayerStatusUnknown")]
+    #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const Unknown: Self = Self(0);
-    #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     #[doc(alias = "WKAudioFilePlayerStatusReadyToPlay")]
-    pub const ReadyToPlay: Self = Self(1);
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
+    pub const ReadyToPlay: Self = Self(1);
     #[doc(alias = "WKAudioFilePlayerStatusFailed")]
+    #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const Failed: Self = Self(2);
 }
 

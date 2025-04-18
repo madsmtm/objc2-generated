@@ -710,8 +710,8 @@ unsafe impl CIImageUIKitAdditions for CIImage {}
 
 impl UIImage {
     /// return image as PNG. May return nil if image has no CGImageRef or invalid bitmap format
-    #[inline]
     #[doc(alias = "UIImagePNGRepresentation")]
+    #[inline]
     pub unsafe fn png_representation(self: &UIImage) -> Option<Retained<NSData>> {
         extern "C-unwind" {
             fn UIImagePNGRepresentation(image: &UIImage) -> *mut NSData;
@@ -721,9 +721,9 @@ impl UIImage {
     }
 
     /// return image as JPEG. May return nil if image has no CGImageRef or invalid bitmap format. compression is 0(most)..1(least)
+    #[doc(alias = "UIImageJPEGRepresentation")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "UIImageJPEGRepresentation")]
     pub unsafe fn jpeg_representation(
         self: &UIImage,
         compression_quality: CGFloat,
@@ -739,8 +739,8 @@ impl UIImage {
     }
 
     /// Returns HEIC data representing the image, or nil if such a representation could not be generated. HEIC is recommended for efficiently storing all kinds of images, including those with high dynamic range content.
-    #[inline]
     #[doc(alias = "UIImageHEICRepresentation")]
+    #[inline]
     pub unsafe fn heic_representation(self: &UIImage) -> Option<Retained<NSData>> {
         extern "C-unwind" {
             fn UIImageHEICRepresentation(image: &UIImage) -> *mut NSData;

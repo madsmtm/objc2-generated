@@ -1684,8 +1684,8 @@ impl NSApplication {
 #[cfg(feature = "NSResponder")]
 impl NSApplication {
     /// An Application's startup function.
-    #[inline]
     #[doc(alias = "NSApplicationMain")]
+    #[inline]
     pub(crate) unsafe fn __main(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int {
         extern "C-unwind" {
             fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
@@ -1695,8 +1695,8 @@ impl NSApplication {
 
     /// `NSApplicationLoad`should be called when loading a Cocoa bundle in a Carbon app in order to initialize
     /// `NSApplication`and other Cocoa objects.  Redundant calls are ignored.
-    #[inline]
     #[doc(alias = "NSApplicationLoad")]
+    #[inline]
     pub unsafe fn load() -> bool {
         extern "C-unwind" {
             fn NSApplicationLoad() -> Bool;

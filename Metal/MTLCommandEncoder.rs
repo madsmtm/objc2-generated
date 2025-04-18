@@ -20,8 +20,8 @@ bitflags::bitflags! {
         const Read = 1<<0;
         #[doc(alias = "MTLResourceUsageWrite")]
         const Write = 1<<1;
-#[deprecated]
         #[doc(alias = "MTLResourceUsageSample")]
+#[deprecated]
         const Sample = 1<<2;
     }
 }

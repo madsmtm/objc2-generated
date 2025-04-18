@@ -101,8 +101,8 @@ impl MDQuery {
     ///
     /// Returns: An MDQueryRef, or NULL on failure. If the query string
     /// is empty or malformed (invalid syntax), returns NULL.
-    #[inline]
     #[doc(alias = "MDQueryCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         query_string: Option<&CFString>,
@@ -163,8 +163,8 @@ impl MDQuery {
     ///
     /// Returns: An MDQueryRef, or NULL on failure. If the query string
     /// is empty or malformed (invalid syntax), returns NULL.
-    #[inline]
     #[doc(alias = "MDQueryCreateSubset")]
+    #[inline]
     pub unsafe fn new_subset(
         allocator: Option<&CFAllocator>,
         query: Option<&MDQuery>,
@@ -232,8 +232,8 @@ impl MDQuery {
     ///
     /// Returns: An MDQueryRef, or NULL on failure. If the query string
     /// is empty or malformed (invalid syntax), returns NULL.
-    #[inline]
     #[doc(alias = "MDQueryCreateForItems")]
+    #[inline]
     pub unsafe fn new_for_items(
         allocator: Option<&CFAllocator>,
         query_string: Option<&CFString>,
@@ -267,8 +267,8 @@ impl MDQuery {
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The query string of the query.
-    #[inline]
     #[doc(alias = "MDQueryCopyQueryString")]
+    #[inline]
     pub unsafe fn query_string(self: &MDQuery) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn MDQueryCopyQueryString(query: &MDQuery) -> Option<NonNull<CFString>>;
@@ -283,8 +283,8 @@ impl MDQuery {
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The list of value list attribute names of the query.
-    #[inline]
     #[doc(alias = "MDQueryCopyValueListAttributes")]
+    #[inline]
     pub unsafe fn value_list_attributes(self: &MDQuery) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn MDQueryCopyValueListAttributes(query: &MDQuery) -> Option<NonNull<CFArray>>;
@@ -299,8 +299,8 @@ impl MDQuery {
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The list of sorting attribute names of the query.
-    #[inline]
     #[doc(alias = "MDQueryCopySortingAttributes")]
+    #[inline]
     pub unsafe fn sorting_attributes(self: &MDQuery) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn MDQueryCopySortingAttributes(query: &MDQuery) -> Option<NonNull<CFArray>>;
@@ -391,8 +391,8 @@ impl MDQuery {
     ///
     /// Returns: An MDQueryBatchingParams structure with the current
     /// batching parameters.
-    #[inline]
     #[doc(alias = "MDQueryGetBatchingParameters")]
+    #[inline]
     pub unsafe fn batching_parameters(self: &MDQuery) -> MDQueryBatchingParams {
         extern "C-unwind" {
             fn MDQueryGetBatchingParameters(query: &MDQuery) -> MDQueryBatchingParams;
@@ -404,8 +404,8 @@ impl MDQuery {
     ///
     /// Parameter `params`: An MDQueryBatchingParams structure with the batching
     /// parameters to set.
-    #[inline]
     #[doc(alias = "MDQuerySetBatchingParameters")]
+    #[inline]
     pub unsafe fn set_batching_parameters(self: &MDQuery, params: MDQueryBatchingParams) {
         extern "C-unwind" {
             fn MDQuerySetBatchingParameters(query: &MDQuery, params: MDQueryBatchingParams);
@@ -517,9 +517,9 @@ impl MDQuery {
     /// assume that the retain function will be unused or that
     /// additional reference counts will not be taken on the
     /// created results.
+    #[doc(alias = "MDQuerySetCreateResultFunction")]
     #[cfg(feature = "MDItem")]
     #[inline]
-    #[doc(alias = "MDQuerySetCreateResultFunction")]
     pub unsafe fn set_create_result_function(
         self: &MDQuery,
         func: MDQueryCreateResultFunction,
@@ -638,8 +638,8 @@ impl MDQuery {
     /// matched set -- do not assume that the retain function will
     /// be unused or that additional reference counts will not be
     /// taken on the created values.
-    #[inline]
     #[doc(alias = "MDQuerySetCreateValueFunction")]
+    #[inline]
     pub unsafe fn set_create_value_function(
         self: &MDQuery,
         func: MDQueryCreateValueFunction,
@@ -666,9 +666,9 @@ impl MDQuery {
     /// Parameter `query`: The query for which the dispatch queue should be set.
     ///
     /// Parameter `queue`: The dispatch queue on which results should be delivered.
+    #[doc(alias = "MDQuerySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    #[doc(alias = "MDQuerySetDispatchQueue")]
     pub unsafe fn set_dispatch_queue(self: &MDQuery, queue: Option<&DispatchQueue>) {
         extern "C-unwind" {
             fn MDQuerySetDispatchQueue(query: &MDQuery, queue: Option<&DispatchQueue>);
@@ -710,8 +710,8 @@ impl MDQuery {
     /// Returns: Returns true if the query was started (executed in the case
     /// of a synchronous query), false otherwise. Queries cannot be
     /// executed more than once.
-    #[inline]
     #[doc(alias = "MDQueryExecute")]
+    #[inline]
     pub unsafe fn execute(self: &MDQuery, option_flags: CFOptionFlags) -> bool {
         extern "C-unwind" {
             fn MDQueryExecute(query: &MDQuery, option_flags: CFOptionFlags) -> Boolean;
@@ -741,8 +741,8 @@ impl MDQuery {
     /// notification.
     ///
     /// Parameter `query`: The query to stop.
-    #[inline]
     #[doc(alias = "MDQueryStop")]
+    #[inline]
     pub unsafe fn stop(self: &MDQuery) {
         extern "C-unwind" {
             fn MDQueryStop(query: &MDQuery);
@@ -760,8 +760,8 @@ impl MDQuery {
     ///
     /// Returns: The generation number of the query. This changes each time the query's
     /// result set has changed.
-    #[inline]
     #[doc(alias = "MDQueryDisableUpdates")]
+    #[inline]
     pub unsafe fn disable_updates(self: &MDQuery) {
         extern "C-unwind" {
             fn MDQueryDisableUpdates(query: &MDQuery);
@@ -776,8 +776,8 @@ impl MDQuery {
     /// corresponding enable.
     ///
     /// Parameter `query`: The query for which updates are to be enabled.
-    #[inline]
     #[doc(alias = "MDQueryEnableUpdates")]
+    #[inline]
     pub unsafe fn enable_updates(self: &MDQuery) {
         extern "C-unwind" {
             fn MDQueryEnableUpdates(query: &MDQuery);
@@ -792,8 +792,8 @@ impl MDQuery {
     ///
     /// Returns: A boolean indicating whether or not the first phase
     /// of a query has completed.
-    #[inline]
     #[doc(alias = "MDQueryIsGatheringComplete")]
+    #[inline]
     pub unsafe fn is_gathering_complete(self: &MDQuery) -> bool {
         extern "C-unwind" {
             fn MDQueryIsGatheringComplete(query: &MDQuery) -> Boolean;
@@ -809,8 +809,8 @@ impl MDQuery {
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The number of results in the query.
-    #[inline]
     #[doc(alias = "MDQueryGetResultCount")]
+    #[inline]
     pub unsafe fn result_count(self: &MDQuery) -> CFIndex {
         extern "C-unwind" {
             fn MDQueryGetResultCount(query: &MDQuery) -> CFIndex;
@@ -837,8 +837,8 @@ impl MDQuery {
     /// Returns: Returns the MDItemRef currently at the given index, or
     /// if a result-create function has been set, returns the
     /// result returned by that function.
-    #[inline]
     #[doc(alias = "MDQueryGetResultAtIndex")]
+    #[inline]
     pub unsafe fn result_at_index(self: &MDQuery, idx: CFIndex) -> *const c_void {
         extern "C-unwind" {
             fn MDQueryGetResultAtIndex(query: &MDQuery, idx: CFIndex) -> *const c_void;
@@ -866,8 +866,8 @@ impl MDQuery {
     /// you provided a custom result creation function,
     /// as well as a custom object comparator function,
     /// result will be objects created by that function.
-    #[inline]
     #[doc(alias = "MDQueryGetIndexOfResult")]
+    #[inline]
     pub unsafe fn index_of_result(self: &MDQuery, result: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn MDQueryGetIndexOfResult(query: &MDQuery, result: *const c_void) -> CFIndex;
@@ -891,8 +891,8 @@ impl MDQuery {
     ///
     /// Returns: The value of the attribute, or NULL if the attribute
     /// doesn't exist in the query on that result.
-    #[inline]
     #[doc(alias = "MDQueryGetAttributeValueOfResultAtIndex")]
+    #[inline]
     pub unsafe fn attribute_value_of_result_at_index(
         self: &MDQuery,
         name: Option<&CFString>,
@@ -922,8 +922,8 @@ impl MDQuery {
     /// functions, the behavior is undefined.
     ///
     /// Returns: A CFArray holding the value objects for that attribute.
-    #[inline]
     #[doc(alias = "MDQueryCopyValuesOfAttribute")]
+    #[inline]
     pub unsafe fn values_of_attribute(
         self: &MDQuery,
         name: Option<&CFString>,
@@ -956,8 +956,8 @@ impl MDQuery {
     /// the named attribute is returned.
     ///
     /// Returns: The number of results with that attribute and value.
-    #[inline]
     #[doc(alias = "MDQueryGetCountOfResultsWithAttributeValue")]
+    #[inline]
     pub unsafe fn count_of_results_with_attribute_value(
         self: &MDQuery,
         name: Option<&CFString>,
@@ -984,8 +984,8 @@ impl MDQuery {
     /// are CFStrings
     ///
     /// Returns: A boolean, true on success, false on failure.
-    #[inline]
     #[doc(alias = "MDQuerySetSortOrder")]
+    #[inline]
     pub unsafe fn set_sort_order(self: &MDQuery, sorting_attrs: Option<&CFArray>) -> bool {
         extern "C-unwind" {
             fn MDQuerySetSortOrder(query: &MDQuery, sorting_attrs: Option<&CFArray>) -> Boolean;
@@ -1025,8 +1025,8 @@ impl MDQuery {
     /// Parameter `flags`: A uint32_t containing MDQuerySortOptionFlags to be applied to the attibute
     ///
     /// Returns: A boolean, true on success, false on failure.
-    #[inline]
     #[doc(alias = "MDQuerySetSortOptionFlagsForAttribute")]
+    #[inline]
     pub unsafe fn set_sort_option_flags_for_attribute(
         self: &MDQuery,
         field_name: Option<&CFString>,
@@ -1050,8 +1050,8 @@ impl MDQuery {
     /// Parameter `fieldName`: The attribute name for which sort option flags are to be fetched.
     ///
     /// Returns: A uint32_t, with MDQuerySortOptionFlags set for the attribute.
-    #[inline]
     #[doc(alias = "MDQueryGetSortOptionFlagsForAttribute")]
+    #[inline]
     pub unsafe fn sort_option_flags_for_attribute(
         self: &MDQuery,
         field_name: Option<&CFString>,
@@ -1137,8 +1137,8 @@ impl MDQuery {
     /// valid for the lifetime of the query or until the sort
     /// function is set again. If the context is not what is
     /// expected by the comparator, the behavior is undefined.
-    #[inline]
     #[doc(alias = "MDQuerySetSortComparator")]
+    #[inline]
     pub unsafe fn set_sort_comparator(
         self: &MDQuery,
         comparator: MDQuerySortComparatorFunction,
@@ -1154,9 +1154,9 @@ impl MDQuery {
         unsafe { MDQuerySetSortComparator(self, comparator, context) }
     }
 
+    #[doc(alias = "MDQuerySetSortComparatorBlock")]
     #[cfg(feature = "block2")]
     #[inline]
-    #[doc(alias = "MDQuerySetSortComparatorBlock")]
     pub unsafe fn set_sort_comparator_block(
         self: &MDQuery,
         comparator: Option<
@@ -1319,8 +1319,8 @@ impl MDQuery {
     ///
     /// Parameter `scopeOptions`: additional options for modifying the search.
     /// Currently, pass 0 (zero).
-    #[inline]
     #[doc(alias = "MDQuerySetSearchScope")]
+    #[inline]
     pub unsafe fn set_search_scope(
         self: &MDQuery,
         scope_directories: Option<&CFArray>,
@@ -1396,8 +1396,8 @@ impl MDQuery {
     /// Parameter `query`: The query object to modify.
     ///
     /// Parameter `size`: The maximum number of results desired.
-    #[inline]
     #[doc(alias = "MDQuerySetMaxCount")]
+    #[inline]
     pub unsafe fn set_max_count(self: &MDQuery, size: CFIndex) {
         extern "C-unwind" {
             fn MDQuerySetMaxCount(query: &MDQuery, size: CFIndex);

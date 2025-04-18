@@ -63,8 +63,8 @@ impl PHPhotosError {
     pub const PersistentChangeTokenExpired: Self = Self(3105);
     #[doc(alias = "PHPhotosErrorPersistentChangeDetailsUnavailable")]
     pub const PersistentChangeDetailsUnavailable: Self = Self(3210);
-    #[deprecated]
     #[doc(alias = "PHPhotosErrorInvalid")]
+    #[deprecated]
     pub const Invalid: Self = Self(-1);
 }
 

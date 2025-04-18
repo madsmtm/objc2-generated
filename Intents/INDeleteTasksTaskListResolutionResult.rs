@@ -13,8 +13,8 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INDeleteTasksTaskListUnsupportedReason(pub NSInteger);
 impl INDeleteTasksTaskListUnsupportedReason {
-    #[deprecated = "INDeleteTasksTaskListUnsupportedReason is deprecated. There is no replacement."]
     #[doc(alias = "INDeleteTasksTaskListUnsupportedReasonNoTaskListFound")]
+    #[deprecated = "INDeleteTasksTaskListUnsupportedReason is deprecated. There is no replacement."]
     pub const NoTaskListFound: Self = Self(1);
 }
 

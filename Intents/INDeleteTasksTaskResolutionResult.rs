@@ -13,11 +13,11 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INDeleteTasksTaskUnsupportedReason(pub NSInteger);
 impl INDeleteTasksTaskUnsupportedReason {
-    #[deprecated = "INDeleteTasksTaskUnsupportedReason is deprecated. There is no replacement."]
     #[doc(alias = "INDeleteTasksTaskUnsupportedReasonNoTasksFound")]
-    pub const NoTasksFound: Self = Self(1);
     #[deprecated = "INDeleteTasksTaskUnsupportedReason is deprecated. There is no replacement."]
+    pub const NoTasksFound: Self = Self(1);
     #[doc(alias = "INDeleteTasksTaskUnsupportedReasonNoTasksInApp")]
+    #[deprecated = "INDeleteTasksTaskUnsupportedReason is deprecated. There is no replacement."]
     pub const NoTasksInApp: Self = Self(2);
 }
 

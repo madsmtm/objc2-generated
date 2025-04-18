@@ -54,9 +54,9 @@ unsafe impl RefEncode for CGPDFBox {
 }
 
 impl CGPDFPage {
+    #[doc(alias = "CGPDFPageGetDocument")]
     #[cfg(feature = "CGPDFDocument")]
     #[inline]
-    #[doc(alias = "CGPDFPageGetDocument")]
     pub unsafe fn document(page: Option<&CGPDFPage>) -> Option<CFRetained<CGPDFDocument>> {
         extern "C-unwind" {
             fn CGPDFPageGetDocument(page: Option<&CGPDFPage>) -> Option<NonNull<CGPDFDocument>>;
@@ -65,8 +65,8 @@ impl CGPDFPage {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CGPDFPageGetPageNumber")]
+    #[inline]
     pub unsafe fn page_number(page: Option<&CGPDFPage>) -> usize {
         extern "C-unwind" {
             fn CGPDFPageGetPageNumber(page: Option<&CGPDFPage>) -> usize;
@@ -74,8 +74,8 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetPageNumber(page) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFPageGetBoxRect")]
+    #[inline]
     pub unsafe fn box_rect(page: Option<&CGPDFPage>, r#box: CGPDFBox) -> CGRect {
         extern "C-unwind" {
             fn CGPDFPageGetBoxRect(page: Option<&CGPDFPage>, r#box: CGPDFBox) -> CGRect;
@@ -83,8 +83,8 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetBoxRect(page, r#box) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFPageGetRotationAngle")]
+    #[inline]
     pub unsafe fn rotation_angle(page: Option<&CGPDFPage>) -> c_int {
         extern "C-unwind" {
             fn CGPDFPageGetRotationAngle(page: Option<&CGPDFPage>) -> c_int;
@@ -92,8 +92,8 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetRotationAngle(page) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFPageGetDrawingTransform")]
+    #[inline]
     pub unsafe fn drawing_transform(
         page: Option<&CGPDFPage>,
         r#box: CGPDFBox,
@@ -113,9 +113,9 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetDrawingTransform(page, r#box, rect, rotate, preserve_aspect_ratio) }
     }
 
+    #[doc(alias = "CGPDFPageGetDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
-    #[doc(alias = "CGPDFPageGetDictionary")]
     pub unsafe fn dictionary(page: Option<&CGPDFPage>) -> CGPDFDictionaryRef {
         extern "C-unwind" {
             fn CGPDFPageGetDictionary(page: Option<&CGPDFPage>) -> CGPDFDictionaryRef;

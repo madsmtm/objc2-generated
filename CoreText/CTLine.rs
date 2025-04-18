@@ -161,8 +161,8 @@ impl CTLine {
     ///
     ///
     /// Returns: This function will return a reference to a CTLine object.
-    #[inline]
     #[doc(alias = "CTLineCreateWithAttributedString")]
+    #[inline]
     pub unsafe fn with_attributed_string(attr_string: &CFAttributedString) -> CFRetained<CTLine> {
         extern "C-unwind" {
             fn CTLineCreateWithAttributedString(
@@ -201,8 +201,8 @@ impl CTLine {
     /// Returns: This function will return a reference to a truncated CTLine
     /// object if the call was successful. Otherwise, it will return
     /// NULL.
-    #[inline]
     #[doc(alias = "CTLineCreateTruncatedLine")]
+    #[inline]
     pub unsafe fn truncated_line(
         self: &CTLine,
         width: c_double,
@@ -243,8 +243,8 @@ impl CTLine {
     /// Returns: This function will return a reference to a justified CTLine
     /// object if the call was successful. Otherwise, it will return
     /// NULL.
-    #[inline]
     #[doc(alias = "CTLineCreateJustifiedLine")]
+    #[inline]
     pub unsafe fn justified_line(
         self: &CTLine,
         justification_factor: CGFloat,
@@ -273,8 +273,8 @@ impl CTLine {
     ///
     ///
     /// Returns: The total glyph count for the line passed in.
-    #[inline]
     #[doc(alias = "CTLineGetGlyphCount")]
+    #[inline]
     pub unsafe fn glyph_count(self: &CTLine) -> CFIndex {
         extern "C-unwind" {
             fn CTLineGetGlyphCount(line: &CTLine) -> CFIndex;
@@ -289,8 +289,8 @@ impl CTLine {
     ///
     ///
     /// Returns: A CFArrayRef containing the CTRun objects that make up the line.
-    #[inline]
     #[doc(alias = "CTLineGetGlyphRuns")]
+    #[inline]
     pub unsafe fn glyph_runs(self: &CTLine) -> CFRetained<CFArray> {
         extern "C-unwind" {
             fn CTLineGetGlyphRuns(line: &CTLine) -> Option<NonNull<CFArray>>;
@@ -311,8 +311,8 @@ impl CTLine {
     /// Returns: A CFRange that contains the range over the backing store string
     /// that spawned the glyphs. If the function fails for any reason, an
     /// empty range will be returned.
-    #[inline]
     #[doc(alias = "CTLineGetStringRange")]
+    #[inline]
     pub unsafe fn string_range(self: &CTLine) -> CFRange {
         extern "C-unwind" {
             fn CTLineGetStringRange(line: &CTLine) -> CFRange;
@@ -338,8 +338,8 @@ impl CTLine {
     ///
     /// Returns: A value which can be used to offset the current pen position for
     /// the flush operation.
-    #[inline]
     #[doc(alias = "CTLineGetPenOffsetForFlush")]
+    #[inline]
     pub unsafe fn pen_offset_for_flush(
         self: &CTLine,
         flush_factor: CGFloat,
@@ -370,9 +370,9 @@ impl CTLine {
     ///
     ///
     /// Parameter `context`: The context to which the line will be drawn.
+    #[doc(alias = "CTLineDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CTLineDraw")]
     pub unsafe fn draw(self: &CTLine, context: &CGContext) {
         extern "C-unwind" {
             fn CTLineDraw(line: &CTLine, context: &CGContext);
@@ -408,8 +408,8 @@ impl CTLine {
     ///
     ///
     /// See also: CTLineGetTrailingWhitespaceWidth
-    #[inline]
     #[doc(alias = "CTLineGetTypographicBounds")]
+    #[inline]
     pub unsafe fn typographic_bounds(
         self: &CTLine,
         ascent: *mut CGFloat,
@@ -440,8 +440,8 @@ impl CTLine {
     /// such that the coordinate origin is coincident with the line
     /// origin and the rect origin is at the bottom left. If the line
     /// is invalid this function will return CGRectNull.
-    #[inline]
     #[doc(alias = "CTLineGetBoundsWithOptions")]
+    #[inline]
     pub unsafe fn bounds_with_options(self: &CTLine, options: CTLineBoundsOptions) -> CGRect {
         extern "C-unwind" {
             fn CTLineGetBoundsWithOptions(line: &CTLine, options: CTLineBoundsOptions) -> CGRect;
@@ -462,8 +462,8 @@ impl CTLine {
     ///
     /// Returns: The width of the line's trailing whitespace. If line is invalid,
     /// this function will always return zero.
-    #[inline]
     #[doc(alias = "CTLineGetTrailingWhitespaceWidth")]
+    #[inline]
     pub unsafe fn trailing_whitespace_width(self: &CTLine) -> c_double {
         extern "C-unwind" {
             fn CTLineGetTrailingWhitespaceWidth(line: &CTLine) -> c_double;
@@ -499,9 +499,9 @@ impl CTLine {
     /// See also: CTLineGetBoundsWithOptions
     ///
     /// See also: CTLineGetPenOffsetForFlush
+    #[doc(alias = "CTLineGetImageBounds")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CTLineGetImageBounds")]
     pub unsafe fn image_bounds(self: &CTLine, context: Option<&CGContext>) -> CGRect {
         extern "C-unwind" {
             fn CTLineGetImageBounds(line: &CTLine, context: Option<&CGContext>) -> CGRect;
@@ -530,8 +530,8 @@ impl CTLine {
     /// range, this value will be no less than the first string index and
     /// no greater than one plus the last string index. In the event of
     /// failure, this function will return kCFNotFound.
-    #[inline]
     #[doc(alias = "CTLineGetStringIndexForPosition")]
+    #[inline]
     pub unsafe fn string_index_for_position(self: &CTLine, position: CGPoint) -> CFIndex {
         extern "C-unwind" {
             fn CTLineGetStringIndexForPosition(line: &CTLine, position: CGPoint) -> CFIndex;
@@ -569,8 +569,8 @@ impl CTLine {
     ///
     /// Returns: The primary offset along the baseline for charIndex, or 0.0 in
     /// the event of failure.
-    #[inline]
     #[doc(alias = "CTLineGetOffsetForStringIndex")]
+    #[inline]
     pub unsafe fn offset_for_string_index(
         self: &CTLine,
         char_index: CFIndex,
@@ -593,9 +593,9 @@ impl CTLine {
     ///
     ///
     /// Parameter `block`: The offset parameter is relative to the line origin. The leadingEdge parameter of this block refers to logical order.
+    #[doc(alias = "CTLineEnumerateCaretOffsets")]
     #[cfg(feature = "block2")]
     #[inline]
-    #[doc(alias = "CTLineEnumerateCaretOffsets")]
     pub unsafe fn enumerate_caret_offsets(
         self: &CTLine,
         block: &block2::DynBlock<dyn Fn(c_double, CFIndex, bool, NonNull<bool>)>,

@@ -115,8 +115,8 @@ impl CFCharacterSet {
     ///
     /// Returns: A reference to the predefined immutable CFCharacterSet.
     /// This instance is owned by CF.
-    #[inline]
     #[doc(alias = "CFCharacterSetGetPredefined")]
+    #[inline]
     pub unsafe fn predefined(
         the_set_identifier: CFCharacterSetPredefinedSet,
     ) -> Option<CFRetained<CFCharacterSet>> {
@@ -145,8 +145,8 @@ impl CFCharacterSet {
     /// point, the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFCharacterSet.
-    #[inline]
     #[doc(alias = "CFCharacterSetCreateWithCharactersInRange")]
+    #[inline]
     pub unsafe fn with_characters_in_range(
         alloc: Option<&CFAllocator>,
         the_range: CFRange,
@@ -175,8 +175,8 @@ impl CFCharacterSet {
     /// is undefined.
     ///
     /// Returns: A reference to the new immutable CFCharacterSet.
-    #[inline]
     #[doc(alias = "CFCharacterSetCreateWithCharactersInString")]
+    #[inline]
     pub unsafe fn with_characters_in_string(
         alloc: Option<&CFAllocator>,
         the_string: Option<&CFString>,
@@ -216,9 +216,9 @@ impl CFCharacterSet {
     /// (1 to 16), the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFCharacterSet.
+    #[doc(alias = "CFCharacterSetCreateWithBitmapRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
-    #[doc(alias = "CFCharacterSetCreateWithBitmapRepresentation")]
     pub unsafe fn with_bitmap_representation(
         alloc: Option<&CFAllocator>,
         the_data: Option<&CFData>,
@@ -246,8 +246,8 @@ impl CFCharacterSet {
     /// undefined.
     ///
     /// Returns: A reference to the new immutable CFCharacterSet.
-    #[inline]
     #[doc(alias = "CFCharacterSetCreateInvertedSet")]
+    #[inline]
     pub unsafe fn new_inverted_set(
         alloc: Option<&CFAllocator>,
         the_set: Option<&CFCharacterSet>,
@@ -269,8 +269,8 @@ impl CFCharacterSet {
     ///
     /// Parameter `theOtherset`: The character set to be checked whether or not it is a subset of theSet.
     /// If this parameter is not a valid CFCharacterSet, the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFCharacterSetIsSupersetOfSet")]
+    #[inline]
     pub unsafe fn is_superset_of_set(
         self: &CFCharacterSet,
         the_otherset: Option<&CFCharacterSet>,
@@ -293,8 +293,8 @@ impl CFCharacterSet {
     /// Parameter `thePlane`: The plane number to be checked for the membership.
     /// The valid value range is from 0 to 16.  If the value is outside of the valid
     /// plane number range, the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFCharacterSetHasMemberInPlane")]
+    #[inline]
     pub unsafe fn has_member_in_plane(self: &CFCharacterSet, the_plane: CFIndex) -> bool {
         extern "C-unwind" {
             fn CFCharacterSetHasMemberInPlane(
@@ -317,8 +317,8 @@ impl CFMutableCharacterSet {
     /// CFAllocator, the behavior is undefined.
     ///
     /// Returns: A reference to the new mutable CFCharacterSet.
-    #[inline]
     #[doc(alias = "CFCharacterSetCreateMutable")]
+    #[inline]
     pub unsafe fn new(alloc: Option<&CFAllocator>) -> Option<CFRetained<CFMutableCharacterSet>> {
         extern "C-unwind" {
             fn CFCharacterSetCreateMutable(
@@ -344,8 +344,8 @@ impl CFCharacterSet {
     /// undefined.
     ///
     /// Returns: A reference to the new CFCharacterSet.
-    #[inline]
     #[doc(alias = "CFCharacterSetCreateCopy")]
+    #[inline]
     pub unsafe fn new_copy(
         alloc: Option<&CFAllocator>,
         the_set: Option<&CFCharacterSet>,
@@ -375,8 +375,8 @@ impl CFMutableCharacterSet {
     /// undefined.
     ///
     /// Returns: A reference to the new mutable CFCharacterSet.
-    #[inline]
     #[doc(alias = "CFCharacterSetCreateMutableCopy")]
+    #[inline]
     pub unsafe fn new_copy(
         alloc: Option<&CFAllocator>,
         the_set: Option<&CFCharacterSet>,
@@ -404,8 +404,8 @@ impl CFCharacterSet {
     /// non-BMP planes.
     ///
     /// Returns: true, if the value is in the character set, otherwise false.
-    #[inline]
     #[doc(alias = "CFCharacterSetIsCharacterMember")]
+    #[inline]
     pub unsafe fn is_character_member(self: &CFCharacterSet, the_char: UniChar) -> bool {
         extern "C-unwind" {
             fn CFCharacterSetIsCharacterMember(
@@ -426,8 +426,8 @@ impl CFCharacterSet {
     /// character set.
     ///
     /// Returns: true, if the value is in the character set, otherwise false.
-    #[inline]
     #[doc(alias = "CFCharacterSetIsLongCharacterMember")]
+    #[inline]
     pub unsafe fn is_long_character_member(self: &CFCharacterSet, the_char: UTF32Char) -> bool {
         extern "C-unwind" {
             fn CFCharacterSetIsLongCharacterMember(
@@ -455,9 +455,9 @@ impl CFCharacterSet {
     /// behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFData.
+    #[doc(alias = "CFCharacterSetCreateBitmapRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
-    #[doc(alias = "CFCharacterSetCreateBitmapRepresentation")]
     pub unsafe fn new_bitmap_representation(
         alloc: Option<&CFAllocator>,
         the_set: Option<&CFCharacterSet>,
@@ -485,8 +485,8 @@ impl CFMutableCharacterSet {
     /// character point range is from 0x00000 to 0x10FFFF.  If the
     /// range is outside of the valid Unicode character point,
     /// the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFCharacterSetAddCharactersInRange")]
+    #[inline]
     pub unsafe fn add_characters_in_range(
         the_set: Option<&CFMutableCharacterSet>,
         the_range: CFRange,
@@ -511,8 +511,8 @@ impl CFMutableCharacterSet {
     /// The valid character point range is from 0x00000 to 0x10FFFF.
     /// If the range is outside of the valid Unicode character point,
     /// the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFCharacterSetRemoveCharactersInRange")]
+    #[inline]
     pub unsafe fn remove_characters_in_range(
         the_set: Option<&CFMutableCharacterSet>,
         the_range: CFRange,
@@ -535,8 +535,8 @@ impl CFMutableCharacterSet {
     /// Parameter `theString`: The string to add to the character set.
     /// If this parameter is not a valid CFString, the behavior
     /// is undefined.
-    #[inline]
     #[doc(alias = "CFCharacterSetAddCharactersInString")]
+    #[inline]
     pub unsafe fn add_characters_in_string(
         the_set: Option<&CFMutableCharacterSet>,
         the_string: Option<&CFString>,
@@ -559,8 +559,8 @@ impl CFMutableCharacterSet {
     /// Parameter `theString`: The string to remove from the character set.
     /// If this parameter is not a valid CFString, the behavior
     /// is undefined.
-    #[inline]
     #[doc(alias = "CFCharacterSetRemoveCharactersInString")]
+    #[inline]
     pub unsafe fn remove_characters_in_string(
         the_set: Option<&CFMutableCharacterSet>,
         the_string: Option<&CFString>,
@@ -584,8 +584,8 @@ impl CFMutableCharacterSet {
     /// Parameter `theOtherSet`: The character set with which the union is
     /// formed.  If this parameter is not a valid CFCharacterSet,
     /// the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFCharacterSetUnion")]
+    #[inline]
     pub unsafe fn union(
         the_set: Option<&CFMutableCharacterSet>,
         the_other_set: Option<&CFCharacterSet>,
@@ -609,8 +609,8 @@ impl CFMutableCharacterSet {
     /// Parameter `theOtherSet`: The character set with which the intersection
     /// is formed.  If this parameter is not a valid CFCharacterSet,
     /// the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFCharacterSetIntersect")]
+    #[inline]
     pub unsafe fn intersect(
         the_set: Option<&CFMutableCharacterSet>,
         the_other_set: Option<&CFCharacterSet>,
@@ -629,8 +629,8 @@ impl CFMutableCharacterSet {
     /// Parameter `theSet`: The character set to be inverted.
     /// If this parameter is not a valid mutable CFCharacterSet,
     /// the behavior is undefined.
-    #[inline]
     #[doc(alias = "CFCharacterSetInvert")]
+    #[inline]
     pub unsafe fn invert(the_set: Option<&CFMutableCharacterSet>) {
         extern "C-unwind" {
             fn CFCharacterSetInvert(the_set: Option<&CFMutableCharacterSet>);

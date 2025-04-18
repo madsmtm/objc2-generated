@@ -17,8 +17,8 @@ impl NSPathStyle {
     pub const Standard: Self = Self(0);
     #[doc(alias = "NSPathStylePopUp")]
     pub const PopUp: Self = Self(2);
-    #[deprecated]
     #[doc(alias = "NSPathStyleNavigationBar")]
+    #[deprecated]
     pub const NavigationBar: Self = Self(1);
 }
 

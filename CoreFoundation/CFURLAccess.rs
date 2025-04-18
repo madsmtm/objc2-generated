@@ -8,6 +8,7 @@ use crate::*;
 
 #[cfg(feature = "CFURL")]
 impl CFURL {
+    #[doc(alias = "CFURLCreateDataAndPropertiesFromResource")]
     #[cfg(all(
         feature = "CFArray",
         feature = "CFData",
@@ -16,7 +17,6 @@ impl CFURL {
     ))]
     #[deprecated = "For resource data, use the CFReadStream API. For file resource properties, use CFURLCopyResourcePropertiesForKeys."]
     #[inline]
-    #[doc(alias = "CFURLCreateDataAndPropertiesFromResource")]
     pub unsafe fn new_data_and_properties_from_resource(
         alloc: Option<&CFAllocator>,
         url: Option<&CFURL>,
@@ -48,10 +48,10 @@ impl CFURL {
         ret != 0
     }
 
+    #[doc(alias = "CFURLWriteDataAndPropertiesToResource")]
     #[cfg(all(feature = "CFData", feature = "CFDictionary", feature = "CFURL"))]
     #[deprecated = "For resource data, use the CFWriteStream API. For file resource properties, use CFURLSetResourcePropertiesForKeys."]
     #[inline]
-    #[doc(alias = "CFURLWriteDataAndPropertiesToResource")]
     pub unsafe fn write_data_and_properties_to_resource(
         self: &CFURL,
         data_to_write: Option<&CFData>,
@@ -77,10 +77,10 @@ impl CFURL {
         ret != 0
     }
 
+    #[doc(alias = "CFURLDestroyResource")]
     #[cfg(feature = "CFURL")]
     #[deprecated = "Use CFURLGetFileSystemRepresentation and removefile(3) instead."]
     #[inline]
-    #[doc(alias = "CFURLDestroyResource")]
     pub unsafe fn destroy_resource(self: &CFURL, error_code: *mut i32) -> bool {
         extern "C-unwind" {
             fn CFURLDestroyResource(url: &CFURL, error_code: *mut i32) -> Boolean;
@@ -89,10 +89,10 @@ impl CFURL {
         ret != 0
     }
 
+    #[doc(alias = "CFURLCreatePropertyFromResource")]
     #[cfg(feature = "CFURL")]
     #[deprecated = "For file resource properties, use CFURLCopyResourcePropertyForKey."]
     #[inline]
-    #[doc(alias = "CFURLCreatePropertyFromResource")]
     pub unsafe fn new_property_from_resource(
         alloc: Option<&CFAllocator>,
         url: Option<&CFURL>,
@@ -119,32 +119,32 @@ impl CFURL {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLError(pub CFIndex);
 impl CFURLError {
-    #[deprecated = "Use CFError codes instead"]
     #[doc(alias = "kCFURLUnknownError")]
+    #[deprecated = "Use CFError codes instead"]
     pub const UnknownError: Self = Self(-10);
-    #[deprecated = "Use CFError codes instead"]
     #[doc(alias = "kCFURLUnknownSchemeError")]
+    #[deprecated = "Use CFError codes instead"]
     pub const UnknownSchemeError: Self = Self(-11);
-    #[deprecated = "Use CFError codes instead"]
     #[doc(alias = "kCFURLResourceNotFoundError")]
+    #[deprecated = "Use CFError codes instead"]
     pub const ResourceNotFoundError: Self = Self(-12);
-    #[deprecated = "Use CFError codes instead"]
     #[doc(alias = "kCFURLResourceAccessViolationError")]
+    #[deprecated = "Use CFError codes instead"]
     pub const ResourceAccessViolationError: Self = Self(-13);
-    #[deprecated = "Use CFError codes instead"]
     #[doc(alias = "kCFURLRemoteHostUnavailableError")]
+    #[deprecated = "Use CFError codes instead"]
     pub const RemoteHostUnavailableError: Self = Self(-14);
-    #[deprecated = "Use CFError codes instead"]
     #[doc(alias = "kCFURLImproperArgumentsError")]
+    #[deprecated = "Use CFError codes instead"]
     pub const ImproperArgumentsError: Self = Self(-15);
-    #[deprecated = "Use CFError codes instead"]
     #[doc(alias = "kCFURLUnknownPropertyKeyError")]
+    #[deprecated = "Use CFError codes instead"]
     pub const UnknownPropertyKeyError: Self = Self(-16);
-    #[deprecated = "Use CFError codes instead"]
     #[doc(alias = "kCFURLPropertyKeyUnavailableError")]
-    pub const PropertyKeyUnavailableError: Self = Self(-17);
     #[deprecated = "Use CFError codes instead"]
+    pub const PropertyKeyUnavailableError: Self = Self(-17);
     #[doc(alias = "kCFURLTimeoutError")]
+    #[deprecated = "Use CFError codes instead"]
     pub const TimeoutError: Self = Self(-18);
 }
 

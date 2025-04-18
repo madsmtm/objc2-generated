@@ -14,23 +14,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INDeleteTasksIntentResponseCode(pub NSInteger);
 impl INDeleteTasksIntentResponseCode {
-    #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INDeleteTasksIntentResponseCodeUnspecified")]
+    #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INDeleteTasksIntentResponseCodeReady")]
+    #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INDeleteTasksIntentResponseCodeInProgress")]
+    #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INDeleteTasksIntentResponseCodeSuccess")]
+    #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INDeleteTasksIntentResponseCodeFailure")]
-    pub const Failure: Self = Self(4);
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
+    pub const Failure: Self = Self(4);
     #[doc(alias = "INDeleteTasksIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
 

@@ -116,9 +116,9 @@ impl CFError {
     /// If no userInfo dictionary is desired, NULL may be passed in as a convenience, in which case an empty userInfo dictionary will be assigned.
     ///
     /// Returns: A reference to the new CFError.
+    #[doc(alias = "CFErrorCreate")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFErrorCreate")]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         domain: Option<&CFErrorDomain>,
@@ -153,8 +153,8 @@ impl CFError {
     /// Parameter `numUserInfoValues`: CFIndex representing the number of keys and values in the userInfoKeys and userInfoValues arrays.
     ///
     /// Returns: A reference to the new CFError. numUserInfoValues CF types are gathered from each of userInfoKeys and userInfoValues to create the userInfo dictionary.
-    #[inline]
     #[doc(alias = "CFErrorCreateWithUserInfoKeysAndValues")]
+    #[inline]
     pub unsafe fn with_user_info_keys_and_values(
         allocator: Option<&CFAllocator>,
         domain: Option<&CFErrorDomain>,
@@ -191,8 +191,8 @@ impl CFError {
     /// Parameter `err`: The CFError whose error domain is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: The error domain of the CFError. Since this is a "Get" function, the caller shouldn't CFRelease the return value.
-    #[inline]
     #[doc(alias = "CFErrorGetDomain")]
+    #[inline]
     pub fn domain(self: &CFError) -> Option<CFRetained<CFErrorDomain>> {
         extern "C-unwind" {
             fn CFErrorGetDomain(err: &CFError) -> Option<NonNull<CFErrorDomain>>;
@@ -206,8 +206,8 @@ impl CFError {
     /// Parameter `err`: The CFError whose error code is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: The error code of the CFError (not an error return for the current call).
-    #[inline]
     #[doc(alias = "CFErrorGetCode")]
+    #[inline]
     pub fn code(self: &CFError) -> CFIndex {
         extern "C-unwind" {
             fn CFErrorGetCode(err: &CFError) -> CFIndex;
@@ -222,9 +222,9 @@ impl CFError {
     /// Parameter `err`: The CFError whose error user info is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: The user info of the CFError.
+    #[doc(alias = "CFErrorCopyUserInfo")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFErrorCopyUserInfo")]
     pub fn user_info(self: &CFError) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CFErrorCopyUserInfo(err: &CFError) -> Option<NonNull<CFDictionary>>;
@@ -245,8 +245,8 @@ impl CFError {
     /// Parameter `err`: The CFError whose description is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: A CFString with human-presentable description of the CFError. Never NULL.
-    #[inline]
     #[doc(alias = "CFErrorCopyDescription")]
+    #[inline]
     pub fn description(self: &CFError) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFErrorCopyDescription(err: &CFError) -> Option<NonNull<CFString>>;
@@ -264,8 +264,8 @@ impl CFError {
     /// Parameter `err`: The CFError whose failure reason is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: A CFString with the localized, end-user presentable failure reason of the CFError, or NULL.
-    #[inline]
     #[doc(alias = "CFErrorCopyFailureReason")]
+    #[inline]
     pub fn failure_reason(self: &CFError) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFErrorCopyFailureReason(err: &CFError) -> Option<NonNull<CFString>>;
@@ -283,8 +283,8 @@ impl CFError {
     /// Parameter `err`: The CFError whose recovery suggestion is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: A CFString with the localized, end-user presentable recovery suggestion of the CFError, or NULL.
-    #[inline]
     #[doc(alias = "CFErrorCopyRecoverySuggestion")]
+    #[inline]
     pub fn recovery_suggestion(self: &CFError) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFErrorCopyRecoverySuggestion(err: &CFError) -> Option<NonNull<CFString>>;

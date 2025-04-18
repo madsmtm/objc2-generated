@@ -374,9 +374,9 @@ impl MIDIThruConnectionParams {
     /// This convenience function fills the connection structure with default values: no endpoints,
     /// no transformations (mostly zeroes except for the channel map). Then, just filling in the
     /// source and adding one destination will create a simple, unmodified thru connection.
+    #[doc(alias = "MIDIThruConnectionParamsInitialize")]
     #[cfg(feature = "MIDIServices")]
     #[inline]
-    #[doc(alias = "MIDIThruConnectionParamsInitialize")]
     pub unsafe fn initialize(in_connection_params: NonNull<MIDIThruConnectionParams>) {
         extern "C-unwind" {
             fn MIDIThruConnectionParamsInitialize(

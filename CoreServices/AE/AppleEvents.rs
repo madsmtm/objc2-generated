@@ -362,8 +362,8 @@ extern "C-unwind" {
 }
 
 impl AERemoteProcessResolver {
-    #[inline]
     #[doc(alias = "AERemoteProcessResolverGetProcesses")]
+    #[inline]
     pub unsafe fn processes(
         r#ref: AERemoteProcessResolverRef,
         out_error: *mut CFStreamError,
@@ -384,8 +384,8 @@ pub type AERemoteProcessResolverCallback =
     Option<unsafe extern "C-unwind" fn(AERemoteProcessResolverRef, *mut c_void)>;
 
 impl AERemoteProcessResolver {
-    #[inline]
     #[doc(alias = "AERemoteProcessResolverScheduleWithRunLoop")]
+    #[inline]
     pub unsafe fn schedule_with_run_loop(
         r#ref: AERemoteProcessResolverRef,
         run_loop: Option<&CFRunLoop>,

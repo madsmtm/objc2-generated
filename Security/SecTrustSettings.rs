@@ -97,9 +97,9 @@ unsafe impl RefEncode for SecTrustSettingsDomain {
 
 #[cfg(feature = "SecTrust")]
 impl SecTrust {
+    #[doc(alias = "SecTrustSettingsCopyTrustSettings")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecTrustSettingsCopyTrustSettings")]
     pub unsafe fn settings_copy_trust_settings(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
@@ -115,9 +115,9 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyTrustSettings(cert_ref, domain, trust_settings) }
     }
 
+    #[doc(alias = "SecTrustSettingsSetTrustSettings")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecTrustSettingsSetTrustSettings")]
     pub unsafe fn settings_set_trust_settings(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
@@ -133,9 +133,9 @@ impl SecTrust {
         unsafe { SecTrustSettingsSetTrustSettings(cert_ref, domain, trust_settings_dict_or_array) }
     }
 
+    #[doc(alias = "SecTrustSettingsRemoveTrustSettings")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecTrustSettingsRemoveTrustSettings")]
     pub unsafe fn settings_remove_trust_settings(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
@@ -149,8 +149,8 @@ impl SecTrust {
         unsafe { SecTrustSettingsRemoveTrustSettings(cert_ref, domain) }
     }
 
-    #[inline]
     #[doc(alias = "SecTrustSettingsCopyCertificates")]
+    #[inline]
     pub unsafe fn settings_copy_certificates(
         domain: SecTrustSettingsDomain,
         cert_array: *mut *const CFArray,
@@ -164,9 +164,9 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyCertificates(domain, cert_array) }
     }
 
+    #[doc(alias = "SecTrustSettingsCopyModificationDate")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    #[doc(alias = "SecTrustSettingsCopyModificationDate")]
     pub unsafe fn settings_copy_modification_date(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
@@ -182,8 +182,8 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyModificationDate(cert_ref, domain, modification_date) }
     }
 
-    #[inline]
     #[doc(alias = "SecTrustSettingsCreateExternalRepresentation")]
+    #[inline]
     pub unsafe fn settings_create_external_representation(
         domain: SecTrustSettingsDomain,
         trust_settings: NonNull<*const CFData>,
@@ -197,8 +197,8 @@ impl SecTrust {
         unsafe { SecTrustSettingsCreateExternalRepresentation(domain, trust_settings) }
     }
 
-    #[inline]
     #[doc(alias = "SecTrustSettingsImportExternalRepresentation")]
+    #[inline]
     pub unsafe fn settings_import_external_representation(
         domain: SecTrustSettingsDomain,
         trust_settings: &CFData,

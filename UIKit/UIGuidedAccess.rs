@@ -87,8 +87,8 @@ extern_protocol!(
 );
 
 impl UIGuidedAccessRestrictionState {
-    #[inline]
     #[doc(alias = "UIGuidedAccessRestrictionStateForIdentifier")]
+    #[inline]
     pub unsafe fn for_identifier(
         restriction_identifier: &NSString,
     ) -> UIGuidedAccessRestrictionState {

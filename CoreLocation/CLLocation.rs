@@ -103,8 +103,8 @@ extern "C" {
 }
 
 impl CLLocationCoordinate2D {
-    #[inline]
     #[doc(alias = "CLLocationCoordinate2DIsValid")]
+    #[inline]
     pub unsafe fn is_valid(self: CLLocationCoordinate2D) -> bool {
         extern "C-unwind" {
             fn CLLocationCoordinate2DIsValid(coord: CLLocationCoordinate2D) -> Bool;
@@ -112,8 +112,8 @@ impl CLLocationCoordinate2D {
         unsafe { CLLocationCoordinate2DIsValid(self) }.as_bool()
     }
 
-    #[inline]
     #[doc(alias = "CLLocationCoordinate2DMake")]
+    #[inline]
     pub unsafe fn new(
         latitude: CLLocationDegrees,
         longitude: CLLocationDegrees,

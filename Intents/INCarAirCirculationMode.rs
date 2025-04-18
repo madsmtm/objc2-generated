@@ -11,14 +11,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INCarAirCirculationMode(pub NSInteger);
 impl INCarAirCirculationMode {
-    #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
     #[doc(alias = "INCarAirCirculationModeUnknown")]
+    #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
     #[doc(alias = "INCarAirCirculationModeFreshAir")]
-    pub const FreshAir: Self = Self(1);
     #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
+    pub const FreshAir: Self = Self(1);
     #[doc(alias = "INCarAirCirculationModeRecirculateAir")]
+    #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
     pub const RecirculateAir: Self = Self(2);
 }
 

@@ -36,9 +36,9 @@ unsafe impl ConcreteType for CGShading {
 }
 
 impl CGShading {
+    #[doc(alias = "CGShadingCreateAxial")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
-    #[doc(alias = "CGShadingCreateAxial")]
     pub unsafe fn new_axial(
         space: Option<&CGColorSpace>,
         start: CGPoint,
@@ -62,9 +62,9 @@ impl CGShading {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CGShadingCreateRadial")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
-    #[doc(alias = "CGShadingCreateRadial")]
     pub unsafe fn new_radial(
         space: Option<&CGColorSpace>,
         start: CGPoint,

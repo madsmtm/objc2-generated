@@ -32,8 +32,8 @@ unsafe impl RefEncode for PHImageContentMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHCollectionListType(pub NSInteger);
 impl PHCollectionListType {
-    #[deprecated = "Will be removed in a future release"]
     #[doc(alias = "PHCollectionListTypeMomentList")]
+    #[deprecated = "Will be removed in a future release"]
     pub const MomentList: Self = Self(1);
     #[doc(alias = "PHCollectionListTypeFolder")]
     pub const Folder: Self = Self(2);
@@ -55,11 +55,11 @@ unsafe impl RefEncode for PHCollectionListType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHCollectionListSubtype(pub NSInteger);
 impl PHCollectionListSubtype {
-    #[deprecated = "Will be removed in a future release"]
     #[doc(alias = "PHCollectionListSubtypeMomentListCluster")]
-    pub const MomentListCluster: Self = Self(1);
     #[deprecated = "Will be removed in a future release"]
+    pub const MomentListCluster: Self = Self(1);
     #[doc(alias = "PHCollectionListSubtypeMomentListYear")]
+    #[deprecated = "Will be removed in a future release"]
     pub const MomentListYear: Self = Self(2);
     #[doc(alias = "PHCollectionListSubtypeRegularFolder")]
     pub const RegularFolder: Self = Self(100);
@@ -119,8 +119,8 @@ impl PHAssetCollectionType {
     pub const Album: Self = Self(1);
     #[doc(alias = "PHAssetCollectionTypeSmartAlbum")]
     pub const SmartAlbum: Self = Self(2);
-    #[deprecated = "Will be removed in a future release"]
     #[doc(alias = "PHAssetCollectionTypeMoment")]
+    #[deprecated = "Will be removed in a future release"]
     pub const Moment: Self = Self(3);
 }
 

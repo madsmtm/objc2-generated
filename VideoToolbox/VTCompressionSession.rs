@@ -116,9 +116,9 @@ impl VTCompressionSession {
     /// Parameter `outputCallbackRefCon`: Client-defined reference value for the output callback.
     ///
     /// Parameter `compressionSessionOut`: Points to a variable to receive the new compression session.
+    #[doc(alias = "VTCompressionSessionCreate")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
-    #[doc(alias = "VTCompressionSessionCreate")]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         width: i32,
@@ -168,8 +168,8 @@ impl VTCompressionSession {
     /// When a compression session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTCompressionSessionInvalidate ensures a deterministic, orderly teardown.
-    #[inline]
     #[doc(alias = "VTCompressionSessionInvalidate")]
+    #[inline]
     pub unsafe fn invalidate(self: &VTCompressionSession) {
         extern "C-unwind" {
             fn VTCompressionSessionInvalidate(session: &VTCompressionSession);
@@ -207,9 +207,9 @@ impl VTCompressionSession {
     /// to call it once per frame.  If a change of session properties causes
     /// the compressor's pixel buffer attributes to change, it's possible that
     /// VTCompressionSessionGetPixelBufferPool might return a different pool.
+    #[doc(alias = "VTCompressionSessionGetPixelBufferPool")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
-    #[doc(alias = "VTCompressionSessionGetPixelBufferPool")]
     pub unsafe fn pixel_buffer_pool(
         self: &VTCompressionSession,
     ) -> Option<CFRetained<CVPixelBufferPool>> {
@@ -231,8 +231,8 @@ impl VTCompressionSession {
     /// Extra calls to this function will have no effect.
     ///
     /// Parameter `session`: The compression session.
-    #[inline]
     #[doc(alias = "VTCompressionSessionPrepareToEncodeFrames")]
+    #[inline]
     pub unsafe fn prepare_to_encode_frames(self: &VTCompressionSession) -> OSStatus {
         extern "C-unwind" {
             fn VTCompressionSessionPrepareToEncodeFrames(
@@ -270,13 +270,13 @@ impl VTCompressionSession {
     /// asynchronously.
     /// The kVTEncodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously).
     /// Pass NULL if you do not want to receive this information.
+    #[doc(alias = "VTCompressionSessionEncodeFrame")]
     #[cfg(all(
         feature = "VTErrors",
         feature = "objc2-core-media",
         feature = "objc2-core-video"
     ))]
     #[inline]
-    #[doc(alias = "VTCompressionSessionEncodeFrame")]
     pub unsafe fn encode_frame(
         self: &VTCompressionSession,
         image_buffer: &CVImageBuffer,
@@ -362,6 +362,7 @@ impl VTCompressionSession {
     ///
     /// Parameter `outputHandler`: The block to be called when encoding the frame is completed.
     /// This block may be called asynchronously, on a different thread from the one that calls VTCompressionSessionEncodeFrameWithOutputHandler.
+    #[doc(alias = "VTCompressionSessionEncodeFrameWithOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
         feature = "block2",
@@ -369,7 +370,6 @@ impl VTCompressionSession {
         feature = "objc2-core-video"
     ))]
     #[inline]
-    #[doc(alias = "VTCompressionSessionEncodeFrameWithOutputHandler")]
     pub unsafe fn encode_frame_with_output_handler(
         self: &VTCompressionSession,
         image_buffer: &CVImageBuffer,
@@ -409,9 +409,9 @@ impl VTCompressionSession {
     /// up to and including this timestamp will be emitted before the function returns.
     /// If completeUntilPresentationTimeStamp is non-numeric, all pending frames
     /// will be emitted before the function returns.
+    #[doc(alias = "VTCompressionSessionCompleteFrames")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    #[doc(alias = "VTCompressionSessionCompleteFrames")]
     pub unsafe fn complete_frames(
         self: &VTCompressionSession,
         complete_until_presentation_time_stamp: CMTime,
@@ -466,9 +466,9 @@ impl VTCompressionSession {
     /// asynchronously.
     /// The kVTEncodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously).
     /// Pass NULL if you do not want to receive this information.
+    #[doc(alias = "VTCompressionSessionEncodeMultiImageFrame")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
-    #[doc(alias = "VTCompressionSessionEncodeMultiImageFrame")]
     pub unsafe fn encode_multi_image_frame(
         self: &VTCompressionSession,
         tagged_buffer_group: &CMTaggedBufferGroup,
@@ -531,9 +531,9 @@ impl VTCompressionSession {
     ///
     /// Parameter `outputHandler`: The block to be called when encoding the frame is completed.
     /// This block may be called asynchronously, on a different thread from the one that calls VTCompressionSessionEncodeMultiImageFrameWithOutputHandler.
+    #[doc(alias = "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler")]
     #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
     #[inline]
-    #[doc(alias = "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler")]
     pub unsafe fn encode_multi_image_frame_with_output_handler(
         self: &VTCompressionSession,
         tagged_buffer_group: &CMTaggedBufferGroup,
@@ -597,8 +597,8 @@ impl VTCompressionSession {
     /// It is an error to call this function when multi-pass encoding has not been enabled by setting kVTCompressionPropertyKey_MultiPassStorage.
     ///
     /// Parameter `beginPassFlags`: Pass kVTCompressionSessionBeginFinalPass to inform the encoder that the pass must be the final pass.
-    #[inline]
     #[doc(alias = "VTCompressionSessionBeginPass")]
+    #[inline]
     pub unsafe fn begin_pass(
         self: &VTCompressionSession,
         begin_pass_flags: VTCompressionSessionOptionFlags,
@@ -622,8 +622,8 @@ impl VTCompressionSession {
     ///
     /// Parameter `furtherPassesRequestedOut`: Points to a Boolean that will be set to true if the video encoder would like to perform another pass, false otherwise.
     /// You may pass NULL to indicate that the client is certain to use this as the final pass, in which case the video encoder can skip that evaluation step.
-    #[inline]
     #[doc(alias = "VTCompressionSessionEndPass")]
+    #[inline]
     pub unsafe fn end_pass(
         self: &VTCompressionSession,
         further_passes_requested_out: *mut Boolean,
@@ -650,9 +650,9 @@ impl VTCompressionSession {
     /// Parameter `timeRangeArrayOut`: Points to a const CMTimeRange * to receive a pointer to a C array of CMTimeRanges.
     /// The storage for this array belongs to the VTCompressionSession and should not be modified.
     /// The pointer will be valid until the next call to VTCompressionSessionEndPass, or until the VTCompressionSession is invalidated or finalized.
+    #[doc(alias = "VTCompressionSessionGetTimeRangesForNextPass")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    #[doc(alias = "VTCompressionSessionGetTimeRangesForNextPass")]
     pub unsafe fn time_ranges_for_next_pass(
         self: &VTCompressionSession,
         time_range_count_out: NonNull<CMItemCount>,

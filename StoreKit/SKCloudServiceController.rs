@@ -14,17 +14,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKCloudServiceAuthorizationStatus(pub NSInteger);
 impl SKCloudServiceAuthorizationStatus {
-    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     #[doc(alias = "SKCloudServiceAuthorizationStatusNotDetermined")]
+    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     pub const NotDetermined: Self = Self(0);
-    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     #[doc(alias = "SKCloudServiceAuthorizationStatusDenied")]
+    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     pub const Denied: Self = Self(1);
-    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     #[doc(alias = "SKCloudServiceAuthorizationStatusRestricted")]
-    pub const Restricted: Self = Self(2);
     #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
+    pub const Restricted: Self = Self(2);
     #[doc(alias = "SKCloudServiceAuthorizationStatusAuthorized")]
+    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     pub const Authorized: Self = Self(3);
 }
 
@@ -44,17 +44,17 @@ unsafe impl RefEncode for SKCloudServiceAuthorizationStatus {
 pub struct SKCloudServiceCapability(pub NSUInteger);
 bitflags::bitflags! {
     impl SKCloudServiceCapability: NSUInteger {
-#[deprecated = "Use MusicSubscription from MusicKit"]
         #[doc(alias = "SKCloudServiceCapabilityNone")]
+#[deprecated = "Use MusicSubscription from MusicKit"]
         const None = 0;
-#[deprecated = "Use MusicSubscription from MusicKit"]
         #[doc(alias = "SKCloudServiceCapabilityMusicCatalogPlayback")]
-        const MusicCatalogPlayback = 1<<0;
-#[deprecated = "Use the canBecomeSubscriber property of MusicSubscription from MusicKit"]
-        #[doc(alias = "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible")]
-        const MusicCatalogSubscriptionEligible = 1<<1;
 #[deprecated = "Use MusicSubscription from MusicKit"]
+        const MusicCatalogPlayback = 1<<0;
+        #[doc(alias = "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible")]
+#[deprecated = "Use the canBecomeSubscriber property of MusicSubscription from MusicKit"]
+        const MusicCatalogSubscriptionEligible = 1<<1;
         #[doc(alias = "SKCloudServiceCapabilityAddToCloudMusicLibrary")]
+#[deprecated = "Use MusicSubscription from MusicKit"]
         const AddToCloudMusicLibrary = 1<<8;
     }
 }

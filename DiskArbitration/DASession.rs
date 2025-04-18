@@ -48,8 +48,8 @@ impl DASession {
     ///
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it.
-    #[inline]
     #[doc(alias = "DASessionCreate")]
+    #[inline]
     pub unsafe fn new(allocator: Option<&CFAllocator>) -> Option<CFRetained<DASession>> {
         extern "C-unwind" {
             fn DASessionCreate(allocator: Option<&CFAllocator>) -> Option<NonNull<DASession>>;
@@ -65,8 +65,8 @@ impl DASession {
     /// Parameter `runLoop`: The run loop on which the session should be scheduled.
     ///
     /// Parameter `runLoopMode`: The run loop mode in which the session should be scheduled.
-    #[inline]
     #[doc(alias = "DASessionScheduleWithRunLoop")]
+    #[inline]
     pub unsafe fn schedule_with_run_loop(
         self: &DASession,
         run_loop: &CFRunLoop,
@@ -89,8 +89,8 @@ impl DASession {
     /// Parameter `runLoop`: The run loop on which the session is scheduled.
     ///
     /// Parameter `runLoopMode`: The run loop mode in which the session is scheduled.
-    #[inline]
     #[doc(alias = "DASessionUnscheduleFromRunLoop")]
+    #[inline]
     pub unsafe fn unschedule_from_run_loop(
         self: &DASession,
         run_loop: &CFRunLoop,
@@ -111,9 +111,9 @@ impl DASession {
     /// Parameter `session`: The session which is being scheduled.
     ///
     /// Parameter `queue`: The dispatch queue on which the session should be scheduled.  Pass NULL to unschedule.
+    #[doc(alias = "DASessionSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    #[doc(alias = "DASessionSetDispatchQueue")]
     pub unsafe fn set_dispatch_queue(self: &DASession, queue: Option<&DispatchQueue>) {
         extern "C-unwind" {
             fn DASessionSetDispatchQueue(session: &DASession, queue: Option<&DispatchQueue>);
@@ -149,8 +149,8 @@ unsafe impl ConcreteType for DAApprovalSession {
 }
 
 impl DAApprovalSession {
-    #[inline]
     #[doc(alias = "DAApprovalSessionCreate")]
+    #[inline]
     pub unsafe fn new(allocator: Option<&CFAllocator>) -> Option<CFRetained<DAApprovalSession>> {
         extern "C-unwind" {
             fn DAApprovalSessionCreate(
@@ -161,8 +161,8 @@ impl DAApprovalSession {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "DAApprovalSessionScheduleWithRunLoop")]
+    #[inline]
     pub unsafe fn schedule_with_run_loop(
         self: &DAApprovalSession,
         run_loop: &CFRunLoop,
@@ -178,8 +178,8 @@ impl DAApprovalSession {
         unsafe { DAApprovalSessionScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
-    #[inline]
     #[doc(alias = "DAApprovalSessionUnscheduleFromRunLoop")]
+    #[inline]
     pub unsafe fn unschedule_from_run_loop(
         self: &DAApprovalSession,
         run_loop: &CFRunLoop,

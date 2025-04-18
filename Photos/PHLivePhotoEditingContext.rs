@@ -220,11 +220,11 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHLivePhotoEditingErrorCode(pub NSInteger);
 impl PHLivePhotoEditingErrorCode {
-    #[deprecated]
     #[doc(alias = "PHLivePhotoEditingErrorCodeUnknown")]
-    pub const Unknown: Self = Self(0);
     #[deprecated]
+    pub const Unknown: Self = Self(0);
     #[doc(alias = "PHLivePhotoEditingErrorCodeAborted")]
+    #[deprecated]
     pub const Aborted: Self = Self(1);
 }
 

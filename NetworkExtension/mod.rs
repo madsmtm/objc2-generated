@@ -5156,10 +5156,10 @@ mod private_NSMutableURLRequestNEHotspotHelper {
 }
 
 /// Category "NEHotspotHelper" on [`NSMutableURLRequest`].
-#[doc(alias = "NEHotspotHelper")]
 /// Extend NSMutableURLRequest to include a method to bind the
 /// request to the network interface associated with the specified
 /// NEHotspotHelperCommand object.
+#[doc(alias = "NEHotspotHelper")]
 pub unsafe trait NSMutableURLRequestNEHotspotHelper:
     ClassType + Sized + private_NSMutableURLRequestNEHotspotHelper::Sealed
 {
@@ -8397,11 +8397,11 @@ impl NEVPNProtocolIPSec {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNIKEv2IntegrityAlgorithm(pub NSInteger);
 impl NEVPNIKEv2IntegrityAlgorithm {
-    #[deprecated = "Use SHA-2 for integrity protection instead"]
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA96")]
-    pub const SHA96: Self = Self(1);
     #[deprecated = "Use SHA-2 for integrity protection instead"]
+    pub const SHA96: Self = Self(1);
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA160")]
+    #[deprecated = "Use SHA-2 for integrity protection instead"]
     pub const SHA160: Self = Self(2);
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA256")]
     pub const SHA256: Self = Self(3);
@@ -8455,14 +8455,14 @@ pub struct NEVPNIKEv2DiffieHellmanGroup(pub NSInteger);
 impl NEVPNIKEv2DiffieHellmanGroup {
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroupInvalid")]
     pub const GroupInvalid: Self = Self(0);
-    #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup1")]
+    #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
     pub const Group1: Self = Self(1);
-    #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup2")]
-    pub const Group2: Self = Self(2);
     #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
+    pub const Group2: Self = Self(2);
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup5")]
+    #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
     pub const Group5: Self = Self(5);
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup14")]
     pub const Group14: Self = Self(14);
@@ -9550,18 +9550,18 @@ impl NWBonjourServiceEndpoint {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NWPathStatus(pub NSInteger);
 impl NWPathStatus {
-    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     #[doc(alias = "NWPathStatusInvalid")]
+    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Invalid: Self = Self(0);
-    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     #[doc(alias = "NWPathStatusSatisfied")]
-    pub const Satisfied: Self = Self(1);
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
+    pub const Satisfied: Self = Self(1);
     #[doc(alias = "NWPathStatusUnsatisfied")]
+    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Unsatisfied: Self = Self(2);
     /// a connection attempt.
-    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     #[doc(alias = "NWPathStatusSatisfiable")]
+    #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Satisfiable: Self = Self(3);
 }
 
@@ -9641,29 +9641,29 @@ impl NWPath {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NWTCPConnectionState(pub NSInteger);
 impl NWTCPConnectionState {
-    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     #[doc(alias = "NWTCPConnectionStateInvalid")]
-    pub const Invalid: Self = Self(0);
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
+    pub const Invalid: Self = Self(0);
     #[doc(alias = "NWTCPConnectionStateConnecting")]
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Connecting: Self = Self(1);
     /// waiting for better condition(s) before trying again.
-    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     #[doc(alias = "NWTCPConnectionStateWaiting")]
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Waiting: Self = Self(2);
     /// to transfer data. If TLS is in use, the TLS handshake would have finished when the connection
     /// is in this state.
-    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     #[doc(alias = "NWTCPConnectionStateConnected")]
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Connected: Self = Self(3);
     /// possible to transfer data. The application should call cancellation method to clean up resources
     /// when the connection is in this state.
-    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     #[doc(alias = "NWTCPConnectionStateDisconnected")]
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Disconnected: Self = Self(4);
     /// the cancellation method.
-    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     #[doc(alias = "NWTCPConnectionStateCancelled")]
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Cancelled: Self = Self(5);
 }
 
@@ -9981,26 +9981,26 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NWUDPSessionState(pub NSInteger);
 impl NWUDPSessionState {
-    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     #[doc(alias = "NWUDPSessionStateInvalid")]
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Invalid: Self = Self(0);
     /// attempting to make the session ready.
-    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     #[doc(alias = "NWUDPSessionStateWaiting")]
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Waiting: Self = Self(1);
-    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     #[doc(alias = "NWUDPSessionStatePreparing")]
-    pub const Preparing: Self = Self(2);
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+    pub const Preparing: Self = Self(2);
     #[doc(alias = "NWUDPSessionStateReady")]
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Ready: Self = Self(3);
     /// at this time, either due to problems with the path or the client rejecting the
     /// endpoints.
-    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     #[doc(alias = "NWUDPSessionStateFailed")]
-    pub const Failed: Self = Self(4);
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
+    pub const Failed: Self = Self(4);
     #[doc(alias = "NWUDPSessionStateCancelled")]
+    #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Cancelled: Self = Self(5);
 }
 

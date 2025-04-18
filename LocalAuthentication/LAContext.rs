@@ -54,8 +54,8 @@ impl LAPolicy {
     ///
     /// Watch authentication dialog looks and behaves similarly to the biometric variant. Users can
     /// confirm authentication by double-clicking the side button on their watch.
-    #[deprecated]
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWatch")]
+    #[deprecated]
     pub const DeviceOwnerAuthenticationWithWatch: Self = Self(3);
     /// Device owner will be authenticated by a companion device e.g. Watch, Mac, etc.
     ///
@@ -76,8 +76,8 @@ impl LAPolicy {
     /// Watch authentication dialog looks and behaves similarly to biometric variant. When both
     /// mechanisms are available, user is asked to use biometry and watch authentication will run in
     /// parallel.
-    #[deprecated]
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch")]
+    #[deprecated]
     pub const DeviceOwnerAuthenticationWithBiometricsOrWatch: Self = Self(4);
     /// Device owner will be authenticated by biometry or a companion device e.g. Watch, Mac, etc.
     ///

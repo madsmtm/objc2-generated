@@ -87,8 +87,8 @@ impl CVBuffer {
     ///
     /// Parameter `attachmentMode`: Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
     /// a single mode at a time.
-    #[inline]
     #[doc(alias = "CVBufferSetAttachment")]
+    #[inline]
     pub unsafe fn set_attachment(
         self: &CVBuffer,
         key: &CFString,
@@ -117,9 +117,9 @@ impl CVBuffer {
     /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
     ///
     /// Returns: If found the attachment object
+    #[doc(alias = "CVBufferGetAttachment")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "CVBufferGetAttachment")]
     pub unsafe fn get_attachment(
         self: &CVBuffer,
         key: &CFString,
@@ -143,8 +143,8 @@ impl CVBuffer {
     /// Parameter `buffer`: Target CVBuffer object.
     ///
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    #[inline]
     #[doc(alias = "CVBufferRemoveAttachment")]
+    #[inline]
     pub unsafe fn remove_attachment(self: &CVBuffer, key: &CFString) {
         extern "C-unwind" {
             fn CVBufferRemoveAttachment(buffer: &CVBuffer, key: &CFString);
@@ -157,8 +157,8 @@ impl CVBuffer {
     /// While CVBufferRemoveAttachment removes a specific attachement identified by a key CVBufferRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.
     ///
     /// Parameter `buffer`: Target CVBuffer object.
-    #[inline]
     #[doc(alias = "CVBufferRemoveAllAttachments")]
+    #[inline]
     pub unsafe fn remove_all_attachments(self: &CVBuffer) {
         extern "C-unwind" {
             fn CVBufferRemoveAllAttachments(buffer: &CVBuffer);
@@ -174,9 +174,9 @@ impl CVBuffer {
     ///
     /// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, the dictionary is empty.  Returns NULL
     /// for invalid attachment mode.
+    #[doc(alias = "CVBufferGetAttachments")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "CVBufferGetAttachments")]
     pub unsafe fn get_attachments(
         self: &CVBuffer,
         attachment_mode: CVAttachmentMode,
@@ -196,8 +196,8 @@ impl CVBuffer {
     /// CVBufferSetAttachments is a convenience call that in turn calls CVBufferSetAttachment for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.
     ///
     /// Parameter `buffer`: Target CVBuffer object.
-    #[inline]
     #[doc(alias = "CVBufferSetAttachments")]
+    #[inline]
     pub unsafe fn set_attachments(
         self: &CVBuffer,
         the_attachments: &CFDictionary,
@@ -221,8 +221,8 @@ impl CVBuffer {
     /// Parameter `sourceBuffer`: CVBuffer to copy attachments from.
     ///
     /// Parameter `destinationBuffer`: CVBuffer to copy attachments to.
-    #[inline]
     #[doc(alias = "CVBufferPropagateAttachments")]
+    #[inline]
     pub unsafe fn propagate_attachments(self: &CVBuffer, destination_buffer: &CVBuffer) {
         extern "C-unwind" {
             fn CVBufferPropagateAttachments(
@@ -240,8 +240,8 @@ impl CVBuffer {
     /// Parameter `buffer`: Target CVBuffer object.
     ///
     /// Returns: A CFDictionary with all buffer attachments identified by their keys. If no attachment is present or invalid attachment mode,   returns NULL
-    #[inline]
     #[doc(alias = "CVBufferCopyAttachments")]
+    #[inline]
     pub unsafe fn attachments(
         self: &CVBuffer,
         attachment_mode: CVAttachmentMode,
@@ -267,8 +267,8 @@ impl CVBuffer {
     /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
     ///
     /// Returns: If found the attachment object, return the value; otherwize, return NULL.
-    #[inline]
     #[doc(alias = "CVBufferCopyAttachment")]
+    #[inline]
     pub unsafe fn attachment(
         self: &CVBuffer,
         key: &CFString,
@@ -292,8 +292,8 @@ impl CVBuffer {
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
     ///
     /// Returns: True if an attachment with this key is present, otherwise false.
-    #[inline]
     #[doc(alias = "CVBufferHasAttachment")]
+    #[inline]
     pub unsafe fn has_attachment(self: &CVBuffer, key: &CFString) -> bool {
         extern "C-unwind" {
             fn CVBufferHasAttachment(buffer: &CVBuffer, key: &CFString) -> Boolean;

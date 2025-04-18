@@ -60,8 +60,8 @@ unsafe impl ConcreteType for CFDate {
 }
 
 impl CFDate {
-    #[inline]
     #[doc(alias = "CFDateCreate")]
+    #[inline]
     pub fn new(allocator: Option<&CFAllocator>, at: CFAbsoluteTime) -> Option<CFRetained<CFDate>> {
         extern "C-unwind" {
             fn CFDateCreate(
@@ -73,8 +73,8 @@ impl CFDate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFDateGetAbsoluteTime")]
+    #[inline]
     pub fn absolute_time(self: &CFDate) -> CFAbsoluteTime {
         extern "C-unwind" {
             fn CFDateGetAbsoluteTime(the_date: &CFDate) -> CFAbsoluteTime;
@@ -82,8 +82,8 @@ impl CFDate {
         unsafe { CFDateGetAbsoluteTime(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFDateGetTimeIntervalSinceDate")]
+    #[inline]
     pub fn time_interval_since_date(self: &CFDate, other_date: Option<&CFDate>) -> CFTimeInterval {
         extern "C-unwind" {
             fn CFDateGetTimeIntervalSinceDate(
@@ -94,8 +94,8 @@ impl CFDate {
         unsafe { CFDateGetTimeIntervalSinceDate(self, other_date) }
     }
 
-    #[inline]
     #[doc(alias = "CFDateCompare")]
+    #[inline]
     pub unsafe fn compare(
         self: &CFDate,
         other_date: Option<&CFDate>,
@@ -198,26 +198,26 @@ unsafe impl RefEncode for CFGregorianUnits {
 pub struct CFGregorianUnitFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFGregorianUnitFlags: CFOptionFlags {
-#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         #[doc(alias = "kCFGregorianUnitsYears")]
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsYears = 1<<0;
-#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         #[doc(alias = "kCFGregorianUnitsMonths")]
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsMonths = 1<<1;
-#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         #[doc(alias = "kCFGregorianUnitsDays")]
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsDays = 1<<2;
-#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         #[doc(alias = "kCFGregorianUnitsHours")]
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsHours = 1<<3;
-#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         #[doc(alias = "kCFGregorianUnitsMinutes")]
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsMinutes = 1<<4;
-#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         #[doc(alias = "kCFGregorianUnitsSeconds")]
-        const UnitsSeconds = 1<<5;
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
+        const UnitsSeconds = 1<<5;
         #[doc(alias = "kCFGregorianAllUnits")]
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const AllUnits = 0x00FFFFFF;
     }
 }
@@ -233,9 +233,9 @@ unsafe impl RefEncode for CFGregorianUnitFlags {
 }
 
 impl CFGregorianDate {
+    #[doc(alias = "CFGregorianDateIsValid")]
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     #[inline]
-    #[doc(alias = "CFGregorianDateIsValid")]
     pub unsafe fn is_valid(self: CFGregorianDate, unit_flags: CFOptionFlags) -> bool {
         extern "C-unwind" {
             fn CFGregorianDateIsValid(gdate: CFGregorianDate, unit_flags: CFOptionFlags)
@@ -245,9 +245,9 @@ impl CFGregorianDate {
         ret != 0
     }
 
+    #[doc(alias = "CFGregorianDateGetAbsoluteTime")]
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     #[inline]
-    #[doc(alias = "CFGregorianDateGetAbsoluteTime")]
     pub unsafe fn absolute_time(self: CFGregorianDate, tz: Option<&CFTimeZone>) -> CFAbsoluteTime {
         extern "C-unwind" {
             fn CFGregorianDateGetAbsoluteTime(

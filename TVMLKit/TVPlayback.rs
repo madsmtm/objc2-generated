@@ -59,32 +59,32 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVPlaybackState(pub NSInteger);
 impl TVPlaybackState {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaybackStateUndefined")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Undefined: Self = Self(0);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaybackStateBegin")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Begin: Self = Self(1);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaybackStateLoading")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Loading: Self = Self(2);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaybackStatePlaying")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Playing: Self = Self(3);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaybackStatePaused")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Paused: Self = Self(4);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaybackStateScanning")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Scanning: Self = Self(5);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaybackStateFastForwarding")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const FastForwarding: Self = Self(6);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaybackStateRewinding")]
-    pub const Rewinding: Self = Self(7);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const Rewinding: Self = Self(7);
     #[doc(alias = "TVPlaybackStateEnd")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const End: Self = Self(8);
 }
 
@@ -103,14 +103,14 @@ unsafe impl RefEncode for TVPlaybackState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVPlaylistRepeatMode(pub NSInteger);
 impl TVPlaylistRepeatMode {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaylistRepeatModeNone")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const None: Self = Self(0);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaylistRepeatModeAll")]
-    pub const All: Self = Self(1);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const All: Self = Self(1);
     #[doc(alias = "TVPlaylistRepeatModeOne")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const One: Self = Self(2);
 }
 
@@ -129,14 +129,14 @@ unsafe impl RefEncode for TVPlaylistRepeatMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVPlaylistEndAction(pub NSInteger);
 impl TVPlaylistEndAction {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaylistEndActionStop")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Stop: Self = Self(0);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVPlaylistEndActionPause")]
-    pub const Pause: Self = Self(1);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const Pause: Self = Self(1);
     #[doc(alias = "TVPlaylistEndActionWaitForMoreItems")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const WaitForMoreItems: Self = Self(2);
 }
 

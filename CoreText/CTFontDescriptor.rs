@@ -451,8 +451,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// If you are trying to create a system UI font descriptor (with name beginning with a "."), you should create a font with CTFontCreateUIFontForLanguage() or appropriate AppKit/UIKit APIs instead, then use CTFontCopyFontDescriptor() to get its font descriptor.
-    #[inline]
     #[doc(alias = "CTFontDescriptorCreateWithNameAndSize")]
+    #[inline]
     pub unsafe fn with_name_and_size(
         name: &CFString,
         size: CGFloat,
@@ -476,8 +476,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function creates a new font descriptor with the attributes specified. This dictionary can contain arbitrary attributes that will be preserved, however unrecognized attributes will be ignored on font creation and and may not be preserved over the round trip (descriptor -> font -> descriptor).
-    #[inline]
     #[doc(alias = "CTFontDescriptorCreateWithAttributes")]
+    #[inline]
     pub unsafe fn with_attributes(attributes: &CFDictionary) -> CFRetained<CTFontDescriptor> {
         extern "C-unwind" {
             fn CTFontDescriptorCreateWithAttributes(
@@ -510,8 +510,8 @@ impl CTFontDescriptor {
     /// [
     /// "
     /// liga", (id)kCFNull ] will have the same effect.
-    #[inline]
     #[doc(alias = "CTFontDescriptorCreateCopyWithAttributes")]
+    #[inline]
     pub unsafe fn copy_with_attributes(
         self: &CTFontDescriptor,
         attributes: &CFDictionary,
@@ -538,8 +538,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: Returns a new font reference with the original traits in the given family, or NULL if none found in the system.
-    #[inline]
     #[doc(alias = "CTFontDescriptorCreateCopyWithFamily")]
+    #[inline]
     pub unsafe fn copy_with_family(
         self: &CTFontDescriptor,
         family: &CFString,
@@ -567,9 +567,9 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: Returns a new font descriptor reference in the same family with the given symbolic traits, or NULL if none found in the system.
+    #[doc(alias = "CTFontDescriptorCreateCopyWithSymbolicTraits")]
     #[cfg(feature = "CTFontTraits")]
     #[inline]
-    #[doc(alias = "CTFontDescriptorCreateCopyWithSymbolicTraits")]
     pub unsafe fn copy_with_symbolic_traits(
         self: &CTFontDescriptor,
         sym_trait_value: CTFontSymbolicTraits,
@@ -601,8 +601,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function returns a copy of the original font descriptor with a new variation instance. This is a convenience method for easily creating new variation font instances.
-    #[inline]
     #[doc(alias = "CTFontDescriptorCreateCopyWithVariation")]
+    #[inline]
     pub unsafe fn copy_with_variation(
         self: &CTFontDescriptor,
         variation_identifier: &CFNumber,
@@ -639,8 +639,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: A copy of the original font descriptor modified with the given feature settings.
-    #[inline]
     #[doc(alias = "CTFontDescriptorCreateCopyWithFeature")]
+    #[inline]
     pub unsafe fn copy_with_feature(
         self: &CTFontDescriptor,
         feature_type_identifier: &CFNumber,
@@ -675,8 +675,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function returns a retained array of normalized font descriptors matching the attributes present in descriptor. If descriptor itself is normalized then the array will contain only one item, the original descriptor.
-    #[inline]
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptors")]
+    #[inline]
     pub unsafe fn matching_font_descriptors(
         self: &CTFontDescriptor,
         mandatory_attributes: Option<&CFSet>,
@@ -702,8 +702,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function returns a retained normalized font descriptor matching the attributes present in descriptor. The original descriptor may be returned in normalized form.
-    #[inline]
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptor")]
+    #[inline]
     pub unsafe fn matching_font_descriptor(
         self: &CTFontDescriptor,
         mandatory_attributes: Option<&CFSet>,
@@ -804,9 +804,9 @@ pub type CTFontDescriptorProgressHandler =
     *mut block2::DynBlock<dyn Fn(CTFontDescriptorMatchingState, NonNull<CFDictionary>) -> bool>;
 
 impl CTFontDescriptor {
+    #[doc(alias = "CTFontDescriptorMatchFontDescriptorsWithProgressHandler")]
     #[cfg(feature = "block2")]
     #[inline]
-    #[doc(alias = "CTFontDescriptorMatchFontDescriptorsWithProgressHandler")]
     pub unsafe fn match_font_descriptors_with_progress_handler(
         descriptors: &CFArray,
         mandatory_attributes: Option<&CFSet>,
@@ -835,8 +835,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: A retained reference to the font descriptor attributes dictionary. This dictionary will contain the minimum number of attributes to fully specify this particular font descriptor.
-    #[inline]
     #[doc(alias = "CTFontDescriptorCopyAttributes")]
+    #[inline]
     pub unsafe fn attributes(self: &CTFontDescriptor) -> CFRetained<CFDictionary> {
         extern "C-unwind" {
             fn CTFontDescriptorCopyAttributes(
@@ -859,8 +859,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
-    #[inline]
     #[doc(alias = "CTFontDescriptorCopyAttribute")]
+    #[inline]
     pub unsafe fn attribute(
         self: &CTFontDescriptor,
         attribute: &CFString,
@@ -894,8 +894,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
-    #[inline]
     #[doc(alias = "CTFontDescriptorCopyLocalizedAttribute")]
+    #[inline]
     pub unsafe fn localized_attribute(
         self: &CTFontDescriptor,
         attribute: &CFString,

@@ -11,17 +11,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INVisualCodeType(pub NSInteger);
 impl INVisualCodeType {
-    #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     #[doc(alias = "INVisualCodeTypeUnknown")]
+    #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     #[doc(alias = "INVisualCodeTypeContact")]
+    #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     pub const Contact: Self = Self(1);
-    #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     #[doc(alias = "INVisualCodeTypeRequestPayment")]
-    pub const RequestPayment: Self = Self(2);
     #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
+    pub const RequestPayment: Self = Self(2);
     #[doc(alias = "INVisualCodeTypeSendPayment")]
+    #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     pub const SendPayment: Self = Self(3);
     #[doc(alias = "INVisualCodeTypeTransit")]
     pub const Transit: Self = Self(4);

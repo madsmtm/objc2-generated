@@ -227,9 +227,9 @@ impl VNElementType {
     ///
     ///
     /// Returns: a byte count, or 0 if the element type is unknown.
+    #[doc(alias = "VNElementTypeSize")]
     #[cfg(feature = "VNTypes")]
     #[inline]
-    #[doc(alias = "VNElementTypeSize")]
     pub unsafe fn size(self: VNElementType) -> NSUInteger {
         extern "C-unwind" {
             fn VNElementTypeSize(element_type: VNElementType) -> NSUInteger;

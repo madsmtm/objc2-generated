@@ -1266,20 +1266,20 @@ pub const NSGlyphAttributeInscribe: c_uint = 5;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSGlyphInscription(pub NSUInteger);
 impl NSGlyphInscription {
-    #[deprecated]
     #[doc(alias = "NSGlyphInscribeBase")]
+    #[deprecated]
     pub const InscribeBase: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "NSGlyphInscribeBelow")]
+    #[deprecated]
     pub const InscribeBelow: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "NSGlyphInscribeAbove")]
+    #[deprecated]
     pub const InscribeAbove: Self = Self(2);
-    #[deprecated]
     #[doc(alias = "NSGlyphInscribeOverstrike")]
-    pub const InscribeOverstrike: Self = Self(3);
     #[deprecated]
+    pub const InscribeOverstrike: Self = Self(3);
     #[doc(alias = "NSGlyphInscribeOverBelow")]
+    #[deprecated]
     pub const InscribeOverBelow: Self = Self(4);
 }
 

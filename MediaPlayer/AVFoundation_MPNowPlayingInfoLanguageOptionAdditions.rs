@@ -12,8 +12,8 @@ mod private_AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions {
 }
 
 /// Category "MPNowPlayingInfoLanguageOptionAdditions" on [`AVMediaSelectionOption`].
-#[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
 /// Category for creating language options from AV types
+#[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
 pub unsafe trait AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions:
     ClassType + Sized + private_AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions::Sealed
 {

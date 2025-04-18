@@ -35,8 +35,8 @@ extern "C" {
 }
 
 impl CAFrameRateRange {
-    #[inline]
     #[doc(alias = "CAFrameRateRangeMake")]
+    #[inline]
     pub unsafe fn new(minimum: c_float, maximum: c_float, preferred: c_float) -> CAFrameRateRange {
         extern "C-unwind" {
             fn CAFrameRateRangeMake(
@@ -48,8 +48,8 @@ impl CAFrameRateRange {
         unsafe { CAFrameRateRangeMake(minimum, maximum, preferred) }
     }
 
-    #[inline]
     #[doc(alias = "CAFrameRateRangeIsEqualToRange")]
+    #[inline]
     pub unsafe fn is_equal_to_range(self: CAFrameRateRange, other: CAFrameRateRange) -> bool {
         extern "C-unwind" {
             fn CAFrameRateRangeIsEqualToRange(

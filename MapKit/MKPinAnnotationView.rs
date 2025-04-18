@@ -17,14 +17,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MKPinAnnotationColor(pub NSUInteger);
 impl MKPinAnnotationColor {
-    #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
     #[doc(alias = "MKPinAnnotationColorRed")]
+    #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
     pub const Red: Self = Self(0);
-    #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
     #[doc(alias = "MKPinAnnotationColorGreen")]
-    pub const Green: Self = Self(1);
     #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
+    pub const Green: Self = Self(1);
     #[doc(alias = "MKPinAnnotationColorPurple")]
+    #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
     pub const Purple: Self = Self(2);
 }
 

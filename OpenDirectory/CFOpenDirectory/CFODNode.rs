@@ -38,12 +38,12 @@ impl ODNodeRef {
     ///
     /// Returns: a valid ODNodeRef if successful, otherwise returns NULL.  outError can be checked for details upon
     /// failure.
+    #[doc(alias = "ODNodeCreateWithNodeType")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[inline]
-    #[doc(alias = "ODNodeCreateWithNodeType")]
     pub unsafe fn with_node_type(
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
@@ -76,9 +76,9 @@ impl ODNodeRef {
     ///
     /// Returns: a valid ODNodeRef if successful, otherwise returns NULL. outError can be checked for specific
     /// error
+    #[doc(alias = "ODNodeCreateWithName")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodeCreateWithName")]
     pub unsafe fn with_name(
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
@@ -109,9 +109,9 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a valid ODNodeRef if successful, otherwise returns NULL, with outError set to a CFErrorRef
+    #[doc(alias = "ODNodeCreateCopy")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodeCreateCopy")]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         node: Option<&ODNodeRef>,
@@ -138,9 +138,9 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFArrayRef with the list of nodes, otherwise NULL, with outError set to a CFErrorRef
+    #[doc(alias = "ODNodeCopySubnodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodeCopySubnodeNames")]
     pub unsafe fn subnode_names(
         self: &ODNodeRef,
         error: *mut *mut CFError,
@@ -166,9 +166,9 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFArrayRef with the list of unreachable nodes or NULL if no bad nodes
+    #[doc(alias = "ODNodeCopyUnreachableSubnodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodeCopyUnreachableSubnodeNames")]
     pub unsafe fn unreachable_subnode_names(
         self: &ODNodeRef,
         error: *mut *mut CFError,
@@ -190,9 +190,9 @@ impl ODNodeRef {
     /// Parameter `node`: an ODNodeRef to use
     ///
     /// Returns: a CFStringRef of the node name that is current or NULL if no open node
+    #[doc(alias = "ODNodeGetName")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodeGetName")]
     pub unsafe fn name(self: &ODNodeRef) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn ODNodeGetName(node: &ODNodeRef) -> Option<NonNull<CFString>>;
@@ -213,9 +213,9 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFDictionaryRef containing the requested key and values in form of a CFArray
+    #[doc(alias = "ODNodeCopyDetails")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodeCopyDetails")]
     pub unsafe fn details(
         self: &ODNodeRef,
         keys: Option<&CFArray>,
@@ -242,9 +242,9 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a valid CFArrayRef of CFStrings listing the supported Record types on this node.
+    #[doc(alias = "ODNodeCopySupportedRecordTypes")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodeCopySupportedRecordTypes")]
     pub unsafe fn supported_record_types(
         self: &ODNodeRef,
         error: *mut *mut CFError,
@@ -272,12 +272,12 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a valid CFArrayRef of CFStrings listing the attributes supported for the requested record type
+    #[doc(alias = "ODNodeCopySupportedAttributes")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[inline]
-    #[doc(alias = "ODNodeCopySupportedAttributes")]
     pub unsafe fn supported_attributes(
         self: &ODNodeRef,
         record_type: Option<&ODRecordType>,
@@ -313,12 +313,12 @@ impl ODNodeRef {
     ///
     /// Returns: returns true on success, otherwise outError can be checked for details.  If the authentication failed,
     /// the previous credentials are used.
+    #[doc(alias = "ODNodeSetCredentials")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[inline]
-    #[doc(alias = "ODNodeSetCredentials")]
     pub unsafe fn set_credentials(
         self: &ODNodeRef,
         record_type: Option<&ODRecordType>,
@@ -362,12 +362,12 @@ impl ODNodeRef {
     ///
     /// Returns: a bool will be returned with the result of the operation and outAuthItems set with response items
     /// and outContext set for any needed continuation.
+    #[doc(alias = "ODNodeSetCredentialsExtended")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[inline]
-    #[doc(alias = "ODNodeSetCredentialsExtended")]
     pub unsafe fn set_credentials_extended(
         self: &ODNodeRef,
         record_type: Option<&ODRecordType>,
@@ -404,10 +404,10 @@ impl ODNodeRef {
     /// Unsupported function.
     ///
     /// Unsupported function.
+    #[doc(alias = "ODNodeSetCredentialsUsingKerberosCache")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "ODNodeSetCredentialsUsingKerberosCache")]
     pub unsafe fn set_credentials_using_kerberos_cache(
         self: &ODNodeRef,
         cache_name: Option<&CFString>,
@@ -444,12 +444,12 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: returns a valid ODRecordRef.  If the add fails, outError can be checked for details.
+    #[doc(alias = "ODNodeCreateRecord")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[inline]
-    #[doc(alias = "ODNodeCreateRecord")]
     pub unsafe fn create_record(
         self: &ODNodeRef,
         record_type: Option<&ODRecordType>,
@@ -490,12 +490,12 @@ impl ODNodeRef {
     ///
     /// Returns: returns a valid ODRecordRef.  If the record copy fails, the error can be checked for details.
     /// If the record is not found, will return NULL with a NULL error.
+    #[doc(alias = "ODNodeCopyRecord")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[inline]
-    #[doc(alias = "ODNodeCopyRecord")]
     pub unsafe fn copy_record(
         self: &ODNodeRef,
         record_type: Option<&ODRecordType>,
@@ -529,9 +529,9 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFDataRef with the result of the operation, otherwise outError can be checked for specific details
+    #[doc(alias = "ODNodeCustomCall")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodeCustomCall")]
     pub unsafe fn custom_call(
         self: &ODNodeRef,
         custom_code: CFIndex,
@@ -570,9 +570,9 @@ impl ODNodeRef {
     ///
     ///
     /// Returns: Returns a CFType appropriate for the function.
+    #[doc(alias = "ODNodeCustomFunction")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodeCustomFunction")]
     pub unsafe fn custom_function(
         self: &ODNodeRef,
         function: Option<&CFString>,
@@ -600,10 +600,10 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFDictionaryRef containing all currently set policies
+    #[doc(alias = "ODNodeCopyPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODNodeCopyAccountPolicies"]
     #[inline]
-    #[doc(alias = "ODNodeCopyPolicies")]
     pub unsafe fn policies(
         self: &ODNodeRef,
         error: *mut *mut CFError,
@@ -629,10 +629,10 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFDictionaryRef containing all currently supported policies.  The values will be the maximum value allowed.
+    #[doc(alias = "ODNodeCopySupportedPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "ODNodeCopySupportedPolicies")]
     pub unsafe fn supported_policies(
         self: &ODNodeRef,
         error: *mut *mut CFError,
@@ -658,10 +658,10 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a bool which signifies if the policy set succeeded, otherwise error is set.
+    #[doc(alias = "ODNodeSetPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODNodeSetAccountPolicies"]
     #[inline]
-    #[doc(alias = "ODNodeSetPolicies")]
     pub unsafe fn set_policies(
         self: &ODNodeRef,
         policies: Option<&CFDictionary>,
@@ -690,13 +690,13 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a bool which signifies if the policy set succeeded, otherwise error is set.
+    #[doc(alias = "ODNodeSetPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[deprecated = "use ODNodeAddAccountPolicy"]
     #[inline]
-    #[doc(alias = "ODNodeSetPolicy")]
     pub unsafe fn set_policy(
         self: &ODNodeRef,
         policy_type: Option<&ODPolicyType>,
@@ -725,13 +725,13 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a bool which signifies if the policy removal succeeded, otherwise error is set.
+    #[doc(alias = "ODNodeRemovePolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[deprecated = "use ODNodeRemoveAccountPolicy"]
     #[inline]
-    #[doc(alias = "ODNodeRemovePolicy")]
     pub unsafe fn remove_policy(
         self: &ODNodeRef,
         policy_type: Option<&ODPolicyType>,
@@ -770,12 +770,12 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details.
     ///
     /// Returns: a bool which signifies if the policy addition succeeded, otherwise error is set.
+    #[doc(alias = "ODNodeAddAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[inline]
-    #[doc(alias = "ODNodeAddAccountPolicy")]
     pub unsafe fn add_account_policy(
         self: &ODNodeRef,
         policy: Option<&CFDictionary>,
@@ -807,12 +807,12 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details.
     ///
     /// Returns: a bool which signifies if the policy removal succeeded, otherwise error is set.
+    #[doc(alias = "ODNodeRemoveAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[inline]
-    #[doc(alias = "ODNodeRemoveAccountPolicy")]
     pub unsafe fn remove_account_policy(
         self: &ODNodeRef,
         policy: Option<&CFDictionary>,
@@ -852,9 +852,9 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details.
     ///
     /// Returns: a bool which signifies if the policy set succeeded, otherwise error is set.
+    #[doc(alias = "ODNodeSetAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodeSetAccountPolicies")]
     pub unsafe fn set_account_policies(
         self: &ODNodeRef,
         policies: Option<&CFDictionary>,
@@ -881,9 +881,9 @@ impl ODNodeRef {
     /// Returns: a CFDictionaryRef containing all currently set policies.  The
     /// format of the dictionary is the same as described in
     /// ODNodeSetAccountPolicies().
+    #[doc(alias = "ODNodeCopyAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodeCopyAccountPolicies")]
     pub unsafe fn account_policies(
         self: &ODNodeRef,
         error: *mut *mut CFError,
@@ -920,9 +920,9 @@ impl ODNodeRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details.
     ///
     /// Returns: a bool which signifies if the password passes all content policies, otherwise error is set.
+    #[doc(alias = "ODNodePasswordContentCheck")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODNodePasswordContentCheck")]
     pub unsafe fn password_content_check(
         self: &ODNodeRef,
         password: Option<&CFString>,

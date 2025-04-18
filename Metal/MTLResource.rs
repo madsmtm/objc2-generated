@@ -171,11 +171,11 @@ bitflags::bitflags! {
         const HazardTrackingModeUntracked = MTLHazardTrackingMode::Untracked.0<<MTLResourceHazardTrackingModeShift;
         #[doc(alias = "MTLResourceHazardTrackingModeTracked")]
         const HazardTrackingModeTracked = MTLHazardTrackingMode::Tracked.0<<MTLResourceHazardTrackingModeShift;
-#[deprecated]
         #[doc(alias = "MTLResourceOptionCPUCacheModeDefault")]
-        const OptionCPUCacheModeDefault = MTLResourceOptions::CPUCacheModeDefaultCache.0;
 #[deprecated]
+        const OptionCPUCacheModeDefault = MTLResourceOptions::CPUCacheModeDefaultCache.0;
         #[doc(alias = "MTLResourceOptionCPUCacheModeWriteCombined")]
+#[deprecated]
         const OptionCPUCacheModeWriteCombined = MTLResourceOptions::CPUCacheModeWriteCombined.0;
     }
 }

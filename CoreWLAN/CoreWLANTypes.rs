@@ -396,14 +396,14 @@ unsafe impl RefEncode for CWSecurity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CWIBSSModeSecurity(pub NSInteger);
 impl CWIBSSModeSecurity {
-    #[deprecated]
     #[doc(alias = "kCWIBSSModeSecurityNone")]
+    #[deprecated]
     pub const None: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "kCWIBSSModeSecurityWEP40")]
-    pub const WEP40: Self = Self(1);
     #[deprecated]
+    pub const WEP40: Self = Self(1);
     #[doc(alias = "kCWIBSSModeSecurityWEP104")]
+    #[deprecated]
     pub const WEP104: Self = Self(2);
 }
 

@@ -13,20 +13,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKPaymentTransactionState(pub NSInteger);
 impl SKPaymentTransactionState {
-    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     #[doc(alias = "SKPaymentTransactionStatePurchasing")]
+    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub const Purchasing: Self = Self(0);
-    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     #[doc(alias = "SKPaymentTransactionStatePurchased")]
+    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub const Purchased: Self = Self(1);
-    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     #[doc(alias = "SKPaymentTransactionStateFailed")]
-    pub const Failed: Self = Self(2);
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+    pub const Failed: Self = Self(2);
     #[doc(alias = "SKPaymentTransactionStateRestored")]
+    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub const Restored: Self = Self(3);
-    #[deprecated = "Use PurchaseResult.pending from Product.purchase(confirmIn:options:)"]
     #[doc(alias = "SKPaymentTransactionStateDeferred")]
+    #[deprecated = "Use PurchaseResult.pending from Product.purchase(confirmIn:options:)"]
     pub const Deferred: Self = Self(4);
 }
 

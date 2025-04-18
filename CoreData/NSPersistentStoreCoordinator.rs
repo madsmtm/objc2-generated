@@ -567,17 +567,17 @@ impl NSPersistentStoreCoordinator {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPersistentStoreUbiquitousTransitionType(pub NSUInteger);
 impl NSPersistentStoreUbiquitousTransitionType {
-    #[deprecated = "Please see the release notes and Core Data documentation."]
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountAdded")]
+    #[deprecated = "Please see the release notes and Core Data documentation."]
     pub const AccountAdded: Self = Self(1);
-    #[deprecated = "Please see the release notes and Core Data documentation."]
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountRemoved")]
+    #[deprecated = "Please see the release notes and Core Data documentation."]
     pub const AccountRemoved: Self = Self(2);
-    #[deprecated = "Please see the release notes and Core Data documentation."]
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeContentRemoved")]
-    pub const ContentRemoved: Self = Self(3);
     #[deprecated = "Please see the release notes and Core Data documentation."]
+    pub const ContentRemoved: Self = Self(3);
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeInitialImportCompleted")]
+    #[deprecated = "Please see the release notes and Core Data documentation."]
     pub const InitialImportCompleted: Self = Self(4);
 }
 

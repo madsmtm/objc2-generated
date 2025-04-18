@@ -16,8 +16,8 @@ impl HKQuantityAggregationStyle {
     pub const Cumulative: Self = Self(0);
     #[doc(alias = "HKQuantityAggregationStyleDiscreteArithmetic")]
     pub const DiscreteArithmetic: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "HKQuantityAggregationStyleDiscrete")]
+    #[deprecated]
     pub const Discrete: Self = Self(HKQuantityAggregationStyle::DiscreteArithmetic.0);
     #[doc(alias = "HKQuantityAggregationStyleDiscreteTemporallyWeighted")]
     pub const DiscreteTemporallyWeighted: Self = Self(2);

@@ -29,14 +29,14 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKAudioFilePlayerItemStatus(pub NSInteger);
 impl WKAudioFilePlayerItemStatus {
-    #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     #[doc(alias = "WKAudioFilePlayerItemStatusUnknown")]
+    #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const Unknown: Self = Self(0);
-    #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     #[doc(alias = "WKAudioFilePlayerItemStatusReadyToPlay")]
-    pub const ReadyToPlay: Self = Self(1);
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
+    pub const ReadyToPlay: Self = Self(1);
     #[doc(alias = "WKAudioFilePlayerItemStatusFailed")]
+    #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const Failed: Self = Self(2);
 }
 

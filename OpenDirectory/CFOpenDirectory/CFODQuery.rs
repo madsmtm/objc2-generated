@@ -66,12 +66,12 @@ impl ODQueryRef {
     ///
     /// Returns: an ODQueryRef which should be passed into ODQueryCopyResults for immediate results or
     /// ODQueryScheduleWithRunLoop for background behavior
+    #[doc(alias = "ODQueryCreateWithNode")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[inline]
-    #[doc(alias = "ODQueryCreateWithNode")]
     pub unsafe fn with_node(
         allocator: Option<&CFAllocator>,
         node: Option<&ODNodeRef>,
@@ -139,12 +139,12 @@ impl ODQueryRef {
     /// Returns: an ODQueryRef which should be passed into ODQueryCopyResults for immediate results or
     /// ODQueryScheduleWithRunLoop for background behavior, see ODQueryCallback for details on RunLoop
     /// behavior.
+    #[doc(alias = "ODQueryCreateWithNodeType")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
         feature = "objc2-core-foundation"
     ))]
     #[inline]
-    #[doc(alias = "ODQueryCreateWithNodeType")]
     pub unsafe fn with_node_type(
         allocator: Option<&CFAllocator>,
         node_type: ODNodeType,
@@ -201,9 +201,9 @@ impl ODQueryRef {
     /// Returns: a CFArrayRef comprised of ODRecord objects.  If partial results were requested but are complete, then
     /// NULL will be returned with outError set to NULL. If an error occurs, NULL will be returned and
     /// outError should be checked accordingly.
+    #[doc(alias = "ODQueryCopyResults")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODQueryCopyResults")]
     pub unsafe fn results(
         self: &ODQueryRef,
         allow_partial_results: bool,
@@ -228,8 +228,8 @@ impl ODQueryRef {
     /// all existing results should be thrown away in preparation for new results.
     ///
     /// Parameter `query`: an ODQueryRef to use
-    #[inline]
     #[doc(alias = "ODQuerySynchronize")]
+    #[inline]
     pub unsafe fn synchronize(self: &ODQueryRef) {
         extern "C-unwind" {
             fn ODQuerySynchronize(query: &ODQueryRef);
@@ -247,9 +247,9 @@ impl ODQueryRef {
     /// Parameter `callback`: a function to call when a query has results to return
     ///
     /// Parameter `userInfo`: a user-defined pointer to be passed back to the Query callback function
+    #[doc(alias = "ODQuerySetCallback")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODQuerySetCallback")]
     pub unsafe fn set_callback(
         self: &ODQueryRef,
         callback: ODQueryCallback,
@@ -277,9 +277,9 @@ impl ODQueryRef {
     /// Parameter `runLoop`: a CFRunLoopRef to put the ODQueryRef source onto
     ///
     /// Parameter `runLoopMode`: a CFStringRef with the runloop mode to add the ODQueryRef to
+    #[doc(alias = "ODQueryScheduleWithRunLoop")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODQueryScheduleWithRunLoop")]
     pub unsafe fn schedule_with_run_loop(
         self: &ODQueryRef,
         run_loop: Option<&CFRunLoop>,
@@ -304,9 +304,9 @@ impl ODQueryRef {
     /// Parameter `runLoop`: a CFRunLoopRef to remove the ODQuery source from
     ///
     /// Parameter `runLoopMode`: a CFStringRef of the mode to remove the ODQuery from
+    #[doc(alias = "ODQueryUnscheduleFromRunLoop")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODQueryUnscheduleFromRunLoop")]
     pub unsafe fn unschedule_from_run_loop(
         self: &ODQueryRef,
         run_loop: Option<&CFRunLoop>,
@@ -331,9 +331,9 @@ impl ODQueryRef {
     /// Parameter `query`: an ODQueryRef to perform
     ///
     /// Parameter `queue`: a dispatch queue to receive the query results
+    #[doc(alias = "ODQuerySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    #[doc(alias = "ODQuerySetDispatchQueue")]
     pub unsafe fn set_dispatch_queue(self: &ODQueryRef, queue: Option<&DispatchQueue>) {
         extern "C-unwind" {
             fn ODQuerySetDispatchQueue(query: &ODQueryRef, queue: Option<&DispatchQueue>);

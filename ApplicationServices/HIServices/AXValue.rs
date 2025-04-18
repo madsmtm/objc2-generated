@@ -96,8 +96,8 @@ impl AXValue {
     /// Parameter `theType`:
     /// Parameter `valuePtr`:
     /// Returns:
-    #[inline]
     #[doc(alias = "AXValueCreate")]
+    #[inline]
     pub unsafe fn new(
         the_type: AXValueType,
         value_ptr: NonNull<c_void>,
@@ -117,8 +117,8 @@ impl AXValue {
     ///
     /// Parameter `value`:
     /// Returns:
-    #[inline]
     #[doc(alias = "AXValueGetType")]
+    #[inline]
     pub unsafe fn r#type(self: &AXValue) -> AXValueType {
         extern "C-unwind" {
             fn AXValueGetType(value: &AXValue) -> AXValueType;
@@ -132,8 +132,8 @@ impl AXValue {
     ///
     /// Parameter `value`:
     /// Returns:
-    #[inline]
     #[doc(alias = "AXValueGetValue")]
+    #[inline]
     pub unsafe fn value(self: &AXValue, the_type: AXValueType, value_ptr: NonNull<c_void>) -> bool {
         extern "C-unwind" {
             fn AXValueGetValue(

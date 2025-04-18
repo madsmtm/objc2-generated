@@ -426,8 +426,8 @@ unsafe impl ConcreteType for CFAllocator {
 }
 
 impl CFAllocator {
-    #[inline]
     #[doc(alias = "CFAllocatorSetDefault")]
+    #[inline]
     pub fn set_default(allocator: Option<&CFAllocator>) {
         extern "C-unwind" {
             fn CFAllocatorSetDefault(allocator: Option<&CFAllocator>);
@@ -435,8 +435,8 @@ impl CFAllocator {
         unsafe { CFAllocatorSetDefault(allocator) }
     }
 
-    #[inline]
     #[doc(alias = "CFAllocatorGetDefault")]
+    #[inline]
     pub fn default() -> Option<CFRetained<CFAllocator>> {
         extern "C-unwind" {
             fn CFAllocatorGetDefault() -> Option<NonNull<CFAllocator>>;
@@ -445,8 +445,8 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFAllocatorCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         context: *mut CFAllocatorContext,
@@ -461,8 +461,8 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFAllocatorAllocateTyped")]
+    #[inline]
     pub unsafe fn allocate_typed(
         allocator: Option<&CFAllocator>,
         size: CFIndex,
@@ -480,8 +480,8 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocateTyped(allocator, size, descriptor, hint) }
     }
 
-    #[inline]
     #[doc(alias = "CFAllocatorReallocateTyped")]
+    #[inline]
     pub unsafe fn reallocate_typed(
         allocator: Option<&CFAllocator>,
         ptr: *mut c_void,
@@ -501,8 +501,8 @@ impl CFAllocator {
         unsafe { CFAllocatorReallocateTyped(allocator, ptr, newsize, descriptor, hint) }
     }
 
-    #[inline]
     #[doc(alias = "CFAllocatorAllocateBytes")]
+    #[inline]
     pub fn allocate_bytes(
         allocator: Option<&CFAllocator>,
         size: CFIndex,
@@ -518,8 +518,8 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocateBytes(allocator, size, hint) }
     }
 
-    #[inline]
     #[doc(alias = "CFAllocatorReallocateBytes")]
+    #[inline]
     pub unsafe fn reallocate_bytes(
         allocator: Option<&CFAllocator>,
         ptr: *mut c_void,
@@ -537,8 +537,8 @@ impl CFAllocator {
         unsafe { CFAllocatorReallocateBytes(allocator, ptr, newsize, hint) }
     }
 
-    #[inline]
     #[doc(alias = "CFAllocatorAllocate")]
+    #[inline]
     pub fn allocate(
         allocator: Option<&CFAllocator>,
         size: CFIndex,
@@ -554,8 +554,8 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocate(allocator, size, hint) }
     }
 
-    #[inline]
     #[doc(alias = "CFAllocatorReallocate")]
+    #[inline]
     pub unsafe fn reallocate(
         allocator: Option<&CFAllocator>,
         ptr: *mut c_void,
@@ -573,8 +573,8 @@ impl CFAllocator {
         unsafe { CFAllocatorReallocate(allocator, ptr, newsize, hint) }
     }
 
-    #[inline]
     #[doc(alias = "CFAllocatorDeallocate")]
+    #[inline]
     pub unsafe fn deallocate(allocator: Option<&CFAllocator>, ptr: *mut c_void) {
         extern "C-unwind" {
             fn CFAllocatorDeallocate(allocator: Option<&CFAllocator>, ptr: *mut c_void);
@@ -582,8 +582,8 @@ impl CFAllocator {
         unsafe { CFAllocatorDeallocate(allocator, ptr) }
     }
 
-    #[inline]
     #[doc(alias = "CFAllocatorGetPreferredSizeForSize")]
+    #[inline]
     pub fn preferred_size_for_size(
         allocator: Option<&CFAllocator>,
         size: CFIndex,
@@ -599,8 +599,8 @@ impl CFAllocator {
         unsafe { CFAllocatorGetPreferredSizeForSize(allocator, size, hint) }
     }
 
-    #[inline]
     #[doc(alias = "CFAllocatorGetContext")]
+    #[inline]
     pub unsafe fn context(allocator: Option<&CFAllocator>, context: *mut CFAllocatorContext) {
         extern "C-unwind" {
             fn CFAllocatorGetContext(

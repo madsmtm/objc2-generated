@@ -134,8 +134,8 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns a reference to the new SCDynamicStore session.
     /// You must release the returned value.
-    #[inline]
     #[doc(alias = "SCDynamicStoreCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         name: &CFString,
@@ -212,8 +212,8 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns a reference to the new SCDynamicStore session.
     /// You must release the returned value.
-    #[inline]
     #[doc(alias = "SCDynamicStoreCreateWithOptions")]
+    #[inline]
     pub unsafe fn with_options(
         allocator: Option<&CFAllocator>,
         name: &CFString,
@@ -266,8 +266,8 @@ impl SCDynamicStore {
     ///
     /// Returns: A reference to the new CFRunLoopSource.
     /// You must release the returned value.
-    #[inline]
     #[doc(alias = "SCDynamicStoreCreateRunLoopSource")]
+    #[inline]
     pub fn new_run_loop_source(
         allocator: Option<&CFAllocator>,
         store: &SCDynamicStore,
@@ -293,9 +293,9 @@ impl SCDynamicStore {
     /// Pass NULL to disable notifications, and release the queue.
     ///
     /// Returns: Returns TRUE on success, FALSE on failure.
+    #[doc(alias = "SCDynamicStoreSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    #[doc(alias = "SCDynamicStoreSetDispatchQueue")]
     pub unsafe fn set_dispatch_queue(self: &SCDynamicStore, queue: Option<&DispatchQueue>) -> bool {
         extern "C-unwind" {
             fn SCDynamicStoreSetDispatchQueue(
@@ -318,8 +318,8 @@ impl SCDynamicStore {
     /// Returns: Returns the list of matching keys; NULL if an error was
     /// encountered.
     /// You must release the returned value.
-    #[inline]
     #[doc(alias = "SCDynamicStoreCopyKeyList")]
+    #[inline]
     pub fn key_list(
         store: Option<&SCDynamicStore>,
         pattern: &CFString,
@@ -345,8 +345,8 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns TRUE if the key was added; FALSE if the key was already
     /// present in the dynamic store or if an error was encountered.
-    #[inline]
     #[doc(alias = "SCDynamicStoreAddValue")]
+    #[inline]
     pub unsafe fn add_value(
         store: Option<&SCDynamicStore>,
         key: &CFString,
@@ -376,8 +376,8 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns TRUE if the key was added; FALSE if the key was already
     /// present in the dynamic store or if an error was encountered.
-    #[inline]
     #[doc(alias = "SCDynamicStoreAddTemporaryValue")]
+    #[inline]
     pub unsafe fn add_temporary_value(
         self: &SCDynamicStore,
         key: &CFString,
@@ -403,8 +403,8 @@ impl SCDynamicStore {
     /// Returns: Returns the value from the dynamic store that is associated with the given
     /// key; NULL if no value was located or an error was encountered.
     /// You must release the returned value.
-    #[inline]
     #[doc(alias = "SCDynamicStoreCopyValue")]
+    #[inline]
     pub fn value(
         store: Option<&SCDynamicStore>,
         key: &CFString,
@@ -433,8 +433,8 @@ impl SCDynamicStore {
     /// key-value pairs of keys that matched the specified patterns;
     /// NULL if an error was encountered.
     /// You must release the returned value.
-    #[inline]
     #[doc(alias = "SCDynamicStoreCopyMultiple")]
+    #[inline]
     pub unsafe fn multiple(
         store: Option<&SCDynamicStore>,
         keys: Option<&CFArray>,
@@ -461,8 +461,8 @@ impl SCDynamicStore {
     /// Parameter `value`: The value to add to or replace in the dynamic store.
     ///
     /// Returns: Returns TRUE if the key was updated; FALSE if an error was encountered.
-    #[inline]
     #[doc(alias = "SCDynamicStoreSetValue")]
+    #[inline]
     pub unsafe fn set_value(
         store: Option<&SCDynamicStore>,
         key: &CFString,
@@ -490,8 +490,8 @@ impl SCDynamicStore {
     /// Parameter `keysToNotify`: An array of keys to flag as changed (without changing their values).
     ///
     /// Returns: Returns TRUE if the dynamic store updates were successful; FALSE if an error was encountered.
-    #[inline]
     #[doc(alias = "SCDynamicStoreSetMultiple")]
+    #[inline]
     pub unsafe fn set_multiple(
         store: Option<&SCDynamicStore>,
         keys_to_set: Option<&CFDictionary>,
@@ -521,8 +521,8 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns TRUE if the key was removed; FALSE if no value was
     /// located or an error was encountered.
-    #[inline]
     #[doc(alias = "SCDynamicStoreRemoveValue")]
+    #[inline]
     pub fn remove_value(store: Option<&SCDynamicStore>, key: &CFString) -> bool {
         extern "C-unwind" {
             fn SCDynamicStoreRemoveValue(store: Option<&SCDynamicStore>, key: &CFString)
@@ -542,8 +542,8 @@ impl SCDynamicStore {
     /// key's value is not updated.
     ///
     /// Returns: Returns TRUE if the notification was processed; FALSE if an error was encountered.
-    #[inline]
     #[doc(alias = "SCDynamicStoreNotifyValue")]
+    #[inline]
     pub fn notify_value(store: Option<&SCDynamicStore>, key: &CFString) -> bool {
         extern "C-unwind" {
             fn SCDynamicStoreNotifyValue(store: Option<&SCDynamicStore>, key: &CFString)
@@ -566,8 +566,8 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns TRUE if the set of notification keys and patterns was successfully
     /// updated; FALSE if an error was encountered.
-    #[inline]
     #[doc(alias = "SCDynamicStoreSetNotificationKeys")]
+    #[inline]
     pub unsafe fn set_notification_keys(
         self: &SCDynamicStore,
         keys: Option<&CFArray>,
@@ -595,8 +595,8 @@ impl SCDynamicStore {
     /// Returns: Returns the list of changed keys;
     /// NULL if an error was encountered.
     /// You must release the returned value.
-    #[inline]
     #[doc(alias = "SCDynamicStoreCopyNotifiedKeys")]
+    #[inline]
     pub fn notified_keys(self: &SCDynamicStore) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SCDynamicStoreCopyNotifiedKeys(store: &SCDynamicStore) -> Option<NonNull<CFArray>>;

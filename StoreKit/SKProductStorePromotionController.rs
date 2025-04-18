@@ -13,14 +13,14 @@ use crate::*;
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum SKProductStorePromotionVisibility {
-    #[deprecated = "Use Product.PromotionInfo.Visibility"]
     #[doc(alias = "SKProductStorePromotionVisibilityDefault")]
+    #[deprecated = "Use Product.PromotionInfo.Visibility"]
     Default = 0,
-    #[deprecated = "Use Product.PromotionInfo.Visibility"]
     #[doc(alias = "SKProductStorePromotionVisibilityShow")]
-    Show = 1,
     #[deprecated = "Use Product.PromotionInfo.Visibility"]
+    Show = 1,
     #[doc(alias = "SKProductStorePromotionVisibilityHide")]
+    #[deprecated = "Use Product.PromotionInfo.Visibility"]
     Hide = 2,
 }
 

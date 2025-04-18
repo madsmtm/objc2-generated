@@ -143,11 +143,11 @@ bitflags::bitflags! {
         const UsesDeviceMetrics = 1<<3;
         #[doc(alias = "NSStringDrawingTruncatesLastVisibleLine")]
         const TruncatesLastVisibleLine = 1<<5;
-#[deprecated]
         #[doc(alias = "NSStringDrawingDisableScreenFontSubstitution")]
-        const DisableScreenFontSubstitution = 1<<2;
 #[deprecated]
+        const DisableScreenFontSubstitution = 1<<2;
         #[doc(alias = "NSStringDrawingOneShot")]
+#[deprecated]
         const OneShot = 1<<4;
     }
 }

@@ -42,8 +42,8 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A NULL-terminated string carrying the negotiated protocol.
-    #[inline]
     #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol")]
+    #[inline]
     pub unsafe fn negotiated_protocol(metadata: sec_protocol_metadata_t) -> *const c_char {
         extern "C-unwind" {
             fn sec_protocol_metadata_get_negotiated_protocol(
@@ -60,9 +60,9 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A `tls_protocol_version_t` value.
+    #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
-    #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_protocol_version")]
     pub unsafe fn negotiated_tls_protocol_version(
         metadata: sec_protocol_metadata_t,
     ) -> tls_protocol_version_t {
@@ -81,10 +81,10 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A SSLProtocol enum of the TLS version.
+    #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol_version")]
     pub unsafe fn negotiated_protocol_version(metadata: sec_protocol_metadata_t) -> SSLProtocol {
         extern "C-unwind" {
             fn sec_protocol_metadata_get_negotiated_protocol_version(
@@ -101,9 +101,9 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A `tls_ciphersuite_t`.
+    #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_ciphersuite")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
-    #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_ciphersuite")]
     pub unsafe fn negotiated_tls_ciphersuite(
         metadata: sec_protocol_metadata_t,
     ) -> tls_ciphersuite_t {
@@ -122,10 +122,10 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A SSLCipherSuite.
+    #[doc(alias = "sec_protocol_metadata_get_negotiated_ciphersuite")]
     #[cfg(feature = "CipherSuite")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "sec_protocol_metadata_get_negotiated_ciphersuite")]
     pub unsafe fn negotiated_ciphersuite(metadata: sec_protocol_metadata_t) -> SSLCipherSuite {
         extern "C-unwind" {
             fn sec_protocol_metadata_get_negotiated_ciphersuite(
@@ -142,8 +142,8 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A bool indicating if early data was accepted.
-    #[inline]
     #[doc(alias = "sec_protocol_metadata_get_early_data_accepted")]
+    #[inline]
     pub unsafe fn early_data_accepted(metadata: sec_protocol_metadata_t) -> bool {
         extern "C-unwind" {
             fn sec_protocol_metadata_get_early_data_accepted(
@@ -163,9 +163,9 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: Returns true if the peer certificates were accessible, false otherwise.
+    #[doc(alias = "sec_protocol_metadata_access_peer_certificate_chain")]
     #[cfg(all(feature = "SecProtocolTypes", feature = "block2"))]
     #[inline]
-    #[doc(alias = "sec_protocol_metadata_access_peer_certificate_chain")]
     pub unsafe fn access_peer_certificate_chain(
         metadata: sec_protocol_metadata_t,
         handler: &block2::DynBlock<dyn Fn(sec_certificate_t)>,
@@ -190,9 +190,9 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: Returns true if the supported signature list was accessible, false otherwise.
+    #[doc(alias = "sec_protocol_metadata_access_supported_signature_algorithms")]
     #[cfg(feature = "block2")]
     #[inline]
-    #[doc(alias = "sec_protocol_metadata_access_supported_signature_algorithms")]
     pub unsafe fn access_supported_signature_algorithms(
         metadata: sec_protocol_metadata_t,
         handler: &block2::DynBlock<dyn Fn(u16)>,
@@ -216,8 +216,8 @@ impl sec_protocol_metadata {
     ///
     /// Returns: Returns A NULL-terminated string carrying the server name, or NULL
     /// if none was provided.
-    #[inline]
     #[doc(alias = "sec_protocol_metadata_get_server_name")]
+    #[inline]
     pub unsafe fn server_name(metadata: sec_protocol_metadata_t) -> *const c_char {
         extern "C-unwind" {
             fn sec_protocol_metadata_get_server_name(
@@ -238,8 +238,8 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: Returns true if both metadata values refer to the same peer, and false otherwise.
-    #[inline]
     #[doc(alias = "sec_protocol_metadata_peers_are_equal")]
+    #[inline]
     pub unsafe fn peers_are_equal(
         metadata_a: sec_protocol_metadata_t,
         metadata_b: sec_protocol_metadata_t,
@@ -267,8 +267,8 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: Returns true if both metadata values have the same challenge parameters.
-    #[inline]
     #[doc(alias = "sec_protocol_metadata_challenge_parameters_are_equal")]
+    #[inline]
     pub unsafe fn challenge_parameters_are_equal(
         metadata_a: sec_protocol_metadata_t,
         metadata_b: sec_protocol_metadata_t,

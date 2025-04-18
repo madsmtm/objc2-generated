@@ -92,8 +92,8 @@ unsafe impl ConcreteType for CFHTTPMessage {
 }
 
 impl CFHTTPMessage {
-    #[inline]
     #[doc(alias = "CFHTTPMessageCreateRequest")]
+    #[inline]
     pub unsafe fn new_request(
         alloc: Option<&CFAllocator>,
         request_method: &CFString,
@@ -114,8 +114,8 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageCreateResponse")]
+    #[inline]
     pub unsafe fn new_response(
         alloc: Option<&CFAllocator>,
         status_code: CFIndex,
@@ -138,8 +138,8 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageCreateEmpty")]
+    #[inline]
     pub unsafe fn new_empty(
         alloc: Option<&CFAllocator>,
         is_request: bool,
@@ -156,8 +156,8 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageCreateCopy")]
+    #[inline]
     pub unsafe fn new_copy(
         alloc: Option<&CFAllocator>,
         message: &CFHTTPMessage,
@@ -174,8 +174,8 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageIsRequest")]
+    #[inline]
     pub unsafe fn is_request(self: &CFHTTPMessage) -> bool {
         extern "C-unwind" {
             fn CFHTTPMessageIsRequest(message: &CFHTTPMessage) -> Boolean;
@@ -184,8 +184,8 @@ impl CFHTTPMessage {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageCopyVersion")]
+    #[inline]
     pub unsafe fn version(self: &CFHTTPMessage) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CFHTTPMessageCopyVersion(message: &CFHTTPMessage) -> Option<NonNull<CFString>>;
@@ -196,8 +196,8 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageCopyBody")]
+    #[inline]
     pub unsafe fn body(self: &CFHTTPMessage) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFHTTPMessageCopyBody(message: &CFHTTPMessage) -> Option<NonNull<CFData>>;
@@ -206,8 +206,8 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageSetBody")]
+    #[inline]
     pub unsafe fn set_body(self: &CFHTTPMessage, body_data: &CFData) {
         extern "C-unwind" {
             fn CFHTTPMessageSetBody(message: &CFHTTPMessage, body_data: &CFData);
@@ -215,8 +215,8 @@ impl CFHTTPMessage {
         unsafe { CFHTTPMessageSetBody(self, body_data) }
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageCopyHeaderFieldValue")]
+    #[inline]
     pub unsafe fn header_field_value(
         self: &CFHTTPMessage,
         header_field: &CFString,
@@ -231,8 +231,8 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageCopyAllHeaderFields")]
+    #[inline]
     pub unsafe fn all_header_fields(self: &CFHTTPMessage) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CFHTTPMessageCopyAllHeaderFields(
@@ -243,8 +243,8 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageSetHeaderFieldValue")]
+    #[inline]
     pub unsafe fn set_header_field_value(
         self: &CFHTTPMessage,
         header_field: &CFString,
@@ -260,8 +260,8 @@ impl CFHTTPMessage {
         unsafe { CFHTTPMessageSetHeaderFieldValue(self, header_field, value) }
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageAppendBytes")]
+    #[inline]
     pub unsafe fn append_bytes(
         self: &CFHTTPMessage,
         new_bytes: NonNull<u8>,
@@ -278,8 +278,8 @@ impl CFHTTPMessage {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageIsHeaderComplete")]
+    #[inline]
     pub unsafe fn is_header_complete(self: &CFHTTPMessage) -> bool {
         extern "C-unwind" {
             fn CFHTTPMessageIsHeaderComplete(message: &CFHTTPMessage) -> Boolean;
@@ -288,8 +288,8 @@ impl CFHTTPMessage {
         ret != 0
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageCopySerializedMessage")]
+    #[inline]
     pub unsafe fn serialized_message(self: &CFHTTPMessage) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFHTTPMessageCopySerializedMessage(
@@ -301,8 +301,8 @@ impl CFHTTPMessage {
     }
 
     /// ******************
-    #[inline]
     #[doc(alias = "CFHTTPMessageCopyRequestURL")]
+    #[inline]
     pub unsafe fn request_url(self: &CFHTTPMessage) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn CFHTTPMessageCopyRequestURL(request: &CFHTTPMessage) -> Option<NonNull<CFURL>>;
@@ -311,8 +311,8 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageCopyRequestMethod")]
+    #[inline]
     pub unsafe fn request_method(self: &CFHTTPMessage) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFHTTPMessageCopyRequestMethod(request: &CFHTTPMessage)
@@ -322,8 +322,8 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageAddAuthentication")]
+    #[inline]
     pub unsafe fn add_authentication(
         self: &CFHTTPMessage,
         authentication_failure_response: Option<&CFHTTPMessage>,
@@ -356,8 +356,8 @@ impl CFHTTPMessage {
     }
 
     /// *******************
-    #[inline]
     #[doc(alias = "CFHTTPMessageGetResponseStatusCode")]
+    #[inline]
     pub unsafe fn response_status_code(self: &CFHTTPMessage) -> CFIndex {
         extern "C-unwind" {
             fn CFHTTPMessageGetResponseStatusCode(response: &CFHTTPMessage) -> CFIndex;
@@ -365,8 +365,8 @@ impl CFHTTPMessage {
         unsafe { CFHTTPMessageGetResponseStatusCode(self) }
     }
 
-    #[inline]
     #[doc(alias = "CFHTTPMessageCopyResponseStatusLine")]
+    #[inline]
     pub unsafe fn response_status_line(self: &CFHTTPMessage) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFHTTPMessageCopyResponseStatusLine(

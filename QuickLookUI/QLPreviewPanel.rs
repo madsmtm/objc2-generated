@@ -314,10 +314,10 @@ mod private_NSObjectQLPreviewPanelController {
 }
 
 /// Category "QLPreviewPanelController" on [`NSObject`].
-#[doc(alias = "QLPreviewPanelController")]
 /// Methods to implement by any object in the responder chain to control the Preview Panel
 ///
 /// QLPreviewPanel shows previews for items provided by the first object in the responder chain accepting to control it. You generally implement these methods in your window controller or delegate. You should never try to modify Preview panel state if you're not controlling the panel.
+#[doc(alias = "QLPreviewPanelController")]
 pub unsafe trait NSObjectQLPreviewPanelController:
     ClassType + Sized + private_NSObjectQLPreviewPanelController::Sealed
 {

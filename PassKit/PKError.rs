@@ -153,8 +153,8 @@ pub struct PKAddSecureElementPassErrorCode(pub NSInteger);
 impl PKAddSecureElementPassErrorCode {
     #[doc(alias = "PKAddSecureElementPassGenericError")]
     pub const GenericError: Self = Self(0);
-    #[deprecated = "Use PKAddSecureElementPassGeneralError instead."]
     #[doc(alias = "PKAddSecureElementPassUnknownError")]
+    #[deprecated = "Use PKAddSecureElementPassGeneralError instead."]
     pub const UnknownError: Self = Self(PKAddSecureElementPassErrorCode::GenericError.0);
     #[doc(alias = "PKAddSecureElementPassUserCanceledError")]
     pub const UserCanceledError: Self = Self(1);

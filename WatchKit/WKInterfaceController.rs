@@ -40,53 +40,53 @@ unsafe impl RefEncode for WKUserNotificationInterfaceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKMenuItemIcon(pub NSInteger);
 impl WKMenuItemIcon {
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconAccept")]
+    #[deprecated]
     pub const Accept: Self = Self(0);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconAdd")]
+    #[deprecated]
     pub const Add: Self = Self(1);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconBlock")]
+    #[deprecated]
     pub const Block: Self = Self(2);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconDecline")]
+    #[deprecated]
     pub const Decline: Self = Self(3);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconInfo")]
+    #[deprecated]
     pub const Info: Self = Self(4);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconMaybe")]
+    #[deprecated]
     pub const Maybe: Self = Self(5);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconMore")]
+    #[deprecated]
     pub const More: Self = Self(6);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconMute")]
+    #[deprecated]
     pub const Mute: Self = Self(7);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconPause")]
+    #[deprecated]
     pub const Pause: Self = Self(8);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconPlay")]
+    #[deprecated]
     pub const Play: Self = Self(9);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconRepeat")]
+    #[deprecated]
     pub const Repeat: Self = Self(10);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconResume")]
+    #[deprecated]
     pub const Resume: Self = Self(11);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconShare")]
+    #[deprecated]
     pub const Share: Self = Self(12);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconShuffle")]
+    #[deprecated]
     pub const Shuffle: Self = Self(13);
-    #[deprecated]
     #[doc(alias = "WKMenuItemIconSpeaker")]
-    pub const Speaker: Self = Self(14);
     #[deprecated]
+    pub const Speaker: Self = Self(14);
     #[doc(alias = "WKMenuItemIconTrash")]
+    #[deprecated]
     pub const Trash: Self = Self(15);
 }
 
@@ -108,8 +108,8 @@ impl WKTextInputMode {
     pub const Plain: Self = Self(0);
     #[doc(alias = "WKTextInputModeAllowEmoji")]
     pub const AllowEmoji: Self = Self(1);
-    #[deprecated = "Animated Emojis are no longer supported. Use WKTextInputModeAllowEmoji instead"]
     #[doc(alias = "WKTextInputModeAllowAnimatedEmoji")]
+    #[deprecated = "Animated Emojis are no longer supported. Use WKTextInputModeAllowEmoji instead"]
     pub const AllowAnimatedEmoji: Self = Self(2);
 }
 

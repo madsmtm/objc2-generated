@@ -22,17 +22,17 @@ impl INCallDestinationType {
     pub const Redial: Self = Self(4);
     #[doc(alias = "INCallDestinationTypeCallBack")]
     pub const CallBack: Self = Self(5);
-    #[deprecated = "Use INCallDestinationTypeNormal instead"]
     #[doc(alias = "INCallDestinationTypeNormalDestination")]
+    #[deprecated = "Use INCallDestinationTypeNormal instead"]
     pub const NormalDestination: Self = Self(1);
-    #[deprecated = "Use INCallDestinationTypeEmergency instead"]
     #[doc(alias = "INCallDestinationTypeEmergencyDestination")]
+    #[deprecated = "Use INCallDestinationTypeEmergency instead"]
     pub const EmergencyDestination: Self = Self(2);
-    #[deprecated = "Use INCallDestinationTypeVoicemail instead"]
     #[doc(alias = "INCallDestinationTypeVoicemailDestination")]
+    #[deprecated = "Use INCallDestinationTypeVoicemail instead"]
     pub const VoicemailDestination: Self = Self(3);
-    #[deprecated = "Use INCallDestinationTypeRedial instead"]
     #[doc(alias = "INCallDestinationTypeRedialDestination")]
+    #[deprecated = "Use INCallDestinationTypeRedial instead"]
     pub const RedialDestination: Self = Self(4);
 }
 

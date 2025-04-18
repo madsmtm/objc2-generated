@@ -96,8 +96,8 @@ impl CTRun {
     /// Returns: The number of glyphs that the run contains. It is totally
     /// possible that this function could return a value of zero,
     /// indicating that there are no glyphs in this run.
-    #[inline]
     #[doc(alias = "CTRunGetGlyphCount")]
+    #[inline]
     pub unsafe fn glyph_count(self: &CTRun) -> CFIndex {
         extern "C-unwind" {
             fn CTRunGetGlyphCount(run: &CTRun) -> CFIndex;
@@ -120,8 +120,8 @@ impl CTRun {
     ///
     ///
     /// Returns: The attribute dictionary.
-    #[inline]
     #[doc(alias = "CTRunGetAttributes")]
+    #[inline]
     pub unsafe fn attributes(self: &CTRun) -> CFRetained<CFDictionary> {
         extern "C-unwind" {
             fn CTRunGetAttributes(run: &CTRun) -> Option<NonNull<CFDictionary>>;
@@ -148,8 +148,8 @@ impl CTRun {
     ///
     ///
     /// Returns: The run's status.
-    #[inline]
     #[doc(alias = "CTRunGetStatus")]
+    #[inline]
     pub unsafe fn status(self: &CTRun) -> CTRunStatus {
         extern "C-unwind" {
             fn CTRunGetStatus(run: &CTRun) -> CTRunStatus;
@@ -172,9 +172,9 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CGGlyph structures or NULL.
+    #[doc(alias = "CTRunGetGlyphsPtr")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CTRunGetGlyphsPtr")]
     pub unsafe fn glyphs_ptr(self: &CTRun) -> *const CGGlyph {
         extern "C-unwind" {
             fn CTRunGetGlyphsPtr(run: &CTRun) -> *const CGGlyph;
@@ -196,9 +196,9 @@ impl CTRun {
     ///
     /// Parameter `buffer`: The buffer where the glyphs will be copied to. The buffer must be
     /// allocated to at least the value specified by the range's length.
+    #[doc(alias = "CTRunGetGlyphs")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CTRunGetGlyphs")]
     pub unsafe fn glyphs(self: &CTRun, range: CFRange, buffer: NonNull<CGGlyph>) {
         extern "C-unwind" {
             fn CTRunGetGlyphs(run: &CTRun, range: CFRange, buffer: NonNull<CGGlyph>);
@@ -223,8 +223,8 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CGPoint structures or NULL.
-    #[inline]
     #[doc(alias = "CTRunGetPositionsPtr")]
+    #[inline]
     pub unsafe fn positions_ptr(self: &CTRun) -> *const CGPoint {
         extern "C-unwind" {
             fn CTRunGetPositionsPtr(run: &CTRun) -> *const CGPoint;
@@ -251,8 +251,8 @@ impl CTRun {
     /// Parameter `buffer`: The buffer where the glyph positions will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    #[inline]
     #[doc(alias = "CTRunGetPositions")]
+    #[inline]
     pub unsafe fn positions(self: &CTRun, range: CFRange, buffer: NonNull<CGPoint>) {
         extern "C-unwind" {
             fn CTRunGetPositions(run: &CTRun, range: CFRange, buffer: NonNull<CGPoint>);
@@ -279,8 +279,8 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CGSize structures or NULL.
-    #[inline]
     #[doc(alias = "CTRunGetAdvancesPtr")]
+    #[inline]
     pub unsafe fn advances_ptr(self: &CTRun) -> *const CGSize {
         extern "C-unwind" {
             fn CTRunGetAdvancesPtr(run: &CTRun) -> *const CGSize;
@@ -303,8 +303,8 @@ impl CTRun {
     /// Parameter `buffer`: The buffer where the glyph advances will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    #[inline]
     #[doc(alias = "CTRunGetAdvances")]
+    #[inline]
     pub unsafe fn advances(self: &CTRun, range: CFRange, buffer: NonNull<CGSize>) {
         extern "C-unwind" {
             fn CTRunGetAdvances(run: &CTRun, range: CFRange, buffer: NonNull<CGSize>);
@@ -330,8 +330,8 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CFIndex structures or NULL.
-    #[inline]
     #[doc(alias = "CTRunGetStringIndicesPtr")]
+    #[inline]
     pub unsafe fn string_indices_ptr(self: &CTRun) -> *const CFIndex {
         extern "C-unwind" {
             fn CTRunGetStringIndicesPtr(run: &CTRun) -> *const CFIndex;
@@ -359,8 +359,8 @@ impl CTRun {
     /// Parameter `buffer`: The buffer where the string indices will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    #[inline]
     #[doc(alias = "CTRunGetStringIndices")]
+    #[inline]
     pub unsafe fn string_indices(self: &CTRun, range: CFRange, buffer: NonNull<CFIndex>) {
         extern "C-unwind" {
             fn CTRunGetStringIndices(run: &CTRun, range: CFRange, buffer: NonNull<CFIndex>);
@@ -377,8 +377,8 @@ impl CTRun {
     ///
     /// Returns: Returns the range of characters that originally spawned the
     /// glyphs. If run is invalid, this will return an empty range.
-    #[inline]
     #[doc(alias = "CTRunGetStringRange")]
+    #[inline]
     pub unsafe fn string_range(self: &CTRun) -> CFRange {
         extern "C-unwind" {
             fn CTRunGetStringRange(run: &CTRun) -> CFRange;
@@ -412,8 +412,8 @@ impl CTRun {
     ///
     /// Returns: The typographic width of the run. If run or range is
     /// invalid, then this function will always return zero.
-    #[inline]
     #[doc(alias = "CTRunGetTypographicBounds")]
+    #[inline]
     pub unsafe fn typographic_bounds(
         self: &CTRun,
         range: CFRange,
@@ -467,9 +467,9 @@ impl CTRun {
     ///
     ///
     /// See also: CTRunGetTypographicBounds
+    #[doc(alias = "CTRunGetImageBounds")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CTRunGetImageBounds")]
     pub unsafe fn image_bounds(
         self: &CTRun,
         context: Option<&CGContext>,
@@ -497,8 +497,8 @@ impl CTRun {
     ///
     ///
     /// Returns: A CGAffineTransform.
-    #[inline]
     #[doc(alias = "CTRunGetTextMatrix")]
+    #[inline]
     pub unsafe fn text_matrix(self: &CTRun) -> CGAffineTransform {
         extern "C-unwind" {
             fn CTRunGetTextMatrix(run: &CTRun) -> CGAffineTransform;
@@ -539,8 +539,8 @@ impl CTRun {
     /// Parameter `originsBuffer`: The buffer where the origins will be copied to, or NULL. If not
     /// NULL, the buffer must allow for at least as many elements as
     /// specified by the range's length.
-    #[inline]
     #[doc(alias = "CTRunGetBaseAdvancesAndOrigins")]
+    #[inline]
     pub unsafe fn base_advances_and_origins(
         self: &CTRun,
         range: CFRange,
@@ -582,9 +582,9 @@ impl CTRun {
     /// location of 0 and a length of CTRunGetGlyphCount. If the length
     /// of the range is set to 0, then the operation will continue from
     /// the range's start index to the end of the run.
+    #[doc(alias = "CTRunDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    #[doc(alias = "CTRunDraw")]
     pub unsafe fn draw(self: &CTRun, context: &CGContext, range: CFRange) {
         extern "C-unwind" {
             fn CTRunDraw(run: &CTRun, context: &CGContext, range: CFRange);

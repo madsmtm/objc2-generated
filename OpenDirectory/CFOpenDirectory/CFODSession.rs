@@ -53,9 +53,9 @@ impl ODSessionRef {
     ///
     /// Returns: a valid ODSessionRef object or NULL if it cannot be created. Pass reference to CFErrorRef to
     /// get error details
+    #[doc(alias = "ODSessionCreate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODSessionCreate")]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         options: Option<&CFDictionary>,
@@ -83,9 +83,9 @@ impl ODSessionRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a valid CFArrayRef of node names that can be opened on the session reference
+    #[doc(alias = "ODSessionCopyNodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    #[doc(alias = "ODSessionCopyNodeNames")]
     pub unsafe fn node_names(
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,

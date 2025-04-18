@@ -222,10 +222,10 @@ unsafe impl RefEncode for SecItemImportExportKeyParameters {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychainItem {
+    #[doc(alias = "SecKeychainItemExport")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecKeychainItemExport")]
     pub unsafe fn export(
         keychain_item_or_array: &CFType,
         output_format: SecExternalFormat,
@@ -267,10 +267,10 @@ extern "C-unwind" {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychainItem {
+    #[doc(alias = "SecKeychainItemImport")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecKeychainItemImport")]
     pub unsafe fn import(
         imported_data: &CFData,
         file_name_or_extension: Option<&CFString>,

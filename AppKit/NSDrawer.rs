@@ -15,17 +15,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDrawerState(pub NSUInteger);
 impl NSDrawerState {
-    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     #[doc(alias = "NSDrawerClosedState")]
+    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub const ClosedState: Self = Self(0);
-    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     #[doc(alias = "NSDrawerOpeningState")]
+    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub const OpeningState: Self = Self(1);
-    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     #[doc(alias = "NSDrawerOpenState")]
-    pub const OpenState: Self = Self(2);
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
+    pub const OpenState: Self = Self(2);
     #[doc(alias = "NSDrawerClosingState")]
+    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub const ClosingState: Self = Self(3);
 }
 

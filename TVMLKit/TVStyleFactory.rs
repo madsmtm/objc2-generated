@@ -14,29 +14,29 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVViewElementStyleType(pub NSInteger);
 impl TVViewElementStyleType {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVViewElementStyleTypeInteger")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Integer: Self = Self(1);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVViewElementStyleTypeDouble")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Double: Self = Self(2);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVViewElementStyleTypePoint")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Point: Self = Self(3);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVViewElementStyleTypeString")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const String: Self = Self(4);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVViewElementStyleTypeColor")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Color: Self = Self(5);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVViewElementStyleTypeURL")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const URL: Self = Self(6);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVViewElementStyleTypeTransform")]
-    pub const Transform: Self = Self(7);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const Transform: Self = Self(7);
     #[doc(alias = "TVViewElementStyleTypeEdgeInsets")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const EdgeInsets: Self = Self(8);
 }
 

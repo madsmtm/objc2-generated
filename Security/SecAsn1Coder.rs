@@ -26,9 +26,9 @@ unsafe impl RefEncode for SecAsn1Coder {
 pub type SecAsn1CoderRef = *mut SecAsn1Coder;
 
 impl SecAsn1Coder {
+    #[doc(alias = "SecAsn1CoderCreate")]
     #[deprecated = "SecAsn1 is not supported"]
     #[inline]
-    #[doc(alias = "SecAsn1CoderCreate")]
     pub unsafe fn create(coder: NonNull<SecAsn1CoderRef>) -> OSStatus {
         extern "C-unwind" {
             fn SecAsn1CoderCreate(coder: NonNull<SecAsn1CoderRef>) -> OSStatus;
@@ -36,9 +36,9 @@ impl SecAsn1Coder {
         unsafe { SecAsn1CoderCreate(coder) }
     }
 
+    #[doc(alias = "SecAsn1CoderRelease")]
     #[deprecated = "SecAsn1 is not supported"]
     #[inline]
-    #[doc(alias = "SecAsn1CoderRelease")]
     pub unsafe fn release(coder: SecAsn1CoderRef) -> OSStatus {
         extern "C-unwind" {
             fn SecAsn1CoderRelease(coder: SecAsn1CoderRef) -> OSStatus;

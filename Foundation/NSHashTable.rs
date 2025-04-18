@@ -298,9 +298,9 @@ extern "C-unwind" {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    #[doc(alias = "NSStringFromHashTable")]
     #[cfg(feature = "NSString")]
     #[inline]
-    #[doc(alias = "NSStringFromHashTable")]
     pub unsafe fn from_hash_table(table: &NSHashTable) -> Retained<NSString> {
         extern "C-unwind" {
             fn NSStringFromHashTable(table: &NSHashTable) -> *mut NSString;

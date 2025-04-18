@@ -29,14 +29,14 @@ impl UISplitViewControllerDisplayMode {
     pub const TwoOverSecondary: Self = Self(5);
     #[doc(alias = "UISplitViewControllerDisplayModeTwoDisplaceSecondary")]
     pub const TwoDisplaceSecondary: Self = Self(6);
-    #[deprecated]
     #[doc(alias = "UISplitViewControllerDisplayModePrimaryHidden")]
+    #[deprecated]
     pub const PrimaryHidden: Self = Self(UISplitViewControllerDisplayMode::SecondaryOnly.0);
-    #[deprecated]
     #[doc(alias = "UISplitViewControllerDisplayModeAllVisible")]
-    pub const AllVisible: Self = Self(UISplitViewControllerDisplayMode::OneBesideSecondary.0);
     #[deprecated]
+    pub const AllVisible: Self = Self(UISplitViewControllerDisplayMode::OneBesideSecondary.0);
     #[doc(alias = "UISplitViewControllerDisplayModePrimaryOverlay")]
+    #[deprecated]
     pub const PrimaryOverlay: Self = Self(UISplitViewControllerDisplayMode::OneOverSecondary.0);
 }
 
@@ -94,8 +94,8 @@ unsafe impl RefEncode for UISplitViewControllerBackgroundStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UISplitViewControllerStyle(pub NSInteger);
 impl UISplitViewControllerStyle {
-    #[deprecated]
     #[doc(alias = "UISplitViewControllerStyleUnspecified")]
+    #[deprecated]
     pub const Unspecified: Self = Self(0);
     #[doc(alias = "UISplitViewControllerStyleDoubleColumn")]
     pub const DoubleColumn: Self = Self(1);

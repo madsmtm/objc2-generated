@@ -13,23 +13,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSetDefrosterSettingsInCarIntentResponseCode(pub NSInteger);
 impl INSetDefrosterSettingsInCarIntentResponseCode {
-    #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeUnspecified")]
+    #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeReady")]
+    #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeInProgress")]
+    #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeSuccess")]
+    #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeFailure")]
-    pub const Failure: Self = Self(4);
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
+    pub const Failure: Self = Self(4);
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
 

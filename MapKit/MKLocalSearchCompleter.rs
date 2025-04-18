@@ -14,11 +14,11 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MKSearchCompletionFilterType(pub NSInteger);
 impl MKSearchCompletionFilterType {
-    #[deprecated = "Use MKLocalSearchCompleterResultType"]
     #[doc(alias = "MKSearchCompletionFilterTypeLocationsAndQueries")]
-    pub const LocationsAndQueries: Self = Self(0);
     #[deprecated = "Use MKLocalSearchCompleterResultType"]
+    pub const LocationsAndQueries: Self = Self(0);
     #[doc(alias = "MKSearchCompletionFilterTypeLocationsOnly")]
+    #[deprecated = "Use MKLocalSearchCompleterResultType"]
     pub const LocationsOnly: Self = Self(1);
 }
 

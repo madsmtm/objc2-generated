@@ -27,9 +27,9 @@ unsafe impl RefEncode for CGPDFContentStream {
 pub type CGPDFContentStreamRef = *mut CGPDFContentStream;
 
 impl CGPDFContentStream {
+    #[doc(alias = "CGPDFContentStreamCreateWithPage")]
     #[cfg(feature = "CGPDFPage")]
     #[inline]
-    #[doc(alias = "CGPDFContentStreamCreateWithPage")]
     pub unsafe fn create_with_page(page: &CGPDFPage) -> CGPDFContentStreamRef {
         extern "C-unwind" {
             fn CGPDFContentStreamCreateWithPage(page: &CGPDFPage) -> CGPDFContentStreamRef;
@@ -37,9 +37,9 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamCreateWithPage(page) }
     }
 
+    #[doc(alias = "CGPDFContentStreamCreateWithStream")]
     #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFStream"))]
     #[inline]
-    #[doc(alias = "CGPDFContentStreamCreateWithStream")]
     pub unsafe fn create_with_stream(
         stream: CGPDFStreamRef,
         stream_resources: CGPDFDictionaryRef,
@@ -55,8 +55,8 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamCreateWithStream(stream, stream_resources, parent) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFContentStreamRetain")]
+    #[inline]
     pub unsafe fn retain(cs: CGPDFContentStreamRef) -> CGPDFContentStreamRef {
         extern "C-unwind" {
             fn CGPDFContentStreamRetain(cs: CGPDFContentStreamRef) -> CGPDFContentStreamRef;
@@ -64,8 +64,8 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamRetain(cs) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFContentStreamRelease")]
+    #[inline]
     pub unsafe fn release(cs: CGPDFContentStreamRef) {
         extern "C-unwind" {
             fn CGPDFContentStreamRelease(cs: CGPDFContentStreamRef);
@@ -73,8 +73,8 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamRelease(cs) }
     }
 
-    #[inline]
     #[doc(alias = "CGPDFContentStreamGetStreams")]
+    #[inline]
     pub unsafe fn streams(cs: CGPDFContentStreamRef) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CGPDFContentStreamGetStreams(cs: CGPDFContentStreamRef) -> Option<NonNull<CFArray>>;
@@ -83,9 +83,9 @@ impl CGPDFContentStream {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    #[doc(alias = "CGPDFContentStreamGetResource")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    #[doc(alias = "CGPDFContentStreamGetResource")]
     pub unsafe fn resource(
         cs: CGPDFContentStreamRef,
         category: NonNull<c_char>,

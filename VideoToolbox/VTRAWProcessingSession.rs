@@ -62,9 +62,9 @@ impl VTRAWProcessingSession {
     /// Parameter `processingSessionOut`: Points to a variable to receive the new RAW processing session.
     /// When you are done with the session, call VTRAWProcessingSessionInvalidate
     /// to tear it down and then CFRelease to release your object reference.
+    #[doc(alias = "VTRAWProcessingSessionCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    #[doc(alias = "VTRAWProcessingSessionCreate")]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         format_description: &CMVideoFormatDescription,
@@ -99,8 +99,8 @@ impl VTRAWProcessingSession {
     /// When a  session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTRAWProcessingSessionInvalidate ensures a deterministic, orderly teardown.
-    #[inline]
     #[doc(alias = "VTRAWProcessingSessionInvalidate")]
+    #[inline]
     pub unsafe fn invalidate(self: &VTRAWProcessingSession) {
         extern "C-unwind" {
             fn VTRAWProcessingSessionInvalidate(session: &VTRAWProcessingSession);
@@ -132,9 +132,9 @@ impl VTRAWProcessingSession {
     ///
     /// Parameter `parameterChangeHandler`: A VTRAWProcessingParameterChangeHandler block which will be called when the set of processing parameters changes, or the value of a parameter changes without the client explicitly requesting it.
     /// Setting this to NULL removes the current handler.
+    #[doc(alias = "VTRAWProcessingSessionSetParameterChangedHander")]
     #[cfg(feature = "block2")]
     #[inline]
-    #[doc(alias = "VTRAWProcessingSessionSetParameterChangedHander")]
     pub unsafe fn set_parameter_changed_hander(
         self: &VTRAWProcessingSession,
         parameter_change_handler: VTRAWProcessingParameterChangeHandler,
@@ -181,9 +181,9 @@ impl VTRAWProcessingSession {
     /// No keys currently.  Pass NULL.
     ///
     /// Parameter `outputHandler`: A VTRAWProcessingOutputHandler block which will be called once when processing is complete.
+    #[doc(alias = "VTRAWProcessingSessionProcessFrame")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
     #[inline]
-    #[doc(alias = "VTRAWProcessingSessionProcessFrame")]
     pub unsafe fn process_frame(
         self: &VTRAWProcessingSession,
         input_pixel_buffer: &CVPixelBuffer,
@@ -214,8 +214,8 @@ impl VTRAWProcessingSession {
     /// Before VTRAWProcessingSessionCompleteFrames returns, the output handler will be invoked for all pending frames.
     ///
     /// Parameter `session`: The RAW processing session.
-    #[inline]
     #[doc(alias = "VTRAWProcessingSessionCompleteFrames")]
+    #[inline]
     pub unsafe fn complete_frames(self: &VTRAWProcessingSession) -> OSStatus {
         extern "C-unwind" {
             fn VTRAWProcessingSessionCompleteFrames(session: &VTRAWProcessingSession) -> OSStatus;
@@ -235,8 +235,8 @@ impl VTRAWProcessingSession {
     /// Parameter `session`: The RAW processing session.
     ///
     /// Parameter `outParameterArray`: Pointer for receiving the RAW Processing parameter array..
-    #[inline]
     #[doc(alias = "VTRAWProcessingSessionCopyProcessingParameters")]
+    #[inline]
     pub unsafe fn copy_processing_parameters(
         self: &VTRAWProcessingSession,
         out_parameter_array: NonNull<*const CFArray>,
@@ -269,8 +269,8 @@ impl VTRAWProcessingSession {
     ///
     /// Returns: Returns an error if any of the provided parameters are invalid, disabled or outside of the declared valid range.
     /// None of the provided parameters will be set on the processor if an error is returned.
-    #[inline]
     #[doc(alias = "VTRAWProcessingSessionSetProcessingParameters")]
+    #[inline]
     pub unsafe fn set_processing_parameters(
         self: &VTRAWProcessingSession,
         processing_parameters: &CFDictionary,

@@ -51,9 +51,9 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The url of the file for the thumbnail request.
+    #[doc(alias = "QLThumbnailRequestCopyURL")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestCopyURL")]
     pub unsafe fn url(self: &QLThumbnailRequest) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn QLThumbnailRequestCopyURL(thumbnail: &QLThumbnailRequest) -> Option<NonNull<CFURL>>;
@@ -67,9 +67,9 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The desired options for the thumbnail request.
+    #[doc(alias = "QLThumbnailRequestCopyOptions")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestCopyOptions")]
     pub unsafe fn options(self: &QLThumbnailRequest) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn QLThumbnailRequestCopyOptions(
@@ -85,9 +85,9 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The UTI of the content being thumbnailed, NULL if not available.
+    #[doc(alias = "QLThumbnailRequestCopyContentUTI")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestCopyContentUTI")]
     pub unsafe fn content_uti(self: &QLThumbnailRequest) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn QLThumbnailRequestCopyContentUTI(
@@ -103,9 +103,9 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The maximum desired size (in points) for the thumbnail request.
+    #[doc(alias = "QLThumbnailRequestGetMaximumSize")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestGetMaximumSize")]
     pub unsafe fn maximum_size(self: &QLThumbnailRequest) -> CGSize {
         extern "C-unwind" {
             fn QLThumbnailRequestGetMaximumSize(thumbnail: &QLThumbnailRequest) -> CGSize;
@@ -116,9 +116,9 @@ impl QLThumbnailRequest {
     /// Get the thumbnail request generator bundle.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
+    #[doc(alias = "QLThumbnailRequestGetGeneratorBundle")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestGetGeneratorBundle")]
     pub unsafe fn generator_bundle(self: &QLThumbnailRequest) -> Option<CFRetained<CFBundle>> {
         extern "C-unwind" {
             fn QLThumbnailRequestGetGeneratorBundle(
@@ -138,9 +138,9 @@ impl QLThumbnailRequest {
     /// Parameter `callbacks`: Callbacks to retain/release/etc. the object.
     ///
     /// You can only call this function once per request.
+    #[doc(alias = "QLThumbnailRequestSetDocumentObject")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestSetDocumentObject")]
     pub unsafe fn set_document_object(
         self: &QLThumbnailRequest,
         object: *const c_void,
@@ -161,9 +161,9 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The object representing the document
+    #[doc(alias = "QLThumbnailRequestGetDocumentObject")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestGetDocumentObject")]
     pub unsafe fn document_object(self: &QLThumbnailRequest) -> *const c_void {
         extern "C-unwind" {
             fn QLThumbnailRequestGetDocumentObject(thumbnail: &QLThumbnailRequest)
@@ -179,10 +179,10 @@ impl QLThumbnailRequest {
     /// Parameter `image`: The thumbnail image response.
     ///
     /// Parameter `properties`: See possible properties below.
+    #[doc(alias = "QLThumbnailRequestSetImage")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types"]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestSetImage")]
     pub unsafe fn set_image(
         self: &QLThumbnailRequest,
         image: Option<&CGImage>,
@@ -205,9 +205,9 @@ impl QLThumbnailRequest {
     /// Parameter `data`: The thumbnail image response as data. The image format should be supported by ImageIO
     ///
     /// Parameter `properties`: See possible properties below. Additional useful properties: kCGImageSourceTypeIdentifierHint (see ImageIO documentation).
+    #[doc(alias = "QLThumbnailRequestSetImageWithData")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestSetImageWithData")]
     pub unsafe fn set_image_with_data(
         self: &QLThumbnailRequest,
         data: Option<&CFData>,
@@ -236,10 +236,10 @@ impl QLThumbnailRequest {
     /// Returns: A graphic context to draw to.
     ///
     /// Once the thumbnail is fully drawn, you should call QLThumbnailRequestFlushContext().
+    #[doc(alias = "QLThumbnailRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestCreateContext")]
     pub unsafe fn context(
         self: &QLThumbnailRequest,
         size: CGSize,
@@ -264,10 +264,10 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Parameter `context`: The graphic context created by QLThumbnailRequestCreateContext().
+    #[doc(alias = "QLThumbnailRequestFlushContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestFlushContext")]
     pub unsafe fn flush_context(self: &QLThumbnailRequest, context: Option<&CGContext>) {
         extern "C-unwind" {
             fn QLThumbnailRequestFlushContext(
@@ -285,9 +285,9 @@ impl QLThumbnailRequest {
     /// Parameter `url`: The url to the thumbnail image response.
     ///
     /// Parameter `properties`: Currently unused.
+    #[doc(alias = "QLThumbnailRequestSetImageAtURL")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestSetImageAtURL")]
     pub unsafe fn set_image_at_url(
         self: &QLThumbnailRequest,
         url: Option<&CFURL>,
@@ -316,9 +316,9 @@ impl QLThumbnailRequest {
     /// Parameter `properties`: Currently unused.
     ///
     /// Currently supported UTIs are: none. This call only works if your generator is set to be run in the main thread
+    #[doc(alias = "QLThumbnailRequestSetThumbnailWithDataRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestSetThumbnailWithDataRepresentation")]
     pub unsafe fn set_thumbnail_with_data_representation(
         self: &QLThumbnailRequest,
         data: Option<&CFData>,
@@ -357,9 +357,9 @@ impl QLThumbnailRequest {
     /// Parameter `properties`: Additional properties for the preview response.
     ///
     /// Currently supported UTIs are: none. This call only works if your generator is set to be run in the main thread
+    #[doc(alias = "QLThumbnailRequestSetThumbnailWithURLRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestSetThumbnailWithURLRepresentation")]
     pub unsafe fn set_thumbnail_with_url_representation(
         self: &QLThumbnailRequest,
         url: Option<&CFURL>,
@@ -392,9 +392,9 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: true if the request was cancelled.
+    #[doc(alias = "QLThumbnailRequestIsCancelled")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
-    #[doc(alias = "QLThumbnailRequestIsCancelled")]
     pub unsafe fn is_cancelled(self: &QLThumbnailRequest) -> bool {
         extern "C-unwind" {
             fn QLThumbnailRequestIsCancelled(thumbnail: &QLThumbnailRequest) -> Boolean;
@@ -548,9 +548,9 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The url of the file for the preview request.
+    #[doc(alias = "QLPreviewRequestCopyURL")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestCopyURL")]
     pub unsafe fn url(self: &QLPreviewRequest) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn QLPreviewRequestCopyURL(preview: &QLPreviewRequest) -> Option<NonNull<CFURL>>;
@@ -564,9 +564,9 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The desired options for the preview request.
+    #[doc(alias = "QLPreviewRequestCopyOptions")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestCopyOptions")]
     pub unsafe fn options(self: &QLPreviewRequest) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn QLPreviewRequestCopyOptions(
@@ -582,9 +582,9 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The UTI of the content being previewed, NULL if not available.
+    #[doc(alias = "QLPreviewRequestCopyContentUTI")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestCopyContentUTI")]
     pub unsafe fn content_uti(self: &QLPreviewRequest) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn QLPreviewRequestCopyContentUTI(
@@ -598,9 +598,9 @@ impl QLPreviewRequest {
     /// Gets the preview request generator bundle.
     ///
     /// Parameter `preview`: The preview request.
+    #[doc(alias = "QLPreviewRequestGetGeneratorBundle")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestGetGeneratorBundle")]
     pub unsafe fn generator_bundle(self: &QLPreviewRequest) -> Option<CFRetained<CFBundle>> {
         extern "C-unwind" {
             fn QLPreviewRequestGetGeneratorBundle(
@@ -620,9 +620,9 @@ impl QLPreviewRequest {
     /// Parameter `callbacks`: Callbacks to retain/release/etc. the object.
     ///
     /// You can only call this function once per request.
+    #[doc(alias = "QLPreviewRequestSetDocumentObject")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestSetDocumentObject")]
     pub unsafe fn set_document_object(
         self: &QLPreviewRequest,
         object: *const c_void,
@@ -643,9 +643,9 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The object representing the document
+    #[doc(alias = "QLPreviewRequestGetDocumentObject")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestGetDocumentObject")]
     pub unsafe fn document_object(self: &QLPreviewRequest) -> *const c_void {
         extern "C-unwind" {
             fn QLPreviewRequestGetDocumentObject(preview: &QLPreviewRequest) -> *const c_void;
@@ -658,9 +658,9 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: true if the request was cancelled.
+    #[doc(alias = "QLPreviewRequestIsCancelled")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestIsCancelled")]
     pub unsafe fn is_cancelled(self: &QLPreviewRequest) -> bool {
         extern "C-unwind" {
             fn QLPreviewRequestIsCancelled(preview: &QLPreviewRequest) -> Boolean;
@@ -682,9 +682,9 @@ impl QLPreviewRequest {
     /// Currently supported UTIs are: kUTTypeImage, kUTTypePDF, kUTTypeHTML,
     /// kUTTypeXML, kUTTypePlainText, kUTTypeRTF, kUTTypeMovie, kUTTypeAudio,
     /// and "org.khronos.collada.digital-asset-exchange" (from OSX 10.9)
+    #[doc(alias = "QLPreviewRequestSetDataRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestSetDataRepresentation")]
     pub unsafe fn set_data_representation(
         self: &QLPreviewRequest,
         data: Option<&CFData>,
@@ -715,9 +715,9 @@ impl QLPreviewRequest {
     /// Currently supported UTIs are: kUTTypeImage, kUTTypePDF, kUTTypeHTML,
     /// kUTTypeXML, kUTTypePlainText, kUTTypeRTF, kUTTypeRTFD, kUTTypeMovie, kUTTypeAudio,
     /// and "org.khronos.collada.digital-asset-exchange" (from OSX 10.9)
+    #[doc(alias = "QLPreviewRequestSetURLRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestSetURLRepresentation")]
     pub unsafe fn set_url_representation(
         self: &QLPreviewRequest,
         url: Option<&CFURL>,
@@ -744,10 +744,10 @@ impl QLPreviewRequest {
     /// Parameter `isBitmap`: true if preview is bitmap-based.
     ///
     /// Parameter `properties`: Additional properties for the preview response.
+    #[doc(alias = "QLPreviewRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestCreateContext")]
     pub unsafe fn context(
         self: &QLPreviewRequest,
         size: CGSize,
@@ -775,10 +775,10 @@ impl QLPreviewRequest {
     /// Parameter `auxiliaryInfo`: The PDF auxiliary info. see CGPDFContextCreate().
     ///
     /// Parameter `properties`: Additional properties for the preview response.
+    #[doc(alias = "QLPreviewRequestCreatePDFContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestCreatePDFContext")]
     pub unsafe fn pdf_context(
         self: &QLPreviewRequest,
         media_box: *const CGRect,
@@ -804,10 +804,10 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Parameter `context`: context previously created by QLPreviewRequestCreateContext() or QLPreviewRequestCreatePDFContext().
+    #[doc(alias = "QLPreviewRequestFlushContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
-    #[doc(alias = "QLPreviewRequestFlushContext")]
     pub unsafe fn flush_context(self: &QLPreviewRequest, context: Option<&CGContext>) {
         extern "C-unwind" {
             fn QLPreviewRequestFlushContext(

@@ -40,9 +40,9 @@ unsafe impl ConcreteType for CFUserNotification {
 }
 
 impl CFUserNotification {
+    #[doc(alias = "CFUserNotificationCreate")]
     #[cfg(all(feature = "CFDate", feature = "CFDictionary"))]
     #[inline]
-    #[doc(alias = "CFUserNotificationCreate")]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         timeout: CFTimeInterval,
@@ -63,9 +63,9 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFUserNotificationReceiveResponse")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    #[doc(alias = "CFUserNotificationReceiveResponse")]
     pub unsafe fn receive_response(
         self: &CFUserNotification,
         timeout: CFTimeInterval,
@@ -81,8 +81,8 @@ impl CFUserNotification {
         unsafe { CFUserNotificationReceiveResponse(self, timeout, response_flags) }
     }
 
-    #[inline]
     #[doc(alias = "CFUserNotificationGetResponseValue")]
+    #[inline]
     pub unsafe fn response_value(
         self: &CFUserNotification,
         key: Option<&CFString>,
@@ -99,9 +99,9 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    #[doc(alias = "CFUserNotificationGetResponseDictionary")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFUserNotificationGetResponseDictionary")]
     pub fn response_dictionary(self: &CFUserNotification) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CFUserNotificationGetResponseDictionary(
@@ -112,9 +112,9 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    #[doc(alias = "CFUserNotificationUpdate")]
     #[cfg(all(feature = "CFDate", feature = "CFDictionary"))]
     #[inline]
-    #[doc(alias = "CFUserNotificationUpdate")]
     pub unsafe fn update(
         self: &CFUserNotification,
         timeout: CFTimeInterval,
@@ -132,8 +132,8 @@ impl CFUserNotification {
         unsafe { CFUserNotificationUpdate(self, timeout, flags, dictionary) }
     }
 
-    #[inline]
     #[doc(alias = "CFUserNotificationCancel")]
+    #[inline]
     pub fn cancel(self: &CFUserNotification) -> i32 {
         extern "C-unwind" {
             fn CFUserNotificationCancel(user_notification: &CFUserNotification) -> i32;
@@ -141,9 +141,9 @@ impl CFUserNotification {
         unsafe { CFUserNotificationCancel(self) }
     }
 
+    #[doc(alias = "CFUserNotificationCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
-    #[doc(alias = "CFUserNotificationCreateRunLoopSource")]
     pub unsafe fn new_run_loop_source(
         allocator: Option<&CFAllocator>,
         user_notification: Option<&CFUserNotification>,
@@ -164,9 +164,9 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFUserNotificationDisplayNotice")]
     #[cfg(all(feature = "CFDate", feature = "CFURL"))]
     #[inline]
-    #[doc(alias = "CFUserNotificationDisplayNotice")]
     pub fn display_notice(
         timeout: CFTimeInterval,
         flags: CFOptionFlags,
@@ -203,9 +203,9 @@ impl CFUserNotification {
         }
     }
 
+    #[doc(alias = "CFUserNotificationDisplayAlert")]
     #[cfg(all(feature = "CFDate", feature = "CFURL"))]
     #[inline]
-    #[doc(alias = "CFUserNotificationDisplayAlert")]
     pub unsafe fn display_alert(
         timeout: CFTimeInterval,
         flags: CFOptionFlags,

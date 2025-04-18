@@ -55,10 +55,10 @@ impl SecIdentitySearch {
     ///
     /// You can set values for key usage, and one or more keychains, to control the search for identities. You can use the returned search reference to obtain the remaining identities in subsequent calls to the SecIentitySearchCopyNext function. You must release the identity search reference by calling the CFRelease function.
     /// This function is deprecated in Mac OS X 10.7 and later; to find identities which match a given key usage or other attributes, please use the SecItemCopyMatching API (see SecItem.h).
+    #[doc(alias = "SecIdentitySearchCreate")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecIdentitySearchCreate")]
     pub unsafe fn create(
         keychain_or_array: Option<&CFType>,
         key_usage: CSSM_KEYUSE,
@@ -83,10 +83,10 @@ impl SecIdentitySearch {
     /// Returns: A result code. When there are no more identities found that match the search criteria, errSecItemNotFound is returned. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in Mac OS X 10.7 and later; to find identities which match specified attributes, please use the SecItemCopyMatching API (see SecItem.h).
+    #[doc(alias = "SecIdentitySearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SecIdentitySearchCopyNext")]
     pub unsafe fn copy_next(self: &SecIdentitySearch, identity: *mut *mut SecIdentity) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentitySearchCopyNext(

@@ -38,8 +38,8 @@ unsafe impl RefEncode for DDEventType {
 
 impl DDEventType {
     /// Converts an event to a string for logging, etc.
-    #[inline]
     #[doc(alias = "DDEventTypeToString")]
+    #[inline]
     pub unsafe fn to_string(self: DDEventType) -> Retained<NSString> {
         extern "C-unwind" {
             fn DDEventTypeToString(in_value: DDEventType) -> *mut NSString;

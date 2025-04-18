@@ -740,41 +740,41 @@ pub type NSWorkspaceFileOperationName = NSString;
 pub struct NSWorkspaceLaunchOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWorkspaceLaunchOptions: NSUInteger {
-#[deprecated = "Use -[NSWorkspaceOpenConfiguration setForPrinting:YES] instead."]
         #[doc(alias = "NSWorkspaceLaunchAndPrint")]
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setForPrinting:YES] instead."]
         const AndPrint = 0x00000002;
-#[deprecated = "Use -[NSWorkspaceOpenConfiguration setPromptsUserIfNeeded:YES] instead."]
         #[doc(alias = "NSWorkspaceLaunchWithErrorPresentation")]
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setPromptsUserIfNeeded:YES] instead."]
         const WithErrorPresentation = 0x00000040;
-#[deprecated = "This option does nothing."]
         #[doc(alias = "NSWorkspaceLaunchInhibitingBackgroundOnly")]
+#[deprecated = "This option does nothing."]
         const InhibitingBackgroundOnly = 0x00000080;
-#[deprecated = "Use -[NSWorkspaceOpenConfiguration setAddsToRecentItems:YES] instead."]
         #[doc(alias = "NSWorkspaceLaunchWithoutAddingToRecents")]
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setAddsToRecentItems:YES] instead."]
         const WithoutAddingToRecents = 0x00000100;
-#[deprecated = "Use -[NSWorkspaceOpenConfiguration setActivates:NO] instead."]
         #[doc(alias = "NSWorkspaceLaunchWithoutActivation")]
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setActivates:NO] instead."]
         const WithoutActivation = 0x00000200;
-#[deprecated = "When using NSWorkspaceOpenConfiguration, all launches are asynchronous."]
         #[doc(alias = "NSWorkspaceLaunchAsync")]
+#[deprecated = "When using NSWorkspaceOpenConfiguration, all launches are asynchronous."]
         const Async = 0x00010000;
-#[deprecated = "Use -[NSWorkspaceOpenConfiguration setCreatesNewApplicationInstance:YES] instead."]
         #[doc(alias = "NSWorkspaceLaunchNewInstance")]
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setCreatesNewApplicationInstance:YES] instead."]
         const NewInstance = 0x00080000;
-#[deprecated = "Use -[NSWorkspaceOpenConfiguration setHides:YES] instead."]
         #[doc(alias = "NSWorkspaceLaunchAndHide")]
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setHides:YES] instead."]
         const AndHide = 0x00100000;
-#[deprecated = "Use -[NSWorkspaceOpenConfiguration setHidesOthers:YES] instead."]
         #[doc(alias = "NSWorkspaceLaunchAndHideOthers")]
+#[deprecated = "Use -[NSWorkspaceOpenConfiguration setHidesOthers:YES] instead."]
         const AndHideOthers = 0x00200000;
-#[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
         #[doc(alias = "NSWorkspaceLaunchDefault")]
+#[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
         const Default = NSWorkspaceLaunchOptions::Async.0;
-#[deprecated = "The Classic environment is no longer supported."]
         #[doc(alias = "NSWorkspaceLaunchAllowingClassicStartup")]
-        const AllowingClassicStartup = 0x00020000;
 #[deprecated = "The Classic environment is no longer supported."]
+        const AllowingClassicStartup = 0x00020000;
         #[doc(alias = "NSWorkspaceLaunchPreferringClassic")]
+#[deprecated = "The Classic environment is no longer supported."]
         const PreferringClassic = 0x00040000;
     }
 }

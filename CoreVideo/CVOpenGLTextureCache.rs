@@ -72,6 +72,7 @@ impl CVOpenGLTextureCache {
     /// Parameter `textureOut`: The newly created texture object will be placed here.
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    #[doc(alias = "CVOpenGLTextureCacheCreateTextureFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -80,7 +81,6 @@ impl CVOpenGLTextureCache {
     ))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    #[doc(alias = "CVOpenGLTextureCacheCreateTextureFromImage")]
     pub unsafe fn create_texture_from_image(
         allocator: Option<&CFAllocator>,
         texture_cache: &CVOpenGLTextureCache,
@@ -118,10 +118,10 @@ impl CVOpenGLTextureCache {
     /// Parameter `options`: Currently unused, set to 0.
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    #[doc(alias = "CVOpenGLTextureCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    #[doc(alias = "CVOpenGLTextureCacheFlush")]
     pub unsafe fn flush(self: &CVOpenGLTextureCache, options: CVOptionFlags) {
         extern "C-unwind" {
             fn CVOpenGLTextureCacheFlush(

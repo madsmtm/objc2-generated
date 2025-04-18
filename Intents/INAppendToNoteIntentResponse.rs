@@ -14,26 +14,26 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INAppendToNoteIntentResponseCode(pub NSInteger);
 impl INAppendToNoteIntentResponseCode {
-    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INAppendToNoteIntentResponseCodeUnspecified")]
+    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INAppendToNoteIntentResponseCodeReady")]
+    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INAppendToNoteIntentResponseCodeInProgress")]
+    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INAppendToNoteIntentResponseCodeSuccess")]
+    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INAppendToNoteIntentResponseCodeFailure")]
+    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INAppendToNoteIntentResponseCodeFailureRequiringAppLaunch")]
-    pub const FailureRequiringAppLaunch: Self = Self(5);
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
+    pub const FailureRequiringAppLaunch: Self = Self(5);
     #[doc(alias = "INAppendToNoteIntentResponseCodeFailureCannotUpdatePasswordProtectedNote")]
+    #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureCannotUpdatePasswordProtectedNote: Self = Self(6);
 }
 

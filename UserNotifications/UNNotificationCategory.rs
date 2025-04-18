@@ -21,8 +21,8 @@ bitflags::bitflags! {
         const HiddenPreviewsShowTitle = 1<<2;
         #[doc(alias = "UNNotificationCategoryOptionHiddenPreviewsShowSubtitle")]
         const HiddenPreviewsShowSubtitle = 1<<3;
-#[deprecated = "Announcement option is ignored"]
         #[doc(alias = "UNNotificationCategoryOptionAllowAnnouncement")]
+#[deprecated = "Announcement option is ignored"]
         const AllowAnnouncement = 1<<4;
     }
 }

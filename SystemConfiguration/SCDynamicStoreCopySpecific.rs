@@ -20,9 +20,9 @@ impl SCDynamicStore {
     /// Returns: Returns the current computer name;
     /// NULL if the name has not been set or if an error was encountered.
     /// You must release the returned value.
+    #[doc(alias = "SCDynamicStoreCopyComputerName")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
-    #[doc(alias = "SCDynamicStoreCopyComputerName")]
     pub unsafe fn computer_name(
         store: Option<&SCDynamicStore>,
         name_encoding: *mut CFStringEncoding,
@@ -60,9 +60,9 @@ impl SCDynamicStore {
     /// Returns: Returns the user currently logged into the system;
     /// NULL if no user is logged in or if an error was encountered.
     /// You must release the returned value.
+    #[doc(alias = "SCDynamicStoreCopyConsoleUser")]
     #[cfg(all(feature = "SCDynamicStore", feature = "libc"))]
     #[inline]
-    #[doc(alias = "SCDynamicStoreCopyConsoleUser")]
     pub unsafe fn console_user(
         store: Option<&SCDynamicStore>,
         uid: *mut libc::uid_t,
@@ -88,9 +88,9 @@ impl SCDynamicStore {
     /// Returns: Returns the current local host name;
     /// NULL if the name has not been set or if an error was encountered.
     /// You must release the returned value.
+    #[doc(alias = "SCDynamicStoreCopyLocalHostName")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
-    #[doc(alias = "SCDynamicStoreCopyLocalHostName")]
     pub fn local_host_name(store: Option<&SCDynamicStore>) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCDynamicStoreCopyLocalHostName(
@@ -111,9 +111,9 @@ impl SCDynamicStore {
     /// NULL if no location identifier has been defined or if an error
     /// was encountered.
     /// You must release the returned value.
+    #[doc(alias = "SCDynamicStoreCopyLocation")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
-    #[doc(alias = "SCDynamicStoreCopyLocation")]
     pub fn location(store: Option<&SCDynamicStore>) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCDynamicStoreCopyLocation(
@@ -337,9 +337,9 @@ impl SCDynamicStore {
     /// NULL if no proxy settings have been defined or if an error
     /// was encountered.
     /// You must release the returned value.
+    #[doc(alias = "SCDynamicStoreCopyProxies")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
-    #[doc(alias = "SCDynamicStoreCopyProxies")]
     pub fn proxies(store: Option<&SCDynamicStore>) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SCDynamicStoreCopyProxies(

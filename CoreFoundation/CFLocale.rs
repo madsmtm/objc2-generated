@@ -43,8 +43,8 @@ unsafe impl ConcreteType for CFLocale {
 }
 
 impl CFLocale {
-    #[inline]
     #[doc(alias = "CFLocaleGetSystem")]
+    #[inline]
     pub fn system() -> Option<CFRetained<CFLocale>> {
         extern "C-unwind" {
             fn CFLocaleGetSystem() -> Option<NonNull<CFLocale>>;
@@ -53,8 +53,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleCopyCurrent")]
+    #[inline]
     pub fn current() -> Option<CFRetained<CFLocale>> {
         extern "C-unwind" {
             fn CFLocaleCopyCurrent() -> Option<NonNull<CFLocale>>;
@@ -63,9 +63,9 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFLocaleCopyAvailableLocaleIdentifiers")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    #[doc(alias = "CFLocaleCopyAvailableLocaleIdentifiers")]
     pub fn available_locale_identifiers() -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CFLocaleCopyAvailableLocaleIdentifiers() -> Option<NonNull<CFArray>>;
@@ -74,9 +74,9 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFLocaleCopyISOLanguageCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    #[doc(alias = "CFLocaleCopyISOLanguageCodes")]
     pub fn iso_language_codes() -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CFLocaleCopyISOLanguageCodes() -> Option<NonNull<CFArray>>;
@@ -85,9 +85,9 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFLocaleCopyISOCountryCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    #[doc(alias = "CFLocaleCopyISOCountryCodes")]
     pub fn iso_country_codes() -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CFLocaleCopyISOCountryCodes() -> Option<NonNull<CFArray>>;
@@ -96,9 +96,9 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFLocaleCopyISOCurrencyCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    #[doc(alias = "CFLocaleCopyISOCurrencyCodes")]
     pub fn iso_currency_codes() -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CFLocaleCopyISOCurrencyCodes() -> Option<NonNull<CFArray>>;
@@ -107,9 +107,9 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFLocaleCopyCommonISOCurrencyCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    #[doc(alias = "CFLocaleCopyCommonISOCurrencyCodes")]
     pub fn common_iso_currency_codes() -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CFLocaleCopyCommonISOCurrencyCodes() -> Option<NonNull<CFArray>>;
@@ -118,9 +118,9 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFLocaleCopyPreferredLanguages")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    #[doc(alias = "CFLocaleCopyPreferredLanguages")]
     pub fn preferred_languages() -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CFLocaleCopyPreferredLanguages() -> Option<NonNull<CFArray>>;
@@ -129,8 +129,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleCreateCanonicalLanguageIdentifierFromString")]
+    #[inline]
     pub fn new_canonical_language_identifier_from_string(
         allocator: Option<&CFAllocator>,
         locale_identifier: Option<&CFString>,
@@ -147,8 +147,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleCreateCanonicalLocaleIdentifierFromString")]
+    #[inline]
     pub fn new_canonical_locale_identifier_from_string(
         allocator: Option<&CFAllocator>,
         locale_identifier: Option<&CFString>,
@@ -165,8 +165,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes")]
+    #[inline]
     pub fn new_canonical_locale_identifier_from_script_manager_codes(
         allocator: Option<&CFAllocator>,
         lcode: LangCode,
@@ -185,8 +185,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode")]
+    #[inline]
     pub fn new_locale_identifier_from_windows_locale_code(
         allocator: Option<&CFAllocator>,
         lcid: u32,
@@ -201,8 +201,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier")]
+    #[inline]
     pub fn windows_locale_code_from_locale_identifier(
         locale_identifier: Option<&CFLocaleIdentifier>,
     ) -> u32 {
@@ -244,8 +244,8 @@ unsafe impl RefEncode for CFLocaleLanguageDirection {
 }
 
 impl CFLocale {
-    #[inline]
     #[doc(alias = "CFLocaleGetLanguageCharacterDirection")]
+    #[inline]
     pub fn language_character_direction(
         iso_lang_code: Option<&CFString>,
     ) -> CFLocaleLanguageDirection {
@@ -257,8 +257,8 @@ impl CFLocale {
         unsafe { CFLocaleGetLanguageCharacterDirection(iso_lang_code) }
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleGetLanguageLineDirection")]
+    #[inline]
     pub fn language_line_direction(iso_lang_code: Option<&CFString>) -> CFLocaleLanguageDirection {
         extern "C-unwind" {
             fn CFLocaleGetLanguageLineDirection(
@@ -268,9 +268,9 @@ impl CFLocale {
         unsafe { CFLocaleGetLanguageLineDirection(iso_lang_code) }
     }
 
+    #[doc(alias = "CFLocaleCreateComponentsFromLocaleIdentifier")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFLocaleCreateComponentsFromLocaleIdentifier")]
     pub fn new_components_from_locale_identifier(
         allocator: Option<&CFAllocator>,
         locale_id: Option<&CFLocaleIdentifier>,
@@ -285,9 +285,9 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFLocaleCreateLocaleIdentifierFromComponents")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    #[doc(alias = "CFLocaleCreateLocaleIdentifierFromComponents")]
     pub unsafe fn new_locale_identifier_from_components(
         allocator: Option<&CFAllocator>,
         dictionary: Option<&CFDictionary>,
@@ -302,8 +302,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleCreate")]
+    #[inline]
     pub fn new(
         allocator: Option<&CFAllocator>,
         locale_identifier: Option<&CFLocaleIdentifier>,
@@ -318,8 +318,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleCreateCopy")]
+    #[inline]
     pub fn new_copy(
         allocator: Option<&CFAllocator>,
         locale: Option<&CFLocale>,
@@ -334,8 +334,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleGetIdentifier")]
+    #[inline]
     pub fn identifier(self: &CFLocale) -> Option<CFRetained<CFLocaleIdentifier>> {
         extern "C-unwind" {
             fn CFLocaleGetIdentifier(locale: &CFLocale) -> Option<NonNull<CFLocaleIdentifier>>;
@@ -344,8 +344,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleGetValue")]
+    #[inline]
     pub fn value(self: &CFLocale, key: Option<&CFLocaleKey>) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFLocaleGetValue(
@@ -357,8 +357,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    #[inline]
     #[doc(alias = "CFLocaleCopyDisplayNameForPropertyValue")]
+    #[inline]
     pub fn display_name_for_property_value(
         self: &CFLocale,
         key: Option<&CFLocaleKey>,

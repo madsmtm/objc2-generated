@@ -11,23 +11,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INRadioType(pub NSInteger);
 impl INRadioType {
-    #[deprecated = "INRadioType is deprecated. There is no replacement."]
     #[doc(alias = "INRadioTypeUnknown")]
+    #[deprecated = "INRadioType is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    #[deprecated = "INRadioType is deprecated. There is no replacement."]
     #[doc(alias = "INRadioTypeAM")]
+    #[deprecated = "INRadioType is deprecated. There is no replacement."]
     pub const AM: Self = Self(1);
-    #[deprecated = "INRadioType is deprecated. There is no replacement."]
     #[doc(alias = "INRadioTypeFM")]
+    #[deprecated = "INRadioType is deprecated. There is no replacement."]
     pub const FM: Self = Self(2);
-    #[deprecated = "INRadioType is deprecated. There is no replacement."]
     #[doc(alias = "INRadioTypeHD")]
+    #[deprecated = "INRadioType is deprecated. There is no replacement."]
     pub const HD: Self = Self(3);
-    #[deprecated = "INRadioType is deprecated. There is no replacement."]
     #[doc(alias = "INRadioTypeSatellite")]
-    pub const Satellite: Self = Self(4);
     #[deprecated = "INRadioType is deprecated. There is no replacement."]
+    pub const Satellite: Self = Self(4);
     #[doc(alias = "INRadioTypeDAB")]
+    #[deprecated = "INRadioType is deprecated. There is no replacement."]
     pub const DAB: Self = Self(5);
 }
 

@@ -10,8 +10,8 @@ mod private_NSUserActivityAppClip {
 }
 
 /// Category "AppClip" on [`NSUserActivity`].
-#[doc(alias = "AppClip")]
 /// App clip category for NSUserActivity.
+#[doc(alias = "AppClip")]
 pub unsafe trait NSUserActivityAppClip:
     ClassType + Sized + private_NSUserActivityAppClip::Sealed
 {

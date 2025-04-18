@@ -240,9 +240,9 @@ impl CMIOStreamDeck {
     /// Parameter `streamID`: The CMIOStream whose deck controls are being manipulated.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    #[doc(alias = "CMIOStreamDeckPlay")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
-    #[doc(alias = "CMIOStreamDeckPlay")]
     pub unsafe fn play(stream_id: CMIOStreamID) -> OSStatus {
         extern "C-unwind" {
             fn CMIOStreamDeckPlay(stream_id: CMIOStreamID) -> OSStatus;
@@ -255,9 +255,9 @@ impl CMIOStreamDeck {
     /// Parameter `streamID`: The CMIOStream whose deck controls are being manipulated.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    #[doc(alias = "CMIOStreamDeckStop")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
-    #[doc(alias = "CMIOStreamDeckStop")]
     pub unsafe fn stop(stream_id: CMIOStreamID) -> OSStatus {
         extern "C-unwind" {
             fn CMIOStreamDeckStop(stream_id: CMIOStreamID) -> OSStatus;
@@ -272,9 +272,9 @@ impl CMIOStreamDeck {
     /// Parameter `speed`: One of the CMIO Deck Shuttle Speed constants to specify the speed of movement of the associated deck.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    #[doc(alias = "CMIOStreamDeckJog")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
-    #[doc(alias = "CMIOStreamDeckJog")]
     pub unsafe fn jog(stream_id: CMIOStreamID, speed: i32) -> OSStatus {
         extern "C-unwind" {
             fn CMIOStreamDeckJog(stream_id: CMIOStreamID, speed: i32) -> OSStatus;
@@ -291,9 +291,9 @@ impl CMIOStreamDeck {
     /// Parameter `playOnCue`: An indicator that the deck should start playing when the cue-to point is reached.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    #[doc(alias = "CMIOStreamDeckCueTo")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
-    #[doc(alias = "CMIOStreamDeckCueTo")]
     pub unsafe fn cue_to(
         stream_id: CMIOStreamID,
         frame_number: u64,

@@ -4685,8 +4685,8 @@ impl ODFrameworkErrors {
     pub const ErrorCredentialsServerTimeout: Self = Self(5203);
     #[doc(alias = "kODErrorCredentialsContactPrimary")]
     pub const ErrorCredentialsContactPrimary: Self = Self(5204);
-    #[deprecated]
     #[doc(alias = "kODErrorCredentialsContactMaster")]
+    #[deprecated]
     pub const ErrorCredentialsContactMaster: Self =
         Self(ODFrameworkErrors::ErrorCredentialsContactPrimary.0);
     #[doc(alias = "kODErrorCredentialsServerCommunicationError")]

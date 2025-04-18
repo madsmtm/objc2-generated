@@ -196,8 +196,8 @@ bitflags::bitflags! {
 /// If the provider wishes to only suppress the user's ability to evict the item in the UI (but retain the ability
 /// of the OS or the provider's program to evict items), the provider can set the following key to false in
 /// their Info.plist, in the NSExtension section: NSExtensionFileProviderAllowsUserControlledEviction
-#[deprecated = "use NSFileProviderContentPolicy instead"]
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsEvicting")]
+#[deprecated = "use NSFileProviderContentPolicy instead"]
         const AllowsEvicting = 1<<6;
 /// Indicates that the item can be excluded from sync.
 ///
@@ -220,8 +220,8 @@ bitflags::bitflags! {
 /// Indicates that the folder can be enumerated. If set on a file, this is
 /// equivalent to
 /// `.allowsReading.`
-#[deprecated = "This capability is no longer supported, and does not contain all capabilities. Please migrate to directly specifying each of the individual capabilities that should be allowed for the item."]
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsAll")]
+#[deprecated = "This capability is no longer supported, and does not contain all capabilities. Please migrate to directly specifying each of the individual capabilities that should be allowed for the item."]
         const AllowsAll = NSFileProviderItemCapabilities::AllowsReading.0|NSFileProviderItemCapabilities::AllowsWriting.0|NSFileProviderItemCapabilities::AllowsReparenting.0|NSFileProviderItemCapabilities::AllowsRenaming.0|NSFileProviderItemCapabilities::AllowsTrashing.0|NSFileProviderItemCapabilities::AllowsDeleting.0;
     }
 }

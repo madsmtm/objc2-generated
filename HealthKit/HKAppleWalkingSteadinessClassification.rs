@@ -40,9 +40,9 @@ impl HKAppleWalkingSteadinessClassification {
     /// Parameter `errorOut`: A pointer to an error describing why an unknown classification was returned.
     ///
     /// Returns: YES if the classification was successful. NO otherwise, meaning the provided value could not be classified.
+    #[doc(alias = "HKAppleWalkingSteadinessClassificationForQuantity")]
     #[cfg(feature = "HKQuantity")]
     #[inline]
-    #[doc(alias = "HKAppleWalkingSteadinessClassificationForQuantity")]
     pub unsafe fn for_quantity(
         value: &HKQuantity,
         classification_out: NonNull<HKAppleWalkingSteadinessClassification>,

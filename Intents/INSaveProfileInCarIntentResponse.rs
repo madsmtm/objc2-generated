@@ -13,23 +13,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSaveProfileInCarIntentResponseCode(pub NSInteger);
 impl INSaveProfileInCarIntentResponseCode {
-    #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeUnspecified")]
+    #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeReady")]
+    #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeInProgress")]
+    #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeSuccess")]
+    #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeFailure")]
-    pub const Failure: Self = Self(4);
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
+    pub const Failure: Self = Self(4);
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
 

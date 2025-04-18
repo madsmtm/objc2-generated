@@ -15,17 +15,17 @@ use crate::*;
 pub struct UIUserNotificationType(pub NSUInteger);
 bitflags::bitflags! {
     impl UIUserNotificationType: NSUInteger {
-#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         #[doc(alias = "UIUserNotificationTypeNone")]
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const None = 0;
-#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         #[doc(alias = "UIUserNotificationTypeBadge")]
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const Badge = 1<<0;
-#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         #[doc(alias = "UIUserNotificationTypeSound")]
-        const Sound = 1<<1;
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
+        const Sound = 1<<1;
         #[doc(alias = "UIUserNotificationTypeAlert")]
+#[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const Alert = 1<<2;
     }
 }
@@ -45,11 +45,11 @@ unsafe impl RefEncode for UIUserNotificationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIUserNotificationActionBehavior(pub NSUInteger);
 impl UIUserNotificationActionBehavior {
-    #[deprecated = "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction"]
     #[doc(alias = "UIUserNotificationActionBehaviorDefault")]
-    pub const Default: Self = Self(0);
     #[deprecated = "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction"]
+    pub const Default: Self = Self(0);
     #[doc(alias = "UIUserNotificationActionBehaviorTextInput")]
+    #[deprecated = "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction"]
     pub const TextInput: Self = Self(1);
 }
 
@@ -68,11 +68,11 @@ unsafe impl RefEncode for UIUserNotificationActionBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIUserNotificationActivationMode(pub NSUInteger);
 impl UIUserNotificationActivationMode {
-    #[deprecated = "Use UserNotifications Framework's UNNotificationActionOptions"]
     #[doc(alias = "UIUserNotificationActivationModeForeground")]
-    pub const Foreground: Self = Self(0);
     #[deprecated = "Use UserNotifications Framework's UNNotificationActionOptions"]
+    pub const Foreground: Self = Self(0);
     #[doc(alias = "UIUserNotificationActivationModeBackground")]
+    #[deprecated = "Use UserNotifications Framework's UNNotificationActionOptions"]
     pub const Background: Self = Self(1);
 }
 
@@ -91,11 +91,11 @@ unsafe impl RefEncode for UIUserNotificationActivationMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIUserNotificationActionContext(pub NSUInteger);
 impl UIUserNotificationActionContext {
-    #[deprecated = "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]"]
     #[doc(alias = "UIUserNotificationActionContextDefault")]
-    pub const Default: Self = Self(0);
     #[deprecated = "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]"]
+    pub const Default: Self = Self(0);
     #[doc(alias = "UIUserNotificationActionContextMinimal")]
+    #[deprecated = "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]"]
     pub const Minimal: Self = Self(1);
 }
 

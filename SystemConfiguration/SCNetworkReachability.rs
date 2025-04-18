@@ -204,10 +204,10 @@ impl SCNetworkReachability {
     /// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
     ///
     /// You must release the returned value.
+    #[doc(alias = "SCNetworkReachabilityCreateWithAddress")]
     #[cfg(feature = "libc")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SCNetworkReachabilityCreateWithAddress")]
     pub unsafe fn with_address(
         allocator: Option<&CFAllocator>,
         address: NonNull<libc::sockaddr>,
@@ -235,10 +235,10 @@ impl SCNetworkReachability {
     /// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
     ///
     /// You must release the returned value.
+    #[doc(alias = "SCNetworkReachabilityCreateWithAddressPair")]
     #[cfg(feature = "libc")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SCNetworkReachabilityCreateWithAddressPair")]
     pub unsafe fn with_address_pair(
         allocator: Option<&CFAllocator>,
         local_address: *const libc::sockaddr,
@@ -268,9 +268,9 @@ impl SCNetworkReachability {
     /// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
     ///
     /// You must release the returned value.
+    #[doc(alias = "SCNetworkReachabilityCreateWithName")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SCNetworkReachabilityCreateWithName")]
     pub unsafe fn with_name(
         allocator: Option<&CFAllocator>,
         nodename: NonNull<c_char>,
@@ -312,9 +312,9 @@ impl SCNetworkReachability {
     ///
     /// Returns: Returns TRUE if the network connection flags are valid;
     /// FALSE if the status could not be determined.
+    #[doc(alias = "SCNetworkReachabilityGetFlags")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SCNetworkReachabilityGetFlags")]
     pub unsafe fn flags(
         self: &SCNetworkReachability,
         flags: NonNull<SCNetworkReachabilityFlags>,
@@ -343,9 +343,9 @@ impl SCNetworkReachability {
     /// the callout.  The value may be NULL.
     ///
     /// Returns: Returns TRUE if the notification client was successfully set.
+    #[doc(alias = "SCNetworkReachabilitySetCallback")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SCNetworkReachabilitySetCallback")]
     pub unsafe fn set_callback(
         self: &SCNetworkReachability,
         callout: SCNetworkReachabilityCallBack,
@@ -375,9 +375,9 @@ impl SCNetworkReachability {
     ///
     /// Returns: Returns TRUE if the target is scheduled successfully;
     /// FALSE otherwise.
+    #[doc(alias = "SCNetworkReachabilityScheduleWithRunLoop")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SCNetworkReachabilityScheduleWithRunLoop")]
     pub fn schedule_with_run_loop(
         self: &SCNetworkReachability,
         run_loop: &CFRunLoop,
@@ -409,9 +409,9 @@ impl SCNetworkReachability {
     ///
     /// Returns: Returns TRUE if the target is unscheduled successfully;
     /// FALSE otherwise.
+    #[doc(alias = "SCNetworkReachabilityUnscheduleFromRunLoop")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SCNetworkReachabilityUnscheduleFromRunLoop")]
     pub fn unschedule_from_run_loop(
         self: &SCNetworkReachability,
         run_loop: &CFRunLoop,
@@ -440,10 +440,10 @@ impl SCNetworkReachability {
     ///
     /// Returns: Returns TRUE if the target is scheduled or unscheduled successfully;
     /// FALSE otherwise.
+    #[doc(alias = "SCNetworkReachabilitySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "SCNetworkReachabilitySetDispatchQueue")]
     pub unsafe fn set_dispatch_queue(
         self: &SCNetworkReachability,
         queue: Option<&DispatchQueue>,

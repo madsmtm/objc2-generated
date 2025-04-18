@@ -47,8 +47,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Returns: True if equal, and false otherwise.
-    #[inline]
     #[doc(alias = "sec_protocol_options_are_equal")]
+    #[inline]
     pub unsafe fn are_equal(
         options_a: sec_protocol_options_t,
         options_b: sec_protocol_options_t,
@@ -69,9 +69,9 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `identity`: A `sec_identity_t` instance carrying the private key and certificate.
+    #[doc(alias = "sec_protocol_options_set_local_identity")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
-    #[doc(alias = "sec_protocol_options_set_local_identity")]
     pub unsafe fn set_local_identity(options: sec_protocol_options_t, identity: sec_identity_t) {
         extern "C-unwind" {
             fn sec_protocol_options_set_local_identity(
@@ -89,9 +89,9 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `ciphersuite`: A `tls_ciphersuite_t` value.
+    #[doc(alias = "sec_protocol_options_append_tls_ciphersuite")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
-    #[doc(alias = "sec_protocol_options_append_tls_ciphersuite")]
     pub unsafe fn append_tls_ciphersuite(
         options: sec_protocol_options_t,
         ciphersuite: tls_ciphersuite_t,
@@ -112,10 +112,10 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `ciphersuite`: A SSLCipherSuite value.
+    #[doc(alias = "sec_protocol_options_add_tls_ciphersuite")]
     #[cfg(feature = "CipherSuite")]
     #[deprecated = "Use sec_protocol_options_append_tls_ciphersuite"]
     #[inline]
-    #[doc(alias = "sec_protocol_options_add_tls_ciphersuite")]
     pub unsafe fn add_tls_ciphersuite(
         options: sec_protocol_options_t,
         ciphersuite: SSLCipherSuite,
@@ -136,9 +136,9 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `group`: A tls_ciphersuite_group_t value.
+    #[doc(alias = "sec_protocol_options_append_tls_ciphersuite_group")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
-    #[doc(alias = "sec_protocol_options_append_tls_ciphersuite_group")]
     pub unsafe fn append_tls_ciphersuite_group(
         options: sec_protocol_options_t,
         group: tls_ciphersuite_group_t,
@@ -159,10 +159,10 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `group`: A SSLCipherSuiteGroup value.
+    #[doc(alias = "sec_protocol_options_add_tls_ciphersuite_group")]
     #[cfg(feature = "CipherSuite")]
     #[deprecated = "Use sec_protocol_options_append_tls_ciphersuite_group"]
     #[inline]
-    #[doc(alias = "sec_protocol_options_add_tls_ciphersuite_group")]
     pub unsafe fn add_tls_ciphersuite_group(
         options: sec_protocol_options_t,
         group: SSLCiphersuiteGroup,
@@ -183,10 +183,10 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `version`: A SSLProtocol enum value.
+    #[doc(alias = "sec_protocol_options_set_tls_min_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "sec_protocol_options_set_tls_min_version")]
     pub unsafe fn set_tls_min_version(options: sec_protocol_options_t, version: SSLProtocol) {
         extern "C-unwind" {
             fn sec_protocol_options_set_tls_min_version(
@@ -204,9 +204,9 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `version`: A tls_protocol_version_t enum value.
+    #[doc(alias = "sec_protocol_options_set_min_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
-    #[doc(alias = "sec_protocol_options_set_min_tls_protocol_version")]
     pub unsafe fn set_min_tls_protocol_version(
         options: sec_protocol_options_t,
         version: tls_protocol_version_t,
@@ -224,9 +224,9 @@ impl sec_protocol_options {
     ///
     ///
     /// Returns: The default minimum TLS version.
+    #[doc(alias = "sec_protocol_options_get_default_min_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
-    #[doc(alias = "sec_protocol_options_get_default_min_tls_protocol_version")]
     pub unsafe fn default_min_tls_protocol_version() -> tls_protocol_version_t {
         extern "C-unwind" {
             fn sec_protocol_options_get_default_min_tls_protocol_version() -> tls_protocol_version_t;
@@ -238,9 +238,9 @@ impl sec_protocol_options {
     ///
     ///
     /// Returns: The default minimum DTLS version.
+    #[doc(alias = "sec_protocol_options_get_default_min_dtls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
-    #[doc(alias = "sec_protocol_options_get_default_min_dtls_protocol_version")]
     pub unsafe fn default_min_dtls_protocol_version() -> tls_protocol_version_t {
         extern "C-unwind" {
             fn sec_protocol_options_get_default_min_dtls_protocol_version() -> tls_protocol_version_t;
@@ -255,10 +255,10 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `version`: A SSLProtocol enum value.
+    #[doc(alias = "sec_protocol_options_set_tls_max_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated]
     #[inline]
-    #[doc(alias = "sec_protocol_options_set_tls_max_version")]
     pub unsafe fn set_tls_max_version(options: sec_protocol_options_t, version: SSLProtocol) {
         extern "C-unwind" {
             fn sec_protocol_options_set_tls_max_version(
@@ -276,9 +276,9 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `version`: A tls_protocol_version_t enum value.
+    #[doc(alias = "sec_protocol_options_set_max_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
-    #[doc(alias = "sec_protocol_options_set_max_tls_protocol_version")]
     pub unsafe fn set_max_tls_protocol_version(
         options: sec_protocol_options_t,
         version: tls_protocol_version_t,
@@ -296,9 +296,9 @@ impl sec_protocol_options {
     ///
     ///
     /// Returns: The default maximum TLS version.
+    #[doc(alias = "sec_protocol_options_get_default_max_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
-    #[doc(alias = "sec_protocol_options_get_default_max_tls_protocol_version")]
     pub unsafe fn default_max_tls_protocol_version() -> tls_protocol_version_t {
         extern "C-unwind" {
             fn sec_protocol_options_get_default_max_tls_protocol_version() -> tls_protocol_version_t;
@@ -310,9 +310,9 @@ impl sec_protocol_options {
     ///
     ///
     /// Returns: The default maximum DTLS version.
+    #[doc(alias = "sec_protocol_options_get_default_max_dtls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
-    #[doc(alias = "sec_protocol_options_get_default_max_dtls_protocol_version")]
     pub unsafe fn default_max_dtls_protocol_version() -> tls_protocol_version_t {
         extern "C-unwind" {
             fn sec_protocol_options_get_default_max_dtls_protocol_version() -> tls_protocol_version_t;
@@ -324,8 +324,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Returns: A boolean that indicates whether or not Encrypted Client Hello has been enabled.
-    #[inline]
     #[doc(alias = "sec_protocol_options_get_enable_encrypted_client_hello")]
+    #[inline]
     pub unsafe fn enabled_encrypted_client_hello(options: sec_protocol_options_t) -> bool {
         extern "C-unwind" {
             fn sec_protocol_options_get_enable_encrypted_client_hello(
@@ -340,8 +340,8 @@ impl sec_protocol_options {
     ///
     /// Returns: A boolean that indicates whether or not the QUIC legacy codepoint has been
     /// enabled.
-    #[inline]
     #[doc(alias = "sec_protocol_options_get_quic_use_legacy_codepoint")]
+    #[inline]
     pub unsafe fn quic_use_legacy_codepoint(options: sec_protocol_options_t) -> bool {
         extern "C-unwind" {
             fn sec_protocol_options_get_quic_use_legacy_codepoint(
@@ -358,8 +358,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `application_protocol`: A NULL-terminated string defining the application protocol.
-    #[inline]
     #[doc(alias = "sec_protocol_options_add_tls_application_protocol")]
+    #[inline]
     pub unsafe fn add_tls_application_protocol(
         options: sec_protocol_options_t,
         application_protocol: NonNull<c_char>,
@@ -381,8 +381,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `server_name`: A NULL-terminated string carrying the server name.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_tls_server_name")]
+    #[inline]
     pub unsafe fn set_tls_server_name(
         options: sec_protocol_options_t,
         server_name: NonNull<c_char>,
@@ -403,8 +403,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `tickets_enabled`: Flag to enable or disable TLS session ticket support.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_tls_tickets_enabled")]
+    #[inline]
     pub unsafe fn set_tls_tickets_enabled(options: sec_protocol_options_t, tickets_enabled: bool) {
         extern "C-unwind" {
             fn sec_protocol_options_set_tls_tickets_enabled(
@@ -428,8 +428,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `is_fallback_attempt`: Set a flag indicating that this is a TLS fallback attempt.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_tls_is_fallback_attempt")]
+    #[inline]
     pub unsafe fn set_tls_is_fallback_attempt(
         options: sec_protocol_options_t,
         is_fallback_attempt: bool,
@@ -450,8 +450,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `resumption_enabled`: Flag to enable or disable TLS session resumption.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_tls_resumption_enabled")]
+    #[inline]
     pub unsafe fn set_tls_resumption_enabled(
         options: sec_protocol_options_t,
         resumption_enabled: bool,
@@ -472,8 +472,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `false_start_enabled`: Flag to enable or disable TLS False Start.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_tls_false_start_enabled")]
+    #[inline]
     pub unsafe fn set_tls_false_start_enabled(
         options: sec_protocol_options_t,
         false_start_enabled: bool,
@@ -494,8 +494,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `ocsp_enabled`: Flag to enable or disable OCSP support.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_tls_ocsp_enabled")]
+    #[inline]
     pub unsafe fn set_tls_ocsp_enabled(options: sec_protocol_options_t, ocsp_enabled: bool) {
         extern "C-unwind" {
             fn sec_protocol_options_set_tls_ocsp_enabled(
@@ -513,8 +513,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `sct_enabled`: Flag to enable or disable SCT support.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_tls_sct_enabled")]
+    #[inline]
     pub unsafe fn set_tls_sct_enabled(options: sec_protocol_options_t, sct_enabled: bool) {
         extern "C-unwind" {
             fn sec_protocol_options_set_tls_sct_enabled(
@@ -532,8 +532,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `renegotiation_enabled`: Flag to enable or disable TLS (1.2 and prior) session renegotiation.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_tls_renegotiation_enabled")]
+    #[inline]
     pub unsafe fn set_tls_renegotiation_enabled(
         options: sec_protocol_options_t,
         renegotiation_enabled: bool,
@@ -556,8 +556,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `peer_authentication_required`: Flag to enable or disable mandatory peer authentication.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_peer_authentication_required")]
+    #[inline]
     pub unsafe fn set_peer_authentication_required(
         options: sec_protocol_options_t,
         peer_authentication_required: bool,
@@ -587,8 +587,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `peer_authentication_optional`: Flag to enable or disable requested peer authentication.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_peer_authentication_optional")]
+    #[inline]
     pub unsafe fn set_peer_authentication_optional(
         options: sec_protocol_options_t,
         peer_authentication_optional: bool,
@@ -615,8 +615,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `peer_authentication_optional`: Flag to enable or disable Encrypted Client Hello.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_enable_encrypted_client_hello")]
+    #[inline]
     pub unsafe fn set_enable_encrypted_client_hello(
         options: sec_protocol_options_t,
         enable_encrypted_client_hello: bool,
@@ -642,8 +642,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Parameter `quic_use_legacy_codepoint`: A boolean to enable/disable the legacy codepoint.
-    #[inline]
     #[doc(alias = "sec_protocol_options_set_quic_use_legacy_codepoint")]
+    #[inline]
     pub unsafe fn set_quic_use_legacy_codepoint(
         options: sec_protocol_options_t,
         quic_use_legacy_codepoint: bool,

@@ -135,9 +135,9 @@ impl CMTagCollection {
     /// Parameter `newCollectionOut`: Address of a location to return the newly created CMTagCollectionRef.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
+    #[doc(alias = "CMTagCollectionCreate")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    #[doc(alias = "CMTagCollectionCreate")]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
         tags: *const CMTag,
@@ -167,8 +167,8 @@ impl CMTagCollection {
     /// Parameter `newMutableCollectionOut`: Address of a location to return the newly created CMMutabbleTagCollectionRef.  The client is responsible for releasing the returned CMMutableTagCollection.
     ///
     /// Returns: OSStatus with error, or noErr if successful.
-    #[inline]
     #[doc(alias = "CMTagCollectionCreateMutable")]
+    #[inline]
     pub unsafe fn create_mutable(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
@@ -195,8 +195,8 @@ impl CMTagCollection {
     /// Parameter `newCollectionCopyOut`: Address of a location to return the newly created CMTagCollectionRef.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    #[inline]
     #[doc(alias = "CMTagCollectionCreateCopy")]
+    #[inline]
     pub unsafe fn create_copy(
         self: &CMTagCollection,
         allocator: Option<&CFAllocator>,
@@ -223,8 +223,8 @@ impl CMTagCollection {
     /// Parameter `newMutableCollectionCopyOut`: Address of a location to return the newly created CMMutableTagCollectionRef.  The client is responsible for releasing the returned CMMutableTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    #[inline]
     #[doc(alias = "CMTagCollectionCreateMutableCopy")]
+    #[inline]
     pub unsafe fn create_mutable_copy(
         self: &CMTagCollection,
         allocator: Option<&CFAllocator>,
@@ -251,8 +251,8 @@ impl CMTagCollection {
     /// Parameter `tagCollection`: CMTagCollectionRef to describe.
     ///
     /// Returns: The created CFString description.
-    #[inline]
     #[doc(alias = "CMTagCollectionCopyDescription")]
+    #[inline]
     pub unsafe fn description(
         allocator: Option<&CFAllocator>,
         tag_collection: Option<&CMTagCollection>,
@@ -272,9 +272,9 @@ impl CMTagCollection {
     /// Parameter `tagCollection`: CMTagCollectionRef to evaluate for the tag count.
     ///
     /// Returns: CMItemCount holding the count.
+    #[doc(alias = "CMTagCollectionGetCount")]
     #[cfg(feature = "CMBase")]
     #[inline]
-    #[doc(alias = "CMTagCollectionGetCount")]
     pub unsafe fn count(self: &CMTagCollection) -> CMItemCount {
         extern "C-unwind" {
             fn CMTagCollectionGetCount(tag_collection: &CMTagCollection) -> CMItemCount;
@@ -289,9 +289,9 @@ impl CMTagCollection {
     /// Parameter `tag`: CMTag to find.
     ///
     /// Returns: Returns true if the indicated CMTag is contained within the CMTagCollection, false otherwise.
+    #[doc(alias = "CMTagCollectionContainsTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    #[doc(alias = "CMTagCollectionContainsTag")]
     pub unsafe fn contains_tag(self: &CMTagCollection, tag: CMTag) -> bool {
         extern "C-unwind" {
             fn CMTagCollectionContainsTag(tag_collection: &CMTagCollection, tag: CMTag) -> Boolean;
@@ -309,8 +309,8 @@ impl CMTagCollection {
     /// Parameter `containedTagCollection`: CMTagCollectionRef whose contents should be checked for containment in tagCollection.
     ///
     /// Returns: Returns true if all CMTags in a collection are contained within the specified CMTagCollection, false otherwise.
-    #[inline]
     #[doc(alias = "CMTagCollectionContainsTagsOfCollection")]
+    #[inline]
     pub unsafe fn contains_tags_of_collection(
         self: &CMTagCollection,
         contained_tag_collection: &CMTagCollection,
@@ -337,9 +337,9 @@ impl CMTagCollection {
     /// Parameter `containedTagCount`: The number of CMTag elements in the buffer containedTags. Zero is allowed but will report true.
     ///
     /// Returns: Returns true if all CMTags in a buffer of CMTags are contained within the CMTagCollection, false otherwise.
+    #[doc(alias = "CMTagCollectionContainsSpecifiedTags")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    #[doc(alias = "CMTagCollectionContainsSpecifiedTags")]
     pub unsafe fn contains_specified_tags(
         self: &CMTagCollection,
         contained_tags: NonNull<CMTag>,
@@ -365,9 +365,9 @@ impl CMTagCollection {
     /// Parameter `category`: CMTagCategory whose value should be checked for containment in tagCollection.
     ///
     /// Returns: Returns true if tagCollection contains at least one CMTag with the specified category, false otherwise.
+    #[doc(alias = "CMTagCollectionContainsCategory")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    #[doc(alias = "CMTagCollectionContainsCategory")]
     pub unsafe fn contains_category(self: &CMTagCollection, category: CMTagCategory) -> bool {
         extern "C-unwind" {
             fn CMTagCollectionContainsCategory(
@@ -388,9 +388,9 @@ impl CMTagCollection {
     /// Parameter `category`: CMTagCategory to check for.
     ///
     /// Returns: Returns the count of tags having the specified category.
+    #[doc(alias = "CMTagCollectionGetCountOfCategory")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    #[doc(alias = "CMTagCollectionGetCountOfCategory")]
     pub unsafe fn count_of_category(
         self: &CMTagCollection,
         category: CMTagCategory,
@@ -417,9 +417,9 @@ impl CMTagCollection {
     /// Parameter `numberOfTagsCopied`: The address of a CMItemCount that is filled with the number of tags retrieved, may be NULL.
     ///
     /// Returns: OSStatus with an error or noErr if successful.
+    #[doc(alias = "CMTagCollectionGetTags")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    #[doc(alias = "CMTagCollectionGetTags")]
     pub unsafe fn tags(
         self: &CMTagCollection,
         tag_buffer: NonNull<CMTag>,
@@ -452,9 +452,9 @@ impl CMTagCollection {
     /// Parameter `numberOfTagsCopied`: The address of a CMItemCount that is filled with the number of tags retrieved, may be NULL.
     ///
     /// Returns: OSStatus with an error or noErr if successful.
+    #[doc(alias = "CMTagCollectionGetTagsWithCategory")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    #[doc(alias = "CMTagCollectionGetTagsWithCategory")]
     pub unsafe fn tags_with_category(
         self: &CMTagCollection,
         category: CMTagCategory,
@@ -493,9 +493,9 @@ impl CMTagCollection {
     /// Parameter `context`: A void * or NULL to pass to applier.
     ///
     /// Returns: CMItemCount indicating the number of CMTags satisfying 'filterApplier'.
+    #[doc(alias = "CMTagCollectionCountTagsWithFilterFunction")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    #[doc(alias = "CMTagCollectionCountTagsWithFilterFunction")]
     pub unsafe fn count_tags_with_filter_function(
         self: &CMTagCollection,
         filter_applier: CMTagCollectionTagFilterFunction,
@@ -528,9 +528,9 @@ impl CMTagCollection {
     /// Parameter `context`: A void * or NULL to pass to filter.
     ///
     /// Returns: OSStatus with an error or noErr if successful.
+    #[doc(alias = "CMTagCollectionGetTagsWithFilterFunction")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    #[doc(alias = "CMTagCollectionGetTagsWithFilterFunction")]
     pub unsafe fn tags_with_filter_function(
         self: &CMTagCollection,
         tag_buffer: NonNull<CMTag>,
@@ -576,9 +576,9 @@ impl CMTagCollection {
     /// Parameter `collectionWithTagsOfCategories`: The address of a CMTagCollectionRef that contains all tags copied from 'tagCollection'.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    #[doc(alias = "CMTagCollectionCopyTagsOfCategories")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    #[doc(alias = "CMTagCollectionCopyTagsOfCategories")]
     pub unsafe fn copy_tags_of_categories(
         allocator: Option<&CFAllocator>,
         tag_collection: &CMTagCollection,
@@ -615,9 +615,9 @@ impl CMTagCollection {
     /// Parameter `applier`: The CMTagCollectionApplierFunction callback to call with each tag.
     ///
     /// Parameter `context`: A void * or NULL to pass to applier.
+    #[doc(alias = "CMTagCollectionApply")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    #[doc(alias = "CMTagCollectionApply")]
     pub unsafe fn apply(
         self: &CMTagCollection,
         applier: CMTagCollectionApplierFunction,
@@ -644,9 +644,9 @@ impl CMTagCollection {
     /// Parameter `context`: A void * or NULL to pass to applier.
     ///
     /// Returns: CMTag having the value of the first tag the callback returned true for or kCMTagInvalid if none was found.
+    #[doc(alias = "CMTagCollectionApplyUntil")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    #[doc(alias = "CMTagCollectionApplyUntil")]
     pub unsafe fn apply_until(
         self: &CMTagCollection,
         applier: CMTagCollectionTagFilterFunction,
@@ -669,8 +669,8 @@ impl CMTagCollection {
     /// Parameter `tagCollection`: CMTagCollectionRef to iterate.
     ///
     /// Returns: True if there are no tags, false otherwise.
-    #[inline]
     #[doc(alias = "CMTagCollectionIsEmpty")]
+    #[inline]
     pub unsafe fn is_empty(self: &CMTagCollection) -> bool {
         extern "C-unwind" {
             fn CMTagCollectionIsEmpty(tag_collection: &CMTagCollection) -> Boolean;
@@ -690,8 +690,8 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains all tags that are common to 'tagCollection1' and 'tagCollection2'.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    #[inline]
     #[doc(alias = "CMTagCollectionCreateIntersection")]
+    #[inline]
     pub unsafe fn create_intersection(
         tag_collection1: Option<&CMTagCollection>,
         tag_collection2: Option<&CMTagCollection>,
@@ -720,8 +720,8 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains all tags that are common to 'tagCollection1' and 'tagCollection2'.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    #[inline]
     #[doc(alias = "CMTagCollectionCreateUnion")]
+    #[inline]
     pub unsafe fn create_union(
         tag_collection1: Option<&CMTagCollection>,
         tag_collection2: Option<&CMTagCollection>,
@@ -748,8 +748,8 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains tags from a first tag collection without tags found in a second tag collection.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    #[inline]
     #[doc(alias = "CMTagCollectionCreateDifference")]
+    #[inline]
     pub unsafe fn create_difference(
         tag_collection_minuend: Option<&CMTagCollection>,
         tag_collection_subtrahend: Option<&CMTagCollection>,
@@ -782,8 +782,8 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains the xor of the tags from the two tag collections.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    #[inline]
     #[doc(alias = "CMTagCollectionCreateExclusiveOr")]
+    #[inline]
     pub unsafe fn create_exclusive_or(
         tag_collection1: Option<&CMTagCollection>,
         tag_collection2: Option<&CMTagCollection>,
@@ -812,9 +812,9 @@ impl CMMutableTagCollection {
     /// Parameter `tagToAdd`: A CMTag to add to the tag collection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.  Returns noErr if the tag was already in the collection.
+    #[doc(alias = "CMTagCollectionAddTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    #[doc(alias = "CMTagCollectionAddTag")]
     pub unsafe fn add_tag(self: &CMMutableTagCollection, tag_to_add: CMTag) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionAddTag(
@@ -834,9 +834,9 @@ impl CMMutableTagCollection {
     /// Parameter `tagToRemove`: A CMTag to match to the tag collection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    #[doc(alias = "CMTagCollectionRemoveTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    #[doc(alias = "CMTagCollectionRemoveTag")]
     pub unsafe fn remove_tag(self: &CMMutableTagCollection, tag_to_remove: CMTag) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionRemoveTag(
@@ -854,8 +854,8 @@ impl CMMutableTagCollection {
     /// Parameter `tagCollection`: CMMutableTagCollectionRef from which to remove all tags.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    #[inline]
     #[doc(alias = "CMTagCollectionRemoveAllTags")]
+    #[inline]
     pub unsafe fn remove_all_tags(self: &CMMutableTagCollection) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionRemoveAllTags(tag_collection: &CMMutableTagCollection) -> OSStatus;
@@ -872,9 +872,9 @@ impl CMMutableTagCollection {
     /// Parameter `category`: CMTagCategory to match.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    #[doc(alias = "CMTagCollectionRemoveAllTagsOfCategory")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    #[doc(alias = "CMTagCollectionRemoveAllTagsOfCategory")]
     pub unsafe fn remove_all_tags_of_category(
         self: &CMMutableTagCollection,
         category: CMTagCategory,
@@ -895,8 +895,8 @@ impl CMMutableTagCollection {
     /// Parameter `collectionWithTagsToAdd`: CMTagCollectionRef from which to copy all tags.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    #[inline]
     #[doc(alias = "CMTagCollectionAddTagsFromCollection")]
+    #[inline]
     pub unsafe fn add_tags_from_collection(
         self: &CMMutableTagCollection,
         collection_with_tags_to_add: &CMTagCollection,
@@ -919,9 +919,9 @@ impl CMMutableTagCollection {
     /// Parameter `tagCount`: CMItemCount of the number of tags in 'tags' array.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    #[doc(alias = "CMTagCollectionAddTagsFromArray")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    #[doc(alias = "CMTagCollectionAddTagsFromArray")]
     pub unsafe fn add_tags_from_array(
         self: &CMMutableTagCollection,
         tags: NonNull<CMTag>,
@@ -948,8 +948,8 @@ impl CMTagCollection {
     /// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
     ///
     /// Returns: A CFDictionaryRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFDictionary.
-    #[inline]
     #[doc(alias = "CMTagCollectionCopyAsDictionary")]
+    #[inline]
     pub unsafe fn as_dictionary(
         self: &CMTagCollection,
         allocator: Option<&CFAllocator>,
@@ -975,8 +975,8 @@ impl CMTagCollection {
     /// Parameter `newCollectionOut`: Address of an CMTagCollectionRef to return the newly created tag collection.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    #[inline]
     #[doc(alias = "CMTagCollectionCreateFromDictionary")]
+    #[inline]
     pub unsafe fn create_from_dictionary(
         dict: &CFDictionary,
         allocator: Option<&CFAllocator>,
@@ -1001,8 +1001,8 @@ impl CMTagCollection {
     /// Parameter `allocator`: CFAllocator with which to create a CFData. Pass kCFAllocatorDefault to use the default allocator.
     ///
     /// Returns: A CFDataRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFData.
-    #[inline]
     #[doc(alias = "CMTagCollectionCopyAsData")]
+    #[inline]
     pub unsafe fn as_data(
         self: &CMTagCollection,
         allocator: Option<&CFAllocator>,
@@ -1029,8 +1029,8 @@ impl CMTagCollection {
     /// Parameter `newCollectionOut`: Address of an CMTagCollectionRef to return the newly created tag collection.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    #[inline]
     #[doc(alias = "CMTagCollectionCreateFromData")]
+    #[inline]
     pub unsafe fn create_from_data(
         data: &CFData,
         allocator: Option<&CFAllocator>,

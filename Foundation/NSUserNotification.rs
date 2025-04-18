@@ -13,14 +13,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSUserNotificationActivationType(pub NSInteger);
 impl NSUserNotificationActivationType {
-    #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     #[doc(alias = "NSUserNotificationActivationTypeNone")]
+    #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub const None: Self = Self(0);
-    #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     #[doc(alias = "NSUserNotificationActivationTypeContentsClicked")]
-    pub const ContentsClicked: Self = Self(1);
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
+    pub const ContentsClicked: Self = Self(1);
     #[doc(alias = "NSUserNotificationActivationTypeActionButtonClicked")]
+    #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub const ActionButtonClicked: Self = Self(2);
     #[doc(alias = "NSUserNotificationActivationTypeReplied")]
     pub const Replied: Self = Self(3);

@@ -215,9 +215,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementCopyAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementCopyAttributeNames")]
     pub unsafe fn copy_attribute_names(
         self: &AXUIElement,
         names: NonNull<*const CFArray>,
@@ -296,9 +296,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementCopyAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementCopyAttributeValue")]
     pub unsafe fn copy_attribute_value(
         self: &AXUIElement,
         attribute: &CFString,
@@ -371,9 +371,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementGetAttributeValueCount")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementGetAttributeValueCount")]
     pub unsafe fn attribute_value_count(
         self: &AXUIElement,
         attribute: &CFString,
@@ -472,9 +472,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementCopyAttributeValues")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementCopyAttributeValues")]
     pub unsafe fn copy_attribute_values(
         self: &AXUIElement,
         attribute: &CFString,
@@ -565,9 +565,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementIsAttributeSettable")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementIsAttributeSettable")]
     pub unsafe fn is_attribute_settable(
         self: &AXUIElement,
         attribute: &CFString,
@@ -643,9 +643,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementSetAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementSetAttributeValue")]
     pub unsafe fn set_attribute_value(
         self: &AXUIElement,
         attribute: &CFString,
@@ -749,9 +749,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementCopyMultipleAttributeValues")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementCopyMultipleAttributeValues")]
     pub unsafe fn copy_multiple_attribute_values(
         self: &AXUIElement,
         attributes: &CFArray,
@@ -836,9 +836,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementCopyParameterizedAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementCopyParameterizedAttributeNames")]
     pub unsafe fn copy_parameterized_attribute_names(
         self: &AXUIElement,
         names: NonNull<*const CFArray>,
@@ -923,9 +923,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementCopyParameterizedAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementCopyParameterizedAttributeValue")]
     pub unsafe fn copy_parameterized_attribute_value(
         self: &AXUIElement,
         parameterized_attribute: &CFString,
@@ -1004,9 +1004,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementCopyActionNames")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementCopyActionNames")]
     pub unsafe fn copy_action_names(self: &AXUIElement, names: NonNull<*const CFArray>) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyActionNames(
@@ -1074,9 +1074,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementCopyActionDescription")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementCopyActionDescription")]
     pub unsafe fn copy_action_description(
         self: &AXUIElement,
         action: &CFString,
@@ -1161,9 +1161,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementPerformAction")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementPerformAction")]
     pub unsafe fn perform_action(self: &AXUIElement, action: &CFString) -> AXError {
         extern "C-unwind" {
             fn AXUIElementPerformAction(element: &AXUIElement, action: &CFString) -> AXError;
@@ -1239,9 +1239,9 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementCopyElementAtPosition")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementCopyElementAtPosition")]
     pub unsafe fn copy_element_at_position(
         self: &AXUIElement,
         x: c_float,
@@ -1265,9 +1265,9 @@ impl AXUIElement {
     /// Parameter `pid`: The process ID of an application.
     ///
     /// Returns: The AXUIElementRef representing the top-level accessibility object for the application with the specified process ID.
+    #[doc(alias = "AXUIElementCreateApplication")]
     #[cfg(feature = "libc")]
     #[inline]
-    #[doc(alias = "AXUIElementCreateApplication")]
     pub unsafe fn new_application(pid: libc::pid_t) -> CFRetained<AXUIElement> {
         extern "C-unwind" {
             fn AXUIElementCreateApplication(pid: libc::pid_t) -> Option<NonNull<AXUIElement>>;
@@ -1284,8 +1284,8 @@ impl AXUIElement {
     ///
     ///
     /// Returns: The AXUIElementRef representing the system-wide accessibility object.
-    #[inline]
     #[doc(alias = "AXUIElementCreateSystemWide")]
+    #[inline]
     pub unsafe fn new_system_wide() -> CFRetained<AXUIElement> {
         extern "C-unwind" {
             fn AXUIElementCreateSystemWide() -> Option<NonNull<AXUIElement>>;
@@ -1327,9 +1327,9 @@ impl AXUIElement {
     /// The AXUIElementRef is invalid.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementGetPid")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
-    #[doc(alias = "AXUIElementGetPid")]
     pub unsafe fn pid(self: &AXUIElement, pid: NonNull<libc::pid_t>) -> AXError {
         extern "C-unwind" {
             fn AXUIElementGetPid(element: &AXUIElement, pid: NonNull<libc::pid_t>) -> AXError;
@@ -1387,9 +1387,9 @@ impl AXUIElement {
     /// The AXUIElementRef is invalid.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementSetMessagingTimeout")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXUIElementSetMessagingTimeout")]
     pub unsafe fn set_messaging_timeout(
         self: &AXUIElement,
         timeout_in_seconds: c_float,
@@ -1475,10 +1475,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXUIElementPostKeyboardEvent")]
     #[cfg(all(feature = "AXError", feature = "objc2-core-graphics"))]
     #[deprecated]
     #[inline]
-    #[doc(alias = "AXUIElementPostKeyboardEvent")]
     pub unsafe fn post_keyboard_event(
         self: &AXUIElement,
         key_char: CGCharCode,
@@ -1548,8 +1548,8 @@ impl AXTextMarker {
     /// Parameter `bytes`: The data used to identify this location in text
     ///
     /// Parameter `length`: The length of the data
-    #[inline]
     #[doc(alias = "AXTextMarkerCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         bytes: NonNull<u8>,
@@ -1575,8 +1575,8 @@ impl AXTextMarker {
     ///
     ///
     /// Returns: The length of the data
-    #[inline]
     #[doc(alias = "AXTextMarkerGetLength")]
+    #[inline]
     pub unsafe fn length(self: &AXTextMarker) -> CFIndex {
         extern "C-unwind" {
             fn AXTextMarkerGetLength(marker: &AXTextMarker) -> CFIndex;
@@ -1591,8 +1591,8 @@ impl AXTextMarker {
     ///
     ///
     /// Returns: a pointer to the byte data used to identify this location in text.
-    #[inline]
     #[doc(alias = "AXTextMarkerGetBytePtr")]
+    #[inline]
     pub unsafe fn byte_ptr(self: &AXTextMarker) -> NonNull<u8> {
         extern "C-unwind" {
             fn AXTextMarkerGetBytePtr(the_text_marker: &AXTextMarker) -> Option<NonNull<u8>>;
@@ -1656,8 +1656,8 @@ impl AXTextMarkerRange {
     ///
     ///
     /// Returns: The text marker range object
-    #[inline]
     #[doc(alias = "AXTextMarkerRangeCreate")]
+    #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         start_marker: &AXTextMarker,
@@ -1689,8 +1689,8 @@ impl AXTextMarkerRange {
     ///
     ///
     /// Returns: The text marker range object
-    #[inline]
     #[doc(alias = "AXTextMarkerRangeCreateWithBytes")]
+    #[inline]
     pub unsafe fn with_bytes(
         allocator: Option<&CFAllocator>,
         start_marker_bytes: NonNull<u8>,
@@ -1728,8 +1728,8 @@ impl AXTextMarkerRange {
     ///
     ///
     /// Returns: The start text marker object
-    #[inline]
     #[doc(alias = "AXTextMarkerRangeCopyStartMarker")]
+    #[inline]
     pub unsafe fn start_marker(self: &AXTextMarkerRange) -> CFRetained<AXTextMarker> {
         extern "C-unwind" {
             fn AXTextMarkerRangeCopyStartMarker(
@@ -1749,8 +1749,8 @@ impl AXTextMarkerRange {
     ///
     ///
     /// Returns: The end text marker object
-    #[inline]
     #[doc(alias = "AXTextMarkerRangeCopyEndMarker")]
+    #[inline]
     pub unsafe fn end_marker(self: &AXTextMarkerRange) -> CFRetained<AXTextMarker> {
         extern "C-unwind" {
             fn AXTextMarkerRangeCopyEndMarker(
@@ -1889,9 +1889,9 @@ impl AXObserver {
     /// There is some sort of system memory failure.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXObserverCreate")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
-    #[doc(alias = "AXObserverCreate")]
     pub unsafe fn create(
         application: libc::pid_t,
         callback: AXObserverCallback,
@@ -1948,9 +1948,9 @@ impl AXObserver {
     /// There is some sort of system memory failure.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXObserverCreateWithInfoCallback")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
-    #[doc(alias = "AXObserverCreateWithInfoCallback")]
     pub unsafe fn create_with_info_callback(
         application: libc::pid_t,
         callback: AXObserverCallbackWithInfo,
@@ -2039,9 +2039,9 @@ impl AXObserver {
     /// There is some sort of system memory failure.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXObserverAddNotification")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXObserverAddNotification")]
     pub unsafe fn add_notification(
         self: &AXObserver,
         element: &AXUIElement,
@@ -2130,9 +2130,9 @@ impl AXObserver {
     /// There is some sort of system memory failure.
     /// </dd>
     /// </dl>
+    #[doc(alias = "AXObserverRemoveNotification")]
     #[cfg(feature = "AXError")]
     #[inline]
-    #[doc(alias = "AXObserverRemoveNotification")]
     pub unsafe fn remove_notification(
         self: &AXObserver,
         element: &AXUIElement,
@@ -2182,8 +2182,8 @@ impl AXObserver {
     /// observer
     /// </code>
     /// .
-    #[inline]
     #[doc(alias = "AXObserverGetRunLoopSource")]
+    #[inline]
     pub unsafe fn run_loop_source(self: &AXObserver) -> CFRetained<CFRunLoopSource> {
         extern "C-unwind" {
             fn AXObserverGetRunLoopSource(

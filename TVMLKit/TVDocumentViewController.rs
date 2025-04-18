@@ -21,11 +21,11 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVDocumentError(pub NSInteger);
 impl TVDocumentError {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVDocumentErrorFailed")]
-    pub const Failed: Self = Self(0);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const Failed: Self = Self(0);
     #[doc(alias = "TVDocumentErrorCancelled")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Cancelled: Self = Self(1);
 }
 

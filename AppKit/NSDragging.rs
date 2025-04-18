@@ -30,11 +30,11 @@ bitflags::bitflags! {
         const Delete = 32;
         #[doc(alias = "NSDragOperationEvery")]
         const Every = NSUIntegerMax as _;
-#[deprecated]
         #[doc(alias = "NSDragOperationAll_Obsolete")]
-        const All_Obsolete = 15;
 #[deprecated]
+        const All_Obsolete = 15;
         #[doc(alias = "NSDragOperationAll")]
+#[deprecated]
         const All = NSDragOperation::All_Obsolete.0;
     }
 }

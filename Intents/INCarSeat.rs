@@ -11,44 +11,44 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INCarSeat(pub NSInteger);
 impl INCarSeat {
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatUnknown")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatDriver")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const Driver: Self = Self(1);
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatPassenger")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const Passenger: Self = Self(2);
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatFrontLeft")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const FrontLeft: Self = Self(3);
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatFrontRight")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const FrontRight: Self = Self(4);
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatFront")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const Front: Self = Self(5);
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatRearLeft")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const RearLeft: Self = Self(6);
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatRearRight")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const RearRight: Self = Self(7);
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatRear")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const Rear: Self = Self(8);
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatThirdRowLeft")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const ThirdRowLeft: Self = Self(9);
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatThirdRowRight")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const ThirdRowRight: Self = Self(10);
-    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     #[doc(alias = "INCarSeatThirdRow")]
-    pub const ThirdRow: Self = Self(11);
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
+    pub const ThirdRow: Self = Self(11);
     #[doc(alias = "INCarSeatAll")]
+    #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const All: Self = Self(12);
 }
 

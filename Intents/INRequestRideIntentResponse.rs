@@ -17,8 +17,8 @@ impl INRequestRideIntentResponseCode {
     pub const Unspecified: Self = Self(0);
     #[doc(alias = "INRequestRideIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    #[deprecated = "INRequestRideIntentResponseCodeInProgress is deprecated."]
     #[doc(alias = "INRequestRideIntentResponseCodeInProgress")]
+    #[deprecated = "INRequestRideIntentResponseCodeInProgress is deprecated."]
     pub const InProgress: Self = Self(2);
     #[doc(alias = "INRequestRideIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);

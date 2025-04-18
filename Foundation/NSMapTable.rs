@@ -345,9 +345,9 @@ extern "C-unwind" {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    #[doc(alias = "NSStringFromMapTable")]
     #[cfg(feature = "NSString")]
     #[inline]
-    #[doc(alias = "NSStringFromMapTable")]
     pub unsafe fn from_map_table(table: &NSMapTable) -> Retained<NSString> {
         extern "C-unwind" {
             fn NSStringFromMapTable(table: &NSMapTable) -> *mut NSString;

@@ -33,9 +33,9 @@ impl SecCode {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    #[doc(alias = "SecCodeCopySelf")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecCodeCopySelf")]
     pub unsafe fn copy_self(flags: SecCSFlags, self_: NonNull<*mut SecCode>) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeCopySelf(flags: SecCSFlags, self_: NonNull<*mut SecCode>) -> OSStatus;
@@ -49,9 +49,9 @@ pub const kSecCSUseAllArchitectures: u32 = 1;
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
+    #[doc(alias = "SecCodeCopyStaticCode")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecCodeCopyStaticCode")]
     pub unsafe fn copy_static_code(
         self: &SecCode,
         flags: SecCSFlags,
@@ -83,9 +83,9 @@ impl SecCode {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    #[doc(alias = "SecCodeCopyHost")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecCodeCopyHost")]
     pub unsafe fn copy_host(
         self: &SecCode,
         flags: SecCSFlags,
@@ -205,9 +205,9 @@ impl SecCode {
     /// signature.)
     /// errSecCSMultipleGuests The attributes specified do not uniquely identify
     /// a guest (the specification is ambiguous).
+    #[doc(alias = "SecCodeCopyGuestWithAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecCodeCopyGuestWithAttributes")]
     pub unsafe fn copy_guest_with_attributes(
         host: Option<&SecCode>,
         attributes: Option<&CFDictionary>,
@@ -247,9 +247,9 @@ impl SecCode {
     ///
     /// Returns: If validation passes, errSecSuccess. If validation fails, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
+    #[doc(alias = "SecCodeCheckValidity")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecCodeCheckValidity")]
     pub unsafe fn check_validity(
         self: &SecCode,
         flags: SecCSFlags,
@@ -292,9 +292,9 @@ impl SecCode {
     ///
     /// Returns: If validation passes, errSecSuccess. If validation fails, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
+    #[doc(alias = "SecCodeCheckValidityWithErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecCodeCheckValidityWithErrors")]
     pub unsafe fn check_validity_with_errors(
         self: &SecCode,
         flags: SecCSFlags,
@@ -330,9 +330,9 @@ impl SecCode {
     /// Returns: noErr if fileData is the exact content of the file at relativePath at the
     /// time it was signed. Various error codes if it is different, there was no such file,
     /// it was not a plain file, or anything is irregular.
+    #[doc(alias = "SecCodeValidateFileResource")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecCodeValidateFileResource")]
     pub unsafe fn validate_file_resource(
         code: &SecStaticCode,
         relative_path: &CFString,
@@ -365,9 +365,9 @@ impl SecCode {
     ///
     /// Returns: On success, errSecSuccess. On error, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
+    #[doc(alias = "SecCodeCopyPath")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecCodeCopyPath")]
     pub unsafe fn copy_path(
         static_code: &SecStaticCode,
         flags: SecCSFlags,
@@ -405,9 +405,9 @@ impl SecCode {
     ///
     /// Returns: On success, errSecSuccess. On error, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
+    #[doc(alias = "SecCodeCopyDesignatedRequirement")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecCodeCopyDesignatedRequirement")]
     pub unsafe fn copy_designated_requirement(
         code: &SecStaticCode,
         flags: SecCSFlags,
@@ -581,9 +581,9 @@ extern "C" {
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
+    #[doc(alias = "SecCodeCopySigningInformation")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecCodeCopySigningInformation")]
     pub unsafe fn copy_signing_information(
         code: &SecStaticCode,
         flags: SecCSFlags,
@@ -599,9 +599,9 @@ impl SecCode {
         unsafe { SecCodeCopySigningInformation(code, flags, information) }
     }
 
+    #[doc(alias = "SecCodeMapMemory")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    #[doc(alias = "SecCodeMapMemory")]
     pub unsafe fn map_memory(code: &SecStaticCode, flags: SecCSFlags) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeMapMemory(code: &SecStaticCode, flags: SecCSFlags) -> OSStatus;

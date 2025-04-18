@@ -96,9 +96,9 @@ unsafe impl ConcreteType for CGPattern {
 }
 
 impl CGPattern {
+    #[doc(alias = "CGPatternCreate")]
     #[cfg(feature = "CGContext")]
     #[inline]
-    #[doc(alias = "CGPatternCreate")]
     pub unsafe fn new(
         info: *mut c_void,
         bounds: CGRect,

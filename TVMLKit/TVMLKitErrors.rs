@@ -18,17 +18,17 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVMLKitError(pub NSInteger);
 impl TVMLKitError {
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVMLKitErrorUnknown")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Unknown: Self = Self(1);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVMLKitErrorInternetUnavailable")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const InternetUnavailable: Self = Self(2);
-    #[deprecated = "Please use SwiftUI or UIKit"]
     #[doc(alias = "TVMLKitErrorFailedToLaunch")]
-    pub const FailedToLaunch: Self = Self(3);
     #[deprecated = "Please use SwiftUI or UIKit"]
+    pub const FailedToLaunch: Self = Self(3);
     #[doc(alias = "TVMLKitErrorLast")]
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Last: Self = Self(4);
 }
 
