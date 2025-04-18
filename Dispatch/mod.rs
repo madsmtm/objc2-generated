@@ -27,28 +27,32 @@ use crate::ffi::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_api_version?language=objc)
 pub const DISPATCH_API_VERSION: c_uint = 20181008;
-extern "C" {
-    /// Create a dispatch_time_t relative to the current value of the default or
-    /// wall time clock, or modify an existing dispatch_time_t.
-    ///
-    ///
-    /// On Apple platforms, the default clock is based on mach_absolute_time().
-    ///
-    ///
-    /// Parameter `when`: An optional dispatch_time_t to add nanoseconds to. If DISPATCH_TIME_NOW is
-    /// passed, then dispatch_time() will use the default clock (which is based on
-    /// mach_absolute_time() on Apple platforms). If DISPATCH_WALLTIME_NOW is used,
-    /// dispatch_time() will use the value returned by gettimeofday(3).
-    /// dispatch_time(DISPATCH_WALLTIME_NOW, delta) is equivalent to
-    /// dispatch_walltime(NULL, delta).
-    ///
-    ///
-    /// Parameter `delta`: Nanoseconds to add.
-    ///
-    ///
-    /// Returns: A new dispatch_time_t.
-    #[must_use]
-    pub fn dispatch_time(when: dispatch_time_t, delta: i64) -> dispatch_time_t;
+/// Create a dispatch_time_t relative to the current value of the default or
+/// wall time clock, or modify an existing dispatch_time_t.
+///
+///
+/// On Apple platforms, the default clock is based on mach_absolute_time().
+///
+///
+/// Parameter `when`: An optional dispatch_time_t to add nanoseconds to. If DISPATCH_TIME_NOW is
+/// passed, then dispatch_time() will use the default clock (which is based on
+/// mach_absolute_time() on Apple platforms). If DISPATCH_WALLTIME_NOW is used,
+/// dispatch_time() will use the value returned by gettimeofday(3).
+/// dispatch_time(DISPATCH_WALLTIME_NOW, delta) is equivalent to
+/// dispatch_walltime(NULL, delta).
+///
+///
+/// Parameter `delta`: Nanoseconds to add.
+///
+///
+/// Returns: A new dispatch_time_t.
+#[must_use]
+#[inline]
+pub extern "C" fn dispatch_time(when: dispatch_time_t, delta: i64) -> dispatch_time_t {
+    extern "C" {
+        fn dispatch_time(when: dispatch_time_t, delta: i64) -> dispatch_time_t;
+    }
+    unsafe { dispatch_time(when, delta) }
 }
 
 extern "C" {
@@ -146,16 +150,20 @@ extern "C" {
     pub fn dispatch_release(object: NonNull<dispatch_object_s>);
 }
 
-extern "C" {
-    /// Returns the application defined context of the object.
-    ///
-    ///
-    /// Parameter `object`: The result of passing NULL in this parameter is undefined.
-    ///
-    ///
-    /// Returns: The context of the object; may be NULL.
-    #[must_use]
-    pub fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *mut c_void;
+/// Returns the application defined context of the object.
+///
+///
+/// Parameter `object`: The result of passing NULL in this parameter is undefined.
+///
+///
+/// Returns: The context of the object; may be NULL.
+#[must_use]
+#[inline]
+pub extern "C" fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *mut c_void {
+    extern "C" {
+        fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *mut c_void;
+    }
+    unsafe { dispatch_get_context(object) }
 }
 
 extern "C" {
@@ -192,65 +200,77 @@ extern "C" {
     );
 }
 
-extern "C" {
-    /// Activates the specified dispatch object.
-    ///
-    ///
-    /// Dispatch objects such as queues and sources may be created in an inactive
-    /// state. Objects in this state have to be activated before any blocks
-    /// associated with them will be invoked.
-    ///
-    /// The target queue of inactive objects can be changed using
-    /// dispatch_set_target_queue(). Change of target queue is no longer permitted
-    /// once an initially inactive object has been activated.
-    ///
-    /// Calling dispatch_activate() on an active object has no effect.
-    /// Releasing the last reference count on an inactive object is undefined.
-    ///
-    ///
-    /// Parameter `object`: The object to be activated.
-    /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_activate(object: NonNull<dispatch_object_s>);
+/// Activates the specified dispatch object.
+///
+///
+/// Dispatch objects such as queues and sources may be created in an inactive
+/// state. Objects in this state have to be activated before any blocks
+/// associated with them will be invoked.
+///
+/// The target queue of inactive objects can be changed using
+/// dispatch_set_target_queue(). Change of target queue is no longer permitted
+/// once an initially inactive object has been activated.
+///
+/// Calling dispatch_activate() on an active object has no effect.
+/// Releasing the last reference count on an inactive object is undefined.
+///
+///
+/// Parameter `object`: The object to be activated.
+/// The result of passing NULL in this parameter is undefined.
+#[inline]
+pub extern "C" fn dispatch_activate(object: NonNull<dispatch_object_s>) {
+    extern "C" {
+        fn dispatch_activate(object: NonNull<dispatch_object_s>);
+    }
+    unsafe { dispatch_activate(object) }
 }
 
-extern "C" {
-    /// Suspends the invocation of blocks on a dispatch object.
-    ///
-    ///
-    /// A suspended object will not invoke any blocks associated with it. The
-    /// suspension of an object will occur after any running block associated with
-    /// the object completes.
-    ///
-    /// Calls to dispatch_suspend() must be balanced with calls
-    /// to dispatch_resume().
-    ///
-    ///
-    /// Parameter `object`: The object to be suspended.
-    /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_suspend(object: NonNull<dispatch_object_s>);
+/// Suspends the invocation of blocks on a dispatch object.
+///
+///
+/// A suspended object will not invoke any blocks associated with it. The
+/// suspension of an object will occur after any running block associated with
+/// the object completes.
+///
+/// Calls to dispatch_suspend() must be balanced with calls
+/// to dispatch_resume().
+///
+///
+/// Parameter `object`: The object to be suspended.
+/// The result of passing NULL in this parameter is undefined.
+#[inline]
+pub extern "C" fn dispatch_suspend(object: NonNull<dispatch_object_s>) {
+    extern "C" {
+        fn dispatch_suspend(object: NonNull<dispatch_object_s>);
+    }
+    unsafe { dispatch_suspend(object) }
 }
 
-extern "C" {
-    /// Resumes the invocation of blocks on a dispatch object.
-    ///
-    ///
-    /// Dispatch objects can be suspended with dispatch_suspend(), which increments
-    /// an internal suspension count. dispatch_resume() is the inverse operation,
-    /// and consumes suspension counts. When the last suspension count is consumed,
-    /// blocks associated with the object will be invoked again.
-    ///
-    /// For backward compatibility reasons, dispatch_resume() on an inactive and not
-    /// otherwise suspended dispatch source object has the same effect as calling
-    /// dispatch_activate(). For new code, using dispatch_activate() is preferred.
-    ///
-    /// If the specified object has zero suspension count and is not an inactive
-    /// source, this function will result in an assertion and the process being
-    /// terminated.
-    ///
-    ///
-    /// Parameter `object`: The object to be resumed.
-    /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_resume(object: NonNull<dispatch_object_s>);
+/// Resumes the invocation of blocks on a dispatch object.
+///
+///
+/// Dispatch objects can be suspended with dispatch_suspend(), which increments
+/// an internal suspension count. dispatch_resume() is the inverse operation,
+/// and consumes suspension counts. When the last suspension count is consumed,
+/// blocks associated with the object will be invoked again.
+///
+/// For backward compatibility reasons, dispatch_resume() on an inactive and not
+/// otherwise suspended dispatch source object has the same effect as calling
+/// dispatch_activate(). For new code, using dispatch_activate() is preferred.
+///
+/// If the specified object has zero suspension count and is not an inactive
+/// source, this function will result in an assertion and the process being
+/// terminated.
+///
+///
+/// Parameter `object`: The object to be resumed.
+/// The result of passing NULL in this parameter is undefined.
+#[inline]
+pub extern "C" fn dispatch_resume(object: NonNull<dispatch_object_s>) {
+    extern "C" {
+        fn dispatch_resume(object: NonNull<dispatch_object_s>);
+    }
+    unsafe { dispatch_resume(object) }
 }
 
 extern "C" {
@@ -293,12 +313,17 @@ extern "C" {
     );
 }
 
-extern "C" {
+impl DispatchQueue {
     #[cfg(feature = "block2")]
-    pub fn dispatch_async(queue: &DispatchQueue, block: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_async")]
+    pub unsafe fn exec_async_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+        extern "C" {
+            fn dispatch_async(queue: &DispatchQueue, block: dispatch_block_t);
+        }
+        unsafe { dispatch_async(self, block) }
+    }
 
-extern "C" {
     /// Submits a function for asynchronous execution on a dispatch queue.
     ///
     ///
@@ -318,15 +343,33 @@ extern "C" {
     /// parameter passed to this function is the context provided to
     /// dispatch_async_f().
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_async_f(queue: &DispatchQueue, context: *mut c_void, work: dispatch_function_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_async_f")]
+    pub unsafe fn exec_async_f(
+        self: &DispatchQueue,
+        context: *mut c_void,
+        work: dispatch_function_t,
+    ) {
+        extern "C" {
+            fn dispatch_async_f(
+                queue: &DispatchQueue,
+                context: *mut c_void,
+                work: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_async_f(self, context, work) }
+    }
 
-extern "C" {
     #[cfg(feature = "block2")]
-    pub fn dispatch_sync(queue: &DispatchQueue, block: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_sync")]
+    pub unsafe fn exec_sync_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+        extern "C" {
+            fn dispatch_sync(queue: &DispatchQueue, block: dispatch_block_t);
+        }
+        unsafe { dispatch_sync(self, block) }
+    }
 
-extern "C" {
     /// Submits a function for synchronous execution on a dispatch queue.
     ///
     ///
@@ -344,15 +387,33 @@ extern "C" {
     /// parameter passed to this function is the context provided to
     /// dispatch_sync_f().
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_sync_f(queue: &DispatchQueue, context: *mut c_void, work: dispatch_function_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_sync_f")]
+    pub unsafe fn exec_sync_f(
+        self: &DispatchQueue,
+        context: *mut c_void,
+        work: dispatch_function_t,
+    ) {
+        extern "C" {
+            fn dispatch_sync_f(
+                queue: &DispatchQueue,
+                context: *mut c_void,
+                work: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_sync_f(self, context, work) }
+    }
 
-extern "C" {
     #[cfg(feature = "block2")]
-    pub fn dispatch_async_and_wait(queue: &DispatchQueue, block: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_async_and_wait")]
+    pub unsafe fn exec_sync_and_wait_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+        extern "C" {
+            fn dispatch_async_and_wait(queue: &DispatchQueue, block: dispatch_block_t);
+        }
+        unsafe { dispatch_async_and_wait(self, block) }
+    }
 
-extern "C" {
     /// Submits a function for synchronous execution on a dispatch queue.
     ///
     ///
@@ -370,23 +431,41 @@ extern "C" {
     /// parameter passed to this function is the context provided to
     /// dispatch_async_and_wait_f().
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_async_and_wait_f(
-        queue: &DispatchQueue,
+    #[inline]
+    #[doc(alias = "dispatch_async_and_wait_f")]
+    pub unsafe fn exec_sync_and_wait_f(
+        self: &DispatchQueue,
         context: *mut c_void,
         work: dispatch_function_t,
-    );
-}
+    ) {
+        extern "C" {
+            fn dispatch_async_and_wait_f(
+                queue: &DispatchQueue,
+                context: *mut c_void,
+                work: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_async_and_wait_f(self, context, work) }
+    }
 
-extern "C" {
     #[cfg(feature = "block2")]
-    pub fn dispatch_apply(
+    #[inline]
+    #[doc(alias = "dispatch_apply")]
+    pub fn apply_with_block(
         iterations: usize,
         queue: Option<&DispatchQueue>,
         block: &block2::DynBlock<dyn Fn(usize)>,
-    );
-}
+    ) {
+        extern "C" {
+            fn dispatch_apply(
+                iterations: usize,
+                queue: Option<&DispatchQueue>,
+                block: &block2::DynBlock<dyn Fn(usize)>,
+            );
+        }
+        unsafe { dispatch_apply(iterations, queue, block) }
+    }
 
-extern "C" {
     /// Submits a function to a dispatch queue for parallel invocation.
     ///
     ///
@@ -409,48 +488,62 @@ extern "C" {
     /// dispatch_apply_f(). The second parameter passed to this function is the
     /// current index of iteration.
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_apply_f(
+    #[inline]
+    #[doc(alias = "dispatch_apply_f")]
+    pub unsafe fn apply_f(
         iterations: usize,
         queue: Option<&DispatchQueue>,
         context: *mut c_void,
         work: unsafe extern "C-unwind" fn(*mut c_void, usize),
-    );
-}
-
-/// Returns the queue on which the currently executing block is running.
-///
-///
-/// Returns the queue on which the currently executing block is running.
-///
-/// When dispatch_get_current_queue() is called outside of the context of a
-/// submitted block, it will return the default concurrent queue.
-///
-/// Recommended for debugging and logging purposes only:
-/// The code must not make any assumptions about the queue returned, unless it
-/// is one of the global queues or a queue the code has itself created.
-/// The code must not assume that synchronous execution onto a queue is safe
-/// from deadlock if that queue is not the one returned by
-/// dispatch_get_current_queue().
-///
-/// When dispatch_get_current_queue() is called on the main thread, it may
-/// or may not return the same value as dispatch_get_main_queue(). Comparing
-/// the two is not a valid way to test whether code is executing on the
-/// main thread (see dispatch_assert_queue() and dispatch_assert_queue_not()).
-///
-/// This function is deprecated and will be removed in a future release.
-///
-///
-/// Returns: Returns the current queue.
-#[deprecated = "unsupported interface"]
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_get_current_queue() -> DispatchRetained<DispatchQueue> {
-    extern "C" {
-        fn dispatch_get_current_queue() -> Option<NonNull<DispatchQueue>>;
+    ) {
+        extern "C" {
+            fn dispatch_apply_f(
+                iterations: usize,
+                queue: Option<&DispatchQueue>,
+                context: *mut c_void,
+                work: unsafe extern "C-unwind" fn(*mut c_void, usize),
+            );
+        }
+        unsafe { dispatch_apply_f(iterations, queue, context, work) }
     }
-    let ret = unsafe { dispatch_get_current_queue() };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::retain(ret) }
+
+    /// Returns the queue on which the currently executing block is running.
+    ///
+    ///
+    /// Returns the queue on which the currently executing block is running.
+    ///
+    /// When dispatch_get_current_queue() is called outside of the context of a
+    /// submitted block, it will return the default concurrent queue.
+    ///
+    /// Recommended for debugging and logging purposes only:
+    /// The code must not make any assumptions about the queue returned, unless it
+    /// is one of the global queues or a queue the code has itself created.
+    /// The code must not assume that synchronous execution onto a queue is safe
+    /// from deadlock if that queue is not the one returned by
+    /// dispatch_get_current_queue().
+    ///
+    /// When dispatch_get_current_queue() is called on the main thread, it may
+    /// or may not return the same value as dispatch_get_main_queue(). Comparing
+    /// the two is not a valid way to test whether code is executing on the
+    /// main thread (see dispatch_assert_queue() and dispatch_assert_queue_not()).
+    ///
+    /// This function is deprecated and will be removed in a future release.
+    ///
+    ///
+    /// Returns: Returns the current queue.
+    #[deprecated = "unsupported interface"]
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_get_current_queue")]
+    pub fn current() -> DispatchRetained<DispatchQueue> {
+        extern "C" {
+            fn dispatch_get_current_queue() -> Option<NonNull<DispatchQueue>>;
+        }
+        let ret = unsafe { dispatch_get_current_queue() };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::retain(ret) }
+    }
 }
 
 extern "C" {
@@ -492,7 +585,7 @@ extern "C" {
 /// does not exist.
 #[must_use]
 #[inline]
-pub unsafe extern "C" fn dispatch_get_global_queue(
+pub extern "C" fn dispatch_get_global_queue(
     identifier: isize,
     flags: usize,
 ) -> DispatchRetained<DispatchQueue> {
@@ -540,7 +633,7 @@ impl DispatchQueueAttr {
     #[must_use]
     #[inline]
     #[doc(alias = "dispatch_queue_attr_make_initially_inactive")]
-    pub unsafe fn new_initially_inactive(
+    pub fn new_initially_inactive(
         attr: Option<&DispatchQueueAttr>,
     ) -> DispatchRetained<DispatchQueueAttr> {
         extern "C" {
@@ -688,7 +781,7 @@ impl DispatchQueueAttr {
     #[must_use]
     #[inline]
     #[doc(alias = "dispatch_queue_attr_make_with_autorelease_frequency")]
-    pub unsafe fn with_autorelease_frequency(
+    pub fn with_autorelease_frequency(
         attr: Option<&DispatchQueueAttr>,
         frequency: dispatch_autorelease_frequency_t,
     ) -> DispatchRetained<DispatchQueueAttr> {
@@ -759,7 +852,7 @@ impl DispatchQueueAttr {
     #[must_use]
     #[inline]
     #[doc(alias = "dispatch_queue_attr_make_with_qos_class")]
-    pub unsafe fn with_qos_class(
+    pub fn with_qos_class(
         attr: Option<&DispatchQueueAttr>,
         qos_class: dispatch_qos_class_t,
         relative_priority: c_int,
@@ -779,134 +872,138 @@ impl DispatchQueueAttr {
     }
 }
 
-/// Creates a new dispatch queue with a specified target queue.
-///
-///
-/// Dispatch queues created with the DISPATCH_QUEUE_SERIAL or a NULL attribute
-/// invoke blocks serially in FIFO order.
-///
-/// Dispatch queues created with the DISPATCH_QUEUE_CONCURRENT attribute may
-/// invoke blocks concurrently (similarly to the global concurrent queues, but
-/// potentially with more overhead), and support barrier blocks submitted with
-/// the dispatch barrier API, which e.g. enables the implementation of efficient
-/// reader-writer schemes.
-///
-/// When a dispatch queue is no longer needed, it should be released with
-/// dispatch_release(). Note that any pending blocks submitted asynchronously to
-/// a queue will hold a reference to that queue. Therefore a queue will not be
-/// deallocated until all pending blocks have finished.
-///
-/// When using a dispatch queue attribute
-/// _attr_specifying a QoS class (derived
-/// from the result of dispatch_queue_attr_make_with_qos_class()), passing the
-/// result of dispatch_get_global_queue() in
-/// _target_will ignore the QoS class
-/// of that global queue and will use the global queue with the QoS class
-/// specified by attr instead.
-///
-/// Queues created with dispatch_queue_create_with_target() cannot have their
-/// target queue changed, unless created inactive (See
-/// dispatch_queue_attr_make_initially_inactive()), in which case the target
-/// queue can be changed until the newly created queue is activated with
-/// dispatch_activate().
-///
-///
-/// Parameter `label`: A string label to attach to the queue.
-/// This parameter is optional and may be NULL.
-///
-///
-/// Parameter `attr`: A predefined attribute such as DISPATCH_QUEUE_SERIAL,
-/// DISPATCH_QUEUE_CONCURRENT, or the result of a call to
-/// a dispatch_queue_attr_make_with_* function.
-///
-///
-/// Parameter `target`: The target queue for the newly created queue. The target queue is retained.
-/// If this parameter is DISPATCH_TARGET_QUEUE_DEFAULT, sets the queue's target
-/// queue to the default target queue for the given queue type.
-///
-///
-/// Returns: The newly created dispatch queue.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_queue_create_with_target(
-    label: *const c_char,
-    attr: Option<&DispatchQueueAttr>,
-    target: Option<&DispatchQueue>,
-) -> DispatchRetained<DispatchQueue> {
-    extern "C" {
-        #[cfg_attr(
-            target_vendor = "apple",
-            link_name = "dispatch_queue_create_with_target$V2"
-        )]
-        fn dispatch_queue_create_with_target(
-            label: *const c_char,
-            attr: Option<&DispatchQueueAttr>,
-            target: Option<&DispatchQueue>,
-        ) -> Option<NonNull<DispatchQueue>>;
-    }
-    let ret = unsafe { dispatch_queue_create_with_target(label, attr, target) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
-}
-
-/// Creates a new dispatch queue to which blocks may be submitted.
-///
-///
-/// Dispatch queues created with the DISPATCH_QUEUE_SERIAL or a NULL attribute
-/// invoke blocks serially in FIFO order.
-///
-/// Dispatch queues created with the DISPATCH_QUEUE_CONCURRENT attribute may
-/// invoke blocks concurrently (similarly to the global concurrent queues, but
-/// potentially with more overhead), and support barrier blocks submitted with
-/// the dispatch barrier API, which e.g. enables the implementation of efficient
-/// reader-writer schemes.
-///
-/// When a dispatch queue is no longer needed, it should be released with
-/// dispatch_release(). Note that any pending blocks submitted asynchronously to
-/// a queue will hold a reference to that queue. Therefore a queue will not be
-/// deallocated until all pending blocks have finished.
-///
-/// Passing the result of the dispatch_queue_attr_make_with_qos_class() function
-/// to the attr parameter of this function allows a quality of service class and
-/// relative priority to be specified for the newly created queue.
-/// The quality of service class so specified takes precedence over the quality
-/// of service class of the newly created dispatch queue's target queue (if any)
-/// as long that does not result in a lower QOS class and relative priority.
-///
-/// When no quality of service class is specified, the target queue of a newly
-/// created dispatch queue is the default priority global concurrent queue.
-///
-/// Unless explicitly specified via the attribute, queues are created active.
-///
-///
-/// Parameter `label`: A string label to attach to the queue.
-/// This parameter is optional and may be NULL.
-///
-///
-/// Parameter `attr`: A predefined attribute such as DISPATCH_QUEUE_SERIAL,
-/// DISPATCH_QUEUE_CONCURRENT, or the result of a call to
-/// a dispatch_queue_attr_make_with_* function.
-///
-///
-/// Returns: The newly created dispatch queue.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_queue_create(
-    label: *const c_char,
-    attr: Option<&DispatchQueueAttr>,
-) -> DispatchRetained<DispatchQueue> {
-    extern "C" {
-        fn dispatch_queue_create(
-            label: *const c_char,
-            attr: Option<&DispatchQueueAttr>,
-        ) -> Option<NonNull<DispatchQueue>>;
-    }
-    let ret = unsafe { dispatch_queue_create(label, attr) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
-}
-
 impl DispatchQueue {
+    /// Creates a new dispatch queue with a specified target queue.
+    ///
+    ///
+    /// Dispatch queues created with the DISPATCH_QUEUE_SERIAL or a NULL attribute
+    /// invoke blocks serially in FIFO order.
+    ///
+    /// Dispatch queues created with the DISPATCH_QUEUE_CONCURRENT attribute may
+    /// invoke blocks concurrently (similarly to the global concurrent queues, but
+    /// potentially with more overhead), and support barrier blocks submitted with
+    /// the dispatch barrier API, which e.g. enables the implementation of efficient
+    /// reader-writer schemes.
+    ///
+    /// When a dispatch queue is no longer needed, it should be released with
+    /// dispatch_release(). Note that any pending blocks submitted asynchronously to
+    /// a queue will hold a reference to that queue. Therefore a queue will not be
+    /// deallocated until all pending blocks have finished.
+    ///
+    /// When using a dispatch queue attribute
+    /// _attr_specifying a QoS class (derived
+    /// from the result of dispatch_queue_attr_make_with_qos_class()), passing the
+    /// result of dispatch_get_global_queue() in
+    /// _target_will ignore the QoS class
+    /// of that global queue and will use the global queue with the QoS class
+    /// specified by attr instead.
+    ///
+    /// Queues created with dispatch_queue_create_with_target() cannot have their
+    /// target queue changed, unless created inactive (See
+    /// dispatch_queue_attr_make_initially_inactive()), in which case the target
+    /// queue can be changed until the newly created queue is activated with
+    /// dispatch_activate().
+    ///
+    ///
+    /// Parameter `label`: A string label to attach to the queue.
+    /// This parameter is optional and may be NULL.
+    ///
+    ///
+    /// Parameter `attr`: A predefined attribute such as DISPATCH_QUEUE_SERIAL,
+    /// DISPATCH_QUEUE_CONCURRENT, or the result of a call to
+    /// a dispatch_queue_attr_make_with_* function.
+    ///
+    ///
+    /// Parameter `target`: The target queue for the newly created queue. The target queue is retained.
+    /// If this parameter is DISPATCH_TARGET_QUEUE_DEFAULT, sets the queue's target
+    /// queue to the default target queue for the given queue type.
+    ///
+    ///
+    /// Returns: The newly created dispatch queue.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_queue_create_with_target")]
+    pub(crate) unsafe fn __new_with_target(
+        label: *const c_char,
+        attr: Option<&DispatchQueueAttr>,
+        target: Option<&DispatchQueue>,
+    ) -> DispatchRetained<DispatchQueue> {
+        extern "C" {
+            #[cfg_attr(
+                target_vendor = "apple",
+                link_name = "dispatch_queue_create_with_target$V2"
+            )]
+            fn dispatch_queue_create_with_target(
+                label: *const c_char,
+                attr: Option<&DispatchQueueAttr>,
+                target: Option<&DispatchQueue>,
+            ) -> Option<NonNull<DispatchQueue>>;
+        }
+        let ret = unsafe { dispatch_queue_create_with_target(label, attr, target) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
+    }
+
+    /// Creates a new dispatch queue to which blocks may be submitted.
+    ///
+    ///
+    /// Dispatch queues created with the DISPATCH_QUEUE_SERIAL or a NULL attribute
+    /// invoke blocks serially in FIFO order.
+    ///
+    /// Dispatch queues created with the DISPATCH_QUEUE_CONCURRENT attribute may
+    /// invoke blocks concurrently (similarly to the global concurrent queues, but
+    /// potentially with more overhead), and support barrier blocks submitted with
+    /// the dispatch barrier API, which e.g. enables the implementation of efficient
+    /// reader-writer schemes.
+    ///
+    /// When a dispatch queue is no longer needed, it should be released with
+    /// dispatch_release(). Note that any pending blocks submitted asynchronously to
+    /// a queue will hold a reference to that queue. Therefore a queue will not be
+    /// deallocated until all pending blocks have finished.
+    ///
+    /// Passing the result of the dispatch_queue_attr_make_with_qos_class() function
+    /// to the attr parameter of this function allows a quality of service class and
+    /// relative priority to be specified for the newly created queue.
+    /// The quality of service class so specified takes precedence over the quality
+    /// of service class of the newly created dispatch queue's target queue (if any)
+    /// as long that does not result in a lower QOS class and relative priority.
+    ///
+    /// When no quality of service class is specified, the target queue of a newly
+    /// created dispatch queue is the default priority global concurrent queue.
+    ///
+    /// Unless explicitly specified via the attribute, queues are created active.
+    ///
+    ///
+    /// Parameter `label`: A string label to attach to the queue.
+    /// This parameter is optional and may be NULL.
+    ///
+    ///
+    /// Parameter `attr`: A predefined attribute such as DISPATCH_QUEUE_SERIAL,
+    /// DISPATCH_QUEUE_CONCURRENT, or the result of a call to
+    /// a dispatch_queue_attr_make_with_* function.
+    ///
+    ///
+    /// Returns: The newly created dispatch queue.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_queue_create")]
+    pub(crate) unsafe fn __new(
+        label: *const c_char,
+        attr: Option<&DispatchQueueAttr>,
+    ) -> DispatchRetained<DispatchQueue> {
+        extern "C" {
+            fn dispatch_queue_create(
+                label: *const c_char,
+                attr: Option<&DispatchQueueAttr>,
+            ) -> Option<NonNull<DispatchQueue>>;
+        }
+        let ret = unsafe { dispatch_queue_create(label, attr) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
+    }
+
     /// Returns the label of the given queue, as specified when the queue was
     /// created, or the empty string if a NULL label was specified.
     ///
@@ -921,7 +1018,7 @@ impl DispatchQueue {
     #[must_use]
     #[inline]
     #[doc(alias = "dispatch_queue_get_label")]
-    pub unsafe fn label(queue: Option<&DispatchQueue>) -> NonNull<c_char> {
+    pub fn label(queue: Option<&DispatchQueue>) -> NonNull<c_char> {
         extern "C" {
             fn dispatch_queue_get_label(queue: Option<&DispatchQueue>) -> Option<NonNull<c_char>>;
         }
@@ -1038,12 +1135,25 @@ extern "C" {
     );
 }
 
-extern "C" {
+impl DispatchQueue {
     #[cfg(feature = "block2")]
-    pub fn dispatch_after(when: dispatch_time_t, queue: &DispatchQueue, block: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_after")]
+    pub unsafe fn exec_after_with_block(
+        when: dispatch_time_t,
+        queue: &DispatchQueue,
+        block: dispatch_block_t,
+    ) {
+        extern "C" {
+            fn dispatch_after(
+                when: dispatch_time_t,
+                queue: &DispatchQueue,
+                block: dispatch_block_t,
+            );
+        }
+        unsafe { dispatch_after(when, queue, block) }
+    }
 
-extern "C" {
     /// Schedule a function for execution on a given queue at a specified time.
     ///
     ///
@@ -1064,20 +1174,35 @@ extern "C" {
     /// parameter passed to this function is the context provided to
     /// dispatch_after_f().
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_after_f(
+    #[inline]
+    #[doc(alias = "dispatch_after_f")]
+    pub unsafe fn exec_after_f(
         when: dispatch_time_t,
         queue: &DispatchQueue,
         context: *mut c_void,
         work: dispatch_function_t,
-    );
-}
+    ) {
+        extern "C" {
+            fn dispatch_after_f(
+                when: dispatch_time_t,
+                queue: &DispatchQueue,
+                context: *mut c_void,
+                work: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_after_f(when, queue, context, work) }
+    }
 
-extern "C" {
     #[cfg(feature = "block2")]
-    pub fn dispatch_barrier_async(queue: &DispatchQueue, block: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_barrier_async")]
+    pub unsafe fn barrier_async_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+        extern "C" {
+            fn dispatch_barrier_async(queue: &DispatchQueue, block: dispatch_block_t);
+        }
+        unsafe { dispatch_barrier_async(self, block) }
+    }
 
-extern "C" {
     /// Submits a barrier function for asynchronous execution on a dispatch queue.
     ///
     ///
@@ -1102,19 +1227,33 @@ extern "C" {
     /// parameter passed to this function is the context provided to
     /// dispatch_barrier_async_f().
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_barrier_async_f(
-        queue: &DispatchQueue,
+    #[inline]
+    #[doc(alias = "dispatch_barrier_async_f")]
+    pub unsafe fn barrier_async_f(
+        self: &DispatchQueue,
         context: *mut c_void,
         work: dispatch_function_t,
-    );
-}
+    ) {
+        extern "C" {
+            fn dispatch_barrier_async_f(
+                queue: &DispatchQueue,
+                context: *mut c_void,
+                work: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_barrier_async_f(self, context, work) }
+    }
 
-extern "C" {
     #[cfg(feature = "block2")]
-    pub fn dispatch_barrier_sync(queue: &DispatchQueue, block: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_barrier_sync")]
+    pub unsafe fn barrier_sync_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+        extern "C" {
+            fn dispatch_barrier_sync(queue: &DispatchQueue, block: dispatch_block_t);
+        }
+        unsafe { dispatch_barrier_sync(self, block) }
+    }
 
-extern "C" {
     /// Submits a barrier function for synchronous execution on a dispatch queue.
     ///
     ///
@@ -1135,19 +1274,33 @@ extern "C" {
     /// parameter passed to this function is the context provided to
     /// dispatch_barrier_sync_f().
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_barrier_sync_f(
-        queue: &DispatchQueue,
+    #[inline]
+    #[doc(alias = "dispatch_barrier_sync_f")]
+    pub unsafe fn barrier_sync_f(
+        self: &DispatchQueue,
         context: *mut c_void,
         work: dispatch_function_t,
-    );
-}
+    ) {
+        extern "C" {
+            fn dispatch_barrier_sync_f(
+                queue: &DispatchQueue,
+                context: *mut c_void,
+                work: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_barrier_sync_f(self, context, work) }
+    }
 
-extern "C" {
     #[cfg(feature = "block2")]
-    pub fn dispatch_barrier_async_and_wait(queue: &DispatchQueue, block: dispatch_block_t);
-}
+    #[inline]
+    #[doc(alias = "dispatch_barrier_async_and_wait")]
+    pub unsafe fn barrier_async_and_wait_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+        extern "C" {
+            fn dispatch_barrier_async_and_wait(queue: &DispatchQueue, block: dispatch_block_t);
+        }
+        unsafe { dispatch_barrier_async_and_wait(self, block) }
+    }
 
-extern "C" {
     /// Submits a function for synchronous execution on a dispatch queue.
     ///
     ///
@@ -1169,11 +1322,22 @@ extern "C" {
     /// parameter passed to this function is the context provided to
     /// dispatch_barrier_async_and_wait_f().
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_barrier_async_and_wait_f(
-        queue: &DispatchQueue,
+    #[inline]
+    #[doc(alias = "dispatch_barrier_async_and_wait_f")]
+    pub unsafe fn barrier_async_and_wait_f(
+        self: &DispatchQueue,
         context: *mut c_void,
         work: dispatch_function_t,
-    );
+    ) {
+        extern "C" {
+            fn dispatch_barrier_async_and_wait_f(
+                queue: &DispatchQueue,
+                context: *mut c_void,
+                work: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_barrier_async_and_wait_f(self, context, work) }
+    }
 }
 
 extern "C" {
@@ -1263,7 +1427,7 @@ extern "C" {
     pub fn dispatch_get_specific(key: NonNull<c_void>) -> *mut c_void;
 }
 
-extern "C-unwind" {
+impl DispatchQueue {
     /// Verifies that the current block is executing on a given dispatch queue.
     ///
     ///
@@ -1298,11 +1462,16 @@ extern "C-unwind" {
     ///
     /// Parameter `queue`: The dispatch queue that the current block is expected to run on.
     /// The result of passing NULL in this parameter is undefined.
-    #[cfg_attr(target_vendor = "apple", link_name = "dispatch_assert_queue$V2")]
-    pub fn dispatch_assert_queue(queue: &DispatchQueue);
-}
+    #[inline]
+    #[doc(alias = "dispatch_assert_queue")]
+    pub fn assert(self: &DispatchQueue) {
+        extern "C-unwind" {
+            #[cfg_attr(target_vendor = "apple", link_name = "dispatch_assert_queue$V2")]
+            fn dispatch_assert_queue(queue: &DispatchQueue);
+        }
+        unsafe { dispatch_assert_queue(self) }
+    }
 
-extern "C-unwind" {
     /// Verifies that the current block is executing on a given dispatch queue,
     /// and that the block acts as a barrier on that queue.
     ///
@@ -1318,10 +1487,15 @@ extern "C-unwind" {
     ///
     /// Parameter `queue`: The dispatch queue that the current block is expected to run as a barrier on.
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_assert_queue_barrier(queue: &DispatchQueue);
-}
+    #[inline]
+    #[doc(alias = "dispatch_assert_queue_barrier")]
+    pub fn assert_barrier(self: &DispatchQueue) {
+        extern "C-unwind" {
+            fn dispatch_assert_queue_barrier(queue: &DispatchQueue);
+        }
+        unsafe { dispatch_assert_queue_barrier(self) }
+    }
 
-extern "C-unwind" {
     /// Verifies that the current block is not executing on a given dispatch queue.
     ///
     ///
@@ -1335,8 +1509,15 @@ extern "C-unwind" {
     ///
     /// Parameter `queue`: The dispatch queue that the current block is expected not to run on.
     /// The result of passing NULL in this parameter is undefined.
-    #[cfg_attr(target_vendor = "apple", link_name = "dispatch_assert_queue_not$V2")]
-    pub fn dispatch_assert_queue_not(queue: &DispatchQueue);
+    #[inline]
+    #[doc(alias = "dispatch_assert_queue_not")]
+    pub fn assert_not(self: &DispatchQueue) {
+        extern "C-unwind" {
+            #[cfg_attr(target_vendor = "apple", link_name = "dispatch_assert_queue_not$V2")]
+            fn dispatch_assert_queue_not(queue: &DispatchQueue);
+        }
+        unsafe { dispatch_assert_queue_not(self) }
+    }
 }
 
 extern "C-unwind" {
@@ -2202,7 +2383,7 @@ impl DispatchSource {
     #[cfg(feature = "block2")]
     #[inline]
     #[doc(alias = "dispatch_source_set_event_handler")]
-    pub unsafe fn set_event_handler_block(self: &DispatchSource, handler: dispatch_block_t) {
+    pub unsafe fn set_event_handler_with_block(self: &DispatchSource, handler: dispatch_block_t) {
         extern "C" {
             fn dispatch_source_set_event_handler(
                 source: &DispatchSource,
@@ -2224,7 +2405,7 @@ impl DispatchSource {
     /// the dispatch source current at the time the event handler was set.
     #[inline]
     #[doc(alias = "dispatch_source_set_event_handler_f")]
-    pub unsafe fn set_event_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
+    pub fn set_event_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
         extern "C" {
             fn dispatch_source_set_event_handler_f(
                 source: &DispatchSource,
@@ -2237,7 +2418,7 @@ impl DispatchSource {
     #[cfg(feature = "block2")]
     #[inline]
     #[doc(alias = "dispatch_source_set_cancel_handler")]
-    pub unsafe fn set_cancel_handler_block(self: &DispatchSource, handler: dispatch_block_t) {
+    pub unsafe fn set_cancel_handler_with_block(self: &DispatchSource, handler: dispatch_block_t) {
         extern "C" {
             fn dispatch_source_set_cancel_handler(
                 source: &DispatchSource,
@@ -2262,7 +2443,7 @@ impl DispatchSource {
     /// context of the dispatch source at the time the handler call is made.
     #[inline]
     #[doc(alias = "dispatch_source_set_cancel_handler_f")]
-    pub unsafe fn set_cancel_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
+    pub fn set_cancel_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
         extern "C" {
             fn dispatch_source_set_cancel_handler_f(
                 source: &DispatchSource,
@@ -2291,7 +2472,7 @@ impl DispatchSource {
     /// The result of passing NULL in this parameter is undefined.
     #[inline]
     #[doc(alias = "dispatch_source_cancel")]
-    pub unsafe fn cancel(self: &DispatchSource) {
+    pub fn cancel(self: &DispatchSource) {
         extern "C" {
             fn dispatch_source_cancel(source: &DispatchSource);
         }
@@ -2309,7 +2490,7 @@ impl DispatchSource {
     #[must_use]
     #[inline]
     #[doc(alias = "dispatch_source_testcancel")]
-    pub unsafe fn testcancel(self: &DispatchSource) -> isize {
+    pub fn testcancel(self: &DispatchSource) -> isize {
         extern "C" {
             fn dispatch_source_testcancel(source: &DispatchSource) -> isize;
         }
@@ -2340,7 +2521,7 @@ impl DispatchSource {
     #[must_use]
     #[inline]
     #[doc(alias = "dispatch_source_get_handle")]
-    pub unsafe fn handle(self: &DispatchSource) -> usize {
+    pub fn handle(self: &DispatchSource) -> usize {
         extern "C" {
             fn dispatch_source_get_handle(source: &DispatchSource) -> usize;
         }
@@ -2371,7 +2552,7 @@ impl DispatchSource {
     #[must_use]
     #[inline]
     #[doc(alias = "dispatch_source_get_mask")]
-    pub unsafe fn mask(self: &DispatchSource) -> usize {
+    pub fn mask(self: &DispatchSource) -> usize {
         extern "C" {
             fn dispatch_source_get_mask(source: &DispatchSource) -> usize;
         }
@@ -2409,7 +2590,7 @@ impl DispatchSource {
     #[must_use]
     #[inline]
     #[doc(alias = "dispatch_source_get_data")]
-    pub unsafe fn data(self: &DispatchSource) -> usize {
+    pub fn data(self: &DispatchSource) -> usize {
         extern "C" {
             fn dispatch_source_get_data(source: &DispatchSource) -> usize;
         }
@@ -2429,7 +2610,7 @@ impl DispatchSource {
     /// and will not result in the submission of the event handler block.
     #[inline]
     #[doc(alias = "dispatch_source_merge_data")]
-    pub unsafe fn merge_data(self: &DispatchSource, value: usize) {
+    pub fn merge_data(self: &DispatchSource, value: usize) {
         extern "C" {
             fn dispatch_source_merge_data(source: &DispatchSource, value: usize);
         }
@@ -2481,12 +2662,7 @@ impl DispatchSource {
     /// Parameter `leeway`: The nanosecond leeway for the timer.
     #[inline]
     #[doc(alias = "dispatch_source_set_timer")]
-    pub unsafe fn set_timer(
-        self: &DispatchSource,
-        start: dispatch_time_t,
-        interval: u64,
-        leeway: u64,
-    ) {
+    pub fn set_timer(self: &DispatchSource, start: dispatch_time_t, interval: u64, leeway: u64) {
         extern "C" {
             fn dispatch_source_set_timer(
                 source: &DispatchSource,
@@ -2501,7 +2677,10 @@ impl DispatchSource {
     #[cfg(feature = "block2")]
     #[inline]
     #[doc(alias = "dispatch_source_set_registration_handler")]
-    pub unsafe fn set_registration_handler_block(self: &DispatchSource, handler: dispatch_block_t) {
+    pub unsafe fn set_registration_handler_with_block(
+        self: &DispatchSource,
+        handler: dispatch_block_t,
+    ) {
         extern "C" {
             fn dispatch_source_set_registration_handler(
                 source: &DispatchSource,
@@ -2526,7 +2705,7 @@ impl DispatchSource {
     /// current context of the dispatch source at the time the handler call is made.
     #[inline]
     #[doc(alias = "dispatch_source_set_registration_handler_f")]
-    pub unsafe fn set_registration_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
+    pub fn set_registration_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
         extern "C" {
             fn dispatch_source_set_registration_handler_f(
                 source: &DispatchSource,
@@ -2537,31 +2716,33 @@ impl DispatchSource {
     }
 }
 
-/// Creates new group with which blocks may be associated.
-///
-///
-/// This function creates a new group with which blocks may be associated.
-/// The dispatch group may be used to wait for the completion of the blocks it
-/// references. The group object memory is freed with dispatch_release().
-///
-///
-/// Returns: The newly created group, or NULL on failure.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_group_create() -> DispatchRetained<DispatchGroup> {
-    extern "C" {
-        fn dispatch_group_create() -> Option<NonNull<DispatchGroup>>;
-    }
-    let ret = unsafe { dispatch_group_create() };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
-}
-
 impl DispatchGroup {
+    /// Creates new group with which blocks may be associated.
+    ///
+    ///
+    /// This function creates a new group with which blocks may be associated.
+    /// The dispatch group may be used to wait for the completion of the blocks it
+    /// references. The group object memory is freed with dispatch_release().
+    ///
+    ///
+    /// Returns: The newly created group, or NULL on failure.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_group_create")]
+    pub fn new() -> DispatchRetained<DispatchGroup> {
+        extern "C" {
+            fn dispatch_group_create() -> Option<NonNull<DispatchGroup>>;
+        }
+        let ret = unsafe { dispatch_group_create() };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
+    }
+
     #[cfg(feature = "block2")]
     #[inline]
     #[doc(alias = "dispatch_group_async")]
-    pub unsafe fn async_block(
+    pub unsafe fn exec_async_with_block(
         self: &DispatchGroup,
         queue: &DispatchQueue,
         block: dispatch_block_t,
@@ -2599,7 +2780,7 @@ impl DispatchGroup {
     /// dispatch_group_async_f().
     #[inline]
     #[doc(alias = "dispatch_group_async_f")]
-    pub unsafe fn async_f(
+    pub unsafe fn exec_async_f(
         self: &DispatchGroup,
         queue: &DispatchQueue,
         context: *mut c_void,
@@ -2617,44 +2798,48 @@ impl DispatchGroup {
     }
 }
 
-extern "C" {
-    /// Wait synchronously until all the blocks associated with a group have
-    /// completed or until the specified timeout has elapsed.
-    ///
-    ///
-    /// This function waits for the completion of the blocks associated with the
-    /// given dispatch group, and returns after all blocks have completed or when
-    /// the specified timeout has elapsed.
-    ///
-    /// This function will return immediately if there are no blocks associated
-    /// with the dispatch group (i.e. the group is empty).
-    ///
-    /// The result of calling this function from multiple threads simultaneously
-    /// with the same dispatch group is undefined.
-    ///
-    /// After the successful return of this function, the dispatch group is empty.
-    /// It may either be released with dispatch_release() or re-used for additional
-    /// blocks. See dispatch_group_async() for more information.
-    ///
-    ///
-    /// Parameter `group`: The dispatch group to wait on.
-    /// The result of passing NULL in this parameter is undefined.
-    ///
-    ///
-    /// Parameter `timeout`: When to timeout (see dispatch_time). As a convenience, there are the
-    /// DISPATCH_TIME_NOW and DISPATCH_TIME_FOREVER constants.
-    ///
-    ///
-    /// Returns: Returns zero on success (all blocks associated with the group completed
-    /// within the specified timeout) or non-zero on error (i.e. timed out).
-    pub fn dispatch_group_wait(group: &DispatchGroup, timeout: dispatch_time_t) -> isize;
+/// Wait synchronously until all the blocks associated with a group have
+/// completed or until the specified timeout has elapsed.
+///
+///
+/// This function waits for the completion of the blocks associated with the
+/// given dispatch group, and returns after all blocks have completed or when
+/// the specified timeout has elapsed.
+///
+/// This function will return immediately if there are no blocks associated
+/// with the dispatch group (i.e. the group is empty).
+///
+/// The result of calling this function from multiple threads simultaneously
+/// with the same dispatch group is undefined.
+///
+/// After the successful return of this function, the dispatch group is empty.
+/// It may either be released with dispatch_release() or re-used for additional
+/// blocks. See dispatch_group_async() for more information.
+///
+///
+/// Parameter `group`: The dispatch group to wait on.
+/// The result of passing NULL in this parameter is undefined.
+///
+///
+/// Parameter `timeout`: When to timeout (see dispatch_time). As a convenience, there are the
+/// DISPATCH_TIME_NOW and DISPATCH_TIME_FOREVER constants.
+///
+///
+/// Returns: Returns zero on success (all blocks associated with the group completed
+/// within the specified timeout) or non-zero on error (i.e. timed out).
+#[inline]
+pub extern "C" fn dispatch_group_wait(group: &DispatchGroup, timeout: dispatch_time_t) -> isize {
+    extern "C" {
+        fn dispatch_group_wait(group: &DispatchGroup, timeout: dispatch_time_t) -> isize;
+    }
+    unsafe { dispatch_group_wait(group, timeout) }
 }
 
 impl DispatchGroup {
     #[cfg(feature = "block2")]
     #[inline]
     #[doc(alias = "dispatch_group_notify")]
-    pub unsafe fn notify_block(
+    pub unsafe fn notify_with_block(
         self: &DispatchGroup,
         queue: &DispatchQueue,
         block: dispatch_block_t,
@@ -2740,34 +2925,34 @@ impl DispatchGroup {
     }
 }
 
-/// Creates new counting semaphore with an initial value.
-///
-///
-/// Passing zero for the value is useful for when two threads need to reconcile
-/// the completion of a particular event. Passing a value greater than zero is
-/// useful for managing a finite pool of resources, where the pool size is equal
-/// to the value.
-///
-///
-/// Parameter `value`: The starting value for the semaphore. Passing a value less than zero will
-/// cause NULL to be returned.
-///
-///
-/// Returns: The newly created semaphore, or NULL on failure.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_semaphore_create(
-    value: isize,
-) -> DispatchRetained<DispatchSemaphore> {
-    extern "C" {
-        fn dispatch_semaphore_create(value: isize) -> Option<NonNull<DispatchSemaphore>>;
-    }
-    let ret = unsafe { dispatch_semaphore_create(value) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
-}
-
 impl DispatchSemaphore {
+    /// Creates new counting semaphore with an initial value.
+    ///
+    ///
+    /// Passing zero for the value is useful for when two threads need to reconcile
+    /// the completion of a particular event. Passing a value greater than zero is
+    /// useful for managing a finite pool of resources, where the pool size is equal
+    /// to the value.
+    ///
+    ///
+    /// Parameter `value`: The starting value for the semaphore. Passing a value less than zero will
+    /// cause NULL to be returned.
+    ///
+    ///
+    /// Returns: The newly created semaphore, or NULL on failure.
+    #[must_use]
+    #[inline]
+    #[doc(alias = "dispatch_semaphore_create")]
+    pub fn new(value: isize) -> DispatchRetained<DispatchSemaphore> {
+        extern "C" {
+            fn dispatch_semaphore_create(value: isize) -> Option<NonNull<DispatchSemaphore>>;
+        }
+        let ret = unsafe { dispatch_semaphore_create(value) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
+    }
+
     /// Wait (decrement) for a semaphore.
     ///
     ///
@@ -2787,7 +2972,7 @@ impl DispatchSemaphore {
     /// Returns: Returns zero on success, or non-zero if the timeout occurred.
     #[inline]
     #[doc(alias = "dispatch_semaphore_wait")]
-    pub unsafe fn wait(self: &DispatchSemaphore, timeout: dispatch_time_t) -> isize {
+    pub fn wait(self: &DispatchSemaphore, timeout: dispatch_time_t) -> isize {
         extern "C" {
             fn dispatch_semaphore_wait(
                 dsema: &DispatchSemaphore,
@@ -2812,7 +2997,7 @@ impl DispatchSemaphore {
     /// returned.
     #[inline]
     #[doc(alias = "dispatch_semaphore_signal")]
-    pub unsafe fn signal(self: &DispatchSemaphore) -> isize {
+    pub fn signal(self: &DispatchSemaphore) -> isize {
         extern "C" {
             fn dispatch_semaphore_signal(dsema: &DispatchSemaphore) -> isize;
         }
@@ -2913,7 +3098,7 @@ impl DispatchData {
     /// Returns: The number of bytes represented by the data object.
     #[inline]
     #[doc(alias = "dispatch_data_get_size")]
-    pub unsafe fn size(self: &DispatchData) -> usize {
+    pub fn size(self: &DispatchData) -> usize {
         extern "C" {
             fn dispatch_data_get_size(data: &DispatchData) -> usize;
         }
@@ -2979,10 +3164,7 @@ impl DispatchData {
     #[must_use]
     #[inline]
     #[doc(alias = "dispatch_data_create_concat")]
-    pub unsafe fn concat(
-        self: &DispatchData,
-        data2: &DispatchData,
-    ) -> DispatchRetained<DispatchData> {
+    pub fn concat(self: &DispatchData, data2: &DispatchData) -> DispatchRetained<DispatchData> {
         extern "C" {
             fn dispatch_data_create_concat(
                 data1: &DispatchData,
@@ -3365,7 +3547,7 @@ impl DispatchIO {
     #[must_use]
     #[inline]
     #[doc(alias = "dispatch_io_create_with_io")]
-    pub unsafe fn with_io(
+    pub fn with_io(
         r#type: dispatch_io_type_t,
         io: &DispatchIO,
         queue: &DispatchQueue,
@@ -3551,7 +3733,7 @@ impl DispatchIO {
     /// Parameter `flags`: The flags for the close operation.
     #[inline]
     #[doc(alias = "dispatch_io_close")]
-    pub unsafe fn close(self: &DispatchIO, flags: dispatch_io_close_flags_t) {
+    pub fn close(self: &DispatchIO, flags: dispatch_io_close_flags_t) {
         extern "C" {
             fn dispatch_io_close(channel: &DispatchIO, flags: dispatch_io_close_flags_t);
         }
@@ -3604,7 +3786,7 @@ impl DispatchIO {
     #[must_use]
     #[inline]
     #[doc(alias = "dispatch_io_get_descriptor")]
-    pub unsafe fn descriptor(self: &DispatchIO) -> dispatch_fd_t {
+    pub fn descriptor(self: &DispatchIO) -> dispatch_fd_t {
         extern "C" {
             fn dispatch_io_get_descriptor(channel: &DispatchIO) -> dispatch_fd_t;
         }
@@ -3628,7 +3810,7 @@ impl DispatchIO {
     /// Parameter `high_water`: The number of bytes to use as a high water mark.
     #[inline]
     #[doc(alias = "dispatch_io_set_high_water")]
-    pub unsafe fn set_high_water(self: &DispatchIO, high_water: usize) {
+    pub fn set_high_water(self: &DispatchIO, high_water: usize) {
         extern "C" {
             fn dispatch_io_set_high_water(channel: &DispatchIO, high_water: usize);
         }
@@ -3662,7 +3844,7 @@ impl DispatchIO {
     /// Parameter `low_water`: The number of bytes to use as a low water mark.
     #[inline]
     #[doc(alias = "dispatch_io_set_low_water")]
-    pub unsafe fn set_low_water(self: &DispatchIO, low_water: usize) {
+    pub fn set_low_water(self: &DispatchIO, low_water: usize) {
         extern "C" {
             fn dispatch_io_set_low_water(channel: &DispatchIO, low_water: usize);
         }
@@ -3693,11 +3875,7 @@ impl DispatchIO {
     /// interval time.
     #[inline]
     #[doc(alias = "dispatch_io_set_interval")]
-    pub unsafe fn set_interval(
-        self: &DispatchIO,
-        interval: u64,
-        flags: dispatch_io_interval_flags_t,
-    ) {
+    pub fn set_interval(self: &DispatchIO, interval: u64, flags: dispatch_io_interval_flags_t) {
         extern "C" {
             fn dispatch_io_set_interval(
                 channel: &DispatchIO,
@@ -3761,24 +3939,31 @@ impl DispatchWorkloop {
     }
 }
 
-extern "C" {
-    /// Sets the autorelease frequency of the workloop.
-    ///
-    ///
-    /// See dispatch_queue_attr_make_with_autorelease_frequency().
-    /// The default policy for a workloop is
-    /// DISPATCH_AUTORELEASE_FREQUENCY_WORK_ITEM.
-    ///
-    ///
-    /// Parameter `workloop`: The dispatch workloop to modify.
-    ///
-    /// This workloop must be inactive, passing an activated object is undefined
-    /// and will cause the process to be terminated.
-    ///
-    ///
-    /// Parameter `frequency`: The requested autorelease frequency.
-    pub fn dispatch_workloop_set_autorelease_frequency(
-        workloop: &DispatchWorkloop,
-        frequency: dispatch_autorelease_frequency_t,
-    );
+/// Sets the autorelease frequency of the workloop.
+///
+///
+/// See dispatch_queue_attr_make_with_autorelease_frequency().
+/// The default policy for a workloop is
+/// DISPATCH_AUTORELEASE_FREQUENCY_WORK_ITEM.
+///
+///
+/// Parameter `workloop`: The dispatch workloop to modify.
+///
+/// This workloop must be inactive, passing an activated object is undefined
+/// and will cause the process to be terminated.
+///
+///
+/// Parameter `frequency`: The requested autorelease frequency.
+#[inline]
+pub extern "C" fn dispatch_workloop_set_autorelease_frequency(
+    workloop: &DispatchWorkloop,
+    frequency: dispatch_autorelease_frequency_t,
+) {
+    extern "C" {
+        fn dispatch_workloop_set_autorelease_frequency(
+            workloop: &DispatchWorkloop,
+            frequency: dispatch_autorelease_frequency_t,
+        );
+    }
+    unsafe { dispatch_workloop_set_autorelease_frequency(workloop, frequency) }
 }
