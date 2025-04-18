@@ -240,7 +240,7 @@ impl QLThumbnailRequest {
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
     #[doc(alias = "QLThumbnailRequestCreateContext")]
-    pub unsafe fn new_context(
+    pub unsafe fn context(
         self: &QLThumbnailRequest,
         size: CGSize,
         is_bitmap: bool,
@@ -748,7 +748,7 @@ impl QLPreviewRequest {
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
     #[doc(alias = "QLPreviewRequestCreateContext")]
-    pub unsafe fn new_context(
+    pub unsafe fn context(
         self: &QLPreviewRequest,
         size: CGSize,
         is_bitmap: bool,
@@ -779,7 +779,7 @@ impl QLPreviewRequest {
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
     #[doc(alias = "QLPreviewRequestCreatePDFContext")]
-    pub unsafe fn new_pdf_context(
+    pub unsafe fn pdf_context(
         self: &QLPreviewRequest,
         media_box: *const CGRect,
         auxiliary_info: Option<&CFDictionary>,
@@ -1004,7 +1004,7 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "objc2-core-graphics")]
-#[deprecated = "renamed to `QLThumbnailRequest::new_context`"]
+#[deprecated = "renamed to `QLThumbnailRequest::context`"]
 #[inline]
 pub unsafe extern "C-unwind" fn QLThumbnailRequestCreateContext(
     thumbnail: &QLThumbnailRequest,
@@ -1173,7 +1173,7 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "objc2-core-graphics")]
-#[deprecated = "renamed to `QLPreviewRequest::new_context`"]
+#[deprecated = "renamed to `QLPreviewRequest::context`"]
 #[inline]
 pub unsafe extern "C-unwind" fn QLPreviewRequestCreateContext(
     preview: &QLPreviewRequest,
@@ -1194,7 +1194,7 @@ pub unsafe extern "C-unwind" fn QLPreviewRequestCreateContext(
 }
 
 #[cfg(feature = "objc2-core-graphics")]
-#[deprecated = "renamed to `QLPreviewRequest::new_pdf_context`"]
+#[deprecated = "renamed to `QLPreviewRequest::pdf_context`"]
 #[inline]
 pub unsafe extern "C-unwind" fn QLPreviewRequestCreatePDFContext(
     preview: &QLPreviewRequest,

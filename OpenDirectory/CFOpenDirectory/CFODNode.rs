@@ -450,7 +450,7 @@ impl ODNodeRef {
     ))]
     #[inline]
     #[doc(alias = "ODNodeCreateRecord")]
-    pub unsafe fn new_record(
+    pub unsafe fn create_record(
         self: &ODNodeRef,
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
@@ -496,7 +496,7 @@ impl ODNodeRef {
     ))]
     #[inline]
     #[doc(alias = "ODNodeCopyRecord")]
-    pub unsafe fn record(
+    pub unsafe fn copy_record(
         self: &ODNodeRef,
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
@@ -1154,7 +1154,7 @@ extern "C-unwind" {
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
-#[deprecated = "renamed to `ODNodeRef::new_record`"]
+#[deprecated = "renamed to `ODNodeRef::record`"]
 #[inline]
 pub unsafe extern "C-unwind" fn ODNodeCreateRecord(
     node: &ODNodeRef,

@@ -166,7 +166,7 @@ impl CTTypesetter {
     #[cfg(feature = "CTLine")]
     #[inline]
     #[doc(alias = "CTTypesetterCreateLineWithOffset")]
-    pub unsafe fn new_line_with_offset(
+    pub unsafe fn line_with_offset(
         self: &CTTypesetter,
         string_range: CFRange,
         offset: c_double,
@@ -188,7 +188,7 @@ impl CTTypesetter {
     #[cfg(feature = "CTLine")]
     #[inline]
     #[doc(alias = "CTTypesetterCreateLine")]
-    pub unsafe fn new_line(self: &CTTypesetter, string_range: CFRange) -> CFRetained<CTLine> {
+    pub unsafe fn line(self: &CTTypesetter, string_range: CFRange) -> CFRetained<CTLine> {
         extern "C-unwind" {
             fn CTTypesetterCreateLine(
                 typesetter: &CTTypesetter,
@@ -361,7 +361,7 @@ pub unsafe extern "C-unwind" fn CTTypesetterCreateWithAttributedStringAndOptions
 }
 
 #[cfg(feature = "CTLine")]
-#[deprecated = "renamed to `CTTypesetter::new_line_with_offset`"]
+#[deprecated = "renamed to `CTTypesetter::line_with_offset`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTTypesetterCreateLineWithOffset(
     typesetter: &CTTypesetter,
@@ -381,7 +381,7 @@ pub unsafe extern "C-unwind" fn CTTypesetterCreateLineWithOffset(
 }
 
 #[cfg(feature = "CTLine")]
-#[deprecated = "renamed to `CTTypesetter::new_line`"]
+#[deprecated = "renamed to `CTTypesetter::line`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTTypesetterCreateLine(
     typesetter: &CTTypesetter,

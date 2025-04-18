@@ -265,7 +265,7 @@ impl CTRubyAnnotation {
     /// "rubyAnnotation".
     #[inline]
     #[doc(alias = "CTRubyAnnotationCreateCopy")]
-    pub unsafe fn new_copy(self: &CTRubyAnnotation) -> CFRetained<CTRubyAnnotation> {
+    pub unsafe fn copy(self: &CTRubyAnnotation) -> CFRetained<CTRubyAnnotation> {
         extern "C-unwind" {
             fn CTRubyAnnotationCreateCopy(
                 ruby_annotation: &CTRubyAnnotation,
@@ -381,7 +381,7 @@ pub unsafe extern "C-unwind" fn CTRubyAnnotationCreateWithAttributes(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "renamed to `CTRubyAnnotation::new_copy`"]
+#[deprecated = "renamed to `CTRubyAnnotation::copy`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTRubyAnnotationCreateCopy(
     ruby_annotation: &CTRubyAnnotation,

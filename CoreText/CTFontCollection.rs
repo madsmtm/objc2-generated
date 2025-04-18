@@ -168,7 +168,7 @@ impl CTFontCollection {
     /// Returns: This function creates a copy of the original font collection augmented by the new font descriptors and options. The new font descriptors are merged with the existing descriptors to create a single set.
     #[inline]
     #[doc(alias = "CTFontCollectionCreateCopyWithFontDescriptors")]
-    pub unsafe fn new_copy_with_font_descriptors(
+    pub unsafe fn copy_with_font_descriptors(
         self: &CTFontCollection,
         query_descriptors: Option<&CFArray>,
         options: Option<&CFDictionary>,
@@ -312,7 +312,7 @@ impl CTFontCollection {
     /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
     #[inline]
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptors")]
-    pub unsafe fn new_matching_font_descriptors(
+    pub unsafe fn matching_font_descriptors(
         self: &CTFontCollection,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
@@ -340,7 +340,7 @@ impl CTFontCollection {
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback")]
-    pub unsafe fn new_matching_font_descriptors_sorted_with_callback(
+    pub unsafe fn matching_font_descriptors_sorted_with_callback(
         self: &CTFontCollection,
         sort_callback: CTFontCollectionSortDescriptorsCallback,
         ref_con: *mut c_void,
@@ -374,7 +374,7 @@ impl CTFontCollection {
     /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
     #[inline]
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsWithOptions")]
-    pub unsafe fn new_matching_font_descriptors_with_options(
+    pub unsafe fn matching_font_descriptors_with_options(
         self: &CTFontCollection,
         options: Option<&CFDictionary>,
     ) -> Option<CFRetained<CFArray>> {
@@ -401,7 +401,7 @@ impl CTFontCollection {
     /// Returns: An array of CTFontDescriptors matching the specified family in the collection or NULL if there are none.
     #[inline]
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsForFamily")]
-    pub unsafe fn new_matching_font_descriptors_for_family(
+    pub unsafe fn matching_font_descriptors_for_family(
         self: &CTFontCollection,
         family_name: &CFString,
         options: Option<&CFDictionary>,
@@ -554,7 +554,7 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateWithFontDescriptors(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "renamed to `CTFontCollection::new_copy_with_font_descriptors`"]
+#[deprecated = "renamed to `CTFontCollection::copy_with_font_descriptors`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCollectionCreateCopyWithFontDescriptors(
     original: &CTFontCollection,
@@ -634,7 +634,7 @@ extern "C-unwind" {
     );
 }
 
-#[deprecated = "renamed to `CTFontCollection::new_matching_font_descriptors`"]
+#[deprecated = "renamed to `CTFontCollection::matching_font_descriptors`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptors(
     collection: &CTFontCollection,
@@ -649,7 +649,7 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptors(
 }
 
 #[cfg(feature = "CTFontDescriptor")]
-#[deprecated = "renamed to `CTFontCollection::new_matching_font_descriptors_sorted_with_callback`"]
+#[deprecated = "renamed to `CTFontCollection::matching_font_descriptors_sorted_with_callback`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
     collection: &CTFontCollection,
@@ -673,7 +673,7 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsSor
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CTFontCollection::new_matching_font_descriptors_with_options`"]
+#[deprecated = "renamed to `CTFontCollection::matching_font_descriptors_with_options`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsWithOptions(
     collection: &CTFontCollection,
@@ -690,7 +690,7 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsWit
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CTFontCollection::new_matching_font_descriptors_for_family`"]
+#[deprecated = "renamed to `CTFontCollection::matching_font_descriptors_for_family`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsForFamily(
     collection: &CTFontCollection,

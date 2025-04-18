@@ -155,7 +155,7 @@ impl CMClock {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMClockMakeHostTimeFromSystemUnits")]
-    pub unsafe fn new_host_time_from_system_units(host_time: u64) -> CMTime {
+    pub unsafe fn make_host_time_from_system_units(host_time: u64) -> CMTime {
         extern "C-unwind" {
             fn CMClockMakeHostTimeFromSystemUnits(host_time: u64) -> CMTime;
         }

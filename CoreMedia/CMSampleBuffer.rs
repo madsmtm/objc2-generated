@@ -1249,7 +1249,7 @@ impl CMSampleBuffer {
     /// fails and returns an error, kCMSampleBufferError_BufferNotReady will be returned.
     #[inline]
     #[doc(alias = "CMSampleBufferMakeDataReady")]
-    pub unsafe fn new_data_ready(self: &CMSampleBuffer) -> OSStatus {
+    pub unsafe fn make_data_ready(self: &CMSampleBuffer) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferMakeDataReady(sbuf: &CMSampleBuffer) -> OSStatus;
         }
@@ -2748,7 +2748,7 @@ pub unsafe extern "C-unwind" fn CMSampleBufferHasDataFailed(
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `CMSampleBuffer::new_data_ready`"]
+    #[deprecated = "renamed to `CMSampleBuffer::data_ready`"]
     pub fn CMSampleBufferMakeDataReady(sbuf: &CMSampleBuffer) -> OSStatus;
 }
 

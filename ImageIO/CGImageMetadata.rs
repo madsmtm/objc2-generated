@@ -1085,7 +1085,7 @@ impl CGImageMetadata {
     /// NULL if an error occurred.
     #[inline]
     #[doc(alias = "CGImageMetadataCreateXMPData")]
-    pub unsafe fn new_xmp_data(
+    pub unsafe fn xmp_data(
         self: &CGImageMetadata,
         options: Option<&CFDictionary>,
     ) -> Option<CFRetained<CFData>> {
@@ -1400,7 +1400,7 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-#[deprecated = "renamed to `CGImageMetadata::new_xmp_data`"]
+#[deprecated = "renamed to `CGImageMetadata::xmp_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGImageMetadataCreateXMPData(
     metadata: &CGImageMetadata,

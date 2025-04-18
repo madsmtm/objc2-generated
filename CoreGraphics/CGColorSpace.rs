@@ -594,7 +594,7 @@ impl CGColorSpace {
 
     #[inline]
     #[doc(alias = "CGColorSpaceCreateLinearized")]
-    pub unsafe fn new_linearized(self: &CGColorSpace) -> Option<CFRetained<CGColorSpace>> {
+    pub unsafe fn linearized(self: &CGColorSpace) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateLinearized(space: &CGColorSpace) -> Option<NonNull<CGColorSpace>>;
         }
@@ -604,7 +604,7 @@ impl CGColorSpace {
 
     #[inline]
     #[doc(alias = "CGColorSpaceCreateExtended")]
-    pub unsafe fn new_extended(self: &CGColorSpace) -> Option<CFRetained<CGColorSpace>> {
+    pub unsafe fn extended(self: &CGColorSpace) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateExtended(space: &CGColorSpace) -> Option<NonNull<CGColorSpace>>;
         }
@@ -614,7 +614,7 @@ impl CGColorSpace {
 
     #[inline]
     #[doc(alias = "CGColorSpaceCreateExtendedLinearized")]
-    pub unsafe fn new_extended_linearized(self: &CGColorSpace) -> Option<CFRetained<CGColorSpace>> {
+    pub unsafe fn extended_linearized(self: &CGColorSpace) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateExtendedLinearized(
                 space: &CGColorSpace,
@@ -626,7 +626,7 @@ impl CGColorSpace {
 
     #[inline]
     #[doc(alias = "CGColorSpaceCreateCopyWithStandardRange")]
-    pub unsafe fn new_copy_with_standard_range(self: &CGColorSpace) -> CFRetained<CGColorSpace> {
+    pub unsafe fn copy_with_standard_range(self: &CGColorSpace) -> CFRetained<CGColorSpace> {
         extern "C-unwind" {
             fn CGColorSpaceCreateCopyWithStandardRange(
                 s: &CGColorSpace,
@@ -929,7 +929,7 @@ extern "C-unwind" {
     pub fn CGColorSpaceUsesExtendedRange(space: &CGColorSpace) -> bool;
 }
 
-#[deprecated = "renamed to `CGColorSpace::new_linearized`"]
+#[deprecated = "renamed to `CGColorSpace::linearized`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorSpaceCreateLinearized(
     space: &CGColorSpace,
@@ -941,7 +941,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateLinearized(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CGColorSpace::new_extended`"]
+#[deprecated = "renamed to `CGColorSpace::extended`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorSpaceCreateExtended(
     space: &CGColorSpace,
@@ -953,7 +953,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateExtended(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CGColorSpace::new_extended_linearized`"]
+#[deprecated = "renamed to `CGColorSpace::extended_linearized`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorSpaceCreateExtendedLinearized(
     space: &CGColorSpace,
@@ -967,7 +967,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateExtendedLinearized(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CGColorSpace::new_copy_with_standard_range`"]
+#[deprecated = "renamed to `CGColorSpace::copy_with_standard_range`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorSpaceCreateCopyWithStandardRange(
     s: &CGColorSpace,

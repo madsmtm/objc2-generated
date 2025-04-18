@@ -474,7 +474,7 @@ impl CMTimeMapping {
     #[cfg(feature = "CMTime")]
     #[inline]
     #[doc(alias = "CMTimeMappingMakeEmpty")]
-    pub unsafe fn new_empty(target: CMTimeRange) -> CMTimeMapping {
+    pub unsafe fn empty(target: CMTimeRange) -> CMTimeMapping {
         extern "C-unwind" {
             fn CMTimeMappingMakeEmpty(target: CMTimeRange) -> CMTimeMapping;
         }

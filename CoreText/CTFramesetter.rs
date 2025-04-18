@@ -130,7 +130,7 @@ impl CTFramesetter {
     #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
     #[inline]
     #[doc(alias = "CTFramesetterCreateFrame")]
-    pub unsafe fn new_frame(
+    pub unsafe fn frame(
         self: &CTFramesetter,
         string_range: CFRange,
         path: &CGPath,
@@ -273,7 +273,7 @@ pub unsafe extern "C-unwind" fn CTFramesetterCreateWithAttributedString(
 }
 
 #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
-#[deprecated = "renamed to `CTFramesetter::new_frame`"]
+#[deprecated = "renamed to `CTFramesetter::frame`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFramesetterCreateFrame(
     framesetter: &CTFramesetter,

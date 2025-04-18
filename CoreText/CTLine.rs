@@ -203,7 +203,7 @@ impl CTLine {
     /// NULL.
     #[inline]
     #[doc(alias = "CTLineCreateTruncatedLine")]
-    pub unsafe fn new_truncated_line(
+    pub unsafe fn truncated_line(
         self: &CTLine,
         width: c_double,
         truncation_type: CTLineTruncationType,
@@ -245,7 +245,7 @@ impl CTLine {
     /// NULL.
     #[inline]
     #[doc(alias = "CTLineCreateJustifiedLine")]
-    pub unsafe fn new_justified_line(
+    pub unsafe fn justified_line(
         self: &CTLine,
         justification_factor: CGFloat,
         justification_width: c_double,
@@ -625,7 +625,7 @@ pub unsafe extern "C-unwind" fn CTLineCreateWithAttributedString(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "renamed to `CTLine::new_truncated_line`"]
+#[deprecated = "renamed to `CTLine::truncated_line`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTLineCreateTruncatedLine(
     line: &CTLine,
@@ -645,7 +645,7 @@ pub unsafe extern "C-unwind" fn CTLineCreateTruncatedLine(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CTLine::new_justified_line`"]
+#[deprecated = "renamed to `CTLine::justified_line`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTLineCreateJustifiedLine(
     line: &CTLine,

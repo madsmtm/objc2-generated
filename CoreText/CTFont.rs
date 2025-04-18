@@ -590,7 +590,7 @@ impl CTFont {
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
     #[doc(alias = "CTFontCreateCopyWithAttributes")]
-    pub unsafe fn new_copy_with_attributes(
+    pub unsafe fn copy_with_attributes(
         self: &CTFont,
         size: CGFloat,
         matrix: *const CGAffineTransform,
@@ -632,7 +632,7 @@ impl CTFont {
     #[cfg(feature = "CTFontTraits")]
     #[inline]
     #[doc(alias = "CTFontCreateCopyWithSymbolicTraits")]
-    pub unsafe fn new_copy_with_symbolic_traits(
+    pub unsafe fn copy_with_symbolic_traits(
         self: &CTFont,
         size: CGFloat,
         matrix: *const CGAffineTransform,
@@ -672,7 +672,7 @@ impl CTFont {
     /// Returns: Returns a new font reference with the original traits in the given family. NULL if non found in the system.
     #[inline]
     #[doc(alias = "CTFontCreateCopyWithFamily")]
-    pub unsafe fn new_copy_with_family(
+    pub unsafe fn copy_with_family(
         self: &CTFont,
         size: CGFloat,
         matrix: *const CGAffineTransform,
@@ -715,7 +715,7 @@ impl CTFont {
     /// See also: kCTFontCascadeListAttribute
     #[inline]
     #[doc(alias = "CTFontCreateForString")]
-    pub unsafe fn new_for_string(
+    pub unsafe fn for_string(
         self: &CTFont,
         string: &CFString,
         range: CFRange,
@@ -761,7 +761,7 @@ impl CTFont {
     /// See also: kCTFontCascadeListAttribute
     #[inline]
     #[doc(alias = "CTFontCreateForStringWithLanguage")]
-    pub unsafe fn new_for_string_with_language(
+    pub unsafe fn for_string_with_language(
         self: &CTFont,
         string: &CFString,
         range: CFRange,
@@ -1537,7 +1537,7 @@ impl CTFont {
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     #[doc(alias = "CTFontCreatePathForGlyph")]
-    pub unsafe fn new_path_for_glyph(
+    pub unsafe fn path_for_glyph(
         self: &CTFont,
         glyph: CGGlyph,
         matrix: *const CGAffineTransform,
@@ -2543,7 +2543,7 @@ pub unsafe extern "C-unwind" fn CTFontCreateUIFontForLanguage(
 }
 
 #[cfg(feature = "CTFontDescriptor")]
-#[deprecated = "renamed to `CTFont::new_copy_with_attributes`"]
+#[deprecated = "renamed to `CTFont::copy_with_attributes`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCreateCopyWithAttributes(
     font: &CTFont,
@@ -2565,7 +2565,7 @@ pub unsafe extern "C-unwind" fn CTFontCreateCopyWithAttributes(
 }
 
 #[cfg(feature = "CTFontTraits")]
-#[deprecated = "renamed to `CTFont::new_copy_with_symbolic_traits`"]
+#[deprecated = "renamed to `CTFont::copy_with_symbolic_traits`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCreateCopyWithSymbolicTraits(
     font: &CTFont,
@@ -2589,7 +2589,7 @@ pub unsafe extern "C-unwind" fn CTFontCreateCopyWithSymbolicTraits(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CTFont::new_copy_with_family`"]
+#[deprecated = "renamed to `CTFont::copy_with_family`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCreateCopyWithFamily(
     font: &CTFont,
@@ -2609,7 +2609,7 @@ pub unsafe extern "C-unwind" fn CTFontCreateCopyWithFamily(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CTFont::new_for_string`"]
+#[deprecated = "renamed to `CTFont::for_string`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCreateForString(
     current_font: &CTFont,
@@ -2628,7 +2628,7 @@ pub unsafe extern "C-unwind" fn CTFontCreateForString(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "renamed to `CTFont::new_for_string_with_language`"]
+#[deprecated = "renamed to `CTFont::for_string_with_language`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCreateForStringWithLanguage(
     current_font: &CTFont,
@@ -2957,7 +2957,7 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "objc2-core-graphics")]
-#[deprecated = "renamed to `CTFont::new_path_for_glyph`"]
+#[deprecated = "renamed to `CTFont::path_for_glyph`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCreatePathForGlyph(
     font: &CTFont,

@@ -1900,7 +1900,7 @@ impl SecKey {
     #[cfg(feature = "SecBase")]
     #[inline]
     #[doc(alias = "SecKeyCreateSignature")]
-    pub unsafe fn new_signature(
+    pub unsafe fn signature(
         self: &SecKey,
         algorithm: &SecKeyAlgorithm,
         data_to_sign: &CFData,
@@ -1977,7 +1977,7 @@ impl SecKey {
     #[cfg(feature = "SecBase")]
     #[inline]
     #[doc(alias = "SecKeyCreateEncryptedData")]
-    pub unsafe fn new_encrypted_data(
+    pub unsafe fn encrypted_data(
         self: &SecKey,
         algorithm: &SecKeyAlgorithm,
         plaintext: &CFData,
@@ -2014,7 +2014,7 @@ impl SecKey {
     #[cfg(feature = "SecBase")]
     #[inline]
     #[doc(alias = "SecKeyCreateDecryptedData")]
-    pub unsafe fn new_decrypted_data(
+    pub unsafe fn decrypted_data(
         self: &SecKey,
         algorithm: &SecKeyAlgorithm,
         ciphertext: &CFData,
@@ -2422,7 +2422,7 @@ pub unsafe extern "C-unwind" fn SecKeyCopyPublicKey(key: &SecKey) -> Option<CFRe
 }
 
 #[cfg(feature = "SecBase")]
-#[deprecated = "renamed to `SecKey::new_signature`"]
+#[deprecated = "renamed to `SecKey::signature`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecKeyCreateSignature(
     key: &SecKey,
@@ -2466,7 +2466,7 @@ pub unsafe extern "C-unwind" fn SecKeyVerifySignature(
 }
 
 #[cfg(feature = "SecBase")]
-#[deprecated = "renamed to `SecKey::new_encrypted_data`"]
+#[deprecated = "renamed to `SecKey::encrypted_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecKeyCreateEncryptedData(
     key: &SecKey,
@@ -2487,7 +2487,7 @@ pub unsafe extern "C-unwind" fn SecKeyCreateEncryptedData(
 }
 
 #[cfg(feature = "SecBase")]
-#[deprecated = "renamed to `SecKey::new_decrypted_data`"]
+#[deprecated = "renamed to `SecKey::decrypted_data`"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecKeyCreateDecryptedData(
     key: &SecKey,

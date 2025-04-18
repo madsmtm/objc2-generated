@@ -627,7 +627,7 @@ impl ColorSyncProfile {
 
     #[inline]
     #[doc(alias = "ColorSyncProfileCreateDisplayTransferTablesFromVCGT")]
-    pub unsafe fn new_display_transfer_tables_from_vcgt(
+    pub unsafe fn display_transfer_tables_from_vcgt(
         self: &ColorSyncProfile,
         n_samples_per_channel: NonNull<usize>,
     ) -> Option<CFRetained<CFData>> {
@@ -1041,7 +1041,7 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-#[deprecated = "renamed to `ColorSyncProfile::new_display_transfer_tables_from_vcgt`"]
+#[deprecated = "renamed to `ColorSyncProfile::display_transfer_tables_from_vcgt`"]
 #[inline]
 pub unsafe extern "C-unwind" fn ColorSyncProfileCreateDisplayTransferTablesFromVCGT(
     profile: &ColorSyncProfile,

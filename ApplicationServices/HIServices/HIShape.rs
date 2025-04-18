@@ -101,7 +101,7 @@ impl HIShape {
 
     #[inline]
     #[doc(alias = "HIShapeCreateCopy")]
-    pub unsafe fn new_copy(self: &HIShape) -> Option<CFRetained<HIShape>> {
+    pub unsafe fn copy(self: &HIShape) -> Option<CFRetained<HIShape>> {
         extern "C-unwind" {
             fn HIShapeCreateCopy(in_shape: &HIShape) -> Option<NonNull<HIShape>>;
         }
@@ -111,7 +111,7 @@ impl HIShape {
 
     #[inline]
     #[doc(alias = "HIShapeCreateIntersection")]
-    pub unsafe fn new_intersection(
+    pub unsafe fn intersection(
         self: &HIShape,
         in_shape2: Option<&HIShape>,
     ) -> Option<CFRetained<HIShape>> {
@@ -127,7 +127,7 @@ impl HIShape {
 
     #[inline]
     #[doc(alias = "HIShapeCreateDifference")]
-    pub unsafe fn new_difference(
+    pub unsafe fn create_difference(
         self: &HIShape,
         in_shape2: Option<&HIShape>,
     ) -> Option<CFRetained<HIShape>> {
@@ -143,7 +143,7 @@ impl HIShape {
 
     #[inline]
     #[doc(alias = "HIShapeCreateUnion")]
-    pub unsafe fn new_union(
+    pub unsafe fn create_union(
         self: &HIShape,
         in_shape2: Option<&HIShape>,
     ) -> Option<CFRetained<HIShape>> {
@@ -159,7 +159,7 @@ impl HIShape {
 
     #[inline]
     #[doc(alias = "HIShapeCreateXor")]
-    pub unsafe fn new_xor(
+    pub unsafe fn create_xor(
         self: &HIShape,
         in_shape2: Option<&HIShape>,
     ) -> Option<CFRetained<HIShape>> {
@@ -459,7 +459,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateWithRect(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `HIShape::new_copy`"]
+#[deprecated = "renamed to `HIShape::copy`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateCopy(
     in_shape: &HIShape,
@@ -471,7 +471,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `HIShape::new_intersection`"]
+#[deprecated = "renamed to `HIShape::intersection`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateIntersection(
     in_shape1: &HIShape,
@@ -487,7 +487,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateIntersection(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `HIShape::new_difference`"]
+#[deprecated = "renamed to `HIShape::difference`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateDifference(
     in_shape1: &HIShape,
@@ -503,7 +503,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateDifference(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `HIShape::new_union`"]
+#[deprecated = "renamed to `HIShape::union`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateUnion(
     in_shape1: &HIShape,
@@ -519,7 +519,7 @@ pub unsafe extern "C-unwind" fn HIShapeCreateUnion(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `HIShape::new_xor`"]
+#[deprecated = "renamed to `HIShape::xor`"]
 #[inline]
 pub unsafe extern "C-unwind" fn HIShapeCreateXor(
     in_shape1: &HIShape,

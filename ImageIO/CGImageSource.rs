@@ -255,7 +255,7 @@ impl CGImageSource {
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     #[doc(alias = "CGImageSourceCreateImageAtIndex")]
-    pub unsafe fn new_image_at_index(
+    pub unsafe fn image_at_index(
         self: &CGImageSource,
         index: usize,
         options: Option<&CFDictionary>,
@@ -283,7 +283,7 @@ impl CGImageSource {
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     #[doc(alias = "CGImageSourceCreateThumbnailAtIndex")]
-    pub unsafe fn new_thumbnail_at_index(
+    pub unsafe fn thumbnail_at_index(
         self: &CGImageSource,
         index: usize,
         options: Option<&CFDictionary>,
@@ -558,7 +558,7 @@ pub unsafe extern "C-unwind" fn CGImageSourceCopyMetadataAtIndex(
 }
 
 #[cfg(feature = "objc2-core-graphics")]
-#[deprecated = "renamed to `CGImageSource::new_image_at_index`"]
+#[deprecated = "renamed to `CGImageSource::image_at_index`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGImageSourceCreateImageAtIndex(
     isrc: &CGImageSource,
@@ -582,7 +582,7 @@ extern "C-unwind" {
 }
 
 #[cfg(feature = "objc2-core-graphics")]
-#[deprecated = "renamed to `CGImageSource::new_thumbnail_at_index`"]
+#[deprecated = "renamed to `CGImageSource::thumbnail_at_index`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGImageSourceCreateThumbnailAtIndex(
     isrc: &CGImageSource,

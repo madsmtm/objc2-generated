@@ -512,7 +512,7 @@ impl CTFontDescriptor {
     /// liga", (id)kCFNull ] will have the same effect.
     #[inline]
     #[doc(alias = "CTFontDescriptorCreateCopyWithAttributes")]
-    pub unsafe fn new_copy_with_attributes(
+    pub unsafe fn copy_with_attributes(
         self: &CTFontDescriptor,
         attributes: &CFDictionary,
     ) -> CFRetained<CTFontDescriptor> {
@@ -540,7 +540,7 @@ impl CTFontDescriptor {
     /// Returns: Returns a new font reference with the original traits in the given family, or NULL if none found in the system.
     #[inline]
     #[doc(alias = "CTFontDescriptorCreateCopyWithFamily")]
-    pub unsafe fn new_copy_with_family(
+    pub unsafe fn copy_with_family(
         self: &CTFontDescriptor,
         family: &CFString,
     ) -> Option<CFRetained<CTFontDescriptor>> {
@@ -570,7 +570,7 @@ impl CTFontDescriptor {
     #[cfg(feature = "CTFontTraits")]
     #[inline]
     #[doc(alias = "CTFontDescriptorCreateCopyWithSymbolicTraits")]
-    pub unsafe fn new_copy_with_symbolic_traits(
+    pub unsafe fn copy_with_symbolic_traits(
         self: &CTFontDescriptor,
         sym_trait_value: CTFontSymbolicTraits,
         sym_trait_mask: CTFontSymbolicTraits,
@@ -603,7 +603,7 @@ impl CTFontDescriptor {
     /// Returns: This function returns a copy of the original font descriptor with a new variation instance. This is a convenience method for easily creating new variation font instances.
     #[inline]
     #[doc(alias = "CTFontDescriptorCreateCopyWithVariation")]
-    pub unsafe fn new_copy_with_variation(
+    pub unsafe fn copy_with_variation(
         self: &CTFontDescriptor,
         variation_identifier: &CFNumber,
         variation_value: CGFloat,
@@ -641,7 +641,7 @@ impl CTFontDescriptor {
     /// Returns: A copy of the original font descriptor modified with the given feature settings.
     #[inline]
     #[doc(alias = "CTFontDescriptorCreateCopyWithFeature")]
-    pub unsafe fn new_copy_with_feature(
+    pub unsafe fn copy_with_feature(
         self: &CTFontDescriptor,
         feature_type_identifier: &CFNumber,
         feature_selector_identifier: &CFNumber,
@@ -677,7 +677,7 @@ impl CTFontDescriptor {
     /// Returns: This function returns a retained array of normalized font descriptors matching the attributes present in descriptor. If descriptor itself is normalized then the array will contain only one item, the original descriptor.
     #[inline]
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptors")]
-    pub unsafe fn new_matching_font_descriptors(
+    pub unsafe fn matching_font_descriptors(
         self: &CTFontDescriptor,
         mandatory_attributes: Option<&CFSet>,
     ) -> Option<CFRetained<CFArray>> {
@@ -704,7 +704,7 @@ impl CTFontDescriptor {
     /// Returns: This function returns a retained normalized font descriptor matching the attributes present in descriptor. The original descriptor may be returned in normalized form.
     #[inline]
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptor")]
-    pub unsafe fn new_matching_font_descriptor(
+    pub unsafe fn matching_font_descriptor(
         self: &CTFontDescriptor,
         mandatory_attributes: Option<&CFSet>,
     ) -> Option<CFRetained<CTFontDescriptor>> {
@@ -945,7 +945,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateWithAttributes(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "renamed to `CTFontDescriptor::new_copy_with_attributes`"]
+#[deprecated = "renamed to `CTFontDescriptor::copy_with_attributes`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithAttributes(
     original: &CTFontDescriptor,
@@ -962,7 +962,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithAttributes(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "renamed to `CTFontDescriptor::new_copy_with_family`"]
+#[deprecated = "renamed to `CTFontDescriptor::copy_with_family`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFamily(
     original: &CTFontDescriptor,
@@ -979,7 +979,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFamily(
 }
 
 #[cfg(feature = "CTFontTraits")]
-#[deprecated = "renamed to `CTFontDescriptor::new_copy_with_symbolic_traits`"]
+#[deprecated = "renamed to `CTFontDescriptor::copy_with_symbolic_traits`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithSymbolicTraits(
     original: &CTFontDescriptor,
@@ -999,7 +999,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithSymbolicTraits(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CTFontDescriptor::new_copy_with_variation`"]
+#[deprecated = "renamed to `CTFontDescriptor::copy_with_variation`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithVariation(
     original: &CTFontDescriptor,
@@ -1020,7 +1020,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithVariation(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "renamed to `CTFontDescriptor::new_copy_with_feature`"]
+#[deprecated = "renamed to `CTFontDescriptor::copy_with_feature`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFeature(
     original: &CTFontDescriptor,
@@ -1045,7 +1045,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFeature(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-#[deprecated = "renamed to `CTFontDescriptor::new_matching_font_descriptors`"]
+#[deprecated = "renamed to `CTFontDescriptor::matching_font_descriptors`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontDescriptorCreateMatchingFontDescriptors(
     descriptor: &CTFontDescriptor,
@@ -1062,7 +1062,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateMatchingFontDescriptors(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[deprecated = "renamed to `CTFontDescriptor::new_matching_font_descriptor`"]
+#[deprecated = "renamed to `CTFontDescriptor::matching_font_descriptor`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontDescriptorCreateMatchingFontDescriptor(
     descriptor: &CTFontDescriptor,
