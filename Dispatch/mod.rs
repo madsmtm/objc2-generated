@@ -23,39 +23,40 @@ use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
-use crate::ffi::*;
+use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_api_version?language=objc)
 pub const DISPATCH_API_VERSION: c_uint = 20181008;
-/// Create a dispatch_time_t relative to the current value of the default or
-/// wall time clock, or modify an existing dispatch_time_t.
-///
-///
-/// On Apple platforms, the default clock is based on mach_absolute_time().
-///
-///
-/// Parameter `when`: An optional dispatch_time_t to add nanoseconds to. If DISPATCH_TIME_NOW is
-/// passed, then dispatch_time() will use the default clock (which is based on
-/// mach_absolute_time() on Apple platforms). If DISPATCH_WALLTIME_NOW is used,
-/// dispatch_time() will use the value returned by gettimeofday(3).
-/// dispatch_time(DISPATCH_WALLTIME_NOW, delta) is equivalent to
-/// dispatch_walltime(NULL, delta).
-///
-///
-/// Parameter `delta`: Nanoseconds to add.
-///
-///
-/// Returns: A new dispatch_time_t.
-#[must_use]
-#[inline]
-pub extern "C" fn dispatch_time(when: dispatch_time_t, delta: i64) -> dispatch_time_t {
-    extern "C" {
-        fn dispatch_time(when: dispatch_time_t, delta: i64) -> dispatch_time_t;
+impl DispatchTime {
+    /// Create a dispatch_time_t relative to the current value of the default or
+    /// wall time clock, or modify an existing dispatch_time_t.
+    ///
+    ///
+    /// On Apple platforms, the default clock is based on mach_absolute_time().
+    ///
+    ///
+    /// Parameter `when`: An optional dispatch_time_t to add nanoseconds to. If DISPATCH_TIME_NOW is
+    /// passed, then dispatch_time() will use the default clock (which is based on
+    /// mach_absolute_time() on Apple platforms). If DISPATCH_WALLTIME_NOW is used,
+    /// dispatch_time() will use the value returned by gettimeofday(3).
+    /// dispatch_time(DISPATCH_WALLTIME_NOW, delta) is equivalent to
+    /// dispatch_walltime(NULL, delta).
+    ///
+    ///
+    /// Parameter `delta`: Nanoseconds to add.
+    ///
+    ///
+    /// Returns: A new dispatch_time_t.
+    #[doc(alias = "dispatch_time")]
+    #[must_use]
+    #[inline]
+    pub fn time(self: DispatchTime, delta: i64) -> DispatchTime {
+        extern "C" {
+            fn dispatch_time(when: DispatchTime, delta: i64) -> DispatchTime;
+        }
+        unsafe { dispatch_time(self, delta) }
     }
-    unsafe { dispatch_time(when, delta) }
-}
 
-extern "C" {
     /// Create a dispatch_time_t using the wall clock.
     ///
     ///
@@ -72,9 +73,16 @@ extern "C" {
     ///
     ///
     /// Returns: A new dispatch_time_t.
+    #[doc(alias = "dispatch_walltime")]
     #[cfg(feature = "libc")]
     #[must_use]
-    pub fn dispatch_walltime(when: *const libc::timespec, delta: i64) -> dispatch_time_t;
+    #[inline]
+    pub unsafe fn walltime(when: *const libc::timespec, delta: i64) -> DispatchTime {
+        extern "C" {
+            fn dispatch_walltime(when: *const libc::timespec, delta: i64) -> DispatchTime;
+        }
+        unsafe { dispatch_walltime(when, delta) }
+    }
 }
 
 /// The type of blocks submitted to dispatch queues, which take no arguments
@@ -308,7 +316,7 @@ extern "C" {
     /// is undefined.
     pub fn dispatch_set_qos_class_floor(
         object: NonNull<dispatch_object_s>,
-        qos_class: dispatch_qos_class_t,
+        qos_class: DispatchQoS,
         relative_priority: c_int,
     );
 }
@@ -548,7 +556,7 @@ impl DispatchQueue {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_main_q?language=objc)
-    pub static _dispatch_main_q: dispatch_queue_s;
+    pub static _dispatch_main_q: DispatchQueue;
 }
 
 /// Returns a well-known global concurrent queue of a given quality of service
@@ -602,7 +610,7 @@ pub extern "C" fn dispatch_get_global_queue(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_queue_attr_concurrent?language=objc)
-    pub static _dispatch_queue_attr_concurrent: dispatch_queue_attr_s;
+    pub static _dispatch_queue_attr_concurrent: DispatchQueueAttr;
 }
 
 impl DispatchQueueAttr {
@@ -667,12 +675,12 @@ impl DispatchQueueAttr {
 /// autorelease pool around the execution of a block that is submitted to it
 /// asynchronously. This is the behavior of the global concurrent queues.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_autorelease_frequency_t?language=objc)
-// NS_ENUM
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchautoreleasefrequency?language=objc)
+#[doc(alias = "dispatch_autorelease_frequency_t")] // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct dispatch_autorelease_frequency_t(pub c_ulong);
-impl dispatch_autorelease_frequency_t {
+pub struct DispatchAutoReleaseFrequency(pub c_ulong);
+impl DispatchAutoReleaseFrequency {
     /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
     /// function.
     ///
@@ -691,7 +699,8 @@ impl dispatch_autorelease_frequency_t {
     /// Dispatch queues with this autorelease frequency never set up an individual
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
-    pub const DISPATCH_AUTORELEASE_FREQUENCY_INHERIT: Self = Self(0);
+    #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_INHERIT")]
+    pub const INHERIT: Self = Self(0);
     /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
     /// function.
     ///
@@ -710,7 +719,8 @@ impl dispatch_autorelease_frequency_t {
     /// Dispatch queues with this autorelease frequency never set up an individual
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
-    pub const DISPATCH_AUTORELEASE_FREQUENCY_WORK_ITEM: Self = Self(1);
+    #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_WORK_ITEM")]
+    pub const WORK_ITEM: Self = Self(1);
     /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
     /// function.
     ///
@@ -729,16 +739,17 @@ impl dispatch_autorelease_frequency_t {
     /// Dispatch queues with this autorelease frequency never set up an individual
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
-    pub const DISPATCH_AUTORELEASE_FREQUENCY_NEVER: Self = Self(2);
+    #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_NEVER")]
+    pub const NEVER: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl Encode for dispatch_autorelease_frequency_t {
+unsafe impl Encode for DispatchAutoReleaseFrequency {
     const ENCODING: Encoding = Encoding::C_ULONG;
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for dispatch_autorelease_frequency_t {
+unsafe impl RefEncode for DispatchAutoReleaseFrequency {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -783,12 +794,12 @@ impl DispatchQueueAttr {
     #[inline]
     pub fn with_autorelease_frequency(
         attr: Option<&DispatchQueueAttr>,
-        frequency: dispatch_autorelease_frequency_t,
+        frequency: DispatchAutoReleaseFrequency,
     ) -> DispatchRetained<DispatchQueueAttr> {
         extern "C" {
             fn dispatch_queue_attr_make_with_autorelease_frequency(
                 attr: Option<&DispatchQueueAttr>,
-                frequency: dispatch_autorelease_frequency_t,
+                frequency: DispatchAutoReleaseFrequency,
             ) -> Option<NonNull<DispatchQueueAttr>>;
         }
         let ret = unsafe { dispatch_queue_attr_make_with_autorelease_frequency(attr, frequency) };
@@ -854,13 +865,13 @@ impl DispatchQueueAttr {
     #[inline]
     pub fn with_qos_class(
         attr: Option<&DispatchQueueAttr>,
-        qos_class: dispatch_qos_class_t,
+        qos_class: DispatchQoS,
         relative_priority: c_int,
     ) -> DispatchRetained<DispatchQueueAttr> {
         extern "C" {
             fn dispatch_queue_attr_make_with_qos_class(
                 attr: Option<&DispatchQueueAttr>,
-                qos_class: dispatch_qos_class_t,
+                qos_class: DispatchQoS,
                 relative_priority: c_int,
             ) -> Option<NonNull<DispatchQueueAttr>>;
         }
@@ -1061,12 +1072,12 @@ impl DispatchQueue {
     pub unsafe fn qos_class(
         self: &DispatchQueue,
         relative_priority_ptr: *mut c_int,
-    ) -> dispatch_qos_class_t {
+    ) -> DispatchQoS {
         extern "C" {
             fn dispatch_queue_get_qos_class(
                 queue: &DispatchQueue,
                 relative_priority_ptr: *mut c_int,
-            ) -> dispatch_qos_class_t;
+            ) -> DispatchQoS;
         }
         unsafe { dispatch_queue_get_qos_class(self, relative_priority_ptr) }
     }
@@ -1140,16 +1151,12 @@ impl DispatchQueue {
     #[cfg(feature = "block2")]
     #[inline]
     pub unsafe fn exec_after_with_block(
-        when: dispatch_time_t,
+        when: DispatchTime,
         queue: &DispatchQueue,
         block: dispatch_block_t,
     ) {
         extern "C" {
-            fn dispatch_after(
-                when: dispatch_time_t,
-                queue: &DispatchQueue,
-                block: dispatch_block_t,
-            );
+            fn dispatch_after(when: DispatchTime, queue: &DispatchQueue, block: dispatch_block_t);
         }
         unsafe { dispatch_after(when, queue, block) }
     }
@@ -1177,14 +1184,14 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_after_f")]
     #[inline]
     pub unsafe fn exec_after_f(
-        when: dispatch_time_t,
+        when: DispatchTime,
         queue: &DispatchQueue,
         context: *mut c_void,
         work: dispatch_function_t,
     ) {
         extern "C" {
             fn dispatch_after_f(
-                when: dispatch_time_t,
+                when: DispatchTime,
                 queue: &DispatchQueue,
                 context: *mut c_void,
                 work: dispatch_function_t,
@@ -2098,7 +2105,7 @@ extern "C" {
     #[must_use]
     pub fn dispatch_block_create_with_qos_class(
         flags: dispatch_block_flags_t,
-        qos_class: dispatch_qos_class_t,
+        qos_class: DispatchQoS,
         relative_priority: c_int,
         block: dispatch_block_t,
     ) -> dispatch_block_t;
@@ -2171,7 +2178,7 @@ extern "C" {
     /// Returns: Returns zero on success (the dispatch block object completed within the
     /// specified timeout) or non-zero on error (i.e. timed out).
     #[cfg(feature = "block2")]
-    pub fn dispatch_block_wait(block: dispatch_block_t, timeout: dispatch_time_t) -> isize;
+    pub fn dispatch_block_wait(block: dispatch_block_t, timeout: DispatchTime) -> isize;
 }
 
 extern "C" {
@@ -2662,11 +2669,11 @@ impl DispatchSource {
     /// Parameter `leeway`: The nanosecond leeway for the timer.
     #[doc(alias = "dispatch_source_set_timer")]
     #[inline]
-    pub fn set_timer(self: &DispatchSource, start: dispatch_time_t, interval: u64, leeway: u64) {
+    pub fn set_timer(self: &DispatchSource, start: DispatchTime, interval: u64, leeway: u64) {
         extern "C" {
             fn dispatch_source_set_timer(
                 source: &DispatchSource,
-                start: dispatch_time_t,
+                start: DispatchTime,
                 interval: u64,
                 leeway: u64,
             );
@@ -2828,9 +2835,9 @@ impl DispatchGroup {
 /// Returns: Returns zero on success (all blocks associated with the group completed
 /// within the specified timeout) or non-zero on error (i.e. timed out).
 #[inline]
-pub extern "C" fn dispatch_group_wait(group: &DispatchGroup, timeout: dispatch_time_t) -> isize {
+pub extern "C" fn dispatch_group_wait(group: &DispatchGroup, timeout: DispatchTime) -> isize {
     extern "C" {
-        fn dispatch_group_wait(group: &DispatchGroup, timeout: dispatch_time_t) -> isize;
+        fn dispatch_group_wait(group: &DispatchGroup, timeout: DispatchTime) -> isize;
     }
     unsafe { dispatch_group_wait(group, timeout) }
 }
@@ -2972,12 +2979,9 @@ impl DispatchSemaphore {
     /// Returns: Returns zero on success, or non-zero if the timeout occurred.
     #[doc(alias = "dispatch_semaphore_wait")]
     #[inline]
-    pub fn wait(self: &DispatchSemaphore, timeout: dispatch_time_t) -> isize {
+    pub fn wait(self: &DispatchSemaphore, timeout: DispatchTime) -> isize {
         extern "C" {
-            fn dispatch_semaphore_wait(
-                dsema: &DispatchSemaphore,
-                timeout: dispatch_time_t,
-            ) -> isize;
+            fn dispatch_semaphore_wait(dsema: &DispatchSemaphore, timeout: DispatchTime) -> isize;
         }
         unsafe { dispatch_semaphore_wait(self, timeout) }
     }
@@ -3011,22 +3015,38 @@ impl DispatchSemaphore {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_once_t?language=objc)
 pub type dispatch_once_t = isize;
 
-extern "C" {
+impl DispatchOnce {
+    #[doc(alias = "dispatch_once")]
     #[cfg(feature = "block2")]
-    pub fn dispatch_once(predicate: NonNull<dispatch_once_t>, block: dispatch_block_t);
-}
+    #[inline]
+    pub unsafe fn once_with_block(predicate: NonNull<dispatch_once_t>, block: dispatch_block_t) {
+        extern "C" {
+            fn dispatch_once(predicate: NonNull<dispatch_once_t>, block: dispatch_block_t);
+        }
+        unsafe { dispatch_once(predicate, block) }
+    }
 
-extern "C" {
-    pub fn dispatch_once_f(
+    #[doc(alias = "dispatch_once_f")]
+    #[inline]
+    pub unsafe fn once_f(
         predicate: NonNull<dispatch_once_t>,
         context: *mut c_void,
         function: dispatch_function_t,
-    );
+    ) {
+        extern "C" {
+            fn dispatch_once_f(
+                predicate: NonNull<dispatch_once_t>,
+                context: *mut c_void,
+                function: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_once_f(predicate, context, function) }
+    }
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_data_empty?language=objc)
-    pub static _dispatch_data_empty: dispatch_data_s;
+    pub static _dispatch_data_empty: DispatchData;
 }
 
 extern "C" {
@@ -3430,14 +3450,14 @@ impl DispatchIO {
     #[must_use]
     #[inline]
     pub unsafe fn new(
-        r#type: dispatch_io_type_t,
+        r#type: DispatchIOStreamType,
         fd: dispatch_fd_t,
         queue: &DispatchQueue,
         cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
     ) -> DispatchRetained<DispatchIO> {
         extern "C" {
             fn dispatch_io_create(
-                r#type: dispatch_io_type_t,
+                r#type: DispatchIOStreamType,
                 fd: dispatch_fd_t,
                 queue: &DispatchQueue,
                 cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
@@ -3485,7 +3505,7 @@ impl DispatchIO {
     #[must_use]
     #[inline]
     pub unsafe fn with_path(
-        r#type: dispatch_io_type_t,
+        r#type: DispatchIOStreamType,
         path: NonNull<c_char>,
         oflag: c_int,
         mode: libc::mode_t,
@@ -3494,7 +3514,7 @@ impl DispatchIO {
     ) -> DispatchRetained<DispatchIO> {
         extern "C" {
             fn dispatch_io_create_with_path(
-                r#type: dispatch_io_type_t,
+                r#type: DispatchIOStreamType,
                 path: NonNull<c_char>,
                 oflag: c_int,
                 mode: libc::mode_t,
@@ -3548,14 +3568,14 @@ impl DispatchIO {
     #[must_use]
     #[inline]
     pub fn with_io(
-        r#type: dispatch_io_type_t,
+        r#type: DispatchIOStreamType,
         io: &DispatchIO,
         queue: &DispatchQueue,
         cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
     ) -> DispatchRetained<DispatchIO> {
         extern "C" {
             fn dispatch_io_create_with_io(
-                r#type: dispatch_io_type_t,
+                r#type: DispatchIOStreamType,
                 io: &DispatchIO,
                 queue: &DispatchQueue,
                 cleanup_handler: &block2::DynBlock<dyn Fn(c_int)>,
@@ -3733,9 +3753,9 @@ impl DispatchIO {
     /// Parameter `flags`: The flags for the close operation.
     #[doc(alias = "dispatch_io_close")]
     #[inline]
-    pub fn close(self: &DispatchIO, flags: dispatch_io_close_flags_t) {
+    pub fn close(self: &DispatchIO, flags: DispatchIOCloseFlags) {
         extern "C" {
-            fn dispatch_io_close(channel: &DispatchIO, flags: dispatch_io_close_flags_t);
+            fn dispatch_io_close(channel: &DispatchIO, flags: DispatchIOCloseFlags);
         }
         unsafe { dispatch_io_close(self, flags) }
     }
@@ -3875,39 +3895,39 @@ impl DispatchIO {
     /// interval time.
     #[doc(alias = "dispatch_io_set_interval")]
     #[inline]
-    pub fn set_interval(self: &DispatchIO, interval: u64, flags: dispatch_io_interval_flags_t) {
+    pub fn set_interval(self: &DispatchIO, interval: u64, flags: DispatchIOIntervalFlags) {
         extern "C" {
             fn dispatch_io_set_interval(
                 channel: &DispatchIO,
                 interval: u64,
-                flags: dispatch_io_interval_flags_t,
+                flags: DispatchIOIntervalFlags,
             );
         }
         unsafe { dispatch_io_set_interval(self, interval, flags) }
     }
 }
 
-/// Creates a new dispatch workloop to which workitems may be submitted.
-///
-///
-/// Parameter `label`: A string label to attach to the workloop.
-///
-///
-/// Returns: The newly created dispatch workloop.
-#[must_use]
-#[inline]
-pub unsafe extern "C" fn dispatch_workloop_create(
-    label: *const c_char,
-) -> DispatchRetained<DispatchWorkloop> {
-    extern "C" {
-        fn dispatch_workloop_create(label: *const c_char) -> Option<NonNull<DispatchWorkloop>>;
-    }
-    let ret = unsafe { dispatch_workloop_create(label) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::from_raw(ret) }
-}
-
 impl DispatchWorkloop {
+    /// Creates a new dispatch workloop to which workitems may be submitted.
+    ///
+    ///
+    /// Parameter `label`: A string label to attach to the workloop.
+    ///
+    ///
+    /// Returns: The newly created dispatch workloop.
+    #[doc(alias = "dispatch_workloop_create")]
+    #[must_use]
+    #[inline]
+    pub(crate) unsafe fn __new(label: *const c_char) -> DispatchRetained<DispatchWorkloop> {
+        extern "C" {
+            fn dispatch_workloop_create(label: *const c_char) -> Option<NonNull<DispatchWorkloop>>;
+        }
+        let ret = unsafe { dispatch_workloop_create(label) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::from_raw(ret) }
+    }
+
     /// Creates a new inactive dispatch workloop that can be setup and then
     /// activated.
     ///
@@ -3926,7 +3946,9 @@ impl DispatchWorkloop {
     #[doc(alias = "dispatch_workloop_create_inactive")]
     #[must_use]
     #[inline]
-    pub unsafe fn new_inactive(label: *const c_char) -> DispatchRetained<DispatchWorkloop> {
+    pub(crate) unsafe fn __new_inactive(
+        label: *const c_char,
+    ) -> DispatchRetained<DispatchWorkloop> {
         extern "C" {
             fn dispatch_workloop_create_inactive(
                 label: *const c_char,
@@ -3937,33 +3959,34 @@ impl DispatchWorkloop {
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { DispatchRetained::from_raw(ret) }
     }
-}
 
-/// Sets the autorelease frequency of the workloop.
-///
-///
-/// See dispatch_queue_attr_make_with_autorelease_frequency().
-/// The default policy for a workloop is
-/// DISPATCH_AUTORELEASE_FREQUENCY_WORK_ITEM.
-///
-///
-/// Parameter `workloop`: The dispatch workloop to modify.
-///
-/// This workloop must be inactive, passing an activated object is undefined
-/// and will cause the process to be terminated.
-///
-///
-/// Parameter `frequency`: The requested autorelease frequency.
-#[inline]
-pub extern "C" fn dispatch_workloop_set_autorelease_frequency(
-    workloop: &DispatchWorkloop,
-    frequency: dispatch_autorelease_frequency_t,
-) {
-    extern "C" {
-        fn dispatch_workloop_set_autorelease_frequency(
-            workloop: &DispatchWorkloop,
-            frequency: dispatch_autorelease_frequency_t,
-        );
+    /// Sets the autorelease frequency of the workloop.
+    ///
+    ///
+    /// See dispatch_queue_attr_make_with_autorelease_frequency().
+    /// The default policy for a workloop is
+    /// DISPATCH_AUTORELEASE_FREQUENCY_WORK_ITEM.
+    ///
+    ///
+    /// Parameter `workloop`: The dispatch workloop to modify.
+    ///
+    /// This workloop must be inactive, passing an activated object is undefined
+    /// and will cause the process to be terminated.
+    ///
+    ///
+    /// Parameter `frequency`: The requested autorelease frequency.
+    #[doc(alias = "dispatch_workloop_set_autorelease_frequency")]
+    #[inline]
+    pub fn set_autorelease_frequency(
+        self: &DispatchWorkloop,
+        frequency: DispatchAutoReleaseFrequency,
+    ) {
+        extern "C" {
+            fn dispatch_workloop_set_autorelease_frequency(
+                workloop: &DispatchWorkloop,
+                frequency: DispatchAutoReleaseFrequency,
+            );
+        }
+        unsafe { dispatch_workloop_set_autorelease_frequency(self, frequency) }
     }
-    unsafe { dispatch_workloop_set_autorelease_frequency(workloop, frequency) }
 }
