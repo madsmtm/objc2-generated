@@ -30,6 +30,9 @@ mod __hid;
 #[cfg(feature = "hidsystem")]
 #[path = "hidsystem.rs"]
 mod __hidsystem;
+#[cfg(feature = "serial")]
+#[path = "serial.rs"]
+mod __serial;
 #[cfg(feature = "usb")]
 #[path = "usb/mod.rs"]
 mod __usb;
@@ -7460,6 +7463,36 @@ pub use self::__hidsystem::NXTabletPointData;
 pub use self::__hidsystem::NXTabletProximityData;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::EVENT_SYSTEM_VERSION;
+#[cfg(feature = "serial")]
+pub use self::__serial::kIOCalloutDeviceKey;
+#[cfg(feature = "serial")]
+pub use self::__serial::kIODialinDeviceKey;
+#[cfg(feature = "serial")]
+pub use self::__serial::kIOSerialBSDAllTypes;
+#[cfg(feature = "serial")]
+pub use self::__serial::kIOSerialBSDModemType;
+#[cfg(feature = "serial")]
+pub use self::__serial::kIOSerialBSDRS232Type;
+#[cfg(feature = "serial")]
+pub use self::__serial::kIOSerialBSDServiceValue;
+#[cfg(feature = "serial")]
+pub use self::__serial::kIOSerialBSDTypeKey;
+#[cfg(feature = "serial")]
+pub use self::__serial::kIOTTYBaseNameKey;
+#[cfg(feature = "serial")]
+pub use self::__serial::kIOTTYDeviceKey;
+#[cfg(feature = "serial")]
+pub use self::__serial::kIOTTYSuffixKey;
+#[cfg(feature = "serial")]
+pub use self::__serial::kIOTTYWaitForIdleKey;
+#[cfg(feature = "serial")]
+pub use self::__serial::user_shspeed_t;
+#[cfg(feature = "serial")]
+pub use self::__serial::user_speed_t;
+#[cfg(feature = "serial")]
+pub use self::__serial::user_ul_t;
+#[cfg(feature = "serial")]
+pub use self::__serial::user_us_t;
 #[cfg(feature = "usb")]
 pub use self::__usb::*;
 use core::cell::UnsafeCell;
