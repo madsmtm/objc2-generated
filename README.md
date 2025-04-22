@@ -1,3 +1,3 @@
-# `icrate-generated`
+# `objc2-generated`
 
-Automatically generated parts of `icrate`.
+Automatically generated parts of `objc2` frameworks.
