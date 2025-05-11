@@ -6,8 +6,14 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 
 use crate::*;
 
@@ -77,6 +83,50 @@ impl ARReferenceImage {
             &self,
             completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
+
+        #[cfg(all(
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics",
+            feature = "objc2-image-io"
+        ))]
+        /// Creates a new reference image.
+        ///
+        ///
+        /// Parameter `image`: The reference image as CGImage.
+        ///
+        /// Parameter `orientation`: The image orientation.
+        ///
+        /// Parameter `physicalWidth`: The width in meters of the physical object.
+        #[unsafe(method(initWithCGImage:orientation:physicalWidth:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithCGImage_orientation_physicalWidth(
+            this: Allocated<Self>,
+            image: &CGImage,
+            orientation: CGImagePropertyOrientation,
+            physical_width: CGFloat,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-video",
+            feature = "objc2-image-io"
+        ))]
+        /// Creates a new reference image.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: The reference image as CVPixelBuffer.
+        ///
+        /// Parameter `physicalWidth`: The width in meters of the physical object.
+        ///
+        /// Parameter `orientation`: The image orientation.
+        #[unsafe(method(initWithPixelBuffer:orientation:physicalWidth:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithPixelBuffer_orientation_physicalWidth(
+            this: Allocated<Self>,
+            pixel_buffer: &CVPixelBuffer,
+            orientation: CGImagePropertyOrientation,
+            physical_width: CGFloat,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Returns the set of ARReferenceImages in the specified resource group and bundle.

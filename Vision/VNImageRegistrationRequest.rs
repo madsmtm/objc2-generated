@@ -11,6 +11,8 @@ use objc2_core_media::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 
 use crate::*;
 
@@ -100,6 +102,54 @@ impl VNImageRegistrationRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-video",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request that targets an image in a pixel buffer.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options(
+            this: Allocated<Self>,
+            pixel_buffer: &CVPixelBuffer,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-video",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request that targets an image in a pixel buffer.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            pixel_buffer: &CVPixelBuffer,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-graphics"))]
         /// Create a new request with a targeted CGImage.
         ///
@@ -133,6 +183,54 @@ impl VNImageRegistrationRequest {
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
             this: Allocated<Self>,
             cg_image: &CGImage,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-graphics",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CGImage.
+        ///
+        ///
+        /// Parameter `cgImage`: The CGImageRef of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCGImage:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCGImage_orientation_options(
+            this: Allocated<Self>,
+            cg_image: &CGImage,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-graphics",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CGImage.
+        ///
+        ///
+        /// Parameter `cgImage`: The CGImageRef of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedCGImage:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCGImage_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            cg_image: &CGImage,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -174,6 +272,54 @@ impl VNImageRegistrationRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-image",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CIImage.
+        ///
+        ///
+        /// Parameter `ciImage`: The CIImage of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCIImage:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCIImage_orientation_options(
+            this: Allocated<Self>,
+            ci_image: &CIImage,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-image",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CIImage.
+        ///
+        ///
+        /// Parameter `ciImage`: The CIImage of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedCIImage:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCIImage_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            ci_image: &CIImage,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "VNRequestHandler")]
         /// Create a new request with a targeted image URL.
         ///
@@ -203,6 +349,49 @@ impl VNImageRegistrationRequest {
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
             this: Allocated<Self>,
             image_url: &NSURL,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-image-io"))]
+        /// Create a new request with a targeted image URL.
+        ///
+        ///
+        /// Parameter `imageURL`: The URL of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedImageURL:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageURL_orientation_options(
+            this: Allocated<Self>,
+            image_url: &NSURL,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted image URL.
+        ///
+        ///
+        /// Parameter `imageURL`: The URL of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedImageURL:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageURL_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            image_url: &NSURL,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -240,6 +429,49 @@ impl VNImageRegistrationRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-image-io"))]
+        /// Create a new request with a targeted image data.
+        ///
+        ///
+        /// Parameter `imageData`: The data of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedImageData:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageData_orientation_options(
+            this: Allocated<Self>,
+            image_data: &NSData,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted image data.
+        ///
+        ///
+        /// Parameter `imageData`: The data of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedImageData:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageData_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            image_data: &NSData,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-media"))]
         /// Create a new request with a targeted CMSampleBuffer.
         ///
@@ -273,6 +505,54 @@ impl VNImageRegistrationRequest {
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
             this: Allocated<Self>,
             sample_buffer: &CMSampleBuffer,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-media",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CMSampleBuffer.
+        ///
+        ///
+        /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options(
+            this: Allocated<Self>,
+            sample_buffer: &CMSampleBuffer,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-media",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CMSampleBuffer.
+        ///
+        ///
+        /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
+        #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            sample_buffer: &CMSampleBuffer,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -389,6 +669,54 @@ impl VNTranslationalImageRegistrationRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-video",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request that targets an image in a pixel buffer.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options(
+            this: Allocated<Self>,
+            pixel_buffer: &CVPixelBuffer,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-video",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request that targets an image in a pixel buffer.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            pixel_buffer: &CVPixelBuffer,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-graphics"))]
         /// Create a new request with a targeted CGImage.
         ///
@@ -422,6 +750,54 @@ impl VNTranslationalImageRegistrationRequest {
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
             this: Allocated<Self>,
             cg_image: &CGImage,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-graphics",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CGImage.
+        ///
+        ///
+        /// Parameter `cgImage`: The CGImageRef of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCGImage:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCGImage_orientation_options(
+            this: Allocated<Self>,
+            cg_image: &CGImage,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-graphics",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CGImage.
+        ///
+        ///
+        /// Parameter `cgImage`: The CGImageRef of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedCGImage:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCGImage_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            cg_image: &CGImage,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -463,6 +839,54 @@ impl VNTranslationalImageRegistrationRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-image",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CIImage.
+        ///
+        ///
+        /// Parameter `ciImage`: The CIImage of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCIImage:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCIImage_orientation_options(
+            this: Allocated<Self>,
+            ci_image: &CIImage,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-image",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CIImage.
+        ///
+        ///
+        /// Parameter `ciImage`: The CIImage of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedCIImage:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCIImage_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            ci_image: &CIImage,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "VNRequestHandler")]
         /// Create a new request with a targeted image URL.
         ///
@@ -492,6 +916,49 @@ impl VNTranslationalImageRegistrationRequest {
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
             this: Allocated<Self>,
             image_url: &NSURL,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-image-io"))]
+        /// Create a new request with a targeted image URL.
+        ///
+        ///
+        /// Parameter `imageURL`: The URL of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedImageURL:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageURL_orientation_options(
+            this: Allocated<Self>,
+            image_url: &NSURL,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted image URL.
+        ///
+        ///
+        /// Parameter `imageURL`: The URL of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedImageURL:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageURL_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            image_url: &NSURL,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -529,6 +996,49 @@ impl VNTranslationalImageRegistrationRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-image-io"))]
+        /// Create a new request with a targeted image data.
+        ///
+        ///
+        /// Parameter `imageData`: The data of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedImageData:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageData_orientation_options(
+            this: Allocated<Self>,
+            image_data: &NSData,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted image data.
+        ///
+        ///
+        /// Parameter `imageData`: The data of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedImageData:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageData_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            image_data: &NSData,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-media"))]
         /// Create a new request with a targeted CMSampleBuffer.
         ///
@@ -562,6 +1072,54 @@ impl VNTranslationalImageRegistrationRequest {
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
             this: Allocated<Self>,
             sample_buffer: &CMSampleBuffer,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-media",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CMSampleBuffer.
+        ///
+        ///
+        /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options(
+            this: Allocated<Self>,
+            sample_buffer: &CMSampleBuffer,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-media",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CMSampleBuffer.
+        ///
+        ///
+        /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
+        #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            sample_buffer: &CMSampleBuffer,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -682,6 +1240,54 @@ impl VNHomographicImageRegistrationRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-video",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request that targets an image in a pixel buffer.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options(
+            this: Allocated<Self>,
+            pixel_buffer: &CVPixelBuffer,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-video",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request that targets an image in a pixel buffer.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            pixel_buffer: &CVPixelBuffer,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-graphics"))]
         /// Create a new request with a targeted CGImage.
         ///
@@ -715,6 +1321,54 @@ impl VNHomographicImageRegistrationRequest {
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
             this: Allocated<Self>,
             cg_image: &CGImage,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-graphics",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CGImage.
+        ///
+        ///
+        /// Parameter `cgImage`: The CGImageRef of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCGImage:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCGImage_orientation_options(
+            this: Allocated<Self>,
+            cg_image: &CGImage,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-graphics",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CGImage.
+        ///
+        ///
+        /// Parameter `cgImage`: The CGImageRef of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedCGImage:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCGImage_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            cg_image: &CGImage,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -756,6 +1410,54 @@ impl VNHomographicImageRegistrationRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-image",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CIImage.
+        ///
+        ///
+        /// Parameter `ciImage`: The CIImage of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCIImage:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCIImage_orientation_options(
+            this: Allocated<Self>,
+            ci_image: &CIImage,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-image",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CIImage.
+        ///
+        ///
+        /// Parameter `ciImage`: The CIImage of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedCIImage:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCIImage_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            ci_image: &CIImage,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "VNRequestHandler")]
         /// Create a new request with a targeted image URL.
         ///
@@ -785,6 +1487,49 @@ impl VNHomographicImageRegistrationRequest {
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
             this: Allocated<Self>,
             image_url: &NSURL,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-image-io"))]
+        /// Create a new request with a targeted image URL.
+        ///
+        ///
+        /// Parameter `imageURL`: The URL of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedImageURL:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageURL_orientation_options(
+            this: Allocated<Self>,
+            image_url: &NSURL,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted image URL.
+        ///
+        ///
+        /// Parameter `imageURL`: The URL of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedImageURL:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageURL_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            image_url: &NSURL,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -822,6 +1567,49 @@ impl VNHomographicImageRegistrationRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-image-io"))]
+        /// Create a new request with a targeted image data.
+        ///
+        ///
+        /// Parameter `imageData`: The data of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedImageData:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageData_orientation_options(
+            this: Allocated<Self>,
+            image_data: &NSData,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted image data.
+        ///
+        ///
+        /// Parameter `imageData`: The data of the targeted image.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        #[unsafe(method(initWithTargetedImageData:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedImageData_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            image_data: &NSData,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-media"))]
         /// Create a new request with a targeted CMSampleBuffer.
         ///
@@ -855,6 +1643,54 @@ impl VNHomographicImageRegistrationRequest {
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
             this: Allocated<Self>,
             sample_buffer: &CMSampleBuffer,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+            completion_handler: VNRequestCompletionHandler,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "objc2-core-media",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CMSampleBuffer.
+        ///
+        ///
+        /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options(
+            this: Allocated<Self>,
+            sample_buffer: &CMSampleBuffer,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "VNRequestHandler",
+            feature = "block2",
+            feature = "objc2-core-media",
+            feature = "objc2-image-io"
+        ))]
+        /// Create a new request with a targeted CMSampleBuffer.
+        ///
+        ///
+        /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
+        #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:completionHandler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options_completionHandler(
+            this: Allocated<Self>,
+            sample_buffer: &CMSampleBuffer,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;

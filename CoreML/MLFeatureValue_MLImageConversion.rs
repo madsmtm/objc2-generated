@@ -5,6 +5,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 
 use crate::*;
 
@@ -71,6 +73,58 @@ impl MLFeatureValue {
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithCGImage_constraint_options_error(
             cg_image: &CGImage,
+            constraint: &MLImageConstraint,
+            options: Option<&NSDictionary<MLFeatureValueImageOption, AnyObject>>,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        #[cfg(feature = "objc2-image-io")]
+        /// Construct image feature value from an image on disk. The passed in orientation supersedes any in the file
+        #[unsafe(method(featureValueWithImageAtURL:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn featureValueWithImageAtURL_orientation_pixelsWide_pixelsHigh_pixelFormatType_options_error(
+            url: &NSURL,
+            orientation: CGImagePropertyOrientation,
+            pixels_wide: NSInteger,
+            pixels_high: NSInteger,
+            pixel_format_type: OSType,
+            options: Option<&NSDictionary<MLFeatureValueImageOption, AnyObject>>,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        #[cfg(all(feature = "MLImageConstraint", feature = "objc2-image-io"))]
+        /// Construct image feature value from an image on disk using a model specified image constraint. The passed in orientation supersedes any in the file
+        #[unsafe(method(featureValueWithImageAtURL:orientation:constraint:options:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn featureValueWithImageAtURL_orientation_constraint_options_error(
+            url: &NSURL,
+            orientation: CGImagePropertyOrientation,
+            constraint: &MLImageConstraint,
+            options: Option<&NSDictionary<MLFeatureValueImageOption, AnyObject>>,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-image-io"))]
+        /// Construct image feature value from CGImage w/ specified orientation
+        #[unsafe(method(featureValueWithCGImage:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn featureValueWithCGImage_orientation_pixelsWide_pixelsHigh_pixelFormatType_options_error(
+            cg_image: &CGImage,
+            orientation: CGImagePropertyOrientation,
+            pixels_wide: NSInteger,
+            pixels_high: NSInteger,
+            pixel_format_type: OSType,
+            options: Option<&NSDictionary<MLFeatureValueImageOption, AnyObject>>,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        #[cfg(all(
+            feature = "MLImageConstraint",
+            feature = "objc2-core-graphics",
+            feature = "objc2-image-io"
+        ))]
+        /// Construct image feature value from CGImage w/ specified orientation, using the size and type information required by feature description
+        #[unsafe(method(featureValueWithCGImage:orientation:constraint:options:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn featureValueWithCGImage_orientation_constraint_options_error(
+            cg_image: &CGImage,
+            orientation: CGImagePropertyOrientation,
             constraint: &MLImageConstraint,
             options: Option<&NSDictionary<MLFeatureValueImageOption, AnyObject>>,
         ) -> Result<Retained<Self>, Retained<NSError>>;

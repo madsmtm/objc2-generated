@@ -8,6 +8,8 @@ use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-pdf-kit")]
+use objc2_pdf_kit::*;
 #[cfg(feature = "objc2-uniform-type-identifiers")]
 use objc2_uniform_type_identifiers::*;
 
@@ -191,5 +193,26 @@ impl QLPreviewReply {
 
 /// UI.
 impl QLPreviewReply {
-    extern_methods!();
+    extern_methods!(
+        #[cfg(all(
+            feature = "block2",
+            feature = "objc2-core-foundation",
+            feature = "objc2-pdf-kit"
+        ))]
+        /// Use this method to provide a preview with a PDFDocument
+        ///
+        ///
+        /// Parameter `defaultPageSize`: The size of your pages in the document. If the page size varies, use the first page's size.
+        ///
+        /// Parameter `documentCreationBlock`: Create and return the PDFDocument. Heavy lifting should be done inside of the documentCreationBlock instead of when creating the QLPreviewReply. The QLPreviewReply passed into this block is the same as the one created by this method and is provided for convenience for any further updates to its properties during document creation. Return the PDFDocument if successfully created. Populate error if unsuccessful.
+        #[unsafe(method(initForPDFWithPageSize:documentCreationBlock:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initForPDFWithPageSize_documentCreationBlock(
+            this: Allocated<Self>,
+            default_page_size: CGSize,
+            document_creation_block: &block2::DynBlock<
+                dyn Fn(NonNull<QLPreviewReply>, *mut *mut NSError) -> *mut PDFDocument,
+            >,
+        ) -> Retained<Self>;
+    );
 }

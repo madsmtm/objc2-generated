@@ -8,6 +8,8 @@ use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 
 use crate::*;
 
@@ -102,6 +104,17 @@ impl CIRAWFilter {
         #[unsafe(method(properties))]
         #[unsafe(method_family = none)]
         pub unsafe fn properties(&self) -> Retained<NSDictionary>;
+
+        #[cfg(feature = "objc2-image-io")]
+        #[unsafe(method(orientation))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn orientation(&self) -> CGImagePropertyOrientation;
+
+        #[cfg(feature = "objc2-image-io")]
+        /// Setter for [`orientation`][Self::orientation].
+        #[unsafe(method(setOrientation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setOrientation(&self, orientation: CGImagePropertyOrientation);
 
         #[unsafe(method(isDraftModeEnabled))]
         #[unsafe(method_family = none)]

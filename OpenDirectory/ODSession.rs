@@ -3,6 +3,8 @@
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security-foundation")]
+use objc2_security_foundation::*;
 
 use crate::*;
 
@@ -137,6 +139,20 @@ impl ODSession {
         #[unsafe(method_family = none)]
         pub unsafe fn mappingTemplateNames(&self) -> Retained<NSArray>;
 
+        #[cfg(feature = "objc2-security-foundation")]
+        /// Returns an authorization appropriate for managing configurations.
+        ///
+        ///
+        /// Returns an authorization appropriate for managing configurations.  If a proxy session is in use this method will return
+        /// nil and no error.
+        #[unsafe(method(configurationAuthorizationAllowingUserInteraction:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configurationAuthorizationAllowingUserInteraction_error(
+            &self,
+            allow_interaction: bool,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> Option<Retained<SFAuthorization>>;
+
         #[cfg(feature = "ODConfiguration")]
         /// Reads the configuration for a given nodename.
         ///
@@ -148,6 +164,48 @@ impl ODSession {
             &self,
             nodename: Option<&NSString>,
         ) -> Option<Retained<ODConfiguration>>;
+
+        #[cfg(all(feature = "ODConfiguration", feature = "objc2-security-foundation"))]
+        /// Adds a new configuration to the existing ODSession.
+        ///
+        ///
+        /// Adds a new configuration to the existing ODSession.  An SFAuthorization can be provided if necessary.
+        #[unsafe(method(addConfiguration:authorization:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addConfiguration_authorization_error(
+            &self,
+            configuration: Option<&ODConfiguration>,
+            authorization: Option<&SFAuthorization>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> bool;
+
+        #[cfg(all(feature = "ODConfiguration", feature = "objc2-security-foundation"))]
+        /// Deletes an existing configuration from the ODSession.
+        ///
+        ///
+        /// Deletes an existing configuration from the ODSession.  An authorization can be provided if necessary.
+        #[unsafe(method(deleteConfiguration:authorization:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn deleteConfiguration_authorization_error(
+            &self,
+            configuration: Option<&ODConfiguration>,
+            authorization: Option<&SFAuthorization>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> bool;
+
+        #[cfg(feature = "objc2-security-foundation")]
+        /// Deletes an existing configuration from the ODSession.
+        ///
+        ///
+        /// Deletes an existing configuration from the ODSession.  An authorization can be provided if necessary.
+        #[unsafe(method(deleteConfigurationWithNodename:authorization:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn deleteConfigurationWithNodename_authorization_error(
+            &self,
+            nodename: Option<&NSString>,
+            authorization: Option<&SFAuthorization>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> bool;
     );
 }
 

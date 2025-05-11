@@ -11,6 +11,8 @@ use objc2_av_foundation::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 
 use crate::*;
 
@@ -466,6 +468,31 @@ impl PHImageManager {
             content_mode: PHImageContentMode,
             options: Option<&PHImageRequestOptions>,
             result_handler: &block2::DynBlock<dyn Fn(*mut NSImage, *mut NSDictionary)>,
+        ) -> PHImageRequestID;
+
+        #[cfg(all(
+            feature = "PHAsset",
+            feature = "PHObject",
+            feature = "block2",
+            feature = "objc2-image-io"
+        ))]
+        /// Request largest represented image as data bytes and EXIF orientation for the specified asset.
+        ///
+        /// Parameter `asset`: The asset whose image data is to be loaded.
+        ///
+        /// Parameter `options`: Options specifying how Photos should handle the request, format the requested image, and notify your app of progress or errors.
+        /// If PHImageRequestOptionsVersionCurrent is requested and the asset has adjustments then the largest rendered image data is returned. In all other cases then the original image data is returned.
+        ///
+        /// Parameter `resultHandler`: A block that is called exactly once either synchronously on the current thread or asynchronously on the main thread depending on the synchronous option specified in the PHImageRequestOptions options parameter (deliveryMode is ignored). Orientation is an EXIF orientation as an CGImagePropertyOrientation. For iOS or tvOS, convert this to an UIImageOrientation.
+        #[unsafe(method(requestImageDataAndOrientationForAsset:options:resultHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requestImageDataAndOrientationForAsset_options_resultHandler(
+            &self,
+            asset: &PHAsset,
+            options: Option<&PHImageRequestOptions>,
+            result_handler: &block2::DynBlock<
+                dyn Fn(*mut NSData, *mut NSString, CGImagePropertyOrientation, *mut NSDictionary),
+            >,
         ) -> PHImageRequestID;
 
         #[unsafe(method(cancelImageRequest:))]

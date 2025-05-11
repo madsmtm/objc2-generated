@@ -6,6 +6,8 @@ use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-security")]
 use objc2_security::*;
+#[cfg(feature = "objc2-security-foundation")]
+use objc2_security_foundation::*;
 
 use crate::*;
 
@@ -582,6 +584,34 @@ impl CWInterface {
             security: CWIBSSModeSecurity,
             channel: NSUInteger,
             password: Option<&NSString>,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(all(feature = "CWConfiguration", feature = "objc2-security-foundation"))]
+        /// Parameter `configuration`: The Wi-Fi configuration to commit to disk.
+        ///
+        ///
+        /// Parameter `authorization`: An SFAuthorization object to use for authorizing the commit.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: Returns YES upon success, or NO if an error occurred.
+        ///
+        ///
+        /// Commits a CWConfiguration for the given Wi-Fi interface.
+        ///
+        ///
+        /// This method requires the caller have root privileges
+        /// or obtain administrator privileges using the SFAuthorization API.
+        #[unsafe(method(commitConfiguration:authorization:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn commitConfiguration_authorization_error(
+            &self,
+            configuration: &CWConfiguration,
+            authorization: Option<&SFAuthorization>,
         ) -> Result<(), Retained<NSError>>;
     );
 }

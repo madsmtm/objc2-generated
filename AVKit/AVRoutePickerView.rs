@@ -8,6 +8,9 @@ use objc2::__framework_prelude::*;
 use objc2_app_kit::*;
 #[cfg(feature = "objc2-av-foundation")]
 use objc2_av_foundation::*;
+#[cfg(feature = "objc2-av-routing")]
+#[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
+use objc2_av_routing::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -228,6 +231,22 @@ impl AVRoutePickerView {
         #[unsafe(method(setPrioritizesVideoDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrioritizesVideoDevices(&self, prioritizes_video_devices: bool);
+
+        #[cfg(feature = "objc2-av-routing")]
+        /// A controller which enables connection to 3rd party devices (non-airplay) via the picker.
+        #[unsafe(method(customRoutingController))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn customRoutingController(&self)
+            -> Option<Retained<AVCustomRoutingController>>;
+
+        #[cfg(feature = "objc2-av-routing")]
+        /// Setter for [`customRoutingController`][Self::customRoutingController].
+        #[unsafe(method(setCustomRoutingController:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCustomRoutingController(
+            &self,
+            custom_routing_controller: Option<&AVCustomRoutingController>,
+        );
     );
 }
 

@@ -10,6 +10,8 @@ use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 #[cfg(feature = "objc2-io-surface")]
 use objc2_io_surface::*;
 #[cfg(feature = "objc2-metal")]
@@ -317,6 +319,15 @@ impl CIImage {
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<CIImage>;
 
+        #[cfg(feature = "objc2-image-io")]
+        #[unsafe(method(imageWithCGImageSource:index:options:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn imageWithCGImageSource_index_options(
+            source: &CGImageSource,
+            index: usize,
+            dict: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<CIImage>;
+
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated]
         #[unsafe(method(imageWithCGLayer:))]
@@ -497,6 +508,16 @@ impl CIImage {
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-image-io")]
+        #[unsafe(method(initWithCGImageSource:index:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithCGImageSource_index_options(
+            this: Allocated<Self>,
+            source: &CGImageSource,
+            index: usize,
+            dict: Option<&NSDictionary<CIImageOption, AnyObject>>,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated = "Use initWithCGImage: instead."]
         #[unsafe(method(initWithCGLayer:))]
@@ -673,6 +694,27 @@ impl CIImage {
         #[unsafe(method(imageByApplyingOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByApplyingOrientation(&self, orientation: c_int) -> Retained<CIImage>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(imageTransformForOrientation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn imageTransformForOrientation(&self, orientation: c_int) -> CGAffineTransform;
+
+        #[cfg(feature = "objc2-image-io")]
+        #[unsafe(method(imageByApplyingCGOrientation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn imageByApplyingCGOrientation(
+            &self,
+            orientation: CGImagePropertyOrientation,
+        ) -> Retained<CIImage>;
+
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-image-io"))]
+        #[unsafe(method(imageTransformForCGOrientation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn imageTransformForCGOrientation(
+            &self,
+            orientation: CGImagePropertyOrientation,
+        ) -> CGAffineTransform;
 
         #[unsafe(method(imageByCompositingOverImage:))]
         #[unsafe(method_family = none)]

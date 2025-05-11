@@ -6,6 +6,9 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-media-toolbox")]
+#[cfg(not(target_os = "watchos"))]
+use objc2_media_toolbox::*;
 
 use crate::*;
 
@@ -165,6 +168,13 @@ impl AVAudioMixInputParameters {
         pub unsafe fn audioTimePitchAlgorithm(&self)
             -> Option<Retained<AVAudioTimePitchAlgorithm>>;
 
+        #[cfg(feature = "objc2-media-toolbox")]
+        #[cfg(not(target_os = "watchos"))]
+        /// Indicates the audio processing tap that will be used for the audio track.
+        #[unsafe(method(audioTapProcessor))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn audioTapProcessor(&self) -> Option<Retained<MTAudioProcessingTap>>;
+
         #[cfg(feature = "objc2-core-media")]
         #[unsafe(method(getVolumeRampForTime:startVolume:endVolume:timeRange:))]
         #[unsafe(method_family = none)]
@@ -260,6 +270,23 @@ impl AVMutableAudioMixInputParameters {
         pub unsafe fn setAudioTimePitchAlgorithm(
             &self,
             audio_time_pitch_algorithm: Option<&AVAudioTimePitchAlgorithm>,
+        );
+
+        #[cfg(feature = "objc2-media-toolbox")]
+        #[cfg(not(target_os = "watchos"))]
+        /// Indicates the audio processing tap that will be used for the audio track.
+        #[unsafe(method(audioTapProcessor))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn audioTapProcessor(&self) -> Option<Retained<MTAudioProcessingTap>>;
+
+        #[cfg(feature = "objc2-media-toolbox")]
+        #[cfg(not(target_os = "watchos"))]
+        /// Setter for [`audioTapProcessor`][Self::audioTapProcessor].
+        #[unsafe(method(setAudioTapProcessor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAudioTapProcessor(
+            &self,
+            audio_tap_processor: Option<&MTAudioProcessingTap>,
         );
 
         #[cfg(feature = "objc2-core-media")]

@@ -7,6 +7,8 @@ use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 
 use crate::*;
 
@@ -105,6 +107,23 @@ impl AVSemanticSegmentationMatte {
         #[unsafe(method(matteType))]
         #[unsafe(method_family = none)]
         pub unsafe fn matteType(&self) -> Retained<AVSemanticSegmentationMatteType>;
+
+        #[cfg(feature = "objc2-image-io")]
+        /// Returns a derivative AVSemanticSegmentationMatte instance in which the specified Exif orientation has been applied.
+        ///
+        ///
+        /// Parameter `exifOrientation`: One of the 8 standard Exif orientation tags expressing how the matte should be rotated / mirrored.
+        ///
+        /// Returns: An AVSemanticSegmentationMatte's instance.
+        ///
+        ///
+        /// When applying simple 90 degree rotation or mirroring edits to media containing a semantic segmentation matte, you may use this initializer to create a derivative copy of the matte in which the specified orientation is applied. This method throws an NSInvalidArgumentException if you pass an unrecognized exifOrientation.
+        #[unsafe(method(semanticSegmentationMatteByApplyingExifOrientation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn semanticSegmentationMatteByApplyingExifOrientation(
+            &self,
+            exif_orientation: CGImagePropertyOrientation,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
         /// Returns an AVSemanticSegmentationMatte instance wrapping the replacement pixel buffer.

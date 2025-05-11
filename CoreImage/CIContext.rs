@@ -10,6 +10,8 @@ use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 #[cfg(feature = "objc2-io-surface")]
 use objc2_io_surface::*;
 #[cfg(feature = "objc2-metal")]
@@ -585,6 +587,46 @@ impl CIContext {
         pub unsafe fn depthBlurEffectFilterForImageData_options(
             &self,
             data: &NSData,
+            options: Option<&NSDictionary>,
+        ) -> Option<Retained<CIFilter>>;
+
+        #[cfg(all(feature = "CIFilter", feature = "CIImage", feature = "objc2-image-io"))]
+        #[unsafe(method(depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:orientation:options:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn depthBlurEffectFilterForImage_disparityImage_portraitEffectsMatte_orientation_options(
+            &self,
+            image: &CIImage,
+            disparity_image: &CIImage,
+            portrait_effects_matte: Option<&CIImage>,
+            orientation: CGImagePropertyOrientation,
+            options: Option<&NSDictionary>,
+        ) -> Option<Retained<CIFilter>>;
+
+        #[cfg(all(feature = "CIFilter", feature = "CIImage", feature = "objc2-image-io"))]
+        #[unsafe(method(depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn depthBlurEffectFilterForImage_disparityImage_portraitEffectsMatte_hairSemanticSegmentation_orientation_options(
+            &self,
+            image: &CIImage,
+            disparity_image: &CIImage,
+            portrait_effects_matte: Option<&CIImage>,
+            hair_semantic_segmentation: Option<&CIImage>,
+            orientation: CGImagePropertyOrientation,
+            options: Option<&NSDictionary>,
+        ) -> Option<Retained<CIFilter>>;
+
+        #[cfg(all(feature = "CIFilter", feature = "CIImage", feature = "objc2-image-io"))]
+        #[unsafe(method(depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:glassesMatte:gainMap:orientation:options:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn depthBlurEffectFilterForImage_disparityImage_portraitEffectsMatte_hairSemanticSegmentation_glassesMatte_gainMap_orientation_options(
+            &self,
+            image: &CIImage,
+            disparity_image: &CIImage,
+            portrait_effects_matte: Option<&CIImage>,
+            hair_semantic_segmentation: Option<&CIImage>,
+            glasses_matte: Option<&CIImage>,
+            gain_map: Option<&CIImage>,
+            orientation: CGImagePropertyOrientation,
             options: Option<&NSDictionary>,
         ) -> Option<Retained<CIFilter>>;
     );

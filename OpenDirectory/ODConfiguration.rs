@@ -4,6 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security-foundation")]
+use objc2_security_foundation::*;
 
 use crate::*;
 
@@ -282,6 +284,19 @@ impl ODConfiguration {
         #[unsafe(method(suggestedTrustPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn suggestedTrustPassword(length: usize) -> Option<Retained<NSString>>;
+
+        #[cfg(feature = "objc2-security-foundation")]
+        /// Saves the configuration using the provided authorization.
+        ///
+        ///
+        /// Saves the configuration using the provided authorization.
+        #[unsafe(method(saveUsingAuthorization:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn saveUsingAuthorization_error(
+            &self,
+            authorization: Option<&SFAuthorization>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> bool;
 
         /// Adds a trust account with the provided name and password using the credentials provided by the user.
         ///

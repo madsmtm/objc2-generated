@@ -10,6 +10,8 @@ use objc2_core_image::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 
 use crate::*;
 
@@ -94,6 +96,11 @@ impl PHLivePhotoEditingContext {
         #[unsafe(method(setAudioVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioVolume(&self, audio_volume: c_float);
+
+        #[cfg(feature = "objc2-image-io")]
+        #[unsafe(method(orientation))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn orientation(&self) -> CGImagePropertyOrientation;
 
         #[cfg(all(
             feature = "PHLivePhoto",

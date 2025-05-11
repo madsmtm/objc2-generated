@@ -5,6 +5,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 
 use crate::*;
 
@@ -52,6 +54,23 @@ impl AVPortraitEffectsMatte {
         pub unsafe fn portraitEffectsMatteFromDictionaryRepresentation_error(
             image_source_aux_data_info_dictionary: &NSDictionary,
         ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        #[cfg(feature = "objc2-image-io")]
+        /// Returns a derivative AVPortraitEffectsMatte instance in which the specified Exif orientation has been applied.
+        ///
+        ///
+        /// Parameter `exifOrientation`: One of the 8 standard Exif orientation tags expressing how the portrait effects matte should be rotated / mirrored.
+        ///
+        /// Returns: An AVPortraitEffectsMatte instance.
+        ///
+        ///
+        /// When applying simple 90 degree rotation or mirroring edits to media containing a portrait effects matte, you may use this initializer to create a derivative copy of the portrait effects matte in which the specified orientation is applied. This method throws an NSInvalidArgumentException if you pass an unrecognized exifOrientation.
+        #[unsafe(method(portraitEffectsMatteByApplyingExifOrientation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn portraitEffectsMatteByApplyingExifOrientation(
+            &self,
+            exif_orientation: CGImagePropertyOrientation,
+        ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
         /// Returns an AVPortraitEffectsMatte instance wrapping the replacement pixel buffer.

@@ -26,6 +26,9 @@ use core::ptr::NonNull;
 #[cfg(feature = "dispatch2")]
 use dispatch2::*;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-accessory-setup-kit")]
+#[cfg(target_os = "ios")]
+use objc2_accessory_setup_kit::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-security")]
 use objc2_security::*;
@@ -5853,6 +5856,52 @@ impl NEHotspotConfigurationManager {
         pub unsafe fn getConfiguredSSIDsWithCompletionHandler(
             &self,
             completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSString>>)>,
+        );
+
+        #[cfg(all(feature = "block2", feature = "objc2-accessory-setup-kit"))]
+        #[cfg(target_os = "ios")]
+        /// This function performs a one-time join of a Wi-Fi network configuration defined by an ASAccessory.
+        /// This function implicitly sets joinOnce to YES. The network must support WPA/WPA2/WPA3 Personal security type.
+        ///
+        /// Parameter `accessory`: Object of type ASAccessory class.
+        /// This parameter is required to specify the Accessory Wi-Fi network.
+        ///
+        /// Parameter `passphrase`: The required passphrase credential.
+        /// The passphrase with a length between 8 and 63 characters to join WPA/WPA2/WPA3 Personal networks.
+        ///
+        /// Parameter `completionHandler`: A block that will be called when join operation is completed.
+        /// Pass nil if application does not intend to receive the result.
+        /// The NSError passed to this block will be nil if the hotspot is successfully joined, non-nil otherwise.
+        /// If the configuration is found to be invalid or some other error is encountered then the completionHandler
+        /// block is executed with with an instance of NSError containing an appropriate error code.
+        #[unsafe(method(joinAccessoryHotspot:passphrase:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn joinAccessoryHotspot_passphrase_completionHandler(
+            &self,
+            accessory: &ASAccessory,
+            passphrase: &NSString,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
+        );
+
+        #[cfg(all(feature = "block2", feature = "objc2-accessory-setup-kit"))]
+        #[cfg(target_os = "ios")]
+        /// This function performs a one-time join of an open Wi-Fi network configuration defined by an ASAccessory.
+        /// This function implicitly sets joinOnce to YES.
+        ///
+        /// Parameter `accessory`: Object of type ASAccessory class.
+        /// This parameter is required to specify the Accessory Wi-Fi network.
+        ///
+        /// Parameter `completionHandler`: A block that will be called when join operation is completed.
+        /// Pass nil if application does not intend to receive the result.
+        /// The NSError passed to this block will be nil if the hotspot is successfully joined, non-nil otherwise.
+        /// If the configuration is found to be invalid or some other error is encountered then the completionHandler
+        /// block is executed with with an instance of NSError containing an appropriate error code.
+        #[unsafe(method(joinAccessoryHotspotWithoutSecurity:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn joinAccessoryHotspotWithoutSecurity_completionHandler(
+            &self,
+            accessory: &ASAccessory,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
     );
 }

@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-av-foundation")]
+use objc2_av_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-image")]
@@ -11,6 +13,8 @@ use objc2_core_media::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 
 use crate::*;
 
@@ -87,6 +91,48 @@ impl VNImageRequestHandler {
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "objc2-core-video", feature = "objc2-image-io"))]
+        /// initWithCVPixelBuffer:options creates a VNImageRequestHandler to be used for performing requests against the image passed in as buffer.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: A CVPixelBuffer containing the image to be used for performing the requests. The content of the buffer cannot be modified for the lifetime of the VNImageRequestHandler.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        #[unsafe(method(initWithCVPixelBuffer:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithCVPixelBuffer_orientation_options(
+            this: Allocated<Self>,
+            pixel_buffer: &CVPixelBuffer,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "objc2-av-foundation",
+            feature = "objc2-core-video",
+            feature = "objc2-image-io"
+        ))]
+        /// initWithCVPixelBuffer:depthData:orientation:options creates a VNImageRequestHandler to be used for performing requests against the image passed in as buffer with depth information.
+        ///
+        /// Parameter `pixelBuffer`: A CVPixelBuffer containing the image to be used for performing the requests. The content of the buffer cannot be modified for the lifetime of the VNImageRequestHandler.
+        ///
+        /// Parameter `depthData`: An AVDepthData instance associated with the pixelBuffer
+        ///
+        /// Parameter `orientation`: The orientation of the image and depth buffers based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information and should match for both buffers.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image
+        #[unsafe(method(initWithCVPixelBuffer:depthData:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithCVPixelBuffer_depthData_orientation_options(
+            this: Allocated<Self>,
+            pixel_buffer: &CVPixelBuffer,
+            depth_data: &AVDepthData,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "objc2-core-graphics")]
         /// initWithCGImage:options creates a VNImageRequestHandler to be used for performing requests against the image passed in as a CGImageRef.
         ///
@@ -99,6 +145,24 @@ impl VNImageRequestHandler {
         pub unsafe fn initWithCGImage_options(
             this: Allocated<Self>,
             image: &CGImage,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-image-io"))]
+        /// initWithCGImage:options creates a VNImageRequestHandler to be used for performing requests against the image passed in as a CGImageRef.
+        ///
+        ///
+        /// Parameter `image`: A CGImageRef containing the image to be used for performing the requests. The content of the image cannot be modified.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        #[unsafe(method(initWithCGImage:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithCGImage_orientation_options(
+            this: Allocated<Self>,
+            image: &CGImage,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -120,6 +184,27 @@ impl VNImageRequestHandler {
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "objc2-core-image", feature = "objc2-image-io"))]
+        /// initWithCIImage:options:orientation creates a VNImageRequestHandler to be used for performing requests against the image passed in as a CIImage.
+        ///
+        ///
+        /// Parameter `image`: A CIImage containing the image to be used for performing the requests. The content of the image cannot be modified.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        ///
+        /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
+        #[unsafe(method(initWithCIImage:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithCIImage_orientation_options(
+            this: Allocated<Self>,
+            image: &CIImage,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
         /// initWithURL:options creates a VNImageRequestHandler to be used for performing requests against an image specified by it's URL
         ///
         ///
@@ -134,6 +219,27 @@ impl VNImageRequestHandler {
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
             image_url: &NSURL,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-image-io")]
+        /// initWithURL:options creates a VNImageRequestHandler to be used for performing requests against an image specified by it's URL
+        ///
+        ///
+        /// Parameter `imageURL`: A URL pointing at an image to be used for performing the requests. The image has to be in a format that is supported by ImageIO. The content of the image cannot be modified.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        ///
+        /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
+        #[unsafe(method(initWithURL:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithURL_orientation_options(
+            this: Allocated<Self>,
+            image_url: &NSURL,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -154,6 +260,27 @@ impl VNImageRequestHandler {
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-image-io")]
+        /// initWithData:options creates a VNImageRequestHandler to be used for performing requests against an image contained in an NSData object.
+        ///
+        ///
+        /// Parameter `imageData`: An NSData object containing the content of the image to be used for performing the requests. See CIImage imageWithData for supported format. The content of the image cannot be modified.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        ///
+        /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
+        #[unsafe(method(initWithData:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithData_orientation_options(
+            this: Allocated<Self>,
+            image_data: &NSData,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "objc2-core-media")]
         /// Creates a VNImageRequestHandler to be used for performing requests against the image buffer contained in the CMSampleBufferRef
         ///
@@ -168,6 +295,57 @@ impl VNImageRequestHandler {
         pub unsafe fn initWithCMSampleBuffer_options(
             this: Allocated<Self>,
             sample_buffer: &CMSampleBuffer,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "objc2-core-media", feature = "objc2-image-io"))]
+        /// Creates a VNImageRequestHandler to be used for performing requests against the image buffer contained in the CMSampleBufferRef
+        ///
+        ///
+        /// Parameter `sampleBuffer`: A CMSampleBuffer containing the imageBuffer that will be used for performing the requests. Not all types of sample buffers are supported. They need to contain a CVImageBuffer, be valid and ready.
+        ///
+        /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        /// Note: CMSampleBuffers can contain metadata like camera intrinsics that will be used by algorithms supporting it unless overwritten by the options.
+        ///
+        /// Note: :  Because CoreImage is unable to render certain pixel formats in the iOS simulator, request results may not be accurate in those cases.
+        #[unsafe(method(initWithCMSampleBuffer:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithCMSampleBuffer_orientation_options(
+            this: Allocated<Self>,
+            sample_buffer: &CMSampleBuffer,
+            orientation: CGImagePropertyOrientation,
+            options: &NSDictionary<VNImageOption, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "objc2-av-foundation",
+            feature = "objc2-core-media",
+            feature = "objc2-image-io"
+        ))]
+        /// Creates a VNImageRequestHandler to be used for performing requests against the image buffer contained in the CMSampleBufferRef
+        ///
+        ///
+        /// Parameter `sampleBuffer`: A CMSampleBuffer containing the imageBuffer that will be used for performing the requests. Not all types of sample buffers are supported. They need to contain a CVImageBuffer, be valid and ready.
+        ///
+        /// Parameter `depthData`: An AVDepthData instance associated with the pixelBuffer
+        ///
+        /// Parameter `orientation`: The orientation of the image and depth buffers based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information and should match for both buffers.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image
+        ///
+        /// Note: CMSampleBuffers can contain metadata like camera intrinsics that will be used by algorithms supporting it unless overwritten by the options.
+        ///
+        /// Note: :  Because CoreImage is unable to render certain pixel formats in the iOS simulator, request results may not be accurate in those cases.
+        #[unsafe(method(initWithCMSampleBuffer:depthData:orientation:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithCMSampleBuffer_depthData_orientation_options(
+            this: Allocated<Self>,
+            sample_buffer: &CMSampleBuffer,
+            depth_data: &AVDepthData,
+            orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -245,6 +423,33 @@ impl VNSequenceRequestHandler {
             pixel_buffer: &CVPixelBuffer,
         ) -> Result<(), Retained<NSError>>;
 
+        #[cfg(all(
+            feature = "VNRequest",
+            feature = "objc2-core-video",
+            feature = "objc2-image-io"
+        ))]
+        /// Perform requests on an image in a CVPixelBuffer.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: The CVPixelBuffer containing the image to be processed.
+        ///
+        ///
+        /// Parameter `orientation`: The orientation of the image as it is captured in the pixel buffer.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
+        #[unsafe(method(performRequests:onCVPixelBuffer:orientation:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn performRequests_onCVPixelBuffer_orientation_error(
+            &self,
+            requests: &NSArray<VNRequest>,
+            pixel_buffer: &CVPixelBuffer,
+            orientation: CGImagePropertyOrientation,
+        ) -> Result<(), Retained<NSError>>;
+
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-graphics"))]
         /// Perform requests on an image in a CGImageRef.
         ///
@@ -262,6 +467,33 @@ impl VNSequenceRequestHandler {
             &self,
             requests: &NSArray<VNRequest>,
             image: &CGImage,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(all(
+            feature = "VNRequest",
+            feature = "objc2-core-graphics",
+            feature = "objc2-image-io"
+        ))]
+        /// Perform requests on an image in a CGImageRef.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `image`: The CGImageRef containing the image to be processed.
+        ///
+        ///
+        /// Parameter `orientation`: The orientation of the image.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
+        #[unsafe(method(performRequests:onCGImage:orientation:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn performRequests_onCGImage_orientation_error(
+            &self,
+            requests: &NSArray<VNRequest>,
+            image: &CGImage,
+            orientation: CGImagePropertyOrientation,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-image"))]
@@ -283,6 +515,33 @@ impl VNSequenceRequestHandler {
             image: &CIImage,
         ) -> Result<(), Retained<NSError>>;
 
+        #[cfg(all(
+            feature = "VNRequest",
+            feature = "objc2-core-image",
+            feature = "objc2-image-io"
+        ))]
+        /// Perform requests on an image in a CIImage.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `image`: The CIImage containing the image to be processed.
+        ///
+        ///
+        /// Parameter `orientation`: The orientation of the image.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
+        #[unsafe(method(performRequests:onCIImage:orientation:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn performRequests_onCIImage_orientation_error(
+            &self,
+            requests: &NSArray<VNRequest>,
+            image: &CIImage,
+            orientation: CGImagePropertyOrientation,
+        ) -> Result<(), Retained<NSError>>;
+
         #[cfg(feature = "VNRequest")]
         /// Perform requests on an image referenced by an URL.
         ///
@@ -300,6 +559,29 @@ impl VNSequenceRequestHandler {
             &self,
             requests: &NSArray<VNRequest>,
             image_url: &NSURL,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(all(feature = "VNRequest", feature = "objc2-image-io"))]
+        /// Perform requests on an image referenced by an URL.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `imageURL`: The URL of the image to be processed.  If this is not a file-based URL, the method will fail.
+        ///
+        ///
+        /// Parameter `orientation`: The orientation of the image.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
+        #[unsafe(method(performRequests:onImageURL:orientation:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn performRequests_onImageURL_orientation_error(
+            &self,
+            requests: &NSArray<VNRequest>,
+            image_url: &NSURL,
+            orientation: CGImagePropertyOrientation,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "VNRequest")]
@@ -321,6 +603,29 @@ impl VNSequenceRequestHandler {
             image_data: &NSData,
         ) -> Result<(), Retained<NSError>>;
 
+        #[cfg(all(feature = "VNRequest", feature = "objc2-image-io"))]
+        /// Perform requests on an image with its source format in memory.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `imageData`: The data representing the source format of the image to be processed.
+        ///
+        ///
+        /// Parameter `orientation`: The orientation of the image.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
+        #[unsafe(method(performRequests:onImageData:orientation:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn performRequests_onImageData_orientation_error(
+            &self,
+            requests: &NSArray<VNRequest>,
+            image_data: &NSData,
+            orientation: CGImagePropertyOrientation,
+        ) -> Result<(), Retained<NSError>>;
+
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-media"))]
         /// Perform requests on the image buffer contained in the CMSampleBufferRef.
         ///
@@ -338,6 +643,33 @@ impl VNSequenceRequestHandler {
             &self,
             requests: &NSArray<VNRequest>,
             sample_buffer: &CMSampleBuffer,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(all(
+            feature = "VNRequest",
+            feature = "objc2-core-media",
+            feature = "objc2-image-io"
+        ))]
+        /// Perform requests on the image buffer contained in the CMSampleBufferRef.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `sampleBuffer`: A CMSampleBuffer containing an image that will be used for performing the requests. Not all types of sample buffers are supported. They need to contain a CVImageBuffer, be valid and ready.
+        ///
+        ///
+        /// Parameter `orientation`: The orientation of the image.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
+        #[unsafe(method(performRequests:onCMSampleBuffer:orientation:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn performRequests_onCMSampleBuffer_orientation_error(
+            &self,
+            requests: &NSArray<VNRequest>,
+            sample_buffer: &CMSampleBuffer,
+            orientation: CGImagePropertyOrientation,
         ) -> Result<(), Retained<NSError>>;
     );
 }

@@ -5,6 +5,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-image-io")]
+use objc2_image_io::*;
 
 use crate::*;
 
@@ -116,6 +118,23 @@ impl AVDepthData {
         pub unsafe fn depthDataByConvertingToDepthDataType(
             &self,
             depth_data_type: OSType,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-image-io")]
+        /// Returns a derivative AVDepthData instance in which the specified Exif orientation has been applied.
+        ///
+        ///
+        /// Parameter `exifOrientation`: One of the 8 standard Exif orientation tags expressing how the depth data should be rotated / mirrored.
+        ///
+        /// Returns: An AVDepthData instance.
+        ///
+        ///
+        /// When applying simple 90 degree rotation or mirroring edits to media containing depth data, you may use this initializer to create a derivative copy of the depth in which the specified orientation is applied to both the underlying pixel map data and the camera calibration data. This method throws an NSInvalidArgumentException if you pass an unrecognized exifOrientation.
+        #[unsafe(method(depthDataByApplyingExifOrientation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn depthDataByApplyingExifOrientation(
+            &self,
+            exif_orientation: CGImagePropertyOrientation,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
