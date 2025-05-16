@@ -215,6 +215,25 @@ impl IOUSBHostControllerInterface {
         #[unsafe(method_family = none)]
         pub unsafe fn controllerStateMachine(&self) -> Retained<IOUSBHostCIControllerStateMachine>;
 
+        #[cfg(all(
+            feature = "IOUSBHostCIPortStateMachine",
+            feature = "IOUSBHostControllerInterfaceDefinitions"
+        ))]
+        #[unsafe(method(getPortStateMachineForCommand:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getPortStateMachineForCommand_error(
+            &self,
+            command: NonNull<IOUSBHostCIMessage>,
+        ) -> Result<Retained<IOUSBHostCIPortStateMachine>, Retained<NSError>>;
+
+        #[cfg(feature = "IOUSBHostCIPortStateMachine")]
+        #[unsafe(method(getPortStateMachineForPort:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getPortStateMachineForPort_error(
+            &self,
+            port: NSUInteger,
+        ) -> Result<Retained<IOUSBHostCIPortStateMachine>, Retained<NSError>>;
+
         #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
         /// The capabilities structure passed in during initialization
         ///
