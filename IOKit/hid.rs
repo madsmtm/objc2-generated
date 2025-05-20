@@ -395,6 +395,9 @@ pub const kIOHIDKeyboardSupportsDoNotDisturbKey: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddigitizergesturecharacterstatekey?language=objc)
 pub const kIOHIDDigitizerGestureCharacterStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DigitizerCharacterGestureState\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidsystembuttonpressedduringdarkboot?language=objc)
+pub const kIOHIDSystemButtonPressedDuringDarkBoot: c_uint =
+    iokit_family_msg!(sub_iokit_hidsystem, 7);
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardcapslockdelay?language=objc)
 pub const kIOHIDKeyboardCapsLockDelay: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CapsLockDelay\0") };
