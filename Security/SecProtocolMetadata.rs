@@ -43,6 +43,7 @@ impl sec_protocol_metadata {
     ///
     /// Returns: A NULL-terminated string carrying the negotiated protocol.
     #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol")]
+    #[deprecated]
     #[inline]
     pub unsafe fn negotiated_protocol(metadata: sec_protocol_metadata_t) -> *const c_char {
         extern "C-unwind" {
@@ -51,6 +52,25 @@ impl sec_protocol_metadata {
             ) -> *const c_char;
         }
         unsafe { sec_protocol_metadata_get_negotiated_protocol(metadata) }
+    }
+
+    /// Copy the application protocol negotiated, e.g., via the TLS ALPN extension.
+    /// The caller is expected to `free` the output string when no longer needed.
+    ///
+    ///
+    /// Parameter `metadata`: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// Returns: A NULL-terminated string carrying the negotiated protocol.
+    #[doc(alias = "sec_protocol_metadata_copy_negotiated_protocol")]
+    #[inline]
+    pub unsafe fn copy_negotiated_protocol(metadata: sec_protocol_metadata_t) -> *const c_char {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_copy_negotiated_protocol(
+                metadata: sec_protocol_metadata_t,
+            ) -> *const c_char;
+        }
+        unsafe { sec_protocol_metadata_copy_negotiated_protocol(metadata) }
     }
 
     /// Get the negotiated TLS version.
@@ -217,6 +237,7 @@ impl sec_protocol_metadata {
     /// Returns: Returns A NULL-terminated string carrying the server name, or NULL
     /// if none was provided.
     #[doc(alias = "sec_protocol_metadata_get_server_name")]
+    #[deprecated]
     #[inline]
     pub unsafe fn server_name(metadata: sec_protocol_metadata_t) -> *const c_char {
         extern "C-unwind" {
@@ -225,6 +246,28 @@ impl sec_protocol_metadata {
             ) -> *const c_char;
         }
         unsafe { sec_protocol_metadata_get_server_name(metadata) }
+    }
+
+    /// Obtain a copy of the server name offered by a client or server during
+    /// connection establishmet. This is the value commonly carried
+    /// in the TLS SNI extesion. The caller is expected to `free` the output
+    /// string when it is no longer needed.
+    ///
+    ///
+    /// Parameter `metadata`: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// Returns: Returns A NULL-terminated string carrying the server name, or NULL
+    /// if none was provided.
+    #[doc(alias = "sec_protocol_metadata_copy_server_name")]
+    #[inline]
+    pub unsafe fn copy_server_name(metadata: sec_protocol_metadata_t) -> *const c_char {
+        extern "C-unwind" {
+            fn sec_protocol_metadata_copy_server_name(
+                metadata: sec_protocol_metadata_t,
+            ) -> *const c_char;
+        }
+        unsafe { sec_protocol_metadata_copy_server_name(metadata) }
     }
 
     /// Compare peer information for two `sec_protocol_metadata` instances.
@@ -291,6 +334,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_metadata::copy_negotiated_protocol`"]
+    pub fn sec_protocol_metadata_copy_negotiated_protocol(
+        metadata: sec_protocol_metadata_t,
+    ) -> *const c_char;
+}
+
+extern "C-unwind" {
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "renamed to `sec_protocol_metadata::negotiated_tls_protocol_version`"]
     pub fn sec_protocol_metadata_get_negotiated_tls_protocol_version(
@@ -349,6 +399,13 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[deprecated = "renamed to `sec_protocol_metadata::server_name`"]
     pub fn sec_protocol_metadata_get_server_name(
+        metadata: sec_protocol_metadata_t,
+    ) -> *const c_char;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `sec_protocol_metadata::copy_server_name`"]
+    pub fn sec_protocol_metadata_copy_server_name(
         metadata: sec_protocol_metadata_t,
     ) -> *const c_char;
 }

@@ -1715,7 +1715,7 @@ extern_protocol!(
         unsafe fn setVolumeName_replyHandler(
             &self,
             name: &FSFileName,
-            reply: &block2::DynBlock<dyn Fn(NonNull<FSFileName>, *mut NSError)>,
+            reply: &block2::DynBlock<dyn Fn(*mut FSFileName, *mut NSError)>,
         );
     }
 );

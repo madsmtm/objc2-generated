@@ -349,7 +349,7 @@ impl AVAssetVariantQualifier {
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForChannelCount_mediaSelectionOption_operatorType(
             channel_count: NSInteger,
-            media_selection_option: &AVMediaSelectionOption,
+            media_selection_option: Option<&AVMediaSelectionOption>,
             operator_type: NSPredicateOperatorType,
         ) -> Retained<NSPredicate>;
 
@@ -363,7 +363,7 @@ impl AVAssetVariantQualifier {
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForBinauralAudio_mediaSelectionOption(
             is_binaural_audio: bool,
-            media_selection_option: &AVMediaSelectionOption,
+            media_selection_option: Option<&AVMediaSelectionOption>,
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
@@ -376,7 +376,7 @@ impl AVAssetVariantQualifier {
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForImmersiveAudio_mediaSelectionOption(
             is_immersive_audio: bool,
-            media_selection_option: &AVMediaSelectionOption,
+            media_selection_option: Option<&AVMediaSelectionOption>,
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
@@ -389,7 +389,7 @@ impl AVAssetVariantQualifier {
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForDownmixAudio_mediaSelectionOption(
             is_downmix_audio: bool,
-            media_selection_option: &AVMediaSelectionOption,
+            media_selection_option: Option<&AVMediaSelectionOption>,
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -430,7 +430,69 @@ impl AVAssetVariantQualifier {
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForAudioSampleRate_mediaSelectionOption_operatorType(
             sample_rate: c_double,
-            media_selection_option: &AVMediaSelectionOption,
+            media_selection_option: Option<&AVMediaSelectionOption>,
+            operator_type: NSPredicateOperatorType,
+        ) -> Retained<NSPredicate>;
+
+        /// Creates a NSPredicate for audio channel count which can be used with other NSPredicates to express variant preferences.
+        ///
+        /// Parameter `channelCount`: The RHS value for the channel count in the predicate equation.
+        ///
+        /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
+        ///
+        /// Predicate will be evaluated on the media selection option selected for the asset.
+        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration             mediaSelections property.
+        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration             setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        #[unsafe(method(predicateForChannelCount:operatorType:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn predicateForChannelCount_operatorType(
+            channel_count: NSInteger,
+            operator_type: NSPredicateOperatorType,
+        ) -> Retained<NSPredicate>;
+
+        /// Creates a NSPredicate for binaural which can be used with other NSPredicates to express variant preferences.
+        ///
+        /// Parameter `isBinaural`: The RHS value for the value of isBinauralAudio in the predicate equation.
+        #[unsafe(method(predicateForBinauralAudio:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn predicateForBinauralAudio(is_binaural_audio: bool) -> Retained<NSPredicate>;
+
+        /// Creates a NSPredicate for immersive audio which can be used with other NSPredicates to express variant preferences.
+        ///
+        /// Parameter `isImmersiveAudio`: The RHS value for the value of isImmersiveAudio in the predicate equation.
+        ///
+        /// Predicate will be evaluated on the media selection option selected for the asset.
+        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration             mediaSelections property.
+        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration             setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        #[unsafe(method(predicateForImmersiveAudio:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn predicateForImmersiveAudio(is_immersive_audio: bool)
+            -> Retained<NSPredicate>;
+
+        /// Creates a NSPredicate for immersive audio which can be used with other NSPredicates to express variant preferences.
+        ///
+        /// Parameter `isDownmixAudio`: The RHS value for the value of isDownmixAudio in the predicate equation.
+        ///
+        /// Predicate will be evaluated on the media selection option selected for the asset.
+        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration             mediaSelections property.
+        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration             setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        #[unsafe(method(predicateForDownmixAudio:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn predicateForDownmixAudio(is_downmix_audio: bool) -> Retained<NSPredicate>;
+
+        /// Creates a NSPredicate for audio sample rate which can be used with other NSPredicates to express variant preferences.
+        ///
+        /// Parameter `sampleRate`: The RHS value for the sample rate in the predicate equation.
+        ///
+        /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
+        ///
+        /// Predicate will be evaluated on the media selection option selected for the asset.
+        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration             mediaSelections property.
+        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration             setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        #[unsafe(method(predicateForAudioSampleRate:operatorType:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn predicateForAudioSampleRate_operatorType(
+            sample_rate: c_double,
             operator_type: NSPredicateOperatorType,
         ) -> Retained<NSPredicate>;
     );

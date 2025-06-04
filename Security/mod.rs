@@ -4096,6 +4096,10 @@ pub use self::__SecProtocolMetadata::sec_protocol_metadata_access_supported_sign
 #[cfg(feature = "SecProtocolMetadata")]
 pub use self::__SecProtocolMetadata::sec_protocol_metadata_challenge_parameters_are_equal;
 #[cfg(feature = "SecProtocolMetadata")]
+pub use self::__SecProtocolMetadata::sec_protocol_metadata_copy_negotiated_protocol;
+#[cfg(feature = "SecProtocolMetadata")]
+pub use self::__SecProtocolMetadata::sec_protocol_metadata_copy_server_name;
+#[cfg(feature = "SecProtocolMetadata")]
 pub use self::__SecProtocolMetadata::sec_protocol_metadata_get_early_data_accepted;
 #[cfg(all(feature = "CipherSuite", feature = "SecProtocolMetadata"))]
 pub use self::__SecProtocolMetadata::sec_protocol_metadata_get_negotiated_ciphersuite;
