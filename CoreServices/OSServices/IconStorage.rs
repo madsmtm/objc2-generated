@@ -87,7 +87,7 @@ pub const mini8BitData: c_uint = kMini8BitData;
 pub const kIconFamilyType: c_uint = 0x69636e73;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconfamilyelement?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IconFamilyElement {
     pub elementType: OSType,
@@ -113,7 +113,7 @@ unsafe impl RefEncode for IconFamilyElement {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconfamilyresource?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IconFamilyResource {
     pub resourceType: OSType,

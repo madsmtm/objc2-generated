@@ -351,7 +351,7 @@ pub type MIDICompletionProcUMP =
 /// create custom data structures in simple situations.)
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventpacket?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDIEventPacket {
     pub timeStamp: MIDITimeStamp,
@@ -468,7 +468,7 @@ unsafe impl RefEncode for MIDIEventList {
 /// situations.)
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midipacket?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDIPacket {
     pub timeStamp: MIDITimeStamp,

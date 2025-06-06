@@ -409,7 +409,7 @@ pub type ICCharTableHandle = *mut ICCharTablePtr;
 /// **********************************************************************************************
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icappspec?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ICAppSpec {
     pub fCreator: OSType,
@@ -471,7 +471,7 @@ pub type ICMapEntryFlags = i32;
 pub type ICFixedLength = i16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icmapentry?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ICMapEntry {
     pub totalLength: i16,

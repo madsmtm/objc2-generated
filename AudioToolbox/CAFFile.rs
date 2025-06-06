@@ -86,7 +86,7 @@ unsafe impl RefEncode for CAFChunkHeader {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caf_uuid_chunkheader?language=objc)
-#[repr(C, packed)]
+#[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CAF_UUID_ChunkHeader {
     pub mHeader: CAFChunkHeader,
@@ -608,7 +608,7 @@ unsafe impl RefEncode for CAFOverviewChunk {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafumidchunk?language=objc)
-#[repr(C, packed)]
+#[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CAFUMIDChunk {
     pub mBytes: [u8; 64],

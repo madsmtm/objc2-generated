@@ -474,7 +474,7 @@ pub type CSIdentityStatusUpdatedCallback =
     Option<unsafe extern "C-unwind" fn(*mut CSIdentity, CFIndex, *mut CFError, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityclientcontext?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CSIdentityClientContext {
     pub version: CFIndex,

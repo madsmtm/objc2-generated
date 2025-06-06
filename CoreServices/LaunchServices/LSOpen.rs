@@ -48,7 +48,7 @@ unsafe impl RefEncode for LSLaunchFlags {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchurlspec?language=objc)
 #[cfg(all(feature = "AE", feature = "AEDataModel"))]
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct LSLaunchURLSpec {
     pub appURL: *const CFURL,

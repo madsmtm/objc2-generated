@@ -32,7 +32,7 @@ pub const launchAllow24Bit: c_uint = 0x0100;
 pub const launchInhibitDaemon: c_uint = 0x0080;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/appparameters_themsgevent?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AppParameters_theMsgEvent {
     pub what: u16,
@@ -62,7 +62,7 @@ unsafe impl RefEncode for AppParameters_theMsgEvent {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/appparameters?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AppParameters {
     pub theMsgEvent: AppParameters_theMsgEvent,
@@ -139,7 +139,7 @@ pub const kProcessTransformToBackgroundApplication: c_uint = 2;
 pub const kProcessTransformToUIElementApplication: c_uint = 4;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/sizeresourcerec?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct SizeResourceRec {
     pub flags: u16,

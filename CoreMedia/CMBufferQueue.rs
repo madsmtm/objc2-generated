@@ -136,7 +136,7 @@ pub type CMBufferGetSizeHandler = *mut block2::DynBlock<dyn Fn(NonNull<CMBuffer>
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffercallbacks?language=objc)
 #[cfg(feature = "CMTime")]
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMBufferCallbacks {
     /// Must be 0 or 1.

@@ -288,7 +288,7 @@ pub const kMTAudioProcessingTapCallbacksVersion_0: c_int = 0;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapcallbacks?language=objc)
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTAudioProcessingTapCallbacks {
     pub version: c_int,

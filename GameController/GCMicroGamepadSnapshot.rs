@@ -104,7 +104,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdata?language=objc)
-#[repr(C)]
+#[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCMicroGamepadSnapshotData {
     pub version: u16,
@@ -175,7 +175,7 @@ pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapshotData(
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdatav100?language=objc)
-#[repr(C)]
+#[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCMicroGamepadSnapShotDataV100 {
     pub version: u16,

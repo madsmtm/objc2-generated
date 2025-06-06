@@ -9520,7 +9520,7 @@ pub const kOSAsyncRefSize: c_uint = 32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioserviceinterestcontent?language=objc)
 #[cfg(feature = "libc")]
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOServiceInterestContent {
     pub messageType: libc::natural_t,
@@ -9541,7 +9541,7 @@ unsafe impl RefEncode for IOServiceInterestContent {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccompletioncontent?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOAsyncCompletionContent {
     pub result: IOReturn,
@@ -11758,7 +11758,7 @@ pub const kIORPCMessageError: c_uint = 0x00000040;
 pub const kIORPCMessageSimpleReply: c_uint = 0x00000080;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iorpcmessage?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IORPCMessage {
     pub msgid: u64,

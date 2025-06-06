@@ -106,7 +106,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdata?language=objc)
-#[repr(C)]
+#[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCExtendedGamepadSnapshotData {
     pub version: u16,

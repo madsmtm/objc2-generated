@@ -56,7 +56,7 @@ pub type WSClientContextCopyDescriptionCallBackProcPtr =
     Option<unsafe extern "C-unwind" fn(*mut c_void) -> *const CFString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsclientcontext?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct WSClientContext {
     pub version: CFIndex,

@@ -59,7 +59,7 @@ unsafe impl RefEncode for CMIODeviceStreamConfiguration {
 /// The size (in bytes) of the actual number response bytes returned.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodeviceavccommand?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMIODeviceAVCCommand {
     pub mCommand: *mut u8,
@@ -100,7 +100,7 @@ unsafe impl RefEncode for CMIODeviceAVCCommand {
 /// The size (in bytes) of the actual number response bytes returned.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicers422command?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMIODeviceRS422Command {
     pub mCommand: *mut u8,
@@ -157,7 +157,7 @@ pub type CMIODeviceGetSMPTETimeProc =
 /// Client supplied private provided when the kCMIODevicePropertySMPTETimeCallback property was set.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicesmptetimecallback?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMIODeviceSMPTETimeCallback {
     pub mGetSMPTETimeProc: CMIODeviceGetSMPTETimeProc,

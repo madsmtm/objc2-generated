@@ -108,7 +108,7 @@ unsafe impl RefEncode for __FSEventStream {
 pub type FSEventStreamRef = *mut __FSEventStream;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreamcontext?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct FSEventStreamContext {
     pub version: CFIndex,

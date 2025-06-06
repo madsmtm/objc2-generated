@@ -2421,7 +2421,7 @@ pub const kIODynamicRangeTraditionalGammaHDR: c_uint = 0x0010;
 pub const kIODynamicRangeTraditionalGammaSDR: c_uint = 0x0020;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iofbdisplaymodedescription?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy)]
 pub struct IOFBDisplayModeDescription {
     pub info: IODisplayModeInformation,

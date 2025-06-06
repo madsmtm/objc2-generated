@@ -77,7 +77,7 @@ cf_objc2_type!(
 /// The functions that accept CMBlockBufferCustomBlockSource pointers copy the fields and do not require the struct to stay valid after they return.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercustomblocksource?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMBlockBufferCustomBlockSource {
     pub version: u32,

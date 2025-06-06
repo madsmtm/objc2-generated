@@ -192,7 +192,7 @@ pub const keyAETest: c_uint = 0x6b747374;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ccnttokenrecord?language=objc)
 #[cfg(feature = "AEDataModel")]
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ccntTokenRecord {
     pub tokenClass: DescType,

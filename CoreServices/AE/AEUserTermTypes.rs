@@ -55,7 +55,7 @@ pub const kAEUTMasculine: c_uint = 1;
 pub const kAEUTPlural: c_uint = 0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tscriptingsizeresource?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct TScriptingSizeResource {
     pub scriptingSizeFlags: i16,

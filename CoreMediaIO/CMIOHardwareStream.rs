@@ -429,7 +429,7 @@ pub type CMIOStreamScheduledOutputNotificationProc =
 /// A pointer to client data that will be passed to the scheduledOutputNotificationProc
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamscheduledoutputnotificationprocandrefcon?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMIOStreamScheduledOutputNotificationProcAndRefCon {
     pub scheduledOutputNotificationProc: CMIOStreamScheduledOutputNotificationProc,

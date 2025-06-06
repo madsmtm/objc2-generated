@@ -377,7 +377,7 @@ pub const IOUSBHostCIDoorbellStreamIDPhase: c_uint = IOUSBBitRangePhase!(16, 31)
 /// IOUSBHostCIMessage structures are control structures passed between the IOUSBHostControllerInterface client and the kernel driver.  They are used to represent capabilities during initialization, commands and transfers sent from the kernel, and interrupt events sent to the kernel.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessage?language=objc)
-#[repr(C)]
+#[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOUSBHostCIMessage {
     pub control: u32,

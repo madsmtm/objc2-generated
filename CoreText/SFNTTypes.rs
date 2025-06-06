@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntdirectoryentry?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sfntDirectoryEntry {
     pub tableTag: FourCharCode,
@@ -35,7 +35,7 @@ unsafe impl RefEncode for sfntDirectoryEntry {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntdirectory?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sfntDirectory {
     pub format: FourCharCode,
@@ -447,7 +447,7 @@ unsafe impl RefEncode for sfntCMapSubHeader {
 pub const sizeof_sfntCMapSubHeader: c_uint = 6;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntcmapextendedsubheader?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sfntCMapExtendedSubHeader {
     pub format: u16,
@@ -478,7 +478,7 @@ unsafe impl RefEncode for sfntCMapExtendedSubHeader {
 pub const sizeof_sfntCMapExtendedSubHeader: c_uint = 12;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntcmapencoding?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sfntCMapEncoding {
     pub platformID: u16,
@@ -650,7 +650,7 @@ pub const sizeof_sfntNameHeader: c_uint = 6;
 pub const variationFontTableTag: c_uint = 0x66766172;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntvariationaxis?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sfntVariationAxis {
     pub axisTag: FourCharCode,
@@ -685,7 +685,7 @@ unsafe impl RefEncode for sfntVariationAxis {
 pub const sizeof_sfntVariationAxis: c_uint = 20;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntinstance?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sfntInstance {
     pub nameID: i16,
@@ -710,7 +710,7 @@ unsafe impl RefEncode for sfntInstance {
 pub const sizeof_sfntInstance: c_uint = 4;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntvariationheader?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sfntVariationHeader {
     pub version: Fixed,
@@ -754,7 +754,7 @@ pub const sizeof_sfntVariationHeader: c_uint = 16;
 pub const descriptorFontTableTag: c_uint = 0x66647363;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntfontdescriptor?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sfntFontDescriptor {
     pub name: FourCharCode,
@@ -775,7 +775,7 @@ unsafe impl RefEncode for sfntFontDescriptor {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntdescriptorheader?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sfntDescriptorHeader {
     pub version: Fixed,
@@ -807,7 +807,7 @@ pub const sizeof_sfntDescriptorHeader: c_uint = 8;
 pub const featureFontTableTag: c_uint = 0x66656174;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntfeaturename?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sfntFeatureName {
     pub featureType: u16,
@@ -877,7 +877,7 @@ unsafe impl RefEncode for sfntFontRunFeature {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntfeatureheader?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct sfntFeatureHeader {
     pub version: i32,
@@ -929,7 +929,7 @@ pub type FontScriptCode = u32;
 pub type FontLanguageCode = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/fontvariation?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct FontVariation {
     pub name: FourCharCode,

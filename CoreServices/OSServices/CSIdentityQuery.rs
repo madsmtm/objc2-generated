@@ -225,7 +225,7 @@ pub type CSIdentityQueryReceiveEventCallback = Option<
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityqueryclientcontext?language=objc)
 #[cfg(feature = "CSIdentity")]
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CSIdentityQueryClientContext {
     pub version: CFIndex,

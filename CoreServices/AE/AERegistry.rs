@@ -1297,7 +1297,7 @@ pub const kNextBody: c_uint = 1;
 pub const kPreviousBody: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/textrange?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct TextRange {
     pub fStart: i32,
@@ -1352,7 +1352,7 @@ pub type TextRangeArrayPtr = *mut TextRangeArray;
 pub type TextRangeArrayHandle = *mut TextRangeArrayPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/offsetarray?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OffsetArray {
     pub fNumOfOffsets: i16,

@@ -75,7 +75,7 @@ unsafe impl RefEncode for CMTimeFlags {
 /// Rational time value represented as int64/int32.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtime?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMTime {
     /// The value of the CMTime. value/timescale = seconds

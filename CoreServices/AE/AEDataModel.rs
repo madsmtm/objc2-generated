@@ -308,7 +308,7 @@ pub type AEDataStorageType = *mut OpaqueAEDataStorageType;
 pub type AEDataStorage = *mut AEDataStorageType;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedesc?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AEDesc {
     pub descriptorType: DescType,
@@ -330,7 +330,7 @@ unsafe impl RefEncode for AEDesc {
 pub type AEDescPtr = *mut AEDesc;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aekeydesc?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AEKeyDesc {
     pub descKey: AEKeyword,
@@ -391,7 +391,7 @@ pub const kAEKeyDescArray: c_uint = 4;
 pub const kAEHandleArray: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aearraydata?language=objc)
-#[repr(C)]
+#[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub union AEArrayData {
     pub kAEDataArray: [i16; 1],

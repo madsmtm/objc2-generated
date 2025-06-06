@@ -538,7 +538,7 @@ unsafe impl RefEncode for NXTabletPointData {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxtabletproximitydata?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NXTabletProximityData {
     pub vendorID: u16,
@@ -950,7 +950,7 @@ unsafe impl RefEncode for NXEventData_tablet {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_proximity?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NXEventData_proximity {
     pub vendorID: u16,
@@ -1052,7 +1052,7 @@ unsafe impl RefEncode for _NXEvent_location {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxevent?language=objc)
-#[repr(C)]
+#[repr(C, packed(4))]
 #[derive(Clone, Copy)]
 pub struct NXEvent {
     pub r#type: i32,
