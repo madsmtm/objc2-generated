@@ -461,6 +461,23 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    #[doc(alias = "CFAllocatorCreateWithZone")]
+    #[cfg(feature = "libc")]
+    #[inline]
+    pub unsafe fn with_zone(
+        allocator: Option<&CFAllocator>,
+        zone: *mut libc::malloc_zone_t,
+    ) -> Option<CFRetained<CFAllocator>> {
+        extern "C-unwind" {
+            fn CFAllocatorCreateWithZone(
+                allocator: Option<&CFAllocator>,
+                zone: *mut libc::malloc_zone_t,
+            ) -> Option<NonNull<CFAllocator>>;
+        }
+        let ret = unsafe { CFAllocatorCreateWithZone(allocator, zone) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     #[doc(alias = "CFAllocatorAllocateTyped")]
     #[inline]
     pub unsafe fn allocate_typed(
@@ -706,6 +723,23 @@ pub unsafe extern "C-unwind" fn CFAllocatorCreate(
         ) -> Option<NonNull<CFAllocator>>;
     }
     let ret = unsafe { CFAllocatorCreate(allocator, context) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "libc")]
+#[deprecated = "renamed to `CFAllocator::with_zone`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAllocatorCreateWithZone(
+    allocator: Option<&CFAllocator>,
+    zone: *mut libc::malloc_zone_t,
+) -> Option<CFRetained<CFAllocator>> {
+    extern "C-unwind" {
+        fn CFAllocatorCreateWithZone(
+            allocator: Option<&CFAllocator>,
+            zone: *mut libc::malloc_zone_t,
+        ) -> Option<NonNull<CFAllocator>>;
+    }
+    let ret = unsafe { CFAllocatorCreateWithZone(allocator, zone) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 

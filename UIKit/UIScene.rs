@@ -106,6 +106,20 @@ impl UIScene {
             &self,
             activation_conditions: &UISceneActivationConditions,
         );
+
+        #[cfg(feature = "UISceneDestructionCondition")]
+        #[unsafe(method(destructionConditions))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn destructionConditions(&self) -> Retained<NSSet<UISceneDestructionCondition>>;
+
+        #[cfg(feature = "UISceneDestructionCondition")]
+        /// Setter for [`destructionConditions`][Self::destructionConditions].
+        #[unsafe(method(setDestructionConditions:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDestructionConditions(
+            &self,
+            destruction_conditions: &NSSet<UISceneDestructionCondition>,
+        );
     );
 }
 

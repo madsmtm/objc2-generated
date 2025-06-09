@@ -37,6 +37,8 @@ mod __BGTaskScheduler;
 #[cfg(feature = "BGTask")]
 pub use self::__BGTask::BGAppRefreshTask;
 #[cfg(feature = "BGTask")]
+pub use self::__BGTask::BGContinuedProcessingTask;
+#[cfg(feature = "BGTask")]
 pub use self::__BGTask::BGHealthResearchTask;
 #[cfg(feature = "BGTask")]
 pub use self::__BGTask::BGProcessingTask;
@@ -44,6 +46,12 @@ pub use self::__BGTask::BGProcessingTask;
 pub use self::__BGTask::BGTask;
 #[cfg(feature = "BGTaskRequest")]
 pub use self::__BGTaskRequest::BGAppRefreshTaskRequest;
+#[cfg(feature = "BGTaskRequest")]
+pub use self::__BGTaskRequest::BGContinuedProcessingTaskRequest;
+#[cfg(feature = "BGTaskRequest")]
+pub use self::__BGTaskRequest::BGContinuedProcessingTaskRequestResources;
+#[cfg(feature = "BGTaskRequest")]
+pub use self::__BGTaskRequest::BGContinuedProcessingTaskRequestSubmissionStrategy;
 #[cfg(feature = "BGTaskRequest")]
 pub use self::__BGTaskRequest::BGHealthResearchTaskRequest;
 #[cfg(feature = "BGTaskRequest")]

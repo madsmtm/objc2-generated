@@ -166,6 +166,8 @@ pub const kCVPixelFormatType_444YpCbCr10BiPlanarFullRange: OSType = 0x78663434;
 pub const kCVPixelFormatType_420YpCbCr8VideoRange_8A_TriPlanar: OSType = 0x76306138;
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_16versatilebayer?language=objc)
 pub const kCVPixelFormatType_16VersatileBayer: OSType = 0x62703136;
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_96versatilebayerpacked12?language=objc)
+pub const kCVPixelFormatType_96VersatileBayerPacked12: OSType = 0x62747032;
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_64rgba_downscaledproresraw?language=objc)
 pub const kCVPixelFormatType_64RGBA_DownscaledProResRAW: OSType = 0x62703634;
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr16biplanarvideorange?language=objc)
@@ -933,4 +935,25 @@ pub unsafe extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
     let ret = unsafe { CVPixelBufferCopyCreationAttributes(pixel_buffer) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
+}
+
+/// Returns true if given pixel buffer is compatible with pixelBufferAttributes dictionary.
+///
+/// Parameter `pixelBuffer`: PixelBuffer to check for compatibility.
+///
+/// Parameter `attributes`: Creation attributes which pixel buffer should have.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelBufferIsCompatibleWithAttributes(
+    pixel_buffer: &CVPixelBuffer,
+    attributes: Option<&CFDictionary>,
+) -> bool {
+    extern "C-unwind" {
+        fn CVPixelBufferIsCompatibleWithAttributes(
+            pixel_buffer: &CVPixelBuffer,
+            attributes: Option<&CFDictionary>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CVPixelBufferIsCompatibleWithAttributes(pixel_buffer, attributes) };
+    ret != 0
 }

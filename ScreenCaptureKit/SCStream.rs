@@ -351,6 +351,8 @@ impl SCStreamConfigurationPreset {
     pub const CaptureHDRScreenshotLocalDisplay: Self = Self(2);
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRScreenshotCanonicalDisplay")]
     pub const CaptureHDRScreenshotCanonicalDisplay: Self = Self(3);
+    #[doc(alias = "SCStreamConfigurationPresetCaptureHDRRecordingPreservedSDRHDR10")]
+    pub const CaptureHDRRecordingPreservedSDRHDR10: Self = Self(4);
 }
 
 unsafe impl Encode for SCStreamConfigurationPreset {

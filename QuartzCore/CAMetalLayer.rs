@@ -192,6 +192,11 @@ impl CAMetalLayer {
             &self,
             developer_hud_properties: Option<&NSDictionary>,
         );
+
+        #[cfg(feature = "objc2-metal")]
+        #[unsafe(method(residencySet))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn residencySet(&self) -> Retained<ProtocolObject<dyn MTLResidencySet>>;
     );
 }
 

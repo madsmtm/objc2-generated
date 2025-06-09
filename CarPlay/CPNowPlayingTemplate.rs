@@ -37,6 +37,7 @@ extern_protocol!(
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingtemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPNowPlayingTemplate;
@@ -70,7 +71,7 @@ impl CPNowPlayingTemplate {
         /// this shared instance.
         #[unsafe(method(sharedTemplate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedTemplate() -> Retained<CPNowPlayingTemplate>;
+        pub unsafe fn sharedTemplate(mtm: MainThreadMarker) -> Retained<CPNowPlayingTemplate>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -78,7 +79,7 @@ impl CPNowPlayingTemplate {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Add an observer. Observers are notified about now playing template events.
         #[unsafe(method(addObserver:))]

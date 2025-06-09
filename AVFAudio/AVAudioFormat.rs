@@ -62,6 +62,10 @@ extern_class!(
     pub struct AVAudioFormat;
 );
 
+unsafe impl Send for AVAudioFormat {}
+
+unsafe impl Sync for AVAudioFormat {}
+
 extern_conformance!(
     unsafe impl NSCoding for AVAudioFormat {}
 );

@@ -55,6 +55,8 @@ impl NFCReaderError {
     pub const ReaderErrorParameterOutOfBound: Self = Self(5);
     #[doc(alias = "NFCReaderErrorRadioDisabled")]
     pub const ReaderErrorRadioDisabled: Self = Self(6);
+    #[doc(alias = "NFCReaderErrorIneligible")]
+    pub const ReaderErrorIneligible: Self = Self(7);
     #[doc(alias = "NFCReaderTransceiveErrorTagConnectionLost")]
     pub const ReaderTransceiveErrorTagConnectionLost: Self = Self(100);
     #[doc(alias = "NFCReaderTransceiveErrorRetryExceeded")]
@@ -3476,6 +3478,111 @@ impl NFCVASReaderSession {
 
 /// Methods declared on superclass `NSObject`.
 impl NFCVASReaderSession {
+    extern_methods!(
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// Reader session for processing NFC payment tags supporting the
+    ///
+    /// ```text
+    ///  NFCTagTypeISO7816Compatible @link/ type.
+    ///               @link [NFCTagReaderSessionDelegate readerSession:didDetectTags:] @link/ will return a @link NFCISO7816Tag @link /. object.
+    ///               This session requires the "com.apple.developer.nfc.readersession.formats" entitlement in your process.
+    ///               In addition your application's Info.plist must contain a non-empty usage description string.  @link NFCReaderErrorSecurityViolation @link/ will be
+    ///               returned from @link [NFCTagReaderSessionDelegate tagReaderSession:didInvalidateWithError:] @link/ if the required entitlement is missing when session is started.
+    ///
+    ///               When the reader discovers a compatible ISO7816 tag it automatically performs a SELECT command (by DF name) using the values provided in
+    ///               "com.apple.developer.nfc.readersession.iso7816.select-identifiers" in the specified array order.  The tag is
+    ///               returned from the [NFCTagReaderSessionDelegate readerSession:didDetectTags:] call on the first successful SELECT command.
+    ///               The initialSelectedAID property returns the application identifier of the selected application.  Tag will not be returned
+    ///               to the NFCTagReaderSessionDelegate if no application described in "com.apple.developer.nfc.readersession.iso7816.select-identifiers"
+    ///               is found.
+    ///
+    ///  NOTE:
+    ///  - Only one NFCReaderSession can be active at any time in the system. Subsequent opened sessions will get queued up and processed by the system in FIFO order.
+    ///  
+    ///
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcpaymenttagreadersession?language=objc)
+    #[unsafe(super(NFCTagReaderSession, NFCReaderSession, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NFCPaymentTagReaderSession;
+);
+
+extern_conformance!(
+    unsafe impl NFCReaderSessionProtocol for NFCPaymentTagReaderSession {}
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NFCPaymentTagReaderSession {}
+);
+
+impl NFCPaymentTagReaderSession {
+    extern_methods!(
+        #[cfg(feature = "dispatch2")]
+        /// Parameter `delegate`: The session will hold a weak ARC reference to this
+        ///
+        /// ```text
+        ///  NFCTagReaderSessionDelegate @link/ object.
+        ///  @param queue         A dispatch queue where NFCTagReaderSessionDelegate delegate callbacks will be dispatched to.  A <i>nil</i> value will
+        ///                       cause the creation of a serial dispatch queue internally for the session.  The session object will retain the provided dispatch queue.
+        ///
+        ///  @return              A new NFCPaymentTagReaderSession instance.
+        ///
+        ///  NOTE:
+        ///  The super class `-initWithPollingOption:delegate:queue:` initializer would only accept NFCPollingOption.NFCPollingISO14443; all other options will be ignored.
+        ///  
+        ///
+        /// ```
+        #[unsafe(method(initWithDelegate:queue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDelegate_queue(
+            this: Allocated<Self>,
+            delegate: &ProtocolObject<dyn NFCTagReaderSessionDelegate>,
+            queue: Option<&DispatchQueue>,
+        ) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NFCTagReaderSession`.
+impl NFCPaymentTagReaderSession {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Parameter `pollingOption`: Configures the RF polling of the reader session; multiple options can be OR'ed together.  This option affects the possible NFC tag type discover.
+        ///
+        /// Parameter `delegate`: The session will hold a weak ARC reference to this
+        ///
+        /// ```text
+        ///  NFCTagReaderSessionDelegate @link/ object.
+        ///  @param queue         A dispatch queue where NFCTagReaderSessionDelegate delegate callbacks will be dispatched to.  A <i>nil</i> value will
+        ///                       cause the creation of a serial dispatch queue internally for the session.  The session object will retain the provided dispatch queue.
+        ///
+        ///  @return              A new NFCTagReaderSession instance.
+        ///  
+        ///
+        /// ```
+        #[unsafe(method(initWithPollingOption:delegate:queue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithPollingOption_delegate_queue(
+            this: Allocated<Self>,
+            polling_option: NFCPollingOption,
+            delegate: &ProtocolObject<dyn NFCTagReaderSessionDelegate>,
+            queue: Option<&DispatchQueue>,
+        ) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl NFCPaymentTagReaderSession {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]

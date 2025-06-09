@@ -78,6 +78,20 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setState(&self, state: UIMenuElementState);
 
+        #[cfg(feature = "UIMenuElement")]
+        /// The leaf's preferred repeat behavior.
+        /// Menu leaves can repeatedly perform their primary actions on prolonged interactions,
+        /// such as by holding down their keyboard shortcut.
+        #[unsafe(method(repeatBehavior))]
+        #[unsafe(method_family = none)]
+        unsafe fn repeatBehavior(&self) -> UIMenuElementRepeatBehavior;
+
+        #[cfg(feature = "UIMenuElement")]
+        /// Setter for [`repeatBehavior`][Self::repeatBehavior].
+        #[unsafe(method(setRepeatBehavior:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setRepeatBehavior(&self, repeat_behavior: UIMenuElementRepeatBehavior);
+
         /// The object on behalf of which the element's primary action is being performed.
         /// This property is only populated during the execution of the element's
         /// primary action (i.e. its handler or selector) if available.

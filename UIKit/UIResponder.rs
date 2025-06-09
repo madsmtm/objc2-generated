@@ -71,6 +71,11 @@ extern_protocol!(
         unsafe fn pasteAndSearch(&self, sender: Option<&AnyObject>);
 
         #[optional]
+        #[unsafe(method(newFromPasteboard:))]
+        #[unsafe(method_family = none)]
+        unsafe fn newFromPasteboard(&self, sender: Option<&AnyObject>);
+
+        #[optional]
         #[unsafe(method(select:))]
         #[unsafe(method_family = none)]
         unsafe fn select(&self, sender: Option<&AnyObject>);
@@ -119,6 +124,26 @@ extern_protocol!(
         #[unsafe(method(decreaseSize:))]
         #[unsafe(method_family = none)]
         unsafe fn decreaseSize(&self, sender: Option<&AnyObject>);
+
+        #[optional]
+        #[unsafe(method(alignLeft:))]
+        #[unsafe(method_family = none)]
+        unsafe fn alignLeft(&self, sender: Option<&AnyObject>);
+
+        #[optional]
+        #[unsafe(method(alignCenter:))]
+        #[unsafe(method_family = none)]
+        unsafe fn alignCenter(&self, sender: Option<&AnyObject>);
+
+        #[optional]
+        #[unsafe(method(alignJustified:))]
+        #[unsafe(method_family = none)]
+        unsafe fn alignJustified(&self, sender: Option<&AnyObject>);
+
+        #[optional]
+        #[unsafe(method(alignRight:))]
+        #[unsafe(method_family = none)]
+        unsafe fn alignRight(&self, sender: Option<&AnyObject>);
 
         #[optional]
         #[unsafe(method(find:))]
@@ -178,6 +203,21 @@ extern_protocol!(
         #[unsafe(method(export:))]
         #[unsafe(method_family = none)]
         unsafe fn export(&self, sender: Option<&AnyObject>);
+
+        #[optional]
+        #[unsafe(method(toggleSidebar:))]
+        #[unsafe(method_family = none)]
+        unsafe fn toggleSidebar(&self, sender: Option<&AnyObject>);
+
+        #[optional]
+        #[unsafe(method(toggleInspector:))]
+        #[unsafe(method_family = none)]
+        unsafe fn toggleInspector(&self, sender: Option<&AnyObject>);
+
+        #[optional]
+        #[unsafe(method(performClose:))]
+        #[unsafe(method_family = none)]
+        unsafe fn performClose(&self, sender: Option<&AnyObject>);
 
         #[optional]
         #[unsafe(method(showWritingTools:))]
@@ -354,6 +394,18 @@ impl UIResponder {
         #[unsafe(method(validateCommand:))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateCommand(&self, command: &UICommand);
+
+        #[cfg(all(feature = "UIDeferredMenuElement", feature = "UIMenuElement"))]
+        /// Asks the responder for an element provider to fulfill the given focus-based deferred element.
+        /// Check the `identifier` of the deferred element to identify which deferred element this is.
+        /// By default, this returns nil. Return a non-nil `provider` to make this responder responsible for providing
+        /// elements for this fulfillment of the deferred element.
+        #[unsafe(method(providerForDeferredMenuElement:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn providerForDeferredMenuElement(
+            &self,
+            deferred_element: &UIDeferredMenuElement,
+        ) -> Option<Retained<UIDeferredMenuElementProvider>>;
 
         #[unsafe(method(undoManager))]
         #[unsafe(method_family = none)]

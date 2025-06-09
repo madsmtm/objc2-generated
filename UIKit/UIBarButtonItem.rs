@@ -19,11 +19,32 @@ pub struct UIBarButtonItemStyle(pub NSInteger);
 impl UIBarButtonItemStyle {
     #[doc(alias = "UIBarButtonItemStylePlain")]
     pub const Plain: Self = Self(0);
+    /// A button item style for a prominent button.
+    ///
+    /// For example, use this for a button that completes or finalizes some task.
+    /// Buttons with this style will not be visually grouped with other items
+    /// in a navigation bar or toolbar, and will also have other styling changes
+    /// appropriate to their context to indicate their prominence.
+    #[doc(alias = "UIBarButtonItemStyleProminent")]
+    pub const Prominent: Self = Self(2);
+    /// A button item style for a prominent button.
+    ///
+    /// For example, use this for a button that completes or finalizes some task.
+    /// Buttons with this style will not be visually grouped with other items
+    /// in a navigation bar or toolbar, and will also have other styling changes
+    /// appropriate to their context to indicate their prominence.
     #[doc(alias = "UIBarButtonItemStyleBordered")]
     #[deprecated]
     pub const Bordered: Self = Self(1);
+    /// A button item style for a prominent button.
+    ///
+    /// For example, use this for a button that completes or finalizes some task.
+    /// Buttons with this style will not be visually grouped with other items
+    /// in a navigation bar or toolbar, and will also have other styling changes
+    /// appropriate to their context to indicate their prominence.
     #[doc(alias = "UIBarButtonItemStyleDone")]
-    pub const Done: Self = Self(2);
+    #[deprecated]
+    pub const Done: Self = Self(UIBarButtonItemStyle::Prominent.0);
 }
 
 unsafe impl Encode for UIBarButtonItemStyle {
@@ -292,6 +313,14 @@ impl UIBarButtonItem {
         #[unsafe(method_family = none)]
         pub unsafe fn flexibleSpaceItem(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Creates a new fixed space item of zero width.
+        ///
+        /// A fixed space of 0 width separates the shared background used
+        /// in navigation bars and toolbars to visually group items.
+        #[unsafe(method(fixedSpaceItem))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn fixedSpaceItem(mtm: MainThreadMarker) -> Retained<Self>;
+
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> UIBarButtonItemStyle;
@@ -354,7 +383,7 @@ impl UIBarButtonItem {
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Set the primaryAction on this item, updating the title
         /// &
-        /// image of the item if appropriate (primaryAction is non-nil, and this is not a system item). When primaryAction is non-nil, the target
+        /// image of the item if appropriate (primaryAction's title is non-nil for the title update, primaryAction's image is non-nil for the image update, and if this is not a system item). When primaryAction is non-nil, the target
         /// &
         /// action properties are ignored. If primaryAction is set to nil, the title
         /// &
@@ -451,6 +480,41 @@ impl UIBarButtonItem {
         #[unsafe(method(setMenuRepresentation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenuRepresentation(&self, menu_representation: Option<&UIMenuElement>);
+
+        /// A boolean value indicating whether the background this item may share with other items in the bar
+        /// should be hidden.
+        ///
+        /// Set this property to `YES` to prevent the standard shared background (typically using the Glass effect)
+        /// from being drawn behind this bar button item.
+        ///
+        /// This item will not be visually grouped with any other items,
+        /// without the standard shared background.
+        /// This property is ignored if the item is in a `UIBarButtonItemGroup` with more than one item.
+        /// The default value is `NO`.
+        #[unsafe(method(hidesSharedBackground))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hidesSharedBackground(&self) -> bool;
+
+        /// Setter for [`hidesSharedBackground`][Self::hidesSharedBackground].
+        #[unsafe(method(setHidesSharedBackground:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setHidesSharedBackground(&self, hides_shared_background: bool);
+
+        /// A boolean value indicating whether this bar button item can share a background with other items
+        /// in a navigation bar or a toolbar.
+        ///
+        /// When `NO`, This item will not be visually grouped with any other items.
+        ///
+        /// This property is ignored if the item is in a `UIBarButtonItemGroup` with more than one item.
+        /// The default value is `YES`.
+        #[unsafe(method(sharesBackground))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sharesBackground(&self) -> bool;
+
+        /// Setter for [`sharesBackground`][Self::sharesBackground].
+        #[unsafe(method(setSharesBackground:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSharesBackground(&self, shares_background: bool);
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Create a fixed group containing this bar button item. UIBarButtonItems may only be in a single UIBarButtonItemGroup at a time, adding a bar button item to a group removes it from any previous group.

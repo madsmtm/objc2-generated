@@ -153,6 +153,9 @@ mod __GCMouseInput;
 #[cfg(feature = "GCPhysicalInputElement")]
 #[path = "GCPhysicalInputElement.rs"]
 mod __GCPhysicalInputElement;
+#[cfg(feature = "GCPhysicalInputExtents")]
+#[path = "GCPhysicalInputExtents.rs"]
+mod __GCPhysicalInputExtents;
 #[cfg(feature = "GCPhysicalInputProfile")]
 #[path = "GCPhysicalInputProfile.rs"]
 mod __GCPhysicalInputProfile;
@@ -174,9 +177,15 @@ mod __GCRacingWheelInput;
 #[cfg(feature = "GCRelativeInput")]
 #[path = "GCRelativeInput.rs"]
 mod __GCRelativeInput;
+#[cfg(feature = "GCSpatialAccessory")]
+#[path = "GCSpatialAccessory.rs"]
+mod __GCSpatialAccessory;
 #[cfg(feature = "GCSteeringWheelElement")]
 #[path = "GCSteeringWheelElement.rs"]
 mod __GCSteeringWheelElement;
+#[cfg(feature = "GCStylus")]
+#[path = "GCStylus.rs"]
+mod __GCStylus;
 #[cfg(feature = "GCSwitchElement")]
 #[path = "GCSwitchElement.rs"]
 mod __GCSwitchElement;
@@ -427,9 +436,23 @@ pub use self::__GCInputNames::GCInputBackLeftButton;
 #[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputBackRightButton;
 #[cfg(feature = "GCInputNames")]
+pub use self::__GCInputNames::GCInputGripButton;
+#[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputLeftBumper;
 #[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCInputRightBumper;
+#[cfg(feature = "GCInputNames")]
+pub use self::__GCInputNames::GCInputStylusPrimaryButton;
+#[cfg(feature = "GCInputNames")]
+pub use self::__GCInputNames::GCInputStylusSecondaryButton;
+#[cfg(feature = "GCInputNames")]
+pub use self::__GCInputNames::GCInputStylusTip;
+#[cfg(feature = "GCInputNames")]
+pub use self::__GCInputNames::GCInputThumbstick;
+#[cfg(feature = "GCInputNames")]
+pub use self::__GCInputNames::GCInputThumbstickButton;
+#[cfg(feature = "GCInputNames")]
+pub use self::__GCInputNames::GCInputTrigger;
 #[cfg(feature = "GCInputNames")]
 pub use self::__GCInputNames::GCPhysicalInputElementName;
 #[cfg(feature = "GCInputNames")]
@@ -1096,6 +1119,10 @@ pub use self::__GCProductCategories::GCProductCategorySiriRemote1stGen;
 #[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategorySiriRemote2ndGen;
 #[cfg(feature = "GCProductCategories")]
+pub use self::__GCProductCategories::GCProductCategorySpatialController;
+#[cfg(feature = "GCProductCategories")]
+pub use self::__GCProductCategories::GCProductCategorySpatialStylus;
+#[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryUniversalElectronicsRemote;
 #[cfg(feature = "GCProductCategories")]
 pub use self::__GCProductCategories::GCProductCategoryXboxOne;
@@ -1113,6 +1140,12 @@ pub use self::__GCRacingWheelInput::GCRacingWheelInputState;
 pub use self::__GCRelativeInput::GCRelativeInput;
 #[cfg(feature = "GCSteeringWheelElement")]
 pub use self::__GCSteeringWheelElement::GCSteeringWheelElement;
+#[cfg(feature = "GCStylus")]
+pub use self::__GCStylus::GCStylus;
+#[cfg(feature = "GCStylus")]
+pub use self::__GCStylus::GCStylusDidConnectNotification;
+#[cfg(feature = "GCStylus")]
+pub use self::__GCStylus::GCStylusDidDisconnectNotification;
 #[cfg(all(feature = "GCPhysicalInputElement", feature = "GCSwitchElement"))]
 pub use self::__GCSwitchElement::GCSwitchElement;
 #[cfg(feature = "GCSwitchPositionInput")]

@@ -294,7 +294,7 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         /// Called whenever the sidebar item's `configurationState` changes or the item is reconfigured.
-        /// The passed in item will accure all modifications until the delegate requests for a new sidebar
+        /// The passed in item will accrue all modifications until the delegate requests for a new sidebar
         /// item from the delegate method `tabBarController:sidebar:itemForRequest:`
         #[optional]
         #[unsafe(method(tabBarController:sidebar:updateItem:))]

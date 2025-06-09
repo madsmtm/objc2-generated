@@ -67,6 +67,8 @@ pub use self::__Bluetooth::kBluetoothAllowRoleSwitch;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kBluetoothConnectionHandleNone;
 #[cfg(feature = "Bluetooth")]
+pub use self::__Bluetooth::kBluetoothConnectionHandleSerialDeviceReserved;
+#[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kBluetoothDeviceNameMaxLength;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::kBluetoothDontAllowRoleSwitch;

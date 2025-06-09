@@ -313,6 +313,10 @@ pub use self::__AudioHardware::kAudioDevicePropertyVolumeScalar;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioDevicePropertyVolumeScalarToDecibels;
 #[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioDevicePropertyWantsControlsRestored;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioDevicePropertyWantsStreamFormatsRestored;
+#[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioDeviceStartTimeDontConsultDeviceFlag;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioDeviceStartTimeDontConsultHALFlag;

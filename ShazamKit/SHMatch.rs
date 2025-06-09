@@ -7,17 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A
-    /// `SHMatch`indicates that a Signature matched a reference Signature in the target
-    /// `SHCatalog`
-    /// A
-    /// `SHSignature`can match many reference Signatures in a catalog and in turn a Signature can map to
-    /// many
-    /// `SHMediaItem.`Therefore a match encapsulates the query Signature and all of the various
-    /// `SHMediaItem`it matched
+    /// An object that represents the catalog media items that match a query.
     ///
-    ///
-    /// Note: `SHMatch`is not intended to be subclassed
+    /// A single query signature may match more than one reference signature. In addition, one reference signature may map to many media items.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmatch?language=objc)
     #[unsafe(super(NSObject))]
@@ -44,25 +36,13 @@ extern_conformance!(
 impl SHMatch {
     extern_methods!(
         #[cfg(all(feature = "SHMatchedMediaItem", feature = "SHMediaItem"))]
-        /// The
-        /// `SHMatchedMediaItem`belonging to the instance of
-        /// `SHSignature`that we matched
-        ///
-        ///
-        /// One Signature may match multiple
-        /// `SHMediaItem,`especially in the case of audio that uses samples. The array of
-        /// `SHMatchedMediaItem`is ordered by the quality of the match. Use the first
-        /// `SHMatchedMediaItem`if you intend to only show one result
+        /// An array of the media items in the catalog that match the query signature, in order of the quality of the match.
         #[unsafe(method(mediaItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaItems(&self) -> Retained<NSArray<SHMatchedMediaItem>>;
 
         #[cfg(feature = "SHSignature")]
-        /// The
-        /// `SHSignature`used to query the
-        /// `SHCatalog`
-        /// Note: This Signature is the query Signature, not the reference Signature contained in the
-        /// `SHCatalog`
+        /// The query signature for the match.
         #[unsafe(method(querySignature))]
         #[unsafe(method_family = none)]
         pub unsafe fn querySignature(&self) -> Retained<SHSignature>;

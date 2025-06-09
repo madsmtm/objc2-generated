@@ -350,6 +350,25 @@ extern_protocol!(
             object: Option<&NINearbyObject>,
         );
 
+        #[cfg(feature = "NIDLTDOAMeasurement")]
+        /// This is called when new updates about DL-TDOA measurement are available.
+        ///
+        ///
+        /// Note: this will only be called after successfully running an NISession with an NIDLTDOAConfiguration.
+        ///
+        ///
+        /// Parameter `session`: The session that updated NI DL-TDOA measurement.
+        ///
+        /// Parameter `measurements`: The measurements update from a NI DL-TDOA session
+        #[optional]
+        #[unsafe(method(session:didUpdateDLTDOAMeasurements:))]
+        #[unsafe(method_family = none)]
+        unsafe fn session_didUpdateDLTDOAMeasurements(
+            &self,
+            session: &NISession,
+            measurements: &NSArray<NIDLTDOAMeasurement>,
+        );
+
         /// The delegate may implement this method to be informed that the session started running.
         ///
         ///

@@ -4,9 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Constants that describe the type of the message reaction.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagereactiontype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagereactiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

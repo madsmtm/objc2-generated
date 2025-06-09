@@ -86,6 +86,8 @@ impl NSEventType {
     pub const DirectTouch: Self = Self(37);
     #[doc(alias = "NSEventTypeChangeMode")]
     pub const ChangeMode: Self = Self(38);
+    #[doc(alias = "NSEventTypeMouseCancelled")]
+    pub const MouseCancelled: Self = Self(40);
 }
 
 unsafe impl Encode for NSEventType {
@@ -238,6 +240,8 @@ bitflags::bitflags! {
         const DirectTouch = 1<<NSEventType::DirectTouch.0;
         #[doc(alias = "NSEventMaskChangeMode")]
         const ChangeMode = 1<<NSEventType::ChangeMode.0;
+        #[doc(alias = "NSEventMaskMouseCancelled")]
+        const MouseCancelled = 1<<NSEventType::MouseCancelled.0;
         #[doc(alias = "NSEventMaskAny")]
         const Any = NSUIntegerMax as _;
     }

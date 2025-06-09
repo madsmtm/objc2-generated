@@ -1597,6 +1597,9 @@ pub const kAudioOutputUnitProperty_StartTimestampsAtZero: AudioUnitPropertyID = 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_osworkgroup?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_OSWorkgroup: AudioUnitPropertyID = 2015;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_intendedspatialexperience?language=objc)
+#[cfg(feature = "AUComponent")]
+pub const kAudioOutputUnitProperty_IntendedSpatialExperience: AudioUnitPropertyID = 2016;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_midicallbacks?language=objc)
 #[cfg(feature = "AUComponent")]
@@ -2165,6 +2168,13 @@ unsafe impl Encode for AUSpatialMixerPointSourceInHeadMode {
 unsafe impl RefEncode for AUSpatialMixerPointSourceInHeadMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauaudiomixproperty_spatialaudiomixmetadata?language=objc)
+#[cfg(feature = "AUComponent")]
+pub const kAUAudioMixProperty_SpatialAudioMixMetadata: AudioUnitPropertyID = 5000;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauaudiomixproperty_enablespatialization?language=objc)
+#[cfg(feature = "AUComponent")]
+pub const kAUAudioMixProperty_EnableSpatialization: AudioUnitPropertyID = 5001;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_3dmixerdistanceparams?language=objc)
 #[cfg(feature = "AUComponent")]

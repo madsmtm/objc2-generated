@@ -189,6 +189,63 @@ impl UIColor {
             ci_color: &CIColor,
         ) -> Retained<UIColor>;
 
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Generates an HDR color by applying an exposure to the SDR color defined by the red, green, and blue components. The `red`, `green`, and `blue` components have a nominal range of [0..1], `exposure` is a value >= 0. To produce an HDR color, we process the given color in a linear color space, multiplying component values by `2^exposure`. The produced color will have a `contentHeadroom` equal to the linearized exposure value. Each whole value of exposure produces a color that is twice as bright.
+        #[unsafe(method(initWithRed:green:blue:alpha:exposure:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithRed_green_blue_alpha_exposure(
+            this: Allocated<Self>,
+            red: CGFloat,
+            green: CGFloat,
+            blue: CGFloat,
+            alpha: CGFloat,
+            exposure: CGFloat,
+        ) -> Retained<UIColor>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(colorWithRed:green:blue:alpha:exposure:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn colorWithRed_green_blue_alpha_exposure(
+            red: CGFloat,
+            green: CGFloat,
+            blue: CGFloat,
+            alpha: CGFloat,
+            exposure: CGFloat,
+        ) -> Retained<UIColor>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Generates an HDR color by applying an exposure to the SDR color defined by the red, green, and blue components. The `red`, `green`, and `blue` components have a nominal range of [0..1], `linearExposure` is a value >= 1. To produce an HDR color, we process the given color in a linear color space, multiplying component values by `linearExposure `. The produced color will have a `contentHeadroom` equal to `linearExposure`. Each doubling of `linearExposure` produces a color that is twice as bright.
+        #[unsafe(method(initWithRed:green:blue:alpha:linearExposure:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithRed_green_blue_alpha_linearExposure(
+            this: Allocated<Self>,
+            red: CGFloat,
+            green: CGFloat,
+            blue: CGFloat,
+            alpha: CGFloat,
+            linear_exposure: CGFloat,
+        ) -> Retained<UIColor>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(colorWithRed:green:blue:alpha:linearExposure:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn colorWithRed_green_blue_alpha_linearExposure(
+            red: CGFloat,
+            green: CGFloat,
+            blue: CGFloat,
+            alpha: CGFloat,
+            linear_exposure: CGFloat,
+        ) -> Retained<UIColor>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Reinterpret the color by applying a new `contentHeadroom` without changing the color components. Changing the `contentHeadroom` redefines the color relative to a different peak white, changing its behavior under tone mapping and the result of calling `standardDynamicRangeColor`. The new color will have a `contentHeadroom` >= 1.0.
+        #[unsafe(method(colorByApplyingContentHeadroom:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn colorByApplyingContentHeadroom(
+            &self,
+            content_headroom: CGFloat,
+        ) -> Retained<UIColor>;
+
         #[unsafe(method(blackColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn blackColor() -> Retained<UIColor>;
@@ -303,6 +360,17 @@ impl UIColor {
         #[unsafe(method(CIColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn CIColor(&self) -> Retained<CIColor>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The linear brightness multiplier that was applied when generating this color. Colors created with an exposure by UIColor create CGColors that are tagged with a contentHeadroom value. While CGColors created without a contentHeadroom tag will return 0 from CGColorGetHeadroom, UIColors generated in a similar fashion return a linearExposure of 1.0.
+        #[unsafe(method(linearExposure))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn linearExposure(&self) -> CGFloat;
+
+        /// In some cases it is useful to recover the color that was base SDR color that was exposed to generate the given HDR color. If a color's `linearExposure` is >1, then this will return the base SDR color.
+        #[unsafe(method(standardDynamicRangeColor))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn standardDynamicRangeColor(&self) -> Retained<UIColor>;
     );
 }
 

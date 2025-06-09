@@ -335,12 +335,12 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpostdecodeprocessingsequencemetadatakey?language=objc)
-    pub static kCVImageBufferPostDecodeProcessingSequenceMetadataKey: Option<&'static CFString>;
+    pub static kCVImageBufferPostDecodeProcessingSequenceMetadataKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpostdecodeprocessingframemetadatakey?language=objc)
-    pub static kCVImageBufferPostDecodeProcessingFrameMetadataKey: Option<&'static CFString>;
+    pub static kCVImageBufferPostDecodeProcessingFrameMetadataKey: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -551,4 +551,109 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferlogtransferfunction_applelog?language=objc)
     pub static kCVImageBufferLogTransferFunction_AppleLog: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies the rectangular display area within the image. The left, width, top and height are specified relative to a reference raster width and height that should be scaled to the image buffer dimensions.
+    ///
+    /// Value is a dictionary containing these keys for the raster rectangle:
+    /// kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey
+    /// kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleLeftKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleWidthKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleTopKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleHeightKey
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectanglekey?language=objc)
+    pub static kCVImageBufferDisplayMaskRectangleKey: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies the width in pixels of the 2D coordinate system to define the rectangle. 0,0 origin is the top-left. The raster width value is a CFNumber of unsigned 16-bit integer. Usually matches the width of the video or the output device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_referencerasterwidthkey?language=objc)
+    pub static kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies the height in pixels of the 2D coordinate system to define the rectangle. 0,0 origin is the top-left. The raster height value is a CFNumber of unsigned 16-bit integer. Usually matches the height of the video or the output device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_referencerasterheightkey?language=objc)
+    pub static kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies the horizontal pixel offset of the rectangle from the left of the bounding raster. The left offset value is a CFNumber of unsigned 16-bit integer that is less than the reference raster width value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangleleftkey?language=objc)
+    pub static kCVImageBufferDisplayMaskRectangle_RectangleLeftKey: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies the width of the rectangle starting at rectangle's left offset toward the rectangle's right edge. The width value is a CFNumber of unsigned 16-bit integer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectanglewidthkey?language=objc)
+    pub static kCVImageBufferDisplayMaskRectangle_RectangleWidthKey: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies the vertical pixel offset of the rectangle from the top of the bounding raster. The top offset value is a CFNumber of unsigned 16-bit integer that is less than the reference raster height value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangletopkey?language=objc)
+    pub static kCVImageBufferDisplayMaskRectangle_RectangleTopKey: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies the height of the rectangle starting at rectangle's top offset toward the rectangle's bottom edge. The height value is a CFNumber of unsigned 16-bit integer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangleheightkey?language=objc)
+    pub static kCVImageBufferDisplayMaskRectangle_RectangleHeightKey: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies the rectangular display area within the left eye view of stereo images, using the same keys as with kCVImageBufferDisplayMaskRectangleKey. To address window violations in stereo video, points insetting the left and right edges of the rectangle are supported through additional keys, allowing the description of the "extended raster rectangle".
+    ///
+    /// Value is a dictionary containing these keys for the extended raster rectangle:
+    /// kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey
+    /// kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleLeftKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleWidthKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleTopKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleHeightKey
+    /// kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey
+    /// kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectanglestereoleftkey?language=objc)
+    pub static kCVImageBufferDisplayMaskRectangleStereoLeftKey: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies the rectangular display area within the right eye view of stereo images, using the same keys as with kCVImageBufferDisplayMaskRectangleKey. To address window violations in stereo video, points insetting the left and right edges of the rectangle are supported through additional keys, allowing the description of the "extended raster rectangle".
+    ///
+    /// Value is a dictionary containing these keys for the extended raster rectangle:
+    /// kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey
+    /// kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleLeftKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleWidthKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleTopKey
+    /// kCVImageBufferDisplayMaskRectangle_RectangleHeightKey
+    /// kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey
+    /// kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectanglestereorightkey?language=objc)
+    pub static kCVImageBufferDisplayMaskRectangleStereoRightKey: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies inset points on the left vertical edge of the rectangle. The points are CFArray of unsigned 16-bit integer CFNumber pairs alternating between inset X and inset Y. Inset X is an unsigned offset from left edge (0) towards the right edge (width). Inset Y is an unsigned offset from top edge (0) towards the bottom edge (height)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_leftedgepointskey?language=objc)
+    pub static kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies inset points on the right vertical edge of the rectangle. The points are CFArray of unsigned 16-bit integer CFNumber pairs alternating between inset X and inset Y. Inset X is an unsigned offset from right edge (0) towards the left edge (width). Inset Y is an unsigned offset from top edge (0) towards the bottom edge (height)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rightedgepointskey?language=objc)
+    pub static kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey: &'static CFString;
 }

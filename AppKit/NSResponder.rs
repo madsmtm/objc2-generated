@@ -104,6 +104,11 @@ impl NSResponder {
         pub unsafe fn mouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
+        #[unsafe(method(mouseCancelled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mouseCancelled(&self, event: &NSEvent);
+
+        #[cfg(feature = "NSEvent")]
         #[unsafe(method(scrollWheel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollWheel(&self, event: &NSEvent);

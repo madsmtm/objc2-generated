@@ -25,9 +25,12 @@ impl PKContentVersion {
     /// New Fountain Pen
     #[doc(alias = "PKContentVersion3")]
     pub const Version3: Self = Self(3);
+    /// New Reed Pen
+    #[doc(alias = "PKContentVersion4")]
+    pub const Version4: Self = Self(4);
     /// The latest version including all features.
     #[doc(alias = "PKContentVersionLatest")]
-    pub const VersionLatest: Self = Self(3);
+    pub const VersionLatest: Self = Self(4);
 }
 
 unsafe impl Encode for PKContentVersion {

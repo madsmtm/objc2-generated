@@ -7,20 +7,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate?language=objc)
+/// The state of the task associated with the recognition request.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SFSpeechRecognitionTaskState(pub NSInteger);
 impl SFSpeechRecognitionTaskState {
+    /// Speech recognition (potentially including audio recording) has not yet started.
     #[doc(alias = "SFSpeechRecognitionTaskStateStarting")]
     pub const Starting: Self = Self(0);
+    /// Speech recognition (potentially including audio recording) is in progress.
     #[doc(alias = "SFSpeechRecognitionTaskStateRunning")]
     pub const Running: Self = Self(1);
+    /// Audio recording has stopped, but delivery of recognition results may continue.
     #[doc(alias = "SFSpeechRecognitionTaskStateFinishing")]
     pub const Finishing: Self = Self(2);
+    /// Delivery of recognition results has finished, but audio recording may be ongoing.
     #[doc(alias = "SFSpeechRecognitionTaskStateCanceling")]
     pub const Canceling: Self = Self(3);
+    /// Delivery of recognition requests has finished and audio recording has stopped.
     #[doc(alias = "SFSpeechRecognitionTaskStateCompleted")]
     pub const Completed: Self = Self(4);
 }
@@ -34,7 +41,13 @@ unsafe impl RefEncode for SFSpeechRecognitionTaskState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontask?language=objc)
+    /// A task object for monitoring the speech recognition progress.
+    ///
+    /// Use an `SFSpeechRecognitionTask` object to determine the state of a speech recognition task, to cancel an ongoing task, or to signal the end of the task.
+    ///
+    /// You don't create speech recognition task objects directly. Instead, you receive one of these objects after calling ``SFSpeechRecognizer/recognitionTask(with:resultHandler:)`` or ``SFSpeechRecognizer/recognitionTask(with:delegate:)`` on your ``SFSpeechRecognizer`` object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontask?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechRecognitionTask;
@@ -46,26 +59,59 @@ extern_conformance!(
 
 impl SFSpeechRecognitionTask {
     extern_methods!(
+        /// The current state of the speech recognition task.
+        ///
+        /// Check the value of this property to get the state of the in-progress speech recognition session. For valid values, see ``SFSpeechRecognitionTaskState``.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> SFSpeechRecognitionTaskState;
 
+        /// A Boolean value that indicates whether audio input has stopped.
+        ///
+        /// By default, the value of this property is `false`.
         #[unsafe(method(isFinishing))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFinishing(&self) -> bool;
 
+        /// Stops accepting new audio and finishes processing on the audio input that has already been accepted.
+        ///
+        /// For audio buffer–based recognition, recognition does not finish until this method is called, so be sure to call it when the audio source is exhausted.
         #[unsafe(method(finish))]
         #[unsafe(method_family = none)]
         pub unsafe fn finish(&self);
 
+        /// A Boolean value that indicates whether the speech recognition task was canceled.
+        ///
+        /// By default, the value of this property is `false`.
         #[unsafe(method(isCancelled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCancelled(&self) -> bool;
 
+        /// Cancels the current speech recognition task.
+        ///
+        /// You can cancel recognition tasks for both prerecorded and live audio input. For example, you might cancel a task in response to a user action or because the recording was interrupted.
+        ///
+        /// When canceling a task, be sure to release any resources associated with the task, such as the audio input resources you are using to capture audio samples.
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
+        /// An error object that specifies the error that occurred during a speech recognition task.
+        ///
+        /// The system may return one of the errors listed in the table below.
+        ///
+        /// | Error Code | Error Domain | Description |
+        /// |---|---|---|
+        /// | `102` | `kLSRErrorDomain` | Assets are not installed. |
+        /// | `201` | `kLSRErrorDomain` | Siri or Dictation is disabled. |
+        /// | `300` | `kLSRErrorDomain` | Failed to initialize recognizer. |
+        /// | `301` | `kLSRErrorDomain` | Request was canceled. |
+        /// | `203` | `kAFAssistantErrorDomain` | Failure occurred during speech recognition. |
+        /// | `1100` | `kAFAssistantErrorDomain` | Trying to start recognition while an earlier instance is still active. |
+        /// | `1101` | `kAFAssistantErrorDomain` | Connection to speech process was invalidated. |
+        /// | `1107` | `kAFAssistantErrorDomain` | Connection to speech process was interrupted. |
+        /// | `1110` | `kAFAssistantErrorDomain` | Failed to recognize any speech. |
+        /// | `1700` | `kAFAssistantErrorDomain` | Request is not authorized. |
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
@@ -86,14 +132,36 @@ impl SFSpeechRecognitionTask {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskdelegate?language=objc)
+    /// A protocol with methods for managing multi-utterance speech recognition requests.
+    ///
+    /// The methods of this protocol give you fine-grained control over the speech recognition process. Specifically, you use this protocol when you want to know the following:
+    ///
+    /// - When the first utterances of speech occur in the audio.
+    /// - When the speech recognizer stops accepting audio.
+    /// - When the speech recognition process finishes or is canceled.
+    /// - When the speech recognizer generates a potential transcription.
+    ///
+    /// Adopt the methods of this protocol in an object and pass that object in to the `delegate` parameter of ``SFSpeechRecognizer/recognitionTask(with:delegate:)`` when starting your speech recognition task.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskdelegate?language=objc)
     pub unsafe trait SFSpeechRecognitionTaskDelegate: NSObjectProtocol {
+        /// Tells the delegate when the task first detects speech in the source audio.
+        ///
+        /// - Parameters:
+        /// - task: The speech recognition task (an ``SFSpeechRecognitionTask`` object) that represents the request.
         #[optional]
         #[unsafe(method(speechRecognitionDidDetectSpeech:))]
         #[unsafe(method_family = none)]
         unsafe fn speechRecognitionDidDetectSpeech(&self, task: &SFSpeechRecognitionTask);
 
         #[cfg(feature = "SFTranscription")]
+        /// Tells the delegate that a hypothesized transcription is available.
+        ///
+        /// This method is called for all recognitions, including partial recognitions.
+        ///
+        /// - Parameters:
+        /// - task: The speech recognition task (an ``SFSpeechRecognitionTask`` object) that represents the request.
+        /// - transcription: The hypothesized transcription in an ``SFTranscription`` object.
         #[optional]
         #[unsafe(method(speechRecognitionTask:didHypothesizeTranscription:))]
         #[unsafe(method_family = none)]
@@ -104,6 +172,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "SFSpeechRecognitionResult")]
+        /// Tells the delegate when the final utterance is recognized.
+        ///
+        /// When this method is called, the delegate should expect no further information about the utterance to be reported.
+        ///
+        /// - Parameters:
+        /// - task: The speech recognition task (an ``SFSpeechRecognitionTask`` object) that represents the request.
+        /// - recognitionResult: A recognized utterance that contains one or more transcription hypotheses in an ``SFSpeechRecognitionResult`` object.
         #[optional]
         #[unsafe(method(speechRecognitionTask:didFinishRecognition:))]
         #[unsafe(method_family = none)]
@@ -113,16 +188,31 @@ extern_protocol!(
             recognition_result: &SFSpeechRecognitionResult,
         );
 
+        /// Tells the delegate when the task is no longer accepting new audio input, even if final processing is in progress.
+        ///
+        /// - Parameters:
+        /// - task: The speech recognition task (an ``SFSpeechRecognitionTask`` object) that represents the request.
         #[optional]
         #[unsafe(method(speechRecognitionTaskFinishedReadingAudio:))]
         #[unsafe(method_family = none)]
         unsafe fn speechRecognitionTaskFinishedReadingAudio(&self, task: &SFSpeechRecognitionTask);
 
+        /// Tells the delegate that the task has been canceled.
+        ///
+        /// A speech recognition task can be canceled by the user, by your app, or by the system.
+        ///
+        /// - Parameters:
+        /// - task: The speech recognition task (an ``SFSpeechRecognitionTask`` object) that represents the request.
         #[optional]
         #[unsafe(method(speechRecognitionTaskWasCancelled:))]
         #[unsafe(method_family = none)]
         unsafe fn speechRecognitionTaskWasCancelled(&self, task: &SFSpeechRecognitionTask);
 
+        /// Tells the delegate when the recognition of all requested utterances is finished.
+        ///
+        /// - Parameters:
+        /// - task: The speech recognition task (an ``SFSpeechRecognitionTask`` object) that represents the request.
+        /// - successfully: A Boolean value that indicates whether the task was successful. When this parameter is `false`, use the ``SFSpeechRecognitionTask/error`` property of the task to get information about why the task was unsuccessful.
         #[optional]
         #[unsafe(method(speechRecognitionTask:didFinishSuccessfully:))]
         #[unsafe(method_family = none)]
@@ -132,6 +222,11 @@ extern_protocol!(
             successfully: bool,
         );
 
+        /// Tells the delegate how much audio has been processed by the task.
+        ///
+        /// - Parameters:
+        /// - task: The speech recognition task (an ``SFSpeechRecognitionTask`` object) that represents the request.
+        /// - duration: The seconds of audio input that the recognizer has processed.
         #[optional]
         #[unsafe(method(speechRecognitionTask:didProcessAudioDuration:))]
         #[unsafe(method_family = none)]

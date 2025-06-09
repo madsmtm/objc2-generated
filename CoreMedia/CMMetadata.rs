@@ -155,6 +155,47 @@ extern "C" {
     pub static kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance: &'static CFString;
 }
 
+extern "C" {
+    /// Data associated with a Spatial Audio capture that contains an analysis of a First Order Ambisonics audio stream which is used for playback.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadataspatialaudiomix?language=objc)
+    pub static kCMMetadataIdentifier_QuickTimeMetadataSpatialAudioMix: &'static CFString;
+}
+
+extern "C" {
+    /// Display mask rectangle for monoscopic video
+    /// Expected data type is kCMMetadataBaseDataType_RasterRectangleValue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatadisplaymaskrectanglemono?language=objc)
+    pub static kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono: &'static CFString;
+}
+
+extern "C" {
+    /// Display mask rectangle for stereoscopic video's left eye view
+    /// Expected data type is kCMMetadataBaseDataType_RasterRectangleValue or kCMMetadataBaseDataType_ExtendedRasterRectangleValue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatadisplaymaskrectanglestereoleft?language=objc)
+    pub static kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft:
+        &'static CFString;
+}
+
+extern "C" {
+    /// Display mask rectangle for stereoscopic video's right eye view
+    /// Expected data type is kCMMetadataBaseDataType_RasterRectangleValue or kCMMetadataBaseDataType_ExtendedRasterRectangleValue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatadisplaymaskrectanglestereoright?language=objc)
+    pub static kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight:
+        &'static CFString;
+}
+
+extern "C" {
+    /// Presentation data associated with Apple Immersive Video's video frames. Data is a JSON-encoding of ImmersiveMediaSupport framework's PresentationDescriptor object.
+    /// Expected data type is kCMMetadataBaseDataType_RawData.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatapresentationimmersivemedia?language=objc)
+    pub static kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia: &'static CFString;
+}
+
 extern "C-unwind" {
     /// Creates a URL-like string identifier that represents a key/keyspace tuple.
     ///
@@ -307,6 +348,12 @@ extern "C" {
     ///
     /// A 3x3 matrix of 64-bit big endian floating point numbers stored in row-major order that specify a perspective transform.
     ///
+    /// Consists of six 16-bit big endian unsigned integer values of RasterRectangleValue in the following order: raster width, raster height, left, width, top, height.
+    /// Rectangle origin and dimension are normalized to raster rectangle coordinates to be pixel accurate but still retain the relative semantics when scaled.
+    ///
+    /// Consists of at least six 16-bit big endian unsigned integer values for RasterRectangleValue in the same order as kCMMetadataBaseDataType_RasterRectangleValue and then two 4-bit values for the number of left and right edge adjustment points. If edge adustment points are 2 or more, points would be pairs of 16-bit big endian unsigned integers alternating between x and y with left edge points first and right edge points afterwards.
+    /// Rectangle origin and dimension are normalized to raster rectangle coordinates to be pixel accurate but still retain the relative semantics when scaled.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_rawdata?language=objc)
     pub static kCMMetadataBaseDataType_RawData: &'static CFString;
 }
@@ -429,6 +476,16 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_perspectivetransformf64?language=objc)
     pub static kCMMetadataBaseDataType_PerspectiveTransformF64: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_rasterrectanglevalue?language=objc)
+    pub static kCMMetadataBaseDataType_RasterRectangleValue: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_extendedrasterrectanglevalue?language=objc)
+    pub static kCMMetadataBaseDataType_ExtendedRasterRectangleValue: &'static CFString;
 }
 
 extern "C" {

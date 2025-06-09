@@ -850,6 +850,8 @@ pub use self::__CoreAudioBaseTypes::AudioSampleType;
 #[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::AudioStreamBasicDescription;
 #[cfg(feature = "CoreAudioBaseTypes")]
+pub use self::__CoreAudioBaseTypes::AudioStreamPacketDependencyDescription;
+#[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::AudioStreamPacketDescription;
 #[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::AudioTimeStamp;

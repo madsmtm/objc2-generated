@@ -61,7 +61,7 @@ impl VTPixelRotationSession {
     /// Tears down a pixel rotation session.
     ///
     /// When you are done with an image rotation session you created, call VTPixelRotationSessionInvalidate
-    /// to tear it down and then VTPixelRotationSessionRelease to release your object reference.
+    /// to tear it down and then CFRelease to release your object reference.
     /// When an pixel rotation session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTPixelRotationSessionInvalidate ensures a deterministic, orderly teardown.

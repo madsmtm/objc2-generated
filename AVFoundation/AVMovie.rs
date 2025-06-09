@@ -202,11 +202,11 @@ impl AVMovie {
     extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
-        /// Parameter `URL`: An instance of NSURL that references a media resource.
-        ///
-        /// Returns: An instance of AVAsset.
-        ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
+        ///
+        /// - Parameter URL: An instance of NSURL that references a media resource.
+        ///
+        /// - Returns: An instance of AVAsset.
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
@@ -751,11 +751,11 @@ impl AVMutableMovie {
     extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
-        /// Parameter `URL`: An instance of NSURL that references a media resource.
-        ///
-        /// Returns: An instance of AVAsset.
-        ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
+        ///
+        /// - Parameter URL: An instance of NSURL that references a media resource.
+        ///
+        /// - Returns: An instance of AVAsset.
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
@@ -1319,11 +1319,11 @@ impl AVFragmentedMovie {
     extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
-        /// Parameter `URL`: An instance of NSURL that references a media resource.
-        ///
-        /// Returns: An instance of AVAsset.
-        ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
+        ///
+        /// - Parameter URL: An instance of NSURL that references a media resource.
+        ///
+        /// - Returns: An instance of AVAsset.
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
@@ -1565,11 +1565,10 @@ impl AVFragmentedMovieMinder {
     extern_methods!(
         /// Creates an AVFragmentedAssetMinder, adds the specified asset to it, and sets the mindingInterval to the specified value.
         ///
-        /// Parameter `asset`: An instance of AVFragmentedAsset to add to the AVFragmentedAssetMinder
+        /// - Parameter asset: An instance of AVFragmentedAsset to add to the AVFragmentedAssetMinder
+        /// - Parameter mindingInterval: The initial minding interval of the AVFragmentedAssetMinder.
         ///
-        /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
-        ///
-        /// Returns: A new instance of AVFragmentedAssetMinder.
+        /// - Returns: A new instance of AVFragmentedAssetMinder.
         #[unsafe(method(fragmentedAssetMinderWithAsset:mindingInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fragmentedAssetMinderWithAsset_mindingInterval(
@@ -1579,11 +1578,10 @@ impl AVFragmentedMovieMinder {
 
         /// Creates an AVFragmentedAssetMinder, adds the specified asset to it, and sets the mindingInterval to the specified value.
         ///
-        /// Parameter `asset`: An instance of AVFragmentedAsset to add to the AVFragmentedAssetMinder
+        /// - Parameter asset: An instance of AVFragmentedAsset to add to the AVFragmentedAssetMinder
+        /// - Parameter mindingInterval: The initial minding interval of the AVFragmentedAssetMinder.
         ///
-        /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
-        ///
-        /// Returns: A new instance of AVFragmentedAssetMinder.
+        /// - Returns: A new instance of AVFragmentedAssetMinder.
         #[unsafe(method(initWithAsset:mindingInterval:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_mindingInterval(

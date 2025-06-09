@@ -6,6 +6,8 @@ use core::ptr::NonNull;
 use dispatch2::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-av-foundation")]
+use objc2_av_foundation::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
 #[cfg(feature = "objc2-foundation")]
@@ -251,9 +253,9 @@ impl ARSession {
         pub unsafe fn updateWithCollaborationData(&self, collaboration_data: &ARCollaborationData);
 
         #[cfg(all(feature = "ARFrame", feature = "block2", feature = "objc2-foundation"))]
-        /// Requests a single, high resolution frame be captured at that moment in time.
+        /// Requests a single, high resolution frame to be captured.
         ///
-        /// Some video formats do not support a significantly higher resolution than the streaming camera resolution. Use the
+        /// Some video formats do not support a significantly higher still image resolution than the streaming camera resolution. Use the
         /// `isRecommendedForHighResolutionFrameCapturing`method on the video format to check if the format is recommended.
         ///
         /// See: -[ARVideoFormat isRecommendedForHighResolutionFrameCapturing]
@@ -263,6 +265,34 @@ impl ARSession {
         #[unsafe(method_family = none)]
         pub unsafe fn captureHighResolutionFrameWithCompletion(
             &self,
+            completion: &block2::DynBlock<dyn Fn(*mut ARFrame, *mut NSError)>,
+        );
+
+        #[cfg(all(
+            feature = "ARFrame",
+            feature = "block2",
+            feature = "objc2-av-foundation",
+            feature = "objc2-foundation"
+        ))]
+        /// Requests a single, high resolution frame to be captured.
+        ///
+        /// Some video formats do not support a significantly higher still image resolution than the streaming camera resolution. Use the
+        /// `isRecommendedForHighResolutionFrameCapturing`method on the video format to check if the format is recommended. For passing customized photo settings
+        /// to this method, obtain a
+        /// `defaultPhotoSettings`object from the video format and modify it.
+        ///
+        /// See: -[ARVideoFormat isRecommendedForHighResolutionFrameCapturing]
+        ///
+        /// See: -[ARVideoFormat defaultPhotoSettings]
+        ///
+        /// Parameter `photoSettings`: Custom AVCapturePhotoSettings to be used.
+        ///
+        /// Parameter `completion`: Block being called when the call completes.
+        #[unsafe(method(captureHighResolutionFrameUsingPhotoSettings:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn captureHighResolutionFrameUsingPhotoSettings_completion(
+            &self,
+            photo_settings: Option<&AVCapturePhotoSettings>,
             completion: &block2::DynBlock<dyn Fn(*mut ARFrame, *mut NSError)>,
         );
     );

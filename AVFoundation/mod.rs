@@ -276,6 +276,9 @@ mod __AVCaptureSessionPreset;
 #[cfg(feature = "AVCaptureSlider")]
 #[path = "AVCaptureSlider.rs"]
 mod __AVCaptureSlider;
+#[cfg(feature = "AVCaptureSpatialAudioMetadataSampleGenerator")]
+#[path = "AVCaptureSpatialAudioMetadataSampleGenerator.rs"]
+mod __AVCaptureSpatialAudioMetadataSampleGenerator;
 #[cfg(feature = "AVCaptureStillImageOutput")]
 #[path = "AVCaptureStillImageOutput.rs"]
 mod __AVCaptureStillImageOutput;
@@ -366,6 +369,9 @@ mod __AVMovieTrack;
 #[cfg(feature = "AVOutputSettingsAssistant")]
 #[path = "AVOutputSettingsAssistant.rs"]
 mod __AVOutputSettingsAssistant;
+#[cfg(feature = "AVPlaybackCoordinationMedium")]
+#[path = "AVPlaybackCoordinationMedium.rs"]
+mod __AVPlaybackCoordinationMedium;
 #[cfg(feature = "AVPlaybackCoordinator")]
 #[path = "AVPlaybackCoordinator.rs"]
 mod __AVPlaybackCoordinator;
@@ -519,7 +525,11 @@ pub use self::__AVAsset::AVURLAssetPrimarySessionIdentifierKey;
 #[cfg(feature = "AVAsset")]
 pub use self::__AVAsset::AVURLAssetReferenceRestrictionsKey;
 #[cfg(feature = "AVAsset")]
+pub use self::__AVAsset::AVURLAssetShouldParseExternalSphericalTagsKey;
+#[cfg(feature = "AVAsset")]
 pub use self::__AVAsset::AVURLAssetShouldSupportAliasDataReferencesKey;
+#[cfg(all(feature = "AVAsset", feature = "AVAssetTrack"))]
+pub use self::__AVAsset::AVURLAssetTrack;
 #[cfg(feature = "AVAsset")]
 pub use self::__AVAsset::AVURLAssetURLRequestAttributionKey;
 #[cfg(feature = "AVAssetCache")]
@@ -599,6 +609,8 @@ pub use self::__AVAssetExportSession::AVAssetExportPresetHEVC3840x2160;
 #[cfg(feature = "AVAssetExportSession")]
 pub use self::__AVAssetExportSession::AVAssetExportPresetHEVC3840x2160WithAlpha;
 #[cfg(feature = "AVAssetExportSession")]
+pub use self::__AVAssetExportSession::AVAssetExportPresetHEVC4320x2160;
+#[cfg(feature = "AVAssetExportSession")]
 pub use self::__AVAssetExportSession::AVAssetExportPresetHEVC7680x4320;
 #[cfg(feature = "AVAssetExportSession")]
 pub use self::__AVAssetExportSession::AVAssetExportPresetHEVCHighestQuality;
@@ -610,6 +622,10 @@ pub use self::__AVAssetExportSession::AVAssetExportPresetHighestQuality;
 pub use self::__AVAssetExportSession::AVAssetExportPresetLowQuality;
 #[cfg(feature = "AVAssetExportSession")]
 pub use self::__AVAssetExportSession::AVAssetExportPresetMVHEVC1440x1440;
+#[cfg(feature = "AVAssetExportSession")]
+pub use self::__AVAssetExportSession::AVAssetExportPresetMVHEVC4320x4320;
+#[cfg(feature = "AVAssetExportSession")]
+pub use self::__AVAssetExportSession::AVAssetExportPresetMVHEVC7680x7680;
 #[cfg(feature = "AVAssetExportSession")]
 pub use self::__AVAssetExportSession::AVAssetExportPresetMVHEVC960x960;
 #[cfg(feature = "AVAssetExportSession")]
@@ -651,6 +667,10 @@ pub use self::__AVAssetImageGenerator::AVAssetImageGeneratorResult;
 pub use self::__AVAssetPlaybackAssistant::AVAssetPlaybackAssistant;
 #[cfg(feature = "AVAssetPlaybackAssistant")]
 pub use self::__AVAssetPlaybackAssistant::AVAssetPlaybackConfigurationOption;
+#[cfg(feature = "AVAssetPlaybackAssistant")]
+pub use self::__AVAssetPlaybackAssistant::AVAssetPlaybackConfigurationOptionAppleImmersiveVideo;
+#[cfg(feature = "AVAssetPlaybackAssistant")]
+pub use self::__AVAssetPlaybackAssistant::AVAssetPlaybackConfigurationOptionNonRectilinearProjection;
 #[cfg(feature = "AVAssetPlaybackAssistant")]
 pub use self::__AVAssetPlaybackAssistant::AVAssetPlaybackConfigurationOptionSpatialVideo;
 #[cfg(feature = "AVAssetPlaybackAssistant")]
@@ -722,6 +742,8 @@ pub use self::__AVAssetTrack::AVTrackAssociationTypeForcedSubtitlesOnly;
 #[cfg(feature = "AVAssetTrack")]
 pub use self::__AVAssetTrack::AVTrackAssociationTypeMetadataReferent;
 #[cfg(feature = "AVAssetTrack")]
+pub use self::__AVAssetTrack::AVTrackAssociationTypeRenderMetadataSource;
+#[cfg(feature = "AVAssetTrack")]
 pub use self::__AVAssetTrack::AVTrackAssociationTypeSelectionFollower;
 #[cfg(feature = "AVAssetTrack")]
 pub use self::__AVAssetTrack::AVTrackAssociationTypeTimecode;
@@ -759,6 +781,8 @@ pub use self::__AVAssetWriterInput::AVAssetWriterInputMediaDataLocation;
 pub use self::__AVAssetWriterInput::AVAssetWriterInputMediaDataLocationBeforeMainMediaDataNotInterleaved;
 #[cfg(feature = "AVAssetWriterInput")]
 pub use self::__AVAssetWriterInput::AVAssetWriterInputMediaDataLocationInterleavedWithMainMediaData;
+#[cfg(feature = "AVAssetWriterInput")]
+pub use self::__AVAssetWriterInput::AVAssetWriterInputMediaDataLocationSparselyInterleavedWithMainMediaData;
 #[cfg(feature = "AVAssetWriterInput")]
 pub use self::__AVAssetWriterInput::AVAssetWriterInputMetadataAdaptor;
 #[cfg(feature = "AVAssetWriterInput")]
@@ -917,7 +941,11 @@ pub use self::__AVCaptureDevice::AVCaptureAutoFocusRangeRestriction;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureAutoFocusSystem;
 #[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureCameraLensSmudgeDetectionStatus;
+#[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureCenterStageControlMode;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureCinematicVideoFocusMode;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureColorSpace;
 #[cfg(feature = "AVCaptureDevice")]
@@ -996,6 +1024,10 @@ pub use self::__AVCaptureDevice::AVCaptureMicrophoneMode;
 pub use self::__AVCaptureDevice::AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCapturePrimaryConstituentDeviceSwitchingBehavior;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureSceneMonitoringStatus;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureSceneMonitoringStatusNotEnoughLight;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureSystemUserInterface;
 #[cfg(feature = "AVCaptureDevice")]
@@ -1117,6 +1149,8 @@ pub use self::__AVCaptureSession::AVCaptureSession;
 #[cfg(feature = "AVCaptureSession")]
 pub use self::__AVCaptureSession::AVCaptureSessionControlsDelegate;
 #[cfg(feature = "AVCaptureSession")]
+pub use self::__AVCaptureSession::AVCaptureSessionDeferredStartDelegate;
+#[cfg(feature = "AVCaptureSession")]
 pub use self::__AVCaptureSession::AVCaptureSessionDidStartRunningNotification;
 #[cfg(feature = "AVCaptureSession")]
 pub use self::__AVCaptureSession::AVCaptureSessionDidStopRunningNotification;
@@ -1170,6 +1204,8 @@ pub use self::__AVCaptureSessionPreset::AVCaptureSessionPresetiFrame1280x720;
 pub use self::__AVCaptureSessionPreset::AVCaptureSessionPresetiFrame960x540;
 #[cfg(all(feature = "AVCaptureControl", feature = "AVCaptureSlider"))]
 pub use self::__AVCaptureSlider::AVCaptureSlider;
+#[cfg(feature = "AVCaptureSpatialAudioMetadataSampleGenerator")]
+pub use self::__AVCaptureSpatialAudioMetadataSampleGenerator::AVCaptureSpatialAudioMetadataSampleGenerator;
 #[cfg(feature = "AVCaptureStillImageOutput")]
 pub use self::__AVCaptureStillImageOutput::AVCaptureAutoExposureBracketedStillImageSettings;
 #[cfg(feature = "AVCaptureStillImageOutput")]
@@ -1229,6 +1265,8 @@ pub use self::__AVContentKeySession::AVContentKeyRequest;
 #[cfg(feature = "AVContentKeySession")]
 pub use self::__AVContentKeySession::AVContentKeyRequestProtocolVersionsKey;
 #[cfg(feature = "AVContentKeySession")]
+pub use self::__AVContentKeySession::AVContentKeyRequestRandomDeviceIdentifierSeedKey;
+#[cfg(feature = "AVContentKeySession")]
 pub use self::__AVContentKeySession::AVContentKeyRequestRequiresValidationDataInSecureTokenKey;
 #[cfg(feature = "AVContentKeySession")]
 pub use self::__AVContentKeySession::AVContentKeyRequestRetryReason;
@@ -1238,6 +1276,8 @@ pub use self::__AVContentKeySession::AVContentKeyRequestRetryReasonReceivedObsol
 pub use self::__AVContentKeySession::AVContentKeyRequestRetryReasonReceivedResponseWithExpiredLease;
 #[cfg(feature = "AVContentKeySession")]
 pub use self::__AVContentKeySession::AVContentKeyRequestRetryReasonTimedOut;
+#[cfg(feature = "AVContentKeySession")]
+pub use self::__AVContentKeySession::AVContentKeyRequestShouldRandomizeDeviceIdentifierKey;
 #[cfg(feature = "AVContentKeySession")]
 pub use self::__AVContentKeySession::AVContentKeyRequestStatus;
 #[cfg(feature = "AVContentKeySession")]
@@ -1337,6 +1377,8 @@ pub use self::__AVMediaFormat::AVFileTypeAppleiTT;
 #[cfg(feature = "AVMediaFormat")]
 pub use self::__AVMediaFormat::AVFileTypeCoreAudioFormat;
 #[cfg(feature = "AVMediaFormat")]
+pub use self::__AVMediaFormat::AVFileTypeDICOM;
+#[cfg(feature = "AVMediaFormat")]
 pub use self::__AVMediaFormat::AVFileTypeDNG;
 #[cfg(feature = "AVMediaFormat")]
 pub use self::__AVMediaFormat::AVFileTypeEnhancedAC3;
@@ -1395,6 +1437,8 @@ pub use self::__AVMediaFormat::AVMediaCharacteristicFrameBased;
 #[cfg(feature = "AVMediaFormat")]
 pub use self::__AVMediaFormat::AVMediaCharacteristicIndicatesHorizontalFieldOfView;
 #[cfg(feature = "AVMediaFormat")]
+pub use self::__AVMediaFormat::AVMediaCharacteristicIndicatesNonRectilinearProjection;
+#[cfg(feature = "AVMediaFormat")]
 pub use self::__AVMediaFormat::AVMediaCharacteristicIsAuxiliaryContent;
 #[cfg(feature = "AVMediaFormat")]
 pub use self::__AVMediaFormat::AVMediaCharacteristicIsMainProgramContent;
@@ -1404,6 +1448,8 @@ pub use self::__AVMediaFormat::AVMediaCharacteristicIsOriginalContent;
 pub use self::__AVMediaFormat::AVMediaCharacteristicLanguageTranslation;
 #[cfg(feature = "AVMediaFormat")]
 pub use self::__AVMediaFormat::AVMediaCharacteristicLegible;
+#[cfg(feature = "AVMediaFormat")]
+pub use self::__AVMediaFormat::AVMediaCharacteristicMachineGenerated;
 #[cfg(feature = "AVMediaFormat")]
 pub use self::__AVMediaFormat::AVMediaCharacteristicTactileMinimal;
 #[cfg(feature = "AVMediaFormat")]
@@ -1456,6 +1502,12 @@ pub use self::__AVMediaFormat::AVVideoRangeSDR;
 pub use self::__AVMediaSelection::AVMediaSelection;
 #[cfg(feature = "AVMediaSelection")]
 pub use self::__AVMediaSelection::AVMutableMediaSelection;
+#[cfg(feature = "AVMediaSelectionGroup")]
+pub use self::__AVMediaSelectionGroup::AVCustomMediaSelectionScheme;
+#[cfg(feature = "AVMediaSelectionGroup")]
+pub use self::__AVMediaSelectionGroup::AVMediaPresentationSelector;
+#[cfg(feature = "AVMediaSelectionGroup")]
+pub use self::__AVMediaSelectionGroup::AVMediaPresentationSetting;
 #[cfg(feature = "AVMediaSelectionGroup")]
 pub use self::__AVMediaSelectionGroup::AVMediaSelectionGroup;
 #[cfg(feature = "AVMediaSelectionGroup")]
@@ -1795,9 +1847,15 @@ pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyArtwork;
 #[cfg(feature = "AVMetadataFormat")]
 pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyAuthor;
 #[cfg(feature = "AVMetadataFormat")]
+pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraFocalLength35mmEquivalent;
+#[cfg(feature = "AVMetadataFormat")]
 pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraFrameReadoutTime;
 #[cfg(feature = "AVMetadataFormat")]
 pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraIdentifier;
+#[cfg(feature = "AVMetadataFormat")]
+pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraLensModel;
+#[cfg(feature = "AVMetadataFormat")]
+pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCinematicVideoIntent;
 #[cfg(feature = "AVMetadataFormat")]
 pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCollectionUser;
 #[cfg(feature = "AVMetadataFormat")]
@@ -2323,6 +2381,8 @@ pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierIcyMetadataStreamTitl
 #[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierIcyMetadataStreamURL;
 #[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataAIMEData;
+#[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataAccessibilityDescription;
 #[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataAlbum;
@@ -2337,9 +2397,15 @@ pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataAuth
 #[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataAutoLivePhoto;
 #[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraFocalLength35mmEquivalent;
+#[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraFrameReadoutTime;
 #[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraIdentifier;
+#[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraLensModel;
+#[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCinematicVideoIntent;
 #[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCollectionUser;
 #[cfg(feature = "AVMetadataIdentifiers")]
@@ -2416,6 +2482,8 @@ pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataPerf
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataPhonogramRights;
 #[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataPreferredAffineTransform;
+#[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataPresentationImmersiveMedia;
 #[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataProducer;
 #[cfg(feature = "AVMetadataIdentifiers")]
@@ -2623,7 +2691,11 @@ pub use self::__AVMetadataObject::AVMetadataBodyObject;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataCatBodyObject;
 #[cfg(feature = "AVMetadataObject")]
+pub use self::__AVMetadataObject::AVMetadataCatHeadObject;
+#[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataDogBodyObject;
+#[cfg(feature = "AVMetadataObject")]
+pub use self::__AVMetadataObject::AVMetadataDogHeadObject;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataFaceObject;
 #[cfg(feature = "AVMetadataObject")]
@@ -2641,6 +2713,8 @@ pub use self::__AVMetadataObject::AVMetadataObjectTypeAztecCode;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataObjectTypeCatBody;
 #[cfg(feature = "AVMetadataObject")]
+pub use self::__AVMetadataObject::AVMetadataObjectTypeCatHead;
+#[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataObjectTypeCodabarCode;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataObjectTypeCode128Code;
@@ -2654,6 +2728,8 @@ pub use self::__AVMetadataObject::AVMetadataObjectTypeCode93Code;
 pub use self::__AVMetadataObject::AVMetadataObjectTypeDataMatrixCode;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataObjectTypeDogBody;
+#[cfg(feature = "AVMetadataObject")]
+pub use self::__AVMetadataObject::AVMetadataObjectTypeDogHead;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataObjectTypeEAN13Code;
 #[cfg(feature = "AVMetadataObject")]
@@ -2690,6 +2766,8 @@ pub use self::__AVMetadataObject::AVMetadataObjectTypeUPCECode;
 pub use self::__AVMetadataObject::AVMetadataSalientObject;
 #[cfg(feature = "AVMetrics")]
 pub use self::__AVMetrics::AVMetricContentKeyRequestEvent;
+#[cfg(feature = "AVMetrics")]
+pub use self::__AVMetrics::AVMetricDownloadSummaryEvent;
 #[cfg(feature = "AVMetrics")]
 pub use self::__AVMetrics::AVMetricErrorEvent;
 #[cfg(feature = "AVMetrics")]
@@ -2781,11 +2859,19 @@ pub use self::__AVOutputSettingsAssistant::AVOutputSettingsPresetHEVC3840x2160;
 #[cfg(feature = "AVOutputSettingsAssistant")]
 pub use self::__AVOutputSettingsAssistant::AVOutputSettingsPresetHEVC3840x2160WithAlpha;
 #[cfg(feature = "AVOutputSettingsAssistant")]
+pub use self::__AVOutputSettingsAssistant::AVOutputSettingsPresetHEVC4320x2160;
+#[cfg(feature = "AVOutputSettingsAssistant")]
 pub use self::__AVOutputSettingsAssistant::AVOutputSettingsPresetHEVC7680x4320;
 #[cfg(feature = "AVOutputSettingsAssistant")]
 pub use self::__AVOutputSettingsAssistant::AVOutputSettingsPresetMVHEVC1440x1440;
 #[cfg(feature = "AVOutputSettingsAssistant")]
+pub use self::__AVOutputSettingsAssistant::AVOutputSettingsPresetMVHEVC4320x4320;
+#[cfg(feature = "AVOutputSettingsAssistant")]
+pub use self::__AVOutputSettingsAssistant::AVOutputSettingsPresetMVHEVC7680x7680;
+#[cfg(feature = "AVOutputSettingsAssistant")]
 pub use self::__AVOutputSettingsAssistant::AVOutputSettingsPresetMVHEVC960x960;
+#[cfg(feature = "AVPlaybackCoordinationMedium")]
+pub use self::__AVPlaybackCoordinationMedium::AVPlaybackCoordinationMedium;
 #[cfg(feature = "AVPlaybackCoordinator")]
 pub use self::__AVPlaybackCoordinator::AVCoordinatedPlaybackParticipant;
 #[cfg(feature = "AVPlaybackCoordinator")]
@@ -2845,6 +2931,8 @@ pub use self::__AVPlayer::AVPlayerEligibleForHDRPlaybackDidChangeNotification;
 #[cfg(feature = "AVPlayer")]
 pub use self::__AVPlayer::AVPlayerHDRMode;
 #[cfg(feature = "AVPlayer")]
+pub use self::__AVPlayer::AVPlayerNetworkResourcePriority;
+#[cfg(feature = "AVPlayer")]
 pub use self::__AVPlayer::AVPlayerRateDidChangeNotification;
 #[cfg(feature = "AVPlayer")]
 pub use self::__AVPlayer::AVPlayerRateDidChangeOriginatingParticipantKey;
@@ -2901,11 +2989,39 @@ pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMo
 #[cfg(feature = "AVPlayerInterstitialEventController")]
 pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorCurrentEventDidChangeNotification;
 #[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeEventKey;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeNotification;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeSkipControlLabelKey;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeStateKey;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorCurrentEventSkippedEventKey;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorCurrentEventSkippedNotification;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
 pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorEventsDidChangeNotification;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishNotification;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledErrorKey;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledEventKey;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledNotification;
 #[cfg(feature = "AVPlayerInterstitialEventController")]
 pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventNoCue;
 #[cfg(feature = "AVPlayerInterstitialEventController")]
 pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventRestrictions;
+#[cfg(feature = "AVPlayerInterstitialEventController")]
+pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventSkippableEventState;
 #[cfg(feature = "AVPlayerInterstitialEventController")]
 pub use self::__AVPlayerInterstitialEventController::AVPlayerInterstitialEventTimelineOccupancy;
 #[cfg(all(feature = "AVPlayer", feature = "AVPlayerInterstitialEventController"))]

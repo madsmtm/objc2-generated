@@ -583,14 +583,20 @@ impl UITextField {
     );
 }
 
-/// Methods declared on superclass `NSObject`.
+/// Methods declared on superclass `UIView`.
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UITextField {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UITextField {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -702,6 +708,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+        #[deprecated]
         #[optional]
         #[unsafe(method(textField:shouldChangeCharactersInRange:replacementString:))]
         #[unsafe(method_family = none)]
@@ -709,6 +716,31 @@ extern_protocol!(
             &self,
             text_field: &UITextField,
             range: NSRange,
+            string: &NSString,
+        ) -> bool;
+
+        #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+        /// Asks the delegate if the text at the specified `ranges` should be replaced with `string`.
+        ///
+        ///
+        /// If this method returns YES then the text field will, at its own discretion, choose any one of the specified `ranges` of text and replace it with the specified `replacementString` before deleting the text at the other ranges.
+        ///
+        ///
+        /// Parameter `textField`: The text field asking the delegate
+        ///
+        /// Parameter `ranges`: The ranges of the text that should be deleted before replacing
+        ///
+        /// Parameter `replacementString`: The replacement string
+        ///
+        ///
+        /// Returns: Returns YES if the text at the `ranges` should be replaced.
+        #[optional]
+        #[unsafe(method(textField:shouldChangeCharactersInRanges:replacementString:))]
+        #[unsafe(method_family = none)]
+        unsafe fn textField_shouldChangeCharactersInRanges_replacementString(
+            &self,
+            text_field: &UITextField,
+            ranges: &NSArray<NSValue>,
             string: &NSString,
         ) -> bool;
 
@@ -749,6 +781,7 @@ extern_protocol!(
         ///
         /// Returns: Return a UIMenu describing the desired menu hierarchy. Return
         /// `nil`to present the default system menu.
+        #[deprecated]
         #[optional]
         #[unsafe(method(textField:editMenuForCharactersInRange:suggestedActions:))]
         #[unsafe(method_family = none)]
@@ -756,6 +789,35 @@ extern_protocol!(
             &self,
             text_field: &UITextField,
             range: NSRange,
+            suggested_actions: &NSArray<UIMenuElement>,
+        ) -> Option<Retained<UIMenu>>;
+
+        #[cfg(all(
+            feature = "UIControl",
+            feature = "UIMenu",
+            feature = "UIMenuElement",
+            feature = "UIResponder",
+            feature = "UIView"
+        ))]
+        /// Asks the delegate for the menu to be shown for the specified `ranges`.
+        ///
+        ///
+        /// Parameter `textField`: The text field requesting the menu.
+        ///
+        /// Parameter `ranges`: The text ranges for which the menu is presented for.
+        ///
+        /// Parameter `suggestedActions`: The actions and commands that the system suggests.
+        ///
+        ///
+        /// Returns: Return a UIMenu describing the desired menu hierarchy. Return
+        /// `nil`to present the default system menu.
+        #[optional]
+        #[unsafe(method(textField:editMenuForCharactersInRanges:suggestedActions:))]
+        #[unsafe(method_family = none)]
+        unsafe fn textField_editMenuForCharactersInRanges_suggestedActions(
+            &self,
+            text_field: &UITextField,
+            ranges: &NSArray<NSValue>,
             suggested_actions: &NSArray<UIMenuElement>,
         ) -> Option<Retained<UIMenu>>;
 

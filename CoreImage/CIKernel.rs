@@ -22,6 +22,10 @@ extern_class!(
     pub struct CIKernel;
 );
 
+unsafe impl Send for CIKernel {}
+
+unsafe impl Sync for CIKernel {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for CIKernel {}
 );
@@ -109,6 +113,10 @@ extern_class!(
     pub struct CIColorKernel;
 );
 
+unsafe impl Send for CIColorKernel {}
+
+unsafe impl Sync for CIColorKernel {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for CIColorKernel {}
 );
@@ -171,6 +179,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIWarpKernel;
 );
+
+unsafe impl Send for CIWarpKernel {}
+
+unsafe impl Sync for CIWarpKernel {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for CIWarpKernel {}
@@ -240,6 +252,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIBlendKernel;
 );
+
+unsafe impl Send for CIBlendKernel {}
+
+unsafe impl Sync for CIBlendKernel {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for CIBlendKernel {}

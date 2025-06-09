@@ -11,7 +11,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller?language=objc)
+    /// View controller to manage turn-based matches, invite friends and perform automatching. Present modally from the top view controller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

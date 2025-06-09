@@ -1574,6 +1574,16 @@ extern "C" {
     pub static kCFURLUbiquitousItemDownloadingStatusCurrent: Option<&'static CFString>;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemsupportedsynccontrolskey?language=objc)
+    pub static kCFURLUbiquitousItemSupportedSyncControlsKey: Option<&'static CFString>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemissyncpausedkey?language=objc)
+    pub static kCFURLUbiquitousItemIsSyncPausedKey: Option<&'static CFString>;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]

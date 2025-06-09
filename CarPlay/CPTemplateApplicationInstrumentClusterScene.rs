@@ -12,7 +12,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplateapplicationinstrumentclusterscenedelegate?language=objc)
     #[cfg(feature = "objc2-ui-kit")]
     pub unsafe trait CPTemplateApplicationInstrumentClusterSceneDelegate:
-        UISceneDelegate
+        UISceneDelegate + MainThreadOnly
     {
         #[cfg(feature = "CPInstrumentClusterController")]
         /// The instrument cluster navigation scene has connected.

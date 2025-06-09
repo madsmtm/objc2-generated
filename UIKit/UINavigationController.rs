@@ -243,9 +243,21 @@ impl UINavigationController {
         );
 
         #[cfg(feature = "UIGestureRecognizer")]
+        /// The interactive pop gesture recognizes on the leading screen edge and initiates an interactive pop.
+        /// This property should only be used to set up failure requirements with it.
         #[unsafe(method(interactivePopGestureRecognizer))]
         #[unsafe(method_family = none)]
         pub unsafe fn interactivePopGestureRecognizer(
+            &self,
+        ) -> Option<Retained<UIGestureRecognizer>>;
+
+        #[cfg(feature = "UIGestureRecognizer")]
+        /// The interactive content pop gesture recognizes on the entire content area of the navigation controller
+        /// in cases that are not covered by the interactive pop gesture recognizer and initiates an interactive pop.
+        /// This property should only be used to set up failure requirements with it.
+        #[unsafe(method(interactiveContentPopGestureRecognizer))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn interactiveContentPopGestureRecognizer(
             &self,
         ) -> Option<Retained<UIGestureRecognizer>>;
 

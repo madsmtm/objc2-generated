@@ -271,6 +271,28 @@ pub use self::__CVImageBuffer::kCVImageBufferDisplayDimensionsKey;
 #[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferDisplayHeightKey;
 #[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferDisplayMaskRectangleKey;
+#[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferDisplayMaskRectangleStereoLeftKey;
+#[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferDisplayMaskRectangleStereoRightKey;
+#[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey;
+#[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferDisplayMaskRectangle_RectangleHeightKey;
+#[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferDisplayMaskRectangle_RectangleLeftKey;
+#[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferDisplayMaskRectangle_RectangleTopKey;
+#[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferDisplayMaskRectangle_RectangleWidthKey;
+#[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey;
+#[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey;
+#[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey;
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferDisplayWidthKey;
 #[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferFieldCountKey;
@@ -743,6 +765,8 @@ pub use self::__CVPixelBuffer::kCVPixelFormatType_8Indexed;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelFormatType_8IndexedGray_WhiteIsZero;
 #[cfg(feature = "CVPixelBuffer")]
+pub use self::__CVPixelBuffer::kCVPixelFormatType_96VersatileBayerPacked12;
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelFormatType_ARGB2101010LEPacked;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelFormatType_DepthFloat16;
@@ -920,6 +944,12 @@ pub use self::__CVPixelBuffer::CVPixelBufferGetWidth;
     feature = "CVPixelBuffer"
 ))]
 pub use self::__CVPixelBuffer::CVPixelBufferGetWidthOfPlane;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "CVPixelBuffer"
+))]
+pub use self::__CVPixelBuffer::CVPixelBufferIsCompatibleWithAttributes;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -1109,6 +1139,8 @@ pub use self::__CVPixelFormatDescription::CVPixelFormatDescriptionArrayCreateWit
 pub use self::__CVPixelFormatDescription::CVPixelFormatDescriptionCreateWithPixelFormatType;
 #[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType;
+#[cfg(feature = "CVPixelFormatDescription")]
+pub use self::__CVPixelFormatDescription::CVPixelFormatTypeCopyFourCharCodeString;
 #[cfg(feature = "CVReturn")]
 pub use self::__CVReturn::kCVReturnAllocationFailed;
 #[cfg(feature = "CVReturn")]

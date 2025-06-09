@@ -42,6 +42,9 @@ mod __SKCloudServiceSetupViewController;
 #[cfg(feature = "SKDownload")]
 #[path = "SKDownload.rs"]
 mod __SKDownload;
+#[cfg(feature = "SKDownloaderExtension")]
+#[path = "SKDownloaderExtension.rs"]
+mod __SKDownloaderExtension;
 #[cfg(feature = "SKError")]
 #[path = "SKError.rs"]
 mod __SKError;
@@ -183,6 +186,9 @@ pub use self::__SKDownload::SKDownload;
 pub use self::__SKDownload::SKDownloadState;
 #[cfg(feature = "SKDownload")]
 pub use self::__SKDownload::SKDownloadTimeRemainingUnknown;
+#[cfg(all(feature = "SKDownloaderExtension", feature = "objc2-background-assets"))]
+#[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
+pub use self::__SKDownloaderExtension::SKDownloaderExtension;
 #[cfg(feature = "SKError")]
 pub use self::__SKError::SKErrorCode;
 #[cfg(feature = "SKError")]

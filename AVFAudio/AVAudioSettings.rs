@@ -76,6 +76,21 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderdynamicrangecontrolconfigurationkey?language=objc)
+    pub static AVEncoderDynamicRangeControlConfigurationKey: Option<&'static NSString>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencodercontentsourcekey?language=objc)
+    pub static AVEncoderContentSourceKey: Option<&'static NSString>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderaspfrequencykey?language=objc)
+    pub static AVEncoderASPFrequencyKey: Option<&'static NSString>;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteralgorithmkey?language=objc)
     pub static AVSampleRateConverterAlgorithmKey: Option<&'static NSString>;
 }
@@ -148,5 +163,91 @@ unsafe impl Encode for AVAudioQuality {
 }
 
 unsafe impl RefEncode for AVAudioQuality {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiodynamicrangecontrolconfiguration?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AVAudioDynamicRangeControlConfiguration(pub NSInteger);
+impl AVAudioDynamicRangeControlConfiguration {
+    #[doc(alias = "AVAudioDynamicRangeControlConfiguration_None")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "AVAudioDynamicRangeControlConfiguration_Music")]
+    pub const Music: Self = Self(1);
+    #[doc(alias = "AVAudioDynamicRangeControlConfiguration_Speech")]
+    pub const Speech: Self = Self(2);
+    #[doc(alias = "AVAudioDynamicRangeControlConfiguration_Movie")]
+    pub const Movie: Self = Self(3);
+    #[doc(alias = "AVAudioDynamicRangeControlConfiguration_Capture")]
+    pub const Capture: Self = Self(4);
+}
+
+unsafe impl Encode for AVAudioDynamicRangeControlConfiguration {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVAudioDynamicRangeControlConfiguration {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AVAudioContentSource(pub NSInteger);
+impl AVAudioContentSource {
+    #[doc(alias = "AVAudioContentSource_Unspecified")]
+    pub const Unspecified: Self = Self(-1);
+    #[doc(alias = "AVAudioContentSource_Reserved")]
+    pub const Reserved: Self = Self(0);
+    #[doc(alias = "AVAudioContentSource_AppleCapture_Traditional")]
+    pub const AppleCapture_Traditional: Self = Self(1);
+    #[doc(alias = "AVAudioContentSource_AppleCapture_Spatial")]
+    pub const AppleCapture_Spatial: Self = Self(2);
+    #[doc(alias = "AVAudioContentSource_AppleCapture_Spatial_Enhanced")]
+    pub const AppleCapture_Spatial_Enhanced: Self = Self(3);
+    #[doc(alias = "AVAudioContentSource_AppleMusic_Traditional")]
+    pub const AppleMusic_Traditional: Self = Self(4);
+    #[doc(alias = "AVAudioContentSource_AppleMusic_Spatial")]
+    pub const AppleMusic_Spatial: Self = Self(5);
+    #[doc(alias = "AVAudioContentSource_AppleAV_Traditional_Offline")]
+    pub const AppleAV_Traditional_Offline: Self = Self(6);
+    #[doc(alias = "AVAudioContentSource_AppleAV_Spatial_Offline")]
+    pub const AppleAV_Spatial_Offline: Self = Self(7);
+    #[doc(alias = "AVAudioContentSource_AppleAV_Traditional_Live")]
+    pub const AppleAV_Traditional_Live: Self = Self(8);
+    #[doc(alias = "AVAudioContentSource_AppleAV_Spatial_Live")]
+    pub const AppleAV_Spatial_Live: Self = Self(9);
+    #[doc(alias = "AVAudioContentSource_ApplePassthrough")]
+    pub const ApplePassthrough: Self = Self(10);
+    #[doc(alias = "AVAudioContentSource_Capture_Traditional")]
+    pub const Capture_Traditional: Self = Self(33);
+    #[doc(alias = "AVAudioContentSource_Capture_Spatial")]
+    pub const Capture_Spatial: Self = Self(34);
+    #[doc(alias = "AVAudioContentSource_Capture_Spatial_Enhanced")]
+    pub const Capture_Spatial_Enhanced: Self = Self(35);
+    #[doc(alias = "AVAudioContentSource_Music_Traditional")]
+    pub const Music_Traditional: Self = Self(36);
+    #[doc(alias = "AVAudioContentSource_Music_Spatial")]
+    pub const Music_Spatial: Self = Self(37);
+    #[doc(alias = "AVAudioContentSource_AV_Traditional_Offline")]
+    pub const AV_Traditional_Offline: Self = Self(38);
+    #[doc(alias = "AVAudioContentSource_AV_Spatial_Offline")]
+    pub const AV_Spatial_Offline: Self = Self(39);
+    #[doc(alias = "AVAudioContentSource_AV_Traditional_Live")]
+    pub const AV_Traditional_Live: Self = Self(40);
+    #[doc(alias = "AVAudioContentSource_AV_Spatial_Live")]
+    pub const AV_Spatial_Live: Self = Self(41);
+    #[doc(alias = "AVAudioContentSource_Passthrough")]
+    pub const Passthrough: Self = Self(42);
+}
+
+unsafe impl Encode for AVAudioContentSource {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVAudioContentSource {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

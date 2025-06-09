@@ -17,6 +17,7 @@ extern "C" {
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinterfacecontroller?language=objc)
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPInterfaceController;
 );
@@ -33,7 +34,7 @@ impl CPInterfaceController {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// The delegate for this interface controller.
         #[unsafe(method(delegate))]
@@ -292,7 +293,9 @@ extern_protocol!(
     /// the templates presented by your app.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinterfacecontrollerdelegate?language=objc)
-    pub unsafe trait CPInterfaceControllerDelegate: NSObjectProtocol {
+    pub unsafe trait CPInterfaceControllerDelegate:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[cfg(feature = "CPTemplate")]
         #[optional]
         #[unsafe(method(templateWillAppear:animated:))]

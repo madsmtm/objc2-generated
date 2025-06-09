@@ -8,16 +8,23 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalercolorprocessingmode?language=objc)
+/// The color space modes for the input and output textures you use with a spatial scaling effect instance.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalercolorprocessingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLFXSpatialScalerColorProcessingMode(pub NSInteger);
 impl MTLFXSpatialScalerColorProcessingMode {
+    /// Indicates your input and output textures use a perceptual color space (sRGB).
     #[doc(alias = "MTLFXSpatialScalerColorProcessingModePerceptual")]
     pub const Perceptual: Self = Self(0);
+    /// Indicates your input and output textures use a linear color space in the `[0,1]` range.
     #[doc(alias = "MTLFXSpatialScalerColorProcessingModeLinear")]
     pub const Linear: Self = Self(1);
+    /// Indicates your input and output textures use a high dynamic range color space, beyond the `[0,1]` range.
+    ///
+    /// When you configure this mode, MetalFX performs a reversible tone mapping operation to convert your data to the `[0,1]` range.
     #[doc(alias = "MTLFXSpatialScalerColorProcessingModeHDR")]
     pub const HDR: Self = Self(2);
 }
@@ -31,7 +38,9 @@ unsafe impl RefEncode for MTLFXSpatialScalerColorProcessingMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerdescriptor?language=objc)
+    /// A set of properties that configure a spatial scaling effect, and a factory method that creates the effect.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFXSpatialScalerDescriptor;
@@ -51,6 +60,7 @@ extern_conformance!(
 
 impl MTLFXSpatialScalerDescriptor {
     extern_methods!(
+        /// The pixel format of the input color texture for the spatial scaler you create with this descriptor.
         #[unsafe(method(colorTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
@@ -60,6 +70,7 @@ impl MTLFXSpatialScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setColorTextureFormat(&self, color_texture_format: MTLPixelFormat);
 
+        /// The pixel format of the output texture for the spatial scaler you create with this descriptor.
         #[unsafe(method(outputTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
@@ -69,6 +80,7 @@ impl MTLFXSpatialScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputTextureFormat(&self, output_texture_format: MTLPixelFormat);
 
+        /// The width of the input color texture for the spatial scaler you create with this descriptor.
         #[unsafe(method(inputWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputWidth(&self) -> NSUInteger;
@@ -78,6 +90,7 @@ impl MTLFXSpatialScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setInputWidth(&self, input_width: NSUInteger);
 
+        /// The height of the input color texture for the spatial scaler you create with this descriptor.
         #[unsafe(method(inputHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputHeight(&self) -> NSUInteger;
@@ -87,6 +100,7 @@ impl MTLFXSpatialScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setInputHeight(&self, input_height: NSUInteger);
 
+        /// The width of the output color texture for the spatial scaler you create with this descriptor.
         #[unsafe(method(outputWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputWidth(&self) -> NSUInteger;
@@ -96,6 +110,7 @@ impl MTLFXSpatialScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputWidth(&self, output_width: NSUInteger);
 
+        /// The height of the output color texture for the spatial scaler you create with this descriptor.
         #[unsafe(method(outputHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputHeight(&self) -> NSUInteger;
@@ -105,6 +120,9 @@ impl MTLFXSpatialScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputHeight(&self, output_height: NSUInteger);
 
+        /// The color space of the input color texture for the spatial scaler you create with this descriptor.
+        ///
+        /// This property's default value is ``MTLFXSpatialScalerColorProcessingMode/MTLFXSpatialScalerColorProcessingModePerceptual``.
         #[unsafe(method(colorProcessingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorProcessingMode(&self) -> MTLFXSpatialScalerColorProcessingMode;
@@ -117,6 +135,12 @@ impl MTLFXSpatialScalerDescriptor {
             color_processing_mode: MTLFXSpatialScalerColorProcessingMode,
         );
 
+        /// Creates a spatial scaler instance for a Metal device.
+        ///
+        /// - Parameters:
+        /// - device: The Metal device that creates the spatial scaler.
+        /// - Returns:
+        /// A new spatial scaler instance upon success, or `nil` otherwise.
         #[unsafe(method(newSpatialScalerWithDevice:))]
         #[unsafe(method_family = new)]
         pub unsafe fn newSpatialScalerWithDevice(
@@ -124,6 +148,47 @@ impl MTLFXSpatialScalerDescriptor {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<ProtocolObject<dyn MTLFXSpatialScaler>>>;
 
+        #[cfg(feature = "MTL4FXSpatialScaler")]
+        /// Creates a spatial scaler instance for a Metal device.
+        ///
+        /// - Parameters:
+        /// - device: The Metal device that creates the spatial scaler.
+        /// - compiler: A compiler instance this method can use to build pipeline state objects.
+        /// - Returns:
+        /// A new spatial scaler instance upon success, or `nil` otherwise.
+        #[unsafe(method(newSpatialScalerWithDevice:compiler:))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn newSpatialScalerWithDevice_compiler(
+            &self,
+            device: &ProtocolObject<dyn MTLDevice>,
+            compiler: &ProtocolObject<dyn MTL4Compiler>,
+        ) -> Option<Retained<ProtocolObject<dyn MTL4FXSpatialScaler>>>;
+
+        /// Queries whether a Metal device supports spatial scaling compatible with Metal 4.
+        ///
+        /// - Parameters:
+        /// - device: The GPU device for which this methods tests support.
+        ///
+        /// - Returns:
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> if the device supports spatial scaling with
+        /// Metal 4,
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false> otherwise.
+        #[unsafe(method(supportsMetal4FX:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportsMetal4FX(device: &ProtocolObject<dyn MTLDevice>) -> bool;
+
+        /// Returns a Boolean value that indicates whether the spatial scaler works with a GPU.
+        ///
+        /// - Parameters:
+        /// - device: An ``MTLDevice`` instance that represents a GPU.
+        ///
+        /// - Returns:
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> if the device supports spatial scaling,
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false> otherwise.
         #[unsafe(method(supportsDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsDevice(device: &ProtocolObject<dyn MTLDevice>) -> bool;
@@ -144,16 +209,54 @@ impl MTLFXSpatialScalerDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscaler?language=objc)
-    pub unsafe trait MTLFXSpatialScaler: NSObjectProtocol {
+    /// An upscaling effect that generates a higher resolution texture in a render pass by spatially analyzing an input texture.
+    ///
+    /// The MetalFX spatial scaler increases the size of your input texture to a larger output texture. You can use the
+    /// scaler to upscale every frame of your app’s scene or rendering in real time. With a scaler, you can draw more
+    /// complicated scenes in less time by intentionally rendering to a lower resolution to save time before upscaling.
+    ///
+    /// Create an ``MTLFXSpatialScaler`` instance following these steps:
+    /// 1. Create and configure an ``MTLFXSpatialScalerDescriptor`` instance.
+    /// 2. Call the descriptor’s ``newSpatialScalerWithDevice:`` method.
+    ///
+    /// Upscale a rendering by following these steps for every render pass:
+    /// 1. Set the spatial scaler’s ``colorTexture`` property to the input texture.
+    /// 2. Set the scaler’s ``inputContentWidth`` and ``inputContentHeight`` properties.
+    /// 3. Set the scaler’s ``outputTexture`` property to your destination texture.
+    ///
+    /// Encode the upscale commands to a command buffer by calling the spatial scaler’s ``encodeToCommandBuffer:`` method.
+    ///
+    /// ## Conforming to texture usage requirements
+    ///
+    /// Spatial scalers expose properties, such as ``colorTextureUsage``, that indicate requirements for
+    /// your textures to be compatible with it. These properties indicate the minimum set of ``MTLTextureUsage`` bits
+    /// that you are responsible for setting in your texture descriptors for this spatial scaler to use them.
+    ///
+    /// Your game or app can set extra usage bits on your textures without losing compatibility, as long at its maintains
+    /// the minimum set the scaler requests.
+    ///
+    /// ## Assigning input and output textures
+    ///
+    /// When you use an instance of a class that conforms to this protocol, you typically set its input and output textures,
+    /// as well as other properties, and then encode its work to a command buffer.
+    ///
+    /// MetalFX doesn't track that you assign the same texture instances to each property across different batches of work,
+    /// the only requirement is that you provide textures that match the pixel formats and dimensions you specify in the
+    /// ``MTLFXSpatialScalerDescriptor`` descriptor instance that creates the scaler instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerbase?language=objc)
+    pub unsafe trait MTLFXSpatialScalerBase: NSObjectProtocol {
+        /// The minimal texture usage options that your app’s input color texture needs in order to support this scaler.
         #[unsafe(method(colorTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn colorTextureUsage(&self) -> MTLTextureUsage;
 
+        /// The minimal texture usage options that your app’s output color texture needs in order to support this scaler.
         #[unsafe(method(outputTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn outputTextureUsage(&self) -> MTLTextureUsage;
 
+        /// The width, in pixels, of the region within the color texture the scaler uses as its input.
         #[unsafe(method(inputContentWidth))]
         #[unsafe(method_family = none)]
         unsafe fn inputContentWidth(&self) -> NSUInteger;
@@ -163,6 +266,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setInputContentWidth(&self, input_content_width: NSUInteger);
 
+        /// The height, in pixels, of the region within the color texture the scaler uses as its input.
         #[unsafe(method(inputContentHeight))]
         #[unsafe(method_family = none)]
         unsafe fn inputContentHeight(&self) -> NSUInteger;
@@ -172,6 +276,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
+        /// Input color texture you set for the scaler that supports the correct color texture usage options.
         #[unsafe(method(colorTexture))]
         #[unsafe(method_family = none)]
         unsafe fn colorTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -181,6 +286,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        /// The output texture into which this scaler writes its output.
+        ///
+        /// You are responsible for providing a texture with a private `storageMode` to this property.
         #[unsafe(method(outputTexture))]
         #[unsafe(method_family = none)]
         unsafe fn outputTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -190,34 +298,42 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        /// The pixel format of the input color texture for this this scaler.
         #[unsafe(method(colorTextureFormat))]
         #[unsafe(method_family = none)]
         unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
+        /// The pixel format of the output color texture for this this scaler.
         #[unsafe(method(outputTextureFormat))]
         #[unsafe(method_family = none)]
         unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
+        /// The width, in pixels, of the input color texture for this scaler.
         #[unsafe(method(inputWidth))]
         #[unsafe(method_family = none)]
         unsafe fn inputWidth(&self) -> NSUInteger;
 
+        /// The height, in pixels, of the input color texture for this scaler.
         #[unsafe(method(inputHeight))]
         #[unsafe(method_family = none)]
         unsafe fn inputHeight(&self) -> NSUInteger;
 
+        /// The width, in pixels, of the output color texture for this scaler.
         #[unsafe(method(outputWidth))]
         #[unsafe(method_family = none)]
         unsafe fn outputWidth(&self) -> NSUInteger;
 
+        /// The height, in pixels, of the output color texture for this scaler.
         #[unsafe(method(outputHeight))]
         #[unsafe(method_family = none)]
         unsafe fn outputHeight(&self) -> NSUInteger;
 
+        /// The color processing mode you set in this spatial scaler’s descriptor.
         #[unsafe(method(colorProcessingMode))]
         #[unsafe(method_family = none)]
         unsafe fn colorProcessingMode(&self) -> MTLFXSpatialScalerColorProcessingMode;
 
+        /// An optional fence that you provide to synchronize your app’s untracked resources.
         #[unsafe(method(fence))]
         #[unsafe(method_family = none)]
         unsafe fn fence(&self) -> Option<Retained<ProtocolObject<dyn MTLFence>>>;
@@ -226,7 +342,26 @@ extern_protocol!(
         #[unsafe(method(setFence:))]
         #[unsafe(method_family = none)]
         unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);
+    }
+);
 
+extern_protocol!(
+    /// An upscaling effect that generates a higher resolution texture in a render pass by spatially analyzing an input texture.
+    ///
+    /// You create instances of this class by calling ``MTLFXSpatialScalerDescriptor/newSpatialScalerWithDevice:``.
+    ///
+    /// When using instances of objects conforming to this protocol, you configure the different properties it
+    /// inherits from protocol ``MTLFXSpatialScalerBase`` and then call ``encodeToCommandBuffer:`` to
+    /// encode its work into a Metal command buffer.
+    ///
+    /// See ``MTLFXSpatialScalerBase`` for more details on configuring and using spatial scalers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscaler?language=objc)
+    pub unsafe trait MTLFXSpatialScaler: MTLFXSpatialScalerBase {
+        /// Encode this spatial scaler work into a command buffer.
+        ///
+        /// - Parameters:
+        /// - commandBuffer: A command buffer into which this spatial scaler encodes work.
         #[unsafe(method(encodeToCommandBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeToCommandBuffer(

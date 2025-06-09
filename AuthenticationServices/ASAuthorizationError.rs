@@ -39,6 +39,12 @@ impl ASAuthorizationError {
     /// This error signals that the export request failed. Details will be available in the `userInfo` of the NSError.
     #[doc(alias = "ASAuthorizationErrorCredentialExport")]
     pub const CredentialExport: Self = Self(1008);
+    /// This error signals the user has an existing Sign in with Apple account that they would prefer to use instead of continuing the current request.
+    #[doc(alias = "ASAuthorizationErrorPreferSignInWithApple")]
+    pub const PreferSignInWithApple: Self = Self(1009);
+    /// This error signals that the device is not currently set up to create passkeys.
+    #[doc(alias = "ASAuthorizationErrorDeviceNotConfiguredForPasskeyCreation")]
+    pub const DeviceNotConfiguredForPasskeyCreation: Self = Self(1010);
 }
 
 unsafe impl Encode for ASAuthorizationError {

@@ -245,6 +245,8 @@ impl MTLGPUFamily {
     pub const MacCatalyst2: Self = Self(4002);
     #[doc(alias = "MTLGPUFamilyMetal3")]
     pub const Metal3: Self = Self(5001);
+    #[doc(alias = "MTLGPUFamilyMetal4")]
+    pub const Metal4: Self = Self(5002);
 }
 
 unsafe impl Encode for MTLGPUFamily {
@@ -380,30 +382,6 @@ unsafe impl RefEncode for MTLSparseTextureRegionAlignmentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Physical size of sparse resource page in KBs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize?language=objc)
-// NS_ENUM
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct MTLSparsePageSize(pub NSInteger);
-impl MTLSparsePageSize {
-    #[doc(alias = "MTLSparsePageSize16")]
-    pub const Size16: Self = Self(101);
-    #[doc(alias = "MTLSparsePageSize64")]
-    pub const Size64: Self = Self(102);
-    #[doc(alias = "MTLSparsePageSize256")]
-    pub const Size256: Self = Self(103);
-}
-
-unsafe impl Encode for MTLSparsePageSize {
-    const ENCODING: Encoding = NSInteger::ENCODING;
-}
-
-unsafe impl RefEncode for MTLSparsePageSize {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// Describes the memory requirements for an acceleration structure
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuresizes?language=objc)
@@ -495,49 +473,6 @@ unsafe impl RefEncode for MTLSizeAndAlign {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedrenderpipelinereflection?language=objc)
-#[cfg(feature = "MTLRenderPipeline")]
-pub type MTLAutoreleasedRenderPipelineReflection = MTLRenderPipelineReflection;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedcomputepipelinereflection?language=objc)
-#[cfg(feature = "MTLComputePipeline")]
-pub type MTLAutoreleasedComputePipelineReflection = MTLComputePipelineReflection;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewlibrarycompletionhandler?language=objc)
-#[cfg(all(feature = "MTLLibrary", feature = "block2"))]
-pub type MTLNewLibraryCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatecompletionhandler?language=objc)
-#[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
-pub type MTLNewRenderPipelineStateCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError)>;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatewithreflectioncompletionhandler?language=objc)
-#[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
-pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut block2::DynBlock<
-    dyn Fn(
-        *mut ProtocolObject<dyn MTLRenderPipelineState>,
-        *mut MTLRenderPipelineReflection,
-        *mut NSError,
-    ),
->;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatecompletionhandler?language=objc)
-#[cfg(all(feature = "MTLComputePipeline", feature = "block2"))]
-pub type MTLNewComputePipelineStateCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError)>;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatewithreflectioncompletionhandler?language=objc)
-#[cfg(all(feature = "MTLComputePipeline", feature = "block2"))]
-pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2::DynBlock<
-    dyn Fn(
-        *mut ProtocolObject<dyn MTLComputePipelineState>,
-        *mut MTLComputePipelineReflection,
-        *mut NSError,
-    ),
->;
-
 extern_class!(
     /// Represents a member of an argument buffer
     ///
@@ -566,14 +501,14 @@ impl MTLArgumentDescriptor {
         #[unsafe(method_family = none)]
         pub fn argumentDescriptor() -> Retained<MTLArgumentDescriptor>;
 
-        #[cfg(feature = "MTLArgument")]
+        #[cfg(feature = "MTLDataType")]
         /// For constants, the data type. Otherwise, MTLDataTypeTexture, MTLDataTypeSampler, or
         /// MTLDataTypePointer.
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MTLDataType;
 
-        #[cfg(feature = "MTLArgument")]
+        #[cfg(feature = "MTLDataType")]
         /// Setter for [`dataType`][Self::dataType].
         #[unsafe(method(setDataType:))]
         #[unsafe(method_family = none)]
@@ -1175,7 +1110,7 @@ extern_protocol!(
             completion_handler: MTLNewLibraryCompletionHandler,
         );
 
-        #[cfg(feature = "MTLRenderPipeline")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]
         /// Create and compile a new MTLRenderPipelineState object synchronously.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
@@ -1184,7 +1119,11 @@ extern_protocol!(
             descriptor: &MTLRenderPipelineDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
 
-        #[cfg(feature = "MTLRenderPipeline")]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLLibrary",
+            feature = "MTLRenderPipeline"
+        ))]
         /// Create and compile a new MTLRenderPipelineState object synchronously and returns additional reflection information.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:options:reflection:error:_))]
         #[unsafe(method_family = new)]
@@ -1195,7 +1134,12 @@ extern_protocol!(
             reflection: Option<&mut Option<Retained<MTLAutoreleasedRenderPipelineReflection>>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
 
-        #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLLibrary",
+            feature = "MTLRenderPipeline",
+            feature = "block2"
+        ))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -1205,7 +1149,12 @@ extern_protocol!(
             completion_handler: MTLNewRenderPipelineStateCompletionHandler,
         );
 
-        #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLLibrary",
+            feature = "MTLRenderPipeline",
+            feature = "block2"
+        ))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously and returns additional reflection information
         #[unsafe(method(newRenderPipelineStateWithDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -1216,7 +1165,11 @@ extern_protocol!(
             completion_handler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
         );
 
-        #[cfg(all(feature = "MTLComputePipeline", feature = "MTLLibrary"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLComputePipeline",
+            feature = "MTLLibrary"
+        ))]
         /// Create and compile a new MTLComputePipelineState object synchronously.
         #[unsafe(method(newComputePipelineStateWithFunction:error:_))]
         #[unsafe(method_family = new)]
@@ -1225,7 +1178,11 @@ extern_protocol!(
             compute_function: &ProtocolObject<dyn MTLFunction>,
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
 
-        #[cfg(all(feature = "MTLComputePipeline", feature = "MTLLibrary"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLComputePipeline",
+            feature = "MTLLibrary"
+        ))]
         /// Create and compile a new MTLComputePipelineState object synchronously.
         #[unsafe(method(newComputePipelineStateWithFunction:options:reflection:error:_))]
         #[unsafe(method_family = new)]
@@ -1237,6 +1194,7 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
 
         #[cfg(all(
+            feature = "MTLAllocation",
             feature = "MTLComputePipeline",
             feature = "MTLLibrary",
             feature = "block2"
@@ -1251,6 +1209,7 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "MTLAllocation",
             feature = "MTLComputePipeline",
             feature = "MTLLibrary",
             feature = "block2"
@@ -1265,7 +1224,11 @@ extern_protocol!(
             completion_handler: MTLNewComputePipelineStateWithReflectionCompletionHandler,
         );
 
-        #[cfg(feature = "MTLComputePipeline")]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLComputePipeline",
+            feature = "MTLLibrary"
+        ))]
         /// Create and compile a new MTLComputePipelineState object synchronously.
         #[unsafe(method(newComputePipelineStateWithDescriptor:options:reflection:error:_))]
         #[unsafe(method_family = new)]
@@ -1276,7 +1239,12 @@ extern_protocol!(
             reflection: Option<&mut Option<Retained<MTLAutoreleasedComputePipelineReflection>>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
 
-        #[cfg(all(feature = "MTLComputePipeline", feature = "block2"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLComputePipeline",
+            feature = "MTLLibrary",
+            feature = "block2"
+        ))]
         /// Create and compile a new MTLComputePipelineState object asynchronously.
         #[unsafe(method(newComputePipelineStateWithDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -1325,7 +1293,11 @@ extern_protocol!(
         fn minimumTextureBufferAlignmentForPixelFormat(&self, format: MTLPixelFormat)
             -> NSUInteger;
 
-        #[cfg(feature = "MTLRenderPipeline")]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLLibrary",
+            feature = "MTLRenderPipeline"
+        ))]
         /// Create and compile a new MTLRenderPipelineState object synchronously given a MTLTileRenderPipelineDescriptor.
         #[unsafe(method(newRenderPipelineStateWithTileDescriptor:options:reflection:error:_))]
         #[unsafe(method_family = new)]
@@ -1336,7 +1308,12 @@ extern_protocol!(
             reflection: Option<&mut Option<Retained<MTLAutoreleasedRenderPipelineReflection>>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
 
-        #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLLibrary",
+            feature = "MTLRenderPipeline",
+            feature = "block2"
+        ))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLTileRenderPipelineDescriptor.
         #[unsafe(method(newRenderPipelineStateWithTileDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -1347,7 +1324,11 @@ extern_protocol!(
             completion_handler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
         );
 
-        #[cfg(feature = "MTLRenderPipeline")]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLLibrary",
+            feature = "MTLRenderPipeline"
+        ))]
         /// Create and compile a new MTLRenderPipelineState object synchronously given a MTLMeshRenderPipelineDescriptor.
         #[unsafe(method(newRenderPipelineStateWithMeshDescriptor:options:reflection:error:_))]
         #[unsafe(method_family = new)]
@@ -1358,7 +1339,12 @@ extern_protocol!(
             reflection: Option<&mut Option<Retained<MTLAutoreleasedRenderPipelineReflection>>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
 
-        #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLLibrary",
+            feature = "MTLRenderPipeline",
+            feature = "block2"
+        ))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLMeshRenderPipelineDescriptor.
         #[unsafe(method(newRenderPipelineStateWithMeshDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -1611,6 +1597,7 @@ extern_protocol!(
             num_regions: NSUInteger,
         );
 
+        #[cfg(feature = "MTLResource")]
         /// Returns the number of bytes required to map one sparse texture tile for a given MTLSparsePageSize
         #[unsafe(method(sparseTileSizeInBytesForSparsePageSize:))]
         #[unsafe(method_family = none)]
@@ -1621,6 +1608,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MTLPixelFormat",
+            feature = "MTLResource",
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
@@ -1884,5 +1872,271 @@ extern_protocol!(
             &self,
             desc: &MTLResidencySetDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLResidencySet>>, Retained<NSError>>;
+
+        #[cfg(feature = "MTLTensor")]
+        /// Determines the size and alignment required to hold the data of a tensor you create with a descriptor in a buffer.
+        ///
+        /// - Parameters:
+        /// - descriptor: A description of the properties for the new tensor.
+        /// - Returns: The size and alignment required to hold the data of a tensor you create with `descriptor` in a buffer.
+        #[unsafe(method(tensorSizeAndAlignWithDescriptor:))]
+        #[unsafe(method_family = none)]
+        unsafe fn tensorSizeAndAlignWithDescriptor(
+            &self,
+            descriptor: &MTLTensorDescriptor,
+        ) -> MTLSizeAndAlign;
+
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTensor"
+        ))]
+        /// Creates a tensor by allocating new memory.
+        ///
+        /// - Parameters:
+        /// - descriptor: A description of the properties for the new tensor.
+        /// - error: Metal populates this parameter with information in case an error occurs.
+        /// - Returns: A new tensor instance that Metal configures using `descriptor` or `nil` if an error occurred.
+        #[unsafe(method(newTensorWithDescriptor:error:_))]
+        #[unsafe(method_family = new)]
+        unsafe fn newTensorWithDescriptor_error(
+            &self,
+            descriptor: &MTLTensorDescriptor,
+        ) -> Result<Retained<ProtocolObject<dyn MTLTensor>>, Retained<NSError>>;
+
+        #[cfg(all(feature = "MTLFunctionHandle", feature = "MTLLibrary"))]
+        /// Returns the function handle for a function that was compiled with MTLFunctionOptionPipelineIndependent and MTLFunctionOptionCompileToBinary.
+        #[unsafe(method(functionHandleWithFunction:))]
+        #[unsafe(method_family = none)]
+        unsafe fn functionHandleWithFunction(
+            &self,
+            function: &ProtocolObject<dyn MTLFunction>,
+        ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
+
+        #[cfg(feature = "MTL4CommandAllocator")]
+        /// Creates a new command allocator.
+        ///
+        /// - Returns: A ``MTL4CommandAllocator`` instance, or `nil` if the function failed.
+        #[unsafe(method(newCommandAllocator))]
+        #[unsafe(method_family = new)]
+        unsafe fn newCommandAllocator(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTL4CommandAllocator>>>;
+
+        #[cfg(feature = "MTL4CommandAllocator")]
+        /// Creates a new command allocator from a command allocator descriptor.
+        ///
+        /// - Parameters:
+        /// - descriptor: A ``MTL4CommandAllocatorDescriptor`` instance that configures the
+        /// ``MTL4CommandAllocator`` instance.
+        /// - error:      Optional pointer to a `NSError` instance that Metal uses to describe the failure
+        /// if this function fails.
+        ///
+        /// - Returns: A ``MTL4CommandAllocator`` instance, or `nil` if the function failed.
+        #[unsafe(method(newCommandAllocatorWithDescriptor:error:_))]
+        #[unsafe(method_family = new)]
+        unsafe fn newCommandAllocatorWithDescriptor_error(
+            &self,
+            descriptor: &MTL4CommandAllocatorDescriptor,
+        ) -> Result<Retained<ProtocolObject<dyn MTL4CommandAllocator>>, Retained<NSError>>;
+
+        #[cfg(feature = "MTL4CommandQueue")]
+        /// Creates a new command queue.
+        ///
+        /// - Returns: A ``MTL4CommandQueue`` instance, or `nil` if the function failed.
+        #[unsafe(method(newMTL4CommandQueue))]
+        #[unsafe(method_family = new)]
+        unsafe fn newMTL4CommandQueue(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTL4CommandQueue>>>;
+
+        #[cfg(feature = "MTL4CommandQueue")]
+        /// Creates a new command queue from a queue descriptor.
+        ///
+        /// - Parameters:
+        /// - descriptor: A ``MTL4CommandQueueDescriptor`` instance that configures the
+        /// ``MTL4CommandQueue`` instance.
+        /// - error:      Optional pointer to a `NSError` instance that Metal uses to describe the failure
+        /// if this function fails.
+        ///
+        /// - Returns: A ``MTL4CommandQueue`` instance, or `nil` if the function failed.
+        #[unsafe(method(newMTL4CommandQueueWithDescriptor:error:_))]
+        #[unsafe(method_family = new)]
+        unsafe fn newMTL4CommandQueueWithDescriptor_error(
+            &self,
+            descriptor: &MTL4CommandQueueDescriptor,
+        ) -> Result<Retained<ProtocolObject<dyn MTL4CommandQueue>>, Retained<NSError>>;
+
+        #[cfg(feature = "MTL4CommandBuffer")]
+        /// Creates a new command buffer.
+        ///
+        /// - Returns: A ``MTL4CommandBuffer`` instance, or `nil` if the function failed.
+        #[unsafe(method(newCommandBuffer))]
+        #[unsafe(method_family = new)]
+        unsafe fn newCommandBuffer(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTL4CommandBuffer>>>;
+
+        #[cfg(feature = "MTL4ArgumentTable")]
+        /// Creates a new argument table from an argument table descriptor.
+        ///
+        /// - Parameters:
+        /// - descriptor: A ``MTL4ArgumentTableDescriptor`` instance that configures the
+        /// ``MTL4ArgumentTable`` instance.
+        /// - error:      Optional pointer to a `NSError` instance that Metal uses to describe the failure
+        /// if this function fails.
+        ///
+        /// - Returns: A ``MTL4ArgumentTable`` instance, or `nil` if the function failed.
+        #[unsafe(method(newArgumentTableWithDescriptor:error:_))]
+        #[unsafe(method_family = new)]
+        unsafe fn newArgumentTableWithDescriptor_error(
+            &self,
+            descriptor: &MTL4ArgumentTableDescriptor,
+        ) -> Result<Retained<ProtocolObject<dyn MTL4ArgumentTable>>, Retained<NSError>>;
+
+        #[cfg(all(feature = "MTLResourceViewPool", feature = "MTLTextureViewPool"))]
+        /// Creates a new texture view pool from a resource view pool descriptor.
+        ///
+        /// - Parameters:
+        /// - descriptor: A ``MTLResourceViewPoolDescriptor`` instance that configures the
+        /// ``MTLTextureViewPool`` instance.
+        /// - error:      Optional pointer to a `NSError` instance that Metal uses to describe the failure
+        /// if this function fails.
+        ///
+        /// - Returns: A ``MTLTextureViewPool`` instance, or `nil` if the function failed.
+        #[unsafe(method(newTextureViewPoolWithDescriptor:error:_))]
+        #[unsafe(method_family = new)]
+        unsafe fn newTextureViewPoolWithDescriptor_error(
+            &self,
+            descriptor: &MTLResourceViewPoolDescriptor,
+        ) -> Result<Retained<ProtocolObject<dyn MTLTextureViewPool>>, Retained<NSError>>;
+
+        #[cfg(feature = "MTL4Compiler")]
+        /// Creates a new compiler from a compiler descriptor.
+        ///
+        /// - Parameters:
+        /// - descriptor: A ``MTL4CompilerDescriptor`` instance that configures the
+        /// ``MTL4Compiler`` instance.
+        /// - error:      Optional pointer to a `NSError` instance that Metal uses to describe the failure
+        /// if this function fails.
+        ///
+        /// - Returns: A ``MTL4Compiler`` instance, or `nil` if the function failed.
+        #[unsafe(method(newCompilerWithDescriptor:error:_))]
+        #[unsafe(method_family = new)]
+        unsafe fn newCompilerWithDescriptor_error(
+            &self,
+            descriptor: &MTL4CompilerDescriptor,
+        ) -> Result<Retained<ProtocolObject<dyn MTL4Compiler>>, Retained<NSError>>;
+
+        #[cfg(feature = "MTL4Archive")]
+        /// Creates a new archive from data available at an `NSURL` address.
+        ///
+        /// - Parameters:
+        /// - url:   An `NSURL` instance that represents the path from which the device loads the ``MTL4Archive``.
+        /// - error:      Optional pointer to a `NSError` instance that Metal uses to describe the failure
+        /// if this function fails.
+        ///
+        /// - Returns: A ``MTL4Archive`` instance, or `nil` if the function failed.
+        #[unsafe(method(newArchiveWithURL:error:_))]
+        #[unsafe(method_family = new)]
+        unsafe fn newArchiveWithURL_error(
+            &self,
+            url: &NSURL,
+        ) -> Result<Retained<ProtocolObject<dyn MTL4Archive>>, Retained<NSError>>;
+
+        #[cfg(feature = "MTL4PipelineDataSetSerializer")]
+        /// Creates a new pipeline data set serializer instance from a descriptor.
+        ///
+        /// - Parameter descriptor: A ``MTL4PipelineDataSetSerializerDescriptor`` instance that configures
+        /// the new ``MTL4PipelineDataSetSerializer`` instance.
+        ///
+        /// - Returns: A ``MTL4PipelineDataSetSerializer`` instance, or `nil` if the function failed.
+        #[unsafe(method(newPipelineDataSetSerializerWithDescriptor:))]
+        #[unsafe(method_family = new)]
+        unsafe fn newPipelineDataSetSerializerWithDescriptor(
+            &self,
+            descriptor: &MTL4PipelineDataSetSerializerDescriptor,
+        ) -> Retained<ProtocolObject<dyn MTL4PipelineDataSetSerializer>>;
+
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
+        /// Creates a new placement sparse buffer of a specific length.
+        ///
+        /// This method creates a new placement sparse ``MTLBuffer`` of a specific length. You assign memory to
+        /// placement sparse buffers using a ``MTLHeap`` of type ``MTLHeapType/MTLHeapTypePlacement``.
+        ///
+        /// - Parameters:
+        /// - length:                  The size of the ``MTLBuffer``, in bytes.
+        /// - options:                 A ``MTLResourceOptions`` instance that establishes the buffer’s storage modes.
+        /// - placementSparsePageSize: ``MTLSparsePageSize`` to use for the placement sparse buffer.
+        ///
+        /// - Returns: A ``MTLBuffer`` instance, or `nil` if the function failed.
+        #[unsafe(method(newBufferWithLength:options:placementSparsePageSize:))]
+        #[unsafe(method_family = new)]
+        unsafe fn newBufferWithLength_options_placementSparsePageSize(
+            &self,
+            length: NSUInteger,
+            options: MTLResourceOptions,
+            placement_sparse_page_size: MTLSparsePageSize,
+        ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+
+        #[cfg(feature = "MTL4Counters")]
+        /// Creates a new counter heap configured from a counter heap descriptor.
+        ///
+        /// - Parameters:
+        /// - descriptor: ``MTL4CounterHeapDescriptor`` instance that configures the ``MTL4CounterHeap`` instance.
+        /// - error:      Optional pointer to a `NSError` instance that Metal uses to describe the failure
+        /// if this function fails.
+        ///
+        /// - Returns: A ``MTL4CounterHeap`` instance, or `nil` if the function failed.
+        #[unsafe(method(newCounterHeapWithDescriptor:error:_))]
+        #[unsafe(method_family = new)]
+        unsafe fn newCounterHeapWithDescriptor_error(
+            &self,
+            descriptor: &MTL4CounterHeapDescriptor,
+        ) -> Result<Retained<ProtocolObject<dyn MTL4CounterHeap>>, Retained<NSError>>;
+
+        #[cfg(feature = "MTL4Counters")]
+        /// Returns the size, in bytes, of each entry in a counter heap of a specific counter heap type when
+        /// your app resolves it into a usable format.
+        ///
+        /// In order to use the data available in a ``MTL4CounterHeap``, your app first resolves it either in the CPU timeline
+        /// or in the GPU timeline. When your app calls ``MTL4CommandBuffer/resolveCounterHeap:withRange:intoBuffer:atOffset:waitFence:updateFence:``
+        /// to resolve counter data in the GPU timeline, Metal writes the data into a ``MTLBuffer``.
+        ///
+        /// During this process, Metal transform the data in the heap into a format consisting of entries of the size
+        /// that this method advertises, based on the ``MTL4CounterHeapType``.
+        ///
+        /// - Parameters:
+        /// - type: ``MTL4CounterHeapType`` value that represents the type of the ``MTL4CounterHeap`` to resolve.
+        ///
+        /// - Returns: The size of the post-transformation entry from a ``MTL4CounterHeap`` of type ``MTL4CounterHeapType``.
+        #[unsafe(method(sizeOfCounterHeapEntry:))]
+        #[unsafe(method_family = none)]
+        unsafe fn sizeOfCounterHeapEntry(&self, r#type: MTL4CounterHeapType) -> NSUInteger;
+
+        /// Queries the frequency of the GPU timestamp in ticks per second.
+        ///
+        /// - Returns: The frequency of the GPU timestamp in ticks per second.
+        #[unsafe(method(queryTimestampFrequency))]
+        #[unsafe(method_family = none)]
+        unsafe fn queryTimestampFrequency(&self) -> u64;
+
+        #[cfg(all(feature = "MTL4BinaryFunction", feature = "MTLFunctionHandle"))]
+        /// Get the function handle for the specified binary-linked function from the pipeline state.
+        ///
+        /// - Parameters:
+        /// - function: A ``MTL4BinaryFunction`` instance representing the function binary.
+        ///
+        /// - Returns: A ``MTLFunctionHandle`` instance  for a binary function that was compiled with ``MTLFunctionOptionPipelineIndependent``, otherwise `nil`.
+        #[unsafe(method(functionHandleWithBinaryFunction:))]
+        #[unsafe(method_family = none)]
+        unsafe fn functionHandleWithBinaryFunction(
+            &self,
+            function: &ProtocolObject<dyn MTL4BinaryFunction>,
+        ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
     }
 );

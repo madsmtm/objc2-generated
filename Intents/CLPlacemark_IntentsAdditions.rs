@@ -17,6 +17,7 @@ mod private_CLPlacemarkINIntentsAdditions {
 
 /// Category "INIntentsAdditions" on [`CLPlacemark`].
 #[doc(alias = "INIntentsAdditions")]
+#[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
 pub unsafe trait CLPlacemarkINIntentsAdditions:
     ClassType + Sized + private_CLPlacemarkINIntentsAdditions::Sealed
 {

@@ -1070,6 +1070,16 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseeventtypeidentifiermedicationdoseevent?language=objc)
+    pub static HKMedicationDoseEventTypeIdentifierMedicationDoseEvent: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdatatypeidentifieruserannotatedmedicationconcept?language=objc)
+    pub static HKDataTypeIdentifierUserAnnotatedMedicationConcept: &'static NSString;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifieraudioexposureevent?language=objc)
     pub static HKCategoryTypeIdentifierAudioExposureEvent: &'static HKCategoryTypeIdentifier;
 }

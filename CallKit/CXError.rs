@@ -73,6 +73,8 @@ impl CXErrorCodeIncomingCallError {
     pub const FilteredDuringRestrictedSharingMode: Self = Self(5);
     #[doc(alias = "CXErrorCodeIncomingCallErrorCallIsProtected")]
     pub const CallIsProtected: Self = Self(6);
+    #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredBySensitiveParticipants")]
+    pub const FilteredBySensitiveParticipants: Self = Self(7);
 }
 
 unsafe impl Encode for CXErrorCodeIncomingCallError {

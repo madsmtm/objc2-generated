@@ -416,6 +416,11 @@ extern "C" {
     pub static kCGImageSourceDecodeRequestOptions: &'static CFString;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgcomputehdrstats?language=objc)
+    pub static kCGComputeHDRStats: &'static CFString;
+}
+
 impl CGImageSource {
     #[doc(alias = "CGImageSourceSetAllowableTypes")]
     #[inline]

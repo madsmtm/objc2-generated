@@ -59,6 +59,28 @@ unsafe impl RefEncode for CGImageAlphaInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagecomponentinfo?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CGImageComponentInfo(pub u32);
+impl CGImageComponentInfo {
+    #[doc(alias = "kCGImageComponentInteger")]
+    pub const Integer: Self = Self(0 << 8);
+    #[doc(alias = "kCGImageComponentFloat")]
+    pub const Float: Self = Self(1 << 8);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CGImageComponentInfo {
+    const ENCODING: Encoding = u32::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CGImageComponentInfo {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -66,6 +88,7 @@ unsafe impl RefEncode for CGImageAlphaInfo {
 pub struct CGImageByteOrderInfo(pub u32);
 impl CGImageByteOrderInfo {
     #[doc(alias = "kCGImageByteOrderMask")]
+    #[deprecated]
     pub const OrderMask: Self = Self(0x7000);
     #[doc(alias = "kCGImageByteOrderDefault")]
     pub const OrderDefault: Self = Self(0 << 12);
@@ -96,6 +119,7 @@ unsafe impl RefEncode for CGImageByteOrderInfo {
 pub struct CGImagePixelFormatInfo(pub u32);
 impl CGImagePixelFormatInfo {
     #[doc(alias = "kCGImagePixelFormatMask")]
+    #[deprecated]
     pub const Mask: Self = Self(0xF0000);
     #[doc(alias = "kCGImagePixelFormatPacked")]
     pub const Packed: Self = Self(0 << 16);
@@ -128,21 +152,35 @@ bitflags::bitflags! {
     impl CGBitmapInfo: u32 {
         #[doc(alias = "kCGBitmapAlphaInfoMask")]
         const AlphaInfoMask = 0x1F;
+        #[doc(alias = "kCGBitmapComponentInfoMask")]
+        const ComponentInfoMask = 0xF00;
+        #[doc(alias = "kCGBitmapByteOrderInfoMask")]
+        const ByteOrderInfoMask = 0x7000;
+        #[doc(alias = "kCGBitmapPixelFormatInfoMask")]
+        const PixelFormatInfoMask = 0xF0000;
         #[doc(alias = "kCGBitmapFloatInfoMask")]
-        const FloatInfoMask = 0xF00;
-        #[doc(alias = "kCGBitmapFloatComponents")]
-        const FloatComponents = 1<<8;
+#[deprecated]
+        const FloatInfoMask = CGBitmapInfo::ComponentInfoMask.0;
         #[doc(alias = "kCGBitmapByteOrderMask")]
-        const ByteOrderMask = CGImageByteOrderInfo::OrderMask.0;
+#[deprecated]
+        const ByteOrderMask = CGBitmapInfo::ByteOrderInfoMask.0;
+        #[doc(alias = "kCGBitmapFloatComponents")]
+#[deprecated]
+        const FloatComponents = CGImageComponentInfo::Float.0;
         #[doc(alias = "kCGBitmapByteOrderDefault")]
+#[deprecated]
         const ByteOrderDefault = CGImageByteOrderInfo::OrderDefault.0;
         #[doc(alias = "kCGBitmapByteOrder16Little")]
+#[deprecated]
         const ByteOrder16Little = CGImageByteOrderInfo::Order16Little.0;
         #[doc(alias = "kCGBitmapByteOrder32Little")]
+#[deprecated]
         const ByteOrder32Little = CGImageByteOrderInfo::Order32Little.0;
         #[doc(alias = "kCGBitmapByteOrder16Big")]
+#[deprecated]
         const ByteOrder16Big = CGImageByteOrderInfo::Order16Big.0;
         #[doc(alias = "kCGBitmapByteOrder32Big")]
+#[deprecated]
         const ByteOrder32Big = CGImageByteOrderInfo::Order32Big.0;
     }
 }
@@ -155,6 +193,10 @@ unsafe impl Encode for CGBitmapInfo {
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for CGBitmapInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+impl CGBitmapInfo {
+    // TODO: pub fn CGBitmapInfoMake(alpha: CGImageAlphaInfo,component: CGImageComponentInfo,byte_order: CGImageByteOrderInfo,pixel_format: CGImagePixelFormatInfo,) -> CGBitmapInfo;
 }
 
 unsafe impl ConcreteType for CGImage {
@@ -460,6 +502,63 @@ impl CGImage {
             fn CGImageGetContentHeadroom(image: Option<&CGImage>) -> c_float;
         }
         unsafe { CGImageGetContentHeadroom(image) }
+    }
+
+    #[doc(alias = "CGImageCalculateContentHeadroom")]
+    #[inline]
+    pub unsafe fn calculate_content_headroom(image: Option<&CGImage>) -> c_float {
+        extern "C-unwind" {
+            fn CGImageCalculateContentHeadroom(image: Option<&CGImage>) -> c_float;
+        }
+        unsafe { CGImageCalculateContentHeadroom(image) }
+    }
+
+    #[doc(alias = "CGImageGetContentAverageLightLevel")]
+    #[inline]
+    pub unsafe fn content_average_light_level(image: Option<&CGImage>) -> c_float {
+        extern "C-unwind" {
+            fn CGImageGetContentAverageLightLevel(image: Option<&CGImage>) -> c_float;
+        }
+        unsafe { CGImageGetContentAverageLightLevel(image) }
+    }
+
+    #[doc(alias = "CGImageCalculateContentAverageLightLevel")]
+    #[inline]
+    pub unsafe fn calculate_content_average_light_level(image: Option<&CGImage>) -> c_float {
+        extern "C-unwind" {
+            fn CGImageCalculateContentAverageLightLevel(image: Option<&CGImage>) -> c_float;
+        }
+        unsafe { CGImageCalculateContentAverageLightLevel(image) }
+    }
+
+    #[doc(alias = "CGImageCreateCopyWithContentAverageLightLevel")]
+    #[inline]
+    pub unsafe fn new_copy_with_content_average_light_level(
+        avll: c_float,
+        image: Option<&CGImage>,
+    ) -> Option<CFRetained<CGImage>> {
+        extern "C-unwind" {
+            fn CGImageCreateCopyWithContentAverageLightLevel(
+                avll: c_float,
+                image: Option<&CGImage>,
+            ) -> Option<NonNull<CGImage>>;
+        }
+        let ret = unsafe { CGImageCreateCopyWithContentAverageLightLevel(avll, image) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[doc(alias = "CGImageCreateCopyWithCalculatedHDRStats")]
+    #[inline]
+    pub unsafe fn new_copy_with_calculated_hdr_stats(
+        image: Option<&CGImage>,
+    ) -> Option<CFRetained<CGImage>> {
+        extern "C-unwind" {
+            fn CGImageCreateCopyWithCalculatedHDRStats(
+                image: Option<&CGImage>,
+            ) -> Option<NonNull<CGImage>>;
+        }
+        let ret = unsafe { CGImageCreateCopyWithCalculatedHDRStats(image) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     #[doc(alias = "CGImageIsMask")]
@@ -912,6 +1011,51 @@ pub unsafe extern "C-unwind" fn CGImageCreateCopyWithContentHeadroom(
 extern "C-unwind" {
     #[deprecated = "renamed to `CGImage::content_headroom`"]
     pub fn CGImageGetContentHeadroom(image: Option<&CGImage>) -> c_float;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImage::calculate_content_headroom`"]
+    pub fn CGImageCalculateContentHeadroom(image: Option<&CGImage>) -> c_float;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImage::content_average_light_level`"]
+    pub fn CGImageGetContentAverageLightLevel(image: Option<&CGImage>) -> c_float;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGImage::calculate_content_average_light_level`"]
+    pub fn CGImageCalculateContentAverageLightLevel(image: Option<&CGImage>) -> c_float;
+}
+
+#[deprecated = "renamed to `CGImage::new_copy_with_content_average_light_level`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreateCopyWithContentAverageLightLevel(
+    avll: c_float,
+    image: Option<&CGImage>,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreateCopyWithContentAverageLightLevel(
+            avll: c_float,
+            image: Option<&CGImage>,
+        ) -> Option<NonNull<CGImage>>;
+    }
+    let ret = unsafe { CGImageCreateCopyWithContentAverageLightLevel(avll, image) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[deprecated = "renamed to `CGImage::new_copy_with_calculated_hdr_stats`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreateCopyWithCalculatedHDRStats(
+    image: Option<&CGImage>,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreateCopyWithCalculatedHDRStats(
+            image: Option<&CGImage>,
+        ) -> Option<NonNull<CGImage>>;
+    }
+    let ret = unsafe { CGImageCreateCopyWithCalculatedHDRStats(image) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

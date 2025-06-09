@@ -7,6 +7,36 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Controls the acceleration structure refit operation
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurerefitoptions?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLAccelerationStructureRefitOptions(pub NSUInteger);
+bitflags::bitflags! {
+    impl MTLAccelerationStructureRefitOptions: NSUInteger {
+/// Refitting shall result in updated vertex data from the provided geometry descriptor.
+/// If not set, vertex buffers shall be ignored on the geometry descriptor and vertex data previously
+/// encoded shall be copied.
+        #[doc(alias = "MTLAccelerationStructureRefitOptionVertexData")]
+        const VertexData = 1<<0;
+/// Refitting shall result in updated per primitive data from the provided geometry descriptor.
+/// If not set, per primitive data buffers shall be ignored on the geometry descriptor and per primitive
+/// data previously encoded shall be copied.
+        #[doc(alias = "MTLAccelerationStructureRefitOptionPerPrimitiveData")]
+        const PerPrimitiveData = 1<<1;
+    }
+}
+
+unsafe impl Encode for MTLAccelerationStructureRefitOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLAccelerationStructureRefitOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -29,6 +59,13 @@ bitflags::bitflags! {
 /// reduced ray tracing performance.
         #[doc(alias = "MTLAccelerationStructureUsageExtendedLimits")]
         const ExtendedLimits = 1<<2;
+/// Prioritize intersection performance over acceleration structure build time
+        #[doc(alias = "MTLAccelerationStructureUsagePreferFastIntersection")]
+        const PreferFastIntersection = 1<<4;
+/// Minimize the size of the acceleration structure in memory, potentially at
+/// the cost of increased build time or reduced intersection performance.
+        #[doc(alias = "MTLAccelerationStructureUsageMinimizeMemory")]
+        const MinimizeMemory = 1<<5;
     }
 }
 
@@ -534,13 +571,13 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
-        #[cfg(feature = "MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLArgument")]
         /// Index type
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
-        #[cfg(feature = "MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
@@ -877,13 +914,13 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
-        #[cfg(feature = "MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLArgument")]
         /// Index type
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
-        #[cfg(feature = "MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
@@ -1345,13 +1382,13 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
-        #[cfg(feature = "MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLArgument")]
         /// Index type
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
-        #[cfg(feature = "MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
@@ -1576,13 +1613,13 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
-        #[cfg(feature = "MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLArgument")]
         /// Index type
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
-        #[cfg(feature = "MTLStageInputOutputDescriptor")]
+        #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]

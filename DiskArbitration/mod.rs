@@ -96,6 +96,8 @@ pub use self::__DADisk::kDADiskDescriptionMediaWholeKey;
 #[cfg(feature = "DADisk")]
 pub use self::__DADisk::kDADiskDescriptionMediaWritableKey;
 #[cfg(feature = "DADisk")]
+pub use self::__DADisk::kDADiskDescriptionRepairRunningKey;
+#[cfg(feature = "DADisk")]
 pub use self::__DADisk::kDADiskDescriptionVolumeKindKey;
 #[cfg(feature = "DADisk")]
 pub use self::__DADisk::kDADiskDescriptionVolumeMountableKey;

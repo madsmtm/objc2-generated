@@ -52,7 +52,7 @@ impl ASAuthorizationWebBrowserPlatformPublicKeyCredential {
         #[unsafe(method_family = none)]
         pub unsafe fn userHandle(&self) -> Retained<NSData>;
 
-        /// The localized name of the credential provider that provided this passkey, either the name of a third party app or "iCloud Keychain".
+        /// The localized name of the credential provider that provided this passkey.
         #[unsafe(method(providerName))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerName(&self) -> Retained<NSString>;

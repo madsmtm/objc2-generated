@@ -410,8 +410,10 @@ pub const kPMSetDisplayPowerOn: c_uint = 15;
 pub const kPMSetDisplayState: c_uint = 16;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmrequestidlesleeprevert?language=objc)
 pub const kPMRequestIdleSleepRevert: c_uint = 17;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsetldmhibernationdisable?language=objc)
+pub const kPMSetLDMHibernationDisable: c_uint = 18;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/knumpmmethods?language=objc)
-pub const kNumPMMethods: c_uint = 18;
+pub const kNumPMMethods: c_uint = 19;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemloadadvisorynotifyname?language=objc)
 pub const kIOSystemLoadAdvisoryNotifyName: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powermanagement.SystemLoadAdvisory\0")
@@ -652,6 +654,16 @@ pub const kIOPMDriverAssertionMagicPacketWakeEnabledBit: c_uint = 0x100;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionnetworkkeepaliveactivebit?language=objc)
 pub const kIOPMDriverAssertionNetworkKeepAliveActiveBit: c_uint = 0x200;
+/// kIOPMDriverAssertionForceWakeupBit
+/// When set, the system will immediately wake up the CPU after going to sleep.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionforcewakeupbit?language=objc)
+pub const kIOPMDriverAssertionForceWakeupBit: c_uint = 0x400;
+/// kIOPMDriverAssertionForceFullWakeupBit
+/// When set, the system will immediately do a full wakeup after going to sleep.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionforcefullwakeupbit?language=objc)
+pub const kIOPMDriverAssertionForceFullWakeupBit: c_uint = 0x800;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kclamshellstatebit?language=objc)
 pub const kClamshellStateBit: c_uint = 1 << 0;
@@ -1025,6 +1037,8 @@ pub const kIOPMSystemCapabilityGraphics: c_uint = 0x02;
 pub const kIOPMSystemCapabilityAudio: c_uint = 0x04;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilitynetwork?language=objc)
 pub const kIOPMSystemCapabilityNetwork: c_uint = 0x08;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilityaot?language=objc)
+pub const kIOPMSystemCapabilityAOT: c_uint = 0x10;
 
 extern "C-unwind" {
     /// Finds the Root Power Domain IOService.

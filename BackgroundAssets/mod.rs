@@ -24,6 +24,18 @@ extern "C" {}
 #[cfg(feature = "BAAppExtensionInfo")]
 #[path = "BAAppExtensionInfo.rs"]
 mod __BAAppExtensionInfo;
+#[cfg(feature = "BAAssetPack")]
+#[path = "BAAssetPack.rs"]
+mod __BAAssetPack;
+#[cfg(feature = "BAAssetPackManager")]
+#[path = "BAAssetPackManager.rs"]
+mod __BAAssetPackManager;
+#[cfg(feature = "BAAssetPackManifest")]
+#[path = "BAAssetPackManifest.rs"]
+mod __BAAssetPackManifest;
+#[cfg(feature = "BAAssetPackStatus")]
+#[path = "BAAssetPackStatus.rs"]
+mod __BAAssetPackStatus;
 #[cfg(feature = "BABase")]
 #[path = "BABase.rs"]
 mod __BABase;
@@ -39,6 +51,15 @@ mod __BADownloaderExtension;
 #[cfg(feature = "BAError")]
 #[path = "BAError.rs"]
 mod __BAError;
+#[cfg(feature = "BAManagedAssetPackDownloadDelegate")]
+#[path = "BAManagedAssetPackDownloadDelegate.rs"]
+mod __BAManagedAssetPackDownloadDelegate;
+#[cfg(feature = "BAManagedDownloaderExtension")]
+#[path = "BAManagedDownloaderExtension.rs"]
+mod __BAManagedDownloaderExtension;
+#[cfg(feature = "BAManagedError")]
+#[path = "BAManagedError.rs"]
+mod __BAManagedError;
 #[cfg(feature = "BATypes")]
 #[path = "BATypes.rs"]
 mod __BATypes;
@@ -48,6 +69,14 @@ mod __BAURLDownload;
 
 #[cfg(feature = "BAAppExtensionInfo")]
 pub use self::__BAAppExtensionInfo::BAAppExtensionInfo;
+#[cfg(feature = "BAAssetPack")]
+pub use self::__BAAssetPack::BAAssetPack;
+#[cfg(feature = "BAAssetPackManager")]
+pub use self::__BAAssetPackManager::BAAssetPackManager;
+#[cfg(feature = "BAAssetPackManifest")]
+pub use self::__BAAssetPackManifest::BAAssetPackManifest;
+#[cfg(feature = "BAAssetPackStatus")]
+pub use self::__BAAssetPackStatus::BAAssetPackStatus;
 #[cfg(feature = "BADownload")]
 pub use self::__BADownload::BADownload;
 #[cfg(feature = "BADownload")]
@@ -70,6 +99,19 @@ pub use self::__BADownloaderExtension::BADownloaderExtension;
 pub use self::__BAError::BAErrorCode;
 #[cfg(feature = "BAError")]
 pub use self::__BAError::BAErrorDomain;
+#[cfg(feature = "BAManagedAssetPackDownloadDelegate")]
+pub use self::__BAManagedAssetPackDownloadDelegate::BAManagedAssetPackDownloadDelegate;
+#[cfg(all(
+    feature = "BADownloaderExtension",
+    feature = "BAManagedDownloaderExtension"
+))]
+pub use self::__BAManagedDownloaderExtension::BAManagedDownloaderExtension;
+#[cfg(feature = "BAManagedError")]
+pub use self::__BAManagedError::BAAssetPackIdentifierErrorKey;
+#[cfg(feature = "BAManagedError")]
+pub use self::__BAManagedError::BAManagedErrorCode;
+#[cfg(feature = "BAManagedError")]
+pub use self::__BAManagedError::BAManagedErrorDomain;
 #[cfg(feature = "BATypes")]
 pub use self::__BATypes::BAContentRequest;
 #[cfg(all(feature = "BADownload", feature = "BAURLDownload"))]

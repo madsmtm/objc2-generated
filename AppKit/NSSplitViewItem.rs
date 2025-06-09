@@ -320,6 +320,134 @@ impl NSSplitViewItem {
             &self,
             titlebar_separator_style: NSTitlebarSeparatorStyle,
         );
+
+        /// When YES, other items such as sidebars or inspectors may appear overlaid on top of this item's `viewController` and this item's `safeAreaInsets` will be adjusted with respect to overlaid content. Defaults to `NO`.
+        #[unsafe(method(automaticallyAdjustsSafeAreaInsets))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn automaticallyAdjustsSafeAreaInsets(&self) -> bool;
+
+        /// Setter for [`automaticallyAdjustsSafeAreaInsets`][Self::automaticallyAdjustsSafeAreaInsets].
+        #[unsafe(method(setAutomaticallyAdjustsSafeAreaInsets:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAutomaticallyAdjustsSafeAreaInsets(
+            &self,
+            automatically_adjusts_safe_area_insets: bool,
+        );
+
+        #[cfg(all(
+            feature = "NSResponder",
+            feature = "NSSplitViewItemAccessoryViewController",
+            feature = "NSViewController"
+        ))]
+        /// The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See `NSSplitViewItemAccessoryViewController` for more details.
+        #[unsafe(method(topAlignedAccessoryViewControllers))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn topAlignedAccessoryViewControllers(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Retained<NSArray<NSSplitViewItemAccessoryViewController>>;
+
+        #[cfg(all(
+            feature = "NSResponder",
+            feature = "NSSplitViewItemAccessoryViewController",
+            feature = "NSViewController"
+        ))]
+        /// Setter for [`topAlignedAccessoryViewControllers`][Self::topAlignedAccessoryViewControllers].
+        #[unsafe(method(setTopAlignedAccessoryViewControllers:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTopAlignedAccessoryViewControllers(
+            &self,
+            top_aligned_accessory_view_controllers: &NSArray<
+                NSSplitViewItemAccessoryViewController,
+            >,
+        );
+
+        #[cfg(all(
+            feature = "NSResponder",
+            feature = "NSSplitViewItemAccessoryViewController",
+            feature = "NSViewController"
+        ))]
+        #[unsafe(method(addTopAlignedAccessoryViewController:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addTopAlignedAccessoryViewController(
+            &self,
+            child_view_controller: &NSSplitViewItemAccessoryViewController,
+        );
+
+        #[cfg(all(
+            feature = "NSResponder",
+            feature = "NSSplitViewItemAccessoryViewController",
+            feature = "NSViewController"
+        ))]
+        #[unsafe(method(insertTopAlignedAccessoryViewController:atIndex:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn insertTopAlignedAccessoryViewController_atIndex(
+            &self,
+            child_view_controller: &NSSplitViewItemAccessoryViewController,
+            index: NSInteger,
+        );
+
+        /// NOTE: you can use this method, or `-removeFromParentViewController:`, whichever is easier.
+        #[unsafe(method(removeTopAlignedAccessoryViewControllerAtIndex:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn removeTopAlignedAccessoryViewControllerAtIndex(&self, index: NSInteger);
+
+        #[cfg(all(
+            feature = "NSResponder",
+            feature = "NSSplitViewItemAccessoryViewController",
+            feature = "NSViewController"
+        ))]
+        #[unsafe(method(bottomAlignedAccessoryViewControllers))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bottomAlignedAccessoryViewControllers(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Retained<NSArray<NSSplitViewItemAccessoryViewController>>;
+
+        #[cfg(all(
+            feature = "NSResponder",
+            feature = "NSSplitViewItemAccessoryViewController",
+            feature = "NSViewController"
+        ))]
+        /// Setter for [`bottomAlignedAccessoryViewControllers`][Self::bottomAlignedAccessoryViewControllers].
+        #[unsafe(method(setBottomAlignedAccessoryViewControllers:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setBottomAlignedAccessoryViewControllers(
+            &self,
+            bottom_aligned_accessory_view_controllers: &NSArray<
+                NSSplitViewItemAccessoryViewController,
+            >,
+        );
+
+        #[cfg(all(
+            feature = "NSResponder",
+            feature = "NSSplitViewItemAccessoryViewController",
+            feature = "NSViewController"
+        ))]
+        #[unsafe(method(addBottomAlignedAccessoryViewController:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addBottomAlignedAccessoryViewController(
+            &self,
+            child_view_controller: &NSSplitViewItemAccessoryViewController,
+        );
+
+        #[cfg(all(
+            feature = "NSResponder",
+            feature = "NSSplitViewItemAccessoryViewController",
+            feature = "NSViewController"
+        ))]
+        #[unsafe(method(insertBottomAlignedAccessoryViewController:atIndex:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn insertBottomAlignedAccessoryViewController_atIndex(
+            &self,
+            child_view_controller: &NSSplitViewItemAccessoryViewController,
+            index: NSInteger,
+        );
+
+        /// NOTE: you can use this method, or `-removeFromParentViewController:`, whichever is easier.
+        #[unsafe(method(removeBottomAlignedAccessoryViewControllerAtIndex:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn removeBottomAlignedAccessoryViewControllerAtIndex(&self, index: NSInteger);
     );
 }
 

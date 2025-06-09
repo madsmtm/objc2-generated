@@ -126,17 +126,41 @@ impl CKSyncEngineEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn accountChangeEvent(&self) -> Retained<CKSyncEngineAccountChangeEvent>;
 
+        #[unsafe(method(willFetchChangesEvent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn willFetchChangesEvent(&self) -> Retained<CKSyncEngineWillFetchChangesEvent>;
+
         #[unsafe(method(fetchedDatabaseChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchedDatabaseChangesEvent(
             &self,
         ) -> Retained<CKSyncEngineFetchedDatabaseChangesEvent>;
 
+        #[unsafe(method(didFetchChangesEvent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn didFetchChangesEvent(&self) -> Retained<CKSyncEngineDidFetchChangesEvent>;
+
+        #[unsafe(method(willFetchRecordZoneChangesEvent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn willFetchRecordZoneChangesEvent(
+            &self,
+        ) -> Retained<CKSyncEngineWillFetchRecordZoneChangesEvent>;
+
         #[unsafe(method(fetchedRecordZoneChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchedRecordZoneChangesEvent(
             &self,
         ) -> Retained<CKSyncEngineFetchedRecordZoneChangesEvent>;
+
+        #[unsafe(method(didFetchRecordZoneChangesEvent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn didFetchRecordZoneChangesEvent(
+            &self,
+        ) -> Retained<CKSyncEngineDidFetchRecordZoneChangesEvent>;
+
+        #[unsafe(method(willSendChangesEvent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn willSendChangesEvent(&self) -> Retained<CKSyncEngineWillSendChangesEvent>;
 
         #[unsafe(method(sentDatabaseChangesEvent))]
         #[unsafe(method_family = none)]
@@ -149,30 +173,6 @@ impl CKSyncEngineEvent {
         pub unsafe fn sentRecordZoneChangesEvent(
             &self,
         ) -> Retained<CKSyncEngineSentRecordZoneChangesEvent>;
-
-        #[unsafe(method(willFetchChangesEvent))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn willFetchChangesEvent(&self) -> Retained<CKSyncEngineWillFetchChangesEvent>;
-
-        #[unsafe(method(willFetchRecordZoneChangesEvent))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn willFetchRecordZoneChangesEvent(
-            &self,
-        ) -> Retained<CKSyncEngineWillFetchRecordZoneChangesEvent>;
-
-        #[unsafe(method(didFetchRecordZoneChangesEvent))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn didFetchRecordZoneChangesEvent(
-            &self,
-        ) -> Retained<CKSyncEngineDidFetchRecordZoneChangesEvent>;
-
-        #[unsafe(method(didFetchChangesEvent))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn didFetchChangesEvent(&self) -> Retained<CKSyncEngineDidFetchChangesEvent>;
-
-        #[unsafe(method(willSendChangesEvent))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn willSendChangesEvent(&self) -> Retained<CKSyncEngineWillSendChangesEvent>;
 
         #[unsafe(method(didSendChangesEvent))]
         #[unsafe(method_family = none)]
@@ -192,7 +192,7 @@ extern_class!(
     /// The sync engine state was updated, and you should persist it locally.
     ///
     /// In order to function properly and efficiently, `CKSyncEngine` tracks some state internally.
-    /// When the sync engine state changes, it will give you the latest serialized version in a `CKSyncEngineStateUpdateEvent`.
+    /// When the sync engine state changes, it will give you the latest serialized version in a ``CKSyncEngine/Event/StateUpdate``.
     /// This event will happen occasionally when the sync engine modifies the state internally during normal sync operation.
     /// This event will also happen when you change the state yourself.
     ///
@@ -493,7 +493,7 @@ impl CKSyncEngineSentDatabaseChangesEvent {
 extern_class!(
     /// The sync engine finished sending a batch of record zone changes to the server.
     ///
-    /// If a record save succeeded, you should encode the system fields of this record to use the next time you save. See `encodeSystemFields` on `CKRecord`.
+    /// If a record save succeeded, you should encode the system fields of this record to use the next time you save. See `encodeSystemFields` on ``CKRecord``.
     ///
     /// If a record deletion succeeded, you should remove any local system fields for that record.
     ///

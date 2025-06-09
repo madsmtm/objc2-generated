@@ -40,5 +40,12 @@ extern_protocol!(
         #[unsafe(method(commandQueue))]
         #[unsafe(method_family = none)]
         unsafe fn commandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
+
+        #[cfg(feature = "MTL4CommandQueue")]
+        /// If set, this scope will only capture Metal commands from the associated Metal 4 command queue. Defaults to nil (all command queues from the associated device are captured).
+        #[unsafe(method(mtl4CommandQueue))]
+        #[unsafe(method_family = none)]
+        unsafe fn mtl4CommandQueue(&self)
+            -> Option<Retained<ProtocolObject<dyn MTL4CommandQueue>>>;
     }
 );

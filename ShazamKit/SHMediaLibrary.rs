@@ -8,10 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// `SHMediaLibrary`represents the user's synced Shazam library.
+    /// An object that represents the user's Shazam library.
     ///
-    /// You can add new
-    /// `SHMediaItem`instances to the user's library.
+    /// Use `SHMediaLibrary` to add matched songs from the Shazam catalog to the user's Shazam library.
+    ///
+    /// > Note:
+    /// > There's no system permission necessary to write to the user's Shazam library. Consider requesting permission from the user before adding songs to the library.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmedialibrary?language=objc)
     #[unsafe(super(NSObject))]
@@ -26,34 +28,42 @@ extern_conformance!(
 
 impl SHMediaLibrary {
     extern_methods!(
-        /// Returns an instance of the default Shazam library.
+        /// An instance of the user's default Shazam library.
         #[deprecated = "Use SHLibrary instead"]
         #[unsafe(method(defaultLibrary))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultLibrary() -> Retained<SHMediaLibrary>;
 
         #[cfg(all(feature = "SHMediaItem", feature = "block2"))]
-        /// Adds an array of media items to the user's Shazam library.
+        /// Adds an array of songs to the user's Shazam library.
         ///
+        /// > Important:
+        /// > You can call this method from synchronous code using a completion handler, as shown on this page, or you can call it as an asynchronous method that has the following declaration:
+        /// >
+        /// > ```swift
+        /// > func add(_ mediaItems: [SHMediaItem]) async throws
+        /// > ```
+        /// >
+        /// > For information about concurrency and asynchronous code in Swift, see
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
         ///
-        /// For each
-        /// `SHMediaItem`instance passed in, the following
-        /// `SHMediaItemProperty`keys will be saved:
-        /// `SHMediaItemShazamID,``SHMediaItemTitle,``SHMediaItemSubtitle.`If
-        /// `SHMediaItemSubtitle`is not set it may fallback to use
-        /// `SHMediaItemArtist`if available.
+        /// Saving a song to the user's Shazam library also saves the following media item properties and their associated values:
         ///
+        /// - ``SHMediaItemProperty/shazamID``
+        /// - ``SHMediaItemProperty/title``
+        /// - ``SHMediaItemProperty/subtitle``, or ``SHMediaItemProperty/artist`` if the subtitle is unavailable
         ///
-        /// Note: `SHMediaItemShazamID`is required for each
-        /// `SHMediaItem`to be considered valid.
-        /// `SHMediaItemShazamID`must be a numeric only string
+        /// > Note:
+        /// > Saving to the user's Shazam library works only for songs with a valid ``SHMediaItemProperty/shazamID``.
         ///
+        /// - Parameters:
+        /// - mediaItems: An array of media items that represents the songs to add to the library.
+        /// - completionHandler: The system calls this completion block after adding the media items to the library.
         ///
-        /// Parameter `mediaItems`: An array containing the
-        /// `SHMediaItem`objects to be added to the library.
+        /// This block takes the following parameters:
         ///
-        /// Parameter `completionHandler`: A block called after all valid
-        /// `SHMediaItem`objects have been added to the library. If an error occurred, the error parameter will be populated.
+        /// - term `error`: An error object if a problem occurs when adding any item; otherwise, `nil`.
         #[deprecated = "Use SHLibrary instead"]
         #[unsafe(method(addMediaItems:completionHandler:))]
         #[unsafe(method_family = none)]

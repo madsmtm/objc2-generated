@@ -120,3 +120,81 @@ impl PKIdentityNationalIDCardDescriptor {
         pub unsafe fn new() -> Retained<Self>;
     );
 }
+
+extern_class!(
+    /// Used to request information from a user's photo ID (or equivalent document).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityphotoiddescriptor?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct PKIdentityPhotoIDDescriptor;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIdentityPhotoIDDescriptor {}
+);
+
+extern_conformance!(
+    unsafe impl PKIdentityDocumentDescriptor for PKIdentityPhotoIDDescriptor {}
+);
+
+impl PKIdentityPhotoIDDescriptor {
+    extern_methods!();
+}
+
+/// Methods declared on superclass `NSObject`.
+impl PKIdentityPhotoIDDescriptor {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// Used to request information from multiple identity documents.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityanyofdescriptor?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct PKIdentityAnyOfDescriptor;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKIdentityAnyOfDescriptor {}
+);
+
+extern_conformance!(
+    unsafe impl PKIdentityDocumentDescriptor for PKIdentityAnyOfDescriptor {}
+);
+
+impl PKIdentityAnyOfDescriptor {
+    extern_methods!(
+        /// Set of requested descriptors for the composite document descriptor.
+        #[unsafe(method(descriptors))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn descriptors(
+            &self,
+        ) -> Retained<NSArray<ProtocolObject<dyn PKIdentityDocumentDescriptor>>>;
+
+        /// Returns a composite document descriptor with specified descriptors.
+        #[unsafe(method(initWithDescriptors:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDescriptors(
+            this: Allocated<Self>,
+            descriptors: &NSArray<ProtocolObject<dyn PKIdentityDocumentDescriptor>>,
+        ) -> Retained<Self>;
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}

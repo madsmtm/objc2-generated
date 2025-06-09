@@ -32,16 +32,9 @@ extern "C" {
 }
 
 extern_class!(
-    /// `SHMatchedMediaItem`represents metadata that has been matched against a
-    /// `SHCatalog`
-    /// Extra information is presented that can only be generated from a match. The properties provided here
-    /// that are not available on
-    /// `SHMediaItem`are ephemeral and can differ each time there is a match of the
-    /// `SHSignature`that this
-    /// object represents
+    /// An object that represents the metadata for a matched reference signature.
     ///
-    ///
-    /// Note: `SHMatchedMediaItem`is not intended to be subclassed
+    /// To access properties for custom media items, use subscripting. For more information, see ``SHMediaItem``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmatchedmediaitem?language=objc)
     #[unsafe(super(SHMediaItem, NSObject))]
@@ -84,30 +77,29 @@ extern_conformance!(
 #[cfg(feature = "SHMediaItem")]
 impl SHMatchedMediaItem {
     extern_methods!(
-        /// The frequency difference between the reference and sample audio
+        /// A multiple for the difference in frequency between the matched audio and the query audio.
         ///
-        /// A value of 0.0 indicates the matched audio at the original frequency,
-        /// a value of 0.1 indicates 100hz is now 110hz
+        /// A value of `0.0` indicates that the query and matched audio are at the same frequency. Other values indicate that the query audio is playing at a different frequency. For example, if the original recording plays at `100` Hz, a value of `0.05` indicates that the query recording plays at `105` Hz.
+        ///
+        /// No match returns if the frequency skew is too large.
         #[unsafe(method(frequencySkew))]
         #[unsafe(method_family = none)]
         pub unsafe fn frequencySkew(&self) -> c_float;
 
-        /// The difference between the start of the reference audio and the start of the sample audio
+        /// The timecode in the reference recording that matches the start of the query, in seconds.
         ///
-        /// Note: This value can be negative if the source audio starts before the reference audio
+        /// The value can be negative if the query signature contains unrecognizable data before the data that corresponds to the start of the matched reference item.
         #[unsafe(method(matchOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchOffset(&self) -> NSTimeInterval;
 
-        /// The auto updating playback position in the reference signature
+        /// The updated timecode in the reference recording that matches the current playback position of the query audio, in seconds.
         #[unsafe(method(predictedCurrentMatchOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn predictedCurrentMatchOffset(&self) -> NSTimeInterval;
 
         /// The level of confidence in the match result.
         ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemConfidence`
         /// The value ranges from 0.0 to 1.0, where 1.0 indicates the highest level of confidence.
         #[unsafe(method(confidence))]
         #[unsafe(method_family = none)]
@@ -119,12 +111,10 @@ impl SHMatchedMediaItem {
 #[cfg(feature = "SHMediaItem")]
 impl SHMatchedMediaItem {
     extern_methods!(
-        /// Construct a new instance with the provided dictionary
+        /// Creates a media item object with a dictionary of properties and their associated values.
         ///
-        /// Parameter `properties`: A dictionary of
-        /// `SHMediaItemProperty`and their values
-        ///
-        /// You may add your own keys here to return custom data, custom data should conform to NSCoding
+        /// - Parameters:
+        /// - properties: A dictionary that contains the media item properties and their associated values.
         #[unsafe(method(mediaItemWithProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaItemWithProperties(

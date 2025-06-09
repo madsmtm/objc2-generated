@@ -28,7 +28,7 @@ extern_conformance!(
 
 impl MTLFunctionConstantValues {
     extern_methods!(
-        #[cfg(feature = "MTLArgument")]
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(setConstantValue:type:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantValue_type_atIndex(
@@ -38,7 +38,7 @@ impl MTLFunctionConstantValues {
             index: NSUInteger,
         );
 
-        #[cfg(feature = "MTLArgument")]
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(setConstantValues:type:withRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantValues_type_withRange(
@@ -48,7 +48,7 @@ impl MTLFunctionConstantValues {
             range: NSRange,
         );
 
-        #[cfg(feature = "MTLArgument")]
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(setConstantValue:type:withName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantValue_type_withName(

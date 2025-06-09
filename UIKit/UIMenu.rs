@@ -316,6 +316,13 @@ extern "C" {
 }
 
 extern "C" {
+    /// New item menu
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenunewitem?language=objc)
+    pub static UIMenuNewItem: &'static UIMenuIdentifier;
+}
+
+extern "C" {
     /// New scene menu
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenunewscene?language=objc)
@@ -372,10 +379,17 @@ extern "C" {
 }
 
 extern "C" {
-    /// Find menu; empty in the default menubar configuration. Applications should use this when adding their own Find-related menu items.
+    /// Find menu, containing Find Panel items and other finding operations like Use Selection for Find
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenufind?language=objc)
     pub static UIMenuFind: &'static UIMenuIdentifier;
+}
+
+extern "C" {
+    /// Find panel menu (Find, Find and Replace, Find Next, Find Previous)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenufindpanel?language=objc)
+    pub static UIMenuFindPanel: &'static UIMenuIdentifier;
 }
 
 extern "C" {

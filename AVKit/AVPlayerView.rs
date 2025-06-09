@@ -291,6 +291,25 @@ impl AVPlayerView {
             magnification: CGFloat,
             point: CGPoint,
         );
+
+        #[cfg(feature = "AVKitTypes")]
+        /// Describes how High Dynamic Range (HDR) video content renders.
+        ///
+        /// Defaults to ``AVDisplayDynamicRangeAutomatic``.
+        ///
+        /// - Note: This property will only have effect if the video content supports HDR.
+        #[unsafe(method(preferredDisplayDynamicRange))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preferredDisplayDynamicRange(&self) -> AVDisplayDynamicRange;
+
+        #[cfg(feature = "AVKitTypes")]
+        /// Setter for [`preferredDisplayDynamicRange`][Self::preferredDisplayDynamicRange].
+        #[unsafe(method(setPreferredDisplayDynamicRange:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPreferredDisplayDynamicRange(
+            &self,
+            preferred_display_dynamic_range: AVDisplayDynamicRange,
+        );
     );
 }
 

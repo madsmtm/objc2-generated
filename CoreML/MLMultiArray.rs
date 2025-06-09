@@ -29,6 +29,8 @@ impl MLMultiArrayDataType {
     pub const Float: Self = Self(0x10000 | 32);
     #[doc(alias = "MLMultiArrayDataTypeInt32")]
     pub const Int32: Self = Self(0x20000 | 32);
+    #[doc(alias = "MLMultiArrayDataTypeInt8")]
+    pub const Int8: Self = Self(0x20000 | 8);
 }
 
 unsafe impl Encode for MLMultiArrayDataType {
@@ -268,7 +270,8 @@ impl MLMultiArray {
         ///
         /// The instance will own the pixel buffer and release it on the deallocation.
         ///
-        /// The pixel buffer's pixel format type must be OneComponent16Half. As such, MLMultiArray's data type will be MLMultiArrayDataTypeFloat16.
+        /// The pixel buffer's pixel format type must be either `kCVPixelFormatType_OneComponent16Half` for `MLMultiArrayDataTypeFloat16` or
+        /// `kCVPixelFormatType_OneComponent8` for `MLMultiArrayDataTypeInt8`.
         ///
         /// ```objc
         /// CVPixelBufferRef pixelBuffer = NULL;

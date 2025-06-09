@@ -13,25 +13,19 @@ use crate::*;
 
 /// These constants are returned by the AVPlayer status property to indicate whether it can successfully play items.
 ///
-///
-/// Indicates that the status of the player is not yet known because it has not tried to load new media resources for
-/// playback.
-///
-/// Indicates that the player is ready to play AVPlayerItem instances.
-///
-/// Indicates that the player can no longer play AVPlayerItem instances because of an error. The error is described by
-/// the value of the player's error property.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVPlayerStatus(pub NSInteger);
 impl AVPlayerStatus {
+    /// Indicates that the status of the player is not yet known because it has not tried to load new media resources for playback.
     #[doc(alias = "AVPlayerStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Indicates that the player is ready to play AVPlayerItem instances.
     #[doc(alias = "AVPlayerStatusReadyToPlay")]
     pub const ReadyToPlay: Self = Self(1);
+    /// Indicates that the player can no longer play AVPlayerItem instances because of an error. The error is described by the value of the player's error property.
     #[doc(alias = "AVPlayerStatusFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -45,7 +39,18 @@ unsafe impl RefEncode for AVPlayerStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer?language=objc)
+    /// AVPlayer offers a playback interface for single-item playback that's sufficient for the implementation of playback controllers and playback user interfaces.
+    ///
+    /// AVPlayer works equally well with local and remote media files, providing clients with appropriate
+    /// information about readiness to play or about the need to await additional data before continuing.
+    ///
+    /// Visual content of items played by an instance of AVPlayer can be displayed in a CoreAnimation layer
+    /// of class AVPlayerLayer.
+    ///
+    /// To allow clients to add and remove their objects as key-value observers safely, AVPlayer serializes notifications of
+    /// changes that occur dynamically during playback on a dispatch queue. By default, this queue is the main queue. See dispatch_get_main_queue().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -65,10 +70,11 @@ impl AVPlayer {
 
         /// Returns an instance of AVPlayer that plays a single audiovisual resource referenced by URL.
         ///
-        /// Parameter `URL`:
-        /// Returns: An instance of AVPlayer
-        ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
+        ///
+        /// - Parameter URL:
+        ///
+        /// - Returns: An instance of AVPlayer
         #[unsafe(method(playerWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
@@ -76,10 +82,11 @@ impl AVPlayer {
         #[cfg(feature = "AVPlayerItem")]
         /// Create an AVPlayer that plays a single audiovisual item.
         ///
-        /// Parameter `item`:
-        /// Returns: An instance of AVPlayer
-        ///
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
+        ///
+        /// - Parameter item:
+        ///
+        /// - Returns: An instance of AVPlayer
         #[unsafe(method(playerWithPlayerItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerWithPlayerItem(
@@ -89,10 +96,11 @@ impl AVPlayer {
 
         /// Initializes an AVPlayer that plays a single audiovisual resource referenced by URL.
         ///
-        /// Parameter `URL`:
-        /// Returns: An instance of AVPlayer
-        ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
+        ///
+        /// - Parameter URL:
+        ///
+        /// - Returns: An instance of AVPlayer
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
@@ -100,12 +108,13 @@ impl AVPlayer {
         #[cfg(feature = "AVPlayerItem")]
         /// Create an AVPlayer that plays a single audiovisual item.
         ///
-        /// Parameter `item`:
-        /// Returns: An instance of AVPlayer
-        ///
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
         /// This method throws an exception if the item is not an AVPlayerItem, or if the item is
         /// associated with another AVPlayer.
+        ///
+        /// - Parameter item:
+        ///
+        /// - Returns: An instance of AVPlayer
         #[unsafe(method(initWithPlayerItem:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlayerItem(
@@ -114,7 +123,6 @@ impl AVPlayer {
         ) -> Retained<Self>;
 
         /// The ability of the receiver to be used for playback.
-        ///
         ///
         /// The value of this property is an AVPlayerStatus that indicates whether the receiver can be used for playback. When
         /// the value of this property is AVPlayerStatusFailed, the receiver can no longer be used for playback and a new
@@ -125,7 +133,6 @@ impl AVPlayer {
         pub unsafe fn status(&self) -> AVPlayerStatus;
 
         /// If the receiver's status is AVPlayerStatusFailed, this describes the error that caused the failure.
-        ///
         ///
         /// The value of this property is an NSError that describes what caused the receiver to no longer be able to play items.
         /// If the receiver's status is not AVPlayerStatusFailed, the value of this property is nil.
@@ -198,26 +205,19 @@ extern "C" {
 
 /// These constants are the allowable values of AVPlayer's timeControlStatus property. This discussion pertains when automaticallyWaitsToMinimizeStalling is YES, the default setting, and exceptions are discussed in connection with automaticallyWaitsToMinimizeStalling.
 ///
-///
-/// This state is entered upon receipt of a -pause message, an invocation of -setRate: with a value of 0.0, when a change in overall state requires playback to be halted, such as when an interruption occurs on iOS, as announced by AVAudioSession.
-/// In this state, playback is paused indefinitely and will not resume until 1) a subsequent -play message is received or 2) a -setRate: or -playImmediatelyAtRate: message with a non-zero value for rate is received and sufficient media data has been buffered for playback to proceed.
-///
-/// This state is entered when 1) the playback buffer becomes empty and playback stalls in AVPlayerTimeControlStatusPlaying, 2) when rate is set from zero to non-zero in AVPlayerTimeControlStatusPaused and insufficient media data has been buffered for playback to occur, or 3) when the player has no item to play, i.e. when the receiver's currentItem is nil.
-/// In this state, the value of the rate property is not currently effective but instead indicates the rate at which playback will start or resume. Refer to the value of reasonForWaitingToPlay for details about why the receiver is waiting and the conditions that allow waitStatus to change to AVPlayerWaitStatusPlaying.
-/// While waiting for buffering, you can attempt to start playback of any available media data via -playImmediatelyAtRate:.
-///
-/// In this state, playback is currently progressing and rate changes will take effect immediately. Should playback stall because of insufficient media data, timeControlStatus will change to AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayertimecontrolstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVPlayerTimeControlStatus(pub NSInteger);
 impl AVPlayerTimeControlStatus {
+    /// This state is entered upon receipt of a -pause message, an invocation of -setRate: with a value of 0.0, when a change in overall state requires playback to be halted, such as when an interruption occurs on iOS, as announced by AVAudioSession. In this state, playback is paused indefinitely and will not resume until 1) a subsequent -play message is received or 2) a -setRate: or -playImmediatelyAtRate: message with a non-zero value for rate is received and sufficient media data has been buffered for playback to proceed.
     #[doc(alias = "AVPlayerTimeControlStatusPaused")]
     pub const Paused: Self = Self(0);
+    /// This state is entered when 1) the playback buffer becomes empty and playback stalls in AVPlayerTimeControlStatusPlaying, 2) when rate is set from zero to non-zero in AVPlayerTimeControlStatusPaused and insufficient media data has been buffered for playback to occur, or 3) when the player has no item to play, i.e. when the receiver's currentItem is nil. In this state, the value of the rate property is not currently effective but instead indicates the rate at which playback will start or resume. Refer to the value of reasonForWaitingToPlay for details about why the receiver is waiting and the conditions that allow waitStatus to change to AVPlayerWaitStatusPlaying. While waiting for buffering, you can attempt to start playback of any available media data via -playImmediatelyAtRate:.
     #[doc(alias = "AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate")]
     pub const WaitingToPlayAtSpecifiedRate: Self = Self(1);
+    /// In this state, playback is currently progressing and rate changes will take effect immediately. Should playback stall because of insufficient media data, timeControlStatus will change to AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate.
     #[doc(alias = "AVPlayerTimeControlStatusPlaying")]
     pub const Playing: Self = Self(2);
 }
@@ -259,7 +259,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the AVPlayer is waiting because its currentItem is nil
     ///
-    /// The player is waiting for playback because automaticallyWaitToMinimizeStalling is YES and the value of currentItem is nil. When an item becomes available, either because of a call to -replaceCurrentItemWithPlayerItem: or  -insertItem: afterItem:, playback will begin or the value of reasonForWaitingToPlay will change.
+    /// The player is waiting for playback because automaticallyWaitToMinimizeStalling is YES and the value of currentItem is nil. When an item becomes available, either because of a call to -replaceCurrentItemWithPlayerItem: or -insertItem: afterItem:, playback will begin or the value of reasonForWaitingToPlay will change.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerwaitingwithnoitemtoplayreason?language=objc)
     pub static AVPlayerWaitingWithNoItemToPlayReason: &'static AVPlayerWaitingReason;
@@ -361,28 +361,19 @@ impl AVPlayer {
 
 /// These constants are the allowable values of AVPlayer's actionAtItemEnd property.
 ///
-///
-/// Indicates that when an AVPlayerItem reaches its end time the player will automatically advance to the next item in its queue.
-/// This value is supported only for players of class AVQueuePlayer. An AVPlayer that's not an AVQueuePlayer will raise an NSInvalidArgumentException if an attempt is made to set its actionAtItemEnd to AVPlayerActionAtItemEndAdvance.
-///
-/// Indicates that when an AVPlayerItem reaches its end time the player will automatically pause (which is to say, the player's
-/// rate will automatically be set to 0).
-///
-/// Indicates that when an AVPlayerItem reaches its end time the player will take no action (which is to say, the player's rate
-/// will not change, its currentItem will not change, and its currentTime will continue to be incremented or decremented as time
-/// elapses, according to its rate). After this, if the player's actionAtItemEnd is set to a value other than AVPlayerActionAtItemEndNone,
-/// the player will immediately take the action appropriate to that value.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeractionatitemend?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVPlayerActionAtItemEnd(pub NSInteger);
 impl AVPlayerActionAtItemEnd {
+    /// Indicates that when an AVPlayerItem reaches its end time the player will automatically advance to the next item in its queue. This value is supported only for players of class AVQueuePlayer. An AVPlayer that's not an AVQueuePlayer will raise an NSInvalidArgumentException if an attempt is made to set its actionAtItemEnd to AVPlayerActionAtItemEndAdvance.
     #[doc(alias = "AVPlayerActionAtItemEndAdvance")]
     pub const Advance: Self = Self(0);
+    /// Indicates that when an AVPlayerItem reaches its end time the player will automatically pause (which is to say, the player's rate will automatically be set to 0).
     #[doc(alias = "AVPlayerActionAtItemEndPause")]
     pub const Pause: Self = Self(1);
+    /// Indicates that when an AVPlayerItem reaches its end time the player will take no action (which is to say, the player's rate will not change, its currentItem will not change, and its currentTime will continue to be incremented or decremented as time elapses, according to its rate). After this, if the player's actionAtItemEnd is set to a value other than AVPlayerActionAtItemEndNone, the player will immediately take the action appropriate to that value.
     #[doc(alias = "AVPlayerActionAtItemEndNone")]
     pub const None: Self = Self(2);
 }
@@ -399,6 +390,7 @@ unsafe impl RefEncode for AVPlayerActionAtItemEnd {
 impl AVPlayer {
     extern_methods!(
         #[cfg(feature = "AVPlayerItem")]
+        /// Indicates the current item of the player
         #[unsafe(method(currentItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentItem(&self) -> Option<Retained<AVPlayerItem>>;
@@ -406,10 +398,10 @@ impl AVPlayer {
         #[cfg(feature = "AVPlayerItem")]
         /// Replaces the player's current item with the specified player item.
         ///
-        /// Parameter `item`: The AVPlayerItem that will become the player's current item.
-        ///
         /// In all releases of iOS 4, invoking replaceCurrentItemWithPlayerItem: with an AVPlayerItem that's already the receiver's currentItem results in an exception being raised. Starting with iOS 5, it's a no-op.
         /// This method throws an exception if the item already exists in the play queue.
+        ///
+        /// - Parameter item: The AVPlayerItem that will become the player's current item.
         #[unsafe(method(replaceCurrentItemWithPlayerItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceCurrentItemWithPlayerItem(&self, item: Option<&AVPlayerItem>);
@@ -434,18 +426,19 @@ impl AVPlayer {
         #[cfg(feature = "objc2-core-media")]
         /// Returns the current time of the current item.
         ///
-        /// Returns: A CMTime
-        ///
         /// Returns the current time of the current item. Not key-value observable; use -addPeriodicTimeObserverForInterval:queue:usingBlock: instead.
+        ///
+        /// - Returns: A CMTime
         #[unsafe(method(currentTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTime(&self) -> CMTime;
 
         /// Moves the playback cursor.
         ///
-        /// Parameter `date`:
         /// Use this method to seek to a specified time for the current player item.
         /// The time seeked to may differ from the specified time for efficiency. For sample accurate seeking see seekToTime:toleranceBefore:toleranceAfter:.
+        ///
+        /// - Parameter date:
         #[unsafe(method(seekToDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate(&self, date: &NSDate);
@@ -453,13 +446,14 @@ impl AVPlayer {
         #[cfg(feature = "block2")]
         /// Moves the playback cursor and invokes the specified block when the seek operation has either been completed or been interrupted.
         ///
-        /// Parameter `date`:
-        /// Parameter `completionHandler`:
         /// Use this method to seek to a specified time for the current player item and to be notified when the seek operation is complete.
         /// The completion handler for any prior seek request that is still in process will be invoked immediately with the finished parameter
         /// set to NO. If the new request completes without being interrupted by another seek request or by any other operation the specified
-        /// completion handler will be invoked with the finished parameter set to YES.  If no item is attached, the completion handler will be
+        /// completion handler will be invoked with the finished parameter set to YES. If no item is attached, the completion handler will be
         /// invoked immediately with the finished parameter set to NO.
+        ///
+        /// - Parameter date:
+        /// - Parameter completionHandler:
         #[unsafe(method(seekToDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate_completionHandler(
@@ -471,9 +465,10 @@ impl AVPlayer {
         #[cfg(feature = "objc2-core-media")]
         /// Moves the playback cursor.
         ///
-        /// Parameter `time`:
         /// Use this method to seek to a specified time for the current player item.
         /// The time seeked to may differ from the specified time for efficiency. For sample accurate seeking see seekToTime:toleranceBefore:toleranceAfter:.
+        ///
+        /// - Parameter time:
         #[unsafe(method(seekToTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime(&self, time: CMTime);
@@ -481,13 +476,14 @@ impl AVPlayer {
         #[cfg(feature = "objc2-core-media")]
         /// Moves the playback cursor within a specified time bound.
         ///
-        /// Parameter `time`:
-        /// Parameter `toleranceBefore`:
-        /// Parameter `toleranceAfter`:
         /// Use this method to seek to a specified time for the current player item.
         /// The time seeked to will be within the range [time-toleranceBefore, time+toleranceAfter] and may differ from the specified time for efficiency.
         /// Pass kCMTimeZero for both toleranceBefore and toleranceAfter to request sample accurate seeking which may incur additional decoding delay.
         /// Messaging this method with beforeTolerance:kCMTimePositiveInfinity and afterTolerance:kCMTimePositiveInfinity is the same as messaging seekToTime: directly.
+        ///
+        /// - Parameter time:
+        /// - Parameter toleranceBefore:
+        /// - Parameter toleranceAfter:
         #[unsafe(method(seekToTime:toleranceBefore:toleranceAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter(
@@ -500,13 +496,14 @@ impl AVPlayer {
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         /// Moves the playback cursor and invokes the specified block when the seek operation has either been completed or been interrupted.
         ///
-        /// Parameter `time`:
-        /// Parameter `completionHandler`:
         /// Use this method to seek to a specified time for the current player item and to be notified when the seek operation is complete.
         /// The completion handler for any prior seek request that is still in process will be invoked immediately with the finished parameter
         /// set to NO. If the new request completes without being interrupted by another seek request or by any other operation the specified
-        /// completion handler will be invoked with the finished parameter set to YES.  If no item is attached, the completion handler will be
+        /// completion handler will be invoked with the finished parameter set to YES. If no item is attached, the completion handler will be
         /// invoked immediately with the finished parameter set to NO.
+        ///
+        /// - Parameter time:
+        /// - Parameter completionHandler:
         #[unsafe(method(seekToTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_completionHandler(
@@ -518,16 +515,17 @@ impl AVPlayer {
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         /// Moves the playback cursor within a specified time bound and invokes the specified block when the seek operation has either been completed or been interrupted.
         ///
-        /// Parameter `time`:
-        /// Parameter `toleranceBefore`:
-        /// Parameter `toleranceAfter`:
         /// Use this method to seek to a specified time for the current player item and to be notified when the seek operation is complete.
         /// The time seeked to will be within the range [time-toleranceBefore, time+toleranceAfter] and may differ from the specified time for efficiency.
         /// Pass kCMTimeZero for both toleranceBefore and toleranceAfter to request sample accurate seeking which may incur additional decoding delay.
         /// Messaging this method with beforeTolerance:kCMTimePositiveInfinity and afterTolerance:kCMTimePositiveInfinity is the same as messaging seekToTime: directly.
         /// The completion handler for any prior seek request that is still in process will be invoked immediately with the finished parameter set to NO. If the new
         /// request completes without being interrupted by another seek request or by any other operation the specified completion handler will be invoked with the
-        /// finished parameter set to YES.  If no item is attached, the completion handler will be invoked immediately with the finished parameter set to NO.
+        /// finished parameter set to YES. If no item is attached, the completion handler will be invoked immediately with the finished parameter set to NO.
+        ///
+        /// - Parameter time:
+        /// - Parameter toleranceBefore:
+        /// - Parameter toleranceAfter:
         #[unsafe(method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter_completionHandler(
@@ -544,7 +542,6 @@ impl AVPlayer {
 impl AVPlayer {
     extern_methods!(
         /// Indicates that the player is allowed to delay playback at the specified rate in order to minimize stalling
-        ///
         ///
         /// When this property is YES, whenever 1) the rate is set from zero to non-zero or 2) the playback buffer becomes empty and playback stalls, the player will attempt to determine if, at the specified rate, its currentItem will play to the end without interruptions. Should it determine that such interruptions would occur and these interruptions can be avoided by delaying the start or resumption of playback, the value of timeControlStatus will become AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate and playback will start automatically when the likelihood of stalling has been minimized.
         ///
@@ -579,20 +576,14 @@ impl AVPlayer {
         /// You can use this function to synchronize playback with an external activity.
         ///
         /// The current item's timebase is adjusted so that its time will be (or was) itemTime when host time is (or was) hostClockTime.
-        /// In other words: if hostClockTime is in the past, the timebase's time will be interpolated as though the timebase has been running at the requested rate since that time.  If hostClockTime is in the future, the timebase will immediately start running at the requested rate from an earlier time so that it will reach the requested itemTime at the requested hostClockTime.  (Note that the item's time will not jump backwards, but instead will sit at itemTime until the timebase reaches that time.)
+        /// In other words: if hostClockTime is in the past, the timebase's time will be interpolated as though the timebase has been running at the requested rate since that time. If hostClockTime is in the future, the timebase will immediately start running at the requested rate from an earlier time so that it will reach the requested itemTime at the requested hostClockTime. (Note that the item's time will not jump backwards, but instead will sit at itemTime until the timebase reaches that time.)
         ///
         /// Note that setRate:time:atHostTime: is not supported when automaticallyWaitsToMinimizeStalling is YES. For clients linked against iOS 10.0 and later or macOS 12.0 and later, invoking setRate:time:atHostTime: when automaticallyWaitsToMinimizeStalling is YES will raise an NSInvalidArgument exception. Support for HTTP Live Streaming content requires iOS 11, tvOS 11, macOS 10.13 or later.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
         ///
-        ///
-        /// Parameter `itemTime`: The time to start playback from, specified precisely (i.e., with zero tolerance).
-        /// Pass kCMTimeInvalid to use the current item's current time.
-        ///
-        /// Parameter `hostClockTime`: The host time at which to start playback.
-        /// If hostClockTime is specified, the player will not ensure that media data is loaded before the timebase starts moving.
-        /// If hostClockTime is kCMTimeInvalid, the rate and time will be set together, but without external synchronization;
-        /// a host time in the near future will be used, allowing some time for media data loading.
+        /// - Parameter itemTime: The time to start playback from, specified precisely (i.e., with zero tolerance). Pass kCMTimeInvalid to use the current item's current time.
+        /// - Parameter hostClockTime: The host time at which to start playback. If hostClockTime is specified, the player will not ensure that media data is loaded before the timebase starts moving. If hostClockTime is kCMTimeInvalid, the rate and time will be set together, but without external synchronization; a host time in the near future will be used, allowing some time for media data loading.
         #[unsafe(method(setRate:time:atHostTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRate_time_atHostTime(
@@ -610,9 +601,8 @@ impl AVPlayer {
         /// Call this method only when the rate is currently zero and only after the AVPlayer's status has become AVPlayerStatusReadyToPlay.
         /// This method throws an exception if the status is not AVPlayerStatusReadyToPlay.
         ///
-        /// Parameter `rate`: The intended rate for subsequent playback.
-        ///
-        /// Parameter `completionHandler`: The block that will be called when the preroll is either completed or is interrupted.
+        /// - Parameter rate: The intended rate for subsequent playback.
+        /// - Parameter completionHandler: The block that will be called when the preroll is either completed or is interrupted.
         #[unsafe(method(prerollAtRate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prerollAtRate_completionHandler(
@@ -654,16 +644,6 @@ impl AVPlayer {
         ))]
         /// Requests invocation of a block during playback to report changing time.
         ///
-        /// Parameter `interval`: The interval of invocation of the block during normal playback, according to progress of the current time of the player.
-        ///
-        /// Parameter `queue`: The serial queue onto which block should be enqueued.  If you pass NULL, the main queue (obtained using dispatch_get_main_queue()) will be used.  Passing a
-        /// concurrent queue to this method will result in undefined behavior.
-        ///
-        /// Parameter `block`: The block to be invoked periodically.
-        ///
-        /// Returns: An object conforming to the NSObject protocol.  You must retain this returned value as long as you want the time observer to be invoked by the player.
-        /// Pass this object to -removeTimeObserver: to cancel time observation.
-        ///
         /// The block is invoked periodically at the interval specified, interpreted according to the timeline of the current item.
         /// The block is also invoked whenever time jumps and whenever playback starts or stops.
         /// If the interval corresponds to a very short interval in real time, the player may invoke the block less frequently
@@ -671,6 +651,13 @@ impl AVPlayer {
         /// of the current time appropriately in its end-user interface.
         /// Each call to -addPeriodicTimeObserverForInterval:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:.
         /// Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior.
+        ///
+        /// - Parameter interval: The interval of invocation of the block during normal playback, according to progress of the current time of the player.
+        /// - Parameter queue: The serial queue onto which block should be enqueued. If you pass NULL, the main queue (obtained using dispatch_get_main_queue()) will be used. Passing a concurrent queue to this method will result in undefined behavior.
+        /// - Parameter block: The block to be invoked periodically.
+        ///
+        /// - Returns: An object conforming to the NSObject protocol.  You must retain this returned value as long as you want the time observer to be invoked by the player.
+        /// Pass this object to -removeTimeObserver: to cancel time observation.
         #[unsafe(method(addPeriodicTimeObserverForInterval:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPeriodicTimeObserverForInterval_queue_usingBlock(
@@ -683,18 +670,15 @@ impl AVPlayer {
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// Requests invocation of a block when specified times are traversed during normal playback.
         ///
-        /// Parameter `times`: The times for which the observer requests notification, supplied as an array of NSValues carrying CMTimes.
-        ///
-        /// Parameter `queue`: The serial queue onto which block should be enqueued.  If you pass NULL, the main queue (obtained using dispatch_get_main_queue()) will be used.  Passing a
-        /// concurrent queue to this method will result in undefined behavior.
-        ///
-        /// Parameter `block`: The block to be invoked when any of the specified times is crossed during normal playback.
-        ///
-        /// Returns: An object conforming to the NSObject protocol.  You must retain this returned value as long as you want the time observer to be invoked by the player.
-        /// Pass this object to -removeTimeObserver: to cancel time observation.
-        ///
         /// Each call to -addPeriodicTimeObserverForInterval:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:.
         /// Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior.
+        ///
+        /// - Parameter times: The times for which the observer requests notification, supplied as an array of NSValues carrying CMTimes.
+        /// - Parameter queue: The serial queue onto which block should be enqueued. If you pass NULL, the main queue (obtained using dispatch_get_main_queue()) will be used. Passing a concurrent queue to this method will result in undefined behavior.
+        /// - Parameter block: The block to be invoked when any of the specified times is crossed during normal playback.
+        ///
+        /// - Returns: An object conforming to the NSObject protocol.  You must retain this returned value as long as you want the time observer to be invoked by the player.
+        /// Pass this object to -removeTimeObserver: to cancel time observation.
         #[unsafe(method(addBoundaryTimeObserverForTimes:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addBoundaryTimeObserverForTimes_queue_usingBlock(
@@ -706,11 +690,9 @@ impl AVPlayer {
 
         /// Cancels a previously registered time observer.
         ///
-        /// Parameter `observer`: An object returned by a previous call to -addPeriodicTimeObserverForInterval:queue:usingBlock: or -addBoundaryTimeObserverForTimes:queue:usingBlock:.
-        ///
-        /// Upon return, the caller is guaranteed that no new time observer blocks will begin executing.  Depending on the calling thread and the queue
-        /// used to add the time observer, an in-flight block may continue to execute after this method returns.  You can guarantee synchronous time
-        /// observer removal by enqueuing the call to -removeTimeObserver: on that queue.  Alternatively, call dispatch_sync(queue, ^{}) after
+        /// Upon return, the caller is guaranteed that no new time observer blocks will begin executing. Depending on the calling thread and the queue
+        /// used to add the time observer, an in-flight block may continue to execute after this method returns. You can guarantee synchronous time
+        /// observer removal by enqueuing the call to -removeTimeObserver: on that queue. Alternatively, call dispatch_sync(queue, ^{}) after
         /// -removeTimeObserver: to wait for any in-flight blocks to finish executing.
         /// -removeTimeObserver: should be used to explicitly cancel each time observer added using -addPeriodicTimeObserverForInterval:queue:usingBlock:
         /// and -addBoundaryTimeObserverForTimes:queue:usingBlock:.
@@ -719,6 +701,8 @@ impl AVPlayer {
         /// - observer was added by a different instance of AVPlayer
         /// - observer was not returned by -addPeriodicTimeObserverForInterval:queue:usingBlock:
         /// - observer was not returned by -addBoundaryTimeObserverForTimes:queue:usingBlock:
+        ///
+        /// - Parameter observer: An object returned by a previous call to -addPeriodicTimeObserverForInterval:queue:usingBlock: or -addBoundaryTimeObserverForTimes:queue:usingBlock:.
         #[unsafe(method(removeTimeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTimeObserver(&self, observer: &AnyObject);
@@ -728,6 +712,10 @@ impl AVPlayer {
 /// AVPlayerMediaControl.
 impl AVPlayer {
     extern_methods!(
+        /// Indicates the current audio volume of the player; 0.0 means "silence all audio", 1.0 means "play at the full volume of the current item".
+        ///
+        /// iOS note: Do not use this property to implement a volume slider for media playback. For that purpose, use MPVolumeView, which is customizable in appearance and provides standard media playback behaviors that users expect.
+        /// This property is most useful on iOS to control the volume of the AVPlayer relative to other audio output, not for volume control by end users.
         #[unsafe(method(volume))]
         #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> c_float;
@@ -737,6 +725,7 @@ impl AVPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
+        /// Indicates whether or not audio output of the player is muted. Only affects audio muting for the player instance and not for the device.
         #[unsafe(method(isMuted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMuted(&self) -> bool;
@@ -751,6 +740,11 @@ impl AVPlayer {
 /// AVPlayerAutomaticMediaSelection.
 impl AVPlayer {
     extern_methods!(
+        /// Indicates whether the receiver should apply the current selection criteria automatically to AVPlayerItems.
+        ///
+        /// For clients linked against the iOS 7 SDK or later or against the macOS 10.9 SDK or later, the default is YES. For all others, the default is NO.
+        ///
+        /// By default, AVPlayer applies selection criteria based on system preferences. To override the default criteria for any media selection group, use -[AVPlayer setMediaSelectionCriteria:forMediaCharacteristic:].
         #[unsafe(method(appliesMediaSelectionCriteriaAutomatically))]
         #[unsafe(method_family = none)]
         pub unsafe fn appliesMediaSelectionCriteriaAutomatically(&self) -> bool;
@@ -766,10 +760,6 @@ impl AVPlayer {
         #[cfg(all(feature = "AVMediaFormat", feature = "AVPlayerMediaSelectionCriteria"))]
         /// Applies automatic selection criteria for media that has the specified media characteristic.
         ///
-        /// Parameter `criteria`: An instance of AVPlayerMediaSelectionCriteria.
-        ///
-        /// Parameter `mediaCharacteristic`: The media characteristic for which the selection criteria are to be applied. Supported values include AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, and AVMediaCharacteristicVisual.
-        ///
         /// Criteria will be applied to an AVPlayerItem when:
         /// a) It is made ready to play
         /// b) Specific media selections are made by -[AVPlayerItem selectMediaOption:inMediaSelectionGroup:] in a different group. The automatic choice in one group may be influenced by a specific selection in another group.
@@ -778,6 +768,9 @@ impl AVPlayer {
         /// Specific selections made by -[AVPlayerItem selectMediaOption:inMediaSelectionGroup:] within any group will override automatic selection in that group until -[AVPlayerItem selectMediaOptionAutomaticallyInMediaSelectionGroup:] is received.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
+        ///
+        /// - Parameter criteria: An instance of AVPlayerMediaSelectionCriteria.
+        /// - Parameter mediaCharacteristic: The media characteristic for which the selection criteria are to be applied. Supported values include AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, and AVMediaCharacteristicVisual.
         #[unsafe(method(setMediaSelectionCriteria:forMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaSelectionCriteria_forMediaCharacteristic(
@@ -789,9 +782,7 @@ impl AVPlayer {
         #[cfg(all(feature = "AVMediaFormat", feature = "AVPlayerMediaSelectionCriteria"))]
         /// Returns the automatic selection criteria for media that has the specified media characteristic.
         ///
-        /// Parameter `mediaCharacteristic`: The media characteristic for which the selection criteria is to be returned. Supported values include AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, and AVMediaCharacteristicVisual.
-        ///
-        /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
+        /// - Parameter mediaCharacteristic: The media characteristic for which the selection criteria is to be returned. Supported values include AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, and AVMediaCharacteristicVisual. Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
         #[unsafe(method(mediaSelectionCriteriaForMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionCriteriaForMediaCharacteristic(
@@ -824,8 +815,23 @@ impl AVPlayer {
 }
 
 /// AVPlayerExternalPlaybackSupport.
+/// Methods for supporting "external playback" of video
+///
+/// "External playback" is a mode where video data is sent to an external device for full screen playback at its original fidelity.
+/// AirPlay Video playback is considered as an "external playback" mode.
+///
+/// In "external screen" mode (also known as mirroring and second display), video data is rendered on the host
+/// device (e.g. Mac and iPhone), rendered video is recompressed and transferred to the external device, and the
+/// external device decompresses and displays the video.
+///
+/// AVPlayerExternalPlaybackSupport properties affect AirPlay Video playback and are the replacement for the
+/// deprecated AVPlayerAirPlaySupport properties.
+///
+/// Additional note for iOS: AVPlayerExternalPlaybackSupport properties apply to the Lightning-based
+/// video adapters but do not apply to 30-pin-connector-based video output cables and adapters.
 impl AVPlayer {
     extern_methods!(
+        /// Indicates whether the player allows switching to "external playback" mode. The default value is YES.
         #[unsafe(method(allowsExternalPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsExternalPlayback(&self) -> bool;
@@ -835,10 +841,12 @@ impl AVPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsExternalPlayback(&self, allows_external_playback: bool);
 
+        /// Indicates whether the player is currently playing video in "external playback" mode.
         #[unsafe(method(isExternalPlaybackActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExternalPlaybackActive(&self) -> bool;
 
+        /// Indicates whether the player should automatically switch to "external playback" mode while the "external screen" mode is active in order to play video content and switching back to "external screen" mode as soon as playback is done. Brief transition may be visible on the external display when automatically switching between the two modes. The default value is NO. Has no effect if allowsExternalPlayback is NO.
         #[unsafe(method(usesExternalPlaybackWhileExternalScreenIsActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesExternalPlaybackWhileExternalScreenIsActive(&self) -> bool;
@@ -852,6 +860,7 @@ impl AVPlayer {
         );
 
         #[cfg(feature = "AVAnimation")]
+        /// Video gravity strictly for "external playback" mode, one of AVLayerVideoGravity* defined in AVAnimation.h
         #[unsafe(method(externalPlaybackVideoGravity))]
         #[unsafe(method_family = none)]
         pub unsafe fn externalPlaybackVideoGravity(&self) -> Retained<AVLayerVideoGravity>;
@@ -868,10 +877,10 @@ impl AVPlayer {
 }
 
 /// AVPlayerProtectedContent.
+/// Methods supporting protected content.
 impl AVPlayer {
     extern_methods!(
         /// Whether or not decoded output is being obscured due to insufficient external protection.
-        ///
         ///
         /// The value of this property indicates whether the player is purposefully obscuring the visual output
         /// of the current item because the requirement for an external protection mechanism is not met by the
@@ -890,16 +899,6 @@ impl AVPlayer {
 
 /// A bitfield type that specifies an HDR mode.
 ///
-///
-///
-/// Indicates that HLG (Hybrid Log-Gamma) HDR mode is available.
-///
-///
-/// Indicates that HDR10 HDR mode is available.
-///
-///
-/// Indicates that Dolby Vision HDR mode is available.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerhdrmode?language=objc)
 // NS_OPTIONS
 #[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
@@ -908,12 +907,15 @@ impl AVPlayer {
 pub struct AVPlayerHDRMode(pub NSInteger);
 bitflags::bitflags! {
     impl AVPlayerHDRMode: NSInteger {
+/// Indicates that HLG (Hybrid Log-Gamma) HDR mode is available.
         #[doc(alias = "AVPlayerHDRModeHLG")]
 #[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
         const HLG = 0x1;
+/// Indicates that HDR10 HDR mode is available.
         #[doc(alias = "AVPlayerHDRModeHDR10")]
 #[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
         const HDR10 = 0x2;
+/// Indicates that Dolby Vision HDR mode is available.
         #[doc(alias = "AVPlayerHDRModeDolbyVision")]
 #[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
         const DolbyVision = 0x4;
@@ -931,8 +933,7 @@ unsafe impl RefEncode for AVPlayerHDRMode {
 extern "C" {
     /// A notification that fires whenever availableHDRModes changes.
     ///
-    ///
-    /// This notification fires when a value is added or removed from the list of availableHDRModes.  This can be caused by display connection/disconnection or resource changes.
+    /// This notification fires when a value is added or removed from the list of availableHDRModes. This can be caused by display connection/disconnection or resource changes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeravailablehdrmodesdidchangenotification?language=objc)
     pub static AVPlayerAvailableHDRModesDidChangeNotification: &'static NSNotificationName;
@@ -941,8 +942,7 @@ extern "C" {
 extern "C" {
     /// A notification that fires whenever eligibleForHDRPlayback changes.
     ///
-    ///
-    /// This notification fires when eligibleForHDRPlayback changes.  This can be caused by display connection/disconnection or resource changes.
+    /// This notification fires when eligibleForHDRPlayback changes. This can be caused by display connection/disconnection or resource changes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayereligibleforhdrplaybackdidchangenotification?language=objc)
     pub static AVPlayerEligibleForHDRPlaybackDidChangeNotification: &'static NSNotificationName;
@@ -951,10 +951,9 @@ extern "C" {
 /// AVPlayerPlaybackCapabilities.
 impl AVPlayer {
     extern_methods!(
-        /// An AVPlayerHDRMode value that indicates the HDR modes the device can play to an appropriate display.   A value of 0 indicates that no HDR modes are supported.
+        /// An AVPlayerHDRMode value that indicates the HDR modes the device can play to an appropriate display. A value of 0 indicates that no HDR modes are supported.
         ///
-        ///
-        /// This property indicates all of the HDR modes that the device can play.  Each value indicates that an appropriate HDR display is available for the specified HDR mode.  Additionally, the device must be capable of playing the specified HDR type.  This property does not indicate whether video contains HDR content, whether HDR video is currently playing, or whether video is playing on an HDR display.
+        /// This property indicates all of the HDR modes that the device can play. Each value indicates that an appropriate HDR display is available for the specified HDR mode. Additionally, the device must be capable of playing the specified HDR type. This property does not indicate whether video contains HDR content, whether HDR video is currently playing, or whether video is playing on an HDR display.
         #[deprecated = "Use eligibleForHDRPlayback instead"]
         #[unsafe(method(availableHDRModes))]
         #[unsafe(method_family = none)]
@@ -962,8 +961,7 @@ impl AVPlayer {
 
         /// Indicates whether HDR content can be played to an appropriate display.
         ///
-        ///
-        /// This property is YES if an HDR display is available and the device is capable of playing HDR content from an appropriate AVAsset, NO otherwise.  This property does not indicate whether video contains HDR content, whether HDR video is currently playing, or whether video is playing on an HDR display.  This property is not KVO observable.
+        /// This property is YES if an HDR display is available and the device is capable of playing HDR content from an appropriate AVAsset, NO otherwise. This property does not indicate whether video contains HDR content, whether HDR video is currently playing, or whether video is playing on an HDR display. This property is not KVO observable.
         #[unsafe(method(eligibleForHDRPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn eligibleForHDRPlayback(mtm: MainThreadMarker) -> bool;
@@ -975,8 +973,7 @@ impl AVPlayer {
     extern_methods!(
         /// Specifies a registryID associated with a GPU that should be used for video decode.
         ///
-        ///
-        /// By default, whenever possible, video decode will be performed on the GPU associated with the display on which the presenting CALayer is located.  Decode will be transitioned to a new GPU if appropriate when the CALayer moves to a new display.  This property overrides this default behavior, forcing decode to prefer an affinity to the GPU specified regardless of which GPU is being used to display the associated CALayer.
+        /// By default, whenever possible, video decode will be performed on the GPU associated with the display on which the presenting CALayer is located. Decode will be transitioned to a new GPU if appropriate when the CALayer moves to a new display. This property overrides this default behavior, forcing decode to prefer an affinity to the GPU specified regardless of which GPU is being used to display the associated CALayer.
         ///
         /// The GPU registryID can be obtained from the GPU MTLDevice using [MTLDevice registryID] or can be obtained from OpenGL or OpenCL.
         #[unsafe(method(preferredVideoDecoderGPURegistryID))]
@@ -998,8 +995,8 @@ impl AVPlayer {
     extern_methods!(
         /// Indicates whether video playback prevents display and device sleep.
         ///
-        /// Default is YES on iOS, tvOS and in Mac Catalyst apps.  Default is NO on macOS.
-        /// Setting this property to NO does not force the display to sleep, it simply stops preventing display sleep.  Other apps or frameworks within your app may still be preventing display sleep for various reasons.
+        /// Default is YES on iOS, tvOS and in Mac Catalyst apps. Default is NO on macOS.
+        /// Setting this property to NO does not force the display to sleep, it simply stops preventing display sleep. Other apps or frameworks within your app may still be preventing display sleep for various reasons.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
         #[unsafe(method(preventsDisplaySleepDuringVideoPlayback))]
@@ -1022,7 +1019,7 @@ impl AVPlayer {
         /// Indicates whether video playback prevents the app from automatically getting backgrounded.
         ///
         /// Default value is YES.
-        /// Setting this property to YES prevents an application that is playing video from automatically getting backgrounded.  This property does not prevent the user from backgrounding the application.
+        /// Setting this property to YES prevents an application that is playing video from automatically getting backgrounded. This property does not prevent the user from backgrounding the application.
         #[unsafe(method(preventsAutomaticBackgroundingDuringVideoPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn preventsAutomaticBackgroundingDuringVideoPlayback(&self) -> bool;
@@ -1039,25 +1036,19 @@ impl AVPlayer {
 
 /// This policy describes how AVPlayer behaves when the application transitions to UIApplicationStateBackground while playing video.
 ///
-///
-/// Indicates that the system is free to decide. This is the default policy.
-///
-///
-/// Indicates that the player must be paused on going to background.
-///
-///
-/// Indicates that the player continues to play if possible in background.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeraudiovisualbackgroundplaybackpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVPlayerAudiovisualBackgroundPlaybackPolicy(pub NSInteger);
 impl AVPlayerAudiovisualBackgroundPlaybackPolicy {
+    /// Indicates that the system is free to decide. This is the default policy.
     #[doc(alias = "AVPlayerAudiovisualBackgroundPlaybackPolicyAutomatic")]
     pub const Automatic: Self = Self(1);
+    /// Indicates that the player must be paused on going to background.
     #[doc(alias = "AVPlayerAudiovisualBackgroundPlaybackPolicyPauses")]
     pub const Pauses: Self = Self(2);
+    /// Indicates that the player continues to play if possible in background.
     #[doc(alias = "AVPlayerAudiovisualBackgroundPlaybackPolicyContinuesIfPossible")]
     pub const ContinuesIfPossible: Self = Self(3);
 }
@@ -1121,7 +1112,7 @@ impl AVPlayer {
         ///
         /// When an AVPlayerVideoOutput is associated with an AVPlayer, the AVPlayerVideoOutput can then be used to receive video-related samples during playback.
         ///
-        /// Note: If an output is set while AVPlayer has a current item it may cause different data channels to be selected for that item, which can have a performance impact.
+        /// - NOTE: If an output is set while AVPlayer has a current item it may cause different data channels to be selected for that item, which can have a performance impact.
         /// As a result, when possible, it is best to set an output before setting items on an AVPlayer.
         #[unsafe(method(videoOutput))]
         #[unsafe(method_family = none)]
@@ -1135,11 +1126,95 @@ impl AVPlayer {
     );
 }
 
+/// This defines the network resource priority for a player.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayernetworkresourcepriority?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AVPlayerNetworkResourcePriority(pub NSInteger);
+impl AVPlayerNetworkResourcePriority {
+    /// The default priority level given to a player for loading network resources. Use this when the player requires an optimal level of network resources and streaming in high-quality resolution is ideal. Players with AVPlayerNetworkResourcePriorityHigh will take precedence over this player. This player will take precedence over players with AVPlayerNetworkResourcePriorityLow.
+    #[doc(alias = "AVPlayerNetworkResourcePriorityDefault")]
+    pub const Default: Self = Self(0);
+    /// Indicates a low priority level for loading network resources. Use this when the player requires minimal network bandwidth and streaming in high-quality resolution is not crucial. Other players with higher priority will take precedence over this player.
+    #[doc(alias = "AVPlayerNetworkResourcePriorityLow")]
+    pub const Low: Self = Self(1);
+    /// Indicates a high priority level for loading network resources. Use this when the player requires a high level of network resources and streaming in high-quality resolution is crucial. This player will take precedence over other lower priority players.
+    #[doc(alias = "AVPlayerNetworkResourcePriorityHigh")]
+    pub const High: Self = Self(2);
+}
+
+unsafe impl Encode for AVPlayerNetworkResourcePriority {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVPlayerNetworkResourcePriority {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// AVPlayerResourceArbitrationSupport.
+impl AVPlayer {
+    extern_methods!(
+        /// Indicates the priority of this player for network bandwidth resource distribution.
+        ///
+        /// This value determines the priority of the player during network resource allocation among all other players within the same application process. The default value for this is AVPlayerNetworkResourcePriorityDefault.
+        #[unsafe(method(networkResourcePriority))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn networkResourcePriority(&self) -> AVPlayerNetworkResourcePriority;
+
+        /// Setter for [`networkResourcePriority`][Self::networkResourcePriority].
+        #[unsafe(method(setNetworkResourcePriority:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setNetworkResourcePriority(
+            &self,
+            network_resource_priority: AVPlayerNetworkResourcePriority,
+        );
+    );
+}
+
+/// AVPlayerSpatialAudioExperience.
+impl AVPlayer {
+    extern_methods!();
+}
+
+/// AVPlayerRoutingPlaybackArbitrationSupport.
+impl AVPlayer {
+    extern_methods!(
+        /// Whether the player's audio output is suppressed due to being on a non-mixable audio route.
+        ///
+        /// If YES, the player's audio output is suppressed. The player is muted while on a non-mixable audio route and cannot play audio. The player's mute property does not reflect the true mute status.
+        /// If NO, the player's audio output is not suppressed. The player may be muted or unmuted while on a non-mixable audio route and can play audio. The player's mute property reflects the true mute status.
+        /// In a non-mixable audio route, only one player can play audio. To play audio in non-mixable states, the player must be specified as the priority participant in AVRoutingPlaybackArbiter.preferredParticipantForNonMixableAudioRoutes. If this player becomes the preferred player, it will gain audio priority and suppress the audio of all other players. If another participant becomes the preferred participant, this player will lose audio priority and have their audio suppressed. This property is key-value observed.
+        #[unsafe(method(audioOutputSuppressedDueToNonMixableAudioRoute))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn audioOutputSuppressedDueToNonMixableAudioRoute(&self) -> bool;
+    );
+}
+
+/// AVPlayerObservation.
+impl AVPlayer {
+    extern_methods!(
+        /// AVPlayer and other AVFoundation types can optionally be observed using Swift Observation.
+        ///
+        /// When set to YES, new instances of AVPlayer, AVQueuePlayer, AVPlayerItem, and AVPlayerItemTrack are observable with Swift Observation. The default value is NO (not observable).  An exception is thrown if this property is set YES after initializing any objects of these types, or if it is set to NO after any observable objects are initialized.  In other words, all objects of these types must either be observable or not observable in an application instance.
+        ///
+        /// For more information regarding management of class objects in SwiftUI, please refer to https://developer.apple.com/documentation/swiftui/state.
+        #[unsafe(method(isObservationEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isObservationEnabled(mtm: MainThreadMarker) -> bool;
+
+        /// Setter for [`isObservationEnabled`][Self::isObservationEnabled].
+        #[unsafe(method(setObservationEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setObservationEnabled(observation_enabled: bool, mtm: MainThreadMarker);
+    );
+}
+
 /// AVPlayerDeprecated.
 impl AVPlayer {
     extern_methods!(
         /// Indicates whether display of closed captions is enabled.
-        ///
         ///
         /// This property is deprecated.
         ///
@@ -1162,6 +1237,7 @@ impl AVPlayer {
         pub unsafe fn setClosedCaptionDisplayEnabled(&self, closed_caption_display_enabled: bool);
 
         #[cfg(feature = "objc2-core-media")]
+        /// Use sourceClock instead.
         #[deprecated]
         #[unsafe(method(masterClock))]
         #[unsafe(method_family = none)]
@@ -1177,7 +1253,17 @@ impl AVPlayer {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueueplayer?language=objc)
+    /// AVQueuePlayer is a subclass of AVPlayer that offers an interface for multiple-item playback.
+    ///
+    /// AVQueuePlayer extends AVPlayer with methods for managing a queue of items to be played in sequence.
+    /// It plays these items as gaplessly as possible in the current runtime environment, depending on
+    /// the timely availability of media data for the enqueued items.
+    ///
+    /// For best performance clients should typically enqueue only as many AVPlayerItems as are necessary
+    /// to ensure smooth playback. Note that once an item is enqueued it becomes eligible to be loaded and
+    /// made ready for playback, with whatever I/O and processing overhead that entails.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueueplayer?language=objc)
     #[unsafe(super(AVPlayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVQueuePlayer;
@@ -1192,9 +1278,9 @@ impl AVQueuePlayer {
         #[cfg(feature = "AVPlayerItem")]
         /// Creates an instance of AVQueuePlayer and enqueues the AVPlayerItems from the specified array.
         ///
-        /// Parameter `items`: An NSArray of AVPlayerItems with which to populate the player's queue initially.
+        /// - Parameter items: An NSArray of AVPlayerItems with which to populate the player's queue initially.
         ///
-        /// Returns: An instance of AVQueuePlayer.
+        /// - Returns: An instance of AVQueuePlayer.
         #[unsafe(method(queuePlayerWithItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queuePlayerWithItems(
@@ -1205,22 +1291,22 @@ impl AVQueuePlayer {
         #[cfg(feature = "AVPlayerItem")]
         /// Initializes an instance of AVQueuePlayer by enqueueing the AVPlayerItems from the specified array.
         ///
-        /// Parameter `items`: An NSArray of AVPlayerItems with which to populate the player's queue initially.
-        ///
-        /// Returns: An instance of AVQueuePlayer.
-        ///
         /// This method throws an exception if items contains duplicated values or values associated with another AVPlayer.
+        ///
+        /// - Parameter items: An NSArray of AVPlayerItems with which to populate the player's queue initially.
+        ///
+        /// - Returns: An instance of AVQueuePlayer.
         #[unsafe(method(initWithItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
             items: &NSArray<AVPlayerItem>,
-        ) -> Retained<AVQueuePlayer>;
+        ) -> Retained<Self>;
 
         #[cfg(feature = "AVPlayerItem")]
         /// Provides an array of the currently enqueued items.
         ///
-        /// Returns: An NSArray containing the enqueued AVPlayerItems.
+        /// - Returns: An NSArray containing the enqueued AVPlayerItems.
         #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<AVPlayerItem>>;
@@ -1235,13 +1321,12 @@ impl AVQueuePlayer {
         #[cfg(feature = "AVPlayerItem")]
         /// Tests whether an AVPlayerItem can be inserted into the player's queue.
         ///
-        /// Parameter `item`: The AVPlayerItem to be tested.
-        ///
-        /// Parameter `afterItem`: The item that the item to be tested is to follow in the queue. Pass nil to test whether the item can be appended to the queue.
-        ///
-        /// Returns: An indication of whether the item can be inserted into the queue after the specified item.
-        ///
         /// Note that adding the same AVPlayerItem to an AVQueuePlayer at more than one position in the queue is not supported.
+        ///
+        /// - Parameter item: The AVPlayerItem to be tested.
+        /// - Parameter afterItem: The item that the item to be tested is to follow in the queue. Pass nil to test whether the item can be appended to the queue.
+        ///
+        /// - Returns: An indication of whether the item can be inserted into the queue after the specified item.
         #[unsafe(method(canInsertItem:afterItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canInsertItem_afterItem(
@@ -1253,11 +1338,10 @@ impl AVQueuePlayer {
         #[cfg(feature = "AVPlayerItem")]
         /// Places an AVPlayerItem after the specified item in the queue.
         ///
-        /// Parameter `item`: The item to be inserted.
-        ///
-        /// Parameter `afterItem`: The item that the newly inserted item should follow in the queue. Pass nil to append the item to the queue.
-        ///
         /// This method throws an exception if item already exists in the queue.
+        ///
+        /// - Parameter item: The item to be inserted.
+        /// - Parameter afterItem: The item that the newly inserted item should follow in the queue. Pass nil to append the item to the queue.
         #[unsafe(method(insertItem:afterItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertItem_afterItem(
@@ -1269,9 +1353,9 @@ impl AVQueuePlayer {
         #[cfg(feature = "AVPlayerItem")]
         /// Removes an AVPlayerItem from the queue.
         ///
-        /// Parameter `item`: The item to be removed.
-        ///
         /// If the item to be removed is currently playing, has the same effect as -advanceToNextItem.
+        ///
+        /// - Parameter item: The item to be removed.
         #[unsafe(method(removeItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeItem(&self, item: &AVPlayerItem);
@@ -1295,10 +1379,11 @@ impl AVQueuePlayer {
 
         /// Returns an instance of AVPlayer that plays a single audiovisual resource referenced by URL.
         ///
-        /// Parameter `URL`:
-        /// Returns: An instance of AVPlayer
-        ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
+        ///
+        /// - Parameter URL:
+        ///
+        /// - Returns: An instance of AVPlayer
         #[unsafe(method(playerWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
@@ -1306,10 +1391,11 @@ impl AVQueuePlayer {
         #[cfg(feature = "AVPlayerItem")]
         /// Create an AVPlayer that plays a single audiovisual item.
         ///
-        /// Parameter `item`:
-        /// Returns: An instance of AVPlayer
-        ///
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
+        ///
+        /// - Parameter item:
+        ///
+        /// - Returns: An instance of AVPlayer
         #[unsafe(method(playerWithPlayerItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerWithPlayerItem(
@@ -1319,10 +1405,11 @@ impl AVQueuePlayer {
 
         /// Initializes an AVPlayer that plays a single audiovisual resource referenced by URL.
         ///
-        /// Parameter `URL`:
-        /// Returns: An instance of AVPlayer
-        ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
+        ///
+        /// - Parameter URL:
+        ///
+        /// - Returns: An instance of AVPlayer
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
@@ -1330,12 +1417,13 @@ impl AVQueuePlayer {
         #[cfg(feature = "AVPlayerItem")]
         /// Create an AVPlayer that plays a single audiovisual item.
         ///
-        /// Parameter `item`:
-        /// Returns: An instance of AVPlayer
-        ///
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
         /// This method throws an exception if the item is not an AVPlayerItem, or if the item is
         /// associated with another AVPlayer.
+        ///
+        /// - Parameter item:
+        ///
+        /// - Returns: An instance of AVPlayer
         #[unsafe(method(initWithPlayerItem:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlayerItem(

@@ -221,9 +221,32 @@ extern "C-unwind" {
     /// - Parameters:
     /// - layer_properties: The layer properties to query.
     /// - Returns: The total number of views that need to be support on the drawables.
+    ///
+    /// Should use ``cp_frame_get_drawable_target_view_count`` when
+    /// performing frustum culling to determine how many views specific views each
+    /// drawable target has.
+    ///
+    /// Should use ``cp_drawable_get_view_count`` when drawing to
+    /// determine how many views the specific frame has.
     pub fn cp_layer_renderer_properties_get_view_count(
         layer_properties: &cp_layer_renderer_properties_t,
     ) -> usize;
+}
+
+extern "C-unwind" {
+    /// Returns the max render value for tracking areas' render values.
+    ///
+    /// - Parameters:
+    /// - layer_properties: The layer properties to query.
+    /// - Returns: The max render value for the tracking areas render values.
+    ///
+    /// The layer’s configuration determines the total number of available
+    /// tracking areas. This will be the max render value available, based on
+    /// ``cp_layer_renderer_configuration_get_tracking_areas_format`` function.
+    #[cfg(feature = "tracking_area")]
+    pub fn cp_layer_renderer_properties_get_tracking_areas_max_value(
+        properties: &cp_layer_renderer_properties_t,
+    ) -> cp_tracking_area_render_value;
 }
 
 extern "C-unwind" {

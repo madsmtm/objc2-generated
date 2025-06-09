@@ -39,6 +39,16 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypereed?language=objc)
+    pub static PKInkTypeReed: Option<&'static PKInkType>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypereedcalligraphypen?language=objc)
+    pub static PKInkTypeReedCalligraphyPen: Option<&'static PKInkType>;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypecrayon?language=objc)
     pub static PKInkTypeCrayon: Option<&'static PKInkType>;
 }

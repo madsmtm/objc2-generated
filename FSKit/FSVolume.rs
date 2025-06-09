@@ -926,6 +926,27 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn volumeStatistics(&self) -> Retained<FSStatFSResult>;
 
+        /// A property that allows the file system to use open-unlink emulation.
+        ///
+        /// _Open-unlink_ functionality refers to a file system's ability to support an open file being fully unlinked from the file system namespace.
+        /// If a file system doesn't support this functionality, FSKit can emulate it instead; this is called "open-unlink emulation".
+        ///
+        /// Implement this property to return `true` (Swift) or `YES` (Objective-C) to allow FSKit to perform open-unlink emulation.
+        /// If you don't implement this property at all, FSKit doesn't perform open-unlink emulation for this volume.
+        ///
+        /// FSKit reads this value after the file system replies to the `loadResource` message.
+        /// Changing the returned value during the runtime of the volume has no effect.
+        #[optional]
+        #[unsafe(method(enableOpenUnlinkEmulation))]
+        #[unsafe(method_family = none)]
+        unsafe fn enableOpenUnlinkEmulation(&self) -> bool;
+
+        /// Setter for [`enableOpenUnlinkEmulation`][Self::enableOpenUnlinkEmulation].
+        #[optional]
+        #[unsafe(method(setEnableOpenUnlinkEmulation:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setEnableOpenUnlinkEmulation(&self, enable_open_unlink_emulation: bool);
+
         #[cfg(all(feature = "FSTaskOptions", feature = "block2"))]
         /// Mounts this volume, using the specified options.
         ///

@@ -19,57 +19,183 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption?language=objc)
+/// An enum string type that your code can use to select different options when creating a Core Image context.
+///
+/// These option keys can be passed to `CIContext` creation APIs such as:
+/// * ``/CIContext/contextWithOptions:``
+/// * ``/CIContext/contextWithMTLDevice:options:``
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption?language=objc)
 // NS_TYPED_ENUM
 pub type CIContextOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextoutputcolorspace?language=objc)
+    /// A Core Image context option key to specify the default destination color space for rendering.
+    ///
+    /// This option only affects how Core Image renders using the following methods:
+    /// * ``/CIContext/createCGImage:fromRect:``
+    /// * ``/CIContext/drawImage:atPoint:fromRect:``
+    /// * ``/CIContext/drawImage:inRect:fromRect:``
+    ///
+    /// With all other render methods, the destination color space is either specified as a parameter
+    /// or can be determined from the object being rendered to.
+    ///
+    /// The value of this option can be either:
+    /// * A `CGColorSpace` instance with an RGB or monochrome color model that supports output.
+    /// * An `NSNull` instance to indicate that the context should not match from the working space to the destination.
+    ///
+    /// If this option is not specified, then the default output space is sRGB.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextoutputcolorspace?language=objc)
     pub static kCIContextOutputColorSpace: &'static CIContextOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextworkingcolorspace?language=objc)
+    /// A Core Image context option key to specify the working color space for rendering.
+    ///
+    /// Contexts support automatic color management by performing all processing operations
+    /// in a working color space. This means that unless told otherwise:
+    /// * All input images are color matched from the input's color space to the working space.
+    /// * All renders are color matched from the working space to the destination's color space.
+    ///
+    /// The default working space is the extended sRGB color space with linear gamma.
+    /// On macOS before 10.10, the default is extended Generic RGB with linear gamma.
+    ///
+    /// The value of this option can be either:
+    /// * A `CGColorSpace` instance with an RGB color model that supports output.
+    /// * An `NSNull` instance to request that Core Image perform no color management.
+    ///
+    /// If this option is not specified, then the default working space is used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextworkingcolorspace?language=objc)
     pub static kCIContextWorkingColorSpace: &'static CIContextOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextworkingformat?language=objc)
+    /// A Core Image context option key to specify the pixel format to for intermediate results when rendering.
+    ///
+    /// The value for this key is an `NSNumber` instance containing a ``CIFormat`` value.
+    ///
+    /// The supported values for the working pixel format are:
+    /// ``CIFormat``        | Notes
+    /// ------------------- | --------------
+    /// ``kCIFormatRGBA8``  | Uses less memory but has less precision an range
+    /// ``kCIFormatRGBAh``  | Uses 8 bytes per pixel, supports HDR
+    /// ``kCIFormatRGBAf``  | Only on macOS
+    ///
+    /// If this option is not specified, then the default is ``kCIFormatRGBAh``.
+    ///
+    /// (The default is ``kCIFormatRGBA8`` if your if app is linked against iOS 12 SDK or earlier.)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextworkingformat?language=objc)
     pub static kCIContextWorkingFormat: &'static CIContextOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontexthighqualitydownsample?language=objc)
+    /// A Boolean value to control the quality of image downsampling operations performed by the
+    /// Core Image context.
+    ///
+    /// The higher quality behavior performs downsampling operations in multiple passes
+    /// in order to reduce aliasing artifacts.
+    ///
+    /// The lower quality behavior performs downsampling operations a single pass
+    /// in order to improve performance.
+    ///
+    /// If the value for this option is:
+    /// * True: The higher quality behavior will be used.
+    /// * False: The lower quality behavior will be used.
+    /// * Not specified: the default behavior is True on macOS and False on other platforms.
+    ///
+    /// > Note:
+    /// > * This option does affect how ``/CIImage/imageByApplyingTransform:`` operations are performed by the context.
+    /// > * This option does not affect how ``/CIImage/imageByApplyingTransform:highQualityDownsample:`` behaves.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontexthighqualitydownsample?language=objc)
     pub static kCIContextHighQualityDownsample: &'static CIContextOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextoutputpremultiplied?language=objc)
+    /// A Boolean value to control how a Core Image context render produces alpha-premultiplied pixels.
+    ///
+    /// This option only affects how a context is rendered when using methods where the destination's
+    /// alpha mode cannot be determined such as:
+    /// *  ``/CIContext/render:toBitmap:rowBytes:bounds:format:colorSpace:``
+    /// *  ``/CIContext/render:toCVPixelBuffer:``
+    /// *  ``/CIContext/render:toIOSurface:bounds:colorSpace:``
+    /// *  ``/CIContext/render:toMTLTexture:commandBuffer:bounds:colorSpace:``
+    /// *  ``/CIContext/createCGImage:fromRect:``
+    ///
+    /// If the value for this option is:
+    /// * True: The output will produce alpha-premultiplied pixels.
+    /// * False: The output will produce un-premultiplied pixels.
+    /// * Not specified: the default behavior True.
+    ///
+    /// This option does not affect how a context is rendered to a ``CIRenderDestination`` because
+    /// that API allows you to set or override the alpha behavior using ``/CIRenderDestination/alphaMode``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextoutputpremultiplied?language=objc)
     pub static kCIContextOutputPremultiplied: &'static CIContextOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextcacheintermediates?language=objc)
+    /// A Boolean value to control how a Core Image context caches the contents of any intermediate image buffers it uses during rendering.
+    ///
+    /// If a context caches intermediate buffers, then subsequent renders of a similar image using the same context
+    /// may be able to render faster. If a context does not cache intermediate buffers, then it may use less memory.
+    ///
+    /// If the value for this option is:
+    /// * True: The context will cache intermediate results for future renders using the same context.
+    /// * False: The context will not cache intermediate results.
+    /// * Not specified: the default behavior True.
+    ///
+    /// > Note:
+    /// > * This option does affect how ``/CIImage/imageByInsertingIntermediate`` behaves.
+    /// > * This option does not affect how ``/CIImage/imageByInsertingIntermediate:`` behaves.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextcacheintermediates?language=objc)
     pub static kCIContextCacheIntermediates: &'static CIContextOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextusesoftwarerenderer?language=objc)
+    /// A Boolean value to control if a Core Image context will use a software renderer.
+    ///
+    /// > Note: This option has no effect if the platform does not support OpenCL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextusesoftwarerenderer?language=objc)
     pub static kCIContextUseSoftwareRenderer: &'static CIContextOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextpriorityrequestlow?language=objc)
+    /// A Boolean value to control the priority Core Image context renders.
+    ///
+    /// If this value is True, then rendering with the context from a background thread takes lower priority
+    /// than other GPU usage from the main thread. This allows your app to perform Core Image rendering without
+    /// disturbing the frame rate of UI animations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextpriorityrequestlow?language=objc)
     pub static kCIContextPriorityRequestLow: &'static CIContextOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextallowlowpower?language=objc)
+    /// A Boolean value to control the power level of Core Image context renders.
+    ///
+    /// This option only affects certain macOS devices with more than one available GPU device.
+    ///
+    /// If this value is True, then rendering with the context will use a use allow power GPU device
+    /// if available and the high power device is not already in use.
+    ///
+    /// Otherwise, the context will use the highest power/performance GPU device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextallowlowpower?language=objc)
     pub static kCIContextAllowLowPower: &'static CIContextOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextname?language=objc)
+    /// A Boolean value to specifying a client-provided name for a context.
+    ///
+    /// This name will be used in QuickLook graphs and the output of CI_PRINT_TREE.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextname?language=objc)
     pub static kCIContextName: &'static CIContextOption;
 }
 
@@ -79,11 +205,39 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontext?language=objc)
+    /// The Core Image context class provides an evaluation context for Core Image processing with Metal, OpenGL, or OpenCL.
+    ///
+    /// You use `CIContext` instance to render a ``CIImage`` instance which represents a graph of image processing operations
+    /// which are built using other Core Image classes, such as ``CIFilter-class``, ``CIKernel``, ``CIColor`` and ``CIImage``.
+    /// You can also use a `CIContext` with the ``CIDetector`` class to analyze images — for example, to detect faces
+    /// or barcodes.
+    ///
+    /// Contexts support automatic color management by performing all processing operations in a working color space.
+    /// This means that unless told otherwise:
+    /// * all input images are color matched from the input's color space to the working space.
+    /// * all renders are color matched from the working space to the destination space.
+    /// (For more information on `CGColorSpace` see
+    /// <doc
+    /// ://com.apple.documentation/documentation/coregraphics/cgcolorspace>)
+    ///
+    /// `CIContext` and ``CIImage`` instances are immutable, so multiple threads can use the same ``CIContext`` instance
+    /// to render ``CIImage`` instances. However, ``CIFilter-class`` instances are mutable and thus cannot be shared safely among
+    /// threads. Each thread must take case not to access or modify a ``CIFilter-class`` instance while it is being used by
+    /// another thread.
+    ///
+    /// The `CIContext` manages various internal state such `MTLCommandQueue` and caches for compiled kernels
+    /// and intermediate buffers.  For this reason it is not recommended to create many `CIContext` instances.  As a rule,
+    /// it recommended that you create one `CIContext` instance for each view that renders ``CIImage`` or each background task.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIContext;
 );
+
+unsafe impl Send for CIContext {}
+
+unsafe impl Sync for CIContext {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for CIContext {}
@@ -300,6 +454,24 @@ impl CIContext {
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
+        /// Creates a Core Graphics image from a region of a Core Image image instance.
+        ///
+        /// The color space of the created `CGImage` will be sRGB unless the receiving ``CIContext``
+        /// was created with a `kCIContextOutputColorSpace` option.
+        ///
+        /// Normally the pixel format of the created CGImage will be 8 bits-per-component.
+        /// It will be 16 bits-per-component float if the above color space is HDR.
+        ///
+        /// - Parameters:
+        /// - image: A ``CIImage`` image instance for which to create a `CGImage`.
+        /// - fromRect: The `CGRect` region of the `image` to use.
+        /// This region relative to the cartesean coordinate system of `image`.
+        /// This region will be intersected with integralized and intersected with `image.extent`.
+        ///
+        /// - Returns:
+        /// Returns a new `CGImage` instance.
+        /// You are responsible for releasing the returned image when you no longer need it.
+        /// The returned value will be `null` if the extent is empty or too big.
         #[unsafe(method(createCGImage:fromRect:))]
         // required for soundness, method has `returns_retained` attribute.
         #[unsafe(method_family = copy)]
@@ -314,6 +486,25 @@ impl CIContext {
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
+        /// Creates a Core Graphics image from a region of a Core Image image instance
+        /// with an option for controlling the pixel format and color space of the `CGImage`.
+        ///
+        /// - Parameters:
+        /// - image: A ``CIImage`` image instance for which to create a `CGImage`.
+        /// - fromRect: The `CGRect` region of the `image` to use.
+        /// This region relative to the cartesean coordinate system of `image`.
+        /// This region will be intersected with integralized and intersected with `image.extent`.
+        /// - format: A ``CIFormat`` to specify the pixel format of the created `CGImage`.
+        /// For example, if `kCIFormatRGBX16` is specified, then the created `CGImage` will
+        /// be 16 bits-per-component and opaque.
+        /// - colorSpace: The `CGColorSpace` for the output image.
+        /// This color space must have either `CGColorSpaceModel.rgb` or `CGColorSpaceModel.monochrome` and
+        /// and be compatible with the specified pixel format.
+        ///
+        /// - Returns:
+        /// Returns a new `CGImage` instance.
+        /// You are responsible for releasing the returned image when you no longer need it.
+        /// The returned value will be `null` if the extent is empty or too big.
         #[unsafe(method(createCGImage:fromRect:format:colorSpace:))]
         // required for soundness, method has `returns_retained` attribute.
         #[unsafe(method_family = copy)]
@@ -330,6 +521,28 @@ impl CIContext {
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
+        /// Creates a Core Graphics image from a region of a Core Image image instance
+        /// with an option for controlling when the image is rendered.
+        ///
+        /// - Parameters:
+        /// - image: A ``CIImage`` image instance for which to create a `CGImage`.
+        /// - fromRect: The `CGRect` region of the `image` to use.
+        /// This region relative to the cartesean coordinate system of `image`.
+        /// This region will be intersected with integralized and intersected with `image.extent`.
+        /// - format: A ``CIFormat`` to specify the pixel format of the created `CGImage`.
+        /// For example, if `kCIFormatRGBX16` is specified, then the created `CGImage` will
+        /// be 16 bits-per-component and opaque.
+        /// - colorSpace: The `CGColorSpace` for the output image.
+        /// This color space must have either `CGColorSpaceModel.rgb` or `CGColorSpaceModel.monochrome` and
+        /// and be compatible with the specified pixel format.
+        /// - deferred: Controls when Core Image renders `image`.
+        /// * `YES` : rendering of `image` is deferred until the created `CGImage` rendered.
+        /// * `NO`  : the `image` is rendered immediately.
+        ///
+        /// - Returns:
+        /// Returns a new `CGImage` instance.
+        /// You are responsible for releasing the returned image when you no longer need it.
+        /// The returned value will be `null` if the extent is empty or too big.
         #[unsafe(method(createCGImage:fromRect:format:colorSpace:deferred:))]
         // required for soundness, method has `returns_retained` attribute.
         #[unsafe(method_family = copy)]
@@ -341,6 +554,115 @@ impl CIContext {
             color_space: Option<&CGColorSpace>,
             deferred: bool,
         ) -> Option<Retained<CGImage>>;
+
+        #[cfg(all(
+            feature = "CIImage",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        /// Creates a Core Graphics image from a region of a Core Image image instance
+        /// with an option for calculating HDR statistics.
+        ///
+        /// - Parameters:
+        /// - image: A ``CIImage`` image instance for which to create a `CGImage`.
+        /// - fromRect: The `CGRect` region of the `image` to use.
+        /// This region relative to the cartesean coordinate system of `image`.
+        /// This region will be intersected with integralized and intersected with `image.extent`.
+        /// - format: A ``CIFormat`` to specify the pixel format of the created `CGImage`.
+        /// For example, if `kCIFormatRGBX16` is specified, then the created `CGImage` will
+        /// be 16 bits-per-component and opaque.
+        /// - colorSpace: The `CGColorSpace` for the output image.
+        /// This color space must have either `CGColorSpaceModel.rgb` or `CGColorSpaceModel.monochrome` and
+        /// and be compatible with the specified pixel format.
+        /// - deferred: Controls when Core Image renders `image`.
+        /// * `YES` : rendering of `image` is deferred until the created `CGImage` rendered.
+        /// * `NO`  : the `image` is rendered immediately.
+        /// - calculateHDRStats: Controls if Core Image calculates HDR statistics.
+        /// * `YES` : Core Image will immediately render `image`, calculate the HDR statistics
+        /// and create a `CGImage` that has the calculated values.
+        /// * `NO` :  the created `CGImage` will not have any HDR statistics.
+        ///
+        /// - Returns:
+        /// Returns a new `CGImage` instance.
+        /// You are responsible for releasing the returned image when you no longer need it.
+        /// The returned value will be `null` if the extent is empty or too big.
+        #[unsafe(method(createCGImage:fromRect:format:colorSpace:deferred:calculateHDRStats:))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn createCGImage_fromRect_format_colorSpace_deferred_calculateHDRStats(
+            &self,
+            image: &CIImage,
+            from_rect: CGRect,
+            format: CIFormat,
+            color_space: Option<&CGColorSpace>,
+            deferred: bool,
+            calculate_hdr_stats: bool,
+        ) -> Option<Retained<CGImage>>;
+    );
+}
+
+/// CalculateHDRStats.
+impl CIContext {
+    extern_methods!(
+        #[cfg(feature = "objc2-io-surface")]
+        /// Given an IOSurface, use the receiving Core Image context to calculate its
+        /// HDR statistics (content headroom and content average light level)
+        /// and then update the surface's attachments to store the values.
+        ///
+        /// If the `IOSurface` has a Clean Aperture rectangle then only pixels within
+        /// that rectangle are considered.
+        ///
+        /// - Parameters:
+        /// - surface: A mutable `IOSurfaceRef` for which to calculate and attach statistics.
+        #[unsafe(method(calculateHDRStatsForIOSurface:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn calculateHDRStatsForIOSurface(&self, surface: &IOSurfaceRef);
+
+        #[cfg(feature = "objc2-core-video")]
+        /// Given a CVPixelBuffer, use the receiving Core Image context to calculate its
+        /// HDR statistics (content headroom and content average light level)
+        /// and then update the buffers's attachments to store the values.
+        ///
+        /// If the `CVPixelBuffer` has a Clean Aperture rectangle then only pixels within
+        /// that rectangle are considered.
+        ///
+        /// - Parameters:
+        /// - buffer: A mutable `CVPixelBuffer` for which to calculate and attach statistics.
+        #[unsafe(method(calculateHDRStatsForCVPixelBuffer:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn calculateHDRStatsForCVPixelBuffer(&self, buffer: &CVPixelBuffer);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        /// Given a Core Graphics image, use the receiving Core Image context to calculate its
+        /// HDR statistics (content headroom and content average light level)
+        /// and then return a new Core Graphics image that has the calculated values.
+        ///
+        /// - Parameters:
+        /// - cgimage: An immutable `CGImage` for which to calculate statistics.
+        /// - Returns:
+        /// Returns a new `CGImage` instance that has the calculated statistics attached.
+        #[unsafe(method(calculateHDRStatsForCGImage:))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn calculateHDRStatsForCGImage(&self, cgimage: &CGImage) -> Retained<CGImage>;
+
+        #[cfg(feature = "CIImage")]
+        /// Given a Core Image image, use the receiving Core Image context to calculate its
+        /// HDR statistics (content headroom and content average light level)
+        /// and then return a new Core Image image that has the calculated values.
+        ///
+        /// If the image extent is not finite, then nil will be returned.
+        ///
+        /// - Parameters:
+        /// - image: An immutable ``CIImage`` for which to calculate statistics.
+        /// - Returns:
+        /// Returns a new ``CIImage`` instance that has the calculated statistics attached.
+        #[unsafe(method(calculateHDRStatsForImage:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn calculateHDRStatsForImage(
+            &self,
+            image: &CIImage,
+        ) -> Option<Retained<CIImage>>;
     );
 }
 
@@ -358,79 +680,158 @@ impl CIContext {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption?language=objc)
+/// An enum string type that your code can use to select different options when saving to image representations such as JPEG and HEIF.
+///
+/// Some of the methods that support these options are:
+/// * ``/CIContext/JPEGRepresentationOfImage:colorSpace:options:``
+/// * ``/CIContext/HEIFRepresentationOfImage:format:colorSpace:options:``
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption?language=objc)
 // NS_TYPED_ENUM
 pub type CIImageRepresentationOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavdepthdata?language=objc)
+    /// An optional key and value to save additional depth channel information to a JPEG or HEIF representations.
+    ///
+    /// The value for this key needs to be an `AVDepthData` instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavdepthdata?language=objc)
     pub static kCIImageRepresentationAVDepthData: &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationdepthimage?language=objc)
+    /// An optional key and value to save additional depth channel information to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be a monochrome depth ``CIImage`` instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationdepthimage?language=objc)
     pub static kCIImageRepresentationDepthImage: &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationdisparityimage?language=objc)
+    /// An optional key and value to save additional depth channel information to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be a monochrome disparity ``CIImage`` instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationdisparityimage?language=objc)
     pub static kCIImageRepresentationDisparityImage: &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavportraiteffectsmatte?language=objc)
+    /// An optional key and value to save a portrait matte channel information to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be a an `AVPortraitEffectsMatte` instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavportraiteffectsmatte?language=objc)
     pub static kCIImageRepresentationAVPortraitEffectsMatte: &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationportraiteffectsmatteimage?language=objc)
+    /// An optional key and value to save a portrait matte channel to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be a portrait matte ``CIImage`` instance where black pixels
+    /// represent the background region and white pixels represent the primary people in the image.
+    /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationportraiteffectsmatteimage?language=objc)
     pub static kCIImageRepresentationPortraitEffectsMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavsemanticsegmentationmattes?language=objc)
+    /// An optional key and value to save one or more segmentation matte channels to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be an array of AVSemanticSegmentationMatte instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavsemanticsegmentationmattes?language=objc)
     pub static kCIImageRepresentationAVSemanticSegmentationMattes:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationskinmatteimage?language=objc)
+    /// An optional key and value to save a skin segmentation channel to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be a ``CIImage`` instance where white pixels
+    /// represent the areas of person's skin are found in the image.
+    /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationskinmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationSkinMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationhairmatteimage?language=objc)
+    /// An optional key and value to save a skin segmentation channel to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be a ``CIImage`` instance where white pixels
+    /// represent the areas of person's head and facial hair are found in the image.
+    /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationhairmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationHairMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationteethmatteimage?language=objc)
+    /// An optional key and value to save a skin segmentation channel to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be a ``CIImage`` instance where white pixels
+    /// represent the areas where a person's teeth are found in the image.
+    /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationteethmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationTeethMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationglassesmatteimage?language=objc)
+    /// An optional key and value to save a skin segmentation channel to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be a ``CIImage`` instance where white pixels
+    /// represent the areas where a person's glasses are found in the image.
+    /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationglassesmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationGlassesMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationskymatteimage?language=objc)
+    /// An optional key and value to save a skin segmentation channel to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be a ``CIImage`` instance where white pixels
+    /// represent the areas where a person's skin are found in the image.
+    /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationskymatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationSkyMatteImage:
         &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationhdrimage?language=objc)
+    /// An optional key and value to save a HDR image using the gain map channel to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be a HDR CIImage instance.
+    ///
+    /// When provided, Core Image will calculate a gain map auxiliary image
+    /// from the ratio of the HDR image to the primary SDR image.
+    ///
+    /// If the the HDR ``CIImage`` instance has a ``/CIImage/contentHeadroom`` property,
+    /// then that will be used when calculating the HDRGainMap image and metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationhdrimage?language=objc)
     pub static kCIImageRepresentationHDRImage: &'static CIImageRepresentationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationhdrgainmapimage?language=objc)
+    /// An optional key and value to save a gain map channel to a JPEG or HEIF.
+    ///
+    /// The value for this key needs to be a monochrome ``CIImage`` instance.
+    ///
+    /// The ``/CIImage/properties`` should contain metadata information equivalent to what is returned when
+    /// initializing an image using ``kCIImageAuxiliaryHDRGainMap``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationhdrgainmapimage?language=objc)
     pub static kCIImageRepresentationHDRGainMapImage: &'static CIImageRepresentationOption;
 }
 

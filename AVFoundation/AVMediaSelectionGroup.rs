@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup?language=objc)
+    /// AVMediaSelectionGroup provides a collection of mutually exclusive options for the presentation of media within an asset.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMediaSelectionGroup;
@@ -51,9 +53,9 @@ impl AVMediaSelectionGroup {
 
         /// Returns the instance of AVMediaSelectionOption with properties that match the specified property list.
         ///
-        /// Parameter `plist`: A property list previously obtained from an option in the group via -[AVMediaSelectionOption propertyList].
+        /// - Parameter plist: A property list previously obtained from an option in the group via -[AVMediaSelectionOption propertyList].
         ///
-        /// Returns: If the specified properties match those of an option in the group, an instance of AVMediaSelectionOption. Otherwise nil.
+        /// - Returns: If the specified properties match those of an option in the group, an instance of AVMediaSelectionOption. Otherwise nil.
         #[unsafe(method(mediaSelectionOptionWithPropertyList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionOptionWithPropertyList(
@@ -86,9 +88,9 @@ impl AVMediaSelectionGroup {
     extern_methods!(
         /// Filters an array of AVMediaSelectionOptions according to whether they are playable.
         ///
-        /// Parameter `mediaSelectionOptions`: An array of AVMediaSelectionOption to be filtered according to whether they are playable.
+        /// - Parameter mediaSelectionOptions: An array of AVMediaSelectionOption to be filtered according to whether they are playable.
         ///
-        /// Returns: An instance of NSArray containing the media selection options of the specified NSArray that are playable.
+        /// - Returns: An instance of NSArray containing the media selection options of the specified NSArray that are playable.
         #[unsafe(method(playableMediaSelectionOptionsFromArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playableMediaSelectionOptionsFromArray(
@@ -97,11 +99,10 @@ impl AVMediaSelectionGroup {
 
         /// Filters an array of AVMediaSelectionOptions according to whether their locales match any language identifier in the specified array of preferred languages. The returned array is sorted according to the order of preference of the language each matches.
         ///
-        /// Parameter `mediaSelectionOptions`: An array of AVMediaSelectionOptions to be filtered and sorted.
+        /// - Parameter mediaSelectionOptions: An array of AVMediaSelectionOptions to be filtered and sorted.
+        /// - Parameter preferredLanguages: An array of language identifiers in order of preference, each of which is an IETF BCP 47 (RFC 4646) language identifier. If your goal is to provide the best match for the end user's preferred languages without consideration of your app's available localizations, pass [NSLocale preferredLanguages] as the value of preferredLanguages. However, if you want to filter the available choices in order to obtain the best match among the localizations that are available for your app, pass [NSBundle preferredLocalizationsFromArray:[[NSBundle mainBundle] localizations] forPreferences:[NSLocale preferredLanguages]] instead. The latter choice is normally more appropriate for strings intended for display as part of the app's UI.
         ///
-        /// Parameter `preferredLanguages`: An array of language identifiers in order of preference, each of which is an IETF BCP 47 (RFC 4646) language identifier. Use +[NSLocale preferredLanguages] to obtain the user's list of preferred languages.
-        ///
-        /// Returns: An instance of NSArray containing media selection options of the specified NSArray that match a preferred language, sorted according to the order of preference of the language each matches.
+        /// - Returns: An instance of NSArray containing media selection options of the specified NSArray that match a preferred language, sorted according to the order of preference of the language each matches.
         #[unsafe(method(mediaSelectionOptionsFromArray:filteredAndSortedAccordingToPreferredLanguages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionOptionsFromArray_filteredAndSortedAccordingToPreferredLanguages(
@@ -111,11 +112,10 @@ impl AVMediaSelectionGroup {
 
         /// Filters an array of AVMediaSelectionOptions according to locale.
         ///
-        /// Parameter `mediaSelectionOptions`: An array of AVMediaSelectionOption to be filtered by locale.
+        /// - Parameter mediaSelectionOptions: An array of AVMediaSelectionOption to be filtered by locale.
+        /// - Parameter locale: The NSLocale that must be matched for a media selection option to be copied to the output array.
         ///
-        /// Parameter `locale`: The NSLocale that must be matched for a media selection option to be copied to the output array.
-        ///
-        /// Returns: An instance of NSArray containing the media selection options of the specified NSArray that match the specified locale.
+        /// - Returns: An instance of NSArray containing the media selection options of the specified NSArray that match the specified locale.
         #[unsafe(method(mediaSelectionOptionsFromArray:withLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionOptionsFromArray_withLocale(
@@ -126,11 +126,10 @@ impl AVMediaSelectionGroup {
         #[cfg(feature = "AVMediaFormat")]
         /// Filters an array of AVMediaSelectionOptions according to one or more media characteristics.
         ///
-        /// Parameter `mediaSelectionOptions`: An array of AVMediaSelectionOptions to be filtered by media characteristic.
+        /// - Parameter mediaSelectionOptions: An array of AVMediaSelectionOptions to be filtered by media characteristic.
+        /// - Parameter mediaCharacteristics: The media characteristics that must be matched for a media selection option to be copied to the output array.
         ///
-        /// Parameter `mediaCharacteristics`: The media characteristics that must be matched for a media selection option to be copied to the output array.
-        ///
-        /// Returns: An instance of NSArray containing the media selection options of the specified NSArray that match the specified
+        /// - Returns: An instance of NSArray containing the media selection options of the specified NSArray that match the specified
         /// media characteristics.
         #[unsafe(method(mediaSelectionOptionsFromArray:withMediaCharacteristics:))]
         #[unsafe(method_family = none)]
@@ -142,11 +141,10 @@ impl AVMediaSelectionGroup {
         #[cfg(feature = "AVMediaFormat")]
         /// Filters an array of AVMediaSelectionOptions according to whether they lack one or more media characteristics.
         ///
-        /// Parameter `mediaSelectionOptions`: An array of AVMediaSelectionOptions to be filtered by media characteristic.
+        /// - Parameter mediaSelectionOptions: An array of AVMediaSelectionOptions to be filtered by media characteristic.
+        /// - Parameter mediaCharacteristics: The media characteristics that must not be present for a media selection option to be copied to the output array.
         ///
-        /// Parameter `mediaCharacteristics`: The media characteristics that must not be present for a media selection option to be copied to the output array.
-        ///
-        /// Returns: An instance of NSArray containing the media selection options of the specified NSArray that lack the specified
+        /// - Returns: An instance of NSArray containing the media selection options of the specified NSArray that lack the specified
         /// media characteristics.
         #[unsafe(method(mediaSelectionOptionsFromArray:withoutMediaCharacteristics:))]
         #[unsafe(method_family = none)]
@@ -158,7 +156,9 @@ impl AVMediaSelectionGroup {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediaselectionoption?language=objc)
+    /// AVMediaSelectionOption represents a specific option for the presentation of media within a group of options.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediaselectionoption?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMediaSelectionOption;
@@ -197,9 +197,9 @@ impl AVMediaSelectionOption {
         #[cfg(feature = "AVMediaFormat")]
         /// Reports whether the media selection option includes media with the specified media characteristic.
         ///
-        /// Parameter `mediaCharacteristic`: The media characteristic of interest, e.g. AVMediaCharacteristicVisual, AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, etc.
+        /// - Parameter mediaCharacteristic: The media characteristic of interest, e.g. AVMediaCharacteristicVisual, AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, etc.
         ///
-        /// Returns: YES if the media selection option includes media with the specified characteristic, otherwise NO.
+        /// - Returns: YES if the media selection option includes media with the specified characteristic, otherwise NO.
         #[unsafe(method(hasMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasMediaCharacteristic(
@@ -232,7 +232,7 @@ impl AVMediaSelectionOption {
         /// The array of AVMetadataItems can be filtered according to language via +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:], according to locale via +[AVMetadataItem metadataItemsFromArray:withLocale:],
         /// or according to key via +[AVMetadataItem metadataItemsFromArray:withKey:keySpace:].
         /// Example: to obtain the name (or title) of a media selection option in any of the user's preferred languages.
-        ///
+        /// ```objc
         /// NSString *title = nil;
         /// NSArray *titles = [AVMetadataItem metadataItemsFromArray:[mediaSelectionOption commonMetadata] withKey:AVMetadataCommonKeyTitle keySpace:AVMetadataKeySpaceCommon];
         /// if ([titles count] > 0)
@@ -250,6 +250,7 @@ impl AVMediaSelectionOption {
         /// title = [[titles objectAtIndex:0] stringValue];
         /// }
         /// }
+        /// ```
         #[unsafe(method(commonMetadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn commonMetadata(&self) -> Retained<NSArray<AVMetadataItem>>;
@@ -264,9 +265,9 @@ impl AVMediaSelectionOption {
         #[cfg(feature = "AVMetadataItem")]
         /// Provides an NSArray of AVMetadataItems, one for each metadata item in the container of the specified format.
         ///
-        /// Parameter `format`: The metadata format for which items are requested.
+        /// - Parameter format: The metadata format for which items are requested.
         ///
-        /// Returns: An NSArray containing AVMetadataItems.
+        /// - Returns: An NSArray containing AVMetadataItems.
         #[unsafe(method(metadataForFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataForFormat(
@@ -276,11 +277,11 @@ impl AVMediaSelectionOption {
 
         /// If a media selection option in another group is associated with the specified option, returns a reference to the associated option.
         ///
-        /// Parameter `mediaSelectionGroup`: A media selection group in which an associated option is to be sought.
-        ///
-        /// Returns: An instance of AVMediaSelectionOption.
-        ///
         /// Audible media selection options often have associated legible media selection options; in particular, audible options are typically associated with forced-only subtitle options with the same locale. See AVMediaCharacteristicContainsOnlyForcedSubtitles in AVMediaFormat.h for a discussion of forced-only subtitles.
+        ///
+        /// - Parameter mediaSelectionGroup: A media selection group in which an associated option is to be sought.
+        ///
+        /// - Returns: An instance of AVMediaSelectionOption.
         #[unsafe(method(associatedMediaSelectionOptionInMediaSelectionGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn associatedMediaSelectionOptionInMediaSelectionGroup(
@@ -290,16 +291,16 @@ impl AVMediaSelectionOption {
 
         /// Returns a serializable property list that can be used to obtain an instance of AVMediaSelectionOption representing the same option as the receiver via -[AVMediaSelectionGroup mediaSelectionOptionWithPropertyList:].
         ///
-        /// Returns: A serializable property list that's sufficient to identify the option within its group. For serialization utilities, see NSPropertyList.h.
+        /// - Returns: A serializable property list that's sufficient to identify the option within its group. For serialization utilities, see NSPropertyList.h.
         #[unsafe(method(propertyList))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyList(&self) -> Retained<AnyObject>;
 
         /// Provides an NSString suitable for display.
         ///
-        /// Parameter `locale`: Localize manufactured portions of the string using the specificed locale.
-        ///
         /// May use this option's common metadata, media characteristics and locale properties in addition to the provided locale to formulate an NSString intended for display. Will only consider common metadata with the specified locale.
+        ///
+        /// - Parameter locale: Localize manufactured portions of the string using the specificed locale.
         #[unsafe(method(displayNameWithLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayNameWithLocale(&self, locale: &NSLocale) -> Retained<NSString>;
@@ -317,6 +318,215 @@ impl AVMediaSelectionOption {
 
 /// Methods declared on superclass `NSObject`.
 impl AVMediaSelectionOption {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+/// AVMediaSelectionGroupCustomMediaSelectionScheme.
+impl AVMediaSelectionGroup {
+    extern_methods!(
+        /// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVCustomMediaSelectionScheme provides a collection of custom settings for controlling the presentation of the media.
+        #[unsafe(method(customMediaSelectionScheme))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn customMediaSelectionScheme(
+            &self,
+        ) -> Option<Retained<AVCustomMediaSelectionScheme>>;
+    );
+}
+
+extern_class!(
+    /// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVCustomMediaSelectionScheme provides a collection of custom settings for controlling the presentation of the media.
+    ///
+    /// Each selectable setting is associated with a media characteristic that one or more of the AVMediaSelectionOptions in the AVMediaSelectionGroup possesses. By selecting a setting in a user interface based on an AVCustomMediaSelectionScheme, users are essentially indicating a preference for the media characteristic of the selected setting. Selection of a specific AVMediaSelectionOption in the AVMediaSelectionGroup is then derived from the user's indicated preferences. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcustommediaselectionscheme?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVCustomMediaSelectionScheme;
+);
+
+unsafe impl Send for AVCustomMediaSelectionScheme {}
+
+unsafe impl Sync for AVCustomMediaSelectionScheme {}
+
+extern_conformance!(
+    unsafe impl NSCopying for AVCustomMediaSelectionScheme {}
+);
+
+unsafe impl CopyingHelper for AVCustomMediaSelectionScheme {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCustomMediaSelectionScheme {}
+);
+
+impl AVCustomMediaSelectionScheme {
+    extern_methods!(
+        /// Indicates whether an alternative selection interface should provide a menu of language choices.
+        #[unsafe(method(shouldOfferLanguageSelection))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn shouldOfferLanguageSelection(&self) -> bool;
+
+        /// Provides available language choices.
+        ///
+        /// Each string in the array is intended to be interpreted as a BCP 47 language tag.
+        #[unsafe(method(availableLanguages))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn availableLanguages(&self) -> Retained<NSArray<NSString>>;
+
+        /// Provides custom settings.
+        #[unsafe(method(selectors))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn selectors(&self) -> Retained<NSArray<AVMediaPresentationSelector>>;
+
+        /// Provides an array of media presentation settings that can be effective at the same time as the specified language and settings for other selectors of the receiver.
+        ///
+        /// If the content is authored to provide a collection of AVMediaSelectionOptions that include one or more with all of the combinations of media characteristics of the specified AVMediaPresentationSettings together with all of the settings of the specified AVMediaPresentationSelector, this method will return all of the settings for that selector. However, if one or more of the available combinations are not possessed by any of the AVMediaSelectionOptions, it will return fewer.
+        ///
+        /// - Parameter selector: The AVMediaPresentationSelector for which complementary settings are requested.
+        /// - Parameter language: A BCP 47 language tag chosen among the availableLanguages of the receiver. If no language setting pertains, can be nil.
+        /// - Parameter settings: A collection of AVMediaPresentationSettings provided by selectors of the receiver other than the specified selector. Because no two AVMediaPresentationSettings of the same AVMediaPresentationSelector are complementary, an empty array will be returned if you specify more than one setting for any selector.
+        #[unsafe(method(mediaPresentationSettingsForSelector:complementaryToLanguage:settings:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mediaPresentationSettingsForSelector_complementaryToLanguage_settings(
+            &self,
+            selector: &AVMediaPresentationSelector,
+            language: Option<&NSString>,
+            settings: &NSArray<AVMediaPresentationSetting>,
+        ) -> Retained<NSArray<AVMediaPresentationSetting>>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl AVCustomMediaSelectionScheme {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVMediaPresentationSelector represents a collection of mutually exclusive settings.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediapresentationselector?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVMediaPresentationSelector;
+);
+
+unsafe impl Send for AVMediaPresentationSelector {}
+
+unsafe impl Sync for AVMediaPresentationSelector {}
+
+extern_conformance!(
+    unsafe impl NSCopying for AVMediaPresentationSelector {}
+);
+
+unsafe impl CopyingHelper for AVMediaPresentationSelector {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMediaPresentationSelector {}
+);
+
+impl AVMediaPresentationSelector {
+    extern_methods!(
+        /// Provides the authored identifier for the selector.
+        #[unsafe(method(identifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
+
+        /// Returns the display name for the selector that best matches the specified locale identifier.
+        #[unsafe(method(displayNameForLocaleIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn displayNameForLocaleIdentifier(
+            &self,
+            locale_identifier: &NSString,
+        ) -> Retained<NSString>;
+
+        /// Provides selectable mutually exclusive settings for the selector.
+        #[unsafe(method(settings))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn settings(&self) -> Retained<NSArray<AVMediaPresentationSetting>>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl AVMediaPresentationSelector {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVMediaPresentationSetting represents a selectable setting for controlling the presentation of the media.
+    ///
+    /// Each selectable setting is associated with a media characteristic that one or more of the AVMediaSelectionOptions in the AVMediaSelectionGroup possesses. By selecting a setting in a user interface that offers AVMediaPresentationSettings, users are essentially indicating a preference for the media characteristic of the selected setting. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVMediaPresentationSetting;
+);
+
+unsafe impl Send for AVMediaPresentationSetting {}
+
+unsafe impl Sync for AVMediaPresentationSetting {}
+
+extern_conformance!(
+    unsafe impl NSCopying for AVMediaPresentationSetting {}
+);
+
+unsafe impl CopyingHelper for AVMediaPresentationSetting {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMediaPresentationSetting {}
+);
+
+impl AVMediaPresentationSetting {
+    extern_methods!(
+        #[cfg(feature = "AVMediaFormat")]
+        /// Provides the media characteristic that corresponds to the selectable setting.
+        #[unsafe(method(mediaCharacteristic))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mediaCharacteristic(&self) -> Retained<AVMediaCharacteristic>;
+
+        /// Returns the display name for the selectable setting that best matches the specified locale identifier.
+        #[unsafe(method(displayNameForLocaleIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn displayNameForLocaleIdentifier(
+            &self,
+            locale_identifier: &NSString,
+        ) -> Retained<NSString>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl AVMediaPresentationSetting {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

@@ -291,3 +291,67 @@ impl NINearbyAccessoryConfiguration {
         pub unsafe fn new() -> Retained<Self>;
     );
 }
+
+extern_class!(
+    /// A session configuration that enables UWB Down Link Time Difference of Arrival(DL-TDoA) ranging with nearby anchors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoaconfiguration?language=objc)
+    #[unsafe(super(NIConfiguration, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NIDLTDOAConfiguration;
+);
+
+unsafe impl Send for NIDLTDOAConfiguration {}
+
+unsafe impl Sync for NIDLTDOAConfiguration {}
+
+extern_conformance!(
+    unsafe impl NSCoding for NIDLTDOAConfiguration {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for NIDLTDOAConfiguration {}
+);
+
+unsafe impl CopyingHelper for NIDLTDOAConfiguration {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NIDLTDOAConfiguration {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for NIDLTDOAConfiguration {}
+);
+
+impl NIDLTDOAConfiguration {
+    extern_methods!(
+        /// A unique identifier for a network supporting UWB Down Link Time Difference of Arrival(DL-TDoA).
+        #[unsafe(method(networkIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn networkIdentifier(&self) -> NSInteger;
+
+        /// Setter for [`networkIdentifier`][Self::networkIdentifier].
+        #[unsafe(method(setNetworkIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setNetworkIdentifier(&self, network_identifier: NSInteger);
+
+        /// Initializes a new configuration with a network identifier
+        #[unsafe(method(initWithNetworkIdentifier:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithNetworkIdentifier(
+            this: Allocated<Self>,
+            network_identifier: NSInteger,
+        ) -> Retained<Self>;
+
+        /// Unavailable
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}

@@ -18,6 +18,11 @@ bitflags::bitflags! {
 /// This is similar to NSFileProviderCreateItemMayAlreadyExist
         #[doc(alias = "NSFileProviderModifyItemMayAlreadyExist")]
         const MayAlreadyExist = 1<<0;
+/// If the base version of the item trying to be uploaded doesn't match
+/// the version of the file on server, the call to modifyItem should fail with a
+/// NSFileProviderErrorLocalVersionConflictingWithServer error.
+        #[doc(alias = "NSFileProviderModifyItemFailOnConflict")]
+        const FailOnConflict = 1<<1;
     }
 }
 

@@ -24,12 +24,21 @@ extern_class!(
     pub struct AVAudioFile;
 );
 
+unsafe impl Send for AVAudioFile {}
+
+unsafe impl Sync for AVAudioFile {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioFile {}
 );
 
 impl AVAudioFile {
     extern_methods!(
+        #[deprecated = "Deprecated - use initForReading or initForWriting"]
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
         /// Open a file for reading.
         ///
         /// Parameter `fileURL`: the file to open
@@ -233,10 +242,6 @@ impl AVAudioFile {
 /// Methods declared on superclass `NSObject`.
 impl AVAudioFile {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;

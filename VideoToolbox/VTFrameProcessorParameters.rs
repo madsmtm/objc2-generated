@@ -3,6 +3,8 @@
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-foundation")]
+use objc2_foundation::*;
 
 use crate::*;
 
@@ -18,5 +20,19 @@ extern_protocol!(
         #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
         unsafe fn sourceFrame(&self) -> Retained<VTFrameProcessorFrame>;
+
+        #[cfg(feature = "VTFrameProcessorFrame")]
+        /// VTFrameProcessorFrame that contains the destination frame for processors which output a single processed frame.
+        #[optional]
+        #[unsafe(method(destinationFrame))]
+        #[unsafe(method_family = none)]
+        unsafe fn destinationFrame(&self) -> Retained<VTFrameProcessorFrame>;
+
+        #[cfg(all(feature = "VTFrameProcessorFrame", feature = "objc2-foundation"))]
+        /// NSArray of VTFrameProcessorFrame that contains the destination frames for processors which may output more than one processed frame.
+        #[optional]
+        #[unsafe(method(destinationFrames))]
+        #[unsafe(method_family = none)]
+        unsafe fn destinationFrames(&self) -> Retained<NSArray<VTFrameProcessorFrame>>;
     }
 );

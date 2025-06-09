@@ -49,3 +49,33 @@ unsafe impl Encode for AVVideoFrameAnalysisType {
 unsafe impl RefEncode for AVVideoFrameAnalysisType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+/// Describes how High Dynamic Range (HDR) video content renders.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avdisplaydynamicrange?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AVDisplayDynamicRange(pub NSInteger);
+impl AVDisplayDynamicRange {
+    /// Defines an automatic dynamic range. Indicates that the dynamic range will be set automatically.
+    #[doc(alias = "AVDisplayDynamicRangeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// Defines a standard dynamic range. Restricts the video content dynamic range to the standard range regardless of the actual range of the video content.
+    #[doc(alias = "AVDisplayDynamicRangeStandard")]
+    pub const Standard: Self = Self(1);
+    /// Defines a constrained high dynamic range. Allows for constrained High Dynamic Range (HDR) video content which is useful for mixing HDR and Standard Dynamic Range (SDR) content.
+    #[doc(alias = "AVDisplayDynamicRangeConstrainedHigh")]
+    pub const ConstrainedHigh: Self = Self(2);
+    /// Defines a high dynamic range. Allows video content to use extended dynamic range if it has dynamic range content.
+    #[doc(alias = "AVDisplayDynamicRangeHigh")]
+    pub const High: Self = Self(3);
+}
+
+unsafe impl Encode for AVDisplayDynamicRange {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVDisplayDynamicRange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

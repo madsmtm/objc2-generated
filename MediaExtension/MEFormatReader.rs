@@ -298,6 +298,18 @@ impl MEFileInfo {
         #[unsafe(method(setFragmentsStatus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFragmentsStatus(&self, fragments_status: MEFileInfoFragmentsStatus);
+
+        /// The sidecar filename used by the MediaExtension.
+        ///
+        /// Represents a new or existing sidecar file located in the same directory as the primary media file. The filename should include the file extension, and should not contain the file path, or contain any slashes. The file extension should be supported by the format reader, and present in the EXAppExtensionAttributes and UTExportedTypeDeclarations dictionaries in the MediaExtension format reader Info.plist.
+        #[unsafe(method(sidecarFileName))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sidecarFileName(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`sidecarFileName`][Self::sidecarFileName].
+        #[unsafe(method(setSidecarFileName:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSidecarFileName(&self, sidecar_file_name: Option<&NSString>);
     );
 }
 

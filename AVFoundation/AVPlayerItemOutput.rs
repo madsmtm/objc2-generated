@@ -22,6 +22,10 @@ extern_class!(
     pub struct AVPlayerItemOutput;
 );
 
+unsafe impl Send for AVPlayerItemOutput {}
+
+unsafe impl Sync for AVPlayerItemOutput {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerItemOutput {}
 );
@@ -103,6 +107,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemVideoOutput;
 );
+
+unsafe impl Send for AVPlayerItemVideoOutput {}
+
+unsafe impl Sync for AVPlayerItemVideoOutput {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerItemVideoOutput {}
@@ -239,6 +247,8 @@ impl AVPlayerItemVideoOutput {
 extern_protocol!(
     /// Defines common delegate methods for objects participating in AVPlayerItemOutput pull sample output acquisition.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpulldelegate?language=objc)
     pub unsafe trait AVPlayerItemOutputPullDelegate: NSObjectProtocol {
         /// A method invoked once, prior to a new sample, if the AVPlayerItemOutput sender was previously messaged requestNotificationOfMediaDataChangeWithAdvanceInterval:.
@@ -264,11 +274,17 @@ extern_class!(
     ///
     /// An instance of AVPlayerItemLegibleOutput is typically initialized using the -init method.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemLegibleOutput;
 );
+
+unsafe impl Send for AVPlayerItemLegibleOutput {}
+
+unsafe impl Sync for AVPlayerItemLegibleOutput {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerItemLegibleOutput {}
@@ -413,6 +429,8 @@ impl AVPlayerItemLegibleOutput {
 extern_protocol!(
     /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to attributed string output.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemLegibleOutputPushDelegate:
         AVPlayerItemOutputPushDelegate
@@ -447,6 +465,8 @@ extern_protocol!(
 extern_protocol!(
     /// Defines common delegate methods for objects participating in AVPlayerItemOutput push sample output acquisition.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemOutputPushDelegate: NSObjectProtocol {
         /// A method invoked when the output is commencing a new sequence of media data.
@@ -465,11 +485,17 @@ extern_class!(
     ///
     /// Setting the value of suppressesPlayerRendering on an instance of AVPlayerItemMetadataOutput has no effect.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadataoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemMetadataOutput;
 );
+
+unsafe impl Send for AVPlayerItemMetadataOutput {}
+
+unsafe impl Sync for AVPlayerItemMetadataOutput {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerItemMetadataOutput {}
@@ -588,11 +614,17 @@ extern_class!(
     ///
     /// An instance of AVPlayerItemRenderedLegibleOutput is initialized using the -init method.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemRenderedLegibleOutput;
 );
+
+unsafe impl Send for AVPlayerItemRenderedLegibleOutput {}
+
+unsafe impl Sync for AVPlayerItemRenderedLegibleOutput {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerItemRenderedLegibleOutput {}

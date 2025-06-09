@@ -362,6 +362,30 @@ extern "C" {
     pub static SRSensorPhotoplethysmogram: &'static SRSensor;
 }
 
+extern "C" {
+    /// Sensor stream for Acoustic Settings
+    ///
+    ///
+    /// This stream stores samples of the Acoustic Settings sensor
+    /// Fetches from this stream return objects of type
+    /// `SRAcousticSettings`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensoracousticsettings?language=objc)
+    pub static SRSensorAcousticSettings: &'static SRSensor;
+}
+
+extern "C" {
+    /// Sesnor stream for sleep sessions collection
+    ///
+    ///
+    /// This stream stores samples of the Sleep Sessions sensor
+    /// Fetches from this stream return objects of type
+    /// `SRSleepSession`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorsleepsessions?language=objc)
+    pub static SRSensorSleepSessions: &'static SRSensor;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srabsolutetime?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type SRAbsoluteTime = CFTimeInterval;
@@ -3896,5 +3920,595 @@ impl SRPhotoplethysmogramSample {
         #[unsafe(method(temperature))]
         #[unsafe(method_family = none)]
         pub unsafe fn temperature(&self) -> Option<Retained<NSMeasurement<NSUnitTemperature>>>;
+    );
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingssamplelifetime?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SRAcousticSettingsSampleLifetime(pub NSInteger);
+impl SRAcousticSettingsSampleLifetime {
+    #[doc(alias = "SRAcousticSettingsSampleLifetimeEightDays")]
+    pub const EightDays: Self = Self(1);
+    #[doc(alias = "SRAcousticSettingsSampleLifetimeUntilUserDeletes")]
+    pub const UntilUserDeletes: Self = Self(2);
+}
+
+unsafe impl Encode for SRAcousticSettingsSampleLifetime {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for SRAcousticSettingsSampleLifetime {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilitybackgroundsoundsname?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SRAcousticSettingsAccessibilityBackgroundSoundsName(pub NSInteger);
+impl SRAcousticSettingsAccessibilityBackgroundSoundsName {
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBalancedNoise")]
+    pub const BalancedNoise: Self = Self(1);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBrightNoise")]
+    pub const BrightNoise: Self = Self(2);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameDarkNoise")]
+    pub const DarkNoise: Self = Self(3);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameOcean")]
+    pub const Ocean: Self = Self(4);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameRain")]
+    pub const Rain: Self = Self(5);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameStream")]
+    pub const Stream: Self = Self(6);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameNight")]
+    pub const Night: Self = Self(7);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameFire")]
+    pub const Fire: Self = Self(8);
+}
+
+unsafe impl Encode for SRAcousticSettingsAccessibilityBackgroundSoundsName {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for SRAcousticSettingsAccessibilityBackgroundSoundsName {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilityheadphoneaccommodationsmediaenhancetuning?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning(pub NSInteger);
+impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning {
+    #[doc(
+        alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuningBalancedTone"
+    )]
+    pub const BalancedTone: Self = Self(1);
+    #[doc(
+        alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuningVocalRange"
+    )]
+    pub const VocalRange: Self = Self(2);
+    #[doc(
+        alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuningBrightness"
+    )]
+    pub const Brightness: Self = Self(3);
+}
+
+unsafe impl Encode for SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilityheadphoneaccommodationsmediaenhanceboosting?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting(
+    pub NSInteger,
+);
+impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting {
+    #[doc(
+        alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoostingSlight"
+    )]
+    pub const Slight: Self = Self(1);
+    #[doc(
+        alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoostingModerate"
+    )]
+    pub const Moderate: Self = Self(2);
+    #[doc(
+        alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoostingStrong"
+    )]
+    pub const Strong: Self = Self(3);
+}
+
+unsafe impl Encode for SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode
+    for SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting
+{
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilityheadphoneaccommodationsmediaenhanceapplication?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplication(
+    pub NSInteger,
+);
+impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplication {
+    #[doc(
+        alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationNone"
+    )]
+    pub const None: Self = Self(0);
+    #[doc(
+        alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationPhone"
+    )]
+    pub const Phone: Self = Self(1);
+    #[doc(
+        alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationMedia"
+    )]
+    pub const Media: Self = Self(2);
+    #[doc(
+        alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationPhoneAndMedia"
+    )]
+    pub const PhoneAndMedia: Self = Self(3);
+}
+
+unsafe impl Encode
+    for SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplication
+{
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode
+    for SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplication
+{
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsmusiceq?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct SRAcousticSettingsMusicEQ;
+);
+
+unsafe impl Send for SRAcousticSettingsMusicEQ {}
+
+unsafe impl Sync for SRAcousticSettingsMusicEQ {}
+
+extern_conformance!(
+    unsafe impl NSCoding for SRAcousticSettingsMusicEQ {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for SRAcousticSettingsMusicEQ {}
+);
+
+unsafe impl CopyingHelper for SRAcousticSettingsMusicEQ {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRAcousticSettingsMusicEQ {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRAcousticSettingsMusicEQ {}
+);
+
+impl SRAcousticSettingsMusicEQ {
+    extern_methods!(
+        /// Sound Check is turned on/off
+        #[unsafe(method(isSoundCheckEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isSoundCheckEnabled(&self) -> bool;
+
+        /// Late Night Mode is turned on/off
+        ///
+        ///
+        /// Music EQ Setting to dynamically compress system level audio
+        #[unsafe(method(isLateNightModeEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isLateNightModeEnabled(&self) -> bool;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl SRAcousticSettingsMusicEQ {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilitybackgroundsounds?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct SRAcousticSettingsAccessibilityBackgroundSounds;
+);
+
+unsafe impl Send for SRAcousticSettingsAccessibilityBackgroundSounds {}
+
+unsafe impl Sync for SRAcousticSettingsAccessibilityBackgroundSounds {}
+
+extern_conformance!(
+    unsafe impl NSCoding for SRAcousticSettingsAccessibilityBackgroundSounds {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for SRAcousticSettingsAccessibilityBackgroundSounds {}
+);
+
+unsafe impl CopyingHelper for SRAcousticSettingsAccessibilityBackgroundSounds {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRAcousticSettingsAccessibilityBackgroundSounds {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRAcousticSettingsAccessibilityBackgroundSounds {}
+);
+
+impl SRAcousticSettingsAccessibilityBackgroundSounds {
+    extern_methods!(
+        /// Background Sounds is turned on/off
+        ///
+        ///
+        /// Plays background sounds to mask unwanted environmental noise.
+        #[unsafe(method(isEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isEnabled(&self) -> bool;
+
+        /// Accessibility Background sounds name
+        #[unsafe(method(soundName))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn soundName(&self) -> SRAcousticSettingsAccessibilityBackgroundSoundsName;
+
+        /// Accessibility Background sounds volume
+        ///
+        ///
+        /// Background sounds volume relative to system volume. Units is a percentage.
+        #[unsafe(method(relativeVolume))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn relativeVolume(&self) -> c_double;
+
+        /// Background sounds is to be played while media is also playing
+        #[unsafe(method(isPlayWithMediaEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isPlayWithMediaEnabled(&self) -> bool;
+
+        /// Accessibility Background sounds volume with media
+        ///
+        ///
+        /// Background sounds volume while media is playing. Units is a percentage.
+        #[unsafe(method(relativeVolumeWithMedia))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn relativeVolumeWithMedia(&self) -> c_double;
+
+        /// Stop background sounds when iPhone is locked
+        #[unsafe(method(isStopOnLockEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isStopOnLockEnabled(&self) -> bool;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl SRAcousticSettingsAccessibilityBackgroundSounds {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilityheadphoneaccommodations?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodations;
+);
+
+unsafe impl Send for SRAcousticSettingsAccessibilityHeadphoneAccommodations {}
+
+unsafe impl Sync for SRAcousticSettingsAccessibilityHeadphoneAccommodations {}
+
+extern_conformance!(
+    unsafe impl NSCoding for SRAcousticSettingsAccessibilityHeadphoneAccommodations {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for SRAcousticSettingsAccessibilityHeadphoneAccommodations {}
+);
+
+unsafe impl CopyingHelper for SRAcousticSettingsAccessibilityHeadphoneAccommodations {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRAcousticSettingsAccessibilityHeadphoneAccommodations {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRAcousticSettingsAccessibilityHeadphoneAccommodations {}
+);
+
+impl SRAcousticSettingsAccessibilityHeadphoneAccommodations {
+    extern_methods!(
+        /// Headphone Accommodations is turned on/off
+        #[unsafe(method(isEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isEnabled(&self) -> bool;
+
+        /// Tune for different range of frequencies
+        ///
+        ///
+        /// Optimize for providing audio tuning for different ranges of frequencies.
+        #[unsafe(method(mediaEnhanceTuning))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mediaEnhanceTuning(
+            &self,
+        ) -> SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning;
+
+        /// Soft Sounds boost level
+        ///
+        ///
+        /// Soft sounds will be boosted slightly, moderately, or strongly.
+        #[unsafe(method(mediaEnhanceBoosting))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mediaEnhanceBoosting(
+            &self,
+        ) -> SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting;
+
+        /// Headphone Accommodations Application
+        ///
+        ///
+        /// Headphone Accommodations Apply to phone, media, or both.
+        #[unsafe(method(mediaEnhanceApplication))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mediaEnhanceApplication(
+            &self,
+        ) -> SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplication;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl SRAcousticSettingsAccessibilityHeadphoneAccommodations {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibility?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct SRAcousticSettingsAccessibility;
+);
+
+unsafe impl Send for SRAcousticSettingsAccessibility {}
+
+unsafe impl Sync for SRAcousticSettingsAccessibility {}
+
+extern_conformance!(
+    unsafe impl NSCoding for SRAcousticSettingsAccessibility {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for SRAcousticSettingsAccessibility {}
+);
+
+unsafe impl CopyingHelper for SRAcousticSettingsAccessibility {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRAcousticSettingsAccessibility {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRAcousticSettingsAccessibility {}
+);
+
+impl SRAcousticSettingsAccessibility {
+    extern_methods!(
+        /// Audio volume between left and right channels
+        #[unsafe(method(leftRightBalance))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn leftRightBalance(&self) -> c_double;
+
+        /// When in mono mode, audio output is the same audio from both the left and right channels
+        #[unsafe(method(isMonoAudioEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isMonoAudioEnabled(&self) -> bool;
+
+        /// Background Sounds Settings
+        #[unsafe(method(backgroundSounds))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn backgroundSounds(
+            &self,
+        ) -> Retained<SRAcousticSettingsAccessibilityBackgroundSounds>;
+
+        /// Headphone Accommodations Settings
+        #[unsafe(method(headphoneAccommodations))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn headphoneAccommodations(
+            &self,
+        ) -> Retained<SRAcousticSettingsAccessibilityHeadphoneAccommodations>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl SRAcousticSettingsAccessibility {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct SRAcousticSettings;
+);
+
+unsafe impl Send for SRAcousticSettings {}
+
+unsafe impl Sync for SRAcousticSettings {}
+
+extern_conformance!(
+    unsafe impl NSCoding for SRAcousticSettings {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for SRAcousticSettings {}
+);
+
+unsafe impl CopyingHelper for SRAcousticSettings {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRAcousticSettings {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRAcousticSettings {}
+);
+
+impl SRAcousticSettings {
+    extern_methods!(
+        /// Environmental Sound Measurements
+        ///
+        ///
+        /// Setting for Apple Watch Environmental Sound Measurements.
+        #[unsafe(method(isEnvironmentalSoundMeasurementsEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isEnvironmentalSoundMeasurementsEnabled(&self) -> bool;
+
+        /// Expected lifetime of headphone audio exposure samples in HealthKit
+        #[unsafe(method(audioExposureSampleLifetime))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn audioExposureSampleLifetime(&self) -> SRAcousticSettingsSampleLifetime;
+
+        /// Reduce Loud Audio
+        ///
+        ///
+        /// iPhone can analyze headphone audio and reduce any sound that is over a set decibel level. A nil value
+        /// means the setting is disabled. If the setting is enabled, the property will hold the decibel value
+        /// that headphone audio sound volume is not to exceed.
+        #[unsafe(method(headphoneSafetyAudioLevel))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn headphoneSafetyAudioLevel(&self) -> Option<Retained<NSNumber>>;
+
+        /// Music EQ Settings
+        #[unsafe(method(musicEQSettings))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn musicEQSettings(&self) -> Retained<SRAcousticSettingsMusicEQ>;
+
+        /// Accessibility Settings
+        #[unsafe(method(accessibilitySettings))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn accessibilitySettings(&self) -> Retained<SRAcousticSettingsAccessibility>;
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsleepsession?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct SRSleepSession;
+);
+
+unsafe impl Send for SRSleepSession {}
+
+unsafe impl Sync for SRSleepSession {}
+
+extern_conformance!(
+    unsafe impl NSCoding for SRSleepSession {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for SRSleepSession {}
+);
+
+unsafe impl CopyingHelper for SRSleepSession {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRSleepSession {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRSleepSession {}
+);
+
+impl SRSleepSession {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        /// Start date of sleep session
+        #[unsafe(method(startDate))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn startDate(&self) -> Retained<NSDate>;
+
+        /// Sleep session duration
+        ///
+        ///
+        /// Equal to 0 if endReason is SRSleepSessionEndReasonNoEndEvent
+        #[unsafe(method(duration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn duration(&self) -> NSTimeInterval;
+
+        /// Sleep session unique identifier
+        #[unsafe(method(identifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn identifier(&self) -> Retained<NSString>;
     );
 }

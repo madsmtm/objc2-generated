@@ -836,16 +836,40 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "UIResponder")]
+        /// Tells the delegate that the application has become active
+        /// - Note: This method is not called if `UIScene` lifecycle has been adopted.
+        #[deprecated = "Use UIScene lifecycle and sceneDidBecomeActive(_:) from UISceneDelegate or the UIApplication.didBecomeActiveNotification instead."]
         #[optional]
         #[unsafe(method(applicationDidBecomeActive:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationDidBecomeActive(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
+        /// Tells the delegate that the application is about to become inactive
+        /// - Note: This method is not called if `UIScene` lifecycle has been adopted.
+        #[deprecated = "Use UIScene lifecycle and sceneWillResignActive(_:) from UISceneDelegate or the UIApplication.willResignActiveNotification instead."]
         #[optional]
         #[unsafe(method(applicationWillResignActive:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationWillResignActive(&self, application: &UIApplication);
+
+        #[cfg(feature = "UIResponder")]
+        /// Tells the delegate that the application is now in the background
+        /// - Note: This method is not called if `UIScene` lifecycle has been adopted.
+        #[deprecated = "Use UIScene lifecycle and sceneDidEnterBackground(_:) from UISceneDelegate or the UIApplication.didEnterBackgroundNotification instead."]
+        #[optional]
+        #[unsafe(method(applicationDidEnterBackground:))]
+        #[unsafe(method_family = none)]
+        unsafe fn applicationDidEnterBackground(&self, application: &UIApplication);
+
+        #[cfg(feature = "UIResponder")]
+        /// Tells the delegate that the application is about to enter the foreground
+        /// - Note: This method is not called if `UIScene` lifecycle has been adopted.
+        #[deprecated = "Use UIScene lifecycle and sceneWillEnterForeground(_:) from UISceneDelegate or the UIApplication.willEnterForegroundNotification instead."]
+        #[optional]
+        #[unsafe(method(applicationWillEnterForeground:))]
+        #[unsafe(method_family = none)]
+        unsafe fn applicationWillEnterForeground(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
         #[deprecated]
@@ -872,6 +896,8 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "UIResponder")]
+        /// Return NO if the application can't open the `url` for some reason
+        #[deprecated = "Use UIScene lifecycle and scene(_:openURLContexts:) from UISceneDelegate instead."]
         #[optional]
         #[unsafe(method(application:openURL:options:))]
         #[unsafe(method_family = none)]
@@ -1091,6 +1117,9 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "block2"
         ))]
+        /// Called when the user activates your application by selecting a shortcut on the home screen, except when `application(_:willFinishLaunchingWithOptions:)`
+        /// or `application(_:didFinishLaunchingWithOptions:)` returns `false`.
+        #[deprecated = "Use UIScene lifecycle and windowScene(_:performActionFor:completionHandler:) from UIWindowSceneDelegate instead."]
         #[optional]
         #[unsafe(method(application:performActionForShortcutItem:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -1128,18 +1157,6 @@ extern_protocol!(
         #[unsafe(method(applicationShouldRequestHealthAuthorization:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationShouldRequestHealthAuthorization(&self, application: &UIApplication);
-
-        #[cfg(feature = "UIResponder")]
-        #[optional]
-        #[unsafe(method(applicationDidEnterBackground:))]
-        #[unsafe(method_family = none)]
-        unsafe fn applicationDidEnterBackground(&self, application: &UIApplication);
-
-        #[cfg(feature = "UIResponder")]
-        #[optional]
-        #[unsafe(method(applicationWillEnterForeground:))]
-        #[unsafe(method_family = none)]
-        unsafe fn applicationWillEnterForeground(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
@@ -1265,6 +1282,12 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "UIResponder")]
+        /// Called on the main thread as soon as the user indicates they want to continue an activity in your application. The ``NSUserActivity`` object may not be available
+        /// instantly, so use this as an opportunity to show the user that an activity will be continued shortly.
+        ///
+        /// For each `application(_:willContinueUserActivityWithType:)` invocation, you are guaranteed to get exactly one invocation of `application(_:continue:restorationHandler:)`
+        /// on success, or `application(_:didFailToContinueUserActivityWithType:error:)` if an error was encountered.
+        #[deprecated = "Use UIScene lifecycle and scene(_:willContinueUserActivityWithType:) from UISceneDelegate instead."]
         #[optional]
         #[unsafe(method(application:willContinueUserActivityWithType:))]
         #[unsafe(method_family = none)]
@@ -1279,6 +1302,11 @@ extern_protocol!(
             feature = "UIUserActivity",
             feature = "block2"
         ))]
+        /// Called on the main thread after the ``NSUserActivity`` object is available. Use the data you stored in the ``NSUserActivity`` object to re-create what the user
+        /// was doing. You can create/fetch any restorable objects associated with the user activity, and pass them to the `restorationHandler`. They will then have the
+        /// `UIResponder` `restoreUserActivityState:` method invoked with the user activity. Invoking the `restorationHandler` is optional. It may be copied and
+        /// invoked later, and it will bounce to the main thread to complete its work and call `restoreUserActivityState` on all objects.
+        #[deprecated = "Use UIScene lifecycle and scene(_:continue:) from UISceneDelegate instead."]
         #[optional]
         #[unsafe(method(application:continueUserActivity:restorationHandler:))]
         #[unsafe(method_family = none)]
@@ -1292,6 +1320,8 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "UIResponder")]
+        /// If the user activity cannot be fetched after `application(_:willContinueUserActivityWithType:)` is called, this will be called on the main thread when implemented.
+        #[deprecated = "Use UIScene lifecycle and scene(_:didFailToContinueUserActivityWithType:error:) from UISceneDelegate instead."]
         #[optional]
         #[unsafe(method(application:didFailToContinueUserActivityWithType:error:))]
         #[unsafe(method_family = none)]
@@ -1303,6 +1333,8 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIResponder")]
+        /// This is called on the main thread when a user activity managed by UIKit has been updated. You can use this as a last chance to add additional data to the userActivity.
+        #[deprecated = "Use UIScene lifecycle and scene(_:didUpdate) from UISceneDelegate instead."]
         #[optional]
         #[unsafe(method(application:didUpdateUserActivity:))]
         #[unsafe(method_family = none)]
@@ -1313,6 +1345,10 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "objc2-cloud-kit"))]
+        /// This will be called on the main thread after the user indicates they want to accept a CloudKit sharing invitation in your application.
+        /// You should use the `CKShareMetadata` object's `shareURL` and `containerIdentifier` to schedule a `CKAcceptSharesOperation`, then start using
+        /// the resulting `CKShare` and its associated record(s), which will appear in the `CKContainer`'s shared database in a zone matching that of the record's owner.
+        #[deprecated = "Use UIScene lifecycle and windowScene(_:userDidAcceptCloudKitShareWith:) from UIWindowSceneDelegate instead."]
         #[optional]
         #[unsafe(method(application:userDidAcceptCloudKitShareWithMetadata:))]
         #[unsafe(method_family = none)]
@@ -1324,6 +1360,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "UIResponder",
+            feature = "UISceneConfiguration",
             feature = "UISceneOptions",
             feature = "UISceneSession"
         ))]
@@ -1559,81 +1596,110 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsurlkey?language=objc)
+    /// UserInfo contains a ``NSURL`` with launch URL to open
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsurlkey?language=objc)
     pub static UIApplicationLaunchOptionsURLKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionssourceapplicationkey?language=objc)
+    /// UserInfo contains a ``NSString`` with the bundle ID of the originating application; non-nil if the originating application and this application share the same team identifier
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionssourceapplicationkey?language=objc)
     pub static UIApplicationLaunchOptionsSourceApplicationKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsremotenotificationkey?language=objc)
+    /// UserInfo contains a ``NSDictionary`` notification payload with property-list objects plus ``NSNull``
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsremotenotificationkey?language=objc)
     pub static UIApplicationLaunchOptionsRemoteNotificationKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionslocalnotificationkey?language=objc)
+    /// UserInfo contains a ``UILocalNotification``
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionslocalnotificationkey?language=objc)
     pub static UIApplicationLaunchOptionsLocalNotificationKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsannotationkey?language=objc)
+    /// UserInfo contains a property list annotation object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsannotationkey?language=objc)
     pub static UIApplicationLaunchOptionsAnnotationKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionslocationkey?language=objc)
+    /// The app was launched in response to a CoreLocation event
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionslocationkey?language=objc)
     pub static UIApplicationLaunchOptionsLocationKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsnewsstanddownloadskey?language=objc)
+    /// UserInfo contains an ``NSArray`` of ``NKAssetDownload`` identifiers
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsnewsstanddownloadskey?language=objc)
     pub static UIApplicationLaunchOptionsNewsstandDownloadsKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsbluetoothcentralskey?language=objc)
+    /// UserInfo contains an ``NSArray`` of ``CBCentralManager`` restore identifiers
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsbluetoothcentralskey?language=objc)
     pub static UIApplicationLaunchOptionsBluetoothCentralsKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsbluetoothperipheralskey?language=objc)
+    /// UserInfo contains an ``NSArray`` of ``CBPeripheralManager`` restore identifiers
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsbluetoothperipheralskey?language=objc)
     pub static UIApplicationLaunchOptionsBluetoothPeripheralsKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsshortcutitemkey?language=objc)
+    /// UserInfo contains the ``UIApplicationShortcutItem`` used to launch the app
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsshortcutitemkey?language=objc)
     pub static UIApplicationLaunchOptionsShortcutItemKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionseventattributionkey?language=objc)
+    /// UserInfo contains a ``UIEventAttribution`` to go along with a URL open on launch
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionseventattributionkey?language=objc)
     pub static UIApplicationLaunchOptionsEventAttributionKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsuseractivitydictionarykey?language=objc)
+    /// Key in options dictionary passed to `application(_:willFinishLaunchingWithOptions:)` and `application(_:didFinishLaunchingWithOptions:)`
+    /// and info for `UIApplication.didFinishLaunchingNotification`. Sub-Dictionary present in launch options when user activity is present.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsuseractivitydictionarykey?language=objc)
     pub static UIApplicationLaunchOptionsUserActivityDictionaryKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsuseractivitytypekey?language=objc)
+    /// Key in user activity dictionary for the activity type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsuseractivitytypekey?language=objc)
     pub static UIApplicationLaunchOptionsUserActivityTypeKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionscloudkitsharemetadatakey?language=objc)
+    /// The presence of this key indicates that the app was launched in order to handle a CloudKit sharing invitation. The value of this key is a ``CKShareMetadata`` object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionscloudkitsharemetadatakey?language=objc)
     pub static UIApplicationLaunchOptionsCloudKitShareMetadataKey:
         &'static UIApplicationLaunchOptionsKey;
 }
@@ -1656,23 +1722,33 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionssourceapplicationkey?language=objc)
+    /// An options key for `application(_:open:options:)`. The value is an ``NSString`` containing the bundle ID of the originating application; non-nil if the originating
+    /// application and this application share the same team identifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionssourceapplicationkey?language=objc)
     pub static UIApplicationOpenURLOptionsSourceApplicationKey:
         &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionsannotationkey?language=objc)
+    /// An options key for `application(_:open:options:)`. The value is a property-list typed object corresponding to what the originating application passed in
+    /// `UIDocumentInteractionController`'s annotation property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionsannotationkey?language=objc)
     pub static UIApplicationOpenURLOptionsAnnotationKey: &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionsopeninplacekey?language=objc)
+    /// An options key for `application(_:open:options:)`. The value is a bool `NSNumber`. Copy the file before use if this value is NO, or is not present.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionsopeninplacekey?language=objc)
     pub static UIApplicationOpenURLOptionsOpenInPlaceKey: &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionseventattributionkey?language=objc)
+    /// An options key for `application(_:open:options:)`. The value is a `UIEventAttribution` to go along with the URL to open.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionseventattributionkey?language=objc)
     pub static UIApplicationOpenURLOptionsEventAttributionKey:
         &'static UIApplicationOpenURLOptionsKey;
 }

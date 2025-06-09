@@ -12,9 +12,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An AVAssetVariant represents a bit rate variant.
-    /// Each asset contains a collection of variants that represent a combination of audio, video, text, closed captions, and subtitles for a particular bit rate.
-    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    /// An AVAssetVariant represents a bit rate variant. Each asset contains a collection of variants that represent a combination of audio, video, text, closed captions, and subtitles for a particular bit rate. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariant?language=objc)
     #[unsafe(super(NSObject))]
@@ -50,15 +48,20 @@ impl AVAssetVariant {
         #[unsafe(method_family = none)]
         pub unsafe fn averageBitRate(&self) -> c_double;
 
-        /// Provides  variant's video rendition attributes. If no video attributes are declared, it will be nil.
+        /// Provides variant's video rendition attributes. If no video attributes are declared, it will be nil.
         #[unsafe(method(videoAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoAttributes(&self) -> Option<Retained<AVAssetVariantVideoAttributes>>;
 
-        /// Provides  variant's audio rendition attributes. If no audio attributes are declared, it will be nil.
+        /// Provides variant's audio rendition attributes. If no audio attributes are declared, it will be nil.
         #[unsafe(method(audioAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioAttributes(&self) -> Option<Retained<AVAssetVariantAudioAttributes>>;
+
+        /// Provides URL to media playlist corresponding to variant
+        #[unsafe(method(URL))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn URL(&self) -> Retained<NSURL>;
     );
 }
 
@@ -148,11 +151,16 @@ impl AVAssetVariantVideoLayoutAttributes {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
-        /// Describes the stereo components. If not declared, the value will be `kCMStereoViewComponent_None`.
-        /// In case of monoscopic content, the value will be `kCMStereoViewComponent_None` and incase of stereoscopic content, the value will be `(kCMStereoViewComponent_LeftEye | kCMStereoViewComponent_RightEye)`.
+        /// Describes the stereo components. If not declared, the value will be `kCMStereoViewComponent_None`. In case of monoscopic content, the value will be `kCMStereoViewComponent_None` and incase of stereoscopic content, the value will be `(kCMStereoViewComponent_LeftEye | kCMStereoViewComponent_RightEye)`.
         #[unsafe(method(stereoViewComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn stereoViewComponents(&self) -> CMStereoViewComponents;
+
+        #[cfg(feature = "objc2-core-media")]
+        /// Describes the video projection.
+        #[unsafe(method(projectionType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn projectionType(&self) -> CMProjectionType;
     );
 }
 
@@ -193,7 +201,7 @@ impl AVAssetVariantAudioAttributes {
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Provides attributes for a specific audio media selection option. If no rendition specific attributes are declared, it will be nil.
         ///
-        /// Parameter `mediaSelectionOption`: The option to return rendition specific information for.
+        /// - Parameter mediaSelectionOption: The option to return rendition specific information for.
         #[unsafe(method(renditionSpecificAttributesForMediaOption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renditionSpecificAttributesForMediaOption(
@@ -306,7 +314,7 @@ impl AVAssetVariantQualifier {
 
         /// Returns a qualifer for a predicate.
         ///
-        /// Parameter `predicate`: The variant predicate. Must be a valid, non-nil NSPredicate.
+        /// - Parameter predicate: The variant predicate. Must be a valid, non-nil NSPredicate.
         #[unsafe(method(assetVariantQualifierWithPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetVariantQualifierWithPredicate(predicate: &NSPredicate)
@@ -314,14 +322,14 @@ impl AVAssetVariantQualifier {
 
         /// Returns a qualifer for a particular asset variant.
         ///
-        /// Parameter `variant`: A variant obtained from the -[AVAsset variants] or -[AVAssetDownloadConfiguration playableVariants]. Must be a valid, non-nil AVAssetVariant.
+        /// - Parameter variant: A variant obtained from the -[AVAsset variants] or -[AVAssetDownloadConfiguration playableVariants]. Must be a valid, non-nil AVAssetVariant.
         #[unsafe(method(assetVariantQualifierWithVariant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetVariantQualifierWithVariant(variant: &AVAssetVariant) -> Retained<Self>;
 
         /// Returns a qualifer for finding variant with minimum value in the input key path.
         ///
-        /// Parameter `keyPath`: AVAssetVariant keyPath. Allowed keyPath values are peakBitRate, averageBitRate, videoAttributes.presentationSize. Must be a valid, non-nil NSString.
+        /// - Parameter keyPath: AVAssetVariant keyPath. Allowed keyPath values are peakBitRate, averageBitRate, videoAttributes.presentationSize. Must be a valid, non-nil NSString.
         #[unsafe(method(assetVariantQualifierForMinimumValueInKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetVariantQualifierForMinimumValueInKeyPath(
@@ -330,7 +338,7 @@ impl AVAssetVariantQualifier {
 
         /// Returns a qualifer for finding variant with maximum value in the input key path
         ///
-        /// Parameter `keyPath`: AVAssetVariant keyPath. Allowed keyPath values are peakBitRate, averageBitRate, videoAttributes.presentationSize. Must be a valid, non-nil NSString.
+        /// - Parameter keyPath: AVAssetVariant keyPath. Allowed keyPath values are peakBitRate, averageBitRate, videoAttributes.presentationSize. Must be a valid, non-nil NSString.
         #[unsafe(method(assetVariantQualifierForMaximumValueInKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetVariantQualifierForMaximumValueInKeyPath(
@@ -340,11 +348,9 @@ impl AVAssetVariantQualifier {
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Creates a NSPredicate for audio channel count which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `channelCount`: The RHS value for the channel count in the predicate equation.
-        ///
-        /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
-        ///
-        /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
+        /// - Parameter channelCount: The RHS value for the channel count in the predicate equation.
+        /// - Parameter mediaSelectionOption: The audio media selection option under consideration.
+        /// - Parameter operatorType: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
         #[unsafe(method(predicateForChannelCount:mediaSelectionOption:operatorType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForChannelCount_mediaSelectionOption_operatorType(
@@ -356,9 +362,8 @@ impl AVAssetVariantQualifier {
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Creates a NSPredicate for binaural which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `isBinaural`: The RHS value for the value of isBinauralAudio in the predicate equation.
-        ///
-        /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
+        /// - Parameter isBinaural: The RHS value for the value of isBinauralAudio in the predicate equation.
+        /// - Parameter mediaSelectionOption: The audio media selection option under consideration.
         #[unsafe(method(predicateForBinauralAudio:mediaSelectionOption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForBinauralAudio_mediaSelectionOption(
@@ -369,9 +374,8 @@ impl AVAssetVariantQualifier {
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Creates a NSPredicate for immersive audio which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `isImmersiveAudio`: The RHS value for the value of isImmersiveAudio in the predicate equation.
-        ///
-        /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
+        /// - Parameter isImmersiveAudio: The RHS value for the value of isImmersiveAudio in the predicate equation.
+        /// - Parameter mediaSelectionOption: The audio media selection option under consideration.
         #[unsafe(method(predicateForImmersiveAudio:mediaSelectionOption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForImmersiveAudio_mediaSelectionOption(
@@ -382,9 +386,8 @@ impl AVAssetVariantQualifier {
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Creates a NSPredicate for immersive audio which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `isDownmixAudio`: The RHS value for the value of isDownmixAudio in the predicate equation.
-        ///
-        /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
+        /// - Parameter isDownmixAudio: The RHS value for the value of isDownmixAudio in the predicate equation.
+        /// - Parameter mediaSelectionOption: The audio media selection option under consideration.
         #[unsafe(method(predicateForDownmixAudio:mediaSelectionOption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForDownmixAudio_mediaSelectionOption(
@@ -395,9 +398,8 @@ impl AVAssetVariantQualifier {
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a NSPredicate for presentation size width which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `width`: The RHS value for the presentation size width in the predicate equation.
-        ///
-        /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
+        /// - Parameter width: The RHS value for the presentation size width in the predicate equation.
+        /// - Parameter operatorType: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
         #[unsafe(method(predicateForPresentationWidth:operatorType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForPresentationWidth_operatorType(
@@ -408,9 +410,8 @@ impl AVAssetVariantQualifier {
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a NSPredicate for presentation size height which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `height`: The RHS value for the presentation size height in the predicate equation.
-        ///
-        /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
+        /// - Parameter height: The RHS value for the presentation size height in the predicate equation.
+        /// - Parameter operatorType: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
         #[unsafe(method(predicateForPresentationHeight:operatorType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForPresentationHeight_operatorType(
@@ -421,11 +422,9 @@ impl AVAssetVariantQualifier {
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Creates a NSPredicate for audio sample rate which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `sampleRate`: The RHS value for the sample rate in the predicate equation.
-        ///
-        /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
-        ///
-        /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
+        /// - Parameter sampleRate: The RHS value for the sample rate in the predicate equation.
+        /// - Parameter mediaSelectionOption: The audio media selection option under consideration.
+        /// - Parameter operatorType: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
         #[unsafe(method(predicateForAudioSampleRate:mediaSelectionOption:operatorType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForAudioSampleRate_mediaSelectionOption_operatorType(
@@ -436,13 +435,12 @@ impl AVAssetVariantQualifier {
 
         /// Creates a NSPredicate for audio channel count which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `channelCount`: The RHS value for the channel count in the predicate equation.
-        ///
-        /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
-        ///
         /// Predicate will be evaluated on the media selection option selected for the asset.
-        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration             mediaSelections property.
-        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration             setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration mediaSelections property.
+        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        ///
+        /// - Parameter channelCount: The RHS value for the channel count in the predicate equation.
+        /// - Parameter operatorType: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
         #[unsafe(method(predicateForChannelCount:operatorType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForChannelCount_operatorType(
@@ -452,18 +450,18 @@ impl AVAssetVariantQualifier {
 
         /// Creates a NSPredicate for binaural which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `isBinaural`: The RHS value for the value of isBinauralAudio in the predicate equation.
+        /// - Parameter isBinaural: The RHS value for the value of isBinauralAudio in the predicate equation.
         #[unsafe(method(predicateForBinauralAudio:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForBinauralAudio(is_binaural_audio: bool) -> Retained<NSPredicate>;
 
         /// Creates a NSPredicate for immersive audio which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `isImmersiveAudio`: The RHS value for the value of isImmersiveAudio in the predicate equation.
-        ///
         /// Predicate will be evaluated on the media selection option selected for the asset.
-        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration             mediaSelections property.
-        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration             setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration mediaSelections property.
+        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        ///
+        /// - Parameter isImmersiveAudio: The RHS value for the value of isImmersiveAudio in the predicate equation.
         #[unsafe(method(predicateForImmersiveAudio:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForImmersiveAudio(is_immersive_audio: bool)
@@ -471,24 +469,23 @@ impl AVAssetVariantQualifier {
 
         /// Creates a NSPredicate for immersive audio which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `isDownmixAudio`: The RHS value for the value of isDownmixAudio in the predicate equation.
-        ///
         /// Predicate will be evaluated on the media selection option selected for the asset.
-        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration             mediaSelections property.
-        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration             setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration mediaSelections property.
+        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        ///
+        /// - Parameter isDownmixAudio: The RHS value for the value of isDownmixAudio in the predicate equation.
         #[unsafe(method(predicateForDownmixAudio:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForDownmixAudio(is_downmix_audio: bool) -> Retained<NSPredicate>;
 
         /// Creates a NSPredicate for audio sample rate which can be used with other NSPredicates to express variant preferences.
         ///
-        /// Parameter `sampleRate`: The RHS value for the sample rate in the predicate equation.
-        ///
-        /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
-        ///
         /// Predicate will be evaluated on the media selection option selected for the asset.
-        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration             mediaSelections property.
-        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration             setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        /// Media selection options for primary assets may be specified in the AVAssetDownloadConfiguration mediaSelections property.
+        /// Media selection options for interstitial assets may be circumscribed by -[AVAssetDownloadConfiguration setInterstitialMediaSelectionCriteria: forMediaCharacteristic:].
+        ///
+        /// - Parameter sampleRate: The RHS value for the sample rate in the predicate equation.
+        /// - Parameter operatorType: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
         #[unsafe(method(predicateForAudioSampleRate:operatorType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForAudioSampleRate_operatorType(

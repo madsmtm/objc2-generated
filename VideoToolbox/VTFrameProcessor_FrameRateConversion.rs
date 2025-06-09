@@ -219,7 +219,12 @@ impl VTFrameRateConversionConfiguration {
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        /// reports that this processor is  supported
+        /// reports whether this processor is supported
+        #[unsafe(method(isSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isSupported() -> bool;
+
+        #[deprecated]
         #[unsafe(method(processorSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn processorSupported() -> Boolean;

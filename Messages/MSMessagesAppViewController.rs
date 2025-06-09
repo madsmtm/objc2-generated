@@ -69,6 +69,21 @@ extern_protocol!(
         #[unsafe(method(contentSizeThatFits:))]
         #[unsafe(method_family = none)]
         unsafe fn contentSizeThatFits(&self, size: CGSize) -> CGSize;
+
+        #[cfg(feature = "objc2-ui-kit")]
+        /// Override to provide a message tint color, e.g. to match the content of the message, or your app's brand color.
+        ///
+        /// This color will be drawn either in a material or as a solid color, depending on transcript context. The default value is nil, which renders the plugin balloon with the system standard background color. This must be a simple RGB color - other color types such as displayP3 or pattern images are not supported. This also does not support dynamic colors. If your color needs to be dynamic, you must call `invalidateMessageTintColor` when the dynamic conditions change.
+        #[unsafe(method(messageTintColor))]
+        #[unsafe(method_family = none)]
+        unsafe fn messageTintColor(&self) -> Option<Retained<UIColor>>;
+
+        /// Call this when `messageTintColor` changes, e.g. due to change in app state or trait collection.
+        ///
+        /// The message will be updated to reflect the new color. This method will only work if the `presentationStyle` is `MSMessagesAppPresentationStyleTranscript`.
+        #[unsafe(method(invalidateMessageTintColor))]
+        #[unsafe(method_family = none)]
+        unsafe fn invalidateMessageTintColor(&self);
     }
 );
 

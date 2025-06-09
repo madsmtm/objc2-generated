@@ -5,6 +5,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-uniform-type-identifiers")]
+use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
@@ -55,6 +57,12 @@ impl PHAsset {
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSubtypes(&self) -> PHAssetMediaSubtype;
 
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// The type of image or video data that is presented for the asset
+        #[unsafe(method(contentType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contentType(&self) -> Retained<UTType>;
+
         #[unsafe(method(pixelWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelWidth(&self) -> NSUInteger;
@@ -63,13 +71,20 @@ impl PHAsset {
         #[unsafe(method_family = none)]
         pub unsafe fn pixelHeight(&self) -> NSUInteger;
 
+        /// The date and time of this asset's creation (can be updated by the user)
         #[unsafe(method(creationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
+        /// The date and time of the last modification to this asset or one of its properties
         #[unsafe(method(modificationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
+
+        /// The date and time this asset was added to the photo library (from the device that was used to add this asset)
+        #[unsafe(method(addedDate))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addedDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "objc2-core-location")]
         #[unsafe(method(location))]

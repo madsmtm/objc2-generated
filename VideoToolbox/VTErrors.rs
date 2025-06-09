@@ -149,6 +149,10 @@ unsafe impl RefEncode for VTDecodeFrameFlags {
 /// has no impact to playback since the non-decodeable frames will not be rendered.
 /// If kVTDecodeInfo_SkippedLeadingFrameDropped is set, kVTDecodeInfo_FrameDropped will also be set.
 ///
+/// The kVTDecodeInfo_FrameInterrupted bit may be set if the frame was decoded successfully but the decoded
+/// content was not provided in the output callback. When this bit is set, the imageBuffer provided to the output
+/// handler may either be NULL or contain only black pixels.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -164,6 +168,8 @@ bitflags::bitflags! {
         const ImageBufferModifiable = 1<<2;
         #[doc(alias = "kVTDecodeInfo_SkippedLeadingFrameDropped")]
         const SkippedLeadingFrameDropped = 1<<3;
+        #[doc(alias = "kVTDecodeInfo_FrameInterrupted")]
+        const FrameInterrupted = 1<<4;
     }
 }
 

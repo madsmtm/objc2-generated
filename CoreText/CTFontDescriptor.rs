@@ -500,7 +500,6 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function creates a new copy of the original font descriptor with attributes augmented by those specified. If there are conflicts between attributes, the new attributes will replace existing ones, except for kCTFontVariationAttribute and kCTFontFeatureSettingsAttribute which will be merged.
-    ///
     /// Starting with macOS 10.12 and iOS 10.0, setting the value of kCTFontFeatureSettingsAttribute to kCFNull will clear the feature settings of the original font descriptor. Setting the value of any individual feature settings pair in the kCTFontFeatureSettingsAttribute value array to kCFNull will clear that feature setting alone. For example, an element like
     /// @
     /// { (id)kCTFontFeatureTypeIdentifierKey:
@@ -510,6 +509,9 @@ impl CTFontDescriptor {
     /// [
     /// "
     /// liga", (id)kCFNull ] will have the same effect.
+    ///
+    ///
+    /// See also: kCTFontFeatureSettingsAttribute
     #[doc(alias = "CTFontDescriptorCreateCopyWithAttributes")]
     #[inline]
     pub unsafe fn copy_with_attributes(
@@ -639,6 +641,11 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: A copy of the original font descriptor modified with the given feature settings.
+    ///
+    ///
+    /// See also: CTFontDescriptorCreateCopyWithAttributes
+    ///
+    /// See also: kCTFontFeatureSettingsAttribute
     #[doc(alias = "CTFontDescriptorCreateCopyWithFeature")]
     #[inline]
     pub unsafe fn copy_with_feature(

@@ -255,6 +255,8 @@ pub use self::__CFAttributedString::CFAttributedStringGetLength;
 #[cfg(feature = "CFAttributedString")]
 pub use self::__CFAttributedString::CFAttributedStringGetMutableString;
 #[cfg(feature = "CFAttributedString")]
+pub use self::__CFAttributedString::CFAttributedStringGetStatisticalWritingDirections;
+#[cfg(feature = "CFAttributedString")]
 pub use self::__CFAttributedString::CFAttributedStringGetString;
 #[cfg(feature = "CFAttributedString")]
 pub use self::__CFAttributedString::CFAttributedStringRemoveAttribute;
@@ -425,6 +427,8 @@ pub use self::__CFBase::CFAllocatorAllocateTyped;
 pub use self::__CFBase::CFAllocatorContext;
 pub use self::__CFBase::CFAllocatorCopyDescriptionCallBack;
 pub use self::__CFBase::CFAllocatorCreate;
+#[cfg(feature = "libc")]
+pub use self::__CFBase::CFAllocatorCreateWithZone;
 pub use self::__CFBase::CFAllocatorDeallocate;
 pub use self::__CFBase::CFAllocatorDeallocateCallBack;
 pub use self::__CFBase::CFAllocatorGetContext;
@@ -1100,11 +1104,17 @@ pub use self::__CFFileSecurity::CFFileSecuritySetOwner;
 #[cfg(all(feature = "CFFileSecurity", feature = "CFUUID"))]
 pub use self::__CFFileSecurity::CFFileSecuritySetOwnerUUID;
 #[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFBanglaCalendar;
+#[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFBuddhistCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFChineseCalendar;
 #[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFDangiCalendar;
+#[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFGregorianCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFGujaratiCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFHebrewCalendar;
 #[cfg(feature = "CFLocale")]
@@ -1121,6 +1131,8 @@ pub use self::__CFLocale::kCFIslamicTabularCalendar;
 pub use self::__CFLocale::kCFIslamicUmmAlQuraCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFJapaneseCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFKannadaCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFLocaleAlternateQuotationBeginDelimiterKey;
 #[cfg(feature = "CFLocale")]
@@ -1164,9 +1176,23 @@ pub use self::__CFLocale::kCFLocaleUsesMetricSystem;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFLocaleVariantCode;
 #[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFMalayalamCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFMarathiCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFOdiaCalendar;
+#[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFPersianCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFRepublicOfChinaCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFTamilCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFTeluguCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFVietnameseCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFVikramCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::CFCalendarIdentifier;
 #[cfg(feature = "CFLocale")]
@@ -2822,6 +2848,8 @@ pub use self::__CFURL::kCFURLUbiquitousItemIsDownloadingKey;
 #[cfg(feature = "CFURL")]
 pub use self::__CFURL::kCFURLUbiquitousItemIsExcludedFromSyncKey;
 #[cfg(feature = "CFURL")]
+pub use self::__CFURL::kCFURLUbiquitousItemIsSyncPausedKey;
+#[cfg(feature = "CFURL")]
 pub use self::__CFURL::kCFURLUbiquitousItemIsUploadedKey;
 #[cfg(feature = "CFURL")]
 pub use self::__CFURL::kCFURLUbiquitousItemIsUploadingKey;
@@ -2829,6 +2857,8 @@ pub use self::__CFURL::kCFURLUbiquitousItemIsUploadingKey;
 pub use self::__CFURL::kCFURLUbiquitousItemPercentDownloadedKey;
 #[cfg(feature = "CFURL")]
 pub use self::__CFURL::kCFURLUbiquitousItemPercentUploadedKey;
+#[cfg(feature = "CFURL")]
+pub use self::__CFURL::kCFURLUbiquitousItemSupportedSyncControlsKey;
 #[cfg(feature = "CFURL")]
 pub use self::__CFURL::kCFURLUbiquitousItemUploadingErrorKey;
 #[cfg(feature = "CFURL")]

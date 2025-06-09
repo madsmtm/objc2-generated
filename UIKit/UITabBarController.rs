@@ -34,6 +34,35 @@ unsafe impl RefEncode for UITabBarControllerMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarminimizebehavior?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UITabBarMinimizeBehavior(pub NSInteger);
+impl UITabBarMinimizeBehavior {
+    /// Resolves to the system default minimize behavior.
+    #[doc(alias = "UITabBarMinimizeBehaviorAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// The tab bar does not minimize.
+    #[doc(alias = "UITabBarMinimizeBehaviorNever")]
+    pub const Never: Self = Self(1);
+    /// The tab bar minimizes when scrolling down, and expands when scrolling back up.
+    #[doc(alias = "UITabBarMinimizeBehaviorOnScrollDown")]
+    pub const OnScrollDown: Self = Self(2);
+    /// The tab bar minimizes when scrolling up, and expands when scrolling back down.
+    /// Recommended if the scroll view content is aligned to the bottom.
+    #[doc(alias = "UITabBarMinimizeBehaviorOnScrollUp")]
+    pub const OnScrollUp: Self = Self(3);
+}
+
+unsafe impl Encode for UITabBarMinimizeBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UITabBarMinimizeBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// UITabBarController manages a button bar and transition view, for an application with multiple top-level modes.
     ///
@@ -112,7 +141,9 @@ extern_conformance!(
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UITabBarController {
     extern_methods!(
-        /// The object managing the delegate of the tab bar controller. Default is nil.
+        /// The object managing the delegate of the tab bar controller.
+        ///
+        /// The default value for this property is `nil`.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -128,7 +159,9 @@ impl UITabBarController {
             delegate: Option<&ProtocolObject<dyn UITabBarControllerDelegate>>,
         );
 
-        /// The object managing the tab sidebar for the tab bar controller. Default is `UITabBarControllerModeAutomatic`
+        /// The object managing the tab sidebar for the tab bar controller.
+        ///
+        /// The default value for this property is `UITabBarControllerModeAutomatic`.
         #[unsafe(method(mode))]
         #[unsafe(method_family = none)]
         pub unsafe fn mode(&self) -> UITabBarControllerMode;
@@ -144,8 +177,10 @@ impl UITabBarController {
         #[unsafe(method_family = none)]
         pub unsafe fn sidebar(&self) -> Retained<UITabBarControllerSidebar>;
 
-        /// The customization identifier for the tab bar and sidebar for persistence. The identifier is useful for when an app has multiple tab bar controllers,
-        /// each with their own customizations. If the identifier is nil, a system default is used. Default is nil.
+        /// The customization identifier for the tab bar and sidebar for persistence.
+        ///
+        /// The identifier is useful for when an app has multiple tab bar controllers, each with their own customizations.
+        /// If the customization identifier is `nil`, a system default is used. Default is `nil`.
         #[unsafe(method(customizationIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn customizationIdentifier(&self) -> Option<Retained<NSString>>;
@@ -158,7 +193,9 @@ impl UITabBarController {
             customization_identifier: Option<&NSString>,
         );
 
-        /// An optional filter to display only select root-level tabs when in a compact appearance. Default is nil, which would make all tabs available.
+        /// An optional filter to display only select root-level tabs when in a compact appearance.
+        ///
+        /// The default value is is `nil`, which would make all tabs available.
         #[unsafe(method(compactTabIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn compactTabIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -172,7 +209,9 @@ impl UITabBarController {
         );
 
         #[cfg(feature = "UITab")]
-        /// The currently selected tab, which can be a root tab or any of their descendants. Default is nil.
+        /// The currently selected tab, which can be a root tab or any of their descendants.
+        ///
+        /// The default value for this property is `nil`.
         #[unsafe(method(selectedTab))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedTab(&self) -> Option<Retained<UITab>>;
@@ -184,7 +223,8 @@ impl UITabBarController {
         pub unsafe fn setSelectedTab(&self, selected_tab: Option<&UITab>);
 
         #[cfg(feature = "UITab")]
-        /// An array of root tabs representing view controllers to display by the tab bar interface. Default is empty.
+        /// An array of root tabs representing view controllers to display by the tab bar interface.
+        ///
         /// Once set, `UITabBarController.viewControllers` and related properties and methods will not be called.
         #[unsafe(method(tabs))]
         #[unsafe(method_family = none)]
@@ -214,7 +254,24 @@ impl UITabBarController {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTabs(this: Allocated<Self>, tabs: &NSArray<UITab>) -> Retained<Self>;
 
-        /// Determines if the active tab bar is currently hidden. Default is NO.
+        /// Defines the minimize behavior for the tab bar, if it is supported.
+        ///
+        /// The default value for this property is `UITabBarMinimizeBehaviorAutomatic`.
+        #[unsafe(method(tabBarMinimizeBehavior))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn tabBarMinimizeBehavior(&self) -> UITabBarMinimizeBehavior;
+
+        /// Setter for [`tabBarMinimizeBehavior`][Self::tabBarMinimizeBehavior].
+        #[unsafe(method(setTabBarMinimizeBehavior:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTabBarMinimizeBehavior(
+            &self,
+            tab_bar_minimize_behavior: UITabBarMinimizeBehavior,
+        );
+
+        /// Determines if the active tab bar is currently hidden.
+        ///
+        /// The default value for this property is `NO`.
         #[unsafe(method(isTabBarHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTabBarHidden(&self) -> bool;
@@ -228,6 +285,36 @@ impl UITabBarController {
         #[unsafe(method(setTabBarHidden:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTabBarHidden_animated(&self, hidden: bool, animated: bool);
+
+        #[cfg(feature = "UILayoutGuide")]
+        /// The content layout guide provides the layout area for the UITabBarController unobscured by the tab bar or sidebar.
+        #[unsafe(method(contentLayoutGuide))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contentLayoutGuide(&self) -> Retained<UILayoutGuide>;
+
+        #[cfg(feature = "UITabAccessory")]
+        /// An optional bottom accessory of the tab bar controller.
+        ///
+        /// The default value for this property is `nil`.
+        #[unsafe(method(bottomAccessory))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bottomAccessory(&self) -> Option<Retained<UITabAccessory>>;
+
+        #[cfg(feature = "UITabAccessory")]
+        /// Setter for [`bottomAccessory`][Self::bottomAccessory].
+        #[unsafe(method(setBottomAccessory:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setBottomAccessory(&self, bottom_accessory: Option<&UITabAccessory>);
+
+        #[cfg(feature = "UITabAccessory")]
+        /// Sets a bottom accessory with an option to animate the change.
+        #[unsafe(method(setBottomAccessory:animated:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setBottomAccessory_animated(
+            &self,
+            bottom_accessory: Option<&UITabAccessory>,
+            animated: bool,
+        );
 
         #[unsafe(method(viewControllers))]
         #[unsafe(method_family = none)]
@@ -339,7 +426,12 @@ extern_protocol!(
             feature = "UITab",
             feature = "UIViewController"
         ))]
-        /// Return YES if the specified `tab` can be selected by the user. Otherwise, return NO.
+        /// Asks the delegate whether the specified tab should be made active.
+        ///
+        /// Return
+        /// `YES`if the specified
+        /// `tab`can be selected by the user. Otherwise, return
+        /// `NO`
         #[optional]
         #[unsafe(method(tabBarController:shouldSelectTab:))]
         #[unsafe(method_family = none)]
@@ -354,7 +446,11 @@ extern_protocol!(
             feature = "UITab",
             feature = "UIViewController"
         ))]
-        /// Called when the selected tab has changed in the tab bar controller. The specified selected `tab` is either a root tab or its decendants.
+        /// Tells the delegate that the user selected the specified
+        /// `selectedTab`in the tab bar controller.
+        ///
+        /// This specified
+        /// `selectedTab`is either a root tab or any of their descendants.
         #[optional]
         #[unsafe(method(tabBarController:didSelectTab:previousTab:))]
         #[unsafe(method_family = none)]
@@ -372,9 +468,10 @@ extern_protocol!(
             feature = "UITab",
             feature = "UIViewController"
         ))]
-        /// Determines if items from the specified drop session can be dropped into the specified `tab`. If the operation is either a `.move` or `.copy`,
-        /// then the drop will proceed and `tabBarController:tab:acceptItemsFromDropSession:` is called. By default, the drop will be
-        /// treated as a cancel operation if this is not implemented.
+        /// Asks the delegate for a drop operation to determine if drag items can be dropped into the specified
+        /// `tab`
+        /// If the operation is either a `.move` or `.copy`, then the drop will proceed and `tabBarController:tab:acceptItemsFromDropSession:`
+        /// is called. By default, the drop will be treated as a cancel operation if this is not implemented.
         #[optional]
         #[unsafe(method(tabBarController:tab:operationForAcceptingItemsFromDropSession:))]
         #[unsafe(method_family = none)]
@@ -391,8 +488,10 @@ extern_protocol!(
             feature = "UITab",
             feature = "UIViewController"
         ))]
-        /// Receive the drop from into the tab using the specified session. This is only called if the drop operation returned
-        /// from `tabBarController:tab:operationForAcceptingItemsFromDropSession` is valid for a drop.
+        /// Notifies the delegate to perform a drop into the specified
+        /// `tab`from the specified session.
+        ///
+        /// This is only called if the operation returned from `tabBarController:tab:operationForAcceptingItemsFromDropSession` is valid for a drop.
         #[optional]
         #[unsafe(method(tabBarController:tab:acceptItemsFromDropSession:))]
         #[unsafe(method_family = none)]
@@ -438,7 +537,7 @@ extern_protocol!(
             feature = "UITabGroup",
             feature = "UIViewController"
         ))]
-        /// Notifies the deleagte that the display order for the specified tab has been changed by the user.
+        /// Notifies the delegate that the display order for the specified tab has been changed by the user.
         #[optional]
         #[unsafe(method(tabBarController:displayOrderDidChangeForGroup:))]
         #[unsafe(method_family = none)]
@@ -464,7 +563,7 @@ extern_protocol!(
         ///
         /// Parameter `tab`: The tab for which the displayed view controllers is being requested for by its `managingTabGroup`. Each tab in the selection hierarchy will be called once.
         ///
-        /// Parameter `proposedViewControllers`: The proposed view controllers for the given tab. In general, the propoesd view controller is a single-item array of the tab's viewController. If other view controllers are pushed onto the navigation stack, they will be part of the last (leafmost) tab's `proposedViewControllers` such that they are preserved between updates.
+        /// Parameter `proposedViewControllers`: The proposed view controllers for the given tab. In general, the proposed view controller is a single-item array of the tab's viewController. If other view controllers are pushed onto the navigation stack, they will be part of the last (leaf-most) tab's `proposedViewControllers` such that they are preserved between updates.
         ///
         ///
         /// Returns: A list of view controllers represented by the tab in the navigation stack.

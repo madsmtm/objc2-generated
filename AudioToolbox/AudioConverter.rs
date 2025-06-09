@@ -582,6 +582,22 @@ pub type AudioConverterComplexInputDataProc = Option<
     ) -> OSStatus,
 >;
 
+/// Realtime-safe variant of AudioConverterComplexInputDataProc.
+///
+/// See the discussions of AudioConverterComplexInputDataProc and AudioConverterFillComplexBuffer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconvertercomplexinputdataprocrealtimesafe?language=objc)
+#[cfg(feature = "objc2-core-audio-types")]
+pub type AudioConverterComplexInputDataProcRealtimeSafe = Option<
+    unsafe extern "C-unwind" fn(
+        AudioConverterRef,
+        NonNull<u32>,
+        NonNull<AudioBufferList>,
+        *mut *mut AudioStreamPacketDescription,
+        *mut c_void,
+    ) -> OSStatus,
+>;
+
 extern "C-unwind" {
     /// Converts data supplied by an input callback function, supporting non-interleaved
     /// and packetized formats.
@@ -625,6 +641,81 @@ extern "C-unwind" {
         io_output_data_packet_size: NonNull<u32>,
         out_output_data: NonNull<AudioBufferList>,
         out_packet_description: *mut AudioStreamPacketDescription,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Identical to AudioConverterFillComplexBuffer, with the addition of a realtime-safety
+    /// guarantee.
+    ///
+    /// Conversions involving only PCM formats -- interleaving, deinterleaving, channel count changes,
+    /// sample rate conversions -- are realtime-safe. Such conversions may use this API in order to
+    /// obtain compiler checks involving the `CA_REALTIME_API` attributes.
+    ///
+    /// At runtime, this function returns `kAudioConverterErr_OperationNotSupported` if the conversion
+    /// requires non-realtime-safe functionality.
+    #[cfg(feature = "objc2-core-audio-types")]
+    pub fn AudioConverterFillComplexBufferRealtimeSafe(
+        in_audio_converter: AudioConverterRef,
+        in_input_data_proc: AudioConverterComplexInputDataProcRealtimeSafe,
+        in_input_data_proc_user_data: *mut c_void,
+        io_output_data_packet_size: NonNull<u32>,
+        out_output_data: NonNull<AudioBufferList>,
+        out_packet_description: *mut AudioStreamPacketDescription,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Converts audio data supplied by a callback function, supporting non-interleaved and
+    /// packetized formats, and also supporting packet dependency descriptions.
+    ///
+    /// For output formats that use packet dependency descriptions, this must be used instead of
+    /// AudioConverterFillComplexBuffer, which will return an error for such formats.
+    ///
+    /// Parameter `inAudioConverter`: The audio converter to use for format conversion.
+    ///
+    /// Parameter `inInputDataProc`: A callback function that supplies audio data to convert.
+    /// This callback is invoked repeatedly as the converter is ready for
+    /// new input data.
+    ///
+    /// Parameter `inInputDataProcUserData`: Custom data for use by your application when receiving a
+    /// callback invocation.
+    ///
+    /// Parameter `ioOutputDataPacketSize`: On input, the size of the output buffer (in the `outOutputData`
+    /// parameter), expressed in number packets in the audio converter’s
+    /// output format.  On output, the number of packets of converted data
+    /// that were written to the output buffer.
+    ///
+    /// Parameter `outOutputData`: The converted output data is written to this buffer. On entry, the
+    /// buffers' `mDataByteSize` fields (which must all be the same) reflect
+    /// buffer capacity.  On exit, `mDataByteSize` is set to the number of
+    /// bytes written.
+    ///
+    /// Parameter `outPacketDescriptions`: If not `NULL`, and if the audio converter's output format uses packet
+    /// descriptions, this must point to a block of memory capable of holding
+    /// the number of packet descriptions specified in the `ioOutputDataPacketSize`
+    /// parameter.  (See _Audio Format Services Reference_ for functions that
+    /// let you determine whether an audio format uses packet descriptions).
+    /// If not `NULL` on output and if the audio converter's output format
+    /// uses packet descriptions, then this parameter contains an array of
+    /// packet descriptions.
+    ///
+    /// Parameter `outPacketDependencies`: Should point to a memory block capable of holding the number of
+    /// packet dependency description structures specified in the
+    /// `ioOutputDataPacketSize` parameter.  Must not be `NULL`.  This array
+    /// will be filled out only by encoders that produce a format which has a
+    /// non-zero value for `kAudioFormatProperty_FormatEmploysDependentPackets`.
+    ///
+    /// Returns: A result code.
+    #[cfg(feature = "objc2-core-audio-types")]
+    pub fn AudioConverterFillComplexBufferWithPacketDependencies(
+        in_audio_converter: AudioConverterRef,
+        in_input_data_proc: AudioConverterComplexInputDataProc,
+        in_input_data_proc_user_data: *mut c_void,
+        io_output_data_packet_size: NonNull<u32>,
+        out_output_data: NonNull<AudioBufferList>,
+        out_packet_descriptions: *mut AudioStreamPacketDescription,
+        out_packet_dependencies: NonNull<AudioStreamPacketDependencyDescription>,
     ) -> OSStatus;
 }
 

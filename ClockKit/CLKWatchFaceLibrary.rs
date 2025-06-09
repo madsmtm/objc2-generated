@@ -26,6 +26,8 @@ impl CLKWatchFaceLibraryErrorCode {
     pub const PermissionDenied: Self = Self(3);
     #[doc(alias = "CLKWatchFaceLibraryErrorCodeFaceNotAvailable")]
     pub const FaceNotAvailable: Self = Self(4);
+    #[doc(alias = "CLKWatchFaceLibraryErrorCodeNoURL")]
+    pub const NoURL: Self = Self(5);
 }
 
 unsafe impl Encode for CLKWatchFaceLibraryErrorCode {

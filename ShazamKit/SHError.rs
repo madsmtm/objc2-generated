@@ -6,75 +6,53 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherrordomain?language=objc)
+    /// The error domain for specific errors for ShazamKit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherrordomain?language=objc)
     pub static SHErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// Error codes returned when generating and matching signatures
+/// An error type that you create, or the system creates, to indicate problems with a catalog, match attempt, or signature, or when saving to a user's Shazam library.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherrorcode?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SHErrorCode(pub NSInteger);
 impl SHErrorCode {
-    /// The
-    /// `AVAudioFormat`is not supported
+    /// The error code to indicate an unsupported audio format.
     ///
-    /// ShazamKit only accepts certain audio formats
-    ///
-    /// See: -[SHSignatureGenerator appendBuffer:atTime:error] for valid formats
+    /// For the list of the supported audio formats, see ``SHSignatureGenerator/append(_:at:)``.
     #[doc(alias = "SHErrorCodeInvalidAudioFormat")]
     pub const InvalidAudioFormat: Self = Self(100);
-    /// The audio provided was not contiguous
-    ///
-    /// Shazam requires audio to be contiguous in order
-    /// to match.
+    /// The error code to indicate the use of noncontiguous audio to request a match.
     #[doc(alias = "SHErrorCodeAudioDiscontinuity")]
     pub const AudioDiscontinuity: Self = Self(101);
-    /// Failed to create a signature from the provided audio
+    /// The error code to indicate that the system is unable to generate a signature from the audio.
     ///
-    /// Validate the audio you are supplying, it may be silence.
+    /// The most common cause of this error is silent audio input.
     #[doc(alias = "SHErrorCodeSignatureInvalid")]
     pub const SignatureInvalid: Self = Self(200);
-    /// The signature duration is outside the valid range
+    /// The error code to indicate that the length of the generated signature is too long or too short to make a match in the catalog.
     ///
-    /// The signature is valid but is too long/short for
-    /// the service attempting to match it
+    /// This error occurs when the length of the generated signature is less than ``SHCatalog/minimumQuerySignatureDuration`` or greater than ``SHCatalog/maximumQuerySignatureDuration`` for the session ``SHSession/catalog``.
     #[doc(alias = "SHErrorCodeSignatureDurationInvalid")]
     pub const SignatureDurationInvalid: Self = Self(201);
-    /// The request to match the signature failed
-    ///
-    /// The attempt failed and was not matched, trying again may result in success
-    ///
-    /// Note: This code does not indicate a 'No Match'
+    /// The error code to indicate when a Shazam Music catalog server issue prevents finding a match.
     #[doc(alias = "SHErrorCodeMatchAttemptFailed")]
     pub const MatchAttemptFailed: Self = Self(202);
-    /// Failed to load the Custom Catalog
-    ///
-    /// Validate the structure of the Catalog file
+    /// The error code to indicate when the custom catalog fails to load due to an invalid format.
     #[doc(alias = "SHErrorCodeCustomCatalogInvalid")]
     pub const CustomCatalogInvalid: Self = Self(300);
-    /// The Custom Catalog URL was invalid
-    ///
-    /// The URL must be a filePath URL that contains a valid Catalog
+    /// The error code to indicate that the format for the custom catalog URL is invalid.
     #[doc(alias = "SHErrorCodeCustomCatalogInvalidURL")]
     pub const CustomCatalogInvalidURL: Self = Self(301);
-    /// Failed to sync some content to the user's library
-    ///
-    /// Failed to sync the user's library, trying again may result in success
-    /// Underlying error may contain more details about the failure
+    /// The error code that indicates when the system fails to add media items to or remove items from the user's Shazam library.
     #[doc(alias = "SHErrorCodeMediaLibrarySyncFailed")]
     pub const MediaLibrarySyncFailed: Self = Self(400);
-    /// Internal Error
-    ///
-    /// ShazamKit encountered an internal error
+    /// The error code to indicate a generic framework error.
     #[doc(alias = "SHErrorCodeInternalError")]
     pub const InternalError: Self = Self(500);
-    /// Failed to fetch
-    /// `SHMediaItem`
-    /// There was an error fetching the
-    /// `SHMediaItem`or the provided
-    /// `shazamID`is invalid.
+    /// The error code to indicate when the system fails to fetch one or more media items.
     #[doc(alias = "SHErrorCodeMediaItemFetchFailed")]
     pub const MediaItemFetchFailed: Self = Self(600);
 }

@@ -224,6 +224,8 @@ impl NSControlSize {
     pub const Mini: Self = Self(2);
     #[doc(alias = "NSControlSizeLarge")]
     pub const Large: Self = Self(3);
+    #[doc(alias = "NSControlSizeExtraLarge")]
+    pub const ExtraLarge: Self = Self(4);
 }
 
 unsafe impl Encode for NSControlSize {
@@ -624,6 +626,14 @@ impl NSCell {
         #[unsafe(method(drawingRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawingRectForBounds(&self, rect: NSRect) -> NSRect;
+
+        #[unsafe(method(_bulletStringForString:bulletCharacter:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn _bulletStringForString_bulletCharacter(
+            string: &NSString,
+            bullet_char: unichar,
+            mtm: MainThreadMarker,
+        ) -> Retained<NSString>;
 
         #[unsafe(method(cellSize))]
         #[unsafe(method_family = none)]

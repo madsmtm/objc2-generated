@@ -135,6 +135,9 @@ mod __PKPass;
 #[cfg(feature = "PKPassLibrary")]
 #[path = "PKPassLibrary.rs"]
 mod __PKPassLibrary;
+#[cfg(feature = "PKPassRelevantDate")]
+#[path = "PKPassRelevantDate.rs"]
+mod __PKPassRelevantDate;
 #[cfg(feature = "PKPass_Types")]
 #[path = "PKPass_Types.rs"]
 mod __PKPass_Types;
@@ -221,6 +224,10 @@ pub use self::__PKAddCarKeyPassConfiguration::PKAddCarKeyPassConfiguration;
     feature = "PKAddSecureElementPassConfiguration"
 ))]
 pub use self::__PKAddIdentityDocumentConfiguration::PKAddIdentityDocumentConfiguration;
+#[cfg(feature = "PKAddIdentityDocumentConfiguration")]
+pub use self::__PKAddIdentityDocumentConfiguration::PKAddIdentityDocumentMetadata;
+#[cfg(feature = "PKAddIdentityDocumentConfiguration")]
+pub use self::__PKAddIdentityDocumentConfiguration::PKAddIdentityDocumentType;
 #[cfg(feature = "PKAddIdentityDocumentConfiguration")]
 pub use self::__PKAddIdentityDocumentConfiguration::PKIdentityDocumentMetadata;
 #[cfg(feature = "PKAddIdentityDocumentConfiguration")]
@@ -345,6 +352,8 @@ pub use self::__PKConstants::PKPaymentNetworkMeeza;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkMir;
 #[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkMyDebit;
+#[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkNAPAS;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkNanaco;
@@ -423,11 +432,15 @@ pub use self::__PKIdentityAuthorizationController::PKIdentityAuthorizationContro
 #[cfg(feature = "PKIdentityDocument")]
 pub use self::__PKIdentityDocument::PKIdentityDocument;
 #[cfg(feature = "PKIdentityDocumentDescriptor")]
+pub use self::__PKIdentityDocumentDescriptor::PKIdentityAnyOfDescriptor;
+#[cfg(feature = "PKIdentityDocumentDescriptor")]
 pub use self::__PKIdentityDocumentDescriptor::PKIdentityDocumentDescriptor;
 #[cfg(feature = "PKIdentityDocumentDescriptor")]
 pub use self::__PKIdentityDocumentDescriptor::PKIdentityDriversLicenseDescriptor;
 #[cfg(feature = "PKIdentityDocumentDescriptor")]
 pub use self::__PKIdentityDocumentDescriptor::PKIdentityNationalIDCardDescriptor;
+#[cfg(feature = "PKIdentityDocumentDescriptor")]
+pub use self::__PKIdentityDocumentDescriptor::PKIdentityPhotoIDDescriptor;
 #[cfg(feature = "PKIdentityElement")]
 pub use self::__PKIdentityElement::PKIdentityElement;
 #[cfg(feature = "PKIdentityError")]
@@ -473,6 +486,10 @@ pub use self::__PKPassLibrary::PKPassLibraryAddPassesStatus;
 #[cfg(feature = "PKPassLibrary")]
 pub use self::__PKPassLibrary::PKPassLibraryAddedPassesUserInfoKey;
 #[cfg(feature = "PKPassLibrary")]
+pub use self::__PKPassLibrary::PKPassLibraryAuthorizationStatus;
+#[cfg(feature = "PKPassLibrary")]
+pub use self::__PKPassLibrary::PKPassLibraryCapability;
+#[cfg(feature = "PKPassLibrary")]
 pub use self::__PKPassLibrary::PKPassLibraryDidChangeNotification;
 #[cfg(feature = "PKPassLibrary")]
 pub use self::__PKPassLibrary::PKPassLibraryNotificationKey;
@@ -492,6 +509,8 @@ pub use self::__PKPassLibrary::PKPassLibraryReplacementPassesUserInfoKey;
 pub use self::__PKPassLibrary::PKPassLibrarySerialNumberUserInfoKey;
 #[cfg(feature = "PKPassLibrary")]
 pub use self::__PKPassLibrary::PKSuppressionRequestToken;
+#[cfg(feature = "PKPassRelevantDate")]
+pub use self::__PKPassRelevantDate::PKPassRelevantDate;
 #[cfg(feature = "PKPass_Types")]
 pub use self::__PKPass_Types::PKPassType;
 #[cfg(feature = "PKPayment")]

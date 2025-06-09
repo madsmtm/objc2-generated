@@ -129,7 +129,7 @@ impl UITabGroup {
         /// A navigation controller used to automatically manage the view controller hierarchy of the group.
         /// Set a `UINavigationController` to allow the tab group to manage the hierarchy automatically.
         /// The navigation stack of the managing navigation controller will be managed by the tab group based on
-        /// the selected tab of the group. When multiple navigation controllers are set on nested groups, the rootmost
+        /// the selected tab of the group. When multiple navigation controllers are set on nested groups, the root-most
         /// controller is used. Default is nil.
         ///
         /// By default, the navigation stack is represented by the view controller of each tab of the selected tree, if a

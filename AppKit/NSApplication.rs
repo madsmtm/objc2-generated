@@ -541,6 +541,12 @@ impl NSApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn isRunning(&self) -> bool;
 
+        /// A boolean value indicating whether your application should suppress HDR content based on established policy.
+        /// Built-in AppKit components such as NSImageView will automatically behave correctly with HDR content. You should use this value in conjunction with notifications (`NSApplicationShouldBeginSuppressingHighDynamicRangeContentNotification` and `NSApplicationShouldEndSuppressingHighDynamicRangeContentNotification`) to suppress HDR content in your application when signaled to do so.
+        #[unsafe(method(applicationShouldSuppressHighDynamicRangeContent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn applicationShouldSuppressHighDynamicRangeContent(&self) -> bool;
+
         #[unsafe(method(deactivate))]
         #[unsafe(method_family = none)]
         pub unsafe fn deactivate(&self);
@@ -1836,6 +1842,18 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationprotecteddatadidbecomeavailablenotification?language=objc)
     pub static NSApplicationProtectedDataDidBecomeAvailableNotification:
+        &'static NSNotificationName;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationshouldbeginsuppressinghighdynamicrangecontentnotification?language=objc)
+    pub static NSApplicationShouldBeginSuppressingHighDynamicRangeContentNotification:
+        &'static NSNotificationName;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationshouldendsuppressinghighdynamicrangecontentnotification?language=objc)
+    pub static NSApplicationShouldEndSuppressingHighDynamicRangeContentNotification:
         &'static NSNotificationName;
 }
 

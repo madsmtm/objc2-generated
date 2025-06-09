@@ -45,6 +45,9 @@ mod __BEDownloads;
 #[cfg(feature = "BEDragInteraction")]
 #[path = "BEDragInteraction.rs"]
 mod __BEDragInteraction;
+#[cfg(feature = "BEExtensionProcess")]
+#[path = "BEExtensionProcess.rs"]
+mod __BEExtensionProcess;
 #[cfg(feature = "BEKeyEntry")]
 #[path = "BEKeyEntry.rs"]
 mod __BEKeyEntry;
@@ -153,6 +156,8 @@ pub use self::__BEDownloads::BEDownloadMonitorLocation;
 pub use self::__BEDragInteraction::BEDragInteraction;
 #[cfg(feature = "BEDragInteraction")]
 pub use self::__BEDragInteraction::BEDragInteractionDelegate;
+#[cfg(feature = "BEExtensionProcess")]
+pub use self::__BEExtensionProcess::BEExtensionProcess;
 #[cfg(feature = "BEKeyEntry")]
 pub use self::__BEKeyEntry::BEKeyEntry;
 #[cfg(feature = "BEKeyEntry")]

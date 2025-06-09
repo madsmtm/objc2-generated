@@ -7,21 +7,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// AVAssetDownloadedAssetEvictionPriority string constants
-///
-/// Used by AVAssetDownloadStorageManagementPolicy.
+/// These constants represents the eviction priority of downloaded assets.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriority?language=objc)
 // NS_TYPED_ENUM
 pub type AVAssetDownloadedAssetEvictionPriority = NSString;
 
 extern "C" {
-    /// These constants represents the eviction priority of downloaded assets.
-    ///
-    ///
     /// Used to mark assets with the highest priority. They will be the last to be purged.
-    ///
-    /// Used to mark assets have the default priority. They will be the first to be purged.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriorityimportant?language=objc)
     pub static AVAssetDownloadedAssetEvictionPriorityImportant:
@@ -29,13 +22,20 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionprioritydefault?language=objc)
+    /// Used to mark assets have the default priority. They will be the first to be purged.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionprioritydefault?language=objc)
     pub static AVAssetDownloadedAssetEvictionPriorityDefault:
         &'static AVAssetDownloadedAssetEvictionPriority;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadstoragemanager?language=objc)
+    /// An AVAssetDownloadStorageManager manages the policy for automatic purging of downloaded AVAssets. The policy is vended as AVAssetDownloadStorageManagementPolicy object.
+    ///
+    /// When a storage management policy needs to be set on an asset, sharedDownloadStorageManager singleton needs to be fetched.
+    /// The new policy can then be set by using setStorageManagementPolicy and the location of the downloaded asset.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadstoragemanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadStorageManager;
@@ -54,7 +54,7 @@ impl AVAssetDownloadStorageManager {
 
         /// Sets the policy for asset with disk backing at downloadStorageURL.
         ///
-        /// Parameter `downloadStorageURL`: The location of downloaded asset.
+        /// - Parameter downloadStorageURL: The location of downloaded asset.
         #[unsafe(method(setStorageManagementPolicy:forURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStorageManagementPolicy_forURL(
@@ -63,10 +63,9 @@ impl AVAssetDownloadStorageManager {
             download_storage_url: &NSURL,
         );
 
-        /// Returns the storage management policy for asset downloaded at downloadStorageURL.
-        /// This may be nil if a storageManagementPolicy was never set on the downloaded asset.
+        /// Returns the storage management policy for asset downloaded at downloadStorageURL. This may be nil if a storageManagementPolicy was never set on the downloaded asset.
         ///
-        /// Parameter `downloadStorageURL`: The location of downloaded asset.
+        /// - Parameter downloadStorageURL: The location of downloaded asset.
         #[unsafe(method(storageManagementPolicyForURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn storageManagementPolicyForURL(
@@ -90,7 +89,11 @@ impl AVAssetDownloadStorageManager {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadstoragemanagementpolicy?language=objc)
+    /// A class to inform the system of a policy for automatic purging of downloaded AVAssets.
+    ///
+    /// System will put in best-effort to evict all the assets based on expirationDate before evicting based on priority.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadstoragemanagementpolicy?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadStorageManagementPolicy;
@@ -118,10 +121,15 @@ extern_conformance!(
 
 impl AVAssetDownloadStorageManagementPolicy {
     extern_methods!(
+        /// Indicates the eviction priority of downloaded asset.
+        ///
+        /// Assets with default priority will be purged first before assets with higher priorities.
+        /// In case this is not set, default priority is used.
         #[unsafe(method(priority))]
         #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> Retained<AVAssetDownloadedAssetEvictionPriority>;
 
+        /// Returns the expiration date of asset.
         #[unsafe(method(expirationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Retained<NSDate>;
@@ -143,7 +151,6 @@ impl AVAssetDownloadStorageManagementPolicy {
 
 extern_class!(
     /// A mutable subclass of AVAssetDownloadStorageManagementPolicy.
-    ///
     ///
     /// System will put in best-effort to evict all the assets based on expirationDate before evicting based on priority.
     ///
@@ -175,6 +182,10 @@ extern_conformance!(
 
 impl AVMutableAssetDownloadStorageManagementPolicy {
     extern_methods!(
+        /// Indicates the eviction priority of downloaded asset.
+        ///
+        /// Assets with default priority will be purged first before assets with higher priorities.
+        /// In case this is not set, default priority is used.
         #[unsafe(method(priority))]
         #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> Retained<AVAssetDownloadedAssetEvictionPriority>;
@@ -184,6 +195,7 @@ impl AVMutableAssetDownloadStorageManagementPolicy {
         #[unsafe(method_family = none)]
         pub unsafe fn setPriority(&self, priority: &AVAssetDownloadedAssetEvictionPriority);
 
+        /// Returns the expiration date of asset.
         #[unsafe(method(expirationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Retained<NSDate>;

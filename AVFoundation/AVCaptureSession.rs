@@ -78,6 +78,8 @@ extern "C" {
 ///
 /// An interruption caused by the video device temporarily being made unavailable due to system pressure, such as thermal duress. See AVCaptureDevice's AVCaptureSystemPressure category for more information.
 ///
+/// An interruption caused by a SCVideoStreamAnalyzer when it detects sensitive content on an associated AVCaptureDeviceInput.  To resume your capture session, call your analyzer's `continueStream` method.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -96,6 +98,8 @@ impl AVCaptureSessionInterruptionReason {
     pub const VideoDeviceNotAvailableWithMultipleForegroundApps: Self = Self(4);
     #[doc(alias = "AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableDueToSystemPressure")]
     pub const VideoDeviceNotAvailableDueToSystemPressure: Self = Self(5);
+    #[doc(alias = "AVCaptureSessionInterruptionReasonSensitiveContentMitigationActivated")]
+    pub const SensitiveContentMitigationActivated: Self = Self(6);
 }
 
 unsafe impl Encode for AVCaptureSessionInterruptionReason {
@@ -609,6 +613,24 @@ impl AVCaptureSession {
             configures_application_audio_session_to_mix_with_others: bool,
         );
 
+        /// Indicates whether the receiver should configure the application's audio session for bluetooth high quality recording.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver should configure the application's audio session for bluetooth high quality recording (AirPods as a high quality microphone). When this property is set to YES, the AVCaptureSession will opt in for high quality bluetooth recording, allowing a user to select AirPods as the active mic source for capture. This property has no effect when usesApplicationAudioSession is set to NO. The default value is NO.
+        #[unsafe(method(configuresApplicationAudioSessionForBluetoothHighQualityRecording))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configuresApplicationAudioSessionForBluetoothHighQualityRecording(
+            &self,
+        ) -> bool;
+
+        /// Setter for [`configuresApplicationAudioSessionForBluetoothHighQualityRecording`][Self::configuresApplicationAudioSessionForBluetoothHighQualityRecording].
+        #[unsafe(method(setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording(
+            &self,
+            configures_application_audio_session_for_bluetooth_high_quality_recording: bool,
+        );
+
         /// Indicates whether the receiver automatically configures its video device's activeFormat and activeColorSpace properties, preferring wide color for photos.
         ///
         ///
@@ -685,6 +707,102 @@ impl AVCaptureSession {
         #[unsafe(method(hardwareCost))]
         #[unsafe(method_family = none)]
         pub unsafe fn hardwareCost(&self) -> c_float;
+
+        /// A Boolean value that indicates whether the session supports manually running deferred start.
+        ///
+        /// Deferred Start is a feature that allows you to control, on a per-output basis, whether output objects start when or after the session is started. The session defers starting an output when its ``deferredStartEnabled`` property is set to `true`, and starts it after the session is started.
+        ///
+        /// You can only set the ``automaticallyRunsDeferredStart`` property value to `false` if the session supports manual deferred start.
+        #[unsafe(method(isManualDeferredStartSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isManualDeferredStartSupported(&self) -> bool;
+
+        /// A Boolean value that indicates whether deferred start runs automatically.
+        ///
+        /// Deferred Start is a feature that allows you to control, on a per-output basis, whether output objects start when or after the session is started. The session defers starting an output when its ``deferredStartEnabled`` property is set to `true`, and starts it after the session is started.
+        ///
+        /// When this value is `true`, ``AVCaptureSession`` automatically runs deferred start. If only ``AVCaptureVideoPreviewLayer`` objects have ``deferredStartEnabled`` set to `false`, the session runs deferred start a short time after displaying the first frame. If there are ``AVCaptureOutput`` objects that have ``deferredStartEnabled`` set to `false`, then the session waits until each output that provides streaming data to your app sends its first frame.
+        ///
+        /// If you set this value to `false`, call ``runDeferredStartWhenNeeded`` to indicate when to run deferred start.
+        ///
+        /// By default, for apps that are linked on or after iOS 19, this value is `true`.
+        ///
+        /// If ``manualDeferredStartSupported`` is `false`, setting this property value to `false` results in the session throwing an invalid argument exception.
+        ///
+        /// - Note: Set this value before committing the configuration.
+        #[unsafe(method(automaticallyRunsDeferredStart))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn automaticallyRunsDeferredStart(&self) -> bool;
+
+        /// Setter for [`automaticallyRunsDeferredStart`][Self::automaticallyRunsDeferredStart].
+        #[unsafe(method(setAutomaticallyRunsDeferredStart:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAutomaticallyRunsDeferredStart(
+            &self,
+            automatically_runs_deferred_start: bool,
+        );
+
+        /// Tells the session to run deferred start when appropriate.
+        ///
+        /// You can only call this when automaticallyRunsDeferredStart is `false`. Otherwise, the session throws an invalid argument exception.
+        ///
+        /// For best perceived startup performance, call this after displaying the first frame, so that deferred start processing doesn't interfere with other initialization operations. For example, if using a
+        /// <doc
+        /// ://com.apple.documentation/documentation/quartzcore/cametallayer> to draw camera frames, add a presentHandler (using
+        /// <doc
+        /// ://com.apple.documentation/metal/mtldrawable/addpresentedhandler>) to the first drawable and call ``runDeferredStartWhenNeeded`` from there.
+        ///
+        /// If one or more outputs need to start to perform a capture operation, and ``runDeferredStartWhenNeeded`` has not run yet, the session runs the deferred start on your app's behalf. Only call this method once for each configuration commit - after the first call, subsequent calls to ``runDeferredStartWhenNeeded`` have no effect. The deferred start runs asynchronously, so this method returns immediately.
+        ///
+        /// Important: -To avoid blocking your app's UI, don't call this method from the application's main actor or queue.
+        #[unsafe(method(runDeferredStartWhenNeeded))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn runDeferredStartWhenNeeded(&self);
+
+        /// A delegate object that observes events about deferred start.
+        ///
+        /// Call the ``setDeferredStartDelegate:queue:`` method to set the deferred start delegate for a session.
+        #[unsafe(method(deferredStartDelegate))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn deferredStartDelegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn AVCaptureSessionDeferredStartDelegate>>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// The dispatch queue on which the session calls deferred start delegate methods.
+        ///
+        /// Call the ``setDeferredStartDelegate:queue:`` method to specify the dispatch queue on which to call the deferred start delegate methods.
+        #[unsafe(method(deferredStartDelegateCallbackQueue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn deferredStartDelegateCallbackQueue(&self) -> Option<Retained<DispatchQueue>>;
+
+        #[cfg(feature = "dispatch2")]
+        /// Sets a delegate object for the session to call when performing deferred start.
+        ///
+        /// This delegate receives a call to the ``sessionWillRunDeferredStart`` method when deferred start is about to run. It is non-blocking, so it's also possible that by the time this method is called, the deferred start is already underway. If you want your app to perform initialization (potentially) concurrently with deferred start (e.g. user-facing camera features that are not needed to display the first preview frame, but are available to the user as soon as possible) it may be done in the delegate's ``sessionWillRunDeferredStart`` method. To wait until deferred start is finished to perform some remaining initialization work, use the ``sessionDidRunDeferredStart`` method instead.
+        ///
+        /// The delegate receives a call to the ``sessionDidRunDeferredStart`` method when the deferred start finishes running. This allows you to run less-critical application initialization code. For example, if you've deferred an ``AVCapturePhotoOutput`` by setting its ``deferredStartEnabled`` property to `true`, and you'd like to do some app-specific initialization related to still capture, here might be a good place to put it.
+        ///
+        /// If the delegate is non-nil, the session still calls the ``sessionWillRunDeferredStart`` and ``sessionDidRunDeferredStart`` methods regardless of the value of the session's ``automaticallyRunsDeferredStart`` property.
+        ///
+        /// To minimize the capture session's startup latency, defer all unnecessary work until after the session starts. This delegate provides callbacks for you to schedule deferred work without impacting session startup performance.
+        ///
+        /// To perform initialization prior to deferred start but after the user interface displays, set ``automaticallyRunsDeferredStart`` to `false`, and then run the custom initialization prior to calling ``runDeferredStartWhenNeeded``.
+        ///
+        /// If ``deferredStartDelegate`` is not `NULL`, the session throws an exception if ``deferredStartDelegateCallbackQueue`` is `nil`.
+        ///
+        /// - Parameters:
+        /// - deferredStartDelegate: An object conforming to the 'AVCaptureSessionDeferredStartDelegate' protocol that receives events about deferred start.
+        /// - deferredStartDelegateCallbackQueue: A dispatch queue on which deferredStart delegate methods are called.
+        #[unsafe(method(setDeferredStartDelegate:deferredStartDelegateCallbackQueue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDeferredStartDelegate_deferredStartDelegateCallbackQueue(
+            &self,
+            deferred_start_delegate: Option<
+                &ProtocolObject<dyn AVCaptureSessionDeferredStartDelegate>,
+            >,
+            deferred_start_delegate_callback_queue: Option<&DispatchQueue>,
+        );
     );
 }
 
@@ -752,6 +870,30 @@ extern_protocol!(
     }
 );
 
+extern_protocol!(
+    /// Defines an interface for delegates of `AVCaptureSession` to receive events about the session's deferred start.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessiondeferredstartdelegate?language=objc)
+    pub unsafe trait AVCaptureSessionDeferredStartDelegate: NSObjectProtocol {
+        /// This method gets called by the session when deferred start is about to run.
+        ///
+        /// Delegates receive this message when the session has finished the deferred start. This message will be sent regardless of whether the session's automaticallyRunsDeferredStart property is set. See ``setDeferredStartDelegate:queue:`` documentation for more information.
+        ///
+        /// - Parameters:
+        /// - session: The `AVCaptureSession` instance that runs the deferred start.
+        #[unsafe(method(sessionWillRunDeferredStart:))]
+        #[unsafe(method_family = none)]
+        unsafe fn sessionWillRunDeferredStart(&self, session: &AVCaptureSession);
+
+        /// This method gets called by the session when deferred start has finished running.
+        /// - Parameters:
+        /// - session: The `AVCaptureSession` instance that runs the deferred start.
+        #[unsafe(method(sessionDidRunDeferredStart:))]
+        #[unsafe(method_family = none)]
+        unsafe fn sessionDidRunDeferredStart(&self, session: &AVCaptureSession);
+    }
+);
+
 extern_class!(
     /// A subclass of AVCaptureSession which supports simultaneous capture from multiple inputs of the same media type.
     ///
@@ -759,6 +901,8 @@ extern_class!(
     /// AVCaptureMultiCamSession's sessionPreset is always AVCaptureSessionPresetInputPriority and may not be set to any other value. Each input's device.activeFormat must be set manually to achieve the desired quality of service.
     ///
     /// AVCaptureMultiCamSession supports dynamic enabling and disabling of individual camera inputs without interrupting preview. In order to stop an individual camera input, set the enabled property on all of its connections or connected ports to NO. When the last active connection or port is disabled, the source camera stops streaming to save power and bandwidth. Other inputs streaming data through the session are unaffected.
+    ///
+    /// Prior to iOS 19, AVCaptureMultiCamSession requires all input devices to have an activeFormat where multiCamSupported returns YES. In applications linked on or after iOS 19, this requirement is not enforced when only a single input device is used.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession?language=objc)
     #[unsafe(super(AVCaptureSession, NSObject))]

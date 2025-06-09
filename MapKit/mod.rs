@@ -21,9 +21,15 @@
 #[link(name = "MapKit", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "MKAddress")]
+#[path = "MKAddress.rs"]
+mod __MKAddress;
 #[cfg(feature = "MKAddressFilter")]
 #[path = "MKAddressFilter.rs"]
 mod __MKAddressFilter;
+#[cfg(feature = "MKAddressRepresentations")]
+#[path = "MKAddressRepresentations.rs"]
+mod __MKAddressRepresentations;
 #[cfg(feature = "MKAnnotation")]
 #[path = "MKAnnotation.rs"]
 mod __MKAnnotation;
@@ -63,6 +69,9 @@ mod __MKFoundation;
 #[cfg(feature = "MKGeoJSONSerialization")]
 #[path = "MKGeoJSONSerialization.rs"]
 mod __MKGeoJSONSerialization;
+#[cfg(feature = "MKGeocodingRequest")]
+#[path = "MKGeocodingRequest.rs"]
+mod __MKGeocodingRequest;
 #[cfg(feature = "MKGeodesicPolyline")]
 #[path = "MKGeodesicPolyline.rs"]
 mod __MKGeodesicPolyline;
@@ -207,6 +216,9 @@ mod __MKPolyline;
 #[cfg(feature = "MKPolylineRenderer")]
 #[path = "MKPolylineRenderer.rs"]
 mod __MKPolylineRenderer;
+#[cfg(feature = "MKReverseGeocodingRequest")]
+#[path = "MKReverseGeocodingRequest.rs"]
+mod __MKReverseGeocodingRequest;
 #[cfg(feature = "MKSelectionAccessory")]
 #[path = "MKSelectionAccessory.rs"]
 mod __MKSelectionAccessory;
@@ -238,10 +250,16 @@ mod __MKZoomControl;
 #[path = "NSUserActivity_MKMapItem.rs"]
 mod __NSUserActivity_MKMapItem;
 
+#[cfg(feature = "MKAddress")]
+pub use self::__MKAddress::MKAddress;
 #[cfg(feature = "MKAddressFilter")]
 pub use self::__MKAddressFilter::MKAddressFilter;
 #[cfg(feature = "MKAddressFilter")]
 pub use self::__MKAddressFilter::MKAddressFilterOption;
+#[cfg(feature = "MKAddressRepresentations")]
+pub use self::__MKAddressRepresentations::MKAddressRepresentations;
+#[cfg(feature = "MKAddressRepresentations")]
+pub use self::__MKAddressRepresentations::MKAddressRepresentationsContextStyle;
 #[cfg(feature = "MKAnnotation")]
 pub use self::__MKAnnotation::MKAnnotation;
 #[cfg(feature = "MKAnnotationView")]
@@ -324,6 +342,8 @@ pub use self::__MKGeoJSONSerialization::MKGeoJSONDecoder;
 pub use self::__MKGeoJSONSerialization::MKGeoJSONFeature;
 #[cfg(feature = "MKGeoJSONSerialization")]
 pub use self::__MKGeoJSONSerialization::MKGeoJSONObject;
+#[cfg(feature = "MKGeocodingRequest")]
+pub use self::__MKGeocodingRequest::MKGeocodingRequest;
 #[cfg(all(
     feature = "MKGeodesicPolyline",
     feature = "MKMultiPoint",
@@ -458,6 +478,8 @@ pub use self::__MKMapConfiguration::MKMapConfiguration;
 pub use self::__MKMapConfiguration::MKMapElevationStyle;
 #[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsCameraKey;
+#[cfg(feature = "MKMapItem")]
+pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeCycling;
 #[cfg(feature = "MKMapItem")]
 pub use self::__MKMapItem::MKLaunchOptionsDirectionsModeDefault;
 #[cfg(feature = "MKMapItem")]
@@ -735,6 +757,8 @@ pub use self::__MKPolyline::MKPolyline;
     feature = "MKPolylineRenderer"
 ))]
 pub use self::__MKPolylineRenderer::MKPolylineRenderer;
+#[cfg(feature = "MKReverseGeocodingRequest")]
+pub use self::__MKReverseGeocodingRequest::MKReverseGeocodingRequest;
 #[cfg(feature = "MKSelectionAccessory")]
 pub use self::__MKSelectionAccessory::MKMapItemDetailSelectionAccessoryCalloutStyle;
 #[cfg(feature = "MKSelectionAccessory")]

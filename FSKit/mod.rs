@@ -126,11 +126,15 @@ pub use self::__FSMutableFileDataBuffer::FSMutableFileDataBuffer;
 #[cfg(feature = "FSResource")]
 pub use self::__FSResource::FSBlockDeviceResource;
 #[cfg(feature = "FSResource")]
+pub use self::__FSResource::FSGenericURLResource;
+#[cfg(feature = "FSResource")]
 pub use self::__FSResource::FSManageableResourceMaintenanceOperations;
 #[cfg(feature = "FSResource")]
 pub use self::__FSResource::FSMatchResult;
 #[cfg(feature = "FSResource")]
 pub use self::__FSResource::FSMetadataRange;
+#[cfg(feature = "FSResource")]
+pub use self::__FSResource::FSPathURLResource;
 #[cfg(feature = "FSResource")]
 pub use self::__FSResource::FSProbeResult;
 #[cfg(feature = "FSResource")]

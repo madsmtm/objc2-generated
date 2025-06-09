@@ -57,13 +57,33 @@ impl UIToolbarAppearance {
         pub unsafe fn setButtonAppearance(&self, button_appearance: &UIBarButtonItemAppearance);
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// The appearance attributes for Prominent buttons.
+        ///
+        /// Use this property to configure the appearance of bar button items that use `UIBarButtonItemStyleProminent`.
+        /// If the navigation bar doesn't have any buttons using this style, this property has no effect.
+        #[unsafe(method(prominentButtonAppearance))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prominentButtonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
+
+        #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// Setter for [`prominentButtonAppearance`][Self::prominentButtonAppearance].
+        #[unsafe(method(setProminentButtonAppearance:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setProminentButtonAppearance(
+            &self,
+            prominent_button_appearance: &UIBarButtonItemAppearance,
+        );
+
+        #[cfg(feature = "UIBarButtonItemAppearance")]
         /// The appearance for done-style bar button items
+        #[deprecated]
         #[unsafe(method(doneButtonAppearance))]
         #[unsafe(method_family = none)]
         pub unsafe fn doneButtonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         /// Setter for [`doneButtonAppearance`][Self::doneButtonAppearance].
+        #[deprecated]
         #[unsafe(method(setDoneButtonAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoneButtonAppearance(

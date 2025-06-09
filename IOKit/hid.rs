@@ -91,6 +91,9 @@ pub const kIOHIDPointerAccelerationSupportKey: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollaccelerationsupportkey?language=objc)
 pub const kIOHIDScrollAccelerationSupportKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDSupportsScrollAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohideventservicesensorcontroloptionskey?language=objc)
+pub const kIOHIDEventServiceSensorControlOptionsKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDDefaultSensorControlOptions\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmouseaccelerationtype?language=objc)
 pub const kIOHIDMouseAccelerationType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDMouseAcceleration\0") };
@@ -272,6 +275,12 @@ pub const kIOHIDTransportBTAACPValue: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidtransportfifovalue?language=objc)
 pub const kIOHIDTransportFIFOValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"FIFO\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidtransportvirtualvalue?language=objc)
+pub const kIOHIDTransportVirtualValue: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"Virtual\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidtransportinductiveinbandvalue?language=objc)
+pub const kIOHIDTransportInductiveInBandValue: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"Inductive In-Band\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidcategoryautomotivevalue?language=objc)
 pub const kIOHIDCategoryAutomotiveValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Automotive\0") };
@@ -5644,6 +5653,26 @@ pub const kHIDUsage_LED_GenericIndicator: c_uint = 0x4B;
 pub const kHIDUsage_LED_SystemSuspend: c_uint = 0x4C;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_externalpowerconnected?language=objc)
 pub const kHIDUsage_LED_ExternalPowerConnected: c_uint = 0x4D;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_indicatorblue?language=objc)
+pub const kHIDUsage_LED_IndicatorBlue: c_uint = 0x4E;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_indicatororange?language=objc)
+pub const kHIDUsage_LED_IndicatorOrange: c_uint = 0x4F;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_goodstatus?language=objc)
+pub const kHIDUsage_LED_GoodStatus: c_uint = 0x50;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_warningstatus?language=objc)
+pub const kHIDUsage_LED_WarningStatus: c_uint = 0x51;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_rgb_led?language=objc)
+pub const kHIDUsage_LED_RGB_LED: c_uint = 0x52;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_redledchannel?language=objc)
+pub const kHIDUsage_LED_RedLEDChannel: c_uint = 0x53;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_blueledchannel?language=objc)
+pub const kHIDUsage_LED_BlueLEDChannel: c_uint = 0x54;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_greenledchannel?language=objc)
+pub const kHIDUsage_LED_GreenLEDChannel: c_uint = 0x55;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_ledintensity?language=objc)
+pub const kHIDUsage_LED_LEDIntensity: c_uint = 0x56;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_systemmicrophonemute?language=objc)
+pub const kHIDUsage_LED_SystemMicrophoneMute: c_uint = 0x57;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_playerindicator?language=objc)
 pub const kHIDUsage_LED_PlayerIndicator: c_uint = 0x4E;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_led_player1?language=objc)
@@ -7653,6 +7682,8 @@ pub const kHIDUsage_Snsr_Biometric_HumanPresence: c_uint = 0x11;
 pub const kHIDUsage_Snsr_Biometric_HumanProximity: c_uint = 0x12;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_biometric_humantouch?language=objc)
 pub const kHIDUsage_Snsr_Biometric_HumanTouch: c_uint = 0x13;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_biometric_heartrate?language=objc)
+pub const kHIDUsage_Snsr_Biometric_HeartRate: c_uint = 0x16;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_electrical?language=objc)
 pub const kHIDUsage_Snsr_Electrical: c_uint = 0x20;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_electrical_capacitance?language=objc)
@@ -7749,6 +7780,10 @@ pub const kHIDUsage_Snsr_Motion_Speedometer: c_uint = 0x78;
 pub const kHIDUsage_Snsr_Motion_Accelerometer: c_uint = 0x79;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_motion_gyrometer?language=objc)
 pub const kHIDUsage_Snsr_Motion_Gyrometer: c_uint = 0x7A;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_motion_gravityvector?language=objc)
+pub const kHIDUsage_Snsr_Motion_GravityVector: c_uint = 0x7B;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_motion_linearaccelerometer?language=objc)
+pub const kHIDUsage_Snsr_Motion_LinearAccelerometer: c_uint = 0x7C;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_orientation?language=objc)
 pub const kHIDUsage_Snsr_Orientation: c_uint = 0x80;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_orientation_compass1d?language=objc)
@@ -8243,6 +8278,8 @@ pub const kHIDUsage_Snsr_Data_Biometric_HumanProximityRange: c_uint = 0x04B2;
 pub const kHIDUsage_Snsr_Data_Biometric_HumanProximityOutOfRange: c_uint = 0x04B3;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_data_biometric_humantouchstate?language=objc)
 pub const kHIDUsage_Snsr_Data_Biometric_HumanTouchState: c_uint = 0x04B4;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_data_biometric_heartrate?language=objc)
+pub const kHIDUsage_Snsr_Data_Biometric_HeartRate: c_uint = 0x04B8;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_data_light?language=objc)
 pub const kHIDUsage_Snsr_Data_Light: c_uint = 0x04D0;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_data_light_illuminance?language=objc)
@@ -10712,6 +10749,35 @@ unsafe impl Encode for IOHIDScrollEventOptions {
 
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for IOHIDScrollEventOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// List of control options  for sensor controls in HID event system
+///
+/// Options define behavior of HID event system for handling kIOHIDServiceReportIntervalKey
+/// &
+/// kIOHIDServiceBatchIntervalKey and associated event dispatch to kIOHIDEventSystemClientTypeRateControlled clients
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidservicesensorcontroloptions?language=objc)
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct IOHIDServiceSensorControlOptions(pub u32);
+impl IOHIDServiceSensorControlOptions {
+    #[doc(alias = "kIOHIDServiceSensorControlDecimation")]
+    pub const Decimation: Self = Self(0x1 << 0);
+    #[doc(alias = "kIOHIDServiceSensorControlAggregation")]
+    pub const Aggregation: Self = Self(0x1 << 1);
+    #[doc(alias = "kIOHIDServiceSensorControlDispatchControl")]
+    pub const DispatchControl: Self = Self(0x1 << 2);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for IOHIDServiceSensorControlOptions {
+    const ENCODING: Encoding = u32::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for IOHIDServiceSensorControlOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 

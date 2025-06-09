@@ -84,6 +84,24 @@ mod __CPLaneGuidance;
 #[cfg(feature = "CPListImageRowItem")]
 #[path = "CPListImageRowItem.rs"]
 mod __CPListImageRowItem;
+#[cfg(feature = "CPListImageRowItemCardElement")]
+#[path = "CPListImageRowItemCardElement.rs"]
+mod __CPListImageRowItemCardElement;
+#[cfg(feature = "CPListImageRowItemCondensedElement")]
+#[path = "CPListImageRowItemCondensedElement.rs"]
+mod __CPListImageRowItemCondensedElement;
+#[cfg(feature = "CPListImageRowItemElement")]
+#[path = "CPListImageRowItemElement.rs"]
+mod __CPListImageRowItemElement;
+#[cfg(feature = "CPListImageRowItemGridElement")]
+#[path = "CPListImageRowItemGridElement.rs"]
+mod __CPListImageRowItemGridElement;
+#[cfg(feature = "CPListImageRowItemImageGridElement")]
+#[path = "CPListImageRowItemImageGridElement.rs"]
+mod __CPListImageRowItemImageGridElement;
+#[cfg(feature = "CPListImageRowItemRowElement")]
+#[path = "CPListImageRowItemRowElement.rs"]
+mod __CPListImageRowItemRowElement;
 #[cfg(feature = "CPListItem")]
 #[path = "CPListItem.rs"]
 mod __CPListItem;
@@ -215,6 +233,8 @@ pub use self::__CPDashboardButton::CPDashboardButton;
 pub use self::__CPDashboardController::CPDashboardController;
 #[cfg(feature = "CPGridButton")]
 pub use self::__CPGridButton::CPGridButton;
+#[cfg(feature = "CPGridButton")]
+pub use self::__CPGridButton::CPMessageGridItemConfiguration;
 #[cfg(all(feature = "CPGridTemplate", feature = "CPTemplate"))]
 pub use self::__CPGridTemplate::CPGridTemplate;
 #[cfg(feature = "CPGridTemplate")]
@@ -253,6 +273,37 @@ pub use self::__CPLaneGuidance::CPLaneGuidance;
 pub use self::__CPListImageRowItem::CPListImageRowItem;
 #[cfg(feature = "CPListImageRowItem")]
 pub use self::__CPListImageRowItem::CPMaximumNumberOfGridImages;
+#[cfg(all(
+    feature = "CPListImageRowItemCardElement",
+    feature = "CPListImageRowItemElement"
+))]
+pub use self::__CPListImageRowItemCardElement::CPListImageRowItemCardElement;
+#[cfg(all(
+    feature = "CPListImageRowItemCondensedElement",
+    feature = "CPListImageRowItemElement"
+))]
+pub use self::__CPListImageRowItemCondensedElement::CPListImageRowItemCondensedElement;
+#[cfg(feature = "CPListImageRowItemCondensedElement")]
+pub use self::__CPListImageRowItemCondensedElement::CPListImageRowItemCondensedElementShape;
+#[cfg(feature = "CPListImageRowItemElement")]
+pub use self::__CPListImageRowItemElement::CPListImageRowItemElement;
+#[cfg(all(
+    feature = "CPListImageRowItemElement",
+    feature = "CPListImageRowItemGridElement"
+))]
+pub use self::__CPListImageRowItemGridElement::CPListImageRowItemGridElement;
+#[cfg(all(
+    feature = "CPListImageRowItemElement",
+    feature = "CPListImageRowItemImageGridElement"
+))]
+pub use self::__CPListImageRowItemImageGridElement::CPListImageRowItemImageGridElement;
+#[cfg(feature = "CPListImageRowItemImageGridElement")]
+pub use self::__CPListImageRowItemImageGridElement::CPListImageRowItemImageGridElementShape;
+#[cfg(all(
+    feature = "CPListImageRowItemElement",
+    feature = "CPListImageRowItemRowElement"
+))]
+pub use self::__CPListImageRowItemRowElement::CPListImageRowItemRowElement;
 #[cfg(feature = "CPListItem")]
 pub use self::__CPListItem::CPListItem;
 #[cfg(feature = "CPListItem")]
@@ -307,6 +358,8 @@ pub use self::__CPMapTemplate::CPTripEstimateStyle;
 pub use self::__CPMessageComposeBarButton::CPMessageComposeBarButton;
 #[cfg(all(feature = "CPMessageListItem", feature = "objc2-core-foundation"))]
 pub use self::__CPMessageListItem::CPMaximumMessageItemImageSize;
+#[cfg(all(feature = "CPMessageListItem", feature = "objc2-core-foundation"))]
+pub use self::__CPMessageListItem::CPMaximumMessageItemLeadingDetailTextImageSize;
 #[cfg(feature = "CPMessageListItem")]
 pub use self::__CPMessageListItem::CPMessageLeadingItem;
 #[cfg(feature = "CPMessageListItem")]

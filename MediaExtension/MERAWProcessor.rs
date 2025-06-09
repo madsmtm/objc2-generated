@@ -760,6 +760,14 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn outputColorAttachments(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
+        /// The metadata returned is a pre-formatted NSData that represents a fully-formed sidecar file, and should be compatible with the MediaExtension FormatReader.
+        ///
+        /// The metadata will contain the initial processing parameters from the sidecar file, along with any adjustments made on the RAW processor.
+        #[optional]
+        #[unsafe(method(metadataForSidecarFile))]
+        #[unsafe(method_family = none)]
+        unsafe fn metadataForSidecarFile(&self) -> Retained<NSData>;
+
         /// Provides a list of processing parameters which can be changed by the client of the VideoToolbox session to influence processing behavior.
         ///
         /// This property value is an array of MERAWProcessingParameters each of which describes the parameter and provides an interface where the processing parameter value may be modified.

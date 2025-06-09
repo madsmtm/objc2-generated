@@ -45,6 +45,9 @@ mod __ASErrors;
 #[cfg(feature = "ASPickerDisplayItem")]
 #[path = "ASPickerDisplayItem.rs"]
 mod __ASPickerDisplayItem;
+#[cfg(feature = "ASPickerDisplaySettings")]
+#[path = "ASPickerDisplaySettings.rs"]
+mod __ASPickerDisplaySettings;
 
 #[cfg(feature = "ASAccessory")]
 pub use self::__ASAccessory::ASAccessory;
@@ -54,6 +57,8 @@ pub use self::__ASAccessory::ASAccessoryRenameOptions;
 pub use self::__ASAccessory::ASAccessoryState;
 #[cfg(feature = "ASAccessory")]
 pub use self::__ASAccessory::ASAccessorySupportOptions;
+#[cfg(feature = "ASAccessory")]
+pub use self::__ASAccessory::ASAccessoryWiFiAwarePairedDeviceID;
 #[cfg(feature = "ASAccessoryEvent")]
 pub use self::__ASAccessoryEvent::ASAccessoryEvent;
 #[cfg(feature = "ASAccessoryEvent")]
@@ -64,10 +69,14 @@ pub use self::__ASAccessorySession::ASAccessorySession;
 pub use self::__ASAccessorySettings::ASAccessorySettings;
 #[cfg(feature = "ASCommon")]
 pub use self::__ASCommon::ASBluetoothCompanyIdentifier;
+#[cfg(feature = "ASCommon")]
+pub use self::__ASCommon::ASPropertyCompareString;
 #[cfg(feature = "ASDiscoveryDescriptor")]
 pub use self::__ASDiscoveryDescriptor::ASDiscoveryDescriptor;
 #[cfg(feature = "ASDiscoveryDescriptor")]
 pub use self::__ASDiscoveryDescriptor::ASDiscoveryDescriptorRange;
+#[cfg(feature = "ASDiscoveryDescriptor")]
+pub use self::__ASDiscoveryDescriptor::ASDiscoveryDescriptorWiFiAwareServiceRole;
 #[cfg(feature = "ASErrors")]
 pub use self::__ASErrors::ASErrorCode;
 #[cfg(feature = "ASErrors")]
@@ -78,3 +87,13 @@ pub use self::__ASPickerDisplayItem::ASMigrationDisplayItem;
 pub use self::__ASPickerDisplayItem::ASPickerDisplayItem;
 #[cfg(feature = "ASPickerDisplayItem")]
 pub use self::__ASPickerDisplayItem::ASPickerDisplayItemSetupOptions;
+#[cfg(feature = "ASPickerDisplaySettings")]
+pub use self::__ASPickerDisplaySettings::ASPickerDisplaySettings;
+#[cfg(feature = "ASPickerDisplaySettings")]
+pub use self::__ASPickerDisplaySettings::ASPickerDisplaySettingsDiscoveryTimeout;
+#[cfg(feature = "ASPickerDisplaySettings")]
+pub use self::__ASPickerDisplaySettings::ASPickerDisplaySettingsDiscoveryTimeoutLong;
+#[cfg(feature = "ASPickerDisplaySettings")]
+pub use self::__ASPickerDisplaySettings::ASPickerDisplaySettingsDiscoveryTimeoutMedium;
+#[cfg(feature = "ASPickerDisplaySettings")]
+pub use self::__ASPickerDisplaySettings::ASPickerDisplaySettingsDiscoveryTimeoutShort;

@@ -39,6 +39,10 @@ extern_class!(
     pub struct MTLSharedEventListener;
 );
 
+unsafe impl Send for MTLSharedEventListener {}
+
+unsafe impl Sync for MTLSharedEventListener {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for MTLSharedEventListener {}
 );
@@ -61,6 +65,10 @@ impl MTLSharedEventListener {
         #[unsafe(method(dispatchQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatchQueue(&self) -> Retained<DispatchQueue>;
+
+        #[unsafe(method(sharedListener))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sharedListener() -> Retained<MTLSharedEventListener>;
     );
 }
 
@@ -123,6 +131,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSharedEventHandle;
 );
+
+unsafe impl Send for MTLSharedEventHandle {}
+
+unsafe impl Sync for MTLSharedEventHandle {}
 
 extern_conformance!(
     unsafe impl NSCoding for MTLSharedEventHandle {}

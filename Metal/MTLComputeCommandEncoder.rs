@@ -22,6 +22,22 @@ unsafe impl RefEncode for MTLDispatchThreadgroupsIndirectArguments {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchthreadsindirectarguments?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLDispatchThreadsIndirectArguments {
+    pub threadsPerGrid: [u32; 3],
+    pub threadsPerThreadgroup: [u32; 3],
+}
+
+unsafe impl Encode for MTLDispatchThreadsIndirectArguments {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<[u32; 3]>::ENCODING, <[u32; 3]>::ENCODING]);
+}
+
+unsafe impl RefEncode for MTLDispatchThreadsIndirectArguments {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstageinregionindirectarguments?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -50,7 +66,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn dispatchType(&self) -> MTLDispatchType;
 
-        #[cfg(feature = "MTLComputePipeline")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLComputePipeline"))]
         /// Set the compute pipeline state that will be used.
         #[unsafe(method(setComputePipelineState:))]
         #[unsafe(method_family = none)]

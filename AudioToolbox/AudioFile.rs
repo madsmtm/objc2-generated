@@ -1200,6 +1200,71 @@ pub unsafe extern "C-unwind" fn AudioFileWritePackets(
     }
 }
 
+/// Write packets of audio data with corresponding packet dependencies to an audio data file.
+///
+/// For all uncompressed formats, `packets == frames`.
+///
+/// Parameter `inAudioFile`: The audio file to write to.
+///
+/// Parameter `inUseCache`: Set to `true` if you want to cache the data. Otherwise, set to `false`.
+///
+/// Parameter `inNumBytes`: The number of bytes of audio data being written.
+///
+/// Parameter `inPacketDescriptions`: A pointer to an array of packet descriptions for the audio data.
+/// Not all formats require packet descriptions. If no packet descriptions
+/// are required, for instance, if you are writing CBR data,  pass `NULL`.
+///
+/// Parameter `inPacketDependencies`: A pointer to an array of packet dependencies for the audio data.
+/// This must not be `NULL`.  To write packets without dependencies,
+/// use ``AudioFileWritePackets`` instead.
+///
+/// Parameter `inStartingPacket`: The packet index for the placement of the first provided packet.
+///
+/// Parameter `ioNumPackets`: On input, a pointer to the number of packets to write.
+/// On output, a pointer to the number of packets actually written.
+///
+/// Parameter `inBuffer`: A pointer to user-allocated memory containing the new audio data
+/// to write to the audio data file.
+///
+/// Returns: A result code. See Result Codes.
+#[cfg(feature = "objc2-core-audio-types")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileWritePacketsWithDependencies(
+    in_audio_file: AudioFileID,
+    in_use_cache: bool,
+    in_num_bytes: u32,
+    in_packet_descriptions: *const AudioStreamPacketDescription,
+    in_packet_dependencies: NonNull<AudioStreamPacketDependencyDescription>,
+    in_starting_packet: i64,
+    io_num_packets: NonNull<u32>,
+    in_buffer: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileWritePacketsWithDependencies(
+            in_audio_file: AudioFileID,
+            in_use_cache: Boolean,
+            in_num_bytes: u32,
+            in_packet_descriptions: *const AudioStreamPacketDescription,
+            in_packet_dependencies: NonNull<AudioStreamPacketDependencyDescription>,
+            in_starting_packet: i64,
+            io_num_packets: NonNull<u32>,
+            in_buffer: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileWritePacketsWithDependencies(
+            in_audio_file,
+            in_use_cache as _,
+            in_num_bytes,
+            in_packet_descriptions,
+            in_packet_dependencies,
+            in_starting_packet,
+            io_num_packets,
+            in_buffer,
+        )
+    }
+}
+
 extern "C-unwind" {
     /// Get the number of user data items with a certain ID in the file
     ///

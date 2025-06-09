@@ -289,6 +289,41 @@ impl UITraitCollection {
         #[unsafe(method(listEnvironment))]
         #[unsafe(method_family = none)]
         pub unsafe fn listEnvironment(&self) -> UIListEnvironment;
+
+        #[cfg(feature = "UITabAccessory")]
+        /// Constructs a new trait collection with the given `tabAccessoryEnvironment`.
+        #[unsafe(method(traitCollectionWithTabAccessoryEnvironment:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn traitCollectionWithTabAccessoryEnvironment(
+            tab_accessory_environment: UITabAccessoryEnvironment,
+        ) -> Retained<UITraitCollection>;
+
+        #[cfg(feature = "UITabAccessory")]
+        /// The tab accessory environment represents whether a given trait collection is from a view in a `UITabAccessory` content view.
+        #[unsafe(method(tabAccessoryEnvironment))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn tabAccessoryEnvironment(&self) -> UITabAccessoryEnvironment;
+
+        #[cfg(feature = "UISplitViewControllerLayoutEnvironment")]
+        /// The split view controller layout environment represents whether an ancestor split view controller is expanded or collapsed.
+        #[unsafe(method(splitViewControllerLayoutEnvironment))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn splitViewControllerLayoutEnvironment(
+            &self,
+        ) -> UISplitViewControllerLayoutEnvironment;
+
+        #[cfg(feature = "UIInterface")]
+        /// If HDR headroom should be used for the current UI configuration. Headroom usage is disabled in certain UI configurations, such as when all an application's windows are in the background.
+        #[unsafe(method(hdrHeadroomUsageLimit))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hdrHeadroomUsageLimit(&self) -> UIHDRHeadroomUsageLimit;
+
+        #[cfg(feature = "UIInterface")]
+        #[unsafe(method(traitCollectionWithHDRHeadroomUsageLimit:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn traitCollectionWithHDRHeadroomUsageLimit(
+            hdr_headroom_usage_limit: UIHDRHeadroomUsageLimit,
+        ) -> Retained<UITraitCollection>;
     );
 }
 
@@ -542,6 +577,36 @@ extern_protocol!(
         #[unsafe(method(setListEnvironment:))]
         #[unsafe(method_family = none)]
         unsafe fn setListEnvironment(&self, list_environment: UIListEnvironment);
+
+        #[cfg(feature = "UITabAccessory")]
+        #[unsafe(method(tabAccessoryEnvironment))]
+        #[unsafe(method_family = none)]
+        unsafe fn tabAccessoryEnvironment(&self) -> UITabAccessoryEnvironment;
+
+        #[cfg(feature = "UITabAccessory")]
+        /// Setter for [`tabAccessoryEnvironment`][Self::tabAccessoryEnvironment].
+        #[unsafe(method(setTabAccessoryEnvironment:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setTabAccessoryEnvironment(
+            &self,
+            tab_accessory_environment: UITabAccessoryEnvironment,
+        );
+
+        #[cfg(feature = "UISplitViewControllerLayoutEnvironment")]
+        #[unsafe(method(splitViewControllerLayoutEnvironment))]
+        #[unsafe(method_family = none)]
+        unsafe fn splitViewControllerLayoutEnvironment(
+            &self,
+        ) -> UISplitViewControllerLayoutEnvironment;
+
+        #[cfg(feature = "UISplitViewControllerLayoutEnvironment")]
+        /// Setter for [`splitViewControllerLayoutEnvironment`][Self::splitViewControllerLayoutEnvironment].
+        #[unsafe(method(setSplitViewControllerLayoutEnvironment:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setSplitViewControllerLayoutEnvironment(
+            &self,
+            split_view_controller_layout_environment: UISplitViewControllerLayoutEnvironment,
+        );
     }
 );
 

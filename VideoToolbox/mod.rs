@@ -57,18 +57,36 @@ mod __VTFrameProcessorParameters;
 #[cfg(feature = "VTFrameProcessor_FrameRateConversion")]
 #[path = "VTFrameProcessor_FrameRateConversion.rs"]
 mod __VTFrameProcessor_FrameRateConversion;
+#[cfg(feature = "VTFrameProcessor_LowLatencyFrameInterpolation")]
+#[path = "VTFrameProcessor_LowLatencyFrameInterpolation.rs"]
+mod __VTFrameProcessor_LowLatencyFrameInterpolation;
+#[cfg(feature = "VTFrameProcessor_LowLatencySuperResolutionScaler")]
+#[path = "VTFrameProcessor_LowLatencySuperResolutionScaler.rs"]
+mod __VTFrameProcessor_LowLatencySuperResolutionScaler;
 #[cfg(feature = "VTFrameProcessor_MotionBlur")]
 #[path = "VTFrameProcessor_MotionBlur.rs"]
 mod __VTFrameProcessor_MotionBlur;
 #[cfg(feature = "VTFrameProcessor_OpticalFlow")]
 #[path = "VTFrameProcessor_OpticalFlow.rs"]
 mod __VTFrameProcessor_OpticalFlow;
+#[cfg(feature = "VTFrameProcessor_SuperResolutionScaler")]
+#[path = "VTFrameProcessor_SuperResolutionScaler.rs"]
+mod __VTFrameProcessor_SuperResolutionScaler;
+#[cfg(feature = "VTFrameProcessor_TemporalNoiseFilter")]
+#[path = "VTFrameProcessor_TemporalNoiseFilter.rs"]
+mod __VTFrameProcessor_TemporalNoiseFilter;
 #[cfg(feature = "VTFrameSilo")]
 #[path = "VTFrameSilo.rs"]
 mod __VTFrameSilo;
 #[cfg(feature = "VTHDRPerFrameMetadataGenerationSession")]
 #[path = "VTHDRPerFrameMetadataGenerationSession.rs"]
 mod __VTHDRPerFrameMetadataGenerationSession;
+#[cfg(feature = "VTMotionEstimationSession")]
+#[path = "VTMotionEstimationSession.rs"]
+mod __VTMotionEstimationSession;
+#[cfg(feature = "VTMotionEstimationSessionProperties")]
+#[path = "VTMotionEstimationSessionProperties.rs"]
+mod __VTMotionEstimationSessionProperties;
 #[cfg(feature = "VTMultiPassStorage")]
 #[path = "VTMultiPassStorage.rs"]
 mod __VTMultiPassStorage;
@@ -112,6 +130,52 @@ pub use self::__VTCompressionProperties::kVTAlphaChannelMode_PremultipliedAlpha;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTAlphaChannelMode_StraightAlpha;
 #[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCameraCalibrationLensAlgorithmKind_ParametricLens;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCameraCalibrationLensDomain_Color;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCameraCalibrationLensRole_Left;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCameraCalibrationLensRole_Mono;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCameraCalibrationLensRole_Right;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPreset_Balanced;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPreset_HighQuality;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPreset_HighSpeed;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPreset_VideoConferencing;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_ExtrinsicOrientationQuaternion;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_ExtrinsicOriginSource;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrix;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrixProjectionOffset;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrixReferenceDimensions;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_LensAlgorithmKind;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_LensDistortions;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_LensDomain;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_LensFrameAdjustmentsPolynomialX;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_LensFrameAdjustmentsPolynomialY;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_LensIdentifier;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_LensRole;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyCameraCalibrationKey_RadialAngleLimit;
+#[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_AllowFrameReordering;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_AllowOpenGOP;
@@ -131,6 +195,8 @@ pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_BaseLayerFram
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_BaseLayerFrameRateFraction;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_CalculateMeanSquaredError;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_CameraCalibrationDataLensCollection;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_CleanAperture;
 #[cfg(feature = "VTCompressionProperties")]
@@ -248,6 +314,8 @@ pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_StereoCameraB
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_SuggestedLookAheadFrameCount;
 #[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_SupportedPresetDictionaries;
+#[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_SupportsBaseFrameQP;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_TargetQualityForAlpha;
@@ -257,6 +325,14 @@ pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_TransferFunct
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_UsingGPURegistryID;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_UsingHardwareAcceleratedVideoEncoder;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_VBVBufferDuration;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_VBVInitialDelayPercentage;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_VBVMaxBitRate;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_VariableBitRate;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_VideoEncoderPixelBufferAttributes;
 #[cfg(feature = "VTCompressionProperties")]
@@ -279,6 +355,12 @@ pub use self::__VTCompressionProperties::kVTH264EntropyMode_CAVLC;
 pub use self::__VTCompressionProperties::kVTHDRMetadataInsertionMode_Auto;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTHDRMetadataInsertionMode_None;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTHDRMetadataInsertionMode_RequestSDRRangePreservation;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTHeroEye_Left;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTHeroEye_Right;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTProfileLevel_H263_Profile0_Level10;
 #[cfg(feature = "VTCompressionProperties")]
@@ -390,6 +472,14 @@ pub use self::__VTCompressionProperties::kVTProfileLevel_MP4V_Simple_L2;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTProfileLevel_MP4V_Simple_L3;
 #[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTProjectionKind_Equirectangular;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTProjectionKind_HalfEquirectangular;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTProjectionKind_ParametricImmersive;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTProjectionKind_Rectilinear;
+#[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTQPModulationLevel_Default;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTQPModulationLevel_Disable;
@@ -415,6 +505,10 @@ pub use self::__VTCompressionProperties::kVTVideoEncoderSpecification_PreferredE
 pub use self::__VTCompressionProperties::kVTVideoEncoderSpecification_RequireHardwareAcceleratedVideoEncoder;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTVideoEncoderSpecification_RequiredEncoderGPURegistryID;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTViewPackingKind_OverUnder;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTViewPackingKind_SideBySide;
 #[cfg(feature = "VTCompressionSession")]
 pub use self::__VTCompressionSession::kVTVideoEncoderSpecification_EncoderID;
 #[cfg(all(
@@ -781,6 +875,26 @@ pub use self::__VTFrameProcessor_FrameRateConversion::VTFrameRateConversionConfi
 pub use self::__VTFrameProcessor_FrameRateConversion::VTFrameRateConversionParameters;
 #[cfg(all(feature = "VTFrameProcessor_FrameRateConversion", feature = "objc2"))]
 pub use self::__VTFrameProcessor_FrameRateConversion::VTFrameRateConversionParametersSubmissionMode;
+#[cfg(all(
+    feature = "VTFrameProcessor_LowLatencyFrameInterpolation",
+    feature = "objc2"
+))]
+pub use self::__VTFrameProcessor_LowLatencyFrameInterpolation::VTLowLatencyFrameInterpolationConfiguration;
+#[cfg(all(
+    feature = "VTFrameProcessor_LowLatencyFrameInterpolation",
+    feature = "objc2"
+))]
+pub use self::__VTFrameProcessor_LowLatencyFrameInterpolation::VTLowLatencyFrameInterpolationParameters;
+#[cfg(all(
+    feature = "VTFrameProcessor_LowLatencySuperResolutionScaler",
+    feature = "objc2"
+))]
+pub use self::__VTFrameProcessor_LowLatencySuperResolutionScaler::VTLowLatencySuperResolutionScalerConfiguration;
+#[cfg(all(
+    feature = "VTFrameProcessor_LowLatencySuperResolutionScaler",
+    feature = "objc2"
+))]
+pub use self::__VTFrameProcessor_LowLatencySuperResolutionScaler::VTLowLatencySuperResolutionScalerParameters;
 #[cfg(all(feature = "VTFrameProcessor_MotionBlur", feature = "objc2"))]
 pub use self::__VTFrameProcessor_MotionBlur::VTMotionBlurConfiguration;
 #[cfg(all(feature = "VTFrameProcessor_MotionBlur", feature = "objc2"))]
@@ -801,6 +915,24 @@ pub use self::__VTFrameProcessor_OpticalFlow::VTOpticalFlowConfigurationRevision
 pub use self::__VTFrameProcessor_OpticalFlow::VTOpticalFlowParameters;
 #[cfg(all(feature = "VTFrameProcessor_OpticalFlow", feature = "objc2"))]
 pub use self::__VTFrameProcessor_OpticalFlow::VTOpticalFlowParametersSubmissionMode;
+#[cfg(all(feature = "VTFrameProcessor_SuperResolutionScaler", feature = "objc2"))]
+pub use self::__VTFrameProcessor_SuperResolutionScaler::VTSuperResolutionScalerConfiguration;
+#[cfg(all(feature = "VTFrameProcessor_SuperResolutionScaler", feature = "objc2"))]
+pub use self::__VTFrameProcessor_SuperResolutionScaler::VTSuperResolutionScalerConfigurationInputType;
+#[cfg(all(feature = "VTFrameProcessor_SuperResolutionScaler", feature = "objc2"))]
+pub use self::__VTFrameProcessor_SuperResolutionScaler::VTSuperResolutionScalerConfigurationModelStatus;
+#[cfg(all(feature = "VTFrameProcessor_SuperResolutionScaler", feature = "objc2"))]
+pub use self::__VTFrameProcessor_SuperResolutionScaler::VTSuperResolutionScalerConfigurationQualityPrioritization;
+#[cfg(all(feature = "VTFrameProcessor_SuperResolutionScaler", feature = "objc2"))]
+pub use self::__VTFrameProcessor_SuperResolutionScaler::VTSuperResolutionScalerConfigurationRevision;
+#[cfg(all(feature = "VTFrameProcessor_SuperResolutionScaler", feature = "objc2"))]
+pub use self::__VTFrameProcessor_SuperResolutionScaler::VTSuperResolutionScalerParameters;
+#[cfg(all(feature = "VTFrameProcessor_SuperResolutionScaler", feature = "objc2"))]
+pub use self::__VTFrameProcessor_SuperResolutionScaler::VTSuperResolutionScalerParametersSubmissionMode;
+#[cfg(all(feature = "VTFrameProcessor_TemporalNoiseFilter", feature = "objc2"))]
+pub use self::__VTFrameProcessor_TemporalNoiseFilter::VTTemporalNoiseFilterConfiguration;
+#[cfg(all(feature = "VTFrameProcessor_TemporalNoiseFilter", feature = "objc2"))]
+pub use self::__VTFrameProcessor_TemporalNoiseFilter::VTTemporalNoiseFilterParameters;
 #[cfg(feature = "VTFrameSilo")]
 pub use self::__VTFrameSilo::VTFrameSilo;
 #[cfg(all(feature = "VTFrameSilo", feature = "objc2-core-media"))]
@@ -834,6 +966,40 @@ pub use self::__VTHDRPerFrameMetadataGenerationSession::VTHDRPerFrameMetadataGen
 pub use self::__VTHDRPerFrameMetadataGenerationSession::VTHDRPerFrameMetadataGenerationSessionAttachMetadata;
 #[cfg(feature = "VTHDRPerFrameMetadataGenerationSession")]
 pub use self::__VTHDRPerFrameMetadataGenerationSession::VTHDRPerFrameMetadataGenerationSessionCreate;
+#[cfg(feature = "VTMotionEstimationSession")]
+pub use self::__VTMotionEstimationSession::VTMotionEstimationFrameFlags;
+#[cfg(feature = "VTMotionEstimationSession")]
+pub use self::__VTMotionEstimationSession::VTMotionEstimationInfoFlags;
+#[cfg(all(
+    feature = "VTMotionEstimationSession",
+    feature = "block2",
+    feature = "objc2-core-video"
+))]
+pub use self::__VTMotionEstimationSession::VTMotionEstimationOutputHandler;
+#[cfg(feature = "VTMotionEstimationSession")]
+pub use self::__VTMotionEstimationSession::VTMotionEstimationSession;
+#[cfg(feature = "VTMotionEstimationSession")]
+pub use self::__VTMotionEstimationSession::VTMotionEstimationSessionCompleteFrames;
+#[cfg(feature = "VTMotionEstimationSession")]
+pub use self::__VTMotionEstimationSession::VTMotionEstimationSessionCopySourcePixelBufferAttributes;
+#[cfg(feature = "VTMotionEstimationSession")]
+pub use self::__VTMotionEstimationSession::VTMotionEstimationSessionCreate;
+#[cfg(all(
+    feature = "VTMotionEstimationSession",
+    feature = "block2",
+    feature = "objc2-core-video"
+))]
+pub use self::__VTMotionEstimationSession::VTMotionEstimationSessionEstimateMotionVectors;
+#[cfg(feature = "VTMotionEstimationSession")]
+pub use self::__VTMotionEstimationSession::VTMotionEstimationSessionInvalidate;
+#[cfg(feature = "VTMotionEstimationSessionProperties")]
+pub use self::__VTMotionEstimationSessionProperties::kVTMotionEstimationSessionCreationOption_DetectTrueMotion;
+#[cfg(feature = "VTMotionEstimationSessionProperties")]
+pub use self::__VTMotionEstimationSessionProperties::kVTMotionEstimationSessionCreationOption_Label;
+#[cfg(feature = "VTMotionEstimationSessionProperties")]
+pub use self::__VTMotionEstimationSessionProperties::kVTMotionEstimationSessionCreationOption_MotionVectorSize;
+#[cfg(feature = "VTMotionEstimationSessionProperties")]
+pub use self::__VTMotionEstimationSessionProperties::kVTMotionEstimationSessionCreationOption_UseMultiPassSearch;
 #[cfg(feature = "VTMultiPassStorage")]
 pub use self::__VTMultiPassStorage::kVTMultiPassStorageCreationOption_DoNotDelete;
 #[cfg(feature = "VTMultiPassStorage")]
@@ -906,6 +1072,8 @@ pub use self::__VTPixelTransferSession::VTPixelTransferSessionTransferImage;
 pub use self::__VTProfessionalVideoWorkflow::VTRegisterProfessionalVideoWorkflowVideoDecoders;
 #[cfg(feature = "VTProfessionalVideoWorkflow")]
 pub use self::__VTProfessionalVideoWorkflow::VTRegisterProfessionalVideoWorkflowVideoEncoders;
+#[cfg(feature = "VTRAWProcessingProperties")]
+pub use self::__VTRAWProcessingProperties::kVTRAWProcessingPropertyKey_MetadataForSidecarFile;
 #[cfg(feature = "VTRAWProcessingProperties")]
 pub use self::__VTRAWProcessingProperties::kVTRAWProcessingPropertyKey_MetalDeviceRegistryID;
 #[cfg(feature = "VTRAWProcessingProperties")]

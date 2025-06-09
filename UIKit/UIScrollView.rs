@@ -122,6 +122,94 @@ extern "C" {
 }
 
 extern_class!(
+    /// Styles for a scroll view's edge effect.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolledgeeffectstyle?language=objc)
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct UIScrollEdgeEffectStyle;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIScrollEdgeEffectStyle {}
+);
+
+impl UIScrollEdgeEffectStyle {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+
+        /// The automatic scroll edge effect style.
+        #[unsafe(method(automaticStyle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn automaticStyle(mtm: MainThreadMarker) -> Retained<UIScrollEdgeEffectStyle>;
+
+        /// A soft-edged scroll edge effect.
+        #[unsafe(method(softStyle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn softStyle(mtm: MainThreadMarker) -> Retained<UIScrollEdgeEffectStyle>;
+
+        /// A scroll edge effect with a hard cutoff and dividing line.
+        #[unsafe(method(hardStyle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hardStyle(mtm: MainThreadMarker) -> Retained<UIScrollEdgeEffectStyle>;
+    );
+}
+
+extern_class!(
+    /// Properties of the effect on a particular edge of the scroll view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolledgeeffect?language=objc)
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct UIScrollEdgeEffect;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIScrollEdgeEffect {}
+);
+
+impl UIScrollEdgeEffect {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+
+        /// The style of this edge effect.
+        #[unsafe(method(style))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn style(&self) -> Retained<UIScrollEdgeEffectStyle>;
+
+        /// Setter for [`style`][Self::style].
+        #[unsafe(method(setStyle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setStyle(&self, style: &UIScrollEdgeEffectStyle);
+
+        /// Whether this edge effect is hidden.
+        /// Default: false
+        #[unsafe(method(isHidden))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isHidden(&self) -> bool;
+
+        /// Setter for [`isHidden`][Self::isHidden].
+        #[unsafe(method(setHidden:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setHidden(&self, hidden: bool);
+    );
+}
+
+extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
@@ -521,6 +609,26 @@ impl UIScrollView {
             changes: &block2::DynBlock<dyn Fn() + '_>,
         );
 
+        /// The effect for the top edge of the scroll view.
+        #[unsafe(method(topEdgeEffect))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn topEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
+
+        /// The effect for the left edge of the scroll view.
+        #[unsafe(method(leftEdgeEffect))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn leftEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
+
+        /// The effect for the bottom edge of the scroll view.
+        #[unsafe(method(bottomEdgeEffect))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bottomEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
+
+        /// The effect for the right edge of the scroll view.
+        #[unsafe(method(rightEdgeEffect))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn rightEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
+
         #[unsafe(method(isTracking))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTracking(&self) -> bool;
@@ -695,6 +803,19 @@ impl UIScrollView {
         #[unsafe(method(setAllowsKeyboardScrolling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsKeyboardScrolling(&self, allows_keyboard_scrolling: bool);
+
+        #[cfg(feature = "UIGeometry")]
+        /// Defines which axes are considered for Look to Scroll.
+        /// Does not affect when isPagingEnabled is true.
+        #[unsafe(method(lookToScrollAxes))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn lookToScrollAxes(&self) -> UIAxis;
+
+        #[cfg(feature = "UIGeometry")]
+        /// Setter for [`lookToScrollAxes`][Self::lookToScrollAxes].
+        #[unsafe(method(setLookToScrollAxes:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLookToScrollAxes(&self, look_to_scroll_axes: UIAxis);
     );
 }
 
@@ -713,6 +834,10 @@ impl UIScrollView {
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -720,10 +845,6 @@ impl UIScrollView {
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIScrollView {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;

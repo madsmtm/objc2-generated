@@ -851,6 +851,12 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslistitemdelimiterattributename?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSListItemDelimiterAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPresentationIntentAttributeName: &'static NSAttributedStringKey;

@@ -20,6 +20,14 @@ extern "C" {
     pub static CPMaximumMessageItemImageSize: CGSize;
 }
 
+extern "C" {
+    /// Maximum size of an image for the detailed text leading image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaximummessageitemleadingdetailtextimagesize?language=objc)
+    #[cfg(feature = "objc2-core-foundation")]
+    pub static CPMaximumMessageItemLeadingDetailTextImageSize: CGSize;
+}
+
 /// Types of glyphs that may appear in the leading region of a message cell.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessageleadingitem?language=objc)
@@ -416,6 +424,18 @@ impl CPMessageListItem {
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&AnyObject>);
+
+        #[cfg(feature = "objc2-ui-kit")]
+        /// Image shown on the leading edge of the detail text.
+        #[unsafe(method(leadingDetailTextImage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn leadingDetailTextImage(&self) -> Option<Retained<UIImage>>;
+
+        #[cfg(feature = "objc2-ui-kit")]
+        /// Setter for [`leadingDetailTextImage`][Self::leadingDetailTextImage].
+        #[unsafe(method(setLeadingDetailTextImage:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLeadingDetailTextImage(&self, leading_detail_text_image: Option<&UIImage>);
     );
 }
 

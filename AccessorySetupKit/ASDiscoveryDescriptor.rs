@@ -35,6 +35,30 @@ unsafe impl RefEncode for ASDiscoveryDescriptorRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A type that defines service roles for Wi-Fi Aware accessories.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptorwifiawareservicerole?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASDiscoveryDescriptorWiFiAwareServiceRole(pub NSInteger);
+impl ASDiscoveryDescriptorWiFiAwareServiceRole {
+    /// The subscriber service role.
+    #[doc(alias = "ASDiscoveryDescriptorWiFiAwareServiceRoleSubscriber")]
+    pub const Subscriber: Self = Self(10);
+    /// The publisher service role.
+    #[doc(alias = "ASDiscoveryDescriptorWiFiAwareServiceRolePublisher")]
+    pub const Publisher: Self = Self(20);
+}
+
+unsafe impl Encode for ASDiscoveryDescriptorWiFiAwareServiceRole {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for ASDiscoveryDescriptorWiFiAwareServiceRole {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor?language=objc)
     #[unsafe(super(NSObject))]
@@ -195,6 +219,61 @@ impl ASDiscoveryDescriptor {
         #[unsafe(method(setSSIDPrefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSSIDPrefix(&self, ssid_prefix: Option<&NSString>);
+
+        /// The accessory's Wi-Fi Aware's service name if available.
+        #[unsafe(method(wifiAwareServiceName))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn wifiAwareServiceName(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`wifiAwareServiceName`][Self::wifiAwareServiceName].
+        #[unsafe(method(setWifiAwareServiceName:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWifiAwareServiceName(&self, wifi_aware_service_name: Option<&NSString>);
+
+        /// The role of the accessory's Wi-Fi Aware's service.
+        ///
+        /// This property defaults to ``ASDiscoveryDescriptor/WiFiAwareServiceRole/subscriber``
+        #[unsafe(method(wifiAwareServiceRole))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn wifiAwareServiceRole(&self) -> ASDiscoveryDescriptorWiFiAwareServiceRole;
+
+        /// Setter for [`wifiAwareServiceRole`][Self::wifiAwareServiceRole].
+        #[unsafe(method(setWifiAwareServiceRole:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWifiAwareServiceRole(
+            &self,
+            wifi_aware_service_role: ASDiscoveryDescriptorWiFiAwareServiceRole,
+        );
+
+        #[cfg(feature = "ASCommon")]
+        /// The accessory's Wi-Fi Aware model name and matching options.
+        #[unsafe(method(wifiAwareModelNameMatch))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn wifiAwareModelNameMatch(&self) -> Option<Retained<ASPropertyCompareString>>;
+
+        #[cfg(feature = "ASCommon")]
+        /// Setter for [`wifiAwareModelNameMatch`][Self::wifiAwareModelNameMatch].
+        #[unsafe(method(setWifiAwareModelNameMatch:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWifiAwareModelNameMatch(
+            &self,
+            wifi_aware_model_name_match: Option<&ASPropertyCompareString>,
+        );
+
+        #[cfg(feature = "ASCommon")]
+        /// The accessory's Wi-Fi Aware vendor name and matching options.
+        #[unsafe(method(wifiAwareVendorNameMatch))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn wifiAwareVendorNameMatch(&self) -> Option<Retained<ASPropertyCompareString>>;
+
+        #[cfg(feature = "ASCommon")]
+        /// Setter for [`wifiAwareVendorNameMatch`][Self::wifiAwareVendorNameMatch].
+        #[unsafe(method(setWifiAwareVendorNameMatch:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWifiAwareVendorNameMatch(
+            &self,
+            wifi_aware_vendor_name_match: Option<&ASPropertyCompareString>,
+        );
     );
 }
 

@@ -192,7 +192,7 @@ impl CKShare {
 
         #[cfg(feature = "CKShareParticipant")]
         /// If a participant with a matching userIdentity already exists, then that existing participant's properties will be updated; no new participant will be added.
-        /// A `CKShareParticipant` instance that has already been added to one `CKShare` cannot be added to another, unless it is removed from the first `CKShare` through `removeParticipant`.
+        /// A ``CKShareParticipant`` instance that has already been added to one ``CKShare`` cannot be added to another, unless it is removed from the first ``CKShare`` through `removeParticipant`.
         /// In order to modify the list of participants, a share must have publicPermission set to
         /// `CKShareParticipantPermissionNone.`That is, you cannot mix-and-match private users and public users in the same share.
         ///
@@ -202,10 +202,24 @@ impl CKShare {
         pub unsafe fn addParticipant(&self, participant: &CKShareParticipant);
 
         #[cfg(feature = "CKShareParticipant")]
-        /// It's not allowed to call `removeParticipant` on a `CKShare` with a `CKShareParticipant` that has never been added to that share through `addParticipant`.
+        /// It's not allowed to call `removeParticipant` on a ``CKShare`` with a ``CKShareParticipant`` that has never been added to that share through `addParticipant`.
         #[unsafe(method(removeParticipant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeParticipant(&self, participant: &CKShareParticipant);
+
+        /// Invitation URLs that can be used by any receiver to claim the associated participantID and join the share.
+        ///
+        ///
+        /// Only available after share record has been saved to the server for participants created via `+[CKShareParticipant oneTimeURLParticipant]`.
+        /// One-time URLs are stable, and tied to the associated participantIDs as long as the participant is part of the share.
+        /// Typically, a recipient user invited via their handle (i.e. `.acceptanceStatus` == `.pending`) is provided a `CKShare.URL` directly by the share's owner. However, any user can also use a `oneTimeURL` in the same manner by fetching share metadata and accepting the share.
+        /// After share acceptance, the `oneTimeURL` becomes functionally equivalent to the regular `CKShare.URL`.
+        #[unsafe(method(oneTimeURLForParticipantID:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn oneTimeURLForParticipantID(
+            &self,
+            participant_id: &NSString,
+        ) -> Option<Retained<NSURL>>;
 
         /// These superclass-provided initializers are not allowed for CKShare
         #[unsafe(method(init))]
@@ -240,5 +254,91 @@ impl CKShare {
             record_type: &CKRecordType,
             zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
+
+        #[cfg(feature = "CKShareAccessRequester")]
+        /// A list of all uninvited users who have requested access to this share.
+        ///
+        /// When share access requests are allowed, uninvited users can attempt to join the share
+        /// by sending an access request. Those pending requests appear in this array.
+        /// Share owners or administrators can approve the requester or use ``denyRequesters(_:)`` to respond
+        /// to these access requests. Requesters are always returned with name components and either an email or phone number.
+        /// Requesters can be approved by running ``CKFetchShareParticipantsOperation`` with the requester's ``CKShareAccessRequester/participantLookupInfo``
+        /// and adding the resulting participant to the share.
+        #[unsafe(method(requesters))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requesters(&self) -> Retained<NSArray<CKShareAccessRequester>>;
+
+        #[cfg(feature = "CKShareBlockedIdentity")]
+        /// A list of users blocked from requesting access to this share.
+        ///
+        /// Identities remain in this list until a user calls ``unblockIdentities(_:)``.
+        #[unsafe(method(blockedIdentities))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn blockedIdentities(&self) -> Retained<NSArray<CKShareBlockedIdentity>>;
+
+        /// Indicates whether uninvited users can request access to this share.
+        ///
+        /// By default, allows access requests is `NO`
+        /// When `YES`, uninvited users can submit an access request to the share
+        /// if they discover the share URL. When `NO`, the server does not allow uninvited users
+        /// to request access and does not reveal whether the share exists. This property can only be
+        /// modified by the share owner or an admin. Attempting to change its value as any other
+        /// participant will result in an exception.
+        #[unsafe(method(allowsAccessRequests))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessRequests(&self) -> bool;
+
+        /// Setter for [`allowsAccessRequests`][Self::allowsAccessRequests].
+        #[unsafe(method(setAllowsAccessRequests:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessRequests(&self, allows_access_requests: bool);
+
+        #[cfg(feature = "CKShareAccessRequester")]
+        /// Denies share access to the specified requesters.
+        ///
+        /// Use this method to reject pending requests from one or more uninvited users.
+        /// Denied requesters are removed from the ``requesters`` array.
+        /// You must save the share to the server after denying to persist the changes.
+        /// Once saved, these requesters are not given access to the share, but they may attempt to request
+        /// access again unless you block them. This method can only be used by the share owner or an
+        /// admin. Attempting to use it as any other participant will result in an exception.
+        ///
+        /// - Parameters:
+        /// - requesters: An array of ``CKShareAccessRequester`` objects to deny.
+        #[unsafe(method(denyRequesters:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn denyRequesters(&self, requesters: &NSArray<CKShareAccessRequester>);
+
+        #[cfg(feature = "CKShareAccessRequester")]
+        /// Blocks the specified requesters from requesting access to this share.
+        ///
+        /// This method permanently prevents the listed requesters from requesting access to the share in the future.
+        /// Blocked requesters appear in the ``blockedIdentities`` array.
+        /// The share must be saved to the server after blocking to persist the changes. This method can only be used
+        /// by the share owner or an admin. Attempting to use it as any other participant will result in an exception.
+        /// Blocking an existing participant removes the participant from the share.
+        ///
+        /// - Parameters:
+        /// - requesters: An array of ``CKShareAccessRequester`` objects to block.
+        #[unsafe(method(blockRequesters:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn blockRequesters(&self, requesters: &NSArray<CKShareAccessRequester>);
+
+        #[cfg(feature = "CKShareBlockedIdentity")]
+        /// Unblocks previously blocked identities, allowing them to request access again.
+        ///
+        /// Call this method to remove the specified identities from the ``blockedIdentities`` array.
+        /// Once unblocked, those identities are free to request access to the share unless access
+        /// requests are disabled. You must save the share to commit this change to the server.
+        /// This method can only be used by the share owner or an admin. Attempting to use it as any
+        /// other participant will result in an exception.
+        ///
+        /// - Parameter blockedIdentities: An array of ``CKShareBlockedIdentity`` objects to unblock.
+        #[unsafe(method(unblockIdentities:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn unblockIdentities(
+            &self,
+            blocked_identities: &NSArray<CKShareBlockedIdentity>,
+        );
     );
 }

@@ -2137,6 +2137,16 @@ impl NEDNSSettings {
         #[unsafe(method(setMatchDomainsNoSearch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomainsNoSearch(&self, match_domains_no_search: bool);
+
+        /// A boolean indicating if failover to the default system resolver is permitted on resolution failure.
+        #[unsafe(method(allowFailover))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowFailover(&self) -> bool;
+
+        /// Setter for [`allowFailover`][Self::allowFailover].
+        #[unsafe(method(setAllowFailover:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowFailover(&self, allow_failover: bool);
     );
 }
 
@@ -7713,6 +7723,16 @@ impl NERelayManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setUIToggleEnabled(&self, ui_toggle_enabled: bool);
 
+        /// Determines if DNS queries that fail over relay can fallback to default DNS
+        #[unsafe(method(isDNSFailoverAllowed))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isDNSFailoverAllowed(&self) -> bool;
+
+        /// Setter for [`isDNSFailoverAllowed`][Self::isDNSFailoverAllowed].
+        #[unsafe(method(setAllowDNSFailover:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowDNSFailover(&self, allow_dns_failover: bool);
+
         /// An array of relay configurations describing one or more relay hops.
         #[unsafe(method(relays))]
         #[unsafe(method_family = none)]
@@ -8471,10 +8491,8 @@ impl NEVPNProtocolIPSec {
 pub struct NEVPNIKEv2EncryptionAlgorithm(pub NSInteger);
 impl NEVPNIKEv2EncryptionAlgorithm {
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmDES")]
-    #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
     pub const AlgorithmDES: Self = Self(1);
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithm3DES")]
-    #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
     pub const Algorithm3DES: Self = Self(2);
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128")]
     #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
@@ -8507,10 +8525,8 @@ unsafe impl RefEncode for NEVPNIKEv2EncryptionAlgorithm {
 pub struct NEVPNIKEv2IntegrityAlgorithm(pub NSInteger);
 impl NEVPNIKEv2IntegrityAlgorithm {
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA96")]
-    #[deprecated = "Use SHA-2 for integrity protection instead"]
     pub const SHA96: Self = Self(1);
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA160")]
-    #[deprecated = "Use SHA-2 for integrity protection instead"]
     pub const SHA160: Self = Self(2);
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA256")]
     pub const SHA256: Self = Self(3);
@@ -8565,13 +8581,10 @@ impl NEVPNIKEv2DiffieHellmanGroup {
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroupInvalid")]
     pub const GroupInvalid: Self = Self(0);
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup1")]
-    #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
     pub const Group1: Self = Self(1);
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup2")]
-    #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
     pub const Group2: Self = Self(2);
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup5")]
-    #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
     pub const Group5: Self = Self(5);
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup14")]
     pub const Group14: Self = Self(14);
@@ -8600,6 +8613,30 @@ unsafe impl Encode for NEVPNIKEv2DiffieHellmanGroup {
 }
 
 unsafe impl RefEncode for NEVPNIKEv2DiffieHellmanGroup {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// IKEv2 post-quantum key exchange methods
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2postquantumkeyexchangemethod?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEVPNIKEv2PostQuantumKeyExchangeMethod(pub NSInteger);
+impl NEVPNIKEv2PostQuantumKeyExchangeMethod {
+    #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethodNone")]
+    pub const MethodNone: Self = Self(0);
+    #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethod36")]
+    pub const Method36: Self = Self(36);
+    #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethod37")]
+    pub const Method37: Self = Self(37);
+}
+
+unsafe impl Encode for NEVPNIKEv2PostQuantumKeyExchangeMethod {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEVPNIKEv2PostQuantumKeyExchangeMethod {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -8731,6 +8768,19 @@ impl NEVPNIKEv2SecurityAssociationParameters {
         pub unsafe fn setDiffieHellmanGroup(
             &self,
             diffie_hellman_group: NEVPNIKEv2DiffieHellmanGroup,
+        );
+
+        /// The post-quantum key exchange method(s) used by the Security Association, if any. Values are taken from NEVPNIKEv2PostQuantumKeyExchangeMethod. Up to 7 methods may be specified, mapping to ADDKE1 - ADDKE7 from RFC 9370.
+        #[unsafe(method(postQuantumKeyExchangeMethods))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn postQuantumKeyExchangeMethods(&self) -> Retained<NSArray<NSNumber>>;
+
+        /// Setter for [`postQuantumKeyExchangeMethods`][Self::postQuantumKeyExchangeMethods].
+        #[unsafe(method(setPostQuantumKeyExchangeMethods:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPostQuantumKeyExchangeMethods(
+            &self,
+            post_quantum_key_exchange_methods: &NSArray<NSNumber>,
         );
 
         /// The life time of the Security Association, in minutes. Default is 60 for IKE Security Associations, and 30 for Child Security Associations. Before the lifetime is reached, IKEv2 will attempt to rekey the Security Association to maintain the connection.
@@ -8972,6 +9022,20 @@ impl NEVPNProtocolIKEv2 {
         #[unsafe(method_family = none)]
         pub unsafe fn setEnablePFS(&self, enable_pfs: bool);
 
+        /// Allow servers that do not support post-quantum key exchanges to skip them. This property has no effect if no post-quantum key exchange methods
+        /// are configured for the IKE SA or Child SA (see NEVPNIKEv2SecurityAssociationParameters.postQuantumKeyExchangeMethods). Default is NO.
+        #[unsafe(method(allowPostQuantumKeyExchangeFallback))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowPostQuantumKeyExchangeFallback(&self) -> bool;
+
+        /// Setter for [`allowPostQuantumKeyExchangeFallback`][Self::allowPostQuantumKeyExchangeFallback].
+        #[unsafe(method(setAllowPostQuantumKeyExchangeFallback:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowPostQuantumKeyExchangeFallback(
+            &self,
+            allow_post_quantum_key_exchange_fallback: bool,
+        );
+
         /// Enable certificate revocation check. Default is NO.
         #[unsafe(method(enableRevocationCheck))]
         #[unsafe(method_family = none)]
@@ -9188,8 +9252,8 @@ extern_conformance!(
 
 impl NEAppPushManager {
     extern_methods!(
-        /// An array of Wi-Fi SSID strings. If the SSID string of current Wi-Fi network matches with one of these strings then the NEAppPushProvider
-        /// is started. The upper limit of number of SSIDs is 10.
+        /// An array of Wi-Fi SSID strings. If the SSID string of current Wi-Fi network matches with one of these strings and the Wi-Fi network is the primary route
+        /// on the device then the NEAppPushProvider is started. The upper limit of number of SSIDs is 10.
         #[unsafe(method(matchSSIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchSSIDs(&self) -> Retained<NSArray<NSString>>;
@@ -9199,8 +9263,9 @@ impl NEAppPushManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchSSIDs(&self, match_ssi_ds: &NSArray<NSString>);
 
-        /// An array of NEPrivateLTENetwork objects. If the properties of current private LTE network match with properties of one of these NEPrivateLTENetwork objects then the
-        /// NEAppPushProvider is started. The upper limit of number of private LTE networks is 10. For private LTE networks that are not band 48, the device must be supervised in order to perform the match
+        /// An array of NEPrivateLTENetwork objects. If the properties of current private LTE network match with properties of one of these NEPrivateLTENetwork
+        /// objects and the private LTE network is the primary route on the device then the NEAppPushProvider is started. The upper limit of number of private LTE networks is 10.
+        /// For private LTE networks that are not band 48, the device must be supervised in order to perform the match
         #[unsafe(method(matchPrivateLTENetworks))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchPrivateLTENetworks(&self) -> Retained<NSArray<NEPrivateLTENetwork>>;
@@ -9212,6 +9277,18 @@ impl NEAppPushManager {
             &self,
             match_private_lte_networks: &NSArray<NEPrivateLTENetwork>,
         );
+
+        /// If set to YES NEAppPushProvider is started when iOS device is connected to an Ethernet network and the ethernet network is the primary route
+        /// on the device. NEAppPushProvider must determine viability of its functionality on the network. If the network does not support its operation it must call
+        /// [NEAppPushProvider unmatchEthernet:] method to stop itself.
+        #[unsafe(method(matchEthernet))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn matchEthernet(&self) -> bool;
+
+        /// Setter for [`matchEthernet`][Self::matchEthernet].
+        #[unsafe(method(setMatchEthernet:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMatchEthernet(&self, match_ethernet: bool);
 
         /// A dictionary containing vendor-specific key-value pairs, where the data type of values must be one of the data types supported by property list. Values of user defined data
         /// type are not supported. This dictionary is passed as-is to NEAppPushProvider when is it is started or notified for other specified reasons.
@@ -9430,6 +9507,13 @@ impl NEAppPushProvider {
         #[unsafe(method(handleTimerEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleTimerEvent(&self);
+
+        /// This method is called by the provider when it does not require runtime while the device is connected to the current Ethernet network.
+        /// This method is applicable only when NEAppPushManager has set matchEthernet property to YES and the provider is running because the device is connected to an
+        /// Ethernet network.
+        #[unsafe(method(unmatchEthernet))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn unmatchEthernet(&self);
     );
 }
 
@@ -10377,6 +10461,72 @@ impl NWTLSParameters {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+/// URL Filter Verdicts
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilterverdict?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NEURLFilterVerdict(pub NSInteger);
+impl NEURLFilterVerdict {
+    #[doc(alias = "NEURLFilterVerdictUnknown")]
+    pub const Unknown: Self = Self(1);
+    #[doc(alias = "NEURLFilterVerdictAllow")]
+    pub const Allow: Self = Self(2);
+    #[doc(alias = "NEURLFilterVerdictDeny")]
+    pub const Deny: Self = Self(3);
+}
+
+unsafe impl Encode for NEURLFilterVerdict {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEURLFilterVerdict {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilter?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NEURLFilter;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NEURLFilter {}
+);
+
+impl NEURLFilter {
+    extern_methods!(
+        #[cfg(feature = "block2")]
+        /// This method determines if the specified URL should be allowed or denied.  The returned Allow or Deny verdict should be honored to prevent
+        /// communication with restricted or malicious Internet sites.
+        /// - Parameters:
+        /// - url: url to be validated
+        /// - completionHandler: A block that will be called when validation is completed. A NEURLFilterVerdict verdict will be returned to indicate
+        /// whether the specified URL should be allowed or denied.  If verdict is Deny, caller should fail the URL request.
+        #[unsafe(method(verdictForURL:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn verdictForURL_completionHandler(
+            url: &NSURL,
+            completion_handler: &block2::DynBlock<dyn Fn(NEURLFilterVerdict)>,
+        );
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl NEURLFilter {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;

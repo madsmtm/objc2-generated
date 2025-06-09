@@ -275,6 +275,31 @@ impl AVAudioSession {
         #[unsafe(method(isEchoCancelledInputAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEchoCancelledInputAvailable(&self) -> bool;
+
+        /// Sets a Boolean value to inform the system to mute the session's output audio. The default value is false (unmuted).
+        ///
+        /// This property is supported with all categories and modes, except for
+        /// ``AVAudioSessionCategoryPlayAndRecord`` where it is only supported with ``AVAudioSessionModeDefault``.
+        /// Changing the mode to non-default mode with ``AVAudioSessionCategoryPlayAndRecord``
+        /// category will cause the session to unmute.
+        ///
+        /// Changes in output mute state can be observed via ``AVAudioSessionOutputMuteStateChangeNotification``.
+        /// If this value is set to true, ``AVAudioSessionUserIntentToUnmuteOutputNotification``
+        /// may be sent when a user hints to unmute by changing the volume.
+        ///
+        /// - Note: This will not mute system sounds and haptics.
+        ///
+        /// - Parameters:
+        /// - `muted`: A Boolean value to set the audio output to the desired muted state.
+        /// - `error`: A pointer to an error object. If an error occurs, the framework sets the pointer to an error object that describes the failure.
+        #[unsafe(method(setOutputMuted:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setOutputMuted_error(&self, muted: bool) -> Result<(), Retained<NSError>>;
+
+        /// A Boolean value that indicates whether audio output is in a muted state.
+        #[unsafe(method(isOutputMuted))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isOutputMuted(&self) -> bool;
     );
 }
 
@@ -297,7 +322,8 @@ impl AVAudioSession {
         /// deactivation is requested, the session will be deactivated, but the method will return NO and
         /// populate the NSError with the code property set to AVAudioSessionErrorCodeIsBusy to indicate the
         /// misuse of the API. Prior to iOS 8, the session would have remained active if it had running I/Os
-        /// at the time of the deactivation request.
+        /// at the time of the deactivation request. Starting in iOS 19.0, deactivating while IO is running will
+        /// no longer return AVAudioSessionErrorCodeIsBusy.
         #[unsafe(method(setActive:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActive_error(&self, active: bool) -> Result<(), Retained<NSError>>;
@@ -535,7 +561,7 @@ impl AVAudioSession {
         #[unsafe(method_family = none)]
         pub unsafe fn outputLatency(&self) -> NSTimeInterval;
 
-        /// The current hardware IO buffer duration in seconds.
+        /// The current hardware IO buffer duration in seconds. Is key-value observable.
         #[unsafe(method(IOBufferDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn IOBufferDuration(&self) -> NSTimeInterval;
@@ -602,6 +628,9 @@ impl AVAudioSession {
         /// Note that this property only applies to the session's current category and mode. For
         /// example, if the session's current category is AVAudioSessionCategoryPlayback, there will be
         /// no available inputs.
+        ///
+        /// On iOS, clients can listen to AVAudioSessionAvailableInputsChangeNotification to
+        /// be notified when this changes.
         #[unsafe(method(availableInputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableInputs(
@@ -692,195 +721,4 @@ impl AVAudioSession {
         #[unsafe(method_family = none)]
         pub unsafe fn isMicrophoneInjectionAvailable(&self) -> bool;
     );
-}
-
-extern "C" {
-    /// Notification sent to registered listeners when the system has interrupted the audio
-    /// session and when the interruption has ended.
-    ///
-    /// Check the notification's userInfo dictionary for the interruption type, which is either
-    /// Begin or End. In the case of an end interruption notification, check the userInfo dictionary
-    /// for AVAudioSessionInterruptionOptions that indicate whether audio playback should resume.
-    /// In the case of a begin interruption notification, the reason for the interruption can be found
-    /// within the info dictionary under the key AVAudioSessionInterruptionReasonKey.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionnotification?language=objc)
-    pub static AVAudioSessionInterruptionNotification: &'static NSNotificationName;
-}
-
-extern "C" {
-    /// Notification sent to registered listeners when an audio route change has occurred.
-    ///
-    /// Check the notification's userInfo dictionary for the route change reason and for a description
-    /// of the previous audio route.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangenotification?language=objc)
-    pub static AVAudioSessionRouteChangeNotification: &'static NSNotificationName;
-}
-
-extern "C" {
-    /// Notification sent to registered listeners if the media server is killed.
-    ///
-    /// In the event that the server is killed, take appropriate steps to handle requests that come in
-    /// before the server resets.  See Technical Q
-    /// &A
-    /// QA1749.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmediaserviceswerelostnotification?language=objc)
-    pub static AVAudioSessionMediaServicesWereLostNotification: &'static NSNotificationName;
-}
-
-extern "C" {
-    /// Notification sent to registered listeners when the media server restarts.
-    ///
-    /// In the event that the server restarts, take appropriate steps to re-initialize any audio objects
-    /// used by your application.  See Technical Q
-    /// &A
-    /// QA1749.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmediaserviceswereresetnotification?language=objc)
-    pub static AVAudioSessionMediaServicesWereResetNotification: &'static NSNotificationName;
-}
-
-extern "C" {
-    /// Notification sent to registered listeners when they are in the foreground with an active
-    /// audio session and primary audio from other applications starts and stops.
-    ///
-    /// Check the notification's userInfo dictionary for the notification type, which is either Begin or
-    /// End. Foreground applications may use this notification as a hint to enable or disable audio that
-    /// is secondary to the functionality of the application. For more information, see the related
-    /// property secondaryAudioShouldBeSilencedHint.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsilencesecondaryaudiohintnotification?language=objc)
-    pub static AVAudioSessionSilenceSecondaryAudioHintNotification: &'static NSNotificationName;
-}
-
-extern "C" {
-    /// Notification sent to registered listeners when spatial playback capabilities are changed due to a
-    /// change in user preference.
-    ///
-    /// Check the notification's userInfo dictionary for AVAudioSessionSpatialAudioEnabledKey to check if spatial
-    /// audio is enabled.
-    ///
-    /// Observers of this notification should also observe AVAudioSessionRouteChangeNotification since a route change
-    /// may also result in a change in the ability for the system to play spatial audio. Use
-    /// AVAudioSessionPortDescription's isSpatialAudioEnabled property to check if the current route supports
-    /// spatialized playback.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionspatialplaybackcapabilitieschangednotification?language=objc)
-    pub static AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification:
-        &'static NSNotificationName;
-}
-
-extern "C" {
-    /// Notification sent to registered listeners when the resolved rendering mode changes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingmodechangenotification?language=objc)
-    pub static AVAudioSessionRenderingModeChangeNotification: &'static NSNotificationName;
-}
-
-extern "C" {
-    /// Notification sent to registered listeners when the rendering capabilities change.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingcapabilitieschangenotification?language=objc)
-    pub static AVAudioSessionRenderingCapabilitiesChangeNotification: &'static NSNotificationName;
-}
-
-extern "C" {
-    /// Notification sent to registered listeners when the system's capability to inject audio into input stream is changed
-    ///
-    /// Check the notification's userInfo dictionary for AVAudioSessionMicrophoneInjectionIsAvailableKey to check if microphone
-    /// injection is available. Use AVAudioSession's isMicrophoneInjectionAvailable property to check if microphone injection is available
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectioncapabilitieschangenotification?language=objc)
-    pub static AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification:
-        &'static NSNotificationName;
-}
-
-extern "C" {
-    /// keys for AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification
-    /// value is an NSNumber whose boolean value indicates if spatial audio enabled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionspatialaudioenabledkey?language=objc)
-    pub static AVAudioSessionSpatialAudioEnabledKey: &'static NSString;
-}
-
-extern "C" {
-    /// keys for AVAudioSessionInterruptionNotification
-    /// Value is an NSNumber representing an AVAudioSessionInterruptionType
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptiontypekey?language=objc)
-    pub static AVAudioSessionInterruptionTypeKey: &'static NSString;
-}
-
-extern "C" {
-    /// Only present for end interruption events.  Value is of type AVAudioSessionInterruptionOptions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionoptionkey?language=objc)
-    pub static AVAudioSessionInterruptionOptionKey: &'static NSString;
-}
-
-extern "C" {
-    /// Only present in begin interruption events. Value is of type AVAudioSessionInterruptionReason.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionreasonkey?language=objc)
-    pub static AVAudioSessionInterruptionReasonKey: &'static NSString;
-}
-
-extern "C" {
-    /// Only present in begin interruption events, where the interruption is a direct result of the
-    /// application being suspended by the operating sytem. Value is a boolean NSNumber, where a true
-    /// value indicates that the interruption is the result of the application being suspended, rather
-    /// than being interrupted by another audio session.
-    ///
-    /// Starting in iOS 10, the system will deactivate the audio session of most apps in response to the
-    /// app process being suspended. When the app starts running again, it will receive the notification
-    /// that its session has been deactivated by the system. Note that the notification is necessarily
-    /// delayed in time, due to the fact that the application was suspended at the time the session was
-    /// deactivated by the system and the notification can only be delivered once the app is running
-    /// again.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionwassuspendedkey?language=objc)
-    pub static AVAudioSessionInterruptionWasSuspendedKey: &'static NSString;
-}
-
-extern "C" {
-    /// keys for AVAudioSessionRouteChangeNotification
-    /// value is an NSNumber representing an AVAudioSessionRouteChangeReason
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangereasonkey?language=objc)
-    pub static AVAudioSessionRouteChangeReasonKey: &'static NSString;
-}
-
-extern "C" {
-    /// value is AVAudioSessionRouteDescription *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangepreviousroutekey?language=objc)
-    pub static AVAudioSessionRouteChangePreviousRouteKey: &'static NSString;
-}
-
-extern "C" {
-    /// keys for AVAudioSessionSilenceSecondaryAudioHintNotification
-    /// value is an NSNumber representing an AVAudioSessionSilenceSecondaryAudioHintType
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsilencesecondaryaudiohinttypekey?language=objc)
-    pub static AVAudioSessionSilenceSecondaryAudioHintTypeKey: &'static NSString;
-}
-
-extern "C" {
-    /// keys for AVAudioSessionRenderingModeChangeNotification
-    /// Contains a payload of NSInteger representing the new resolved rendering mode
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingmodenewrenderingmodekey?language=objc)
-    pub static AVAudioSessionRenderingModeNewRenderingModeKey: &'static NSString;
-}
-
-extern "C" {
-    /// Keys for AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification
-    ///
-    /// Indicates if microphone injection is available.
-    /// Value is an NSNumber whose boolean value indicates if microphone injection is available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectionisavailablekey?language=objc)
-    pub static AVAudioSessionMicrophoneInjectionIsAvailableKey: &'static NSString;
 }

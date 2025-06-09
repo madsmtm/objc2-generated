@@ -12,26 +12,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An AVAsset is an abstract class that defines AVFoundation's model for timed audiovisual media.
+    /// An AVAssetTrack object provides provides the track-level inspection interface for all assets.
     ///
-    /// Each asset contains a collection of tracks that are intended to be presented or processed together, each of a uniform media type, including but not limited to audio, video, text, closed captions, and subtitles.
+    /// AVAssetTrack adopts the AVAsynchronousKeyValueLoading protocol. Methods in the protocol should be used to access a track's properties without blocking the current thread. To cancel load requests for all keys of AVAssetTrack one must message the parent AVAsset object (for example, [track.asset cancelLoading]).
     ///
-    ///
-    /// AVAssets are often instantiated via its concrete subclass AVURLAsset with NSURLs that refer to audiovisual media resources, such as streams (including HTTP live streams), QuickTime movie files, MP3 files, and files of other types.
-    ///
-    /// They can also be instantiated using other concrete subclasses that extend the basic model for audiovisual media in useful ways, as AVComposition does for temporal editing.
-    ///
-    /// Properties of assets as a whole are defined by AVAsset. Additionally, references to instances of AVAssetTracks representing tracks of the collection can be obtained, so that each of these can be examined independently.
-    ///
-    /// Because of the nature of timed audiovisual media, upon successful initialization of an AVAsset some or all of the values for its keys may not be immediately available. The value of any key can be requested at any time, and AVAsset will always return its value synchronously, although it may have to block the calling thread in order to do so.
-    ///
-    /// In order to avoid blocking, clients can register their interest in particular keys and to become notified when their values become available. For further details, see AVAsynchronousKeyValueLoading.h. For clients who want to examine a subset of the tracks, metadata, and other parts of the asset, asynchronous methods like -loadTracksWithMediaType:completionHandler: can be used to load this information without blocking. When using these asynchronous methods, it is not necessary to load the associated property beforehand. Swift clients can also use the load(:) method to load properties in a type safe manner.
-    ///
-    /// On platforms other than macOS, it is particularly important to avoid blocking.  To preserve responsiveness, a synchronous request that blocks for too long (eg, a property request on an asset on a slow HTTP server) may lead to media services being reset.
-    ///
-    /// To play an instance of AVAsset, initialize an instance of AVPlayerItem with it, use the AVPlayerItem to set up its presentation state (such as whether only a limited timeRange of the asset should be played, etc.), and provide the AVPlayerItem to an AVPlayer according to whether the items is to be played by itself or together with a collection of other items. Full details available in AVPlayerItem.h and AVPlayer.h.
-    ///
-    /// AVAssets can also be inserted into AVMutableCompositions in order to assemble audiovisual constructs from one or more source assets.
+    /// For clients who want to examine a subset of the metadata or other parts of the track, asynchronous methods like -loadMetadataForFormat:completionHandler: can be used to load this information without blocking. When using these asynchronous methods, it is not necessary to load the associated property beforehand. Swift clients can also use the load(:) method to load properties in a type safe manner.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack?language=objc)
     #[unsafe(super(NSObject))]
@@ -67,11 +52,13 @@ impl AVAssetTrack {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
+        /// Provides a reference to the AVAsset of which the AVAssetTrack is a part
         #[unsafe(method(asset))]
         #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Option<Retained<AVAsset>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the persistent unique identifier for this track of the asset
         #[unsafe(method(trackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
@@ -82,30 +69,37 @@ impl AVAssetTrack {
 impl AVAssetTrack {
     extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
+        /// Indicates the media type for this track, e.g. AVMediaTypeVideo, AVMediaTypeAudio, etc., as defined in AVMediaFormat.h.
         #[unsafe(method(mediaType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
+        /// Provides an array of CMFormatDescriptions each of which indicates the format of media samples referenced by the track; a track that presents uniform media, e.g. encoded according to the same encoding settings, will provide an array with a count of 1.
         #[unsafe(method(formatDescriptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn formatDescriptions(&self) -> Retained<NSArray>;
 
+        /// Indicates whether the receiver is playable in the current environment; if YES, an AVPlayerItemTrack of an AVPlayerItem initialized with the receiver's asset can be enabled for playback.
         #[unsafe(method(isPlayable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlayable(&self) -> bool;
 
+        /// Indicates whether the receiver is decodable in the current environment; if YES, the track can be decoded even though decoding may be too slow for real time playback.
         #[unsafe(method(isDecodable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDecodable(&self) -> bool;
 
+        /// Indicates whether the track is enabled according to state stored in its container or construct; note that its presentation state can be changed from this default via AVPlayerItemTrack
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Indicates whether the track references sample data only within its storage container
         #[unsafe(method(isSelfContained))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSelfContained(&self) -> bool;
 
+        /// Indicates the total number of bytes of sample data required by the track
         #[unsafe(method(totalSampleDataLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalSampleDataLength(&self) -> c_longlong;
@@ -113,10 +107,9 @@ impl AVAssetTrack {
         #[cfg(feature = "AVMediaFormat")]
         /// Reports whether the track references media with the specified media characteristic.
         ///
-        /// Parameter `mediaCharacteristic`: The media characteristic of interest, e.g. AVMediaCharacteristicVisual, AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, etc.,
-        /// as defined above.
+        /// - Parameter mediaCharacteristic: The media characteristic of interest, e.g. AVMediaCharacteristicVisual, AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, etc., as defined above.
         ///
-        /// Returns: YES if the track references media with the specified characteristic, otherwise NO.
+        /// - Returns: YES if the track references media with the specified characteristic, otherwise NO.
         #[unsafe(method(hasMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasMediaCharacteristic(
@@ -130,15 +123,18 @@ impl AVAssetTrack {
 impl AVAssetTrack {
     extern_methods!(
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the timeRange of the track within the overall timeline of the asset; a track with CMTIME_COMPARE_INLINE(timeRange.start, >, kCMTimeZero) will initially present an empty interval.
         #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates a timescale in which time values for the track can be operated upon without extraneous numerical conversion
         #[unsafe(method(naturalTimeScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn naturalTimeScale(&self) -> CMTimeScale;
 
+        /// Indicates the estimated data rate of the media data referenced by the track, in units of bits per second
         #[unsafe(method(estimatedDataRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedDataRate(&self) -> c_float;
@@ -148,10 +144,12 @@ impl AVAssetTrack {
 /// AVAssetTrackLanguageProperties.
 impl AVAssetTrack {
     extern_methods!(
+        /// Indicates the language associated with the track, as an ISO 639-2/T language code; may be nil if no language is indicated
         #[unsafe(method(languageCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
+        /// Indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier; may be nil if no language tag is indicated
         #[unsafe(method(extendedLanguageTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
@@ -162,11 +160,13 @@ impl AVAssetTrack {
 impl AVAssetTrack {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the natural dimensions of the media data referenced by the track as a CGSize
         #[unsafe(method(naturalSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn naturalSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the transform specified in the track's storage container as the preferred transformation of the visual media data for display purposes; its value is often but not always CGAffineTransformIdentity
         #[unsafe(method(preferredTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredTransform(&self) -> CGAffineTransform;
@@ -176,10 +176,12 @@ impl AVAssetTrack {
 /// AVAssetTrackPropertiesForAudibleCharacteristic.
 impl AVAssetTrack {
     extern_methods!(
+        /// Indicates the volume specified in the track's storage container as the preferred volume of the audible media data
         #[unsafe(method(preferredVolume))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredVolume(&self) -> c_float;
 
+        /// Indicates whether this audio track has dependencies (e.g. kAudioFormatMPEGD_USAC)
         #[unsafe(method(hasAudioSampleDependencies))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAudioSampleDependencies(&self) -> bool;
@@ -197,6 +199,7 @@ impl AVAssetTrack {
         pub unsafe fn nominalFrameRate(&self) -> c_float;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the minimum duration of the track's frames; the value will be kCMTimeInvalid if the minimum frame duration is not known or cannot be calculated
         #[unsafe(method(minFrameDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn minFrameDuration(&self) -> CMTime;
@@ -212,6 +215,7 @@ impl AVAssetTrack {
 impl AVAssetTrack {
     extern_methods!(
         #[cfg(feature = "AVAssetTrackSegment")]
+        /// Provides an array of AVAssetTrackSegments with time mappings from the timeline of the track's media samples to the timeline of the track. Empty edits, i.e. timeRanges for which no media data is available to be presented, have a value of AVAssetTrackSegment.empty equal to YES.
         #[unsafe(method(segments))]
         #[unsafe(method_family = none)]
         pub unsafe fn segments(&self) -> Retained<NSArray<AVAssetTrackSegment>>;
@@ -219,11 +223,11 @@ impl AVAssetTrack {
         #[cfg(all(feature = "AVAssetTrackSegment", feature = "objc2-core-media"))]
         /// Supplies the AVAssetTrackSegment from the segments array with a target timeRange that either contains the specified track time or is the closest to it among the target timeRanges of the track's segments.
         ///
-        /// Parameter `trackTime`: The trackTime for which an AVAssetTrackSegment is requested.
-        ///
-        /// Returns: An AVAssetTrackSegment.
-        ///
         /// If the trackTime does not map to a sample presentation time (e.g. it's outside the track's timeRange), the segment closest in time to the specified trackTime is returned.
+        ///
+        /// - Parameter trackTime: The trackTime for which an AVAssetTrackSegment is requested.
+        ///
+        /// - Returns: An AVAssetTrackSegment.
         #[deprecated = "Use loadSegmentForTrackTime:completionHandler: instead"]
         #[unsafe(method(segmentForTrackTime:))]
         #[unsafe(method_family = none)]
@@ -239,11 +243,10 @@ impl AVAssetTrack {
         ))]
         /// Loads the AVAssetTrackSegment from the segments array with a target timeRange that either contains the specified track time or is the closest to it among the target timeRanges of the track's segments.
         ///
-        /// Parameter `trackTime`: The trackTime for which an AVAssetTrackSegment is requested.
-        ///
-        /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending an AVAssetTrackSegment or an error.
-        ///
         /// If the trackTime does not map to a sample presentation time (e.g. it's outside the track's timeRange), the segment closest in time to the specified trackTime is returned.
+        ///
+        /// - Parameter trackTime: The trackTime for which an AVAssetTrackSegment is requested.
+        /// - Parameter completionHandler: A block that is invoked when loading is complete, vending an AVAssetTrackSegment or an error.
         #[unsafe(method(loadSegmentForTrackTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSegmentForTrackTime_completionHandler(
@@ -255,9 +258,9 @@ impl AVAssetTrack {
         #[cfg(feature = "objc2-core-media")]
         /// Maps the specified trackTime through the appropriate time mapping and returns the resulting sample presentation time.
         ///
-        /// Parameter `trackTime`: The trackTime for which a sample presentation time is requested.
+        /// - Parameter trackTime: The trackTime for which a sample presentation time is requested.
         ///
-        /// Returns: A CMTime; will be invalid if the trackTime is out of range
+        /// - Returns: A CMTime; will be invalid if the trackTime is out of range
         #[deprecated = "Use loadSamplePresentationTimeForTrackTime:completionHandler: instead"]
         #[unsafe(method(samplePresentationTimeForTrackTime:))]
         #[unsafe(method_family = none)]
@@ -266,9 +269,8 @@ impl AVAssetTrack {
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         /// Maps the specified trackTime through the appropriate time mapping and loads the resulting sample presentation time.
         ///
-        /// Parameter `trackTime`: The trackTime for which a sample presentation time is requested.
-        ///
-        /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending a CMTime (which will be invalid if the trackTime is out of range) or an error.
+        /// - Parameter trackTime: The trackTime for which a sample presentation time is requested.
+        /// - Parameter completionHandler: A block that is invoked when loading is complete, vending a CMTime (which will be invalid if the trackTime is out of range) or an error.
         #[unsafe(method(loadSamplePresentationTimeForTrackTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSamplePresentationTimeForTrackTime_completionHandler(
@@ -283,16 +285,19 @@ impl AVAssetTrack {
 impl AVAssetTrack {
     extern_methods!(
         #[cfg(feature = "AVMetadataItem")]
+        /// Provides access to an array of AVMetadataItems for each common metadata key for which a value is available
         #[unsafe(method(commonMetadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn commonMetadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
+        /// Provides access to an array of AVMetadataItems for all metadata identifiers for which a value is available; items can be filtered according to language via +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:] and according to identifier via +[AVMetadataItem metadataItemsFromArray:filteredByIdentifier:].
         #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataFormat")]
+        /// Provides an NSArray of NSStrings, each representing a format of metadata that's available for the track (e.g. QuickTime userdata, etc.) Metadata formats are defined in AVMetadataItem.h.
         #[unsafe(method(availableMetadataFormats))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableMetadataFormats(&self) -> Retained<NSArray<AVMetadataFormat>>;
@@ -300,13 +305,13 @@ impl AVAssetTrack {
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
         /// Provides an NSArray of AVMetadataItems, one for each metadata item in the container of the specified format.
         ///
-        /// Parameter `format`: The metadata format for which items are requested.
-        ///
-        /// Returns: An NSArray containing AVMetadataItems.
-        ///
         /// Becomes callable without blocking when the key
         /// "
         /// availableMetadataFormats" has been loaded
+        ///
+        /// - Parameter format: The metadata format for which items are requested.
+        ///
+        /// - Returns: An NSArray containing AVMetadataItems.
         #[deprecated = "Use loadMetadataForFormat:completionHandler: instead"]
         #[unsafe(method(metadataForFormat:))]
         #[unsafe(method_family = none)]
@@ -322,9 +327,8 @@ impl AVAssetTrack {
         ))]
         /// Loads an NSArray of AVMetadataItems, one for each metadata item in the container of the specified format.
         ///
-        /// Parameter `format`: The metadata format for which items are requested.
-        ///
-        /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending the array of metadata items (which may be empty if there is no metadata of the specified format) or an error.
+        /// - Parameter format: The metadata format for which items are requested.
+        /// - Parameter completionHandler: A block that is invoked when loading is complete, vending the array of metadata items (which may be empty if there is no metadata of the specified format) or an error.
         #[unsafe(method(loadMetadataForFormat:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMetadataForFormat_completionHandler(
@@ -344,38 +348,75 @@ impl AVAssetTrack {
 pub type AVTrackAssociationType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypeaudiofallback?language=objc)
+    /// Indicates an association between an audio track with another audio track that contains the same content but is typically encoded in a different format that's more widely supported, used to nominate a track that should be used in place of an unsupported track.
+    ///
+    /// Associations of type AVTrackAssociationTypeAudioFallback are supported only between audio tracks. This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with a corresponding track that has content that's less widely supported, and the input parameter should be an instance of AVAssetWriterInput with a corresponding track that has content that's more widely supported.
+    ///
+    /// Example: Using AVTrackAssociationTypeAudioFallback, a stereo audio track with media subtype kAudioFormatMPEG4AAC could be nominated as the "fallback" for an audio track encoding the same source material but with media subtype kAudioFormatAC3 and a 5.1 channel layout. This would ensure that all clients are capable of playing back some form of the audio.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypeaudiofallback?language=objc)
     pub static AVTrackAssociationTypeAudioFallback: &'static AVTrackAssociationType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypechapterlist?language=objc)
+    /// Indicates an association between a track with another track that contains chapter information. The track containing chapter information may be a text track, a video track, or a timed metadata track.
+    ///
+    /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with a corresponding track that has renderable content while the input parameter should be an instance of AVAssetWriterInput with a corresponding track that contains chapter metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypechapterlist?language=objc)
     pub static AVTrackAssociationTypeChapterList: &'static AVTrackAssociationType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypeforcedsubtitlesonly?language=objc)
+    /// Indicates an association between a subtitle track typically containing both forced and non-forced subtitles with another subtitle track that contains only forced subtitles, for use when the user indicates that only essential subtitles should be displayed. When such an association is established, the forced subtitles in both tracks are expected to present the same content in the same language but may have different timing.
+    ///
+    /// Associations of type AVTrackAssociationTypeForcedSubtitlesOnly are supported only between subtitle tracks. This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with a corresponding subtitle track that contains non-forced subtitles, and the input parameter should be an instance of AVAssetWriterInput with a corresponding subtitle track that contains forced subtitles only.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypeforcedsubtitlesonly?language=objc)
     pub static AVTrackAssociationTypeForcedSubtitlesOnly: &'static AVTrackAssociationType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypeselectionfollower?language=objc)
+    /// Indicates an association between a pair of tracks that specifies that, when the first of the pair is selected, the second of the pair should be considered an appropriate default for selection also. Example: a subtitle track in the same language as an audio track may be associated with that audio track using AVTrackAssociationTypeSelectionFollower, to indicate that selection of the subtitle track, in the absence of a directive for subtitle selection from the user, can "follow" the selection of the audio track.
+    ///
+    /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the input parameter should be an instance of AVAssetWriterInput whose selection may depend on the selection of the receiver. In the example above, the receiver would be the instance of AVAssetWriterInput corresponding with the audio track and the input parameter would be the instance of AVAssetWriterInput corresponding with the subtitle track.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypeselectionfollower?language=objc)
     pub static AVTrackAssociationTypeSelectionFollower: &'static AVTrackAssociationType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypetimecode?language=objc)
+    /// Indicates an association between a track with another track that contains timecode information. The track containing timecode information should be a timecode track.
+    ///
+    /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with a corresponding track that may be a video track or an audio track while the input parameter should be an instance of AVAssetWriterInput with a corresponding timecode track.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypetimecode?language=objc)
     pub static AVTrackAssociationTypeTimecode: &'static AVTrackAssociationType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypemetadatareferent?language=objc)
+    /// Indicates an association between a metadata track and the track that's described or annotated via the contents of the metadata track.
+    ///
+    /// This track association is optional for AVAssetTracks with the mediaType AVMediaTypeMetadata. When a metadata track lacks this track association, its contents are assumed to describe or annotate the asset as a whole.
+    /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with mediaType AVMediaTypeMetadata while the input parameter should be an instance of AVAssetWriterInput that's used to create the track to which the contents of the receiver's corresponding metadata track refer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypemetadatareferent?language=objc)
     pub static AVTrackAssociationTypeMetadataReferent: &'static AVTrackAssociationType;
+}
+
+extern "C" {
+    /// Indicates an association between a metadata track and another track where the metadata provides additional information for rendering of that track.
+    ///
+    /// This track association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with mediaType, AVMediaTypeMetadata, while the input parameter should be an instance of AVAssetWriterInput for the target track that would be rendered (for example, a video track).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtyperendermetadatasource?language=objc)
+    pub static AVTrackAssociationTypeRenderMetadataSource: &'static AVTrackAssociationType;
 }
 
 /// AVAssetTrackTrackAssociations.
 impl AVAssetTrack {
     extern_methods!(
+        /// Provides an NSArray of NSStrings, each representing a type of track association that the receiver has with one or more of the other tracks of the asset (e.g. AVTrackAssociationTypeChapterList, AVTrackAssociationTypeTimecode, etc.). Track association types are defined immediately above.
         #[unsafe(method(availableTrackAssociationTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableTrackAssociationTypes(
@@ -384,13 +425,13 @@ impl AVAssetTrack {
 
         /// Provides an NSArray of AVAssetTracks, one for each track associated with the receiver with the specified type of track association.
         ///
-        /// Parameter `trackAssociationType`: The type of track association for which associated tracks are requested.
-        ///
-        /// Returns: An NSArray containing AVAssetTracks; may be empty if there is no associated tracks of the specified type.
-        ///
         /// Becomes callable without blocking when the key
         /// "
         /// availableTrackAssociationTypes" has been loaded.
+        ///
+        /// - Parameter trackAssociationType: The type of track association for which associated tracks are requested.
+        ///
+        /// - Returns: An NSArray containing AVAssetTracks; may be empty if there is no associated tracks of the specified type.
         #[deprecated = "Use loadAssociatedTracksOfType:completionHandler: instead"]
         #[unsafe(method(associatedTracksOfType:))]
         #[unsafe(method_family = none)]
@@ -402,10 +443,8 @@ impl AVAssetTrack {
         #[cfg(feature = "block2")]
         /// Provides an NSArray of AVAssetTracks, one for each track associated with the receiver with the specified type of track association.
         ///
-        /// Parameter `trackAssociationType`: The type of track association for which associated tracks are requested.
-        ///
-        /// Parameter `completionHandler`: A block that is invoked when loading is comlete, vending an array of tracks (which may be empty if there is no associated tracks of the specified type) or an error.
-        /// `
+        /// - Parameter trackAssociationType: The type of track association for which associated tracks are requested.
+        /// - Parameter completionHandler: A block that is invoked when loading is comlete, vending an array of tracks (which may be empty if there is no associated tracks of the specified type) or an error. `
         #[unsafe(method(loadAssociatedTracksOfType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAssociatedTracksOfType_completionHandler(
@@ -419,6 +458,7 @@ impl AVAssetTrack {
 /// AVAssetTrackSampleCursorProvision.
 impl AVAssetTrack {
     extern_methods!(
+        /// Indicates whether the receiver can provide instances of AVSampleCursor for traversing its media samples and discovering information about them.
         #[unsafe(method(canProvideSampleCursors))]
         #[unsafe(method_family = none)]
         pub unsafe fn canProvideSampleCursors(&self) -> bool;
@@ -426,13 +466,13 @@ impl AVAssetTrack {
         #[cfg(all(feature = "AVSampleCursor", feature = "objc2-core-media"))]
         /// Creates an instance of AVSampleCursor and positions it at or near the specified presentation timestamp.
         ///
-        /// Parameter `presentationTimeStamp`: The desired initial presentation timestamp of the returned AVSampleCursor.
-        ///
-        /// Returns: An instance of AVSampleCursor.
-        ///
         /// If the receiver's asset has a value of YES for providesPreciseDurationAndTiming, the sample cursor will be accurately positioned at the receiver's last media sample with presentation timestamp less than or equal to the desired timestamp, or, if there are no such samples, the first sample in presentation order.
         /// If the receiver's asset has a value of NO for providesPreciseDurationAndTiming, and it is prohibitively expensive to locate the precise sample at the desired timestamp, the sample cursor may be approximately positioned.
         /// This method will return nil if there are no samples in the track.
+        ///
+        /// - Parameter presentationTimeStamp: The desired initial presentation timestamp of the returned AVSampleCursor.
+        ///
+        /// - Returns: An instance of AVSampleCursor.
         #[unsafe(method(makeSampleCursorWithPresentationTimeStamp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeSampleCursorWithPresentationTimeStamp(
@@ -443,9 +483,9 @@ impl AVAssetTrack {
         #[cfg(feature = "AVSampleCursor")]
         /// Creates an instance of AVSampleCursor and positions it at the receiver's first media sample in decode order.
         ///
-        /// Returns: An instance of AVSampleCursor.
-        ///
         /// This method will return nil if there are no samples in the track.
+        ///
+        /// - Returns: An instance of AVSampleCursor.
         #[unsafe(method(makeSampleCursorAtFirstSampleInDecodeOrder))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeSampleCursorAtFirstSampleInDecodeOrder(
@@ -455,9 +495,9 @@ impl AVAssetTrack {
         #[cfg(feature = "AVSampleCursor")]
         /// Creates an instance of AVSampleCursor and positions it at the receiver's last media sample in decode order.
         ///
-        /// Returns: An instance of AVSampleCursor.
-        ///
         /// This method will return nil if there are no samples in the track.
+        ///
+        /// - Returns: An instance of AVSampleCursor.
         #[unsafe(method(makeSampleCursorAtLastSampleInDecodeOrder))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeSampleCursorAtLastSampleInDecodeOrder(
@@ -494,7 +534,12 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedassettrack?language=objc)
+    /// A subclass of AVAssetTrack for handling tracks of fragmented assets. An AVFragmentedAssetTrack is capable of changing the values of certain of its properties, if its parent asset is associated with an instance of AVFragmentedAssetMinder when one or more fragments are appended to the underlying media resource.
+    ///
+    /// While its parent asset is associated with an AVFragmentedAssetMinder, AVFragmentedAssetTrack posts AVAssetTrackTimeRangeDidChangeNotification and AVAssetTrackSegmentsDidChangeNotification whenever new fragments are detected, as appropriate.
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedassettrack?language=objc)
     #[unsafe(super(AVAssetTrack, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVFragmentedAssetTrack;

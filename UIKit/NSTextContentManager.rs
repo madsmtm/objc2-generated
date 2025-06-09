@@ -334,6 +334,15 @@ impl NSTextContentStorage {
             delegate: Option<&ProtocolObject<dyn NSTextContentStorageDelegate>>,
         );
 
+        #[unsafe(method(includesTextListMarkers))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn includesTextListMarkers(&self) -> bool;
+
+        /// Setter for [`includesTextListMarkers`][Self::includesTextListMarkers].
+        #[unsafe(method(setIncludesTextListMarkers:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setIncludesTextListMarkers(&self, includes_text_list_markers: bool);
+
         #[unsafe(method(attributedString))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;

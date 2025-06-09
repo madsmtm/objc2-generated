@@ -14,6 +14,10 @@ extern_class!(
     pub struct MTLComputePipelineReflection;
 );
 
+unsafe impl Send for MTLComputePipelineReflection {}
+
+unsafe impl Sync for MTLComputePipelineReflection {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for MTLComputePipelineReflection {}
 );
@@ -270,6 +274,23 @@ impl MTLComputePipelineDescriptor {
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
+
+        #[cfg(feature = "MTLTypes")]
+        /// Sets the required threads-per-threadgroup during dispatches. The `threadsPerThreadgroup` argument of any dispatch must match this value if it is set.
+        /// Optional, unless the pipeline is going to use CooperativeTensors in which case this must be set.
+        /// Setting this to a size of 0 in every dimension disables this property
+        #[unsafe(method(requiredThreadsPerThreadgroup))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+
+        #[cfg(feature = "MTLTypes")]
+        /// Setter for [`requiredThreadsPerThreadgroup`][Self::requiredThreadsPerThreadgroup].
+        #[unsafe(method(setRequiredThreadsPerThreadgroup:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiredThreadsPerThreadgroup(
+            &self,
+            required_threads_per_threadgroup: MTLSize,
+        );
     );
 }
 
@@ -299,10 +320,63 @@ extern_protocol!(
     /// MTLComputePipelineState is a single compute function.  It can only be used with the device that it was created against.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate?language=objc)
-    pub unsafe trait MTLComputePipelineState: NSObjectProtocol {
+    #[cfg(feature = "MTLAllocation")]
+    pub unsafe trait MTLComputePipelineState: MTLAllocation + NSObjectProtocol {
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
+
+        /// Provides access to this compute pipeline's reflection.
+        ///
+        /// Reflection is `nil` if you create the pipeline state object directly from the ``MTLDevice`` protocol.
+        #[unsafe(method(reflection))]
+        #[unsafe(method_family = none)]
+        unsafe fn reflection(&self) -> Option<Retained<MTLComputePipelineReflection>>;
+
+        #[cfg(feature = "MTLFunctionHandle")]
+        /// Gets the function handle for a function this pipeline links at the Metal IR level by name.
+        ///
+        /// - Parameters:
+        /// - name: A string representing the name of the function.
+        ///
+        /// - Returns: A function handle corresponding to the function if the name matches a function in this pipeline state,
+        /// otherwise `nil`.
+        #[unsafe(method(functionHandleWithName:))]
+        #[unsafe(method_family = none)]
+        unsafe fn functionHandleWithName(
+            &self,
+            name: &NSString,
+        ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
+
+        #[cfg(all(feature = "MTL4BinaryFunction", feature = "MTLFunctionHandle"))]
+        /// Gets the function handle for a function this pipeline links at the binary level.
+        ///
+        /// - Parameters:
+        /// - function: A binary function object representing the function binary to find.
+        ///
+        /// - Returns: A function handle corresponding to the function if the binary function mathces a function in this
+        /// pipeline state, otherwise `nil`.
+        #[unsafe(method(functionHandleWithBinaryFunction:))]
+        #[unsafe(method_family = none)]
+        unsafe fn functionHandleWithBinaryFunction(
+            &self,
+            function: &ProtocolObject<dyn MTL4BinaryFunction>,
+        ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
+
+        #[cfg(feature = "MTL4BinaryFunction")]
+        /// Allocates a new compute pipeline state by adding binary functions to this pipeline state.
+        ///
+        /// - Parameters:
+        /// - additionalBinaryFunctions: A non-`nil` array containing binary functions to add to this pipeline.
+        /// - error: An optional parameter into which Metal stores information in case of an error.
+        ///
+        /// - Returns: A new compute pipeline state upon success, otherwise `nil`.
+        #[unsafe(method(newComputePipelineStateWithBinaryFunctions:error:_))]
+        #[unsafe(method_family = new)]
+        unsafe fn newComputePipelineStateWithBinaryFunctions_error(
+            &self,
+            additional_binary_functions: &NSArray<ProtocolObject<dyn MTL4BinaryFunction>>,
+        ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
@@ -363,11 +437,7 @@ extern_protocol!(
             functions: &NSArray<ProtocolObject<dyn MTLFunction>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
 
-        #[cfg(all(
-            feature = "MTLAllocation",
-            feature = "MTLResource",
-            feature = "MTLVisibleFunctionTable"
-        ))]
+        #[cfg(all(feature = "MTLResource", feature = "MTLVisibleFunctionTable"))]
         /// Allocate a visible function table for the pipeline with the provided descriptor.
         #[unsafe(method(newVisibleFunctionTableWithDescriptor:))]
         #[unsafe(method_family = new)]
@@ -376,11 +446,7 @@ extern_protocol!(
             descriptor: &MTLVisibleFunctionTableDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLVisibleFunctionTable>>>;
 
-        #[cfg(all(
-            feature = "MTLAllocation",
-            feature = "MTLIntersectionFunctionTable",
-            feature = "MTLResource"
-        ))]
+        #[cfg(all(feature = "MTLIntersectionFunctionTable", feature = "MTLResource"))]
         /// Allocate an intersection function table for the pipeline with the provided descriptor.
         #[unsafe(method(newIntersectionFunctionTableWithDescriptor:))]
         #[unsafe(method_family = new)]
@@ -394,5 +460,11 @@ extern_protocol!(
         #[unsafe(method(shaderValidation))]
         #[unsafe(method_family = none)]
         unsafe fn shaderValidation(&self) -> MTLShaderValidation;
+
+        #[cfg(feature = "MTLTypes")]
+        /// The required size of every compute threadgroup.
+        #[unsafe(method(requiredThreadsPerThreadgroup))]
+        #[unsafe(method_family = none)]
+        unsafe fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
     }
 );

@@ -10,6 +10,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemstyle?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSToolbarItemStyle(pub NSInteger);
+impl NSToolbarItemStyle {
+    #[doc(alias = "NSToolbarItemStylePlain")]
+    pub const Plain: Self = Self(0);
+    #[doc(alias = "NSToolbarItemStyleProminent")]
+    pub const Prominent: Self = Self(1);
+}
+
+unsafe impl Encode for NSToolbarItemStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSToolbarItemStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvisibilitypriority?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSToolbarItemVisibilityPriority = NSInteger;
@@ -209,6 +229,29 @@ impl NSToolbarItem {
         #[unsafe(method(setBordered:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBordered(&self, bordered: bool);
+
+        #[cfg(feature = "NSColor")]
+        #[unsafe(method(backgroundTintColor))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn backgroundTintColor(&self) -> Option<Retained<NSColor>>;
+
+        #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundTintColor`][Self::backgroundTintColor].
+        #[unsafe(method(setBackgroundTintColor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setBackgroundTintColor(&self, background_tint_color: Option<&NSColor>);
+
+        /// Defines the toolbar item’s appearance. The default style is plain.
+        /// Prominent style tints the background. If a background tint color is set, it uses it; otherwise, it uses the app’s or system’s accent color. If grouped with other items,
+        /// it moves to its own to avoid tinting other items' background.
+        #[unsafe(method(style))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn style(&self) -> NSToolbarItemStyle;
+
+        /// Setter for [`style`][Self::style].
+        #[unsafe(method(setStyle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setStyle(&self, style: NSToolbarItemStyle);
 
         /// Whether or not the item behaves as a navigation item (i.e. back/forward) in the toolbar.
         /// Navigation items may be specially positioned by the system outside the normal list of items of the toolbar in the order specified by `-toolbarDefaultItemIdentifiers:`.

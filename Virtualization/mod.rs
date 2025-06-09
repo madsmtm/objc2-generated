@@ -360,6 +360,9 @@ mod __VZVirtualMachineStartOptions;
 #[cfg(feature = "VZVirtualMachineView")]
 #[path = "VZVirtualMachineView.rs"]
 mod __VZVirtualMachineView;
+#[cfg(feature = "VZVmnetNetworkDeviceAttachment")]
+#[path = "VZVmnetNetworkDeviceAttachment.rs"]
+mod __VZVmnetNetworkDeviceAttachment;
 #[cfg(feature = "VZXHCIController")]
 #[path = "VZXHCIController.rs"]
 mod __VZXHCIController;
@@ -733,6 +736,11 @@ pub use self::__VZVirtualMachineDelegate::VZVirtualMachineDelegate;
 pub use self::__VZVirtualMachineStartOptions::VZVirtualMachineStartOptions;
 #[cfg(all(feature = "VZVirtualMachineView", feature = "objc2-app-kit"))]
 pub use self::__VZVirtualMachineView::VZVirtualMachineView;
+#[cfg(all(
+    feature = "VZNetworkDeviceAttachment",
+    feature = "VZVmnetNetworkDeviceAttachment"
+))]
+pub use self::__VZVmnetNetworkDeviceAttachment::VZVmnetNetworkDeviceAttachment;
 #[cfg(all(feature = "VZUSBController", feature = "VZXHCIController"))]
 pub use self::__VZXHCIController::VZXHCIController;
 #[cfg(all(

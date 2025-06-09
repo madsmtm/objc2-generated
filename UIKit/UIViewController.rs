@@ -392,6 +392,24 @@ impl UIViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn viewDidDisappear(&self, animated: bool);
 
+        /// Call to manually request a properties update for the view controller.
+        /// Multiple requests may be coalesced into a single update alongside the next layout pass.
+        #[unsafe(method(setNeedsUpdateProperties))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setNeedsUpdateProperties(&self);
+
+        /// Override point for subclasses to update properties of this view controller or its view.
+        /// Never call this method directly; use `setNeedsUpdateProperties` to schedule an update.
+        #[unsafe(method(updateProperties))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updateProperties(&self);
+
+        /// Forces an immediate properties update for this view controller and its view,
+        /// including any view controllers and views in this subtree.
+        #[unsafe(method(updatePropertiesIfNeeded))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updatePropertiesIfNeeded(&self);
+
         #[unsafe(method(viewWillLayoutSubviews))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewWillLayoutSubviews(&self);
@@ -1451,6 +1469,30 @@ impl UIViewController {
             &self,
             state: &UIContentUnavailableConfigurationState,
         );
+    );
+}
+
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
+        /// Override to return a child view controller or nil. If non-nil, that view controller's preference for interface orientation lock will be used. If nil, `self` is used.
+        /// Whenever the return value changes, call `setNeedsUpdateOfPrefersInterfaceOrientationLocked()`.
+        #[unsafe(method(childViewControllerForInterfaceOrientationLock))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn childViewControllerForInterfaceOrientationLock(
+            &self,
+        ) -> Option<Retained<UIViewController>>;
+
+        /// Whether this view controller prefers the scene's interface orientation to be locked when shown. The default is `NO`. Note that this preference may or may not be honored.
+        /// See `UIWindowScene.Geometry` for the current state of interface orientation lock.
+        #[unsafe(method(prefersInterfaceOrientationLocked))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prefersInterfaceOrientationLocked(&self) -> bool;
+
+        /// Call whenever the view controller's preference for interface orientation lock has changed
+        #[unsafe(method(setNeedsUpdateOfPrefersInterfaceOrientationLocked))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setNeedsUpdateOfPrefersInterfaceOrientationLocked(&self);
     );
 }
 

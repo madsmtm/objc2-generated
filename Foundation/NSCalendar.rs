@@ -107,6 +107,72 @@ extern "C" {
     pub static NSCalendarIdentifierIslamicUmmAlQura: &'static NSCalendarIdentifier;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierbangla?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSCalendarIdentifierBangla: &'static NSCalendarIdentifier;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifiergujarati?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSCalendarIdentifierGujarati: &'static NSCalendarIdentifier;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierkannada?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSCalendarIdentifierKannada: &'static NSCalendarIdentifier;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifiermalayalam?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSCalendarIdentifierMalayalam: &'static NSCalendarIdentifier;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifiermarathi?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSCalendarIdentifierMarathi: &'static NSCalendarIdentifier;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierodia?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSCalendarIdentifierOdia: &'static NSCalendarIdentifier;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifiertamil?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSCalendarIdentifierTamil: &'static NSCalendarIdentifier;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifiertelugu?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSCalendarIdentifierTelugu: &'static NSCalendarIdentifier;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifiervikram?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSCalendarIdentifierVikram: &'static NSCalendarIdentifier;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierdangi?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSCalendarIdentifierDangi: &'static NSCalendarIdentifier;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifiervietnamese?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSCalendarIdentifierVietnamese: &'static NSCalendarIdentifier;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendarunit?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]

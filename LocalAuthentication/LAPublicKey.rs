@@ -44,7 +44,7 @@ impl LAPublicKey {
         /// `SecKeyAlgorithm`suitable for encrypting with this key –e.g:
         /// `kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA256AESGCM`.
         ///
-        /// Parameter `handler`: Completion handler with the ciphertext or an error on failure.
+        /// Parameter `handler`: Completion handler with the cipher text or an error on failure.
         #[unsafe(method(encryptData:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encryptData_secKeyAlgorithm_completion(
@@ -74,7 +74,7 @@ impl LAPublicKey {
         /// Parameter `algorithm`: One of
         /// `SecKeyAlgorithm`suitable for verifying signatures with this key –e.g:
         /// `kSecKeyAlgorithmECDSASignatureMessageX962SHA256`
-        /// Parameter `handler`: Completion hadnler with the signature of given data or an error on failure.
+        /// Parameter `handler`: Completion handler with the signature of given data or an error on failure.
         #[unsafe(method(verifyData:signature:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn verifyData_signature_secKeyAlgorithm_completion(

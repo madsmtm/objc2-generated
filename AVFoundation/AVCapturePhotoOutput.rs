@@ -130,7 +130,7 @@ impl AVCapturePhotoOutput {
         /// Parameter `delegate`: An object conforming to the AVCapturePhotoCaptureDelegate protocol. This object's delegate methods are called back as the photo advances from capture to processing to finished delivery. May not be nil.
         ///
         ///
-        /// This method initiates a photo capture. The receiver copies your provided settings to prevent unintentional mutation. It is illegal to re-use settings. The receiver throws a NSInvalidArgumentException if your settings.uniqueID matches that of any previously used settings. This method is used to initiate all flavors of photo capture: single photo, RAW capture with or without a processed image (such as a JPEG), bracketed capture, and Live Photo.
+        /// This method initiates a photo capture. The receiver copies your provided settings to prevent unintentional mutation. It is illegal to re-use settings. The receiver throws an NSInvalidArgumentException if your settings.uniqueID matches that of any previously used settings. This method is used to initiate all flavors of photo capture: single photo, RAW capture with or without a processed image (such as a JPEG), bracketed capture, and Live Photo.
         ///
         /// Clients need not wait for a capture photo request to complete before issuing another request. This is true for single photo captures as well as Live Photos, where movie complements of adjacent photo captures are allowed to overlap.
         ///
@@ -153,9 +153,9 @@ impl AVCapturePhotoOutput {
         /// - portraitEffectsMatteDeliveryEnabled will automatically be disabled in AVCapturePhotoSettings
         /// - enabledSemanticSegmentationMatteTypes will automatically be cleared in AVCapturePhotoSettings
         /// Processed Format rules:
-        /// - If format is non-nil, a kCVPixelBufferPixelFormatTypeKey or AVVideoCodecKey must be present, and both may not be present.
+        /// - If format is non-nil, a kCVPixelBufferPixelFormatTypeKey or AVVideoCodecKey must be present. You cannot specify both.
         /// - If format has a kCVPixelBufferPixelFormatTypeKey, its value must be present in the receiver's -availablePhotoPixelFormatTypes array.
-        /// - If format has a AVVideoCodecKey, its value must be present in the receiver's -availablePhotoCodecTypes array.
+        /// - If format has an AVVideoCodecKey, its value must be present in the receiver's -availablePhotoCodecTypes array.
         /// - If format is non-nil, your delegate must respond to -captureOutput:didFinishProcessingPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:.
         /// - If processedFileType is specified, it must be present in -availablePhotoFileTypes and must support the format's specified kCVPixelBufferPixelFormatTypeKey (using -supportedPhotoPixelFormatTypesForFileType:) or AVVideoCodecKey (using -supportedPhotoCodecTypesForFileType:).
         /// - The photoQualityPrioritization you specify may not be a greater number than the photo output's maxPhotoQualityPrioritization. You must set your AVCapturePhotoOutput maxPhotoQualityPrioritization up front.
@@ -963,7 +963,7 @@ impl AVCapturePhotoOutputReadinessCoordinator {
         /// Parameter `settingsUniqueID`: The AVCapturePhotoSettings.uniqueID of the settings passed to -startTrackingCaptureRequestUsingPhotoSettings:.
         ///
         ///
-        /// Tracking automatically stops when -[AVCapturePhotoOutput capturePhotoWithSettings:delegate] is called with a photo settings objects with the same or a newer uniqueID, but in cases where an error or other condition prevents calling -capturePhotoWithSettings:delegate tracking should be explictly stopped to ensure the captureReadiness value is up to date. When called on the main queue the delegate callback is invoked synchronously before returning to ensure shutter availability is updated immediately.
+        /// Tracking automatically stops when -[AVCapturePhotoOutput capturePhotoWithSettings:delegate] is called with a photo settings objects with the same or a newer uniqueID, but in cases where an error or other condition prevents calling -capturePhotoWithSettings:delegate tracking should be explicitly stopped to ensure the captureReadiness value is up to date. When called on the main queue the delegate callback is invoked synchronously before returning to ensure shutter availability is updated immediately.
         #[unsafe(method(stopTrackingCaptureRequestUsingPhotoSettingsUniqueID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopTrackingCaptureRequestUsingPhotoSettingsUniqueID(

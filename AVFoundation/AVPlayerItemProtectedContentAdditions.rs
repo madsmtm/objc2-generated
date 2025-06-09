@@ -91,7 +91,7 @@ impl AVPlayerItem {
         /// the content has actually been authorized before continuing.  It is not necessary to call this method if the value of contentAuthorizedForPlayback is already true.
         ///
         ///
-        /// Parameter `timoutInterval`: The maximum amount of time to wait for the user to authorize the content in seconds before calling the handler block with a timeout result.
+        /// Parameter `timeoutInterval`: The maximum amount of time to wait for the user to authorize the content in seconds before calling the handler block with a timeout result.
         ///
         /// Parameter `handler`: Block to be called upon completion.
         #[unsafe(method(requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:))]

@@ -281,3 +281,51 @@ extern "C-unwind" {
     /// removed.
     pub fn AudioServicesRemoveSystemSoundCompletion(in_system_sound_id: SystemSoundID);
 }
+
+extern "C" {
+    /// Keys that are passed in a dictionary to AudioServicesPlaySystemSoundWithDetails
+    ///
+    /// Must be any non-nil CASpatialAudioExperience. The system sound
+    /// will have this spatial experience for the duration of its
+    /// playback and cannot change mid-playback.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesdetailintendedspatialexperience?language=objc)
+    #[cfg(feature = "objc2-core-foundation")]
+    pub static kAudioServicesDetailIntendedSpatialExperience: &'static CFString;
+}
+
+extern "C-unwind" {
+    /// Play the sound designated by the provided SystemSoundID.
+    ///
+    /// Parameter `inSystemSoundID`: A SystemSoundID for the system sound server to play.
+    ///
+    /// Parameter `inDetails`: A set of details as described above.
+    ///
+    /// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
+    /// of success or failure. The callbacks are issued on a serial queue and the client is
+    /// responsible for handling thread safety.
+    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+    pub fn AudioServicesPlaySystemSoundWithDetails(
+        in_system_sound_id: SystemSoundID,
+        in_details: Option<&CFDictionary>,
+        in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+    );
+}
+
+extern "C-unwind" {
+    /// Play the alert designated by the provided SystemSoundID.
+    ///
+    /// Parameter `inSystemSoundID`: A SystemSoundID for the system sound server to play with alert sound behavior.
+    ///
+    /// Parameter `inDetails`: A set of details as described above.
+    ///
+    /// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
+    /// of success or failure. The callbacks are issued on a serial queue and the client is
+    /// responsible for handling thread safety.
+    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+    pub fn AudioServicesPlayAlertSoundWithDetails(
+        in_system_sound_id: SystemSoundID,
+        in_details: Option<&CFDictionary>,
+        in_completion_block: Option<&block2::DynBlock<dyn Fn()>>,
+    );
+}

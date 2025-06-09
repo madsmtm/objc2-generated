@@ -24,6 +24,7 @@ extern "C" {
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitem?language=objc)
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPListImageRowItem;
 );
@@ -59,12 +60,12 @@ impl CPListImageRowItem {
         /// UIImageAsset is used to combine multiple UIImages with different trait collections into a single UIImage.
         ///
         ///
-        /// Note: The expected image size is given by +[CPListImageRowItem maximumImageSize]. Images provided
-        /// will be resized to this size if necessary.
+        /// Note: The expected image size is given by +[CPListImageRowItem maximumImageSize]. Images provided will be resized to this size if necessary.
         ///
         ///
         /// To properly size your images, your app should size them to the display scale of the car screen.
         /// See -[CPInterfaceController carTraitCollection].
+        #[deprecated]
         #[unsafe(method(initWithText:images:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithText_images(
@@ -93,12 +94,12 @@ impl CPListImageRowItem {
         /// UIImageAsset is used to combine multiple UIImages with different trait collections into a single UIImage.
         ///
         ///
-        /// Note: The expected image size is given by +[CPListImageRowItem maximumImageSize]. Images provided
-        /// will be resized to this size if necessary.
+        /// Note: The expected image size is given by +[CPListImageRowItem maximumImageSize]. Images provided will be resized to this size if necessary.
         ///
         ///
         /// To properly size your images, your app should size them to the display scale of the car screen.
         /// See -[CPInterfaceController carTraitCollection].
+        #[deprecated]
         #[unsafe(method(initWithText:images:imageTitles:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithText_images_imageTitles(
@@ -106,6 +107,136 @@ impl CPListImageRowItem {
             text: &NSString,
             images: &NSArray<UIImage>,
             image_titles: &NSArray<NSString>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "CPListImageRowItemElement",
+            feature = "CPListImageRowItemRowElement"
+        ))]
+        /// Initialize a list image row item with a text string, an array of
+        /// `CPListImageRowItemRowElement`and a boolean to allow multiple lines in this row.
+        ///
+        /// If a nil
+        /// `text`property is provided the cell will resize accordingly to hide the title.
+        ///
+        ///
+        /// Parameter `text`: The text visible at the top of the cell.
+        ///
+        /// Parameter `elements`: The list of
+        /// `CPListImageRowItemRowElement`elements visible below the text.
+        ///
+        /// Parameter `allowsMultipleLines`: Determines if the elements could be visible on more than a single line.
+        #[unsafe(method(initWithText:elements:allowsMultipleLines:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithText_elements_allowsMultipleLines(
+            this: Allocated<Self>,
+            text: Option<&NSString>,
+            elements: &NSArray<CPListImageRowItemRowElement>,
+            allows_multiple_lines: bool,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "CPListImageRowItemCardElement",
+            feature = "CPListImageRowItemElement"
+        ))]
+        /// Initialize a list image row item with a text string, an array of
+        /// `CPListImageRowItemCardElement`and a boolean to allow multiple lines in this row.
+        ///
+        /// If a nil
+        /// `text`property is provided the cell will resize accordingly to hide the title.
+        ///
+        ///
+        /// Parameter `text`: The text visible at the top of the cell.
+        ///
+        /// Parameter `cardElements`: The list of
+        /// `CPListImageRowItemCardElement`elements visible below the text.
+        ///
+        /// Parameter `allowsMultipleLines`: Determines if the elements could be visible on more than a single line.
+        #[unsafe(method(initWithText:cardElements:allowsMultipleLines:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithText_cardElements_allowsMultipleLines(
+            this: Allocated<Self>,
+            text: Option<&NSString>,
+            elements: &NSArray<CPListImageRowItemCardElement>,
+            allows_multiple_lines: bool,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "CPListImageRowItemCondensedElement",
+            feature = "CPListImageRowItemElement"
+        ))]
+        /// Initialize a list image row item with a text string, an array of
+        /// `CPListImageRowItemCondensedElement`and a boolean to allow multiple lines in this row.
+        ///
+        /// If a nil
+        /// `text`property is provided the cell will resize accordingly to hide the title.
+        ///
+        ///
+        /// Parameter `text`: The text visible at the top of the cell.
+        ///
+        /// Parameter `condensedElements`: The list of
+        /// `CPListImageRowItemCondensedElement`elements visible below the text.
+        ///
+        /// Parameter `allowsMultipleLines`: Determines if the elements could be visible on more than a single line.
+        #[unsafe(method(initWithText:condensedElements:allowsMultipleLines:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithText_condensedElements_allowsMultipleLines(
+            this: Allocated<Self>,
+            text: Option<&NSString>,
+            elements: &NSArray<CPListImageRowItemCondensedElement>,
+            allows_multiple_lines: bool,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "CPListImageRowItemElement",
+            feature = "CPListImageRowItemGridElement"
+        ))]
+        /// Initialize a list image row item with a text string, an array of
+        /// `CPListImageRowItemGridElement`and a boolean to allow multiple lines in this row.
+        ///
+        /// If a nil
+        /// `text`property is provided the cell will resize accordingly to hide the title.
+        ///
+        ///
+        /// Parameter `text`: The text visible at the top of the cell.
+        ///
+        /// Parameter `gridElements`: The list of
+        /// `CPListImageRowItemGridElement`elements visible below the text.
+        ///
+        /// Parameter `allowsMultipleLines`: Determines if the elements could be visible on more than a single line.
+        #[unsafe(method(initWithText:gridElements:allowsMultipleLines:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithText_gridElements_allowsMultipleLines(
+            this: Allocated<Self>,
+            text: Option<&NSString>,
+            elements: &NSArray<CPListImageRowItemGridElement>,
+            allows_multiple_lines: bool,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "CPListImageRowItemElement",
+            feature = "CPListImageRowItemImageGridElement"
+        ))]
+        /// Initialize a list image row item with a text string, an array of
+        /// `CPListImageRowItemImageGridElement`and a boolean to allow multiple lines in this row.
+        ///
+        /// If a nil
+        /// `text`property is provided the cell will resize accordingly to hide the title.
+        ///
+        ///
+        /// Parameter `text`: The text visible at the top of the cell.
+        ///
+        /// Parameter `imageGridElements`: The list of
+        /// `CPListImageRowItemImageGridElement`elements visible below the text.
+        ///
+        /// Parameter `allowsMultipleLines`: Determines if the elements could be visible on more than a single line.
+        #[unsafe(method(initWithText:imageGridElements:allowsMultipleLines:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithText_imageGridElements_allowsMultipleLines(
+            this: Allocated<Self>,
+            text: Option<&NSString>,
+            elements: &NSArray<CPListImageRowItemImageGridElement>,
+            allows_multiple_lines: bool,
         ) -> Retained<Self>;
 
         /// The primary text shown in a cell displaying this list item.
@@ -174,6 +305,7 @@ impl CPListImageRowItem {
         /// Note: The maximum number of images shown is
         /// `CPMaximumNumberOfGridImages.`If you supply more images, only the first
         /// `CPMaximumNumberOfGridImages`will be used.
+        #[deprecated]
         #[unsafe(method(gridImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn gridImages(&self) -> Retained<NSArray<UIImage>>;
@@ -201,26 +333,37 @@ impl CPListImageRowItem {
         /// See: To update/reload the title labels displayed below each image, assign to
         /// the
         /// `imageTitles`property of the image row item.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(updateImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateImages(&self, grid_images: &NSArray<UIImage>);
 
-        /// Update the titles displayed each image in this image row item. If this image row
-        /// item is already displayed in a list template, then it will be automatically
-        /// reloaded.
+        /// The titles displayed for each image in this image row item.
         ///
         ///
         /// See: To update/reload the title of the image row item, assign to
         /// the
         /// `text`property of the image row item.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(imageTitles))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageTitles(&self) -> Retained<NSArray<NSString>>;
 
-        /// Setter for [`imageTitles`][Self::imageTitles].
-        #[unsafe(method(setImageTitles:))]
+        #[cfg(feature = "CPListImageRowItemElement")]
+        /// The array of elements used to draw visible elements.
+        #[unsafe(method(elements))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImageTitles(&self, image_titles: &NSArray<NSString>);
+        pub unsafe fn elements(&self) -> Retained<NSArray<CPListImageRowItemElement>>;
+
+        /// A Boolean value indicating whether the elements should be visible in more than a single line.
+        ///
+        ///
+        /// Set the value of this property to
+        /// `YES`to allow elements to be visible on multiple lines. Set the value of this property to
+        /// `NO`to only show a single line of elements.
+        #[unsafe(method(allowsMultipleLines))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsMultipleLines(&self) -> bool;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// A block that is called when the user selects one of the images in this image row item.
@@ -252,9 +395,10 @@ impl CPListImageRowItem {
         ///
         /// To properly size your images, your app should size them to the display scale of the car screen.
         /// See -[CPInterfaceController carTraitCollection].
+        #[deprecated = "Use +[CPListImageRowItemElement maximumImageSize] on an appropriate element"]
         #[unsafe(method(maximumImageSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumImageSize() -> CGSize;
+        pub unsafe fn maximumImageSize(mtm: MainThreadMarker) -> CGSize;
     );
 }
 
@@ -267,6 +411,6 @@ impl CPListImageRowItem {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

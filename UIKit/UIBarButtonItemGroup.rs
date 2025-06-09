@@ -75,6 +75,14 @@ impl UIBarButtonItemGroup {
             mtm: MainThreadMarker,
         ) -> Retained<UIBarButtonItemGroup>;
 
+        /// Returns a new group that contains a single zero-width fixed space item inside it.
+        ///
+        /// If you specify a group with a single zero-width fixed space,
+        /// the navigation bar to visually separate the following groups.
+        #[unsafe(method(groupWithFixedSpace))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn groupWithFixedSpace(mtm: MainThreadMarker) -> Retained<UIBarButtonItemGroup>;
+
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// The bar button items associated with this group. Changing these items will affect the bar displaying these items without needing to re-set the groups that are in that bar. Any UIBarButtonItems that are already in group will be removed from that group.
         #[unsafe(method(barButtonItems))]

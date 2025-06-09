@@ -79,3 +79,13 @@ impl BENetworkingProcess {
         pub unsafe fn invalidate(&self);
     );
 }
+
+/// BEExtensionProcessConformance.
+impl BENetworkingProcess {
+    extern_methods!();
+}
+
+#[cfg(feature = "BEExtensionProcess")]
+extern_conformance!(
+    unsafe impl BEExtensionProcess for BENetworkingProcess {}
+);

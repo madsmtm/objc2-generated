@@ -458,11 +458,122 @@ impl MTLTextureDescriptor {
         #[unsafe(method(setSwizzle:))]
         #[unsafe(method_family = none)]
         pub fn setSwizzle(&self, swizzle: MTLTextureSwizzleChannels);
+
+        #[cfg(feature = "MTLResource")]
+        /// Determines the page size for a placement sparse texture.
+        ///
+        /// Set this property to a non-zero value to create a *placement sparse texture*.
+        ///
+        /// Placement sparse textures are instances of ``MTLTexture`` that you assign memory to using a ``MTLHeap`` instance
+        /// of type ``MTLHeapType/MTLHeapTypePlacement`` and a ``MTLHeapDescriptor/maxCompatiblePlacementSparsePageSize``
+        /// at least as large as the ``MTLSparsePageSize`` value you assign to this property.
+        ///
+        /// This value is 0 by default.
+        #[unsafe(method(placementSparsePageSize))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn placementSparsePageSize(&self) -> MTLSparsePageSize;
+
+        #[cfg(feature = "MTLResource")]
+        /// Setter for [`placementSparsePageSize`][Self::placementSparsePageSize].
+        #[unsafe(method(setPlacementSparsePageSize:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPlacementSparsePageSize(
+            &self,
+            placement_sparse_page_size: MTLSparsePageSize,
+        );
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MTLTextureDescriptor {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureviewdescriptor?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct MTLTextureViewDescriptor;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for MTLTextureViewDescriptor {}
+);
+
+unsafe impl CopyingHelper for MTLTextureViewDescriptor {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLTextureViewDescriptor {}
+);
+
+impl MTLTextureViewDescriptor {
+    extern_methods!(
+        #[cfg(feature = "MTLPixelFormat")]
+        /// A desired pixel format of a texture view.
+        #[unsafe(method(pixelFormat))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn pixelFormat(&self) -> MTLPixelFormat;
+
+        #[cfg(feature = "MTLPixelFormat")]
+        /// Setter for [`pixelFormat`][Self::pixelFormat].
+        #[unsafe(method(setPixelFormat:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
+
+        /// A desired texture view of a texture view.
+        #[unsafe(method(textureType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn textureType(&self) -> MTLTextureType;
+
+        /// Setter for [`textureType`][Self::textureType].
+        #[unsafe(method(setTextureType:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTextureType(&self, texture_type: MTLTextureType);
+
+        /// A desired range of mip levels of a texture view.
+        #[unsafe(method(levelRange))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn levelRange(&self) -> NSRange;
+
+        /// Setter for [`levelRange`][Self::levelRange].
+        #[unsafe(method(setLevelRange:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLevelRange(&self, level_range: NSRange);
+
+        /// A desired range of slices of a texture view.
+        #[unsafe(method(sliceRange))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sliceRange(&self) -> NSRange;
+
+        /// Setter for [`sliceRange`][Self::sliceRange].
+        #[unsafe(method(setSliceRange:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSliceRange(&self, slice_range: NSRange);
+
+        /// A desired swizzle format of a texture view.
+        #[unsafe(method(swizzle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn swizzle(&self) -> MTLTextureSwizzleChannels;
+
+        /// Setter for [`swizzle`][Self::swizzle].
+        #[unsafe(method(setSwizzle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSwizzle(&self, swizzle: MTLTextureSwizzleChannels);
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl MTLTextureViewDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -716,6 +827,14 @@ extern_protocol!(
         #[unsafe(method_family = new)]
         fn newSharedTextureHandle(&self) -> Option<Retained<MTLSharedTextureHandle>>;
 
+        /// Create a new texture which shares the same storage as the source texture, but with different (but compatible) properties specified by the descriptor
+        #[unsafe(method(newTextureViewWithDescriptor:))]
+        #[unsafe(method_family = new)]
+        unsafe fn newTextureViewWithDescriptor(
+            &self,
+            descriptor: &MTLTextureViewDescriptor,
+        ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
+
         /// For Metal texture objects that are remote views, this returns the texture associated with the storage on the originating device.
         #[unsafe(method(remoteStorageTexture))]
         #[unsafe(method_family = none)]
@@ -748,5 +867,10 @@ extern_protocol!(
             slice_range: NSRange,
             swizzle: MTLTextureSwizzleChannels,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
+
+        /// Query support tier for sparse textures.
+        #[unsafe(method(sparseTextureTier))]
+        #[unsafe(method_family = none)]
+        unsafe fn sparseTextureTier(&self) -> MTLTextureSparseTier;
     }
 );

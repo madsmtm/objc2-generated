@@ -199,6 +199,10 @@ unsafe impl RefEncode for IOSurfaceComponentName {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for IOSurfaceComponentName {}
+
+unsafe impl Sync for IOSurfaceComponentName {}
+
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponentnames?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
@@ -233,6 +237,10 @@ unsafe impl RefEncode for IOSurfaceComponentType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for IOSurfaceComponentType {}
+
+unsafe impl Sync for IOSurfaceComponentType {}
+
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponenttypes?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
@@ -264,6 +272,10 @@ unsafe impl Encode for IOSurfaceComponentRange {
 unsafe impl RefEncode for IOSurfaceComponentRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+unsafe impl Send for IOSurfaceComponentRange {}
+
+unsafe impl Sync for IOSurfaceComponentRange {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponentranges?language=objc)
@@ -298,6 +310,10 @@ unsafe impl Encode for IOSurfaceSubsampling {
 unsafe impl RefEncode for IOSurfaceSubsampling {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+unsafe impl Send for IOSurfaceSubsampling {}
+
+unsafe impl Sync for IOSurfaceSubsampling {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacesubsampling?language=objc)
@@ -892,6 +908,10 @@ unsafe impl RefEncode for IOSurfaceMemoryLedgerTags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for IOSurfaceMemoryLedgerTags {}
+
+unsafe impl Sync for IOSurfaceMemoryLedgerTags {}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgerflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -913,6 +933,10 @@ unsafe impl Encode for IOSurfaceMemoryLedgerFlags {
 unsafe impl RefEncode for IOSurfaceMemoryLedgerFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+unsafe impl Send for IOSurfaceMemoryLedgerFlags {}
+
+unsafe impl Sync for IOSurfaceMemoryLedgerFlags {}
 
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "renamed to `IOSurfaceRef::new`"]

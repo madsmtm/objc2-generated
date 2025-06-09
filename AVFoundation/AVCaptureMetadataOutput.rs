@@ -97,6 +97,8 @@ impl AVCaptureMetadataOutput {
         ///
         ///
         /// AVCaptureMetadataOutput may detect and emit multiple metadata object types. For apps linked before iOS 7.0, the receiver defaults to capturing face metadata objects if supported (see -availableMetadataObjectTypes). For apps linked on or after iOS 7.0, the receiver captures no metadata objects by default. -setMetadataObjectTypes: throws an NSInvalidArgumentException if any elements in the array are not present in the -availableMetadataObjectTypes array.
+        ///
+        /// If you've set your AVCaptureMetadataOutput's connected input's `cinematicVideoCaptureEnabled` property to YES, you must set your `metadataObjectTypes` property to `requiredMetadataObjectTypesForCinematicVideoCapture` or an NSInvalidArgumentException is thrown.
         #[unsafe(method(metadataObjectTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataObjectTypes(&self) -> Retained<NSArray<AVMetadataObjectType>>;
@@ -126,6 +128,17 @@ impl AVCaptureMetadataOutput {
         #[unsafe(method(setRectOfInterest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRectOfInterest(&self, rect_of_interest: CGRect);
+
+        #[cfg(feature = "AVMetadataObject")]
+        /// Indicates the required metadata object types when Cinematic Video capture is enabled.
+        ///
+        ///
+        /// Since the Cinematic Video algorithm requires a particular set of metadata objects to function optimally, you must set your `metadataObjectTypes` property to this property's returned value if you've set `cinematicVideoCaptureEnabled` to YES on the connected device input.
+        #[unsafe(method(requiredMetadataObjectTypesForCinematicVideoCapture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiredMetadataObjectTypesForCinematicVideoCapture(
+            &self,
+        ) -> Retained<NSArray<AVMetadataObjectType>>;
     );
 }
 

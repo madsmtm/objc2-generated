@@ -1795,7 +1795,7 @@ extern "C-unwind" {
     ///
     /// The iterator will still be pointing to the same event, but as the event will have moved,
     /// it may or may not have a next or previous event now (depending of course on the time
-    /// you moved it too).
+    /// you moved it to).
     ///
     ///
     /// Parameter `inIterator`: the iterator

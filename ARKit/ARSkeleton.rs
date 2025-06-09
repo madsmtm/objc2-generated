@@ -53,7 +53,7 @@ impl ARSkeleton {
         ///
         /// Parameter `jointIndex`: The index of the joint.
         ///
-        /// Returns: True if the joint is tracked. False otherwise.
+        /// Returns: YES if the joint is tracked. NO otherwise.
         #[unsafe(method(isJointTracked:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isJointTracked(&self, joint_index: NSInteger) -> bool;

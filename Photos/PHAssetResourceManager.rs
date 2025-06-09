@@ -80,6 +80,10 @@ extern_class!(
     pub struct PHAssetResourceManager;
 );
 
+unsafe impl Send for PHAssetResourceManager {}
+
+unsafe impl Sync for PHAssetResourceManager {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for PHAssetResourceManager {}
 );

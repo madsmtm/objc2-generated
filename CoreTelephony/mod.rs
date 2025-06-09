@@ -33,12 +33,18 @@ mod __CTCarrier;
 #[cfg(feature = "CTCellularData")]
 #[path = "CTCellularData.rs"]
 mod __CTCellularData;
+#[cfg(feature = "CTCellularPlanProperties")]
+#[path = "CTCellularPlanProperties.rs"]
+mod __CTCellularPlanProperties;
 #[cfg(feature = "CTCellularPlanProvisioning")]
 #[path = "CTCellularPlanProvisioning.rs"]
 mod __CTCellularPlanProvisioning;
 #[cfg(feature = "CTCellularPlanProvisioningRequest")]
 #[path = "CTCellularPlanProvisioningRequest.rs"]
 mod __CTCellularPlanProvisioningRequest;
+#[cfg(feature = "CTCellularPlanStatus")]
+#[path = "CTCellularPlanStatus.rs"]
+mod __CTCellularPlanStatus;
 #[cfg(feature = "CTSubscriber")]
 #[path = "CTSubscriber.rs"]
 mod __CTSubscriber;
@@ -72,12 +78,18 @@ pub use self::__CTCellularData::CTCellularData;
 pub use self::__CTCellularData::CTCellularDataRestrictedState;
 #[cfg(all(feature = "CTCellularData", feature = "block2"))]
 pub use self::__CTCellularData::CellularDataRestrictionDidUpdateNotifier;
+#[cfg(feature = "CTCellularPlanProperties")]
+pub use self::__CTCellularPlanProperties::CTCellularPlanCapability;
+#[cfg(feature = "CTCellularPlanProperties")]
+pub use self::__CTCellularPlanProperties::CTCellularPlanProperties;
 #[cfg(feature = "CTCellularPlanProvisioning")]
 pub use self::__CTCellularPlanProvisioning::CTCellularPlanProvisioning;
 #[cfg(feature = "CTCellularPlanProvisioningRequest")]
 pub use self::__CTCellularPlanProvisioningRequest::CTCellularPlanProvisioningAddPlanResult;
 #[cfg(feature = "CTCellularPlanProvisioningRequest")]
 pub use self::__CTCellularPlanProvisioningRequest::CTCellularPlanProvisioningRequest;
+#[cfg(feature = "CTCellularPlanStatus")]
+pub use self::__CTCellularPlanStatus::CTCellularPlanStatus;
 #[cfg(feature = "CTSubscriber")]
 pub use self::__CTSubscriber::CTSubscriber;
 #[cfg(feature = "CTSubscriber")]

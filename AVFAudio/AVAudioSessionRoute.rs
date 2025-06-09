@@ -243,6 +243,91 @@ impl AVAudioSessionDataSourceDescription {
 }
 
 extern_class!(
+    /// Describes whether a specific capability is supported and if that capability is currently enabled
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVAudioSessionCapability;
+);
+
+unsafe impl Send for AVAudioSessionCapability {}
+
+unsafe impl Sync for AVAudioSessionCapability {}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioSessionCapability {}
+);
+
+impl AVAudioSessionCapability {
+    extern_methods!(
+        /// A Boolean value that indicates whether the capability is supported.
+        #[unsafe(method(isSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isSupported(&self) -> bool;
+
+        /// A Boolean value that indicates whether the capability is enabled.
+        #[unsafe(method(isEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isEnabled(&self) -> bool;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl AVAudioSessionCapability {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// An object that describes capabilities of Bluetooth microphone ports.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportextensionbluetoothmicrophone?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVAudioSessionPortExtensionBluetoothMicrophone;
+);
+
+unsafe impl Send for AVAudioSessionPortExtensionBluetoothMicrophone {}
+
+unsafe impl Sync for AVAudioSessionPortExtensionBluetoothMicrophone {}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioSessionPortExtensionBluetoothMicrophone {}
+);
+
+impl AVAudioSessionPortExtensionBluetoothMicrophone {
+    extern_methods!(
+        /// Describes whether this port supports Bluetooth high-quality recording.
+        ///
+        /// Please see ``AVAudioSessionCategoryOptions/AVAudioSessionCategoryOptionBluetoothHighQualityRecording`` for details.
+        #[unsafe(method(highQualityRecording))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn highQualityRecording(&self) -> Retained<AVAudioSessionCapability>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl AVAudioSessionPortExtensionBluetoothMicrophone {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
     /// Information about a port, a physical connector or audio device.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription?language=objc)
@@ -361,6 +446,20 @@ impl AVAudioSessionPortDescription {
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+/// BluetoothMicrophoneExtension.
+impl AVAudioSessionPortDescription {
+    extern_methods!(
+        /// An optional port extension that describes capabilities relevant to Bluetooth microphone ports.
+        ///
+        /// This property is optional and will be `nil` for all ports for which this capability set doesn't apply.
+        #[unsafe(method(bluetoothMicrophoneExtension))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bluetoothMicrophoneExtension(
+            &self,
+        ) -> Option<Retained<AVAudioSessionPortExtensionBluetoothMicrophone>>;
     );
 }
 

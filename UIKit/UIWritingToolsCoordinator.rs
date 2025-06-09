@@ -348,6 +348,15 @@ impl UIWritingToolsCoordinator {
             preferred_result_options: UIWritingToolsResultOptions,
         );
 
+        #[unsafe(method(includesTextListMarkers))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn includesTextListMarkers(&self) -> bool;
+
+        /// Setter for [`includesTextListMarkers`][Self::includesTextListMarkers].
+        #[unsafe(method(setIncludesTextListMarkers:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setIncludesTextListMarkers(&self, includes_text_list_markers: bool);
+
         #[cfg(feature = "UITextInputTraits")]
         /// The type of content the system generates for your custom text view.
         ///

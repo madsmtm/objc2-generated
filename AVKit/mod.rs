@@ -57,6 +57,8 @@ pub use self::__AVCaptureView::AVCaptureViewControlsStyle;
 #[cfg(feature = "AVCaptureView")]
 pub use self::__AVCaptureView::AVCaptureViewDelegate;
 #[cfg(feature = "AVKitTypes")]
+pub use self::__AVKitTypes::AVDisplayDynamicRange;
+#[cfg(feature = "AVKitTypes")]
 pub use self::__AVKitTypes::AVVideoFrameAnalysisType;
 #[cfg(feature = "AVPictureInPictureController")]
 pub use self::__AVPictureInPictureController::AVPictureInPictureController;

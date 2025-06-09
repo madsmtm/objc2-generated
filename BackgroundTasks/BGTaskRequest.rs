@@ -247,3 +247,183 @@ impl BGHealthResearchTaskRequest {
         pub unsafe fn new() -> Retained<Self>;
     );
 }
+
+/// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequestsubmissionstrategy?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct BGContinuedProcessingTaskRequestSubmissionStrategy(pub NSInteger);
+impl BGContinuedProcessingTaskRequestSubmissionStrategy {
+    /// Fail the submission if there is no room for the task request, or if the system is under substantial load and is
+    /// unable immediately run the task.
+    #[doc(alias = "BGContinuedProcessingTaskRequestSubmissionStrategyFail")]
+    pub const Fail: Self = Self(0);
+    /// Add the request to the back of a queue if there is no room for the submitted task or if the system is under
+    /// substantial load and is unable to immediately run the task. Queued ``BGContinuedProcessingTaskRequest``s will be
+    /// cancelled when the user removes your app from the app switcher.
+    #[doc(alias = "BGContinuedProcessingTaskRequestSubmissionStrategyQueue")]
+    pub const Queue: Self = Self(1);
+}
+
+unsafe impl Encode for BGContinuedProcessingTaskRequestSubmissionStrategy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for BGContinuedProcessingTaskRequestSubmissionStrategy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequestresources?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct BGContinuedProcessingTaskRequestResources(pub NSInteger);
+bitflags::bitflags! {
+    impl BGContinuedProcessingTaskRequestResources: NSInteger {
+/// No special system resources required.
+///
+/// Unless informed otherwise, the scheduler assumes the default resources, allowing background CPU and network
+/// access.
+        #[doc(alias = "BGContinuedProcessingTaskRequestResourcesDefault")]
+        const Default = 0;
+/// Indicate to the scheduler that the workload will require background GPU utilization.
+///
+/// Task submissions will be rejected if the submitting app does not have the correct entitlement. Background GPU
+/// execution is not supported on all devices. Additionally, if a device is experiencing heavy GPU contention
+/// backgrounded workloads are not guaranteed runtime.
+///
+/// - Important: Applications must have the `com.apple.developer.background-tasks.continued-processing.gpu` entitlement to submit a task request with this resource.
+        #[doc(alias = "BGContinuedProcessingTaskRequestResourcesGPU")]
+        const GPU = 1<<0;
+    }
+}
+
+unsafe impl Encode for BGContinuedProcessingTaskRequestResources {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for BGContinuedProcessingTaskRequestResources {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// A request to begin a workload immediately, or shortly after submission, which is allowed to continue running even if
+    /// the app is backgrounded.
+    ///
+    /// Similar to Background App Refresh, users are allowed to disable ``BGContinuedProcessingTask`` objects from running
+    /// on their devices.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest?language=objc)
+    #[unsafe(super(BGTaskRequest, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct BGContinuedProcessingTaskRequest;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for BGContinuedProcessingTaskRequest {}
+);
+
+unsafe impl CopyingHelper for BGContinuedProcessingTaskRequest {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BGContinuedProcessingTaskRequest {}
+);
+
+impl BGContinuedProcessingTaskRequest {
+    extern_methods!(
+        /// The localized title displayed to the user.
+        #[unsafe(method(title))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn title(&self) -> Retained<NSString>;
+
+        /// Setter for [`title`][Self::title].
+        #[unsafe(method(setTitle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTitle(&self, title: &NSString);
+
+        /// The localized subtitle displayed to the user.
+        #[unsafe(method(subtitle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn subtitle(&self) -> Retained<NSString>;
+
+        /// Setter for [`subtitle`][Self::subtitle].
+        #[unsafe(method(setSubtitle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSubtitle(&self, subtitle: &NSString);
+
+        /// The submission strategy for the scheduler to abide by.
+        ///
+        /// Defaults to ``BGContinuedProcessingTaskRequestSubmissionStrategy/BGContinuedProcessingTaskRequestSubmissionStrategyQueue``.
+        #[unsafe(method(strategy))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn strategy(&self) -> BGContinuedProcessingTaskRequestSubmissionStrategy;
+
+        /// Setter for [`strategy`][Self::strategy].
+        #[unsafe(method(setStrategy:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setStrategy(
+            &self,
+            strategy: BGContinuedProcessingTaskRequestSubmissionStrategy,
+        );
+
+        /// Inform the scheduler that the task will be requesting additional system resources.
+        ///
+        /// Defaults to ``BGContinuedProcessingTaskRequestResources/BGContinuedProcessingTaskRequestResourcesDefault``.
+        #[unsafe(method(requiredResources))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiredResources(&self) -> BGContinuedProcessingTaskRequestResources;
+
+        /// Setter for [`requiredResources`][Self::requiredResources].
+        #[unsafe(method(setRequiredResources:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiredResources(
+            &self,
+            required_resources: BGContinuedProcessingTaskRequestResources,
+        );
+
+        /// Creates an instance on behalf of the currently foregrounded app.
+        ///
+        /// Apps and their extensions should use this method to initialize any tasks due to the underlying association to the
+        /// currently foregrounded app. Please note that ``BGTaskRequest/earliestBeginDate`` will be outright ignored by the
+        /// scheduler in favor of `NSDate.now`.
+        ///
+        /// The identifier must leverage a base wildcard notation, where the prefix of the identifier must at least contain the
+        /// bundle ID of the submitting application, followed by optional semantic context, and finally ending with `.*`. An
+        /// example: `
+        /// <MainBundle
+        /// >.
+        /// <SemanticContext
+        /// >.*` which would transform to
+        /// `com.foo.MyApplication.continuedProcessingTask.*`. Thus, a submitted identifier would be of the form
+        /// `com.foo.MyApplication.continuedProcessingTask.HD830D`.
+        ///
+        /// - Parameters:
+        /// - identifier: The task identifier.
+        /// - title: The localized title displayed to the user before the task begins running.
+        /// - subtitle: The localized subtitle displayed to the user before the task begins running.
+        /// - Warning: Successful creation of this object does not guarantee successful submission to the scheduler.
+        #[unsafe(method(initWithIdentifier:title:subtitle:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithIdentifier_title_subtitle(
+            this: Allocated<Self>,
+            identifier: &NSString,
+            title: &NSString,
+            subtitle: &NSString,
+        ) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `BGTaskRequest`.
+impl BGContinuedProcessingTaskRequest {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}

@@ -438,6 +438,36 @@ impl CFAttributedString {
             )
         }
     }
+
+    /// If baseDirection is not NSWritingDirectionNatural, result comes from CFAttributedStringGetBidiLevelsAndResolvedDirections; otherwise, it fills bidiLevels by applying a statistical approach (a paragraph is RTL if 40% or more of its words are RTL) to the characters in range. Returns true if the result is not uni-level LTR (in other words, needing further Bidi processing). baseDirection is NSWritingDirection (NSWritingDirectionNatural, NSWritingDirectionLeftToRight, and NSWritingDirectionRightToLeft).  Understands NSWritingDirectionAttributeName values.
+    #[doc(alias = "CFAttributedStringGetStatisticalWritingDirections")]
+    #[inline]
+    pub unsafe fn statistical_writing_directions(
+        self: &CFAttributedString,
+        range: CFRange,
+        base_direction: i8,
+        bidi_levels: *mut u8,
+        base_directions: *mut u8,
+    ) -> bool {
+        extern "C-unwind" {
+            fn CFAttributedStringGetStatisticalWritingDirections(
+                attributed_string: &CFAttributedString,
+                range: CFRange,
+                base_direction: i8,
+                bidi_levels: *mut u8,
+                base_directions: *mut u8,
+            ) -> bool;
+        }
+        unsafe {
+            CFAttributedStringGetStatisticalWritingDirections(
+                self,
+                range,
+                base_direction,
+                bidi_levels,
+                base_directions,
+            )
+        }
+    }
 }
 
 #[cfg(feature = "CFDictionary")]
@@ -739,6 +769,17 @@ pub extern "C-unwind" fn CFAttributedStringEndEditing(a_str: Option<&CFMutableAt
 extern "C-unwind" {
     #[deprecated = "renamed to `CFAttributedString::bidi_levels_and_resolved_directions`"]
     pub fn CFAttributedStringGetBidiLevelsAndResolvedDirections(
+        attributed_string: &CFAttributedString,
+        range: CFRange,
+        base_direction: i8,
+        bidi_levels: *mut u8,
+        base_directions: *mut u8,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CFAttributedString::statistical_writing_directions`"]
+    pub fn CFAttributedStringGetStatisticalWritingDirections(
         attributed_string: &CFAttributedString,
         range: CFRange,
         base_direction: i8,

@@ -72,6 +72,11 @@ impl MXMetaData {
         #[unsafe(method_family = none)]
         pub unsafe fn pid(&self) -> libc::pid_t;
 
+        /// String representation of the bundle ID of the process.
+        #[unsafe(method(bundleIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
+
         /// Convenience method to return a JSON representation of this metadata.
         ///
         /// Returns: An NSData object containing the JSON representation

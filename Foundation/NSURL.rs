@@ -930,6 +930,18 @@ extern "C" {
         &'static NSURLUbiquitousSharedItemPermissions;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemsupportedsynccontrolskey?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSURLUbiquitousItemSupportedSyncControlsKey: &'static NSURLResourceKey;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemissyncpausedkey?language=objc)
+    #[cfg(feature = "NSString")]
+    pub static NSURLUbiquitousItemIsSyncPausedKey: &'static NSURLResourceKey;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlbookmarkcreationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]

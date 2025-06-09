@@ -29,6 +29,7 @@ extern_conformance!(
 
 impl MTLFXTemporalScalerDescriptor {
     extern_methods!(
+        /// The pixel format of the input color texture for the temporal scaler you create with this descriptor.
         #[unsafe(method(colorTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
@@ -38,6 +39,7 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setColorTextureFormat(&self, color_texture_format: MTLPixelFormat);
 
+        /// The pixel format of the input depth texture for the temporal scaler you create with this descriptor.
         #[unsafe(method(depthTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn depthTextureFormat(&self) -> MTLPixelFormat;
@@ -47,6 +49,7 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setDepthTextureFormat(&self, depth_texture_format: MTLPixelFormat);
 
+        /// The pixel format of the input motion texture for the temporal scaler you create with this descriptor.
         #[unsafe(method(motionTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn motionTextureFormat(&self) -> MTLPixelFormat;
@@ -56,6 +59,7 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setMotionTextureFormat(&self, motion_texture_format: MTLPixelFormat);
 
+        /// The pixel format of the output texture for the temporal scaler you create with this descriptor.
         #[unsafe(method(outputTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
@@ -65,6 +69,7 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputTextureFormat(&self, output_texture_format: MTLPixelFormat);
 
+        /// The width of the input color texture for the temporal scaler you create with this descriptor.
         #[unsafe(method(inputWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputWidth(&self) -> NSUInteger;
@@ -74,6 +79,7 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setInputWidth(&self, input_width: NSUInteger);
 
+        /// The height of the input color texture for the temporal scaler you create with this descriptor.
         #[unsafe(method(inputHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputHeight(&self) -> NSUInteger;
@@ -83,6 +89,7 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setInputHeight(&self, input_height: NSUInteger);
 
+        /// The width of the output color texture for the temporal scaler you create with this descriptor.
         #[unsafe(method(outputWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputWidth(&self) -> NSUInteger;
@@ -92,6 +99,7 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputWidth(&self, output_width: NSUInteger);
 
+        /// The height of the output color texture for the temporal scaler you create with this descriptor.
         #[unsafe(method(outputHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputHeight(&self) -> NSUInteger;
@@ -101,6 +109,19 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputHeight(&self, output_height: NSUInteger);
 
+        /// A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
+        ///
+        /// Set this property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> to create a scaler that automatically
+        /// calculates the exposure level for each image it scales.
+        ///
+        /// * Note: Temporal scaler instances that use auto exposure ignore their ``MTLFXTemporalScalerBase/exposureTexture``
+        /// property.
+        ///
+        /// This property's default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false>.
         #[unsafe(method(isAutoExposureEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoExposureEnabled(&self) -> bool;
@@ -110,6 +131,33 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoExposureEnabled(&self, auto_exposure_enabled: bool);
 
+        /// A Boolean value that indicates whether MetalFX compiles a temporal scaling effect’s underlying upscaler as it
+        /// creates the instance.
+        ///
+        /// This property gives you the option to decide when it’s better for your app to give MetalFX the time it needs to
+        /// compile the underlying upscaler of the temporal scaling effect. The two choices are:
+        ///
+        /// * As you create the effect
+        /// * After you create the effect, likely when your app needs to upscale the initial textures
+        ///
+        /// You can create a temporal scaler that can upscale textures at its best speed
+        /// immediately after you create it by setting this property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>
+        /// and then calling an initialization method like ``newTemporalScalerWithDevice:``. However, it may take MetalFX more
+        /// time for that method to return while it creates the denoiser scaler and compiles its underlying pipelines.
+        ///
+        /// By default, the property is equal to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false>, which tells MetalFX
+        /// to quickly create and return the temporal scaling-effect instance, and then compile a faster upscaler in the background.
+        /// However, this means the effect can take more time to upscale textures while the framework compiles the underlying upscaler.
+        /// When the framework finishes compiling, the effect runs just as fast as if you set the property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
+        ///
+        /// * Note: The image quality of the effect’s output texture is consistent, whether it’s using the slower interim upscaler
+        /// or the final, faster upscaler.
         #[unsafe(method(requiresSynchronousInitialization))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSynchronousInitialization(&self) -> bool;
@@ -122,6 +170,15 @@ impl MTLFXTemporalScalerDescriptor {
             requires_synchronous_initialization: bool,
         );
 
+        /// A Boolean value that indicates whether the temporal scaler you create with this descriptor uses dynamic resolution.
+        ///
+        /// When you set this property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> to enable dynamic resolution,
+        /// scale properties ``inputContentMinScale`` and ``inputContentMaxScale`` represent the input and output resolution
+        /// both the width and height.
+        ///
+        /// * Note: The scaler assumes that aspect ratio of the input and output textures doesn't change.
         #[unsafe(method(isInputContentPropertiesEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isInputContentPropertiesEnabled(&self) -> bool;
@@ -134,6 +191,7 @@ impl MTLFXTemporalScalerDescriptor {
             input_content_properties_enabled: bool,
         );
 
+        /// The smallest scale factor the temporal scaler you create with this descriptor can use to generate output textures.
         #[unsafe(method(inputContentMinScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputContentMinScale(&self) -> c_float;
@@ -143,6 +201,7 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setInputContentMinScale(&self, input_content_min_scale: c_float);
 
+        /// The largest scale factor the temporal scaler you create with this descriptor can use to generate output textures.
         #[unsafe(method(inputContentMaxScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputContentMaxScale(&self) -> c_float;
@@ -152,6 +211,7 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setInputContentMaxScale(&self, input_content_max_scale: c_float);
 
+        /// A Boolean value that indicates whether a temporal scaler you create with the descriptor applies a reactive mask.
         #[unsafe(method(isReactiveMaskTextureEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReactiveMaskTextureEnabled(&self) -> bool;
@@ -161,6 +221,7 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setReactiveMaskTextureEnabled(&self, reactive_mask_texture_enabled: bool);
 
+        /// The pixel format of the reactive mask input texture for a temporal scaler you create with the descriptor.
         #[unsafe(method(reactiveMaskTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn reactiveMaskTextureFormat(&self) -> MTLPixelFormat;
@@ -173,6 +234,12 @@ impl MTLFXTemporalScalerDescriptor {
             reactive_mask_texture_format: MTLPixelFormat,
         );
 
+        /// Creates a temporal scaler instance for a Metal device.
+        ///
+        /// - Parameters:
+        /// - device: The Metal device that creates the temporal scaler.
+        /// - Returns:
+        /// A new temporal scaler instance upon success, or `nil` otherwise.
         #[unsafe(method(newTemporalScalerWithDevice:))]
         #[unsafe(method_family = new)]
         pub unsafe fn newTemporalScalerWithDevice(
@@ -180,21 +247,74 @@ impl MTLFXTemporalScalerDescriptor {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<ProtocolObject<dyn MTLFXTemporalScaler>>>;
 
+        #[cfg(feature = "MTL4FXTemporalScaler")]
+        /// Creates a temporal scaler instance for a Metal device.
+        ///
+        /// - Parameters:
+        /// - device: The Metal device that creates the temporal scaler.
+        /// - compiler: A compiler instance this method can use to build pipeline state objects.
+        /// - Returns:
+        /// A new temporal scaler instance upon success, or `nil` otherwise.
+        #[unsafe(method(newTemporalScalerWithDevice:compiler:))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn newTemporalScalerWithDevice_compiler(
+            &self,
+            device: &ProtocolObject<dyn MTLDevice>,
+            compiler: &ProtocolObject<dyn MTL4Compiler>,
+        ) -> Option<Retained<ProtocolObject<dyn MTL4FXTemporalScaler>>>;
+
+        /// Returns the smallest temporal scaling factor the device supports as a floating-point value.
+        ///
+        /// - Parameters:
+        /// - device: The Metal device for which this method performs this check.
+        ///
+        /// - Returns: the minimum input content scale the GPU device supports.
         #[unsafe(method(supportedInputContentMinScaleForDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedInputContentMinScaleForDevice(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> c_float;
 
+        /// Returns the largest temporal scaling factor the device supports as a floating-point value.
+        ///
+        /// - Parameters:
+        /// - device: The Metal device for which this method performs this check.
+        ///
+        /// - Returns: the maximum input content scale the GPU device supports.
         #[unsafe(method(supportedInputContentMaxScaleForDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedInputContentMaxScaleForDevice(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> c_float;
 
+        /// Returns a Boolean value that indicates whether the temporal scaler works with a GPU.
+        ///
+        /// - Parameters:
+        /// - device: A device instance that represents a GPU.
+        ///
+        /// - Returns:
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> if the device supports temporal scaling,
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false> otherwise.
         #[unsafe(method(supportsDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsDevice(device: &ProtocolObject<dyn MTLDevice>) -> bool;
+
+        /// Queries whether a Metal device supports temporal scaling compatible with Metal 4.
+        ///
+        /// - Parameters:
+        /// - device: The GPU device for which this methods tests support.
+        ///
+        /// - Returns:
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> if the device supports temporal scaling with
+        /// Metal 4,
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false> otherwise.
+        #[unsafe(method(supportsMetal4FX:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportsMetal4FX(device: &ProtocolObject<dyn MTLDevice>) -> bool;
     );
 }
 
@@ -212,28 +332,70 @@ impl MTLFXTemporalScalerDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler?language=objc)
-    pub unsafe trait MTLFXTemporalScaler: NSObjectProtocol {
+    /// An upscaling effect that generates a higher resolution texture in a render pass by analyzing multiple input
+    /// textures over time.
+    ///
+    /// The MetalFX temporal scaler increases the size of your input texture to a larger output texture. You can use the
+    /// scaler to upscale every frame of your app’s scene or rendering in real time. With a scaler, you can draw more
+    /// complicated scenes in less time by intentionally rendering to a lower resolution to save time before upscaling.
+    ///
+    /// Create an ``MTLFXTemporalScaler`` instance by following these steps:
+    /// 1. Create and configure an ``MTLFXTemporalScalerDescriptor`` instance.
+    /// 2. Call the descriptor’s ``newTemporalScalerWithDevice:`` method.
+    ///
+    /// Upscale a rendering by following these steps for every render pass:
+    /// 1. Set the temporal scaler’s ``colorTexture`` property to the input texture.
+    /// 2. Set the scaler’s ``inputContentWidth`` and ``inputContentHeight`` properties.
+    /// 3. Set the scaler’s ``outputTexture`` property to your destination texture.
+    /// 4. Encode the upscale commands to a command buffer by calling the temporal scaler’s
+    /// ``MTLFXTemporalScaler/encodeToCommandBuffer:`` method.
+    ///
+    /// ## Conforming to texture usage requirements
+    ///
+    /// Temporal scalers expose properties, such as ``colorTextureUsage``, that indicate requirements for
+    /// your textures to be compatible with it. These properties indicate the minimum set of ``MTLTextureUsage`` bits
+    /// that you are responsible for setting in your texture descriptors for this spatial scaler to use them.
+    ///
+    /// Your game or app can set extra usage bits on your textures without losing compatibility, as long at its maintains
+    /// the minimum set the scaler requests.
+    ///
+    /// ## Assigning input and output textures
+    ///
+    /// When you use an instance of a class that conforms to this protocol, you typically set its input and output textures,
+    /// as well as other properties, and then encode its work to a command buffer.
+    ///
+    /// MetalFX doesn't track that you assign the same texture instances to each property across different batches of work,
+    /// the only requirement is that you provide textures that match the pixel formats and dimensions you specify in the
+    /// ``MTLFXTemporalScalerDescriptor`` descriptor instance that creates the scaler instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerbase?language=objc)
+    pub unsafe trait MTLFXTemporalScalerBase: NSObjectProtocol {
+        /// The minimal texture usage options that your app’s input color texture needs in order to support this scaler.
         #[unsafe(method(colorTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn colorTextureUsage(&self) -> MTLTextureUsage;
 
+        /// The minimal texture usage options that your app’s input depth texture needs in order to support this scaler.
         #[unsafe(method(depthTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn depthTextureUsage(&self) -> MTLTextureUsage;
 
+        /// The minimal texture usage options that your app’s motion texture needs in order to support this scaler.
         #[unsafe(method(motionTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn motionTextureUsage(&self) -> MTLTextureUsage;
 
+        /// The minimal texture usage options that your app’s reactive texture needs in order to support this scaler.
         #[unsafe(method(reactiveTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn reactiveTextureUsage(&self) -> MTLTextureUsage;
 
+        /// The minimal texture usage options that your output texture needs in order to support this scaler.
         #[unsafe(method(outputTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn outputTextureUsage(&self) -> MTLTextureUsage;
 
+        /// The width, in pixels, of the region within the color texture the scaler uses as its input.
         #[unsafe(method(inputContentWidth))]
         #[unsafe(method_family = none)]
         unsafe fn inputContentWidth(&self) -> NSUInteger;
@@ -243,6 +405,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setInputContentWidth(&self, input_content_width: NSUInteger);
 
+        /// The height, in pixels, of the region within the color texture the scaler uses as its input.
         #[unsafe(method(inputContentHeight))]
         #[unsafe(method_family = none)]
         unsafe fn inputContentHeight(&self) -> NSUInteger;
@@ -252,6 +415,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
+        /// An input color texture you set for the scaler that supports the correct color texture usage options.
         #[unsafe(method(colorTexture))]
         #[unsafe(method_family = none)]
         unsafe fn colorTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -261,6 +425,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        /// An input depth texture you set for the scaler that supports the correct color texture usage options.
         #[unsafe(method(depthTexture))]
         #[unsafe(method_family = none)]
         unsafe fn depthTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -270,6 +435,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setDepthTexture(&self, depth_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        /// An input motion texture you set for the scaler that supports the correct color texture usage options.
         #[unsafe(method(motionTexture))]
         #[unsafe(method_family = none)]
         unsafe fn motionTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -279,6 +445,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setMotionTexture(&self, motion_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        /// The output texture into which this scaler writes its output.
+        ///
+        /// You are responsible for providing a texture with a private `storageMode` to this property.
         #[unsafe(method(outputTexture))]
         #[unsafe(method_family = none)]
         unsafe fn outputTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -288,6 +457,17 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
+        /// The exposure texture this scaler uses.
+        ///
+        /// Create and assign a 1x1  ``MTLPixelFormatR16Float``  texture to assign to this property. MetalFX reads the R channel
+        /// of the texel at position `(0,0)` and uses it as the exposure value. It then uses this value to multiply the input color.
+        ///
+        /// For best performance, use the GPU to generate the exposure value and store it into this texture.
+        ///
+        /// * Note: The temporal scaler ignores this property if you create it with a descriptor that has its
+        /// ``MTLFXTemporalScalerDescriptor/autoExposureEnabled`` property set to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
         #[unsafe(method(exposureTexture))]
         #[unsafe(method_family = none)]
         unsafe fn exposureTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -300,6 +480,16 @@ extern_protocol!(
             exposure_texture: Option<&ProtocolObject<dyn MTLTexture>>,
         );
 
+        /// The reactive-mask texture input this scaler uses.
+        ///
+        /// This texture helps guide the denoiser when objects move quickly in a scene with inaccurate motion information,
+        /// such as when they involve alpha blending. In these situations, you can get better results by guiding MetalFX whether
+        /// to favor the current frame on a per-pixel basis with a reactive mask texture.
+        ///
+        /// When providing this texture, you are responsible for ensuring each pixel is in the range `[0.0, 1.0]`, where a value:
+        /// * Equal to `0.0` tells MetalFX to follow its normal behavior for the corresponding pixel
+        /// * Equal to `1.0` tells MetalFX to ignore temporal history for the corresponding pixel
+        /// * In the range `(0.0, 1.0)` proportionally blends the effect for the corresponding pixel
         #[unsafe(method(reactiveMaskTexture))]
         #[unsafe(method_family = none)]
         unsafe fn reactiveMaskTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -312,6 +502,11 @@ extern_protocol!(
             reactive_mask_texture: Option<&ProtocolObject<dyn MTLTexture>>,
         );
 
+        /// A pre-exposure value this scaler evaluates.
+        ///
+        /// If the input color texture you assign to ``colorTexture`` is pre-multiplied by fixed value, set this property
+        /// to that same fixed value so MetalFX divides input color by it. This is not a common situation and you typically
+        /// don't need to assign a value to this property.
         #[unsafe(method(preExposure))]
         #[unsafe(method_family = none)]
         unsafe fn preExposure(&self) -> c_float;
@@ -321,6 +516,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setPreExposure(&self, pre_exposure: c_float);
 
+        /// The horizontal component of the subpixel sampling coordinate you use to generate the color texture input.
+        ///
+        /// This property indicates the horizontal pixel offset this scaler samples to return to the frame's reference frame.
         #[unsafe(method(jitterOffsetX))]
         #[unsafe(method_family = none)]
         unsafe fn jitterOffsetX(&self) -> c_float;
@@ -330,6 +528,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setJitterOffsetX(&self, jitter_offset_x: c_float);
 
+        /// The vertical component of the subpixel sampling coordinate you use to generate the color texture input.
+        ///
+        /// This property indicates the vertical pixel offset this scaler samples to return to the frame's reference frame.
         #[unsafe(method(jitterOffsetY))]
         #[unsafe(method_family = none)]
         unsafe fn jitterOffsetY(&self) -> c_float;
@@ -339,6 +540,15 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setJitterOffsetY(&self, jitter_offset_y: c_float);
 
+        /// The horizontal scale factor the scaler applies to the input motion texture.
+        ///
+        /// The scaler converts the horizontal component of each value in ``motionTexture`` into fragment (pixel)
+        /// coordinates by multiplying it by this property’s value.
+        ///
+        /// If you set this property's value to `1.0`, this temporal scaler expects that each pixel's motion vector points
+        /// to that pixel's location in the ``colorTexture`` at the time of the last call to encode this scaler's work. For example,
+        /// in Metal's standard device coordinates, where `(0,0)` represents the upper-left corner of the framebuffer, the motion
+        /// vectors for an object that moves down and to the right in the ``colorTexture`` by `10` pixels would be `(-10,-10)`.
         #[unsafe(method(motionVectorScaleX))]
         #[unsafe(method_family = none)]
         unsafe fn motionVectorScaleX(&self) -> c_float;
@@ -348,6 +558,15 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setMotionVectorScaleX(&self, motion_vector_scale_x: c_float);
 
+        /// The vertical scale factor the scaler applies to the input motion texture.
+        ///
+        /// The scaler converts the horizontal component of each value in ``motionTexture`` into fragment (pixel)
+        /// coordinates by multiplying it by this property’s value.
+        ///
+        /// If you set this property's value to `1.0`, this temporal scaler expects that each pixel's motion vector points
+        /// to that pixel's location in the ``colorTexture`` at the time of the last call to encode this scaler's work. For example,
+        /// in Metal's standard device coordinates, where `(0,0)` represents the upper-left corner of the framebuffer, the motion
+        /// vectors for an object that moves down and to the right in the ``colorTexture`` by `10` pixels would be `(-10,-10)`.
         #[unsafe(method(motionVectorScaleY))]
         #[unsafe(method_family = none)]
         unsafe fn motionVectorScaleY(&self) -> c_float;
@@ -357,6 +576,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setMotionVectorScaleY(&self, motion_vector_scale_y: c_float);
 
+        /// A Boolean that indicates whether the temporal scaler discards historical data from previous frames.
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         unsafe fn reset(&self) -> bool;
@@ -366,6 +586,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setReset(&self, reset: bool);
 
+        /// A Boolean value that indicates whether the depth texture uses zero to represent the farthest distance.
         #[unsafe(method(isDepthReversed))]
         #[unsafe(method_family = none)]
         unsafe fn isDepthReversed(&self) -> bool;
@@ -375,46 +596,62 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setDepthReversed(&self, depth_reversed: bool);
 
+        /// The pixel format of the input color texture for this this scaler.
         #[unsafe(method(colorTextureFormat))]
         #[unsafe(method_family = none)]
         unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
+        /// The pixel format of the input depth texture for this this scaler.
         #[unsafe(method(depthTextureFormat))]
         #[unsafe(method_family = none)]
         unsafe fn depthTextureFormat(&self) -> MTLPixelFormat;
 
+        /// The pixel format of the input motion texture for this this scaler.
         #[unsafe(method(motionTextureFormat))]
         #[unsafe(method_family = none)]
         unsafe fn motionTextureFormat(&self) -> MTLPixelFormat;
 
+        /// The pixel format of the input reactive mask texture for this this scaler.
+        #[unsafe(method(reactiveMaskTextureFormat))]
+        #[unsafe(method_family = none)]
+        unsafe fn reactiveMaskTextureFormat(&self) -> MTLPixelFormat;
+
+        /// The pixel format of the output color texture for this this scaler.
         #[unsafe(method(outputTextureFormat))]
         #[unsafe(method_family = none)]
         unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
+        /// The width, in pixels, of the input color texture for this scaler.
         #[unsafe(method(inputWidth))]
         #[unsafe(method_family = none)]
         unsafe fn inputWidth(&self) -> NSUInteger;
 
+        /// The height, in pixels, of the input color texture for this scaler.
         #[unsafe(method(inputHeight))]
         #[unsafe(method_family = none)]
         unsafe fn inputHeight(&self) -> NSUInteger;
 
+        /// The width, in pixels, of the output color texture for this scaler.
         #[unsafe(method(outputWidth))]
         #[unsafe(method_family = none)]
         unsafe fn outputWidth(&self) -> NSUInteger;
 
+        /// The height, in pixels, of the output color texture for this scaler.
         #[unsafe(method(outputHeight))]
         #[unsafe(method_family = none)]
         unsafe fn outputHeight(&self) -> NSUInteger;
 
+        /// The smallest scale factor the temporal scaler can use to generate output textures.
         #[unsafe(method(inputContentMinScale))]
         #[unsafe(method_family = none)]
         unsafe fn inputContentMinScale(&self) -> c_float;
 
+        /// The largest scale factor the temporal scaler can use to generate output textures.
         #[unsafe(method(inputContentMaxScale))]
         #[unsafe(method_family = none)]
         unsafe fn inputContentMaxScale(&self) -> c_float;
 
+        /// An optional fence that you provide to synchronize your app’s untracked resources.
         #[unsafe(method(fence))]
         #[unsafe(method_family = none)]
         unsafe fn fence(&self) -> Option<Retained<ProtocolObject<dyn MTLFence>>>;
@@ -423,7 +660,16 @@ extern_protocol!(
         #[unsafe(method(setFence:))]
         #[unsafe(method_family = none)]
         unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);
+    }
+);
 
+extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler?language=objc)
+    pub unsafe trait MTLFXTemporalScaler: MTLFXTemporalScalerBase {
+        /// Encode this spatial scaler work into a command buffer.
+        ///
+        /// - Parameters:
+        /// - commandBuffer: A command buffer into which this spatial scaler encodes work.
         #[unsafe(method(encodeToCommandBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeToCommandBuffer(

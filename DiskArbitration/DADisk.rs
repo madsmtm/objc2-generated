@@ -205,6 +205,11 @@ extern "C" {
     pub static kDADiskDescriptionFSKitPrefix: &'static CFString;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionrepairrunningkey?language=objc)
+    pub static kDADiskDescriptionRepairRunningKey: &'static CFString;
+}
+
 /// Type of a reference to DADisk instances.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadisk?language=objc)

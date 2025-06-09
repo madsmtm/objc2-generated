@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdyskineticsymptomresult?language=objc)
+    /// A CMDyskineticSymptomResult object describes the presence and prevalence of dyskinetic symptoms (specifically, choreiform movements) during a one minute result period when subjects wear the Apple Watch on their most affected arm.
+    /// percentUnlikely + percentLikely = 1.0
+    /// Please note dyskinetic symptom measurements are designed for subjects with known presence of chorea in the arm and should not be displayed to users who do not report episodes of dyskinetic symptoms.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdyskineticsymptomresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMDyskineticSymptomResult;

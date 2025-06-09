@@ -91,6 +91,15 @@ impl CXProviderConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsVideo(&self, supports_video: bool);
 
+        #[unsafe(method(supportsAudioTranslation))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportsAudioTranslation(&self) -> bool;
+
+        /// Setter for [`supportsAudioTranslation`][Self::supportsAudioTranslation].
+        #[unsafe(method(setSupportsAudioTranslation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSupportsAudioTranslation(&self, supports_audio_translation: bool);
+
         #[unsafe(method(supportedHandleTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedHandleTypes(&self) -> Retained<NSSet<NSNumber>>;

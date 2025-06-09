@@ -7,6 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumenttype?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PKAddIdentityDocumentType(pub NSInteger);
+impl PKAddIdentityDocumentType {
+    #[doc(alias = "PKAddIdentityDocumentTypeIDCard")]
+    pub const IDCard: Self = Self(0);
+    #[doc(alias = "PKAddIdentityDocumentTypeMDL")]
+    pub const MDL: Self = Self(1);
+    #[doc(alias = "PKAddIdentityDocumentTypePhotoID")]
+    pub const PhotoID: Self = Self(2);
+}
+
+unsafe impl Encode for PKAddIdentityDocumentType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for PKAddIdentityDocumentType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentitydocumentmetadata?language=objc)
     #[unsafe(super(NSObject))]
@@ -63,6 +85,72 @@ impl PKIdentityDocumentMetadata {
             &self,
             server_environment_identifier: &NSString,
         );
+
+        /// issuingCountryCode: identifies the issuing country of the identity document
+        #[unsafe(method(issuingCountryCode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn issuingCountryCode(&self) -> Retained<NSString>;
+
+        /// identityDocumentType: identifies the type of the identity document
+        #[unsafe(method(documentType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn documentType(&self) -> PKAddIdentityDocumentType;
+    );
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumentmetadata?language=objc)
+    #[unsafe(super(PKIdentityDocumentMetadata, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct PKAddIdentityDocumentMetadata;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKAddIdentityDocumentMetadata {}
+);
+
+impl PKAddIdentityDocumentMetadata {
+    extern_methods!(
+        #[cfg(feature = "PKAddSecureElementPassConfiguration")]
+        /// Initialize with parameters configured by issuer's server to indicate the specific product instance to provision.
+        /// - Properties:
+        /// - provisioningCredentialIdentifier: Identifies this user's instance for provisioning.
+        /// - sharingInstanceIdentifier: A short lived token to prevent replay-ability.
+        /// - cardTemplateIdentifier: An identifier for a legacy product on our Apple Pay servers.
+        /// - preview: Object containing information to represent the pass to provision in our UI.
+        /// - issuingCountryCode:  identifies the issuing country of the identity document
+        /// - identityDocumentType: identifies the type of the identity document
+        /// - preview: Object containing information to represent the pass to provision in our UI.
+        #[unsafe(method(initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardTemplateIdentifier:issuingCountryCode:documentType:preview:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithProvisioningCredentialIdentifier_sharingInstanceIdentifier_cardTemplateIdentifier_issuingCountryCode_documentType_preview(
+            this: Allocated<Self>,
+            credential_identifier: &NSString,
+            sharing_instance_identifier: &NSString,
+            template_identifier: &NSString,
+            issuing_country_code: &NSString,
+            document_type: PKAddIdentityDocumentType,
+            preview: &PKAddPassMetadataPreview,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "PKAddSecureElementPassConfiguration")]
+        /// preview: A preview object containing the necessary information to represent the pass during provisioning.
+        #[unsafe(method(preview))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preview(&self) -> Retained<PKAddPassMetadataPreview>;
+    );
+}
+
+/// Methods declared on superclass `PKIdentityDocumentMetadata`.
+impl PKAddIdentityDocumentMetadata {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -109,7 +197,7 @@ impl PKJapanIndividualNumberCardMetadata {
             this: Allocated<Self>,
             credential_identifier: &NSString,
             sharing_instance_identifier: &NSString,
-            template_identifier: &NSString,
+            card_configuration_identifier: &NSString,
             preview: &PKAddPassMetadataPreview,
         ) -> Retained<Self>;
 

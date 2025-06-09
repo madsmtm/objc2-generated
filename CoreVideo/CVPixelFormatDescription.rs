@@ -258,6 +258,25 @@ extern "C-unwind" {
     );
 }
 
+/// Creates a string with a formatted representation of a pixel format
+///
+/// Parameter `pixelFormat`: The pixel format to convert
+///
+/// Returns: A string with a user displayable conversion of a pixel format.
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelFormatTypeCopyFourCharCodeString(
+    pixel_format: OSType,
+) -> CFRetained<CFString> {
+    extern "C-unwind" {
+        fn CVPixelFormatTypeCopyFourCharCodeString(
+            pixel_format: OSType,
+        ) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { CVPixelFormatTypeCopyFourCharCodeString(pixel_format) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
 /// Checks if a compressed pixel format is supported on the current platform.
 ///
 /// Parameter `pixelFormatType`: compressed pixel format.

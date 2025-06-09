@@ -168,6 +168,21 @@ impl ASMigrationDisplayItem {
         #[unsafe(method(setHotspotSSID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHotspotSSID(&self, hotspot_ssid: Option<&NSString>);
+
+        #[cfg(feature = "ASAccessory")]
+        /// The Wi-Fi Aware paired device identififer of the accessory to migrate.
+        #[unsafe(method(wifiAwarePairedDeviceID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn wifiAwarePairedDeviceID(&self) -> ASAccessoryWiFiAwarePairedDeviceID;
+
+        #[cfg(feature = "ASAccessory")]
+        /// Setter for [`wifiAwarePairedDeviceID`][Self::wifiAwarePairedDeviceID].
+        #[unsafe(method(setWifiAwarePairedDeviceID:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWifiAwarePairedDeviceID(
+            &self,
+            wifi_aware_paired_device_id: ASAccessoryWiFiAwarePairedDeviceID,
+        );
     );
 }
 

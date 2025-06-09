@@ -1569,6 +1569,66 @@ unsafe impl RefEncode for NSImageSymbolScale {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagesymbolvariablevaluemode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageSymbolVariableValueMode(pub NSInteger);
+impl NSImageSymbolVariableValueMode {
+    /// Automatically selects an appropriate variable value mode for the symbol.
+    #[doc(alias = "NSImageSymbolVariableValueModeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// The "color" variable value mode. Sets the opacity of each variable layer to
+    /// either on or off depending on how its threshold compared to the current value.
+    #[doc(alias = "NSImageSymbolVariableValueModeColor")]
+    pub const Color: Self = Self(1);
+    /// The "draw" variable value mode. Changes the drawn length of each variable layer
+    /// to either based on how its range relates to the current value.
+    #[doc(alias = "NSImageSymbolVariableValueModeDraw")]
+    pub const Draw: Self = Self(2);
+}
+
+unsafe impl Encode for NSImageSymbolVariableValueMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSImageSymbolVariableValueMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+unsafe impl Send for NSImageSymbolVariableValueMode {}
+
+unsafe impl Sync for NSImageSymbolVariableValueMode {}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagesymbolcolorrenderingmode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageSymbolColorRenderingMode(pub NSInteger);
+impl NSImageSymbolColorRenderingMode {
+    /// Automatically uses an appropriate color rendering mode for the symbol’s color layers.
+    #[doc(alias = "NSImageSymbolColorRenderingModeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// Renders the symbol’s color layers using flat colors.
+    #[doc(alias = "NSImageSymbolColorRenderingModeFlat")]
+    pub const Flat: Self = Self(1);
+    /// Renders the symbol’s color layers using gradients.
+    #[doc(alias = "NSImageSymbolColorRenderingModeGradient")]
+    pub const Gradient: Self = Self(2);
+}
+
+unsafe impl Encode for NSImageSymbolColorRenderingMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSImageSymbolColorRenderingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+unsafe impl Send for NSImageSymbolColorRenderingMode {}
+
+unsafe impl Sync for NSImageSymbolColorRenderingMode {}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagesymbolconfiguration?language=objc)
     #[unsafe(super(NSObject))]
@@ -1678,6 +1738,20 @@ impl NSImageSymbolConfiguration {
         #[unsafe(method(configurationPreferringMulticolor))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationPreferringMulticolor() -> Retained<Self>;
+
+        /// Create a configuration with a specified variable value mode.
+        #[unsafe(method(configurationWithVariableValueMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configurationWithVariableValueMode(
+            variable_value_mode: NSImageSymbolVariableValueMode,
+        ) -> Retained<Self>;
+
+        /// Create a configuration with a specific color rendering mode.
+        #[unsafe(method(configurationWithColorRenderingMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configurationWithColorRenderingMode(
+            mode: NSImageSymbolColorRenderingMode,
+        ) -> Retained<Self>;
 
         /// Returns a new configuration object whose values are defined by applying values from the provided configuration and the receiver.
         ///

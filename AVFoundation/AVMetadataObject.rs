@@ -84,6 +84,38 @@ impl AVMetadataObject {
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<AVMetadataObjectType>;
+
+        /// A number associated with object groups (e.g., face and body) that is unique for each physical object (e.g., a person whom the face and body belong to).
+        ///
+        /// The value of this property is an NSInteger indicating the unique identifier to combine objects (for instance, face and body) into groups (a physical person). A human body and face for the same person will have the same group ID. It is set to -1 when it's invalid or not available. When it's set to a value of >=0, it is unique across all object groups.
+        #[unsafe(method(groupID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn groupID(&self) -> NSInteger;
+
+        /// A unique identifier for each detected object type (face, body, hands, heads and salient objects).
+        ///
+        /// Defaults to a value of -1 when it is invalid or not available. When a new object enters the picture, it is assigned a new unique identifier. objectIDs are not re-used as objects leave the picture and new ones enter. Objects that leave the picture then re-enter are assigned a new objectID.
+        #[unsafe(method(objectID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn objectID(&self) -> NSInteger;
+    );
+}
+
+/// AVMetadataObjectCinematicVideoSupport.
+impl AVMetadataObject {
+    extern_methods!(
+        #[cfg(feature = "AVCaptureDevice")]
+        /// Current focus mode when recording a Cinematic Video.
+        ///
+        /// Default is AVCaptureCinematicVideoFocusModeNone.
+        #[unsafe(method(cinematicVideoFocusMode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn cinematicVideoFocusMode(&self) -> AVCaptureCinematicVideoFocusMode;
+
+        /// A BOOL indicating whether this metadata object represents a fixed focus.
+        #[unsafe(method(isFixedFocus))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isFixedFocus(&self) -> bool;
     );
 }
 
@@ -243,6 +275,54 @@ impl AVMetadataHumanFullBodyObject {
 }
 
 extern "C" {
+    /// An identifier for an instance of AVMetadataCatHeadObject.
+    ///
+    ///
+    /// AVMetadataCatHeadObject objects return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecathead?language=objc)
+    pub static AVMetadataObjectTypeCatHead: &'static AVMetadataObjectType;
+}
+
+extern_class!(
+    /// AVMetadataCatHeadObject is a concrete subclass of AVMetadataObject representing a cat head.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacatheadobject?language=objc)
+    #[unsafe(super(AVMetadataObject, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVMetadataCatHeadObject;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataCatHeadObject {}
+);
+
+unsafe impl CopyingHelper for AVMetadataCatHeadObject {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataCatHeadObject {}
+);
+
+impl AVMetadataCatHeadObject {
+    extern_methods!();
+}
+
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataCatHeadObject {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern "C" {
     /// An identifier for an instance of AVMetadataCatBodyObject.
     ///
     ///
@@ -284,6 +364,54 @@ impl AVMetadataCatBodyObject {
 
 /// Methods declared on superclass `AVMetadataObject`.
 impl AVMetadataCatBodyObject {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern "C" {
+    /// An identifier for an instance of AVMetadataDogHeadObject.
+    ///
+    ///
+    /// AVMetadataDogHeadObject objects return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypedoghead?language=objc)
+    pub static AVMetadataObjectTypeDogHead: &'static AVMetadataObjectType;
+}
+
+extern_class!(
+    /// AVMetadataDogHeadObject is a concrete subclass of AVMetadataObject representing a dog head.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatadogheadobject?language=objc)
+    #[unsafe(super(AVMetadataObject, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVMetadataDogHeadObject;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataDogHeadObject {}
+);
+
+unsafe impl CopyingHelper for AVMetadataDogHeadObject {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataDogHeadObject {}
+);
+
+impl AVMetadataDogHeadObject {
+    extern_methods!();
+}
+
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataDogHeadObject {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

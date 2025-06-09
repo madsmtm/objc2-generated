@@ -53,6 +53,8 @@ pub use self::__DictionaryServices::DCSDictionary;
 #[cfg(feature = "DictionaryServices")]
 pub use self::__DictionaryServices::DCSGetTermRangeInString;
 #[cfg(feature = "FSEvents")]
+pub use self::__FSEvents::kFSEventStreamCreateDeviceState;
+#[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::kFSEventStreamCreateFlagFileEvents;
 #[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::kFSEventStreamCreateFlagFullHistory;

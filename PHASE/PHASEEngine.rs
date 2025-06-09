@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-avf-audio")]
+use objc2_avf_audio::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -43,6 +45,20 @@ impl PHASEEngine {
         pub unsafe fn initWithUpdateMode(
             this: Allocated<Self>,
             update_mode: PHASEUpdateMode,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "PHASETypes")]
+        /// Initialize a new engine with an update mode.
+        ///
+        /// Parameter `updateMode`: Defines how the engine will be updated.
+        ///
+        /// Parameter `renderingMode`: Defines where the engine applies rendering. See PHASERenderingMode for more info.
+        #[unsafe(method(initWithUpdateMode:renderingMode:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithUpdateMode_renderingMode(
+            this: Allocated<Self>,
+            update_mode: PHASEUpdateMode,
+            rendering_mode: PHASERenderingMode,
         ) -> Retained<Self>;
 
         /// Start or resume the engine.
@@ -203,5 +219,13 @@ impl PHASEEngine {
         #[unsafe(method(activeGroupPreset))]
         #[unsafe(method_family = none)]
         pub unsafe fn activeGroupPreset(&self) -> Option<Retained<PHASEGroupPreset>>;
+
+        #[cfg(feature = "objc2-avf-audio")]
+        /// Obtain the time for which the engine most recently rendered.
+        ///
+        /// Will return nil if the engine is not running
+        #[unsafe(method(lastRenderTime))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn lastRenderTime(&self) -> Option<Retained<AVAudioTime>>;
     );
 }
