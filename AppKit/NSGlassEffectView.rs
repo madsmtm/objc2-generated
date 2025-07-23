@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// NSGlassView embeds its content view in a dynamic glass effect.
+    /// A view that embeds its content view in a dynamic glass effect.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglasseffectview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
@@ -74,7 +74,9 @@ extern_conformance!(
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSGlassEffectView {
     extern_methods!(
-        /// The view to be embedded in glass. Note that only the contentView of the NSGlassView is guaranteed to be placed inside the glass effect. Arbitrary subviews are not guaranteed any specific behavior regarding z-order against the content view or glass effect.
+        /// The view to embed in glass.
+        ///
+        /// - Important: `NSGlassEffectView` only guarantees the `contentView` will be placed inside the glass effect; arbitrary subviews aren't guaranteed specific behavior with regard to z-order in relation to the content view or glass effect.
         #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self) -> Option<Retained<NSView>>;
@@ -85,7 +87,7 @@ impl NSGlassEffectView {
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Controls the amount of curvature for all corners of the glass.
+        /// The amount of curvature for all corners of the glass.
         #[unsafe(method(cornerRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn cornerRadius(&self) -> CGFloat;
@@ -97,7 +99,7 @@ impl NSGlassEffectView {
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[cfg(feature = "NSColor")]
-        /// Modifies the background and effect to tint toward the provided tint color.
+        /// The color the glass effect view uses to tint the background and glass effect toward.
         #[unsafe(method(tintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<NSColor>>;
@@ -148,7 +150,9 @@ impl NSGlassEffectView {
 }
 
 extern_class!(
-    /// NSGlassContainerView allows similar NSGlassViews in appropriate proximity to eachother to be merged together. Additionally, NSGlassContainerView can reduce the number of passes required to render similar glass views.
+    /// A view that efficiently merges descendant glass effect views together when they are within a specified proximity to each other.
+    ///
+    /// - Tip: Using a glass effect container view can improve performance by reducing the number of passes required to render similar glass effect views.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglasseffectcontainerview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
@@ -212,7 +216,12 @@ extern_conformance!(
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSGlassEffectContainerView {
     extern_methods!(
-        /// NSGlassViews that are descendents of an NSGlassContainerView's contentView will 1) have their z-order elevated above that of the contentView 2) if the NSGlassViews are sufficiently similar, they will merge together in close proximity 3) can process similar NSGlassViews as a batch, to improve performance.
+        /// The view that contains descendant views to merge together when in proximity to each other.
+        ///
+        /// The glass effect container view does the following:
+        /// 1. Elevates the z-order of descendants of `contentView` to position them above the `contentView`.
+        /// 2. Merges descendants together if the views are sufficiently similar and within the proximity specified in ``spacing``.
+        /// 3. Processes similar glass effect views as a batch to improve performance.
         #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self) -> Option<Retained<NSView>>;
@@ -223,7 +232,9 @@ impl NSGlassEffectContainerView {
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Controls the proximity at which descendent NSGlassViews will begin merging with eachother, if they are otherwise eligable. The default value (0) is sufficient for batch processing the effects of eligable NSGlassViews, while avoiding distortion and merging effects for views in close proximity.
+        /// The proximity at which the glass effect container view begins merging eligible descendent glass effect views.
+        ///
+        /// The default value, zero, is sufficient for batch processing eligible glass effect views, while avoiding distortion and merging effects for other views in close proximity.
         #[unsafe(method(spacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn spacing(&self) -> CGFloat;

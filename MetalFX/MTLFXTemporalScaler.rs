@@ -332,6 +332,11 @@ impl MTLFXTemporalScalerDescriptor {
 }
 
 extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxframeinterpolatablescaler?language=objc)
+    pub unsafe trait MTLFXFrameInterpolatableScaler: NSObjectProtocol {}
+);
+
+extern_protocol!(
     /// An upscaling effect that generates a higher resolution texture in a render pass by analyzing multiple input
     /// textures over time.
     ///
@@ -369,7 +374,7 @@ extern_protocol!(
     /// ``MTLFXTemporalScalerDescriptor`` descriptor instance that creates the scaler instance.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerbase?language=objc)
-    pub unsafe trait MTLFXTemporalScalerBase: NSObjectProtocol {
+    pub unsafe trait MTLFXTemporalScalerBase: MTLFXFrameInterpolatableScaler {
         /// The minimal texture usage options that your app’s input color texture needs in order to support this scaler.
         #[unsafe(method(colorTextureUsage))]
         #[unsafe(method_family = none)]

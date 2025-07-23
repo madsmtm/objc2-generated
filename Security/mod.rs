@@ -3070,6 +3070,8 @@ pub use self::__SecIdentity::SecIdentityCopyPrivateKey;
 #[cfg(all(feature = "SecBase", feature = "SecIdentity"))]
 pub use self::__SecIdentity::SecIdentityCopySystemIdentity;
 #[cfg(all(feature = "SecBase", feature = "SecIdentity"))]
+pub use self::__SecIdentity::SecIdentityCreate;
+#[cfg(all(feature = "SecBase", feature = "SecIdentity"))]
 pub use self::__SecIdentity::SecIdentityCreateWithCertificate;
 #[cfg(all(
     feature = "SecBase",

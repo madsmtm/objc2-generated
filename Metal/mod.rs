@@ -213,6 +213,9 @@ mod __MTLFunctionLog;
 #[cfg(feature = "MTLFunctionStitching")]
 #[path = "MTLFunctionStitching.rs"]
 mod __MTLFunctionStitching;
+#[cfg(feature = "MTLGPUAddress")]
+#[path = "MTLGPUAddress.rs"]
+mod __MTLGPUAddress;
 #[cfg(feature = "MTLHeap")]
 #[path = "MTLHeap.rs"]
 mod __MTLHeap;
@@ -350,7 +353,7 @@ pub use self::__MTL4BinaryFunction::MTL4BinaryFunction;
 pub use self::__MTL4BinaryFunctionDescriptor::MTL4BinaryFunctionDescriptor;
 #[cfg(feature = "MTL4BinaryFunctionDescriptor")]
 pub use self::__MTL4BinaryFunctionDescriptor::MTL4BinaryFunctionOptions;
-#[cfg(feature = "MTL4BufferRange")]
+#[cfg(all(feature = "MTL4BufferRange", feature = "MTLGPUAddress"))]
 pub use self::__MTL4BufferRange::MTL4BufferRange;
 #[cfg(feature = "MTL4CommandAllocator")]
 pub use self::__MTL4CommandAllocator::MTL4CommandAllocator;
@@ -915,6 +918,8 @@ pub use self::__MTLFunctionStitching::MTLFunctionStitchingNode;
 pub use self::__MTLFunctionStitching::MTLStitchedLibraryDescriptor;
 #[cfg(feature = "MTLFunctionStitching")]
 pub use self::__MTLFunctionStitching::MTLStitchedLibraryOptions;
+#[cfg(feature = "MTLGPUAddress")]
+pub use self::__MTLGPUAddress::MTLGPUAddress;
 #[cfg(all(feature = "MTLAllocation", feature = "MTLHeap"))]
 pub use self::__MTLHeap::MTLHeap;
 #[cfg(feature = "MTLHeap")]

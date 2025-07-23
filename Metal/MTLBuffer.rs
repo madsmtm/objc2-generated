@@ -109,10 +109,11 @@ extern_protocol!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
+        #[cfg(feature = "MTLGPUAddress")]
         /// Represents the GPU virtual address of a buffer resource
         #[unsafe(method(gpuAddress))]
         #[unsafe(method_family = none)]
-        fn gpuAddress(&self) -> u64;
+        fn gpuAddress(&self) -> MTLGPUAddress;
 
         /// Query support tier for sparse buffers.
         #[unsafe(method(sparseBufferTier))]

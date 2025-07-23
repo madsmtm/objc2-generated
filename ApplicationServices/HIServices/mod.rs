@@ -30,6 +30,9 @@ mod __AXValue;
 #[cfg(feature = "AXValueConstants")]
 #[path = "AXValueConstants.rs"]
 mod __AXValueConstants;
+#[cfg(feature = "AXWebConstants")]
+#[path = "AXWebConstants.rs"]
+mod __AXWebConstants;
 #[cfg(feature = "Accessibility")]
 #[path = "Accessibility.rs"]
 mod __Accessibility;

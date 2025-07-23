@@ -324,6 +324,19 @@ impl UITraitCollection {
         pub unsafe fn traitCollectionWithHDRHeadroomUsageLimit(
             hdr_headroom_usage_limit: UIHDRHeadroomUsageLimit,
         ) -> Retained<UITraitCollection>;
+
+        #[unsafe(method(traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection(
+            resolves_natural_alignment_with_base_writing_direction: bool,
+        ) -> Retained<UITraitCollection>;
+
+        /// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
+        ///
+        /// When set to ``true``, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
+        #[unsafe(method(resolvesNaturalAlignmentWithBaseWritingDirection))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn resolvesNaturalAlignmentWithBaseWritingDirection(&self) -> bool;
     );
 }
 
@@ -606,6 +619,18 @@ extern_protocol!(
         unsafe fn setSplitViewControllerLayoutEnvironment(
             &self,
             split_view_controller_layout_environment: UISplitViewControllerLayoutEnvironment,
+        );
+
+        #[unsafe(method(resolvesNaturalAlignmentWithBaseWritingDirection))]
+        #[unsafe(method_family = none)]
+        unsafe fn resolvesNaturalAlignmentWithBaseWritingDirection(&self) -> bool;
+
+        /// Setter for [`resolvesNaturalAlignmentWithBaseWritingDirection`][Self::resolvesNaturalAlignmentWithBaseWritingDirection].
+        #[unsafe(method(setResolvesNaturalAlignmentWithBaseWritingDirection:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setResolvesNaturalAlignmentWithBaseWritingDirection(
+            &self,
+            resolves_natural_alignment_with_base_writing_direction: bool,
         );
     }
 );

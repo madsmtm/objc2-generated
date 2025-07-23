@@ -100,6 +100,10 @@ pub use self::__NSFileProviderDomain::NSFileProviderDomainTestingModes;
 pub use self::__NSFileProviderDomain::NSFileProviderDomainVersion;
 #[cfg(feature = "NSFileProviderDomain")]
 pub use self::__NSFileProviderDomain::NSFileProviderKnownFolders;
+#[cfg(feature = "NSFileProviderDomain")]
+pub use self::__NSFileProviderDomain::NSFileProviderUserInfoExperimentIDKey;
+#[cfg(feature = "NSFileProviderDomain")]
+pub use self::__NSFileProviderDomain::NSFileProviderUserInfoKey;
 #[cfg(feature = "NSFileProviderEnumerating")]
 pub use self::__NSFileProviderEnumerating::NSFileProviderChangeObserver;
 #[cfg(feature = "NSFileProviderEnumerating")]

@@ -633,6 +633,17 @@ extern_protocol!(
             &self,
             conversation_context: Option<&UIConversationContext>,
         );
+
+        #[optional]
+        #[unsafe(method(allowsNumberPadPopover))]
+        #[unsafe(method_family = none)]
+        unsafe fn allowsNumberPadPopover(&self) -> bool;
+
+        /// Setter for [`allowsNumberPadPopover`][Self::allowsNumberPadPopover].
+        #[optional]
+        #[unsafe(method(setAllowsNumberPadPopover:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setAllowsNumberPadPopover(&self, allows_number_pad_popover: bool);
     }
 );
 

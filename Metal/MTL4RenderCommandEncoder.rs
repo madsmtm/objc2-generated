@@ -411,7 +411,11 @@ extern_protocol!(
             base_instance: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLArgument", feature = "MTLRenderCommandEncoder"))]
+        #[cfg(all(
+            feature = "MTLArgument",
+            feature = "MTLGPUAddress",
+            feature = "MTLRenderCommandEncoder"
+        ))]
         /// Encodes a draw command that renders an instance of a geometric primitive with indexed vertices.
         ///
         /// Use this method to perform indexed drawing, where an index buffer determines how Metal assembles primitives.
@@ -442,11 +446,15 @@ extern_protocol!(
             primitive_type: MTLPrimitiveType,
             index_count: NSUInteger,
             index_type: MTLIndexType,
-            index_buffer: u64,
+            index_buffer: MTLGPUAddress,
             index_buffer_length: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLArgument", feature = "MTLRenderCommandEncoder"))]
+        #[cfg(all(
+            feature = "MTLArgument",
+            feature = "MTLGPUAddress",
+            feature = "MTLRenderCommandEncoder"
+        ))]
         /// Encodes a draw command that renders multiple instances of a geometric primitive with indexed vertices.
         ///
         /// Use this method to perform instanced indexed drawing, where an index buffer determines how Metal assembles primitives.
@@ -483,12 +491,16 @@ extern_protocol!(
             primitive_type: MTLPrimitiveType,
             index_count: NSUInteger,
             index_type: MTLIndexType,
-            index_buffer: u64,
+            index_buffer: MTLGPUAddress,
             index_buffer_length: NSUInteger,
             instance_count: NSUInteger,
         );
 
-        #[cfg(all(feature = "MTLArgument", feature = "MTLRenderCommandEncoder"))]
+        #[cfg(all(
+            feature = "MTLArgument",
+            feature = "MTLGPUAddress",
+            feature = "MTLRenderCommandEncoder"
+        ))]
         /// Encodes a draw command that renders multiple instances of a geometric primitive with indexed vertices,
         /// starting with a custom vertex and instance.
         ///
@@ -531,14 +543,14 @@ extern_protocol!(
             primitive_type: MTLPrimitiveType,
             index_count: NSUInteger,
             index_type: MTLIndexType,
-            index_buffer: u64,
+            index_buffer: MTLGPUAddress,
             index_buffer_length: NSUInteger,
             instance_count: NSUInteger,
             base_vertex: NSInteger,
             base_instance: NSUInteger,
         );
 
-        #[cfg(feature = "MTLRenderCommandEncoder")]
+        #[cfg(all(feature = "MTLGPUAddress", feature = "MTLRenderCommandEncoder"))]
         /// Encodes a draw command that renders multiple instances of a geometric primitive with indirect arguments.
         ///
         /// When you use this function, Metal reads the parameters to the draw command from an ``MTLBuffer`` instance,
@@ -563,10 +575,14 @@ extern_protocol!(
         unsafe fn drawPrimitives_indirectBuffer(
             &self,
             primitive_type: MTLPrimitiveType,
-            indirect_buffer: u64,
+            indirect_buffer: MTLGPUAddress,
         );
 
-        #[cfg(all(feature = "MTLArgument", feature = "MTLRenderCommandEncoder"))]
+        #[cfg(all(
+            feature = "MTLArgument",
+            feature = "MTLGPUAddress",
+            feature = "MTLRenderCommandEncoder"
+        ))]
         /// Encodes a draw command that renders multiple instances of a geometric primitive with indexed vertices
         /// and indirect arguments.
         ///
@@ -608,9 +624,9 @@ extern_protocol!(
             &self,
             primitive_type: MTLPrimitiveType,
             index_type: MTLIndexType,
-            index_buffer: u64,
+            index_buffer: MTLGPUAddress,
             index_buffer_length: NSUInteger,
-            indirect_buffer: u64,
+            indirect_buffer: MTLGPUAddress,
         );
 
         #[cfg(all(
@@ -623,7 +639,6 @@ extern_protocol!(
         /// - Parameters:
         /// - indirectCommandBuffer: A ``MTLIndirectCommandBuffer`` instance containing other commands that the current command runs.
         /// - executionRange: A span of integers that represent the command entries in the buffer that the current command runs.
-        /// The number of commands needs to be less than or equal to 16,384.
         #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_withRange(
@@ -634,6 +649,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MTLAllocation",
+            feature = "MTLGPUAddress",
             feature = "MTLIndirectCommandBuffer",
             feature = "MTLResource"
         ))]
@@ -645,8 +661,7 @@ extern_protocol!(
         ///
         /// Metal requires that the contents of this buffer match the layout of struct ``MTLIndirectCommandBufferExecutionRange``,
         /// which specifies a location and a length within the indirect command buffer. You are responsible for ensuring the
-        /// address of this buffer has 4-byte alignment, and that the length member in the buffer contents doesn't exceed
-        /// `16,384`.
+        /// address of this buffer has 4-byte alignment.
         ///
         /// Use an instance of ``MTLResidencySet`` to mark residency of the indirect buffer that the `indirectRangeBuffer`
         /// parameter references.
@@ -655,15 +670,13 @@ extern_protocol!(
         /// - indirectCommandBuffer: A ``MTLIndirectCommandBuffer`` instance that contains other commands
         /// the current command runs.
         /// - indirectRangeBuffer: GPUAddress of a ``MTLBuffer`` instance with data that matches the layout of the
-        /// ``MTLIndirectCommandBufferExecutionRange`` structure. You are responsible for ensuring the
-        /// length property of the structure in the contents of this buffer is less than or equal to
-        /// 16,384. Additionally, this address requires 4-byte alignment.
+        /// ``MTLIndirectCommandBufferExecutionRange`` structure. This address requires 4-byte alignment.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer(
             &self,
             indirect_command_buffer: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
-            indirect_range_buffer: u64,
+            indirect_range_buffer: MTLGPUAddress,
         );
 
         /// Configures the size of a threadgroup memory buffer for a threadgroup argument in the object shader function.
@@ -719,7 +732,7 @@ extern_protocol!(
             threads_per_mesh_threadgroup: MTLSize,
         );
 
-        #[cfg(feature = "MTLTypes")]
+        #[cfg(all(feature = "MTLGPUAddress", feature = "MTLTypes"))]
         /// Encodes a draw command that invokes a mesh shader and, optionally, an object shader with indirect arguments.
         ///
         /// This method enables you to determine the number of threadgroups per grid indirectly, in the GPU timeline.
@@ -740,7 +753,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn drawMeshThreadgroupsWithIndirectBuffer_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
-            indirect_buffer: u64,
+            indirect_buffer: MTLGPUAddress,
             threads_per_object_threadgroup: MTLSize,
             threads_per_mesh_threadgroup: MTLSize,
         );

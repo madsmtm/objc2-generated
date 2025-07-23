@@ -321,6 +321,7 @@ impl MTLFXTemporalDenoisedScalerDescriptor {
             transparency_overlay_texture_enabled: bool,
         );
 
+        #[cfg(feature = "MTLFXTemporalScaler")]
         /// Creates a denoiser scaler instance for a Metal device.
         ///
         /// - Parameters:
@@ -334,7 +335,10 @@ impl MTLFXTemporalDenoisedScalerDescriptor {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<ProtocolObject<dyn MTLFXTemporalDenoisedScaler>>>;
 
-        #[cfg(feature = "MTL4FXTemporalDenoisedScaler")]
+        #[cfg(all(
+            feature = "MTL4FXTemporalDenoisedScaler",
+            feature = "MTLFXTemporalScaler"
+        ))]
         /// Creates a denoiser scaler instance for a Metal device.
         ///
         /// - Parameters:
@@ -419,38 +423,11 @@ impl MTLFXTemporalDenoisedScalerDescriptor {
 }
 
 extern_protocol!(
-    /// A common abstraction to all denoiser scalers.
-    ///
-    /// This protocol defines properties common to all denoiser scalers. You access these properties through
-    /// any denoiser scaler instance you create by calling construction methods such as
-    /// ``MTLFXTemporalDenoisedScalerDescriptor/newTemporalDenoisedScalerWithDevice:``.
-    ///
-    /// ### Conforming to texture usage requirements
-    ///
-    /// Denoiser scaler instances expose properties, such as ``colorTextureUsage``, that indicate requirements for
-    /// your textures to be compatible with it. These properties indicate the minimum set of ``MTLTextureUsage`` bits
-    /// that you are responsible for setting in your texture descriptors for this denoise scaler to use them.
-    ///
-    /// Your game or app can set extra usage bits on your textures without losing compatibility, as long at its maintains
-    /// the minimum set the denoiser scaler requests.
-    ///
-    /// ### Assigning input and output textures
-    ///
-    /// When you use an instance of a class that conforms to this protocol, you typically set its input and output textures,
-    /// as well as other properties, and then encode its work to a command buffer.
-    ///
-    /// MetalFX doesn't track that you assign the same texture instances to each property across different batches of work,
-    /// the only requirement is that you provide textures that match the pixel formats and dimensions you specify in the
-    /// ``MTLFXTemporalDenoisedScalerDescriptor`` descriptor instance that creates the scaler instance.
-    ///
-    /// ### Encoding work
-    ///
-    /// Once you configure all properties for the current frame of your game or app, you indicate to the scaler instance
-    /// into which command buffer it encodes its work. You achieve this by calling, for example,
-    /// ``MTLFXTemporalDenoisedScaler/encodeToCommandBuffer:``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerbase?language=objc)
-    pub unsafe trait MTLFXTemporalDenoisedScalerBase: NSObjectProtocol {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerbase?language=objc)
+    #[cfg(feature = "MTLFXTemporalScaler")]
+    pub unsafe trait MTLFXTemporalDenoisedScalerBase:
+        MTLFXFrameInterpolatableScaler
+    {
         /// The minimal texture usage options that your app’s input color texture needs in order to support this denoiser scaler.
         #[unsafe(method(colorTextureUsage))]
         #[unsafe(method_family = none)]
@@ -948,6 +925,7 @@ extern_protocol!(
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscaler?language=objc)
+    #[cfg(feature = "MTLFXTemporalScaler")]
     pub unsafe trait MTLFXTemporalDenoisedScaler: MTLFXTemporalDenoisedScalerBase {
         /// Encode this scaler denoiser's work into a command buffer.
         ///

@@ -18,6 +18,16 @@ extern_class!(
 
 #[cfg(feature = "GKBasePlayer")]
 extern_conformance!(
+    unsafe impl NSCopying for GKCloudPlayer {}
+);
+
+#[cfg(feature = "GKBasePlayer")]
+unsafe impl CopyingHelper for GKCloudPlayer {
+    type Result = Self;
+}
+
+#[cfg(feature = "GKBasePlayer")]
+extern_conformance!(
     unsafe impl NSObjectProtocol for GKCloudPlayer {}
 );
 

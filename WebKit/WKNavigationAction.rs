@@ -78,6 +78,11 @@ impl WKNavigationAction {
         #[unsafe(method_family = none)]
         pub unsafe fn shouldPerformDownload(&self) -> bool;
 
+        /// Whether or not the navigation is a redirect from a content rule list.
+        #[unsafe(method(isContentRuleListRedirect))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isContentRuleListRedirect(&self) -> bool;
+
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// The modifier keys that were in effect when the navigation was requested.

@@ -624,3 +624,31 @@ impl NSControl {
         pub unsafe fn selectCell(&self, cell: &NSCell);
     );
 }
+
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolbordershape?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSControlBorderShape(pub NSInteger);
+impl NSControlBorderShape {
+    /// The control will resolve this to an appropriate shape for the given control size and context
+    #[doc(alias = "NSControlBorderShapeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// The control will resolve this to an appropriate shape for the given control size and context
+    #[doc(alias = "NSControlBorderShapeCapsule")]
+    pub const Capsule: Self = Self(1);
+    /// The control will resolve this to an appropriate shape for the given control size and context
+    #[doc(alias = "NSControlBorderShapeRoundedRectangle")]
+    pub const RoundedRectangle: Self = Self(2);
+    /// The control will resolve this to an appropriate shape for the given control size and context
+    #[doc(alias = "NSControlBorderShapeCircle")]
+    pub const Circle: Self = Self(3);
+}
+
+unsafe impl Encode for NSControlBorderShape {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSControlBorderShape {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

@@ -114,12 +114,14 @@ impl WKWebViewConfiguration {
         /// When a web view is initialized, a new web content process
         /// will be created for it from the specified pool, or an existing process in
         /// that pool will be used.
+        #[deprecated = "Creating and using multiple instances of WKProcessPool no longer has any effect."]
         #[unsafe(method(processPool))]
         #[unsafe(method_family = none)]
         pub unsafe fn processPool(&self) -> Retained<WKProcessPool>;
 
         #[cfg(feature = "WKProcessPool")]
         /// Setter for [`processPool`][Self::processPool].
+        #[deprecated = "Creating and using multiple instances of WKProcessPool no longer has any effect."]
         #[unsafe(method(setProcessPool:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProcessPool(&self, process_pool: &WKProcessPool);

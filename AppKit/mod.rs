@@ -3162,6 +3162,8 @@ pub use self::__NSComboButton::NSComboButtonStyle;
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 pub use self::__NSControl::NSControl;
 #[cfg(feature = "NSControl")]
+pub use self::__NSControl::NSControlBorderShape;
+#[cfg(feature = "NSControl")]
 pub use self::__NSControl::NSControlTextDidBeginEditingNotification;
 #[cfg(feature = "NSControl")]
 pub use self::__NSControl::NSControlTextDidChangeNotification;

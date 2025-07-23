@@ -10,25 +10,31 @@ use crate::*;
 /// sub-allocating ranges of a buffer.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4bufferrange?language=objc)
+#[cfg(feature = "MTLGPUAddress")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTL4BufferRange {
     /// Buffer address returned by the gpuAddress property of an MTLBuffer plus any offset into the buffer
-    pub bufferAddress: u64,
+    pub bufferAddress: MTLGPUAddress,
     /// Length of the region which begins at the given address. If the length is not known, a value of
     /// (uint64_t)-1 represents the range from the given address to the end of the buffer.
     pub length: u64,
 }
 
+#[cfg(feature = "MTLGPUAddress")]
 unsafe impl Encode for MTL4BufferRange {
-    const ENCODING: Encoding =
-        Encoding::Struct("MTL4BufferRange", &[<u64>::ENCODING, <u64>::ENCODING]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "MTL4BufferRange",
+        &[<MTLGPUAddress>::ENCODING, <u64>::ENCODING],
+    );
 }
 
+#[cfg(feature = "MTLGPUAddress")]
 unsafe impl RefEncode for MTL4BufferRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+#[cfg(feature = "MTLGPUAddress")]
 impl MTL4BufferRange {
-    // TODO: pub fn MTL4BufferRangeMake(buffer_address: u64,length: u64,) -> MTL4BufferRange;
+    // TODO: pub fn MTL4BufferRangeMake(buffer_address: MTLGPUAddress,length: u64,) -> MTL4BufferRange;
 }

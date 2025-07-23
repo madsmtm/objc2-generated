@@ -186,7 +186,11 @@ impl NSSavePanel {
         pub unsafe fn setCurrentContentType(&self, current_content_type: Option<&UTType>);
 
         #[cfg(feature = "NSView")]
-        /// Sets and returns the accessory view shown in the panel. For applications that link on SnowLeopard and higher, the accessoryView's frame will be observed, and any changes the programmer makes to the frame will automatically be reflected in the panel (including animated changes to the frame height).
+        /// Sets and returns the accessory view shown in the panel.
+        ///
+        /// For applications that link on 10.6 and later, the accessoryView's frame will be observed, and any changes the programmer makes to the frame will automatically be reflected in the panel (including animated changes to the frame height).
+        ///
+        /// For applications that link on 26.0 and later and use the Liquid Glass design, the accessoryView's control metrics will be the larger Liquid Glass metrics.
         #[unsafe(method(accessoryView))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;

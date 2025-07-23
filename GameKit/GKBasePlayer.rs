@@ -14,6 +14,14 @@ extern_class!(
 );
 
 extern_conformance!(
+    unsafe impl NSCopying for GKBasePlayer {}
+);
+
+unsafe impl CopyingHelper for GKBasePlayer {
+    type Result = Self;
+}
+
+extern_conformance!(
     unsafe impl NSObjectProtocol for GKBasePlayer {}
 );
 

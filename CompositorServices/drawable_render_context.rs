@@ -49,8 +49,11 @@ impl cp_drawable_render_context {
     /// in the drawable.
     /// - rasterizationRateMap: should be the one provided by the drawable.
     /// - layer renderer layout: Dedicated and Shared layout is not supported.
-    /// - supportColorAttachmentMapping: The render pass descriptor used to create the render encoder should
-    /// have ``supportColorAttachmentMapping`` set to true.
+    ///
+    /// - Note: If the render encoder has multiple color attachments then set `supportColorAttachmentMapping`
+    /// to true to avoid Metal API validation errors.
+    /// This API is not available on simulator; as a workaround, either disable API validation or separate
+    /// the rendering into multiple render encoders for other color attachments.
     ///
     /// - Note: This function will modify the depth stencil state, the viewports, the vertex amplification count
     /// and some of the texture bindings in the render command encoder passed to the function.
@@ -98,8 +101,11 @@ impl cp_drawable_render_context {
     /// in the drawable.
     /// - rasterizationRateMap: should be the one provided by the drawable.
     /// - layer renderer layout: Dedicated and Shared layout is not supported.
-    /// - supportColorAttachmentMapping: The render pass descriptor used to create the render encoder should
-    /// have ``supportColorAttachmentMapping`` set to true.
+    ///
+    /// - Note: If the render encoder has multiple color attachments then set `supportColorAttachmentMapping`
+    /// to true to avoid Metal API validation errors.
+    /// This API is not available on simulator; as a workaround, either disable API validation or separate
+    /// the rendering into multiple render encoders for other color attachments.
     #[doc(alias = "cp_drawable_render_context_end_encoding")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -134,8 +140,11 @@ impl cp_drawable_render_context {
     /// in the drawable.
     /// - rasterizationRateMap: should be the one provided by the drawable.
     /// - layer renderer layout: Dedicated and Shared layout is not supported.
-    /// - supportColorAttachmentMapping: The render pass descriptor used to create the render encoder should
-    /// have ``supportColorAttachmentMapping`` set to true.
+    ///
+    /// - Note: If the render encoder has multiple color attachments then set `supportColorAttachmentMapping`
+    /// to true to avoid Metal API validation errors.
+    /// This API is not available on simulator; as a workaround, either disable API validation or separate
+    /// the rendering into multiple render encoders for other color attachments.
     ///
     /// - Note: This function will modify the depth stencil state, the viewports, the vertex amplification count
     /// and some of the texture bindings in the render command encoder passed to the function.
@@ -183,8 +192,11 @@ impl cp_drawable_render_context {
     /// in the drawable.
     /// - rasterizationRateMap: should be the one provided by the drawable.
     /// - layer renderer layout: Dedicated and Shared layout is not supported.
-    /// - supportColorAttachmentMapping: The render pass descriptor used to create the render encoder should
-    /// have ``supportColorAttachmentMapping`` set to true.
+    ///
+    /// - Note: If the render encoder has multiple color attachments then set `supportColorAttachmentMapping`
+    /// to true to avoid Metal API validation errors.
+    /// This API is not available on simulator; as a workaround, either disable API validation or separate
+    /// the rendering into multiple render encoders for other color attachments.
     #[doc(alias = "cp_drawable_render_context_mtl4_end_encoding")]
     #[cfg(feature = "objc2-metal")]
     #[inline]

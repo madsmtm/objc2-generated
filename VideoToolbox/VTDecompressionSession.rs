@@ -623,7 +623,7 @@ impl VTDecompressionSession {
     /// The kVTDecodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously).
     /// Pass NULL if you do not want to receive this information.
     ///
-    /// Parameter `multiImageCapableHandler`: The block to be called when decoding the frame is completed.  If the
+    /// Parameter `multiImageCapableOutputHandler`: The block to be called when decoding the frame is completed.  If the
     /// VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler call returns an error,
     /// the block will not be called.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler")]
@@ -657,6 +657,138 @@ impl VTDecompressionSession {
                 decode_flags,
                 info_flags_out,
                 multi_image_capable_output_handler,
+            )
+        }
+    }
+
+    /// Decompresses a video frame.
+    ///
+    /// If an error is returned from this function, there will be no callback.  Otherwise
+    /// the callback provided during VTDecompressionSessionCreate will be called.
+    ///
+    /// Parameter `session`: The decompression session.
+    ///
+    /// Parameter `sampleBuffer`: A CMSampleBuffer containing one or more video frames.
+    ///
+    /// Parameter `decodeFlags`: A bitfield of directives to the decompression session and decoder.
+    /// The kVTDecodeFrame_EnableAsynchronousDecompression bit indicates whether the video decoder
+    /// may decompress the frame asynchronously.
+    /// The kVTDecodeFrame_EnableTemporalProcessing bit indicates whether the decoder may delay calls to the output callback
+    /// so as to enable processing in temporal (display) order.
+    /// If both flags are clear, the decompression shall complete and your output callback function will be called
+    /// before VTDecompressionSessionDecodeFrameWithOptions returns.
+    /// If either flag is set, VTDecompressionSessionDecodeFrameWithOptions may return before the output callback function is called.
+    ///
+    /// Parameter `frameOptions`: Contains key/value pairs specifying additional options for decoding this frame.
+    /// Only keys with `kVTDecodeFrameOptionKey_` prefix should be used in this dictionary.
+    ///
+    /// Parameter `sourceFrameRefCon`: Your reference value for the frame.
+    /// Note that if sampleBuffer contains multiple frames, the output callback function will be called
+    /// multiple times with this sourceFrameRefCon.
+    ///
+    /// Parameter `infoFlagsOut`: Points to a VTDecodeInfoFlags to receive information about the decode operation.
+    /// The kVTDecodeInfo_Asynchronous bit may be set if the decode is (or was) running
+    /// asynchronously.
+    /// The kVTDecodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously).
+    /// Pass NULL if you do not want to receive this information.
+    #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptions")]
+    #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
+    #[inline]
+    pub unsafe fn decode_frame_with_options(
+        self: &VTDecompressionSession,
+        sample_buffer: &CMSampleBuffer,
+        decode_flags: VTDecodeFrameFlags,
+        frame_options: Option<&CFDictionary>,
+        source_frame_ref_con: *mut c_void,
+        info_flags_out: *mut VTDecodeInfoFlags,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTDecompressionSessionDecodeFrameWithOptions(
+                session: &VTDecompressionSession,
+                sample_buffer: &CMSampleBuffer,
+                decode_flags: VTDecodeFrameFlags,
+                frame_options: Option<&CFDictionary>,
+                source_frame_ref_con: *mut c_void,
+                info_flags_out: *mut VTDecodeInfoFlags,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTDecompressionSessionDecodeFrameWithOptions(
+                self,
+                sample_buffer,
+                decode_flags,
+                frame_options,
+                source_frame_ref_con,
+                info_flags_out,
+            )
+        }
+    }
+
+    /// Decompresses a video frame.
+    ///
+    /// Cannot be called with a session created with a VTDecompressionOutputCallbackRecord.
+    /// If the VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler call returns an error,
+    /// the block will not be called.
+    ///
+    /// Parameter `session`: The decompression session.
+    ///
+    /// Parameter `sampleBuffer`: A CMSampleBuffer containing one or more video frames.
+    ///
+    /// Parameter `decodeFlags`: A bitfield of directives to the decompression session and decoder.
+    /// The kVTDecodeFrame_EnableAsynchronousDecompression bit indicates whether the video decoder
+    /// may decompress the frame asynchronously.
+    /// The kVTDecodeFrame_EnableTemporalProcessing bit indicates whether the decoder may delay calls to the output callback
+    /// so as to enable processing in temporal (display) order.
+    /// If both flags are clear, the decompression shall complete and your output callback function will be called
+    /// before VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler returns.
+    /// If either flag is set, VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler may return before the output
+    /// callback function is called.
+    ///
+    /// Parameter `frameOptions`: Contains key/value pairs specifying additional options for decoding this frame.
+    /// Only keys with `kVTDecodeFrameOptionKey_` prefix should be used in this dictionary.
+    ///
+    /// Parameter `infoFlagsOut`: Points to a VTDecodeInfoFlags to receive information about the decode operation.
+    /// The kVTDecodeInfo_Asynchronous bit may be set if the decode is (or was) running
+    /// asynchronously.
+    /// The kVTDecodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously).
+    /// Pass NULL if you do not want to receive this information.
+    ///
+    /// Parameter `outputHandler`: The block to be called when decoding the frame is completed.  If the VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler
+    /// call returns an error, the block will not be called.
+    #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler")]
+    #[cfg(all(
+        feature = "VTErrors",
+        feature = "block2",
+        feature = "objc2-core-media",
+        feature = "objc2-core-video"
+    ))]
+    #[inline]
+    pub unsafe fn decode_frame_with_options_and_output_handler(
+        self: &VTDecompressionSession,
+        sample_buffer: &CMSampleBuffer,
+        decode_flags: VTDecodeFrameFlags,
+        frame_options: Option<&CFDictionary>,
+        info_flags_out: *mut VTDecodeInfoFlags,
+        output_handler: VTDecompressionOutputHandler,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler(
+                session: &VTDecompressionSession,
+                sample_buffer: &CMSampleBuffer,
+                decode_flags: VTDecodeFrameFlags,
+                frame_options: Option<&CFDictionary>,
+                info_flags_out: *mut VTDecodeInfoFlags,
+                output_handler: VTDecompressionOutputHandler,
+            ) -> OSStatus;
+        }
+        unsafe {
+            VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler(
+                self,
+                sample_buffer,
+                decode_flags,
+                frame_options,
+                info_flags_out,
+                output_handler,
             )
         }
     }
@@ -775,5 +907,36 @@ extern "C-unwind" {
         decode_flags: VTDecodeFrameFlags,
         info_flags_out: *mut VTDecodeInfoFlags,
         multi_image_capable_output_handler: VTDecompressionMultiImageCapableOutputHandler,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
+    #[deprecated = "renamed to `VTDecompressionSession::decode_frame_with_options`"]
+    pub fn VTDecompressionSessionDecodeFrameWithOptions(
+        session: &VTDecompressionSession,
+        sample_buffer: &CMSampleBuffer,
+        decode_flags: VTDecodeFrameFlags,
+        frame_options: Option<&CFDictionary>,
+        source_frame_ref_con: *mut c_void,
+        info_flags_out: *mut VTDecodeInfoFlags,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(all(
+        feature = "VTErrors",
+        feature = "block2",
+        feature = "objc2-core-media",
+        feature = "objc2-core-video"
+    ))]
+    #[deprecated = "renamed to `VTDecompressionSession::decode_frame_with_options_and_output_handler`"]
+    pub fn VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler(
+        session: &VTDecompressionSession,
+        sample_buffer: &CMSampleBuffer,
+        decode_flags: VTDecodeFrameFlags,
+        frame_options: Option<&CFDictionary>,
+        info_flags_out: *mut VTDecodeInfoFlags,
+        output_handler: VTDecompressionOutputHandler,
     ) -> OSStatus;
 }

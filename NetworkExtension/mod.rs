@@ -8491,8 +8491,10 @@ impl NEVPNProtocolIPSec {
 pub struct NEVPNIKEv2EncryptionAlgorithm(pub NSInteger);
 impl NEVPNIKEv2EncryptionAlgorithm {
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmDES")]
+    #[deprecated = "DES is not supported"]
     pub const AlgorithmDES: Self = Self(1);
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithm3DES")]
+    #[deprecated = "3DES is not supported"]
     pub const Algorithm3DES: Self = Self(2);
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128")]
     #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
@@ -8525,8 +8527,10 @@ unsafe impl RefEncode for NEVPNIKEv2EncryptionAlgorithm {
 pub struct NEVPNIKEv2IntegrityAlgorithm(pub NSInteger);
 impl NEVPNIKEv2IntegrityAlgorithm {
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA96")]
+    #[deprecated = "SHA-1 is not supported"]
     pub const SHA96: Self = Self(1);
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA160")]
+    #[deprecated = "SHA-1 is not supported"]
     pub const SHA160: Self = Self(2);
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA256")]
     pub const SHA256: Self = Self(3);
@@ -8581,10 +8585,13 @@ impl NEVPNIKEv2DiffieHellmanGroup {
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroupInvalid")]
     pub const GroupInvalid: Self = Self(0);
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup1")]
+    #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group1: Self = Self(1);
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup2")]
+    #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group2: Self = Self(2);
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup5")]
+    #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group5: Self = Self(5);
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup14")]
     pub const Group14: Self = Self(14);

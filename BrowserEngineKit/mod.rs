@@ -27,6 +27,9 @@ mod __BEAccessibility;
 #[cfg(feature = "BEAccessibilityConstants")]
 #[path = "BEAccessibilityConstants.rs"]
 mod __BEAccessibilityConstants;
+#[cfg(feature = "BEAccessibilityRemoteElement")]
+#[path = "BEAccessibilityRemoteElement.rs"]
+mod __BEAccessibilityRemoteElement;
 #[cfg(feature = "BEAccessibilityTextMarker")]
 #[path = "BEAccessibilityTextMarker.rs"]
 mod __BEAccessibilityTextMarker;
@@ -132,6 +135,10 @@ pub use self::__BEAccessibilityConstants::BEAccessibilityTraitReadOnly;
 pub use self::__BEAccessibilityConstants::BEAccessibilityTraitVisited;
 #[cfg(feature = "BEAccessibilityConstants")]
 pub use self::__BEAccessibilityConstants::BEAccessibilityValueChangedNotification;
+#[cfg(feature = "BEAccessibilityRemoteElement")]
+pub use self::__BEAccessibilityRemoteElement::BEAccessibilityRemoteElement;
+#[cfg(feature = "BEAccessibilityRemoteElement")]
+pub use self::__BEAccessibilityRemoteElement::BEAccessibilityRemoteHostElement;
 #[cfg(feature = "BEAccessibilityTextMarker")]
 pub use self::__BEAccessibilityTextMarker::BEAccessibilityTextMarker;
 #[cfg(feature = "BEAccessibilityTextMarker")]

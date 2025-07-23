@@ -58,7 +58,8 @@ pub use self::__MTL4FXFrameInterpolator::MTL4FXFrameInterpolator;
 pub use self::__MTL4FXSpatialScaler::MTL4FXSpatialScaler;
 #[cfg(all(
     feature = "MTL4FXTemporalDenoisedScaler",
-    feature = "MTLFXTemporalDenoisedScaler"
+    feature = "MTLFXTemporalDenoisedScaler",
+    feature = "MTLFXTemporalScaler"
 ))]
 pub use self::__MTL4FXTemporalDenoisedScaler::MTL4FXTemporalDenoisedScaler;
 #[cfg(all(feature = "MTL4FXTemporalScaler", feature = "MTLFXTemporalScaler"))]
@@ -77,12 +78,20 @@ pub use self::__MTLFXSpatialScaler::MTLFXSpatialScalerBase;
 pub use self::__MTLFXSpatialScaler::MTLFXSpatialScalerColorProcessingMode;
 #[cfg(feature = "MTLFXSpatialScaler")]
 pub use self::__MTLFXSpatialScaler::MTLFXSpatialScalerDescriptor;
-#[cfg(feature = "MTLFXTemporalDenoisedScaler")]
+#[cfg(all(
+    feature = "MTLFXTemporalDenoisedScaler",
+    feature = "MTLFXTemporalScaler"
+))]
 pub use self::__MTLFXTemporalDenoisedScaler::MTLFXTemporalDenoisedScaler;
-#[cfg(feature = "MTLFXTemporalDenoisedScaler")]
+#[cfg(all(
+    feature = "MTLFXTemporalDenoisedScaler",
+    feature = "MTLFXTemporalScaler"
+))]
 pub use self::__MTLFXTemporalDenoisedScaler::MTLFXTemporalDenoisedScalerBase;
 #[cfg(feature = "MTLFXTemporalDenoisedScaler")]
 pub use self::__MTLFXTemporalDenoisedScaler::MTLFXTemporalDenoisedScalerDescriptor;
+#[cfg(feature = "MTLFXTemporalScaler")]
+pub use self::__MTLFXTemporalScaler::MTLFXFrameInterpolatableScaler;
 #[cfg(feature = "MTLFXTemporalScaler")]
 pub use self::__MTLFXTemporalScaler::MTLFXTemporalScaler;
 #[cfg(feature = "MTLFXTemporalScaler")]

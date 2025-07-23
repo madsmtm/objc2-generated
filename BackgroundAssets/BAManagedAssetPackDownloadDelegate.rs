@@ -54,7 +54,7 @@ extern_protocol!(
         /// Notifies the receiver that an asset pack failed to be downloaded.
         /// - Parameters:
         /// - assetPack: The asset pack.
-        /// - error: The error that occured.
+        /// - error: The error that occurred.
         #[optional]
         #[unsafe(method(downloadOfAssetPack:failedWithError:))]
         #[unsafe(method_family = none)]
