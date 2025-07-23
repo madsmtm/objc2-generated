@@ -23,7 +23,7 @@ extern_protocol!(
         /// until this method exits scope. Therefore, all downloads needing to be scheduled should be returned here.
         /// If a download fails, it can be rescheduled using `BADownloadManager` in any other method in this protocol.
         ///
-        /// Parameter `contentRequest`: The content request event that occured that caused this method to be invoked.
+        /// Parameter `contentRequest`: The content request event that occurred that caused this method to be invoked.
         ///
         /// Parameter `manifestURL`: A file URL to the local manifest that was pre-downloaded and specified in your App's Info.plist under the `BAManifestURL`.
         /// The file is read-only and will be deleted after this method returns. If you wish to keep it, you must copy it out.
@@ -96,7 +96,7 @@ extern_protocol!(
 
         /// This method may be called shortly before the extension is terminated.
         ///
-        /// This method is invoked if all extension callbacks have returned or if the extension has run over it's alotted runtime.
+        /// This method is invoked if all extension callbacks have returned or if the extension has run over its allotted runtime.
         /// This callback provides a last chance to tidy up state before process termination.
         ///
         /// Warning: This method is advisory only, there will be instances where the extension is terminated before this method is invoked.

@@ -9,7 +9,7 @@ use crate::*;
 extern "C" {
     /// A notification that posts after a stylus accessory connects to the device.
     ///
-    /// Use this constant with `NSNotificationCenter` to listen to for stylus
+    /// Use this constant with `NSNotificationCenter` to listen for stylus
     /// connection events.
     ///
     /// Connections of stylus accessories will be reflected in the `styli` array
@@ -26,7 +26,7 @@ extern "C" {
     /// A notification that posts after a stylus accessory disconnects from the
     /// device.
     ///
-    /// Use this constant with `NSNotificationCenter` to listen to for stylus
+    /// Use this constant with `NSNotificationCenter` to listen for stylus
     /// disconnection events.
     ///
     /// The `object` property of the notification will contain the `GCStylus` that
@@ -186,10 +186,5 @@ impl GCStylus {
         #[unsafe(method(styli))]
         #[unsafe(method_family = none)]
         pub unsafe fn styli() -> Retained<NSArray<GCStylus>>;
-
-        #[deprecated]
-        #[unsafe(method(styluses))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn styluses() -> Retained<NSArray<GCStylus>>;
     );
 }

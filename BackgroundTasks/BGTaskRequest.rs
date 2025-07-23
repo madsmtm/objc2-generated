@@ -334,9 +334,6 @@ extern_class!(
     /// A request to begin a workload immediately, or shortly after submission, which is allowed to continue running even if
     /// the app is backgrounded.
     ///
-    /// Similar to Background App Refresh, users are allowed to disable ``BGContinuedProcessingTask`` objects from running
-    /// on their devices.
-    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest?language=objc)
     #[unsafe(super(BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]

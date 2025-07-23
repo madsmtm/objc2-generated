@@ -9,6 +9,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiglasseffectstyle?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIGlassEffectStyle(pub NSInteger);
+impl UIGlassEffectStyle {
+    /// Standard glass effect style.
+    #[doc(alias = "UIGlassEffectStyleRegular")]
+    pub const Regular: Self = Self(0);
+    /// Clear glass effect style.
+    #[doc(alias = "UIGlassEffectStyleClear")]
+    pub const Clear: Self = Self(1);
+}
+
+unsafe impl Encode for UIGlassEffectStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIGlassEffectStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// A visual effect that renders a glass material.
     ///
@@ -69,6 +91,14 @@ impl UIGlassEffect {
         #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
+
+        /// Creates a glass effect with the specified style.
+        #[unsafe(method(effectWithStyle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effectWithStyle(
+            style: UIGlassEffectStyle,
+            mtm: MainThreadMarker,
+        ) -> Retained<UIGlassEffect>;
     );
 }
 

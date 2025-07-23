@@ -85,6 +85,14 @@ impl ASAuthorizationProviderExtensionLoginManager {
         #[unsafe(method_family = none)]
         pub unsafe fn registrationToken(&self) -> Option<Retained<NSString>>;
 
+        #[cfg(feature = "ASAuthorizationProviderExtensionRegistrationHandler")]
+        /// Returns the authentication method used for the device.
+        #[unsafe(method(authenticationMethod))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn authenticationMethod(
+            &self,
+        ) -> ASAuthorizationProviderExtensionAuthenticationMethod;
+
         /// Returns the extension data from the MDM profile.
         #[unsafe(method(extensionData))]
         #[unsafe(method_family = none)]

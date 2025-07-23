@@ -1164,6 +1164,8 @@ pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionInvalidate;
 pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionProcessFrame;
 #[cfg(all(feature = "VTRAWProcessingSession", feature = "block2"))]
 pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionSetParameterChangedHander;
+#[cfg(all(feature = "VTRAWProcessingSession", feature = "block2"))]
+pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionSetParameterChangedHandler;
 #[cfg(feature = "VTRAWProcessingSession")]
 pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionSetProcessingParameters;
 #[cfg(feature = "VTSession")]

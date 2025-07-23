@@ -209,11 +209,14 @@ impl CKShare {
 
         /// Invitation URLs that can be used by any receiver to claim the associated participantID and join the share.
         ///
-        ///
-        /// Only available after share record has been saved to the server for participants created via `+[CKShareParticipant oneTimeURLParticipant]`.
+        /// Only available after a share record has been saved to the server for participants created via ``CKShareParticipant/oneTimeURLParticipant``.
         /// One-time URLs are stable, and tied to the associated participantIDs as long as the participant is part of the share.
-        /// Typically, a recipient user invited via their handle (i.e. `.acceptanceStatus` == `.pending`) is provided a `CKShare.URL` directly by the share's owner. However, any user can also use a `oneTimeURL` in the same manner by fetching share metadata and accepting the share.
-        /// After share acceptance, the `oneTimeURL` becomes functionally equivalent to the regular `CKShare.URL`.
+        /// Typically, a recipient user invited via their handle is provided a ``URL`` directly by the share's owner.
+        /// However, any user can also use a one-time URL in the same manner to fetch share metadata and accept the share.
+        /// After share acceptance, the one-time URL becomes functionally equivalent to the regular ``URL``.
+        ///
+        /// - Parameters:
+        /// - participantID: The ``CKShareParticipant/participantID`` corresponding to the ``CKShareParticipant/oneTimeURLParticipant`` added to the share.
         #[unsafe(method(oneTimeURLForParticipantID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn oneTimeURLForParticipantID(

@@ -214,6 +214,10 @@ bitflags::bitflags! {
         const Calendar = 1048576;
         #[doc(alias = "NSCalendarUnitTimeZone")]
         const TimeZone = 2097152;
+        #[doc(alias = "NSCalendarUnitIsLeapMonth")]
+        const IsLeapMonth = 1073741824;
+        #[doc(alias = "NSCalendarUnitIsRepeatedDay")]
+        const IsRepeatedDay = 2147483648;
 #[deprecated]
         const NSEraCalendarUnit = 2;
 #[deprecated]
@@ -1046,6 +1050,15 @@ impl NSDateComponents {
         #[unsafe(method(setLeapMonth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeapMonth(&self, leap_month: bool);
+
+        #[unsafe(method(isRepeatedDay))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isRepeatedDay(&self) -> bool;
+
+        /// Setter for [`isRepeatedDay`][Self::isRepeatedDay].
+        #[unsafe(method(setRepeatedDay:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRepeatedDay(&self, repeated_day: bool);
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(date))]

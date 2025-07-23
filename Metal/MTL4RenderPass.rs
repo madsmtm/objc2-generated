@@ -108,13 +108,15 @@ impl MTL4RenderPassDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setThreadgroupMemoryLength(&self, threadgroup_memory_length: NSUInteger);
 
-        /// Sets the width, in pixels, of the tiles into which Metal divides the render attachments for tile-based rendering.
+        /// The width of the tiles, in pixels, a render pass you create with this descriptor applies to its attachments.
         ///
-        /// When set to `0`, the default, Metal chooses a width that fits within local memory.
+        /// For tile-based rendering, Metal divides each render attachment into smaller regions, or _tiles_.
+        /// The property's default is `0`, which tells Metal to select a size that fits in tile memory.
         ///
-        /// See also:
+        /// See
         /// <doc
-        /// :tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering.md>
+        /// :tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering>
+        /// for more information about tiles, tile memory, and deferred rendering.
         #[unsafe(method(tileWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn tileWidth(&self) -> NSUInteger;
@@ -124,13 +126,15 @@ impl MTL4RenderPassDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setTileWidth(&self, tile_width: NSUInteger);
 
-        /// Sets the height, in pixels, of the tiles in which Metal divides the render attachments for tile-based rendering.
+        /// The height of the tiles, in pixels, a render pass you create with this descriptor applies to its attachments.
         ///
-        /// When set to `0`, the default, Metal chooses a height that fits within memory.
+        /// For tile-based rendering, Metal divides each render attachment into smaller regions, or _tiles_.
+        /// The property's default is `0`, which tells Metal to select a size that fits in tile memory.
         ///
-        /// See also:
+        /// See
         /// <doc
-        /// :tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering.md>
+        /// :tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering>
+        /// for more information about tiles, tile memory, and deferred rendering.
         #[unsafe(method(tileHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn tileHeight(&self) -> NSUInteger;

@@ -387,6 +387,12 @@ mod __UIConversationContext;
 #[cfg(feature = "UIConversationEntry")]
 #[path = "UIConversationEntry.rs"]
 mod __UIConversationEntry;
+#[cfg(feature = "UICornerConfiguration")]
+#[path = "UICornerConfiguration.rs"]
+mod __UICornerConfiguration;
+#[cfg(feature = "UICornerRadius")]
+#[path = "UICornerRadius.rs"]
+mod __UICornerRadius;
 #[cfg(feature = "UIDataDetectors")]
 #[path = "UIDataDetectors.rs"]
 mod __UIDataDetectors;
@@ -3057,6 +3063,10 @@ pub use self::__UIControl::UIControlState;
 pub use self::__UIConversationContext::UIConversationContext;
 #[cfg(feature = "UIConversationEntry")]
 pub use self::__UIConversationEntry::UIConversationEntry;
+#[cfg(feature = "UICornerConfiguration")]
+pub use self::__UICornerConfiguration::UICornerConfiguration;
+#[cfg(feature = "UICornerRadius")]
+pub use self::__UICornerRadius::UICornerRadius;
 #[cfg(feature = "UIDataDetectors")]
 pub use self::__UIDataDetectors::UIDataDetectorTypes;
 #[cfg(feature = "UIDataSourceTranslating")]
@@ -3148,6 +3158,10 @@ pub use self::__UIDocument::UIDocumentChangeKind;
 pub use self::__UIDocument::UIDocumentCreationIntent;
 #[cfg(feature = "UIDocument")]
 pub use self::__UIDocument::UIDocumentCreationIntentDefault;
+#[cfg(feature = "UIDocument")]
+pub use self::__UIDocument::UIDocumentDidMoveToWritableLocationNotification;
+#[cfg(feature = "UIDocument")]
+pub use self::__UIDocument::UIDocumentDidMoveToWritableLocationOldURLKey;
 #[cfg(feature = "UIDocument")]
 pub use self::__UIDocument::UIDocumentSaveOperation;
 #[cfg(feature = "UIDocument")]
@@ -3558,6 +3572,8 @@ pub use self::__UIGestureRecognizer::UIGestureRecognizerState;
 pub use self::__UIGlassEffect::UIGlassContainerEffect;
 #[cfg(all(feature = "UIGlassEffect", feature = "UIVisualEffect"))]
 pub use self::__UIGlassEffect::UIGlassEffect;
+#[cfg(feature = "UIGlassEffect")]
+pub use self::__UIGlassEffect::UIGlassEffectStyle;
 #[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]
 pub use self::__UIGraphics::UIGraphicsAddPDFContextDestinationAtPoint;
 #[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]

@@ -78,6 +78,14 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn messageTintColor(&self) -> Option<Retained<UIColor>>;
 
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The corner radius of the message when presented in the transcript. Use this value to create concentric rounded subviews inside your view. Use continuous corners (kCACornerCurveContinuous) on your view.
+        ///
+        /// This property varies with dynamic type size. Use trait collection registration to trigger an updated layout when dynamic type size changes. To avoid the edges of the transcript view, use `layoutMargins`. This value is only valid when `presentationStyle` is `MSMessagesAppPresentationStyleTranscript`.
+        #[unsafe(method(messageCornerRadius))]
+        #[unsafe(method_family = none)]
+        unsafe fn messageCornerRadius(&self) -> CGFloat;
+
         /// Call this when `messageTintColor` changes, e.g. due to change in app state or trait collection.
         ///
         /// The message will be updated to reflect the new color. This method will only work if the `presentationStyle` is `MSMessagesAppPresentationStyleTranscript`.

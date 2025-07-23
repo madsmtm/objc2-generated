@@ -69,9 +69,9 @@ impl BAAssetPackManager {
         );
 
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
-        /// Gets the asset pack with the specified identifier.
+        /// Gets the asset pack with the given identifier.
         ///
-        /// If no asset pack with the specified identifier is found, then the block will receive an `NSError` object with ``BAManagedErrorCode/assetPackNotFound`` as its code for the `error` parameter. This method might attempt to get the latest asset-pack information from the server.
+        /// If no asset pack with the given identifier is found, then the block will receive an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound`` as its code for the `error` parameter. This method might attempt to get the latest asset-pack information from the server.
         /// - Parameters:
         /// - assetPackIdentifier: The asset pack’s identifier.
         /// - completionHandler: A block that receives the asset pack or an error if one occurs.
@@ -86,7 +86,7 @@ impl BAAssetPackManager {
         #[cfg(all(feature = "BAAssetPackStatus", feature = "block2"))]
         /// Gets the status of the asset pack with the specified identifier.
         ///
-        /// If no asset pack with the specified identifier is found, then the block will receive an `NSError` object with ``BAManagedErrorCode/assetPackNotFound`` as its code for the `error` parameter. This method attempts to get the latest asset-pack information from the server. No updates or removals are automatically triggered.
+        /// If no asset pack with the specified identifier is found, then the block will receive an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound`` as its code for the `error` parameter. This method attempts to get the latest asset-pack information from the server. No updates or removals are automatically triggered.
         /// - Parameters:
         /// - assetPackIdentifier: The asset pack’s identifier.
         /// - completionHandler: A block that receives the status of the asset pack or an error if one occurs.
@@ -125,14 +125,14 @@ impl BAAssetPackManager {
             >,
         );
 
-        /// Gets the contents of a file at the specified relative file path.
+        /// Returns the contents of an asset file at the specified relative path.
         ///
         /// All asset packs share the same namespace, so you can treat the overall collection of downloaded asset packs as if it were a single root directory that contains all of your subdirectories and asset files, regardless of the specific asset pack in which any particular file resides. If there’s a file-path collision across multiple asset packs, then it’s undefined from which asset pack the file will be read unless you explicitly limit the search to a particular asset pack by passing a non-`nil` identifier to the `assetPackIdentifier` parameter.
         /// - Parameters:
         /// - path: The relative file path.
         /// - assetPackIdentifier: The identifier of the asset pack in which you want to search for the file or `nil` if you want to search in all asset packs.
         /// - options: Options for how to read the contents of the file into a data object.
-        /// - error: A pointer to an error that will be set if an error occurs. If no file is found at `path`, then `error` will point to an `NSError` object with ``BAManagedErrorCode/fileNotFound`` as its code.
+        /// - error: A pointer to an error that will be set if an error occurs. If no file is found at `path`, then `error` will point to an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeFileNotFound`` as its code.
         /// - Returns: The file’s contents.
         #[unsafe(method(contentsAtPath:searchingInAssetPackWithIdentifier:options:error:_))]
         #[unsafe(method_family = none)]
@@ -143,7 +143,7 @@ impl BAAssetPackManager {
             options: NSDataReadingOptions,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
-        /// Gets the URL for the specified relative file path.
+        /// Returns a URL for the specified relative path.
         ///
         /// All asset packs share the same namespace, so you can treat the overall collection of downloaded asset packs as if it were a single root directory that contains all of your subdirectories and asset files, regardless of the specific asset pack in which any particular file resides. Unlike ``BAAssetPackManager/contentsAtPath:searchingInAssetPackWithIdentifier:options:error:`` and ``BAAssetPackManager/fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:``, this method supports retrieving entire directories—including packages—in which case it merges the corresponding slices of the shared logical directory from all downloaded asset packs that contain such slices. If there’s a file-path collision across multiple asset packs, then it’s undefined from which asset pack an individual file will be resolved.
         /// - Parameters:
@@ -160,9 +160,9 @@ impl BAAssetPackManager {
         ) -> Result<Retained<NSURL>, Retained<NSError>>;
 
         #[cfg(feature = "block2")]
-        /// Removes the downloaded asset pack with the specified identifier.
+        /// Removes the specified asset pack from the device.
         /// - Parameters:
-        /// - assetPackIdentifier: The identifier of the asset pack to remove.
+        /// - assetPackIdentifier: The asset pack’s identifier.
         /// - completionHandler: A block that receives an error if one occurs.
         #[unsafe(method(removeAssetPackWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
