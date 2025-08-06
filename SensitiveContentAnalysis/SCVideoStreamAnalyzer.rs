@@ -119,15 +119,7 @@ extern_class!(
 );
 
 extern_conformance!(
-    unsafe impl NSCoding for SCVideoStreamAnalyzer {}
-);
-
-extern_conformance!(
     unsafe impl NSObjectProtocol for SCVideoStreamAnalyzer {}
-);
-
-extern_conformance!(
-    unsafe impl NSSecureCoding for SCVideoStreamAnalyzer {}
 );
 
 impl SCVideoStreamAnalyzer {

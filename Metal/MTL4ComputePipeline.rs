@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Descriptor defining how a compute pipeline state would be created.
+    /// Describes a compute pipeline state.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor?language=objc)
     #[unsafe(super(MTL4PipelineDescriptor, NSObject))]
@@ -36,7 +36,11 @@ extern_conformance!(
 impl MTL4ComputePipelineDescriptor {
     extern_methods!(
         #[cfg(feature = "MTL4FunctionDescriptor")]
-        /// A function descriptor representing the function that will be executed by the compute pipeline.
+        /// A descriptor representing the compute pipeline's function.
+        ///
+        /// You don't assign instances of ``MTL4FunctionDescriptor`` to this property directly, instead
+        /// assign an instance of one of its subclasses, such as ``MTL4LibraryFunctionDescriptor``, which
+        /// represents a function from a Metal library.
         #[unsafe(method(computeFunctionDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn computeFunctionDescriptor(&self) -> Option<Retained<MTL4FunctionDescriptor>>;
@@ -64,7 +68,7 @@ impl MTL4ComputePipelineDescriptor {
             thread_group_size_is_multiple_of_thread_execution_width: bool,
         );
 
-        /// The maximum total number of threads that can be executing in a single threadgroup for the
+        /// The maximum total number of threads that Metal can execute in a single threadgroup for the
         /// compute function.
         #[unsafe(method(maxTotalThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
@@ -79,9 +83,14 @@ impl MTL4ComputePipelineDescriptor {
         );
 
         #[cfg(feature = "MTLTypes")]
-        /// Sets the required threads-per-threadgroup during dispatches. The `threadsPerThreadgroup` argument of any dispatch must match this value if it is set.
-        /// Optional, unless the pipeline is going to use CooperativeTensors in which case this must be set.
-        /// Setting this to a size of 0 in every dimension disables this property
+        /// The required number of threads per threadgroup for compute dispatches.
+        ///
+        /// When you set this value, you are responsible for ensuring that the `threadsPerThreadgroup` argument of any compute
+        /// dispatch matches it.
+        ///
+        /// Setting this property is optional, except in cases where the pipeline uses *CooperativeTensors*.
+        ///
+        /// This property's default value is `0`, which disables its effect.
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
@@ -95,7 +104,7 @@ impl MTL4ComputePipelineDescriptor {
             required_threads_per_threadgroup: MTLSize,
         );
 
-        /// A boolean value indicating whether the compute pipeline should support adding binary functions.
+        /// A boolean value indicating whether the compute pipeline supports linking binary functions.
         #[unsafe(method(supportBinaryLinking))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportBinaryLinking(&self) -> bool;
@@ -106,8 +115,7 @@ impl MTL4ComputePipelineDescriptor {
         pub unsafe fn setSupportBinaryLinking(&self, support_binary_linking: bool);
 
         #[cfg(feature = "MTL4LinkingDescriptor")]
-        /// An object that contains information about functions that are linked to the compute pipeline
-        /// during creation.
+        /// An object that contains information about functions to link to the compute pipeline.
         #[unsafe(method(staticLinkingDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn staticLinkingDescriptor(
@@ -123,7 +131,7 @@ impl MTL4ComputePipelineDescriptor {
             static_linking_descriptor: Option<&MTL4StaticLinkingDescriptor>,
         );
 
-        /// A value indicating whether the pipeline should support indirect command buffers.
+        /// A value indicating whether the pipeline supports Metal indirect command buffers.
         #[unsafe(method(supportIndirectCommandBuffers))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportIndirectCommandBuffers(&self)
@@ -137,7 +145,7 @@ impl MTL4ComputePipelineDescriptor {
             support_indirect_command_buffers: MTL4IndirectCommandBufferSupportState,
         );
 
-        /// Resets the descriptor to the default values.
+        /// Resets the descriptor to its default values.
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);

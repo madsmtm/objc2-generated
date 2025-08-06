@@ -3965,6 +3965,22 @@ impl SRAcousticSettingsAccessibilityBackgroundSoundsName {
     pub const Night: Self = Self(7);
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameFire")]
     pub const Fire: Self = Self(8);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBabble")]
+    pub const Babble: Self = Self(9);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameSteam")]
+    pub const Steam: Self = Self(10);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameAirplane")]
+    pub const Airplane: Self = Self(11);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBoat")]
+    pub const Boat: Self = Self(12);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBus")]
+    pub const Bus: Self = Self(13);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameTrain")]
+    pub const Train: Self = Self(14);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameRainOnRoof")]
+    pub const RainOnRoof: Self = Self(15);
+    #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameQuietNight")]
+    pub const QuietNight: Self = Self(16);
 }
 
 unsafe impl Encode for SRAcousticSettingsAccessibilityBackgroundSoundsName {
@@ -4046,19 +4062,19 @@ impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicati
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationNone"
     )]
-    pub const None: Self = Self(0);
+    pub const None: Self = Self(1);
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationPhone"
     )]
-    pub const Phone: Self = Self(1);
+    pub const Phone: Self = Self(2);
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationMedia"
     )]
-    pub const Media: Self = Self(2);
+    pub const Media: Self = Self(3);
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationPhoneAndMedia"
     )]
-    pub const PhoneAndMedia: Self = Self(3);
+    pub const PhoneAndMedia: Self = Self(4);
 }
 
 unsafe impl Encode

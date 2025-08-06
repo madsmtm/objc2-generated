@@ -65,7 +65,7 @@ impl CPListImageRowItem {
         ///
         /// To properly size your images, your app should size them to the display scale of the car screen.
         /// See -[CPInterfaceController carTraitCollection].
-        #[deprecated]
+        #[deprecated = "Use initWithText:elements:allowsMultipleLines:"]
         #[unsafe(method(initWithText:images:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithText_images(
@@ -99,7 +99,7 @@ impl CPListImageRowItem {
         ///
         /// To properly size your images, your app should size them to the display scale of the car screen.
         /// See -[CPInterfaceController carTraitCollection].
-        #[deprecated]
+        #[deprecated = "Use initWithText:elements:allowsMultipleLines:"]
         #[unsafe(method(initWithText:images:imageTitles:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithText_images_imageTitles(
@@ -305,7 +305,7 @@ impl CPListImageRowItem {
         /// Note: The maximum number of images shown is
         /// `CPMaximumNumberOfGridImages.`If you supply more images, only the first
         /// `CPMaximumNumberOfGridImages`will be used.
-        #[deprecated]
+        #[deprecated = "No longer supported"]
         #[unsafe(method(gridImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn gridImages(&self) -> Retained<NSArray<UIImage>>;
@@ -354,6 +354,12 @@ impl CPListImageRowItem {
         #[unsafe(method(elements))]
         #[unsafe(method_family = none)]
         pub unsafe fn elements(&self) -> Retained<NSArray<CPListImageRowItemElement>>;
+
+        #[cfg(feature = "CPListImageRowItemElement")]
+        /// Setter for [`elements`][Self::elements].
+        #[unsafe(method(setElements:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setElements(&self, elements: &NSArray<CPListImageRowItemElement>);
 
         /// A Boolean value indicating whether the elements should be visible in more than a single line.
         ///

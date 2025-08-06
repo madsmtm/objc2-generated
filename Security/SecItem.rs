@@ -1326,7 +1326,8 @@ extern "C" {
     ///
     /// is a CFBooleanRef. If provided with a value of kCFBooleanTrue, the error
     /// errSecInteractionNotAllowed will be returned if the item is attempting
-    /// to authenticate with UI.
+    /// to authenticate with UI. Note: on macOS, this attribute only applies to items stored
+    /// in the Data Protection keychain. Legacy keychain items will still activate UI if needed.
     ///
     /// is one of kSecUseAuthenticationUIAllow, kSecUseAuthenticationUIFail, kSecUseAuthenticationUISkip.
     ///

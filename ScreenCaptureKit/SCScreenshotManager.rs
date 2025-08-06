@@ -231,7 +231,7 @@ extern_conformance!(
 impl SCScreenshotOutput {
     extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
-        /// SCScreenshotOutput property that denotes the SDR CGimage
+        /// SCScreenshotOutput property that denotes the SDR CGimage.  The output CGImage uses the same color space as the display
         #[unsafe(method(sdrImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn sdrImage(&self) -> Option<Retained<CGImage>>;
@@ -243,7 +243,7 @@ impl SCScreenshotOutput {
         pub unsafe fn setSdrImage(&self, sdr_image: Option<&CGImage>);
 
         #[cfg(feature = "objc2-core-graphics")]
-        /// SCScreenshotOutput property that denotes the HDR CGimage
+        /// SCScreenshotOutput property that denotes the HDR CGimage.  The output CGImage uses the extended sRGB color space.
         #[unsafe(method(hdrImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn hdrImage(&self) -> Option<Retained<CGImage>>;
@@ -253,17 +253,6 @@ impl SCScreenshotOutput {
         #[unsafe(method(setHdrImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHdrImage(&self, hdr_image: Option<&CGImage>);
-
-        #[cfg(feature = "objc2-core-graphics")]
-        #[unsafe(method(testImage))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn testImage(&self) -> Option<Retained<CGImage>>;
-
-        #[cfg(feature = "objc2-core-graphics")]
-        /// Setter for [`testImage`][Self::testImage].
-        #[unsafe(method(setTestImage:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setTestImage(&self, test_image: Option<&CGImage>);
 
         /// SCScreenshotOutput property to specify the location where the image was saved.  If a fileURL in the screenshot configuration was not specified, then the fileURL will be nil
         #[unsafe(method(fileURL))]

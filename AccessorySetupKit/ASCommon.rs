@@ -26,23 +26,7 @@ unsafe impl Send for ASPropertyCompareString {}
 unsafe impl Sync for ASPropertyCompareString {}
 
 extern_conformance!(
-    unsafe impl NSCoding for ASPropertyCompareString {}
-);
-
-extern_conformance!(
-    unsafe impl NSCopying for ASPropertyCompareString {}
-);
-
-unsafe impl CopyingHelper for ASPropertyCompareString {
-    type Result = Self;
-}
-
-extern_conformance!(
     unsafe impl NSObjectProtocol for ASPropertyCompareString {}
-);
-
-extern_conformance!(
-    unsafe impl NSSecureCoding for ASPropertyCompareString {}
 );
 
 impl ASPropertyCompareString {

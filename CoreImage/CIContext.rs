@@ -200,6 +200,21 @@ extern "C" {
 }
 
 extern "C" {
+    /// A Core Video Metal texture cache object to improve the performance of Core Image context
+    /// renders that use Core Video pixel buffers.
+    ///
+    /// Creating a Core Image context with this optional `CVMetalTextureCache` can improve the
+    /// performance of creating a Metal texture from a `CVPixelBuffer`. It is recommended
+    /// to specify this option if the context renders to or from pixel buffers that come
+    /// from a `CVPixelBufferPool`.
+    ///
+    /// It is the client's responsibility to flush the cache when appropriate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextcvmetaltexturecache?language=objc)
+    pub static kCIContextCVMetalTextureCache: &'static CIContextOption;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextmemorylimit?language=objc)
     pub static kCIContextMemoryLimit: &'static CIContextOption;
 }
@@ -828,11 +843,29 @@ extern "C" {
     ///
     /// The value for this key needs to be a monochrome ``CIImage`` instance.
     ///
+    /// If the ``kCIImageRepresentationHDRGainMapAsRGB`` option it true, then it needs to
+    /// be an RGB ``CIImage`` instance.
+    ///
     /// The ``/CIImage/properties`` should contain metadata information equivalent to what is returned when
     /// initializing an image using ``kCIImageAuxiliaryHDRGainMap``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationhdrgainmapimage?language=objc)
     pub static kCIImageRepresentationHDRGainMapImage: &'static CIImageRepresentationOption;
+}
+
+extern "C" {
+    /// An optional key and value to request the gain map channel to be color instead of monochrome.
+    ///
+    /// This key affects how the gain map image is calculated from the SDR receiver and
+    /// the ``kCIImageRepresentationHDRImage`` image value.
+    ///
+    /// The value for this is a Boolean where:
+    /// * True: the gain map is created as a color ratio between the HDR and SDR images.
+    /// * False: the gain map is created as a brightness ratio between the HDR and SDR images.
+    /// * Not specified: the default behavior False.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationhdrgainmapasrgb?language=objc)
+    pub static kCIImageRepresentationHDRGainMapAsRGB: &'static CIImageRepresentationOption;
 }
 
 /// ImageRepresentation.

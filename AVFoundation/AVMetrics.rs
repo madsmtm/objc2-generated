@@ -426,6 +426,11 @@ impl AVMetricHLSMediaSegmentRequestEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn indexFileURL(&self) -> Retained<NSURL>;
 
+        /// Returns the duration of segment in seconds.
+        #[unsafe(method(segmentDuration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn segmentDuration(&self) -> NSTimeInterval;
+
         /// Returns the media resource request event which was used to satisfy the media segment.
         #[unsafe(method(mediaResourceRequestEvent))]
         #[unsafe(method_family = none)]
@@ -793,6 +798,53 @@ impl AVMetricPlayerItemSeekDidCompleteEvent {
 }
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricmediarendition?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVMetricMediaRendition;
+);
+
+unsafe impl Send for AVMetricMediaRendition {}
+
+unsafe impl Sync for AVMetricMediaRendition {}
+
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricMediaRendition {}
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricMediaRendition {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricMediaRendition {}
+);
+
+impl AVMetricMediaRendition {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        /// Provides ID corresponding to the rendition. This is equivalent to the
+        /// STABLE-RENDITION-ID in the HLS playlist. If not available, value is nil.
+        #[unsafe(method(stableID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn stableID(&self) -> Option<Retained<NSString>>;
+
+        /// Provides URL corresponding to the rendition's HLS playlist. If not available,
+        /// value is nil.
+        #[unsafe(method(URL))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
+    );
+}
+
+extern_class!(
     /// Represents a metric event when variant switch was completed.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
@@ -847,6 +899,27 @@ impl AVMetricPlayerItemVariantSwitchEvent {
         #[unsafe(method(loadedTimeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
+
+        /// Represents the currently selected video rendition's identifiers.
+        ///
+        /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+        #[unsafe(method(videoRendition))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn videoRendition(&self) -> Retained<AVMetricMediaRendition>;
+
+        /// Represents the currently selected video rendition's identifiers.
+        ///
+        /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+        #[unsafe(method(audioRendition))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn audioRendition(&self) -> Retained<AVMetricMediaRendition>;
+
+        /// Represents the currently selected audio rendition's identifiers.
+        ///
+        /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+        #[unsafe(method(subtitleRendition))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn subtitleRendition(&self) -> Retained<AVMetricMediaRendition>;
 
         /// Returns if the switch did succeed.
         #[unsafe(method(didSucceed))]
@@ -910,6 +983,21 @@ impl AVMetricPlayerItemVariantSwitchStartEvent {
         #[unsafe(method(loadedTimeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
+
+        /// Contains information corresponding to the currently selected video rendition.
+        #[unsafe(method(videoRendition))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn videoRendition(&self) -> Retained<AVMetricMediaRendition>;
+
+        /// Contains information corresponding to the currently selected audio rendition.
+        #[unsafe(method(audioRendition))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn audioRendition(&self) -> Retained<AVMetricMediaRendition>;
+
+        /// Contains information corresponding to the currently selected subtitle rendition.
+        #[unsafe(method(subtitleRendition))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn subtitleRendition(&self) -> Retained<AVMetricMediaRendition>;
     );
 }
 

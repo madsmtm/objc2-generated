@@ -31,26 +31,7 @@ impl HKLiveWorkoutDataSource {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
-        /// The default quantity types that are being collected
-        ///
-        /// : If types are manually enabled or disabled this property will not update
-        #[unsafe(method(currentCollectedTypes))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn currentCollectedTypes(&self) -> Retained<NSSet<HKQuantityType>>;
-
-        /// True if generated types are being collected.
-        #[unsafe(method(collectsGeneratedTypes))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn collectsGeneratedTypes(&self) -> bool;
-
-        /// Setter for [`collectsGeneratedTypes`][Self::collectsGeneratedTypes].
-        #[unsafe(method(setCollectsGeneratedTypes:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setCollectsGeneratedTypes(&self, collects_generated_types: bool);
-
-        #[cfg(feature = "HKObjectType")]
         /// The quantity types the receiver is collecting.
-        #[deprecated]
         #[unsafe(method(typesToCollect))]
         #[unsafe(method_family = none)]
         pub unsafe fn typesToCollect(&self) -> Retained<NSSet<HKQuantityType>>;

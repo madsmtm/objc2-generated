@@ -27,9 +27,9 @@ mod __SCSensitivityAnalysis;
 #[cfg(feature = "SCSensitivityAnalyzer")]
 #[path = "SCSensitivityAnalyzer.rs"]
 mod __SCSensitivityAnalyzer;
-#[cfg(feature = "SCVideoStreamAnalyzer_Public")]
-#[path = "SCVideoStreamAnalyzer_Public.rs"]
-mod __SCVideoStreamAnalyzer_Public;
+#[cfg(feature = "SCVideoStreamAnalyzer")]
+#[path = "SCVideoStreamAnalyzer.rs"]
+mod __SCVideoStreamAnalyzer;
 
 #[cfg(feature = "SCSensitivityAnalysis")]
 pub use self::__SCSensitivityAnalysis::SCSensitivityAnalysis;
@@ -39,11 +39,11 @@ pub use self::__SCSensitivityAnalyzer::SCSensitivityAnalysisPolicy;
 pub use self::__SCSensitivityAnalyzer::SCSensitivityAnalyzer;
 #[cfg(all(
     feature = "SCSensitivityAnalysis",
-    feature = "SCVideoStreamAnalyzer_Public",
+    feature = "SCVideoStreamAnalyzer",
     feature = "block2"
 ))]
-pub use self::__SCVideoStreamAnalyzer_Public::SCVideoStreamAnalysisChangeHandler;
-#[cfg(feature = "SCVideoStreamAnalyzer_Public")]
-pub use self::__SCVideoStreamAnalyzer_Public::SCVideoStreamAnalyzer;
-#[cfg(feature = "SCVideoStreamAnalyzer_Public")]
-pub use self::__SCVideoStreamAnalyzer_Public::SCVideoStreamAnalyzerStreamDirection;
+pub use self::__SCVideoStreamAnalyzer::SCVideoStreamAnalysisChangeHandler;
+#[cfg(feature = "SCVideoStreamAnalyzer")]
+pub use self::__SCVideoStreamAnalyzer::SCVideoStreamAnalyzer;
+#[cfg(feature = "SCVideoStreamAnalyzer")]
+pub use self::__SCVideoStreamAnalyzer::SCVideoStreamAnalyzerStreamDirection;

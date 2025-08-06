@@ -153,6 +153,16 @@ impl AVSampleBufferVideoRenderer {
         #[unsafe(method(resetUpcomingSampleBufferPresentationTimeExpectations))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetUpcomingSampleBufferPresentationTimeExpectations(&self);
+
+        /// Recommended pixel buffer attributes for optimal performance when using CMSampleBuffers containing CVPixelBuffers.
+        ///
+        /// The returned dictionary does not contain all of the attributes needed for creating pixel buffers.
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary()`` to reconcile these attributes with the pixel buffer creation attributes.
+        #[unsafe(method(recommendedPixelBufferAttributes))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn recommendedPixelBufferAttributes(
+            &self,
+        ) -> Retained<NSDictionary<NSString, AnyObject>>;
     );
 }
 

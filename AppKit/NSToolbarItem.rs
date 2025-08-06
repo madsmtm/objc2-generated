@@ -338,6 +338,18 @@ impl NSToolbarItem {
             visibility_priority: NSToolbarItemVisibilityPriority,
         );
 
+        #[cfg(feature = "NSItemBadge")]
+        /// A badge that can be attached to an NSToolbarItem. This provides a way to display small visual indicators that can be used to highlight important information, such as unread notifications or status indicators.
+        #[unsafe(method(badge))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn badge(&self) -> Option<Retained<NSItemBadge>>;
+
+        #[cfg(feature = "NSItemBadge")]
+        /// Setter for [`badge`][Self::badge].
+        #[unsafe(method(setBadge:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setBadge(&self, badge: Option<&NSItemBadge>);
+
         /// Typically you should not invoke this method.
         /// This method is called by its toolbar during validation.
         /// Standard items validate themselves by sending the `-validateToolbarItem:` validate message to the current validator.

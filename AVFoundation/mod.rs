@@ -528,8 +528,6 @@ pub use self::__AVAsset::AVURLAssetReferenceRestrictionsKey;
 pub use self::__AVAsset::AVURLAssetShouldParseExternalSphericalTagsKey;
 #[cfg(feature = "AVAsset")]
 pub use self::__AVAsset::AVURLAssetShouldSupportAliasDataReferencesKey;
-#[cfg(all(feature = "AVAsset", feature = "AVAssetTrack"))]
-pub use self::__AVAsset::AVURLAssetTrack;
 #[cfg(feature = "AVAsset")]
 pub use self::__AVAsset::AVURLAssetURLRequestAttributionKey;
 #[cfg(feature = "AVAssetCache")]
@@ -2782,6 +2780,8 @@ pub use self::__AVMetrics::AVMetricEventStreamSubscriber;
 pub use self::__AVMetrics::AVMetricHLSMediaSegmentRequestEvent;
 #[cfg(feature = "AVMetrics")]
 pub use self::__AVMetrics::AVMetricHLSPlaylistRequestEvent;
+#[cfg(feature = "AVMetrics")]
+pub use self::__AVMetrics::AVMetricMediaRendition;
 #[cfg(feature = "AVMetrics")]
 pub use self::__AVMetrics::AVMetricMediaResourceRequestEvent;
 #[cfg(feature = "AVMetrics")]

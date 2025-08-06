@@ -120,8 +120,10 @@ extern "C" {
 extern "C" {
     /// kCTFontVariationAxesAttribute
     ///
-    /// An array of variation axis dictionaries or null if the font does not support variations. Each variation axis dictionary contains the five kCTFontVariationAxis* keys.
+    /// An array of variation axis dictionaries or null if the font does not support variations. Each variation axis dictionary contains the five kCTFontVariationAxis-prefixed keys.
+    /// Unlike the result of CTFontCopyVariationAxes(), kCTFontVariationAxisNameKey values for this attribute are not localized.
     /// Before macOS 13.0 and iOS 16.0 this attribute is not accurate and CTFontCopyVariationAxes() should be used instead.
+    ///
     ///
     /// See also: CTFontCopyVariationAxes
     ///
@@ -213,7 +215,13 @@ extern "C" {
     ///
     /// The array of font features.
     ///
-    /// This key is used to specify or obtain the font features for a font reference. The value associated with this key is a CFArrayRef of font feature dictionaries. This features list contains the feature information from the 'feat' table of the font. See the CTFontCopyFeatures() API in   CTFont.h.
+    /// This key is used to specify or obtain the font features for a font reference. The value associated with this key is a CFArrayRef of font feature dictionaries as documented for CTFontCopyFeatures() in
+    /// <CoreText
+    /// /CTFont.h>.
+    /// Unlike the result of CTFontCopyFeatures(), this attribute does not contain localized names.
+    ///
+    ///
+    /// See also: CTFontCopyFeatures
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeaturesattribute?language=objc)
     pub static kCTFontFeaturesAttribute: &'static CFString;

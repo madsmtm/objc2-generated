@@ -70,7 +70,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn tileHeight(&self) -> NSUInteger;
 
-        #[cfg(feature = "MTL4RenderPipeline")]
+        #[cfg(feature = "MTLRenderPipeline")]
         /// Sets the mapping from logical shader color output to physical render pass color attachments.
         ///
         /// Use this method to define how the physical color attachments you specify via ``MTL4RenderPassDescriptor/colorAttachments``
@@ -83,7 +83,10 @@ extern_protocol!(
         /// - Parameter mapping: Mapping from logical shader outputs to physical outputs.
         #[unsafe(method(setColorAttachmentMap:))]
         #[unsafe(method_family = none)]
-        unsafe fn setColorAttachmentMap(&self, mapping: &MTLLogicalToPhysicalColorAttachmentMap);
+        unsafe fn setColorAttachmentMap(
+            &self,
+            mapping: Option<&MTLLogicalToPhysicalColorAttachmentMap>,
+        );
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]
         /// Configures this encoder with a render pipeline state that applies to your subsequent draw commands.

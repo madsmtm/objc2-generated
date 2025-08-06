@@ -39,6 +39,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgbx8?language=objc)
+    pub static kCIFormatRGBX8: CIFormat;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatabgr8?language=objc)
     pub static kCIFormatABGR8: CIFormat;
 }

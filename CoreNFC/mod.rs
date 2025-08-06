@@ -57,6 +57,8 @@ impl NFCReaderError {
     pub const ReaderErrorRadioDisabled: Self = Self(6);
     #[doc(alias = "NFCReaderErrorIneligible")]
     pub const ReaderErrorIneligible: Self = Self(7);
+    #[doc(alias = "NFCReaderErrorAccessNotAccepted")]
+    pub const ReaderErrorAccessNotAccepted: Self = Self(8);
     #[doc(alias = "NFCReaderTransceiveErrorTagConnectionLost")]
     pub const ReaderTransceiveErrorTagConnectionLost: Self = Self(100);
     #[doc(alias = "NFCReaderTransceiveErrorRetryExceeded")]

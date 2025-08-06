@@ -98,8 +98,6 @@ pub use self::__PKInkType::PKInkTypePencil;
 #[cfg(feature = "PKInkType")]
 pub use self::__PKInkType::PKInkTypeReed;
 #[cfg(feature = "PKInkType")]
-pub use self::__PKInkType::PKInkTypeReedCalligraphyPen;
-#[cfg(feature = "PKInkType")]
 pub use self::__PKInkType::PKInkTypeWatercolor;
 #[cfg(all(feature = "PKInkingTool", feature = "PKTool"))]
 pub use self::__PKInkingTool::PKInkingTool;

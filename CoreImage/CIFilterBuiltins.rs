@@ -5717,9 +5717,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setLayers(&self, layers: c_float);
 
-        /// Force a compact style Aztec code to
-        /// `true`or
-        /// `false`. Set to nil for automatic.
+        /// Force a compact style Aztec code to true or false. Set to nil for automatic.
         #[unsafe(method(compactStyle))]
         #[unsafe(method_family = none)]
         unsafe fn compactStyle(&self) -> c_float;
@@ -6200,9 +6198,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setCompactionMode(&self, compaction_mode: c_float);
 
-        /// Force a compact style Aztec code to
-        /// `true`or
-        /// `false`. Set to nil for automatic.
+        /// Force a compact style Aztec code to true or false. Set to nil for automatic.
         #[unsafe(method(compactStyle))]
         #[unsafe(method_family = none)]
         unsafe fn compactStyle(&self) -> c_float;
@@ -6222,9 +6218,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setCorrectionLevel(&self, correction_level: c_float);
 
-        /// Force compaction style to
-        /// `true`or
-        /// `false`. Set to nil for automatic.
+        /// Force compaction style to true or false. Set to nil for automatic.
         #[unsafe(method(alwaysSpecifyCompaction))]
         #[unsafe(method_family = none)]
         unsafe fn alwaysSpecifyCompaction(&self) -> c_float;

@@ -115,6 +115,8 @@ pub use self::__CIColor::CIColor;
 #[cfg(feature = "CIContext")]
 pub use self::__CIContext::kCIContextAllowLowPower;
 #[cfg(feature = "CIContext")]
+pub use self::__CIContext::kCIContextCVMetalTextureCache;
+#[cfg(feature = "CIContext")]
 pub use self::__CIContext::kCIContextCacheIntermediates;
 #[cfg(feature = "CIContext")]
 pub use self::__CIContext::kCIContextHighQualityDownsample;
@@ -144,6 +146,8 @@ pub use self::__CIContext::kCIImageRepresentationAVSemanticSegmentationMattes;
 pub use self::__CIContext::kCIImageRepresentationDepthImage;
 #[cfg(feature = "CIContext")]
 pub use self::__CIContext::kCIImageRepresentationDisparityImage;
+#[cfg(feature = "CIContext")]
+pub use self::__CIContext::kCIImageRepresentationHDRGainMapAsRGB;
 #[cfg(feature = "CIContext")]
 pub use self::__CIContext::kCIImageRepresentationHDRGainMapImage;
 #[cfg(feature = "CIContext")]
@@ -894,6 +898,8 @@ pub use self::__CIImage::kCIFormatRGBAf;
 pub use self::__CIImage::kCIFormatRGBAh;
 #[cfg(feature = "CIImage")]
 pub use self::__CIImage::kCIFormatRGBX16;
+#[cfg(feature = "CIImage")]
+pub use self::__CIImage::kCIFormatRGBX8;
 #[cfg(feature = "CIImage")]
 pub use self::__CIImage::kCIFormatRGBXf;
 #[cfg(feature = "CIImage")]

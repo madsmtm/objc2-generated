@@ -43,11 +43,7 @@ impl CPListImageRowItemCardElement {
         ///
         ///
         /// Note: The expected image size is given by +[CPListImageRowItemCardElement maximumImageSize] or by +[CPListImageRowItemCardElement maximumFullHeightImageSize] if
-        /// `showImageFullHeight`is true. Images provided will be resized to this size if necessary.
-        ///
-        ///
-        /// `title`should be non-nil when
-        /// `showImageFullHeight`is true.
+        /// `showsImageFullHeight`is true. Images provided will be resized to this size if necessary.
         ///
         ///
         /// To properly size your images, your app should size them to the display scale of the car screen.
@@ -56,20 +52,20 @@ impl CPListImageRowItemCardElement {
         ///
         /// Parameter `image`: The image associated to the element.
         ///
-        /// Parameter `showImageFullHeight`: Determines if the image should entierely cover the card
+        /// Parameter `showsImageFullHeight`: Determines if the image should entierely cover the card
         ///
         /// Parameter `title`: The title of the element.
         ///
         /// Parameter `subtitle`: The subtitle of the element.
         ///
         /// Parameter `tintColor`: The color used as background if
-        /// `showImageFullHeight`is true, part of the gradient color at the bottom of the card otherwise.
-        #[unsafe(method(initWithImage:showImageFullHeight:title:subtitle:tintColor:))]
+        /// `showsImageFullHeight`is true, part of the gradient color at the bottom of the card otherwise.
+        #[unsafe(method(initWithImage:showsImageFullHeight:title:subtitle:tintColor:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithImage_showImageFullHeight_title_subtitle_tintColor(
+        pub unsafe fn initWithImage_showsImageFullHeight_title_subtitle_tintColor(
             this: Allocated<Self>,
             image: &UIImage,
-            show_image_full_height: bool,
+            shows_image_full_height: bool,
             title: Option<&NSString>,
             subtitle: Option<&NSString>,
             tint_color: Option<&UIColor>,
@@ -78,12 +74,12 @@ impl CPListImageRowItemCardElement {
         /// The title associated with this element.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
+        pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTitle(&self, title: Option<&NSString>);
+        pub unsafe fn setTitle(&self, title: &NSString);
 
         /// The subtitle associated with this element.
         #[unsafe(method(subtitle))]
@@ -101,13 +97,13 @@ impl CPListImageRowItemCardElement {
         /// Set the value of this property to
         /// `YES`to fill the element with the image or
         /// `NO`to use a rounded square image that does not fill the card.
-        #[unsafe(method(showImageFullHeight))]
+        #[unsafe(method(showsImageFullHeight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showImageFullHeight(&self) -> bool;
+        pub unsafe fn showsImageFullHeight(&self) -> bool;
 
         #[cfg(feature = "objc2-ui-kit")]
         /// A UIColor used to tint the element. When
-        /// `showImageFullHeight`is true, the tint color is applied behind the labels at the bottom of the card. Otherwise, this color is part of the gradient color at the bottom of the card.
+        /// `showsImageFullHeight`is true, the tint color is applied behind the labels at the bottom of the card. Otherwise, this color is part of the gradient color at the bottom of the card.
         ///
         /// If this value is nil, iOS will use secondarySystemBackground color.
         #[unsafe(method(tintColor))]
@@ -123,7 +119,7 @@ impl CPListImageRowItemCardElement {
         #[cfg(feature = "objc2-core-foundation")]
         /// The expected image size for the image in your
         /// `CPListImageRowItemCardElement`when
-        /// `showImageFullHeight`is false. Images provided
+        /// `showsImageFullHeight`is false. Images provided
         /// will be resized to this size.
         ///
         ///
@@ -136,7 +132,7 @@ impl CPListImageRowItemCardElement {
         #[cfg(feature = "objc2-core-foundation")]
         /// The expected image size for the image in your
         /// `CPListImageRowItemCardElement`when
-        /// `showImageFullHeight`is  true. Images provided
+        /// `showsImageFullHeight`is  true. Images provided
         /// will be resized to this size.
         ///
         ///

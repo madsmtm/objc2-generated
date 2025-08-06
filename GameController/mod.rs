@@ -177,9 +177,6 @@ mod __GCRacingWheelInput;
 #[cfg(feature = "GCRelativeInput")]
 #[path = "GCRelativeInput.rs"]
 mod __GCRelativeInput;
-#[cfg(feature = "GCSpatialAccessory")]
-#[path = "GCSpatialAccessory.rs"]
-mod __GCSpatialAccessory;
 #[cfg(feature = "GCSteeringWheelElement")]
 #[path = "GCSteeringWheelElement.rs"]
 mod __GCSteeringWheelElement;
