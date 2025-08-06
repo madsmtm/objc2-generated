@@ -25,11 +25,56 @@ extern_class!(
     /// Accelerate vImage operations, or your own CPU-based image-processing routines—with a Core Image filter chain.
     ///
     /// Your custom image processing operation is invoked by your subclassed image processor kernel's
-    /// ``processWithInputs:arguments:output:error:`` method. The method can accept zero, one or more inputs.
+    /// ``processWithInputs:arguments:output:error:`` method. The method can accept zero, one or more `input` objects.
     /// Processors  that generate imagery (such as a noise or pattern generator) need no inputs, while kernels that
-    /// composite source images together require multiple inputs. The arguments dictionary allows the caller to pass in
-    /// additional parameter values (such as the radius of a blur) and the output contains the destination for your
+    /// composite source images together require multiple inputs. The `arguments` dictionary allows the caller to pass in
+    /// additional parameter values (such as the radius of a blur) and the `output` contains the destination for your
     /// image processing code to write to.
+    ///
+    /// The following code shows how you can subclass `CIImageProcessorKernel` to apply the Metal Performance Shader
+    /// <doc
+    /// ://com.apple.documentation/documentation/metalperformanceshaders/mpsimagethresholdbinary> kernel to a ``CIImage``:
+    ///
+    /// ```swift
+    /// class ThresholdImageProcessorKernel: CIImageProcessorKernel {
+    /// override class func process(with inputs: [CIImageProcessorInput]?, arguments: [String : Any]?, output: CIImageProcessorOutput) throws {
+    /// guard
+    /// let commandBuffer = output.metalCommandBuffer,
+    /// let input = inputs?.first,
+    /// let sourceTexture = input.metalTexture,
+    /// let destinationTexture = output.metalTexture,
+    /// let thresholdValue = arguments?["thresholdValue"] as? Float else {
+    /// return
+    /// }
+    ///
+    /// let threshold = MPSImageThresholdBinary(
+    /// device: commandBuffer.device,
+    /// thresholdValue: thresholdValue,
+    /// maximumValue: 1.0,
+    /// linearGrayColorTransform: nil)
+    ///
+    /// threshold.encode(
+    /// commandBuffer: commandBuffer,
+    /// sourceTexture: sourceTexture,
+    /// destinationTexture: destinationTexture)
+    /// }
+    /// }
+    /// ```
+    ///
+    /// To apply to kernel to an image, the calling side invokes the image processor's `apply(withExtent:inputs:arguments:)`
+    /// method. The following code generates a new ``CIImage`` object named `result` which contains a thresholded version of
+    /// the source image, `inputImage`.
+    ///
+    /// ```swift
+    /// let result = try? ThresholdImageProcessorKernel.apply(
+    /// withExtent: inputImage.extent,
+    /// inputs: [inputImage],
+    /// arguments: ["thresholdValue": 0.25])
+    /// ```
+    ///
+    /// > Important: Core Image will concatenate kernels in a render into as fewer programs as possible, avoiding the creation
+    /// of intermediate buffers. However, it is unable to do this with image processor kernels. To get the best performance,
+    /// you should use `CIImageProcessorKernel` objects only when your algorithms can't be expressed as a ``CIKernel``.
     ///
     /// ## Subclassing Notes
     ///
@@ -69,10 +114,14 @@ impl CIImageProcessorKernel {
     extern_methods!(
         /// Override this class method to implement your Core Image Processor Kernel subclass.
         ///
-        /// The class method will be called to produce the requested region of the output image
-        /// given the required regions of the input images and other arguments.
+        /// When a `CIImage` containing your `CIImageProcessorKernel` class is rendered, your class' implementation of
+        /// this method will be called as needed for that render.  The method may be called more than once if Core Image
+        /// needs to tile to limit memory usage.
         ///
-        /// > Important: this is a class method you cannot use or capture any state by accident.
+        /// When your implementation of this class method is called, use the provided `inputs` and `arguments` objects
+        /// to return processed pixel data to Core Image via `output`.
+        ///
+        /// > Important: this is a class method so that you cannot use or capture any state by accident.
         /// All the parameters that affect the output results must be passed to
         /// ``applyWithExtent:inputs:arguments:error:``.
         ///
@@ -105,7 +154,7 @@ impl CIImageProcessorKernel {
         ///
         /// The default implementation would return outputRect.
         ///
-        /// > Important: this is a class method you cannot use or capture any state by accident.
+        /// > Important: this is a class method so that you cannot use or capture any state by accident.
         /// All the parameters that affect the output results must be passed to
         /// ``applyWithExtent:inputs:arguments:error:``.
         ///
@@ -133,7 +182,7 @@ impl CIImageProcessorKernel {
         /// * as CoreImage prepares for a render, this method will be called for each input to return an ROI tile array.
         /// * as CoreImage performs the render, the method ``processWithInputs:arguments:output:error:`` will be called once for each tile.
         ///
-        /// > Important: this is a class method you cannot use or capture any state by accident.
+        /// > Important: this is a class method so that you cannot use or capture any state by accident.
         /// All the parameters that affect the output results must be passed to
         /// ``applyWithExtent:inputs:arguments:error:``.
         ///
@@ -257,10 +306,14 @@ impl CIImageProcessorKernel {
         ///
         /// This supports 0, 1, 2 or more input images and 2 or more output images.
         ///
-        /// The class method will be called to produce the requested region of the output images
-        /// given the required regions of the input images and other arguments.
+        /// When a `CIImage` containing your `CIImageProcessorKernel` class is rendered, your class' implementation of
+        /// this method will be called as needed for that render.  The method may be called more than once if Core Image
+        /// needs to tile to limit memory usage.
         ///
-        /// > Important: this is a class method you cannot use or capture any state by accident.
+        /// When your implementation of this class method is called, use the provided `inputs` and `arguments` objects
+        /// to return processed pixel data to Core Image via multiple `outputs`.
+        ///
+        /// > Important: this is a class method so that you cannot use or capture any state by accident.
         /// All the parameters that affect the output results must be passed to
         /// ``applyWithExtent:inputs:arguments:error:``.
         ///
@@ -308,7 +361,7 @@ impl CIImageProcessorKernel {
 
         #[cfg(all(feature = "CIImage", feature = "CIVector"))]
         /// Call this method on your multiple-output Core Image Processor Kernel subclass
-        /// to create an `NSArray` of new ``CIImage``s given the specified `NSArray` of extents.
+        /// to create an array of new image objects given the specified array of extents.
         ///
         /// The inputs and arguments will be retained so that your subclass can be called when the image is drawn.
         ///
@@ -341,7 +394,27 @@ impl CIImageProcessorKernel {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageprocessorinput?language=objc)
+    /// Your app does not define classes that adopt this protocol; Core Image provides an object of this type
+    /// when rendering a custom image processor you create with a ``CIImageProcessorKernel`` subclass.
+    ///
+    /// When a `CIImage` containing your `CIImageProcessorKernel` class is rendered, your
+    /// ``CIImageProcessorKernel/processWithInputs:arguments:output:error:`` class method will be called as
+    /// needed for that render.  The method may be called more than once if Core Image needs to tile to
+    /// limit memory usage.
+    ///
+    /// When your image processor class method is called, use the provided `CIImageProcessorInput` object to
+    /// access the image data and supporting information to perform your custom image processing routine.
+    /// For example, if you process the image using a Metal shader, use the `metalTexture` property to bind the
+    /// image as an input texture. Or, if you process the image using a CPU-based routine, use the `baseAddress`
+    /// property to access pixel data in memory.
+    ///
+    /// You should use the input's `region` property to determine which portion of the input image is available
+    /// to be processed.
+    ///
+    /// To finish setting up or performing your image processing routine, use the provided ``CIImageProcessorOutput``
+    /// object to return processed pixel data to Core Image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageprocessorinput?language=objc)
     pub unsafe trait CIImageProcessorInput {
         #[cfg(feature = "objc2-core-foundation")]
         /// The rectangular region of the input image that your Core Image Processor Kernel can use to provide the output.
@@ -368,14 +441,14 @@ extern_protocol!(
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
 
         #[cfg(feature = "objc2-io-surface")]
-        /// An input `IOSurface` that your Core Image Processor Kernel can read from.
+        /// An input surface object that your Core Image Processor Kernel can read from.
         /// > Warning: This surface must not be modified by the ``CIImageProcessorKernel``.
         #[unsafe(method(surface))]
         #[unsafe(method_family = none)]
         unsafe fn surface(&self) -> Retained<IOSurfaceRef>;
 
         #[cfg(feature = "objc2-core-video")]
-        /// An input `CVPixelBuffer` that your Core Image Processor Kernel can read from.
+        /// An input pixel buffer object that your Core Image Processor Kernel can read from.
         /// > Warning: This buffer must not be modified by the ``CIImageProcessorKernel``.
         #[unsafe(method(pixelBuffer))]
         #[unsafe(method_family = none)]
@@ -395,16 +468,18 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn digest(&self) -> u64;
 
-        /// This property tell processors that implement ``/CIImageProcessorKernel/roiTileArrayForInput:arguments:outputRect:``
-        /// which input tile index is being processed.
+        /// This property tells a tiled-input processor which input tile index is being processed.
+        ///
+        /// This property is only relevant if your processor implements ``/CIImageProcessorKernel/roiTileArrayForInput:arguments:outputRect:``
         ///
         /// This can be useful if the processor needs to clear the ``CIImageProcessorOutput`` before the first tile is processed.
         #[unsafe(method(roiTileIndex))]
         #[unsafe(method_family = none)]
         unsafe fn roiTileIndex(&self) -> NSUInteger;
 
-        /// This property tell processors that implement ``/CIImageProcessorKernel/roiTileArrayForInput:arguments:outputRect:``
-        /// how many input tiles will be processed.
+        /// This property tells a tiled-input processor how many input tiles will be processed.
+        ///
+        /// This property is only relevant if your processor implements ``/CIImageProcessorKernel/roiTileArrayForInput:arguments:outputRect:``
         ///
         /// This can be useful if the processor needs to do work ``CIImageProcessorOutput`` after the last tile is processed.
         #[unsafe(method(roiTileCount))]
@@ -414,7 +489,27 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageprocessoroutput?language=objc)
+    /// Your app does not define classes that adopt this protocol; Core Image provides an object of this type
+    /// when rendering a custom image processor you create with a ``CIImageProcessorKernel`` subclass.
+    ///
+    /// When a `CIImage` containing your `CIImageProcessorKernel` class is rendered, your
+    /// ``CIImageProcessorKernel/processWithInputs:arguments:output:error:`` class method will be called as
+    /// needed for that render.  The method may be called more than once if Core Image needs to tile to
+    /// limit memory usage.
+    ///
+    /// When your image processor class method is called, use the provided `CIImageProcessorOutput` object to return
+    /// processed pixel data to Core Image. For example, if you process the image using a Metal shader, bind the `metalTexture`
+    /// property as an attachment in a render pass or as an output texture in a compute pass. Or, if you process the image
+    /// using a CPU-based routine, write processed pixel data to memory using the `baseAddress` pointer.
+    ///
+    /// You should use the output's `region` property to determine which portion of the output image needs to be processed.
+    /// Your code should fill the entirety of the `region`. This includes setting to zero any pixels in the `region` that
+    /// are outside the extent passed extent `applyWithExtent:inputs:arguments:error:`.
+    ///
+    /// > Important: You must provide rendered output using only one of the following properties of the output:
+    /// `baseAddress`, `surface`, `pixelBuffer`, `metalTexture`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageprocessoroutput?language=objc)
     pub unsafe trait CIImageProcessorOutput {
         #[cfg(feature = "objc2-core-foundation")]
         /// The rectangular region of the output image that your Core Image Processor Kernel must provide.
@@ -441,25 +536,25 @@ extern_protocol!(
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
 
         #[cfg(feature = "objc2-io-surface")]
-        /// An output `IOSurface` that your Core Image Processor Kernel can write to.
+        /// An output surface object that your Core Image Processor Kernel can write to.
         #[unsafe(method(surface))]
         #[unsafe(method_family = none)]
         unsafe fn surface(&self) -> Retained<IOSurfaceRef>;
 
         #[cfg(feature = "objc2-core-video")]
-        /// An output `CVPixelBuffer` that your Core Image Processor Kernel can write to.
+        /// An output pixelBuffer object that your Core Image Processor Kernel can write to.
         #[unsafe(method(pixelBuffer))]
         #[unsafe(method_family = none)]
         unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "objc2-metal")]
-        /// A `MTLTexture` object that can be bound for output using Metal.
+        /// A Metal texture object that can be bound for output using Metal.
         #[unsafe(method(metalTexture))]
         #[unsafe(method_family = none)]
         unsafe fn metalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "objc2-metal")]
-        /// Returns a `MTLCommandBuffer` that can be used for encoding commands.
+        /// Returns a Metal command buffer object that can be used for encoding commands.
         #[unsafe(method(metalCommandBuffer))]
         #[unsafe(method_family = none)]
         unsafe fn metalCommandBuffer(

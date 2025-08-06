@@ -16,7 +16,7 @@ extern_class!(
     /// for identifying and analyzing image features.
     /// See
     /// <doc
-    /// ://com.apple.documentation/documentation/vision/vnbservation>)
+    /// ://com.apple.documentation/documentation/vision/vnobservation>)
     ///
     /// A `CIFeature` object represents a portion of an image that a detector believes matches its criteria.
     /// Subclasses of CIFeature holds additional information specific to the detector that discovered the feature.

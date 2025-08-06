@@ -12,61 +12,65 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// The VTFrameProcessorConfiguration protocol describes the configuration of a processor to be used during a video processing session.
+    /// The protocol that describes the configuration of a processor for a video frame processing session.
     ///
-    ///
-    /// VTFrameProcessorConfiguration protocol conformance is used to start an frame processing session.  These properties can be  queried on an implementation conforming to VTFrameProcessorConfiguration without starting a session.
+    /// Use `VTFrameProcessorConfiguration` protocol conformance to start a frame processing session. You can query these
+    /// properties on an implementation conforming to `VTFrameProcessorConfiguration` without starting a session.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorconfiguration?language=objc)
     #[cfg(feature = "objc2")]
     pub unsafe trait VTFrameProcessorConfiguration: NSObjectProtocol {
-        /// Returns a Boolean indicating whether the processor supported on the current config.
+        /// Returns a Boolean indicating whether the system supports this processor on the current configuration.
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         unsafe fn isSupported() -> bool;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Returns a list of supported pixel formats for the current configuration
+        /// List of supported pixel formats for source frames for the current configuration.
         #[unsafe(method(frameSupportedPixelFormats))]
         #[unsafe(method_family = none)]
         unsafe fn frameSupportedPixelFormats(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Returns a dictionary of CVPixelBuffer attributes which source and reference frames passed to the processor must conform to.
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent source frames and reference frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         #[unsafe(method(sourcePixelBufferAttributes))]
         #[unsafe(method_family = none)]
         unsafe fn sourcePixelBufferAttributes(&self)
             -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Returns a dictionary of CVPixelBuffer attributes which output frames passed to the processor must conform to.
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent destination frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         #[unsafe(method(destinationPixelBufferAttributes))]
         #[unsafe(method_family = none)]
         unsafe fn destinationPixelBufferAttributes(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        /// returns the number of "next" frames that this processor requires for processing.
+        /// Returns the number of "next" frames that this processor requires for processing.
         #[optional]
         #[unsafe(method(nextFrameCount))]
         #[unsafe(method_family = none)]
         unsafe fn nextFrameCount(&self) -> NSInteger;
 
-        /// returns the number of "previous" frames that this processor requires for processing.
+        /// Returns the number of "previous" frames that this processor requires for processing.
         #[optional]
         #[unsafe(method(previousFrameCount))]
         #[unsafe(method_family = none)]
         unsafe fn previousFrameCount(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-core-media")]
-        /// returns the maximum dimensions for a sourceFrame for the processor
+        /// Returns the maximum dimensions for a `sourceFrame` for the processor.
         #[optional]
         #[unsafe(method(maximumDimensions))]
         #[unsafe(method_family = none)]
         unsafe fn maximumDimensions() -> CMVideoDimensions;
 
         #[cfg(feature = "objc2-core-media")]
-        /// returns the minimum dimensions for a sourceFrame for the processor
+        /// Returns the minimum dimensions for a `sourceFrame` for the processor.
         #[optional]
         #[unsafe(method(minimumDimensions))]
         #[unsafe(method_family = none)]

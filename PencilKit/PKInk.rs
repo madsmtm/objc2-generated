@@ -18,6 +18,10 @@ extern_class!(
     pub struct PKInk;
 );
 
+unsafe impl Send for PKInk {}
+
+unsafe impl Sync for PKInk {}
+
 extern_conformance!(
     unsafe impl NSCopying for PKInk {}
 );

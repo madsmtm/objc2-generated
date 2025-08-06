@@ -18,6 +18,10 @@ extern_class!(
     pub struct PKStrokePath;
 );
 
+unsafe impl Send for PKStrokePath {}
+
+unsafe impl Sync for PKStrokePath {}
+
 extern_conformance!(
     unsafe impl NSCopying for PKStrokePath {}
 );

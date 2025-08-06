@@ -28,6 +28,10 @@ extern_class!(
     pub struct PKDrawing;
 );
 
+unsafe impl Send for PKDrawing {}
+
+unsafe impl Sync for PKDrawing {}
+
 extern_conformance!(
     unsafe impl NSCoding for PKDrawing {}
 );

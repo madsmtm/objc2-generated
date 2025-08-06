@@ -1046,6 +1046,15 @@ impl WKWebView {
             data: &NSData,
             completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
+
+        #[unsafe(method(obscuredContentInsets))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn obscuredContentInsets(&self) -> NSEdgeInsets;
+
+        /// Setter for [`obscuredContentInsets`][Self::obscuredContentInsets].
+        #[unsafe(method(setObscuredContentInsets:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setObscuredContentInsets(&self, obscured_content_insets: NSEdgeInsets);
     );
 }
 

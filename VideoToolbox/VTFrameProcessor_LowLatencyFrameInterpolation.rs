@@ -10,10 +10,18 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Configuration that is used to program VTFrameProcessor for Low Latency Frame Interpolation.  This can either do purely temporal interpolation (Frame Rate Conversion) or it can do temporal and spatial interpolation (Scaling and Frame Rate Conversion).
+    /// Configuration that you use to program Video Toolbox frame processor for low-latency frame interpolation.
     ///
+    /// This configuration can do either purely temporal interpolation (frame-rate conversion) or temporal and spatial
+    /// interpolation (scaling and frame-rate conversion). This processor requires a source frame and a previous frame. It
+    /// does temporal scaling, which interpolates frames between the previous frame and the source frame. When performing
+    /// both temporal and spatial interpolation, the processor can only perform 2x upscaling, and a single frame of temporal
+    /// interpolation. When performing spatial scaling, the processor produces upscaled intermediate frames and an upscaled
+    /// `sourceFrame`, but it does not upscale the previous reference frame you provided.
     ///
-    /// This processor requires a source frame and a previous frame.  It does temporal scaling, interpolating frames between the previous frame and the source frame.  When performing both temporal and spatial interpolation, the processor can only perform 2x upscaling, and a single frame of temporal interpolation.  When performing spatial scaling, the processor will produce upscaled intermediate frames as well as an upscaled sourceFrame but will not upscale the previous reference frame provided. Important: When calling [VTFrameProcessor startSessionWithConfiguration:] to create a VTLowLatencyFrameInterpolation session, ML model loading may take longer than a frame time. Avoid blocking the UI thread or stalling frame rendering pipelines during this call.
+    /// > Important: When calling ``VTFrameProcessor/startSessionWithConfiguration:error:`` to create a `VTLowLatencyFrameInterpolation`
+    /// session, ML model loading may take longer than a frame time. Avoid blocking the UI thread or stalling frame rendering
+    /// pipelines during this call.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtlowlatencyframeinterpolationconfiguration?language=objc)
     #[unsafe(super(NSObject))]
@@ -41,19 +49,19 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl VTLowLatencyFrameInterpolationConfiguration {
     extern_methods!(
-        /// Creates a new VTLowLatencyFrameInterpolationConfiguration with specified frame width and height, configured for temporal interpolation (Frame Rate Conversion).
+        /// Creates a new low-latency frame interpolation configuration for frame-rate conversion.
         ///
+        /// The available interpolation points are the equal to the value of (2^x - 1), where x is equal to `numberOfInterpolatedFrames`.
+        /// For example,
+        /// - If you request 1 interpolated frame, 1 interpolation point at 0.5 is available.
+        /// - If you request 2 interpolated frames, 3 interpolation points at 0.25, 0.5 and 0.75 are available.
+        /// You don't need to use all available interpolation points. Setting a higher `numberOfInterpolatedFrames` increases
+        /// the resolution of interpolation in some cases, but also increases latency.
         ///
-        /// Parameter `frameWidth`: Width of source frame in pixels.
-        ///
-        ///
-        /// Parameter `frameHeight`: Height of source frame in pixels.
-        ///
-        ///
-        /// Parameter `numberOfInterpolatedFrames`: The number of uniformly spaced frames that you want to have available for interpolation.
-        ///
-        ///
-        /// The available interpolation points will be be the next value of  (2^x -1) which is greater than or equal to numberOfInterpolatedFrames.  For example, if 1 interpolated frame is requested, 1 interpolation point at 0.5 is available.  If 2 interpolated frames are requested, 3 interpolation points at 0.25, 0.5 and 0.75 are available.  Not all available interpolation points need to be used.  Setting a higher numberOfInterpolatedFrames increases the resolution of interpolation in some cases, but will also increase latency.
+        /// - Parameters:
+        /// - frameWidth: Width of source frame in pixels.
+        /// - frameHeight: Height of source frame in pixels.
+        /// - numberOfInterpolatedFrames: The number of uniformly spaced frames that you want to be used for interpolation.
         #[unsafe(method(initWithFrameWidth:frameHeight:numberOfInterpolatedFrames:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameWidth_frameHeight_numberOfInterpolatedFrames(
@@ -63,19 +71,15 @@ impl VTLowLatencyFrameInterpolationConfiguration {
             number_of_interpolated_frames: NSInteger,
         ) -> Option<Retained<Self>>;
 
-        /// Creates a new VTLowLatencyFrameInterpolationConfiguration with specified frame width and height, configured for spatial scaling as well as temporal scaling.
+        /// Creates a new low-latency frame interpolation configuration for spatial scaling and temporal scaling.
         ///
+        /// When you configure the processor for spatial scaling, the low-latency frame interpolation processor only supports 2x
+        /// spatial upscaling and a single frame of temporal interpolation at a 0.5 interpolation phase.
         ///
-        /// Parameter `frameWidth`: Width of source frame in pixels.
-        ///
-        ///
-        /// Parameter `frameHeight`: Height of source frame in pixels.
-        ///
-        ///
-        /// Parameter `spatialScaleFactor`: The requested spatial scale factor as an integer.  Currently, only 2x spatial scaling is supported.
-        ///
-        ///
-        /// When configured for spatial scaling, the VTLowLatencyFrameInterpolation processor only supports 2x spatial upscaling and a single frame of temporal interpolation at a 0.5 interpolation phase.  Setting the numberOfInterpolatedFrames property will be ignored in this case.
+        /// - Parameters:
+        /// - frameWidth: Width of source frame in pixels.
+        /// - frameHeight: Height of source frame in pixels.
+        /// - spatialScaleFactor: The requested spatial scale factor as an integer. Currently, the processor supports only 2x spatial scaling.
         #[unsafe(method(initWithFrameWidth:frameHeight:spatialScaleFactor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameWidth_frameHeight_spatialScaleFactor(
@@ -93,34 +97,36 @@ impl VTLowLatencyFrameInterpolationConfiguration {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        /// Returns the width of source frames in pixels.
+        /// Width of source frames in pixels.
         #[unsafe(method(frameWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameWidth(&self) -> NSInteger;
 
-        /// Returns the height of source frames in pixels.
+        /// Height of source frames in pixels.
         #[unsafe(method(frameHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameHeight(&self) -> NSInteger;
 
-        /// Returns the configured spatial scale factor as an integer.
+        /// Configured spatial scale factor as an integer.
         #[unsafe(method(spatialScaleFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn spatialScaleFactor(&self) -> NSInteger;
 
-        /// Returns the number of uniformly spaced frames that the processor is configured for..
+        /// Number of uniformly spaced frames for which you configured the processor.
         #[unsafe(method(numberOfInterpolatedFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfInterpolatedFrames(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Returns a list of supported pixel formats for current configuration
+        /// Available supported pixel formats for current configuration.
         #[unsafe(method(frameSupportedPixelFormats))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameSupportedPixelFormats(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as source and reference frames
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent source frames and reference frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         #[unsafe(method(sourcePixelBufferAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourcePixelBufferAttributes(
@@ -128,14 +134,16 @@ impl VTLowLatencyFrameInterpolationConfiguration {
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as destination frames
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent destination frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         #[unsafe(method(destinationPixelBufferAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationPixelBufferAttributes(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        /// reports whether this processor is supported
+        /// Reports whether the system supports this processor.
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
@@ -144,10 +152,11 @@ impl VTLowLatencyFrameInterpolationConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// VTLowLatencyFrameInterpolationParameters object contains both input and output parameters needed for the Temporal Noise Filter Frame Processor. This object is used in the processWithParameters call of VTFrameProcessor class.
+    /// An object that contains both input and output parameters that the low-latency frame interpolation processor needs.
     ///
+    /// Use this object in the `processWithParameters` call of `VTFrameProcessor` class.
     ///
-    /// VTLowLatencyFrameInterpolationParameters are frame level parameters.
+    /// `VTLowLatencyFrameInterpolationParameters` are frame-level parameters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtlowlatencyframeinterpolationparameters?language=objc)
     #[unsafe(super(NSObject))]
@@ -170,19 +179,17 @@ extern_conformance!(
 impl VTLowLatencyFrameInterpolationParameters {
     extern_methods!(
         #[cfg(all(feature = "VTFrameProcessorFrame", feature = "objc2-foundation"))]
-        /// Creates a new VTLowLatencyFrameInterpolationParameters used to generate interpolated frames between a previous frame and a sourceFrame.
+        /// Creates a new low-latency frame interpolation parameters object.
         ///
-        ///
-        /// Parameter `sourceFrame`: Current source frame. Must be non nil.
-        ///
-        ///
-        /// Parameter `previousFrame`: Previous frame used for interpolation.  Must be non nil.
-        ///
-        ///
-        /// Parameter `interpolationPhase`: The list of interpolation phase locations for the frames to be interpolated.  Must be greater than 0 and less than 1.0  0.5 is midway between the previous frame and the source frame.  If spatial scaling has been enabled, the only supported interpolation phase is 0.5.
-        ///
-        ///
-        /// Parameter `destinationFrames`: The list of VTFrameProcessorFrame to receive the interpolated frames.  This must have the same number of elements as the the interpolationPhase.  If spatial scaling is enabled, it must also contain an element to hold the scaled version of sourceFrame.
+        /// - Parameters:
+        /// - sourceFrame: Current frame to use for interpolation; must be non `nil`.
+        /// - previousFrame: Previous frame used for interpolation; must be non `nil`.
+        /// - interpolationPhase: Array of float numbers that indicate interpolation phase locations at which the processor
+        /// interpolates the frames. Must be greater than 0 and less than 1.0; for example 0.5 is midway between the previous
+        /// frame and the source frame. If you enable spatial scaling, the only supported interpolation phase is 0.5.
+        /// - destinationFrames: Caller-allocated array of `VTFrameProcessorFrame` to receive the interpolated frames. This
+        /// must have the same number of elements as the the `interpolationPhase`. If you enable spatial scaling, it must also
+        /// contain an element to hold the scaled version of sourceFrame.
         #[unsafe(method(initWithSourceFrame:previousFrame:interpolationPhase:destinationFrames:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSourceFrame_previousFrame_interpolationPhase_destinationFrames(
@@ -202,25 +209,25 @@ impl VTLowLatencyFrameInterpolationParameters {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Returns the source frame that was provided when the VTLowLatencyFrameInterpolationParameters object was created.
+        /// Source frame that you provided when creating the low-latency frame interpolation parameters object.
         #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFrame(&self) -> Retained<VTFrameProcessorFrame>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Returns the previous frame that was provided when the VTLowLatencyFrameInterpolationParameters object was created.
+        /// Previous frame that you provided when creating the low-latency frame interpolation parameters object.
         #[unsafe(method(previousFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousFrame(&self) -> Retained<VTFrameProcessorFrame>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Returns the array of interpolation [phases that were provided when the VTLowLatencyFrameInterpolationParameters object was created.
+        /// Array of interpolation phases that you provided when creating the low-latency frame interpolation parameters object.
         #[unsafe(method(interpolationPhase))]
         #[unsafe(method_family = none)]
         pub unsafe fn interpolationPhase(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "VTFrameProcessorFrame", feature = "objc2-foundation"))]
-        /// Returns the array of destination frames that were provided when the VTLowLatencyFrameInterpolationParameters object was created.
+        /// Array of destination frames that you provided when creating the low-latency frame interpolation parameters object.
         #[unsafe(method(destinationFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationFrames(&self) -> Retained<NSArray<VTFrameProcessorFrame>>;

@@ -5,22 +5,24 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// The size of the search blocks used in VTMotionEstimationSession.
+    /// The size of the search blocks that motion estimation session uses.
     ///
-    /// VTMotionEstimationSessionCreate takes a dictionary of creation options, motionVectorProcessorSelectionOptions.
-    /// kVTMotionEstimationSessionCreationOption_MotionVectorSize can be supplied with CFNumber to override the default search block size.
-    /// Currently supported motion vector size is 4 or 16, meaning 4x4 or 16x16 respectively. 16x16 is the default if this key is not provided.
+    /// ``VTMotionEstimationSessionCreate`` takes a dictionary of creation options, `motionVectorProcessorSelectionOptions`.
+    /// You can supply ``kVTMotionEstimationSessionCreationOption_MotionVectorSize`` with `CFNumber` to override the default
+    /// search block size. Supported motion vector size is 4 or 16, meaning 4x4 or 16x16 respectively. 16x16 is the default
+    /// if you don't provide this key.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtmotionestimationsessioncreationoption_motionvectorsize?language=objc)
     pub static kVTMotionEstimationSessionCreationOption_MotionVectorSize: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// An option used for higher quality motion estimation
+    /// An option to use for higher quality motion estimation.
     ///
-    /// VTMotionEstimationSessionCreate takes a dictionary of creation options, motionVectorProcessorSelectionOptions.
-    /// kVTMotionEstimationSessionCreationOption_UseMultiPassSearch can be supplied with kCFBooleanTrue to provide higher quality motion estimation.
-    /// True motion achieves higher quality by running the motion estimator in multiple passes. The default is kCFBooleanFalse.
+    /// ``VTMotionEstimationSessionCreate`` takes a dictionary of creation options, `motionVectorProcessorSelectionOptions`.
+    /// You can supply ``kVTMotionEstimationSessionCreationOption_UseMultiPassSearch`` with `kCFBooleanTrue` to provide
+    /// higher quality motion estimation. True-motion achieves higher quality by running the motion estimator in multiple
+    /// passes. The default is `kCFBooleanFalse`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtmotionestimationsessioncreationoption_usemultipasssearch?language=objc)
     pub static kVTMotionEstimationSessionCreationOption_UseMultiPassSearch:
@@ -28,18 +30,20 @@ extern "C" {
 }
 
 extern "C" {
-    /// Renamed to kVTMotionEstimationSessionCreationOption_UseMultiPassSearch
+    /// Enable multi pass true motion detection.
+    ///
+    /// Renamed to `kVTMotionEstimationSessionCreationOption_UseMultiPassSearch`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtmotionestimationsessioncreationoption_detecttruemotion?language=objc)
     pub static kVTMotionEstimationSessionCreationOption_DetectTrueMotion: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// A label used for logging and resource tracking.
+    /// A label you use to log and track resources.
     ///
-    /// VTMotionEstimationSessionCreate takes a dictionary of creation options, motionVectorProcessorSelectionOptions.
-    /// kVTMotionEstimationSessionCreationOption_Label can be supplied with CFString to specify a label used in logging and
-    /// resource tracking.
+    /// ``VTMotionEstimationSessionCreate`` takes a dictionary of creation options, `motionVectorProcessorSelectionOptions`.
+    /// You can supply ``kVTMotionEstimationSessionCreationOption_Label`` with `CFString` to specify a label used in logging
+    /// and resource tracking.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtmotionestimationsessioncreationoption_label?language=objc)
     pub static kVTMotionEstimationSessionCreationOption_Label: Option<&'static CFString>;

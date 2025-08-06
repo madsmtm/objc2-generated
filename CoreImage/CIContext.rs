@@ -191,7 +191,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// A Boolean value to specifying a client-provided name for a context.
+    /// A Boolean value to specify a client-provided name for a context.
     ///
     /// This name will be used in QuickLook graphs and the output of CI_PRINT_TREE.
     ///
@@ -215,22 +215,26 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextmemorylimit?language=objc)
+    /// A number value to control the maximum memory in megabytes that the context allocates for render tasks.
+    ///
+    /// Larger values could increase memory  footprint while smaller values could reduce performance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextmemorylimit?language=objc)
     pub static kCIContextMemoryLimit: &'static CIContextOption;
 }
 
 extern_class!(
     /// The Core Image context class provides an evaluation context for Core Image processing with Metal, OpenGL, or OpenCL.
     ///
-    /// You use `CIContext` instance to render a ``CIImage`` instance which represents a graph of image processing operations
+    /// You use a `CIContext` instance to render a ``CIImage`` instance which represents a graph of image processing operations
     /// which are built using other Core Image classes, such as ``CIFilter-class``, ``CIKernel``, ``CIColor`` and ``CIImage``.
     /// You can also use a `CIContext` with the ``CIDetector`` class to analyze images — for example, to detect faces
     /// or barcodes.
     ///
     /// Contexts support automatic color management by performing all processing operations in a working color space.
     /// This means that unless told otherwise:
-    /// * all input images are color matched from the input's color space to the working space.
-    /// * all renders are color matched from the working space to the destination space.
+    /// * All input images are color matched from the input's color space to the working space.
+    /// * All renders are color matched from the working space to the destination space.
     /// (For more information on `CGColorSpace` see
     /// <doc
     /// ://com.apple.documentation/documentation/coregraphics/cgcolorspace>)
@@ -240,7 +244,7 @@ extern_class!(
     /// threads. Each thread must take case not to access or modify a ``CIFilter-class`` instance while it is being used by
     /// another thread.
     ///
-    /// The `CIContext` manages various internal state such `MTLCommandQueue` and caches for compiled kernels
+    /// The `CIContext` manages various internal state such as `MTLCommandQueue` and caches for compiled kernels
     /// and intermediate buffers.  For this reason it is not recommended to create many `CIContext` instances.  As a rule,
     /// it recommended that you create one `CIContext` instance for each view that renders ``CIImage`` or each background task.
     ///
@@ -320,11 +324,23 @@ impl CIContext {
         ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// The working color space of the CIContext.
+        ///
+        /// The working color space determines the color space used when executing filter kernels.
+        /// You specify a working color space using the ``kCIContextWorkingColorSpace`` option when creating a ``CIContext``.
+        /// * All input images are color matched from the input's color space to the working space.
+        /// * All renders are color matched from the working space to the destination space.
+        ///
+        /// The property will be `null` if the context was created with color management disabled.
         #[unsafe(method(workingColorSpace))]
         #[unsafe(method_family = none)]
         pub unsafe fn workingColorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "CIImage")]
+        /// The working pixel format that the CIContext uses for intermediate buffers.
+        ///
+        /// The working format determines the pixel format that Core Image uses to create intermediate buffers for rendering images.
+        /// You specify a working pixel format using the ``kCIContextWorkingFormat`` option when creating a ``CIContext``.
         #[unsafe(method(workingFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn workingFormat(&self) -> CIFormat;
@@ -513,7 +529,7 @@ impl CIContext {
         /// For example, if `kCIFormatRGBX16` is specified, then the created `CGImage` will
         /// be 16 bits-per-component and opaque.
         /// - colorSpace: The `CGColorSpace` for the output image.
-        /// This color space must have either `CGColorSpaceModel.rgb` or `CGColorSpaceModel.monochrome` and
+        /// This color space must have either `CGColorSpaceModel.rgb` or `CGColorSpaceModel.monochrome`
         /// and be compatible with the specified pixel format.
         ///
         /// - Returns:
@@ -548,11 +564,11 @@ impl CIContext {
         /// For example, if `kCIFormatRGBX16` is specified, then the created `CGImage` will
         /// be 16 bits-per-component and opaque.
         /// - colorSpace: The `CGColorSpace` for the output image.
-        /// This color space must have either `CGColorSpaceModel.rgb` or `CGColorSpaceModel.monochrome` and
+        /// This color space must have either `CGColorSpaceModel.rgb` or `CGColorSpaceModel.monochrome`
         /// and be compatible with the specified pixel format.
         /// - deferred: Controls when Core Image renders `image`.
-        /// * `YES` : rendering of `image` is deferred until the created `CGImage` rendered.
-        /// * `NO`  : the `image` is rendered immediately.
+        /// * True: rendering of `image` is deferred until the created `CGImage` rendered.
+        /// * False: the `image` is rendered immediately.
         ///
         /// - Returns:
         /// Returns a new `CGImage` instance.
@@ -587,15 +603,15 @@ impl CIContext {
         /// For example, if `kCIFormatRGBX16` is specified, then the created `CGImage` will
         /// be 16 bits-per-component and opaque.
         /// - colorSpace: The `CGColorSpace` for the output image.
-        /// This color space must have either `CGColorSpaceModel.rgb` or `CGColorSpaceModel.monochrome` and
+        /// This color space must have either `CGColorSpaceModel.rgb` or `CGColorSpaceModel.monochrome`
         /// and be compatible with the specified pixel format.
         /// - deferred: Controls when Core Image renders `image`.
-        /// * `YES` : rendering of `image` is deferred until the created `CGImage` rendered.
-        /// * `NO`  : the `image` is rendered immediately.
+        /// * True: rendering of `image` is deferred until the created `CGImage` rendered.
+        /// * False: the `image` is rendered immediately.
         /// - calculateHDRStats: Controls if Core Image calculates HDR statistics.
-        /// * `YES` : Core Image will immediately render `image`, calculate the HDR statistics
+        /// * True: Core Image will immediately render `image`, calculate the HDR statistics
         /// and create a `CGImage` that has the calculated values.
-        /// * `NO` :  the created `CGImage` will not have any HDR statistics.
+        /// * False:  the created `CGImage` will not have any HDR statistics.
         ///
         /// - Returns:
         /// Returns a new `CGImage` instance.

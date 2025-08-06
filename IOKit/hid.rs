@@ -5151,6 +5151,8 @@ pub const kHIDUsage_Game_Reserved: c_uint = 0xFFFF;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_gendevcontrols_backgroundcontrols?language=objc)
 pub const kHIDUsage_GenDevControls_BackgroundControls: c_uint = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_gendevcontrols_batterystrength?language=objc)
+pub const kHIDUsage_GenDevControls_BatteryStrength: c_uint = 0x20;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_keyboarderrorrollover?language=objc)
 pub const kHIDUsage_KeyboardErrorRollOver: c_uint = 0x01;

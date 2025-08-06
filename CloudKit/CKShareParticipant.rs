@@ -57,7 +57,14 @@ unsafe impl RefEncode for CKShareParticipantPermission {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Shares with ``.administrator`` participants will be returned as read-only to devices running OS versions prior to the ``.administrator`` role being introduced. The ``.administrator`` participants on these read-only shares will be returned as ``.privateUser``.
+/// Defines the participant role in a share:
+/// - `owner`: Can add private users.
+/// - `privateUser`: Can access the share.
+/// - `publicUser`: Self-added when accessing the share URL (owners cannot add public users).
+/// - `administrator`: Can add and remove participants and change their permissions.
+///
+/// Shares with ``CloudKit/CKShareParticipantRole/CKShareParticipantRoleAdministrator`` participants will be returned as read-only to devices running OS versions prior to this role being introduced.
+/// Administrator participants on these read-only shares will be returned as ``CloudKit/CKShareParticipantRole/CKShareParticipantRolePrivateUser``.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantrole?language=objc)
 // NS_ENUM
@@ -170,7 +177,7 @@ impl CKShareParticipant {
         #[unsafe(method_family = none)]
         pub unsafe fn setRole(&self, role: CKShareParticipantRole);
 
-        /// The default participant type is ``CKShareParticipantTypePrivateUser``.
+        /// The default participant type is ``CloudKit/CKShareParticipantType/CKShareParticipantTypePrivateUser``.
         #[deprecated]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
@@ -202,12 +209,14 @@ impl CKShareParticipant {
         #[unsafe(method_family = none)]
         pub unsafe fn participantID(&self) -> Retained<NSString>;
 
-        /// `YES` if this participant was a requester before getting added to the share
+        /// Indicates whether the participant was originally a requester who was approved to join the share.
         #[unsafe(method(isApprovedRequester))]
         #[unsafe(method_family = none)]
         pub unsafe fn isApprovedRequester(&self) -> bool;
 
-        /// The timestamp when the participant was added, set when the share is saved to the server.
+        /// The date and time when the participant was added to the share.
+        ///
+        /// This timestamp is set when the share is successfully saved to the server.
         #[unsafe(method(dateAddedToShare))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateAddedToShare(&self) -> Option<Retained<NSDate>>;

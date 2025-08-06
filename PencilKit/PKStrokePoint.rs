@@ -19,6 +19,10 @@ extern_class!(
     pub struct PKStrokePoint;
 );
 
+unsafe impl Send for PKStrokePoint {}
+
+unsafe impl Sync for PKStrokePoint {}
+
 extern_conformance!(
     unsafe impl NSCopying for PKStrokePoint {}
 );

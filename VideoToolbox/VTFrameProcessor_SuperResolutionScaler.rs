@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Quality prioritization levels to favor quality or performance.
+/// Configuration value you set to prioritize quality or performance.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfigurationqualityprioritization?language=objc)
 // NS_ENUM
@@ -33,7 +33,10 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationQualityPrioritizat
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// List of existing algorithm revisions with the highest being the latest. Clients can read defaultRevision property to find the default revision.
+/// Available algorithm revisions.
+///
+/// A new enum case with a higher revision number is added when the processing algorithm is updated.
+/// The ``VTSuperResolutionScalerConfiguration/defaultRevision`` property provides the default algorithm revision.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfigurationrevision?language=objc)
 // NS_ENUM
@@ -57,7 +60,7 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationRevision {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// List of SuperResolution  input types.
+/// Available super-resolution processor input types.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfigurationinputtype?language=objc)
 // NS_ENUM
@@ -83,7 +86,7 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationInputType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// List of SuperResolution  input types.
+/// Available super-resolution processor model status types.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfigurationmodelstatus?language=objc)
 // NS_ENUM
@@ -111,7 +114,18 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationModelStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Hint to let the processor know whether frames are being submitted in presenatation sequence, allowing performance optimizations based on previous processing requests
+/// Indicates the order of input frames.
+///
+/// When submitting ``VTSuperResolutionScalerParameters`` to the processor, you need to provide one of these values based on
+/// how the input frames are related to each other.
+///
+/// Use ``VTSuperResolutionScalerParametersSubmissionModeSequential`` to indicate that the current submission follows
+/// presentation time order without jumps or skips, when compared to previous submissions. This value provides better
+/// processor performance than other values.
+///
+/// Use ``VTSuperResolutionScalerParametersSubmissionModeRandom`` to indicate that the current submission has no relation
+/// to the previous submission. Typically, this indicates a jump or skip in the frame sequence. The processor clears
+/// internal caches when it receives this value in ``VTFrameProcessor/processWithParameters`` function call.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameterssubmissionmode?language=objc)
 // NS_ENUM
@@ -139,10 +153,16 @@ unsafe impl RefEncode for VTSuperResolutionScalerParametersSubmissionMode {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Configuration that is used to set up the SuperResolution Processor.
+    /// Configuration that you use to set up the super-resolution processor.
     ///
+    /// This configuration enables the super-resolution processor on a `VTFrameProcessor` session.
     ///
-    /// This configuration enables the SuperResolution on a VTFrameProcessing session.  IMPORTANT: The VTSuperResolutionScaler processor may require ML models which need to be downloaded by the framework in order to operate.  Before using calling startSessionWithConfiguration with a VTSuperResolutionScalerConfiguration, it is important that you verify that the necessary models are present by checking the configurationModelStatus on the configuration object.  If models are not available, model download can be triggered using the downloadConfigurationModelWithCompletionHandler method on the configuration object.  Best practice is to confirm availability of models and drive download with user awareness and interaction before engaging workflows where the processor is needed.
+    /// > Important: The super-resolution processor may require ML models which the framework needs to download in order to
+    /// operate. Before calling ``VTFrameProcessor/startSessionWithConfiguration:error:`` with an instance of this class,
+    /// it is important that you verify that the necessary models are present by checking ``configurationModelStatus``.
+    /// If models are not available, you can trigger model download using the ``downloadConfigurationModelWithCompletionHandler:``
+    /// method. Best practice is to confirm availability of models and drive download with user awareness and interaction
+    /// before engaging workflows that need this processor.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration?language=objc)
     #[unsafe(super(NSObject))]
@@ -170,23 +190,25 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerConfiguration {
     extern_methods!(
-        /// Creates a new VTSuperResolutionScalerConfiguration with specified flow width and height.
+        /// Creates a new super-resolution scaler processor configuration.
         ///
-        /// init will return nil if dimensions are out of range or revision is unsupported.
+        /// This processor increases resolution of an image or video.
+        /// Returns `nil` if dimensions are out of range or revision is unsupported.
         ///
-        /// Parameter `frameWidth`: Width of source frame in pixels. With VTSuperResolutionScalerConfigurationInputTypeVideo, maximum width is 1920 on macOS and 1440 on iOS. With VTSuperResolutionScalerConfigurationInputTypeImage, maximum width is 1920.
-        ///
-        /// Parameter `frameHeight`: Height of source frame in pixels. With VTSuperResolutionScalerConfigurationInputTypeVideo, maximum height is 1080. With VTSuperResolutionScalerConfigurationInputTypeImage, maximum height is 1920.
-        ///
-        /// Parameter `scaleFactor`: Indicates the scale factor between input and output.
-        ///
-        /// Parameter `inputType`: Indicates the type of input (video / image ).
-        ///
-        /// Parameter `usePrecomputedFlow`: Boolean value to indicate that Optical Flow will be provided by the user, if false this configuration will compute the optical flow on the fly.
-        ///
-        /// Parameter `qualityPrioritization`: Used to control quality and performance levels. See VTSuperResolutionScalerConfigurationQualityPrioritization for more info.
-        ///
-        /// Parameter `revision`: The specific algorithm or configuration revision that is to be used to perform the request.
+        /// - Parameters:
+        /// - frameWidth: Width of source frame in pixels. With ``VTSuperResolutionScalerConfigurationInputTypeVideo``,
+        /// maximum width is 1920 on macOS and 1440 on iOS. With ``VTSuperResolutionScalerConfigurationInputTypeImage``,
+        /// maximum width is 1920.
+        /// - frameHeight: Height of source frame in pixels. With ``VTSuperResolutionScalerConfigurationInputTypeVideo``,
+        /// maximum height is 1080. With ``VTSuperResolutionScalerConfigurationInputTypeImage``, maximum height is 1920 on
+        /// macOS and 1080 on iOS.
+        /// - scaleFactor: Indicates the scale factor between input and output.
+        /// - inputType: Indicates the type of input, either video or image.
+        /// - usePrecomputedFlow: Boolean value to indicate that you provide optical flow; if false, this configuration
+        /// computes the optical flow on the fly.
+        /// - qualityPrioritization: A level you use to prioritize quality or performance; for more information about
+        /// supported levels, see ``VTSuperResolutionScalerConfigurationQualityPrioritization``.
+        /// - revision: The specific algorithm or configuration revision you use to perform the request.
         #[unsafe(method(initWithFrameWidth:frameHeight:scaleFactor:inputType:usePrecomputedFlow:qualityPrioritization:revision:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameWidth_frameHeight_scaleFactor_inputType_usePrecomputedFlow_qualityPrioritization_revision(
@@ -223,7 +245,7 @@ impl VTSuperResolutionScalerConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn inputType(&self) -> VTSuperResolutionScalerConfigurationInputType;
 
-        /// Indicates that caller will provide optical flow.
+        /// Indicates that you provide optical flow.
         #[unsafe(method(usesPrecomputedFlow))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesPrecomputedFlow(&self) -> bool;
@@ -233,39 +255,43 @@ impl VTSuperResolutionScalerConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn scaleFactor(&self) -> NSInteger;
 
-        /// parameter used to control quality and performance levels. See VTSuperResolutionScalerConfigurationQualityPrioritization for more info.
+        /// A parameter to control quality and performance levels.
+        ///
+        /// For more information about supported levels, see ``VTSuperResolutionScalerConfigurationQualityPrioritization``.
         #[unsafe(method(qualityPrioritization))]
         #[unsafe(method_family = none)]
         pub unsafe fn qualityPrioritization(
             &self,
         ) -> VTSuperResolutionScalerConfigurationQualityPrioritization;
 
-        /// The specific algorithm or configuration revision that is to be used to perform the request.
+        /// The specific algorithm or configuration revision you use to perform the request.
         #[unsafe(method(revision))]
         #[unsafe(method_family = none)]
         pub unsafe fn revision(&self) -> VTSuperResolutionScalerConfigurationRevision;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Provides the collection of currently-supported algorithm or configuration revisions for the class of configuration.
+        /// Provides the collection of currently supported algorithms or configuration revisions for the class of configuration.
         ///
-        /// This property allows clients to introspect at runtime what revisions are available for each configuration.
+        /// A property you use to introspect at runtime which revisions are available for each configuration.
         #[unsafe(method(supportedRevisions))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRevisions() -> Retained<NSIndexSet>;
 
-        /// Provides the default revision of a particular algorithm or configuration.
+        /// Provides the default revision of a specific algorithm or configuration.
         #[unsafe(method(defaultRevision))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultRevision() -> VTSuperResolutionScalerConfigurationRevision;
 
         #[cfg(feature = "objc2-foundation")]
-        /// list of source frame supported pixel formats for current configuration
+        /// Available supported pixel formats for source frames for current configuration.
         #[unsafe(method(frameSupportedPixelFormats))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameSupportedPixelFormats(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as source frames and reference frames.
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent source frames and reference frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         #[unsafe(method(sourcePixelBufferAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourcePixelBufferAttributes(
@@ -273,14 +299,16 @@ impl VTSuperResolutionScalerConfiguration {
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as destination frames.
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent destination frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         #[unsafe(method(destinationPixelBufferAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationPixelBufferAttributes(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        /// reports the download status of models required to use VTSuperResolutionScaler for the current configuration.
+        /// Reports the download status of models that the system needs for the current configuration.
         #[unsafe(method(configurationModelStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationModelStatus(
@@ -288,11 +316,14 @@ impl VTSuperResolutionScalerConfiguration {
         ) -> VTSuperResolutionScalerConfigurationModelStatus;
 
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
-        /// This interface requests that models associated with the VTSuperResolutionScalerConfiguration be downloaded.
+        /// Downloads models that the system needs for the current configuration.
         ///
-        ///
-        /// This interface can be used to download model assets required for the current VTSuperResolutionScalerConfiguration if the state is currently VTSuperResolutionScalerConfigurationModelStatusDownloadRequired.  The processorModelStatus class property can be queried to see if models are all already present.  If a download has been initiated, processorModelPercentageAvailable can be queried to determine what percentage of the model models are avialable.
-        /// If the download fails, the completion handler will return an NSError, and the status will go back to VTSuperResolutionScalerConfigurationModelStatusDownloadRequired.  If the download succeeds, the NSError return value will be nil.
+        /// This method downloads model assets required for the current configuration in background. You should call this method
+        /// if ``configurationModelStatus`` is ``VTSuperResolutionScalerConfigurationModelStatusDownloadRequired``. After this
+        /// method is called, you can query ``configurationModelPercentageAvailable`` to determine progress of model asset
+        /// download process. If the download fails, the completion handler is invoked with an `NSError`, and the
+        /// ``configurationModelStatus`` goes back to ``VTSuperResolutionScalerConfigurationModelStatusDownloadRequired``. If
+        /// the download succeeds, the completion handler is invoked with `nil` NSError.
         #[unsafe(method(downloadConfigurationModelWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadConfigurationModelWithCompletionHandler(
@@ -305,13 +336,13 @@ impl VTSuperResolutionScalerConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn configurationModelPercentageAvailable(&self) -> c_float;
 
-        /// reports whether this processor is supported
+        /// Reports whether the system supports this processor.
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
 
         #[cfg(feature = "objc2-foundation")]
-        /// reports the set of supported scale factors that can be used when initializing a VTSuperResolutionScalerConfiguration.
+        /// Reports the set of supported scale factors to use when initializing a super-resolution scaler configuration.
         #[unsafe(method(supportedScaleFactors))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedScaleFactors() -> Retained<NSArray<NSNumber>>;
@@ -320,10 +351,11 @@ impl VTSuperResolutionScalerConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// VTSuperResolutionScalerParameters object contains both input and output parameters needed to run the SuperResolution processor on a frame. This object is used in the processWithParameters call of VTFrameProcessor class. The output parameter for this class is destinationFrame where the output frame is returned (as VTFrameProcessorFrame) back to the caller function once the processWithParameters completes.
+    /// An object that contains both input and output parameters that the super-resolution processor needs to run on a frame.
     ///
+    /// Use this object in the `processWithParameters` call of the `VTFrameProcessor` class. The output parameter for this class is `destinationFrame`, where the processor returns the output frame (as `VTFrameProcessorFrame`) back to you once `processWithParameters` completes.
     ///
-    /// VTSuperResolutionScalerParameters are frame level parameters.
+    /// `VTSuperResolutionScalerParameters` are frame-level parameters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameters?language=objc)
     #[unsafe(super(NSObject))]
@@ -346,21 +378,18 @@ extern_conformance!(
 impl VTSuperResolutionScalerParameters {
     extern_methods!(
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Creates a new VTSuperResolutionScalerParameters .
+        /// Creates a new super-resolution scaler parameters instance.
         ///
-        /// init will return nil if sourceFrame or destinationFrame is nil, sourceFrame and reference frames  are different pixelFormats.
+        /// Returns `nil` if `sourceFrame` or `destinationFrame` is `nil`, or if `sourceFrame` and reference frames have different pixel formats.
         ///
-        /// Parameter `sourceFrame`: Current source frame. Must be non nil.
-        ///
-        /// Parameter `previousFrame`: The Previous source frame in presentation time order. For the first frame this can be set to nil.
-        ///
-        /// Parameter `previousOutputFrame`: The Previous output frame in presentation time order. For the first frame this can be set to nil.
-        ///
-        /// Parameter `opticalFlow`: Optional VTFrameProcessorOpticalFlow object that contains forward and backward optical flow between sourceFrame and previousFrame frame. Only needed if optical flow is pre-computed.
-        ///
-        /// Parameter `submissionMode`: Set to VTSuperResolutionScalerParametersSubmissionModeSequential to indicate that current submission follow presentation time order without jump or skip when compared to previous submission. VTSuperResolutionScalerParametersSubmissionModeSequential will yield better performance. Set to VTSuperResolutionScalerParametersSubmissionModeRandom to indicate a skip or a jump in frame sequence.
-        ///
-        /// Parameter `destinationFrame`: User allocated pixel buffer that will receive the results.
+        /// - Parameters:
+        /// - sourceFrame: Current source frame; must be non `nil`.
+        /// - previousFrame: The previous source frame in presentation time order. For the first frame you can set this to `nil`.
+        /// - previousOutputFrame: The previous output frame in presentation time order. For the first frame you can set this to `nil`.
+        /// - opticalFlow: Optional `VTFrameProcessorOpticalFlow` object that contains forward and backward optical flow between the `sourceFrame` and `previousFrame`. You only need this if optical flow is pre-computed.
+        /// - submissionMode: Provides a hint to let the processor know whether you are submitting frames in presentation
+        /// sequence. For more information about supported modes see ``VTSuperResolutionScalerParametersSubmissionMode``.
+        /// - destinationFrame: User-allocated pixel buffer that receives the results.
         #[unsafe(method(initWithSourceFrame:previousFrame:previousOutputFrame:opticalFlow:submissionMode:destinationFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSourceFrame_previousFrame_previousOutputFrame_opticalFlow_submissionMode_destinationFrame(
@@ -382,36 +411,38 @@ impl VTSuperResolutionScalerParameters {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// sourceFrame Current source frame. Must be non nil
+        /// Current source frame, which must be non `nil`.
         #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFrame(&self) -> Retained<VTFrameProcessorFrame>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Previous source frame in presentation time order. For the first frame this will be nil.
+        /// Previous source frame in presentation time order, which is `nil` for the first frame.
         #[unsafe(method(previousFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousFrame(&self) -> Option<Retained<VTFrameProcessorFrame>>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Previous output frame in presentation time order. For the first frame this will be nil.
+        /// Previous output frame in presentation time order, which is `nil` for the first frame.
         #[unsafe(method(previousOutputFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousOutputFrame(&self) -> Option<Retained<VTFrameProcessorFrame>>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Optional VTFrameProcessorOpticalFlow object that contains forward and backward optical flow with the previous frame. Only needed if optical flow is pre-computed. For the first frame this will be nil.
+        /// Optional object that contains forward and backward optical flow with the previous frame.
+        ///
+        /// You only need this if optical flow is pre-computed. For the first frame this is `nil`.
         #[unsafe(method(opticalFlow))]
         #[unsafe(method_family = none)]
         pub unsafe fn opticalFlow(&self) -> Option<Retained<VTFrameProcessorOpticalFlow>>;
 
-        /// A VTSuperResolutionScalerSubmissionMode value describing the processing request in this Parameters object .
+        /// Ordering of the input frames in this submission relative to the previous submission.
         #[unsafe(method(submissionMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn submissionMode(&self) -> VTSuperResolutionScalerParametersSubmissionMode;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// VTFrameProcessorFrame that contains user allocated pixel buffer that will receive the results.
+        /// Destination frame that contains user-allocated pixel buffer that receives the results.
         #[unsafe(method(destinationFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationFrame(&self) -> Retained<VTFrameProcessorFrame>;

@@ -13,14 +13,17 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A configuration object to initiate VTFrameProcessor and use Temporal Noise Filter processor.
+    /// A configuration object to initiate a frame processor and use temporal noise-filter processor.
     ///
-    ///
-    /// The class properties of VTTemporalNoiseFilterConfiguration help to identify the capabilities of Temporal Noise Filter Processor on the current platform, prior to initiating a session.
-    /// The availability of Temporal Noise Filter processor in the current platform can be confirmed by checking the VTTemporalNoiseFilterConfiguration.isSupported class property.
-    /// Verify the processor's capability to process source frames by ensuring that the dimensions are no less than VTTemporalNoiseFilterConfiguration.minimumDimensions and no greater than VTTemporalNoiseFilterConfiguration.maximumDimensions.
-    /// Use the instance properties such as frameSupportedPixelFormats, sourcePixelBufferAttributes, and destinationPixelBufferAttributes to ensure that the input and output pixel buffer formats and attributes of the processor align with the client's specific requirements.
-    /// The properties previousFrameCount and nextFrameCount represent the maximum number of preceding and subsequent reference frames, used in the processing of a source frame, to achieve optimum noise reduction quality.
+    /// The class properties of `VTTemporalNoiseFilterConfiguration` help to identify the capabilities of temporal noise
+    /// filter processor on the current platform, prior to initiating a session. You can confirm the availability of temporal
+    /// noise-filter processor in the current platform by checking the ``isSupported`` class property. Verify the processor's
+    /// capability to process source frames by ensuring that the dimensions are no less than ``minimumDimensions`` and no
+    /// greater than ``maximumDimensions``. Use the instance properties such as ``frameSupportedPixelFormats``,
+    /// ``sourcePixelBufferAttributes``, and ``destinationPixelBufferAttributes`` to ensure that the input and output pixel
+    /// buffer formats and attributes of the processor align with the client's specific requirements. The properties
+    /// ``previousFrameCount`` and ``nextFrameCount`` represent the maximum number of preceding and subsequent reference
+    /// frames, used in the processing of a source frame, to achieve optimum noise-reduction quality.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterconfiguration?language=objc)
     #[unsafe(super(NSObject))]
@@ -48,19 +51,20 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl VTTemporalNoiseFilterConfiguration {
     extern_methods!(
-        /// Creates a new VTTemporalNoiseConfiguration with specified width and height.
+        /// Creates a new temporal noise-processor configuration.
         ///
+        /// Returns nil if frameWidth, frameHeight, or sourcePixelFormat is unsupported.
         ///
-        /// Parameter `frameWidth`: Width of source frame in pixels.
-        ///
-        ///
-        /// Parameter `frameHeight`: Height of source frame in pixels.
-        #[unsafe(method(initWithFrameWidth:frameHeight:))]
+        /// - Parameters:
+        /// - frameWidth: Width of source frame in pixels.
+        /// - frameHeight: Height of source frame in pixels.
+        #[unsafe(method(initWithFrameWidth:frameHeight:sourcePixelFormat:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrameWidth_frameHeight(
+        pub unsafe fn initWithFrameWidth_frameHeight_sourcePixelFormat(
             this: Allocated<Self>,
             frame_width: NSInteger,
             frame_height: NSInteger,
+            source_pixel_format: OSType,
         ) -> Option<Retained<Self>>;
 
         #[unsafe(method(init))]
@@ -82,13 +86,15 @@ impl VTTemporalNoiseFilterConfiguration {
         pub unsafe fn frameHeight(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-foundation")]
-        /// List of supported pixel formats for source frames.
+        /// Supported pixel formats for source frames for current configuration.
         #[unsafe(method(frameSupportedPixelFormats))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameSupportedPixelFormats(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Supported pixel buffer attributes for source frames.
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent source frames and reference frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         #[unsafe(method(sourcePixelBufferAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourcePixelBufferAttributes(
@@ -96,36 +102,44 @@ impl VTTemporalNoiseFilterConfiguration {
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Supported pixel buffer attributes for destination frames.
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent destination frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         #[unsafe(method(destinationPixelBufferAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationPixelBufferAttributes(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        /// Maximum number of future reference frames used to process a source frame.
+        /// Maximum number of future reference frames that the processor can use to process a source frame.
         #[unsafe(method(nextFrameCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextFrameCount(&self) -> NSInteger;
 
-        /// Maximum number of past reference frames used to process a source frame.
+        /// Maximum number of past reference frames that the processor can use to process a source frame.
         #[unsafe(method(previousFrameCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousFrameCount(&self) -> NSInteger;
 
+        #[cfg(feature = "objc2-foundation")]
+        /// List of all supported pixel formats for source frames.
+        #[unsafe(method(supportedSourcePixelFormats))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportedSourcePixelFormats() -> Retained<NSArray<NSNumber>>;
+
         #[cfg(feature = "objc2-core-media")]
-        /// The maximum dimensions of a source frame, supported by the processor.
+        /// The maximum dimensions of a source frame that the processor supports.
         #[unsafe(method(maximumDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumDimensions() -> CMVideoDimensions;
 
         #[cfg(feature = "objc2-core-media")]
-        /// The minimum dimensions of a source frame, supported by the processor.
+        /// The minimum dimensions of a source frame that the processor supports.
         #[unsafe(method(minimumDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumDimensions() -> CMVideoDimensions;
 
-        /// reports whether this processor is supported
+        /// Reports whether the system supports this processor.
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
@@ -134,12 +148,16 @@ impl VTTemporalNoiseFilterConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// VTTemporalNoiseFilterParameters object encapsulates the frame-level parameters necessary for processing a source frame using Temporal Noise Filter processor.
+    /// Encapsulates the frame-level parameters necessary for processing a source frame using temporal noise-filter processor.
     ///
-    ///
-    /// This object is intended for sending input parameters into the processWithParameters method of the VTFrameProcessor class.
-    /// Temporal Noise Filter processor utilizes past and future reference frames, provided in presentation time order, to reduce noise from the source frame. The previousFrameCount and nextFrameCount properties in VTTemporalNoiseFilterConfiguration represent the maximum number of past and future reference frames that can be used by the processor to achieve optimum noise reduction quality. The number of reference frames provided shall depend on their availability, but at a minimum, one reference frame, either past or future, must be provided.
-    /// The parameter destinationFrame stores the output frame that is returned to the caller upon the successful completion of the processWithParameters operation.
+    /// This object is intended for sending input parameters into the `processWithParameters` method of the `VTFrameProcessor`
+    /// class. Temporal noise-filter processor utilizes past and future reference frames, provided in presentation time order,
+    /// to reduce noise from the source frame. The `previousFrameCount` and `nextFrameCount` properties in
+    /// ``VTTemporalNoiseFilterConfiguration`` represent the maximum number of past and future reference frames that the
+    /// processor can use to achieve optimum noise reduction quality. The number of reference frames provided shall depend
+    /// on their availability, but at a minimum, you must provide one reference frame, either past or future. The parameter
+    /// `destinationFrame` stores the output frame that the processor returns to the caller upon the successful completion
+    /// of the `processWithParameters` operation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterparameters?language=objc)
     #[unsafe(super(NSObject))]
@@ -162,32 +180,27 @@ extern_conformance!(
 impl VTTemporalNoiseFilterParameters {
     extern_methods!(
         #[cfg(all(feature = "VTFrameProcessorFrame", feature = "objc2-foundation"))]
-        /// Creates a new VTTemporalNoiseFilterParameters object.
+        /// Creates a new `VTTemporalNoiseFilterParameters` object.
         ///
-        ///
-        /// Parameter `sourceFrame`: Current source frame. Must be non nil.
-        ///
-        ///
-        /// Parameter `nextFrames`: Future reference frames in presentation time order to be used for processing the source frame. The number of frames can vary from 0 to the number specified by the nextFrameCount property in VTTemporalNoiseFilterConfiguration.
-        ///
-        ///
-        /// Parameter `previousFrames`: Past reference frames in presentation time order to be used for processing the source frame. The number of frames can vary from 0 to the number specified by the previousFrameCount property in VTTemporalNoiseFilterConfiguration.
-        ///
-        ///
-        /// Parameter `destinationFrame`: User allocated pixel buffer that will receive the output frame. The pixel format of the destinationFrame must match with that of the sourceFrame.
-        ///
-        ///
-        /// Parameter `filterStrength`: Used to control strength of the noise filtering. The value can range from the minimum strength of 0.0 to the maximum strength of 1.0. Change in filter strength causes the processor to flush all frames in the queue prior to processing the source frame.
-        ///
-        ///
-        /// Parameter `hasDiscontinuity`: Marks sequence discontinuity, forcing the processor to reset prior to processing the source frame.
+        /// - Parameters:
+        /// - sourceFrame: Current source frame; must be non `nil`.
+        /// - nextFrames: Future reference frames in presentation time order to use for processing the source frame. The number
+        /// of frames can vary from 0 to the number specified by ``VTTemporalNoiseFilterConfiguration/nextFrameCount`` property.
+        /// - previousFrames: Past reference frames in presentation time order to use for processing the source frame. The number
+        /// of frames can vary from 0 to the number specified by ``VTTemporalNoiseFilterConfiguration/previousFrameCount`` property.
+        /// - destinationFrame: User-allocated pixel buffer that receives the output frame. The pixel format of `destinationFrame`
+        /// must match with that of the `sourceFrame`.
+        /// - filterStrength: Strength of the noise-filtering to use. The value can range from the minimum strength of 0.0 to the
+        /// maximum strength of 1.0. Change in filter strength causes the processor to flush all frames in the queue prior to
+        /// processing the source frame.
+        /// - hasDiscontinuity: Marks sequence discontinuity, forcing the processor to reset prior to processing the source frame.
         #[unsafe(method(initWithSourceFrame:nextFrames:previousFrames:destinationFrame:filterStrength:hasDiscontinuity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSourceFrame_nextFrames_previousFrames_destinationFrame_filterStrength_hasDiscontinuity(
             this: Allocated<Self>,
             source_frame: &VTFrameProcessorFrame,
-            next_frames: Option<&NSArray<VTFrameProcessorFrame>>,
-            previous_frames: Option<&NSArray<VTFrameProcessorFrame>>,
+            next_frames: &NSArray<VTFrameProcessorFrame>,
+            previous_frames: &NSArray<VTFrameProcessorFrame>,
             destination_frame: &VTFrameProcessorFrame,
             filter_strength: c_float,
             has_discontinuity: Boolean,
@@ -202,24 +215,28 @@ impl VTTemporalNoiseFilterParameters {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Current source frame. Must be non-nil.
+        /// Current source frame; must be non `nil`.
         #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFrame(&self) -> Retained<VTFrameProcessorFrame>;
 
         #[cfg(all(feature = "VTFrameProcessorFrame", feature = "objc2-foundation"))]
-        /// Future reference frames in presentation time order to be used for processing the source frame. The number of frames can vary from 0 to the number specified by the nextFrameCount property in VTTemporalNoiseFilterConfiguration.
+        /// Future reference frames in presentation time order that you use to process the source frame.
+        ///
+        /// The number of frames can vary from 0 to the number specified by the `nextFrameCount` property in `VTTemporalNoiseFilterConfiguration`.
         #[unsafe(method(nextFrames))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nextFrames(&self) -> Option<Retained<NSArray<VTFrameProcessorFrame>>>;
+        pub unsafe fn nextFrames(&self) -> Retained<NSArray<VTFrameProcessorFrame>>;
 
         #[cfg(all(feature = "VTFrameProcessorFrame", feature = "objc2-foundation"))]
-        /// Past reference frames in presentation time order to be used for processing the source frame. The number of frames can vary from 0 to the number specified by the previousFrameCount property in VTTemporalNoiseFilterConfiguration.
+        /// Past reference frames in presentation time order that you use to process the source frame.
+        ///
+        /// The number of frames can vary from 0 to the number specified by the `previousFrameCount` property in `VTTemporalNoiseFilterConfiguration`.
         #[unsafe(method(previousFrames))]
         #[unsafe(method_family = none)]
-        pub unsafe fn previousFrames(&self) -> Option<Retained<NSArray<VTFrameProcessorFrame>>>;
+        pub unsafe fn previousFrames(&self) -> Retained<NSArray<VTFrameProcessorFrame>>;
 
-        /// Parameter used to control strength of the noise filtering. The value can range from the minimum strength of 0.0 to the maximum strength of 1.0. Change in filter strength causes the processor to flush all frames in the queue prior to processing the source frame.
+        /// A parameter to control the strength of noise-filtering. The value can range from the minimum strength of 0.0 to the maximum strength of 1.0. Change in filter strength causes the processor to flush all frames in the queue prior to processing the source frame.
         #[unsafe(method(filterStrength))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterStrength(&self) -> c_float;
@@ -229,7 +246,7 @@ impl VTTemporalNoiseFilterParameters {
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterStrength(&self, filter_strength: c_float);
 
-        /// Marks sequence discontinuity, forcing the processor to reset prior to processing the source frame.
+        /// A Boolean that indicates sequence discontinuity, forcing the processor to reset prior to processing the source frame.
         #[unsafe(method(hasDiscontinuity))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasDiscontinuity(&self) -> bool;
@@ -240,7 +257,7 @@ impl VTTemporalNoiseFilterParameters {
         pub unsafe fn setHasDiscontinuity(&self, has_discontinuity: bool);
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// VTFrameProcessorFrame that contains user allocated pixel buffer that will receive the output frame.
+        /// Destination frame that contains a user-allocated pixel buffer that receives the output frame.
         #[unsafe(method(destinationFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationFrame(&self) -> Retained<VTFrameProcessorFrame>;

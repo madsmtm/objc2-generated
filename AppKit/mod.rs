@@ -864,6 +864,9 @@ mod __NSView;
 #[cfg(feature = "NSViewController")]
 #[path = "NSViewController.rs"]
 mod __NSViewController;
+#[cfg(feature = "NSViewLayoutRegion")]
+#[path = "NSViewLayoutRegion.rs"]
+mod __NSViewLayoutRegion;
 #[cfg(feature = "NSVisualEffectView")]
 #[path = "NSVisualEffectView.rs"]
 mod __NSVisualEffectView;
@@ -4032,6 +4035,8 @@ pub use self::__NSGlassEffectView::NSGlassEffectContainerView;
     feature = "NSView"
 ))]
 pub use self::__NSGlassEffectView::NSGlassEffectView;
+#[cfg(feature = "NSGlassEffectView")]
+pub use self::__NSGlassEffectView::NSGlassEffectViewStyle;
 #[cfg(feature = "NSGlyphGenerator")]
 pub use self::__NSGlyphGenerator::NSGlyphGenerator;
 #[cfg(feature = "NSGlyphGenerator")]
@@ -7215,6 +7220,10 @@ pub use self::__NSViewController::NSViewController;
 pub use self::__NSViewController::NSViewControllerPresentationAnimator;
 #[cfg(feature = "NSViewController")]
 pub use self::__NSViewController::NSViewControllerTransitionOptions;
+#[cfg(feature = "NSViewLayoutRegion")]
+pub use self::__NSViewLayoutRegion::NSViewLayoutRegion;
+#[cfg(feature = "NSViewLayoutRegion")]
+pub use self::__NSViewLayoutRegion::NSViewLayoutRegionAdaptivityAxis;
 #[cfg(feature = "NSVisualEffectView")]
 pub use self::__NSVisualEffectView::NSVisualEffectBlendingMode;
 #[cfg(feature = "NSVisualEffectView")]

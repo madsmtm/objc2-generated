@@ -111,6 +111,38 @@ unsafe impl RefEncode for MPSGraphExecutionStage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// MPSGraph could use these reduced precision paths to deliver faster math, but it is not guaranteed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreducedprecisionfastmath?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MPSGraphReducedPrecisionFastMath(pub NSUInteger);
+bitflags::bitflags! {
+    impl MPSGraphReducedPrecisionFastMath: NSUInteger {
+/// Full precision math with maximum accuracy.
+        #[doc(alias = "MPSGraphReducedPrecisionFastMathNone")]
+        const None = 0;
+/// Execute winograd transform intermediate as FP16.
+        #[doc(alias = "MPSGraphReducedPrecisionFastMathAllowFP16Conv2DWinogradTransformIntermediate")]
+        const AllowFP16Conv2DWinogradTransformIntermediate = 1<<1;
+/// Curated list allowing intermediates for multi-pass GPU kernels to be FP16.
+        #[doc(alias = "MPSGraphReducedPrecisionFastMathAllowFP16Intermediates")]
+        const AllowFP16Intermediates = MPSGraphReducedPrecisionFastMath::AllowFP16Conv2DWinogradTransformIntermediate.0;
+/// Default selection.
+        #[doc(alias = "MPSGraphReducedPrecisionFastMathDefault")]
+        const Default = MPSGraphReducedPrecisionFastMath::None.0;
+    }
+}
+
+unsafe impl Encode for MPSGraphReducedPrecisionFastMath {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MPSGraphReducedPrecisionFastMath {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// A dictionary of tensors and corresponding tensor data.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordatadictionary?language=objc)
@@ -292,6 +324,19 @@ impl MPSGraphCompilationDescriptor {
         #[unsafe(method(setCallables:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCallables(&self, callables: Option<&MPSGraphCallableMap>);
+
+        /// Across the executable allow reduced precision fast math optimizations.
+        #[unsafe(method(reducedPrecisionFastMath))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn reducedPrecisionFastMath(&self) -> MPSGraphReducedPrecisionFastMath;
+
+        /// Setter for [`reducedPrecisionFastMath`][Self::reducedPrecisionFastMath].
+        #[unsafe(method(setReducedPrecisionFastMath:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setReducedPrecisionFastMath(
+            &self,
+            reduced_precision_fast_math: MPSGraphReducedPrecisionFastMath,
+        );
     );
 }
 

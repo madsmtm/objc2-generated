@@ -311,6 +311,44 @@ impl NSColor {
             space: &NSColorSpace,
         ) -> Option<Retained<NSColor>>;
 
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Generates an HDR color in the extended sRGB colorspace by applying an exposure to the SDR color defined by the red, green, and blue components. The `red`, `green`, and `blue` components have a nominal range of [0..1], `exposure` is a value >= 0. To produce an HDR color, we process the given color in a linear color space, multiplying component values by `2^exposure`. The produced color will have a `contentHeadroom` equal to the linearized exposure value. Each whole value of exposure produces a color that is twice as bright.
+        #[unsafe(method(colorWithRed:green:blue:alpha:exposure:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn colorWithRed_green_blue_alpha_exposure(
+            red: CGFloat,
+            green: CGFloat,
+            blue: CGFloat,
+            alpha: CGFloat,
+            exposure: CGFloat,
+        ) -> Retained<NSColor>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Generates an HDR color in the extended sRGB colorspace by applying an exposure to the SDR color defined by the red, green, and blue components. The `red`, `green`, and `blue` components have a nominal range of [0..1], `linearExposure` is a value >= 1. To produce an HDR color, we process the given color in a linear color space, multiplying component values by `linearExposure `. The produced color will have a `contentHeadroom` equal to `linearExposure`. Each doubling of `linearExposure` produces a color that is twice as bright.
+        #[unsafe(method(colorWithRed:green:blue:alpha:linearExposure:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn colorWithRed_green_blue_alpha_linearExposure(
+            red: CGFloat,
+            green: CGFloat,
+            blue: CGFloat,
+            alpha: CGFloat,
+            linear_exposure: CGFloat,
+        ) -> Retained<NSColor>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Reinterpret the color by applying a new `contentHeadroom` without changing the color components. Changing the `contentHeadroom` redefines the color relative to a different peak white, changing its behavior under tone mapping and the result of calling `standardDynamicRangeColor`. The new color will have a `contentHeadroom` >= 1.0. If called on a color with a color space that does not support extended range, this will return `self`.
+        #[unsafe(method(colorByApplyingContentHeadroom:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn colorByApplyingContentHeadroom(
+            &self,
+            content_headroom: CGFloat,
+        ) -> Retained<NSColor>;
+
+        /// In some cases it is useful to recover the color that was base the SDR color that was exposed to generate an HDR color. If a color's `linearExposure` is > 1, then this will return the base SDR color. If the color is not an HDR color, this will return `self`.
+        #[unsafe(method(standardDynamicRangeColor))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn standardDynamicRangeColor(&self) -> Retained<NSColor>;
+
         #[unsafe(method(blackColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn blackColor() -> Retained<NSColor>;
@@ -792,6 +830,12 @@ impl NSColor {
         #[unsafe(method(alphaComponent))]
         #[unsafe(method_family = none)]
         pub unsafe fn alphaComponent(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// For HDR colors, the linear brightness multiplier that was applied when generating the color. Colors created with an exposure by NSColor create CGColors that are tagged with a contentHeadroom value. While CGColors created without a contentHeadroom tag will return 0 from CGColorGetHeadroom, NSColors generated in a similar fashion return a linearExposure of 1.0.
+        #[unsafe(method(linearExposure))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn linearExposure(&self) -> CGFloat;
 
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(colorFromPasteboard:))]
