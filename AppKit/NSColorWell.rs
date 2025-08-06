@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -213,6 +215,18 @@ impl NSColorWell {
         #[unsafe(method(setSupportsAlpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsAlpha(&self, supports_alpha: bool);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The maximum linear exposure a color in this color well can be set to. Defaults to 1 and ignores any value less than 1. If set to a value >= 2, the color picked for this well may have a linear exposure applied to it.
+        #[unsafe(method(maximumLinearExposure))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumLinearExposure(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumLinearExposure`][Self::maximumLinearExposure].
+        #[unsafe(method(setMaximumLinearExposure:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
     );
 }
 

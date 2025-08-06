@@ -41,6 +41,12 @@ extern_class!(
 );
 
 #[cfg(feature = "PKTool")]
+unsafe impl Send for PKEraserTool {}
+
+#[cfg(feature = "PKTool")]
+unsafe impl Sync for PKEraserTool {}
+
+#[cfg(feature = "PKTool")]
 extern_conformance!(
     unsafe impl NSCopying for PKEraserTool {}
 );

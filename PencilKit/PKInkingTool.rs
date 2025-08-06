@@ -7,6 +7,8 @@ use objc2::__framework_prelude::*;
 use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -20,6 +22,12 @@ extern_class!(
     #[cfg(feature = "PKTool")]
     pub struct PKInkingTool;
 );
+
+#[cfg(feature = "PKTool")]
+unsafe impl Send for PKInkingTool {}
+
+#[cfg(feature = "PKTool")]
+unsafe impl Sync for PKInkingTool {}
 
 #[cfg(feature = "PKTool")]
 extern_conformance!(
@@ -118,6 +126,21 @@ impl PKInkingTool {
         #[unsafe(method(inkType))]
         #[unsafe(method_family = none)]
         pub unsafe fn inkType(&self) -> Retained<PKInkType>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        /// Converts a color from light to dark appearance or vice versa.
+        ///
+        ///
+        /// Parameter `color`: The color to be inverted light
+        /// <
+        /// ->dark.
+        ///
+        /// Returns: The inverted color.
+        ///
+        /// This has the same effect as `convertColor` with opposite user interface styles.
+        #[unsafe(method(invertColor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn invertColor(color: &CGColor) -> Retained<CGColor>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
