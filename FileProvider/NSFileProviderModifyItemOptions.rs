@@ -4,27 +4,48 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermodifyitemoptions?language=objc)
+/// Options for modifying items.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermodifyitemoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileProviderModifyItemOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderModifyItemOptions: NSUInteger {
-/// We're moving the item to a location where it may refer to an item that already exists. This may happen
-/// when two directories are being merged together. When this happens some items may be merged to the
-/// same directory and we end up in a situation where the merged contains may also exist.
+/// An option that indicates the changes may already exist in your remote storage.
 ///
-/// This is similar to NSFileProviderCreateItemMayAlreadyExist
+/// This option applies when moving the item to a location where it may refer to an item that already exists.
+/// This situation may occur when merging two directories together.
         #[doc(alias = "NSFileProviderModifyItemMayAlreadyExist")]
         const MayAlreadyExist = 1<<0;
-/// If the base version of the item trying to be uploaded doesn't match
-/// the version of the file on server, the call to modifyItem should fail with a
-/// NSFileProviderErrorLocalVersionConflictingWithServer error.
+/// An option to fail an upload in the event of a version conflict.
+///
+/// If you adopt this option, and an uploaded item's base version doesn't match the version on the server, fail and return ``NSFileProviderError/localVersionConflictingWithServer`` (Swift) or ``NSFileProviderErrorCode/NSFileProviderErrorLocalVersionConflictingWithServer`` (Objective-C) in your implementation of `modifyItem`.
+///
+/// To support the fail-on-conflict behavior in your file provider, indicate the support by adding the following key/value pair to the extension's Info pane.
+///
+/// ```text
+/// <key
+/// >NSExtension
+/// </key
+/// >
+/// <dict
+/// >
+/// <key
+/// >NSExtensionFileProviderSupportsFailingUploadOnConflict
+/// </key
+/// >
+/// <true
+/// />
+/// </dict
+/// >
+/// ```
         #[doc(alias = "NSFileProviderModifyItemFailOnConflict")]
         const FailOnConflict = 1<<1;
-/// The upload needs to be completed before the completionHandler gets called
-/// in order to let the calling application know when the version is on server.
+/// An option to require the upload to complete before calling the completion handler.
+///
+/// This option allows the calling application to know when the uploaded version of the file is on the server.
         #[doc(alias = "NSFileProviderModifyItemIsImmediateUploadRequestByPresentingApplication")]
         const IsImmediateUploadRequestByPresentingApplication = 1<<2;
     }

@@ -122,6 +122,10 @@ extern_class!(
     pub struct NSManagedObjectContext;
 );
 
+unsafe impl Send for NSManagedObjectContext {}
+
+unsafe impl Sync for NSManagedObjectContext {}
+
 extern_conformance!(
     unsafe impl NSCoding for NSManagedObjectContext {}
 );

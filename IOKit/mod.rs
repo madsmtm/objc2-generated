@@ -4211,6 +4211,8 @@ pub use self::__hid::kHIDUsage_Game_TurnRightOrLeft;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_GenDevControls_BackgroundControls;
 #[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_GenDevControls_BatteryStrength;
+#[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Haptics_AutoTrigger;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Haptics_AutoTriggerAssociatedControl;

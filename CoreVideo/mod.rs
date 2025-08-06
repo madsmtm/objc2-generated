@@ -669,6 +669,8 @@ pub use self::__CVPixelBuffer::kCVPixelFormatType_30RGB;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelFormatType_30RGBLEPackedWideGamut;
 #[cfg(feature = "CVPixelBuffer")]
+pub use self::__CVPixelBuffer::kCVPixelFormatType_30RGBLE_8A_BiPlanar;
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelFormatType_30RGB_r210;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelFormatType_32ABGR;
@@ -776,6 +778,10 @@ pub use self::__CVPixelBuffer::kCVPixelFormatType_DepthFloat32;
 pub use self::__CVPixelBuffer::kCVPixelFormatType_DisparityFloat16;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelFormatType_DisparityFloat32;
+#[cfg(feature = "CVPixelBuffer")]
+pub use self::__CVPixelBuffer::kCVPixelFormatType_Lossless_30RGBLEPackedWideGamut;
+#[cfg(feature = "CVPixelBuffer")]
+pub use self::__CVPixelBuffer::kCVPixelFormatType_Lossless_30RGBLE_8A_BiPlanar;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelFormatType_Lossless_32BGRA;
 #[cfg(feature = "CVPixelBuffer")]

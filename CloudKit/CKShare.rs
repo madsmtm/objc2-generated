@@ -261,12 +261,25 @@ impl CKShare {
         #[cfg(feature = "CKShareAccessRequester")]
         /// A list of all uninvited users who have requested access to this share.
         ///
-        /// When share access requests are allowed, uninvited users can attempt to join the share
-        /// by sending an access request. Those pending requests appear in this array.
-        /// Share owners or administrators can approve the requester or use ``denyRequesters(_:)`` to respond
-        /// to these access requests. Requesters are always returned with name components and either an email or phone number.
-        /// Requesters can be approved by running ``CKFetchShareParticipantsOperation`` with the requester's ``CKShareAccessRequester/participantLookupInfo``
-        /// and adding the resulting participant to the share.
+        /// When share access requests are allowed, uninvited users can request to join the share.
+        /// All pending access requests appear in this array. Each requester is returned with name components
+        /// and either an email or phone number.
+        ///
+        /// Either share owners or administrators can respond to these access requests.
+        ///
+        /// ### Responding to Access Requests:
+        ///
+        /// - **Approve Requesters:**
+        /// - Fetch the participant information by running ``CKFetchShareParticipantsOperation`` with
+        /// the requester's ``CKShareAccessRequester/participantLookupInfo``.
+        /// - Add the resulting participant to the share.
+        ///
+        /// - **Deny Requesters:**
+        /// - Use ``CloudKit/CKShare/denyRequesters:`` to remove the requester from the requesters list.
+        ///
+        /// - **Block Requesters:**
+        /// - Use ``CloudKit/CKShare/blockRequesters:`` to block requesters.
+        /// - Blocking a requester prevents them from sending future access requests to the share.
         #[unsafe(method(requesters))]
         #[unsafe(method_family = none)]
         pub unsafe fn requesters(&self) -> Retained<NSArray<CKShareAccessRequester>>;
@@ -274,19 +287,19 @@ impl CKShare {
         #[cfg(feature = "CKShareBlockedIdentity")]
         /// A list of users blocked from requesting access to this share.
         ///
-        /// Identities remain in this list until a user calls ``unblockIdentities(_:)``.
+        /// Identities remain in this list until an owner or administrator calls ``CloudKit/CKShare/unblockIdentities:``.
         #[unsafe(method(blockedIdentities))]
         #[unsafe(method_family = none)]
         pub unsafe fn blockedIdentities(&self) -> Retained<NSArray<CKShareBlockedIdentity>>;
 
         /// Indicates whether uninvited users can request access to this share.
         ///
-        /// By default, allows access requests is `NO`
-        /// When `YES`, uninvited users can submit an access request to the share
-        /// if they discover the share URL. When `NO`, the server does not allow uninvited users
-        /// to request access and does not reveal whether the share exists. This property can only be
-        /// modified by the share owner or an admin. Attempting to change its value as any other
-        /// participant will result in an exception.
+        /// By default, this property is set to `NO`. When set to `YES`, uninvited users can request
+        /// access to the share if they discover the share URL. When set to `NO`, the server prevents uninvited users
+        /// from requesting access and does not indicate whether the share exists.
+        ///
+        /// Only the share owner or an administrator can modify this property. Attempts by other participants
+        /// to modify this property result in an exception.
         #[unsafe(method(allowsAccessRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAccessRequests(&self) -> bool;
@@ -297,44 +310,49 @@ impl CKShare {
         pub unsafe fn setAllowsAccessRequests(&self, allows_access_requests: bool);
 
         #[cfg(feature = "CKShareAccessRequester")]
-        /// Denies share access to the specified requesters.
+        /// Denies access requests from specified users.
         ///
-        /// Use this method to reject pending requests from one or more uninvited users.
-        /// Denied requesters are removed from the ``requesters`` array.
-        /// You must save the share to the server after denying to persist the changes.
-        /// Once saved, these requesters are not given access to the share, but they may attempt to request
-        /// access again unless you block them. This method can only be used by the share owner or an
-        /// admin. Attempting to use it as any other participant will result in an exception.
+        /// Use this method to deny pending access requests from uninvited users. Denied requesters are removed
+        /// from the ``CloudKit/CKShare/requesters`` array. To persist the changes, save the share to the server
+        /// after calling this method.
         ///
-        /// - Parameters:
-        /// - requesters: An array of ``CKShareAccessRequester`` objects to deny.
+        /// After denial, requesters can still submit new access requests unless explicitly blocked using
+        /// ``CloudKit/CKShare/blockRequesters:``.
+        ///
+        /// Only the share owner or an administrator can invoke this method. Attempts by other participants
+        /// result in an exception.
+        ///
+        /// - Parameter requesters: An array of ``CKShareAccessRequester`` objects to deny.
         #[unsafe(method(denyRequesters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn denyRequesters(&self, requesters: &NSArray<CKShareAccessRequester>);
 
         #[cfg(feature = "CKShareAccessRequester")]
-        /// Blocks the specified requesters from requesting access to this share.
+        /// Blocks specified users from requesting access to this share.
         ///
-        /// This method permanently prevents the listed requesters from requesting access to the share in the future.
-        /// Blocked requesters appear in the ``blockedIdentities`` array.
-        /// The share must be saved to the server after blocking to persist the changes. This method can only be used
-        /// by the share owner or an admin. Attempting to use it as any other participant will result in an exception.
-        /// Blocking an existing participant removes the participant from the share.
+        /// Blocking prevents users from submitting future access requests and removes existing participants from the share.
+        /// Blocked requesters appear in the ``CloudKit/CKShare/blockedIdentities`` array.
         ///
-        /// - Parameters:
-        /// - requesters: An array of ``CKShareAccessRequester`` objects to block.
+        /// To persist this change, save the share to the server after calling this method.
+        ///
+        /// Only the share owner or an administrator can invoke this method. Attempts by other participants
+        /// result in an exception.
+        ///
+        /// - Parameter requesters: An array of ``CKShareAccessRequester`` objects to block.
         #[unsafe(method(blockRequesters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn blockRequesters(&self, requesters: &NSArray<CKShareAccessRequester>);
 
         #[cfg(feature = "CKShareBlockedIdentity")]
-        /// Unblocks previously blocked identities, allowing them to request access again.
+        /// Unblocks previously blocked users, allowing them to request access again.
         ///
-        /// Call this method to remove the specified identities from the ``blockedIdentities`` array.
-        /// Once unblocked, those identities are free to request access to the share unless access
-        /// requests are disabled. You must save the share to commit this change to the server.
-        /// This method can only be used by the share owner or an admin. Attempting to use it as any
-        /// other participant will result in an exception.
+        /// Use this method to remove specified identities from the ``CloudKit/CKShare/blockedIdentities`` array.
+        /// Unblocked identities can request access again if access requests are enabled.
+        ///
+        /// To persist this change, save the share to the server after calling this method.
+        ///
+        /// Only the share owner or an administrator can invoke this method. Attempts by other participants
+        /// result in an exception.
         ///
         /// - Parameter blockedIdentities: An array of ``CKShareBlockedIdentity`` objects to unblock.
         #[unsafe(method(unblockIdentities:))]

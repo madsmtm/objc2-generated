@@ -357,6 +357,58 @@ impl AVAudioConverter {
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimeInfo(&self, prime_info: AVAudioConverterPrimeInfo);
 
+        /// Number of packets between consecutive sync packets.
+        ///
+        /// A sync packet is an independently-decodable packet that completely refreshes the decoder without
+        /// needing to decode other packets.  When compressing to a format which supports it (such as APAC),
+        /// the audio sync packet frequency indicates the distance in packets between two sync packets, with
+        /// non-sync packets between.  This is useful to set when saving compressed packets to a file and
+        /// efficient random access is desired.  Note: Separating sync packets by at least one second of
+        /// encoded audio (e.g. 75 packets) is recommended.
+        #[unsafe(method(audioSyncPacketFrequency))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn audioSyncPacketFrequency(&self) -> NSInteger;
+
+        /// Setter for [`audioSyncPacketFrequency`][Self::audioSyncPacketFrequency].
+        #[unsafe(method(setAudioSyncPacketFrequency:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAudioSyncPacketFrequency(&self, audio_sync_packet_frequency: NSInteger);
+
+        #[cfg(feature = "AVAudioSettings")]
+        /// Index to select a pre-defined content source type that describes the content type and
+        /// how it was generated.  Note: This is only supported when compressing audio to formats
+        /// which support it.
+        #[unsafe(method(contentSource))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contentSource(&self) -> AVAudioContentSource;
+
+        #[cfg(feature = "AVAudioSettings")]
+        /// Setter for [`contentSource`][Self::contentSource].
+        #[unsafe(method(setContentSource:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setContentSource(&self, content_source: AVAudioContentSource);
+
+        #[cfg(feature = "AVAudioSettings")]
+        /// Encoder Dynamic Range Control (DRC) configuration.
+        ///
+        /// When supported by the encoder, this property controls which configuration is applied when a
+        /// bitstream is generated.  Note: This is only supported when compressing audio to formats
+        /// which support it.
+        #[unsafe(method(dynamicRangeControlConfiguration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dynamicRangeControlConfiguration(
+            &self,
+        ) -> AVAudioDynamicRangeControlConfiguration;
+
+        #[cfg(feature = "AVAudioSettings")]
+        /// Setter for [`dynamicRangeControlConfiguration`][Self::dynamicRangeControlConfiguration].
+        #[unsafe(method(setDynamicRangeControlConfiguration:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDynamicRangeControlConfiguration(
+            &self,
+            dynamic_range_control_configuration: AVAudioDynamicRangeControlConfiguration,
+        );
+
         #[cfg(feature = "AVAudioBuffer")]
         /// Perform a simple conversion. That is, a conversion which does not involve codecs or sample rate conversion.
         ///

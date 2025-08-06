@@ -20,6 +20,10 @@ extern_class!(
     pub struct PKStroke;
 );
 
+unsafe impl Send for PKStroke {}
+
+unsafe impl Sync for PKStroke {}
+
 extern_conformance!(
     unsafe impl NSCopying for PKStroke {}
 );

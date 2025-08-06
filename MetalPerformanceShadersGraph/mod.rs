@@ -183,6 +183,8 @@ pub use self::__MPSGraph::MPSGraphOptimization;
 pub use self::__MPSGraph::MPSGraphOptimizationProfile;
 #[cfg(feature = "MPSGraph")]
 pub use self::__MPSGraph::MPSGraphOptions;
+#[cfg(feature = "MPSGraph")]
+pub use self::__MPSGraph::MPSGraphReducedPrecisionFastMath;
 #[cfg(all(
     feature = "MPSGraph",
     feature = "MPSGraphCore",

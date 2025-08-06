@@ -13,37 +13,9 @@ extern "C" {
     pub static VTFrameProcessorErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// VTFrameProcessor  error codes.
+/// `VTFrameProcessor` error codes.
 ///
-/// These error codes are returned in the NSError object in the event a method fails.
-///
-/// Returned if the processor failed for unknown reason.
-///
-/// Returned if the processor failed due to an unsupported resolution.
-///
-/// Returned if the session is used to process frames without being started.
-///
-/// Returned if a startSessionWithConfiguration call is made on a session which has already been started.
-///
-/// Returned if a fatal error is encoutnered during processing.
-///
-/// Returned if processing failed and current session should be stopped.
-///
-/// Returned if the session failed to initialize the processing pipeline.
-///
-/// Returned to indicate that one or more frames is in a format which is not supproted by the processor.
-///
-/// Returned if the session or processor is unable to allocate required memory.
-///
-/// Returned if the specifed revision is not supported by the configured processor.
-///
-/// Returned if the processor encountered an issue preventing it from processing the provided frame.
-///
-/// Returned if one of the provided parameters is not valid.
-///
-/// Returned if one of the provided VTFrameProcessorFrame objects has a PTS which is not supported by the processor, either invalid or out-of-order.
-///
-/// Returned if download of a required model asset for the processor failed
+/// These error codes are returned in the `NSError` object in the event a method fails.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror?language=objc)
 // NS_ERROR_ENUM
@@ -53,32 +25,46 @@ extern "C" {
 pub struct VTFrameProcessorError(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTFrameProcessorError {
+    /// Returned if the processor failed for unknown reason.
     #[doc(alias = "VTFrameProcessorUnknownError")]
     pub const UnknownError: Self = Self(-19730);
+    /// Returned if the processor failed due to an unsupported resolution.
     #[doc(alias = "VTFrameProcessorUnsupportedResolution")]
     pub const UnsupportedResolution: Self = Self(-19731);
+    /// Returned if the session is used to process frames without being started.
     #[doc(alias = "VTFrameProcessorSessionNotStarted")]
     pub const SessionNotStarted: Self = Self(-19732);
+    /// Returned if a `startSessionWithConfiguration` call is made on a session which has already been started.
     #[doc(alias = "VTFrameProcessorSessionAlreadyActive")]
     pub const SessionAlreadyActive: Self = Self(-19733);
+    /// Returned if a fatal error is encoutnered during processing.
     #[doc(alias = "VTFrameProcessorFatalError")]
     pub const FatalError: Self = Self(-19734);
+    /// Returned if processing failed and current session should be stopped.
     #[doc(alias = "VTFrameProcessorSessionLevelError")]
     pub const SessionLevelError: Self = Self(-19735);
+    /// Returned if the session failed to initialize the processing pipeline.
     #[doc(alias = "VTFrameProcessorInitializationFailed")]
     pub const InitializationFailed: Self = Self(-19736);
+    /// Returned to indicate that one or more frames is in a format which is not supproted by the processor.
     #[doc(alias = "VTFrameProcessorUnsupportedInput")]
     pub const UnsupportedInput: Self = Self(-19737);
+    /// Returned if the session or processor is unable to allocate required memory.
     #[doc(alias = "VTFrameProcessorMemoryAllocationFailure")]
     pub const MemoryAllocationFailure: Self = Self(-19738);
+    /// Returned if the specifed revision is not supported by the configured processor.
     #[doc(alias = "VTFrameProcessorRevisionNotSupported")]
     pub const RevisionNotSupported: Self = Self(-19739);
+    /// Returned if the processor encountered an issue preventing it from processing the provided frame.
     #[doc(alias = "VTFrameProcessorProcessingError")]
     pub const ProcessingError: Self = Self(-19740);
+    /// Returned if one of the provided parameters is not valid.
     #[doc(alias = "VTFrameProcessorInvalidParameterError")]
     pub const InvalidParameterError: Self = Self(-19741);
+    /// Returned if one of the provided `VTFrameProcessorFrame` objects has a presentation time which is not supported by the processor, either invalid or out-of-order.
     #[doc(alias = "VTFrameProcessorInvalidFrameTiming")]
     pub const InvalidFrameTiming: Self = Self(-19742);
+    /// Returned if download of a required model asset for the processor failed
     #[doc(alias = "VTFrameProcessorAssetDownloadFailed")]
     pub const AssetDownloadFailed: Self = Self(-19743);
 }
