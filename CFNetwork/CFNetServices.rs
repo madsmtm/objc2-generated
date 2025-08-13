@@ -176,6 +176,7 @@ unsafe impl RefEncode for CFNetServiceBrowserFlags {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceclientcontext?language=objc)
 #[repr(C, packed(2))]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFNetServiceClientContext {
     pub version: CFIndex,

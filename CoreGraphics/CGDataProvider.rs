@@ -43,6 +43,7 @@ pub type CGDataProviderReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidersequentialcallbacks?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CGDataProviderSequentialCallbacks {
     pub version: c_uint,
@@ -87,6 +88,7 @@ pub type CGDataProviderGetBytesAtPositionCallback =
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderdirectcallbacks?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CGDataProviderDirectCallbacks {
     pub version: c_uint,

@@ -1496,6 +1496,7 @@ pub type IOBlitterPtr = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iographicsacceleratorinterfacestruct?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOGraphicsAcceleratorInterfaceStruct {
     pub(crate) _reserved: *mut c_void,

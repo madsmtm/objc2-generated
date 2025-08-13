@@ -58,6 +58,7 @@ pub type CFTreeCopyDescriptionCallBack =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecontext?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFTreeContext {
     pub version: CFIndex,

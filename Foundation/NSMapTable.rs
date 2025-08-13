@@ -385,6 +385,7 @@ pub unsafe extern "C-unwind" fn NSAllMapTableValues(table: &NSMapTable) -> Retai
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablekeycallbacks?language=objc)
 #[cfg(feature = "NSString")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSMapTableKeyCallBacks {
     pub hash:
@@ -419,6 +420,7 @@ unsafe impl RefEncode for NSMapTableKeyCallBacks {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablevaluecallbacks?language=objc)
 #[cfg(feature = "NSString")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSMapTableValueCallBacks {
     pub retain: Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>,

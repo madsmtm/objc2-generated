@@ -9,6 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdimporterinterfacestruct?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MDImporterInterfaceStruct {
     pub(crate) _reserved: *mut c_void,
@@ -44,6 +45,7 @@ unsafe impl RefEncode for MDImporterInterfaceStruct {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdexporterinterfacestruct?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MDExporterInterfaceStruct {
     pub(crate) _reserved: *mut c_void,
@@ -79,6 +81,7 @@ unsafe impl RefEncode for MDExporterInterfaceStruct {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdimporterurlinterfacestruct?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MDImporterURLInterfaceStruct {
     pub(crate) _reserved: *mut c_void,
@@ -114,6 +117,7 @@ unsafe impl RefEncode for MDImporterURLInterfaceStruct {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdimporterbundlewrapperurlinterfacestruct?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MDImporterBundleWrapperURLInterfaceStruct {
     pub(crate) _reserved: *mut c_void,

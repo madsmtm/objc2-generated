@@ -38,6 +38,7 @@ pub type CFFileDescriptorCallBack =
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcontext?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFFileDescriptorContext {
     pub version: CFIndex,

@@ -228,6 +228,7 @@ pub type AudioComponentMethod =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentplugininterface?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioComponentPlugInInterface {
     pub Open: unsafe extern "C-unwind" fn(NonNull<c_void>, AudioComponentInstance) -> OSStatus,

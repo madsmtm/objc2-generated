@@ -450,6 +450,7 @@ impl CFRunLoop {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecontext?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFRunLoopSourceContext {
     pub version: CFIndex,
@@ -490,6 +491,7 @@ unsafe impl RefEncode for CFRunLoopSourceContext {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecontext1?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFRunLoopSourceContext1 {
     pub version: CFIndex,
@@ -612,6 +614,7 @@ impl CFRunLoopSource {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercontext?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFRunLoopObserverContext {
     pub version: CFIndex,
@@ -769,6 +772,7 @@ impl CFRunLoopObserver {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercontext?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFRunLoopTimerContext {
     pub version: CFIndex,

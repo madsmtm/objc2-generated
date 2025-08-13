@@ -122,6 +122,7 @@ pub type CTRunDelegateGetWidthCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegatecallbacks?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CTRunDelegateCallbacks {
     pub version: CFIndex,

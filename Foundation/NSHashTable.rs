@@ -327,6 +327,7 @@ pub unsafe extern "C-unwind" fn NSAllHashTableObjects(table: &NSHashTable) -> Re
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablecallbacks?language=objc)
 #[cfg(feature = "NSString")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSHashTableCallBacks {
     pub hash:

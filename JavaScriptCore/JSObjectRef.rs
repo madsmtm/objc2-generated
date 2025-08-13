@@ -332,6 +332,7 @@ pub type JSObjectConvertToTypeCallback = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstaticvalue?language=objc)
 #[cfg(feature = "JSBase")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct JSStaticValue {
     pub name: *const c_char,
@@ -366,6 +367,7 @@ unsafe impl RefEncode for JSStaticValue {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstaticfunction?language=objc)
 #[cfg(feature = "JSBase")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct JSStaticFunction {
     pub name: *const c_char,
@@ -427,6 +429,7 @@ unsafe impl RefEncode for JSStaticFunction {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition?language=objc)
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct JSClassDefinition {
     pub version: c_int,

@@ -47,6 +47,7 @@ pub type CFArrayEqualCallBack =
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFArrayCallBacks {
     pub version: CFIndex,

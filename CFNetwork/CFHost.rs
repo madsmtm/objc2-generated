@@ -61,6 +61,7 @@ unsafe impl RefEncode for CFHostInfoType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostclientcontext?language=objc)
 #[repr(C, packed(2))]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFHostClientContext {
     pub version: CFIndex,

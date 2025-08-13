@@ -54,6 +54,7 @@ pub type CFDictionaryHashCallBack =
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFDictionaryKeyCallBacks {
     pub version: CFIndex,
@@ -127,6 +128,7 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryvaluecallbacks?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFDictionaryValueCallBacks {
     pub version: CFIndex,

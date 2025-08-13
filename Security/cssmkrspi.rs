@@ -15,6 +15,7 @@ use crate::*;
 ))]
 #[deprecated]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_spi_kr_funcs {
     pub RegistrationRequest: Option<

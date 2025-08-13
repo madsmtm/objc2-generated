@@ -10,6 +10,7 @@ use crate::*;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_spi_cl_funcs {
     pub CertCreateTemplate: Option<

@@ -93,6 +93,7 @@ pub type VTDecompressionOutputCallback = Option<
     feature = "objc2-core-video"
 ))]
 #[repr(C, packed(4))]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct VTDecompressionOutputCallbackRecord {
     pub decompressionOutputCallback: VTDecompressionOutputCallback,

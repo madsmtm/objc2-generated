@@ -11633,6 +11633,7 @@ extern "C-unwind" {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iocfplugininterfacestruct?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOCFPlugInInterfaceStruct {
     pub(crate) _reserved: *mut c_void,

@@ -158,6 +158,7 @@ pub type CMIODeviceGetSMPTETimeProc =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicesmptetimecallback?language=objc)
 #[repr(C, packed(4))]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMIODeviceSMPTETimeCallback {
     pub mGetSMPTETimeProc: CMIODeviceGetSMPTETimeProc,

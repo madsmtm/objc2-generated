@@ -109,6 +109,7 @@ pub type FSEventStreamRef = *mut __FSEventStream;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreamcontext?language=objc)
 #[repr(C, packed(2))]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct FSEventStreamContext {
     pub version: CFIndex,

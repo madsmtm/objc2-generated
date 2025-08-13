@@ -579,6 +579,7 @@ unsafe impl RefEncode for MIDIPacketList {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisysexsendrequest?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDISysexSendRequest {
     pub destination: MIDIEndpointRef,
@@ -638,6 +639,7 @@ unsafe impl RefEncode for MIDISysexSendRequest {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisysexsendrequestump?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDISysexSendRequestUMP {
     pub destination: MIDIEndpointRef,

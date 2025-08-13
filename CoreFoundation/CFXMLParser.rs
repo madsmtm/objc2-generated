@@ -148,6 +148,7 @@ pub type CFXMLParserHandleErrorCallBack = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercallbacks?language=objc)
 #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLParserCallBacks {
     pub version: CFIndex,
@@ -201,6 +202,7 @@ pub type CFXMLParserCopyDescriptionCallBack =
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLParserContext {
     pub version: CFIndex,

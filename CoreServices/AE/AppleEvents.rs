@@ -305,6 +305,7 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercontext?language=objc)
 #[repr(C, packed(2))]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AERemoteProcessResolverContext {
     pub version: CFIndex,

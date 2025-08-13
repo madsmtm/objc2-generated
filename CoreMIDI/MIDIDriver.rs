@@ -37,6 +37,7 @@ pub type MIDIDeviceListRef = MIDIObjectRef;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididriverinterface?language=objc)
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDIDriverInterface {
     pub(crate) _reserved: NonNull<c_void>,

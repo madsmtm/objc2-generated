@@ -101,6 +101,7 @@ unsafe impl RefEncode for CFStreamEventType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamclientcontext?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFStreamClientContext {
     pub version: CFIndex,

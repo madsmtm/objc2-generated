@@ -88,6 +88,7 @@ pub type CSSM_UPCALLS_CALLOC =
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_upcalls {
     pub malloc_func: CSSM_UPCALLS_MALLOC,

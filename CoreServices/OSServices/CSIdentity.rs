@@ -475,6 +475,7 @@ pub type CSIdentityStatusUpdatedCallback =
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityclientcontext?language=objc)
 #[repr(C, packed(2))]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CSIdentityClientContext {
     pub version: CFIndex,

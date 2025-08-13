@@ -16,6 +16,7 @@ use crate::*;
 ))]
 #[deprecated]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_state_funcs {
     pub cssm_GetAttachFunctions: Option<
@@ -134,6 +135,7 @@ pub type CSSM_STATE_FUNCS_PTR = *mut cssm_state_funcs;
 ))]
 #[deprecated]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_manager_registration_info {
     pub Initialize: Option<unsafe extern "C-unwind" fn(uint32, uint32) -> CSSM_RETURN>,

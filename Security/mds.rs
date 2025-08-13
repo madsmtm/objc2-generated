@@ -18,6 +18,7 @@ pub type MDS_DB_HANDLE = CSSM_DL_DB_HANDLE;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct mds_funcs {
     pub DbOpen: Option<

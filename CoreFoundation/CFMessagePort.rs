@@ -41,6 +41,7 @@ pub const kCFMessagePortBecameInvalidError: i32 = -5;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcontext?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFMessagePortContext {
     pub version: CFIndex,

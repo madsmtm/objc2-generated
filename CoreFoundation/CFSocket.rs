@@ -136,6 +136,7 @@ pub type CFSocketCallBack = Option<
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcontext?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFSocketContext {
     pub version: CFIndex,

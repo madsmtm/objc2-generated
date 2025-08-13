@@ -398,6 +398,7 @@ pub type CSSM_CALLBACK =
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_crypto_data {
     pub Param: SecAsn1Item,
@@ -953,6 +954,7 @@ pub type CSSM_CALLOC =
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_memory_funcs?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_memory_funcs {
     pub malloc_func: CSSM_MALLOC,
@@ -1593,6 +1595,7 @@ pub type CSSM_ACL_SUBJECT_CALLBACK = Option<
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_acl_entry_input {
     pub Prototype: CSSM_ACL_ENTRY_PROTOTYPE,
@@ -1752,6 +1755,7 @@ pub type CSSM_PROC_ADDR_PTR = *mut CSSM_PROC_ADDR;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_func_name_addr?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_func_name_addr {
     pub Name: CSSM_STRING,
@@ -3332,6 +3336,7 @@ pub type CSSM_DL_DB_LIST_PTR = *mut cssm_dl_db_list;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_tp_callerauth_context {
     pub Policy: CSSM_TP_POLICYINFO,

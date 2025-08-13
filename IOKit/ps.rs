@@ -640,6 +640,7 @@ pub type IOUPSEventCallbackFunction = Option<
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioupsplugininterface?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOUPSPlugInInterface {
     pub(crate) _reserved: *mut c_void,
@@ -687,6 +688,7 @@ unsafe impl RefEncode for IOUPSPlugInInterface {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioupsplugininterface_v140?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOUPSPlugInInterface_v140 {
     pub(crate) _reserved: *mut c_void,

@@ -11,6 +11,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcomparecontext?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFBinaryHeapCompareContext {
     pub version: CFIndex,
@@ -62,6 +63,7 @@ unsafe impl RefEncode for CFBinaryHeapCompareContext {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcallbacks?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFBinaryHeapCallBacks {
     pub version: CFIndex,

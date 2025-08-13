@@ -720,6 +720,7 @@ pub type IOHIDCompletionAction =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcompletion?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDCompletion {
     pub target: *mut c_void,
@@ -3291,6 +3292,7 @@ pub type IOHIDReportCallbackFunction =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddeviceinterface?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDDeviceInterface {
     pub(crate) _reserved: *mut c_void,
@@ -3413,6 +3415,7 @@ unsafe impl RefEncode for IOHIDDeviceInterface {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddeviceinterface121?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDDeviceInterface121 {
     pub(crate) _reserved: *mut c_void,
@@ -3535,6 +3538,7 @@ unsafe impl RefEncode for IOHIDDeviceInterface121 {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddeviceinterface122?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDDeviceInterface122 {
     pub(crate) _reserved: *mut c_void,
@@ -3676,6 +3680,7 @@ unsafe impl RefEncode for IOHIDDeviceInterface122 {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidqueueinterface?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDQueueInterface {
     pub(crate) _reserved: *mut c_void,
@@ -3757,6 +3762,7 @@ unsafe impl RefEncode for IOHIDQueueInterface {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidoutputtransactioninterface?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDOutputTransactionInterface {
     pub(crate) _reserved: *mut c_void,
@@ -10007,6 +10013,7 @@ impl IOHIDTransaction {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicedeviceinterface?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDDeviceDeviceInterface {
     pub(crate) _reserved: *mut c_void,
@@ -10129,6 +10136,7 @@ unsafe impl RefEncode for IOHIDDeviceDeviceInterface {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicetimestampeddeviceinterface?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDDeviceTimeStampedDeviceInterface {
     pub(crate) _reserved: *mut c_void,
@@ -10263,6 +10271,7 @@ unsafe impl RefEncode for IOHIDDeviceTimeStampedDeviceInterface {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicequeueinterface?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDDeviceQueueInterface {
     pub(crate) _reserved: *mut c_void,
@@ -10430,6 +10439,7 @@ unsafe impl RefEncode for IOHIDDeviceQueueInterface {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicetransactioninterface?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDDeviceTransactionInterface {
     pub(crate) _reserved: *mut c_void,

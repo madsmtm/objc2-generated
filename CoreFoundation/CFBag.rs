@@ -30,6 +30,7 @@ pub type CFBagHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFBagCallBacks {
     pub version: CFIndex,

@@ -362,6 +362,7 @@ unsafe impl RefEncode for AudioUnitExternalBuffer {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendercallbackstruct?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AURenderCallbackStruct {
     pub inputProc: AURenderCallback,
@@ -590,6 +591,7 @@ pub type HostCallback_GetTransportState2 = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallbackinfo?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct HostCallbackInfo {
     pub hostUserData: *mut c_void,
@@ -713,6 +715,7 @@ pub type AUMIDIOutputCallback = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputcallbackstruct?language=objc)
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-midi"))]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUMIDIOutputCallbackStruct {
     pub midiOutputCallback: AUMIDIOutputCallback,
@@ -738,6 +741,7 @@ unsafe impl RefEncode for AUMIDIOutputCallbackStruct {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auinputsamplesinoutputcallbackstruct?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUInputSamplesInOutputCallbackStruct {
     pub inputToOutputCallback: AUInputSamplesInOutputCallback,
@@ -1621,6 +1625,7 @@ pub const kAudioOutputUnitProperty_NodeComponentDescription: AudioUnitPropertyID
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitmidicallbacks?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioOutputUnitMIDICallbacks {
     pub userData: *mut c_void,

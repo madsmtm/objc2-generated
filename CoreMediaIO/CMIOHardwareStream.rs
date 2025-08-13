@@ -430,6 +430,7 @@ pub type CMIOStreamScheduledOutputNotificationProc =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamscheduledoutputnotificationprocandrefcon?language=objc)
 #[repr(C, packed(4))]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMIOStreamScheduledOutputNotificationProcAndRefCon {
     pub scheduledOutputNotificationProc: CMIOStreamScheduledOutputNotificationProc,

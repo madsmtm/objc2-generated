@@ -5599,6 +5599,7 @@ pub type SetUserDataFDF = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilefdftable?language=objc)
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioFileFDFTable {
     pub mComponentStorage: NonNull<c_void>,
@@ -5644,6 +5645,7 @@ unsafe impl RefEncode for AudioFileFDFTable {
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilefdftableextended?language=objc)
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioFileFDFTableExtended {
     pub mComponentStorage: NonNull<c_void>,

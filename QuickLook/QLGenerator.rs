@@ -860,6 +860,7 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlgeneratorinterfacestruct?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct QLGeneratorInterfaceStruct {
     pub(crate) _reserved: *mut c_void,

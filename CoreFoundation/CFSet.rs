@@ -88,6 +88,7 @@ pub type CFSetHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks?language=objc)
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFSetCallBacks {
     pub version: CFIndex,

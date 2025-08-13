@@ -184,6 +184,7 @@ pub type CVFillExtendedPixelsCallBack =
     feature = "CVPixelBuffer"
 ))]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CVFillExtendedPixelsCallBackData {
     pub version: CFIndex,

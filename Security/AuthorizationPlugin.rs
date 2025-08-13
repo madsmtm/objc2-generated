@@ -193,6 +193,7 @@ pub const kAuthorizationCallbacksVersion: c_uint = 4;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcallbacks?language=objc)
 #[cfg(feature = "Authorization")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AuthorizationCallbacks {
     pub version: u32,
@@ -289,6 +290,7 @@ unsafe impl RefEncode for AuthorizationCallbacks {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationplugininterface?language=objc)
 #[cfg(feature = "Authorization")]
 #[repr(C)]
+#[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AuthorizationPluginInterface {
     pub version: u32,
