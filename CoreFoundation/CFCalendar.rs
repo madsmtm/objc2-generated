@@ -10,6 +10,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendar?language=objc)
+///
+/// This is toll-free bridged with `NSCalendar`.
 #[repr(C)]
 pub struct CFCalendar {
     inner: [u8; 0],

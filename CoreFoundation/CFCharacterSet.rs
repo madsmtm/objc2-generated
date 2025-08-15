@@ -11,6 +11,8 @@ use crate::*;
 
 /// This is the type of a reference to immutable CFCharacterSets.
 ///
+/// This is toll-free bridged with `NSCharacterSet`.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharacterset?language=objc)
 #[repr(C)]
 pub struct CFCharacterSet {
@@ -27,6 +29,8 @@ cf_objc2_type!(
 );
 
 /// This is the type of a reference to mutable CFMutableCharacterSets.
+///
+/// This is toll-free bridged with `NSMutableCharacterSet`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablecharacterset?language=objc)
 #[repr(C)]

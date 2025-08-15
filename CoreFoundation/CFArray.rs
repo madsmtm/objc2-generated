@@ -97,6 +97,8 @@ pub type CFArrayApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_vo
 
 /// This is the type of a reference to immutable CFArrays.
 ///
+/// This is toll-free bridged with `NSArray`.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarray?language=objc)
 #[repr(C)]
 pub struct CFArray<T: ?Sized = Opaque> {
@@ -114,6 +116,8 @@ cf_objc2_type!(
 );
 
 /// This is the type of a reference to mutable CFArrays.
+///
+/// This is toll-free bridged with `NSMutableArray`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablearray?language=objc)
 #[repr(C)]

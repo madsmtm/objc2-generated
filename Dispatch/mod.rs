@@ -676,7 +676,8 @@ impl DispatchQueueAttr {
 /// asynchronously. This is the behavior of the global concurrent queues.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchautoreleasefrequency?language=objc)
-#[doc(alias = "dispatch_autorelease_frequency_t")] // NS_ENUM
+#[doc(alias = "dispatch_autorelease_frequency_t")]
+// NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct DispatchAutoReleaseFrequency(pub c_ulong);

@@ -190,6 +190,8 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstring?language=objc)
+///
+/// This is toll-free bridged with `NSString`.
 #[repr(C)]
 pub struct CFString {
     inner: [u8; 0],
@@ -205,6 +207,8 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablestring?language=objc)
+///
+/// This is toll-free bridged with `NSMutableString`.
 #[repr(C)]
 pub struct CFMutableString {
     inner: [u8; 0],
@@ -273,6 +277,8 @@ unsafe impl RefEncode for CFRange {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnull?language=objc)
+///
+/// This is toll-free bridged with `NSNull`.
 #[repr(C)]
 pub struct CFNull {
     inner: [u8; 0],

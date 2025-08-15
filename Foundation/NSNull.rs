@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -15,6 +17,20 @@ extern_class!(
 unsafe impl Send for NSNull {}
 
 unsafe impl Sync for NSNull {}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSNull> for CFNull {
+    fn as_ref(&self) -> &NSNull {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFNull> for NSNull {
+    fn as_ref(&self) -> &CFNull {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

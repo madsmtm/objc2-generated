@@ -149,6 +149,8 @@ pub type CFSetApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void
 
 /// This is the type of a reference to immutable CFSets.
 ///
+/// This is toll-free bridged with `NSSet`.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfset?language=objc)
 #[repr(C)]
 pub struct CFSet<T: ?Sized = Opaque> {
@@ -166,6 +168,8 @@ cf_objc2_type!(
 );
 
 /// This is the type of a reference to mutable CFSets.
+///
+/// This is toll-free bridged with `NSMutableSet`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutableset?language=objc)
 #[repr(C)]

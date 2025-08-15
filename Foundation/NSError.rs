@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -126,6 +128,20 @@ extern_class!(
 unsafe impl Send for NSError {}
 
 unsafe impl Sync for NSError {}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSError> for CFError {
+    fn as_ref(&self) -> &NSError {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFError> for NSError {
+    fn as_ref(&self) -> &CFError {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

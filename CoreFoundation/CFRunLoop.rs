@@ -59,6 +59,8 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimer?language=objc)
+///
+/// This is toll-free bridged with `NSTimer`.
 #[repr(C)]
 pub struct CFRunLoopTimer {
     inner: [u8; 0],

@@ -11,6 +11,8 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptor?language=objc)
+///
+/// This is toll-free bridged with `NSFontDescriptor`.
 #[repr(C)]
 pub struct CTFontDescriptor {
     inner: [u8; 0],

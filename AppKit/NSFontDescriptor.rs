@@ -5,6 +5,9 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_text::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -118,6 +121,22 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontDescriptor;
 );
+
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+impl AsRef<NSFontDescriptor> for CTFontDescriptor {
+    fn as_ref(&self) -> &NSFontDescriptor {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+impl AsRef<CTFontDescriptor> for NSFontDescriptor {
+    fn as_ref(&self) -> &CTFontDescriptor {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl NSCoding for NSFontDescriptor {}

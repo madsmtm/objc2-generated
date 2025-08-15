@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -235,6 +237,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCalendar;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSCalendar> for CFCalendar {
+    fn as_ref(&self) -> &NSCalendar {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFCalendar> for NSCalendar {
+    fn as_ref(&self) -> &CFCalendar {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

@@ -182,6 +182,8 @@ pub type CFDictionaryApplierFunction =
 
 /// This is the type of a reference to immutable CFDictionarys.
 ///
+/// This is toll-free bridged with `NSDictionary`.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionary?language=objc)
 #[repr(C)]
 pub struct CFDictionary<K: ?Sized = Opaque, V: ?Sized = Opaque> {
@@ -199,6 +201,8 @@ cf_objc2_type!(
 );
 
 /// This is the type of a reference to mutable CFDictionarys.
+///
+/// This is toll-free bridged with `NSMutableDictionary`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledictionary?language=objc)
 #[repr(C)]

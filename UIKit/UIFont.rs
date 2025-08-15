@@ -4,6 +4,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-text")]
+use objc2_core_text::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -18,6 +20,20 @@ extern_class!(
 unsafe impl Send for UIFont {}
 
 unsafe impl Sync for UIFont {}
+
+#[cfg(feature = "objc2-core-text")]
+impl AsRef<UIFont> for CTFont {
+    fn as_ref(&self) -> &UIFont {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-text")]
+impl AsRef<CTFont> for UIFont {
+    fn as_ref(&self) -> &CTFont {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl NSCoding for UIFont {}

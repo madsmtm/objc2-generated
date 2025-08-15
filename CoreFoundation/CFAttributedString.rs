@@ -10,6 +10,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstring?language=objc)
+///
+/// This is toll-free bridged with `NSAttributedString`.
 #[repr(C)]
 pub struct CFAttributedString {
     inner: [u8; 0],
@@ -25,6 +27,8 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutableattributedstring?language=objc)
+///
+/// This is toll-free bridged with `NSMutableAttributedString`.
 #[repr(C)]
 pub struct CFMutableAttributedString {
     inner: [u8; 0],

@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -12,6 +14,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTimer;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSTimer> for CFRunLoopTimer {
+    fn as_ref(&self) -> &NSTimer {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFRunLoopTimer> for NSTimer {
+    fn as_ref(&self) -> &CFRunLoopTimer {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for NSTimer {}

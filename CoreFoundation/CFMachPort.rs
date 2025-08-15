@@ -10,6 +10,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachport?language=objc)
+///
+/// This is toll-free bridged with `NSMachPort`.
 #[repr(C)]
 pub struct CFMachPort {
     inner: [u8; 0],

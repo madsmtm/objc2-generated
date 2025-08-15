@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -169,6 +171,20 @@ extern_class!(
     pub struct NSInputStream;
 );
 
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSInputStream> for CFReadStream {
+    fn as_ref(&self) -> &NSInputStream {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFReadStream> for NSInputStream {
+    fn as_ref(&self) -> &CFReadStream {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for NSInputStream {}
 );
@@ -222,6 +238,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOutputStream;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSOutputStream> for CFWriteStream {
+    fn as_ref(&self) -> &NSOutputStream {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFWriteStream> for NSOutputStream {
+    fn as_ref(&self) -> &CFWriteStream {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for NSOutputStream {}

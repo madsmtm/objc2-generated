@@ -3,6 +3,9 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_text::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -62,6 +65,22 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontCollection;
 );
+
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+impl AsRef<NSFontCollection> for CTFontCollection {
+    fn as_ref(&self) -> &NSFontCollection {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+impl AsRef<CTFontCollection> for NSFontCollection {
+    fn as_ref(&self) -> &CTFontCollection {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl NSCoding for NSFontCollection {}
@@ -207,6 +226,22 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableFontCollection;
 );
+
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+impl AsRef<NSMutableFontCollection> for CTMutableFontCollection {
+    fn as_ref(&self) -> &NSMutableFontCollection {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+impl AsRef<CTMutableFontCollection> for NSMutableFontCollection {
+    fn as_ref(&self) -> &CTMutableFontCollection {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl NSCoding for NSMutableFontCollection {}

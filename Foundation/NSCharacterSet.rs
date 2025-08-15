@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -15,6 +17,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCharacterSet;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSCharacterSet> for CFCharacterSet {
+    fn as_ref(&self) -> &NSCharacterSet {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFCharacterSet> for NSCharacterSet {
+    fn as_ref(&self) -> &CFCharacterSet {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(
@@ -190,6 +206,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableCharacterSet;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSMutableCharacterSet> for CFMutableCharacterSet {
+    fn as_ref(&self) -> &NSMutableCharacterSet {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFMutableCharacterSet> for NSMutableCharacterSet {
+    fn as_ref(&self) -> &CFMutableCharacterSet {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -28,6 +30,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAttributedString;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSAttributedString> for CFAttributedString {
+    fn as_ref(&self) -> &NSAttributedString {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFAttributedString> for NSAttributedString {
+    fn as_ref(&self) -> &CFAttributedString {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(
@@ -262,6 +278,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableAttributedString;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSMutableAttributedString> for CFMutableAttributedString {
+    fn as_ref(&self) -> &NSMutableAttributedString {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFMutableAttributedString> for NSMutableAttributedString {
+    fn as_ref(&self) -> &CFMutableAttributedString {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

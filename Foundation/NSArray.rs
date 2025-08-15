@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -14,6 +16,20 @@ extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSArray<ObjectType: ?Sized = AnyObject>;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<ObjectType: ?Sized + Message> AsRef<NSArray<ObjectType>> for CFArray<ObjectType> {
+    fn as_ref(&self) -> &NSArray<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<ObjectType: ?Sized + Message> AsRef<CFArray<ObjectType>> for NSArray<ObjectType> {
+    fn as_ref(&self) -> &CFArray<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(
@@ -634,6 +650,24 @@ extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableArray<ObjectType: ?Sized = AnyObject>;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<ObjectType: ?Sized + Message> AsRef<NSMutableArray<ObjectType>>
+    for CFMutableArray<ObjectType>
+{
+    fn as_ref(&self) -> &NSMutableArray<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<ObjectType: ?Sized + Message> AsRef<CFMutableArray<ObjectType>>
+    for NSMutableArray<ObjectType>
+{
+    fn as_ref(&self) -> &CFMutableArray<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

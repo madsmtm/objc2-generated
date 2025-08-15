@@ -12,6 +12,8 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfo?language=objc)
+///
+/// This is toll-free bridged with `NSGlyphInfo`.
 #[repr(C)]
 pub struct CTGlyphInfo {
     inner: [u8; 0],

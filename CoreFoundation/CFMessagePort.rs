@@ -12,6 +12,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageport?language=objc)
+///
+/// This is toll-free bridged with `NSMessagePort`.
 #[repr(C)]
 pub struct CFMessagePort {
     inner: [u8; 0],

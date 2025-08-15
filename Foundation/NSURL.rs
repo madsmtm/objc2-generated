@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -1000,6 +1002,20 @@ extern_class!(
 unsafe impl Send for NSURL {}
 
 unsafe impl Sync for NSURL {}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSURL> for CFURL {
+    fn as_ref(&self) -> &NSURL {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFURL> for NSURL {
+    fn as_ref(&self) -> &CFURL {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(
@@ -2099,6 +2115,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileSecurity;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSFileSecurity> for CFFileSecurity {
+    fn as_ref(&self) -> &NSFileSecurity {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFFileSecurity> for NSFileSecurity {
+    fn as_ref(&self) -> &CFFileSecurity {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

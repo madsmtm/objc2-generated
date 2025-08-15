@@ -15,6 +15,8 @@ pub type CFErrorDomain = CFString;
 
 /// This is the type of a reference to CFErrors.  CFErrorRef is toll-free bridged with NSError.
 ///
+/// This is toll-free bridged with `NSError`.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferror?language=objc)
 #[repr(C)]
 pub struct CFError {

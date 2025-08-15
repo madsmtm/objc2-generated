@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -25,6 +27,20 @@ extern_class!(
 unsafe impl Send for NSDate {}
 
 unsafe impl Sync for NSDate {}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSDate> for CFDate {
+    fn as_ref(&self) -> &NSDate {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFDate> for NSDate {
+    fn as_ref(&self) -> &CFDate {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

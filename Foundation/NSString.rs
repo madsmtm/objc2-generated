@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -123,6 +125,20 @@ extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSString;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSString> for CFString {
+    fn as_ref(&self) -> &NSString {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFString> for NSString {
+    fn as_ref(&self) -> &CFString {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(
@@ -1288,6 +1304,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableString;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSMutableString> for CFMutableString {
+    fn as_ref(&self) -> &NSMutableString {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFMutableString> for NSMutableString {
+    fn as_ref(&self) -> &CFMutableString {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

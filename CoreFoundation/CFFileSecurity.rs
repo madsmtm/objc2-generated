@@ -9,6 +9,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurity?language=objc)
+///
+/// This is toll-free bridged with `NSFileSecurity`.
 #[repr(C)]
 pub struct CFFileSecurity {
     inner: [u8; 0],

@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -14,6 +16,20 @@ extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSSet<ObjectType: ?Sized = AnyObject>;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<ObjectType: ?Sized + Message> AsRef<NSSet<ObjectType>> for CFSet<ObjectType> {
+    fn as_ref(&self) -> &NSSet<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<ObjectType: ?Sized + Message> AsRef<CFSet<ObjectType>> for NSSet<ObjectType> {
+    fn as_ref(&self) -> &CFSet<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(
@@ -328,6 +344,20 @@ extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableSet<ObjectType: ?Sized = AnyObject>;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<ObjectType: ?Sized + Message> AsRef<NSMutableSet<ObjectType>> for CFMutableSet<ObjectType> {
+    fn as_ref(&self) -> &NSMutableSet<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<ObjectType: ?Sized + Message> AsRef<CFMutableSet<ObjectType>> for NSMutableSet<ObjectType> {
+    fn as_ref(&self) -> &CFMutableSet<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

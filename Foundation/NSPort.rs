@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -189,6 +191,20 @@ extern_class!(
     pub struct NSMachPort;
 );
 
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSMachPort> for CFMachPort {
+    fn as_ref(&self) -> &NSMachPort {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFMachPort> for NSMachPort {
+    fn as_ref(&self) -> &CFMachPort {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 #[cfg(feature = "NSObject")]
 extern_conformance!(
     unsafe impl NSCoding for NSMachPort {}
@@ -289,6 +305,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMessagePort;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<NSMessagePort> for CFMessagePort {
+    fn as_ref(&self) -> &NSMessagePort {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl AsRef<CFMessagePort> for NSMessagePort {
+    fn as_ref(&self) -> &CFMessagePort {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

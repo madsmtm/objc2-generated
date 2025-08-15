@@ -5,6 +5,9 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-graphics")]
 #[cfg(target_vendor = "apple")]
 use objc2_core_graphics::*;
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_text::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -15,6 +18,22 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGlyphInfo;
 );
+
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+impl AsRef<NSGlyphInfo> for CTGlyphInfo {
+    fn as_ref(&self) -> &NSGlyphInfo {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+impl AsRef<CTGlyphInfo> for NSGlyphInfo {
+    fn as_ref(&self) -> &CTGlyphInfo {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl NSCoding for NSGlyphInfo {}

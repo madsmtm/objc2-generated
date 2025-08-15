@@ -4,6 +4,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-text")]
+use objc2_core_text::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -131,6 +133,20 @@ extern_class!(
 unsafe impl Send for UIFontDescriptor {}
 
 unsafe impl Sync for UIFontDescriptor {}
+
+#[cfg(feature = "objc2-core-text")]
+impl AsRef<UIFontDescriptor> for CTFontDescriptor {
+    fn as_ref(&self) -> &UIFontDescriptor {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-text")]
+impl AsRef<CTFontDescriptor> for UIFontDescriptor {
+    fn as_ref(&self) -> &CTFontDescriptor {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl NSCoding for UIFontDescriptor {}

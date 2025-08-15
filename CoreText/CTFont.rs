@@ -13,6 +13,8 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfont?language=objc)
+///
+/// This is toll-free bridged with `NSFont`.
 #[repr(C)]
 pub struct CTFont {
     inner: [u8; 0],

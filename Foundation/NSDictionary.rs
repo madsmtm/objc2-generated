@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -14,6 +16,24 @@ extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message>
+    AsRef<NSDictionary<KeyType, ObjectType>> for CFDictionary<KeyType, ObjectType>
+{
+    fn as_ref(&self) -> &NSDictionary<KeyType, ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message>
+    AsRef<CFDictionary<KeyType, ObjectType>> for NSDictionary<KeyType, ObjectType>
+{
+    fn as_ref(&self) -> &CFDictionary<KeyType, ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(
@@ -486,6 +506,24 @@ extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
 );
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message>
+    AsRef<NSMutableDictionary<KeyType, ObjectType>> for CFMutableDictionary<KeyType, ObjectType>
+{
+    fn as_ref(&self) -> &NSMutableDictionary<KeyType, ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message>
+    AsRef<CFMutableDictionary<KeyType, ObjectType>> for NSMutableDictionary<KeyType, ObjectType>
+{
+    fn as_ref(&self) -> &CFMutableDictionary<KeyType, ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(
