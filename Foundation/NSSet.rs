@@ -19,6 +19,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl<ObjectType: ?Sized + Message> AsRef<NSSet<ObjectType>> for CFSet<ObjectType> {
+    #[inline]
     fn as_ref(&self) -> &NSSet<ObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -26,7 +27,20 @@ impl<ObjectType: ?Sized + Message> AsRef<NSSet<ObjectType>> for CFSet<ObjectType
 
 #[cfg(feature = "objc2-core-foundation")]
 impl<ObjectType: ?Sized + Message> AsRef<CFSet<ObjectType>> for NSSet<ObjectType> {
+    #[inline]
     fn as_ref(&self) -> &CFSet<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+impl<ObjectType: ?Sized + Message> NSSet<ObjectType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(&self) -> &NSSet<NewObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
@@ -347,6 +361,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl<ObjectType: ?Sized + Message> AsRef<NSMutableSet<ObjectType>> for CFMutableSet<ObjectType> {
+    #[inline]
     fn as_ref(&self) -> &NSMutableSet<ObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -354,7 +369,22 @@ impl<ObjectType: ?Sized + Message> AsRef<NSMutableSet<ObjectType>> for CFMutable
 
 #[cfg(feature = "objc2-core-foundation")]
 impl<ObjectType: ?Sized + Message> AsRef<CFMutableSet<ObjectType>> for NSMutableSet<ObjectType> {
+    #[inline]
     fn as_ref(&self) -> &CFMutableSet<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+impl<ObjectType: ?Sized + Message> NSMutableSet<ObjectType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &NSMutableSet<NewObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
@@ -502,6 +532,20 @@ extern_class!(
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSCountedSet<ObjectType: ?Sized = AnyObject>;
 );
+
+impl<ObjectType: ?Sized + Message> NSCountedSet<ObjectType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &NSCountedSet<NewObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSObject")]
 extern_conformance!(

@@ -19,6 +19,20 @@ extern_class!(
     pub struct MXHistogramBucket<UnitType: ?Sized = AnyObject>;
 );
 
+impl<UnitType: ?Sized + Message> MXHistogramBucket<UnitType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message>(
+        &self,
+    ) -> &MXHistogramBucket<NewUnitType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogramBucket<UnitType> {}
 );
@@ -71,6 +85,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXHistogram<UnitType: ?Sized = AnyObject>;
 );
+
+impl<UnitType: ?Sized + Message> MXHistogram<UnitType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message>(
+        &self,
+    ) -> &MXHistogram<NewUnitType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogram<UnitType> {}

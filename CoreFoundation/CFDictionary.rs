@@ -200,6 +200,24 @@ cf_objc2_type!(
     unsafe impl<K: ?Sized, V: ?Sized> RefEncode<"__CFDictionary"> for CFDictionary<K, V> {}
 );
 
+impl<K: ?Sized, V: ?Sized> CFDictionary<K, V> {
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewK: ?Sized, NewV: ?Sized>(&self) -> &CFDictionary<NewK, NewV> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+
+    /// Convert to the opaque/untyped variant.
+    #[inline]
+    pub fn as_opaque(&self) -> &CFDictionary {
+        unsafe { self.cast_unchecked() }
+    }
+}
+
 /// This is the type of a reference to mutable CFDictionarys.
 ///
 /// This is toll-free bridged with `NSMutableDictionary`.
@@ -219,6 +237,26 @@ cf_type!(
 cf_objc2_type!(
     unsafe impl<K: ?Sized, V: ?Sized> RefEncode<"__CFDictionary"> for CFMutableDictionary<K, V> {}
 );
+
+impl<K: ?Sized, V: ?Sized> CFMutableDictionary<K, V> {
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewK: ?Sized, NewV: ?Sized>(
+        &self,
+    ) -> &CFMutableDictionary<NewK, NewV> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+
+    /// Convert to the opaque/untyped variant.
+    #[inline]
+    pub fn as_opaque(&self) -> &CFMutableDictionary {
+        unsafe { self.cast_unchecked() }
+    }
+}
 
 unsafe impl ConcreteType for CFDictionary {
     /// Returns the type identifier of all CFDictionary instances.

@@ -128,6 +128,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSString> for CFString {
+    #[inline]
     fn as_ref(&self) -> &NSString {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -135,6 +136,7 @@ impl AsRef<NSString> for CFString {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFString> for NSString {
+    #[inline]
     fn as_ref(&self) -> &CFString {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -1307,6 +1309,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSMutableString> for CFMutableString {
+    #[inline]
     fn as_ref(&self) -> &NSMutableString {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -1314,6 +1317,7 @@ impl AsRef<NSMutableString> for CFMutableString {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFMutableString> for NSMutableString {
+    #[inline]
     fn as_ref(&self) -> &CFMutableString {
         unsafe { &*((self as *const Self).cast()) }
     }

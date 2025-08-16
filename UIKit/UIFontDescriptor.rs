@@ -136,6 +136,7 @@ unsafe impl Sync for UIFontDescriptor {}
 
 #[cfg(feature = "objc2-core-text")]
 impl AsRef<UIFontDescriptor> for CTFontDescriptor {
+    #[inline]
     fn as_ref(&self) -> &UIFontDescriptor {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -143,6 +144,7 @@ impl AsRef<UIFontDescriptor> for CTFontDescriptor {
 
 #[cfg(feature = "objc2-core-text")]
 impl AsRef<CTFontDescriptor> for UIFontDescriptor {
+    #[inline]
     fn as_ref(&self) -> &CTFontDescriptor {
         unsafe { &*((self as *const Self).cast()) }
     }

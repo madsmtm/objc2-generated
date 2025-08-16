@@ -90,6 +90,24 @@ cf_objc2_type!(
     unsafe impl<T: ?Sized> RefEncode<"__CFBag"> for CFBag<T> {}
 );
 
+impl<T: ?Sized> CFBag<T> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewT: ?Sized>(&self) -> &CFBag<NewT> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+
+    /// Convert to the opaque/untyped variant.
+    #[inline]
+    pub fn as_opaque(&self) -> &CFBag {
+        unsafe { self.cast_unchecked() }
+    }
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebag?language=objc)
 #[repr(C)]
 pub struct CFMutableBag<T: ?Sized = Opaque> {
@@ -105,6 +123,24 @@ cf_type!(
 cf_objc2_type!(
     unsafe impl<T: ?Sized> RefEncode<"__CFBag"> for CFMutableBag<T> {}
 );
+
+impl<T: ?Sized> CFMutableBag<T> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewT: ?Sized>(&self) -> &CFMutableBag<NewT> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+
+    /// Convert to the opaque/untyped variant.
+    #[inline]
+    pub fn as_opaque(&self) -> &CFMutableBag {
+        unsafe { self.cast_unchecked() }
+    }
+}
 
 unsafe impl ConcreteType for CFBag {
     #[doc(alias = "CFBagGetTypeID")]

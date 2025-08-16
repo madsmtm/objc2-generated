@@ -13,6 +13,20 @@ extern_class!(
     pub struct NSCache<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
 );
 
+impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> NSCache<KeyType, ObjectType> {
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewKeyType: ?Sized + Message, NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &NSCache<NewKeyType, NewObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol for NSCache<KeyType, ObjectType> {}
 );

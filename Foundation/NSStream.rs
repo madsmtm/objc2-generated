@@ -173,6 +173,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSInputStream> for CFReadStream {
+    #[inline]
     fn as_ref(&self) -> &NSInputStream {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -180,6 +181,7 @@ impl AsRef<NSInputStream> for CFReadStream {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFReadStream> for NSInputStream {
+    #[inline]
     fn as_ref(&self) -> &CFReadStream {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -241,6 +243,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSOutputStream> for CFWriteStream {
+    #[inline]
     fn as_ref(&self) -> &NSOutputStream {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -248,6 +251,7 @@ impl AsRef<NSOutputStream> for CFWriteStream {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFWriteStream> for NSOutputStream {
+    #[inline]
     fn as_ref(&self) -> &CFWriteStream {
         unsafe { &*((self as *const Self).cast()) }
     }

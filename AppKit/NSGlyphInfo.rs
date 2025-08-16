@@ -22,6 +22,7 @@ extern_class!(
 #[cfg(feature = "objc2-core-text")]
 #[cfg(target_vendor = "apple")]
 impl AsRef<NSGlyphInfo> for CTGlyphInfo {
+    #[inline]
     fn as_ref(&self) -> &NSGlyphInfo {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -30,6 +31,7 @@ impl AsRef<NSGlyphInfo> for CTGlyphInfo {
 #[cfg(feature = "objc2-core-text")]
 #[cfg(target_vendor = "apple")]
 impl AsRef<CTGlyphInfo> for NSGlyphInfo {
+    #[inline]
     fn as_ref(&self) -> &CTGlyphInfo {
         unsafe { &*((self as *const Self).cast()) }
     }

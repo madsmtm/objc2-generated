@@ -20,6 +20,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSCharacterSet> for CFCharacterSet {
+    #[inline]
     fn as_ref(&self) -> &NSCharacterSet {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -27,6 +28,7 @@ impl AsRef<NSCharacterSet> for CFCharacterSet {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFCharacterSet> for NSCharacterSet {
+    #[inline]
     fn as_ref(&self) -> &CFCharacterSet {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -209,6 +211,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSMutableCharacterSet> for CFMutableCharacterSet {
+    #[inline]
     fn as_ref(&self) -> &NSMutableCharacterSet {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -216,6 +219,7 @@ impl AsRef<NSMutableCharacterSet> for CFMutableCharacterSet {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFMutableCharacterSet> for NSMutableCharacterSet {
+    #[inline]
     fn as_ref(&self) -> &CFMutableCharacterSet {
         unsafe { &*((self as *const Self).cast()) }
     }

@@ -21,6 +21,7 @@ extern_class!(
 impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message>
     AsRef<NSDictionary<KeyType, ObjectType>> for CFDictionary<KeyType, ObjectType>
 {
+    #[inline]
     fn as_ref(&self) -> &NSDictionary<KeyType, ObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -30,7 +31,22 @@ impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message>
 impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message>
     AsRef<CFDictionary<KeyType, ObjectType>> for NSDictionary<KeyType, ObjectType>
 {
+    #[inline]
     fn as_ref(&self) -> &CFDictionary<KeyType, ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> NSDictionary<KeyType, ObjectType> {
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewKeyType: ?Sized + Message, NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &NSDictionary<NewKeyType, NewObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
@@ -511,6 +527,7 @@ extern_class!(
 impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message>
     AsRef<NSMutableDictionary<KeyType, ObjectType>> for CFMutableDictionary<KeyType, ObjectType>
 {
+    #[inline]
     fn as_ref(&self) -> &NSMutableDictionary<KeyType, ObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -520,7 +537,24 @@ impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message>
 impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message>
     AsRef<CFMutableDictionary<KeyType, ObjectType>> for NSMutableDictionary<KeyType, ObjectType>
 {
+    #[inline]
     fn as_ref(&self) -> &CFMutableDictionary<KeyType, ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message>
+    NSMutableDictionary<KeyType, ObjectType>
+{
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewKeyType: ?Sized + Message, NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &NSMutableDictionary<NewKeyType, NewObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }

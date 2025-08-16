@@ -42,6 +42,20 @@ extern_class!(
     pub struct NSOrderedCollectionDifference<ObjectType: ?Sized = AnyObject>;
 );
 
+impl<ObjectType: ?Sized + Message> NSOrderedCollectionDifference<ObjectType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &NSOrderedCollectionDifference<NewObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 #[cfg(feature = "NSEnumerator")]
 extern_conformance!(
     unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSOrderedCollectionDifference<ObjectType> {}

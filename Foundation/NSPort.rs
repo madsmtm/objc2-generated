@@ -193,6 +193,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSMachPort> for CFMachPort {
+    #[inline]
     fn as_ref(&self) -> &NSMachPort {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -200,6 +201,7 @@ impl AsRef<NSMachPort> for CFMachPort {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFMachPort> for NSMachPort {
+    #[inline]
     fn as_ref(&self) -> &CFMachPort {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -308,6 +310,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSMessagePort> for CFMessagePort {
+    #[inline]
     fn as_ref(&self) -> &NSMessagePort {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -315,6 +318,7 @@ impl AsRef<NSMessagePort> for CFMessagePort {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFMessagePort> for NSMessagePort {
+    #[inline]
     fn as_ref(&self) -> &CFMessagePort {
         unsafe { &*((self as *const Self).cast()) }
     }

@@ -19,6 +19,21 @@ extern_class!(
 );
 
 #[cfg(feature = "HMEvent")]
+impl<TriggerValueType: ?Sized + Message> HMCharacteristicEvent<TriggerValueType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewTriggerValueType: ?Sized + Message>(
+        &self,
+    ) -> &HMCharacteristicEvent<NewTriggerValueType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "HMEvent")]
 extern_conformance!(
     unsafe impl<TriggerValueType: ?Sized> NSCopying for HMCharacteristicEvent<TriggerValueType> {}
 );
@@ -132,6 +147,21 @@ extern_class!(
     #[cfg(feature = "HMEvent")]
     pub struct HMMutableCharacteristicEvent<TriggerValueType: ?Sized = AnyObject>;
 );
+
+#[cfg(feature = "HMEvent")]
+impl<TriggerValueType: ?Sized + Message> HMMutableCharacteristicEvent<TriggerValueType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewTriggerValueType: ?Sized + Message>(
+        &self,
+    ) -> &HMMutableCharacteristicEvent<NewTriggerValueType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "HMEvent")]
 extern_conformance!(

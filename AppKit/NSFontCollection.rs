@@ -69,6 +69,7 @@ extern_class!(
 #[cfg(feature = "objc2-core-text")]
 #[cfg(target_vendor = "apple")]
 impl AsRef<NSFontCollection> for CTFontCollection {
+    #[inline]
     fn as_ref(&self) -> &NSFontCollection {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -77,6 +78,7 @@ impl AsRef<NSFontCollection> for CTFontCollection {
 #[cfg(feature = "objc2-core-text")]
 #[cfg(target_vendor = "apple")]
 impl AsRef<CTFontCollection> for NSFontCollection {
+    #[inline]
     fn as_ref(&self) -> &CTFontCollection {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -230,6 +232,7 @@ extern_class!(
 #[cfg(feature = "objc2-core-text")]
 #[cfg(target_vendor = "apple")]
 impl AsRef<NSMutableFontCollection> for CTMutableFontCollection {
+    #[inline]
     fn as_ref(&self) -> &NSMutableFontCollection {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -238,6 +241,7 @@ impl AsRef<NSMutableFontCollection> for CTMutableFontCollection {
 #[cfg(feature = "objc2-core-text")]
 #[cfg(target_vendor = "apple")]
 impl AsRef<CTMutableFontCollection> for NSMutableFontCollection {
+    #[inline]
     fn as_ref(&self) -> &CTMutableFontCollection {
         unsafe { &*((self as *const Self).cast()) }
     }

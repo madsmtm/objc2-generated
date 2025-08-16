@@ -43,6 +43,20 @@ extern_class!(
     pub struct NSMapTable<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
 );
 
+impl<KeyType: ?Sized + Message, ObjectType: ?Sized + Message> NSMapTable<KeyType, ObjectType> {
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewKeyType: ?Sized + Message, NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &NSMapTable<NewKeyType, NewObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 #[cfg(feature = "NSObject")]
 extern_conformance!(
     unsafe impl<KeyType: ?Sized + NSCoding, ObjectType: ?Sized + NSCoding> NSCoding

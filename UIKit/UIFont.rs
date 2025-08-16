@@ -23,6 +23,7 @@ unsafe impl Sync for UIFont {}
 
 #[cfg(feature = "objc2-core-text")]
 impl AsRef<UIFont> for CTFont {
+    #[inline]
     fn as_ref(&self) -> &UIFont {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -30,6 +31,7 @@ impl AsRef<UIFont> for CTFont {
 
 #[cfg(feature = "objc2-core-text")]
 impl AsRef<CTFont> for UIFont {
+    #[inline]
     fn as_ref(&self) -> &CTFont {
         unsafe { &*((self as *const Self).cast()) }
     }

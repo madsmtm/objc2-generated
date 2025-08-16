@@ -125,6 +125,7 @@ extern_class!(
 #[cfg(feature = "objc2-core-text")]
 #[cfg(target_vendor = "apple")]
 impl AsRef<NSFontDescriptor> for CTFontDescriptor {
+    #[inline]
     fn as_ref(&self) -> &NSFontDescriptor {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -133,6 +134,7 @@ impl AsRef<NSFontDescriptor> for CTFontDescriptor {
 #[cfg(feature = "objc2-core-text")]
 #[cfg(target_vendor = "apple")]
 impl AsRef<CTFontDescriptor> for NSFontDescriptor {
+    #[inline]
     fn as_ref(&self) -> &CTFontDescriptor {
         unsafe { &*((self as *const Self).cast()) }
     }

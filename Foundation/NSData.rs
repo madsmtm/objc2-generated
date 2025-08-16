@@ -160,6 +160,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSData> for CFData {
+    #[inline]
     fn as_ref(&self) -> &NSData {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -167,6 +168,7 @@ impl AsRef<NSData> for CFData {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFData> for NSData {
+    #[inline]
     fn as_ref(&self) -> &CFData {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -764,6 +766,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSMutableData> for CFMutableData {
+    #[inline]
     fn as_ref(&self) -> &NSMutableData {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -771,6 +774,7 @@ impl AsRef<NSMutableData> for CFMutableData {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFMutableData> for NSMutableData {
+    #[inline]
     fn as_ref(&self) -> &CFMutableData {
         unsafe { &*((self as *const Self).cast()) }
     }

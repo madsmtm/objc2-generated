@@ -16,6 +16,18 @@ extern_class!(
     pub struct MXAverage<UnitType: ?Sized = AnyObject>;
 );
 
+impl<UnitType: ?Sized + Message> MXAverage<UnitType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message>(&self) -> &MXAverage<NewUnitType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXAverage<UnitType> {}
 );

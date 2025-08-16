@@ -14,6 +14,20 @@ extern_class!(
     pub struct NSDiffableDataSourceSectionSnapshot<ItemIdentifierType: ?Sized = AnyObject>;
 );
 
+impl<ItemIdentifierType: ?Sized + Message> NSDiffableDataSourceSectionSnapshot<ItemIdentifierType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewItemIdentifierType: ?Sized + Message>(
+        &self,
+    ) -> &NSDiffableDataSourceSectionSnapshot<NewItemIdentifierType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<ItemIdentifierType: ?Sized> NSCopying
         for NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>

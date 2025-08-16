@@ -16,6 +16,21 @@ extern_class!(
 );
 
 #[cfg(feature = "NSTouchBarItem")]
+impl<CandidateType: ?Sized + Message> NSCandidateListTouchBarItem<CandidateType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewCandidateType: ?Sized + Message>(
+        &self,
+    ) -> &NSCandidateListTouchBarItem<NewCandidateType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "NSTouchBarItem")]
 extern_conformance!(
     unsafe impl<CandidateType: ?Sized + NSCoding> NSCoding
         for NSCandidateListTouchBarItem<CandidateType>

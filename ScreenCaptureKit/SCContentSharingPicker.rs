@@ -48,6 +48,20 @@ extern_class!(
     pub struct SCContentSharingPickerConfiguration<NSCopying: ?Sized = AnyObject>;
 );
 
+impl<NSCopying: ?Sized + Message> SCContentSharingPickerConfiguration<NSCopying> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewNSCopying: ?Sized + Message>(
+        &self,
+    ) -> &SCContentSharingPickerConfiguration<NewNSCopying> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<NSCopying: ?Sized> NSObjectProtocol for SCContentSharingPickerConfiguration<NSCopying> {}
 );

@@ -14,6 +14,20 @@ extern_class!(
     pub struct PHFetchResult<ObjectType: ?Sized = AnyObject>;
 );
 
+impl<ObjectType: ?Sized + Message> PHFetchResult<ObjectType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &PHFetchResult<NewObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<ObjectType: ?Sized> NSCopying for PHFetchResult<ObjectType> {}
 );

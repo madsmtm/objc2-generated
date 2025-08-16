@@ -77,6 +77,21 @@ extern_class!(
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
+impl<ResultType: ?Sized + Message> NSFetchRequest<ResultType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewResultType: ?Sized + Message>(
+        &self,
+    ) -> &NSFetchRequest<NewResultType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "NSPersistentStoreRequest")]
 extern_conformance!(
     unsafe impl<ResultType: ?Sized + NSCoding> NSCoding for NSFetchRequest<ResultType> {}
 );
@@ -326,6 +341,21 @@ extern_class!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     pub struct NSAsynchronousFetchRequest<ResultType: ?Sized = AnyObject>;
 );
+
+#[cfg(feature = "NSPersistentStoreRequest")]
+impl<ResultType: ?Sized + Message> NSAsynchronousFetchRequest<ResultType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewResultType: ?Sized + Message>(
+        &self,
+    ) -> &NSAsynchronousFetchRequest<NewResultType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 extern_conformance!(

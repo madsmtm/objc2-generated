@@ -1005,6 +1005,7 @@ unsafe impl Sync for NSURL {}
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSURL> for CFURL {
+    #[inline]
     fn as_ref(&self) -> &NSURL {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -1012,6 +1013,7 @@ impl AsRef<NSURL> for CFURL {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFURL> for NSURL {
+    #[inline]
     fn as_ref(&self) -> &CFURL {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -2118,6 +2120,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSFileSecurity> for CFFileSecurity {
+    #[inline]
     fn as_ref(&self) -> &NSFileSecurity {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -2125,6 +2128,7 @@ impl AsRef<NSFileSecurity> for CFFileSecurity {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFFileSecurity> for NSFileSecurity {
+    #[inline]
     fn as_ref(&self) -> &CFFileSecurity {
         unsafe { &*((self as *const Self).cast()) }
     }

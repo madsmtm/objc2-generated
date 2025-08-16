@@ -181,6 +181,20 @@ extern_class!(
     pub struct NSAsynchronousFetchResult<ResultType: ?Sized = AnyObject>;
 );
 
+impl<ResultType: ?Sized + Message> NSAsynchronousFetchResult<ResultType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewResultType: ?Sized + Message>(
+        &self,
+    ) -> &NSAsynchronousFetchResult<NewResultType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchResult<ResultType> {}
 );

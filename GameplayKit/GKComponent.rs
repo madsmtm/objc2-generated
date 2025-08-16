@@ -92,6 +92,20 @@ extern_class!(
     pub struct GKComponentSystem<ComponentType: ?Sized = AnyObject>;
 );
 
+impl<ComponentType: ?Sized + Message> GKComponentSystem<ComponentType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewComponentType: ?Sized + Message>(
+        &self,
+    ) -> &GKComponentSystem<NewComponentType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<ComponentType: ?Sized> NSFastEnumeration for GKComponentSystem<ComponentType> {}
 );

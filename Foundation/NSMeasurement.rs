@@ -13,6 +13,20 @@ extern_class!(
     pub struct NSMeasurement<UnitType: ?Sized = AnyObject>;
 );
 
+impl<UnitType: ?Sized + Message> NSMeasurement<UnitType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message>(
+        &self,
+    ) -> &NSMeasurement<NewUnitType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 #[cfg(feature = "NSObject")]
 extern_conformance!(
     unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for NSMeasurement<UnitType> {}

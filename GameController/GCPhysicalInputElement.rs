@@ -52,6 +52,22 @@ extern_class!(
     >;
 );
 
+impl<Key: ?Sized + Message, Element: ?Sized + Message>
+    GCPhysicalInputElementCollection<Key, Element>
+{
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewKey: ?Sized + Message, NewElement: ?Sized + Message>(
+        &self,
+    ) -> &GCPhysicalInputElementCollection<NewKey, NewElement> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<Key: ?Sized, Element: ?Sized> NSFastEnumeration
         for GCPhysicalInputElementCollection<Key, Element>

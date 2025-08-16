@@ -13,6 +13,20 @@ extern_class!(
     pub struct CNFetchResult<ValueType: ?Sized = AnyObject>;
 );
 
+impl<ValueType: ?Sized + Message> CNFetchResult<ValueType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewValueType: ?Sized + Message>(
+        &self,
+    ) -> &CNFetchResult<NewValueType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNFetchResult<ValueType> {}
 );

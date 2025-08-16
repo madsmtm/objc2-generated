@@ -17,6 +17,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSTimer> for CFRunLoopTimer {
+    #[inline]
     fn as_ref(&self) -> &NSTimer {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -24,6 +25,7 @@ impl AsRef<NSTimer> for CFRunLoopTimer {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFRunLoopTimer> for NSTimer {
+    #[inline]
     fn as_ref(&self) -> &CFRunLoopTimer {
         unsafe { &*((self as *const Self).cast()) }
     }

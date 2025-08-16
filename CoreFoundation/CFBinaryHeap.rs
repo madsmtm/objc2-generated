@@ -147,6 +147,24 @@ cf_objc2_type!(
     unsafe impl<T: ?Sized> RefEncode<"__CFBinaryHeap"> for CFBinaryHeap<T> {}
 );
 
+impl<T: ?Sized> CFBinaryHeap<T> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewT: ?Sized>(&self) -> &CFBinaryHeap<NewT> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+
+    /// Convert to the opaque/untyped variant.
+    #[inline]
+    pub fn as_opaque(&self) -> &CFBinaryHeap {
+        unsafe { self.cast_unchecked() }
+    }
+}
+
 unsafe impl ConcreteType for CFBinaryHeap {
     /// Returns the type identifier of all CFBinaryHeap instances.
     #[doc(alias = "CFBinaryHeapGetTypeID")]

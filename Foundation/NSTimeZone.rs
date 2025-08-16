@@ -21,6 +21,7 @@ unsafe impl Sync for NSTimeZone {}
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSTimeZone> for CFTimeZone {
+    #[inline]
     fn as_ref(&self) -> &NSTimeZone {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -28,6 +29,7 @@ impl AsRef<NSTimeZone> for CFTimeZone {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFTimeZone> for NSTimeZone {
+    #[inline]
     fn as_ref(&self) -> &CFTimeZone {
         unsafe { &*((self as *const Self).cast()) }
     }

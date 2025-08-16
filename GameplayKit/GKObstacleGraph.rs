@@ -18,6 +18,21 @@ extern_class!(
 );
 
 #[cfg(feature = "GKGraph")]
+impl<NodeType: ?Sized + Message> GKObstacleGraph<NodeType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewNodeType: ?Sized + Message>(
+        &self,
+    ) -> &GKObstacleGraph<NewNodeType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "GKGraph")]
 extern_conformance!(
     unsafe impl<NodeType: ?Sized + NSCoding> NSCoding for GKObstacleGraph<NodeType> {}
 );

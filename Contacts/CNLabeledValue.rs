@@ -15,6 +15,20 @@ extern_class!(
     pub struct CNLabeledValue<ValueType: ?Sized = AnyObject>;
 );
 
+impl<ValueType: ?Sized + Message> CNLabeledValue<ValueType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewValueType: ?Sized + Message>(
+        &self,
+    ) -> &CNLabeledValue<NewValueType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<ValueType: ?Sized + NSCoding> NSCoding for CNLabeledValue<ValueType> {}
 );

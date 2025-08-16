@@ -20,6 +20,7 @@ unsafe impl Sync for NSNull {}
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSNull> for CFNull {
+    #[inline]
     fn as_ref(&self) -> &NSNull {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -27,6 +28,7 @@ impl AsRef<NSNull> for CFNull {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFNull> for NSNull {
+    #[inline]
     fn as_ref(&self) -> &CFNull {
         unsafe { &*((self as *const Self).cast()) }
     }

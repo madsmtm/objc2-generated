@@ -25,6 +25,7 @@ unsafe impl Sync for NSLocale {}
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSLocale> for CFLocale {
+    #[inline]
     fn as_ref(&self) -> &NSLocale {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -32,6 +33,7 @@ impl AsRef<NSLocale> for CFLocale {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFLocale> for NSLocale {
+    #[inline]
     fn as_ref(&self) -> &CFLocale {
         unsafe { &*((self as *const Self).cast()) }
     }

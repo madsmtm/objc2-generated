@@ -33,6 +33,7 @@ extern_class!(
 #[cfg(feature = "objc2-core-text")]
 #[cfg(target_vendor = "apple")]
 impl AsRef<NSFont> for CTFont {
+    #[inline]
     fn as_ref(&self) -> &NSFont {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -41,6 +42,7 @@ impl AsRef<NSFont> for CTFont {
 #[cfg(feature = "objc2-core-text")]
 #[cfg(target_vendor = "apple")]
 impl AsRef<CTFont> for NSFont {
+    #[inline]
     fn as_ref(&self) -> &CTFont {
         unsafe { &*((self as *const Self).cast()) }
     }

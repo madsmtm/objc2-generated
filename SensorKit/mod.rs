@@ -446,6 +446,20 @@ extern_class!(
     pub struct SRFetchResult<SampleType: ?Sized = AnyObject>;
 );
 
+impl<SampleType: ?Sized + Message> SRFetchResult<SampleType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewSampleType: ?Sized + Message>(
+        &self,
+    ) -> &SRFetchResult<NewSampleType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<SampleType: ?Sized> NSCopying for SRFetchResult<SampleType> {}
 );
@@ -1943,6 +1957,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRKeyboardProbabilityMetric<UnitType: ?Sized = AnyObject>;
 );
+
+impl<UnitType: ?Sized + Message> SRKeyboardProbabilityMetric<UnitType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message>(
+        &self,
+    ) -> &SRKeyboardProbabilityMetric<NewUnitType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl<UnitType: ?Sized> NSObjectProtocol for SRKeyboardProbabilityMetric<UnitType> {}

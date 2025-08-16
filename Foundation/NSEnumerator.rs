@@ -26,6 +26,20 @@ extern_class!(
     pub struct NSEnumerator<ObjectType: ?Sized = AnyObject>;
 );
 
+impl<ObjectType: ?Sized + Message> NSEnumerator<ObjectType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &NSEnumerator<NewObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<ObjectType: ?Sized> NSFastEnumeration for NSEnumerator<ObjectType> {}
 );

@@ -240,6 +240,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSCalendar> for CFCalendar {
+    #[inline]
     fn as_ref(&self) -> &NSCalendar {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -247,6 +248,7 @@ impl AsRef<NSCalendar> for CFCalendar {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFCalendar> for NSCalendar {
+    #[inline]
     fn as_ref(&self) -> &CFCalendar {
         unsafe { &*((self as *const Self).cast()) }
     }

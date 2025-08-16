@@ -30,6 +30,7 @@ unsafe impl Sync for NSDate {}
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSDate> for CFDate {
+    #[inline]
     fn as_ref(&self) -> &NSDate {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -37,6 +38,7 @@ impl AsRef<NSDate> for CFDate {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFDate> for NSDate {
+    #[inline]
     fn as_ref(&self) -> &CFDate {
         unsafe { &*((self as *const Self).cast()) }
     }

@@ -17,6 +17,21 @@ extern_class!(
 );
 
 #[cfg(feature = "TVTopShelfObject")]
+impl<Item: ?Sized + Message> TVTopShelfItemCollection<Item> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewItem: ?Sized + Message>(
+        &self,
+    ) -> &TVTopShelfItemCollection<NewItem> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+#[cfg(feature = "TVTopShelfObject")]
 extern_conformance!(
     unsafe impl<Item: ?Sized> NSObjectProtocol for TVTopShelfItemCollection<Item> {}
 );

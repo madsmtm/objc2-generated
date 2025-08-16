@@ -184,6 +184,20 @@ extern_class!(
     pub struct CMIOExtensionPropertyAttributes<ObjectType: ?Sized = AnyObject>;
 );
 
+impl<ObjectType: ?Sized + Message> CMIOExtensionPropertyAttributes<ObjectType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &CMIOExtensionPropertyAttributes<NewObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding
         for CMIOExtensionPropertyAttributes<ObjectType>
@@ -310,6 +324,20 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionPropertyState<ObjectType: ?Sized = AnyObject>;
 );
+
+impl<ObjectType: ?Sized + Message> CMIOExtensionPropertyState<ObjectType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &CMIOExtensionPropertyState<NewObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl<ObjectType: ?Sized + NSCoding> NSCoding for CMIOExtensionPropertyState<ObjectType> {}

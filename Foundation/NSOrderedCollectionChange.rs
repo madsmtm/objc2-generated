@@ -32,6 +32,20 @@ extern_class!(
     pub struct NSOrderedCollectionChange<ObjectType: ?Sized = AnyObject>;
 );
 
+impl<ObjectType: ?Sized + Message> NSOrderedCollectionChange<ObjectType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &NSOrderedCollectionChange<NewObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedCollectionChange<ObjectType> {}
 );

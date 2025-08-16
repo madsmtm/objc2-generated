@@ -33,6 +33,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSAttributedString> for CFAttributedString {
+    #[inline]
     fn as_ref(&self) -> &NSAttributedString {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -40,6 +41,7 @@ impl AsRef<NSAttributedString> for CFAttributedString {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFAttributedString> for NSAttributedString {
+    #[inline]
     fn as_ref(&self) -> &CFAttributedString {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -281,6 +283,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSMutableAttributedString> for CFMutableAttributedString {
+    #[inline]
     fn as_ref(&self) -> &NSMutableAttributedString {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -288,6 +291,7 @@ impl AsRef<NSMutableAttributedString> for CFMutableAttributedString {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFMutableAttributedString> for NSMutableAttributedString {
+    #[inline]
     fn as_ref(&self) -> &CFMutableAttributedString {
         unsafe { &*((self as *const Self).cast()) }
     }

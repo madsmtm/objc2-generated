@@ -16,6 +16,20 @@ extern_class!(
     pub struct NSLayoutAnchor<AnchorType: ?Sized = AnyObject>;
 );
 
+impl<AnchorType: ?Sized + Message> NSLayoutAnchor<AnchorType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewAnchorType: ?Sized + Message>(
+        &self,
+    ) -> &NSLayoutAnchor<NewAnchorType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<AnchorType: ?Sized + NSCoding> NSCoding for NSLayoutAnchor<AnchorType> {}
 );

@@ -131,6 +131,7 @@ unsafe impl Sync for NSError {}
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<NSError> for CFError {
+    #[inline]
     fn as_ref(&self) -> &NSError {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -138,6 +139,7 @@ impl AsRef<NSError> for CFError {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AsRef<CFError> for NSError {
+    #[inline]
     fn as_ref(&self) -> &CFError {
         unsafe { &*((self as *const Self).cast()) }
     }

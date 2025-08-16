@@ -14,6 +14,20 @@ extern_class!(
     pub struct NSFetchedResultsController<ResultType: ?Sized = AnyObject>;
 );
 
+impl<ResultType: ?Sized + Message> NSFetchedResultsController<ResultType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewResultType: ?Sized + Message>(
+        &self,
+    ) -> &NSFetchedResultsController<NewResultType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchedResultsController<ResultType> {}
 );

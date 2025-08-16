@@ -46,6 +46,20 @@ extern_class!(
     pub struct GKQuadtree<ElementType: ?Sized = AnyObject>;
 );
 
+impl<ElementType: ?Sized + Message> GKQuadtree<ElementType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewElementType: ?Sized + Message>(
+        &self,
+    ) -> &GKQuadtree<NewElementType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<ElementType: ?Sized> NSObjectProtocol for GKQuadtree<ElementType> {}
 );

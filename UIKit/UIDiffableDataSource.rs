@@ -17,6 +17,25 @@ extern_class!(
     >;
 );
 
+impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+    NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+{
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<
+        NewSectionIdentifierType: ?Sized + Message,
+        NewItemIdentifierType: ?Sized + Message,
+    >(
+        &self,
+    ) -> &NSDiffableDataSourceSnapshot<NewSectionIdentifierType, NewItemIdentifierType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSCopying
         for NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
@@ -282,6 +301,26 @@ extern_class!(
     >;
 );
 
+impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+    NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
+{
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<
+        NewSectionIdentifierType: ?Sized + Message,
+        NewItemIdentifierType: ?Sized + Message,
+    >(
+        &self,
+    ) -> &NSDiffableDataSourceSectionTransaction<NewSectionIdentifierType, NewItemIdentifierType>
+    {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
 extern_conformance!(
     unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
         for NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
@@ -343,6 +382,25 @@ extern_class!(
         ItemIdentifierType: ?Sized = AnyObject,
     >;
 );
+
+impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+    NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
+{
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<
+        NewSectionIdentifierType: ?Sized + Message,
+        NewItemIdentifierType: ?Sized + Message,
+    >(
+        &self,
+    ) -> &NSDiffableDataSourceTransaction<NewSectionIdentifierType, NewItemIdentifierType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
@@ -410,6 +468,25 @@ extern_class!(
         ItemType: ?Sized = AnyObject,
     >;
 );
+
+impl<SectionType: ?Sized + Message, ItemType: ?Sized + Message>
+    UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
+{
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<
+        NewSectionType: ?Sized + Message,
+        NewItemType: ?Sized + Message,
+    >(
+        &self,
+    ) -> &UICollectionViewDiffableDataSourceReorderingHandlers<NewSectionType, NewItemType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl<SectionType: ?Sized, ItemType: ?Sized> NSCopying
@@ -521,6 +598,22 @@ extern_class!(
         ItemType: ?Sized = AnyObject,
     >;
 );
+
+impl<ItemType: ?Sized + Message>
+    UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType>
+{
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewItemType: ?Sized + Message>(
+        &self,
+    ) -> &UICollectionViewDiffableDataSourceSectionSnapshotHandlers<NewItemType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl<ItemType: ?Sized> NSCopying
@@ -666,6 +759,25 @@ extern_class!(
         ItemIdentifierType: ?Sized = AnyObject,
     >;
 );
+
+impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+    UICollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+{
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<
+        NewSectionIdentifierType: ?Sized + Message,
+        NewItemIdentifierType: ?Sized + Message,
+    >(
+        &self,
+    ) -> &UICollectionViewDiffableDataSource<NewSectionIdentifierType, NewItemIdentifierType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol
@@ -901,6 +1013,25 @@ extern_class!(
         ItemIdentifierType: ?Sized = AnyObject,
     >;
 );
+
+impl<SectionIdentifierType: ?Sized + Message, ItemIdentifierType: ?Sized + Message>
+    UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
+{
+    /// Unchecked conversion of the generic parameters.
+    ///
+    /// # Safety
+    ///
+    /// The generics must be valid to reinterpret as the given types.
+    #[inline]
+    pub unsafe fn cast_unchecked<
+        NewSectionIdentifierType: ?Sized + Message,
+        NewItemIdentifierType: ?Sized + Message,
+    >(
+        &self,
+    ) -> &UITableViewDiffableDataSource<NewSectionIdentifierType, NewItemIdentifierType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
 
 extern_conformance!(
     unsafe impl<SectionIdentifierType: ?Sized, ItemIdentifierType: ?Sized> NSObjectProtocol

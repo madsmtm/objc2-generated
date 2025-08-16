@@ -19,6 +19,7 @@ extern_class!(
 
 #[cfg(feature = "objc2-core-foundation")]
 impl<ObjectType: ?Sized + Message> AsRef<NSArray<ObjectType>> for CFArray<ObjectType> {
+    #[inline]
     fn as_ref(&self) -> &NSArray<ObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -26,7 +27,22 @@ impl<ObjectType: ?Sized + Message> AsRef<NSArray<ObjectType>> for CFArray<Object
 
 #[cfg(feature = "objc2-core-foundation")]
 impl<ObjectType: ?Sized + Message> AsRef<CFArray<ObjectType>> for NSArray<ObjectType> {
+    #[inline]
     fn as_ref(&self) -> &CFArray<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+impl<ObjectType: ?Sized + Message> NSArray<ObjectType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &NSArray<NewObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
@@ -655,6 +671,7 @@ extern_class!(
 impl<ObjectType: ?Sized + Message> AsRef<NSMutableArray<ObjectType>>
     for CFMutableArray<ObjectType>
 {
+    #[inline]
     fn as_ref(&self) -> &NSMutableArray<ObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
@@ -664,7 +681,22 @@ impl<ObjectType: ?Sized + Message> AsRef<NSMutableArray<ObjectType>>
 impl<ObjectType: ?Sized + Message> AsRef<CFMutableArray<ObjectType>>
     for NSMutableArray<ObjectType>
 {
+    #[inline]
     fn as_ref(&self) -> &CFMutableArray<ObjectType> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+}
+
+impl<ObjectType: ?Sized + Message> NSMutableArray<ObjectType> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+        &self,
+    ) -> &NSMutableArray<NewObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }

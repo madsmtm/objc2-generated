@@ -167,6 +167,24 @@ cf_objc2_type!(
     unsafe impl<T: ?Sized> RefEncode<"__CFSet"> for CFSet<T> {}
 );
 
+impl<T: ?Sized> CFSet<T> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewT: ?Sized>(&self) -> &CFSet<NewT> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+
+    /// Convert to the opaque/untyped variant.
+    #[inline]
+    pub fn as_opaque(&self) -> &CFSet {
+        unsafe { self.cast_unchecked() }
+    }
+}
+
 /// This is the type of a reference to mutable CFSets.
 ///
 /// This is toll-free bridged with `NSMutableSet`.
@@ -186,6 +204,24 @@ cf_type!(
 cf_objc2_type!(
     unsafe impl<T: ?Sized> RefEncode<"__CFSet"> for CFMutableSet<T> {}
 );
+
+impl<T: ?Sized> CFMutableSet<T> {
+    /// Unchecked conversion of the generic parameter.
+    ///
+    /// # Safety
+    ///
+    /// The generic must be valid to reinterpret as the given type.
+    #[inline]
+    pub unsafe fn cast_unchecked<NewT: ?Sized>(&self) -> &CFMutableSet<NewT> {
+        unsafe { &*((self as *const Self).cast()) }
+    }
+
+    /// Convert to the opaque/untyped variant.
+    #[inline]
+    pub fn as_opaque(&self) -> &CFMutableSet {
+        unsafe { self.cast_unchecked() }
+    }
+}
 
 unsafe impl ConcreteType for CFSet {
     /// Returns the type identifier of all CFSet instances.
