@@ -814,8 +814,8 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MTL4AccelerationStructure",
+            feature = "MTL4BufferRange",
             feature = "MTLAccelerationStructure",
-            feature = "MTLAccelerationStructureTypes",
             feature = "MTLAllocation",
             feature = "MTLResource"
         ))]
@@ -853,8 +853,8 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MTL4AccelerationStructure",
+            feature = "MTL4BufferRange",
             feature = "MTLAccelerationStructure",
-            feature = "MTLAccelerationStructureTypes",
             feature = "MTLAllocation",
             feature = "MTLResource"
         ))]
@@ -906,8 +906,8 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MTL4AccelerationStructure",
+            feature = "MTL4BufferRange",
             feature = "MTLAccelerationStructure",
-            feature = "MTLAccelerationStructureTypes",
             feature = "MTLAllocation",
             feature = "MTLResource"
         ))]
@@ -986,8 +986,8 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "MTL4BufferRange",
             feature = "MTLAccelerationStructure",
-            feature = "MTLAccelerationStructureTypes",
             feature = "MTLAllocation",
             feature = "MTLResource"
         ))]

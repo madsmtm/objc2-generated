@@ -2048,5 +2048,23 @@ extern_protocol!(
             sample_index: NSUInteger,
             barrier: bool,
         );
+
+        #[cfg(feature = "MTLRenderPipeline")]
+        /// Sets the mapping from logical shader color output to physical render pass color attachments.
+        ///
+        /// Use this method to define how the physical color attachments you specify via ``MTLRenderPassDescriptor/colorAttachments``
+        /// map to the logical color output the fragment shader writes to.
+        ///
+        /// To use this feature, make sure to set ``MTLRenderPassDescriptor/supportColorAttachmentMapping`` to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
+        ///
+        /// - Parameter mapping: Mapping from logical shader outputs to physical outputs.
+        #[unsafe(method(setColorAttachmentMap:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setColorAttachmentMap(
+            &self,
+            mapping: Option<&MTLLogicalToPhysicalColorAttachmentMap>,
+        );
     }
 );

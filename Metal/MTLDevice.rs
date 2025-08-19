@@ -2104,7 +2104,7 @@ extern_protocol!(
         /// your app resolves it into a usable format.
         ///
         /// In order to use the data available in a ``MTL4CounterHeap``, your app first resolves it either in the CPU timeline
-        /// or in the GPU timeline. When your app calls ``MTL4CommandBuffer/resolveCounterHeap:withRange:intoBuffer:atOffset:waitFence:updateFence:``
+        /// or in the GPU timeline. When your app calls ``MTL4CommandBuffer/resolveCounterHeap:withRange:intoBuffer:waitFence:updateFence:``
         /// to resolve counter data in the GPU timeline, Metal writes the data into a ``MTLBuffer``.
         ///
         /// During this process, Metal transform the data in the heap into a format consisting of entries of the size

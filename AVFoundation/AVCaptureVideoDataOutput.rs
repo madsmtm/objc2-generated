@@ -316,6 +316,19 @@ impl AVCaptureVideoDataOutput {
             &self,
             prepares_cellular_radio_for_network_connection: bool,
         );
+
+        /// Indicates whether the receiver should preserve dynamic HDR metadata as an attachment on the output sample buffer's underlying CVPixelBufferRef.
+        ///
+        ///
+        /// Set this property to YES if you wish to use AVCaptureVideoDataOutput with AVAssetWriter to record HDR movies. You must also set `kVTCompressionPropertyKey_PreserveDynamicHDRMetadata` to `true` in the compression settings you pass to your `AVAssetWriterInput`. These compression settings are represented under the `AVVideoCompressionPropertiesKey` sub-dictionary of your top-level AVVideoSettings. When this key is set to true, performance improves, as the encoder is able to skip HDR metadata calculation for every frame. The default value is NO.
+        #[unsafe(method(preservesDynamicHDRMetadata))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preservesDynamicHDRMetadata(&self) -> bool;
+
+        /// Setter for [`preservesDynamicHDRMetadata`][Self::preservesDynamicHDRMetadata].
+        #[unsafe(method(setPreservesDynamicHDRMetadata:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPreservesDynamicHDRMetadata(&self, preserves_dynamic_hdr_metadata: bool);
     );
 }
 

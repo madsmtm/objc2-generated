@@ -1577,6 +1577,10 @@ pub use self::__CGImageProperties::kCGImagePropertyWebPUnclampedDelayTime;
 #[cfg(feature = "CGImageProperties")]
 pub use self::__CGImageProperties::kCGImagePropertyWidth;
 #[cfg(feature = "CGImageProperties")]
+pub use self::__CGImageProperties::kCGImageProviderPreferredTileHeight;
+#[cfg(feature = "CGImageProperties")]
+pub use self::__CGImageProperties::kCGImageProviderPreferredTileWidth;
+#[cfg(feature = "CGImageProperties")]
 pub use self::__CGImageProperties::kIIOCameraExtrinsics_CoordinateSystemID;
 #[cfg(feature = "CGImageProperties")]
 pub use self::__CGImageProperties::kIIOCameraExtrinsics_Position;

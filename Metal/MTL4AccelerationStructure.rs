@@ -142,7 +142,7 @@ impl MTL4AccelerationStructureGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assigns optional buffer containing data to associate with each primitive in this geometry.
         ///
         /// You can use zero as the buffer address in this buffer range.
@@ -150,7 +150,7 @@ impl MTL4AccelerationStructureGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn primitiveDataBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`primitiveDataBuffer`][Self::primitiveDataBuffer].
         #[unsafe(method(setPrimitiveDataBuffer:))]
         #[unsafe(method_family = none)]
@@ -364,7 +364,7 @@ extern_conformance!(
 
 impl MTL4AccelerationStructureTriangleGeometryDescriptor {
     extern_methods!(
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Associates a vertex buffer containing triangle vertices.
         ///
         /// You are responsible for ensuring that the format of all vertex positions match the ``vertexFormat`` property, and
@@ -373,7 +373,7 @@ impl MTL4AccelerationStructureTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn vertexBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`vertexBuffer`][Self::vertexBuffer].
         #[unsafe(method(setVertexBuffer:))]
         #[unsafe(method_family = none)]
@@ -410,7 +410,7 @@ impl MTL4AccelerationStructureTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Sets an optional index buffer containing references to vertices in the `vertexBuffer`.
         ///
         /// You can set this property to `0`, the default, to avoid specifying an index buffer.
@@ -418,7 +418,7 @@ impl MTL4AccelerationStructureTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
@@ -446,7 +446,7 @@ impl MTL4AccelerationStructureTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setTriangleCount(&self, triangle_count: NSUInteger);
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assigns an optional reference to a buffer containing a `float4x3` transformation matrix.
         ///
         /// When the buffer address is non-zero, Metal applies this transform to the vertex data positions when building
@@ -458,7 +458,7 @@ impl MTL4AccelerationStructureTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn transformationMatrixBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`transformationMatrixBuffer`][Self::transformationMatrixBuffer].
         #[unsafe(method(setTransformationMatrixBuffer:))]
         #[unsafe(method_family = none)]
@@ -531,7 +531,7 @@ extern_conformance!(
 
 impl MTL4AccelerationStructureBoundingBoxGeometryDescriptor {
     extern_methods!(
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// References a buffer containing bounding box data in `MTLAxisAlignedBoundingBoxes` format.
         ///
         /// You are responsible for ensuring the buffer address of the range is not zero.
@@ -539,7 +539,7 @@ impl MTL4AccelerationStructureBoundingBoxGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn boundingBoxBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`boundingBoxBuffer`][Self::boundingBoxBuffer].
         #[unsafe(method(setBoundingBoxBuffer:))]
         #[unsafe(method_family = none)]
@@ -610,7 +610,7 @@ extern_conformance!(
 
 impl MTL4AccelerationStructureMotionTriangleGeometryDescriptor {
     extern_methods!(
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assigns a buffer where each entry contains a reference to a vertex buffer.
         ///
         /// This property references a buffer that conceptually represents an array with one entry for each keyframe in the
@@ -623,7 +623,7 @@ impl MTL4AccelerationStructureMotionTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn vertexBuffers(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`vertexBuffers`][Self::vertexBuffers].
         #[unsafe(method(setVertexBuffers:))]
         #[unsafe(method_family = none)]
@@ -661,7 +661,7 @@ impl MTL4AccelerationStructureMotionTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assigns an optional index buffer containing references to vertices in the vertex buffers you reference through the
         /// vertex buffers property.
         ///
@@ -671,7 +671,7 @@ impl MTL4AccelerationStructureMotionTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
@@ -701,7 +701,7 @@ impl MTL4AccelerationStructureMotionTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setTriangleCount(&self, triangle_count: NSUInteger);
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assings an optional reference to a buffer containing a `float4x3` transformation matrix.
         ///
         /// When the buffer address is non-zero, Metal applies this transform to the vertex data positions when building
@@ -713,7 +713,7 @@ impl MTL4AccelerationStructureMotionTriangleGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn transformationMatrixBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`transformationMatrixBuffer`][Self::transformationMatrixBuffer].
         #[unsafe(method(setTransformationMatrixBuffer:))]
         #[unsafe(method_family = none)]
@@ -786,7 +786,7 @@ extern_conformance!(
 
 impl MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor {
     extern_methods!(
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Configures a reference to a buffer where each entry contains a reference to a buffer of bounding boxes.
         ///
         /// This property references a buffer that conceptually represents an array with one entry for each keyframe in the
@@ -799,7 +799,7 @@ impl MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn boundingBoxBuffers(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`boundingBoxBuffers`][Self::boundingBoxBuffers].
         #[unsafe(method(setBoundingBoxBuffers:))]
         #[unsafe(method_family = none)]
@@ -874,7 +874,7 @@ extern_conformance!(
 
 impl MTL4AccelerationStructureCurveGeometryDescriptor {
     extern_methods!(
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// References a buffer containing curve control points.
         ///
         /// Control points are interpolated according to the basis function you specify in ``curveBasis``.
@@ -885,7 +885,7 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn controlPointBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`controlPointBuffer`][Self::controlPointBuffer].
         #[unsafe(method(setControlPointBuffer:))]
         #[unsafe(method_family = none)]
@@ -930,7 +930,7 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assigns a reference to a buffer containing the curve radius for each control point.
         ///
         /// Metal interpolates curve radii according to the basis function you specify via ``curveBasis``.
@@ -941,7 +941,7 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn radiusBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`radiusBuffer`][Self::radiusBuffer].
         #[unsafe(method(setRadiusBuffer:))]
         #[unsafe(method_family = none)]
@@ -975,7 +975,7 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assigns an optional index buffer containing references to control points in the control point buffer.
         ///
         /// Each index represents the first control point of a curve segment. You are responsible for ensuring the buffer
@@ -984,7 +984,7 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
@@ -1107,7 +1107,7 @@ extern_conformance!(
 
 impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
     extern_methods!(
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assigns a reference to a buffer where each entry contains a reference to a buffer of control points.
         ///
         /// This property references a buffer that conceptually represents an array with one entry for each keyframe in the
@@ -1120,7 +1120,7 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn controlPointBuffers(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`controlPointBuffers`][Self::controlPointBuffers].
         #[unsafe(method(setControlPointBuffers:))]
         #[unsafe(method_family = none)]
@@ -1170,7 +1170,7 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assigns a reference to a buffer containing, in turn, references to curve radii buffers.
         ///
         /// This property references a buffer that conceptually represents an array with one entry for each keyframe in the
@@ -1186,7 +1186,7 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn radiusBuffers(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`radiusBuffers`][Self::radiusBuffers].
         #[unsafe(method(setRadiusBuffers:))]
         #[unsafe(method_family = none)]
@@ -1221,7 +1221,7 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assigns an optional index buffer containing references to control points in the control point buffers.
         ///
         /// All keyframes share the same index buffer, with each index representing the first control point of a curve segment.
@@ -1231,7 +1231,7 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
@@ -1371,7 +1371,7 @@ extern_conformance!(
 #[cfg(feature = "MTLAccelerationStructure")]
 impl MTL4InstanceAccelerationStructureDescriptor {
     extern_methods!(
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assigns a reference to a buffer containing instance descriptors for acceleration structures to reference.
         ///
         /// This buffer conceptually represents an array of instance data. The specific format for the structs that comprise
@@ -1382,7 +1382,7 @@ impl MTL4InstanceAccelerationStructureDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn instanceDescriptorBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`instanceDescriptorBuffer`][Self::instanceDescriptorBuffer].
         #[unsafe(method(setInstanceDescriptorBuffer:))]
         #[unsafe(method_family = none)]
@@ -1436,7 +1436,7 @@ impl MTL4InstanceAccelerationStructureDescriptor {
             instance_descriptor_type: MTLAccelerationStructureInstanceDescriptorType,
         );
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// A buffer containing transformation information for instance motion keyframes, formatted according
         /// to the motion transform type.
         ///
@@ -1448,7 +1448,7 @@ impl MTL4InstanceAccelerationStructureDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn motionTransformBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`motionTransformBuffer`][Self::motionTransformBuffer].
         #[unsafe(method(setMotionTransformBuffer:))]
         #[unsafe(method_family = none)]
@@ -1572,7 +1572,7 @@ extern_conformance!(
 #[cfg(feature = "MTLAccelerationStructure")]
 impl MTL4IndirectInstanceAccelerationStructureDescriptor {
     extern_methods!(
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Assigns a reference to a buffer containing instance descriptors for acceleration structures to reference.
         ///
         /// This buffer conceptually represents an array of instance data. The specific format for the structs that comprise
@@ -1583,7 +1583,7 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn instanceDescriptorBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`instanceDescriptorBuffer`][Self::instanceDescriptorBuffer].
         #[unsafe(method(setInstanceDescriptorBuffer:))]
         #[unsafe(method_family = none)]
@@ -1620,7 +1620,7 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxInstanceCount(&self, max_instance_count: NSUInteger);
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Provides a reference to a buffer containing the number of instances in the instance descriptor buffer, formatted as a
         /// 32-bit unsigned integer.
         ///
@@ -1630,7 +1630,7 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn instanceCountBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`instanceCountBuffer`][Self::instanceCountBuffer].
         #[unsafe(method(setInstanceCountBuffer:))]
         #[unsafe(method_family = none)]
@@ -1656,7 +1656,7 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
             instance_descriptor_type: MTLAccelerationStructureInstanceDescriptorType,
         );
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// A buffer containing transformation information for instance motion keyframes, formatted according
         /// to the motion transform type.
         ///
@@ -1668,7 +1668,7 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn motionTransformBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`motionTransformBuffer`][Self::motionTransformBuffer].
         #[unsafe(method(setMotionTransformBuffer:))]
         #[unsafe(method_family = none)]
@@ -1687,7 +1687,7 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxMotionTransformCount(&self, max_motion_transform_count: NSUInteger);
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Associates a buffer reference containing the number of motion transforms in the motion transform buffer, formatted as a
         /// 32-bit unsigned integer.
         ///
@@ -1697,7 +1697,7 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn motionTransformCountBuffer(&self) -> MTL4BufferRange;
 
-        #[cfg(feature = "MTLAccelerationStructureTypes")]
+        #[cfg(feature = "MTL4BufferRange")]
         /// Setter for [`motionTransformCountBuffer`][Self::motionTransformCountBuffer].
         #[unsafe(method(setMotionTransformCountBuffer:))]
         #[unsafe(method_family = none)]

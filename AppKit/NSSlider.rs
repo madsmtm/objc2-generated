@@ -173,6 +173,18 @@ impl NSSlider {
         #[unsafe(method(setTrackFillColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackFillColor(&self, track_fill_color: Option<&NSColor>);
+
+        #[cfg(feature = "NSTintProminence")]
+        /// The tint prominence of the slider. The automatic behavior for a regular slider tints its track fill, while a slider with tick marks is untinted. Setting the tint prominence will override this default behavior and choose an explicit track fill tint behavior. See ``NSTintProminence`` for a list of possible values.
+        #[unsafe(method(tintProminence))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn tintProminence(&self) -> NSTintProminence;
+
+        #[cfg(feature = "NSTintProminence")]
+        /// Setter for [`tintProminence`][Self::tintProminence].
+        #[unsafe(method(setTintProminence:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTintProminence(&self, tint_prominence: NSTintProminence);
     );
 }
 

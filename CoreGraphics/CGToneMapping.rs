@@ -42,14 +42,14 @@ unsafe impl RefEncode for CGToneMapping {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CGContentToneMappingInfo {
     pub method: CGToneMapping,
-    pub options: NonNull<CFDictionary>,
+    pub options: *const CFDictionary,
 }
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for CGContentToneMappingInfo {
     const ENCODING: Encoding = Encoding::Struct(
-        "CGContentToneMappingInfo",
-        &[<CGToneMapping>::ENCODING, <NonNull<CFDictionary>>::ENCODING],
+        "?",
+        &[<CGToneMapping>::ENCODING, <*const CFDictionary>::ENCODING],
     );
 }
 
