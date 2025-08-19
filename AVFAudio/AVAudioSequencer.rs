@@ -293,6 +293,18 @@ impl AVAudioSequencer {
             replace: bool,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Return a data object containing the events from the sequence
+        ///
+        /// All details regarding the SMPTE resolution apply here as well.
+        /// The returned NSData lifetime is controlled by the client.
+        #[unsafe(method(dataWithSMPTEResolution:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dataWithSMPTEResolution_error(
+            &self,
+            smpte_resolution: NSInteger,
+            out_error: Option<&mut Option<Retained<NSError>>>,
+        ) -> Retained<NSData>;
+
         #[cfg(feature = "AVAudioTypes")]
         /// Get the time in seconds for the given beat position (timestamp) in the AVMusicTrack
         #[unsafe(method(secondsForBeats:))]

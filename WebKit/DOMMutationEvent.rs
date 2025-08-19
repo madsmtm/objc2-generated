@@ -76,6 +76,11 @@ impl DOMMutationEvent {
         pub unsafe fn prevValue(&self) -> Retained<NSString>;
 
         #[deprecated]
+        #[unsafe(method(newValue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn newValue(&self) -> Retained<NSString>;
+
+        #[deprecated]
         #[unsafe(method(attrName))]
         #[unsafe(method_family = none)]
         pub unsafe fn attrName(&self) -> Retained<NSString>;

@@ -53,6 +53,25 @@ impl AVSampleBufferGenerator {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Creates a sample buffer and if requested, attempts to load its data asynchronously. Attempt may fail based on generator configuration or file format.
+        /// See [AVSampleBufferGenerator notifyOfDataReadyForSampleBuffer: completionHandler:] to get notified when the sample buffer data is available.
+        ///
+        /// Parameter `request`: An instance of AVSampleBufferRequest representing the CMSampleBuffer creation request.
+        ///
+        /// Parameter `outError`: A pointer to an NSError object that will be populated with failure information, if sample buffer creation fails.
+        ///
+        /// Returns: A CMSampleBuffer object referencing the output sample buffer.
+        ///
+        /// If the AVSampleBufferGenerator was created with a NULL timebase, any associated AVSampleBufferRequest will default to using AVSampleBufferRequestModeImmediate.
+        #[unsafe(method(createSampleBufferForRequest:error:_))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn createSampleBufferForRequest_error(
+            &self,
+            request: &AVSampleBufferRequest,
+        ) -> Result<Retained<CMSampleBuffer>, Retained<NSError>>;
+
+        #[cfg(feature = "objc2-core-media")]
         #[deprecated = "Use -createSampleBufferForRequest: error:, passing NULL for the error if not required"]
         #[unsafe(method(createSampleBufferForRequest:))]
         // required for soundness, method has `returns_retained` attribute.
@@ -68,6 +87,29 @@ impl AVSampleBufferGenerator {
         #[unsafe(method(makeBatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeBatch(&self) -> Retained<AVSampleBufferGeneratorBatch>;
+
+        #[cfg(feature = "objc2-core-media")]
+        /// Creates a sample buffer and attempts to defer I/O for its data. Attempt may fail based on generator configuration or file format.
+        /// The [AVSampleBufferGeneratorBatch makeDataReadyWithCompletionHandler:] should be called once to commence I/O and load sample data for all CMSampleBuffers within a batch.
+        /// Any subsequent calls to createSampleBufferForRequest:addingToBatch:error: will throw an exception.
+        ///
+        /// Parameter `request`: An instance of AVSampleBufferRequest representing the CMSampleBuffer creation request
+        ///
+        /// Parameter `batch`: An instance of AVSampleBufferGeneratorBatch to contain the output sample buffer. If nil, an exception is thrown.
+        /// Must be created by calling makeBatch on the same instance of AVSampleBufferGenerator. An exception will be thrown otherwise.
+        ///
+        /// Parameter `outError`: A pointer to an NSError object that will be populated with failure information, if sample buffer creation fails.
+        ///
+        /// Returns: A CMSampleBuffer object referencing the output sample buffer. The generator may defer I/O to fetch sample data depending on the source of the sample data and
+        /// the generator's timebase.
+        #[unsafe(method(createSampleBufferForRequest:addingToBatch:error:_))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn createSampleBufferForRequest_addingToBatch_error(
+            &self,
+            request: &AVSampleBufferRequest,
+            batch: &AVSampleBufferGeneratorBatch,
+        ) -> Result<Retained<CMSampleBuffer>, Retained<NSError>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         /// Allows the client to get notified when the sample buffer data is ready, or as soon as an error has occured.

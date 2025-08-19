@@ -115,6 +115,15 @@ impl BEProcessCapability {
         #[unsafe(method(suspended))]
         #[unsafe(method_family = none)]
         pub unsafe fn suspended() -> Retained<Self>;
+
+        /// Requests the capability to be granted to the current process.
+        ///
+        /// Returns the granted capability or nil and an error if it can not be granted
+        #[unsafe(method(requestWithError:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requestWithError(
+            &self,
+        ) -> Result<Retained<ProtocolObject<dyn BEProcessCapabilityGrant>>, Retained<NSError>>;
     );
 }
 

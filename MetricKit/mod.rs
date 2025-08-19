@@ -185,6 +185,8 @@ pub use self::__MXMetaData::MXMetaData;
 #[cfg(feature = "MXMetric")]
 pub use self::__MXMetric::MXMetric;
 #[cfg(feature = "MXMetricManager")]
+pub use self::__MXMetricManager::MXLaunchTaskID;
+#[cfg(feature = "MXMetricManager")]
 pub use self::__MXMetricManager::MXMetricManager;
 #[cfg(feature = "MXMetricManager")]
 pub use self::__MXMetricManager::MXMetricManagerSubscriber;

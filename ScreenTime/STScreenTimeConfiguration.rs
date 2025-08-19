@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "dispatch2")]
+use dispatch2::*;
 use objc2::__framework_prelude::*;
 
 use crate::*;
@@ -57,6 +59,19 @@ extern_conformance!(
 
 impl STScreenTimeConfigurationObserver {
     extern_methods!(
+        #[cfg(feature = "dispatch2")]
+        /// Creates a configuration observer that reports updates on the queue you
+        /// specify.
+        ///
+        /// - Parameters:
+        /// - updateQueue: The queue on which to report updates.
+        #[unsafe(method(initWithUpdateQueue:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithUpdateQueue(
+            this: Allocated<Self>,
+            update_queue: &DispatchQueue,
+        ) -> Retained<Self>;
+
         /// Starts observing changes to the current configuration.
         #[unsafe(method(startObserving))]
         #[unsafe(method_family = none)]

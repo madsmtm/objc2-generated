@@ -1196,6 +1196,78 @@ extern_protocol!(
             error: Option<&NSError>,
         );
 
+        #[cfg(all(
+            feature = "AVCaptureOutputBase",
+            feature = "AVCaptureStillImageOutput",
+            feature = "objc2-core-media"
+        ))]
+        /// A callback fired when the primary processed photo or photos are done.
+        ///
+        ///
+        /// Parameter `output`: The calling instance of AVCapturePhotoOutput.
+        ///
+        /// Parameter `photoSampleBuffer`: A CMSampleBuffer containing an uncompressed pixel buffer or compressed data, along with timing information and metadata. May be nil if there was an error.
+        ///
+        /// Parameter `previewPhotoSampleBuffer`: An optional CMSampleBuffer containing an uncompressed, down-scaled preview pixel buffer. Note that the preview sample buffer contains no metadata. Refer to the photoSampleBuffer for metadata (e.g., the orientation). May be nil.
+        ///
+        /// Parameter `resolvedSettings`: An instance of AVCaptureResolvedPhotoSettings indicating which capture features have been selected.
+        ///
+        /// Parameter `bracketSettings`: If this image is being delivered as part of a bracketed capture, the bracketSettings corresponding to this image. Otherwise nil.
+        ///
+        /// Parameter `error`: An error indicating what went wrong if photoSampleBuffer is nil.
+        ///
+        ///
+        /// If you've requested a single processed image (uncompressed or compressed) capture, the photo is delivered here. If you've requested a bracketed capture, this callback is fired bracketedSettings.count times (once for each photo in the bracket).
+        #[deprecated]
+        #[optional]
+        #[unsafe(method(captureOutput:didFinishProcessingPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:))]
+        #[unsafe(method_family = none)]
+        unsafe fn captureOutput_didFinishProcessingPhotoSampleBuffer_previewPhotoSampleBuffer_resolvedSettings_bracketSettings_error(
+            &self,
+            output: &AVCapturePhotoOutput,
+            photo_sample_buffer: Option<&CMSampleBuffer>,
+            preview_photo_sample_buffer: Option<&CMSampleBuffer>,
+            resolved_settings: &AVCaptureResolvedPhotoSettings,
+            bracket_settings: Option<&AVCaptureBracketedStillImageSettings>,
+            error: Option<&NSError>,
+        );
+
+        #[cfg(all(
+            feature = "AVCaptureOutputBase",
+            feature = "AVCaptureStillImageOutput",
+            feature = "objc2-core-media"
+        ))]
+        /// A callback fired when the RAW photo or photos are done.
+        ///
+        ///
+        /// Parameter `output`: The calling instance of AVCapturePhotoOutput.
+        ///
+        /// Parameter `rawSampleBuffer`: A CMSampleBuffer containing Bayer RAW pixel data, along with timing information and metadata. May be nil if there was an error.
+        ///
+        /// Parameter `previewPhotoSampleBuffer`: An optional CMSampleBuffer containing an uncompressed, down-scaled preview pixel buffer. Note that the preview sample buffer contains no metadata. Refer to the rawSampleBuffer for metadata (e.g., the orientation). May be nil.
+        ///
+        /// Parameter `resolvedSettings`: An instance of AVCaptureResolvedPhotoSettings indicating which capture features have been selected.
+        ///
+        /// Parameter `bracketSettings`: If this image is being delivered as part of a bracketed capture, the bracketSettings corresponding to this image. Otherwise nil.
+        ///
+        /// Parameter `error`: An error indicating what went wrong if rawSampleBuffer is nil.
+        ///
+        ///
+        /// Single RAW image and bracketed RAW photos are delivered here. If you've requested a RAW bracketed capture, this callback is fired bracketedSettings.count times (once for each photo in the bracket).
+        #[deprecated]
+        #[optional]
+        #[unsafe(method(captureOutput:didFinishProcessingRawPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:))]
+        #[unsafe(method_family = none)]
+        unsafe fn captureOutput_didFinishProcessingRawPhotoSampleBuffer_previewPhotoSampleBuffer_resolvedSettings_bracketSettings_error(
+            &self,
+            output: &AVCapturePhotoOutput,
+            raw_sample_buffer: Option<&CMSampleBuffer>,
+            preview_photo_sample_buffer: Option<&CMSampleBuffer>,
+            resolved_settings: &AVCaptureResolvedPhotoSettings,
+            bracket_settings: Option<&AVCaptureBracketedStillImageSettings>,
+            error: Option<&NSError>,
+        );
+
         #[cfg(feature = "AVCaptureOutputBase")]
         /// A callback fired when the Live Photo movie has captured all its media data, though all media has not yet been written to file.
         ///

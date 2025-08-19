@@ -41,6 +41,26 @@ pub const kIMKLocateCandidatesRightHint: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidateslocationhint?language=objc)
 pub type IMKCandidatesLocationHint = NSUInteger;
 
+extern "C" {
+    /// The level of opacity.
+    ///
+    ///
+    /// Value must be a NSNumber with a value from 0 to 1.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidatesopacityattributename?language=objc)
+    pub static IMKCandidatesOpacityAttributeName: &'static NSString;
+}
+
+extern "C" {
+    /// Control when key events are sent to a candidate window.
+    ///
+    ///
+    /// Value is a NSNumber with a boolean value of NO (key events are sent to the candidate window first) or YES (key events are sent to the IMKInputController first). Note that this is only applicable when a candidate window is displayed.  The default behavior is to send the key event to the candidate window first, and if it is not processed there, to send it on to the input controller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidatessendserverkeyeventfirst?language=objc)
+    pub static IMKCandidatesSendServerKeyEventFirst: &'static NSString;
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidates?language=objc)
     #[unsafe(super(NSResponder, NSObject))]

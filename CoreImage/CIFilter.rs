@@ -750,5 +750,15 @@ impl CIFilter {
             filters: &NSArray<CIFilter>,
             extent: CGRect,
         ) -> Option<Retained<NSData>>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[deprecated]
+        #[unsafe(method(filterArrayFromSerializedXMP:inputImageExtent:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn filterArrayFromSerializedXMP_inputImageExtent_error(
+            xmp_data: &NSData,
+            extent: CGRect,
+            out_error: Option<&mut Option<Retained<NSError>>>,
+        ) -> Retained<NSArray<CIFilter>>;
     );
 }

@@ -103,6 +103,30 @@ impl MDLAsset {
             buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "MDLMeshBuffer", feature = "MDLVertexDescriptor"))]
+        /// Same as initWithURL:vertexDescriptor:bufferAllocator: except that
+        /// if preserveTopology is YES, a topology buffer might be created on the
+        /// submeshes.
+        ///
+        ///
+        /// If all faces in a submesh have the same vertex count, then the
+        /// submesh will a geometry type corresponding to that vertex count.
+        /// For example, if all faces have four vertices, then the geometry
+        /// type will be MDLGeometryTypeQuads. If faces have a varying number
+        /// of vertices, then the the submesh type will be
+        /// MDLGeometryTypeVariableTopology, and a faceTopologyBuffer will be
+        /// created.
+        #[unsafe(method(initWithURL:vertexDescriptor:bufferAllocator:preserveTopology:error:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithURL_vertexDescriptor_bufferAllocator_preserveTopology_error(
+            this: Allocated<Self>,
+            url: &NSURL,
+            vertex_descriptor: Option<&MDLVertexDescriptor>,
+            buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
+            preserve_topology: bool,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> Retained<Self>;
+
         /// Export an asset to the specified URL.
         ///
         /// Returns: YES is returned if exporting proceeded successfully,

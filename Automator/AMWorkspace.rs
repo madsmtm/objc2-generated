@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
 use crate::*;
 
@@ -21,6 +22,15 @@ impl AMWorkspace {
         #[unsafe(method(sharedWorkspace))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedWorkspace() -> Option<Retained<AMWorkspace>>;
+
+        #[unsafe(method(runWorkflowAtPath:withInput:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn runWorkflowAtPath_withInput_error(
+            &self,
+            path: Option<&NSString>,
+            input: Option<&AnyObject>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> Option<Retained<AnyObject>>;
     );
 }
 

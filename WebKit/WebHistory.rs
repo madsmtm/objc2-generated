@@ -68,6 +68,38 @@ impl WebHistory {
         #[unsafe(method_family = none)]
         pub unsafe fn setOptionalSharedHistory(history: Option<&WebHistory>);
 
+        /// Parameter `URL`: The URL to use to initialize the WebHistory.
+        ///
+        /// Parameter `error`: Set to nil or an NSError instance if an error occurred.
+        ///
+        /// The designated initializer for WebHistory.
+        ///
+        /// Returns: Returns YES if successful, NO otherwise.
+        #[deprecated]
+        #[unsafe(method(loadFromURL:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn loadFromURL_error(
+            &self,
+            url: Option<&NSURL>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> bool;
+
+        /// Save history to URL. It is the client's responsibility to call this at appropriate times.
+        ///
+        /// Parameter `URL`: The URL to use to save the WebHistory.
+        ///
+        /// Parameter `error`: Set to nil or an NSError instance if an error occurred.
+        ///
+        /// Returns: Returns YES if successful, NO otherwise.
+        #[deprecated]
+        #[unsafe(method(saveToURL:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn saveToURL_error(
+            &self,
+            url: Option<&NSURL>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> bool;
+
         /// Parameter `newItems`: An array of WebHistoryItems to add to the WebHistory.
         #[deprecated]
         #[unsafe(method(addItems:))]

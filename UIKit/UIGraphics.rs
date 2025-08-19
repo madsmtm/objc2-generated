@@ -11,6 +11,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+#[inline]
+pub unsafe extern "C-unwind" fn UIGraphicsGetCurrentContext() -> Option<CFRetained<CGContext>> {
+    extern "C-unwind" {
+        fn UIGraphicsGetCurrentContext() -> Option<NonNull<CGContext>>;
+    }
+    let ret = unsafe { UIGraphicsGetCurrentContext() };
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-graphics")]
     pub fn UIGraphicsPushContext(context: &CGContext);

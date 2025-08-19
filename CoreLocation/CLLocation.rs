@@ -379,6 +379,15 @@ impl CLLocation {
         #[unsafe(method(sourceInformation))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceInformation(&self) -> Option<Retained<CLLocationSourceInformation>>;
+
+        #[deprecated]
+        #[unsafe(method(getDistanceFrom:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getDistanceFrom(&self, location: &CLLocation) -> CLLocationDistance;
+
+        #[unsafe(method(distanceFromLocation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn distanceFromLocation(&self, location: &CLLocation) -> CLLocationDistance;
     );
 }
 

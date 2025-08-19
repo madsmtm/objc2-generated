@@ -492,6 +492,28 @@ impl MTKTextureLoader {
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 
+        /// Synchronously create an array of Metal textures and load image data from the files at URLs
+        ///
+        /// Returns: An array of MTLTextures of the same length and in the same order as the requested array of
+        /// paths.  If an error occurs while loading a texture, the corresponding array index will
+        /// contain [NSNull null].
+        ///
+        /// Parameter `URLs`: Locations of image files from which to create the textures
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions, which will be used for every texture loaded
+        ///
+        /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred.
+        /// Will be null if all of the textures are loaded successfully, or will correspond to
+        /// one of the textures which failed to load.
+        #[unsafe(method(newTexturesWithContentsOfURLs:options:error:))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn newTexturesWithContentsOfURLs_options_error(
+            &self,
+            ur_ls: &NSArray<NSURL>,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> Retained<NSArray<ProtocolObject<dyn MTLTexture>>>;
+
         /// Synchronously create a Metal texture and load image data from the NSData object provided
         ///
         /// Returns: The Metal texture. nil if an error occured

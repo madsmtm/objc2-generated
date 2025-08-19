@@ -3506,6 +3506,12 @@ pub use self::__UIGraphics::UIGraphicsBeginPDFPageWithInfo;
 pub use self::__UIGraphics::UIGraphicsEndImageContext;
 #[cfg(feature = "UIGraphics")]
 pub use self::__UIGraphics::UIGraphicsEndPDFContext;
+#[cfg(all(
+    feature = "UIGraphics",
+    feature = "objc2-core-foundation",
+    feature = "objc2-core-graphics"
+))]
+pub use self::__UIGraphics::UIGraphicsGetCurrentContext;
 #[cfg(all(feature = "UIGraphics", feature = "UIImage"))]
 pub use self::__UIGraphics::UIGraphicsGetImageFromCurrentImageContext;
 #[cfg(all(feature = "UIGraphics", feature = "objc2-core-foundation"))]

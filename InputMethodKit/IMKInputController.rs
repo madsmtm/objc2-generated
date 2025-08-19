@@ -9,6 +9,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
+extern "C" {
+    /// An NSMenuItem in the infoDictionary passed to menu item actions.
+    ///
+    ///
+    /// Use as a key to find the NSMenuItem in the infoDictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkcommandmenuitemname?language=objc)
+    pub static kIMKCommandMenuItemName: &'static NSString;
+}
+
+extern "C" {
+    /// A client object that conforms to the IMKInputText and NSObject protocols.
+    ///
+    ///
+    /// Use as a key to find the client in the infoDictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkcommandclientname?language=objc)
+    pub static kIMKCommandClientName: &'static NSString;
+}
+
 mod private_NSObjectIMKServerInput {
     pub trait Sealed {}
 }

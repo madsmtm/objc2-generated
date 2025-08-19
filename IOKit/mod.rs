@@ -85,6 +85,12 @@ pub use self::__graphics::kConnectionColorMode;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::kConnectionColorModesSupported;
 #[cfg(feature = "graphics")]
+pub use self::__graphics::kConnectionControllerColorDepth;
+#[cfg(feature = "graphics")]
+pub use self::__graphics::kConnectionControllerDepthsSupported;
+#[cfg(feature = "graphics")]
+pub use self::__graphics::kConnectionControllerDitherControl;
+#[cfg(feature = "graphics")]
 pub use self::__graphics::kConnectionDisplayFlags;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::kConnectionDisplayParameterCount;
@@ -104,6 +110,8 @@ pub use self::__graphics::kConnectionGammaScale;
 pub use self::__graphics::kConnectionGreenGammaScale;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::kConnectionHandleDisplayPortEvent;
+#[cfg(feature = "graphics")]
+pub use self::__graphics::kConnectionIgnore;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::kConnectionOverscan;
 #[cfg(feature = "graphics")]

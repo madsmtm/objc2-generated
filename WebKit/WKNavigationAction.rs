@@ -56,6 +56,12 @@ extern_conformance!(
 impl WKNavigationAction {
     extern_methods!(
         #[cfg(feature = "WKFrameInfo")]
+        /// The frame requesting the navigation.
+        #[unsafe(method(sourceFrame))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sourceFrame(&self) -> Option<Retained<WKFrameInfo>>;
+
+        #[cfg(feature = "WKFrameInfo")]
         /// The target frame, or nil if this is a new window navigation.
         #[unsafe(method(targetFrame))]
         #[unsafe(method_family = none)]

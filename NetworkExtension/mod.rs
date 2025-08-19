@@ -2905,6 +2905,20 @@ impl NEFilterSocketFlow {
     );
 }
 
+extern "C" {
+    /// Key to specify in the NSDictionary which is returned as a value in remediationMap.
+    /// This key is used to indicate the Remediation URL. The URL should follow the scheme
+    /// http or https to be used by the content filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterproviderremediationmapremediationurls?language=objc)
+    pub static NEFilterProviderRemediationMapRemediationURLs: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterproviderremediationmapremediationbuttontexts?language=objc)
+    pub static NEFilterProviderRemediationMapRemediationButtonTexts: &'static NSString;
+}
+
 extern_class!(
     /// The NEFilterProvider class is an abstract base class that declares the programmatic interface of an
     /// object that implements a socket filter.
@@ -5034,6 +5048,21 @@ impl NEHotspotHelperResponse {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type NEHotspotHelperHandler = *mut block2::DynBlock<dyn Fn(NonNull<NEHotspotHelperCommand>)>;
+
+extern "C" {
+    /// The string displayed in Wi-Fi Settings for a network handled by
+    /// the application.
+    ///
+    /// This key specifies the display name for the application, if an alternate
+    /// name is desired.  If this property is not specified, the application's
+    /// name is used.
+    ///
+    /// This name appears in Settings -> Wi-Fi underneath the Wi-Fi network
+    /// name if the helper indicated that it was able to handle the network.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/knehotspothelperoptiondisplayname?language=objc)
+    pub static kNEHotspotHelperOptionDisplayName: &'static NSString;
+}
 
 extern_class!(
     /// The NEHotspotHelper class allows an application to register itself as a

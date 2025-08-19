@@ -7,6 +7,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Describes the general purpose of a specific launch task.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxlaunchtaskid?language=objc)
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type MXLaunchTaskID = NSString;
+
 extern_class!(
     /// An instance of this class can be used to retrieve periodic, aggregated power and performance metrics.
     ///
@@ -68,6 +74,53 @@ impl MXMetricManager {
             &self,
             subscriber: &ProtocolObject<dyn MXMetricManagerSubscriber>,
         );
+
+        /// Start measuring an extended launch task with the given task id.
+        ///
+        /// This method tracks extra setup tasks required to make the application perceived as fully launched, such as loading up content from the disk or refreshing data from the network, rendering images, etc.
+        ///
+        /// The first task needs to start before or during
+        /// `UISceneDelegate.scene(_:restoreInteractionStateWith:)`or before
+        /// `UISceneDelegate.sceneDidBecomeActive(_:)`is called on the first scene to connect. For example, at the time
+        /// `UIApplicationDelegate.application(_:didFinishLaunchingWithOptions:)`is called. Other tasks need to start before the last current task is finished, otherwise the extended launch measurement will end.
+        ///
+        /// The maximum number of tasks is 16.
+        ///
+        /// This method needs to be called on the main thread.
+        ///
+        /// Parameter `taskID`: The task identifier. Must be an unique nonnull custom string.
+        ///
+        /// Parameter `error`: If an error occurs, this will contain a valid
+        /// `NSError`object on exit.
+        ///
+        /// Returns: Returns
+        /// `YES`if the measurement started successfully and
+        /// `NO`otherwise.
+        #[unsafe(method(extendLaunchMeasurementForTaskID:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn extendLaunchMeasurementForTaskID_error(
+            task_id: &MXLaunchTaskID,
+        ) -> Result<(), Retained<NSError>>;
+
+        /// Signal the end of an extended launch task previously started with
+        /// `extendLaunchMeasurementForTaskID:error:`.
+        ///
+        /// This method needs to be called on the main thread.
+        ///
+        /// Parameter `taskID`: The task identifier. Must match the task identifier passed to
+        /// `extendLaunchMeasurementForTaskID:error:`.
+        ///
+        /// Parameter `error`: If an error occurs, this will contain a valid
+        /// `NSError`object on exit.
+        ///
+        /// Returns: Returns
+        /// `YES`if the measurement for the task finished successfully and
+        /// `NO`otherwise.
+        #[unsafe(method(finishExtendedLaunchMeasurementForTaskID:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn finishExtendedLaunchMeasurementForTaskID_error(
+            task_id: &MXLaunchTaskID,
+        ) -> Result<(), Retained<NSError>>;
     );
 }
 

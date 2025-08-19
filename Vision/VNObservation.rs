@@ -2075,6 +2075,55 @@ impl VNInstanceMaskObservation {
         #[unsafe(method(allInstances))]
         #[unsafe(method_family = none)]
         pub unsafe fn allInstances(&self) -> Retained<NSIndexSet>;
+
+        #[cfg(feature = "objc2-core-video")]
+        /// The low res mask from the selected instances in the resolution of the performed analysis which is not upscaled to the image resolution.
+        ///
+        /// Parameter `instances`: An NSIndexSet of selected instances where 0 is the background. An empty set selects all instances but the background
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        /// The pixel format of kCVPixelFormatType_OneComponent32Float
+        #[unsafe(method(generateMaskForInstances:error:_))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn generateMaskForInstances_error(
+            &self,
+            instances: &NSIndexSet,
+        ) -> Result<Retained<CVPixelBuffer>, Retained<NSError>>;
+
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-video"))]
+        /// High res image with everything but the selected instances removed to transparent black.
+        ///
+        /// Parameter `instances`: An NSIndexSet of selected instances where 0 is the background.
+        ///
+        /// Parameter `croppedToInstancesExtent`: Crops the image to the smallest rectangle containg all instances with remaining alpha elements.
+        /// Setting this value to NO does not perform any cropping.
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        #[unsafe(method(generateMaskedImageOfInstances:fromRequestHandler:croppedToInstancesExtent:error:_))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn generateMaskedImageOfInstances_fromRequestHandler_croppedToInstancesExtent_error(
+            &self,
+            instances: &NSIndexSet,
+            request_handler: &VNImageRequestHandler,
+            crop_result: bool,
+        ) -> Result<Retained<CVPixelBuffer>, Retained<NSError>>;
+
+        #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-video"))]
+        /// High res mask with the selected instances preserved while everything else is removed to transparent black.
+        ///
+        /// Parameter `forInstances`: An NSIndexSet of selected instances where 0 is the background.
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        #[unsafe(method(generateScaledMaskForImageForInstances:fromRequestHandler:error:_))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn generateScaledMaskForImageForInstances_fromRequestHandler_error(
+            &self,
+            instances: &NSIndexSet,
+            request_handler: &VNImageRequestHandler,
+        ) -> Result<Retained<CVPixelBuffer>, Retained<NSError>>;
     );
 }
 

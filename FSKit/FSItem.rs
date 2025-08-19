@@ -289,6 +289,11 @@ impl FSItemAttributes {
         #[unsafe(method_family = none)]
         pub unsafe fn setSize(&self, size: u64);
 
+        /// The item's allocated size.
+        #[unsafe(method(allocSize))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allocSize(&self) -> u64;
+
         /// Setter for [`allocSize`][Self::allocSize].
         #[unsafe(method(setAllocSize:))]
         #[unsafe(method_family = none)]

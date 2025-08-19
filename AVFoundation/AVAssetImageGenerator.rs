@@ -278,6 +278,32 @@ impl AVAssetImageGenerator {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset(this: Allocated<Self>, asset: &AVAsset) -> Retained<Self>;
 
+        #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-core-media"))]
+        /// Returns a CFRetained CGImageRef for an asset at or near the specified time.
+        ///
+        /// Parameter `requestedTime`: The time at which the image of the asset is to be created.
+        ///
+        /// Parameter `actualTime`: A pointer to a CMTime to receive the time at which the image was actually generated. If you are not interested
+        /// in this information, pass NULL.
+        ///
+        /// Parameter `outError`: An error object describing the reason for failure, in the event that this method returns NULL.
+        ///
+        /// Returns: A CGImageRef.
+        ///
+        /// Returns the CGImage synchronously. Ownership follows the Create Rule.
+        ///
+        /// Because of the nature of timed audiovisual media, generating an image may take significant time. AVAssetImageGenerator may have to block the calling thread in order to do so.  In order to avoid blocking, clients can use -generateCGImagesAsynchronouslyForTimes:completionHandler: to request that one or more images be generated asynchronously and to be notified when they become available.
+        ///
+        /// On iOS and tvOS, it is particularly important to avoid blocking.  To preserve responsiveness, a synchronous request that blocks for too long (eg, a request to generate an image from an asset on a slow HTTP server) may lead to media services being reset.
+        #[deprecated = "Use generateCGImageAsynchronouslyForTime:completionHandler: instead"]
+        #[unsafe(method(copyCGImageAtTime:actualTime:error:_))]
+        #[unsafe(method_family = copy)]
+        pub unsafe fn copyCGImageAtTime_actualTime_error(
+            &self,
+            requested_time: CMTime,
+            actual_time: *mut CMTime,
+        ) -> Result<Retained<CGImage>, Retained<NSError>>;
+
         #[cfg(all(
             feature = "block2",
             feature = "objc2-core-graphics",

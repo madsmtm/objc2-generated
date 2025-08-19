@@ -306,6 +306,30 @@ impl FSBlockDeviceResource {
             completion_handler: &block2::DynBlock<dyn Fn(usize, *mut NSError)>,
         );
 
+        #[cfg(feature = "libc")]
+        /// Synchronously reads data from the resource into a buffer.
+        ///
+        /// This is a synchronous version of ``readInto:startingAt:length:completionHandler:``.
+        ///
+        /// > Note: In some cases, this method performs a partial read. In this case, the return value is shorter than the requested length, and the `error` is set to `nil`.
+        ///
+        /// - Parameters:
+        /// - buffer: A buffer to receive the data.
+        /// - offset: The offset into the resource from which to start reading.
+        /// - length: A maximum number of bytes to read. The method's return value contains the actual number of bytes read.
+        /// - error: On return, any error encountered while reading data, or `nil` if no error occurred.
+        ///
+        /// - Returns: The actual number of bytes read.
+        #[unsafe(method(readInto:startingAt:length:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn readInto_startingAt_length_error(
+            &self,
+            buffer: NonNull<c_void>,
+            offset: libc::off_t,
+            length: usize,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> usize;
+
         #[cfg(all(feature = "block2", feature = "libc"))]
         /// Writes data from from a buffer to the resource and executes a block afterwards.
         ///
@@ -326,6 +350,30 @@ impl FSBlockDeviceResource {
             length: usize,
             completion_handler: &block2::DynBlock<dyn Fn(usize, *mut NSError)>,
         );
+
+        #[cfg(feature = "libc")]
+        /// Synchronously writes data from from a buffer to the resource and executes a block afterwards.
+        ///
+        /// This is a synchronous version of ``writeFrom:startingAt:length:completionHandler:``.
+        ///
+        /// > Note: In some cases, this method performs a partial write. In this case, the return value is shorter than the requested length, and the `error` is set to `nil`.
+        ///
+        /// - Parameters:
+        /// - buffer: A buffer to provide the data.
+        /// - offset: The offset into the resource from which to start writing.
+        /// - length: A maximum number of bytes to write. The completion handler receives a parameter with the actual number of bytes write.
+        /// - error: On return, any error encountered while writing data, or `nil` if no error occurred.
+        ///
+        /// - Returns: The actual number of bytes written.
+        #[unsafe(method(writeFrom:startingAt:length:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn writeFrom_startingAt_length_error(
+            &self,
+            buffer: NonNull<c_void>,
+            offset: libc::off_t,
+            length: usize,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> usize;
 
         #[cfg(feature = "libc")]
         /// Synchronously reads file system metadata from the resource into a buffer.

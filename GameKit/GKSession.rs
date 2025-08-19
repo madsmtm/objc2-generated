@@ -104,6 +104,31 @@ impl GKSession {
             peer_id: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
+        #[cfg(feature = "GKPublicConstants")]
+        /// Asynchronous delivery of data to one or more peers.  Returns YES if delivery started, NO if unable to start sending, and error will be set.  Delivery will be reliable or unreliable as set by mode.
+        #[deprecated = "No longer supported."]
+        #[unsafe(method(sendData:toPeers:withDataMode:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sendData_toPeers_withDataMode_error(
+            &self,
+            data: Option<&NSData>,
+            peers: Option<&NSArray>,
+            mode: GKSendDataMode,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> bool;
+
+        #[cfg(feature = "GKPublicConstants")]
+        /// Asynchronous delivery to all peers.  Returns YES if delivery started, NO if unable to start sending, and error will be set.  Delivery will be reliable or unreliable as set by mode.
+        #[deprecated = "No longer supported."]
+        #[unsafe(method(sendDataToAllPeers:withDataMode:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sendDataToAllPeers_withDataMode_error(
+            &self,
+            data: Option<&NSData>,
+            mode: GKSendDataMode,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> bool;
+
         /// Set the handler to receive data sent from remote peers.
         #[deprecated]
         #[unsafe(method(setDataReceiveHandler:withContext:))]
@@ -131,6 +156,16 @@ impl GKSession {
         #[unsafe(method(cancelConnectToPeer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelConnectToPeer(&self, peer_id: Option<&NSString>);
+
+        /// Methods to accept or deny a prior connection request from -session:didReceiveConnectionRequestFromPeer:
+        #[deprecated]
+        #[unsafe(method(acceptConnectionFromPeer:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn acceptConnectionFromPeer_error(
+            &self,
+            peer_id: Option<&NSString>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> bool;
 
         #[deprecated]
         #[unsafe(method(denyConnectionFromPeer:))]

@@ -58,7 +58,15 @@ pub use self::__IMKCandidates::IMKCandidates;
 #[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::IMKCandidatesLocationHint;
 #[cfg(feature = "IMKCandidates")]
+pub use self::__IMKCandidates::IMKCandidatesOpacityAttributeName;
+#[cfg(feature = "IMKCandidates")]
+pub use self::__IMKCandidates::IMKCandidatesSendServerKeyEventFirst;
+#[cfg(feature = "IMKCandidates")]
 pub use self::__IMKCandidates::IMKStyleType;
+#[cfg(feature = "IMKInputController")]
+pub use self::__IMKInputController::kIMKCommandClientName;
+#[cfg(feature = "IMKInputController")]
+pub use self::__IMKInputController::kIMKCommandMenuItemName;
 #[cfg(feature = "IMKInputController")]
 pub use self::__IMKInputController::IMKInputController;
 #[cfg(feature = "IMKInputController")]
@@ -67,5 +75,11 @@ pub use self::__IMKInputController::IMKMouseHandling;
 pub use self::__IMKInputController::IMKStateSetting;
 #[cfg(feature = "IMKInputController")]
 pub use self::__IMKInputController::NSObjectIMKServerInput;
+#[cfg(feature = "IMKServer")]
+pub use self::__IMKServer::IMKControllerClass;
+#[cfg(feature = "IMKServer")]
+pub use self::__IMKServer::IMKDelegateClass;
+#[cfg(feature = "IMKServer")]
+pub use self::__IMKServer::IMKModeDictionary;
 #[cfg(feature = "IMKServer")]
 pub use self::__IMKServer::IMKServer;

@@ -43,6 +43,15 @@ impl MPSKeyedUnarchiver {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
+        #[unsafe(method(initForReadingFromData:device:error:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initForReadingFromData_device_error(
+            this: Allocated<Self>,
+            data: &NSData,
+            device: &ProtocolObject<dyn MTLDevice>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> Retained<Self>;
+
         /// Reports which device to use for unarchiving MPSKernels
         #[unsafe(method(mpsMTLDevice))]
         #[unsafe(method_family = none)]
@@ -65,6 +74,14 @@ impl MPSKeyedUnarchiver {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(initForReadingFromData:error:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initForReadingFromData_error(
+            this: Allocated<Self>,
+            data: &NSData,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> Retained<Self>;
 
         #[unsafe(method(unarchiveObjectWithData:))]
         #[unsafe(method_family = none)]

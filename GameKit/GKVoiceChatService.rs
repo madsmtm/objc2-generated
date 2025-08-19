@@ -47,9 +47,27 @@ impl GKVoiceChatService {
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn GKVoiceChatClient>>);
 
         #[deprecated = "Use SharePlay instead"]
+        #[unsafe(method(startVoiceChatWithParticipantID:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn startVoiceChatWithParticipantID_error(
+            &self,
+            participant_id: Option<&NSString>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> bool;
+
+        #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(stopVoiceChatWithParticipantID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopVoiceChatWithParticipantID(&self, participant_id: Option<&NSString>);
+
+        #[deprecated = "Use SharePlay instead"]
+        #[unsafe(method(acceptCallID:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn acceptCallID_error(
+            &self,
+            call_id: NSInteger,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> bool;
 
         #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(denyCallID:))]

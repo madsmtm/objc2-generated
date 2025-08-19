@@ -352,6 +352,146 @@ impl IOUSBHostObject {
         pub unsafe fn abortDeviceRequestsWithError(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-io-kit")]
+        /// Retrieve a descriptor from the cache or the device
+        ///
+        /// This method will search the descriptor cache for the descriptor that matches the
+        /// input arguments.  If the descriptor is not in the cache, a GET_DESCRIPTOR control
+        /// request (USB 2.0 9.4.3) will be issued to retrieve the descriptor from the device.
+        /// If the device request is successful, the retrieved descriptor will be added to the
+        /// cache.
+        ///
+        /// Parameter `type`: <code>
+        /// bDescriptorType
+        /// </code>
+        /// of the descriptor to find.
+        ///
+        /// Parameter `length`: Reference to a NSUInteger which will be updated with the length of the
+        /// descriptor. As input, used as
+        /// <code>
+        /// wLength
+        /// </code>
+        /// when fetching variable-length
+        /// configuration or BOS descriptors, or when fetching nonstandard descriptor types.
+        ///
+        /// Parameter `index`: Descriptor index value.  Low byte of
+        /// <code>
+        /// wValue
+        /// </code>
+        /// of the SET_DESCRIPTOR
+        /// control request (USB 2.0 9.4.8). By default the value is 0
+        ///
+        /// Parameter `languageID`: Descriptor language ID.
+        /// <code>
+        /// wIndex
+        /// </code>
+        /// of the SET_DESCRIPTOR
+        /// control request (USB 2.0 9.4.8).  By default the value is 0
+        ///
+        /// Parameter `requestType`: tDeviceRequestType to be used for a GET_DESCRIPTOR control request.
+        /// By default the value is IOUSBRequestTypeStandard
+        ///
+        /// Parameter `requestRecipient`: tDeviceRequestRecipient to be used for a GET_DESCRIPTOR control
+        /// request. By default the value is IOUSBRequestRecipientDevice
+        ///
+        /// Returns: Pointer to the cached descriptor if found, otherwise nil. An IOReturn error code
+        /// will be reported on failure.
+        #[unsafe(method(descriptorWithType:length:index:languageID:requestType:requestRecipient:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn descriptorWithType_length_index_languageID_requestType_requestRecipient_error(
+            &self,
+            r#type: tIOUSBDescriptorType,
+            length: NonNull<NSUInteger>,
+            index: NSUInteger,
+            language_id: NSUInteger,
+            request_type: tIOUSBDeviceRequestTypeValue,
+            request_recipient: tIOUSBDeviceRequestRecipientValue,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> *const IOUSBDescriptor;
+
+        #[cfg(feature = "objc2-io-kit")]
+        /// Retrieve a descriptor from the cache or the device
+        ///
+        /// This method will search the descriptor cache for the descriptor that matches the
+        /// input arguments.  If the descriptor is not in the cache, a GET_DESCRIPTOR control
+        /// request (USB 2.0 9.4.3) will be issued to retrieve the descriptor from the device.
+        /// If the device request is successful, the retrieved descriptor will be added to the
+        /// cache.
+        ///
+        /// Parameter `type`: <code>
+        /// bDescriptorType
+        /// </code>
+        /// of the descriptor to find.
+        ///
+        /// Parameter `length`: Reference to a NSUInteger which will be updated with the length of the
+        /// descriptor. As input, used as
+        /// <code>
+        /// wLength
+        /// </code>
+        /// when fetching variable-length
+        /// configuration or BOS descriptors, or when fetching nonstandard descriptor types.
+        ///
+        /// Parameter `index`: Descriptor index value.  Low byte of
+        /// <code>
+        /// wValue
+        /// </code>
+        /// of the SET_DESCRIPTOR
+        /// control request (USB 2.0 9.4.8). By default the value is 0
+        ///
+        /// Parameter `languageID`: Descriptor language ID.
+        /// <code>
+        /// wIndex
+        /// </code>
+        /// of the SET_DESCRIPTOR
+        /// control request (USB 2.0 9.4.8).  By default the value is 0
+        ///
+        /// Returns: Pointer to the cached descriptor if found, otherwise nil. An IOReturn error code
+        /// will be reported on failure.
+        #[unsafe(method(descriptorWithType:length:index:languageID:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn descriptorWithType_length_index_languageID_error(
+            &self,
+            r#type: tIOUSBDescriptorType,
+            length: NonNull<NSUInteger>,
+            index: NSUInteger,
+            language_id: NSUInteger,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> *const IOUSBDescriptor;
+
+        #[cfg(feature = "objc2-io-kit")]
+        /// Retrieve a descriptor from the cache or the device
+        ///
+        /// This method will search the descriptor cache for the descriptor that matches the
+        /// input arguments.  If the descriptor is not in the cache, a GET_DESCRIPTOR control
+        /// request (USB 2.0 9.4.3) will be issued to retrieve the descriptor from the device.
+        /// If the device request is successful, the retrieved descriptor will be added to the
+        /// cache.
+        ///
+        /// Parameter `type`: <code>
+        /// bDescriptorType
+        /// </code>
+        /// of the descriptor to find.
+        ///
+        /// Parameter `length`: Reference to a NSUInteger which will be updated with the length of the
+        /// descriptor. As input, used as
+        /// <code>
+        /// wLength
+        /// </code>
+        /// when fetching variable-length
+        /// configuration or BOS descriptors, or when fetching nonstandard descriptor types.
+        /// By default the value is 0
+        ///
+        /// Returns: Pointer to the cached descriptor if found, otherwise nil. An IOReturn error code
+        /// will be reported on failure.
+        #[unsafe(method(descriptorWithType:length:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn descriptorWithType_length_error(
+            &self,
+            r#type: tIOUSBDescriptorType,
+            length: NonNull<NSUInteger>,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> *const IOUSBDescriptor;
+
+        #[cfg(feature = "objc2-io-kit")]
         /// Return the device descriptor
         ///
         /// This method uses descriptorWithType to retrieve the device descriptor.
@@ -370,6 +510,45 @@ impl IOUSBHostObject {
         #[unsafe(method(capabilityDescriptors))]
         #[unsafe(method_family = none)]
         pub unsafe fn capabilityDescriptors(&self) -> *const IOUSBBOSDescriptor;
+
+        #[cfg(feature = "objc2-io-kit")]
+        /// Return the configuration descriptor at a specified index
+        ///
+        /// This method uses descriptorWithType to retrieve the configuration descriptor.
+        ///
+        /// Parameter `index`: Descriptor index value
+        ///
+        /// Returns: Pointer of the configuration descriptor if found, otherwise nil. An IOReturn error
+        /// code will be reported on failure.
+        #[unsafe(method(configurationDescriptorWithIndex:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configurationDescriptorWithIndex_error(
+            &self,
+            index: NSUInteger,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> *const IOUSBConfigurationDescriptor;
+
+        #[cfg(feature = "objc2-io-kit")]
+        /// Return the configuration descriptor with a specified value
+        ///
+        /// This method uses descriptorWithType to search for a configuration descriptor with a
+        /// specific
+        /// <code>
+        /// bConfigurationValue
+        /// </code>
+        /// field.
+        ///
+        /// Parameter `configurationValue`: Value to match
+        ///
+        /// Returns: Pointer of the configuration descriptor if found, otherwise nil. An IOReturn error
+        /// code will be reported on failure.
+        #[unsafe(method(configurationDescriptorWithConfigurationValue:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configurationDescriptorWithConfigurationValue_error(
+            &self,
+            configuration_value: NSUInteger,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> *const IOUSBConfigurationDescriptor;
 
         /// Returns the string from a string descriptor
         ///
