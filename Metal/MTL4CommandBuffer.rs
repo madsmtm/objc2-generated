@@ -277,16 +277,14 @@ extern_protocol!(
         );
 
         #[cfg(all(
+            feature = "MTL4BufferRange",
             feature = "MTL4Counters",
-            feature = "MTLAllocation",
-            feature = "MTLBuffer",
-            feature = "MTLFence",
-            feature = "MTLResource"
+            feature = "MTLFence"
         ))]
         /// Encodes a command that resolves an opaque counter heap into a buffer.
         ///
         /// The command this method encodes converts the data within `counterHeap` into a common format
-        /// and stores it into the `buffer` parameter.
+        /// and stores it into the `bufferRange` parameter.
         ///
         /// The command places each entry in the counter heap within `range` sequentially, starting at `alignedOffset`.
         /// Each entry needs to be a fixed size that you can query by calling the
@@ -298,10 +296,10 @@ extern_protocol!(
         /// - Note: Your app needs ensure the GPU places data in the heap before you resolve it by
         /// synchronizing this stage with other GPU operations.
         ///
-        /// Similarly, your app needs to synchronize any GPU accesses to `buffer` after
+        /// Similarly, your app needs to synchronize any GPU accesses to `bufferRange` after
         /// the command completes with barrier.
         ///
-        /// If your app needs to access `buffer` from the CPU, signal an ``MTLSharedEvent``
+        /// If your app needs to access `bufferRange` from the CPU, signal an ``MTLSharedEvent``
         /// to notify the CPU when it's ready.
         /// Alternatively, you can resolve the heap's data from the CPU by calling
         /// the heap's ``MTL4CounterHeap/resolveCounterRange:`` method.
@@ -309,18 +307,16 @@ extern_protocol!(
         /// - Parameters:
         /// - counterHeap: A heap the command resolves.
         /// - range: A range of index values within the heap the command resolves.
-        /// - buffer: A buffer the command saves the data it resolves into.
-        /// - alignedOffset: An offset within `buffer` that indicates where the command begins writing the data.
+        /// - bufferRange: The buffer the command saves the data it resolves into.
         /// - fenceToWait: A fence the GPU waits for before starting, if applicable; otherwise `nil`.
         /// - fenceToUpdate: A fence the system updates after the command finishes resolving the data; otherwise `nil`.
-        #[unsafe(method(resolveCounterHeap:withRange:intoBuffer:atOffset:waitFence:updateFence:))]
+        #[unsafe(method(resolveCounterHeap:withRange:intoBuffer:waitFence:updateFence:))]
         #[unsafe(method_family = none)]
-        unsafe fn resolveCounterHeap_withRange_intoBuffer_atOffset_waitFence_updateFence(
+        unsafe fn resolveCounterHeap_withRange_intoBuffer_waitFence_updateFence(
             &self,
             counter_heap: &ProtocolObject<dyn MTL4CounterHeap>,
             range: NSRange,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
-            aligned_offset: NSUInteger,
+            buffer_range: MTL4BufferRange,
             fence_to_wait: Option<&ProtocolObject<dyn MTLFence>>,
             fence_to_update: Option<&ProtocolObject<dyn MTLFence>>,
         );

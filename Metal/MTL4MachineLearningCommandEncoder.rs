@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// Encodes commands for dispatching machine learning networks on the GPU.
+    /// Encodes commands for dispatching machine learning networks on Apple silicon.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4machinelearningcommandencoder?language=objc)
     #[cfg(feature = "MTL4CommandEncoder")]

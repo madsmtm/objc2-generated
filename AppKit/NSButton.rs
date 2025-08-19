@@ -428,6 +428,18 @@ impl NSButton {
         #[unsafe(method_family = none)]
         pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
 
+        #[cfg(feature = "NSTintProminence")]
+        /// The tint prominence of the button. Use tint prominence to gently suggest a hierarchy when multiple buttons perform similar actions. A button with primary tint prominence suggests the most preferred option, while secondary prominence indicates a reasonable alternative. See ``NSTintProminence`` for a list of possible values.
+        #[unsafe(method(tintProminence))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn tintProminence(&self) -> NSTintProminence;
+
+        #[cfg(feature = "NSTintProminence")]
+        /// Setter for [`tintProminence`][Self::tintProminence].
+        #[unsafe(method(setTintProminence:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTintProminence(&self, tint_prominence: NSTintProminence);
+
         #[cfg(feature = "NSImage")]
         /// The image that appears on the button when it’s in an off state, or nil if there is no such image.
         #[unsafe(method(image))]

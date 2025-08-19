@@ -13,10 +13,6 @@ use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassettrack?language=objc)
-#[cfg(feature = "AVAssetTrack")]
-pub type AVURLAssetTrack = AVAssetTrack;
-
 extern_class!(
     /// An AVAsset is an abstract class that defines AVFoundation's model for timed audiovisual media.
     ///

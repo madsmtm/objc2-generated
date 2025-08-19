@@ -137,13 +137,6 @@ unsafe impl RefEncode for MTL4IndirectCommandBufferSupportState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
-    /// Constant to specify discarding a color attachment's index in a remap operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrendertargetremapindexdiscard?language=objc)
-    pub static MTLRenderTargetRemapIndexDiscard: NSUInteger;
-}
-
 extern_class!(
     /// Provides options controlling how to compile a pipeline state.
     ///

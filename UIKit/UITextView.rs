@@ -58,7 +58,7 @@ extern_protocol!(
         /// Asks the delegate if the text at the specified `ranges` should be replaced with `text`.
         ///
         ///
-        /// If this method returns YES then the text view will, at its own discretion, choose any one of the specified `ranges` of text and replace it with the specified `replacementText` before deleting the text at the other ranges.
+        /// If this method returns YES then the text view will, at its own discretion, choose any one of the specified `ranges` of text and replace it with the specified `replacementText` before deleting the text at the other ranges. If the delegate does not implement this method then the `textView:shouldChangeTextInRange:replacementText:` method will be called and passed the union range instead. If the delegate also does not implement that method then YES is assumed.
         ///
         ///
         /// Parameter `textView`: The text view asking the delegate
@@ -759,7 +759,7 @@ impl UITextView {
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedRange(&self, selected_range: NSRange);
 
-        /// The `NSRange`s of the selection. In most cases, there will only be a single selected range. For cases where bidirectional text is selected, there may be multiple discontiguous ranges. These selected ranges will always be in the normal form, which means they are sorted in ascending order and there are no overlaps. The selected ranges will always be converted to its normal form when they are set. Empty array corresponds to no selection.
+        /// The `NSRange`s of the selection. In most cases, there will only be a single selected range. For cases where bidirectional text is selected, there may be multiple discontiguous ranges. These selected ranges will always be in the normal form, which means they are sorted in ascending order and there are no overlaps. The selected ranges will always be converted to its normal form when they are set. There will always be at least one selected range in this array. So if this array is set to an empty array then the selection will be cleared and a single selected range will be left behind where the length will be 0 and the location will be the location at the end of the selection.
         #[unsafe(method(selectedRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedRanges(&self) -> Retained<NSArray<NSValue>>;
