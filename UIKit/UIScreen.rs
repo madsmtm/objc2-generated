@@ -115,7 +115,7 @@ impl UIScreen {
         #[unsafe(method_family = none)]
         pub fn screens(mtm: MainThreadMarker) -> Retained<NSArray<UIScreen>>;
 
-        #[deprecated = "Use a UIScreen instance found through context instead: i.e, view.window.windowScene.screen"]
+        #[deprecated = "Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context."]
         #[unsafe(method(mainScreen))]
         #[unsafe(method_family = none)]
         pub fn mainScreen(mtm: MainThreadMarker) -> Retained<UIScreen>;

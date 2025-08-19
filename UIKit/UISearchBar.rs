@@ -630,6 +630,7 @@ extern_protocol!(
         unsafe fn searchBar_textDidChange(&self, search_bar: &UISearchBar, search_text: &NSString);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        #[deprecated]
         #[optional]
         #[unsafe(method(searchBar:shouldChangeTextInRange:replacementText:))]
         #[unsafe(method_family = none)]
@@ -638,6 +639,31 @@ extern_protocol!(
             search_bar: &UISearchBar,
             range: NSRange,
             text: &NSString,
+        ) -> bool;
+
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Asks the delegate if the text at the specified `ranges` should be replaced with `text`.
+        ///
+        ///
+        /// If this method returns YES then the search bar will, at its own discretion, choose any one of the specified `ranges` of text and replace it with the specified `replacementText` before deleting the text at the other ranges. If the delegate does not implement this method then the `searchBar:shouldChangeTextInRange:replacementText:` method will be called and passed the union range instead. If the delegate also does not implement that method then YES is assumed.
+        ///
+        ///
+        /// Parameter `searchBar`: The search bar asking the delegate
+        ///
+        /// Parameter `ranges`: The ranges of the text that should be deleted before replacing
+        ///
+        /// Parameter `replacementText`: The replacement text
+        ///
+        ///
+        /// Returns: Returns true if the text at the `ranges` should be replaced.
+        #[optional]
+        #[unsafe(method(searchBar:shouldChangeTextInRanges:replacementText:))]
+        #[unsafe(method_family = none)]
+        unsafe fn searchBar_shouldChangeTextInRanges_replacementText(
+            &self,
+            search_bar: &UISearchBar,
+            ranges: &NSArray<NSValue>,
+            replacement_text: &NSString,
         ) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]

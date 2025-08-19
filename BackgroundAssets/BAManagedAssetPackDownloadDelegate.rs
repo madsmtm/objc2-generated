@@ -8,12 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// A type that can receive notifications about events that occur as an asset pack is downloaded.
+    /// An object that handles status updates when downloading an asset pack.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bamanagedassetpackdownloaddelegate?language=objc)
     pub unsafe trait BAManagedAssetPackDownloadDelegate: NSObjectProtocol {
         #[cfg(feature = "BAAssetPack")]
-        /// Notifies the receiver that an asset pack began or resumed being downloaded.
+        /// Notifies the receiver that the download began or resumed after being paused.
         /// - Parameter assetPack: The asset pack.
         #[optional]
         #[unsafe(method(downloadOfAssetPackBegan:))]
@@ -21,7 +21,15 @@ extern_protocol!(
         unsafe fn downloadOfAssetPackBegan(&self, asset_pack: &BAAssetPack);
 
         #[cfg(feature = "BAAssetPack")]
-        /// Notifies the receiver that an asset pack is currently being downloaded.
+        /// Notifies the receiver that the download paused.
+        /// - Parameter assetPack: The asset pack.
+        #[optional]
+        #[unsafe(method(downloadOfAssetPackPaused:))]
+        #[unsafe(method_family = none)]
+        unsafe fn downloadOfAssetPackPaused(&self, asset_pack: &BAAssetPack);
+
+        #[cfg(feature = "BAAssetPack")]
+        /// Notifies the receiver that the download is in progress.
         /// - Parameters:
         /// - assetPack: The asset pack.
         /// - progress: The download progress.
@@ -35,15 +43,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "BAAssetPack")]
-        /// Notifies the receiver that an asset pack paused being downloaded.
-        /// - Parameter assetPack: The asset pack.
-        #[optional]
-        #[unsafe(method(downloadOfAssetPackPaused:))]
-        #[unsafe(method_family = none)]
-        unsafe fn downloadOfAssetPackPaused(&self, asset_pack: &BAAssetPack);
-
-        #[cfg(feature = "BAAssetPack")]
-        /// Notifies the receiver that an asset pack is now available locally.
+        /// Notifies the receiver that the download completed and that the asset pack is available locally.
         /// - Parameter assetPack: The asset pack.
         #[optional]
         #[unsafe(method(downloadOfAssetPackFinished:))]
@@ -51,7 +51,7 @@ extern_protocol!(
         unsafe fn downloadOfAssetPackFinished(&self, asset_pack: &BAAssetPack);
 
         #[cfg(feature = "BAAssetPack")]
-        /// Notifies the receiver that an asset pack failed to be downloaded.
+        /// Notifies the receiver that the download failed.
         /// - Parameters:
         /// - assetPack: The asset pack.
         /// - error: The error that occurred.

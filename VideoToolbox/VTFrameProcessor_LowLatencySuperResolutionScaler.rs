@@ -16,7 +16,7 @@ extern_class!(
     /// Creates an object which is used to configure VTFrameProcessor for Low Latency Super Resolution Scaler processing.
     ///
     ///
-    /// VTLowLatencySuperResolutionScalerConfiguration is used to configure a VTFrameProcessor.  This interface can also queried for important operating details, like the pixel buffer attributes required for frames submitted to the processor.
+    /// VTLowLatencySuperResolutionScalerConfiguration is used to configure a VTFrameProcessor.  This interface can also queried for important operating details, like the pixel buffer attributes required for frames submitted to the processor.   Important: When calling [VTFrameProcessor startSessionWithConfiguration:] to create a VTLowLatencySuperResolutionScaler session, ML model loading may take longer than a frame time. Avoid blocking the UI thread or stalling frame rendering pipelines during this call.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtlowlatencysuperresolutionscalerconfiguration?language=objc)
     #[unsafe(super(NSObject))]

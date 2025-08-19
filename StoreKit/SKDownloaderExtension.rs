@@ -8,12 +8,11 @@ use objc2_background_assets::*;
 use crate::*;
 
 extern_protocol!(
-    /// A protocol to which a downloader extension for Apple-Hosted Background Assets must conform.
+    /// An application extension that uses the system implementation to schedule Apple-hosted asset-pack downloads automatically.
     ///
-    /// The protocol provides default implementations for all of the inherited `BADownloaderExtension` requirements. You can optionally implement the inherited `BAManagedDownloaderExtension` requirements. For more information, see
+    /// You can optionally implement the inherited `BAManagedDownloaderExtension` requirements, but don’t implement any of the inherited `BADownloaderExtension` requirements. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/backgroundassets>.
-    /// - Warning: Don’t implement any of the inherited `BADownloaderExtension` requirements.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloaderextension?language=objc)
     #[cfg(feature = "objc2-background-assets")]
