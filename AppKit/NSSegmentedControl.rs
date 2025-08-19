@@ -396,6 +396,15 @@ impl NSSegmentedControl {
         pub unsafe fn activeCompressionOptions(
             &self,
         ) -> Retained<NSUserInterfaceCompressionOptions>;
+
+        #[unsafe(method(borderShape))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn borderShape(&self) -> NSControlBorderShape;
+
+        /// Setter for [`borderShape`][Self::borderShape].
+        #[unsafe(method(setBorderShape:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setBorderShape(&self, border_shape: NSControlBorderShape);
     );
 }
 

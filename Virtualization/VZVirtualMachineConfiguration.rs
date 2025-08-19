@@ -409,28 +409,28 @@ impl VZVirtualMachineConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn validateSaveRestoreSupportWithError(&self) -> Result<(), Retained<NSError>>;
 
-        /// : Minimum amount of memory required by virtual machines.
+        /// Minimum amount of memory required by virtual machines.
         ///
         /// See: VZVirtualMachineConfiguration.memorySize
         #[unsafe(method(minimumAllowedMemorySize))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumAllowedMemorySize() -> u64;
 
-        /// : Maximum amount of memory allowed for a virtual machine.
+        /// Maximum amount of memory allowed for a virtual machine.
         ///
         /// See: VZVirtualMachineConfiguration.memorySize
         #[unsafe(method(maximumAllowedMemorySize))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumAllowedMemorySize() -> u64;
 
-        /// : Minimum number of CPUs for a virtual machine.
+        /// Minimum number of CPUs for a virtual machine.
         ///
         /// See: VZVirtualMachineConfiguration.CPUCount
         #[unsafe(method(minimumAllowedCPUCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumAllowedCPUCount() -> NSUInteger;
 
-        /// : Maximum number of CPUs for a virtual machine.
+        /// Maximum number of CPUs for a virtual machine.
         ///
         /// See: VZVirtualMachineConfiguration.CPUCount
         #[unsafe(method(maximumAllowedCPUCount))]

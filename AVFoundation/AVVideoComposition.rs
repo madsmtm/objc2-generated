@@ -179,12 +179,23 @@ impl AVVideoComposition {
 
         /// The output buffers of the video composition can be specified with the outputBufferDescription. The value is an array of CMTagCollectionRef objects that describes the output buffers.
         ///
-        /// If the video composition will output tagged buffers, the details of those buffers should be specified with CMTags. Specifically, the StereoView (eyes) must be specified. The behavior is undefined if the output tagged buffers do not match the outputBufferDescription.
+        /// If the video composition will output tagged buffers, the details of those buffers should be specified with CMTags. Specifically, the StereoView (eyes) and ProjectionKind must be specified. The behavior is undefined if the output tagged buffers do not match the outputBufferDescription.
         /// The default is nil, which means monoscopic output. Note that an empty array is not valid. An exception will be thrown if the objects in the array are not of type CMTagCollectionRef.
         /// Note that tagged buffers are only supported for custom compositors.
         #[unsafe(method(outputBufferDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputBufferDescription(&self) -> Option<Retained<NSArray>>;
+
+        #[cfg(feature = "AVSpatialVideoConfiguration")]
+        /// Indicates the spatial configurations that are available to associate with the output of the video composition.
+        ///
+        /// A custom compositor can output spatial video by specifying one of these spatial configurations. A spatial configuration with all nil values indicates the video is not spatial. A nil spatial configuration also indicates the video is not spatial. The value can be nil, which indicates the output will not be spatial.
+        /// NOTE: If this property is not empty, then the client must attach one of the spatial configurations in this array to all of the pixel buffers, otherwise an exception will be thrown.
+        #[unsafe(method(spatialVideoConfigurations))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn spatialVideoConfigurations(
+            &self,
+        ) -> Retained<NSArray<AVSpatialVideoConfiguration>>;
     );
 }
 
@@ -612,7 +623,7 @@ impl AVMutableVideoComposition {
 
         /// The output buffers of the video composition can be specified with the outputBufferDescription. The value is an array of CMTagCollectionRef objects that describes the output buffers.
         ///
-        /// If the video composition will output tagged buffers, the details of those buffers should be specified with CMTags. Specifically, the StereoView (eyes) must be specified. The behavior is undefined if the output tagged buffers do not match the outputBufferDescription.
+        /// If the video composition will output tagged buffers, the details of those buffers should be specified with CMTags. Specifically, the StereoView (eyes) and ProjectionKind must be specified. The behavior is undefined if the output tagged buffers do not match the outputBufferDescription.
         /// The default is nil, which means monoscopic output. Note that an empty array is not valid. An exception will be thrown if the objects in the array are not of type CMTagCollectionRef.
         /// Note that tagged buffers are only supported for custom compositors.
         #[unsafe(method(outputBufferDescription))]

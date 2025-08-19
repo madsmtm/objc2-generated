@@ -61,7 +61,7 @@ impl VTTemporalNoiseFilterConfiguration {
             this: Allocated<Self>,
             frame_width: NSInteger,
             frame_height: NSInteger,
-        ) -> Retained<Self>;
+        ) -> Option<Retained<Self>>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -180,18 +180,18 @@ impl VTTemporalNoiseFilterParameters {
         /// Parameter `filterStrength`: Used to control strength of the noise filtering. The value can range from the minimum strength of 0.0 to the maximum strength of 1.0. Change in filter strength causes the processor to flush all frames in the queue prior to processing the source frame.
         ///
         ///
-        /// Parameter `discontinuity`: Marks sequence discontinuity, forcing the processor to reset prior to processing the source frame.
-        #[unsafe(method(initWithSourceFrame:nextFrames:previousFrames:destinationFrame:filterStrength:discontinuity:))]
+        /// Parameter `hasDiscontinuity`: Marks sequence discontinuity, forcing the processor to reset prior to processing the source frame.
+        #[unsafe(method(initWithSourceFrame:nextFrames:previousFrames:destinationFrame:filterStrength:hasDiscontinuity:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSourceFrame_nextFrames_previousFrames_destinationFrame_filterStrength_discontinuity(
+        pub unsafe fn initWithSourceFrame_nextFrames_previousFrames_destinationFrame_filterStrength_hasDiscontinuity(
             this: Allocated<Self>,
             source_frame: &VTFrameProcessorFrame,
             next_frames: Option<&NSArray<VTFrameProcessorFrame>>,
             previous_frames: Option<&NSArray<VTFrameProcessorFrame>>,
             destination_frame: &VTFrameProcessorFrame,
             filter_strength: c_float,
-            discontinuity: Boolean,
-        ) -> Retained<Self>;
+            has_discontinuity: Boolean,
+        ) -> Option<Retained<Self>>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -230,14 +230,14 @@ impl VTTemporalNoiseFilterParameters {
         pub unsafe fn setFilterStrength(&self, filter_strength: c_float);
 
         /// Marks sequence discontinuity, forcing the processor to reset prior to processing the source frame.
-        #[unsafe(method(discontinuity))]
+        #[unsafe(method(hasDiscontinuity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn discontinuity(&self) -> Boolean;
+        pub unsafe fn hasDiscontinuity(&self) -> bool;
 
-        /// Setter for [`discontinuity`][Self::discontinuity].
-        #[unsafe(method(setDiscontinuity:))]
+        /// Setter for [`hasDiscontinuity`][Self::hasDiscontinuity].
+        #[unsafe(method(setHasDiscontinuity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDiscontinuity(&self, discontinuity: Boolean);
+        pub unsafe fn setHasDiscontinuity(&self, has_discontinuity: bool);
 
         #[cfg(feature = "VTFrameProcessorFrame")]
         /// VTFrameProcessorFrame that contains user allocated pixel buffer that will receive the output frame.

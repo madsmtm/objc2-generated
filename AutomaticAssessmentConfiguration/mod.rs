@@ -199,6 +199,18 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsAccessibilitySpeech(&self, allows_accessibility_speech: bool);
 
+        #[unsafe(method(allowsAccessibilityTypingFeedback))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityTypingFeedback(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityTypingFeedback`][Self::allowsAccessibilityTypingFeedback].
+        #[unsafe(method(setAllowsAccessibilityTypingFeedback:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityTypingFeedback(
+            &self,
+            allows_accessibility_typing_feedback: bool,
+        );
+
         #[unsafe(method(allowsPasswordAutoFill))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsPasswordAutoFill(&self) -> bool;

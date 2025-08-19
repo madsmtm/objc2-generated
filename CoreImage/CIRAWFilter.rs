@@ -198,6 +198,19 @@ impl CIRAWFilter {
         #[unsafe(method_family = none)]
         pub unsafe fn setBoostShadowAmount(&self, boost_shadow_amount: c_float);
 
+        #[unsafe(method(isHighlightRecoverySupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isHighlightRecoverySupported(&self) -> bool;
+
+        #[unsafe(method(isHighlightRecoveryEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isHighlightRecoveryEnabled(&self) -> bool;
+
+        /// Setter for [`isHighlightRecoveryEnabled`][Self::isHighlightRecoveryEnabled].
+        #[unsafe(method(setHighlightRecoveryEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setHighlightRecoveryEnabled(&self, highlight_recovery_enabled: bool);
+
         #[unsafe(method(isGamutMappingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isGamutMappingEnabled(&self) -> bool;

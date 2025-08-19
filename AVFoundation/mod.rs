@@ -444,6 +444,9 @@ mod __AVSampleCursor;
 #[cfg(feature = "AVSemanticSegmentationMatte")]
 #[path = "AVSemanticSegmentationMatte.rs"]
 mod __AVSemanticSegmentationMatte;
+#[cfg(feature = "AVSpatialVideoConfiguration")]
+#[path = "AVSpatialVideoConfiguration.rs"]
+mod __AVSpatialVideoConfiguration;
 #[cfg(feature = "AVSynchronizedLayer")]
 #[path = "AVSynchronizedLayer.rs"]
 mod __AVSynchronizedLayer;
@@ -3224,6 +3227,8 @@ pub use self::__AVSemanticSegmentationMatte::AVSemanticSegmentationMatteTypeHair
 pub use self::__AVSemanticSegmentationMatte::AVSemanticSegmentationMatteTypeSkin;
 #[cfg(feature = "AVSemanticSegmentationMatte")]
 pub use self::__AVSemanticSegmentationMatte::AVSemanticSegmentationMatteTypeTeeth;
+#[cfg(feature = "AVSpatialVideoConfiguration")]
+pub use self::__AVSpatialVideoConfiguration::AVSpatialVideoConfiguration;
 #[cfg(all(feature = "AVSynchronizedLayer", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__AVSynchronizedLayer::AVSynchronizedLayer;

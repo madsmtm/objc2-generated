@@ -579,6 +579,10 @@ pub use self::__VTCompressionSession::VTCompressionSessionPrepareToEncodeFrames;
 #[cfg(feature = "VTCompressionSession")]
 pub use self::__VTCompressionSession::VTIsStereoMVHEVCEncodeSupported;
 #[cfg(feature = "VTDecompressionProperties")]
+pub use self::__VTDecompressionProperties::kVTDecodeFrameOptionKey_ContentAnalyzerCropRectangle;
+#[cfg(feature = "VTDecompressionProperties")]
+pub use self::__VTDecompressionProperties::kVTDecodeFrameOptionKey_ContentAnalyzerRotation;
+#[cfg(feature = "VTDecompressionProperties")]
 pub use self::__VTDecompressionProperties::kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions;
 #[cfg(feature = "VTDecompressionProperties")]
 pub use self::__VTDecompressionProperties::kVTDecompressionPropertyKey_ContentHasInterframeDependencies;
@@ -735,6 +739,20 @@ pub use self::__VTDecompressionSession::VTDecompressionSessionDecodeFrame;
     feature = "objc2-core-video"
 ))]
 pub use self::__VTDecompressionSession::VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler;
+#[cfg(all(
+    feature = "VTDecompressionSession",
+    feature = "VTErrors",
+    feature = "objc2-core-media"
+))]
+pub use self::__VTDecompressionSession::VTDecompressionSessionDecodeFrameWithOptions;
+#[cfg(all(
+    feature = "VTDecompressionSession",
+    feature = "VTErrors",
+    feature = "block2",
+    feature = "objc2-core-media",
+    feature = "objc2-core-video"
+))]
+pub use self::__VTDecompressionSession::VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler;
 #[cfg(all(
     feature = "VTDecompressionSession",
     feature = "VTErrors",

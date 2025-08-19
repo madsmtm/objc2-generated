@@ -97,7 +97,7 @@ extern_protocol!(
             threads_per_threadgroup: MTLSize,
         );
 
-        #[cfg(feature = "MTLTypes")]
+        #[cfg(all(feature = "MTLGPUAddress", feature = "MTLTypes"))]
         /// Encodes a compute dispatch command with a grid that aligns to threadgroup boundaries, using an indirect buffer
         /// for arguments.
         ///
@@ -121,10 +121,11 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn dispatchThreadgroupsWithIndirectBuffer_threadsPerThreadgroup(
             &self,
-            indirect_buffer: u64,
+            indirect_buffer: MTLGPUAddress,
             threads_per_threadgroup: MTLSize,
         );
 
+        #[cfg(feature = "MTLGPUAddress")]
         /// Encodes a compute dispatch command with an arbitrarily sized grid, using an indirect buffer for arguments.
         ///
         /// - Parameters:
@@ -133,7 +134,7 @@ extern_protocol!(
         /// structure. This address requires 4-byte alignment.
         #[unsafe(method(dispatchThreadsWithIndirectBuffer:))]
         #[unsafe(method_family = none)]
-        unsafe fn dispatchThreadsWithIndirectBuffer(&self, indirect_buffer: u64);
+        unsafe fn dispatchThreadsWithIndirectBuffer(&self, indirect_buffer: MTLGPUAddress);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -144,7 +145,7 @@ extern_protocol!(
         ///
         /// - Parameters:
         /// - indirectCommandBuffer: ``MTLIndirectCommandBuffer`` instance containing the commands to execute.
-        /// - executionRange:        The range of commands to execute. The maximum length of the range is 16,384 commands.
+        /// - executionRange:        The range of commands to execute.
         #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_withRange(
@@ -155,6 +156,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MTLAllocation",
+            feature = "MTLGPUAddress",
             feature = "MTLIndirectCommandBuffer",
             feature = "MTLResource"
         ))]
@@ -168,14 +170,13 @@ extern_protocol!(
         /// - indirectCommandbuffer: ``MTLIndirectCommandBuffer`` instance containing the commands to execute.
         /// - indirectRangeBuffer:   GPUAddress of a ``MTLBuffer`` containing the execution range. Lay out the data
         /// in this buffer as described in the ``MTLIndirectCommandBufferExecutionRange``
-        /// structure. The maximum length of the range is 16384 commands. This address
-        /// requires 4-byte alignment.
+        /// structure. This address requires 4-byte alignment.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer(
             &self,
             indirect_commandbuffer: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
-            indirect_range_buffer: u64,
+            indirect_range_buffer: MTLGPUAddress,
         );
 
         #[cfg(all(
@@ -817,6 +818,7 @@ extern_protocol!(
             feature = "MTL4BufferRange",
             feature = "MTLAccelerationStructure",
             feature = "MTLAllocation",
+            feature = "MTLGPUAddress",
             feature = "MTLResource"
         ))]
         /// Encodes an acceleration structure build into the command buffer.
@@ -856,6 +858,7 @@ extern_protocol!(
             feature = "MTL4BufferRange",
             feature = "MTLAccelerationStructure",
             feature = "MTLAllocation",
+            feature = "MTLGPUAddress",
             feature = "MTLResource"
         ))]
         /// Encodes an acceleration structure refit into the command buffer.
@@ -909,6 +912,7 @@ extern_protocol!(
             feature = "MTL4BufferRange",
             feature = "MTLAccelerationStructure",
             feature = "MTLAllocation",
+            feature = "MTLGPUAddress",
             feature = "MTLResource"
         ))]
         /// Encodes an acceleration structure refit operation into the command buffer, providing additional options.
@@ -989,6 +993,7 @@ extern_protocol!(
             feature = "MTL4BufferRange",
             feature = "MTLAccelerationStructure",
             feature = "MTLAllocation",
+            feature = "MTLGPUAddress",
             feature = "MTLResource"
         ))]
         /// Encodes a command to compute the size an acceleration structure can compact into, writing the result

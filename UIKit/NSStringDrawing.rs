@@ -143,6 +143,11 @@ bitflags::bitflags! {
         const UsesDeviceMetrics = 1<<3;
         #[doc(alias = "NSStringDrawingTruncatesLastVisibleLine")]
         const TruncatesLastVisibleLine = 1<<5;
+/// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
+///
+/// When set, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
+        #[doc(alias = "NSStringDrawingOptionsResolvesNaturalAlignmentWithBaseWritingDirection")]
+        const OptionsResolvesNaturalAlignmentWithBaseWritingDirection = 1<<9;
     }
 }
 

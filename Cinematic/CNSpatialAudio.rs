@@ -116,6 +116,11 @@ impl CNAssetSpatialAudioInfo {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Indicates whether the current device supports Audio Mix.
+        #[unsafe(method(isSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isSupported() -> bool;
+
         #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
         /// Check if asset meets all the requirements to operate with Spatial Audio and its accompanying effects
         ///

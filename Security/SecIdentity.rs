@@ -22,6 +22,36 @@ unsafe impl ConcreteType for SecIdentity {
 
 #[cfg(feature = "SecBase")]
 impl SecIdentity {
+    /// create a new identity object from the provided certificate and its associated private key.
+    ///
+    /// Parameter `allocator`: CFAllocator to allocate the identity object. Pass NULL to use the default allocator.
+    ///
+    /// Parameter `certificate`: A certificate reference.
+    ///
+    /// Parameter `privateKey`: A private key reference.
+    ///
+    /// Returns: An identity reference.
+    ///
+    /// This interface returns null if the private does not key correspond to the public key in the certifcate.
+    #[doc(alias = "SecIdentityCreate")]
+    #[cfg(feature = "SecBase")]
+    #[inline]
+    pub unsafe fn new(
+        allocator: Option<&CFAllocator>,
+        certificate: &SecCertificate,
+        private_key: &SecKey,
+    ) -> Option<CFRetained<SecIdentity>> {
+        extern "C-unwind" {
+            fn SecIdentityCreate(
+                allocator: Option<&CFAllocator>,
+                certificate: &SecCertificate,
+                private_key: &SecKey,
+            ) -> Option<NonNull<SecIdentity>>;
+        }
+        let ret = unsafe { SecIdentityCreate(allocator, certificate, private_key) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Creates a new identity reference for the given certificate, assuming the associated private key is in one of the specified keychains.
     ///
     /// Parameter `keychainOrArray`: A reference to an array of keychains to search, a single keychain, or NULL to search the user's default keychain search list.
@@ -299,6 +329,25 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecidentitydomainkerberoskdc?language=objc)
     pub static kSecIdentityDomainKerberosKDC: &'static CFString;
+}
+
+#[cfg(feature = "SecBase")]
+#[deprecated = "renamed to `SecIdentity::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecIdentityCreate(
+    allocator: Option<&CFAllocator>,
+    certificate: &SecCertificate,
+    private_key: &SecKey,
+) -> Option<CFRetained<SecIdentity>> {
+    extern "C-unwind" {
+        fn SecIdentityCreate(
+            allocator: Option<&CFAllocator>,
+            certificate: &SecCertificate,
+            private_key: &SecKey,
+        ) -> Option<NonNull<SecIdentity>>;
+    }
+    let ret = unsafe { SecIdentityCreate(allocator, certificate, private_key) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

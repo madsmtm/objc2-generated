@@ -143,6 +143,22 @@ impl NSTextLayoutManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesHyphenation(&self, uses_hyphenation: bool);
 
+        /// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
+        ///
+        /// When set to ``true``, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
+        /// The default value is ``true``.
+        #[unsafe(method(resolvesNaturalAlignmentWithBaseWritingDirection))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn resolvesNaturalAlignmentWithBaseWritingDirection(&self) -> bool;
+
+        /// Setter for [`resolvesNaturalAlignmentWithBaseWritingDirection`][Self::resolvesNaturalAlignmentWithBaseWritingDirection].
+        #[unsafe(method(setResolvesNaturalAlignmentWithBaseWritingDirection:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setResolvesNaturalAlignmentWithBaseWritingDirection(
+            &self,
+            resolves_natural_alignment_with_base_writing_direction: bool,
+        );
+
         #[cfg(feature = "NSTextContentManager")]
         #[unsafe(method(textContentManager))]
         #[unsafe(method_family = none)]

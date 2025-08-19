@@ -213,6 +213,16 @@ impl GKAccessPoint {
             handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
 
+        #[cfg(all(feature = "GKGameActivity", feature = "block2"))]
+        /// Displays the game activity view for the provided activity instance.
+        #[unsafe(method(triggerAccessPointWithGameActivity:handler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn triggerAccessPointWithGameActivity_handler(
+            &self,
+            game_activity: &GKGameActivity,
+            handler: Option<&block2::DynBlock<dyn Fn()>>,
+        );
+
         #[cfg(feature = "block2")]
         /// Brings up the invite friends view.
         #[unsafe(method(triggerAccessPointForFriendingWithHandler:))]
@@ -234,19 +244,5 @@ impl GKAccessPoint {
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
-    );
-}
-
-/// Private.
-impl GKAccessPoint {
-    extern_methods!(
-        #[cfg(feature = "block2")]
-        #[unsafe(method(_triggerAccessPointWithGameActivityDefinitionID:handler:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn _triggerAccessPointWithGameActivityDefinitionID_handler(
-            &self,
-            game_activity_definition_id: &NSString,
-            handler: Option<&block2::DynBlock<dyn Fn()>>,
-        );
     );
 }
