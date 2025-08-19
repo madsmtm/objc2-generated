@@ -121,22 +121,22 @@ impl AVCaptureOutput {
             rect_in_metadata_output_coordinates: CGRect,
         ) -> CGRect;
 
-        /// A Boolean value that indicates whether the output supports deferred start.
+        /// A `BOOL` value that indicates whether the output supports deferred start.
         ///
         /// You can only set the ``deferredStartEnabled`` property value to `true` if the output supports deferred start.
         #[unsafe(method(isDeferredStartSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDeferredStartSupported(&self) -> bool;
 
-        /// A Boolean value that Indicates whether to defer starting this capture output.
+        /// A `BOOL` value that indicates whether to defer starting this capture output.
         ///
-        /// When this value is `true`, the session doesn't prepare the output's resources until some time after ``startRunning`` returns. You can start the visual parts of your user interface (e.g. preview) prior to other parts (e.g. photo/movie capture, metadata output, etc..) to improve startup performance. Set this value to `false` for outputs that your app needs for startup, and `true` for the ones that it doesn't need to start immediately. For example, an ``AVCaptureVideoDataOutput`` that you intend to use for displaying preview should set this value to `false`, so that the frames are available as soon as possible.
+        /// When this value is `true`, the session does not prepare the output's resources until some time after ``AVCaptureSession/startRunning`` returns. You can start the visual parts of your user interface (e.g. preview) prior to other parts (e.g. photo/movie capture, metadata output, etc..) to improve startup performance. Set this value to `false` for outputs that your app needs for startup, and `true` for the ones it does not need to start immediately. For example, an ``AVCaptureVideoDataOutput`` that you intend to use for displaying preview should set this value to `false`, so that the frames are available as soon as possible.
         ///
-        /// By default, for apps that are linked on or after iOS 19, this property value is `true` for ``AVCapturePhotoOutput`` and ``AVCaptureFileOutput`` subclasses if supported, and `false` otherwise. When set to `true` for ``AVCapturePhotoOutput``, if you want to support multiple capture requests before running deferred start, set ``responsiveCaptureEnabled`` to `true` on that output.
+        /// By default, for apps that are linked on or after iOS 26, this property value is `true` for ``AVCapturePhotoOutput`` and ``AVCaptureFileOutput`` subclasses if supported, and `false` otherwise. When set to `true` for ``AVCapturePhotoOutput``, if you want to support multiple capture requests before running deferred start, set ``AVCapturePhotoOutput/responsiveCaptureEnabled`` to `true` on that output.
         ///
-        /// If ``deferredStartSupported`` is `false`, setting this property value to `true` results in the system throwing an invalid argument exception.
+        /// If ``deferredStartSupported`` is `false`, setting this property value to `true` results in the system throwing an `NSInvalidArgumentException`.
         ///
-        /// - Note: Set this value before committing the configuration.
+        /// - Note: Set this value before calling ``AVCaptureSession/commitConfiguration`` as it requires a lengthy reconfiguration of the capture render pipeline.
         #[unsafe(method(isDeferredStartEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDeferredStartEnabled(&self) -> bool;

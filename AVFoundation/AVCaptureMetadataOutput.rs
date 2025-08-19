@@ -132,10 +132,9 @@ impl AVCaptureMetadataOutput {
         pub unsafe fn setRectOfInterest(&self, rect_of_interest: CGRect);
 
         #[cfg(feature = "AVMetadataObject")]
-        /// Indicates the required metadata object types when Cinematic Video capture is enabled.
+        /// The required metadata object types when Cinematic Video capture is enabled.
         ///
-        ///
-        /// Since the Cinematic Video algorithm requires a particular set of metadata objects to function optimally, you must set your `metadataObjectTypes` property to this property's returned value if you've set `cinematicVideoCaptureEnabled` to YES on the connected device input.
+        /// Since the Cinematic Video algorithm requires a particular set of metadata objects to function optimally, you must set your ``metadataObjectTypes`` property to this property's returned value if you've set ``AVCaptureDeviceInput/cinematicVideoCaptureEnabled`` to `true` on the connected device input, otherwise an `NSInvalidArgumentException` is thrown.
         #[unsafe(method(requiredMetadataObjectTypesForCinematicVideoCapture))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiredMetadataObjectTypesForCinematicVideoCapture(

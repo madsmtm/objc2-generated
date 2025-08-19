@@ -627,6 +627,8 @@ pub use self::__CVPixelBuffer::kCVPixelBufferHeightKey;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferIOSurfacePropertiesKey;
 #[cfg(feature = "CVPixelBuffer")]
+pub use self::__CVPixelBuffer::kCVPixelBufferIOSurfacePurgeableKey;
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferMemoryAllocatorKey;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferMetalCompatibilityKey;

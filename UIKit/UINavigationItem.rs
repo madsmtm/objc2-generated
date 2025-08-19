@@ -811,7 +811,7 @@ impl UINavigationItem {
         );
 
         /// `AllowsExternalIntegration` means that something at a higher scope may take the search bar and integrate it somewhere other than the navigation bar (or toolbar) directly associated with this navigation item.
-        /// On iOS 19, UISplitViewController uses this to allow Mac-like placement of the search bar on iPad.
+        /// On iOS 26, UISplitViewController uses this to allow Mac-like placement of the search bar on iPad.
         /// Defaults to `NO`
         /// Set to `YES` to allow the containing UISplitViewController to place the search bar in the navigation bar for the trailingmost column independent of the column used for this view controller.
         /// Ignored when `searchController` is `nil`, when `searchBarPlacement` is `.stacked`, or when not contained in a UISplitViewController.
