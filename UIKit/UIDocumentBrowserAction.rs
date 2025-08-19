@@ -82,6 +82,20 @@ impl UIDocumentBrowserAction {
         #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
+        #[cfg(feature = "UIImage")]
+        #[unsafe(method(imageOnlyForContextMenu))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn imageOnlyForContextMenu(&self) -> Option<Retained<UIImage>>;
+
+        #[cfg(feature = "UIImage")]
+        /// Setter for [`imageOnlyForContextMenu`][Self::imageOnlyForContextMenu].
+        #[unsafe(method(setImageOnlyForContextMenu:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setImageOnlyForContextMenu(
+            &self,
+            image_only_for_context_menu: Option<&UIImage>,
+        );
+
         /// Allows clients to restrict the action to only a specific set of content types. Default: [UTTypeItem.identifier]
         #[unsafe(method(supportedContentTypes))]
         #[unsafe(method_family = none)]

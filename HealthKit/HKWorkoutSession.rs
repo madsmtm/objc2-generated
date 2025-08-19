@@ -172,12 +172,6 @@ impl HKWorkoutSession {
         #[unsafe(method_family = none)]
         pub unsafe fn currentActivity(&self) -> Retained<HKWorkoutActivity>;
 
-        #[cfg(feature = "HKObjectType")]
-        /// The quantity types the receiver is collecting.
-        #[unsafe(method(currentGeneratedTypes))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn currentGeneratedTypes(&self) -> Retained<NSSet<HKQuantityType>>;
-
         #[cfg(all(feature = "HKWorkout", feature = "HKWorkoutConfiguration"))]
         /// Parameter `activityType`: The activity type of the workout session.
         ///
@@ -479,24 +473,6 @@ extern_protocol!(
             &self,
             workout_session: &HKWorkoutSession,
             error: Option<&NSError>,
-        );
-
-        #[cfg(feature = "HKObjectType")]
-        /// This method is called when the generated types collected on session changed
-        ///
-        /// With new sample types added or removed, statistics for the currentGeneratedTypes may have changed and should be read again
-        ///
-        ///
-        /// Parameter `workoutSession`: The workout data source which provides data for active workout session.
-        ///
-        /// Parameter `generatedTypes`: The full set of sample types that are currently generated.
-        #[optional]
-        #[unsafe(method(workoutSession:didUpdateGeneratedTypes:))]
-        #[unsafe(method_family = none)]
-        unsafe fn workoutSession_didUpdateGeneratedTypes(
-            &self,
-            workout_session: &HKWorkoutSession,
-            generated_types: &NSSet<HKSampleType>,
         );
     }
 );

@@ -15,18 +15,18 @@ use crate::*;
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct CPListImageRowItemCondensedElementShape(pub NSUInteger);
+pub struct CPListImageRowItemCondensedElementShape(pub NSInteger);
 impl CPListImageRowItemCondensedElementShape {
     /// The list item will render an element with a circular image.
     #[doc(alias = "CPListImageRowItemCondensedElementShapeCircular")]
     pub const Circular: Self = Self(0);
-    /// The list item will render an element with a rounded square image.
-    #[doc(alias = "CPListImageRowItemCondensedElementShapeRoundedSquare")]
-    pub const RoundedSquare: Self = Self(1);
+    /// The list item will render an element with a rounded rectangle image.
+    #[doc(alias = "CPListImageRowItemCondensedElementShapeRoundedRectangle")]
+    pub const RoundedRectangle: Self = Self(1);
 }
 
 unsafe impl Encode for CPListImageRowItemCondensedElementShape {
-    const ENCODING: Encoding = NSUInteger::ENCODING;
+    const ENCODING: Encoding = NSInteger::ENCODING;
 }
 
 unsafe impl RefEncode for CPListImageRowItemCondensedElementShape {

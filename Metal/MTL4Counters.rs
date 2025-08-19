@@ -117,14 +117,14 @@ impl MTL4CounterHeapDescriptor {
         /// Assigns the number of entries in the heap.
         ///
         /// Each entry represents one item in the heap. The size of the individual entries depends on the heap type.
-        #[unsafe(method(entryCount))]
+        #[unsafe(method(count))]
         #[unsafe(method_family = none)]
-        pub unsafe fn entryCount(&self) -> NSUInteger;
+        pub unsafe fn count(&self) -> NSUInteger;
 
-        /// Setter for [`entryCount`][Self::entryCount].
-        #[unsafe(method(setEntryCount:))]
+        /// Setter for [`count`][Self::count].
+        #[unsafe(method(setCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEntryCount(&self, entry_count: NSUInteger);
+        pub unsafe fn setCount(&self, count: NSUInteger);
     );
 }
 
@@ -172,7 +172,7 @@ extern_protocol!(
         ///
         /// This method resolves heap data in the CPU timeline. Your app needs to ensure the GPU work has completed in order to
         /// retrieve the data correctly. You can alternatively resolve the heap data in the GPU timeline by calling
-        /// ``MTL4CommandBuffer/resolveCounterHeap:withRange:intoBuffer:atOffset:waitFence:updateFence:``.
+        /// ``MTL4CommandBuffer/resolveCounterHeap:withRange:intoBuffer:waitFence:updateFence:``.
         ///
         /// - Note: When resolving counters in the CPU timeline, signaling an instance of ``MTLSharedEvent`` after any workloads
         /// write counters (and waiting on that signal on the CPU) is sufficient to ensure synchronization.

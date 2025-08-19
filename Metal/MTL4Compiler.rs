@@ -655,10 +655,5 @@ extern_protocol!(
             descriptor: &MTL4MachineLearningPipelineDescriptor,
             completion_handler: MTL4NewMachineLearningPipelineStateCompletionHandler,
         ) -> Retained<ProtocolObject<dyn MTL4CompilerTask>>;
-
-        /// Cancels all pending compiler tasks for this compiler.
-        #[unsafe(method(cancel))]
-        #[unsafe(method_family = none)]
-        unsafe fn cancel(&self);
     }
 );

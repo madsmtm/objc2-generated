@@ -516,6 +516,27 @@ impl UIBarButtonItem {
         #[unsafe(method_family = none)]
         pub unsafe fn setSharesBackground(&self, shares_background: bool);
 
+        /// An identifier used to match bar button items across transitions in a navigation bar or toolbar.
+        ///
+        /// When the set of bar button items in a navigation bar or toolbar changes (for example, when pushing
+        /// or popping view controllers), UIKit automatically animates the transition between the different sets
+        /// of items. By default, UIKit uses heuristics based on item position and content to determine which items
+        /// should be matched for these transitions.
+        ///
+        /// Set this property with the same value on two different bar button items in different navigation item
+        /// configurations to indicate that they should be treated as the same item during transitions. This allows
+        /// for more natural animations when the visuals or function of an item changes across contexts.
+        ///
+        /// The default value is `nil`, which means UIKit will use its default heuristics for transitions.
+        #[unsafe(method(identifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`identifier`][Self::identifier].
+        #[unsafe(method(setIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
+
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Create a fixed group containing this bar button item. UIBarButtonItems may only be in a single UIBarButtonItemGroup at a time, adding a bar button item to a group removes it from any previous group.
         #[unsafe(method(creatingFixedGroup))]

@@ -1462,6 +1462,15 @@ impl NSURLSessionConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesClassicLoadingMode(&self, uses_classic_loading_mode: bool);
 
+        #[unsafe(method(enablesEarlyData))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn enablesEarlyData(&self) -> bool;
+
+        /// Setter for [`enablesEarlyData`][Self::enablesEarlyData].
+        #[unsafe(method(setEnablesEarlyData:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setEnablesEarlyData(&self, enables_early_data: bool);
+
         #[deprecated = "Please use NSURLSessionConfiguration.defaultSessionConfiguration or other class methods to create instances"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

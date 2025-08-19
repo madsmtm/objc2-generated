@@ -41,10 +41,6 @@ bitflags::bitflags! {
         const PopupArea = 1<<7;
         #[doc(alias = "kPDFImageArea")]
         const ImageArea = 1<<8;
-        #[doc(alias = "kPDFTableArea")]
-        const TableArea = 1<<9;
-        #[doc(alias = "kPDFTableResizeArea")]
-        const TableResizeArea = 1<<10;
         #[doc(alias = "kPDFAnyArea")]
         const AnyArea = NSIntegerMax as _;
     }
@@ -236,23 +232,6 @@ impl PDFPage {
         #[unsafe(method(characterIndexAtPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterIndexAtPoint(&self, point: NSPoint) -> NSInteger;
-
-        #[cfg(feature = "PDFSelection")]
-        #[unsafe(method(selectionForTableRect:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn selectionForTableRect(
-            &self,
-            table_rect: NSRect,
-        ) -> Option<Retained<PDFSelection>>;
-
-        #[cfg(feature = "PDFSelection")]
-        #[unsafe(method(tableSelectionFromPoint:toPoint:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn tableSelectionFromPoint_toPoint(
-            &self,
-            start_point: NSPoint,
-            end_point: NSPoint,
-        ) -> Option<Retained<PDFSelection>>;
 
         #[cfg(feature = "PDFSelection")]
         #[unsafe(method(selectionForRect:))]

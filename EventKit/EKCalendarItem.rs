@@ -207,10 +207,6 @@ impl EKCalendarItem {
         #[unsafe(method(removeRecurrenceRule:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRecurrenceRule(&self, rule: &EKRecurrenceRule);
-
-        #[unsafe(method(hasMaximumAlarms))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn hasMaximumAlarms(&self) -> bool;
     );
 }
 

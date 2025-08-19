@@ -8,7 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An abstract class for representing task requests.
+    /// An abstract class that represents a request for the app to be launched in the background to perform work.
+    /// Do not instantiate instances of this class directly. Instead, use one of its concrete subclasses.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskrequest?language=objc)
     #[unsafe(super(NSObject))]
@@ -64,6 +65,10 @@ impl BGTaskRequest {
 extern_class!(
     /// A request to launch your app in the background to execute a short refresh task.
     ///
+    /// Schedule a refresh task request to ask that the system launch your app briefly so that you can download data and
+    /// keep your app's contents up-to-date. The system will fulfill this request intelligently based on system conditions
+    /// and app usage.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgapprefreshtaskrequest?language=objc)
     #[unsafe(super(BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -111,8 +116,12 @@ impl BGAppRefreshTaskRequest {
 }
 
 extern_class!(
-    /// A request to launch your app in the background to execute a processing task
-    /// that can take minutes to complete.
+    /// A request to launch your app in the background to execute a processing task that can take minutes to complete.
+    ///
+    /// Schedule a processing task request to ask that the system launch your app when conditions are favorable for battery
+    /// life to handle deferrable, longer-running processing, such as syncing, database maintenance, or similar tasks. The
+    /// system will attempt to fulfill this request to the best of its ability within the next two days as long as the user
+    /// has used your app within the past week.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgprocessingtaskrequest?language=objc)
     #[unsafe(super(BGTaskRequest, NSObject))]
@@ -146,6 +155,10 @@ impl BGProcessingTaskRequest {
         ) -> Retained<Self>;
 
         /// A Boolean specifying if the processing task requires network connectivity.
+        ///
+        /// If this property is set to YES, the system will only launch your app to fulfill this request when the device has a
+        /// network connection. If this is set to NO, your app may not have network access.
+        /// - Note: The default value is `NO`.
         #[unsafe(method(requiresNetworkConnectivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresNetworkConnectivity(&self) -> bool;
@@ -155,7 +168,15 @@ impl BGProcessingTaskRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresNetworkConnectivity(&self, requires_network_connectivity: bool);
 
-        /// A Boolean specifying if the processing task requires a device connected to power.
+        /// Whether the background task represented by this request should only be done while the device is connected to
+        /// external power.
+        ///
+        /// If this property is set to `YES`, the system will launch your app to fulfill this request only while the device is
+        /// connected to external power. Setting this to `YES` will also disable the CPU Monitor feature. Specify `YES` if this
+        /// task is resource intensive to minimize impact to battery life. Please note that, even if this value is `NO`, the
+        /// system will not necessarily schedule this task while the device is on battery power, depending on the type of
+        /// device and system conditions.
+        /// - Note: The default value is `NO`.
         #[unsafe(method(requiresExternalPower))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresExternalPower(&self) -> bool;
@@ -181,8 +202,8 @@ impl BGProcessingTaskRequest {
 }
 
 extern_class!(
-    /// A request to launch your app in the background to execute a health research task for studies a user has opted into and
-    /// that can take minutes to complete.
+    /// A request to launch your app in the background to execute a health research task for studies a user has opted into
+    /// and that can take minutes to complete.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bghealthresearchtaskrequest?language=objc)
     #[unsafe(super(BGProcessingTaskRequest, BGTaskRequest, NSObject))]
@@ -205,6 +226,9 @@ extern_conformance!(
 impl BGHealthResearchTaskRequest {
     extern_methods!(
         /// A String indicating file protection availability required for processing.
+        ///
+        /// Update this property to indicate what type of data needs to be accessible when the task is run. The default value
+        /// is `NSFileProtectionCompleteUntilFirstUserAuthentication`
         #[unsafe(method(protectionTypeOfRequiredData))]
         #[unsafe(method_family = none)]
         pub unsafe fn protectionTypeOfRequiredData(&self) -> Retained<NSFileProtectionType>;
@@ -292,7 +316,7 @@ bitflags::bitflags! {
 /// execution is not supported on all devices. Additionally, if a device is experiencing heavy GPU contention
 /// backgrounded workloads are not guaranteed runtime.
 ///
-/// - Important: Applications must have the `com.apple.developer.background-tasks.continued-processing.gpu` entitlement to submit a task request with this resource.
+/// - Important: Applications must have the `com.apple.developer.background-tasks.continued-processing.gpu`  entitlement to submit a task request with this resource.
         #[doc(alias = "BGContinuedProcessingTaskRequestResourcesGPU")]
         const GPU = 1<<0;
     }
@@ -389,15 +413,14 @@ impl BGContinuedProcessingTaskRequest {
         /// currently foregrounded app. Please note that ``BGTaskRequest/earliestBeginDate`` will be outright ignored by the
         /// scheduler in favor of `NSDate.now`.
         ///
-        /// The identifier must leverage a base wildcard notation, where the prefix of the identifier must at least contain the
-        /// bundle ID of the submitting application, followed by optional semantic context, and finally ending with `.*`. An
-        /// example: `
+        /// The identifier ought to use wildcard notation, where the prefix of the identifier must at least contain the bundle
+        /// ID of the submitting application, followed by optional semantic context, and finally ending with `.*`. An example:
+        /// `
         /// <MainBundle
         /// >.
         /// <SemanticContext
-        /// >.*` which would transform to
-        /// `com.foo.MyApplication.continuedProcessingTask.*`. Thus, a submitted identifier would be of the form
-        /// `com.foo.MyApplication.continuedProcessingTask.HD830D`.
+        /// >.*` which would transform to `com.foo.MyApplication.continuedProcessingTask.*`. Thus,
+        /// a submitted identifier would be of the form `com.foo.MyApplication.continuedProcessingTask.HD830D`.
         ///
         /// - Parameters:
         /// - identifier: The task identifier.

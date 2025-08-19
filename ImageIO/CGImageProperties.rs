@@ -3456,3 +3456,13 @@ extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiocameramodel_intrinsics?language=objc)
     pub static kIIOCameraModel_Intrinsics: &'static CFString;
 }
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageproviderpreferredtilewidth?language=objc)
+    pub static kCGImageProviderPreferredTileWidth: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageproviderpreferredtileheight?language=objc)
+    pub static kCGImageProviderPreferredTileHeight: &'static CFString;
+}

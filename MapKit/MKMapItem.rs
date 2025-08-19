@@ -33,7 +33,7 @@ impl MKMapItem {
         pub unsafe fn alternateIdentifiers(&self) -> Retained<NSSet<MKMapItemIdentifier>>;
 
         #[cfg(all(feature = "MKPlacemark", feature = "objc2-core-location"))]
-        #[deprecated = "Use address or location"]
+        #[deprecated = "Use location, address and addressRepresentations instead"]
         #[unsafe(method(placemark))]
         #[unsafe(method_family = none)]
         pub unsafe fn placemark(&self) -> Retained<MKPlacemark>;

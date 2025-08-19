@@ -534,16 +534,16 @@ impl CGImage {
     #[doc(alias = "CGImageCreateCopyWithContentAverageLightLevel")]
     #[inline]
     pub unsafe fn new_copy_with_content_average_light_level(
-        avll: c_float,
         image: Option<&CGImage>,
+        avll: c_float,
     ) -> Option<CFRetained<CGImage>> {
         extern "C-unwind" {
             fn CGImageCreateCopyWithContentAverageLightLevel(
-                avll: c_float,
                 image: Option<&CGImage>,
+                avll: c_float,
             ) -> Option<NonNull<CGImage>>;
         }
-        let ret = unsafe { CGImageCreateCopyWithContentAverageLightLevel(avll, image) };
+        let ret = unsafe { CGImageCreateCopyWithContentAverageLightLevel(image, avll) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -1031,16 +1031,16 @@ extern "C-unwind" {
 #[deprecated = "renamed to `CGImage::new_copy_with_content_average_light_level`"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGImageCreateCopyWithContentAverageLightLevel(
-    avll: c_float,
     image: Option<&CGImage>,
+    avll: c_float,
 ) -> Option<CFRetained<CGImage>> {
     extern "C-unwind" {
         fn CGImageCreateCopyWithContentAverageLightLevel(
-            avll: c_float,
             image: Option<&CGImage>,
+            avll: c_float,
         ) -> Option<NonNull<CGImage>>;
     }
-    let ret = unsafe { CGImageCreateCopyWithContentAverageLightLevel(avll, image) };
+    let ret = unsafe { CGImageCreateCopyWithContentAverageLightLevel(image, avll) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
