@@ -132,8 +132,25 @@ impl VTRAWProcessingSession {
     ///
     /// Parameter `parameterChangeHandler`: A VTRAWProcessingParameterChangeHandler block which will be called when the set of processing parameters changes, or the value of a parameter changes without the client explicitly requesting it.
     /// Setting this to NULL removes the current handler.
+    #[doc(alias = "VTRAWProcessingSessionSetParameterChangedHandler")]
+    #[cfg(feature = "block2")]
+    #[inline]
+    pub unsafe fn set_parameter_changed_handler(
+        self: &VTRAWProcessingSession,
+        parameter_change_handler: VTRAWProcessingParameterChangeHandler,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn VTRAWProcessingSessionSetParameterChangedHandler(
+                session: &VTRAWProcessingSession,
+                parameter_change_handler: VTRAWProcessingParameterChangeHandler,
+            ) -> OSStatus;
+        }
+        unsafe { VTRAWProcessingSessionSetParameterChangedHandler(self, parameter_change_handler) }
+    }
+
     #[doc(alias = "VTRAWProcessingSessionSetParameterChangedHander")]
     #[cfg(feature = "block2")]
+    #[deprecated]
     #[inline]
     pub unsafe fn set_parameter_changed_hander(
         self: &VTRAWProcessingSession,
@@ -436,6 +453,15 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[deprecated = "renamed to `VTRAWProcessingSession::invalidate`"]
     pub fn VTRAWProcessingSessionInvalidate(session: &VTRAWProcessingSession);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "block2")]
+    #[deprecated = "renamed to `VTRAWProcessingSession::set_parameter_changed_handler`"]
+    pub fn VTRAWProcessingSessionSetParameterChangedHandler(
+        session: &VTRAWProcessingSession,
+        parameter_change_handler: VTRAWProcessingParameterChangeHandler,
+    ) -> OSStatus;
 }
 
 extern "C-unwind" {

@@ -69,7 +69,8 @@ impl BELayerHierarchyHostingTransactionCoordinator {
         pub unsafe fn commit(&self, mtm: MainThreadMarker);
 
         #[cfg(feature = "libc")]
-        /// takes ownership of the port right (even if it returns nil).
+        /// Decodes a coordinator form a `mach_port_t` send right and its accompanying metadata.
+        /// - This method takes ownership of the port right (even if it returns an error).
         #[unsafe(method(coordinatorWithPort:data:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinatorWithPort_data_error(
@@ -78,9 +79,10 @@ impl BELayerHierarchyHostingTransactionCoordinator {
         ) -> Result<Retained<BELayerHierarchyHostingTransactionCoordinator>, Retained<NSError>>;
 
         #[cfg(all(feature = "block2", feature = "libc"))]
-        /// passes a copy of the send right or `MACH_PORT_NULL` if inert.
-        /// the receiver is responsible for disposing of `copiedPort`.
-        /// the port and data should be consumed together and _only_ once by `init(port:data:)`.
+        /// Encodes the coordinator into a `mach_port_t` send right and its accompanying metadata.
+        /// - The block is responsible for disposing of `copiedPort` - failure to manage its lifecycle will leak the port. Note that some functions (like ``coordinatorWithPort:data:error:``) will assume control of the right for you.
+        /// - `copiedPort` will be `MACH_PORT_NULL` if the receiver is already invalidated.
+        /// - The port and data should ultimately be consumed together and _only_ once by ``coordinatorWithPort:data:error:``.
         #[unsafe(method(encodeWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeWithBlock(

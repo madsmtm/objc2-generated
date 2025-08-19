@@ -1884,3 +1884,33 @@ impl UIView {
         ) -> NSDirectionalEdgeInsets;
     );
 }
+
+/// CornerConfiguration.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
+        #[cfg(feature = "UICornerConfiguration")]
+        /// A configuration that defines the corners of the view.
+        #[unsafe(method(cornerConfiguration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn cornerConfiguration(&self) -> Retained<UICornerConfiguration>;
+
+        #[cfg(feature = "UICornerConfiguration")]
+        /// Setter for [`cornerConfiguration`][Self::cornerConfiguration].
+        #[unsafe(method(setCornerConfiguration:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCornerConfiguration(&self, corner_configuration: &UICornerConfiguration);
+
+        #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Returns the effective radius for the given `corner`, calculated using the view's current `cornerConfiguration`.
+        ///
+        /// When invoked within ``UIView.layoutSubviews()``, ``UIView.updateProperties()``, or ``UIViewController.updateProperties()`` automatic invalidation will occur if the effective radius changes.
+        /// If more than one `corner` is provided, the returned radius represents the maximum effective radius of those corners.
+        ///
+        /// - Parameter corner: The corner.
+        /// - Returns: The effective radius.
+        #[unsafe(method(effectiveRadiusForCorner:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effectiveRadiusForCorner(&self, corner: UIRectCorner) -> CGFloat;
+    );
+}

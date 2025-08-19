@@ -29,7 +29,7 @@ extern_conformance!(
 impl CPListImageRowItemCardElement {
     extern_methods!(
         #[cfg(feature = "objc2-ui-kit")]
-        /// Initialize an element that is constituted of an image, boolean to entierely cover the element with the image, title, subtitle and a tint color.
+        /// Initialize an element that is constituted of an image, boolean to entirely cover the element with the image, title, subtitle and a tint color.
         ///
         /// When providing an image, your app should provide a
         /// `UIImage`that is display-ready. If necessary for the image, provide
@@ -52,7 +52,7 @@ impl CPListImageRowItemCardElement {
         ///
         /// Parameter `image`: The image associated to the element.
         ///
-        /// Parameter `showsImageFullHeight`: Determines if the image should entierely cover the card
+        /// Parameter `showsImageFullHeight`: Determines if the image should entirely cover the card
         ///
         /// Parameter `title`: The title of the element.
         ///

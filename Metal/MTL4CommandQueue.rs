@@ -165,7 +165,7 @@ impl MTL4CommandQueueDescriptor {
 ///
 /// When performing a sparse mapping update, you are responsible for issuing a barrier against stage `MTLStageResourceState`.
 ///
-/// You can determine the sparse texture tier by calling `MTLTexture/sparseTextureTier`.
+/// You can determine the sparse texture tier by calling ``MTLTexture/sparseTextureTier``.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4updatesparsetexturemappingoperation?language=objc)
 #[cfg(all(feature = "MTLResourceStateCommandEncoder", feature = "MTLTypes"))]
@@ -182,8 +182,13 @@ pub struct MTL4UpdateSparseTextureMappingOperation {
     /// Metal unmaps the tiles in the region, ignoring the contents of member ``heapOffset``.
     pub mode: MTLSparseTextureMappingMode,
     /// The region in the texture to update, in tiles.
+    ///
+    /// When ``textureLevel`` is equal to the texture's ``MTLTexture/firstMipmapInTail``,
+    /// set `origin.y` to `0` and `size.height` to `1`.
     pub textureRegion: MTLRegion,
     /// The index of the mipmap level in the texture to update.
+    ///
+    /// Provide a value between `0` and the texture's ``MTLTexture/firstMipmapInTail``.
     pub textureLevel: NSUInteger,
     /// The index of the array slice in the texture to update.
     ///
@@ -222,8 +227,16 @@ pub struct MTL4CopySparseTextureMappingOperation {
     /// The region in the source texture, in tiles.
     ///
     /// The tiles remain mapped in the source texture.
+    ///
+    /// When ``sourceLevel`` is equal to the source texture's ``MTLTexture/firstMipmapInTail``,
+    /// set `origin.y` to `0` and `size.height` to `1`.
     pub sourceRegion: MTLRegion,
     /// The index of the mipmap level in the source texture.
+    ///
+    /// Provide a value between `0` and the source texture's ``MTLTexture/firstMipmapInTail``.
+    ///
+    /// When ``sourceLevel`` is equal to the source texture's ``MTLTexture/firstMipmapInTail``,
+    /// set ``destinationLevel`` to the destination texture's ``MTLTexture/firstMipmapInTail``.
     pub sourceLevel: NSUInteger,
     /// The index of the array slice in the texture source of the copy operation.
     ///
@@ -233,8 +246,16 @@ pub struct MTL4CopySparseTextureMappingOperation {
     ///
     /// The X, Y and Z coordinates of the tiles relative to the origin match the same
     /// coordinates in the source region.
+    ///
+    /// When ``destinationLevel`` is equal to the destination texture's ``MTLTexture/firstMipmapInTail``,
+    /// set `destinationOrigin.y` to `0`.
     pub destinationOrigin: MTLOrigin,
     /// The index of the mipmap level in the destination texture.
+    ///
+    /// Provide a value between `0` and the destination texture's ``MTLTexture/firstMipmapInTail``.
+    ///
+    /// When ``sourceLevel`` is equal to the source texture's ``MTLTexture/firstMipmapInTail``,
+    /// set ``destinationLevel`` to the destination texture's ``MTLTexture/firstMipmapInTail``.
     pub destinationLevel: NSUInteger,
     /// The index of the array slice in the destination texture to copy into.
     ///
