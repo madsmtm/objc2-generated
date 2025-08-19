@@ -383,28 +383,26 @@ impl AVCaptureDeviceInput {
 
         /// A BOOL value specifying whether Cinematic Video capture is supported.
         ///
+        /// With Cinematic Video capture, you get a simulated depth-of-field effect that keeps your subjects (people, pets, and more) in sharp focus while applying a pleasing blur to the background (or foreground). Depending on the focus mode (see ``AVCaptureCinematicVideoFocusMode`` for detail), the camera either uses machine learning to automatically detect and focus on subjects in the scene, or it fixes focus on a subject until it exits the scene. Cinematic Videos can be played back and edited using the Cinematic framework.
         ///
-        /// With Cinematic Video capture, you get a simulated depth-of-field effect that keeps your subjects—people, pets, and more—in sharp focus while applying a pleasing blur to the background (or foreground). Depending on the focus mode (see `AVCaptureCinematicVideoFocusMode` for detail), the camera either uses machine learning to automatically detect and focus on subjects in the scene, or it fixes focus on a subject until it exits the scene. Cinematic Videos can be played back and edited using the Cinematic framework.
+        /// You can adjust the video's simulated aperture before starting a recording using the ``simulatedAperture`` property. With Cinematic Video specific focus methods on ``AVCaptureDevice``, you can dynamically control focus transitions.
         ///
-        /// The simulated aperture can be adjusted before the recording starts using the simulatedAperture property. Focus transitions can be dynamically controlled using the Cinematic Video specific focus methods on AVCaptureDevice.
+        /// Movie files captured with Cinematic Video enabled can be played back and edited with the [Cinematic framework] (https://developer.apple.com/documentation/cinematic/playing-and-editing-cinematic-mode-video?language=objc).
         ///
-        /// The resulted movie file can be played back and edited with the Cinematic framework.
+        /// This property returns `true` if the session's current configuration allows Cinematic Video capture. When switching cameras or formats, this property may change. When this property changes from `true` to `false`, ``cinematicVideoCaptureEnabled`` also reverts to `false`. If you've previously opted in for Cinematic Video capture and then change configuration, you may need to set ``cinematicVideoCaptureEnabled`` to `true` again. This property is key-value observable.
         ///
-        /// This property returns YES if the session's current configuration allows Cinematic Video capture. When switching cameras or formats this property may change. When this property changes from YES to NO, cinematicVideoCaptureEnabled also reverts to NO. If you've previously opted in for Cinematic Video capture and then change configurations, you may need to set cinematicVideoCaptureEnabled = YES again. This property is key-value observable.
-        ///
-        /// AVCaptureDepthDataOutput is not supported when cinematicVideoCaptureEnabled is set to true. Running an AVCaptureSession with both of these features throws an NSInvalidArgumentException.
+        /// - Note: ``AVCaptureDepthDataOutput`` is not supported when ``cinematicVideoCaptureEnabled`` is set to `true`. Running an ``AVCaptureSession`` with both of these features throws an `NSInvalidArgumentException`.
         #[unsafe(method(isCinematicVideoCaptureSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCinematicVideoCaptureSupported(&self) -> bool;
 
-        /// A BOOL value specifying whether the Cinematic Video effect is applied to any AVCaptureMovieFileOutput, AVCaptureVideoDataOutput, AVCaptureMetadataOutput, and AVCaptureVideoPreviewLayer added to the same capture session.
+        /// A BOOL value specifying whether the Cinematic Video effect is being applied to any movie file output, video data output, metadata output, or video preview layer added to the capture session.
         ///
+        /// Default is `false`. Set to `true` to enable support for Cinematic Video capture.
         ///
-        /// Default is NO. Set to YES to enable support for Cinematic Video capture.
+        /// When you set this property to `true`, your input's associated ``AVCaptureDevice/focusMode`` changes to ``AVCaptureFocusModeContinuousAutoFocus``. While Cinematic Video capture is enabled, you are not permitted to change your device's focus mode, and any attempt to do so results in an `NSInvalidArgumentException`. You may only set this property to `true` if ``cinematicVideoCaptureSupported`` is `true`.
         ///
-        /// When set to YES, the corresponding AVCaptureDevice's focusMode will be updated to AVCaptureFocusModeContinuousAutoFocus. While this is property is YES any attempt to change the focus mode will result in an exception.
-        ///
-        /// This property may only be set to YES if cinematicVideoCaptureSupported is YES. Enabling Cinematic Video capture requires a lengthy reconfiguration of the capture render pipeline, so if you intend to capture Cinematic Video, you should set this property to YES before calling -[AVCaptureSession startRunning] or within -[AVCaptureSession beginConfiguration] and -[AVCaptureSession commitConfiguration] while running.
+        /// - Note: Enabling Cinematic Video capture requires a lengthy reconfiguration of the capture render pipeline, so if you intend to capture Cinematic Video, you should set this property to `true` before calling ``AVCaptureSession/startRunning`` or within ``AVCaptureSession/beginConfiguration`` and ``AVCaptureSession/commitConfiguration`` while running.
         #[unsafe(method(isCinematicVideoCaptureEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCinematicVideoCaptureEnabled(&self) -> bool;
@@ -416,14 +414,13 @@ impl AVCaptureDeviceInput {
 
         /// Shallow depth of field simulated aperture.
         ///
-        ///
         /// When capturing a Cinematic Video, use this property to control the amount of blur in the simulated depth of field effect.
         ///
-        /// This property only takes effect when cinematicVideoCaptureEnabled is set to YES.
+        /// This property only takes effect when ``cinematicVideoCaptureEnabled`` is set to `true`.
         ///
-        /// Setting this property throws an NSRangeException if simulatedAperture is set to a value less than the AVCaptureDevice's activeFormat.minSimulatedAperture or greater than the AVCaptureDevice's activeFormat.maxSimulatedAperture. This property may only be set if AVCaptureDevice's activeFormat.minSimulatedAperture returns a non-zero value, otherwise an NSInvalidArgumentException is thrown. This property can only be set before a Cinematic Video capture starts. An NSInvalidArgumentException is thrown if simulatedAperture is set when a Cinematic Video is being captured.
+        /// - Important: Setting this property to a value less than the ``AVCaptureDevice/activeFormat/minSimulatedAperture`` or greater than the ``AVCaptureDevice/activeFormat/maxSimulatedAperture`` throws an `NSRangeException`. you may only set this property if ``AVCaptureDevice/activeFormat/minSimulatedAperture`` returns a non-zero value, otherwise an `NSInvalidArgumentException` is thrown. You must set this property before starting a Cinematic Video capture. If you attempt to set it while a recording is in progress, an `NSInvalidArgumentException` is thrown.
         ///
-        /// This property is initialized to the device.activeFormat's defaultSimulatedAperture.
+        /// This property is initialized to the associated ``AVCaptureDevice/activeFormat/defaultSimulatedAperture``.
         ///
         /// This property is key-value observable.
         #[unsafe(method(simulatedAperture))]
