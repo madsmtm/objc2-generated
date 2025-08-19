@@ -15,11 +15,13 @@ use crate::*;
 ///
 /// 1. Commit all command encoders together in an array you provide to ``MTL4CommandQueue/commit:count:`` or ``MTL4CommandQueue/commit:count:options:``
 /// 2. The first command buffer in the array contains a render pass that you start with option ``MTL4RenderEncoderOptionSuspending``
-/// 2. The last command buffer in the array contains the same render pass that you start with option ``MTL4RenderEncoderOptionResuming``
-/// 3. All intermediate command buffers between the first and last in the array contain the same render pass that you
+/// 3. The last command buffer in the array contains the same render pass that you start with option ``MTL4RenderEncoderOptionResuming``
+/// 4. All intermediate command buffers between the first and last in the array contain the same render pass that you
 /// start with both ``MTL4RenderEncoderOptionResuming`` and ``MTL4RenderEncoderOptionSuspending`` options.
 /// 5. The sequence of render passes, in submission order, doesn't intermix with compute, blit, acceleration structure
 /// or machine learning encoding.
+/// 6. A command buffer shouldn't contain a render pass that you start with option ``MTL4RenderEncoderOptionSuspending`` if
+/// it already contains a render pass that you start with option ``MTL4RenderEncoderOptionResuming``.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions?language=objc)
 // NS_OPTIONS

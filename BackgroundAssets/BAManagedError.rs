@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// The Managed Background Assets error domain.
+    /// The error domain for managed asset packs.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bamanagederrordomain?language=objc)
     pub static BAManagedErrorDomain: &'static NSErrorDomain;
@@ -16,13 +16,13 @@ extern "C" {
 extern "C" {
     /// The `-[NSError userInfo]` key for an asset pack’s identifier.
     ///
-    /// This key is relevant when the error code is ``BAManagedErrorCode/assetPackNotFound``.
+    /// This key is relevant when the error code is ``BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackidentifiererrorkey?language=objc)
     pub static BAAssetPackIdentifierErrorKey: &'static NSErrorUserInfoKey;
 }
 
-/// A Managed Background Assets error code.
+/// An error code for a managed asset pack.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bamanagederrorcode?language=objc)
 // NS_ENUM
@@ -30,12 +30,12 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BAManagedErrorCode(pub NSInteger);
 impl BAManagedErrorCode {
-    /// An error code that indicates that an asset pack wasn’t found.
+    /// An error code that indicates the system can’t find an asset pack with the given identifier.
     ///
     /// Refer to the value in `-[NSError userInfo]` for the key `BAAssetPackIdentifierErrorKey` for the asset pack’s identifier.
     #[doc(alias = "BAManagedErrorCodeAssetPackNotFound")]
     pub const AssetPackNotFound: Self = Self(0);
-    /// An error code that indicates that a file wasn’t found.
+    /// An error code that indicates the system can’t find a file at the specified path.
     ///
     /// Refer to the value in `-[NSError userInfo]` for the key `NSFilePathErrorKey` for the file path.
     #[doc(alias = "BAManagedErrorCodeFileNotFound")]

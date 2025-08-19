@@ -89,6 +89,8 @@ pub const kAudioUnitSubType_NewTimePitch: u32 = 0x6e757470;
 pub const kAudioUnitSubType_AUiPodTimeOther: u32 = 0x6970746f;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_roundtripaac?language=objc)
 pub const kAudioUnitSubType_RoundTripAAC: u32 = 0x72616163;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_auaudiomix?language=objc)
+pub const kAudioUnitSubType_AUAudioMix: u32 = 0x616d6978;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_timepitch?language=objc)
 pub const kAudioUnitSubType_TimePitch: u32 = 0x746d7074;
@@ -121,8 +123,6 @@ pub const kAudioUnitSubType_NBandEQ: u32 = 0x6e626571;
 pub const kAudioUnitSubType_Reverb2: u32 = 0x72766232;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_ausoundisolation?language=objc)
 pub const kAudioUnitSubType_AUSoundIsolation: u32 = 0x766f6973;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_auaudiomix?language=objc)
-pub const kAudioUnitSubType_AUAudioMix: u32 = 0x616d6978;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_graphiceq?language=objc)
 pub const kAudioUnitSubType_GraphicEQ: u32 = 0x67726571;

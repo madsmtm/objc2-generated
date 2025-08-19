@@ -5160,6 +5160,7 @@ impl NEHotspotHelperResponse {
         /// Delivers the response to the command.
         ///
         /// Deliver the NEHotspotHelperResponse to the HotspotHelper infrastructure.
+        #[deprecated = "Use handleCommand in NEHotspotEvaluationProvider or NEHotspotAuthenticationProvider API"]
         #[unsafe(method(deliver))]
         #[unsafe(method_family = none)]
         pub unsafe fn deliver(&self);
@@ -5211,6 +5212,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelper?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use NEHotspotManager API"]
     pub struct NEHotspotHelper;
 );
 
@@ -5259,6 +5261,7 @@ impl NEHotspotHelper {
         /// # Safety
         ///
         /// `handler` must be a valid pointer.
+        #[deprecated = "Use NEHotspotManager API"]
         #[unsafe(method(registerWithOptions:queue:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerWithOptions_queue_handler(
@@ -5289,6 +5292,7 @@ impl NEHotspotHelper {
         /// Note: 2
         /// After the application invokes -[NEHotspotHelperResponse deliver] indicating
         /// kNEHotspotHelperResultSuccess, the Wi-Fi network is disassociated.
+        #[deprecated = "Use NEHotspotManager API"]
         #[unsafe(method(logoff:))]
         #[unsafe(method_family = none)]
         pub unsafe fn logoff(network: &NEHotspotNetwork) -> bool;
@@ -5308,6 +5312,7 @@ impl NEHotspotHelper {
         ///
         /// Returns: nil if no network interfaces are being managed,
         /// non-nil NSArray of NEHotspotNetwork objects otherwise.
+        #[deprecated = "Use NEHotspotManager API"]
         #[unsafe(method(supportedNetworkInterfaces))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedNetworkInterfaces() -> Option<Retained<NSArray>>;
