@@ -1354,8 +1354,6 @@ pub use self::__CGEventSource::CGEventSourceSetPixelsPerLine;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceSetUserData;
 #[cfg(feature = "CGEventTypes")]
-pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
-#[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::kCGEventMaskForAllEvents;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::kCGNotifyEventTapAdded;
@@ -1403,6 +1401,8 @@ pub use self::__CGEventTypes::CGMouseButton;
 pub use self::__CGEventTypes::CGScrollEventUnit;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGScrollPhase;
+#[cfg(feature = "CGEventTypes")]
+pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontIndexInvalid;
 #[cfg(feature = "CGFont")]
@@ -1563,8 +1563,12 @@ pub use self::__CGGradient::CGGradient;
 pub use self::__CGGradient::CGGradientCreateWithColorComponents;
 #[cfg(all(feature = "CGColorSpace", feature = "CGGradient"))]
 pub use self::__CGGradient::CGGradientCreateWithColors;
+#[cfg(all(feature = "CGColorSpace", feature = "CGGradient"))]
+pub use self::__CGGradient::CGGradientCreateWithContentHeadroom;
 #[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradientDrawingOptions;
+#[cfg(feature = "CGGradient")]
+pub use self::__CGGradient::CGGradientGetContentHeadroom;
 #[cfg(feature = "CGITUToneMapping")]
 pub use self::__CGITUToneMapping::kCGSkipBoostToHDR;
 #[cfg(feature = "CGITUToneMapping")]
@@ -2306,7 +2310,21 @@ pub use self::__CGShading::CGShadingCreateAxial;
     feature = "CGFunction",
     feature = "CGShading"
 ))]
+pub use self::__CGShading::CGShadingCreateAxialWithContentHeadroom;
+#[cfg(all(
+    feature = "CGColorSpace",
+    feature = "CGFunction",
+    feature = "CGShading"
+))]
 pub use self::__CGShading::CGShadingCreateRadial;
+#[cfg(all(
+    feature = "CGColorSpace",
+    feature = "CGFunction",
+    feature = "CGShading"
+))]
+pub use self::__CGShading::CGShadingCreateRadialWithContentHeadroom;
+#[cfg(feature = "CGShading")]
+pub use self::__CGShading::CGShadingGetContentHeadroom;
 #[cfg(feature = "CGToneMapping")]
 pub use self::__CGToneMapping::kCGContentAverageLightLevel;
 #[cfg(feature = "CGToneMapping")]

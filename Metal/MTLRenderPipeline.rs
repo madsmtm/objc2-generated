@@ -376,6 +376,69 @@ impl MTLRenderPipelineColorAttachmentDescriptor {
 }
 
 extern_class!(
+    /// Allows you to easily specify color attachment remapping from logical to physical indices.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogicaltophysicalcolorattachmentmap?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct MTLLogicalToPhysicalColorAttachmentMap;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for MTLLogicalToPhysicalColorAttachmentMap {}
+);
+
+unsafe impl CopyingHelper for MTLLogicalToPhysicalColorAttachmentMap {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLLogicalToPhysicalColorAttachmentMap {}
+);
+
+impl MTLLogicalToPhysicalColorAttachmentMap {
+    extern_methods!(
+        /// Maps a physical color attachment index to a logical index.
+        ///
+        /// - Parameters:
+        /// - physicalIndex: index of the color attachment's physical mapping.
+        /// - logicalIndex: index of the color attachment's logical mapping.
+        #[unsafe(method(setPhysicalIndex:forLogicalIndex:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPhysicalIndex_forLogicalIndex(
+            &self,
+            physical_index: NSUInteger,
+            logical_index: NSUInteger,
+        );
+
+        /// Queries the physical color attachment index corresponding to a logical index.
+        #[unsafe(method(getPhysicalIndexForLogicalIndex:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getPhysicalIndexForLogicalIndex(
+            &self,
+            logical_index: NSUInteger,
+        ) -> NSUInteger;
+
+        #[unsafe(method(reset))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn reset(&self);
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl MTLLogicalToPhysicalColorAttachmentMap {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpipelinereflection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]

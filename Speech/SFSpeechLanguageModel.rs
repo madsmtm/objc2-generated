@@ -66,6 +66,17 @@ impl SFSpeechLanguageModelConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn vocabulary(&self) -> Option<Retained<NSURL>>;
 
+        /// The relative weight of the language model customization. Value must be between 0.0 and 1.0 inclusive.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(weight))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn weight(&self) -> Option<Retained<NSNumber>>;
+
         /// Creates a configuration with the location of a language model file.
         #[unsafe(method(initWithLanguageModel:))]
         #[unsafe(method_family = init)]
@@ -81,6 +92,16 @@ impl SFSpeechLanguageModelConfiguration {
             this: Allocated<Self>,
             language_model: &NSURL,
             vocabulary: Option<&NSURL>,
+        ) -> Retained<Self>;
+
+        /// Creates a configuration with the locations of language model and vocabulary files, and custom weight.
+        #[unsafe(method(initWithLanguageModel:vocabulary:weight:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithLanguageModel_vocabulary_weight(
+            this: Allocated<Self>,
+            language_model: &NSURL,
+            vocabulary: Option<&NSURL>,
+            weight: Option<&NSNumber>,
         ) -> Retained<Self>;
     );
 }

@@ -81,9 +81,9 @@ extern_protocol!(
         ///
         /// If the extension returns more than this number of results in a single page enumeration,
         /// the system will crash the extension process.
-        #[unsafe(method(maxNumberOfResults))]
+        #[unsafe(method(maximumNumberOfResultsPerPage))]
         #[unsafe(method_family = none)]
-        unsafe fn maxNumberOfResults(&self) -> NSInteger;
+        unsafe fn maximumNumberOfResultsPerPage(&self) -> NSUInteger;
     }
 );
 
@@ -138,6 +138,12 @@ impl NSFileProviderStringSearchRequest {
         #[unsafe(method(query))]
         #[unsafe(method_family = none)]
         pub unsafe fn query(&self) -> Retained<NSString>;
+
+        /// How many results the system is requesting. This is a hint to the extension, to help avoid
+        /// unnecessary work. The extension may return more results than this.
+        #[unsafe(method(desiredNumberOfResults))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn desiredNumberOfResults(&self) -> NSUInteger;
     );
 }
 

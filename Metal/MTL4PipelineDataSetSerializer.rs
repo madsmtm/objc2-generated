@@ -27,12 +27,12 @@ bitflags::bitflags! {
 ///
 /// This for the default behavior.
         #[doc(alias = "MTL4PipelineDataSetSerializerConfigurationCaptureDescriptors")]
-        const CaptureDescriptors = 0;
+        const CaptureDescriptors = 1<<0;
 /// Enables serializing pipeline binary functions.
 ///
 /// Set this mask to use ``MTL4PipelineDataSetSerializer.serializeAsArchiveAndFlush(toURL:error:)``.
         #[doc(alias = "MTL4PipelineDataSetSerializerConfigurationCaptureBinaries")]
-        const CaptureBinaries = 1;
+        const CaptureBinaries = 1<<1;
     }
 }
 
