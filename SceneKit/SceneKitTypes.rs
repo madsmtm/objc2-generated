@@ -6,6 +6,9 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-gl-kit")]
+#[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+use objc2_gl_kit::*;
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
 use objc2_quartz_core::*;
@@ -243,6 +246,32 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4) -> SCNMatrix4;
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl SCNVector3 {
+    // TODO: pub fn SCNVector3FromGLKVector3(vector: GLKVector3,) -> SCNVector3;
+
+    // TODO: pub fn SCNVector3ToGLKVector3(vector: SCNVector3,) -> GLKVector3;
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+impl SCNVector4 {
+    // TODO: pub fn SCNVector4FromGLKVector4(vector: GLKVector4,) -> SCNVector4;
+
+    // TODO: pub fn SCNVector4ToGLKVector4(vector: SCNVector4,) -> GLKVector4;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "objc2-gl-kit", feature = "objc2-quartz-core"))]
+    #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+    pub fn SCNMatrix4ToGLKMatrix4(mat: SCNMatrix4) -> GLKMatrix4;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "objc2-gl-kit", feature = "objc2-quartz-core"))]
+    #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+    pub fn SCNMatrix4FromGLKMatrix4(mat: GLKMatrix4) -> SCNMatrix4;
 }
 
 mod private_NSValueSceneKitAdditions {

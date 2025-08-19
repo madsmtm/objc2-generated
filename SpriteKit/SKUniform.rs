@@ -4,6 +4,9 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-gl-kit")]
+#[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+use objc2_gl_kit::*;
 
 use crate::*;
 
@@ -149,6 +152,222 @@ impl SKUniform {
             this: Allocated<Self>,
             name: &NSString,
             value: c_float,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(floatVector2Value))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn floatVector2Value(&self) -> GLKVector2;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// Setter for [`floatVector2Value`][Self::floatVector2Value].
+        #[deprecated]
+        #[unsafe(method(setFloatVector2Value:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFloatVector2Value(&self, float_vector2_value: GLKVector2);
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(floatVector3Value))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn floatVector3Value(&self) -> GLKVector3;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// Setter for [`floatVector3Value`][Self::floatVector3Value].
+        #[deprecated]
+        #[unsafe(method(setFloatVector3Value:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFloatVector3Value(&self, float_vector3_value: GLKVector3);
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(floatVector4Value))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn floatVector4Value(&self) -> GLKVector4;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// Setter for [`floatVector4Value`][Self::floatVector4Value].
+        #[deprecated]
+        #[unsafe(method(setFloatVector4Value:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFloatVector4Value(&self, float_vector4_value: GLKVector4);
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(floatMatrix2Value))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn floatMatrix2Value(&self) -> GLKMatrix2;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// Setter for [`floatMatrix2Value`][Self::floatMatrix2Value].
+        #[deprecated]
+        #[unsafe(method(setFloatMatrix2Value:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFloatMatrix2Value(&self, float_matrix2_value: GLKMatrix2);
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(floatMatrix3Value))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn floatMatrix3Value(&self) -> GLKMatrix3;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// Setter for [`floatMatrix3Value`][Self::floatMatrix3Value].
+        #[deprecated]
+        #[unsafe(method(setFloatMatrix3Value:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFloatMatrix3Value(&self, float_matrix3_value: GLKMatrix3);
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(floatMatrix4Value))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn floatMatrix4Value(&self) -> GLKMatrix4;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// Setter for [`floatMatrix4Value`][Self::floatMatrix4Value].
+        #[deprecated]
+        #[unsafe(method(setFloatMatrix4Value:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFloatMatrix4Value(&self, float_matrix4_value: GLKMatrix4);
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(uniformWithName:floatVector2:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn uniformWithName_floatVector2(
+            name: &NSString,
+            value: GLKVector2,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(uniformWithName:floatVector3:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn uniformWithName_floatVector3(
+            name: &NSString,
+            value: GLKVector3,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(uniformWithName:floatVector4:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn uniformWithName_floatVector4(
+            name: &NSString,
+            value: GLKVector4,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(uniformWithName:floatMatrix2:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn uniformWithName_floatMatrix2(
+            name: &NSString,
+            value: GLKMatrix2,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(uniformWithName:floatMatrix3:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn uniformWithName_floatMatrix3(
+            name: &NSString,
+            value: GLKMatrix3,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(uniformWithName:floatMatrix4:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn uniformWithName_floatMatrix4(
+            name: &NSString,
+            value: GLKMatrix4,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(initWithName:floatVector2:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithName_floatVector2(
+            this: Allocated<Self>,
+            name: &NSString,
+            value: GLKVector2,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(initWithName:floatVector3:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithName_floatVector3(
+            this: Allocated<Self>,
+            name: &NSString,
+            value: GLKVector3,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(initWithName:floatVector4:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithName_floatVector4(
+            this: Allocated<Self>,
+            name: &NSString,
+            value: GLKVector4,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(initWithName:floatMatrix2:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithName_floatMatrix2(
+            this: Allocated<Self>,
+            name: &NSString,
+            value: GLKMatrix2,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(initWithName:floatMatrix3:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithName_floatMatrix3(
+            this: Allocated<Self>,
+            name: &NSString,
+            value: GLKMatrix3,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-gl-kit")]
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        #[deprecated]
+        #[unsafe(method(initWithName:floatMatrix4:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithName_floatMatrix4(
+            this: Allocated<Self>,
+            name: &NSString,
+            value: GLKMatrix4,
         ) -> Retained<Self>;
     );
 }

@@ -16,6 +16,9 @@ use objc2_image_io::*;
 use objc2_io_surface::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
+#[cfg(feature = "objc2-open-gl")]
+#[cfg(target_os = "macos")]
+use objc2_open_gl::*;
 
 use crate::*;
 
@@ -91,6 +94,29 @@ extern_conformance!(
 
 impl CIContext {
     extern_methods!(
+        #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-open-gl"))]
+        #[cfg(target_os = "macos")]
+        #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
+        #[unsafe(method(contextWithCGLContext:pixelFormat:colorSpace:options:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contextWithCGLContext_pixelFormat_colorSpace_options(
+            cglctx: CGLContextObj,
+            pixel_format: CGLPixelFormatObj,
+            color_space: Option<&CGColorSpace>,
+            options: Option<&NSDictionary<CIContextOption, AnyObject>>,
+        ) -> Retained<CIContext>;
+
+        #[cfg(feature = "objc2-open-gl")]
+        #[cfg(target_os = "macos")]
+        #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
+        #[unsafe(method(contextWithCGLContext:pixelFormat:options:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contextWithCGLContext_pixelFormat_options(
+            cglctx: CGLContextObj,
+            pixel_format: CGLPixelFormatObj,
+            options: Option<&NSDictionary<CIContextOption, AnyObject>>,
+        ) -> Retained<CIContext>;
+
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(contextWithCGContext:options:))]
         #[unsafe(method_family = none)]
@@ -355,6 +381,18 @@ impl CIContext {
         #[unsafe(method(contextForOfflineGPUAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextForOfflineGPUAtIndex(index: c_uint) -> Option<Retained<CIContext>>;
+
+        #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-open-gl"))]
+        #[cfg(target_os = "macos")]
+        #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
+        #[unsafe(method(contextForOfflineGPUAtIndex:colorSpace:options:sharedContext:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contextForOfflineGPUAtIndex_colorSpace_options_sharedContext(
+            index: c_uint,
+            color_space: Option<&CGColorSpace>,
+            options: Option<&NSDictionary<CIContextOption, AnyObject>>,
+            shared_context: CGLContextObj,
+        ) -> Option<Retained<CIContext>>;
     );
 }
 

@@ -9,6 +9,9 @@ use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
+#[cfg(feature = "objc2-open-gl")]
+#[cfg(target_os = "macos")]
+use objc2_open_gl::*;
 
 use crate::*;
 
@@ -191,6 +194,37 @@ impl CVDisplayLink {
             ) -> CVReturn;
         }
         unsafe { CVDisplayLinkSetCurrentCGDisplay(self, display_id) }
+    }
+
+    /// Convenience function to select a CVDisplayLink most optimal for the current renderer of the passed in OpenGL context
+    ///
+    /// Parameter `displayLink`: The CVDisplayLink for which you want to set the current CGDisplay
+    ///
+    /// Parameter `cglContext`: The OpenGL context to retrieve the current renderer from.
+    ///
+    /// Parameter `cglPixelFormat`: The OpenGL pixel format used to create the passed in OpenGL context
+    ///
+    /// Returns: kCVReturnSuccess if a device was found, or failure.
+    #[doc(alias = "CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext")]
+    #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
+    #[cfg(target_os = "macos")]
+    #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
+    #[inline]
+    pub unsafe fn set_current_cg_display_from_open_gl_context(
+        self: &CVDisplayLink,
+        cgl_context: CGLContextObj,
+        cgl_pixel_format: CGLPixelFormatObj,
+    ) -> CVReturn {
+        extern "C-unwind" {
+            fn CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(
+                display_link: &CVDisplayLink,
+                cgl_context: CGLContextObj,
+                cgl_pixel_format: CGLPixelFormatObj,
+            ) -> CVReturn;
+        }
+        unsafe {
+            CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(self, cgl_context, cgl_pixel_format)
+        }
     }
 
     /// Gets the current display of a DisplayLink
@@ -476,6 +510,17 @@ extern "C-unwind" {
     pub fn CVDisplayLinkSetCurrentCGDisplay(
         display_link: &CVDisplayLink,
         display_id: CGDirectDisplayID,
+    ) -> CVReturn;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
+    #[cfg(target_os = "macos")]
+    #[deprecated = "renamed to `CVDisplayLink::set_current_cg_display_from_open_gl_context`"]
+    pub fn CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(
+        display_link: &CVDisplayLink,
+        cgl_context: CGLContextObj,
+        cgl_pixel_format: CGLPixelFormatObj,
     ) -> CVReturn;
 }
 

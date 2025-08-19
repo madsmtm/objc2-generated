@@ -4887,7 +4887,15 @@ pub use self::__NSOpenGL::NSOpenGLCPSwapRectangle;
 #[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLCPSwapRectangleEnable;
 #[cfg(feature = "NSOpenGL")]
+pub use self::__NSOpenGL::NSOpenGLContext;
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLContextParameter;
+#[cfg(all(feature = "NSOpenGL", feature = "objc2-open-gl"))]
+#[cfg(target_vendor = "apple")]
+pub use self::__NSOpenGL::NSOpenGLGetOption;
+#[cfg(all(feature = "NSOpenGL", feature = "objc2-open-gl"))]
+#[cfg(target_vendor = "apple")]
+pub use self::__NSOpenGL::NSOpenGLGetVersion;
 #[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLGlobalOption;
 #[cfg(feature = "NSOpenGL")]
@@ -4969,6 +4977,10 @@ pub use self::__NSOpenGL::NSOpenGLPFAVirtualScreenCount;
 #[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPFAWindow;
 #[cfg(feature = "NSOpenGL")]
+pub use self::__NSOpenGL::NSOpenGLPixelBuffer;
+#[cfg(feature = "NSOpenGL")]
+pub use self::__NSOpenGL::NSOpenGLPixelFormat;
+#[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLPixelFormatAttribute;
 #[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLProfileVersion3_2Core;
@@ -4976,6 +4988,14 @@ pub use self::__NSOpenGL::NSOpenGLProfileVersion3_2Core;
 pub use self::__NSOpenGL::NSOpenGLProfileVersion4_1Core;
 #[cfg(feature = "NSOpenGL")]
 pub use self::__NSOpenGL::NSOpenGLProfileVersionLegacy;
+#[cfg(all(feature = "NSOpenGL", feature = "objc2-open-gl"))]
+#[cfg(target_vendor = "apple")]
+pub use self::__NSOpenGL::NSOpenGLSetOption;
+#[cfg(all(feature = "NSOpenGLLayer", feature = "objc2-quartz-core"))]
+#[cfg(target_vendor = "apple")]
+pub use self::__NSOpenGLLayer::NSOpenGLLayer;
+#[cfg(all(feature = "NSOpenGLView", feature = "NSResponder", feature = "NSView"))]
+pub use self::__NSOpenGLView::NSOpenGLView;
 #[cfg(all(
     feature = "NSOpenPanel",
     feature = "NSPanel",

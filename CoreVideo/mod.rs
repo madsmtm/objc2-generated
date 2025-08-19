@@ -179,6 +179,13 @@ pub use self::__CVDisplayLink::CVDisplayLinkOutputHandler;
     feature = "objc2-core-graphics"
 ))]
 pub use self::__CVDisplayLink::CVDisplayLinkSetCurrentCGDisplay;
+#[cfg(all(
+    feature = "CVDisplayLink",
+    feature = "CVReturn",
+    feature = "objc2-open-gl"
+))]
+#[cfg(target_os = "macos")]
+pub use self::__CVDisplayLink::CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext;
 #[cfg(all(feature = "CVBase", feature = "CVDisplayLink", feature = "CVReturn"))]
 pub use self::__CVDisplayLink::CVDisplayLinkSetOutputCallback;
 #[cfg(all(
@@ -483,6 +490,15 @@ pub use self::__CVOpenGLBuffer::CVOpenGLBuffer;
     feature = "CVBuffer",
     feature = "CVImageBuffer",
     feature = "CVOpenGLBuffer",
+    feature = "CVReturn",
+    feature = "objc2-open-gl"
+))]
+#[cfg(target_os = "macos")]
+pub use self::__CVOpenGLBuffer::CVOpenGLBufferAttach;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "CVOpenGLBuffer",
     feature = "CVReturn"
 ))]
 pub use self::__CVOpenGLBuffer::CVOpenGLBufferCreate;
@@ -520,6 +536,22 @@ pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolGetOpenGLBufferAttributes;
     feature = "CVOpenGLTexture"
 ))]
 pub use self::__CVOpenGLTexture::CVOpenGLTexture;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "CVOpenGLTexture",
+    feature = "objc2-open-gl"
+))]
+#[cfg(target_os = "macos")]
+pub use self::__CVOpenGLTexture::CVOpenGLTextureGetName;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "CVOpenGLTexture",
+    feature = "objc2-open-gl"
+))]
+#[cfg(target_os = "macos")]
+pub use self::__CVOpenGLTexture::CVOpenGLTextureGetTarget;
 #[cfg(feature = "CVOpenGLTexture")]
 pub use self::__CVOpenGLTexture::CVOpenGLTextureGetTypeID;
 #[cfg(all(
@@ -538,6 +570,13 @@ pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeHig
 pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeKey;
 #[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCache;
+#[cfg(all(
+    feature = "CVOpenGLTextureCache",
+    feature = "CVReturn",
+    feature = "objc2-open-gl"
+))]
+#[cfg(target_os = "macos")]
+pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheCreate;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",

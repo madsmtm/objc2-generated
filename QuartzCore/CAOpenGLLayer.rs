@@ -3,9 +3,16 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-open-gl")]
+#[cfg(target_os = "macos")]
+use objc2_open_gl::*;
 
 use crate::*;
 
@@ -51,6 +58,68 @@ impl CAOpenGLLayer {
         #[unsafe(method(setAsynchronous:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAsynchronous(&self, asynchronous: bool);
+
+        #[cfg(all(
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-video",
+            feature = "objc2-open-gl"
+        ))]
+        #[cfg(target_os = "macos")]
+        #[deprecated = "OpenGL is deprecated"]
+        #[unsafe(method(canDrawInCGLContext:pixelFormat:forLayerTime:displayTime:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn canDrawInCGLContext_pixelFormat_forLayerTime_displayTime(
+            &self,
+            ctx: CGLContextObj,
+            pf: CGLPixelFormatObj,
+            t: CFTimeInterval,
+            ts: *const CVTimeStamp,
+        ) -> bool;
+
+        #[cfg(all(
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-video",
+            feature = "objc2-open-gl"
+        ))]
+        #[cfg(target_os = "macos")]
+        #[deprecated = "OpenGL is deprecated"]
+        #[unsafe(method(drawInCGLContext:pixelFormat:forLayerTime:displayTime:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn drawInCGLContext_pixelFormat_forLayerTime_displayTime(
+            &self,
+            ctx: CGLContextObj,
+            pf: CGLPixelFormatObj,
+            t: CFTimeInterval,
+            ts: *const CVTimeStamp,
+        );
+
+        #[cfg(feature = "objc2-open-gl")]
+        #[cfg(target_os = "macos")]
+        #[deprecated = "OpenGL is deprecated"]
+        #[unsafe(method(copyCGLPixelFormatForDisplayMask:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn copyCGLPixelFormatForDisplayMask(&self, mask: u32) -> CGLPixelFormatObj;
+
+        #[cfg(feature = "objc2-open-gl")]
+        #[cfg(target_os = "macos")]
+        #[deprecated = "OpenGL is deprecated"]
+        #[unsafe(method(releaseCGLPixelFormat:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn releaseCGLPixelFormat(&self, pf: CGLPixelFormatObj);
+
+        #[cfg(feature = "objc2-open-gl")]
+        #[cfg(target_os = "macos")]
+        #[deprecated = "OpenGL is deprecated"]
+        #[unsafe(method(copyCGLContextForPixelFormat:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn copyCGLContextForPixelFormat(&self, pf: CGLPixelFormatObj) -> CGLContextObj;
+
+        #[cfg(feature = "objc2-open-gl")]
+        #[cfg(target_os = "macos")]
+        #[deprecated = "OpenGL is deprecated"]
+        #[unsafe(method(releaseCGLContext:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn releaseCGLContext(&self, ctx: CGLContextObj);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated = "OpenGL is deprecated"]

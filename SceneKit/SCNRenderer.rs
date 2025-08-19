@@ -12,6 +12,9 @@ use objc2_foundation::*;
 #[cfg(feature = "objc2-metal")]
 #[cfg(not(target_os = "watchos"))]
 use objc2_metal::*;
+#[cfg(feature = "objc2-open-gl")]
+#[cfg(target_os = "macos")]
+use objc2_open_gl::*;
 
 use crate::*;
 
@@ -40,6 +43,20 @@ extern_conformance!(
 
 impl SCNRenderer {
     extern_methods!(
+        #[cfg(feature = "objc2-open-gl")]
+        #[cfg(target_os = "macos")]
+        /// Creates a new renderer object.
+        ///
+        /// Parameter `context`: The context to render into.
+        ///
+        /// Parameter `options`: An optional dictionary for future extensions.
+        #[unsafe(method(rendererWithContext:options:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn rendererWithContext_options(
+            context: CGLContextObj,
+            options: Option<&NSDictionary>,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// Creates a new renderer object that renders using Metal.

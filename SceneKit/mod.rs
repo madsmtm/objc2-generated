@@ -726,6 +726,13 @@ pub use self::__SceneKitTypes::SCNMatrix4;
 #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__SceneKitTypes::SCNMatrix4EqualToMatrix4;
+#[cfg(all(
+    feature = "SceneKitTypes",
+    feature = "objc2-gl-kit",
+    feature = "objc2-quartz-core"
+))]
+#[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+pub use self::__SceneKitTypes::SCNMatrix4FromGLKMatrix4;
 #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__SceneKitTypes::SCNMatrix4Identity;
@@ -759,6 +766,13 @@ pub use self::__SceneKitTypes::SCNMatrix4Rotate;
 ))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__SceneKitTypes::SCNMatrix4Scale;
+#[cfg(all(
+    feature = "SceneKitTypes",
+    feature = "objc2-gl-kit",
+    feature = "objc2-quartz-core"
+))]
+#[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+pub use self::__SceneKitTypes::SCNMatrix4ToGLKMatrix4;
 #[cfg(feature = "SceneKitTypes")]
 pub use self::__SceneKitTypes::SCNProgramCompilationError;
 #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]

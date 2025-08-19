@@ -2,6 +2,9 @@
 //! DO NOT EDIT
 use core::ptr::NonNull;
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-open-gl")]
+#[cfg(target_os = "macos")]
+use objc2_open_gl::*;
 
 use crate::*;
 
@@ -18,6 +21,38 @@ pub extern "C-unwind" fn CVOpenGLTextureGetTypeID() -> CFTypeID {
         fn CVOpenGLTextureGetTypeID() -> CFTypeID;
     }
     unsafe { CVOpenGLTextureGetTypeID() }
+}
+
+extern "C-unwind" {
+    /// Returns the texture target (eg. 2D vs. rect texture extension) of the CVOpenGLTexture
+    ///
+    /// Parameter `image`: Target CVOpenGLTexture
+    ///
+    /// Returns: OpenGL texture target
+    #[cfg(all(
+        feature = "CVBuffer",
+        feature = "CVImageBuffer",
+        feature = "objc2-open-gl"
+    ))]
+    #[cfg(target_os = "macos")]
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+    pub fn CVOpenGLTextureGetTarget(image: &CVOpenGLTexture) -> GLenum;
+}
+
+extern "C-unwind" {
+    /// Returns the texture target name of the CVOpenGLTexture
+    ///
+    /// Parameter `image`: Target CVOpenGLTexture
+    ///
+    /// Returns: OpenGL texture target name
+    #[cfg(all(
+        feature = "CVBuffer",
+        feature = "CVImageBuffer",
+        feature = "objc2-open-gl"
+    ))]
+    #[cfg(target_os = "macos")]
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+    pub fn CVOpenGLTextureGetName(image: &CVOpenGLTexture) -> GLuint;
 }
 
 /// Returns whether the image is flipped vertically or not.

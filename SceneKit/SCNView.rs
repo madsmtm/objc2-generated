@@ -323,6 +323,20 @@ impl SCNView {
             drawable_resizes_asynchronously: bool,
         );
 
+        /// Specifies the OpenGL context associated with the receiver.
+        ///
+        /// This property returns nil and has no effect if the current API is Metal.
+        #[deprecated = "OpenGL API deprecated, please use Metal instead. (Define SCN_SILENCE_GL_DEPRECATION to silence these warnings)"]
+        #[unsafe(method(openGLContext))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn openGLContext(&self) -> Option<Retained<NSOpenGLContext>>;
+
+        /// Setter for [`openGLContext`][Self::openGLContext].
+        #[deprecated = "OpenGL API deprecated, please use Metal instead. (Define SCN_SILENCE_GL_DEPRECATION to silence these warnings)"]
+        #[unsafe(method(setOpenGLContext:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setOpenGLContext(&self, open_gl_context: Option<&NSOpenGLContext>);
+
         #[cfg(feature = "SCNSceneRenderer")]
         /// Defaults to SCNAntialiasingModeMultisampling4X on macOS and SCNAntialiasingModeNone on iOS.
         #[unsafe(method(antialiasingMode))]
@@ -334,6 +348,20 @@ impl SCNView {
         #[unsafe(method(setAntialiasingMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAntialiasingMode(&self, antialiasing_mode: SCNAntialiasingMode);
+
+        /// Specifies the pixel format of the receiver.
+        ///
+        /// This property returns nil and has no effect if the current API is Metal.
+        #[deprecated = "OpenGL API deprecated, please use Metal instead. (Define SCN_SILENCE_GL_DEPRECATION to silence these warnings)"]
+        #[unsafe(method(pixelFormat))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn pixelFormat(&self) -> Option<Retained<NSOpenGLPixelFormat>>;
+
+        /// Setter for [`pixelFormat`][Self::pixelFormat].
+        #[deprecated = "OpenGL API deprecated, please use Metal instead. (Define SCN_SILENCE_GL_DEPRECATION to silence these warnings)"]
+        #[unsafe(method(setPixelFormat:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPixelFormat(&self, pixel_format: Option<&NSOpenGLPixelFormat>);
     );
 }
 

@@ -2,6 +2,9 @@
 //! DO NOT EDIT
 use core::ptr::NonNull;
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-open-gl")]
+#[cfg(target_os = "macos")]
+use objc2_open_gl::*;
 
 use crate::*;
 
@@ -84,4 +87,33 @@ pub unsafe extern "C-unwind" fn CVOpenGLBufferGetAttributes(
     }
     let ret = unsafe { CVOpenGLBufferGetAttributes(open_gl_buffer) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
+}
+
+extern "C-unwind" {
+    /// Parameter `openGLBuffer`: The buffer you wish to attach a GL context to
+    ///
+    /// Parameter `cglContext`: The CGLContextObj you wish to attach
+    ///
+    /// Parameter `face`: The target GL face enum (0 for non cube maps)
+    ///
+    /// Parameter `level`: The mipmap level index you wish to attach to
+    ///
+    /// Parameter `screen`: The virtual screen number you want to use
+    ///
+    /// Returns: kCVReturnSuccess if the attachment succeeded
+    #[cfg(all(
+        feature = "CVBuffer",
+        feature = "CVImageBuffer",
+        feature = "CVReturn",
+        feature = "objc2-open-gl"
+    ))]
+    #[cfg(target_os = "macos")]
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+    pub fn CVOpenGLBufferAttach(
+        open_gl_buffer: &CVOpenGLBuffer,
+        cgl_context: CGLContextObj,
+        face: GLenum,
+        level: GLint,
+        screen: GLint,
+    ) -> CVReturn;
 }

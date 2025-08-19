@@ -7,6 +7,9 @@ use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-open-gl")]
+#[cfg(target_os = "macos")]
+use objc2_open_gl::*;
 
 use crate::*;
 
@@ -59,6 +62,56 @@ unsafe impl ConcreteType for CVOpenGLTextureCache {
 }
 
 impl CVOpenGLTextureCache {
+    /// Creates a new Texture Cache.
+    ///
+    /// Parameter `allocator`: The CFAllocatorRef to use for allocating the cache.  May be NULL.
+    ///
+    /// Parameter `cacheAttributes`: A CFDictionaryRef containing the attributes of the cache itself.   May be NULL.
+    ///
+    /// Parameter `cglContext`: The OpenGL context into which the texture objects will be created
+    ///
+    /// Parameter `cglPixelFormat`: The OpenGL pixel format object used to create the passed in OpenGL context
+    ///
+    /// Parameter `textureAttributes`: A CFDictionaryRef containing the attributes to be used for creating the CVOpenGLTexture objects.  May be NULL.
+    ///
+    /// Parameter `cacheOut`: The newly created texture cache will be placed here
+    ///
+    /// Returns: Returns kCVReturnSuccess on success
+    #[doc(alias = "CVOpenGLTextureCacheCreate")]
+    #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
+    #[cfg(target_os = "macos")]
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+    #[inline]
+    pub unsafe fn create(
+        allocator: Option<&CFAllocator>,
+        cache_attributes: Option<&CFDictionary>,
+        cgl_context: CGLContextObj,
+        cgl_pixel_format: CGLPixelFormatObj,
+        texture_attributes: Option<&CFDictionary>,
+        cache_out: NonNull<*mut CVOpenGLTextureCache>,
+    ) -> CVReturn {
+        extern "C-unwind" {
+            fn CVOpenGLTextureCacheCreate(
+                allocator: Option<&CFAllocator>,
+                cache_attributes: Option<&CFDictionary>,
+                cgl_context: CGLContextObj,
+                cgl_pixel_format: CGLPixelFormatObj,
+                texture_attributes: Option<&CFDictionary>,
+                cache_out: NonNull<*mut CVOpenGLTextureCache>,
+            ) -> CVReturn;
+        }
+        unsafe {
+            CVOpenGLTextureCacheCreate(
+                allocator,
+                cache_attributes,
+                cgl_context,
+                cgl_pixel_format,
+                texture_attributes,
+                cache_out,
+            )
+        }
+    }
+
     /// Creates a CVOpenGLTexture object from an existing CVImageBuffer
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating the CVOpenGLTexture object.  May be NULL.
@@ -131,6 +184,20 @@ impl CVOpenGLTextureCache {
         }
         unsafe { CVOpenGLTextureCacheFlush(self, options) }
     }
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
+    #[cfg(target_os = "macos")]
+    #[deprecated = "renamed to `CVOpenGLTextureCache::create`"]
+    pub fn CVOpenGLTextureCacheCreate(
+        allocator: Option<&CFAllocator>,
+        cache_attributes: Option<&CFDictionary>,
+        cgl_context: CGLContextObj,
+        cgl_pixel_format: CGLPixelFormatObj,
+        texture_attributes: Option<&CFDictionary>,
+        cache_out: NonNull<*mut CVOpenGLTextureCache>,
+    ) -> CVReturn;
 }
 
 extern "C-unwind" {
