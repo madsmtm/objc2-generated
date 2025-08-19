@@ -95,6 +95,21 @@ extern "C" {
     pub static UIDocumentStateChangedNotification: &'static NSNotificationName;
 }
 
+extern "C" {
+    /// A notification that the document posts when copying the file from a readonly location in order to write changes.
+    /// This notification will be posted on the file presenter queue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentdidmovetowritablelocationnotification?language=objc)
+    pub static UIDocumentDidMoveToWritableLocationNotification: &'static NSNotificationName;
+}
+
+extern "C" {
+    /// The key in a `UIDocumentDidMoveToWritableLocationNotification`'s `userInfo` dictionary that contains the previous readonly file URL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentdidmovetowritablelocationoldurlkey?language=objc)
+    pub static UIDocumentDidMoveToWritableLocationOldURLKey: &'static NSString;
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument?language=objc)
     #[unsafe(super(NSObject))]

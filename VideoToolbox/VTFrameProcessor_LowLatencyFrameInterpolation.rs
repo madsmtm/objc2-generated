@@ -13,7 +13,7 @@ extern_class!(
     /// Configuration that is used to program VTFrameProcessor for Low Latency Frame Interpolation.  This can either do purely temporal interpolation (Frame Rate Conversion) or it can do temporal and spatial interpolation (Scaling and Frame Rate Conversion).
     ///
     ///
-    /// This processor requires a source frame and a previous frame.  It does temporal scaling, interpolating frames between the previous frame and the source frame.  When performing both temporal and spatial interpolation, the processor can only perform 2x upscaling, and a single frame of temporal interpolation.  When performing spatial scaling, the processor will produce upscaled intermediate frames as well as an upscaled sourceFrame but will not upscale the previous reference frame provided.
+    /// This processor requires a source frame and a previous frame.  It does temporal scaling, interpolating frames between the previous frame and the source frame.  When performing both temporal and spatial interpolation, the processor can only perform 2x upscaling, and a single frame of temporal interpolation.  When performing spatial scaling, the processor will produce upscaled intermediate frames as well as an upscaled sourceFrame but will not upscale the previous reference frame provided. Important: When calling [VTFrameProcessor startSessionWithConfiguration:] to create a VTLowLatencyFrameInterpolation session, ML model loading may take longer than a frame time. Avoid blocking the UI thread or stalling frame rendering pipelines during this call.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtlowlatencyframeinterpolationconfiguration?language=objc)
     #[unsafe(super(NSObject))]

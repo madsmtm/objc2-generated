@@ -41,7 +41,8 @@ impl BELayerHierarchyHandle {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "libc")]
-        /// takes ownership of the port right (even if it returns nil).
+        /// Decodes a handle form a `mach_port_t` send right and its accompanying metadata.
+        /// - This method takes ownership of the port right (even if it returns an error).
         #[unsafe(method(handleWithPort:data:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleWithPort_data_error(
@@ -50,9 +51,10 @@ impl BELayerHierarchyHandle {
         ) -> Result<Retained<BELayerHierarchyHandle>, Retained<NSError>>;
 
         #[cfg(all(feature = "block2", feature = "libc"))]
-        /// passes a copy of the send right or `MACH_PORT_NULL` if inert.
-        /// the receiver is responsible for disposing of `copiedPort`.
-        /// the port and data should be consumed together and _only_ once by `init(port:data:)`.
+        /// Encodes the handle into a `mach_port_t` send right and its accompanying metadata.
+        /// - The block is responsible for disposing of `copiedPort` - failure to manage its lifecycle will leak the port. Note that some functions (like ``handleWithPort:data:error:``) will assume control of the right for you.
+        /// - `copiedPort` will be `MACH_PORT_NULL` if the ``BELayerHierarchy`` pointed to by the handle is already invalidated.
+        /// - The port and data should ultimately be consumed together  by ``handleWithPort:data:error:``.
         #[unsafe(method(encodeWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeWithBlock(

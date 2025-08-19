@@ -72,11 +72,9 @@ impl MTL4RenderPipelineColorAttachmentDescriptor {
         pub unsafe fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
 
         #[cfg(feature = "MTL4PipelineState")]
-        /// Enables blending.
+        /// Configure the blend state for color attachments the pipeline state uses.
         ///
-        /// This property's default value is
-        /// <doc
-        /// ://com.apple.documentation/documentation/swift/false>.
+        /// This property's default value is ``MTL4BlendStateDisabled``.
         #[unsafe(method(blendingState))]
         #[unsafe(method_family = none)]
         pub unsafe fn blendingState(&self) -> MTL4BlendState;
