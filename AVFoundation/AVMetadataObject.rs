@@ -85,16 +85,16 @@ impl AVMetadataObject {
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<AVMetadataObjectType>;
 
-        /// A number associated with object groups (e.g., face and body) that is unique for each physical object (e.g., a person whom the face and body belong to).
+        /// An identifier associated with a metadata object used to group it with other metadata objects belonging to a common parent.
         ///
-        /// The value of this property is an NSInteger indicating the unique identifier to combine objects (for instance, face and body) into groups (a physical person). A human body and face for the same person will have the same group ID. It is set to -1 when it's invalid or not available. When it's set to a value of >=0, it is unique across all object groups.
+        /// When presented with a collection of ``AVMetadataObject`` instances of different types, you may use the objects' ``groupID`` to combine them into groups. For example, a human body and face belonging to the same person have the same ``groupID``.  If an object's ``groupID`` property is set to -1, it is invalid. When set to a value of >=0, it is unique across all object groups.
         #[unsafe(method(groupID))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupID(&self) -> NSInteger;
 
-        /// A unique identifier for each detected object type (face, body, hands, heads and salient objects).
+        /// A unique identifier for each detected object type (face, body, hands, heads and salient objects) in a collection.
         ///
-        /// Defaults to a value of -1 when it is invalid or not available. When a new object enters the picture, it is assigned a new unique identifier. objectIDs are not re-used as objects leave the picture and new ones enter. Objects that leave the picture then re-enter are assigned a new objectID.
+        /// Defaults to a value of -1 when invalid or not available. When used in conjunction with an ``AVCaptureMetadataOutput``, each newly detected object that enters the scene is assigned a unique identifier. ``objectID``s are never re-used as objects leave the picture and new ones enter. Objects that leave the picture and then re-enter are assigned a new ``objectID``.
         #[unsafe(method(objectID))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectID(&self) -> NSInteger;
@@ -105,9 +105,9 @@ impl AVMetadataObject {
 impl AVMetadataObject {
     extern_methods!(
         #[cfg(feature = "AVCaptureDevice")]
-        /// Current focus mode when recording a Cinematic Video.
+        /// The current focus mode when an object is detected during a Cinematic Video recording.
         ///
-        /// Default is AVCaptureCinematicVideoFocusModeNone.
+        /// Default is ``AVCaptureCinematicVideoFocusMode/AVCaptureCinematicVideoFocusModeNone``.
         #[unsafe(method(cinematicVideoFocusMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn cinematicVideoFocusMode(&self) -> AVCaptureCinematicVideoFocusMode;
@@ -275,17 +275,18 @@ impl AVMetadataHumanFullBodyObject {
 }
 
 extern "C" {
-    /// An identifier for an instance of AVMetadataCatHeadObject.
+    /// An identifier for an instance of a cat head object.
     ///
-    ///
-    /// AVMetadataCatHeadObject objects return this constant as their type.
+    /// ``AVMetadataCatHeadObject`` objects return this constant as their type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecathead?language=objc)
     pub static AVMetadataObjectTypeCatHead: &'static AVMetadataObjectType;
 }
 
 extern_class!(
-    /// AVMetadataCatHeadObject is a concrete subclass of AVMetadataObject representing a cat head.
+    /// A concrete metadata object subclass representing a cat head.
+    ///
+    /// ``AVMetadataCatHeadObject`` is a concrete subclass of ``AVMetadataObject`` representing a cat head.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacatheadobject?language=objc)
     #[unsafe(super(AVMetadataObject, NSObject))]
@@ -376,17 +377,18 @@ impl AVMetadataCatBodyObject {
 }
 
 extern "C" {
-    /// An identifier for an instance of AVMetadataDogHeadObject.
+    /// An identifier for an instance of a dog head object.
     ///
-    ///
-    /// AVMetadataDogHeadObject objects return this constant as their type.
+    /// ``AVMetadataDogHeadObject`` objects return this constant as their type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypedoghead?language=objc)
     pub static AVMetadataObjectTypeDogHead: &'static AVMetadataObjectType;
 }
 
 extern_class!(
-    /// AVMetadataDogHeadObject is a concrete subclass of AVMetadataObject representing a dog head.
+    /// A concrete metadata object subclass representing a dog head.
+    ///
+    /// ``AVMetadataDogHeadObject`` is a concrete subclass of ``AVMetadataObject`` representing a dog head.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatadogheadobject?language=objc)
     #[unsafe(super(AVMetadataObject, NSObject))]

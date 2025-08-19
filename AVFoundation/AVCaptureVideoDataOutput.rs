@@ -217,8 +217,7 @@ impl AVCaptureVideoDataOutput {
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the recommended media timescale for the video track.
         ///
-        ///
-        /// This will return a recommended media timescale based on the active capture session's inputs. It will not be less than 600. It may or may not be a multiple of 600.
+        /// - Returns: The recommended media timescale based on the active capture session's inputs. It is never less than 600. It may or may not be a multiple of 600.
         #[unsafe(method(recommendedMediaTimeScaleForAssetWriter))]
         #[unsafe(method_family = none)]
         pub unsafe fn recommendedMediaTimeScaleForAssetWriter(&self) -> CMTimeScale;
@@ -307,8 +306,7 @@ impl AVCaptureVideoDataOutput {
 
         /// Indicates whether the receiver should prepare the cellular radio for imminent network activity.
         ///
-        ///
-        /// Apps that scan video data output buffers for information that will result in network activity (such as detecting a QRCode containing a URL) should set this property true to allow the cellular radio to prepare for an imminent network request. Enabling this property requires a lengthy reconfiguration of the capture render pipeline, so you should set this property to YES before calling -[AVCaptureSession startRunning].
+        /// Apps that scan video data output buffers for information that will result in network activity (such as detecting a QRCode containing a URL) should set this property `true` to allow the cellular radio to prepare for an imminent network request. Enabling this property requires a lengthy reconfiguration of the capture render pipeline, so you should set this property to `true` before calling ``AVCaptureSession/startRunning``.
         ///
         /// Using this API requires your app to adopt the entitlement `com.apple.developer.avfoundation.video-data-output-prepares-cellular-radio-for-machine-readable-code-scanning`.
         #[unsafe(method(preparesCellularRadioForNetworkConnection))]
@@ -323,10 +321,11 @@ impl AVCaptureVideoDataOutput {
             prepares_cellular_radio_for_network_connection: bool,
         );
 
-        /// Indicates whether the receiver should preserve dynamic HDR metadata as an attachment on the output sample buffer's underlying CVPixelBufferRef.
+        /// Indicates whether the receiver should preserve dynamic HDR metadata as an attachment on the output sample buffer's underlying pixel buffer.
         ///
-        ///
-        /// Set this property to YES if you wish to use AVCaptureVideoDataOutput with AVAssetWriter to record HDR movies. You must also set `kVTCompressionPropertyKey_PreserveDynamicHDRMetadata` to `true` in the compression settings you pass to your `AVAssetWriterInput`. These compression settings are represented under the `AVVideoCompressionPropertiesKey` sub-dictionary of your top-level AVVideoSettings. When this key is set to true, performance improves, as the encoder is able to skip HDR metadata calculation for every frame. The default value is NO.
+        /// Set this property to `true` if you wish to use ``AVCaptureVideoDataOutput`` with ``AVAssetWriter`` to record HDR movies. You must also set ``kVTCompressionPropertyKey_PreserveDynamicHDRMetadata`` to `true` in the compression settings you pass to your ``AVAssetWriterInput``. These compression settings are represented under the ``AVVideoCompressionPropertiesKey`` sub-dictionary of your top-level AVVideoSettings (see
+        /// <doc
+        /// ://com.apple.documentation/documentation/avfoundation/video-settings>). When you set this key to `true`, performance improves, as the encoder is able to skip HDR metadata calculation for every frame. The default value is `false`.
         #[unsafe(method(preservesDynamicHDRMetadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn preservesDynamicHDRMetadata(&self) -> bool;

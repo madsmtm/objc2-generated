@@ -9,7 +9,7 @@ use objc2_core_media::*;
 use crate::*;
 
 extern_class!(
-    /// Defines an interface for generating a spatial audio timed metadata sample.
+    /// An interface for generating a spatial audio timed metadata sample.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturespatialaudiometadatasamplegenerator?language=objc)
     #[unsafe(super(NSObject))]
@@ -24,10 +24,9 @@ extern_conformance!(
 impl AVCaptureSpatialAudioMetadataSampleGenerator {
     extern_methods!(
         #[cfg(feature = "objc2-core-media")]
-        /// Returns the CMFormatDescription that will be specified by the buffer returned from the createTimedMetadataSampleBuffer method.
+        /// Returns the format description of the sample buffer returned from the ``newTimedMetadataSampleBufferAndResetAnalyzer`` method.
         ///
-        ///
-        /// Clients can use this format description when creating their AVAssetWriter track that will contain the metadata.
+        /// Use this format description when creating your ``AVAssetWriter`` track for spatial audio timed metadata.
         #[unsafe(method(timedMetadataSampleBufferFormatDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn timedMetadataSampleBufferFormatDescription(
@@ -35,37 +34,33 @@ impl AVCaptureSpatialAudioMetadataSampleGenerator {
         ) -> Retained<CMFormatDescription>;
 
         #[cfg(feature = "objc2-core-media")]
-        /// Analyzes the audio sample buffer for its contribution to the spatial audio timed metadata value.
+        /// Analyzes the provided audio sample buffer for its contribution to the spatial audio timed metadata value.
         ///
+        /// - Parameter sbuf: a sample buffer containing spatial audio.
+        /// - Returns: `noErr` if the sample is successfully analyzed, otherwise a non-zero error code.
         ///
-        /// Parameter `sbuf`: An CMSampleBuffer containing spatial audio.
-        ///
-        /// Returns: Returns noErr if the sample was able to be analyzed.
-        ///
-        ///
-        /// All of the spatial audio sample buffer that given to an AVAssetWriter need to be analyzed for the generation of the proper spatial audio timed metadata value.
+        /// You must call this method with each and every spatial audio buffer you provide to ``AVAssetWriter``, so it can be analyzed for the generation of a proper spatial audio timed metadata value.
         #[unsafe(method(analyzeAudioSample:))]
         #[unsafe(method_family = none)]
         pub unsafe fn analyzeAudioSample(&self, sbuf: &CMSampleBuffer) -> OSStatus;
 
         #[cfg(feature = "objc2-core-media")]
-        /// Returns a CMSampleBuffer containing a spatial audio timed metadata sample containing the value computed from all of the prior audio sample buffers passed to analyzeAudioSample:. The analyzer is also reset to its initial state, making it ready for a new run of sample buffers.
+        /// Creates a sample buffer containing a spatial audio timed metadata sample computed from all analyzed audio buffers, and resets the analyzer to its initial state.
         ///
+        /// - Returns: a ``CMSampleBufferRef`` containing the spatial audio timed metadata sample, or `NULL` if no value can be computed.
         ///
-        /// Returns: Returns an CMSampleBuffer that contains the spatial audio timed metadata sample. If no value can be computed, NULL will be returned.
+        /// Call this method after you pass the last audio sample buffer of your recording to ``analyzeAudioSample:``. Then pass the returned ``CMSampleBufferRef`` directly to your ``AVAssetWriterInput`` to add the sample to your recording's audio timed metadata track. Note that ``AVAssetWriter`` expects one and only one spatial audio metadata sample buffer to be present in the timed metadata track.
         ///
-        ///
-        /// This method is to be called after the last audio sample buffer has been passed to the client's AVAssetWriterInput for audio. The returned CMSampleBuffer can be passed directly to the client's AVAssetWriterInput for the audio timed metadata track. Note that it is expected that one and only one sample buffer be present in the timed metadata track.
+        /// - Note: Calling this method also resets the analyzer, making it ready for another run of audio sample buffers. Thus one generator can be re-used for multiple recordings.
         #[unsafe(method(newTimedMetadataSampleBufferAndResetAnalyzer))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTimedMetadataSampleBufferAndResetAnalyzer(
             &self,
         ) -> Option<Retained<CMSampleBuffer>>;
 
-        /// Calling this method will reset the analyzer to its initial state so that a new run of audio sample buffers can be analyzed.
+        /// Calling this method resets the analyzer to its initial state so that a new run of audio sample buffers can be analyzed.
         ///
-        ///
-        /// If the client needs to abort generating the audio timed metadata buffer for audio buffers already given to analyzeAudioSample:, calling this method is required to prepare the analyzer for a new run of sample buffers.
+        /// Call this method if you need to abort generating the audio timed metadata buffer for audio already provided to ``analyzeAudioSample:``.
         #[unsafe(method(resetAnalyzer))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetAnalyzer(&self);

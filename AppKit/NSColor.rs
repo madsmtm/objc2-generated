@@ -345,7 +345,7 @@ impl NSColor {
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Reinterpret the color by applying a new `contentHeadroom` without changing the color components. Changing the `contentHeadroom` redefines the color relative to a different peak white, changing its behavior under tone mapping and the result of calling `standardDynamicRangeColor`. The new color will have a `contentHeadroom` >= 1.0. If called on a color with a color space that does not support extended range, this will return `self`.
+        /// Reinterpret the color by applying a new `contentHeadroom` without changing the color components. Changing the `contentHeadroom` redefines the color relative to a different peak white, changing its behavior under tone mapping and the result of calling `standardDynamicRangeColor`. The new color will have a `contentHeadroom` >= 1.0. If called on a color with a color space that does not support extended range, or does not have an equivalent extended range counterpart, this will return `self`.
         #[unsafe(method(colorByApplyingContentHeadroom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorByApplyingContentHeadroom(
