@@ -54,6 +54,7 @@ impl GKErrorCode {
     #[doc(alias = "GKErrorUnexpectedConnection")]
     pub const UnexpectedConnection: Self = Self(18);
     #[doc(alias = "GKErrorChallengeInvalid")]
+    #[deprecated]
     pub const ChallengeInvalid: Self = Self(19);
     #[doc(alias = "GKErrorTurnBasedMatchDataTooLarge")]
     pub const TurnBasedMatchDataTooLarge: Self = Self(20);

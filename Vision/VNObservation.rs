@@ -2531,12 +2531,14 @@ impl VNImageAestheticsScoresObservation {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// `isUtility` represents images that are not necessarily of poor image quality but may not have memorable or exciting content. `isUtility` can be true or false.
+        /// A Boolean value that represents images that are not necessarily of poor image quality, but may not have memorable or exciting content.
         #[unsafe(method(isUtility))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUtility(&self) -> bool;
 
-        /// A score which incorporates aesthetic score, failure score and utility labels. `overallScore` is within the range [-1, 1] where 1 is most desirable and -1 is not desirable.
+        /// A score which incorporates aesthetic score, failure score, and utility labels.
+        ///
+        /// This returns a value within the range of `-1` and `1`, where `-1` is least desirable and `1` is most desirable.
         #[unsafe(method(overallScore))]
         #[unsafe(method_family = none)]
         pub unsafe fn overallScore(&self) -> c_float;

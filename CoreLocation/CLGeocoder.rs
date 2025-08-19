@@ -19,6 +19,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clgeocoder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use MapKit"]
     pub struct CLGeocoder;
 );
 
@@ -28,11 +29,13 @@ extern_conformance!(
 
 impl CLGeocoder {
     extern_methods!(
+        #[deprecated = "Use MapKit"]
         #[unsafe(method(isGeocoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn isGeocoding(&self) -> bool;
 
         #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
+        #[deprecated = "Use MKReverseGeocodingRequest"]
         #[unsafe(method(reverseGeocodeLocation:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reverseGeocodeLocation_completionHandler(
@@ -42,6 +45,7 @@ impl CLGeocoder {
         );
 
         #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
+        #[deprecated = "Use MKReverseGeocodingRequest"]
         #[unsafe(method(reverseGeocodeLocation:preferredLocale:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reverseGeocodeLocation_preferredLocale_completionHandler(
@@ -52,7 +56,7 @@ impl CLGeocoder {
         );
 
         #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
-        #[deprecated = "Use -geocodePostalAddress:completionHandler:"]
+        #[deprecated = "Use MKReverseGeocodingRequest"]
         #[unsafe(method(geocodeAddressDictionary:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressDictionary_completionHandler(
@@ -72,6 +76,7 @@ impl CLGeocoder {
         );
 
         #[cfg(all(feature = "CLPlacemark", feature = "CLRegion", feature = "block2"))]
+        #[deprecated = "Use MKGeocodingRequest"]
         #[unsafe(method(geocodeAddressString:inRegion:preferredLocale:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressString_inRegion_preferredLocale_completionHandler(
@@ -82,7 +87,21 @@ impl CLGeocoder {
             completion_handler: CLGeocodeCompletionHandler,
         );
 
+        #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
+        #[deprecated = "Use MKGeocodingRequest"]
+        #[unsafe(method(geocodeAddressString:inRegionCenteredAt:inRegionRadius:preferredLocale:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn geocodeAddressString_inRegionCenteredAt_inRegionRadius_preferredLocale_completionHandler(
+            &self,
+            address_string: &NSString,
+            centroid: CLLocationCoordinate2D,
+            radius: CLLocationDistance,
+            locale: Option<&NSLocale>,
+            completion_handler: CLGeocodeCompletionHandler,
+        );
+
         #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
+        #[deprecated = "Use MKGeocodingRequest"]
         #[unsafe(method(geocodeAddressString:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressString_completionHandler(
@@ -91,6 +110,7 @@ impl CLGeocoder {
             completion_handler: CLGeocodeCompletionHandler,
         );
 
+        #[deprecated = "Use MKGeocodingRequest"]
         #[unsafe(method(cancelGeocode))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelGeocode(&self);
@@ -119,6 +139,7 @@ impl CLGeocoder {
             feature = "objc2-contacts"
         ))]
         #[cfg(not(target_os = "tvos"))]
+        #[deprecated = "Use MKReverseGeocodingRequest"]
         #[unsafe(method(geocodePostalAddress:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodePostalAddress_completionHandler(
@@ -133,6 +154,7 @@ impl CLGeocoder {
             feature = "objc2-contacts"
         ))]
         #[cfg(not(target_os = "tvos"))]
+        #[deprecated = "Use MKReverseGeocodingRequest"]
         #[unsafe(method(geocodePostalAddress:preferredLocale:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodePostalAddress_preferredLocale_completionHandler(

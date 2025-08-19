@@ -36,6 +36,9 @@ mod __AVCustomRoutingEvent;
 #[cfg(feature = "AVRoutingDefines")]
 #[path = "AVRoutingDefines.rs"]
 mod __AVRoutingDefines;
+#[cfg(feature = "AVRoutingPlaybackArbiter")]
+#[path = "AVRoutingPlaybackArbiter.rs"]
+mod __AVRoutingPlaybackArbiter;
 
 #[cfg(feature = "AVCustomDeviceRoute")]
 pub use self::__AVCustomDeviceRoute::AVCustomDeviceRoute;
@@ -53,3 +56,7 @@ pub use self::__AVCustomRoutingController::AVCustomRoutingPartialIP;
 pub use self::__AVCustomRoutingEvent::AVCustomRoutingEvent;
 #[cfg(feature = "AVCustomRoutingEvent")]
 pub use self::__AVCustomRoutingEvent::AVCustomRoutingEventReason;
+#[cfg(feature = "AVRoutingPlaybackArbiter")]
+pub use self::__AVRoutingPlaybackArbiter::AVRoutingPlaybackArbiter;
+#[cfg(feature = "AVRoutingPlaybackArbiter")]
+pub use self::__AVRoutingPlaybackArbiter::AVRoutingPlaybackParticipant;

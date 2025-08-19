@@ -55,6 +55,8 @@ pub use self::__MACaptionAppearance::kMACaptionAppearanceSettingsChangedNotifica
 pub use self::__MACaptionAppearance::MACaptionAppearanceAddSelectedLanguage;
 #[cfg(feature = "MACaptionAppearance")]
 pub use self::__MACaptionAppearance::MACaptionAppearanceBehavior;
+#[cfg(feature = "MACaptionAppearance")]
+pub use self::__MACaptionAppearance::MACaptionAppearanceCopyActiveProfileID;
 #[cfg(all(feature = "MACaptionAppearance", feature = "objc2-core-graphics"))]
 pub use self::__MACaptionAppearance::MACaptionAppearanceCopyBackgroundColor;
 #[cfg(all(feature = "MACaptionAppearance", feature = "objc2-core-text"))]
@@ -63,6 +65,10 @@ pub use self::__MACaptionAppearance::MACaptionAppearanceCopyFontDescriptorForSty
 pub use self::__MACaptionAppearance::MACaptionAppearanceCopyForegroundColor;
 #[cfg(feature = "MACaptionAppearance")]
 pub use self::__MACaptionAppearance::MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics;
+#[cfg(feature = "MACaptionAppearance")]
+pub use self::__MACaptionAppearance::MACaptionAppearanceCopyProfileIDs;
+#[cfg(feature = "MACaptionAppearance")]
+pub use self::__MACaptionAppearance::MACaptionAppearanceCopyProfileName;
 #[cfg(feature = "MACaptionAppearance")]
 pub use self::__MACaptionAppearance::MACaptionAppearanceCopySelectedLanguages;
 #[cfg(all(feature = "MACaptionAppearance", feature = "objc2-core-graphics"))]
@@ -73,6 +79,8 @@ pub use self::__MACaptionAppearance::MACaptionAppearanceDidDisplayCaptions;
 pub use self::__MACaptionAppearance::MACaptionAppearanceDisplayType;
 #[cfg(feature = "MACaptionAppearance")]
 pub use self::__MACaptionAppearance::MACaptionAppearanceDomain;
+#[cfg(all(feature = "MACaptionAppearance", feature = "block2"))]
+pub use self::__MACaptionAppearance::MACaptionAppearanceExecuteBlockForProfileID;
 #[cfg(feature = "MACaptionAppearance")]
 pub use self::__MACaptionAppearance::MACaptionAppearanceFontStyle;
 #[cfg(feature = "MACaptionAppearance")]
@@ -91,6 +99,8 @@ pub use self::__MACaptionAppearance::MACaptionAppearanceGetWindowOpacity;
 pub use self::__MACaptionAppearance::MACaptionAppearanceGetWindowRoundedCornerRadius;
 #[cfg(feature = "MACaptionAppearance")]
 pub use self::__MACaptionAppearance::MACaptionAppearanceIsCustomized;
+#[cfg(feature = "MACaptionAppearance")]
+pub use self::__MACaptionAppearance::MACaptionAppearanceSetActiveProfileID;
 #[cfg(feature = "MACaptionAppearance")]
 pub use self::__MACaptionAppearance::MACaptionAppearanceSetDisplayType;
 #[cfg(feature = "MACaptionAppearance")]

@@ -43,6 +43,7 @@ extern_protocol!(
         unsafe fn textViewDidEndEditing(&self, text_view: &UITextView);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        #[deprecated]
         #[optional]
         #[unsafe(method(textView:shouldChangeTextInRange:replacementText:))]
         #[unsafe(method_family = none)]
@@ -50,6 +51,31 @@ extern_protocol!(
             &self,
             text_view: &UITextView,
             range: NSRange,
+            text: &NSString,
+        ) -> bool;
+
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Asks the delegate if the text at the specified `ranges` should be replaced with `text`.
+        ///
+        ///
+        /// If this method returns YES then the text view will, at its own discretion, choose any one of the specified `ranges` of text and replace it with the specified `replacementText` before deleting the text at the other ranges.
+        ///
+        ///
+        /// Parameter `textView`: The text view asking the delegate
+        ///
+        /// Parameter `ranges`: The ranges of the text that should be deleted before replacing
+        ///
+        /// Parameter `replacementText`: The replacement text
+        ///
+        ///
+        /// Returns: Returns true if the text at the `ranges` should be replaced.
+        #[optional]
+        #[unsafe(method(textView:shouldChangeTextInRanges:replacementText:))]
+        #[unsafe(method_family = none)]
+        unsafe fn textView_shouldChangeTextInRanges_replacementText(
+            &self,
+            text_view: &UITextView,
+            ranges: &NSArray<NSValue>,
             text: &NSString,
         ) -> bool;
 
@@ -83,6 +109,7 @@ extern_protocol!(
         ///
         /// Returns: Return a UIMenu describing the desired menu hierarchy. Return
         /// `nil`to present the default system menu.
+        #[deprecated]
         #[optional]
         #[unsafe(method(textView:editMenuForTextInRange:suggestedActions:))]
         #[unsafe(method_family = none)]
@@ -90,6 +117,34 @@ extern_protocol!(
             &self,
             text_view: &UITextView,
             range: NSRange,
+            suggested_actions: &NSArray<UIMenuElement>,
+        ) -> Option<Retained<UIMenu>>;
+
+        #[cfg(all(
+            feature = "UIMenu",
+            feature = "UIMenuElement",
+            feature = "UIResponder",
+            feature = "UIView"
+        ))]
+        /// Asks the delegate for the menu to be shown for the specified text ranges.
+        ///
+        ///
+        /// Parameter `textView`: The text view requesting the menu.
+        ///
+        /// Parameter `ranges`: The text ranges for which the menu is presented for.
+        ///
+        /// Parameter `suggestedActions`: The actions and commands that the system suggests.
+        ///
+        ///
+        /// Returns: Return a UIMenu describing the desired menu hierarchy. Return
+        /// `nil`to present the default system menu.
+        #[optional]
+        #[unsafe(method(textView:editMenuForTextInRanges:suggestedActions:))]
+        #[unsafe(method_family = none)]
+        unsafe fn textView_editMenuForTextInRanges_suggestedActions(
+            &self,
+            text_view: &UITextView,
+            ranges: &NSArray<NSValue>,
             suggested_actions: &NSArray<UIMenuElement>,
         ) -> Option<Retained<UIMenu>>;
 
@@ -689,14 +744,27 @@ impl UITextView {
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAlignment(&self, text_alignment: NSTextAlignment);
 
+        /// A union of all the `selectedRanges`.
+        #[deprecated]
         #[unsafe(method(selectedRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedRange(&self) -> NSRange;
 
         /// Setter for [`selectedRange`][Self::selectedRange].
+        #[deprecated]
         #[unsafe(method(setSelectedRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedRange(&self, selected_range: NSRange);
+
+        /// The `NSRange`s of the selection. In most cases, there will only be a single selected range. For cases where bidirectional text is selected, there may be multiple discontiguous ranges. These selected ranges will always be in the normal form, which means they are sorted in ascending order and there are no overlaps. The selected ranges will always be converted to its normal form when they are set. Empty array corresponds to no selection.
+        #[unsafe(method(selectedRanges))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn selectedRanges(&self) -> Retained<NSArray<NSValue>>;
+
+        /// Setter for [`selectedRanges`][Self::selectedRanges].
+        #[unsafe(method(setSelectedRanges:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSelectedRanges(&self, selected_ranges: &NSArray<NSValue>);
 
         #[unsafe(method(isEditable))]
         #[unsafe(method_family = none)]
@@ -995,6 +1063,10 @@ impl UITextView {
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -1002,10 +1074,6 @@ impl UITextView {
 #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
 impl UITextView {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;

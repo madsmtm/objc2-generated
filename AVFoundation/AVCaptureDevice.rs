@@ -476,7 +476,7 @@ extern "C" {
     /// />
     /// Otherwise, external cameras on Mac Catalyst report that their device type is AVCaptureDeviceTypeBuiltInWideAngleCamera.
     ///
-    /// On visionOS, your app must have the `com.apple.developer.avfoundation.uvc-device-access` entitlement in order to discover and use devices of type `AVCaptureDeviceTypeExternal`.
+    /// Prior to visionOS 3.0, your app must have the `com.apple.developer.avfoundation.uvc-device-access` entitlement in order to discover and use devices of type `AVCaptureDeviceTypeExternal` on visionOS.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypeexternal?language=objc)
     pub static AVCaptureDeviceTypeExternal: &'static AVCaptureDeviceType;
@@ -872,7 +872,7 @@ impl AVCaptureDevice {
         /// The active constituent device restricted  switching behavior.
         ///
         ///
-        /// For virtual devices with multiple constituent devices, this property returns the active restricted switching behavior conditions. This is equal to primaryConstituentDeviceRestrictedSwitchingBehaviorConditions except while recording using an AVCaptureMovieFileOutput configured with different retricted switching behavior conditions (see -[AVCaptureMovieFileOutput setPrimaryConstituentDeviceSwitchingBehaviorForRecording:restrictedSwitchingBehaviorConditions]). Devices that do not support constituent device switching return AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone. This property is key-value observable.
+        /// For virtual devices with multiple constituent devices, this property returns the active restricted switching behavior conditions. This is equal to primaryConstituentDeviceRestrictedSwitchingBehaviorConditions except while recording using an AVCaptureMovieFileOutput configured with different restricted switching behavior conditions (see -[AVCaptureMovieFileOutput setPrimaryConstituentDeviceSwitchingBehaviorForRecording:restrictedSwitchingBehaviorConditions]). Devices that do not support constituent device switching return AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone. This property is key-value observable.
         #[unsafe(method(activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions))]
         #[unsafe(method_family = none)]
         pub unsafe fn activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions(
@@ -1190,6 +1190,37 @@ extern "C" {
     pub static AVCaptureLensPositionCurrent: c_float;
 }
 
+/// Constants indicating the focus behavior when recording a Cinematic Video.
+///
+///
+/// Indicates that no focus mode is specified, in which case weak focus is used as default.
+///
+/// Indicates that the subject should remain in focus until it exits the scene.
+///
+/// Indicates that the Cinematic Video algorithm should automatically adjust focus according to the prominence of the subjects in the scene.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecinematicvideofocusmode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AVCaptureCinematicVideoFocusMode(pub NSInteger);
+impl AVCaptureCinematicVideoFocusMode {
+    #[doc(alias = "AVCaptureCinematicVideoFocusModeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "AVCaptureCinematicVideoFocusModeStrong")]
+    pub const Strong: Self = Self(1);
+    #[doc(alias = "AVCaptureCinematicVideoFocusModeWeak")]
+    pub const Weak: Self = Self(2);
+}
+
+unsafe impl Encode for AVCaptureCinematicVideoFocusMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVCaptureCinematicVideoFocusMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// AVCaptureDeviceFocus.
 impl AVCaptureDevice {
     extern_methods!(
@@ -1249,6 +1280,53 @@ impl AVCaptureDevice {
         #[unsafe(method(setFocusPointOfInterest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocusPointOfInterest(&self, focus_point_of_interest: CGPoint);
+
+        /// Indicates whether the receiver supports focus rectangles of interest.
+        ///
+        ///
+        /// The receiver's focusRectOfInterestSupported property can only be set if this property returns YES.
+        #[unsafe(method(isFocusRectOfInterestSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isFocusRectOfInterestSupported(&self) -> bool;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the minimum size that can be used when specifying a rectangle of interest.
+        ///
+        ///
+        /// The size returned is in normalized coordinates, and will depend on the current active format. If isFocusRectOfInterestSupported returns NO, this property will return { 0, 0 }.
+        #[unsafe(method(minFocusRectOfInterestSize))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn minFocusRectOfInterestSize(&self) -> CGSize;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates current focus rectangle of interest of the receiver, if it has one.
+        ///
+        ///
+        /// The value of this property is a CGRect that determines the receiver's focus rectangle of interest, if it has one. It is used as an alternative to -setFocusPointOfInterest:, as it allows for both a location and size to be specified. A value of CGRectMake(0, 0, 1, 1) indicates that the receiver should use the entire field of view when determining the focus, while CGRectMake(0, 0, 0.25, 0.25) would indicate the top left sixteenth, and CGRectMake(0.75, 0.75, 0.25, 0.25) would indicate the bottom right sixteenth. -setFocusRectOfInterest: throws an NSInvalidArgumentException if isFocusRectOfInterestSupported returns NO. -setFocusRectOfInterest: throws an NSInvalidArgumentException if the size of the provided rectangle is smaller than that returned by minFocusRectOfInterestSize. -setFocusRectOfInterest: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. -setFocusRectOfInterest: will update the receiver's focusPointOfInterest to be the center of the rectangle of interest. If the client later sets the receiver's focusPointOfInterest, the focusRectOfInterest will reset to the default rectangle of interest for the new focus point of interest. If the client changes the activeFormat, the point of interest and rectangle of interest will revert to their default values. Clients can observe automatic changes to the receiver's focusRectOfInterest by key value observing this property. Note that setting focusRectOfInterest alone does not initiate a focus operation. After setting focusRectOfInterest, call -setFocusMode: to apply the new rectangle of interest.
+        #[unsafe(method(focusRectOfInterest))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn focusRectOfInterest(&self) -> CGRect;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`focusRectOfInterest`][Self::focusRectOfInterest].
+        #[unsafe(method(setFocusRectOfInterest:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFocusRectOfInterest(&self, focus_rect_of_interest: CGRect);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the default rectangle of interest that is used for a given focus point of interest.
+        ///
+        ///
+        /// Parameter `pointOfInterest`: Point of interest for which we are returning the default rectangle of interest.
+        ///
+        ///
+        /// Pass (0.5, 0.5) to get the focus rectangle of interest used for the default focus point of interest at (0.5, 0.5); note that the particular default rectangle returned will depend on the current focus mode. This method returns CGRectNull if isFocusRectOfInterestSupported returns NO.
+        #[unsafe(method(defaultRectForFocusPointOfInterest:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn defaultRectForFocusPointOfInterest(
+            &self,
+            point_of_interest: CGPoint,
+        ) -> CGRect;
 
         /// Indicates whether the receiver is currently performing a focus scan to adjust focus.
         ///
@@ -1369,6 +1447,56 @@ impl AVCaptureDevice {
         #[unsafe(method(minimumFocusDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumFocusDistance(&self) -> NSInteger;
+
+        /// Focus on and start tracking a detected object.
+        ///
+        ///
+        /// Parameter `detectedObjectID`: ID of the detected object.
+        ///
+        ///
+        /// Parameter `focusMode`: Specify whether to focus strongly or weakly.
+        #[unsafe(method(setCinematicVideoTrackingFocusWithDetectedObjectID:focusMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCinematicVideoTrackingFocusWithDetectedObjectID_focusMode(
+            &self,
+            detected_object_id: NSInteger,
+            focus_mode: AVCaptureCinematicVideoFocusMode,
+        );
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Focus on and start tracking an object if it can be detected at the region specified by the point.
+        ///
+        ///
+        /// Parameter `point`: A normalized point of interest (i.e., [0,1]) in the coordinate space of the device.
+        ///
+        ///
+        /// Parameter `focusMode`: Specify whether to focus strongly or weakly.
+        #[unsafe(method(setCinematicVideoTrackingFocusAtPoint:focusMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCinematicVideoTrackingFocusAtPoint_focusMode(
+            &self,
+            point: CGPoint,
+            focus_mode: AVCaptureCinematicVideoFocusMode,
+        );
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Fix focus at a distance.
+        ///
+        ///
+        /// Parameter `point`: A normalized point of interest (i.e., [0,1]) in the coordinate space of the device.
+        ///
+        ///
+        /// Parameter `focusMode`: Specify whether to focus strongly or weakly.
+        ///
+        ///
+        /// The distance at which focus is set is determined internally using signals such as depth data.
+        #[unsafe(method(setCinematicVideoFixedFocusAtPoint:focusMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCinematicVideoFixedFocusAtPoint_focusMode(
+            &self,
+            point: CGPoint,
+            focus_mode: AVCaptureCinematicVideoFocusMode,
+        );
     );
 }
 
@@ -1480,6 +1608,53 @@ impl AVCaptureDevice {
         #[unsafe(method(setExposurePointOfInterest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExposurePointOfInterest(&self, exposure_point_of_interest: CGPoint);
+
+        /// Indicates whether the receiver supports exposure rectangles of interest.
+        ///
+        ///
+        /// The receiver's exposureRectOfInterestSupported property can only be set if this property returns YES.
+        #[unsafe(method(isExposureRectOfInterestSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isExposureRectOfInterestSupported(&self) -> bool;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the minimum size that can be used when specifying a rectangle of interest.
+        ///
+        ///
+        /// The size returned is in normalized coordinates, and will depend on the current active format. If isExposureRectOfInterestSupported returns NO, this property will return { 0, 0 }.
+        #[unsafe(method(minExposureRectOfInterestSize))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn minExposureRectOfInterestSize(&self) -> CGSize;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates current exposure rectangle of interest of the receiver, if it has one.
+        ///
+        ///
+        /// The value of this property is a CGRect that determines the receiver's exposure rectangle of interest, if it has one. It is used as an alternative to -setExposurePointOfInterest:, as it allows for both a location and size to be specified. A value of CGRectMake(0, 0, 1, 1) indicates that the receiver should use the entire field of view when determining the exposure, while CGRectMake(0, 0, 0.25, 0.25) would indicate the top left sixteenth, and CGRectMake(0.75, 0.75, 0.25, 0.25) would indicate the bottom right sixteenth. -setExposureRectOfInterest: throws an NSInvalidArgumentException if isExposureRectOfInterestSupported returns NO. -setExposureRectOfInterest: throws an NSInvalidArgumentException if the size of the provided rectangle is smaller than that returned by minExposureRectOfInterestSize. -setExposureRectOfInterest: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. -setExposureRectOfInterest: will update the receiver's exposurePointOfInterest to be the center of the rectangle of interest. If the client later sets the receiver's exposurePointOfInterest, the exposureRectOfInterest will reset to the default rectangle of interest for the new exposure point of interest. If the client changes the activeFormat, the point of interest and rectangle of interest will revert to their default values. Clients can observe automatic changes to the receiver's exposureRectOfInterest by key value observing this property. Note that setting exposureRectOfInterest alone does not initiate an exposure operation. After setting exposureRectOfInterest, call -setExposureMode: to apply the new rectangle of interest.
+        #[unsafe(method(exposureRectOfInterest))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn exposureRectOfInterest(&self) -> CGRect;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`exposureRectOfInterest`][Self::exposureRectOfInterest].
+        #[unsafe(method(setExposureRectOfInterest:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setExposureRectOfInterest(&self, exposure_rect_of_interest: CGRect);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the default rectangle of interest that is used for a given exposure point of interest.
+        ///
+        ///
+        /// Parameter `pointOfInterest`: Point of interest for which we are returning the default rectangle of interest.
+        ///
+        ///
+        /// Pass (0.5, 0.5) to get the exposure rectangle of interest used for the default exposure point of interest at (0.5, 0.5). This method returns CGRectNull if isExposureRectOfInterestSupported returns NO.
+        #[unsafe(method(defaultRectForExposurePointOfInterest:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn defaultRectForExposurePointOfInterest(
+            &self,
+            point_of_interest: CGPoint,
+        ) -> CGRect;
 
         /// Indicates whether the receiver should automatically adjust face-driven auto exposure.
         ///
@@ -1848,7 +2023,7 @@ impl AVCaptureDevice {
         /// Parameter `handler`: A block to be called when white balance gains have been set to the values specified and whiteBalanceMode is set to AVCaptureWhiteBalanceModeLocked. If setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler: is called multiple times, the completion handlers will be called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the master clock prior to comparison with the timestamps of buffers delivered via an AVCaptureVideoDataOutput. This parameter may be nil if synchronization is not required.
         ///
         ///
-        /// For each channel in the whiteBalanceGains struct, only values between 1.0 and -maxWhiteBalanceGain are supported. Gain values are normalized to the minimum channel value to avoid brightness changes (e.g. R:2 G:2 B:4 will be normalized to R:1 G:1 B:2). This method throws an NSRangeException if any of the whiteBalanceGains are set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
+        /// Gain values are normalized to the minimum channel value to avoid brightness changes (e.g. R:2 G:2 B:4 will be normalized to R:1 G:1 B:2). For each channel in the whiteBalanceGains struct, only values between 1.0 and maxWhiteBalanceGain after nomalization are supported.  This method throws an NSRangeException if any of the whiteBalanceGains are set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
         #[unsafe(method(setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains_completionHandler(
@@ -2393,7 +2568,7 @@ impl AVCaptureDevice {
         /// Indicates that geometric distortion correction is supported by the receiver.
         ///
         ///
-        /// Some AVCaptureDevices benefit from geometric distortion correction (GDC), such as devices with a very wide field of view. GDC lessens the fisheye effect at the outer edge of the frame at the cost of losing a small amount of vertical and horizontal field of view. When GDC is enabled on the AVCaptureDevice (see geometricDistortionEnabled), the corrected image is upscaled to the original image size when needed.  With respect to the AVCaptureDevice.videoZoomFactor API, the full viewable field of view is always represented with a videoZoomFactor of 1.0. Thus, when GDC is enabled, the AVCaptureDevice.activeFormat's field of view at videoZoomFactor = 1.0 will be different than when GDC is disabled. The smaller field of view is reported through the activeFormat's geometricDistortionCorrectedVideoFieldOfView property. Beware though that RAW photo captures never have GDC applied, regardless of the value of AVCaptureDevice.geometricDistortionCorrectionEnabled.
+        /// Some AVCaptureDevices benefit from geometric distortion correction (GDC), such as devices with a very wide field of view. GDC lessens the fisheye effect at the outer edge of the frame at the cost of losing a small amount of vertical and horizontal field of view. When GDC is enabled on the AVCaptureDevice (see geometricDistortionCorrectionEnabled), the corrected image is upscaled to the original image size when needed.  With respect to the AVCaptureDevice.videoZoomFactor API, the full viewable field of view is always represented with a videoZoomFactor of 1.0. Thus, when GDC is enabled, the AVCaptureDevice.activeFormat's field of view at videoZoomFactor = 1.0 will be different than when GDC is disabled. The smaller field of view is reported through the activeFormat's geometricDistortionCorrectedVideoFieldOfView property. Beware though that RAW photo captures never have GDC applied, regardless of the value of AVCaptureDevice.geometricDistortionCorrectionEnabled.
         #[unsafe(method(isGeometricDistortionCorrectionSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isGeometricDistortionCorrectionSupported(&self) -> bool;
@@ -2832,12 +3007,60 @@ impl AVCaptureDevice {
         /// Indicates whether or not the current environmental conditions are amenable to a spatial capture that is comfortable to view.
         ///
         ///
-        /// This property can be monitored in order to determine the presentation of U/I elements to inform the user that they should reframe their scene for a more pleasing spatial capture ("subject is too close", "scene is too dark").
+        /// This property can be monitored in order to determine the presentation of UI elements to inform the user that they should reframe their scene for a more pleasing spatial capture ("subject is too close", "scene is too dark").
         #[unsafe(method(spatialCaptureDiscomfortReasons))]
         #[unsafe(method_family = none)]
         pub unsafe fn spatialCaptureDiscomfortReasons(
             &self,
         ) -> Retained<NSSet<AVSpatialCaptureDiscomfortReason>>;
+    );
+}
+
+/// AVCaptureSceneMonitoringStatus string constants
+///
+///
+/// Some features have certain requirements on the scene (lighting condition for Cinematic Video, for example) to produce optimal results; these AVCaptureSceneMonitoringStatus string constants are used to represent such scene statuses for a given feature.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturescenemonitoringstatus?language=objc)
+// NS_TYPED_ENUM
+pub type AVCaptureSceneMonitoringStatus = NSString;
+
+extern "C" {
+    /// The lighting of the current scene is not bright enough.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturescenemonitoringstatusnotenoughlight?language=objc)
+    pub static AVCaptureSceneMonitoringStatusNotEnoughLight:
+        &'static AVCaptureSceneMonitoringStatus;
+}
+
+/// AVCaptureDeviceCinematicVideoCapture.
+impl AVCaptureDevice {
+    extern_methods!(
+        /// Indicates the current scene monitoring statuses related to Cinematic Video capture.
+        ///
+        ///
+        /// This property can be monitored in order to determine the presentation of UI elements to inform the user that they should reframe their scene for a better Cinematic Video experience ("scene is too dark").
+        #[unsafe(method(cinematicVideoCaptureSceneMonitoringStatuses))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn cinematicVideoCaptureSceneMonitoringStatuses(
+            &self,
+        ) -> Retained<NSSet<AVCaptureSceneMonitoringStatus>>;
+    );
+}
+
+/// AVCaptureDeviceNominalFocalLengthIn35mmFilm.
+impl AVCaptureDevice {
+    extern_methods!(
+        /// The nominal 35mm equivalent focal length of the capture device's lens.
+        ///
+        /// This value represents a nominal measurement of the device's field of view, expressed as a 35mm equivalent focal length, measured diagonally. The value is similar to the `FocalLengthIn35mmFormat` EXIF entry (see
+        /// <doc
+        /// ://com.apple.documentation/documentation/imageio/kcgimagepropertyexiffocallenin35mmfilm>) for a photo captured using the device's format where ``AVCaptureDeviceFormat/highestPhotoQualitySupported`` is `true` or when you've configured the session with the ``AVCaptureSessionPresetPhoto`` preset.
+        ///
+        /// This property value is `0` for virtual devices and external cameras.
+        #[unsafe(method(nominalFocalLengthIn35mmFilm))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn nominalFocalLengthIn35mmFilm(&self) -> c_float;
     );
 }
 
@@ -3615,6 +3838,10 @@ impl AVCaptureDeviceFormat {
         pub unsafe fn isCenterStageSupported(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the minimum zoom factor available for the AVCaptureDevice's videoZoomFactor property when centerStageActive is YES.
+        ///
+        ///
+        /// Devices support a limited zoom range when Center Stage is active. If this device format does not support Center Stage, this property returns 1.0.
         #[unsafe(method(videoMinZoomFactorForCenterStage))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoMinZoomFactorForCenterStage(&self) -> CGFloat;
@@ -3756,6 +3983,170 @@ impl AVCaptureDeviceFormat {
         pub unsafe fn videoFrameRateRangeForBackgroundReplacement(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
+    );
+}
+
+/// AVCaptureDeviceFormatCinematicVideoSupport.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
+        /// Indicates whether the format supports Cinematic Video capture.
+        ///
+        ///
+        /// This property returns YES if the format supports Cinematic Video that produces a controllable, simulated depth of field and adds beautiful focus transitions for a cinema-grade look.
+        #[unsafe(method(isCinematicVideoCaptureSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isCinematicVideoCaptureSupported(&self) -> bool;
+
+        /// Default shallow depth of field simulated aperture.
+        ///
+        ///
+        /// This will return a non-zero value on devices that support the shallow depth of field effect.
+        #[unsafe(method(defaultSimulatedAperture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn defaultSimulatedAperture(&self) -> c_float;
+
+        /// Minimum supported shallow depth of field simulated aperture.
+        ///
+        ///
+        /// On devices that do not support changing the simulated aperture value, this will return a value of 0.
+        #[unsafe(method(minSimulatedAperture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn minSimulatedAperture(&self) -> c_float;
+
+        /// Maximum supported shallow depth of field simulated aperture.
+        ///
+        ///
+        /// On devices that do not support changing the simulated aperture value, this will return a value of 0.
+        #[unsafe(method(maxSimulatedAperture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maxSimulatedAperture(&self) -> c_float;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the minimum zoom factor available for the AVCaptureDevice's videoZoomFactor property when Cinematic Video capture is enabled on the device input.
+        ///
+        ///
+        /// Devices support a limited zoom range when Cinematic Video capture is active. If this device format does not support Cinematic Video capture, this property returns 1.0.
+        #[unsafe(method(videoMinZoomFactorForCinematicVideo))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn videoMinZoomFactorForCinematicVideo(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the maximum zoom factor available for the AVCaptureDevice's videoZoomFactor property when Cinematic Video capture is enabled on the device input.
+        ///
+        ///
+        /// Devices support a limited zoom range when Cinematic Video capture is active. If this device format does not support Cinematic Video capture, this property returns 1.0.
+        #[unsafe(method(videoMaxZoomFactorForCinematicVideo))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn videoMaxZoomFactorForCinematicVideo(&self) -> CGFloat;
+
+        /// Indicates the minimum / maximum frame rates available when Cinematic Video capture is enabled on the device input.
+        ///
+        ///
+        /// Devices may support a limited frame rate range when Cinematic Video capture is active. If this device format does not support Cinematic Video capture, this property returns nil.
+        #[unsafe(method(videoFrameRateRangeForCinematicVideo))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn videoFrameRateRangeForCinematicVideo(
+            &self,
+        ) -> Option<Retained<AVFrameRateRange>>;
+    );
+}
+
+/// CameraLensSmudgeDetection.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
+        /// A BOOL value specifying whether camera lens smudge detection is supported.
+        ///
+        ///
+        /// This property returns YES if the session's current configuration supports lens smudge detection. When switching cameras or formats this property may change. When this property changes from YES to NO, cameraLensSmudgeDetectionEnabled also reverts to NO. If you've previously opted in for lens smudge detection and then change configurations, you may need to set cameraLensSmudgeDetectionEnabled = YES again.
+        #[unsafe(method(isCameraLensSmudgeDetectionSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isCameraLensSmudgeDetectionSupported(&self) -> bool;
+    );
+}
+
+/// Constants indicating the current camera lens smudge detection status.
+///
+///
+/// Indicates that the detection is not enabled.
+///
+/// Indicates that the most recent detection identifies smudge is not detected on camera lens.
+///
+/// Indicates that the most recent detection identifies camera lens is smudged.
+///
+/// Indicates that the detection result hasn't settled, commonly caused by excessive camera movement or the content of image.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecameralenssmudgedetectionstatus?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AVCaptureCameraLensSmudgeDetectionStatus(pub NSInteger);
+impl AVCaptureCameraLensSmudgeDetectionStatus {
+    #[doc(alias = "AVCaptureCameraLensSmudgeDetectionStatusDisabled")]
+    pub const Disabled: Self = Self(0);
+    #[doc(alias = "AVCaptureCameraLensSmudgeDetectionStatusSmudgeNotDetected")]
+    pub const SmudgeNotDetected: Self = Self(1);
+    #[doc(alias = "AVCaptureCameraLensSmudgeDetectionStatusSmudged")]
+    pub const Smudged: Self = Self(2);
+    #[doc(alias = "AVCaptureCameraLensSmudgeDetectionStatusUnknown")]
+    pub const Unknown: Self = Self(3);
+}
+
+unsafe impl Encode for AVCaptureCameraLensSmudgeDetectionStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVCaptureCameraLensSmudgeDetectionStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// CameraLensSmudgeDetection.
+impl AVCaptureDevice {
+    extern_methods!(
+        #[cfg(feature = "objc2-core-media")]
+        /// Specify whether to enable camera lens smudge detection, and the interval time between each run of detections.
+        ///
+        ///
+        /// Parameter `cameraLensSmudgeDetectionEnabled`: Specify whether camera lens smudge detection should be enabled.
+        ///
+        /// Parameter `detectionInterval`: The detection running interval if detection is enabled.
+        ///
+        /// Each run of detection processes frames over a short period, and produces one detection result. Use `detectionInterval` to specify the interval time between each run of detections. For example, when `cameraLensSmudgeDetectionEnabled` is set to YES and `detectionInterval` is set to 1 minute, detection runs once per minute, and updates `AVCaptureCameraLensSmudgeDetectionStatus`. If `detectionInterval` is set to `kCMTimeInvalid`, detection will only run once after the session starts. If `detectionInterval` is set to `kCMTimeZero`, detection will run continuously.
+        ///
+        /// AVCaptureDevice throws an NSInvalidArgumentException if `cameraLensSmudgeDetectionSupported` property on the current active format returns NO. From disabled (or stopped) to enabling requires a lengthy reconfiguration of the capture render pipeline, so if you intend to enable this feature, you should enable this detection before calling -[AVCaptureSession startRunning] or within -[AVCaptureSession beginConfiguration] and -[AVCaptureSession commitConfiguration] while running.
+        #[unsafe(method(setCameraLensSmudgeDetectionEnabled:detectionInterval:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCameraLensSmudgeDetectionEnabled_detectionInterval(
+            &self,
+            camera_lens_smudge_detection_enabled: bool,
+            detection_interval: CMTime,
+        );
+
+        /// The cameraLensSmudgeDetectionEnabled as set by -[AVCaptureDevice setCameraLensSmudgeDetectionEnabled:detectionInterval:].
+        ///
+        ///
+        /// By default, this property is set to NO.
+        #[unsafe(method(isCameraLensSmudgeDetectionEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isCameraLensSmudgeDetectionEnabled(&self) -> bool;
+
+        #[cfg(feature = "objc2-core-media")]
+        /// The cameraLensSmudgeDetectionInterval as set by -[AVCaptureDevice setCameraLensSmudgeDetectionEnabled:detectionInterval:].
+        ///
+        ///
+        /// By default, this property is set to kCMTimeInvalid.
+        #[unsafe(method(cameraLensSmudgeDetectionInterval))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn cameraLensSmudgeDetectionInterval(&self) -> CMTime;
+
+        /// A value specifying the status of camera lens smudge detection.
+        ///
+        ///
+        /// During the initial detection execution, `cameraLensSmudgeDetectionStatus` is `AVCaptureCameraLensSmudgeDetectionStatusUnknown` before detection result is settled. Once a detection result is produced, `cameraLensSmudgeDetectionStatus` is the most recent detection result. This property can be key-value observed.
+        #[unsafe(method(cameraLensSmudgeDetectionStatus))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn cameraLensSmudgeDetectionStatus(
+            &self,
+        ) -> AVCaptureCameraLensSmudgeDetectionStatus;
     );
 }
 

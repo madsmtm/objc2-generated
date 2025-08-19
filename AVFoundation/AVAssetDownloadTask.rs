@@ -181,9 +181,8 @@ impl AVAssetDownloadConfiguration {
         ///
         /// This method will throw an exception if AVURLAsset has been invalidated.
         ///
-        /// Parameter `asset`: The asset to create the download configuration for.
-        ///
-        /// Parameter `title`: A human readable title for this asset, expected to be as suitable as possible for the user's preferred languages. Will show up in the usage pane of the settings app.
+        /// - Parameter asset: The asset to create the download configuration for.
+        /// - Parameter title: A human readable title for this asset, expected to be as suitable as possible for the user's preferred languages. Will show up in the usage pane of the settings app.
         #[unsafe(method(downloadConfigurationWithAsset:title:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadConfigurationWithAsset_title(
@@ -259,9 +258,8 @@ impl AVAssetDownloadConfiguration {
         /// This method allows the user to specify AVMediaSelectionCriteria for all interstitials that are discovered.
         /// Each AVPlayerMediaSelectionCriteria in the array of criteria specfies a set of criteria for a variant to download.
         ///
-        /// Parameter `criteria`: The array of selection criteria to set
-        ///
-        /// Parameter `mediaCharacteristic`: The AVMediaCharacteristic to which the criteria will be applied
+        /// - Parameter criteria: The array of selection criteria to set
+        /// - Parameter mediaCharacteristic: The AVMediaCharacteristic to which the criteria will be applied
         #[unsafe(method(setInterstitialMediaSelectionCriteria:forMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInterstitialMediaSelectionCriteria_forMediaCharacteristic(
@@ -410,8 +408,7 @@ impl AVAggregateAssetDownloadTask {
 }
 
 extern_protocol!(
-    /// Delegate methods to implement when adopting AVAssetDownloadTask.
-    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    /// Delegate methods to implement when adopting AVAssetDownloadTask. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloaddelegate?language=objc)
     pub unsafe trait AVAssetDownloadDelegate: NSURLSessionTaskDelegate {
@@ -419,11 +416,9 @@ extern_protocol!(
         ///
         /// Unlike NSURLSessionDownloadDelegate, the delegate should NOT move the file from this directory after it has been called. Downloaded assets must remain at the system provided URL. URLSession:task:didCompleteWithError: will still be called.
         ///
-        /// Parameter `session`: The session the asset download task is on.
-        ///
-        /// Parameter `assetDownloadTask`: The AVAssetDownloadTask whose downloaded completed.
-        ///
-        /// Parameter `location`: The location the asset has been downloaded to.
+        /// - Parameter session: The session the asset download task is on.
+        /// - Parameter assetDownloadTask: The AVAssetDownloadTask whose downloaded completed.
+        /// - Parameter location: The location the asset has been downloaded to.
         #[deprecated = "Use URLSession:assetDownloadTask:willDownloadToURL: instead"]
         #[optional]
         #[unsafe(method(URLSession:assetDownloadTask:didFinishDownloadingToURL:))]
@@ -438,15 +433,11 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-media")]
         /// Method to adopt to subscribe to progress updates of an AVAssetDownloadTask.
         ///
-        /// Parameter `session`: The session the asset download task is on.
-        ///
-        /// Parameter `assetDownloadTask`: The AVAssetDownloadTask which is being updated.
-        ///
-        /// Parameter `timeRange`: A CMTimeRange indicating the time range loaded since the last time this method was called.
-        ///
-        /// Parameter `loadedTimeRanges`: A NSArray of NSValues of CMTimeRanges indicating all the time ranges loaded by this asset download task.
-        ///
-        /// Parameter `timeRangeExpectedToLoad`: A CMTimeRange indicating the single time range that is expected to be loaded when the download is complete.
+        /// - Parameter session: The session the asset download task is on.
+        /// - Parameter assetDownloadTask: The AVAssetDownloadTask which is being updated.
+        /// - Parameter timeRange: A CMTimeRange indicating the time range loaded since the last time this method was called.
+        /// - Parameter loadedTimeRanges: A NSArray of NSValues of CMTimeRanges indicating all the time ranges loaded by this asset download task.
+        /// - Parameter timeRangeExpectedToLoad: A CMTimeRange indicating the single time range that is expected to be loaded when the download is complete.
         #[deprecated = "Use NSURLSessionTask.progress instead"]
         #[optional]
         #[unsafe(method(URLSession:assetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:))]
@@ -461,6 +452,11 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AVMediaSelection")]
+        /// Method called when the media selection for the download is fully resolved, including any automatic selections.
+        ///
+        /// - Parameter session: The session the asset download task is on.
+        /// - Parameter assetDownloadTask: The AVAssetDownloadTask which is being updated.
+        /// - Parameter resolvedMediaSelection: The resolved media selection for the download task. For the best chance of playing back downloaded content without further network I/O, apply this selection to subsequent AVPlayerItems.
         #[optional]
         #[unsafe(method(URLSession:assetDownloadTask:didResolveMediaSelection:))]
         #[unsafe(method_family = none)]
@@ -471,6 +467,13 @@ extern_protocol!(
             resolved_media_selection: &AVMediaSelection,
         );
 
+        /// Method called when the asset download task determines the location this asset will be downloaded to.
+        ///
+        /// This URL should be saved for future instantiations of AVAsset. While an AVAsset already exists for this content, it is advisable to re-use that instance.
+        ///
+        /// - Parameter session: The session the asset download task is on.
+        /// - Parameter assetDownloadTask: The AVAssetDownloadTask.
+        /// - Parameter location: The file URL this task will download media data to.
         #[optional]
         #[unsafe(method(URLSession:assetDownloadTask:willDownloadToURL:))]
         #[unsafe(method_family = none)]
@@ -481,6 +484,13 @@ extern_protocol!(
             location: &NSURL,
         );
 
+        /// Method called when the aggregate download task determines the location this asset will be downloaded to.
+        ///
+        /// This URL should be saved for future instantiations of AVAsset. While an AVAsset already exists for this content, it is advisable to re-use that instance.
+        ///
+        /// - Parameter session: The session the aggregate asset download task is on.
+        /// - Parameter aggregateAssetDownloadTask: The AVAggregateAssetDownloadTask.
+        /// - Parameter location: The file URL this task will download media data to.
         #[deprecated = "Use URLSession:assetDownloadTask:willDownloadToURL: instead"]
         #[optional]
         #[unsafe(method(URLSession:aggregateAssetDownloadTask:willDownloadToURL:))]
@@ -493,6 +503,11 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AVMediaSelection")]
+        /// Method called when a child AVAssetDownloadTask completes.
+        ///
+        /// - Parameter session: The session the aggregate asset download task is on.
+        /// - Parameter aggregateAssetDownloadTask: The AVAggregateAssetDownloadTask.
+        /// - Parameter mediaSelection: The AVMediaSelection which is now fully available for offline use.
         #[deprecated = "Use the NSURLSessionDownloadDelegate method instead, URLSession:task:didCompleteWithError:"]
         #[optional]
         #[unsafe(method(URLSession:aggregateAssetDownloadTask:didCompleteForMediaSelection:))]
@@ -505,6 +520,14 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AVMediaSelection", feature = "objc2-core-media"))]
+        /// Method to adopt to subscribe to progress updates of an AVAggregateAssetDownloadTask
+        ///
+        /// - Parameter session: The session the asset download task is on.
+        /// - Parameter aggregateAssetDownloadTask: The AVAggregateAssetDownloadTask.
+        /// - Parameter timeRange: A CMTimeRange indicating the time range loaded for the media selection being downloaded.
+        /// - Parameter loadedTimeRanges: A NSArray of NSValues of CMTimeRanges indicating all the time ranges loaded for the media selection being downloaded.
+        /// - Parameter timeRangeExpectedToLoad: A CMTimeRange indicating the single time range that is expected to be loaded when the download is complete for the media selection being downloaded.
+        /// - Parameter mediaSelection: The media selection which has additional media data loaded for offline use.
         #[deprecated = "Use NSURLSessionTask.progress: instead"]
         #[optional]
         #[unsafe(method(URLSession:aggregateAssetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:forMediaSelection:))]
@@ -522,11 +545,9 @@ extern_protocol!(
         #[cfg(feature = "AVAssetVariant")]
         /// Sent when a download task has completed the variant selection.
         ///
-        /// Parameter `session`: The session the asset download task is on.
-        ///
-        /// Parameter `assetDownloadTask`: The asset download task.
-        ///
-        /// Parameter `variants`: The variants chosen. Depends on the environmental condition when the download starts.
+        /// - Parameter session: The session the asset download task is on.
+        /// - Parameter assetDownloadTask: The asset download task.
+        /// - Parameter variants: The variants chosen. Depends on the environmental condition when the download starts.
         #[optional]
         #[unsafe(method(URLSession:assetDownloadTask:willDownloadVariants:))]
         #[unsafe(method_family = none)]
@@ -535,6 +556,22 @@ extern_protocol!(
             session: &NSURLSession,
             asset_download_task: &AVAssetDownloadTask,
             variants: &NSArray<AVAssetVariant>,
+        );
+
+        #[cfg(feature = "AVMetrics")]
+        /// Sent when a download task receives an AVMetricEvent.
+        ///
+        /// - Parameter session: The NSURLSession corresponding to this AVAssetDownloadTask.
+        /// - Parameter assetDownloadTask: The asset download task.
+        /// - Parameter metricEvent: The metric event received.
+        #[optional]
+        #[unsafe(method(URLSession:assetDownloadTask:didReceiveMetricEvent:))]
+        #[unsafe(method_family = none)]
+        unsafe fn URLSession_assetDownloadTask_didReceiveMetricEvent(
+            &self,
+            session: &NSURLSession,
+            asset_download_task: &AVAssetDownloadTask,
+            metric_event: &AVMetricEvent,
         );
     }
 );
@@ -556,11 +593,9 @@ impl AVAssetDownloadURLSession {
     extern_methods!(
         /// Creates and initializes an AVAssetDownloadURLSession for use with AVAssetDownloadTasks.
         ///
-        /// Parameter `configuration`: The configuration for this URLSession. Must be a background configuration.
-        ///
-        /// Parameter `delegate`: The delegate object to handle asset download progress updates and other session related events.
-        ///
-        /// Parameter `delegateQueue`: The queue to receive delegate callbacks on. If nil, a serial queue will be provided.
+        /// - Parameter configuration: The configuration for this URLSession. Must be a background configuration.
+        /// - Parameter delegate: The delegate object to handle asset download progress updates and other session related events.
+        /// - Parameter delegateQueue: The queue to receive delegate callbacks on. If nil, a serial queue will be provided.
         #[unsafe(method(sessionWithConfiguration:assetDownloadDelegate:delegateQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithConfiguration_assetDownloadDelegate_delegateQueue(
@@ -574,11 +609,9 @@ impl AVAssetDownloadURLSession {
         ///
         /// This method may return nil if the URLSession has been invalidated.
         ///
-        /// Parameter `URLAsset`: The AVURLAsset to download locally.
-        ///
-        /// Parameter `destinationURL`: The local URL to download the asset to. This must be a file URL.
-        ///
-        /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task. Using this parameter is required for downloading non-default media selections for HLS assets.
+        /// - Parameter URLAsset: The AVURLAsset to download locally.
+        /// - Parameter destinationURL: The local URL to download the asset to. This must be a file URL.
+        /// - Parameter options: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task. Using this parameter is required for downloading non-default media selections for HLS assets.
         #[deprecated = "Use assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options: instead"]
         #[unsafe(method(assetDownloadTaskWithURLAsset:destinationURL:options:))]
         #[unsafe(method_family = none)]
@@ -594,13 +627,10 @@ impl AVAssetDownloadURLSession {
         ///
         /// This method may return nil if the URLSession has been invalidated.
         ///
-        /// Parameter `URLAsset`: The AVURLAsset to download locally.
-        ///
-        /// Parameter `title`: A human readable title for this asset, expected to be as suitable as possible for the user's preferred languages. Will show up in the usage pane of the settings app.
-        ///
-        /// Parameter `artworkData`: NSData representing artwork data for this asset. Optional. Will show up in the usage pane of the settings app. Must work with +[UIImage imageWithData:].
-        ///
-        /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task. Using this parameter is required for downloading non-default media selections for HLS assets.
+        /// - Parameter URLAsset: The AVURLAsset to download locally.
+        /// - Parameter title: A human readable title for this asset, expected to be as suitable as possible for the user's preferred languages. Will show up in the usage pane of the settings app.
+        /// - Parameter artworkData: NSData representing artwork data for this asset. Optional. Will show up in the usage pane of the settings app. Must work with +[UIImage imageWithData:].
+        /// - Parameter options: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task. Using this parameter is required for downloading non-default media selections for HLS assets.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
         #[unsafe(method(assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:))]
         #[unsafe(method_family = none)]
@@ -617,15 +647,11 @@ impl AVAssetDownloadURLSession {
         ///
         /// This method may return nil if the URLSession has been invalidated. The value of AVAssetDownloadTaskMediaSelectionKey will be ignored.
         ///
-        /// Parameter `URLAsset`: The AVURLAsset to download locally.
-        ///
-        /// Parameter `mediaSelections`: A list of AVMediaSelections. Each AVMediaSelection will correspond to a childAssetDownloadTask. Use -[AVAsset allMediaSelections] to download all AVMediaSelections on this AVAsset.
-        ///
-        /// Parameter `title`: A human readable title for this asset, expected to be as suitable as possible for the user's preferred languages. Will show up in the usage pane of the settings app.
-        ///
-        /// Parameter `artworkData`: Artwork data for this asset. Optional. Will show up in the usage pane of the settings app.
-        ///
-        /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task.
+        /// - Parameter URLAsset: The AVURLAsset to download locally.
+        /// - Parameter mediaSelections: A list of AVMediaSelections. Each AVMediaSelection will correspond to a childAssetDownloadTask. Use -[AVAsset allMediaSelections] to download all AVMediaSelections on this AVAsset.
+        /// - Parameter title: A human readable title for this asset, expected to be as suitable as possible for the user's preferred languages. Will show up in the usage pane of the settings app.
+        /// - Parameter artworkData: Artwork data for this asset. Optional. Will show up in the usage pane of the settings app.
+        /// - Parameter options: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
         #[unsafe(method(aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:))]
         #[unsafe(method_family = none)]
@@ -642,7 +668,7 @@ impl AVAssetDownloadURLSession {
         ///
         /// This method will throw an exception if the URLSession has been invalidated.
         ///
-        /// Parameter `downloadConfiguration`: The configuration to be used to create the download task.
+        /// - Parameter downloadConfiguration: The configuration to be used to create the download task.
         #[unsafe(method(assetDownloadTaskWithConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetDownloadTaskWithConfiguration(

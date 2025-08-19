@@ -24,7 +24,7 @@ extern_conformance!(
 
 impl HMCameraControl {
     extern_methods!(
-        #[deprecated = "HMCameraControl is a base class for other types. Directly creating them is not supported."]
+        #[deprecated = "HMCameraControl is a base class for other types. Directly creating one is not supported."]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

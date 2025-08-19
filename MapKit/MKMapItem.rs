@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-location")]
+use objc2_core_location::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -31,6 +33,7 @@ impl MKMapItem {
         pub unsafe fn alternateIdentifiers(&self) -> Retained<NSSet<MKMapItemIdentifier>>;
 
         #[cfg(all(feature = "MKPlacemark", feature = "objc2-core-location"))]
+        #[deprecated = "Use address or location"]
         #[unsafe(method(placemark))]
         #[unsafe(method_family = none)]
         pub unsafe fn placemark(&self) -> Retained<MKPlacemark>;
@@ -38,6 +41,21 @@ impl MKMapItem {
         #[unsafe(method(isCurrentLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCurrentLocation(&self) -> bool;
+
+        #[cfg(feature = "objc2-core-location")]
+        #[unsafe(method(location))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn location(&self) -> Retained<CLLocation>;
+
+        #[cfg(feature = "MKAddress")]
+        #[unsafe(method(address))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn address(&self) -> Option<Retained<MKAddress>>;
+
+        #[cfg(feature = "MKAddressRepresentations")]
+        #[unsafe(method(addressRepresentations))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addressRepresentations(&self) -> Option<Retained<MKAddressRepresentations>>;
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -95,11 +113,21 @@ impl MKMapItem {
         pub unsafe fn mapItemForCurrentLocation() -> Retained<MKMapItem>;
 
         #[cfg(all(feature = "MKPlacemark", feature = "objc2-core-location"))]
+        #[deprecated = "Use initWithLocation:address:"]
         #[unsafe(method(initWithPlacemark:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlacemark(
             this: Allocated<Self>,
             placemark: &MKPlacemark,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "MKAddress", feature = "objc2-core-location"))]
+        #[unsafe(method(initWithLocation:address:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithLocation_address(
+            this: Allocated<Self>,
+            location: &CLLocation,
+            address: Option<&MKAddress>,
         ) -> Retained<Self>;
 
         #[unsafe(method(openInMapsWithLaunchOptions:))]
@@ -182,6 +210,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodetransit?language=objc)
     pub static MKLaunchOptionsDirectionsModeTransit: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodecycling?language=objc)
+    pub static MKLaunchOptionsDirectionsModeCycling: &'static NSString;
 }
 
 extern "C" {

@@ -67,5 +67,25 @@ impl BELayerHierarchyHostingTransactionCoordinator {
         #[unsafe(method(commit))]
         #[unsafe(method_family = none)]
         pub unsafe fn commit(&self, mtm: MainThreadMarker);
+
+        #[cfg(feature = "libc")]
+        /// takes ownership of the port right (even if it returns nil).
+        #[unsafe(method(coordinatorWithPort:data:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn coordinatorWithPort_data_error(
+            port: libc::mach_port_t,
+            data: &NSData,
+        ) -> Result<Retained<BELayerHierarchyHostingTransactionCoordinator>, Retained<NSError>>;
+
+        #[cfg(all(feature = "block2", feature = "libc"))]
+        /// passes a copy of the send right or `MACH_PORT_NULL` if inert.
+        /// the receiver is responsible for disposing of `copiedPort`.
+        /// the port and data should be consumed together and _only_ once by `init(port:data:)`.
+        #[unsafe(method(encodeWithBlock:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn encodeWithBlock(
+            &self,
+            block: &block2::DynBlock<dyn Fn(libc::mach_port_t, NonNull<NSData>) + '_>,
+        );
     );
 }

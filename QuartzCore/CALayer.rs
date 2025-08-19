@@ -78,6 +78,30 @@ extern "C" {
     pub static CAToneMapModeIfSupported: &'static CAToneMapMode;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cadynamicrange?language=objc)
+// NS_TYPED_ENUM
+pub type CADynamicRange = NSString;
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cadynamicrangeautomatic?language=objc)
+    pub static CADynamicRangeAutomatic: &'static CADynamicRange;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cadynamicrangestandard?language=objc)
+    pub static CADynamicRangeStandard: &'static CADynamicRange;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cadynamicrangeconstrainedhigh?language=objc)
+    pub static CADynamicRangeConstrainedHigh: &'static CADynamicRange;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cadynamicrangehigh?language=objc)
+    pub static CADynamicRangeHigh: &'static CADynamicRange;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -485,11 +509,13 @@ impl CALayer {
         #[unsafe(method_family = none)]
         pub fn setContentsFormat(&self, contents_format: &CALayerContentsFormat);
 
+        #[deprecated = "Use preferredDynamicRange instead"]
         #[unsafe(method(wantsExtendedDynamicRangeContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
 
         /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
+        #[deprecated = "Use preferredDynamicRange instead"]
         #[unsafe(method(setWantsExtendedDynamicRangeContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWantsExtendedDynamicRangeContent(
@@ -505,6 +531,26 @@ impl CALayer {
         #[unsafe(method(setToneMapMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setToneMapMode(&self, tone_map_mode: &CAToneMapMode);
+
+        #[unsafe(method(preferredDynamicRange))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preferredDynamicRange(&self) -> Retained<CADynamicRange>;
+
+        /// Setter for [`preferredDynamicRange`][Self::preferredDynamicRange].
+        #[unsafe(method(setPreferredDynamicRange:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPreferredDynamicRange(&self, preferred_dynamic_range: &CADynamicRange);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(contentsHeadroom))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contentsHeadroom(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentsHeadroom`][Self::contentsHeadroom].
+        #[unsafe(method(setContentsHeadroom:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setContentsHeadroom(&self, contents_headroom: CGFloat);
 
         #[unsafe(method(wantsDynamicContentScaling))]
         #[unsafe(method_family = none)]
@@ -1113,6 +1159,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcacontentsformatgray8uint?language=objc)
     pub static kCAContentsFormatGray8Uint: &'static CALayerContentsFormat;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcacontentsformatautomatic?language=objc)
+    pub static kCAContentsFormatAutomatic: &'static CALayerContentsFormat;
 }
 
 extern "C" {

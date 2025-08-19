@@ -80,6 +80,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresethevc4320x2160?language=objc)
+    pub static AVAssetExportPresetHEVC4320x2160: &'static NSString;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresethevc7680x4320?language=objc)
     pub static AVAssetExportPresetHEVC7680x4320: &'static NSString;
 }
@@ -92,6 +97,16 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetmvhevc1440x1440?language=objc)
     pub static AVAssetExportPresetMVHEVC1440x1440: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetmvhevc4320x4320?language=objc)
+    pub static AVAssetExportPresetMVHEVC4320x4320: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetmvhevc7680x7680?language=objc)
+    pub static AVAssetExportPresetMVHEVC7680x7680: &'static NSString;
 }
 
 extern "C" {

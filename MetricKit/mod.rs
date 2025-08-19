@@ -69,6 +69,9 @@ mod __MXDiagnosticPayload;
 #[cfg(feature = "MXDiskIOMetric")]
 #[path = "MXDiskIOMetric.rs"]
 mod __MXDiskIOMetric;
+#[cfg(feature = "MXDiskSpaceUsageMetric")]
+#[path = "MXDiskSpaceUsageMetric.rs"]
+mod __MXDiskSpaceUsageMetric;
 #[cfg(feature = "MXDiskWriteExceptionDiagnostic")]
 #[path = "MXDiskWriteExceptionDiagnostic.rs"]
 mod __MXDiskWriteExceptionDiagnostic;
@@ -160,6 +163,8 @@ pub use self::__MXDiagnostic::MXDiagnostic;
 pub use self::__MXDiagnosticPayload::MXDiagnosticPayload;
 #[cfg(all(feature = "MXDiskIOMetric", feature = "MXMetric"))]
 pub use self::__MXDiskIOMetric::MXDiskIOMetric;
+#[cfg(all(feature = "MXDiskSpaceUsageMetric", feature = "MXMetric"))]
+pub use self::__MXDiskSpaceUsageMetric::MXDiskSpaceUsageMetric;
 #[cfg(all(feature = "MXDiagnostic", feature = "MXDiskWriteExceptionDiagnostic"))]
 pub use self::__MXDiskWriteExceptionDiagnostic::MXDiskWriteExceptionDiagnostic;
 #[cfg(all(feature = "MXDisplayMetric", feature = "MXMetric"))]

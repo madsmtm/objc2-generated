@@ -16,12 +16,17 @@ extern_class!(
     ///
     /// AVPlayerVideoOutput can be attached to an AVPlayer using AVPlayer's method addVideoOutput:
     /// Note:  An AVPlayerVideoOutput can only be attached to a single player at a time, attempting to attach to multiple player will result in an exception being thrown.
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerVideoOutput;
 );
+
+unsafe impl Send for AVPlayerVideoOutput {}
+
+unsafe impl Sync for AVPlayerVideoOutput {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerVideoOutput {}
@@ -292,11 +297,17 @@ impl AVVideoOutputSpecification {
 extern_class!(
     /// An AVPlayerVideoOutputConfiguration carries an identifier for the AVPlayerItem the configuration is associated with as well as presentation settings for that item.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutputconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerVideoOutputConfiguration;
 );
+
+unsafe impl Send for AVPlayerVideoOutputConfiguration {}
+
+unsafe impl Sync for AVPlayerVideoOutputConfiguration {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerVideoOutputConfiguration {}

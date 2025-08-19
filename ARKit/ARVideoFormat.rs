@@ -72,6 +72,25 @@ impl ARVideoFormat {
         #[unsafe(method_family = none)]
         pub unsafe fn isVideoHDRSupported(&self) -> bool;
 
+        #[cfg(feature = "objc2-av-foundation")]
+        /// The color space ARKit uses to configure the capture session when this video format is selected.
+        #[unsafe(method(defaultColorSpace))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn defaultColorSpace(&self) -> AVCaptureColorSpace;
+
+        #[cfg(feature = "objc2-av-foundation")]
+        /// The default AVCapturePhotoSettings object that ARKit uses when capturing a high resolution frame using this video format.
+        ///
+        /// Calling this getter will return a new instance that may be mutated to customize settings. Pass that instance to
+        /// `captureHighResolutionFrameUsingPhotoSettings:completion:` to capture a high resolution frame with custom settings.
+        ///
+        /// See: [ARSession captureHighResolutionFrameUsingPhotoSettings:completion:]
+        ///
+        /// Returns: An AVCapturePhotoSettings object.
+        #[unsafe(method(defaultPhotoSettings))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn defaultPhotoSettings(&self) -> Retained<AVCapturePhotoSettings>;
+
         /// Unavailable
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

@@ -156,6 +156,70 @@ extern "C" {
     pub static NSUbiquityIdentityDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagersupportedsynccontrols?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileManagerSupportedSyncControls(pub NSUInteger);
+bitflags::bitflags! {
+    impl NSFileManagerSupportedSyncControls: NSUInteger {
+        #[doc(alias = "NSFileManagerSupportedSyncControlsPauseSync")]
+        const PauseSync = 1<<0;
+        #[doc(alias = "NSFileManagerSupportedSyncControlsFailUploadOnConflict")]
+        const FailUploadOnConflict = 1<<1;
+    }
+}
+
+unsafe impl Encode for NSFileManagerSupportedSyncControls {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSFileManagerSupportedSyncControls {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileManagerResumeSyncBehavior(pub NSInteger);
+impl NSFileManagerResumeSyncBehavior {
+    #[doc(alias = "NSFileManagerResumeSyncBehaviorPreserveLocalChanges")]
+    pub const PreserveLocalChanges: Self = Self(0);
+    #[doc(alias = "NSFileManagerResumeSyncBehaviorAfterUploadWithFailOnConflict")]
+    pub const AfterUploadWithFailOnConflict: Self = Self(1);
+    #[doc(alias = "NSFileManagerResumeSyncBehaviorDropLocalChanges")]
+    pub const DropLocalChanges: Self = Self(2);
+}
+
+unsafe impl Encode for NSFileManagerResumeSyncBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSFileManagerResumeSyncBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanageruploadlocalversionconflictpolicy?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSFileManagerUploadLocalVersionConflictPolicy(pub NSInteger);
+impl NSFileManagerUploadLocalVersionConflictPolicy {
+    #[doc(alias = "NSFileManagerUploadConflictPolicyDefault")]
+    pub const ConflictPolicyDefault: Self = Self(0);
+    #[doc(alias = "NSFileManagerUploadConflictPolicyFailOnConflict")]
+    pub const ConflictPolicyFailOnConflict: Self = Self(1);
+}
+
+unsafe impl Encode for NSFileManagerUploadLocalVersionConflictPolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSFileManagerUploadLocalVersionConflictPolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanager?language=objc)
     #[unsafe(super(NSObject))]
@@ -730,6 +794,54 @@ impl NSFileManager {
         pub unsafe fn ubiquityIdentityToken(
             &self,
         ) -> Option<Retained<AnyObject /* NSObjectProtocol+ NSCopying+ NSCoding */>>;
+
+        #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
+        #[unsafe(method(pauseSyncForUbiquitousItemAtURL:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn pauseSyncForUbiquitousItemAtURL_completionHandler(
+            &self,
+            url: &NSURL,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
+        #[unsafe(method(resumeSyncForUbiquitousItemAtURL:withBehavior:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn resumeSyncForUbiquitousItemAtURL_withBehavior_completionHandler(
+            &self,
+            url: &NSURL,
+            behavior: NSFileManagerResumeSyncBehavior,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(all(
+            feature = "NSError",
+            feature = "NSFileVersion",
+            feature = "NSURL",
+            feature = "block2"
+        ))]
+        #[unsafe(method(fetchLatestRemoteVersionOfItemAtURL:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn fetchLatestRemoteVersionOfItemAtURL_completionHandler(
+            &self,
+            url: &NSURL,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileVersion, *mut NSError)>,
+        );
+
+        #[cfg(all(
+            feature = "NSError",
+            feature = "NSFileVersion",
+            feature = "NSURL",
+            feature = "block2"
+        ))]
+        #[unsafe(method(uploadLocalVersionOfUbiquitousItemAtURL:withConflictResolutionPolicy:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn uploadLocalVersionOfUbiquitousItemAtURL_withConflictResolutionPolicy_completionHandler(
+            &self,
+            url: &NSURL,
+            conflict_resolution_policy: NSFileManagerUploadLocalVersionConflictPolicy,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSFileVersion, *mut NSError)>,
+        );
 
         #[cfg(all(
             feature = "NSDictionary",

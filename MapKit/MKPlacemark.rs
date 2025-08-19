@@ -16,6 +16,7 @@ extern_class!(
     #[unsafe(super(CLPlacemark, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-core-location")]
+    #[deprecated = "Use MKMapItem"]
     pub struct MKPlacemark;
 );
 
@@ -59,6 +60,7 @@ impl MKPlacemark {
             coordinate: CLLocationCoordinate2D,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use MKMapItem"]
         #[unsafe(method(initWithCoordinate:addressDictionary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate_addressDictionary(
@@ -77,6 +79,7 @@ impl MKPlacemark {
             postal_address: &CNPostalAddress,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use MKMapItem"]
         #[unsafe(method(countryCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
@@ -95,6 +98,7 @@ impl MKPlacemark {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(initWithPlacemark:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlacemark(

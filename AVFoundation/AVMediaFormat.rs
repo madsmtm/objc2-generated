@@ -53,28 +53,28 @@ extern "C" {
     pub static AVMediaTypeHaptic: Option<&'static AVMediaType>;
 }
 
-/// Indicates that the video range as SDR
-///
-/// Indicates that the video range as HLG
-///
-/// Indicates that the video range as PQ
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorange?language=objc)
 // NS_TYPED_ENUM
 pub type AVVideoRange = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorangesdr?language=objc)
+    /// Indicates that the video range as SDR
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorangesdr?language=objc)
     pub static AVVideoRangeSDR: Option<&'static AVVideoRange>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorangehlg?language=objc)
+    /// Indicates that the video range as HLG
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorangehlg?language=objc)
     pub static AVVideoRangeHLG: Option<&'static AVVideoRange>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorangepq?language=objc)
+    /// Indicates that the video range as PQ
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorangepq?language=objc)
     pub static AVVideoRangePQ: Option<&'static AVVideoRange>;
 }
 
@@ -82,25 +82,25 @@ extern "C" {
     /// mediaType of AVCaptureInputPorts that provide AVMetadataObjects.
     ///
     /// Prior to iOS 9.0, camera AVCaptureDeviceInputs provide metadata (detected faces and barcodes) to an
-    /// AVCaptureMetadataOutput through an AVCaptureInputPort whose mediaType is AVMediaTypeMetadata.  The
+    /// AVCaptureMetadataOutput through an AVCaptureInputPort whose mediaType is AVMediaTypeMetadata. The
     /// AVCaptureMetadataOutput presents metadata to the client as an array of AVMetadataObjects, which are
-    /// defined by Apple and not externally subclassable.  Starting in iOS 9.0, clients may record arbitrary
-    /// metadata to a movie file using the AVCaptureMovieFileOutput.  The movie file output consumes metadata
+    /// defined by Apple and not externally subclassable. Starting in iOS 9.0, clients may record arbitrary
+    /// metadata to a movie file using the AVCaptureMovieFileOutput. The movie file output consumes metadata
     /// in a different format than the AVCaptureMetadataOutput, namely it accepts CMSampleBuffers of type
-    /// 'meta'.  Starting in iOS 9.0, two types of AVCaptureInput can produce suitable metadata for the
+    /// 'meta'. Starting in iOS 9.0, two types of AVCaptureInput can produce suitable metadata for the
     /// movie file output.
     ///
     /// <ul>
     /// <li>
     /// The camera AVCaptureDeviceInput now presents an additional AVCaptureInputPort for recording detected
     /// faces to a movie file. When linked on or after iOS 9, ports that deliver AVCaptureMetadataObjects have a
-    /// mediaType of AVMediaTypeMetadataObject rather than AVMediaTypeMetadata.  Input ports that deliver CMSampleBuffer
+    /// mediaType of AVMediaTypeMetadataObject rather than AVMediaTypeMetadata. Input ports that deliver CMSampleBuffer
     /// metadata have a mediaType of AVMediaTypeMetadata.
     /// </li>
     ///
     /// <li>
     /// New to iOS 9 is the AVCaptureMetadataInput, which allows clients to record arbitrary metadata to a movie
-    /// file.  Clients package metadata as an AVTimedMetadataGroup, the AVCaptureMetadataInput presents a port of mediaType
+    /// file. Clients package metadata as an AVTimedMetadataGroup, the AVCaptureMetadataInput presents a port of mediaType
     /// AVMediaTypeMetadata, and when connected to a movie file output, transforms the timed metadata group's AVMetadataItems
     /// into CMSampleBuffers which can be written to the movie file.
     /// </li>
@@ -466,6 +466,37 @@ extern "C" {
         Option<&'static AVMediaCharacteristic>;
 }
 
+extern "C" {
+    /// A media characteristic that indicates the video track carries information related to how it should be projected for display.
+    ///
+    /// This media characteristic is currently synthesized if the CMVideoFormatDescription specifies a non-rectilinear projection. To determine which kind of projection is indicated, look for the format description extension with key kCMFormatDescriptionExtension_ProjectionKind.
+    /// The value of this characteristic is
+    /// @
+    /// “public.indicates-non-rectilinear-projection".
+    /// Note for content authors: the presence of this characteristic is strictly inferred from the format description of the associated track.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicindicatesnonrectilinearprojection?language=objc)
+    pub static AVMediaCharacteristicIndicatesNonRectilinearProjection:
+        Option<&'static AVMediaCharacteristic>;
+}
+
+extern "C" {
+    /// A media characteristic that indicates that a track was generated in an automated fashion by a machine.
+    ///
+    /// This media characteristic can be used to distinguish machine generated content from human authored content.
+    /// The value of this characteristic is
+    /// @
+    /// “public.machine-generated".
+    ///
+    /// Note for content authors: for QuickTime movie and .m4v files and for HTTP Live Streaming, a media option is considered to have the characteristic AVMediaCharacteristicIsOriginalContent only if it's explicitly tagged with the characteristic.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicmachinegenerated?language=objc)
+    pub static AVMediaCharacteristicMachineGenerated: Option<&'static AVMediaCharacteristic>;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletype?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type AVFileType = NSString;
@@ -752,6 +783,18 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeahap?language=objc)
     pub static AVFileTypeAHAP: Option<&'static AVFileType>;
+}
+
+extern "C" {
+    /// A UTI for the Digital Imaging and Communications in Medicine (DICOM) file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// org.nema.dicom".
+    /// Files are identified with the .dcm extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypedicom?language=objc)
+    pub static AVFileTypeDICOM: Option<&'static AVFileType>;
 }
 
 extern "C" {

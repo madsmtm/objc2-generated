@@ -230,6 +230,13 @@ impl AVError {
     pub const MediaExtensionDisabled: Self = Self(-11886);
     #[doc(alias = "AVErrorMediaExtensionConflict")]
     pub const MediaExtensionConflict: Self = Self(-11887);
+    #[doc(
+        alias = "AVErrorContentKeyRequestPlaybackDestinationDoesNotSupportDeviceIdentifierRandomization"
+    )]
+    pub const ContentKeyRequestPlaybackDestinationDoesNotSupportDeviceIdentifierRandomization:
+        Self = Self(-11888);
+    #[doc(alias = "AVErrorContentKeyInvalid")]
+    pub const ContentKeyInvalid: Self = Self(-11889);
 }
 
 unsafe impl Encode for AVError {

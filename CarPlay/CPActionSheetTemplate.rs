@@ -12,6 +12,7 @@ extern_class!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpactionsheettemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPActionSheetTemplate;
@@ -60,7 +61,7 @@ impl CPActionSheetTemplate {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]

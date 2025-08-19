@@ -48,6 +48,39 @@ impl TKSmartCardSlotManager {
         #[unsafe(method(slotNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn slotNamed(&self, name: &NSString) -> Option<Retained<TKSmartCardSlot>>;
+
+        #[cfg(all(feature = "TKSmartCardSlotNFCSession", feature = "block2"))]
+        /// Creates an NFC smart card slot using the device's hardware and presents a system UI.
+        ///
+        /// Parameter `message`: Message shown in the system-presented UI
+        ///
+        /// Parameter `completion`: Completion handler which returns the NFC session of the created slot or an error on failure.
+        /// If an NFC slot already exists and current caller is not the initial creator `TKErrorCodeObjectNotFound` error is returned.
+        ///
+        ///
+        /// To finish the NFC session and dismiss the system-presented UI use `TKSmartCardSlotNFCSession.endSession`.
+        ///
+        ///
+        /// Warning: Caller requires `com.apple.developer.nfc.readersession.iso7816.select-identifiers` Info.plist record which specifies application identifiers of the NFC cards
+        ///
+        /// ```text
+        ///  https://developer.apple.com/documentation/bundleresources/information-property-list/com.apple.developer.nfc.readersession.iso7816.select-identifiers
+        /// ```
+        #[unsafe(method(createNFCSlotWithMessage:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn createNFCSlotWithMessage_completion(
+            &self,
+            message: Option<&NSString>,
+            completion: &block2::DynBlock<dyn Fn(*mut TKSmartCardSlotNFCSession, *mut NSError)>,
+        );
+
+        /// Determines whether NFC (Near Field Communication) is supported on this device.
+        ///
+        ///
+        /// Returns: `YES` if NFC is supported and available for use, NO otherwise.
+        #[unsafe(method(isNFCSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isNFCSupported(&self) -> bool;
     );
 }
 

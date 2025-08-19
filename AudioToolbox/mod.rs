@@ -346,6 +346,8 @@ pub use self::__AUComponent::kAudioUnitSetPropertySelect;
 #[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::kAudioUnitSubType_3DMixer;
 #[cfg(feature = "AUComponent")]
+pub use self::__AUComponent::kAudioUnitSubType_AUAudioMix;
+#[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::kAudioUnitSubType_AUConverter;
 #[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::kAudioUnitSubType_AUFilter;
@@ -770,6 +772,50 @@ pub use self::__AudioCodec::kAudioCodecBitRateFormat_CBR;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecBitRateFormat_VBR;
 #[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AV_Spatial_Live;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AV_Spatial_Offline;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AV_Traditional_Live;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AV_Traditional_Offline;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AppleAV_Spatial_Live;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AppleAV_Spatial_Offline;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AppleAV_Traditional_Live;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AppleAV_Traditional_Offline;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AppleCapture_Spatial;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AppleCapture_Spatial_Enhanced;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AppleCapture_Traditional;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AppleMusic_Spatial;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_AppleMusic_Traditional;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_ApplePassthrough;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_Capture_Spatial;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_Capture_Spatial_Enhanced;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_Capture_Traditional;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_Music_Spatial;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_Music_Traditional;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_Passthrough;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_Reserved;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecContentSource_Unspecified;
+#[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecDelayMode_Compatibility;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecDelayMode_Minimum;
@@ -777,6 +823,16 @@ pub use self::__AudioCodec::kAudioCodecDelayMode_Minimum;
 pub use self::__AudioCodec::kAudioCodecDelayMode_Optimal;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecDoesSampleRateConversion;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecDynamicRangeControlConfiguration_Capture;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecDynamicRangeControlConfiguration_Movie;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecDynamicRangeControlConfiguration_Music;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecDynamicRangeControlConfiguration_None;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecDynamicRangeControlConfiguration_Speech;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecExtendFrequencies;
 #[cfg(feature = "AudioCodec")]
@@ -826,6 +882,8 @@ pub use self::__AudioCodec::kAudioCodecProduceOutputPacketSuccessConcealed;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecProduceOutputPacketSuccessHasMore;
 #[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecPropertyASPFrequency;
+#[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecPropertyAdjustCompressionProfile;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecPropertyAdjustLocalQuality;
@@ -862,6 +920,8 @@ pub use self::__AudioCodec::kAudioCodecPropertyBitRateControlMode;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecPropertyBitRateForVBR;
 #[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecPropertyContentSource;
+#[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecPropertyCurrentInputChannelLayout;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecPropertyCurrentInputFormat;
@@ -879,6 +939,8 @@ pub use self::__AudioCodec::kAudioCodecPropertyCurrentTargetBitRate;
 pub use self::__AudioCodec::kAudioCodecPropertyDelayMode;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecPropertyDoesSampleRateConversion;
+#[cfg(feature = "AudioCodec")]
+pub use self::__AudioCodec::kAudioCodecPropertyDynamicRangeControlConfiguration;
 #[cfg(feature = "AudioCodec")]
 pub use self::__AudioCodec::kAudioCodecPropertyDynamicRangeControlMode;
 #[cfg(feature = "AudioCodec")]
@@ -1289,6 +1351,8 @@ pub use self::__AudioConverter::kDitherAlgorithm_NoiseShaping;
 pub use self::__AudioConverter::kDitherAlgorithm_TPDF;
 #[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
 pub use self::__AudioConverter::AudioConverterComplexInputDataProc;
+#[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
+pub use self::__AudioConverter::AudioConverterComplexInputDataProcRealtimeSafe;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::AudioConverterConvertBuffer;
 #[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
@@ -1299,6 +1363,10 @@ pub use self::__AudioConverter::AudioConverterDispose;
 pub use self::__AudioConverter::AudioConverterFillBuffer;
 #[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
 pub use self::__AudioConverter::AudioConverterFillComplexBuffer;
+#[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
+pub use self::__AudioConverter::AudioConverterFillComplexBufferRealtimeSafe;
+#[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
+pub use self::__AudioConverter::AudioConverterFillComplexBufferWithPacketDependencies;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::AudioConverterGetProperty;
 #[cfg(feature = "AudioConverter")]
@@ -1645,6 +1713,8 @@ pub use self::__AudioFile::AudioFileTypeID;
 pub use self::__AudioFile::AudioFileWriteBytes;
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
 pub use self::__AudioFile::AudioFileWritePackets;
+#[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
+pub use self::__AudioFile::AudioFileWritePacketsWithDependencies;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFile_GetSizeProc;
 #[cfg(feature = "AudioFile")]
@@ -1988,6 +2058,8 @@ pub use self::__AudioQueue::kAudioQueueProperty_EnableLevelMetering;
 #[cfg(feature = "AudioQueue")]
 pub use self::__AudioQueue::kAudioQueueProperty_EnableTimePitch;
 #[cfg(feature = "AudioQueue")]
+pub use self::__AudioQueue::kAudioQueueProperty_IntendedSpatialExperience;
+#[cfg(feature = "AudioQueue")]
 pub use self::__AudioQueue::kAudioQueueProperty_IsRunning;
 #[cfg(feature = "AudioQueue")]
 pub use self::__AudioQueue::kAudioQueueProperty_MagicCookie;
@@ -2147,6 +2219,8 @@ pub use self::__AudioQueue::OpaqueAudioQueueTimeline;
 pub use self::__AudioServices::kAudioServicesBadPropertySizeError;
 #[cfg(feature = "AudioServices")]
 pub use self::__AudioServices::kAudioServicesBadSpecifierSizeError;
+#[cfg(all(feature = "AudioServices", feature = "objc2-core-foundation"))]
+pub use self::__AudioServices::kAudioServicesDetailIntendedSpatialExperience;
 #[cfg(feature = "AudioServices")]
 pub use self::__AudioServices::kAudioServicesNoError;
 #[cfg(feature = "AudioServices")]
@@ -2183,10 +2257,22 @@ pub use self::__AudioServices::AudioServicesGetPropertyInfo;
 pub use self::__AudioServices::AudioServicesPlayAlertSound;
 #[cfg(all(feature = "AudioServices", feature = "block2"))]
 pub use self::__AudioServices::AudioServicesPlayAlertSoundWithCompletion;
+#[cfg(all(
+    feature = "AudioServices",
+    feature = "block2",
+    feature = "objc2-core-foundation"
+))]
+pub use self::__AudioServices::AudioServicesPlayAlertSoundWithDetails;
 #[cfg(feature = "AudioServices")]
 pub use self::__AudioServices::AudioServicesPlaySystemSound;
 #[cfg(all(feature = "AudioServices", feature = "block2"))]
 pub use self::__AudioServices::AudioServicesPlaySystemSoundWithCompletion;
+#[cfg(all(
+    feature = "AudioServices",
+    feature = "block2",
+    feature = "objc2-core-foundation"
+))]
+pub use self::__AudioServices::AudioServicesPlaySystemSoundWithDetails;
 #[cfg(feature = "AudioServices")]
 pub use self::__AudioServices::AudioServicesPropertyID;
 #[cfg(feature = "AudioServices")]
@@ -2473,6 +2559,10 @@ pub use self::__AudioUnitParameters::k3DMixerParam_PreAveragePower;
 pub use self::__AudioUnitParameters::k3DMixerParam_PrePeakHoldLevel;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitParameters"))]
 pub use self::__AudioUnitParameters::k3DMixerParam_ReverbBlend;
+#[cfg(all(feature = "AUComponent", feature = "AudioUnitParameters"))]
+pub use self::__AudioUnitParameters::kAUAudioMixParameter_RemixAmount;
+#[cfg(all(feature = "AUComponent", feature = "AudioUnitParameters"))]
+pub use self::__AudioUnitParameters::kAUAudioMixParameter_Style;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitParameters"))]
 pub use self::__AudioUnitParameters::kAUGroupParameterID_AllNotesOff;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitParameters"))]
@@ -2983,6 +3073,12 @@ pub use self::__AudioUnitParameters::kTimePitchParam_Rate;
 pub use self::__AudioUnitParameters::kVarispeedParam_PlaybackCents;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitParameters"))]
 pub use self::__AudioUnitParameters::kVarispeedParam_PlaybackRate;
+#[cfg(feature = "AudioUnitParameters")]
+pub use self::__AudioUnitParameters::AUAudioMixRenderingStyle;
+#[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
+pub use self::__AudioUnitProperties::kAUAudioMixProperty_EnableSpatialization;
+#[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
+pub use self::__AudioUnitProperties::kAUAudioMixProperty_SpatialAudioMixMetadata;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
 pub use self::__AudioUnitProperties::kAUMIDISynthProperty_EnablePreload;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
@@ -3119,6 +3215,8 @@ pub use self::__AudioUnitProperties::kAudioOutputUnitProperty_HasIO;
 pub use self::__AudioUnitProperties::kAudioOutputUnitProperty_HostReceivesRemoteControlEvents;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
 pub use self::__AudioUnitProperties::kAudioOutputUnitProperty_HostTransportState;
+#[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
+pub use self::__AudioUnitProperties::kAudioOutputUnitProperty_IntendedSpatialExperience;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
 pub use self::__AudioUnitProperties::kAudioOutputUnitProperty_IsRunning;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]

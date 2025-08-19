@@ -32,6 +32,7 @@ unsafe impl RefEncode for CPInformationTemplateLayout {
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinformationtemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPInformationTemplate;
@@ -141,6 +142,6 @@ impl CPInformationTemplate {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

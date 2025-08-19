@@ -114,9 +114,6 @@ mod __ARPlaneGeometry;
 #[cfg(feature = "ARPointCloud")]
 #[path = "ARPointCloud.rs"]
 mod __ARPointCloud;
-#[cfg(feature = "ARQuickLookPreviewItem")]
-#[path = "ARQuickLookPreviewItem.rs"]
-mod __ARQuickLookPreviewItem;
 #[cfg(feature = "ARRaycastQuery")]
 #[path = "ARRaycastQuery.rs"]
 mod __ARRaycastQuery;
@@ -415,8 +412,6 @@ pub use self::__ARPlaneDetectionTypes::ARPlaneDetection;
 pub use self::__ARPlaneGeometry::ARPlaneGeometry;
 #[cfg(all(feature = "ARPointCloud", feature = "objc2"))]
 pub use self::__ARPointCloud::ARPointCloud;
-#[cfg(all(feature = "ARQuickLookPreviewItem", feature = "objc2"))]
-pub use self::__ARQuickLookPreviewItem::ARQuickLookPreviewItem;
 #[cfg(all(feature = "ARRaycastQuery", feature = "objc2"))]
 pub use self::__ARRaycastQuery::ARRaycastQuery;
 #[cfg(all(feature = "ARRaycastQuery", feature = "objc2"))]

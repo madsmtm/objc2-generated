@@ -485,6 +485,108 @@ impl FSBlockDeviceResource {
     );
 }
 
+extern_class!(
+    /// A resource representing an abstract URL
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsgenericurlresource?language=objc)
+    #[unsafe(super(FSResource, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct FSGenericURLResource;
+);
+
+extern_conformance!(
+    unsafe impl NSCoding for FSGenericURLResource {}
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for FSGenericURLResource {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for FSGenericURLResource {}
+);
+
+impl FSGenericURLResource {
+    extern_methods!(
+        #[unsafe(method(url))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn url(&self) -> Retained<NSURL>;
+
+        #[unsafe(method(initWithURL:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl FSGenericURLResource {
+    extern_methods!(
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// A resource representing a path
+    ///
+    /// Represents a file path (possibly security scoped URL).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fspathurlresource?language=objc)
+    #[unsafe(super(FSResource, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct FSPathURLResource;
+);
+
+extern_conformance!(
+    unsafe impl NSCoding for FSPathURLResource {}
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for FSPathURLResource {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for FSPathURLResource {}
+);
+
+impl FSPathURLResource {
+    extern_methods!(
+        #[unsafe(method(url))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn url(&self) -> Retained<NSURL>;
+
+        #[unsafe(method(initWithURL:writable:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithURL_writable(
+            this: Allocated<Self>,
+            url: &NSURL,
+            writable: bool,
+        ) -> Retained<Self>;
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(isWritable))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isWritable(&self) -> bool;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl FSPathURLResource {
+    extern_methods!(
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
 extern_protocol!(
     /// Maintenance operations for a file system's resources.
     ///

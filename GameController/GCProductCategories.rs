@@ -32,6 +32,13 @@ extern "C" {
 }
 
 extern "C" {
+    /// The category for game controller products that support 6DoF tracking on visionOS.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryspatialcontroller?language=objc)
+    pub static GCProductCategorySpatialController: Option<&'static NSString>;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryarcadestick?language=objc)
     pub static GCProductCategoryArcadeStick: Option<&'static NSString>;
 }
@@ -86,4 +93,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorykeyboard?language=objc)
     pub static GCProductCategoryKeyboard: Option<&'static NSString>;
+}
+
+extern "C" {
+    /// The category for stylus products that support 6DoF tracking on visionOS.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryspatialstylus?language=objc)
+    pub static GCProductCategorySpatialStylus: Option<&'static NSString>;
 }

@@ -116,6 +116,10 @@ impl HKObjectType {
         #[unsafe(method_family = none)]
         pub unsafe fn electrocardiogramType() -> Retained<HKElectrocardiogramType>;
 
+        #[unsafe(method(medicationDoseEventType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn medicationDoseEventType() -> Retained<HKMedicationDoseEventType>;
+
         #[unsafe(method(visionPrescriptionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn visionPrescriptionType() -> Retained<HKPrescriptionType>;
@@ -123,6 +127,10 @@ impl HKObjectType {
         #[unsafe(method(stateOfMindType))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateOfMindType() -> Retained<HKStateOfMindType>;
+
+        #[unsafe(method(userAnnotatedMedicationType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn userAnnotatedMedicationType() -> Retained<HKUserAnnotatedMedicationType>;
 
         /// Returns YES if the authorization for the object type needs to be requested on per object basis.
         #[unsafe(method(requiresPerObjectAuthorization))]
@@ -798,6 +806,61 @@ impl HKElectrocardiogramType {
 }
 
 extern_class!(
+    /// Represents a recorded log of a specific medication, represented by HKMedicationDoseEvent samples.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseeventtype?language=objc)
+    #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct HKMedicationDoseEventType;
+);
+
+unsafe impl Send for HKMedicationDoseEventType {}
+
+unsafe impl Sync for HKMedicationDoseEventType {}
+
+extern_conformance!(
+    unsafe impl NSCoding for HKMedicationDoseEventType {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for HKMedicationDoseEventType {}
+);
+
+unsafe impl CopyingHelper for HKMedicationDoseEventType {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKMedicationDoseEventType {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKMedicationDoseEventType {}
+);
+
+impl HKMedicationDoseEventType {
+    extern_methods!();
+}
+
+/// Methods declared on superclass `HKObjectType`.
+impl HKMedicationDoseEventType {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl HKMedicationDoseEventType {
+    extern_methods!(
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
     /// Represents a prescription type
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprescriptiontype?language=objc)
@@ -955,6 +1018,61 @@ impl HKStateOfMindType {
 
 /// Methods declared on superclass `NSObject`.
 impl HKStateOfMindType {
+    extern_methods!(
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// Represents the set of authorizeable HKUserAnnotatedMedications.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedicationtype?language=objc)
+    #[unsafe(super(HKObjectType, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct HKUserAnnotatedMedicationType;
+);
+
+unsafe impl Send for HKUserAnnotatedMedicationType {}
+
+unsafe impl Sync for HKUserAnnotatedMedicationType {}
+
+extern_conformance!(
+    unsafe impl NSCoding for HKUserAnnotatedMedicationType {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for HKUserAnnotatedMedicationType {}
+);
+
+unsafe impl CopyingHelper for HKUserAnnotatedMedicationType {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for HKUserAnnotatedMedicationType {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for HKUserAnnotatedMedicationType {}
+);
+
+impl HKUserAnnotatedMedicationType {
+    extern_methods!();
+}
+
+/// Methods declared on superclass `HKObjectType`.
+impl HKUserAnnotatedMedicationType {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl HKUserAnnotatedMedicationType {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]

@@ -188,6 +188,23 @@ extern "C" {
 }
 
 extern "C" {
+    /// A Boolean value to control whether an image created with a CVPixelBuffer or an IOSurface
+    /// should be cropped and offset according clean aperture attachments.
+    ///
+    /// For a `CVPixelBuffer` this will use `kCVImageBufferPreferredCleanApertureKey`
+    /// or `kCVImageBufferCleanApertureKey`.
+    ///
+    /// If the value for this option is:
+    /// * True: then image will be cropped and offset to the clean aperture.
+    /// * False: then the full image is returned.
+    /// * ``CIVector`` : then use it as a `CGRect` to crop and offset.
+    /// * Not specified : then it will behave as if False was specified.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageapplycleanaperture?language=objc)
+    pub static kCIImageApplyCleanAperture: &'static CIImageOption;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagetonemaphdrtosdr?language=objc)
     pub static kCIImageToneMapHDRtoSDR: &'static CIImageOption;
 }
@@ -198,8 +215,23 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagecontentheadroom?language=objc)
+    /// A value for overriding the automatic behavior of the Content Headroom property
+    /// when creating an image.
+    ///
+    /// The value for this key should be an `NSNumber` instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagecontentheadroom?language=objc)
     pub static kCIImageContentHeadroom: &'static CIImageOption;
+}
+
+extern "C" {
+    /// A value for overriding the automatic behavior of the Content Average Light Level property
+    /// when creating an image.
+    ///
+    /// The value for this key should be an `NSNumber` instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagecontentaveragelightlevel?language=objc)
+    pub static kCIImageContentAverageLightLevel: &'static CIImageOption;
 }
 
 extern "C" {
@@ -283,6 +315,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIImage;
 );
+
+unsafe impl Send for CIImage {}
+
+unsafe impl Sync for CIImage {}
 
 extern_conformance!(
     unsafe impl NSCoding for CIImage {}
@@ -775,6 +811,12 @@ impl CIImage {
         #[unsafe(method_family = none)]
         pub unsafe fn imageBySettingAlphaOneInExtent(&self, extent: CGRect) -> Retained<CIImage>;
 
+        /// Create an image by applying a gaussian blur to the receiver.
+        /// - Parameters:
+        /// - sigma: The sigma of the gaussian blur to apply to the receiver.
+        /// If the sigma is very small (less than `0.16`) then the receiver is returned.
+        /// - Returns:
+        /// An autoreleased ``CIImage`` instance or the received image.
         #[unsafe(method(imageByApplyingGaussianBlurWithSigma:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByApplyingGaussianBlurWithSigma(
@@ -782,6 +824,16 @@ impl CIImage {
             sigma: c_double,
         ) -> Retained<CIImage>;
 
+        /// Return a new image by changing the receiver's metadata properties.
+        ///
+        /// When you create an image, Core Image sets an image’s properties to a metadata
+        /// dictionary as described here: ``properties``.
+        /// Use this method to override an image’s metadata properties with new values.
+        ///
+        /// - Parameters:
+        /// - properties: A dictionary of metadata properties akin to the `CGImageSourceCopyPropertiesAtIndex()` function.
+        /// - Returns:
+        /// An autoreleased ``CIImage`` instance with a copy of the new properties.
         #[unsafe(method(imageBySettingProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageBySettingProperties(
@@ -789,26 +841,76 @@ impl CIImage {
             properties: &NSDictionary,
         ) -> Retained<CIImage>;
 
+        /// Create an image by changing the receiver's sample mode to bilinear interpolation.
+        /// - Returns:
+        /// An autoreleased ``CIImage`` instance with a bilinear sampling.
         #[unsafe(method(imageBySamplingLinear))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageBySamplingLinear(&self) -> Retained<CIImage>;
 
+        /// Create an image by changing the receiver's sample mode to nearest neighbor.
+        /// - Returns:
+        /// An autoreleased ``CIImage`` instance with a nearest sampling.
         #[unsafe(method(imageBySamplingNearest))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageBySamplingNearest(&self) -> Retained<CIImage>;
 
+        /// Create an image that inserts a intermediate that is cacheable
+        ///
+        /// This intermediate will be not be cached if ``kCIContextCacheIntermediates`` is false.
+        /// - Returns:
+        /// An autoreleased ``CIImage``.
         #[unsafe(method(imageByInsertingIntermediate))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByInsertingIntermediate(&self) -> Retained<CIImage>;
 
+        /// Create an image that inserts a intermediate that is cacheable.
+        ///
+        /// - Parameters:
+        /// - cache: Controls if Core Image caches the returned image.
+        /// * `YES` : This intermediate will be cacheable even if
+        /// ``kCIContextCacheIntermediates`` is false.
+        /// * `NO`  : the intermediate will be not be cached if
+        /// ``kCIContextCacheIntermediates`` is false.
+        /// - Returns:
+        /// An autoreleased ``CIImage``.
         #[unsafe(method(imageByInsertingIntermediate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByInsertingIntermediate_(&self, cache: bool) -> Retained<CIImage>;
 
+        /// Create an image that inserts a intermediate that is cached in tiles
+        ///
+        /// This intermediate will be cacheable even if ``kCIContextCacheIntermediates`` is false.
+        /// - Returns:
+        /// An autoreleased ``CIImage``.
+        #[unsafe(method(imageByInsertingTiledIntermediate))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn imageByInsertingTiledIntermediate(&self) -> Retained<CIImage>;
+
+        /// Create an image that applies a gain map Core Image image to the received Core Image image.
+        ///
+        /// The gain map image can be obtained by creating a ``CIImage`` instance from `NSURL`/`NSData`
+        /// and setting the ``kCIImageAuxiliaryHDRGainMap`` option set to `
+        /// `true``.
+        ///
+        /// If the gain map ``CIImage`` instance doesn't have the needed ``properties`` metadata,
+        /// the received image will be returned as-is.
+        ///
+        /// - Returns:
+        /// An autoreleased ``CIImage`` instance or the received image.
         #[unsafe(method(imageByApplyingGainMap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByApplyingGainMap(&self, gainmap: &CIImage) -> Retained<CIImage>;
 
+        /// Create an image that applies a gain map Core Image image with a specified headroom to the received Core Image image.
+        ///
+        /// - Parameters:
+        /// - gainmap: The gain map ``CIImage`` instance to apply to the receiver.
+        /// - headroom: a float value that specify how much headroom the resulting image should have.
+        /// The headroom value will be limited to between 1.0 (i.e. SDR) and
+        /// the full headroom allowed by the gain map.
+        /// - Returns:
+        /// An autoreleased ``CIImage`` instance or the received image.
         #[unsafe(method(imageByApplyingGainMap:headroom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByApplyingGainMap_headroom(
@@ -817,15 +919,54 @@ impl CIImage {
             headroom: c_float,
         ) -> Retained<CIImage>;
 
+        /// Create an image by changing the receiver's contentHeadroom property.
+        ///
+        /// Changing this value will alter the behavior of the `CIToneMapHeadroom` and `CISystemToneMap` filters.
+        /// * If the value is set to 0.0 then the returned image's headroom is unknown.
+        /// * If the value is set to 1.0 then the returned image is SDR.
+        /// * If the value is set to greater 1.0 then the returned image is HDR.
+        /// * Otherwise the returned image's headroom is unknown.
+        ///
+        /// - Returns:
+        /// An autoreleased ``CIImage``.
+        #[unsafe(method(imageBySettingContentHeadroom:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn imageBySettingContentHeadroom(&self, headroom: c_float) -> Retained<CIImage>;
+
+        /// Create an image by changing the receiver's contentAverageLightLevel property.
+        ///
+        /// Changing this value will alter the behavior of the `CIToneMapHeadroom` and `CISystemToneMap` filters.
+        /// * If the value is set to 0.0 or less then the returned image's ``contentAverageLightLevel`` is unknown.
+        ///
+        /// - Returns:
+        /// An autoreleased ``CIImage``.
+        #[unsafe(method(imageBySettingContentAverageLightLevel:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn imageBySettingContentAverageLightLevel(
+            &self,
+            average: c_float,
+        ) -> Retained<CIImage>;
+
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns a rectangle the defines the bounds of non-(0,0,0,0) pixels in the image.
+        /// > Note: the ``extent`` of `CIImage`` may be infinite or have a non-zero origin.
         #[unsafe(method(extent))]
         #[unsafe(method_family = none)]
         pub unsafe fn extent(&self) -> CGRect;
 
+        /// Returns YES if the image is known to have and alpha value of `1.0` over the entire image extent.
         #[unsafe(method(isOpaque))]
         #[unsafe(method_family = none)]
         pub unsafe fn isOpaque(&self) -> bool;
 
+        /// Returns the metadata properties dictionary of the image.
+        ///
+        /// If the ``CIImage`` was created from `NSURL` or `NSData` then this dictionary is determined by calling `CGImageSourceCopyPropertiesAtIndex()`.
+        ///
+        /// If the ``CIImage`` was created with the ``kCIImageProperties`` option, then that dictionary is returned.
+        ///
+        /// If the ``CIImage`` was created by applying ``CIFilter-class`` or ``CIKernel`` then the
+        /// properties of the root inputImage will be returned.
         #[unsafe(method(properties))]
         #[unsafe(method_family = none)]
         pub unsafe fn properties(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
@@ -844,9 +985,54 @@ impl CIImage {
         #[unsafe(method_family = none)]
         pub unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
+        /// Returns the content headroom of the image.
+        ///
+        /// If the image headroom is unknown, then the value 0.0 will be returned.
+        ///
+        /// If the image headroom is known, then a value greater than or equal to 1.0 will be returned.
+        /// A value of 1.0 will be returned if the image is SDR.
+        /// A value greater than 1.0 will be returned if the image is HDR.
+        ///
+        /// The image headroom may known when a CIImage is first initialized.
+        /// If the a CIImage is initialized using:
+        /// * `NSURL` or `NSData` : the headroom may be determined by associated metadata
+        /// or deduced from pixel format or colorSpace information.
+        /// * `CGImage` : headroom may be determined by `CGImageGetHeadroomInfo()`
+        /// or deduced from pixel format or colorSpace information.
+        /// * `IOSurface` : then the headroom will be determined by `kIOSurfaceContentHeadroom`.
+        /// or deduced from pixel format or colorSpace information.
+        /// * `CVPixelBuffer` : then the headroom will be determined by `kCVImageBufferContentLightLevelInfoKey`.
+        /// or deduced from pixel format or colorSpace information.
+        /// * `BitmapData` : headroom may be deduced from pixel format or colorSpace information.
+        ///
+        /// If the image is the result of applying a ``CIFilter-class`` or ``CIKernel``, this method will return `0.0`.
+        ///
+        /// There are exceptions to this.  Applying a `CIWarpKernel`` or certain ``CIFilter-class``
+        /// (e.g. `CIGaussianBlur`, `CILanczosScaleTransform`, `CIAreaAverage` and some others)
+        /// to an image will result in a ``CIImage`` instance with the same `contentHeadroom` property value.
         #[unsafe(method(contentHeadroom))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentHeadroom(&self) -> c_float;
+
+        /// Returns the content average light level of the image.
+        ///
+        /// If the image average light level is unknown, then the value 0.0 will be returned.
+        ///
+        /// If the image headroom is known, then a value greater than or equal to 0.0 will be returned.
+        ///
+        /// The image average light level may known when a CIImage is first initialized.
+        /// If the a CIImage is initialized with a:
+        /// * `CGImage` : then the headroom will be determined by `CGImageGetContentAverageLightLevel()`.
+        /// * `CVPixelBuffer` : then the headroom will be determined by `kCVImageBufferContentLightLevelInfoKey`.
+        ///
+        /// If the image is the result of applying a ``CIFilter-class`` or ``CIKernel``, this property will return `0.0`.
+        ///
+        /// There are exceptions to this.  Applying a ``CIWarpKernel`` or certain ``CIFilter-class``
+        /// (e.g. `CIGaussianBlur`, `CILanczosScaleTransform`, `CIAreaAverage` and some others)
+        /// to an image will result in a ``CIImage`` instance with the same `contentAverageLightLevel` property value.
+        #[unsafe(method(contentAverageLightLevel))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contentAverageLightLevel(&self) -> c_float;
 
         #[cfg(feature = "objc2-core-video")]
         #[unsafe(method(pixelBuffer))]
@@ -859,6 +1045,12 @@ impl CIImage {
         pub unsafe fn CGImage(&self) -> Option<Retained<CGImage>>;
 
         #[cfg(feature = "objc2-metal")]
+        /// Returns a Metal Texture if the Core Image image was created with a texture.
+        ///
+        /// This will return non-nil if the image was created with ``/CIImage/imageWithMTLTexture:options:`` and no options.
+        /// Otherwise this property will be `nil` you should instead call
+        /// ``/CIContext/render:toMTLTexture:commandBuffer:bounds:colorSpace:``.
+        /// > Warning: Modifying the contents of this texture will cause the ``CIImage`` instance to render with incorrect results.
         #[unsafe(method(metalTexture))]
         #[unsafe(method_family = none)]
         pub unsafe fn metalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;

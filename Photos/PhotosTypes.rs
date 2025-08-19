@@ -192,6 +192,8 @@ impl PHAssetCollectionSubtype {
     pub const SmartAlbumCinematic: Self = Self(218);
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSpatial")]
     pub const SmartAlbumSpatial: Self = Self(219);
+    #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumScreenRecordings")]
+    pub const SmartAlbumScreenRecordings: Self = Self(220);
     #[doc(alias = "PHAssetCollectionSubtypeAny")]
     pub const Any: Self = Self(NSIntegerMax as _);
 }
@@ -305,6 +307,8 @@ bitflags::bitflags! {
         const VideoHighFrameRate = 1<<17;
         #[doc(alias = "PHAssetMediaSubtypeVideoTimelapse")]
         const VideoTimelapse = 1<<18;
+        #[doc(alias = "PHAssetMediaSubtypeVideoScreenRecording")]
+        const VideoScreenRecording = 1<<19;
         #[doc(alias = "PHAssetMediaSubtypeVideoCinematic")]
         const VideoCinematic = 1<<21;
     }

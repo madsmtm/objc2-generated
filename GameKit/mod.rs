@@ -39,6 +39,9 @@ mod __GKBasePlayer;
 #[cfg(feature = "GKChallenge")]
 #[path = "GKChallenge.rs"]
 mod __GKChallenge;
+#[cfg(feature = "GKChallengeDefinition")]
+#[path = "GKChallengeDefinition.rs"]
+mod __GKChallengeDefinition;
 #[cfg(feature = "GKChallengeEventHandler")]
 #[path = "GKChallengeEventHandler.rs"]
 mod __GKChallengeEventHandler;
@@ -63,6 +66,21 @@ mod __GKEventListener;
 #[cfg(feature = "GKFriendRequestComposeViewController")]
 #[path = "GKFriendRequestComposeViewController.rs"]
 mod __GKFriendRequestComposeViewController;
+#[cfg(feature = "GKGameActivity")]
+#[path = "GKGameActivity.rs"]
+mod __GKGameActivity;
+#[cfg(feature = "GKGameActivityDefinition")]
+#[path = "GKGameActivityDefinition.rs"]
+mod __GKGameActivityDefinition;
+#[cfg(feature = "GKGameActivityListener")]
+#[path = "GKGameActivityListener.rs"]
+mod __GKGameActivityListener;
+#[cfg(feature = "GKGameActivityPlayStyle")]
+#[path = "GKGameActivityPlayStyle.rs"]
+mod __GKGameActivityPlayStyle;
+#[cfg(feature = "GKGameActivityState")]
+#[path = "GKGameActivityState.rs"]
+mod __GKGameActivityState;
 #[cfg(feature = "GKGameCenterViewController")]
 #[path = "GKGameCenterViewController.rs"]
 mod __GKGameCenterViewController;
@@ -190,6 +208,8 @@ pub use self::__GKChallenge::GKChallengeComposeHandler;
 pub use self::__GKChallenge::GKChallengeState;
 #[cfg(feature = "GKChallenge")]
 pub use self::__GKChallenge::GKScoreChallenge;
+#[cfg(feature = "GKChallengeDefinition")]
+pub use self::__GKChallengeDefinition::GKChallengeDefinition;
 #[cfg(feature = "GKChallengeEventHandler")]
 pub use self::__GKChallengeEventHandler::GKChallengeEventHandler;
 #[cfg(feature = "GKChallengeEventHandler")]
@@ -222,6 +242,16 @@ pub use self::__GKEventListener::GKChallengeListener;
 pub use self::__GKFriendRequestComposeViewController::GKFriendRequestComposeViewController;
 #[cfg(feature = "GKFriendRequestComposeViewController")]
 pub use self::__GKFriendRequestComposeViewController::GKFriendRequestComposeViewControllerDelegate;
+#[cfg(feature = "GKGameActivity")]
+pub use self::__GKGameActivity::GKGameActivity;
+#[cfg(feature = "GKGameActivityDefinition")]
+pub use self::__GKGameActivityDefinition::GKGameActivityDefinition;
+#[cfg(feature = "GKGameActivityListener")]
+pub use self::__GKGameActivityListener::GKGameActivityListener;
+#[cfg(feature = "GKGameActivityPlayStyle")]
+pub use self::__GKGameActivityPlayStyle::GKGameActivityPlayStyle;
+#[cfg(feature = "GKGameActivityState")]
+pub use self::__GKGameActivityState::GKGameActivityState;
 #[cfg(feature = "GKGameCenterViewController")]
 pub use self::__GKGameCenterViewController::GKGameCenterControllerDelegate;
 #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
@@ -274,6 +304,7 @@ pub use self::__GKLocalPlayer::GKFriendsAuthorizationStatus;
 pub use self::__GKLocalPlayer::GKLocalPlayer;
 #[cfg(all(
     feature = "GKEventListener",
+    feature = "GKGameActivityListener",
     feature = "GKLocalPlayer",
     feature = "GKMatchmaker",
     feature = "GKSavedGameListener",

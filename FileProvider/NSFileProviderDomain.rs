@@ -392,6 +392,20 @@ impl NSFileProviderDomain {
             &self,
             supported_known_folders: NSFileProviderKnownFolders,
         );
+
+        /// Whether the system should use this domain's
+        /// `NSFileProviderSearching` implementation to support
+        /// search experiences.
+        ///
+        /// Defaults to NO.
+        #[unsafe(method(supportsStringSearchRequest))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportsStringSearchRequest(&self) -> bool;
+
+        /// Setter for [`supportsStringSearchRequest`][Self::supportsStringSearchRequest].
+        #[unsafe(method(setSupportsStringSearchRequest:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSupportsStringSearchRequest(&self, supports_string_search_request: bool);
     );
 }
 

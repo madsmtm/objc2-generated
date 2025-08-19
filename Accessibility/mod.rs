@@ -27,6 +27,9 @@ mod __AXAudiograph;
 #[cfg(feature = "AXBrailleMap")]
 #[path = "AXBrailleMap.rs"]
 mod __AXBrailleMap;
+#[cfg(feature = "AXBrailleTranslator")]
+#[path = "AXBrailleTranslator.rs"]
+mod __AXBrailleTranslator;
 #[cfg(feature = "AXColorUtilities")]
 #[path = "AXColorUtilities.rs"]
 mod __AXColorUtilities;
@@ -81,6 +84,12 @@ pub use self::__AXAudiograph::AXNumericDataAxisDescriptorScale;
 pub use self::__AXBrailleMap::AXBrailleMap;
 #[cfg(feature = "AXBrailleMap")]
 pub use self::__AXBrailleMap::AXBrailleMapRenderer;
+#[cfg(feature = "AXBrailleTranslator")]
+pub use self::__AXBrailleTranslator::AXBrailleTable;
+#[cfg(feature = "AXBrailleTranslator")]
+pub use self::__AXBrailleTranslator::AXBrailleTranslationResult;
+#[cfg(feature = "AXBrailleTranslator")]
+pub use self::__AXBrailleTranslator::AXBrailleTranslator;
 #[cfg(all(feature = "AXColorUtilities", feature = "objc2-core-graphics"))]
 pub use self::__AXColorUtilities::AXNameFromColor;
 #[cfg(feature = "AXCustomContent")]

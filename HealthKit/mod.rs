@@ -69,6 +69,9 @@ mod __HKCharacteristicObjects;
 #[cfg(feature = "HKCharacteristicValues")]
 #[path = "HKCharacteristicValues.rs"]
 mod __HKCharacteristicValues;
+#[cfg(feature = "HKClinicalCoding")]
+#[path = "HKClinicalCoding.rs"]
+mod __HKClinicalCoding;
 #[cfg(feature = "HKClinicalRecord")]
 #[path = "HKClinicalRecord.rs"]
 mod __HKClinicalRecord;
@@ -135,6 +138,9 @@ mod __HKGlassesLensSpecification;
 #[cfg(feature = "HKGlassesPrescription")]
 #[path = "HKGlassesPrescription.rs"]
 mod __HKGlassesPrescription;
+#[cfg(feature = "HKHealthConceptIdentifier")]
+#[path = "HKHealthConceptIdentifier.rs"]
+mod __HKHealthConceptIdentifier;
 #[cfg(feature = "HKHealthStore")]
 #[path = "HKHealthStore.rs"]
 mod __HKHealthStore;
@@ -156,9 +162,18 @@ mod __HKLiveWorkoutBuilder;
 #[cfg(feature = "HKLiveWorkoutDataSource")]
 #[path = "HKLiveWorkoutDataSource.rs"]
 mod __HKLiveWorkoutDataSource;
+#[cfg(feature = "HKMedicationConcept")]
+#[path = "HKMedicationConcept.rs"]
+mod __HKMedicationConcept;
+#[cfg(feature = "HKMedicationDoseEvent")]
+#[path = "HKMedicationDoseEvent.rs"]
+mod __HKMedicationDoseEvent;
 #[cfg(feature = "HKMetadata")]
 #[path = "HKMetadata.rs"]
 mod __HKMetadata;
+#[cfg(feature = "HKMetadataEnums")]
+#[path = "HKMetadataEnums.rs"]
+mod __HKMetadataEnums;
 #[cfg(feature = "HKObject")]
 #[path = "HKObject.rs"]
 mod __HKObject;
@@ -237,6 +252,12 @@ mod __HKTypeIdentifiers;
 #[cfg(feature = "HKUnit")]
 #[path = "HKUnit.rs"]
 mod __HKUnit;
+#[cfg(feature = "HKUserAnnotatedMedication")]
+#[path = "HKUserAnnotatedMedication.rs"]
+mod __HKUserAnnotatedMedication;
+#[cfg(feature = "HKUserAnnotatedMedicationQuery")]
+#[path = "HKUserAnnotatedMedicationQuery.rs"]
+mod __HKUserAnnotatedMedicationQuery;
 #[cfg(feature = "HKVerifiableClinicalRecord")]
 #[path = "HKVerifiableClinicalRecord.rs"]
 mod __HKVerifiableClinicalRecord;
@@ -420,6 +441,8 @@ pub use self::__HKCharacteristicValues::HKBloodType;
 pub use self::__HKCharacteristicValues::HKFitzpatrickSkinType;
 #[cfg(feature = "HKCharacteristicValues")]
 pub use self::__HKCharacteristicValues::HKWheelchairUse;
+#[cfg(feature = "HKClinicalCoding")]
+pub use self::__HKClinicalCoding::HKClinicalCoding;
 #[cfg(all(
     feature = "HKClinicalRecord",
     feature = "HKObject",
@@ -633,6 +656,12 @@ pub use self::__HKGlassesLensSpecification::HKGlassesLensSpecification;
     feature = "HKVisionPrescription"
 ))]
 pub use self::__HKGlassesPrescription::HKGlassesPrescription;
+#[cfg(feature = "HKHealthConceptIdentifier")]
+pub use self::__HKHealthConceptIdentifier::HKHealthConceptDomain;
+#[cfg(feature = "HKHealthConceptIdentifier")]
+pub use self::__HKHealthConceptIdentifier::HKHealthConceptDomainMedication;
+#[cfg(feature = "HKHealthConceptIdentifier")]
+pub use self::__HKHealthConceptIdentifier::HKHealthConceptIdentifier;
 #[cfg(feature = "HKHealthStore")]
 pub use self::__HKHealthStore::HKHealthStore;
 #[cfg(feature = "HKHealthStore")]
@@ -656,24 +685,64 @@ pub use self::__HKLiveWorkoutBuilder::HKLiveWorkoutBuilder;
 pub use self::__HKLiveWorkoutBuilder::HKLiveWorkoutBuilderDelegate;
 #[cfg(feature = "HKLiveWorkoutDataSource")]
 pub use self::__HKLiveWorkoutDataSource::HKLiveWorkoutDataSource;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKAppleECGAlgorithmVersion;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKBloodGlucoseMealTime;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKBodyTemperatureSensorLocation;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKCyclingFunctionalThresholdPowerTestType;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKDevicePlacementSide;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKHeartRateMotionContext;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKHeartRateRecoveryTestType;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKHeartRateSensorLocation;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKInsulinDeliveryReason;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationConcept;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralForm;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormCapsule;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormCream;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormDevice;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormDrops;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormFoam;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormGel;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormInhaler;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormInjection;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormLiquid;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormLotion;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormOintment;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormPatch;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormPowder;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormSpray;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormSuppository;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormTablet;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormTopical;
+#[cfg(feature = "HKMedicationConcept")]
+pub use self::__HKMedicationConcept::HKMedicationGeneralFormUnknown;
+#[cfg(all(
+    feature = "HKMedicationDoseEvent",
+    feature = "HKObject",
+    feature = "HKSample"
+))]
+pub use self::__HKMedicationDoseEvent::HKMedicationDoseEvent;
+#[cfg(feature = "HKMedicationDoseEvent")]
+pub use self::__HKMedicationDoseEvent::HKMedicationDoseEventLogStatus;
+#[cfg(feature = "HKMedicationDoseEvent")]
+pub use self::__HKMedicationDoseEvent::HKMedicationDoseEventScheduleType;
+#[cfg(feature = "HKMedicationDoseEvent")]
+pub use self::__HKMedicationDoseEvent::HKPredicateKeyPathLogOrigin;
+#[cfg(feature = "HKMedicationDoseEvent")]
+pub use self::__HKMedicationDoseEvent::HKPredicateKeyPathMedicationConceptIdentifier;
+#[cfg(feature = "HKMedicationDoseEvent")]
+pub use self::__HKMedicationDoseEvent::HKPredicateKeyPathScheduledDate;
+#[cfg(feature = "HKMedicationDoseEvent")]
+pub use self::__HKMedicationDoseEvent::HKPredicateKeyPathStatus;
 #[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyActivityType;
 #[cfg(feature = "HKMetadata")]
@@ -816,20 +885,38 @@ pub use self::__HKMetadata::HKMetadataKeyWeatherHumidity;
 pub use self::__HKMetadata::HKMetadataKeyWeatherTemperature;
 #[cfg(feature = "HKMetadata")]
 pub use self::__HKMetadata::HKMetadataKeyWorkoutBrandName;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKPhysicalEffortEstimationType;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKSwimmingStrokeStyle;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKUserMotionContext;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKVO2MaxTestType;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKWaterSalinity;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKWeatherCondition;
-#[cfg(feature = "HKMetadata")]
-pub use self::__HKMetadata::HKWorkoutSwimmingLocationType;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKAppleECGAlgorithmVersion;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKBloodGlucoseMealTime;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKBodyTemperatureSensorLocation;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKCyclingFunctionalThresholdPowerTestType;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKDevicePlacementSide;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKHeartRateMotionContext;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKHeartRateRecoveryTestType;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKHeartRateSensorLocation;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKInsulinDeliveryReason;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKPhysicalEffortEstimationType;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKSwimmingStrokeStyle;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKUserMotionContext;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKVO2MaxTestType;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKWaterSalinity;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKWeatherCondition;
+#[cfg(feature = "HKMetadataEnums")]
+pub use self::__HKMetadataEnums::HKWorkoutSwimmingLocationType;
 #[cfg(feature = "HKObject")]
 pub use self::__HKObject::HKObject;
 #[cfg(feature = "HKObject")]
@@ -863,6 +950,8 @@ pub use self::__HKObjectType::HKDocumentType;
 #[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKElectrocardiogramType;
 #[cfg(feature = "HKObjectType")]
+pub use self::__HKObjectType::HKMedicationDoseEventType;
+#[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKObjectType;
 #[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKPrescriptionType;
@@ -876,6 +965,8 @@ pub use self::__HKObjectType::HKScoredAssessmentType;
 pub use self::__HKObjectType::HKSeriesType;
 #[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKStateOfMindType;
+#[cfg(feature = "HKObjectType")]
+pub use self::__HKObjectType::HKUserAnnotatedMedicationType;
 #[cfg(feature = "HKObjectType")]
 pub use self::__HKObjectType::HKWorkoutType;
 #[cfg(all(feature = "HKObserverQuery", feature = "HKQuery"))]
@@ -1146,9 +1237,13 @@ pub use self::__HKTypeIdentifiers::HKDataTypeIdentifierHeartbeatSeries;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKDataTypeIdentifierStateOfMind;
 #[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKDataTypeIdentifierUserAnnotatedMedicationConcept;
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKDocumentTypeIdentifier;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKDocumentTypeIdentifierCDA;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKMedicationDoseEventTypeIdentifierMedicationDoseEvent;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifier;
 #[cfg(feature = "HKTypeIdentifiers")]
@@ -1409,6 +1504,14 @@ pub use self::__HKUnit::HKMetricPrefix;
 pub use self::__HKUnit::HKUnit;
 #[cfg(feature = "HKUnit")]
 pub use self::__HKUnit::HKUnitMolarMassBloodGlucose;
+#[cfg(feature = "HKUserAnnotatedMedication")]
+pub use self::__HKUserAnnotatedMedication::HKUserAnnotatedMedication;
+#[cfg(feature = "HKUserAnnotatedMedication")]
+pub use self::__HKUserAnnotatedMedication::HKUserAnnotatedMedicationPredicateKeyPathHasSchedule;
+#[cfg(feature = "HKUserAnnotatedMedication")]
+pub use self::__HKUserAnnotatedMedication::HKUserAnnotatedMedicationPredicateKeyPathIsArchived;
+#[cfg(all(feature = "HKQuery", feature = "HKUserAnnotatedMedicationQuery"))]
+pub use self::__HKUserAnnotatedMedicationQuery::HKUserAnnotatedMedicationQuery;
 #[cfg(all(
     feature = "HKObject",
     feature = "HKSample",

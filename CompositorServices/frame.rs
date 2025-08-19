@@ -109,12 +109,43 @@ impl cp_frame {
     /// single thread call this function at a time.
     #[doc(alias = "cp_frame_query_drawable")]
     #[cfg(feature = "drawable")]
+    #[deprecated = "Use cp_frame_query_drawables instead"]
     #[inline]
     pub unsafe fn query_drawable(frame: cp_frame_t) -> cp_drawable_t {
         extern "C-unwind" {
             fn cp_frame_query_drawable(frame: cp_frame_t) -> cp_drawable_t;
         }
         unsafe { cp_frame_query_drawable(frame) }
+    }
+
+    /// Returns the drawable array type you use to retrieve the drawables for
+    /// drawing environment for the frame.
+    ///
+    /// - Parameters:
+    /// - frame: The frame to query.
+    /// - Returns: The drawable array type, if the layer is in the
+    /// ``cp_layer_renderer/cp_layer_renderer_state_paused`` or
+    /// ``cp_layer_renderer/cp_layer_renderer_state_invalidated`` states
+    /// the array will have a count of 0 and frame is invalid.
+    ///
+    /// Call this function when you're ready to encode the drawing commands
+    /// for the frame. The ``cp_drawable_t`` type contains the textures and
+    /// other information you need to set up your render descriptor in Metal.
+    /// See ``cp_drawable_get_target`` for how each drawable will be used.
+    ///
+    /// If array count is 0, the frame has been cancelled as there are no drawables
+    /// to draw to and the frame should be discarded and is invalid to access.
+    ///
+    /// Note: This function isn't safe to be called concurrently. Always ensure a
+    /// single thread call this function at a time.
+    #[doc(alias = "cp_frame_query_drawables")]
+    #[cfg(feature = "drawable")]
+    #[inline]
+    pub unsafe fn query_drawables(frame: cp_frame_t) -> cp_drawable_array_t {
+        extern "C-unwind" {
+            fn cp_frame_query_drawables(frame: cp_frame_t) -> cp_drawable_array_t;
+        }
+        unsafe { cp_frame_query_drawables(frame) }
     }
 
     /// Notifies the compositor that you started updating the app-specific
@@ -216,6 +247,34 @@ impl cp_frame {
         }
         unsafe { cp_frame_end_submission(frame) }
     }
+
+    /// Returns the number of view in the drawable target.
+    ///
+    /// - Parameters:
+    /// - frame: frame: The frame you finished preparing.
+    /// - drawable_target: whether this is intended for `built_in` or `recorder`drawable
+    /// - Returns: The number of views available for drawing. For example, a return
+    /// value of `2` indicates there are two views for this target drawable in this frame.
+    /// value of `0` indicates there is no view available for this target drawable in this frame.
+    ///
+    /// Use the returned value as the maximum number of views to retrieve
+    /// from the ``cp_frame_binocular_frustum_matrix_for_drawable_target``
+    /// or ``cp_frame_monocular_frustum_matrix_for_drawable_target`` functions.
+    #[doc(alias = "cp_frame_get_drawable_target_view_count")]
+    #[cfg(feature = "drawable")]
+    #[inline]
+    pub unsafe fn drawable_target_view_count(
+        frame: cp_frame_t,
+        drawable_target: cp_drawable_target,
+    ) -> usize {
+        extern "C-unwind" {
+            fn cp_frame_get_drawable_target_view_count(
+                frame: cp_frame_t,
+                drawable_target: cp_drawable_target,
+            ) -> usize;
+        }
+        unsafe { cp_frame_get_drawable_target_view_count(frame, drawable_target) }
+    }
 }
 
 extern "C-unwind" {
@@ -237,6 +296,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[cfg(feature = "drawable")]
+    #[deprecated = "renamed to `cp_frame::query_drawables`"]
+    pub fn cp_frame_query_drawables(frame: cp_frame_t) -> cp_drawable_array_t;
+}
+
+extern "C-unwind" {
     #[deprecated = "renamed to `cp_frame::start_update`"]
     pub fn cp_frame_start_update(frame: cp_frame_t);
 }
@@ -254,4 +319,13 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[deprecated = "renamed to `cp_frame::end_submission`"]
     pub fn cp_frame_end_submission(frame: cp_frame_t);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "drawable")]
+    #[deprecated = "renamed to `cp_frame::drawable_target_view_count`"]
+    pub fn cp_frame_get_drawable_target_view_count(
+        frame: cp_frame_t,
+        drawable_target: cp_drawable_target,
+    ) -> usize;
 }

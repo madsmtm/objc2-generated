@@ -260,6 +260,46 @@ extern "C" {
     pub static kCGImageDestinationOrientation: &'static CFString;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyencoder?language=objc)
+    pub static kCGImagePropertyEncoder: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyastcencoder?language=objc)
+    pub static kCGImagePropertyASTCEncoder: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypvrencoder?language=objc)
+    pub static kCGImagePropertyPVREncoder: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertybcencoder?language=objc)
+    pub static kCGImagePropertyBCEncoder: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertybcformat?language=objc)
+    pub static kCGImagePropertyBCFormat: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyastcblocksize?language=objc)
+    pub static kCGImagePropertyASTCBlockSize: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyastcblocksize4x4?language=objc)
+    pub static kCGImagePropertyASTCBlockSize4x4: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyastcblocksize8x8?language=objc)
+    pub static kCGImagePropertyASTCBlockSize8x8: &'static CFString;
+}
+
 impl CGImageDestination {
     #[doc(alias = "CGImageDestinationCopyImageSource")]
     #[cfg(feature = "CGImageSource")]
@@ -338,6 +378,41 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodetonemapmode?language=objc)
     pub static kCGImageDestinationEncodeTonemapMode: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodeisbaseimage?language=objc)
+    pub static kCGImageDestinationEncodeIsBaseImage: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodebasecolorspace?language=objc)
+    pub static kCGImageDestinationEncodeBaseColorSpace: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodebasepixelformatrequest?language=objc)
+    pub static kCGImageDestinationEncodeBasePixelFormatRequest: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodegenerategainmapwithbaseimage?language=objc)
+    pub static kCGImageDestinationEncodeGenerateGainMapWithBaseImage: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodegainmappixelformatrequest?language=objc)
+    pub static kCGImageDestinationEncodeGainMapPixelFormatRequest: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodegainmapsubsamplefactor?language=objc)
+    pub static kCGImageDestinationEncodeGainMapSubsampleFactor: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodealternatecolorspace?language=objc)
+    pub static kCGImageDestinationEncodeAlternateColorSpace: &'static CFString;
 }
 
 #[deprecated = "renamed to `CGImageDestination::type_identifiers`"]

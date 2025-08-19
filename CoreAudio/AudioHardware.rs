@@ -1376,6 +1376,10 @@ pub const kAudioDevicePropertyVoiceActivityDetectionEnable: AudioObjectPropertyS
     0x7641642b;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvoiceactivitydetectionstate?language=objc)
 pub const kAudioDevicePropertyVoiceActivityDetectionState: AudioObjectPropertySelector = 0x76416453;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantscontrolsrestored?language=objc)
+pub const kAudioDevicePropertyWantsControlsRestored: AudioObjectPropertySelector = 0x72657363;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantsstreamformatsrestored?language=objc)
+pub const kAudioDevicePropertyWantsStreamFormatsRestored: AudioObjectPropertySelector = 0x72657366;
 
 extern "C-unwind" {
     /// Creates an AudioDeviceIOProcID from an AudioDeviceIOProc and a client data
@@ -1867,7 +1871,7 @@ impl CATapDescription {
         pub unsafe fn setUUID(&self, uuid: &NSUUID);
 
         #[cfg(feature = "objc2-foundation")]
-        /// An NSArray of NSNumbers where each NSNumber holds the AudioObjectID of the process object to tap or exclude.
+        /// An NSArray of NSNumbers where each NSNumber holds the AudioObjectID of a process object to tap or exclude.
         #[unsafe(method(processes))]
         #[unsafe(method_family = none)]
         pub unsafe fn processes(&self) -> Retained<NSArray<NSNumber>>;
@@ -1877,6 +1881,18 @@ impl CATapDescription {
         #[unsafe(method(setProcesses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProcesses(&self, processes: &NSArray<NSNumber>);
+
+        #[cfg(feature = "objc2-foundation")]
+        /// An Array of Strings where each String holds the bundle ID of a process to tap or exclude.
+        #[unsafe(method(bundleIDs))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bundleIDs(&self) -> Retained<NSArray<NSString>>;
+
+        #[cfg(feature = "objc2-foundation")]
+        /// Setter for [`bundleIDs`][Self::bundleIDs].
+        #[unsafe(method(setBundleIDs:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setBundleIDs(&self, bundle_i_ds: &NSArray<NSString>);
 
         /// True if this description is a mono mixdown of channels.
         #[unsafe(method(isMono))]
@@ -1917,6 +1933,16 @@ impl CATapDescription {
         #[unsafe(method(setPrivate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrivate(&self, private_tap: bool);
+
+        /// True if this tap should save tapped processes by bundle ID when they exit, and restore them to the tap when they start up again.
+        #[unsafe(method(isProcessRestoreEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isProcessRestoreEnabled(&self) -> bool;
+
+        /// Setter for [`isProcessRestoreEnabled`][Self::isProcessRestoreEnabled].
+        #[unsafe(method(setProcessRestoreEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setProcessRestoreEnabled(&self, process_restore_enabled: bool);
 
         /// Set the tap's mute behavior. See CATapMuteBehavior above.
         #[unsafe(method(isMuted))]

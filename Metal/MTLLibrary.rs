@@ -7,6 +7,70 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedrenderpipelinereflection?language=objc)
+#[cfg(feature = "MTLRenderPipeline")]
+pub type MTLAutoreleasedRenderPipelineReflection = MTLRenderPipelineReflection;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedcomputepipelinereflection?language=objc)
+#[cfg(feature = "MTLComputePipeline")]
+pub type MTLAutoreleasedComputePipelineReflection = MTLComputePipelineReflection;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewlibrarycompletionhandler?language=objc)
+#[cfg(feature = "block2")]
+pub type MTLNewLibraryCompletionHandler =
+    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatecompletionhandler?language=objc)
+#[cfg(all(
+    feature = "MTLAllocation",
+    feature = "MTLRenderPipeline",
+    feature = "block2"
+))]
+pub type MTLNewRenderPipelineStateCompletionHandler =
+    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError)>;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatewithreflectioncompletionhandler?language=objc)
+#[cfg(all(
+    feature = "MTLAllocation",
+    feature = "MTLRenderPipeline",
+    feature = "block2"
+))]
+pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut block2::DynBlock<
+    dyn Fn(
+        *mut ProtocolObject<dyn MTLRenderPipelineState>,
+        *mut MTLRenderPipelineReflection,
+        *mut NSError,
+    ),
+>;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatecompletionhandler?language=objc)
+#[cfg(all(
+    feature = "MTLAllocation",
+    feature = "MTLComputePipeline",
+    feature = "block2"
+))]
+pub type MTLNewComputePipelineStateCompletionHandler =
+    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError)>;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatewithreflectioncompletionhandler?language=objc)
+#[cfg(all(
+    feature = "MTLAllocation",
+    feature = "MTLComputePipeline",
+    feature = "block2"
+))]
+pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2::DynBlock<
+    dyn Fn(
+        *mut ProtocolObject<dyn MTLComputePipelineState>,
+        *mut MTLComputePipelineReflection,
+        *mut NSError,
+    ),
+>;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewdynamiclibrarycompletionhandler?language=objc)
+#[cfg(all(feature = "MTLDynamicLibrary", feature = "block2"))]
+pub type MTLNewDynamicLibraryCompletionHandler =
+    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLDynamicLibrary>, *mut NSError)>;
+
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedargument?language=objc)
 #[cfg(feature = "MTLArgument")]
 pub type MTLAutoreleasedArgument = MTLArgument;
@@ -54,7 +118,7 @@ impl MTLVertexAttribute {
         #[unsafe(method_family = none)]
         pub fn attributeIndex(&self) -> NSUInteger;
 
-        #[cfg(feature = "MTLArgument")]
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(attributeType))]
         #[unsafe(method_family = none)]
         pub fn attributeType(&self) -> MTLDataType;
@@ -107,7 +171,7 @@ impl MTLAttribute {
         #[unsafe(method_family = none)]
         pub fn attributeIndex(&self) -> NSUInteger;
 
-        #[cfg(feature = "MTLArgument")]
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(attributeType))]
         #[unsafe(method_family = none)]
         pub fn attributeType(&self) -> MTLDataType;
@@ -201,7 +265,7 @@ impl MTLFunctionConstant {
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Retained<NSString>;
 
-        #[cfg(feature = "MTLArgument")]
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> MTLDataType;
@@ -346,6 +410,8 @@ impl MTLLanguageVersion {
     pub const Version3_1: Self = Self((3 << 16) + 1);
     #[doc(alias = "MTLLanguageVersion3_2")]
     pub const Version3_2: Self = Self((3 << 16) + 2);
+    #[doc(alias = "MTLLanguageVersion4_0")]
+    pub const Version4_0: Self = Self((4 << 16) + 0);
 }
 
 unsafe impl Encode for MTLLanguageVersion {
@@ -688,6 +754,23 @@ impl MTLCompileOptions {
             max_total_threads_per_threadgroup: NSUInteger,
         );
 
+        #[cfg(feature = "MTLTypes")]
+        /// Sets the required threads-per-threadgroup during dispatches. The `threadsPerThreadgroup` argument of any dispatch must match this value if it is set.
+        /// Optional, unless the pipeline is going to use CooperativeTensors in which case this must be set.
+        /// Setting this to a size of 0 in every dimension disables this property
+        #[unsafe(method(requiredThreadsPerThreadgroup))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+
+        #[cfg(feature = "MTLTypes")]
+        /// Setter for [`requiredThreadsPerThreadgroup`][Self::requiredThreadsPerThreadgroup].
+        #[unsafe(method(setRequiredThreadsPerThreadgroup:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiredThreadsPerThreadgroup(
+            &self,
+            required_threads_per_threadgroup: MTLSize,
+        );
+
         /// If YES,  set the compiler to enable any logging in the shader. The default is false.
         #[unsafe(method(enableLogging))]
         #[unsafe(method_family = none)]
@@ -718,6 +801,46 @@ impl DefaultRetained for MTLCompileOptions {
     fn default_retained() -> Retained<Self> {
         Self::new()
     }
+}
+
+extern_class!(
+    /// Represents a reflection object containing information about a function in a Metal library.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionreflection?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct MTLFunctionReflection;
+);
+
+unsafe impl Send for MTLFunctionReflection {}
+
+unsafe impl Sync for MTLFunctionReflection {}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLFunctionReflection {}
+);
+
+impl MTLFunctionReflection {
+    extern_methods!(
+        #[cfg(feature = "MTLArgument")]
+        /// Provides a list of inputs and outputs of the function.
+        #[unsafe(method(bindings))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl MTLFunctionReflection {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
 }
 
 extern "C" {
@@ -811,6 +934,19 @@ extern_protocol!(
                 dyn Fn(*mut ProtocolObject<dyn MTLFunction>, *mut NSError),
             >,
         );
+
+        /// Returns a reflection object for a matching function name in this library instance.
+        ///
+        /// - Parameters:
+        /// - functionName: The name of the function.
+        ///
+        /// - Returns: An object containing the reflection information, or `nil` if no function in the library matches the name.
+        #[unsafe(method(reflectionForFunctionWithName:))]
+        #[unsafe(method_family = none)]
+        unsafe fn reflectionForFunctionWithName(
+            &self,
+            function_name: &NSString,
+        ) -> Option<Retained<MTLFunctionReflection>>;
 
         #[cfg(all(feature = "MTLFunctionDescriptor", feature = "block2"))]
         /// Create a new MTLFunction object asynchronously.

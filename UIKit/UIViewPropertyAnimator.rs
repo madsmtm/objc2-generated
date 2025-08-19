@@ -107,6 +107,23 @@ impl UIViewPropertyAnimator {
         #[unsafe(method_family = none)]
         pub unsafe fn setPausesOnCompletion(&self, pauses_on_completion: bool);
 
+        /// Flush all pending updates (including traits, properties, and layout) whenever the animation context changes.
+        /// This includes flushing updates:
+        /// - Before entering an animation scope, for invalidations that happened previously without animation.
+        /// - Before entering a nested animation scope, for invalidations that happened in the outer animation scope.
+        /// - Before exiting any animation scope, for invalidations that happened in that animation scope.
+        /// - Before disabling animations, for invalidations that happened in the animation scope with animations enabled.
+        /// - Before re-enabling animations, for invalidations that happened in the scope with animations disabled.
+        /// This behavior implicitly applies to any nested animation scopes, even if they don't explicitly specify this.
+        #[unsafe(method(flushUpdates))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn flushUpdates(&self) -> bool;
+
+        /// Setter for [`flushUpdates`][Self::flushUpdates].
+        #[unsafe(method(setFlushUpdates:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFlushUpdates(&self, flush_updates: bool);
+
         #[cfg(feature = "UITimingCurveProvider")]
         #[unsafe(method(initWithDuration:timingParameters:))]
         #[unsafe(method_family = init)]

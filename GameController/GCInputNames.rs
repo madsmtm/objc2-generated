@@ -30,6 +30,21 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputthumbstick?language=objc)
+    pub static GCInputThumbstick: Option<&'static GCInputDirectionPadName>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputthumbstickbutton?language=objc)
+    pub static GCInputThumbstickButton: Option<&'static GCInputButtonName>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputgripbutton?language=objc)
+    pub static GCInputGripButton: Option<&'static GCInputButtonName>;
+}
+
+extern "C" {
     /// Identifies the button element located at the top-left/right of a gamepad,
     /// between the left/right shoulder button and the gamepad's horizontal center.
     ///
@@ -40,6 +55,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputrightbumper?language=objc)
     pub static GCInputRightBumper: Option<&'static GCInputButtonName>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputtrigger?language=objc)
+    pub static GCInputTrigger: Option<&'static GCInputButtonName>;
 }
 
 #[inline]
@@ -62,4 +82,25 @@ pub unsafe extern "C-unwind" fn GCInputBackRightButton(
     }
     let ret = unsafe { GCInputBackRightButton(position) };
     unsafe { Retained::retain_autoreleased(ret) }
+}
+
+extern "C" {
+    /// The stylus tip button used to detect contact with a surface.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputstylustip?language=objc)
+    pub static GCInputStylusTip: Option<&'static GCInputButtonName>;
+}
+
+extern "C" {
+    /// The stylus button used for interacting with virtual objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputstylusprimarybutton?language=objc)
+    pub static GCInputStylusPrimaryButton: Option<&'static GCInputButtonName>;
+}
+
+extern "C" {
+    /// The stylus button used for drawing and writing in air.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputstylussecondarybutton?language=objc)
+    pub static GCInputStylusSecondaryButton: Option<&'static GCInputButtonName>;
 }

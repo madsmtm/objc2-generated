@@ -57,6 +57,15 @@ mod __PKStrokePoint;
 #[cfg(feature = "PKTool")]
 #[path = "PKTool.rs"]
 mod __PKTool;
+#[cfg(feature = "PKToolPickerEraserItem")]
+#[path = "PKToolPickerEraserItem.rs"]
+mod __PKToolPickerEraserItem;
+#[cfg(feature = "PKToolPickerInkingItem")]
+#[path = "PKToolPickerInkingItem.rs"]
+mod __PKToolPickerInkingItem;
+#[cfg(feature = "PKToolPickerItem")]
+#[path = "PKToolPickerItem.rs"]
+mod __PKToolPickerItem;
 
 #[cfg(feature = "PKContentVersion")]
 pub use self::__PKContentVersion::PKContentVersion;
@@ -87,6 +96,10 @@ pub use self::__PKInkType::PKInkTypePen;
 #[cfg(feature = "PKInkType")]
 pub use self::__PKInkType::PKInkTypePencil;
 #[cfg(feature = "PKInkType")]
+pub use self::__PKInkType::PKInkTypeReed;
+#[cfg(feature = "PKInkType")]
+pub use self::__PKInkType::PKInkTypeReedCalligraphyPen;
+#[cfg(feature = "PKInkType")]
 pub use self::__PKInkType::PKInkTypeWatercolor;
 #[cfg(all(feature = "PKInkingTool", feature = "PKTool"))]
 pub use self::__PKInkingTool::PKInkingTool;
@@ -100,3 +113,9 @@ pub use self::__PKStrokePath::PKStrokePath;
 pub use self::__PKStrokePoint::PKStrokePoint;
 #[cfg(feature = "PKTool")]
 pub use self::__PKTool::PKTool;
+#[cfg(all(feature = "PKToolPickerEraserItem", feature = "PKToolPickerItem"))]
+pub use self::__PKToolPickerEraserItem::PKToolPickerEraserItem;
+#[cfg(all(feature = "PKToolPickerInkingItem", feature = "PKToolPickerItem"))]
+pub use self::__PKToolPickerInkingItem::PKToolPickerInkingItem;
+#[cfg(feature = "PKToolPickerItem")]
+pub use self::__PKToolPickerItem::PKToolPickerItem;

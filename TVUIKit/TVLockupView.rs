@@ -189,13 +189,18 @@ impl TVLockupView {
     );
 }
 
-/// Methods declared on superclass `NSObject`.
+/// Methods declared on superclass `UIView`.
 impl TVLockupView {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
+impl TVLockupView {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;

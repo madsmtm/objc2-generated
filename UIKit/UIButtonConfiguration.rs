@@ -227,6 +227,14 @@ impl UIButtonConfiguration {
         pub unsafe fn borderedProminentButtonConfiguration(mtm: MainThreadMarker)
             -> Retained<Self>;
 
+        #[unsafe(method(glassButtonConfiguration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn glassButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[unsafe(method(tintedGlassButtonConfiguration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn tintedGlassButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
+
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -364,6 +372,23 @@ impl UIButtonConfiguration {
         pub unsafe fn setPreferredSymbolConfigurationForImage(
             &self,
             preferred_symbol_configuration_for_image: Option<&UIImageSymbolConfiguration>,
+        );
+
+        #[cfg(feature = "UISymbolContentTransition")]
+        /// The symbol content transition to use when transitioning across symbol images.
+        /// Defaults to `nil`, meaning no symbol content transition should occur.
+        #[unsafe(method(symbolContentTransition))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn symbolContentTransition(&self)
+            -> Option<Retained<UISymbolContentTransition>>;
+
+        #[cfg(feature = "UISymbolContentTransition")]
+        /// Setter for [`symbolContentTransition`][Self::symbolContentTransition].
+        #[unsafe(method(setSymbolContentTransition:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSymbolContentTransition(
+            &self,
+            symbol_content_transition: Option<&UISymbolContentTransition>,
         );
 
         /// Shows an activity indicator in place of an image. Its placement is controlled by the imagePlacement property.

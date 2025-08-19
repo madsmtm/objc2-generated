@@ -62,13 +62,13 @@ extern_protocol!(
         /// Implement this method to indicate whether the resource is recognizable and usable.
         /// - Parameters:
         /// - resource: The ``FSResource`` to probe.
-        /// - replyHandler: A block or closure that your implementation invokes when it finishes the probe or encounters an error. Pass an instance of ``FSProbeResult`` with probe results as the first parameter if your probe operation succeeds. If probing fails, pass an error as the second parameter.
+        /// - reply: A block or closure that your implementation invokes when it finishes the probe or encounters an error. Pass an instance of ``FSProbeResult`` with probe results as the first parameter if your probe operation succeeds. If probing fails, pass an error as the second parameter.
         #[unsafe(method(probeResource:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn probeResource_replyHandler(
             &self,
             resource: &FSResource,
-            reply_handler: &block2::DynBlock<dyn Fn(*mut FSProbeResult, *mut NSError)>,
+            reply: &block2::DynBlock<dyn Fn(*mut FSProbeResult, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -86,14 +86,14 @@ extern_protocol!(
         /// - Parameters:
         /// - resource: An ``FSResource`` to load.
         /// - options: An ``FSTaskOptions`` object specifying options to apply when loading the resource. An ``FSUnaryFileSystem`` supports two options: `-f` for "force" and `--rdonly` for read-only. The file system must remember if the read-only option is present.
-        /// - replyHandler: A block or closure that your implementation invokes when it finishes setting up or encounters an error. Pass a subclass of `FSVolume` as the first parameter if loading succeeds. If loading fails, pass an error as the second parameter.
+        /// - reply: A block or closure that your implementation invokes when it finishes setting up or encounters an error. Pass a subclass of `FSVolume` as the first parameter if loading succeeds. If loading fails, pass an error as the second parameter.
         #[unsafe(method(loadResource:options:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadResource_options_replyHandler(
             &self,
             resource: &FSResource,
             options: &FSTaskOptions,
-            reply_handler: &block2::DynBlock<dyn Fn(*mut FSVolume, *mut NSError)>,
+            reply: &block2::DynBlock<dyn Fn(*mut FSVolume, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSResource", feature = "FSTaskOptions", feature = "block2"))]

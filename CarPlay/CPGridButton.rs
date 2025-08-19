@@ -10,6 +10,67 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
+    /// `CPMessageGridItemConfiguration`encapsulates the message configuration options for the grid item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagegriditemconfiguration?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct CPMessageGridItemConfiguration;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CPMessageGridItemConfiguration {}
+);
+
+impl CPMessageGridItemConfiguration {
+    extern_methods!(
+        /// Initialize a
+        /// `CPMessageGridItemConfiguration`for use in a
+        /// `CPListTemplate.`
+        ///
+        /// Parameter `conversationIdentifier`: A value meaningful to your app to identify this conversation.
+        /// This identifier is not directly displayed to the user; rather, when the user selects this grid item,
+        /// SiriKit will pass this identifier back to your app for your own use.
+        ///
+        /// Parameter `unread`: A Boolean value indicating whether the item shows an unread indicator. The default value of this property is
+        /// `NO.`
+        #[unsafe(method(initWithConversationIdentifier:unread:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithConversationIdentifier_unread(
+            this: Allocated<Self>,
+            conversation_identifier: &NSString,
+            unread: bool,
+        ) -> Retained<Self>;
+
+        #[unsafe(method(isUnread))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isUnread(&self) -> bool;
+
+        /// Setter for [`isUnread`][Self::isUnread].
+        #[unsafe(method(setUnread:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setUnread(&self, unread: bool);
+
+        #[unsafe(method(conversationIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn conversationIdentifier(&self) -> Retained<NSString>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl CPMessageGridItemConfiguration {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpgridbutton?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -62,6 +123,18 @@ impl CPGridButton {
             handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPGridButton>)>>,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "block2", feature = "objc2-ui-kit"))]
+        /// Initialize a button with a title, image, and message configuration.
+        #[unsafe(method(initWithTitleVariants:image:messageConfiguration:handler:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTitleVariants_image_messageConfiguration_handler(
+            this: Allocated<Self>,
+            title_variants: &NSArray<NSString>,
+            image: &UIImage,
+            message_configuration: Option<&CPMessageGridItemConfiguration>,
+            handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPGridButton>)>>,
+        ) -> Retained<Self>;
+
         /// A Boolean value indicating whether the button is enabled.
         ///
         ///
@@ -78,6 +151,12 @@ impl CPGridButton {
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        #[unsafe(method(messageConfiguration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn messageConfiguration(
+            &self,
+        ) -> Option<Retained<CPMessageGridItemConfiguration>>;
+
         #[cfg(feature = "objc2-ui-kit")]
         /// The image displayed on the button.
         ///
@@ -89,11 +168,20 @@ impl CPGridButton {
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Retained<UIImage>;
 
+        #[cfg(feature = "objc2-ui-kit")]
+        #[unsafe(method(updateImage:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updateImage(&self, image: &UIImage);
+
         /// An array of title variants for this button, arranged from most to least preferred.
         /// The system will select a title from your list of provided variants that fits the available space.
         /// The variant strings should be provided as localized, displayable content.
         #[unsafe(method(titleVariants))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleVariants(&self) -> Retained<NSArray<NSString>>;
+
+        #[unsafe(method(updateTitleVariants:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updateTitleVariants(&self, title_variants: &NSArray<NSString>);
     );
 }

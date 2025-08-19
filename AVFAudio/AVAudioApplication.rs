@@ -77,7 +77,7 @@ extern "C" {
     /// Notification sent to registered listeners when the application's input is muted
     /// or unmuted.
     ///
-    /// Check the notification's userInfo dictionary for the mute state AVAudioApplicationInputMuteStateKey
+    /// Check the notification's userInfo dictionary for the mute state `AVAudioApplicationMuteStateKey`
     /// which will have a boolean value 0 for unmuted or value 1 for muted.
     ///
     /// Note: this notification will only be dispatched for state changes when there is an active record session (i.e. record or playAndRecord category).

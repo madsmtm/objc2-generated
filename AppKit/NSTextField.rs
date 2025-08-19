@@ -332,6 +332,27 @@ impl NSTextField {
         #[unsafe(method(setAllowsWritingToolsAffordance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsWritingToolsAffordance(&self, allows_writing_tools_affordance: bool);
+
+        #[unsafe(method(placeholderStrings))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn placeholderStrings(&self) -> Retained<NSArray<NSString>>;
+
+        /// Setter for [`placeholderStrings`][Self::placeholderStrings].
+        #[unsafe(method(setPlaceholderStrings:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPlaceholderStrings(&self, placeholder_strings: &NSArray<NSString>);
+
+        #[unsafe(method(placeholderAttributedStrings))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn placeholderAttributedStrings(&self) -> Retained<NSArray<NSAttributedString>>;
+
+        /// Setter for [`placeholderAttributedStrings`][Self::placeholderAttributedStrings].
+        #[unsafe(method(setPlaceholderAttributedStrings:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPlaceholderAttributedStrings(
+            &self,
+            placeholder_attributed_strings: &NSArray<NSAttributedString>,
+        );
     );
 }
 

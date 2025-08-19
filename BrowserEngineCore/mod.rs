@@ -21,6 +21,9 @@
 #[link(name = "BrowserEngineCore", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "BEAudioSession")]
+#[path = "BEAudioSession.rs"]
+mod __BEAudioSession;
 #[cfg(feature = "BEMemory")]
 #[path = "BEMemory.rs"]
 mod __BEMemory;
@@ -28,6 +31,8 @@ mod __BEMemory;
 #[path = "BEkevent.rs"]
 mod __BEkevent;
 
+#[cfg(all(feature = "BEAudioSession", feature = "objc2"))]
+pub use self::__BEAudioSession::BEAudioSession;
 #[cfg(all(feature = "BEkevent", feature = "libc"))]
 pub use self::__BEkevent::be_kevent;
 #[cfg(all(feature = "BEkevent", feature = "libc"))]

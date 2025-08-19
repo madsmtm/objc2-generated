@@ -24,6 +24,9 @@ extern "C" {}
 #[cfg(feature = "cp_base")]
 #[path = "cp_base.rs"]
 mod __cp_base;
+#[cfg(feature = "cp_conditionals")]
+#[path = "cp_conditionals.rs"]
+mod __cp_conditionals;
 #[cfg(feature = "cp_error")]
 #[path = "cp_error.rs"]
 mod __cp_error;
@@ -33,6 +36,9 @@ mod __cp_types;
 #[cfg(feature = "drawable")]
 #[path = "drawable.rs"]
 mod __drawable;
+#[cfg(feature = "drawable_render_context")]
+#[path = "drawable_render_context.rs"]
+mod __drawable_render_context;
 #[cfg(feature = "frame")]
 #[path = "frame.rs"]
 mod __frame;
@@ -54,6 +60,9 @@ mod __layer_renderer_layout;
 #[cfg(feature = "layer_renderer_properties")]
 #[path = "layer_renderer_properties.rs"]
 mod __layer_renderer_properties;
+#[cfg(feature = "tracking_area")]
+#[path = "tracking_area.rs"]
+mod __tracking_area;
 #[cfg(feature = "view")]
 #[path = "view.rs"]
 mod __view;
@@ -73,6 +82,8 @@ pub use self::__cp_types::cp_compositor_frame_index_t;
 #[cfg(feature = "cp_types")]
 pub use self::__cp_types::cp_layer_frame_index_t;
 #[cfg(feature = "cp_types")]
+pub use self::__cp_types::cp_render_quality_t;
+#[cfg(feature = "cp_types")]
 pub use self::__cp_types::cp_time;
 #[cfg(feature = "cp_types")]
 pub use self::__cp_types::cp_time_t;
@@ -82,6 +93,24 @@ pub use self::__cp_types::cp_time_to_cf_time_interval;
 pub use self::__cp_types::cp_time_wait_until;
 #[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable;
+#[cfg(all(feature = "drawable", feature = "drawable_render_context"))]
+pub use self::__drawable::cp_drawable_add_mtl4_render_context;
+#[cfg(all(
+    feature = "drawable",
+    feature = "drawable_render_context",
+    feature = "objc2-metal"
+))]
+pub use self::__drawable::cp_drawable_add_render_context;
+#[cfg(all(feature = "drawable", feature = "tracking_area"))]
+pub use self::__drawable::cp_drawable_add_tracking_area;
+#[cfg(feature = "drawable")]
+pub use self::__drawable::cp_drawable_array;
+#[cfg(feature = "drawable")]
+pub use self::__drawable::cp_drawable_array_get_count;
+#[cfg(feature = "drawable")]
+pub use self::__drawable::cp_drawable_array_get_drawable;
+#[cfg(feature = "drawable")]
+pub use self::__drawable::cp_drawable_array_t;
 #[cfg(all(feature = "drawable", feature = "objc2-metal"))]
 pub use self::__drawable::cp_drawable_encode_present;
 #[cfg(all(feature = "drawable", feature = "objc2-metal"))]
@@ -101,27 +130,55 @@ pub use self::__drawable::cp_drawable_get_rasterization_rate_map_count;
 #[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable_get_state;
 #[cfg(feature = "drawable")]
+pub use self::__drawable::cp_drawable_get_target;
+#[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable_get_texture_count;
+#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
+pub use self::__drawable::cp_drawable_get_tracking_areas_texture;
+#[cfg(feature = "drawable")]
+pub use self::__drawable::cp_drawable_get_tracking_areas_texture_count;
 #[cfg(all(feature = "drawable", feature = "view"))]
 pub use self::__drawable::cp_drawable_get_view;
 #[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable_get_view_count;
 #[cfg(feature = "drawable")]
+pub use self::__drawable::cp_drawable_is_content_capture_protected;
+#[cfg(feature = "drawable")]
+pub use self::__drawable::cp_drawable_mtl4_encode_present;
+#[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable_state;
 #[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable_t;
+#[cfg(feature = "drawable")]
+pub use self::__drawable::cp_drawable_target;
+#[cfg(feature = "drawable_render_context")]
+pub use self::__drawable_render_context::cp_drawable_render_context;
+#[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
+pub use self::__drawable_render_context::cp_drawable_render_context_draw_mask_on_stencil_attachment;
+#[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
+pub use self::__drawable_render_context::cp_drawable_render_context_end_encoding;
+#[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
+pub use self::__drawable_render_context::cp_drawable_render_context_mtl4_draw_mask_on_stencil_attachment;
+#[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
+pub use self::__drawable_render_context::cp_drawable_render_context_mtl4_end_encoding;
+#[cfg(feature = "drawable_render_context")]
+pub use self::__drawable_render_context::cp_drawable_render_context_t;
 #[cfg(feature = "frame")]
 pub use self::__frame::cp_frame;
 #[cfg(feature = "frame")]
 pub use self::__frame::cp_frame_end_submission;
 #[cfg(feature = "frame")]
 pub use self::__frame::cp_frame_end_update;
+#[cfg(all(feature = "drawable", feature = "frame"))]
+pub use self::__frame::cp_frame_get_drawable_target_view_count;
 #[cfg(all(feature = "cp_types", feature = "frame"))]
 pub use self::__frame::cp_frame_get_frame_index;
 #[cfg(all(feature = "frame", feature = "frame_timing"))]
 pub use self::__frame::cp_frame_predict_timing;
 #[cfg(all(feature = "drawable", feature = "frame"))]
 pub use self::__frame::cp_frame_query_drawable;
+#[cfg(all(feature = "drawable", feature = "frame"))]
+pub use self::__frame::cp_frame_query_drawables;
 #[cfg(feature = "frame")]
 pub use self::__frame::cp_frame_start_submission;
 #[cfg(feature = "frame")]
@@ -146,14 +203,20 @@ pub use self::__layer_renderer::cp_layer_renderer_get_configuration;
 pub use self::__layer_renderer::cp_layer_renderer_get_device;
 #[cfg(feature = "layer_renderer")]
 pub use self::__layer_renderer::cp_layer_renderer_get_minimum_frame_repeat_count;
+#[cfg(all(feature = "layer_renderer", feature = "objc2-metal"))]
+pub use self::__layer_renderer::cp_layer_renderer_get_mtl4_command_queue;
 #[cfg(all(feature = "layer_renderer", feature = "layer_renderer_properties"))]
 pub use self::__layer_renderer::cp_layer_renderer_get_properties;
+#[cfg(all(feature = "cp_types", feature = "layer_renderer"))]
+pub use self::__layer_renderer::cp_layer_renderer_get_render_quality;
 #[cfg(feature = "layer_renderer")]
 pub use self::__layer_renderer::cp_layer_renderer_get_state;
 #[cfg(all(feature = "frame", feature = "layer_renderer"))]
 pub use self::__layer_renderer::cp_layer_renderer_query_next_frame;
 #[cfg(feature = "layer_renderer")]
 pub use self::__layer_renderer::cp_layer_renderer_set_minimum_frame_repeat_count;
+#[cfg(all(feature = "cp_types", feature = "layer_renderer"))]
+pub use self::__layer_renderer::cp_layer_renderer_set_render_quality;
 #[cfg(feature = "layer_renderer")]
 pub use self::__layer_renderer::cp_layer_renderer_state;
 #[cfg(feature = "layer_renderer")]
@@ -163,9 +226,19 @@ pub use self::__layer_renderer::cp_layer_renderer_wait_until_running;
 #[cfg(feature = "layer_renderer")]
 pub use self::__layer_renderer::CP_OBJECT_cp_layer_renderer;
 #[cfg(all(feature = "layer_renderer_capabilities", feature = "objc2-metal"))]
+pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format;
+#[cfg(feature = "layer_renderer_capabilities")]
+pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_formats_count;
+#[cfg(all(feature = "cp_types", feature = "layer_renderer_capabilities"))]
+pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_get_default_render_quality;
+#[cfg(all(feature = "layer_renderer_capabilities", feature = "objc2-metal"))]
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_color_format;
+#[cfg(all(feature = "layer_renderer_capabilities", feature = "objc2-metal"))]
+pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_color_format_with_options;
 #[cfg(feature = "layer_renderer_capabilities")]
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_color_formats_count;
+#[cfg(feature = "layer_renderer_capabilities")]
+pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_color_formats_count_with_options;
 #[cfg(all(feature = "layer_renderer_capabilities", feature = "objc2-metal"))]
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_depth_format;
 #[cfg(feature = "layer_renderer_capabilities")]
@@ -179,10 +252,16 @@ pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supp
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_layouts_count;
 #[cfg(feature = "layer_renderer_capabilities")]
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_minimum_near_plane_distance;
+#[cfg(all(feature = "layer_renderer_capabilities", feature = "objc2-metal"))]
+pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_tracking_areas_format;
+#[cfg(feature = "layer_renderer_capabilities")]
+pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_tracking_areas_formats_count;
 #[cfg(feature = "layer_renderer_capabilities")]
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supports_foveation;
 #[cfg(feature = "layer_renderer_capabilities")]
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_t;
+#[cfg(feature = "layer_renderer_capabilities")]
+pub use self::__layer_renderer_capabilities::cp_supported_color_formats_options;
 #[cfg(feature = "layer_renderer_capabilities")]
 pub use self::__layer_renderer_capabilities::cp_supported_layouts_options;
 #[cfg(feature = "layer_renderer_capabilities")]
@@ -196,6 +275,10 @@ pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_ge
 #[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_depth_usage;
 #[cfg(feature = "layer_renderer_configuration")]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_drawable_render_context_raster_sample_count;
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_drawable_render_context_stencil_format;
+#[cfg(feature = "layer_renderer_configuration")]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_foveation_enabled;
 #[cfg(feature = "layer_renderer_configuration")]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps;
@@ -204,6 +287,14 @@ pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_ge
     feature = "layer_renderer_layout"
 ))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_layout;
+#[cfg(all(feature = "cp_types", feature = "layer_renderer_configuration"))]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_max_render_quality;
+#[cfg(feature = "layer_renderer_configuration")]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_supports_mtl4;
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_tracking_areas_format;
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_tracking_areas_usage;
 #[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_color_format;
 #[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
@@ -213,6 +304,10 @@ pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_se
 #[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_depth_usage;
 #[cfg(feature = "layer_renderer_configuration")]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_drawable_render_context_raster_sample_count;
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_drawable_render_context_stencil_format;
+#[cfg(feature = "layer_renderer_configuration")]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_foveation_enabled;
 #[cfg(feature = "layer_renderer_configuration")]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps;
@@ -221,6 +316,14 @@ pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_se
     feature = "layer_renderer_layout"
 ))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_layout;
+#[cfg(all(feature = "cp_types", feature = "layer_renderer_configuration"))]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_max_render_quality;
+#[cfg(feature = "layer_renderer_configuration")]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_supports_mtl4;
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_tracking_areas_format;
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
+pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_tracking_areas_usage;
 #[cfg(feature = "layer_renderer_configuration")]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_t;
 #[cfg(feature = "layer_renderer_configuration")]
@@ -237,6 +340,8 @@ pub use self::__layer_renderer_properties::cp_layer_renderer_properties_create_u
 pub use self::__layer_renderer_properties::cp_layer_renderer_properties_get_texture_topology;
 #[cfg(feature = "layer_renderer_properties")]
 pub use self::__layer_renderer_properties::cp_layer_renderer_properties_get_texture_topology_count;
+#[cfg(all(feature = "layer_renderer_properties", feature = "tracking_area"))]
+pub use self::__layer_renderer_properties::cp_layer_renderer_properties_get_tracking_areas_max_value;
 #[cfg(feature = "layer_renderer_properties")]
 pub use self::__layer_renderer_properties::cp_layer_renderer_properties_get_view_count;
 #[cfg(feature = "layer_renderer_properties")]
@@ -251,6 +356,28 @@ pub use self::__layer_renderer_properties::cp_texture_topology_get_texture_type;
 pub use self::__layer_renderer_properties::cp_texture_topology_t;
 #[cfg(feature = "layer_renderer_properties")]
 pub use self::__layer_renderer_properties::CP_OBJECT_cp_layer_renderer_properties;
+#[cfg(feature = "tracking_area")]
+pub use self::__tracking_area::cp_hover_effect;
+#[cfg(feature = "tracking_area")]
+pub use self::__tracking_area::cp_hover_effect_t;
+#[cfg(feature = "tracking_area")]
+pub use self::__tracking_area::cp_tracking_area;
+#[cfg(feature = "tracking_area")]
+pub use self::__tracking_area::cp_tracking_area_add_automatic_hover_effect;
+#[cfg(feature = "tracking_area")]
+pub use self::__tracking_area::cp_tracking_area_get_identifier;
+#[cfg(feature = "tracking_area")]
+pub use self::__tracking_area::cp_tracking_area_get_render_value;
+#[cfg(feature = "tracking_area")]
+pub use self::__tracking_area::cp_tracking_area_identifier;
+#[cfg(feature = "tracking_area")]
+pub use self::__tracking_area::cp_tracking_area_identifier_invalid;
+#[cfg(feature = "tracking_area")]
+pub use self::__tracking_area::cp_tracking_area_render_value;
+#[cfg(feature = "tracking_area")]
+pub use self::__tracking_area::cp_tracking_area_render_value_invalid;
+#[cfg(feature = "tracking_area")]
+pub use self::__tracking_area::cp_tracking_area_t;
 #[cfg(feature = "view")]
 pub use self::__view::cp_view;
 #[cfg(feature = "view")]

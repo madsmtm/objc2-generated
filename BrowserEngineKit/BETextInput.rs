@@ -475,6 +475,22 @@ extern_protocol!(
             point: CGPoint,
         ) -> bool;
 
+        /// If different than the text input view, one can return a container view here for selection views
+        /// that draw _below_ text. Includes the selection highlight view. If this is unimplemented or nil
+        /// is returned, views are to be installed onto the text input view.
+        #[optional]
+        #[unsafe(method(selectionContainerViewBelowText))]
+        #[unsafe(method_family = none)]
+        unsafe fn selectionContainerViewBelowText(&self) -> Option<Retained<UIView>>;
+
+        /// If different than the text input view, one can return a container view here for selection views
+        /// that draw _above_ text. Includes selection range adjustment handles. If this is unimplemented
+        /// or nil is returned, views are to be installed onto the text input view.
+        #[optional]
+        #[unsafe(method(selectionContainerViewAboveText))]
+        #[unsafe(method_family = none)]
+        unsafe fn selectionContainerViewAboveText(&self) -> Option<Retained<UIView>>;
+
         /// String representing the selected text.
         #[unsafe(method(selectedText))]
         #[unsafe(method_family = none)]

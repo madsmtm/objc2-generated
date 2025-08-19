@@ -13,6 +13,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clplacemark?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
     pub struct CLPlacemark;
 );
 
@@ -50,6 +51,7 @@ impl CLPlacemark {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(initWithPlacemark:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlacemark(
@@ -58,6 +60,7 @@ impl CLPlacemark {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CLLocation")]
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
@@ -76,54 +79,67 @@ impl CLPlacemark {
         #[unsafe(method_family = none)]
         pub unsafe fn addressDictionary(&self) -> Option<Retained<NSDictionary>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(thoroughfare))]
         #[unsafe(method_family = none)]
         pub unsafe fn thoroughfare(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(subThoroughfare))]
         #[unsafe(method_family = none)]
         pub unsafe fn subThoroughfare(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(locality))]
         #[unsafe(method_family = none)]
         pub unsafe fn locality(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(subLocality))]
         #[unsafe(method_family = none)]
         pub unsafe fn subLocality(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(administrativeArea))]
         #[unsafe(method_family = none)]
         pub unsafe fn administrativeArea(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(subAdministrativeArea))]
         #[unsafe(method_family = none)]
         pub unsafe fn subAdministrativeArea(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(postalCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn postalCode(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(ISOcountryCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn ISOcountryCode(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(country))]
         #[unsafe(method_family = none)]
         pub unsafe fn country(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(inlandWater))]
         #[unsafe(method_family = none)]
         pub unsafe fn inlandWater(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(ocean))]
         #[unsafe(method_family = none)]
         pub unsafe fn ocean(&self) -> Option<Retained<NSString>>;
 
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(areasOfInterest))]
         #[unsafe(method_family = none)]
         pub unsafe fn areasOfInterest(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -135,6 +151,7 @@ impl CLPlacemark {
     extern_methods!(
         #[cfg(feature = "objc2-contacts")]
         #[cfg(not(target_os = "tvos"))]
+        #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]
         #[unsafe(method(postalAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn postalAddress(&self) -> Option<Retained<CNPostalAddress>>;

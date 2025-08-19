@@ -185,6 +185,14 @@ impl MTLCaptureManager {
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
         ) -> Retained<ProtocolObject<dyn MTLCaptureScope>>;
 
+        #[cfg(all(feature = "MTL4CommandQueue", feature = "MTLCaptureScope"))]
+        #[unsafe(method(newCaptureScopeWithMTL4CommandQueue:))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn newCaptureScopeWithMTL4CommandQueue(
+            &self,
+            command_queue: &ProtocolObject<dyn MTL4CommandQueue>,
+        ) -> Retained<ProtocolObject<dyn MTLCaptureScope>>;
+
         #[unsafe(method(supportsDestination:))]
         #[unsafe(method_family = none)]
         pub fn supportsDestination(&self, destination: MTLCaptureDestination) -> bool;

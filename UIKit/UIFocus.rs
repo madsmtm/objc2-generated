@@ -331,22 +331,6 @@ impl UIFocusUpdateContext {
         #[unsafe(method_family = none)]
         pub unsafe fn nextFocusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
-        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        /// The view that was focused before the update. May be nil if no view was focused, such as when setting initial focus.
-        /// If previouslyFocusedItem is not a view, this returns that item's containing view, otherwise they are equal.
-        /// NOTE: This property will be deprecated in a future release. Use previouslyFocusedItem instead.
-        #[unsafe(method(previouslyFocusedView))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn previouslyFocusedView(&self) -> Option<Retained<UIView>>;
-
-        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        /// The view that will be focused after the update. May be nil if no view will be focused.
-        /// If nextFocusedItem is not a view, this returns that item's containing view, otherwise they are equal.
-        /// NOTE: This property will be deprecated in a future release. Use nextFocusedItem instead.
-        #[unsafe(method(nextFocusedView))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn nextFocusedView(&self) -> Option<Retained<UIView>>;
-
         /// The focus heading in which the update is occurring.
         #[unsafe(method(focusHeading))]
         #[unsafe(method_family = none)]

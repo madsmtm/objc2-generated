@@ -27,6 +27,9 @@ mod __NIAlgorithmConvergenceStatusReason;
 #[cfg(feature = "NIConfiguration")]
 #[path = "NIConfiguration.rs"]
 mod __NIConfiguration;
+#[cfg(feature = "NIDLTDOAMeasurement")]
+#[path = "NIDLTDOAMeasurement.rs"]
+mod __NIDLTDOAMeasurement;
 #[cfg(feature = "NIDeviceCapability")]
 #[path = "NIDeviceCapability.rs"]
 mod __NIDeviceCapability;
@@ -58,11 +61,19 @@ pub use self::__NIAlgorithmConvergenceStatusReason::NIAlgorithmConvergenceStatus
 #[cfg(feature = "NIConfiguration")]
 pub use self::__NIConfiguration::NIConfiguration;
 #[cfg(feature = "NIConfiguration")]
+pub use self::__NIConfiguration::NIDLTDOAConfiguration;
+#[cfg(feature = "NIConfiguration")]
 pub use self::__NIConfiguration::NIDiscoveryToken;
 #[cfg(feature = "NIConfiguration")]
 pub use self::__NIConfiguration::NINearbyAccessoryConfiguration;
 #[cfg(feature = "NIConfiguration")]
 pub use self::__NIConfiguration::NINearbyPeerConfiguration;
+#[cfg(feature = "NIDLTDOAMeasurement")]
+pub use self::__NIDLTDOAMeasurement::NIDLTDOACoordinatesType;
+#[cfg(feature = "NIDLTDOAMeasurement")]
+pub use self::__NIDLTDOAMeasurement::NIDLTDOAMeasurement;
+#[cfg(feature = "NIDLTDOAMeasurement")]
+pub use self::__NIDLTDOAMeasurement::NIDLTDOAMeasurementType;
 #[cfg(feature = "NIDeviceCapability")]
 pub use self::__NIDeviceCapability::NIDeviceCapability;
 #[cfg(feature = "NIError")]

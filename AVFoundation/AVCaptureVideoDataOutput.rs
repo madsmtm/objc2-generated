@@ -208,6 +208,15 @@ impl AVCaptureVideoDataOutput {
             output_file_url: Option<&NSURL>,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        #[cfg(feature = "objc2-core-media")]
+        /// Indicates the recommended media timescale for the video track.
+        ///
+        ///
+        /// This will return a recommended media timescale based on the active capture session's inputs. It will not be less than 600. It may or may not be a multiple of 600.
+        #[unsafe(method(recommendedMediaTimeScaleForAssetWriter))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn recommendedMediaTimeScaleForAssetWriter(&self) -> CMTimeScale;
+
         /// Indicates the supported video pixel formats that can be specified in videoSettings.
         ///
         ///
@@ -288,6 +297,24 @@ impl AVCaptureVideoDataOutput {
         pub unsafe fn setDeliversPreviewSizedOutputBuffers(
             &self,
             delivers_preview_sized_output_buffers: bool,
+        );
+
+        /// Indicates whether the receiver should prepare the cellular radio for imminent network activity.
+        ///
+        ///
+        /// Apps that scan video data output buffers for information that will result in network activity (such as detecting a QRCode containing a URL) should set this property true to allow the cellular radio to prepare for an imminent network request. Enabling this property requires a lengthy reconfiguration of the capture render pipeline, so you should set this property to YES before calling -[AVCaptureSession startRunning].
+        ///
+        /// Using this API requires your app to adopt the entitlement `com.apple.developer.avfoundation.video-data-output-prepares-cellular-radio-for-machine-readable-code-scanning`.
+        #[unsafe(method(preparesCellularRadioForNetworkConnection))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preparesCellularRadioForNetworkConnection(&self) -> bool;
+
+        /// Setter for [`preparesCellularRadioForNetworkConnection`][Self::preparesCellularRadioForNetworkConnection].
+        #[unsafe(method(setPreparesCellularRadioForNetworkConnection:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPreparesCellularRadioForNetworkConnection(
+            &self,
+            prepares_cellular_radio_for_network_connection: bool,
         );
     );
 }

@@ -199,7 +199,7 @@ impl NSManagedObjectContext {
 
         #[unsafe(method(undoManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
+        pub unsafe fn undoManager(&self, mtm: MainThreadMarker) -> Option<Retained<NSUndoManager>>;
 
         /// Setter for [`undoManager`][Self::undoManager].
         #[unsafe(method(setUndoManager:))]

@@ -86,7 +86,11 @@ pub const kLAErrorCompanionNotAvailable: c_int = kLAErrorWatchNotAvailable;
 /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrordomain?language=objc)
 pub const kLAErrorDomain: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.LocalAuthentication\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klacompaniontypenone?language=objc)
+pub const kLACompanionTypeNone: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klacompaniontypewatch?language=objc)
 pub const kLACompanionTypeWatch: c_uint = 1 << 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klacompaniontypemac?language=objc)
 pub const kLACompanionTypeMac: c_uint = 1 << 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klacompaniontypevision?language=objc)
+pub const kLACompanionTypeVision: c_uint = 1 << 2;

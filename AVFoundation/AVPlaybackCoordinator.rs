@@ -66,9 +66,9 @@ extern "C" {
 extern_class!(
     /// A representation of a temporary break in participation.
     ///
-    /// Note: See AVPlaybackCoordinator's beginSuspensionForReason: method for details on use.
-    ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// - NOTE: See AVPlaybackCoordinator's beginSuspensionForReason: method for details on use.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension?language=objc)
     #[unsafe(super(NSObject))]
@@ -167,7 +167,7 @@ impl AVPlaybackCoordinator {
         ///
         /// Use this property to create UI informing the local user about the state of other participants in the group.
         ///
-        /// Note: The coordinator posts AVPlaybackCoordinatorOtherParticipantsDidChangeNotification when the contents of the array changes.
+        /// - NOTE: The coordinator posts AVPlaybackCoordinatorOtherParticipantsDidChangeNotification when the contents of the array changes.
         #[unsafe(method(otherParticipants))]
         #[unsafe(method_family = none)]
         pub unsafe fn otherParticipants(
@@ -189,9 +189,9 @@ impl AVPlaybackCoordinator {
         /// The coordinator will not respond to playback commands coming from the group and it will also not send any commands to the group.
         /// To resume in group playback, end a suspension by calling one of the suspension's end methods.
         ///
-        /// Note: See the description of AVPlaybackCoordinator subclasses for suspensions automatically begun on behalf of their playback objects, if any.
+        /// - Parameter suspensionReason: Indicates the reason for the suspension that is shared with other participants. Can be a system-defined reason (see AVCoordinatedPlaybackSuspensionReason*) or a custom string.
         ///
-        /// Parameter `suspensionReason`: Indicates the reason for the suspension that is shared with other participants. Can be a system-defined reason (see AVCoordinatedPlaybackSuspensionReason*) or a custom string.
+        /// - NOTE: See the description of AVPlaybackCoordinator subclasses for suspensions automatically begun on behalf of their playback objects, if any.
         #[unsafe(method(beginSuspensionForReason:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSuspensionForReason(
@@ -375,6 +375,41 @@ impl AVPlayerPlaybackCoordinator {
     );
 }
 
+/// AVPlaybackCoordinationMediumSupport.
+impl AVPlayerPlaybackCoordinator {
+    extern_methods!(
+        #[cfg(feature = "AVPlaybackCoordinationMedium")]
+        /// Connects the playback coordinator to the coordination medium
+        ///
+        /// This connects the playback coordinator to a coordination medium to enable sending and receiving messages from other connected playback coordinators.
+        /// If the coordination medium is non-NULL, this will connect the playback coordinator to the specified coordination medium.
+        /// If the coordination medium is set to NULL, this will disconnect the playback coordinator from the playback coordination medium. The player will no longer be coordinated with the other players connected to the coordination medium.
+        /// The playback coordinator can either only coordinate with local players through an AVPlaybackCoordinationMedium or coordinate with a remote group session through the `coordinateWithSession` API. If the client attempts to connect to an AVPlaybackCoordinationMedium while already connected to a group session, this method will populate the outError parameter
+        /// If the playback coordinator successfully connects to the coordination medium or disconnects from a coordination medium, the `outError` parameter will be nil. If the playback coordinator fails to connect to the specified coordination medium, the `outError` parameter will describe what went wrong.
+        ///
+        /// - Parameter coordinationMedium: The coordination medium the playback coordinator connects to. If NULL, the playback coordinator disconnects from any existing coordination medium.
+        /// - Parameter outError: A pointer to an NSError object that will be populated with failure information if connecting to or disconnecting from the coordination medium fails.
+        #[unsafe(method(coordinateUsingCoordinationMedium:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn coordinateUsingCoordinationMedium_error(
+            &self,
+            coordination_medium: Option<&AVPlaybackCoordinationMedium>,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "AVPlaybackCoordinationMedium")]
+        /// The AVPlaybackCoordinationMedium this playback coordinator is connected to.
+        ///
+        /// This is the AVPlaybackCoordinationMedium the playback coordinator is connected to.
+        /// If not NULL, the playback coordinator is connected to the specified coordination medium. The playback coordinator is not available to coordinate with a group session.
+        /// If NULL, the playback coordinator is not connected to any playback coordination medium. The playback coordinator is available to coordinate with a group session through the `coordinateWithSession` API.
+        #[unsafe(method(playbackCoordinationMedium))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn playbackCoordinationMedium(
+            &self,
+        ) -> Option<Retained<AVPlaybackCoordinationMedium>>;
+    );
+}
+
 extern_protocol!(
     /// Delegate protocol for AVPlayerPlaybackCoordinator.
     ///
@@ -417,9 +452,6 @@ extern_protocol!(
 
 /// Configuration for a call to [AVDelegatingPlaybackCoordinator coordinateRateChangeToRate:options:].
 ///
-///
-/// Requests that the coordinator begin playback as soon as possible and ignore other participant's readiness and suspensions.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorratechangeoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -427,6 +459,7 @@ extern_protocol!(
 pub struct AVDelegatingPlaybackCoordinatorRateChangeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVDelegatingPlaybackCoordinatorRateChangeOptions: NSUInteger {
+/// Requests that the coordinator begin playback as soon as possible and ignore other participant's readiness and suspensions.
         #[doc(alias = "AVDelegatingPlaybackCoordinatorRateChangeOptionPlayImmediately")]
         const PlayImmediately = 1<<0;
     }
@@ -442,9 +475,6 @@ unsafe impl RefEncode for AVDelegatingPlaybackCoordinatorRateChangeOptions {
 
 /// Configuration for a call to [AVDelegatingPlaybackCoordinator coordinateSeekToTime:options:].
 ///
-///
-/// Requests that the coordinator resume playback as soon as possible after the seek is complete and ignore other participant's readiness and suspensions.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -452,6 +482,7 @@ unsafe impl RefEncode for AVDelegatingPlaybackCoordinatorRateChangeOptions {
 pub struct AVDelegatingPlaybackCoordinatorSeekOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVDelegatingPlaybackCoordinatorSeekOptions: NSUInteger {
+/// Requests that the coordinator resume playback as soon as possible after the seek is complete and ignore other participant's readiness and suspensions.
         #[doc(alias = "AVDelegatingPlaybackCoordinatorSeekOptionResumeImmediately")]
         const ResumeImmediately = 1<<0;
     }
@@ -468,7 +499,7 @@ unsafe impl RefEncode for AVDelegatingPlaybackCoordinatorSeekOptions {
 extern_class!(
     /// An AVPlaybackCoordinator subclass for controlling a custom playback object.
     ///
-    /// Note: Use AVPlayer's playbackCoordinator property to get an AVPlaybackCoordinator for an AVPlayer.
+    /// - NOTE: Use AVPlayer's playbackCoordinator property to get an AVPlaybackCoordinator for an AVPlayer.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator?language=objc)
     #[unsafe(super(AVPlaybackCoordinator, NSObject))]
@@ -486,10 +517,9 @@ impl AVDelegatingPlaybackCoordinator {
         ///
         /// Use this to create an AVPlaybackCoordinator when playback is not driven by an AVPlayer.
         ///
-        /// Parameter `playbackControlDelegate`: An object conforming to the AVPlaybackCoordinatorPlaybackControlDelegate protocol representing a custom playback object.
-        /// The coordinator will only hold a weak reference to its delegate.
+        /// - Parameter playbackControlDelegate: An object conforming to the AVPlaybackCoordinatorPlaybackControlDelegate protocol representing a custom playback object. The coordinator will only hold a weak reference to its delegate.
         ///
-        /// Note: See AVPlayer's playbackCoordinator property to get an AVPlaybackCoordinator for an AVPlayer.
+        /// - NOTE: See AVPlayer's playbackCoordinator property to get an AVPlaybackCoordinator for an AVPlayer.
         #[unsafe(method(initWithPlaybackControlDelegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlaybackControlDelegate(
@@ -515,11 +545,10 @@ impl AVDelegatingPlaybackCoordinator {
         /// In those cases, the coordinator should be informed by beginning a suspension with the appropriate reason instead. If other participants pause is dependent on the coordinator's configuration.
         /// The suspension will stop the coordinator from issuing further commands to its playbackControlDelegate. After beginning the suspension, the playback object can be reconfigured as necessary.
         ///
-        /// Note: Calling this method while the coordinator is suspended affects only the local playback object. The group state will not be affected, even after the suspension ends.
+        /// - Parameter rate: The playback rate the group should be using.
+        /// - Parameter options: Additional configuration of the rate change. For details see AVDelegatingPlaybackCoordinatorRateChangeOptions.
         ///
-        /// Parameter `rate`: The playback rate the group should be using.
-        ///
-        /// Parameter `options`: Additional configuration of the rate change. For details see AVDelegatingPlaybackCoordinatorRateChangeOptions.
+        /// - NOTE: Calling this method while the coordinator is suspended affects only the local playback object. The group state will not be affected, even after the suspension ends.
         #[unsafe(method(coordinateRateChangeToRate:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinateRateChangeToRate_options(
@@ -533,12 +562,11 @@ impl AVDelegatingPlaybackCoordinator {
         ///
         /// For behavior around resuming playback after the seek is complete and suspensions, see the discussion of coordinateRateChangeToRate:options.
         ///
-        /// Note: Calling this method while the coordinator is suspended affects only the local playback object. The group state will not be affected, even after the suspension ends.
+        /// - Parameter time: The time the group should seek to when the command ends.
+        /// - Parameter options: Additional configuration of the seek. For details see AVDelegatingPlaybackCoordinatorSeekOptions.
+        ///
+        /// - NOTE: Calling this method while the coordinator is suspended affects only the local playback object. The group state will not be affected, even after the suspension ends.
         /// To end a suspension and also affect the group timing see -[AVCoordinatedPlaybackSuspension endProposingNewTime:]
-        ///
-        /// Parameter `time`: The time the group should seek to when the command ends.
-        ///
-        /// Parameter `options`: Additional configuration of the seek. For details see AVDelegatingPlaybackCoordinatorSeekOptions.
         #[unsafe(method(coordinateSeekToTime:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinateSeekToTime_options(
@@ -554,13 +582,10 @@ impl AVDelegatingPlaybackCoordinator {
         /// The proposed timing will either be used as the new referece timing for the group, or it will be compared to an already existing reference timing.
         /// If the proposed timing doesn't match such an existing reference timing, the coordinator will use the playbackControlDelegate to issue appropriate commands to match up the timing.
         ///
-        /// Note: This is not a way to affect the play queue of other participants. All other participants must do this independently, e.g. as a side-effect of an automatic item transition or an out-of-band communication requesting a similar item change.
+        /// - Parameter itemIdentifier: The identifier for the new current item. May be nil if nothing is playing.
+        /// - Parameter snapshotTimebase: A timebase used to communicate the initial playback state of the new item. If NULL, the coordinator will assume that playback is paused at kCMTimeZero. An appropriate timebase to pass to the completion handler may be retreived from AVFoundation playback objects such as AVSampleBufferRenderSynchronizer. It can also be created manually using CMTimebaseCreateWithSourceClock. The timebase will only be used to take a snapshot of its immediate timing. It will not be observed further.
         ///
-        /// Parameter `itemIdentifier`: The identifier for the new current item. May be nil if nothing is playing.
-        ///
-        /// Parameter `snapshotTimebase`: A timebase used to communicate the initial playback state of the new item. If NULL, the coordinator will assume that playback is paused at kCMTimeZero.
-        /// An appropriate timebase to pass to the completion handler may be retreived from AVFoundation playback objects such as AVSampleBufferRenderSynchronizer.
-        /// It can also be created manually using CMTimebaseCreateWithSourceClock. The timebase will only be used to take a snapshot of its immediate timing. It will not be observed further.
+        /// - NOTE: This is not a way to affect the play queue of other participants. All other participants must do this independently, e.g. as a side-effect of an automatic item transition or an out-of-band communication requesting a similar item change.
         #[unsafe(method(transitionToItemWithIdentifier:proposingInitialTimingBasedOnTimebase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transitionToItemWithIdentifier_proposingInitialTimingBasedOnTimebase(
@@ -607,13 +632,9 @@ extern_protocol!(
         /// The coordinator issues this command when the desired playback timeline has changed. This may mean that the rate has changed, but it can also mean that the anchor time has changed.
         /// Play commands are only issued when the desired playback rate is non-zero.
         ///
-        /// Parameter `coordinator`: The coordinator requesting a change in playback rate.
-        ///
-        /// Parameter `playCommand`: A play command object. See AVDelegatingPlaybackCoordinatorPlayCommand.
-        /// The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
-        ///
-        /// Parameter `completionHandler`: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability
-        /// to handle the command by beginning a suspension with an appropriate reason.
+        /// - Parameter coordinator: The coordinator requesting a change in playback rate.
+        /// - Parameter playCommand: A play command object. See AVDelegatingPlaybackCoordinatorPlayCommand. The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
+        /// - Parameter completionHandler: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability to handle the command by beginning a suspension with an appropriate reason.
         #[unsafe(method(playbackCoordinator:didIssuePlayCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssuePlayCommand_completionHandler(
@@ -626,14 +647,9 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         /// Called by the coordinator to pause playback.
         ///
-        /// Parameter `coordinator`: The coordinator requesting playback to pause.
-        ///
-        /// Parameter `pauseCommand`: A pause command object. See AVDelegatingPlaybackCoordinatorPauseCommand.
-        /// The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
-        ///
-        /// Parameter `completionHandler`: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability
-        /// to handle the command by beginning a suspension with an appropriate reason.
-        /// If the command's shouldBufferInAnticipationOfPlayback is YES, the completion handler should also only be called once the playback object is ready to receive a subsequent play command.
+        /// - Parameter coordinator: The coordinator requesting playback to pause.
+        /// - Parameter pauseCommand: A pause command object. See AVDelegatingPlaybackCoordinatorPauseCommand. The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
+        /// - Parameter completionHandler: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability to handle the command by beginning a suspension with an appropriate reason. If the command's shouldBufferInAnticipationOfPlayback is YES, the completion handler should also only be called once the playback object is ready to receive a subsequent play command.
         #[unsafe(method(playbackCoordinator:didIssuePauseCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssuePauseCommand_completionHandler(
@@ -648,14 +664,9 @@ extern_protocol!(
         ///
         /// The coordinator issues this command when the playback object current time changes, potentially also pausing playback.
         ///
-        /// Parameter `coordinator`: The coordinator requesting the seek.
-        ///
-        /// Parameter `seekCommand`: A seek command object. See AVDelegatingPlaybackCoordinatorSeekCommand.
-        /// The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
-        ///
-        /// Parameter `completionHandler`: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability
-        /// to handle the command by beginning a suspension with an appropriate reason.
-        /// If the command's shouldBufferInAnticipationOfPlayback is YES, the completion handler should also only be called once the playback object is ready to receive a subsequent play command.
+        /// - Parameter coordinator: The coordinator requesting the seek.
+        /// - Parameter seekCommand: A seek command object. See AVDelegatingPlaybackCoordinatorSeekCommand. The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
+        /// - Parameter completionHandler: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability to handle the command by beginning a suspension with an appropriate reason. If the command's shouldBufferInAnticipationOfPlayback is YES, the completion handler should also only be called once the playback object is ready to receive a subsequent play command.
         #[unsafe(method(playbackCoordinator:didIssueSeekCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssueSeekCommand_completionHandler(
@@ -672,14 +683,9 @@ extern_protocol!(
         /// In response to this command, it is appropriate to update playback UI to indicate playback in a waiting state.
         /// The expected start can be cancelled by calling -[AVDelegatingPlaybackCoordinator coordinateRateChangeTo:0].
         ///
-        /// Parameter `coordinator`: The coordinator requesting buffering to begin.
-        ///
-        /// Parameter `bufferingCommand`: A buffering command object. See AVDelegatingPlaybackCoordinatorBufferingCommand.
-        /// The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
-        ///
-        /// Parameter `completionHandler`: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability
-        /// to handle the command by beginning a suspension with an appropriate reason.
-        /// For buffering commands, the command should only be considered complete once the playback object is ready to receive a subsequent play command.
+        /// - Parameter coordinator: The coordinator requesting buffering to begin.
+        /// - Parameter bufferingCommand: A buffering command object. See AVDelegatingPlaybackCoordinatorBufferingCommand. The receiver should verify that the command is still valid by inspecting the expectedCurrentItemIdentifier property before applying the command.
+        /// - Parameter completionHandler: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability to handle the command by beginning a suspension with an appropriate reason. For buffering commands, the command should only be considered complete once the playback object is ready to receive a subsequent play command.
         #[unsafe(method(playbackCoordinator:didIssueBufferingCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssueBufferingCommand_completionHandler(
@@ -892,9 +898,7 @@ impl AVDelegatingPlaybackCoordinatorPauseCommand {
 extern_class!(
     /// A playback command requesting a seek.
     ///
-    /// If the current playback rate is non-zero, playback should not automatically resume after the seek. Instead the delegate should pause and wait for the coordinator to issue another PlayCommand.
-    ///
-    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    /// If the current playback rate is non-zero, playback should not automatically resume after the seek. Instead the delegate should pause and wait for the coordinator to issue another PlayCommand. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand?language=objc)
     #[unsafe(super(AVDelegatingPlaybackCoordinatorPlaybackControlCommand, NSObject))]

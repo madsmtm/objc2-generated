@@ -196,6 +196,9 @@ bitflags::bitflags! {
 /// Device supports Bluetooth Low Energy pairing.
         #[doc(alias = "DDDeviceSupportsBluetoothTransportBridging")]
         const BluetoothTransportBridging = 1<<2;
+/// Device supports bring up of classic transport profiles when low energy transport for peripheral is connected.
+        #[doc(alias = "DDDeviceSupportsBluetoothHID")]
+        const BluetoothHID = 1<<3;
     }
 }
 
@@ -204,6 +207,28 @@ unsafe impl Encode for DDDeviceSupports {
 }
 
 unsafe impl RefEncode for DDDeviceSupports {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Wi-Fi Aware Service's Role
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicewifiawareservicerole?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct DDDeviceWiFiAwareServiceRole(pub NSInteger);
+impl DDDeviceWiFiAwareServiceRole {
+    #[doc(alias = "DDDeviceWiFiAwareServiceRoleSubscriber")]
+    pub const Subscriber: Self = Self(10);
+    #[doc(alias = "DDDeviceWiFiAwareServiceRolePublisher")]
+    pub const Publisher: Self = Self(20);
+}
+
+unsafe impl Encode for DDDeviceWiFiAwareServiceRole {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for DDDeviceWiFiAwareServiceRole {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -419,6 +444,49 @@ impl DDDevice {
         #[unsafe(method(setUrl:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUrl(&self, url: &NSURL);
+
+        /// Device's Wi-Fi Aware's service name.
+        #[unsafe(method(wifiAwareServiceName))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn wifiAwareServiceName(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`wifiAwareServiceName`][Self::wifiAwareServiceName].
+        #[unsafe(method(setWifiAwareServiceName:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWifiAwareServiceName(&self, wifi_aware_service_name: Option<&NSString>);
+
+        /// Device's Wi-Fi Aware's service. Default is `DDDeviceWiFiAwareServiceRoleSubscriber`
+        #[unsafe(method(wifiAwareServiceRole))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn wifiAwareServiceRole(&self) -> DDDeviceWiFiAwareServiceRole;
+
+        /// Setter for [`wifiAwareServiceRole`][Self::wifiAwareServiceRole].
+        #[unsafe(method(setWifiAwareServiceRole:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWifiAwareServiceRole(
+            &self,
+            wifi_aware_service_role: DDDeviceWiFiAwareServiceRole,
+        );
+
+        /// Device's Wi-Fi Aware model name.
+        #[unsafe(method(wifiAwareModelName))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn wifiAwareModelName(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`wifiAwareModelName`][Self::wifiAwareModelName].
+        #[unsafe(method(setWifiAwareModelName:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWifiAwareModelName(&self, wifi_aware_model_name: Option<&NSString>);
+
+        /// Device's Wi-Fi Aware vendor name.
+        #[unsafe(method(wifiAwareVendorName))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn wifiAwareVendorName(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`wifiAwareVendorName`][Self::wifiAwareVendorName].
+        #[unsafe(method(setWifiAwareVendorName:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWifiAwareVendorName(&self, wifi_aware_vendor_name: Option<&NSString>);
     );
 }
 

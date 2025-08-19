@@ -51,6 +51,13 @@ impl MTLBlendFactor {
     pub const Source1Alpha: Self = Self(17);
     #[doc(alias = "MTLBlendFactorOneMinusSource1Alpha")]
     pub const OneMinusSource1Alpha: Self = Self(18);
+    /// Defers assigning the blend factor.
+    ///
+    /// Until you specialize this value in the pipeline state, it:
+    /// * behaves as `MTLBlendFactorOne` for `sourceRGBBlendFactor` and `sourceAlphaBlendFactor`
+    /// * behaves as `MTLBlendFactorZero` for `destinationRGBBlendFactor` and `destinationAlphaBlendFactor`
+    #[doc(alias = "MTLBlendFactorUnspecialized")]
+    pub const Unspecialized: Self = Self(19);
 }
 
 unsafe impl Encode for MTLBlendFactor {
@@ -77,6 +84,9 @@ impl MTLBlendOperation {
     pub const Min: Self = Self(3);
     #[doc(alias = "MTLBlendOperationMax")]
     pub const Max: Self = Self(4);
+    /// Defers assigning the blend operation.
+    #[doc(alias = "MTLBlendOperationUnspecialized")]
+    pub const Unspecialized: Self = Self(5);
 }
 
 unsafe impl Encode for MTLBlendOperation {
@@ -106,6 +116,11 @@ bitflags::bitflags! {
         const Alpha = 0x1<<0;
         #[doc(alias = "MTLColorWriteMaskAll")]
         const All = 0xf;
+/// Defers assigning the color write mask.
+///
+/// Until you specialize this value in the pipeline state, it behaves as `MTLColorWriteMaskAll`.
+        #[doc(alias = "MTLColorWriteMaskUnspecialized")]
+        const Unspecialized = 0x10;
     }
 }
 
@@ -366,6 +381,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPipelineReflection;
 );
+
+unsafe impl Send for MTLRenderPipelineReflection {}
+
+unsafe impl Sync for MTLRenderPipelineReflection {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for MTLRenderPipelineReflection {}
@@ -979,7 +998,8 @@ extern_protocol!(
     /// MTLRenderPipelineState is a compiled render pipeline and can be set on a MTLRenderCommandEncoder.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpipelinestate?language=objc)
-    pub unsafe trait MTLRenderPipelineState: NSObjectProtocol {
+    #[cfg(feature = "MTLAllocation")]
+    pub unsafe trait MTLRenderPipelineState: MTLAllocation + NSObjectProtocol {
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
@@ -988,6 +1008,89 @@ extern_protocol!(
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+
+        /// Obtains a reflection object for this render pipeline.
+        ///
+        /// When you create the pipeline through an ``MTLDevice`` instance, reflection is `nil`.
+        #[unsafe(method(reflection))]
+        #[unsafe(method_family = none)]
+        unsafe fn reflection(&self) -> Option<Retained<MTLRenderPipelineReflection>>;
+
+        #[cfg(all(feature = "MTLFunctionHandle", feature = "MTLRenderCommandEncoder"))]
+        /// Obtains a function handle for the a specific function this pipeline links at the Metal IR level.
+        ///
+        /// - Parameters:
+        /// - name: A string containing the name of the function.
+        /// - stage: The shader stage that uses the function.
+        ///
+        /// - Returns: a function handle representing the function if present, otherwise `nil`.
+        #[unsafe(method(functionHandleWithName:stage:))]
+        #[unsafe(method_family = none)]
+        unsafe fn functionHandleWithName_stage(
+            &self,
+            name: &NSString,
+            stage: MTLRenderStages,
+        ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
+
+        #[cfg(all(
+            feature = "MTL4BinaryFunction",
+            feature = "MTLFunctionHandle",
+            feature = "MTLRenderCommandEncoder"
+        ))]
+        /// Obtains the function handle for a specific function this pipeline state links at the binary level.
+        ///
+        /// - Parameters:
+        /// - function: a binary function to retrieve the handle.
+        /// - stage: The shader stage that uses the function.
+        ///
+        /// - Returns: a function handle representing the function if present, otherwise `nil`.
+        #[unsafe(method(functionHandleWithBinaryFunction:stage:))]
+        #[unsafe(method_family = none)]
+        unsafe fn functionHandleWithBinaryFunction_stage(
+            &self,
+            function: &ProtocolObject<dyn MTL4BinaryFunction>,
+            stage: MTLRenderStages,
+        ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
+
+        #[cfg(feature = "MTL4RenderPipeline")]
+        /// Creates a new render pipeline state by adding binary functions to each stage of this pipeline
+        /// state.
+        ///
+        /// - Parameters:
+        /// - binaryFunctionsDescriptor: A non-`nil` dynamic linking descriptor.
+        /// - error: An optional pointer that Metal populates with information in case of an error.
+        ///
+        /// - Returns: A new render pipeline state upon success, otherwise `nil`.
+        #[unsafe(method(newRenderPipelineStateWithBinaryFunctions:error:_))]
+        #[unsafe(method_family = new)]
+        unsafe fn newRenderPipelineStateWithBinaryFunctions_error(
+            &self,
+            binary_functions_descriptor: &MTL4RenderPipelineBinaryFunctionsDescriptor,
+        ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
+
+        #[cfg(feature = "MTL4PipelineState")]
+        /// Creates a render pipeline descriptor from this pipeline that you can use for pipeline specialization.
+        ///
+        /// Use this method to obtain a new ``MTL4PipelineDescriptor`` instance that you can use to specialize any unspecialized
+        /// properties in this pipeline state object.
+        ///
+        /// The returned descriptor contains every unspecialized field in the current pipeline state object, set to unspecialized.
+        /// It may, however, not contain valid or accurate properties in any other field.
+        ///
+        /// This descriptor is only valid for the purpose of calling specialization functions on the ``MTL4Compiler`` to
+        /// specialize this pipeline, for example: ``MTL4Compiler/newRenderPipelineStateBySpecializationWithDescriptor:pipeline:error:``.
+        ///
+        /// Although this method returns the ``MTL4PipelineDescriptor`` base class, the concrete instance this method returns
+        /// corresponds to the specific descriptor type for the creation of this pipeline state, for example if a ``MTL4Compiler``
+        /// instance creates this current pipeline form a ``MTLTileRenderPipelineDescriptor``, this method returns a concrete
+        /// ``MTLTileRenderPipelineDescriptor`` instance.
+        ///
+        /// - Returns: a new pipeline descriptor that you use for pipeline state specialization.
+        #[unsafe(method(newRenderPipelineDescriptorForSpecialization))]
+        #[unsafe(method_family = new)]
+        unsafe fn newRenderPipelineDescriptorForSpecialization(
+            &self,
+        ) -> Retained<MTL4PipelineDescriptor>;
 
         /// The maximum total number of threads that can be in a single tile shader threadgroup.
         #[unsafe(method(maxTotalThreadsPerThreadgroup))]
@@ -1073,7 +1176,6 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
 
         #[cfg(all(
-            feature = "MTLAllocation",
             feature = "MTLRenderCommandEncoder",
             feature = "MTLResource",
             feature = "MTLVisibleFunctionTable"
@@ -1088,7 +1190,6 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLVisibleFunctionTable>>>;
 
         #[cfg(all(
-            feature = "MTLAllocation",
             feature = "MTLIntersectionFunctionTable",
             feature = "MTLRenderCommandEncoder",
             feature = "MTLResource"
@@ -1115,6 +1216,28 @@ extern_protocol!(
         #[unsafe(method(shaderValidation))]
         #[unsafe(method_family = none)]
         unsafe fn shaderValidation(&self) -> MTLShaderValidation;
+
+        #[cfg(feature = "MTLTypes")]
+        /// The required size of every tile shader threadgroup.
+        #[unsafe(method(requiredThreadsPerTileThreadgroup))]
+        #[unsafe(method_family = none)]
+        unsafe fn requiredThreadsPerTileThreadgroup(&self) -> MTLSize;
+
+        #[cfg(feature = "MTLTypes")]
+        /// The required size of every object shader threadgroup.
+        ///
+        /// This value is set in MTLMeshRenderPipelineDescriptor.
+        #[unsafe(method(requiredThreadsPerObjectThreadgroup))]
+        #[unsafe(method_family = none)]
+        unsafe fn requiredThreadsPerObjectThreadgroup(&self) -> MTLSize;
+
+        #[cfg(feature = "MTLTypes")]
+        /// The required size of every mesh shader threadgroup.
+        ///
+        /// This value is set in MTLMeshRenderPipelineDescriptor.
+        #[unsafe(method(requiredThreadsPerMeshThreadgroup))]
+        #[unsafe(method_family = none)]
+        unsafe fn requiredThreadsPerMeshThreadgroup(&self) -> MTLSize;
     }
 );
 
@@ -1442,6 +1565,23 @@ impl MTLTileRenderPipelineDescriptor {
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
+
+        #[cfg(feature = "MTLTypes")]
+        /// Sets the required threads-per-threadgroup during tile dispatches. The `threadsPerTile` argument of any tile dispatch must match to this value if it is set.
+        /// Optional, unless the pipeline is going to use CooperativeTensors in which case this must be set.
+        /// Setting this to a size of 0 in every dimension disables this property
+        #[unsafe(method(requiredThreadsPerThreadgroup))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+
+        #[cfg(feature = "MTLTypes")]
+        /// Setter for [`requiredThreadsPerThreadgroup`][Self::requiredThreadsPerThreadgroup].
+        #[unsafe(method(setRequiredThreadsPerThreadgroup:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiredThreadsPerThreadgroup(
+            &self,
+            required_threads_per_threadgroup: MTLSize,
+        );
     );
 }
 
@@ -1865,6 +2005,40 @@ impl MTLMeshRenderPipelineDescriptor {
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
+
+        #[cfg(feature = "MTLTypes")]
+        /// Sets the required object threads-per-threadgroup during mesh draws. The `threadsPerObjectThreadgroup` argument of any draw must match to this value if it is set.
+        /// Optional, unless the pipeline is going to use CooperativeTensors in which case this must be set.
+        /// Setting this to a size of 0 in every dimension disables this property
+        #[unsafe(method(requiredThreadsPerObjectThreadgroup))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiredThreadsPerObjectThreadgroup(&self) -> MTLSize;
+
+        #[cfg(feature = "MTLTypes")]
+        /// Setter for [`requiredThreadsPerObjectThreadgroup`][Self::requiredThreadsPerObjectThreadgroup].
+        #[unsafe(method(setRequiredThreadsPerObjectThreadgroup:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiredThreadsPerObjectThreadgroup(
+            &self,
+            required_threads_per_object_threadgroup: MTLSize,
+        );
+
+        #[cfg(feature = "MTLTypes")]
+        /// Sets the required mesh threads-per-threadgroup during mesh draws. The `threadsPerMeshThreadgroup` argument of any draw must match to this value if it is set.
+        /// Optional, unless the pipeline is going to use CooperativeTensors in which case this must be set.
+        /// Setting this to a size of 0 in every dimension disables this property
+        #[unsafe(method(requiredThreadsPerMeshThreadgroup))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiredThreadsPerMeshThreadgroup(&self) -> MTLSize;
+
+        #[cfg(feature = "MTLTypes")]
+        /// Setter for [`requiredThreadsPerMeshThreadgroup`][Self::requiredThreadsPerMeshThreadgroup].
+        #[unsafe(method(setRequiredThreadsPerMeshThreadgroup:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiredThreadsPerMeshThreadgroup(
+            &self,
+            required_threads_per_mesh_threadgroup: MTLSize,
+        );
     );
 }
 

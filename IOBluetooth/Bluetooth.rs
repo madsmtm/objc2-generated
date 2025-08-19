@@ -24,6 +24,8 @@ pub type BluetoothConnectionHandle = u16;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlmphandle?language=objc)
 pub type BluetoothLMPHandle = u8;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothconnectionhandleserialdevicereserved?language=objc)
+pub const kBluetoothConnectionHandleSerialDeviceReserved: c_uint = 0x0fff;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothconnectionhandlenone?language=objc)
 pub const kBluetoothConnectionHandleNone: c_uint = 0xffff;
 

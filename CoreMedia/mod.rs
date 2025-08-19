@@ -377,6 +377,44 @@ pub use self::__CMFormatDescription::kCMFormatDescriptionAlphaChannelMode_Premul
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionAlphaChannelMode_StraightAlpha;
 #[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibrationLensDomain_Color;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibrationLensRole_Left;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibrationLensRole_Mono;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibrationLensRole_Right;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_ExtrinsicOriginSource;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_IntrinsicMatrix;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_LensAlgorithmKind;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_LensDistortions;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_LensDomain;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_LensIdentifier;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_LensRole;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionCameraCalibration_RadialAngleLimit;
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionChromaLocation_Bottom;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionChromaLocation_BottomLeft;
@@ -427,6 +465,8 @@ pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_BitsPerCompon
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_BytesPerRow;
 #[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_CameraCalibrationDataLensCollection;
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ChromaLocationBottomField;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ChromaLocationTopField;
@@ -440,6 +480,8 @@ pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ContainsAlpha
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ContentColorVolume;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ContentLightLevelInfo;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ConvertedFromExternalSphericalTags;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_Depth;
 #[cfg(feature = "CMFormatDescription")]
@@ -539,9 +581,13 @@ pub use self::__CMFormatDescription::kCMFormatDescriptionKey_PixelAspectRatioVer
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionLogTransferFunction_AppleLog;
 #[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionProjectionKind_AppleImmersiveVideo;
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionProjectionKind_Equirectangular;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionProjectionKind_HalfEquirectangular;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionProjectionKind_ParametricImmersive;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionProjectionKind_Rectilinear;
 #[cfg(feature = "CMFormatDescription")]
@@ -1251,6 +1297,8 @@ pub use self::__CMMetadata::kCMMetadataBaseDataType_BMP;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_DimensionsF32;
 #[cfg(feature = "CMMetadata")]
+pub use self::__CMMetadata::kCMMetadataBaseDataType_ExtendedRasterRectangleValue;
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_Float32;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_Float64;
@@ -1270,6 +1318,8 @@ pub use self::__CMMetadata::kCMMetadataBaseDataType_PointF32;
 pub use self::__CMMetadata::kCMMetadataBaseDataType_PolygonF32;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_PolylineF32;
+#[cfg(feature = "CMMetadata")]
+pub use self::__CMMetadata::kCMMetadataBaseDataType_RasterRectangleValue;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_RawData;
 #[cfg(feature = "CMMetadata")]
@@ -1335,6 +1385,12 @@ pub use self::__CMMetadata::kCMMetadataIdentifierError_RequiredParameterMissing;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataDirection_Facing;
 #[cfg(feature = "CMMetadata")]
+pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono;
+#[cfg(feature = "CMMetadata")]
+pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft;
+#[cfg(feature = "CMMetadata")]
+pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight;
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransform;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions;
@@ -1343,9 +1399,13 @@ pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataLocation_ISO6
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataPreferredAffineTransform;
 #[cfg(feature = "CMMetadata")]
+pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia;
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier;
+#[cfg(feature = "CMMetadata")]
+pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataSpatialAudioMix;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataVideoOrientation;
 #[cfg(feature = "CMMetadata")]
@@ -1894,6 +1954,8 @@ pub use self::__CMTag::kCMTagProjectionTypeFisheye;
 #[cfg(feature = "CMTag")]
 pub use self::__CMTag::kCMTagProjectionTypeHalfEquirectangular;
 #[cfg(feature = "CMTag")]
+pub use self::__CMTag::kCMTagProjectionTypeParametricImmersive;
+#[cfg(feature = "CMTag")]
 pub use self::__CMTag::kCMTagProjectionTypeRectangular;
 #[cfg(feature = "CMTag")]
 pub use self::__CMTag::kCMTagStereoInterpretationOrderReversed;
@@ -2060,6 +2122,8 @@ pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupCreateCombined;
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupError;
 #[cfg(all(feature = "CMFormatDescription", feature = "CMTaggedBufferGroup"))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup;
+#[cfg(all(feature = "CMFormatDescription", feature = "CMTaggedBufferGroup"))]
+pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions;
 #[cfg(all(feature = "CMFormatDescription", feature = "CMTaggedBufferGroup"))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup;
 #[cfg(all(feature = "CMSampleBuffer", feature = "CMTaggedBufferGroup"))]

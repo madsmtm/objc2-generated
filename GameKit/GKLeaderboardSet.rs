@@ -119,6 +119,7 @@ impl GKLeaderboardSet {
     extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Asynchronously load the image. Error will be nil on success.
         #[unsafe(method(loadImageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(

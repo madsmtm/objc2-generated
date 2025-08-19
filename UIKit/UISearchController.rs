@@ -289,6 +289,8 @@ impl UISearchController {
             obscures_background_during_presentation: bool,
         );
 
+        /// Default is `YES` for apps linked before iOS 19.0, other than on MacCatalyst, where the default is `NO`.
+        /// On iOS 19.0 and visionOS 3.0 for apps linked on iOS 19.0 and later, the value is determined by context unless directly set through the API. The default remains `NO` on MacCatalyst.
         #[unsafe(method(hidesNavigationBarDuringPresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn hidesNavigationBarDuringPresentation(&self) -> bool;

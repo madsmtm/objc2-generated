@@ -388,7 +388,7 @@ impl UISearchBar {
         pub unsafe fn setInputAccessoryView(&self, input_accessory_view: Option<&UIView>);
 
         /// When set to false, user interaction will be prevented and the search bar will take on a disabled appearance
-        /// If the search bar is associated with a UINavigationItem with `UINavigationItemSearchBarPlacementInline`,
+        /// If the search bar is associated with a UINavigationItem with `UINavigationItemSearchBarPlacementIntegrated`,
         /// then the minimized (icon-only) UISearchBar will not grow to the text field while `enabled` is false.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]

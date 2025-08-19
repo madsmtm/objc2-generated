@@ -21,3 +21,12 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingpropertykey_outputcolorattachments?language=objc)
     pub static kVTRAWProcessingPropertyKey_OutputColorAttachments: Option<&'static CFString>;
 }
+
+extern "C" {
+    /// This property, if supported, returns the current processing metadata on the RAW Processor. The returned value can be used by the caller to create, or overwrite an existing sidecar file.
+    ///
+    /// This property is not supported by all RAWProcessors. The metadata returned represents a fully-formed sidecar file, and should be compatible with the MediaExtension FormatReader.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingpropertykey_metadataforsidecarfile?language=objc)
+    pub static kVTRAWProcessingPropertyKey_MetadataForSidecarFile: Option<&'static CFString>;
+}

@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -15,6 +17,7 @@ extern "C" {
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpgridtemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPGridTemplate;
@@ -69,7 +72,16 @@ impl CPGridTemplate {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The expected image size for your
+        /// `CPGridButton.`
+        /// To properly size your list images, your app should size them to the display scale of the car screen.
+        /// See -[CPInterfaceController carTraitCollection].
+        #[unsafe(method(maximumGridButtonImageSize))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumGridButtonImageSize(mtm: MainThreadMarker) -> CGSize;
 
         #[cfg(feature = "CPGridButton")]
         /// Array of grid buttons displayed on the template

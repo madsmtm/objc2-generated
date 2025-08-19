@@ -142,6 +142,8 @@ pub use self::__MPMediaEntity::MPMediaEntityPropertyPersistentID;
 #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
 pub use self::__MPMediaItem::MPMediaItem;
 #[cfg(feature = "MPMediaItem")]
+pub use self::__MPMediaItem::MPMediaItemAnimatedArtwork;
+#[cfg(feature = "MPMediaItem")]
 pub use self::__MPMediaItem::MPMediaItemArtwork;
 #[cfg(feature = "MPMediaItem")]
 pub use self::__MPMediaItem::MPMediaItemPropertyAlbumArtist;
@@ -314,6 +316,10 @@ pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoCenter;
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoCollectionIdentifier;
 #[cfg(feature = "MPNowPlayingInfoCenter")]
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoMediaType;
+#[cfg(feature = "MPNowPlayingInfoCenter")]
+pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoProperty1x1AnimatedArtwork;
+#[cfg(feature = "MPNowPlayingInfoCenter")]
+pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoProperty3x4AnimatedArtwork;
 #[cfg(feature = "MPNowPlayingInfoCenter")]
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyAdTimeRanges;
 #[cfg(feature = "MPNowPlayingInfoCenter")]

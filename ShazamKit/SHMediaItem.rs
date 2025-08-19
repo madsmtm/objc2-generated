@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty?language=objc)
+/// Constants for the media item property names.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type SHMediaItemProperty = NSString;
 
@@ -96,16 +98,14 @@ extern "C" {
 }
 
 extern "C" {
-    /// The time ranges in the represented media that are described by this
-    /// `SHMediaItem`
+    /// The key to access the time ranges property of a media item.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemtimeranges?language=objc)
     pub static SHMediaItemTimeRanges: &'static SHMediaItemProperty;
 }
 
 extern "C" {
-    /// The frequency skew ranges that are described by this
-    /// `SHMediaItem`
+    /// The key to access the frequency skew ranges property of a media item.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemfrequencyskewranges?language=objc)
     pub static SHMediaItemFrequencySkewRanges: &'static SHMediaItemProperty;
@@ -119,17 +119,37 @@ extern "C" {
 }
 
 extern_class!(
-    /// `SHMediaItem`represents metadata associated with a
-    /// `SHSignature`
-    /// A
-    /// `SHMediaItem`is used in two distinct ways
-    /// 1. As the base class of a
-    /// `SHMatchedMediaItem,`and therefore as the result of a match
-    /// 2. As a way of associating metadata with reference signatures in a
-    /// `SHCustomCatalog`
-    /// A SHMediaItem contains no required fields and may be entirely blank, they can also contain custom data set with custom keys when making a
-    /// `SHCustomCatalog.`
-    /// Note: `SHMediaItem`is not intended to be subclassed further.
+    /// An object that represents the metadata for a reference signature.
+    ///
+    /// This class uses subscripting for the data elements of a custom media item that an existing property doesn't already represent.
+    ///
+    /// Add a readable custom property by extending ``SHMediaItemProperty-struct``  with a key for that property, and by extending this class with a property that uses the key. The following code shows the extensions for an episode number:
+    ///
+    /// ```swift
+    /// // Add an episode number to the list of properties.
+    /// extension SHMediaItemProperty {
+    /// static let episode = SHMediaItemProperty("Episode")
+    /// }
+    ///
+    /// // Add a property for returning the episode number using a subscript.
+    /// extension SHMediaItem {
+    /// var episode: Int? {
+    /// return self[.episode] as? Int
+    /// }
+    /// }
+    /// ```
+    ///
+    /// Add your custom property when you create the media item as the following code shows:
+    ///
+    /// ```swift
+    /// // Create a new media item and set the title, subtitle, and episode properties.
+    /// let mediaItem = SHMediaItem(properties: [.episode: 42,
+    /// .title: "Question",
+    /// .subtitle: "The Answer"])
+    /// ```
+    ///
+    /// > Note:
+    /// > The class of the object that represents a custom object must be one of: `Dictionary`, `Array`, `URL`, `Number`, `String`, `Date`, or `Data`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitem?language=objc)
     #[unsafe(super(NSObject))]
@@ -163,134 +183,91 @@ extern_conformance!(
 
 impl SHMediaItem {
     extern_methods!(
-        /// The Shazam Media ID
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemShazamID`
+        /// The Shazam ID for the song.
         #[unsafe(method(shazamID))]
         #[unsafe(method_family = none)]
         pub unsafe fn shazamID(&self) -> Option<Retained<NSString>>;
 
-        /// The Title
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemTitle`
+        /// A title for the media item.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
-        /// The Subtitle
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemSubtitle`
+        /// A subtitle for the media item.
         #[unsafe(method(subtitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
-        /// The Artist
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemArtist`
+        /// The name of the artist for the media item, such as the performer of a song.
         #[unsafe(method(artist))]
         #[unsafe(method_family = none)]
         pub unsafe fn artist(&self) -> Option<Retained<NSString>>;
 
-        /// The Genre Names
+        /// An array of genre names for the media item.
         ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemGenres`
-        /// An array of strings representing the genres of the media item. Will return an empty array if there are no genres.
+        /// The array is empty if there are no media items.
         #[unsafe(method(genres))]
         #[unsafe(method_family = none)]
         pub unsafe fn genres(&self) -> Retained<NSArray<NSString>>;
 
-        /// The Apple Music ID
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemAppleMusicID`
+        /// The Apple Music ID for the song.
         #[unsafe(method(appleMusicID))]
         #[unsafe(method_family = none)]
         pub unsafe fn appleMusicID(&self) -> Option<Retained<NSString>>;
 
-        /// The Apple Music URL
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemAppleMusicURL`
+        /// A link to the Apple Music page that contains the full information for the song.
         #[unsafe(method(appleMusicURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn appleMusicURL(&self) -> Option<Retained<NSURL>>;
 
-        /// The Web URL
+        /// A link to the Shazam Music catalog page that contains the full information for the song.
         ///
-        /// The URL will point to a page that displays the current object in its entirety
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemWebURL`
+        /// This link opens the Shazam app or App Clip if it's available on the device.
         #[unsafe(method(webURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn webURL(&self) -> Option<Retained<NSURL>>;
 
-        /// The Artwork URL
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemArtworkURL`
+        /// The URL for artwork for the media item, such as an album cover.
         #[unsafe(method(artworkURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn artworkURL(&self) -> Option<Retained<NSURL>>;
 
-        /// The VideoURL
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemVideoURL`
+        /// The URL for a video for the media item, such as a music video.
         #[unsafe(method(videoURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoURL(&self) -> Option<Retained<NSURL>>;
 
-        /// Whether this object represents explicit material
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemExplicitContent`
+        /// A Boolean value that indicates whether the media item contains explicit content.
         #[unsafe(method(explicitContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn explicitContent(&self) -> bool;
 
-        /// The International Standard Recording Code
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemISRC`
+        /// The International Standard Recording Code (ISRC) for the media item.
         #[unsafe(method(isrc))]
         #[unsafe(method_family = none)]
         pub unsafe fn isrc(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "SHRange")]
-        /// An array of
-        /// `SHRange`that indicate the offsets within the reference signature that this media item describes
+        /// An array of ranges that indicate the offsets within the reference signature that this media item describes.
         #[unsafe(method(timeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRanges(&self) -> Retained<NSArray<SHRange>>;
 
         #[cfg(feature = "SHRange")]
-        /// An array of
-        /// `SHRange`that indicate the frequency skews in the reference signature that this media item describes
+        /// An array of ranges that indicate the frequency skews in the reference signature that this media item describes.
         #[unsafe(method(frequencySkewRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn frequencySkewRanges(&self) -> Retained<NSArray<SHRange>>;
 
-        /// The date when the
-        /// `SHMediaItem`was created
-        ///
-        /// Note: This may be fetched using the key
-        /// `SHMediaItemCreationDate`
+        /// The date the media item was created.
         #[unsafe(method(creationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
-        /// Construct a new instance with the provided dictionary
+        /// Creates a media item object with a dictionary of properties and their associated values.
         ///
-        /// Parameter `properties`: A dictionary of
-        /// `SHMediaItemProperty`and their values
-        ///
-        /// You may add your own keys here to return custom data, custom data should conform to NSCoding
+        /// - Parameters:
+        /// - properties: A dictionary that contains the media item properties and their associated values.
         #[unsafe(method(mediaItemWithProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaItemWithProperties(
@@ -298,11 +275,27 @@ impl SHMediaItem {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// Fetch a
-        /// `SHMediaItem`by Shazam ID
+        /// Requests the media item for the song with the specified Shazam ID.
         ///
-        /// The completionHandler will contain a
-        /// `SHMediaItem`if the ShazamID is valid, otherwise nil and an error
+        /// > Important:
+        /// > You can call this method from synchronous code using a completion handler, as shown on this page, or you can call it as an asynchronous method that has the following declaration:
+        /// >
+        /// > ```swift
+        /// > class func fetch(shazamID: String) async throws -> SHMediaItem
+        /// > ```
+        /// >
+        /// > For information about concurrency and asynchronous code in Swift, see
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        ///
+        /// - Parameters:
+        /// - shazamID: The Shazam ID of the song.
+        /// - completionHandler: The completion handler that the system calls with the result of the request.
+        ///
+        /// This block takes the following parameters:
+        ///
+        /// - term `mediaItem`: A media item.
+        /// - term `error`: An error object if a problem occurs when fetching the media item; otherwise, `nil`.
         #[unsafe(method(fetchMediaItemWithShazamID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchMediaItemWithShazamID_completionHandler(
@@ -310,9 +303,12 @@ impl SHMediaItem {
             completion_handler: &block2::DynBlock<dyn Fn(*mut SHMediaItem, *mut NSError)>,
         );
 
-        /// Retrieve a value using a known key
+        /// Accesses the property for the specified key for reading.
         ///
-        /// Parameter `property`: The `SHMediaItemProperty` for a value
+        /// - Parameters:
+        /// - property: The key for the property.
+        ///
+        /// - Returns: The value of the property; otherwise, `nil`.
         #[unsafe(method(valueForProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForProperty(
@@ -320,9 +316,12 @@ impl SHMediaItem {
             property: &SHMediaItemProperty,
         ) -> Retained<AnyObject>;
 
-        /// Use subscripting to retrieve values
+        /// Accesses the property for the specified key for reading.
         ///
-        /// Parameter `key`: The `SHMediaItemProperty` or custom key for a value
+        /// - Parameters:
+        /// - key: The key for the media item property.
+        ///
+        /// - Returns: The value of the property; otherwise, `nil`.
         #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(

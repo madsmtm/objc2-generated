@@ -57,6 +57,9 @@ mod __NSFileProviderReplicatedExtension;
 #[cfg(feature = "NSFileProviderRequest")]
 #[path = "NSFileProviderRequest.rs"]
 mod __NSFileProviderRequest;
+#[cfg(feature = "NSFileProviderSearch")]
+#[path = "NSFileProviderSearch.rs"]
+mod __NSFileProviderSearch;
 #[cfg(feature = "NSFileProviderService")]
 #[path = "NSFileProviderService.rs"]
 mod __NSFileProviderService;
@@ -194,6 +197,16 @@ pub use self::__NSFileProviderReplicatedExtension::NSFileProviderThumbnailing;
 pub use self::__NSFileProviderReplicatedExtension::NSFileProviderUserInteractionSuppressing;
 #[cfg(feature = "NSFileProviderRequest")]
 pub use self::__NSFileProviderRequest::NSFileProviderRequest;
+#[cfg(feature = "NSFileProviderSearch")]
+pub use self::__NSFileProviderSearch::NSFileProviderSearchEnumerationObserver;
+#[cfg(feature = "NSFileProviderSearch")]
+pub use self::__NSFileProviderSearch::NSFileProviderSearchEnumerator;
+#[cfg(feature = "NSFileProviderSearch")]
+pub use self::__NSFileProviderSearch::NSFileProviderSearchResult;
+#[cfg(feature = "NSFileProviderSearch")]
+pub use self::__NSFileProviderSearch::NSFileProviderSearching;
+#[cfg(feature = "NSFileProviderSearch")]
+pub use self::__NSFileProviderSearch::NSFileProviderStringSearchRequest;
 #[cfg(feature = "NSFileProviderService")]
 pub use self::__NSFileProviderService::NSFileProviderServiceSource;
 #[cfg(feature = "NSFileProviderTesting")]

@@ -12,6 +12,26 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisliderstyle?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UISliderStyle(pub NSInteger);
+impl UISliderStyle {
+    #[doc(alias = "UISliderStyleDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "UISliderStyleThumbless")]
+    pub const Thumbless: Self = Self(1);
+}
+
+unsafe impl Encode for UISliderStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UISliderStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uislider?language=objc)
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
@@ -183,6 +203,29 @@ impl UISlider {
         #[unsafe(method_family = none)]
         pub unsafe fn setContinuous(&self, continuous: bool);
 
+        #[cfg(feature = "UISliderTrackConfiguration")]
+        #[unsafe(method(trackConfiguration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn trackConfiguration(&self) -> Option<Retained<UISliderTrackConfiguration>>;
+
+        #[cfg(feature = "UISliderTrackConfiguration")]
+        /// Setter for [`trackConfiguration`][Self::trackConfiguration].
+        #[unsafe(method(setTrackConfiguration:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTrackConfiguration(
+            &self,
+            track_configuration: Option<&UISliderTrackConfiguration>,
+        );
+
+        #[unsafe(method(sliderStyle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sliderStyle(&self) -> UISliderStyle;
+
+        /// Setter for [`sliderStyle`][Self::sliderStyle].
+        #[unsafe(method(setSliderStyle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSliderStyle(&self, slider_style: UISliderStyle);
+
         #[cfg(feature = "UIColor")]
         #[unsafe(method(minimumTrackTintColor))]
         #[unsafe(method_family = none)]
@@ -339,14 +382,20 @@ impl UISlider {
     );
 }
 
-/// Methods declared on superclass `NSObject`.
+/// Methods declared on superclass `UIView`.
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UISlider {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UISlider {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;

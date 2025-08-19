@@ -59,7 +59,15 @@ pub use self::__SCRecordingOutput::SCRecordingOutputConfiguration;
 #[cfg(feature = "SCRecordingOutput")]
 pub use self::__SCRecordingOutput::SCRecordingOutputDelegate;
 #[cfg(feature = "SCScreenshotManager")]
+pub use self::__SCScreenshotManager::SCScreenshotConfiguration;
+#[cfg(feature = "SCScreenshotManager")]
+pub use self::__SCScreenshotManager::SCScreenshotDisplayIntent;
+#[cfg(feature = "SCScreenshotManager")]
+pub use self::__SCScreenshotManager::SCScreenshotDynamicRange;
+#[cfg(feature = "SCScreenshotManager")]
 pub use self::__SCScreenshotManager::SCScreenshotManager;
+#[cfg(feature = "SCScreenshotManager")]
+pub use self::__SCScreenshotManager::SCScreenshotOutput;
 #[cfg(feature = "SCShareableContent")]
 pub use self::__SCShareableContent::SCDisplay;
 #[cfg(feature = "SCShareableContent")]

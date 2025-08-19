@@ -2021,6 +2021,8 @@ pub use self::__WKWebView::WKMediaPlaybackState;
 #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub use self::__WKWebView::WKWebView;
+#[cfg(feature = "WKWebView")]
+pub use self::__WKWebView::WKWebViewDataType;
 #[cfg(feature = "WKWebViewConfiguration")]
 pub use self::__WKWebViewConfiguration::WKAudiovisualMediaTypes;
 #[cfg(feature = "WKWebViewConfiguration")]
@@ -2055,6 +2057,8 @@ pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeMediaKeys;
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeMemoryCache;
 #[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeOfflineWebApplicationCache;
+#[cfg(feature = "WKWebsiteDataRecord")]
+pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeScreenTime;
 #[cfg(feature = "WKWebsiteDataRecord")]
 pub use self::__WKWebsiteDataRecord::WKWebsiteDataTypeSearchFieldRecentSearches;
 #[cfg(feature = "WKWebsiteDataRecord")]

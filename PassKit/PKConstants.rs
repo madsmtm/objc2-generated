@@ -203,6 +203,11 @@ extern "C" {
     pub static PKPaymentNetworkJaywan: Option<&'static PKPaymentNetwork>;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkmydebit?language=objc)
+    pub static PKPaymentNetworkMyDebit: Option<&'static PKPaymentNetwork>;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfield?language=objc)
 // NS_TYPED_ENUM
 pub type PKContactField = NSString;

@@ -138,14 +138,14 @@ impl MKMapView {
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn MKMapViewDelegate>>);
 
         #[cfg(feature = "MKTypes")]
-        #[deprecated]
+        #[deprecated = "Use respective MKMapConfiguration"]
         #[unsafe(method(mapType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapType(&self) -> MKMapType;
 
         #[cfg(feature = "MKTypes")]
         /// Setter for [`mapType`][Self::mapType].
-        #[deprecated]
+        #[deprecated = "Use respective MKMapConfiguration"]
         #[unsafe(method(setMapType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMapType(&self, map_type: MKMapType);
@@ -438,14 +438,14 @@ impl MKMapView {
         pub unsafe fn setShowsScale(&self, shows_scale: bool);
 
         #[cfg(feature = "MKPointOfInterestFilter")]
-        #[deprecated]
+        #[deprecated = "Use pointOfInterestFilter on respective MKMapConfiguration"]
         #[unsafe(method(pointOfInterestFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
-        #[deprecated]
+        #[deprecated = "Use pointOfInterestFilter on respective MKMapConfiguration"]
         #[unsafe(method(setPointOfInterestFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestFilter(
@@ -475,13 +475,13 @@ impl MKMapView {
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsBuildings(&self, shows_buildings: bool);
 
-        #[deprecated]
+        #[deprecated = "Use showsTraffic on respective MKMapConfiguration"]
         #[unsafe(method(showsTraffic))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsTraffic(&self) -> bool;
 
         /// Setter for [`showsTraffic`][Self::showsTraffic].
-        #[deprecated]
+        #[deprecated = "Use showsTraffic on respective MKMapConfiguration"]
         #[unsafe(method(setShowsTraffic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsTraffic(&self, shows_traffic: bool);

@@ -274,6 +274,12 @@ extern_class!(
 );
 
 #[cfg(feature = "MPSGraphCore")]
+unsafe impl Send for MPSGraphExecutable {}
+
+#[cfg(feature = "MPSGraphCore")]
+unsafe impl Sync for MPSGraphExecutable {}
+
+#[cfg(feature = "MPSGraphCore")]
 extern_conformance!(
     unsafe impl NSObjectProtocol for MPSGraphExecutable {}
 );

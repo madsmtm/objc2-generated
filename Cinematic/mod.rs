@@ -48,6 +48,9 @@ mod __CNRenderingSession;
 #[cfg(feature = "CNScript")]
 #[path = "CNScript.rs"]
 mod __CNScript;
+#[cfg(feature = "CNSpatialAudio")]
+#[path = "CNSpatialAudio.rs"]
+mod __CNSpatialAudio;
 
 #[cfg(feature = "CNAssetInfo")]
 pub use self::__CNAssetInfo::AVMutableCompositionCNComposition;
@@ -93,3 +96,9 @@ pub use self::__CNScript::CNScript;
 pub use self::__CNScript::CNScriptChanges;
 #[cfg(feature = "CNScript")]
 pub use self::__CNScript::CNScriptFrame;
+#[cfg(feature = "CNSpatialAudio")]
+pub use self::__CNSpatialAudio::CNAssetSpatialAudioInfo;
+#[cfg(feature = "CNSpatialAudio")]
+pub use self::__CNSpatialAudio::CNSpatialAudioContentType;
+#[cfg(feature = "CNSpatialAudio")]
+pub use self::__CNSpatialAudio::CNSpatialAudioRenderingStyle;

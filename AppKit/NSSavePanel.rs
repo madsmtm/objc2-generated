@@ -128,7 +128,7 @@ impl NSSavePanel {
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
 
-        /// `NSSavePanel`/`NSOpenPanel`: Sets and returns the directory that is displayed. Set to `nil` to display the default directory. This method will not block to resolve the URL, and the directory will asyncronously be set, if required.
+        /// `NSSavePanel`/`NSOpenPanel`: Sets and returns the directory that is displayed. Set to `nil` to display the default directory. This method will not block to resolve the URL, and the directory will asynchronously be set, if required.
         /// - Note: Can only be set during the configuration phase.
         #[unsafe(method(directoryURL))]
         #[unsafe(method_family = none)]
@@ -356,9 +356,8 @@ impl NSSavePanel {
 
         /// `NSSavePanel`: Whether or not to show a control for selecting the type of the saved file.
         /// The control shows the types in `allowedContentTypes`. Default is `NO`.
-        /// - Note: If
-        /// `allowedContentTypes`is empty, the control is not displayed.
         /// `NSOpenPanel`: Not used.
+        /// - Note: If `allowedContentTypes` is empty, the control is not displayed.
         #[unsafe(method(showsContentTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsContentTypes(&self) -> bool;

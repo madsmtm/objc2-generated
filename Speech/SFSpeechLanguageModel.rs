@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechlanguagemodelconfiguration?language=objc)
+    /// An object describing the location of a custom language model and specialized vocabulary.
+    ///
+    /// Pass this object to ``SFSpeechLanguageModel/prepareCustomLanguageModelForUrl:configuration:completion:`` to indicate where that method should create the custom language model file, and to ``SFSpeechRecognitionRequest/customizedLanguageModel`` or ``DictationTranscriber/ContentHint/customizedLanguage(modelConfiguration:)`` to indicate where the system should find that model to use.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechlanguagemodelconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechLanguageModelConfiguration;
@@ -17,6 +21,10 @@ extern_class!(
 unsafe impl Send for SFSpeechLanguageModelConfiguration {}
 
 unsafe impl Sync for SFSpeechLanguageModelConfiguration {}
+
+extern_conformance!(
+    unsafe impl NSCoding for SFSpeechLanguageModelConfiguration {}
+);
 
 extern_conformance!(
     unsafe impl NSCopying for SFSpeechLanguageModelConfiguration {}
@@ -30,16 +38,23 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for SFSpeechLanguageModelConfiguration {}
 );
 
+extern_conformance!(
+    unsafe impl NSSecureCoding for SFSpeechLanguageModelConfiguration {}
+);
+
 impl SFSpeechLanguageModelConfiguration {
     extern_methods!(
+        /// The location of a compiled language model file.
         #[unsafe(method(languageModel))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageModel(&self) -> Retained<NSURL>;
 
+        /// The location of a compiled vocabulary file.
         #[unsafe(method(vocabulary))]
         #[unsafe(method_family = none)]
         pub unsafe fn vocabulary(&self) -> Option<Retained<NSURL>>;
 
+        /// Creates a configuration with the location of a language model file.
         #[unsafe(method(initWithLanguageModel:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLanguageModel(
@@ -47,6 +62,7 @@ impl SFSpeechLanguageModelConfiguration {
             language_model: &NSURL,
         ) -> Retained<Self>;
 
+        /// Creates a configuration with the locations of language model and vocabulary files.
         #[unsafe(method(initWithLanguageModel:vocabulary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLanguageModel_vocabulary(
@@ -71,7 +87,11 @@ impl SFSpeechLanguageModelConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechlanguagemodel?language=objc)
+    /// A language model built from custom training data.
+    ///
+    /// Create this object using ``SFSpeechLanguageModel/prepareCustomLanguageModelForUrl:configuration:completion:`` or ``SFSpeechLanguageModel/prepareCustomLanguageModelForUrl:configuration:ignoresCache:completion:``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechlanguagemodel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechLanguageModel;
@@ -84,6 +104,7 @@ extern_conformance!(
 impl SFSpeechLanguageModel {
     extern_methods!(
         #[cfg(feature = "block2")]
+        #[deprecated]
         #[unsafe(method(prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareCustomLanguageModelForUrl_clientIdentifier_configuration_completion(
@@ -94,11 +115,44 @@ impl SFSpeechLanguageModel {
         );
 
         #[cfg(feature = "block2")]
+        #[deprecated]
         #[unsafe(method(prepareCustomLanguageModelForUrl:clientIdentifier:configuration:ignoresCache:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareCustomLanguageModelForUrl_clientIdentifier_configuration_ignoresCache_completion(
             asset: &NSURL,
             client_identifier: &NSString,
+            configuration: &SFSpeechLanguageModelConfiguration,
+            ignores_cache: bool,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Creates a language model from custom training data.
+        ///
+        /// - Parameters:
+        /// - asset: The URL of a file containing custom training data. Create this file with ``SFCustomLanguageModelData/export(to:)``.
+        /// - configuration: An object listing the URLs at which this method should create the language model and compiled vocabulary from the training data.
+        /// - completion: Called when the language model has been created.
+        #[unsafe(method(prepareCustomLanguageModelForUrl:configuration:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prepareCustomLanguageModelForUrl_configuration_completion(
+            asset: &NSURL,
+            configuration: &SFSpeechLanguageModelConfiguration,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Creates a language model from custom training data.
+        ///
+        /// - Parameters:
+        /// - asset: The URL of a file containing custom training data. Create this file with ``SFCustomLanguageModelData/export(to:)``.
+        /// - configuration: An object listing the URLs at which this method should create the language model and compiled vocabulary from the training data.
+        /// - ignoresCache: If `true`, the language model identified by the configuration will be recreated even if the `asset` file is unchanged.
+        /// - completion: Called when the language model has been created.
+        #[unsafe(method(prepareCustomLanguageModelForUrl:configuration:ignoresCache:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prepareCustomLanguageModelForUrl_configuration_ignoresCache_completion(
+            asset: &NSURL,
             configuration: &SFSpeechLanguageModelConfiguration,
             ignores_cache: bool,
             completion: &block2::DynBlock<dyn Fn(*mut NSError)>,

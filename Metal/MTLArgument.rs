@@ -6,209 +6,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindextype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct MTLDataType(pub NSUInteger);
-impl MTLDataType {
-    #[doc(alias = "MTLDataTypeNone")]
-    pub const None: Self = Self(0);
-    #[doc(alias = "MTLDataTypeStruct")]
-    pub const Struct: Self = Self(1);
-    #[doc(alias = "MTLDataTypeArray")]
-    pub const Array: Self = Self(2);
-    #[doc(alias = "MTLDataTypeFloat")]
-    pub const Float: Self = Self(3);
-    #[doc(alias = "MTLDataTypeFloat2")]
-    pub const Float2: Self = Self(4);
-    #[doc(alias = "MTLDataTypeFloat3")]
-    pub const Float3: Self = Self(5);
-    #[doc(alias = "MTLDataTypeFloat4")]
-    pub const Float4: Self = Self(6);
-    #[doc(alias = "MTLDataTypeFloat2x2")]
-    pub const Float2x2: Self = Self(7);
-    #[doc(alias = "MTLDataTypeFloat2x3")]
-    pub const Float2x3: Self = Self(8);
-    #[doc(alias = "MTLDataTypeFloat2x4")]
-    pub const Float2x4: Self = Self(9);
-    #[doc(alias = "MTLDataTypeFloat3x2")]
-    pub const Float3x2: Self = Self(10);
-    #[doc(alias = "MTLDataTypeFloat3x3")]
-    pub const Float3x3: Self = Self(11);
-    #[doc(alias = "MTLDataTypeFloat3x4")]
-    pub const Float3x4: Self = Self(12);
-    #[doc(alias = "MTLDataTypeFloat4x2")]
-    pub const Float4x2: Self = Self(13);
-    #[doc(alias = "MTLDataTypeFloat4x3")]
-    pub const Float4x3: Self = Self(14);
-    #[doc(alias = "MTLDataTypeFloat4x4")]
-    pub const Float4x4: Self = Self(15);
-    #[doc(alias = "MTLDataTypeHalf")]
-    pub const Half: Self = Self(16);
-    #[doc(alias = "MTLDataTypeHalf2")]
-    pub const Half2: Self = Self(17);
-    #[doc(alias = "MTLDataTypeHalf3")]
-    pub const Half3: Self = Self(18);
-    #[doc(alias = "MTLDataTypeHalf4")]
-    pub const Half4: Self = Self(19);
-    #[doc(alias = "MTLDataTypeHalf2x2")]
-    pub const Half2x2: Self = Self(20);
-    #[doc(alias = "MTLDataTypeHalf2x3")]
-    pub const Half2x3: Self = Self(21);
-    #[doc(alias = "MTLDataTypeHalf2x4")]
-    pub const Half2x4: Self = Self(22);
-    #[doc(alias = "MTLDataTypeHalf3x2")]
-    pub const Half3x2: Self = Self(23);
-    #[doc(alias = "MTLDataTypeHalf3x3")]
-    pub const Half3x3: Self = Self(24);
-    #[doc(alias = "MTLDataTypeHalf3x4")]
-    pub const Half3x4: Self = Self(25);
-    #[doc(alias = "MTLDataTypeHalf4x2")]
-    pub const Half4x2: Self = Self(26);
-    #[doc(alias = "MTLDataTypeHalf4x3")]
-    pub const Half4x3: Self = Self(27);
-    #[doc(alias = "MTLDataTypeHalf4x4")]
-    pub const Half4x4: Self = Self(28);
-    #[doc(alias = "MTLDataTypeInt")]
-    pub const Int: Self = Self(29);
-    #[doc(alias = "MTLDataTypeInt2")]
-    pub const Int2: Self = Self(30);
-    #[doc(alias = "MTLDataTypeInt3")]
-    pub const Int3: Self = Self(31);
-    #[doc(alias = "MTLDataTypeInt4")]
-    pub const Int4: Self = Self(32);
-    #[doc(alias = "MTLDataTypeUInt")]
-    pub const UInt: Self = Self(33);
-    #[doc(alias = "MTLDataTypeUInt2")]
-    pub const UInt2: Self = Self(34);
-    #[doc(alias = "MTLDataTypeUInt3")]
-    pub const UInt3: Self = Self(35);
-    #[doc(alias = "MTLDataTypeUInt4")]
-    pub const UInt4: Self = Self(36);
-    #[doc(alias = "MTLDataTypeShort")]
-    pub const Short: Self = Self(37);
-    #[doc(alias = "MTLDataTypeShort2")]
-    pub const Short2: Self = Self(38);
-    #[doc(alias = "MTLDataTypeShort3")]
-    pub const Short3: Self = Self(39);
-    #[doc(alias = "MTLDataTypeShort4")]
-    pub const Short4: Self = Self(40);
-    #[doc(alias = "MTLDataTypeUShort")]
-    pub const UShort: Self = Self(41);
-    #[doc(alias = "MTLDataTypeUShort2")]
-    pub const UShort2: Self = Self(42);
-    #[doc(alias = "MTLDataTypeUShort3")]
-    pub const UShort3: Self = Self(43);
-    #[doc(alias = "MTLDataTypeUShort4")]
-    pub const UShort4: Self = Self(44);
-    #[doc(alias = "MTLDataTypeChar")]
-    pub const Char: Self = Self(45);
-    #[doc(alias = "MTLDataTypeChar2")]
-    pub const Char2: Self = Self(46);
-    #[doc(alias = "MTLDataTypeChar3")]
-    pub const Char3: Self = Self(47);
-    #[doc(alias = "MTLDataTypeChar4")]
-    pub const Char4: Self = Self(48);
-    #[doc(alias = "MTLDataTypeUChar")]
-    pub const UChar: Self = Self(49);
-    #[doc(alias = "MTLDataTypeUChar2")]
-    pub const UChar2: Self = Self(50);
-    #[doc(alias = "MTLDataTypeUChar3")]
-    pub const UChar3: Self = Self(51);
-    #[doc(alias = "MTLDataTypeUChar4")]
-    pub const UChar4: Self = Self(52);
-    #[doc(alias = "MTLDataTypeBool")]
-    pub const Bool: Self = Self(53);
-    #[doc(alias = "MTLDataTypeBool2")]
-    pub const Bool2: Self = Self(54);
-    #[doc(alias = "MTLDataTypeBool3")]
-    pub const Bool3: Self = Self(55);
-    #[doc(alias = "MTLDataTypeBool4")]
-    pub const Bool4: Self = Self(56);
-    #[doc(alias = "MTLDataTypeTexture")]
-    pub const Texture: Self = Self(58);
-    #[doc(alias = "MTLDataTypeSampler")]
-    pub const Sampler: Self = Self(59);
-    #[doc(alias = "MTLDataTypePointer")]
-    pub const Pointer: Self = Self(60);
-    #[doc(alias = "MTLDataTypeR8Unorm")]
-    pub const R8Unorm: Self = Self(62);
-    #[doc(alias = "MTLDataTypeR8Snorm")]
-    pub const R8Snorm: Self = Self(63);
-    #[doc(alias = "MTLDataTypeR16Unorm")]
-    pub const R16Unorm: Self = Self(64);
-    #[doc(alias = "MTLDataTypeR16Snorm")]
-    pub const R16Snorm: Self = Self(65);
-    #[doc(alias = "MTLDataTypeRG8Unorm")]
-    pub const RG8Unorm: Self = Self(66);
-    #[doc(alias = "MTLDataTypeRG8Snorm")]
-    pub const RG8Snorm: Self = Self(67);
-    #[doc(alias = "MTLDataTypeRG16Unorm")]
-    pub const RG16Unorm: Self = Self(68);
-    #[doc(alias = "MTLDataTypeRG16Snorm")]
-    pub const RG16Snorm: Self = Self(69);
-    #[doc(alias = "MTLDataTypeRGBA8Unorm")]
-    pub const RGBA8Unorm: Self = Self(70);
-    #[doc(alias = "MTLDataTypeRGBA8Unorm_sRGB")]
-    pub const RGBA8Unorm_sRGB: Self = Self(71);
-    #[doc(alias = "MTLDataTypeRGBA8Snorm")]
-    pub const RGBA8Snorm: Self = Self(72);
-    #[doc(alias = "MTLDataTypeRGBA16Unorm")]
-    pub const RGBA16Unorm: Self = Self(73);
-    #[doc(alias = "MTLDataTypeRGBA16Snorm")]
-    pub const RGBA16Snorm: Self = Self(74);
-    #[doc(alias = "MTLDataTypeRGB10A2Unorm")]
-    pub const RGB10A2Unorm: Self = Self(75);
-    #[doc(alias = "MTLDataTypeRG11B10Float")]
-    pub const RG11B10Float: Self = Self(76);
-    #[doc(alias = "MTLDataTypeRGB9E5Float")]
-    pub const RGB9E5Float: Self = Self(77);
-    #[doc(alias = "MTLDataTypeRenderPipeline")]
-    pub const RenderPipeline: Self = Self(78);
-    #[doc(alias = "MTLDataTypeComputePipeline")]
-    pub const ComputePipeline: Self = Self(79);
-    #[doc(alias = "MTLDataTypeIndirectCommandBuffer")]
-    pub const IndirectCommandBuffer: Self = Self(80);
-    #[doc(alias = "MTLDataTypeLong")]
-    pub const Long: Self = Self(81);
-    #[doc(alias = "MTLDataTypeLong2")]
-    pub const Long2: Self = Self(82);
-    #[doc(alias = "MTLDataTypeLong3")]
-    pub const Long3: Self = Self(83);
-    #[doc(alias = "MTLDataTypeLong4")]
-    pub const Long4: Self = Self(84);
-    #[doc(alias = "MTLDataTypeULong")]
-    pub const ULong: Self = Self(85);
-    #[doc(alias = "MTLDataTypeULong2")]
-    pub const ULong2: Self = Self(86);
-    #[doc(alias = "MTLDataTypeULong3")]
-    pub const ULong3: Self = Self(87);
-    #[doc(alias = "MTLDataTypeULong4")]
-    pub const ULong4: Self = Self(88);
-    #[doc(alias = "MTLDataTypeVisibleFunctionTable")]
-    pub const VisibleFunctionTable: Self = Self(115);
-    #[doc(alias = "MTLDataTypeIntersectionFunctionTable")]
-    pub const IntersectionFunctionTable: Self = Self(116);
-    #[doc(alias = "MTLDataTypePrimitiveAccelerationStructure")]
-    pub const PrimitiveAccelerationStructure: Self = Self(117);
-    #[doc(alias = "MTLDataTypeInstanceAccelerationStructure")]
-    pub const InstanceAccelerationStructure: Self = Self(118);
-    #[doc(alias = "MTLDataTypeBFloat")]
-    pub const BFloat: Self = Self(121);
-    #[doc(alias = "MTLDataTypeBFloat2")]
-    pub const BFloat2: Self = Self(122);
-    #[doc(alias = "MTLDataTypeBFloat3")]
-    pub const BFloat3: Self = Self(123);
-    #[doc(alias = "MTLDataTypeBFloat4")]
-    pub const BFloat4: Self = Self(124);
+pub struct MTLIndexType(pub NSUInteger);
+impl MTLIndexType {
+    #[doc(alias = "MTLIndexTypeUInt16")]
+    pub const UInt16: Self = Self(0);
+    #[doc(alias = "MTLIndexTypeUInt32")]
+    pub const UInt32: Self = Self(1);
 }
 
-unsafe impl Encode for MTLDataType {
+unsafe impl Encode for MTLIndexType {
     const ENCODING: Encoding = NSUInteger::ENCODING;
 }
 
-unsafe impl RefEncode for MTLDataType {
+unsafe impl RefEncode for MTLIndexType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -247,6 +61,9 @@ unsafe impl RefEncode for MTLDataType {
 ///
 /// This binding represents an object payload.
 ///
+///
+/// This binding represents a tensor object.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -275,6 +92,8 @@ impl MTLBindingType {
     pub const IntersectionFunctionTable: Self = Self(27);
     #[doc(alias = "MTLBindingTypeObjectPayload")]
     pub const ObjectPayload: Self = Self(34);
+    #[doc(alias = "MTLBindingTypeTensor")]
+    pub const Tensor: Self = Self(37);
 }
 
 unsafe impl Encode for MTLBindingType {
@@ -384,6 +203,7 @@ extern_conformance!(
 
 impl MTLType {
     extern_methods!(
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MTLDataType;
@@ -424,6 +244,7 @@ impl MTLStructMember {
         #[unsafe(method_family = none)]
         pub fn offset(&self) -> NSUInteger;
 
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub fn dataType(&self) -> MTLDataType;
@@ -443,6 +264,13 @@ impl MTLStructMember {
         #[unsafe(method(pointerType))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointerType(&self) -> Option<Retained<MTLPointerType>>;
+
+        /// Provides a description of the underlying tensor type when this struct member holds a tensor.
+        ///
+        /// - Returns: A description of the tensor type that this struct member holds, or `nil` if this struct member doesn't hold a tensor.
+        #[unsafe(method(tensorReferenceType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn tensorReferenceType(&self) -> Option<Retained<MTLTensorReferenceType>>;
 
         #[unsafe(method(argumentIndex))]
         #[unsafe(method_family = none)]
@@ -512,6 +340,7 @@ extern_conformance!(
 
 impl MTLArrayType {
     extern_methods!(
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(elementType))]
         #[unsafe(method_family = none)]
         pub fn elementType(&self) -> MTLDataType;
@@ -545,6 +374,14 @@ impl MTLArrayType {
         #[unsafe(method(elementPointerType))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementPointerType(&self) -> Option<Retained<MTLPointerType>>;
+
+        /// Provides a description of the underlying tensor type when this array holds tensors as its elements.
+        ///
+        /// - Returns: A description of the tensor type that this array holds, or `nil` if this struct member doesn't hold a tensor.
+        #[unsafe(method(elementTensorReferenceType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn elementTensorReferenceType(&self)
+            -> Option<Retained<MTLTensorReferenceType>>;
     );
 }
 
@@ -574,6 +411,7 @@ extern_conformance!(
 
 impl MTLPointerType {
     extern_methods!(
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(elementType))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementType(&self) -> MTLDataType;
@@ -630,6 +468,7 @@ extern_conformance!(
 
 impl MTLTextureReferenceType {
     extern_methods!(
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(textureDataType))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureDataType(&self) -> MTLDataType;
@@ -663,6 +502,61 @@ impl MTLTextureReferenceType {
 }
 
 extern_class!(
+    /// An object that represents a tensor in the shading language in a struct or array.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorreferencetype?language=objc)
+    #[unsafe(super(MTLType, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct MTLTensorReferenceType;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLTensorReferenceType {}
+);
+
+impl MTLTensorReferenceType {
+    extern_methods!(
+        #[cfg(feature = "MTLTensor")]
+        /// The underlying data format of the tensor.
+        #[unsafe(method(tensorDataType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn tensorDataType(&self) -> MTLTensorDataType;
+
+        #[cfg(feature = "MTLDataType")]
+        /// The data format you use for indexing into the tensor.
+        #[unsafe(method(indexType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn indexType(&self) -> MTLDataType;
+
+        #[cfg(feature = "MTLTensor")]
+        /// The array of sizes, in elements, one for each dimension of this tensor.
+        ///
+        /// Because shader-bound tensors have dynamic extents, the ``MTLTensorExtents/rank`` of `dimensions` corresponds to the rank the shader function specifies, and ``MTLTensorExtents/extentsAtDimensionIndex:`` always returns a value of -1.
+        #[unsafe(method(dimensions))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dimensions(&self) -> Option<Retained<MTLTensorExtents>>;
+
+        /// A value that represents the read/write permissions of the tensor.
+        #[unsafe(method(access))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn access(&self) -> MTLBindingAccess;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl MTLTensorReferenceType {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
     /// MTLArgument
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargument?language=objc)
@@ -671,6 +565,10 @@ extern_class!(
     #[deprecated]
     pub struct MTLArgument;
 );
+
+unsafe impl Send for MTLArgument {}
+
+unsafe impl Sync for MTLArgument {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for MTLArgument {}
@@ -713,6 +611,7 @@ impl MTLArgument {
         #[unsafe(method_family = none)]
         pub fn bufferDataSize(&self) -> NSUInteger;
 
+        #[cfg(feature = "MTLDataType")]
         #[deprecated]
         #[unsafe(method(bufferDataType))]
         #[unsafe(method_family = none)]
@@ -743,6 +642,7 @@ impl MTLArgument {
         #[unsafe(method_family = none)]
         pub fn textureType(&self) -> MTLTextureType;
 
+        #[cfg(feature = "MTLDataType")]
         #[deprecated]
         #[unsafe(method(textureDataType))]
         #[unsafe(method_family = none)]
@@ -811,6 +711,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn bufferDataSize(&self) -> NSUInteger;
 
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(bufferDataType))]
         #[unsafe(method_family = none)]
         unsafe fn bufferDataType(&self) -> MTLDataType;
@@ -846,6 +747,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn textureType(&self) -> MTLTextureType;
 
+        #[cfg(feature = "MTLDataType")]
         #[unsafe(method(textureDataType))]
         #[unsafe(method_family = none)]
         unsafe fn textureDataType(&self) -> MTLDataType;
@@ -870,5 +772,33 @@ extern_protocol!(
         #[unsafe(method(objectPayloadDataSize))]
         #[unsafe(method_family = none)]
         unsafe fn objectPayloadDataSize(&self) -> NSUInteger;
+    }
+);
+
+extern_protocol!(
+    /// An object that represents a tensor bound to a graphics or compute function or a machine learning function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorbinding?language=objc)
+    pub unsafe trait MTLTensorBinding: MTLBinding {
+        #[cfg(feature = "MTLTensor")]
+        /// The underlying data format of this tensor.
+        #[unsafe(method(tensorDataType))]
+        #[unsafe(method_family = none)]
+        unsafe fn tensorDataType(&self) -> MTLTensorDataType;
+
+        #[cfg(feature = "MTLDataType")]
+        /// The data format you use for indexing into the tensor.
+        #[unsafe(method(indexType))]
+        #[unsafe(method_family = none)]
+        unsafe fn indexType(&self) -> MTLDataType;
+
+        #[cfg(feature = "MTLTensor")]
+        /// The array of sizes, in elements, one for each dimension of this tensor.
+        ///
+        /// Because shader-bound tensors have dynamic extents, if this tensor is shader bound, the ``MTLTensorExtents/rank`` of `dimensions` corresponds to the rank the shader function specifies, and ``MTLTensorExtents/extentsAtDimensionIndex:`` always returns a value of -1.
+        /// In the case of functions used with machine learning pipelines, `dimensions` corresponds to the default shape, if you provide one. Otherwise, it's `nil` in the case of an undefined shape.
+        #[unsafe(method(dimensions))]
+        #[unsafe(method_family = none)]
+        unsafe fn dimensions(&self) -> Option<Retained<MTLTensorExtents>>;
     }
 );

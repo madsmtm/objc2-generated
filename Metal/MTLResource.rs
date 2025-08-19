@@ -188,6 +188,107 @@ unsafe impl RefEncode for MTLResourceOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Physical size of sparse resource page in KBs.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLSparsePageSize(pub NSInteger);
+impl MTLSparsePageSize {
+    #[doc(alias = "MTLSparsePageSize16")]
+    pub const Size16: Self = Self(101);
+    #[doc(alias = "MTLSparsePageSize64")]
+    pub const Size64: Self = Self(102);
+    #[doc(alias = "MTLSparsePageSize256")]
+    pub const Size256: Self = Self(103);
+}
+
+unsafe impl Encode for MTLSparsePageSize {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLSparsePageSize {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Enumerates the different support levels for sparse buffers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbuffersparsetier?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLBufferSparseTier(pub NSInteger);
+impl MTLBufferSparseTier {
+    /// Indicates that the buffer is not sparse.
+    #[doc(alias = "MTLBufferSparseTierNone")]
+    pub const TierNone: Self = Self(0);
+    /// Indicates support for sparse buffers tier 1.
+    ///
+    /// Tier 1 sparse buffers allow the following:
+    /// * Partial memory backing at sparse page granularity.
+    /// * Defined behavior for accessing an *unbacked* buffer range.
+    ///
+    /// An unbacked buffer range indicates a range within the buffer that doesn't
+    /// have memory backing at a given point in time. Accessing an unbacked buffer
+    /// range of a sparse buffer produces the following results:
+    /// * Reading return zero.
+    /// * Writing produces no result.
+    #[doc(alias = "MTLBufferSparseTier1")]
+    pub const Tier1: Self = Self(1);
+}
+
+unsafe impl Encode for MTLBufferSparseTier {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLBufferSparseTier {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Enumerates the different support levels for sparse textures.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturesparsetier?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLTextureSparseTier(pub NSInteger);
+impl MTLTextureSparseTier {
+    /// Indicates that the texture is not sparse.
+    #[doc(alias = "MTLTextureSparseTierNone")]
+    pub const TierNone: Self = Self(0);
+    /// Indicates support for sparse textures tier 1.
+    ///
+    /// Tier 1 sparse textures allow the following:
+    /// * Partial memory backing at sparse tile granularity.
+    /// * Defined behavior for accessing an unbacked texture region.
+    /// * Shader feedback on texture access to determine memory backing.
+    ///
+    /// An unbacked texture region indicates a region within the texture that doesn't
+    /// have memory backing at a given point in time. Accessing an unbacked texture
+    /// region produces the following results:
+    /// * Reading returns zero (transparent black) for pixel formats with an alpha (A) channel.
+    /// * Reading return zero in RGB and one in alpha (A) channels (opaque black) otherwise.
+    /// * Writing produces no result.
+    #[doc(alias = "MTLTextureSparseTier1")]
+    pub const Tier1: Self = Self(1);
+    /// Indicates support for sparse textures tier 2.
+    ///
+    /// In addition to the guarantees tier 1 sparse textures provide,
+    /// tier 2 sparse textures allow the following:
+    /// * Obtain per-tile activity counters.
+    #[doc(alias = "MTLTextureSparseTier2")]
+    pub const Tier2: Self = Self(2);
+}
+
+unsafe impl Encode for MTLTextureSparseTier {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLTextureSparseTier {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_protocol!(
     /// Common APIs available for MTLBuffer and MTLTexture instances
     ///

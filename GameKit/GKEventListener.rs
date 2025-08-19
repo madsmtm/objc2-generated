@@ -8,6 +8,7 @@ use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengelistener?language=objc)
+    #[deprecated]
     pub unsafe trait GKChallengeListener: NSObjectProtocol {
         #[cfg(all(
             feature = "GKBasePlayer",

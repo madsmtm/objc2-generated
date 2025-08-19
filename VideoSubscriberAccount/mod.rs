@@ -42,6 +42,15 @@ mod __VSAccountProviderResponse;
 #[cfg(feature = "VSAppleSubscription")]
 #[path = "VSAppleSubscription.rs"]
 mod __VSAppleSubscription;
+#[cfg(feature = "VSAutoSignInAuthorization")]
+#[path = "VSAutoSignInAuthorization.rs"]
+mod __VSAutoSignInAuthorization;
+#[cfg(feature = "VSAutoSignInToken")]
+#[path = "VSAutoSignInToken.rs"]
+mod __VSAutoSignInToken;
+#[cfg(feature = "VSAutoSignInTokenUpdateContext")]
+#[path = "VSAutoSignInTokenUpdateContext.rs"]
+mod __VSAutoSignInTokenUpdateContext;
 #[cfg(feature = "VSSubscription")]
 #[path = "VSSubscription.rs"]
 mod __VSSubscription;
@@ -91,6 +100,12 @@ pub use self::__VSAccountProviderResponse::VSAccountProviderAuthenticationScheme
 pub use self::__VSAccountProviderResponse::VSAccountProviderResponse;
 #[cfg(feature = "VSAppleSubscription")]
 pub use self::__VSAppleSubscription::VSAppleSubscription;
+#[cfg(feature = "VSAutoSignInAuthorization")]
+pub use self::__VSAutoSignInAuthorization::VSAutoSignInAuthorization;
+#[cfg(feature = "VSAutoSignInToken")]
+pub use self::__VSAutoSignInToken::VSAutoSignInToken;
+#[cfg(feature = "VSAutoSignInTokenUpdateContext")]
+pub use self::__VSAutoSignInTokenUpdateContext::VSAutoSignInTokenUpdateContext;
 #[cfg(feature = "VSSubscription")]
 pub use self::__VSSubscription::VSSubscription;
 #[cfg(feature = "VSSubscription")]

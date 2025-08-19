@@ -7,6 +7,8 @@ use objc2::__framework_prelude::*;
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-uniform-type-identifiers")]
+use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
@@ -40,11 +42,25 @@ impl PHAssetResourceCreationOptions {
         #[unsafe(method_family = none)]
         pub unsafe fn setOriginalFilename(&self, original_filename: Option<&NSString>);
 
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// The type of data being provided for this asset resource. If not specified, one will be inferred from the PHAssetResourceType or file URL extension (if provided).
+        #[unsafe(method(contentType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contentType(&self) -> Option<Retained<UTType>>;
+
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// Setter for [`contentType`][Self::contentType].
+        #[unsafe(method(setContentType:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setContentType(&self, content_type: Option<&UTType>);
+
+        #[deprecated = "Use contentType instead"]
         #[unsafe(method(uniformTypeIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniformTypeIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`uniformTypeIdentifier`][Self::uniformTypeIdentifier].
+        #[deprecated = "Use contentType instead"]
         #[unsafe(method(setUniformTypeIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUniformTypeIdentifier(&self, uniform_type_identifier: Option<&NSString>);

@@ -91,3 +91,13 @@ impl BERenderingProcess {
         ) -> Retained<ProtocolObject<dyn UIInteraction>>;
     );
 }
+
+/// BEExtensionProcessConformance.
+impl BERenderingProcess {
+    extern_methods!();
+}
+
+#[cfg(feature = "BEExtensionProcess")]
+extern_conformance!(
+    unsafe impl BEExtensionProcess for BERenderingProcess {}
+);

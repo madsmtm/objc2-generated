@@ -43,6 +43,8 @@ extern "C" {
 ///
 /// Returned if one of the provided VTFrameProcessorFrame objects has a PTS which is not supported by the processor, either invalid or out-of-order.
 ///
+/// Returned if download of a required model asset for the processor failed
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror?language=objc)
 // NS_ERROR_ENUM
 #[cfg(feature = "objc2")]
@@ -77,6 +79,8 @@ impl VTFrameProcessorError {
     pub const InvalidParameterError: Self = Self(-19741);
     #[doc(alias = "VTFrameProcessorInvalidFrameTiming")]
     pub const InvalidFrameTiming: Self = Self(-19742);
+    #[doc(alias = "VTFrameProcessorAssetDownloadFailed")]
+    pub const AssetDownloadFailed: Self = Self(-19743);
 }
 
 #[cfg(feature = "objc2")]

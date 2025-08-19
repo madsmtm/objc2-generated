@@ -272,10 +272,9 @@ impl ARConfiguration {
         /// The type of semantic understanding to provide with each frame.
         ///
         ///
-        /// Use the `supportsFrameSemantics` class method to check if the configuration type you intend to run supports the set of frame semantics. For example, when running a session with
-        /// a configuration of type ARWorldTrackingConfiguration one would need to use `+[ ARWorldTrackingConfiguration supportsFrameSemantics:]` to perform said check.
-        /// An exception is thrown if the option
-        /// is not supported. Defaults to ARFrameSemanticNone.
+        /// Use the `supportsFrameSemantics` class method to check if the configuration type you intend to run supports the set of frame semantics.
+        /// For example, when running a session with a configuration of type ARWorldTrackingConfiguration one would need to use `+[ ARWorldTrackingConfiguration
+        /// supportsFrameSemantics:]` to perform said check. An exception is thrown if the option is not supported. Defaults to ARFrameSemanticNone.
         ///
         /// See: ARFrameSemantics
         ///
@@ -292,8 +291,9 @@ impl ARConfiguration {
         /// Determines whether the type of frame semantics is supported by the device and ARConfiguration class.
         ///
         ///
-        /// Semantic frame understanding is not supported on all devices. Use the `supportsFrameSemantics` class method to check if the configuration type you intend to run supports the
-        /// set of frame semantics. For example, when running a session with a configuration of type ARWorldTrackingConfiguration one would need to use
+        /// Semantic frame understanding is not supported on all devices. Use the `supportsFrameSemantics` class method to check if the configuration
+        /// type you intend to run supports the set of frame semantics. For example, when running a session with a configuration of type
+        /// ARWorldTrackingConfiguration one would need to use
         /// `+[ ARWorldTrackingConfiguration supportsFrameSemantics:]` to perform said check.
         ///
         /// See: ARFrameSemantics
@@ -319,9 +319,11 @@ impl ARConfiguration {
         pub unsafe fn recommendedVideoFormatFor4KResolution() -> Option<Retained<ARVideoFormat>>;
 
         #[cfg(feature = "ARVideoFormat")]
-        /// Returns a recommended video format that supports capturing high resolution frames with a significantly higher resolution than the streaming camera resolution.
+        /// Returns a recommended video format that supports capturing high resolution frames with a significantly higher resolution than the streaming camera
+        /// resolution.
         ///
-        /// Using this format may consume more power. Other video formats may support capturing high resolution frames as well, albeit at a lower quality or resolution.
+        /// Using this format may consume more power. Other video formats may support capturing high resolution frames as well, albeit at a lower
+        /// quality or resolution.
         ///
         /// See: [ARSession captureHighResolutionFrameWithCompletion:]
         #[unsafe(method(recommendedVideoFormatForHighResolutionFrameCapturing))]
@@ -505,7 +507,8 @@ impl ARWorldTrackingConfiguration {
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Objects to detect in the scene.
         ///
-        /// If set the session will attempt to detect the specified objects. When an object is detected an ARObjectAnchor will be added to the session.
+        /// If set the session will attempt to detect the specified objects. When an object is detected an ARObjectAnchor will be added to the
+        /// session.
         #[unsafe(method(detectionObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionObjects(&self) -> Retained<NSSet<ARReferenceObject>>;
@@ -718,7 +721,8 @@ impl ARFaceTrackingConfiguration {
         /// Enable or disable World Tracking. Disabled by default.
         ///
         ///
-        /// When enabled, ARSession uses the back facing camera to track the device's orientation and position in the world. The camera transform and the ARFaceAnchor transform will be in the world coordinate space.
+        /// When enabled, ARSession uses the back facing camera to track the device's orientation and position in the world. The camera transform and
+        /// the ARFaceAnchor transform will be in the world coordinate space.
         #[unsafe(method(isWorldTrackingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isWorldTrackingEnabled(&self) -> bool;
@@ -1094,7 +1098,8 @@ extern_class!(
     /// A configuration for running positional tracking.
     ///
     ///
-    /// Positional tracking provides 6 degrees of freedom tracking of the device by running the camera at lowest possible resolution and frame rate.
+    /// Positional tracking provides 6 degrees of freedom tracking of the device by running the camera at lowest possible resolution and frame
+    /// rate.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arpositionaltrackingconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
@@ -1296,7 +1301,8 @@ impl ARGeoTrackingConfiguration {
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Objects to detect in the scene.
         ///
-        /// If set the session will attempt to detect the specified objects. When an object is detected an ARObjectAnchor will be added to the session.
+        /// If set the session will attempt to detect the specified objects. When an object is detected an ARObjectAnchor will be added to the
+        /// session.
         #[unsafe(method(detectionObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionObjects(&self) -> Retained<NSSet<ARReferenceObject>>;
@@ -1329,9 +1335,9 @@ impl ARGeoTrackingConfiguration {
         /// This method will attempt to acquire a location fix on a background thread, then check availability.
         ///
         ///
-        /// Parameter `completionHandler`: Completion handler that is called when availability has been determined. This handler is executed on an arbitrary serial queue. It takes the following parameters:
-        /// isAvailable - True if geo tracking is available at the current location, otherwise false.
-        /// error - An error that indicates why geo tracking is not available at the current location.
+        /// Parameter `completionHandler`: Completion handler that is called when availability has been determined. This handler is executed on an arbitrary serial
+        /// queue. It takes the following parameters: isAvailable - True if geo tracking is available at the current location, otherwise false. error - An error
+        /// that indicates why geo tracking is not available at the current location.
         #[unsafe(method(checkAvailabilityWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkAvailabilityWithCompletionHandler(
@@ -1347,9 +1353,9 @@ impl ARGeoTrackingConfiguration {
         ///
         /// Parameter `coordinate`: Location at which to check.
         ///
-        /// Parameter `completionHandler`: Completion handler that is called when availability has been determined. This handler is executed on an arbitrary serial queue. It takes the following parameters:
-        /// isAvailable - True if geo tracking is available at the given location, otherwise false.
-        /// error - An error that indicates why geo tracking is not available at the given location.
+        /// Parameter `completionHandler`: Completion handler that is called when availability has been determined. This handler is executed on an arbitrary serial
+        /// queue. It takes the following parameters: isAvailable - True if geo tracking is available at the given location, otherwise false. error - An error
+        /// that indicates why geo tracking is not available at the given location.
         #[unsafe(method(checkAvailabilityAtCoordinate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkAvailabilityAtCoordinate_completionHandler(

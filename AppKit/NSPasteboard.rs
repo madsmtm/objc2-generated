@@ -470,14 +470,55 @@ impl NSPasteboard {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "block2")]
-        /// Determines whether the first pasteboard item matches the specified patterns, without notifying the user.
+        /// Determines whether the first pasteboard item matches the specified patterns, without notifying the person using the app.
         ///
-        /// Because this method only gives an indication of whether a pasteboard item matches a particular pattern and doesn’t allow the app to access the contents, the system doesn’t notify the user about reading the contents of the pasteboard.
+        /// This method only gives an indication of whether the first pasteboard item matches a particular pattern, and doesn’t allow the app to access the item's contents. As a result, the system doesn’t notify the person using the app about reading the contents of the pasteboard.
         ///
+        /// The following example shows how to use this method to find email and postal addresses in the first pasteboard item:
         ///
-        /// Parameter `patterns`: The patterns to detect on the pasteboard.
+        /// ```obj-c
+        /// [NSPasteboard.generalPasteboard
+        /// detectPatternsForPatterns:[NSSet setWithArray:
+        /// @
+        /// [NSPasteboardDetectionPatternEmailAddress,
+        /// NSPasteboardDetectionPatternPostalAddress]]
+        /// completionHandler:^(NSSet
+        /// <NSPasteboardDetectionPattern
+        /// > *matchedPatterns, NSError *error) {
+        /// if (error) {
+        /// NSLog(
+        /// "
+        /// Error: %
+        /// "
+        /// , error);
+        /// return;
+        /// }
+        /// BOOL matchedEmail = [matchedPatterns containsObject:NSPasteboardDetectionPatternEmailAddress];
+        /// BOOL matchedPostal = [matchedPatterns containsObject: NSPasteboardDetectionPatternPostalAddress];
+        /// if (matchedEmail) {
+        /// NSLog(
+        /// "
+        /// Email address(es) detected");
+        /// }
+        /// if (matchedPostal) {
+        /// NSLog(
+        /// "
+        /// Postal address(es) detected");
+        /// }
+        /// if (!matchedEmail
+        /// &
+        /// &
+        /// !matchedPostal) {
+        /// NSLog(
+        /// "
+        /// Matched neither email nor postal addresses.");
+        /// }
+        /// }];
+        /// ```
         ///
-        /// Parameter `completionHandler`: A block that the system invokes after detecting patterns on the pasteboard. The block receives either a set with the patterns found on the pasteboard or an error if detection failed.
+        /// - Parameters:
+        /// - patterns: The patterns to detect on the pasteboard.
+        /// - completionHandler: A block the system invokes after detecting patterns on the pasteboard. The block receives either a set with the patterns the system finds on the pasteboard or an error if detection fails.
         #[unsafe(method(detectPatternsForPatterns:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectPatternsForPatterns_completionHandler(
@@ -491,14 +532,59 @@ impl NSPasteboard {
         #[cfg(feature = "block2")]
         /// Determines whether the first pasteboard item matches the specified patterns, reading the contents if it finds a match.
         ///
-        /// - Important: Calling this method notifies the user that the app has read the contents of the pasteboard, if a match is found.
+        /// For details about the types returned for each pattern, see ``NSPasteboardDetectionPattern``.
         ///
-        /// For details about the types returned for each pattern, see `NSPasteboardDetectionPattern`.
+        /// The following example shows how to use this method to find web URLs and web search terms in the first pasteboard item:
         ///
+        /// ```obj-c
+        /// [NSPasteboard.generalPasteboard
+        /// detectValuesForPatterns:[NSSet setWithArray:
+        /// @
+        /// [NSPasteboardDetectionPatternProbableWebSearch,
+        /// NSPasteboardDetectionPatternProbableWebURL]]
+        /// completionHandler:^(NSDictionary
+        /// <NSPasteboardDetectionPattern
+        /// , id> *patternValues, NSError *error) {
+        /// if (error) {
+        /// NSLog(
+        /// "
+        /// Error: %
+        /// "
+        /// , error);
+        /// return;
+        /// }
+        /// NSString *searchString = (NSString*)patternValues[NSPasteboardDetectionPatternProbableWebSearch];
+        /// NSString *urlString = (NSString*)patternValues[NSPasteboardDetectionPatternProbableWebURL] ;
+        /// if (searchString != nil) {
+        /// NSLog(
+        /// "
+        /// Web search retrieved: %
+        /// "
+        /// , searchString);
+        /// }
+        /// if (urlString != nil) {
+        /// NSLog(
+        /// "
+        /// Web URL retrieved: %
+        /// "
+        /// , urlString);
+        /// }
+        /// if (searchString == nil
+        /// &
+        /// &
+        /// urlString == nil) {
+        /// NSLog(
+        /// "
+        /// No web patterns retrieved.");
+        /// }
+        /// }];
+        /// ```
         ///
-        /// Parameter `patterns`: The patterns to detect on the pasteboard.
+        /// > Important: If the system finds a match when calling this method, the system informs the person using the app that the app is trying to read the contents of the pasteboard. If the person denies access to the pasteboard, the completion handler receives an error.
         ///
-        /// Parameter `completionHandler`: A block that the system invokes after detecting patterns on the pasteboard. The block returns either dictionary with the patterns found on the pasteboard or an error if detection failed. The dictionary keys specify the matched patterns, and the values specify the corresponding content of the pasteboard.
+        /// - Parameters:
+        /// - patterns: The patterns to detect on the pasteboard.
+        /// - completionHandler: A block the system invokes after detecting patterns on the pasteboard. The block returns either a dictionary with the patterns the system finds on the pasteboard or an error if detection fails. The dictionary keys specify the matched patterns and the values specify the corresponding content of the pasteboard.
         #[unsafe(method(detectValuesForPatterns:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectValuesForPatterns_completionHandler(
@@ -510,16 +596,48 @@ impl NSPasteboard {
         );
 
         #[cfg(feature = "block2")]
-        /// Determines available metadata from the specified metadata types for the first pasteboard item, without notifying the user.
+        /// Determines available metadata from the specified metadata types for the first pasteboard item, without notifying the person using the app.
         ///
-        /// Because this method only gives access to limited types of metadata and doesn’t allow the app to access the contents, the system doesn’t notify the user about reading the contents of the pasteboard.
+        /// This method only gives access to limited types of metadata and doesn’t allow the app to access the contents. As a result, the system doesn’t notify the person using the app about reading the contents of the pasteboard.
         ///
-        /// For details about the metadata returned for each type, see `NSPasteboardMetadataType`.
+        /// For details about the metadata returned for each type, see ``NSPasteboardMetadataType``.
         ///
+        /// The following example shows how to use this method to find the content type of a file reference in the first item on the pasteboard:
         ///
-        /// Parameter `types`: The metadata types to detect on the pasteboard.
+        /// ```obj-c
+        /// [NSPasteboard.generalPasteboard
+        /// detectMetadataForTypes:[NSSet setWithArray:
+        /// @
+        /// [NSPasteboardMetadataTypeContentType]]
+        /// completionHandler:^(NSDictionary
+        /// <NSPasteboardMetadataType
+        /// , id> *metadata, NSError *error) {
+        /// if (error) {
+        /// NSLog(
+        /// "
+        /// Error: %
+        /// "
+        /// , error);
+        /// return;
+        /// }
+        /// UTType *contentType = (UTType*)metadata[NSPasteboardMetadataTypeContentType];
+        /// if (contentType) {
+        /// NSLog(
+        /// "
+        /// Content type is: %
+        /// "
+        /// , contentType.identifier);
+        /// } else {
+        /// NSLog(
+        /// "
+        /// Couldn't get content type");
+        /// }
+        /// }];
+        /// ```
         ///
-        /// Parameter `completionHandler`: A block that the system invokes after detecting metadata on the pasteboard. The block receives either a dictionary with the metadata types found on the pasteboard or an error if detection failed. The dictionary keys specify the matched metadata types, and the values specify the corresponding metadata.
+        /// - Parameters:
+        /// - types: The metadata types to detect on the pasteboard.
+        /// - completionHandler: A block the system invokes after detecting metadata on the pasteboard. The block receives either a dictionary with the metadata types the system finds on the pasteboard or an error if detection fails. The dictionary keys specify the matched metadata types and the values specify the corresponding metadata.
         #[unsafe(method(detectMetadataForTypes:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectMetadataForTypes_completionHandler(

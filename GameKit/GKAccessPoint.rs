@@ -81,11 +81,13 @@ impl GKAccessPoint {
         pub unsafe fn isPresentingGameCenter(&self) -> bool;
 
         /// Set this property to true if you wish to show the highlights for most recent achievement, current rank on default leaderboard, etc
+        #[deprecated = "No longer supported"]
         #[unsafe(method(showHighlights))]
         #[unsafe(method_family = none)]
         pub unsafe fn showHighlights(&self) -> bool;
 
         /// Setter for [`showHighlights`][Self::showHighlights].
+        #[deprecated = "No longer supported"]
         #[unsafe(method(setShowHighlights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowHighlights(&self, show_highlights: bool);
@@ -100,12 +102,14 @@ impl GKAccessPoint {
         #[unsafe(method_family = none)]
         pub unsafe fn setLocation(&self, location: GKAccessPointLocation);
 
+        /// observable property that contains the current frame needed to display the widget
         #[unsafe(method(frameInScreenCoordinates))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameInScreenCoordinates(&self) -> NSRect;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// the following is a platform specific window that you wish to have the access point in.  If not set then a best attempt will be made to choose the main window of the app.
         #[unsafe(method(parentWindow))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentWindow(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
@@ -170,6 +174,53 @@ impl GKAccessPoint {
             player: &GKPlayer,
             handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
+
+        #[cfg(feature = "block2")]
+        /// Displays the view that allows players to engage each other with activities and challenges.
+        #[unsafe(method(triggerAccessPointForPlayTogetherWithHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn triggerAccessPointForPlayTogetherWithHandler(
+            &self,
+            handler: Option<&block2::DynBlock<dyn Fn()>>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Displays the view that allows players to engage each other with challenges.
+        #[unsafe(method(triggerAccessPointForChallengesWithHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn triggerAccessPointForChallengesWithHandler(
+            &self,
+            handler: Option<&block2::DynBlock<dyn Fn()>>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Displays the challenge creation view for the provided challenge definition ID.
+        #[unsafe(method(triggerAccessPointWithChallengeDefinitionID:handler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn triggerAccessPointWithChallengeDefinitionID_handler(
+            &self,
+            challenge_definition_id: &NSString,
+            handler: Option<&block2::DynBlock<dyn Fn()>>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Displays the game activity creation view for the provided activity definition ID.
+        #[unsafe(method(triggerAccessPointWithGameActivityDefinitionID:handler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn triggerAccessPointWithGameActivityDefinitionID_handler(
+            &self,
+            game_activity_definition_id: &NSString,
+            handler: Option<&block2::DynBlock<dyn Fn()>>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Brings up the invite friends view.
+        #[unsafe(method(triggerAccessPointForFriendingWithHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn triggerAccessPointForFriendingWithHandler(
+            &self,
+            handler: Option<&block2::DynBlock<dyn Fn()>>,
+        );
     );
 }
 
@@ -183,5 +234,19 @@ impl GKAccessPoint {
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+/// Private.
+impl GKAccessPoint {
+    extern_methods!(
+        #[cfg(feature = "block2")]
+        #[unsafe(method(_triggerAccessPointWithGameActivityDefinitionID:handler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn _triggerAccessPointWithGameActivityDefinitionID_handler(
+            &self,
+            game_activity_definition_id: &NSString,
+            handler: Option<&block2::DynBlock<dyn Fn()>>,
+        );
     );
 }

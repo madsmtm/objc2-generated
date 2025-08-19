@@ -6,7 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Authorized Accessory State
+/// A type that defines values for the state of an accessory.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessorystate?language=objc)
 // NS_ENUM
@@ -14,10 +14,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAccessoryState(pub NSInteger);
 impl ASAccessoryState {
+    /// The accessory is invalid or unauthorized.
     #[doc(alias = "ASAccessoryStateUnauthorized")]
     pub const Unauthorized: Self = Self(0);
+    /// The accessory is selected, but full authorization is still pending.
     #[doc(alias = "ASAccessoryStateAwaitingAuthorization")]
     pub const AwaitingAuthorization: Self = Self(10);
+    /// The accessory is authorized and available.
     #[doc(alias = "ASAccessoryStateAuthorized")]
     pub const Authorized: Self = Self(20);
 }
@@ -84,6 +87,9 @@ unsafe impl RefEncode for ASAccessorySupportOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessorywifiawarepaireddeviceid?language=objc)
+pub type ASAccessoryWiFiAwarePairedDeviceID = u64;
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory?language=objc)
     #[unsafe(super(NSObject))]
@@ -129,6 +135,13 @@ impl ASAccessory {
         #[unsafe(method(SSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSID(&self) -> Option<Retained<NSString>>;
+
+        /// The accessory's Wi-Fi Aware Pairing Identifier.
+        ///
+        /// Use this identifier to establish a connection to the accessory using Wi-Fi Aware Framework.
+        #[unsafe(method(wifiAwarePairedDeviceID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn wifiAwarePairedDeviceID(&self) -> ASAccessoryWiFiAwarePairedDeviceID;
 
         #[cfg(feature = "ASDiscoveryDescriptor")]
         /// The descriptor used to discover the accessory.

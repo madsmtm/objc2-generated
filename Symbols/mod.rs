@@ -38,6 +38,10 @@ pub use self::__NSSymbolEffect::NSSymbolContentTransition;
 #[cfg(feature = "NSSymbolEffect")]
 pub use self::__NSSymbolEffect::NSSymbolDisappearEffect;
 #[cfg(feature = "NSSymbolEffect")]
+pub use self::__NSSymbolEffect::NSSymbolDrawOffEffect;
+#[cfg(feature = "NSSymbolEffect")]
+pub use self::__NSSymbolEffect::NSSymbolDrawOnEffect;
+#[cfg(feature = "NSSymbolEffect")]
 pub use self::__NSSymbolEffect::NSSymbolEffect;
 #[cfg(feature = "NSSymbolEffect")]
 pub use self::__NSSymbolEffect::NSSymbolEffectOptions;

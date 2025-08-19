@@ -509,14 +509,20 @@ impl UISegmentedControl {
     );
 }
 
-/// Methods declared on superclass `NSObject`.
+/// Methods declared on superclass `UIView`.
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UISegmentedControl {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UISegmentedControl {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;

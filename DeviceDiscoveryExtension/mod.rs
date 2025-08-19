@@ -63,6 +63,8 @@ pub use self::__DDDevice::DDDeviceState;
 pub use self::__DDDevice::DDDeviceStateToString;
 #[cfg(feature = "DDDevice")]
 pub use self::__DDDevice::DDDeviceSupports;
+#[cfg(feature = "DDDevice")]
+pub use self::__DDDevice::DDDeviceWiFiAwareServiceRole;
 #[cfg(feature = "DDErrors")]
 pub use self::__DDErrors::DDErrorCode;
 #[cfg(feature = "DDErrors")]
