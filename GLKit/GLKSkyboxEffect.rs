@@ -14,7 +14,6 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkskyboxeffect?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKSkyboxEffect;
 );
 
@@ -29,32 +28,27 @@ extern_conformance!(
 
 impl GLKSkyboxEffect {
     extern_methods!(
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(prepareToDraw))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareToDraw(&self);
 
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(draw))]
         #[unsafe(method_family = none)]
         pub unsafe fn draw(&self);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(center))]
         #[unsafe(method_family = none)]
         pub unsafe fn center(&self) -> GLKVector3;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`center`][Self::center].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setCenter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCenter(&self, center: GLKVector3);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(xSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn xSize(&self) -> GLfloat;
@@ -62,14 +56,12 @@ impl GLKSkyboxEffect {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`xSize`][Self::xSize].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setXSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setXSize(&self, x_size: GLfloat);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(ySize))]
         #[unsafe(method_family = none)]
         pub unsafe fn ySize(&self) -> GLfloat;
@@ -77,14 +69,12 @@ impl GLKSkyboxEffect {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`ySize`][Self::ySize].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setYSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setYSize(&self, y_size: GLfloat);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(zSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn zSize(&self) -> GLfloat;
@@ -92,30 +82,25 @@ impl GLKSkyboxEffect {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`zSize`][Self::zSize].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setZSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZSize(&self, z_size: GLfloat);
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyTexture"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureCubeMap))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureCubeMap(&self) -> Retained<GLKEffectPropertyTexture>;
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyTransform"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> Retained<GLKEffectPropertyTransform>;
 
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);

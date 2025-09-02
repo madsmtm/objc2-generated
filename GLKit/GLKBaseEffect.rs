@@ -14,7 +14,6 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkbaseeffect?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKBaseEffect;
 );
 
@@ -29,14 +28,12 @@ extern_conformance!(
 
 impl GLKBaseEffect {
     extern_methods!(
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(prepareToDraw))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareToDraw(&self);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(colorMaterialEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorMaterialEnabled(&self) -> GLboolean;
@@ -44,14 +41,12 @@ impl GLKBaseEffect {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`colorMaterialEnabled`][Self::colorMaterialEnabled].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setColorMaterialEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorMaterialEnabled(&self, color_material_enabled: GLboolean);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(lightModelTwoSided))]
         #[unsafe(method_family = none)]
         pub unsafe fn lightModelTwoSided(&self) -> GLboolean;
@@ -59,14 +54,12 @@ impl GLKBaseEffect {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`lightModelTwoSided`][Self::lightModelTwoSided].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setLightModelTwoSided:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLightModelTwoSided(&self, light_model_two_sided: GLboolean);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(useConstantColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn useConstantColor(&self) -> GLboolean;
@@ -74,38 +67,32 @@ impl GLKBaseEffect {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`useConstantColor`][Self::useConstantColor].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setUseConstantColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUseConstantColor(&self, use_constant_color: GLboolean);
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyTransform"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> Retained<GLKEffectPropertyTransform>;
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyLight"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(light0))]
         #[unsafe(method_family = none)]
         pub unsafe fn light0(&self) -> Retained<GLKEffectPropertyLight>;
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyLight"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(light1))]
         #[unsafe(method_family = none)]
         pub unsafe fn light1(&self) -> Retained<GLKEffectPropertyLight>;
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyLight"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(light2))]
         #[unsafe(method_family = none)]
         pub unsafe fn light2(&self) -> Retained<GLKEffectPropertyLight>;
 
         #[cfg(all(feature = "GLKEffectPropertyLight", feature = "objc2-open-gl"))]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(lightingType))]
         #[unsafe(method_family = none)]
         pub unsafe fn lightingType(&self) -> GLKLightingType;
@@ -113,51 +100,43 @@ impl GLKBaseEffect {
         #[cfg(all(feature = "GLKEffectPropertyLight", feature = "objc2-open-gl"))]
         #[cfg(target_os = "macos")]
         /// Setter for [`lightingType`][Self::lightingType].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setLightingType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLightingType(&self, lighting_type: GLKLightingType);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(lightModelAmbientColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn lightModelAmbientColor(&self) -> GLKVector4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`lightModelAmbientColor`][Self::lightModelAmbientColor].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setLightModelAmbientColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLightModelAmbientColor(&self, light_model_ambient_color: GLKVector4);
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyMaterial"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(material))]
         #[unsafe(method_family = none)]
         pub unsafe fn material(&self) -> Retained<GLKEffectPropertyMaterial>;
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyTexture"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(texture2d0))]
         #[unsafe(method_family = none)]
         pub unsafe fn texture2d0(&self) -> Retained<GLKEffectPropertyTexture>;
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyTexture"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(texture2d1))]
         #[unsafe(method_family = none)]
         pub unsafe fn texture2d1(&self) -> Retained<GLKEffectPropertyTexture>;
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyTexture"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureOrder))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureOrder(&self) -> Option<Retained<NSArray<GLKEffectPropertyTexture>>>;
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyTexture"))]
         /// Setter for [`textureOrder`][Self::textureOrder].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setTextureOrder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextureOrder(
@@ -166,31 +145,26 @@ impl GLKBaseEffect {
         );
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(constantColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn constantColor(&self) -> GLKVector4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`constantColor`][Self::constantColor].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setConstantColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantColor(&self, constant_color: GLKVector4);
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyFog"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(fog))]
         #[unsafe(method_family = none)]
         pub unsafe fn fog(&self) -> Retained<GLKEffectPropertyFog>;
 
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);

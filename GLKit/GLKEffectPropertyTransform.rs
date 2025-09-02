@@ -11,7 +11,6 @@ extern_class!(
     #[unsafe(super(GLKEffectProperty, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKEffectProperty")]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKEffectPropertyTransform;
 );
 
@@ -24,33 +23,28 @@ extern_conformance!(
 impl GLKEffectPropertyTransform {
     extern_methods!(
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(modelviewMatrix))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelviewMatrix(&self) -> GLKMatrix4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`modelviewMatrix`][Self::modelviewMatrix].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setModelviewMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModelviewMatrix(&self, modelview_matrix: GLKMatrix4);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(projectionMatrix))]
         #[unsafe(method_family = none)]
         pub unsafe fn projectionMatrix(&self) -> GLKMatrix4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`projectionMatrix`][Self::projectionMatrix].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setProjectionMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProjectionMatrix(&self, projection_matrix: GLKMatrix4);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(normalMatrix))]
         #[unsafe(method_family = none)]
         pub unsafe fn normalMatrix(&self) -> GLKMatrix3;

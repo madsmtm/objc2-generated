@@ -11,7 +11,6 @@ extern_class!(
     #[unsafe(super(GLKBaseEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKBaseEffect")]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKReflectionMapEffect;
 );
 
@@ -28,26 +27,22 @@ extern_conformance!(
 #[cfg(feature = "GLKBaseEffect")]
 impl GLKReflectionMapEffect {
     extern_methods!(
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(prepareToDraw))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareToDraw(&self);
 
         #[cfg(all(feature = "GLKEffectProperty", feature = "GLKEffectPropertyTexture"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureCubeMap))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureCubeMap(&self) -> Retained<GLKEffectPropertyTexture>;
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(matrix))]
         #[unsafe(method_family = none)]
         pub unsafe fn matrix(&self) -> GLKMatrix3;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`matrix`][Self::matrix].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatrix(&self, matrix: GLKMatrix3);

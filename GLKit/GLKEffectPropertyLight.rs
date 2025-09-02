@@ -42,7 +42,6 @@ extern_class!(
     #[unsafe(super(GLKEffectProperty, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKEffectProperty")]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKEffectPropertyLight;
 );
 
@@ -56,7 +55,6 @@ impl GLKEffectPropertyLight {
     extern_methods!(
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(enabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn enabled(&self) -> GLboolean;
@@ -64,79 +62,67 @@ impl GLKEffectPropertyLight {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`enabled`][Self::enabled].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: GLboolean);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> GLKVector4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`position`][Self::position].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: GLKVector4);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(ambientColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn ambientColor(&self) -> GLKVector4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`ambientColor`][Self::ambientColor].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setAmbientColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAmbientColor(&self, ambient_color: GLKVector4);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(diffuseColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn diffuseColor(&self) -> GLKVector4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`diffuseColor`][Self::diffuseColor].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setDiffuseColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDiffuseColor(&self, diffuse_color: GLKVector4);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(specularColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn specularColor(&self) -> GLKVector4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`specularColor`][Self::specularColor].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setSpecularColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpecularColor(&self, specular_color: GLKVector4);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(spotDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn spotDirection(&self) -> GLKVector3;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`spotDirection`][Self::spotDirection].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setSpotDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpotDirection(&self, spot_direction: GLKVector3);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(spotExponent))]
         #[unsafe(method_family = none)]
         pub unsafe fn spotExponent(&self) -> GLfloat;
@@ -144,14 +130,12 @@ impl GLKEffectPropertyLight {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`spotExponent`][Self::spotExponent].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setSpotExponent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpotExponent(&self, spot_exponent: GLfloat);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(spotCutoff))]
         #[unsafe(method_family = none)]
         pub unsafe fn spotCutoff(&self) -> GLfloat;
@@ -159,14 +143,12 @@ impl GLKEffectPropertyLight {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`spotCutoff`][Self::spotCutoff].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setSpotCutoff:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpotCutoff(&self, spot_cutoff: GLfloat);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(constantAttenuation))]
         #[unsafe(method_family = none)]
         pub unsafe fn constantAttenuation(&self) -> GLfloat;
@@ -174,14 +156,12 @@ impl GLKEffectPropertyLight {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`constantAttenuation`][Self::constantAttenuation].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setConstantAttenuation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantAttenuation(&self, constant_attenuation: GLfloat);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(linearAttenuation))]
         #[unsafe(method_family = none)]
         pub unsafe fn linearAttenuation(&self) -> GLfloat;
@@ -189,14 +169,12 @@ impl GLKEffectPropertyLight {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`linearAttenuation`][Self::linearAttenuation].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setLinearAttenuation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLinearAttenuation(&self, linear_attenuation: GLfloat);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(quadraticAttenuation))]
         #[unsafe(method_family = none)]
         pub unsafe fn quadraticAttenuation(&self) -> GLfloat;
@@ -204,20 +182,17 @@ impl GLKEffectPropertyLight {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`quadraticAttenuation`][Self::quadraticAttenuation].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setQuadraticAttenuation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQuadraticAttenuation(&self, quadratic_attenuation: GLfloat);
 
         #[cfg(feature = "GLKEffectPropertyTransform")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> Retained<GLKEffectPropertyTransform>;
 
         #[cfg(feature = "GLKEffectPropertyTransform")]
         /// Setter for [`transform`][Self::transform].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransform(&self, transform: &GLKEffectPropertyTransform);

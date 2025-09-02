@@ -27,7 +27,6 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmeshbufferallocator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKMeshBufferAllocator;
 );
 
@@ -65,7 +64,6 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmeshbuffer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKMeshBuffer;
 );
 
@@ -89,7 +87,6 @@ extern_conformance!(
 impl GLKMeshBuffer {
     extern_methods!(
         /// Size in bytes of the buffer allocation
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> NSUInteger;
@@ -97,7 +94,6 @@ impl GLKMeshBuffer {
         /// Allocator object used to create this buffer.
         ///
         /// This allcoator used for copy and relayout operations (such as when a new vertex descriptor is applied to a vertex buffer)
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(allocator))]
         #[unsafe(method_family = none)]
         pub unsafe fn allocator(&self) -> Retained<GLKMeshBufferAllocator>;
@@ -107,13 +103,11 @@ impl GLKMeshBuffer {
         /// glBufferName for buffer object backing vertex/index data
         ///
         /// Many GLKMeshBuffers may reference the same OpenGL buffer object, but each with its own offset.  (i.e. Many GLKMeshBuffers may be suballocated from a single OpenGL buffer object)
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(glBufferName))]
         #[unsafe(method_family = none)]
         pub unsafe fn glBufferName(&self) -> GLuint;
 
         /// Byte offset of the data within the OpenGL buffer
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> NSUInteger;
@@ -122,14 +116,12 @@ impl GLKMeshBuffer {
         /// Zone from which this buffer was created (if it was created witha zone)
         ///
         /// A single GL buffer is allocated for each zone.  Each zone could have many GLKMeshBuffers, each with it's own offset.  If a GLKMeshBufferAllocator is used, Model I/O will attempt to load all vertex and indexData of a single model into a single zone.  So although there maybe many GLKMeshBuffers for a model they will be backed with the same contigous GL buffer.
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(zone))]
         #[unsafe(method_family = none)]
         pub unsafe fn zone(&self) -> Option<Retained<ProtocolObject<dyn MDLMeshBufferZone>>>;
 
         #[cfg(feature = "objc2-model-io")]
         /// the intended type of the buffer
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> MDLMeshBufferType;
@@ -153,7 +145,6 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glksubmesh?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKSubmesh;
 );
 
@@ -164,7 +155,6 @@ extern_conformance!(
 impl GLKSubmesh {
     extern_methods!(
         /// Must be initialized by a GLKMesh object
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
@@ -174,7 +164,6 @@ impl GLKSubmesh {
         /// Type of data in the elementBuffer (aka indexBuffer)
         ///
         /// This value should be used for the type parameter of glDrawElements
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> GLenum;
@@ -184,7 +173,6 @@ impl GLKSubmesh {
         /// Primitive type mode value of data in the elementBuffer (aka indexBuffer)
         ///
         /// This value should be used for the mode parameter in glDrawElements
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(mode))]
         #[unsafe(method_family = none)]
         pub unsafe fn mode(&self) -> GLenum;
@@ -194,7 +182,6 @@ impl GLKSubmesh {
         /// Number of elements (aka indicies) in the elementBuffer (aka indexBuffer)
         ///
         /// This value should be used for the count parameter in glDrawElements
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(elementCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementCount(&self) -> GLsizei;
@@ -202,7 +189,6 @@ impl GLKSubmesh {
         /// Name of buffer object with index data
         ///
         /// The buffer name to be used with DrawElements
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(elementBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementBuffer(&self) -> Retained<GLKMeshBuffer>;
@@ -210,7 +196,6 @@ impl GLKSubmesh {
         /// Parent GLKit mesh containing vertex data of this object
         ///
         /// Buffer of this parent mesh should be set in the encoder before a drawIndexedPrimitives call is made
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(mesh))]
         #[unsafe(method_family = none)]
         pub unsafe fn mesh(&self) -> Option<Retained<GLKMesh>>;
@@ -218,7 +203,6 @@ impl GLKSubmesh {
         /// Name from the original MDLSubmesh object.
         ///
         /// Although not directly used by this object, the application may use this to identify the submesh in it renderer/scene/world.
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -238,7 +222,6 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmesh?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKMesh;
 );
 
@@ -249,7 +232,6 @@ extern_conformance!(
 impl GLKMesh {
     extern_methods!(
         /// Must initialize with a mesh
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
@@ -261,7 +243,6 @@ impl GLKMesh {
         /// Pointer to an NSError object which will be set if an error occurred
         ///
         /// Parameter `mesh`: Model I/O Mesh from which to create this GLKit mesh
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(initWithMesh:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMesh_error(
@@ -283,7 +264,6 @@ impl GLKMesh {
         /// Parameter `return`: GLKit meshes created from the Model I/O asset
         ///
         /// A convenience method to create GLKit meshes from each mesh in a Model/IO asset.  Resulting meshes are returned while Model I/O meshes from which they were generated will appear in the sourceMeshes array.
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(newMeshesFromAsset:sourceMeshes:error:_))]
         #[unsafe(method_family = new)]
         pub unsafe fn newMeshesFromAsset_sourceMeshes_error(
@@ -292,13 +272,11 @@ impl GLKMesh {
         ) -> Result<Retained<NSArray<GLKMesh>>, Retained<NSError>>;
 
         /// Number of verticies in the vertexBuffers
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(vertexCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexCount(&self) -> NSUInteger;
 
         /// Array of buffers in which mesh vertex data resides
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(vertexBuffers))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexBuffers(&self) -> Retained<NSArray<GLKMeshBuffer>>;
@@ -307,7 +285,6 @@ impl GLKMesh {
         /// Model I/O vertex descriptor specifying the layout of data in vertexBuffers
         ///
         /// This is not directly used by this object, but the application can use this information to determine rendering state or setup a vertex attribute object.
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(vertexDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexDescriptor(&self) -> Retained<MDLVertexDescriptor>;
@@ -315,7 +292,6 @@ impl GLKMesh {
         /// Submeshes containing index buffers to rendering mesh verticies.
         ///
         /// Submeshes may also contain texture materials to apply when rendering this object
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(submeshes))]
         #[unsafe(method_family = none)]
         pub unsafe fn submeshes(&self) -> Retained<NSArray<GLKSubmesh>>;
@@ -323,7 +299,6 @@ impl GLKMesh {
         /// Name of the mesh copies from the originating Model I/O mesh
         ///
         /// Can be used by the app to identiry the mesh in it's scene/world/renderer etc.
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;

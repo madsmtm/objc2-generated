@@ -74,7 +74,6 @@ extern_class!(
     #[unsafe(super(GLKEffectProperty, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKEffectProperty")]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKEffectPropertyTexture;
 );
 
@@ -88,7 +87,6 @@ impl GLKEffectPropertyTexture {
     extern_methods!(
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(enabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn enabled(&self) -> GLboolean;
@@ -96,14 +94,12 @@ impl GLKEffectPropertyTexture {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`enabled`][Self::enabled].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: GLboolean);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> GLuint;
@@ -111,14 +107,12 @@ impl GLKEffectPropertyTexture {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`name`][Self::name].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: GLuint);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> GLKTextureTarget;
@@ -126,14 +120,12 @@ impl GLKEffectPropertyTexture {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`target`][Self::target].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: GLKTextureTarget);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(envMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn envMode(&self) -> GLKTextureEnvMode;
@@ -141,7 +133,6 @@ impl GLKEffectPropertyTexture {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`envMode`][Self::envMode].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setEnvMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnvMode(&self, env_mode: GLKTextureEnvMode);

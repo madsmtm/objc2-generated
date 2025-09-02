@@ -187,7 +187,6 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKTextureInfo;
 );
 
@@ -207,68 +206,58 @@ impl GLKTextureInfo {
     extern_methods!(
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> GLuint;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> GLenum;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> GLuint;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> GLuint;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(depth))]
         #[unsafe(method_family = none)]
         pub unsafe fn depth(&self) -> GLuint;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(alphaState))]
         #[unsafe(method_family = none)]
         pub unsafe fn alphaState(&self) -> GLKTextureInfoAlphaState;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureOrigin))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureOrigin(&self) -> GLKTextureInfoOrigin;
 
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(containsMipmaps))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsMipmaps(&self) -> bool;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(mimapLevelCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn mimapLevelCount(&self) -> GLuint;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(arrayLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayLength(&self) -> GLuint;
@@ -297,7 +286,6 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloader?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKTextureLoader;
 );
 
@@ -307,7 +295,6 @@ extern_conformance!(
 
 impl GLKTextureLoader {
     extern_methods!(
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureWithContentsOfFile:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfFile_options_error(
@@ -315,7 +302,6 @@ impl GLKTextureLoader {
             options: Option<&NSDictionary<NSString, NSNumber>>,
         ) -> Result<Retained<GLKTextureInfo>, Retained<NSError>>;
 
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureWithContentsOfURL:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfURL_options_error(
@@ -324,7 +310,6 @@ impl GLKTextureLoader {
         ) -> Result<Retained<GLKTextureInfo>, Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureWithName:scaleFactor:bundle:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithName_scaleFactor_bundle_options_error(
@@ -334,7 +319,6 @@ impl GLKTextureLoader {
             options: Option<&NSDictionary<NSString, NSNumber>>,
         ) -> Result<Retained<GLKTextureInfo>, Retained<NSError>>;
 
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureWithContentsOfData:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfData_options_error(
@@ -343,7 +327,6 @@ impl GLKTextureLoader {
         ) -> Result<Retained<GLKTextureInfo>, Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureWithCGImage:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithCGImage_options_error(
@@ -351,7 +334,6 @@ impl GLKTextureLoader {
             options: Option<&NSDictionary<NSString, NSNumber>>,
         ) -> Result<Retained<GLKTextureInfo>, Retained<NSError>>;
 
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(cubeMapWithContentsOfFiles:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFiles_options_error(
@@ -359,7 +341,6 @@ impl GLKTextureLoader {
             options: Option<&NSDictionary<NSString, NSNumber>>,
         ) -> Result<Retained<GLKTextureInfo>, Retained<NSError>>;
 
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(cubeMapWithContentsOfFile:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFile_options_error(
@@ -367,7 +348,6 @@ impl GLKTextureLoader {
             options: Option<&NSDictionary<NSString, NSNumber>>,
         ) -> Result<Retained<GLKTextureInfo>, Retained<NSError>>;
 
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(cubeMapWithContentsOfURL:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfURL_options_error(
@@ -377,7 +357,6 @@ impl GLKTextureLoader {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(initWithShareContext:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithShareContext(
@@ -386,7 +365,6 @@ impl GLKTextureLoader {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureWithContentsOfFile:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfFile_options_queue_completionHandler(
@@ -398,7 +376,6 @@ impl GLKTextureLoader {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureWithContentsOfURL:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfURL_options_queue_completionHandler(
@@ -414,7 +391,6 @@ impl GLKTextureLoader {
             feature = "dispatch2",
             feature = "objc2-core-foundation"
         ))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureWithName:scaleFactor:bundle:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithName_scaleFactor_bundle_options_queue_completionHandler(
@@ -428,7 +404,6 @@ impl GLKTextureLoader {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureWithContentsOfData:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfData_options_queue_completionHandler(
@@ -444,7 +419,6 @@ impl GLKTextureLoader {
             feature = "dispatch2",
             feature = "objc2-core-graphics"
         ))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(textureWithCGImage:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithCGImage_options_queue_completionHandler(
@@ -456,7 +430,6 @@ impl GLKTextureLoader {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(cubeMapWithContentsOfFiles:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFiles_options_queue_completionHandler(
@@ -468,7 +441,6 @@ impl GLKTextureLoader {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(cubeMapWithContentsOfFile:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFile_options_queue_completionHandler(
@@ -480,7 +452,6 @@ impl GLKTextureLoader {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(cubeMapWithContentsOfURL:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfURL_options_queue_completionHandler(

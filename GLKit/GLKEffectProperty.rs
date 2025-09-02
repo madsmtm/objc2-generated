@@ -27,7 +27,6 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkeffectproperty?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKEffectProperty;
 );
 

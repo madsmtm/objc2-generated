@@ -44,7 +44,6 @@ extern_class!(
     #[unsafe(super(GLKEffectProperty, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKEffectProperty")]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKEffectPropertyFog;
 );
 
@@ -58,7 +57,6 @@ impl GLKEffectPropertyFog {
     extern_methods!(
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(enabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn enabled(&self) -> GLboolean;
@@ -66,14 +64,12 @@ impl GLKEffectPropertyFog {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`enabled`][Self::enabled].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: GLboolean);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(mode))]
         #[unsafe(method_family = none)]
         pub unsafe fn mode(&self) -> GLint;
@@ -81,27 +77,23 @@ impl GLKEffectPropertyFog {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`mode`][Self::mode].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMode(&self, mode: GLint);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(color))]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> GLKVector4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`color`][Self::color].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: GLKVector4);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(density))]
         #[unsafe(method_family = none)]
         pub unsafe fn density(&self) -> GLfloat;
@@ -109,14 +101,12 @@ impl GLKEffectPropertyFog {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`density`][Self::density].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setDensity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDensity(&self, density: GLfloat);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self) -> GLfloat;
@@ -124,14 +114,12 @@ impl GLKEffectPropertyFog {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`start`][Self::start].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStart(&self, start: GLfloat);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(end))]
         #[unsafe(method_family = none)]
         pub unsafe fn end(&self) -> GLfloat;
@@ -139,7 +127,6 @@ impl GLKEffectPropertyFog {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`end`][Self::end].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setEnd:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnd(&self, end: GLfloat);

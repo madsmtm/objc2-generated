@@ -14,7 +14,6 @@ extern_class!(
     #[unsafe(super(GLKEffectProperty, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKEffectProperty")]
-    #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct GLKEffectPropertyMaterial;
 );
 
@@ -27,60 +26,51 @@ extern_conformance!(
 impl GLKEffectPropertyMaterial {
     extern_methods!(
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(ambientColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn ambientColor(&self) -> GLKVector4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`ambientColor`][Self::ambientColor].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setAmbientColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAmbientColor(&self, ambient_color: GLKVector4);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(diffuseColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn diffuseColor(&self) -> GLKVector4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`diffuseColor`][Self::diffuseColor].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setDiffuseColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDiffuseColor(&self, diffuse_color: GLKVector4);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(specularColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn specularColor(&self) -> GLKVector4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`specularColor`][Self::specularColor].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setSpecularColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpecularColor(&self, specular_color: GLKVector4);
 
         #[cfg(feature = "GLKMathTypes")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(emissiveColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn emissiveColor(&self) -> GLKVector4;
 
         #[cfg(feature = "GLKMathTypes")]
         /// Setter for [`emissiveColor`][Self::emissiveColor].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setEmissiveColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmissiveColor(&self, emissive_color: GLKVector4);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(shininess))]
         #[unsafe(method_family = none)]
         pub unsafe fn shininess(&self) -> GLfloat;
@@ -88,7 +78,6 @@ impl GLKEffectPropertyMaterial {
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
         /// Setter for [`shininess`][Self::shininess].
-        #[deprecated = "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setShininess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShininess(&self, shininess: GLfloat);
