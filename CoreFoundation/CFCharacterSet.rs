@@ -275,10 +275,7 @@ impl CFCharacterSet {
     /// If this parameter is not a valid CFCharacterSet, the behavior is undefined.
     #[doc(alias = "CFCharacterSetIsSupersetOfSet")]
     #[inline]
-    pub unsafe fn is_superset_of_set(
-        self: &CFCharacterSet,
-        the_otherset: Option<&CFCharacterSet>,
-    ) -> bool {
+    pub unsafe fn is_superset_of_set(&self, the_otherset: Option<&CFCharacterSet>) -> bool {
         extern "C-unwind" {
             fn CFCharacterSetIsSupersetOfSet(
                 the_set: &CFCharacterSet,
@@ -299,7 +296,7 @@ impl CFCharacterSet {
     /// plane number range, the behavior is undefined.
     #[doc(alias = "CFCharacterSetHasMemberInPlane")]
     #[inline]
-    pub unsafe fn has_member_in_plane(self: &CFCharacterSet, the_plane: CFIndex) -> bool {
+    pub unsafe fn has_member_in_plane(&self, the_plane: CFIndex) -> bool {
         extern "C-unwind" {
             fn CFCharacterSetHasMemberInPlane(
                 the_set: &CFCharacterSet,
@@ -410,7 +407,7 @@ impl CFCharacterSet {
     /// Returns: true, if the value is in the character set, otherwise false.
     #[doc(alias = "CFCharacterSetIsCharacterMember")]
     #[inline]
-    pub unsafe fn is_character_member(self: &CFCharacterSet, the_char: UniChar) -> bool {
+    pub unsafe fn is_character_member(&self, the_char: UniChar) -> bool {
         extern "C-unwind" {
             fn CFCharacterSetIsCharacterMember(
                 the_set: &CFCharacterSet,
@@ -432,7 +429,7 @@ impl CFCharacterSet {
     /// Returns: true, if the value is in the character set, otherwise false.
     #[doc(alias = "CFCharacterSetIsLongCharacterMember")]
     #[inline]
-    pub unsafe fn is_long_character_member(self: &CFCharacterSet, the_char: UTF32Char) -> bool {
+    pub unsafe fn is_long_character_member(&self, the_char: UTF32Char) -> bool {
         extern "C-unwind" {
             fn CFCharacterSetIsLongCharacterMember(
                 the_set: &CFCharacterSet,

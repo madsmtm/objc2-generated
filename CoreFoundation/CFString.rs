@@ -359,7 +359,7 @@ impl CFString {
     /// * Basic accessors for the contents **
     #[doc(alias = "CFStringGetLength")]
     #[inline]
-    pub fn length(self: &CFString) -> CFIndex {
+    pub fn length(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFStringGetLength(the_string: &CFString) -> CFIndex;
         }
@@ -368,7 +368,7 @@ impl CFString {
 
     #[doc(alias = "CFStringGetCharacterAtIndex")]
     #[inline]
-    pub unsafe fn character_at_index(self: &CFString, idx: CFIndex) -> UniChar {
+    pub unsafe fn character_at_index(&self, idx: CFIndex) -> UniChar {
         extern "C-unwind" {
             fn CFStringGetCharacterAtIndex(the_string: &CFString, idx: CFIndex) -> UniChar;
         }
@@ -377,7 +377,7 @@ impl CFString {
 
     #[doc(alias = "CFStringGetCharacters")]
     #[inline]
-    pub unsafe fn characters(self: &CFString, range: CFRange, buffer: *mut UniChar) {
+    pub unsafe fn characters(&self, range: CFRange, buffer: *mut UniChar) {
         extern "C-unwind" {
             fn CFStringGetCharacters(the_string: &CFString, range: CFRange, buffer: *mut UniChar);
         }
@@ -387,7 +387,7 @@ impl CFString {
     #[doc(alias = "CFStringGetPascalString")]
     #[inline]
     pub unsafe fn pascal_string(
-        self: &CFString,
+        &self,
         buffer: StringPtr,
         buffer_size: CFIndex,
         encoding: CFStringEncoding,
@@ -407,7 +407,7 @@ impl CFString {
     #[doc(alias = "CFStringGetCString")]
     #[inline]
     pub unsafe fn c_string(
-        self: &CFString,
+        &self,
         buffer: *mut c_char,
         buffer_size: CFIndex,
         encoding: CFStringEncoding,
@@ -426,7 +426,7 @@ impl CFString {
 
     #[doc(alias = "CFStringGetPascalStringPtr")]
     #[inline]
-    pub fn pascal_string_ptr(self: &CFString, encoding: CFStringEncoding) -> ConstStringPtr {
+    pub fn pascal_string_ptr(&self, encoding: CFStringEncoding) -> ConstStringPtr {
         extern "C-unwind" {
             fn CFStringGetPascalStringPtr(
                 the_string: &CFString,
@@ -438,7 +438,7 @@ impl CFString {
 
     #[doc(alias = "CFStringGetCStringPtr")]
     #[inline]
-    pub fn c_string_ptr(self: &CFString, encoding: CFStringEncoding) -> *const c_char {
+    pub fn c_string_ptr(&self, encoding: CFStringEncoding) -> *const c_char {
         extern "C-unwind" {
             fn CFStringGetCStringPtr(
                 the_string: &CFString,
@@ -450,7 +450,7 @@ impl CFString {
 
     #[doc(alias = "CFStringGetCharactersPtr")]
     #[inline]
-    pub fn characters_ptr(self: &CFString) -> *const UniChar {
+    pub fn characters_ptr(&self) -> *const UniChar {
         extern "C-unwind" {
             fn CFStringGetCharactersPtr(the_string: &CFString) -> *const UniChar;
         }
@@ -460,7 +460,7 @@ impl CFString {
     #[doc(alias = "CFStringGetBytes")]
     #[inline]
     pub unsafe fn bytes(
-        self: &CFString,
+        &self,
         range: CFRange,
         encoding: CFStringEncoding,
         loss_byte: u8,
@@ -538,7 +538,7 @@ impl CFString {
 
     #[doc(alias = "CFStringGetSmallestEncoding")]
     #[inline]
-    pub fn smallest_encoding(self: &CFString) -> CFStringEncoding {
+    pub fn smallest_encoding(&self) -> CFStringEncoding {
         extern "C-unwind" {
             fn CFStringGetSmallestEncoding(the_string: &CFString) -> CFStringEncoding;
         }
@@ -547,7 +547,7 @@ impl CFString {
 
     #[doc(alias = "CFStringGetFastestEncoding")]
     #[inline]
-    pub fn fastest_encoding(self: &CFString) -> CFStringEncoding {
+    pub fn fastest_encoding(&self) -> CFStringEncoding {
         extern "C-unwind" {
             fn CFStringGetFastestEncoding(the_string: &CFString) -> CFStringEncoding;
         }
@@ -579,7 +579,7 @@ impl CFString {
     #[doc(alias = "CFStringGetFileSystemRepresentation")]
     #[inline]
     pub unsafe fn file_system_representation(
-        self: &CFString,
+        &self,
         buffer: *mut c_char,
         max_buf_len: CFIndex,
     ) -> bool {
@@ -596,7 +596,7 @@ impl CFString {
 
     #[doc(alias = "CFStringGetMaximumSizeOfFileSystemRepresentation")]
     #[inline]
-    pub fn maximum_size_of_file_system_representation(self: &CFString) -> CFIndex {
+    pub fn maximum_size_of_file_system_representation(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFStringGetMaximumSizeOfFileSystemRepresentation(string: &CFString) -> CFIndex;
         }
@@ -663,7 +663,7 @@ impl CFString {
     #[cfg(feature = "CFLocale")]
     #[inline]
     pub unsafe fn compare_with_options_and_locale(
-        self: &CFString,
+        &self,
         the_string2: Option<&CFString>,
         range_to_compare: CFRange,
         compare_options: CFStringCompareFlags,
@@ -692,7 +692,7 @@ impl CFString {
     #[doc(alias = "CFStringCompareWithOptions")]
     #[inline]
     pub unsafe fn compare_with_options(
-        self: &CFString,
+        &self,
         the_string2: Option<&CFString>,
         range_to_compare: CFRange,
         compare_options: CFStringCompareFlags,
@@ -711,7 +711,7 @@ impl CFString {
     #[doc(alias = "CFStringCompare")]
     #[inline]
     pub fn compare(
-        self: &CFString,
+        &self,
         the_string2: Option<&CFString>,
         compare_options: CFStringCompareFlags,
     ) -> CFComparisonResult {
@@ -729,7 +729,7 @@ impl CFString {
     #[cfg(feature = "CFLocale")]
     #[inline]
     pub unsafe fn find_with_options_and_locale(
-        self: &CFString,
+        &self,
         string_to_find: Option<&CFString>,
         range_to_search: CFRange,
         search_options: CFStringCompareFlags,
@@ -762,7 +762,7 @@ impl CFString {
     #[doc(alias = "CFStringFindWithOptions")]
     #[inline]
     pub unsafe fn find_with_options(
-        self: &CFString,
+        &self,
         string_to_find: Option<&CFString>,
         range_to_search: CFRange,
         search_options: CFStringCompareFlags,
@@ -823,7 +823,7 @@ impl CFString {
     #[doc(alias = "CFStringFind")]
     #[inline]
     pub fn find(
-        self: &CFString,
+        &self,
         string_to_find: Option<&CFString>,
         compare_options: CFStringCompareFlags,
     ) -> CFRange {
@@ -839,7 +839,7 @@ impl CFString {
 
     #[doc(alias = "CFStringHasPrefix")]
     #[inline]
-    pub fn has_prefix(self: &CFString, prefix: Option<&CFString>) -> bool {
+    pub fn has_prefix(&self, prefix: Option<&CFString>) -> bool {
         extern "C-unwind" {
             fn CFStringHasPrefix(the_string: &CFString, prefix: Option<&CFString>) -> Boolean;
         }
@@ -849,7 +849,7 @@ impl CFString {
 
     #[doc(alias = "CFStringHasSuffix")]
     #[inline]
-    pub fn has_suffix(self: &CFString, suffix: Option<&CFString>) -> bool {
+    pub fn has_suffix(&self, suffix: Option<&CFString>) -> bool {
         extern "C-unwind" {
             fn CFStringHasSuffix(the_string: &CFString, suffix: Option<&CFString>) -> Boolean;
         }
@@ -872,10 +872,7 @@ impl CFString {
     /// Returns: The range of the composed character sequence.
     #[doc(alias = "CFStringGetRangeOfComposedCharactersAtIndex")]
     #[inline]
-    pub unsafe fn range_of_composed_characters_at_index(
-        self: &CFString,
-        the_index: CFIndex,
-    ) -> CFRange {
+    pub unsafe fn range_of_composed_characters_at_index(&self, the_index: CFIndex) -> CFRange {
         extern "C-unwind" {
             fn CFStringGetRangeOfComposedCharactersAtIndex(
                 the_string: &CFString,
@@ -921,7 +918,7 @@ impl CFString {
     #[cfg(feature = "CFCharacterSet")]
     #[inline]
     pub unsafe fn find_character_from_set(
-        self: &CFString,
+        &self,
         the_set: Option<&CFCharacterSet>,
         range_to_search: CFRange,
         search_options: CFStringCompareFlags,
@@ -945,7 +942,7 @@ impl CFString {
     #[doc(alias = "CFStringGetLineBounds")]
     #[inline]
     pub unsafe fn line_bounds(
-        self: &CFString,
+        &self,
         range: CFRange,
         line_begin_index: *mut CFIndex,
         line_end_index: *mut CFIndex,
@@ -974,7 +971,7 @@ impl CFString {
     #[doc(alias = "CFStringGetParagraphBounds")]
     #[inline]
     pub unsafe fn paragraph_bounds(
-        self: &CFString,
+        &self,
         range: CFRange,
         par_begin_index: *mut CFIndex,
         par_end_index: *mut CFIndex,
@@ -1033,7 +1030,7 @@ impl CFString {
     #[cfg(feature = "CFLocale")]
     #[inline]
     pub unsafe fn hyphenation_location_before_index(
-        self: &CFString,
+        &self,
         location: CFIndex,
         limit_range: CFRange,
         options: CFOptionFlags,
@@ -1116,7 +1113,7 @@ impl CFString {
     /// * Parsing non-localized numbers from strings **
     #[doc(alias = "CFStringGetIntValue")]
     #[inline]
-    pub fn int_value(self: &CFString) -> i32 {
+    pub fn int_value(&self) -> i32 {
         extern "C-unwind" {
             fn CFStringGetIntValue(str: &CFString) -> i32;
         }
@@ -1125,7 +1122,7 @@ impl CFString {
 
     #[doc(alias = "CFStringGetDoubleValue")]
     #[inline]
-    pub fn double_value(self: &CFString) -> c_double {
+    pub fn double_value(&self) -> c_double {
         extern "C-unwind" {
             fn CFStringGetDoubleValue(str: &CFString) -> c_double;
         }
@@ -1636,7 +1633,7 @@ impl CFString {
 
     #[doc(alias = "CFStringConvertIANACharSetNameToEncoding")]
     #[inline]
-    pub fn convert_iana_char_set_name_to_encoding(self: &CFString) -> CFStringEncoding {
+    pub fn convert_iana_char_set_name_to_encoding(&self) -> CFStringEncoding {
         extern "C-unwind" {
             fn CFStringConvertIANACharSetNameToEncoding(the_string: &CFString) -> CFStringEncoding;
         }

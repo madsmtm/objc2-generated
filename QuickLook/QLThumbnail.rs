@@ -65,7 +65,7 @@ impl QLThumbnail {
     #[doc(alias = "QLThumbnailCopyDocumentURL")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
-    pub unsafe fn document_url(self: &QLThumbnail) -> Option<CFRetained<CFURL>> {
+    pub unsafe fn document_url(&self) -> Option<CFRetained<CFURL>> {
         extern "C-unwind" {
             fn QLThumbnailCopyDocumentURL(thumbnail: &QLThumbnail) -> Option<NonNull<CFURL>>;
         }
@@ -76,7 +76,7 @@ impl QLThumbnail {
     #[doc(alias = "QLThumbnailGetMaximumSize")]
     #[deprecated = "Use QLThumbnailGenerationRequest in QuickLookThumbnailing."]
     #[inline]
-    pub unsafe fn maximum_size(self: &QLThumbnail) -> CGSize {
+    pub unsafe fn maximum_size(&self) -> CGSize {
         extern "C-unwind" {
             fn QLThumbnailGetMaximumSize(thumbnail: &QLThumbnail) -> CGSize;
         }
@@ -86,7 +86,7 @@ impl QLThumbnail {
     #[doc(alias = "QLThumbnailCopyOptions")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
-    pub unsafe fn options(self: &QLThumbnail) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn options(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn QLThumbnailCopyOptions(thumbnail: &QLThumbnail) -> Option<NonNull<CFDictionary>>;
         }
@@ -99,7 +99,7 @@ impl QLThumbnail {
     #[deprecated = "Use QLThumbnailGenerator in QuickLookThumbnailing to generate thumbnails."]
     #[inline]
     pub unsafe fn dispatch_async(
-        self: &QLThumbnail,
+        &self,
         queue: Option<&DispatchQueue>,
         completion: dispatch_block_t,
     ) {
@@ -117,7 +117,7 @@ impl QLThumbnail {
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
-    pub unsafe fn image(self: &QLThumbnail) -> Option<CFRetained<CGImage>> {
+    pub unsafe fn image(&self) -> Option<CFRetained<CGImage>> {
         extern "C-unwind" {
             fn QLThumbnailCopyImage(thumbnail: &QLThumbnail) -> Option<NonNull<CGImage>>;
         }
@@ -128,7 +128,7 @@ impl QLThumbnail {
     #[doc(alias = "QLThumbnailGetContentRect")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
-    pub unsafe fn content_rect(self: &QLThumbnail) -> CGRect {
+    pub unsafe fn content_rect(&self) -> CGRect {
         extern "C-unwind" {
             fn QLThumbnailGetContentRect(thumbnail: &QLThumbnail) -> CGRect;
         }
@@ -138,7 +138,7 @@ impl QLThumbnail {
     #[doc(alias = "QLThumbnailCancel")]
     #[deprecated = "Use [QLThumbnailGenerator cancelRequest:] in QuickLookThumbnailing."]
     #[inline]
-    pub unsafe fn cancel(self: &QLThumbnail) {
+    pub unsafe fn cancel(&self) {
         extern "C-unwind" {
             fn QLThumbnailCancel(thumbnail: &QLThumbnail);
         }
@@ -148,7 +148,7 @@ impl QLThumbnail {
     #[doc(alias = "QLThumbnailIsCancelled")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
-    pub unsafe fn is_cancelled(self: &QLThumbnail) -> bool {
+    pub unsafe fn is_cancelled(&self) -> bool {
         extern "C-unwind" {
             fn QLThumbnailIsCancelled(thumbnail: &QLThumbnail) -> Boolean;
         }

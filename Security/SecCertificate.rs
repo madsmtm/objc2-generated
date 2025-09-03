@@ -59,7 +59,7 @@ impl SecCertificate {
     #[doc(alias = "SecCertificateCopyData")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn data(self: &SecCertificate) -> CFRetained<CFData> {
+    pub unsafe fn data(&self) -> CFRetained<CFData> {
         extern "C-unwind" {
             fn SecCertificateCopyData(certificate: &SecCertificate) -> Option<NonNull<CFData>>;
         }
@@ -83,7 +83,7 @@ impl SecCertificate {
     #[doc(alias = "SecCertificateCopySubjectSummary")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn subject_summary(self: &SecCertificate) -> Option<CFRetained<CFString>> {
+    pub unsafe fn subject_summary(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SecCertificateCopySubjectSummary(
                 certificate: &SecCertificate,
@@ -107,10 +107,7 @@ impl SecCertificate {
     #[doc(alias = "SecCertificateCopyCommonName")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn copy_common_name(
-        self: &SecCertificate,
-        common_name: NonNull<*const CFString>,
-    ) -> OSStatus {
+    pub unsafe fn copy_common_name(&self, common_name: NonNull<*const CFString>) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateCopyCommonName(
                 certificate: &SecCertificate,
@@ -132,7 +129,7 @@ impl SecCertificate {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn copy_email_addresses(
-        self: &SecCertificate,
+        &self,
         email_addresses: NonNull<*const CFArray>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -152,7 +149,7 @@ impl SecCertificate {
     #[doc(alias = "SecCertificateCopyNormalizedIssuerSequence")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn normalized_issuer_sequence(self: &SecCertificate) -> Option<CFRetained<CFData>> {
+    pub unsafe fn normalized_issuer_sequence(&self) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecCertificateCopyNormalizedIssuerSequence(
                 certificate: &SecCertificate,
@@ -170,7 +167,7 @@ impl SecCertificate {
     #[doc(alias = "SecCertificateCopyNormalizedSubjectSequence")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn normalized_subject_sequence(self: &SecCertificate) -> Option<CFRetained<CFData>> {
+    pub unsafe fn normalized_subject_sequence(&self) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecCertificateCopyNormalizedSubjectSequence(
                 certificate: &SecCertificate,
@@ -190,7 +187,7 @@ impl SecCertificate {
     #[doc(alias = "SecCertificateCopyKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn key(self: &SecCertificate) -> Option<CFRetained<SecKey>> {
+    pub unsafe fn key(&self) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecCertificateCopyKey(certificate: &SecCertificate) -> Option<NonNull<SecKey>>;
         }
@@ -211,7 +208,7 @@ impl SecCertificate {
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn copy_public_key(self: &SecCertificate, key: NonNull<*mut SecKey>) -> OSStatus {
+    pub unsafe fn copy_public_key(&self, key: NonNull<*mut SecKey>) -> OSStatus {
         extern "C-unwind" {
             #[cfg_attr(
                 target_os = "macos",
@@ -236,7 +233,7 @@ impl SecCertificate {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn serial_number_data(
-        self: &SecCertificate,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
@@ -258,7 +255,7 @@ impl SecCertificate {
     #[doc(alias = "SecCertificateCopyNotValidBeforeDate")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn not_valid_before_date(self: &SecCertificate) -> Option<CFRetained<CFDate>> {
+    pub unsafe fn not_valid_before_date(&self) -> Option<CFRetained<CFDate>> {
         extern "C-unwind" {
             fn SecCertificateCopyNotValidBeforeDate(
                 certificate: &SecCertificate,
@@ -277,7 +274,7 @@ impl SecCertificate {
     #[doc(alias = "SecCertificateCopyNotValidAfterDate")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn not_valid_after_date(self: &SecCertificate) -> Option<CFRetained<CFDate>> {
+    pub unsafe fn not_valid_after_date(&self) -> Option<CFRetained<CFDate>> {
         extern "C-unwind" {
             fn SecCertificateCopyNotValidAfterDate(
                 certificate: &SecCertificate,
@@ -298,10 +295,7 @@ impl SecCertificate {
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn serial_number(
-        self: &SecCertificate,
-        error: *mut *mut CFError,
-    ) -> Option<CFRetained<CFData>> {
+    pub unsafe fn serial_number(&self, error: *mut *mut CFError) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             #[cfg_attr(
                 target_os = "macos",
@@ -386,10 +380,7 @@ impl SecCertificate {
     #[doc(alias = "SecCertificateAddToKeychain")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn add_to_keychain(
-        self: &SecCertificate,
-        keychain: Option<&SecKeychain>,
-    ) -> OSStatus {
+    pub unsafe fn add_to_keychain(&self, keychain: Option<&SecKeychain>) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateAddToKeychain(
                 certificate: &SecCertificate,
@@ -412,7 +403,7 @@ impl SecCertificate {
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn get_data(self: &SecCertificate, data: CSSM_DATA_PTR) -> OSStatus {
+    pub unsafe fn get_data(&self, data: CSSM_DATA_PTR) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateGetData(certificate: &SecCertificate, data: CSSM_DATA_PTR)
                 -> OSStatus;
@@ -433,10 +424,7 @@ impl SecCertificate {
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn r#type(
-        self: &SecCertificate,
-        certificate_type: NonNull<CSSM_CERT_TYPE>,
-    ) -> OSStatus {
+    pub unsafe fn r#type(&self, certificate_type: NonNull<CSSM_CERT_TYPE>) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateGetType(
                 certificate: &SecCertificate,
@@ -476,10 +464,7 @@ impl SecCertificate {
     ))]
     #[deprecated]
     #[inline]
-    pub unsafe fn subject(
-        self: &SecCertificate,
-        subject: NonNull<*const CSSM_X509_NAME>,
-    ) -> OSStatus {
+    pub unsafe fn subject(&self, subject: NonNull<*const CSSM_X509_NAME>) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateGetSubject(
                 certificate: &SecCertificate,
@@ -519,10 +504,7 @@ impl SecCertificate {
     ))]
     #[deprecated]
     #[inline]
-    pub unsafe fn issuer(
-        self: &SecCertificate,
-        issuer: NonNull<*const CSSM_X509_NAME>,
-    ) -> OSStatus {
+    pub unsafe fn issuer(&self, issuer: NonNull<*const CSSM_X509_NAME>) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateGetIssuer(
                 certificate: &SecCertificate,
@@ -545,7 +527,7 @@ impl SecCertificate {
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn cl_handle(self: &SecCertificate, cl_handle: NonNull<CSSM_CL_HANDLE>) -> OSStatus {
+    pub unsafe fn cl_handle(&self, cl_handle: NonNull<CSSM_CL_HANDLE>) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateGetCLHandle(
                 certificate: &SecCertificate,
@@ -567,10 +549,7 @@ impl SecCertificate {
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn algorithm_id(
-        self: &SecCertificate,
-        algid: NonNull<*const SecAsn1AlgId>,
-    ) -> OSStatus {
+    pub unsafe fn algorithm_id(&self, algid: NonNull<*const SecAsn1AlgId>) -> OSStatus {
         extern "C-unwind" {
             fn SecCertificateGetAlgorithmID(
                 certificate: &SecCertificate,
@@ -657,7 +636,7 @@ impl SecCertificate {
     #[deprecated]
     #[inline]
     pub unsafe fn set_preference(
-        self: &SecCertificate,
+        &self,
         name: &CFString,
         key_usage: uint32,
         date: Option<&CFDate>,
@@ -853,7 +832,7 @@ impl SecCertificate {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn values(
-        self: &SecCertificate,
+        &self,
         keys: Option<&CFArray>,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFDictionary>> {
@@ -960,7 +939,7 @@ impl SecCertificate {
     #[deprecated = "SecCertificateCopyNormalizedIssuerContent is deprecated. Use SecCertificateCopyNormalizedIssuerSequence instead."]
     #[inline]
     pub unsafe fn normalized_issuer_content(
-        self: &SecCertificate,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
@@ -991,7 +970,7 @@ impl SecCertificate {
     #[deprecated = "SecCertificateCopyNormalizedSubjectContent is deprecated. Use SecCertificateCopyNormalizedSubjectSequence instead."]
     #[inline]
     pub unsafe fn normalized_subject_content(
-        self: &SecCertificate,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {

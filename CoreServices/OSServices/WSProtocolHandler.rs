@@ -58,7 +58,7 @@ impl WSProtocolHandler {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn request_dictionary(
-        self: &WSProtocolHandler,
+        &self,
         data: Option<&CFData>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -75,7 +75,7 @@ impl WSProtocolHandler {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn reply_dictionary(
-        self: &WSProtocolHandler,
+        &self,
         method_name: Option<&CFString>,
         data: Option<&CFData>,
     ) -> Option<CFRetained<CFDictionary>> {
@@ -94,7 +94,7 @@ impl WSProtocolHandler {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn reply_document(
-        self: &WSProtocolHandler,
+        &self,
         method_context: Option<&CFDictionary>,
         result_value: Option<&CFType>,
     ) -> Option<CFRetained<CFData>> {
@@ -113,7 +113,7 @@ impl WSProtocolHandler {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn fault_document(
-        self: &WSProtocolHandler,
+        &self,
         method_context: Option<&CFDictionary>,
         fault_dict: Option<&CFDictionary>,
     ) -> Option<CFRetained<CFData>> {
@@ -132,7 +132,7 @@ impl WSProtocolHandler {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn request_document(
-        self: &WSProtocolHandler,
+        &self,
         method_name: Option<&CFString>,
         method_params: Option<&CFDictionary>,
         method_param_order: Option<&CFArray>,
@@ -162,10 +162,7 @@ impl WSProtocolHandler {
     #[doc(alias = "WSProtocolHandlerCopyProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn property(
-        self: &WSProtocolHandler,
-        property_name: Option<&CFString>,
-    ) -> Option<CFRetained<CFType>> {
+    pub unsafe fn property(&self, property_name: Option<&CFString>) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn WSProtocolHandlerCopyProperty(
                 r#ref: &WSProtocolHandler,
@@ -180,7 +177,7 @@ impl WSProtocolHandler {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn set_property(
-        self: &WSProtocolHandler,
+        &self,
         property_name: Option<&CFString>,
         property_value: Option<&CFType>,
     ) {
@@ -210,7 +207,7 @@ impl WSProtocolHandler {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn set_serialization_override(
-        self: &WSProtocolHandler,
+        &self,
         obj_type: CFTypeID,
         serialization_proc: WSProtocolHandlerSerializationProcPtr,
         context: *mut WSClientContext,
@@ -245,7 +242,7 @@ impl WSProtocolHandler {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn set_deserialization_override(
-        self: &WSProtocolHandler,
+        &self,
         type_namespace: Option<&CFString>,
         type_name: Option<&CFString>,
         deserialization_proc: WSProtocolHandlerDeserializationProcPtr,

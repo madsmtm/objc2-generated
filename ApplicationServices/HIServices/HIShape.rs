@@ -101,7 +101,7 @@ impl HIShape {
 
     #[doc(alias = "HIShapeCreateCopy")]
     #[inline]
-    pub unsafe fn copy(self: &HIShape) -> Option<CFRetained<HIShape>> {
+    pub unsafe fn copy(&self) -> Option<CFRetained<HIShape>> {
         extern "C-unwind" {
             fn HIShapeCreateCopy(in_shape: &HIShape) -> Option<NonNull<HIShape>>;
         }
@@ -111,10 +111,7 @@ impl HIShape {
 
     #[doc(alias = "HIShapeCreateIntersection")]
     #[inline]
-    pub unsafe fn intersection(
-        self: &HIShape,
-        in_shape2: Option<&HIShape>,
-    ) -> Option<CFRetained<HIShape>> {
+    pub unsafe fn intersection(&self, in_shape2: Option<&HIShape>) -> Option<CFRetained<HIShape>> {
         extern "C-unwind" {
             fn HIShapeCreateIntersection(
                 in_shape1: &HIShape,
@@ -128,7 +125,7 @@ impl HIShape {
     #[doc(alias = "HIShapeCreateDifference")]
     #[inline]
     pub unsafe fn create_difference(
-        self: &HIShape,
+        &self,
         in_shape2: Option<&HIShape>,
     ) -> Option<CFRetained<HIShape>> {
         extern "C-unwind" {
@@ -143,10 +140,7 @@ impl HIShape {
 
     #[doc(alias = "HIShapeCreateUnion")]
     #[inline]
-    pub unsafe fn create_union(
-        self: &HIShape,
-        in_shape2: Option<&HIShape>,
-    ) -> Option<CFRetained<HIShape>> {
+    pub unsafe fn create_union(&self, in_shape2: Option<&HIShape>) -> Option<CFRetained<HIShape>> {
         extern "C-unwind" {
             fn HIShapeCreateUnion(
                 in_shape1: &HIShape,
@@ -159,10 +153,7 @@ impl HIShape {
 
     #[doc(alias = "HIShapeCreateXor")]
     #[inline]
-    pub unsafe fn create_xor(
-        self: &HIShape,
-        in_shape2: Option<&HIShape>,
-    ) -> Option<CFRetained<HIShape>> {
+    pub unsafe fn create_xor(&self, in_shape2: Option<&HIShape>) -> Option<CFRetained<HIShape>> {
         extern "C-unwind" {
             fn HIShapeCreateXor(
                 in_shape1: &HIShape,
@@ -175,7 +166,7 @@ impl HIShape {
 
     #[doc(alias = "HIShapeIsEmpty")]
     #[inline]
-    pub unsafe fn is_empty(self: &HIShape) -> bool {
+    pub unsafe fn is_empty(&self) -> bool {
         extern "C-unwind" {
             fn HIShapeIsEmpty(in_shape: &HIShape) -> Boolean;
         }
@@ -185,7 +176,7 @@ impl HIShape {
 
     #[doc(alias = "HIShapeIsRectangular")]
     #[inline]
-    pub unsafe fn is_rectangular(self: &HIShape) -> bool {
+    pub unsafe fn is_rectangular(&self) -> bool {
         extern "C-unwind" {
             fn HIShapeIsRectangular(in_shape: &HIShape) -> Boolean;
         }
@@ -195,7 +186,7 @@ impl HIShape {
 
     #[doc(alias = "HIShapeContainsPoint")]
     #[inline]
-    pub unsafe fn contains_point(self: &HIShape, in_point: *const CGPoint) -> bool {
+    pub unsafe fn contains_point(&self, in_point: *const CGPoint) -> bool {
         extern "C-unwind" {
             fn HIShapeContainsPoint(in_shape: &HIShape, in_point: *const CGPoint) -> Boolean;
         }
@@ -205,7 +196,7 @@ impl HIShape {
 
     #[doc(alias = "HIShapeIntersectsRect")]
     #[inline]
-    pub unsafe fn intersects_rect(self: &HIShape, in_rect: *const CGRect) -> bool {
+    pub unsafe fn intersects_rect(&self, in_rect: *const CGRect) -> bool {
         extern "C-unwind" {
             fn HIShapeIntersectsRect(in_shape: &HIShape, in_rect: *const CGRect) -> Boolean;
         }
@@ -215,7 +206,7 @@ impl HIShape {
 
     #[doc(alias = "HIShapeGetBounds")]
     #[inline]
-    pub unsafe fn bounds(self: &HIShape, out_rect: *mut CGRect) -> *mut CGRect {
+    pub unsafe fn bounds(&self, out_rect: *mut CGRect) -> *mut CGRect {
         extern "C-unwind" {
             fn HIShapeGetBounds(in_shape: &HIShape, out_rect: *mut CGRect) -> *mut CGRect;
         }
@@ -225,10 +216,7 @@ impl HIShape {
     #[doc(alias = "HIShapeReplacePathInCGContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn replace_path_in_cg_context(
-        self: &HIShape,
-        in_context: Option<&CGContext>,
-    ) -> OSStatus {
+    pub unsafe fn replace_path_in_cg_context(&self, in_context: Option<&CGContext>) -> OSStatus {
         extern "C-unwind" {
             fn HIShapeReplacePathInCGContext(
                 in_shape: &HIShape,
@@ -241,7 +229,7 @@ impl HIShape {
     #[doc(alias = "HIShapeEnumerate")]
     #[inline]
     pub unsafe fn enumerate(
-        self: &HIShape,
+        &self,
         in_options: OptionBits,
         in_proc: HIShapeEnumerateProcPtr,
         in_refcon: *mut c_void,
@@ -320,7 +308,7 @@ impl HIShape {
     #[doc(alias = "HIShapeIntersect")]
     #[inline]
     pub unsafe fn intersect(
-        self: &HIShape,
+        &self,
         in_shape2: Option<&HIShape>,
         out_result: Option<&HIMutableShape>,
     ) -> OSStatus {
@@ -337,7 +325,7 @@ impl HIShape {
     #[doc(alias = "HIShapeDifference")]
     #[inline]
     pub unsafe fn difference(
-        self: &HIShape,
+        &self,
         in_shape2: Option<&HIShape>,
         out_result: Option<&HIMutableShape>,
     ) -> OSStatus {
@@ -354,7 +342,7 @@ impl HIShape {
     #[doc(alias = "HIShapeUnion")]
     #[inline]
     pub unsafe fn union(
-        self: &HIShape,
+        &self,
         in_shape2: Option<&HIShape>,
         out_result: Option<&HIMutableShape>,
     ) -> OSStatus {
@@ -371,7 +359,7 @@ impl HIShape {
     #[doc(alias = "HIShapeXor")]
     #[inline]
     pub unsafe fn xor(
-        self: &HIShape,
+        &self,
         in_shape2: Option<&HIShape>,
         out_result: Option<&HIMutableShape>,
     ) -> OSStatus {

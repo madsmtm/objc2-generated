@@ -50,7 +50,7 @@ unsafe impl ConcreteType for CFBoolean {
 impl CFBoolean {
     #[doc(alias = "CFBooleanGetValue")]
     #[inline]
-    pub fn value(self: &CFBoolean) -> bool {
+    pub fn value(&self) -> bool {
         extern "C-unwind" {
             fn CFBooleanGetValue(boolean: &CFBoolean) -> Boolean;
         }
@@ -175,7 +175,7 @@ impl CFNumber {
 
     #[doc(alias = "CFNumberGetType")]
     #[inline]
-    pub fn r#type(self: &CFNumber) -> CFNumberType {
+    pub fn r#type(&self) -> CFNumberType {
         extern "C-unwind" {
             fn CFNumberGetType(number: &CFNumber) -> CFNumberType;
         }
@@ -184,7 +184,7 @@ impl CFNumber {
 
     #[doc(alias = "CFNumberGetByteSize")]
     #[inline]
-    pub fn byte_size(self: &CFNumber) -> CFIndex {
+    pub fn byte_size(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFNumberGetByteSize(number: &CFNumber) -> CFIndex;
         }
@@ -193,7 +193,7 @@ impl CFNumber {
 
     #[doc(alias = "CFNumberIsFloatType")]
     #[inline]
-    pub fn is_float_type(self: &CFNumber) -> bool {
+    pub fn is_float_type(&self) -> bool {
         extern "C-unwind" {
             fn CFNumberIsFloatType(number: &CFNumber) -> Boolean;
         }
@@ -203,7 +203,7 @@ impl CFNumber {
 
     #[doc(alias = "CFNumberGetValue")]
     #[inline]
-    pub unsafe fn value(self: &CFNumber, the_type: CFNumberType, value_ptr: *mut c_void) -> bool {
+    pub unsafe fn value(&self, the_type: CFNumberType, value_ptr: *mut c_void) -> bool {
         extern "C-unwind" {
             fn CFNumberGetValue(
                 number: &CFNumber,
@@ -218,7 +218,7 @@ impl CFNumber {
     #[doc(alias = "CFNumberCompare")]
     #[inline]
     pub unsafe fn compare(
-        self: &CFNumber,
+        &self,
         other_number: Option<&CFNumber>,
         context: *mut c_void,
     ) -> CFComparisonResult {

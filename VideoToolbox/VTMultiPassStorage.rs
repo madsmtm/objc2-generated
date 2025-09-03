@@ -97,7 +97,7 @@ impl VTMultiPassStorage {
     /// It is still necessary to release the object by calling CFRelease.
     #[doc(alias = "VTMultiPassStorageClose")]
     #[inline]
-    pub unsafe fn close(self: &VTMultiPassStorage) -> OSStatus {
+    pub unsafe fn close(&self) -> OSStatus {
         extern "C-unwind" {
             fn VTMultiPassStorageClose(multi_pass_storage: &VTMultiPassStorage) -> OSStatus;
         }

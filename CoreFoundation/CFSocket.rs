@@ -309,7 +309,7 @@ impl CFSocket {
     #[doc(alias = "CFSocketSetAddress")]
     #[cfg(feature = "CFData")]
     #[inline]
-    pub fn set_address(self: &CFSocket, address: Option<&CFData>) -> CFSocketError {
+    pub fn set_address(&self, address: Option<&CFData>) -> CFSocketError {
         extern "C-unwind" {
             fn CFSocketSetAddress(s: &CFSocket, address: Option<&CFData>) -> CFSocketError;
         }
@@ -320,7 +320,7 @@ impl CFSocket {
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
     pub fn connect_to_address(
-        self: &CFSocket,
+        &self,
         address: Option<&CFData>,
         timeout: CFTimeInterval,
     ) -> CFSocketError {
@@ -336,7 +336,7 @@ impl CFSocket {
 
     #[doc(alias = "CFSocketInvalidate")]
     #[inline]
-    pub fn invalidate(self: &CFSocket) {
+    pub fn invalidate(&self) {
         extern "C-unwind" {
             fn CFSocketInvalidate(s: &CFSocket);
         }
@@ -345,7 +345,7 @@ impl CFSocket {
 
     #[doc(alias = "CFSocketIsValid")]
     #[inline]
-    pub fn is_valid(self: &CFSocket) -> bool {
+    pub fn is_valid(&self) -> bool {
         extern "C-unwind" {
             fn CFSocketIsValid(s: &CFSocket) -> Boolean;
         }
@@ -356,7 +356,7 @@ impl CFSocket {
     #[doc(alias = "CFSocketCopyAddress")]
     #[cfg(feature = "CFData")]
     #[inline]
-    pub fn address(self: &CFSocket) -> Option<CFRetained<CFData>> {
+    pub fn address(&self) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFSocketCopyAddress(s: &CFSocket) -> Option<NonNull<CFData>>;
         }
@@ -367,7 +367,7 @@ impl CFSocket {
     #[doc(alias = "CFSocketCopyPeerAddress")]
     #[cfg(feature = "CFData")]
     #[inline]
-    pub fn peer_address(self: &CFSocket) -> Option<CFRetained<CFData>> {
+    pub fn peer_address(&self) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFSocketCopyPeerAddress(s: &CFSocket) -> Option<NonNull<CFData>>;
         }
@@ -377,7 +377,7 @@ impl CFSocket {
 
     #[doc(alias = "CFSocketGetContext")]
     #[inline]
-    pub unsafe fn context(self: &CFSocket, context: *mut CFSocketContext) {
+    pub unsafe fn context(&self, context: *mut CFSocketContext) {
         extern "C-unwind" {
             fn CFSocketGetContext(s: &CFSocket, context: *mut CFSocketContext);
         }
@@ -386,7 +386,7 @@ impl CFSocket {
 
     #[doc(alias = "CFSocketGetNative")]
     #[inline]
-    pub fn native(self: &CFSocket) -> CFSocketNativeHandle {
+    pub fn native(&self) -> CFSocketNativeHandle {
         extern "C-unwind" {
             fn CFSocketGetNative(s: &CFSocket) -> CFSocketNativeHandle;
         }
@@ -414,7 +414,7 @@ impl CFSocket {
 
     #[doc(alias = "CFSocketGetSocketFlags")]
     #[inline]
-    pub fn socket_flags(self: &CFSocket) -> CFOptionFlags {
+    pub fn socket_flags(&self) -> CFOptionFlags {
         extern "C-unwind" {
             fn CFSocketGetSocketFlags(s: &CFSocket) -> CFOptionFlags;
         }
@@ -423,7 +423,7 @@ impl CFSocket {
 
     #[doc(alias = "CFSocketSetSocketFlags")]
     #[inline]
-    pub fn set_socket_flags(self: &CFSocket, flags: CFOptionFlags) {
+    pub fn set_socket_flags(&self, flags: CFOptionFlags) {
         extern "C-unwind" {
             fn CFSocketSetSocketFlags(s: &CFSocket, flags: CFOptionFlags);
         }
@@ -432,7 +432,7 @@ impl CFSocket {
 
     #[doc(alias = "CFSocketDisableCallBacks")]
     #[inline]
-    pub fn disable_call_backs(self: &CFSocket, call_back_types: CFOptionFlags) {
+    pub fn disable_call_backs(&self, call_back_types: CFOptionFlags) {
         extern "C-unwind" {
             fn CFSocketDisableCallBacks(s: &CFSocket, call_back_types: CFOptionFlags);
         }
@@ -441,7 +441,7 @@ impl CFSocket {
 
     #[doc(alias = "CFSocketEnableCallBacks")]
     #[inline]
-    pub fn enable_call_backs(self: &CFSocket, call_back_types: CFOptionFlags) {
+    pub fn enable_call_backs(&self, call_back_types: CFOptionFlags) {
         extern "C-unwind" {
             fn CFSocketEnableCallBacks(s: &CFSocket, call_back_types: CFOptionFlags);
         }
@@ -452,7 +452,7 @@ impl CFSocket {
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
     pub fn send_data(
-        self: &CFSocket,
+        &self,
         address: Option<&CFData>,
         data: Option<&CFData>,
         timeout: CFTimeInterval,

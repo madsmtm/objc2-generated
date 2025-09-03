@@ -503,11 +503,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileVerify")]
     #[inline]
-    pub unsafe fn verify(
-        self: &ColorSyncProfile,
-        errors: *mut *mut CFError,
-        warnings: *mut *mut CFError,
-    ) -> bool {
+    pub unsafe fn verify(&self, errors: *mut *mut CFError, warnings: *mut *mut CFError) -> bool {
         extern "C-unwind" {
             fn ColorSyncProfileVerify(
                 prof: &ColorSyncProfile,
@@ -520,7 +516,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileIsWideGamut")]
     #[inline]
-    pub unsafe fn is_wide_gamut(self: &ColorSyncProfile) -> bool {
+    pub unsafe fn is_wide_gamut(&self) -> bool {
         extern "C-unwind" {
             fn ColorSyncProfileIsWideGamut(param1: &ColorSyncProfile) -> bool;
         }
@@ -529,7 +525,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileIsMatrixBased")]
     #[inline]
-    pub unsafe fn is_matrix_based(self: &ColorSyncProfile) -> bool {
+    pub unsafe fn is_matrix_based(&self) -> bool {
         extern "C-unwind" {
             fn ColorSyncProfileIsMatrixBased(param1: &ColorSyncProfile) -> bool;
         }
@@ -538,7 +534,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileIsPQBased")]
     #[inline]
-    pub unsafe fn is_pq_based(self: &ColorSyncProfile) -> bool {
+    pub unsafe fn is_pq_based(&self) -> bool {
         extern "C-unwind" {
             fn ColorSyncProfileIsPQBased(param1: &ColorSyncProfile) -> bool;
         }
@@ -547,7 +543,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileIsHLGBased")]
     #[inline]
-    pub unsafe fn is_hlg_based(self: &ColorSyncProfile) -> bool {
+    pub unsafe fn is_hlg_based(&self) -> bool {
         extern "C-unwind" {
             fn ColorSyncProfileIsHLGBased(param1: &ColorSyncProfile) -> bool;
         }
@@ -571,7 +567,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileEstimateGamma")]
     #[inline]
-    pub unsafe fn estimate_gamma(self: &ColorSyncProfile, error: *mut *mut CFError) -> c_float {
+    pub unsafe fn estimate_gamma(&self, error: *mut *mut CFError) -> c_float {
         extern "C-unwind" {
             fn ColorSyncProfileEstimateGamma(
                 prof: &ColorSyncProfile,
@@ -584,7 +580,7 @@ impl ColorSyncProfile {
     #[doc(alias = "ColorSyncProfileGetDisplayTransferFormulaFromVCGT")]
     #[inline]
     pub unsafe fn display_transfer_formula_from_vcgt(
-        self: &ColorSyncProfile,
+        &self,
         red_min: NonNull<c_float>,
         red_max: NonNull<c_float>,
         red_gamma: NonNull<c_float>,
@@ -628,7 +624,7 @@ impl ColorSyncProfile {
     #[doc(alias = "ColorSyncProfileCreateDisplayTransferTablesFromVCGT")]
     #[inline]
     pub unsafe fn display_transfer_tables_from_vcgt(
-        self: &ColorSyncProfile,
+        &self,
         n_samples_per_channel: NonNull<usize>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
@@ -664,7 +660,7 @@ unsafe impl RefEncode for ColorSyncMD5 {
 impl ColorSyncProfile {
     #[doc(alias = "ColorSyncProfileGetMD5")]
     #[inline]
-    pub unsafe fn md_5(self: &ColorSyncProfile) -> ColorSyncMD5 {
+    pub unsafe fn md_5(&self) -> ColorSyncMD5 {
         extern "C-unwind" {
             fn ColorSyncProfileGetMD5(prof: &ColorSyncProfile) -> ColorSyncMD5;
         }
@@ -673,7 +669,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileCopyData")]
     #[inline]
-    pub unsafe fn data(self: &ColorSyncProfile, error: *mut *mut CFError) -> CFRetained<CFData> {
+    pub unsafe fn data(&self, error: *mut *mut CFError) -> CFRetained<CFData> {
         extern "C-unwind" {
             fn ColorSyncProfileCopyData(
                 prof: &ColorSyncProfile,
@@ -688,7 +684,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileGetURL")]
     #[inline]
-    pub unsafe fn url(self: &ColorSyncProfile, error: *mut *mut CFError) -> CFRetained<CFURL> {
+    pub unsafe fn url(&self, error: *mut *mut CFError) -> CFRetained<CFURL> {
         extern "C-unwind" {
             fn ColorSyncProfileGetURL(
                 prof: &ColorSyncProfile,
@@ -703,7 +699,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileCopyHeader")]
     #[inline]
-    pub unsafe fn header(self: &ColorSyncProfile) -> CFRetained<CFData> {
+    pub unsafe fn header(&self) -> CFRetained<CFData> {
         extern "C-unwind" {
             fn ColorSyncProfileCopyHeader(prof: &ColorSyncProfile) -> Option<NonNull<CFData>>;
         }
@@ -717,7 +713,7 @@ impl ColorSyncProfile {
 impl ColorSyncMutableProfile {
     #[doc(alias = "ColorSyncProfileSetHeader")]
     #[inline]
-    pub unsafe fn set_header(self: &ColorSyncMutableProfile, header: &CFData) {
+    pub unsafe fn set_header(&self, header: &CFData) {
         extern "C-unwind" {
             fn ColorSyncProfileSetHeader(prof: &ColorSyncMutableProfile, header: &CFData);
         }
@@ -728,7 +724,7 @@ impl ColorSyncMutableProfile {
 impl ColorSyncProfile {
     #[doc(alias = "ColorSyncProfileCopyDescriptionString")]
     #[inline]
-    pub unsafe fn description_string(self: &ColorSyncProfile) -> Option<CFRetained<CFString>> {
+    pub unsafe fn description_string(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn ColorSyncProfileCopyDescriptionString(
                 prof: &ColorSyncProfile,
@@ -740,7 +736,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileCopyTagSignatures")]
     #[inline]
-    pub unsafe fn tag_signatures(self: &ColorSyncProfile) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn tag_signatures(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn ColorSyncProfileCopyTagSignatures(
                 prof: &ColorSyncProfile,
@@ -752,7 +748,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileContainsTag")]
     #[inline]
-    pub unsafe fn contains_tag(self: &ColorSyncProfile, signature: &CFString) -> bool {
+    pub unsafe fn contains_tag(&self, signature: &CFString) -> bool {
         extern "C-unwind" {
             fn ColorSyncProfileContainsTag(prof: &ColorSyncProfile, signature: &CFString) -> bool;
         }
@@ -761,7 +757,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileCopyTag")]
     #[inline]
-    pub unsafe fn tag(self: &ColorSyncProfile, signature: &CFString) -> Option<CFRetained<CFData>> {
+    pub unsafe fn tag(&self, signature: &CFString) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn ColorSyncProfileCopyTag(
                 prof: &ColorSyncProfile,
@@ -776,7 +772,7 @@ impl ColorSyncProfile {
 impl ColorSyncMutableProfile {
     #[doc(alias = "ColorSyncProfileSetTag")]
     #[inline]
-    pub unsafe fn set_tag(self: &ColorSyncMutableProfile, signature: &CFString, data: &CFData) {
+    pub unsafe fn set_tag(&self, signature: &CFString, data: &CFData) {
         extern "C-unwind" {
             fn ColorSyncProfileSetTag(
                 prof: &ColorSyncMutableProfile,
@@ -789,7 +785,7 @@ impl ColorSyncMutableProfile {
 
     #[doc(alias = "ColorSyncProfileRemoveTag")]
     #[inline]
-    pub unsafe fn remove_tag(self: &ColorSyncMutableProfile, signature: &CFString) {
+    pub unsafe fn remove_tag(&self, signature: &CFString) {
         extern "C-unwind" {
             fn ColorSyncProfileRemoveTag(prof: &ColorSyncMutableProfile, signature: &CFString);
         }
@@ -834,7 +830,7 @@ impl ColorSyncProfile {
     #[doc(alias = "ColorSyncProfileInstall")]
     #[inline]
     pub unsafe fn install(
-        self: &ColorSyncProfile,
+        &self,
         domain: &CFString,
         subpath: &CFString,
         error: *mut *mut CFError,
@@ -852,7 +848,7 @@ impl ColorSyncProfile {
 
     #[doc(alias = "ColorSyncProfileUninstall")]
     #[inline]
-    pub unsafe fn uninstall(self: &ColorSyncProfile, error: *mut *mut CFError) -> bool {
+    pub unsafe fn uninstall(&self, error: *mut *mut CFError) -> bool {
         extern "C-unwind" {
             fn ColorSyncProfileUninstall(
                 profile: &ColorSyncProfile,

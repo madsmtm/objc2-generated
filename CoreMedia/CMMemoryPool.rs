@@ -96,7 +96,7 @@ impl CMMemoryPool {
     /// Returns the pool's CFAllocator.
     #[doc(alias = "CMMemoryPoolGetAllocator")]
     #[inline]
-    pub unsafe fn allocator(self: &CMMemoryPool) -> CFRetained<CFAllocator> {
+    pub unsafe fn allocator(&self) -> CFRetained<CFAllocator> {
         extern "C-unwind" {
             fn CMMemoryPoolGetAllocator(pool: &CMMemoryPool) -> Option<NonNull<CFAllocator>>;
         }
@@ -109,7 +109,7 @@ impl CMMemoryPool {
     /// Deallocates all memory the pool was holding for recycling.
     #[doc(alias = "CMMemoryPoolFlush")]
     #[inline]
-    pub unsafe fn flush(self: &CMMemoryPool) {
+    pub unsafe fn flush(&self) {
         extern "C-unwind" {
             fn CMMemoryPoolFlush(pool: &CMMemoryPool);
         }
@@ -124,7 +124,7 @@ impl CMMemoryPool {
     /// except that under GC it may be delayed.
     #[doc(alias = "CMMemoryPoolInvalidate")]
     #[inline]
-    pub unsafe fn invalidate(self: &CMMemoryPool) {
+    pub unsafe fn invalidate(&self) {
         extern "C-unwind" {
             fn CMMemoryPoolInvalidate(pool: &CMMemoryPool);
         }

@@ -78,10 +78,7 @@ impl SecKeychainSearch {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychainSearch is not supported"]
     #[inline]
-    pub unsafe fn copy_next(
-        self: &SecKeychainSearch,
-        item_ref: NonNull<*mut SecKeychainItem>,
-    ) -> OSStatus {
+    pub unsafe fn copy_next(&self, item_ref: NonNull<*mut SecKeychainItem>) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainSearchCopyNext(
                 search_ref: &SecKeychainSearch,

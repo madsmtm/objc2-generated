@@ -194,7 +194,7 @@ impl SecKeychainItem {
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn modify_attributes_and_data(
-        self: &SecKeychainItem,
+        &self,
         attr_list: *const SecKeychainAttributeList,
         length: u32,
         data: *const c_void,
@@ -280,7 +280,7 @@ impl SecKeychainItem {
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn modify_content(
-        self: &SecKeychainItem,
+        &self,
         attr_list: *const SecKeychainAttributeList,
         length: u32,
         data: *const c_void,
@@ -314,7 +314,7 @@ impl SecKeychainItem {
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn copy_content(
-        self: &SecKeychainItem,
+        &self,
         item_class: *mut SecItemClass,
         attr_list: *mut SecKeychainAttributeList,
         length: *mut u32,
@@ -374,7 +374,7 @@ impl SecKeychainItem {
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn copy_attributes_and_data(
-        self: &SecKeychainItem,
+        &self,
         info: *mut SecKeychainAttributeInfo,
         item_class: *mut SecItemClass,
         attr_list: *mut *mut SecKeychainAttributeList,
@@ -433,7 +433,7 @@ impl SecKeychainItem {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn delete(self: &SecKeychainItem) -> OSStatus {
+    pub unsafe fn delete(&self) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemDelete(item_ref: &SecKeychainItem) -> OSStatus;
         }
@@ -451,10 +451,7 @@ impl SecKeychainItem {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_keychain(
-        self: &SecKeychainItem,
-        keychain_ref: NonNull<*mut SecKeychain>,
-    ) -> OSStatus {
+    pub unsafe fn copy_keychain(&self, keychain_ref: NonNull<*mut SecKeychain>) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemCopyKeychain(
                 item_ref: &SecKeychainItem,
@@ -480,7 +477,7 @@ impl SecKeychainItem {
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn create_copy(
-        self: &SecKeychainItem,
+        &self,
         dest_keychain_ref: Option<&SecKeychain>,
         initial_access: Option<&SecAccess>,
         item_copy: NonNull<*mut SecKeychainItem>,
@@ -508,7 +505,7 @@ impl SecKeychainItem {
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn create_persistent_reference(
-        self: &SecKeychainItem,
+        &self,
         persistent_item_ref: NonNull<*const CFData>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -557,10 +554,7 @@ impl SecKeychainItem {
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
     #[inline]
-    pub unsafe fn dldb_handle(
-        self: &SecKeychainItem,
-        dldb_handle: NonNull<CSSM_DL_DB_HANDLE>,
-    ) -> OSStatus {
+    pub unsafe fn dldb_handle(&self, dldb_handle: NonNull<CSSM_DL_DB_HANDLE>) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemGetDLDBHandle(
                 key_item_ref: &SecKeychainItem,
@@ -589,7 +583,7 @@ impl SecKeychainItem {
     #[deprecated = "CSSM is not supported"]
     #[inline]
     pub unsafe fn unique_record_id(
-        self: &SecKeychainItem,
+        &self,
         unique_record_id: NonNull<*const CSSM_DB_UNIQUE_RECORD>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -612,7 +606,7 @@ impl SecKeychainItem {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_access(self: &SecKeychainItem, access: NonNull<*mut SecAccess>) -> OSStatus {
+    pub unsafe fn copy_access(&self, access: NonNull<*mut SecAccess>) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemCopyAccess(
                 item_ref: &SecKeychainItem,
@@ -633,7 +627,7 @@ impl SecKeychainItem {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn set_access(self: &SecKeychainItem, access: &SecAccess) -> OSStatus {
+    pub unsafe fn set_access(&self, access: &SecAccess) -> OSStatus {
         extern "C-unwind" {
             fn SecKeychainItemSetAccess(item_ref: &SecKeychainItem, access: &SecAccess)
                 -> OSStatus;

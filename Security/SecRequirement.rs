@@ -121,11 +121,7 @@ impl SecRequirement {
     #[doc(alias = "SecRequirementCopyData")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn copy_data(
-        self: &SecRequirement,
-        flags: SecCSFlags,
-        data: NonNull<*const CFData>,
-    ) -> OSStatus {
+    pub unsafe fn copy_data(&self, flags: SecCSFlags, data: NonNull<*const CFData>) -> OSStatus {
         extern "C-unwind" {
             fn SecRequirementCopyData(
                 requirement: &SecRequirement,
@@ -159,7 +155,7 @@ impl SecRequirement {
     #[cfg(feature = "CSCommon")]
     #[inline]
     pub unsafe fn copy_string(
-        self: &SecRequirement,
+        &self,
         flags: SecCSFlags,
         text: NonNull<*const CFString>,
     ) -> OSStatus {

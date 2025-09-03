@@ -175,7 +175,7 @@ impl CVOpenGLTextureCache {
     #[cfg(feature = "CVBase")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    pub unsafe fn flush(self: &CVOpenGLTextureCache, options: CVOptionFlags) {
+    pub unsafe fn flush(&self, options: CVOptionFlags) {
         extern "C-unwind" {
             fn CVOpenGLTextureCacheFlush(
                 texture_cache: &CVOpenGLTextureCache,

@@ -165,7 +165,7 @@ impl LSMMap {
     /// of the properties, there's no need to retain them past this call.
     #[doc(alias = "LSMMapSetProperties")]
     #[inline]
-    pub unsafe fn set_properties(self: &LSMMap, properties: &CFDictionary) {
+    pub unsafe fn set_properties(&self, properties: &CFDictionary) {
         extern "C-unwind" {
             fn LSMMapSetProperties(mapref: &LSMMap, properties: &CFDictionary);
         }
@@ -176,7 +176,7 @@ impl LSMMap {
     /// this dictionary, do not release it.
     #[doc(alias = "LSMMapGetProperties")]
     #[inline]
-    pub unsafe fn properties(self: &LSMMap) -> CFRetained<CFDictionary> {
+    pub unsafe fn properties(&self) -> CFRetained<CFDictionary> {
         extern "C-unwind" {
             fn LSMMapGetProperties(mapref: &LSMMap) -> Option<NonNull<CFDictionary>>;
         }
@@ -191,7 +191,7 @@ impl LSMMap {
     /// requires substantial data structure reorganization.
     #[doc(alias = "LSMMapStartTraining")]
     #[inline]
-    pub unsafe fn start_training(self: &LSMMap) -> OSStatus {
+    pub unsafe fn start_training(&self) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapStartTraining(mapref: &LSMMap) -> OSStatus;
         }
@@ -201,7 +201,7 @@ impl LSMMap {
     /// Adds another category and returns its category identifier.
     #[doc(alias = "LSMMapAddCategory")]
     #[inline]
-    pub unsafe fn add_category(self: &LSMMap) -> LSMCategory {
+    pub unsafe fn add_category(&self) -> LSMCategory {
         extern "C-unwind" {
             fn LSMMapAddCategory(mapref: &LSMMap) -> LSMCategory;
         }
@@ -211,7 +211,7 @@ impl LSMMap {
     /// Returns the number of categories in the map.
     #[doc(alias = "LSMMapGetCategoryCount")]
     #[inline]
-    pub unsafe fn category_count(self: &LSMMap) -> CFIndex {
+    pub unsafe fn category_count(&self) -> CFIndex {
         extern "C-unwind" {
             fn LSMMapGetCategoryCount(mapref: &LSMMap) -> CFIndex;
         }
@@ -223,7 +223,7 @@ impl LSMMap {
     /// The textref is no longer needed after this call.
     #[doc(alias = "LSMMapSetStopWords")]
     #[inline]
-    pub unsafe fn set_stop_words(self: &LSMMap, textref: &LSMText) -> OSStatus {
+    pub unsafe fn set_stop_words(&self, textref: &LSMText) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapSetStopWords(mapref: &LSMMap, textref: &LSMText) -> OSStatus;
         }
@@ -234,7 +234,7 @@ impl LSMMap {
     /// The textref is no longer needed after this call.
     #[doc(alias = "LSMMapAddText")]
     #[inline]
-    pub unsafe fn add_text(self: &LSMMap, textref: &LSMText, category: LSMCategory) -> OSStatus {
+    pub unsafe fn add_text(&self, textref: &LSMText, category: LSMCategory) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapAddText(mapref: &LSMMap, textref: &LSMText, category: LSMCategory)
                 -> OSStatus;
@@ -248,7 +248,7 @@ impl LSMMap {
     #[doc(alias = "LSMMapAddTextWithWeight")]
     #[inline]
     pub unsafe fn add_text_with_weight(
-        self: &LSMMap,
+        &self,
         textref: &LSMText,
         category: LSMCategory,
         weight: c_float,
@@ -269,7 +269,7 @@ impl LSMMap {
     /// computationally expensive.
     #[doc(alias = "LSMMapCompile")]
     #[inline]
-    pub unsafe fn compile(self: &LSMMap) -> OSStatus {
+    pub unsafe fn compile(&self) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapCompile(mapref: &LSMMap) -> OSStatus;
         }
@@ -317,7 +317,7 @@ impl LSMMap {
     /// Group categories or words (tokens) into the specified sets of clusters.
     #[doc(alias = "LSMMapApplyClusters")]
     #[inline]
-    pub unsafe fn apply_clusters(self: &LSMMap, clusters: &CFArray) -> OSStatus {
+    pub unsafe fn apply_clusters(&self, clusters: &CFArray) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapApplyClusters(mapref: &LSMMap, clusters: &CFArray) -> OSStatus;
         }
@@ -360,7 +360,7 @@ impl LSMResult {
     /// Returns the number of results.
     #[doc(alias = "LSMResultGetCount")]
     #[inline]
-    pub unsafe fn count(self: &LSMResult) -> CFIndex {
+    pub unsafe fn count(&self) -> CFIndex {
         extern "C-unwind" {
             fn LSMResultGetCount(result: &LSMResult) -> CFIndex;
         }
@@ -370,7 +370,7 @@ impl LSMResult {
     /// Returns the category of the n-th best (zero based) result.
     #[doc(alias = "LSMResultGetCategory")]
     #[inline]
-    pub unsafe fn category(self: &LSMResult, n: CFIndex) -> LSMCategory {
+    pub unsafe fn category(&self, n: CFIndex) -> LSMCategory {
         extern "C-unwind" {
             fn LSMResultGetCategory(result: &LSMResult, n: CFIndex) -> LSMCategory;
         }
@@ -382,7 +382,7 @@ impl LSMResult {
     /// any token.
     #[doc(alias = "LSMResultGetScore")]
     #[inline]
-    pub unsafe fn score(self: &LSMResult, n: CFIndex) -> c_float {
+    pub unsafe fn score(&self, n: CFIndex) -> c_float {
         extern "C-unwind" {
             fn LSMResultGetScore(result: &LSMResult, n: CFIndex) -> c_float;
         }
@@ -392,7 +392,7 @@ impl LSMResult {
     /// Returns the word for the n-th best (zero based) result.
     #[doc(alias = "LSMResultCopyWord")]
     #[inline]
-    pub unsafe fn word(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFString>> {
+    pub unsafe fn word(&self, n: CFIndex) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn LSMResultCopyWord(result: &LSMResult, n: CFIndex) -> Option<NonNull<CFString>>;
         }
@@ -403,7 +403,7 @@ impl LSMResult {
     /// Returns the token for the n-th best (zero based) result.
     #[doc(alias = "LSMResultCopyToken")]
     #[inline]
-    pub unsafe fn token(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFData>> {
+    pub unsafe fn token(&self, n: CFIndex) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn LSMResultCopyToken(result: &LSMResult, n: CFIndex) -> Option<NonNull<CFData>>;
         }
@@ -414,7 +414,7 @@ impl LSMResult {
     /// Returns the cluster of words for the n-th best (zero based) result.
     #[doc(alias = "LSMResultCopyWordCluster")]
     #[inline]
-    pub unsafe fn word_cluster(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn word_cluster(&self, n: CFIndex) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn LSMResultCopyWordCluster(result: &LSMResult, n: CFIndex)
                 -> Option<NonNull<CFArray>>;
@@ -426,7 +426,7 @@ impl LSMResult {
     /// Returns the cluster of tokens for the n-th best (zero based) result.
     #[doc(alias = "LSMResultCopyTokenCluster")]
     #[inline]
-    pub unsafe fn token_cluster(self: &LSMResult, n: CFIndex) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn token_cluster(&self, n: CFIndex) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn LSMResultCopyTokenCluster(
                 result: &LSMResult,
@@ -442,7 +442,7 @@ impl LSMMap {
     /// Compiles the map if necessary and then stores it into the given file.
     #[doc(alias = "LSMMapWriteToURL")]
     #[inline]
-    pub unsafe fn write_to_url(self: &LSMMap, file: &CFURL, flags: CFOptionFlags) -> OSStatus {
+    pub unsafe fn write_to_url(&self, file: &CFURL, flags: CFOptionFlags) -> OSStatus {
         extern "C-unwind" {
             fn LSMMapWriteToURL(mapref: &LSMMap, file: &CFURL, flags: CFOptionFlags) -> OSStatus;
         }
@@ -479,7 +479,7 @@ impl LSMMap {
     #[doc(alias = "LSMMapWriteToStream")]
     #[inline]
     pub unsafe fn write_to_stream(
-        self: &LSMMap,
+        &self,
         textref: Option<&LSMText>,
         stream: &CFWriteStream,
         options: CFOptionFlags,
@@ -517,7 +517,7 @@ impl LSMText {
     /// uses pairs or triplets, and the count of words is always significant.
     #[doc(alias = "LSMTextAddWord")]
     #[inline]
-    pub unsafe fn add_word(self: &LSMText, word: &CFString) -> OSStatus {
+    pub unsafe fn add_word(&self, word: &CFString) -> OSStatus {
         extern "C-unwind" {
             fn LSMTextAddWord(textref: &LSMText, word: &CFString) -> OSStatus;
         }
@@ -529,7 +529,7 @@ impl LSMText {
     #[doc(alias = "LSMTextAddWords")]
     #[inline]
     pub unsafe fn add_words(
-        self: &LSMText,
+        &self,
         words: &CFString,
         locale: Option<&CFLocale>,
         flags: CFOptionFlags,
@@ -559,7 +559,7 @@ impl LSMText {
     /// tokens is always significant.
     #[doc(alias = "LSMTextAddToken")]
     #[inline]
-    pub unsafe fn add_token(self: &LSMText, token: &CFData) -> OSStatus {
+    pub unsafe fn add_token(&self, token: &CFData) -> OSStatus {
         extern "C-unwind" {
             fn LSMTextAddToken(textref: &LSMText, token: &CFData) -> OSStatus;
         }

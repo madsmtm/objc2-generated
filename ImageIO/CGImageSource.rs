@@ -182,7 +182,7 @@ impl CGImageSource {
 
     #[doc(alias = "CGImageSourceGetType")]
     #[inline]
-    pub unsafe fn r#type(self: &CGImageSource) -> Option<CFRetained<CFString>> {
+    pub unsafe fn r#type(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CGImageSourceGetType(isrc: &CGImageSource) -> Option<NonNull<CFString>>;
         }
@@ -192,7 +192,7 @@ impl CGImageSource {
 
     #[doc(alias = "CGImageSourceGetCount")]
     #[inline]
-    pub unsafe fn count(self: &CGImageSource) -> usize {
+    pub unsafe fn count(&self) -> usize {
         extern "C-unwind" {
             fn CGImageSourceGetCount(isrc: &CGImageSource) -> usize;
         }
@@ -202,7 +202,7 @@ impl CGImageSource {
     #[doc(alias = "CGImageSourceCopyProperties")]
     #[inline]
     pub unsafe fn properties(
-        self: &CGImageSource,
+        &self,
         options: Option<&CFDictionary>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -218,7 +218,7 @@ impl CGImageSource {
     #[doc(alias = "CGImageSourceCopyPropertiesAtIndex")]
     #[inline]
     pub unsafe fn properties_at_index(
-        self: &CGImageSource,
+        &self,
         index: usize,
         options: Option<&CFDictionary>,
     ) -> Option<CFRetained<CFDictionary>> {
@@ -237,7 +237,7 @@ impl CGImageSource {
     #[cfg(feature = "CGImageMetadata")]
     #[inline]
     pub unsafe fn metadata_at_index(
-        self: &CGImageSource,
+        &self,
         index: usize,
         options: Option<&CFDictionary>,
     ) -> Option<CFRetained<CGImageMetadata>> {
@@ -256,7 +256,7 @@ impl CGImageSource {
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     pub unsafe fn image_at_index(
-        self: &CGImageSource,
+        &self,
         index: usize,
         options: Option<&CFDictionary>,
     ) -> Option<CFRetained<CGImage>> {
@@ -273,7 +273,7 @@ impl CGImageSource {
 
     #[doc(alias = "CGImageSourceRemoveCacheAtIndex")]
     #[inline]
-    pub unsafe fn remove_cache_at_index(self: &CGImageSource, index: usize) {
+    pub unsafe fn remove_cache_at_index(&self, index: usize) {
         extern "C-unwind" {
             fn CGImageSourceRemoveCacheAtIndex(isrc: &CGImageSource, index: usize);
         }
@@ -284,7 +284,7 @@ impl CGImageSource {
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     pub unsafe fn thumbnail_at_index(
-        self: &CGImageSource,
+        &self,
         index: usize,
         options: Option<&CFDictionary>,
     ) -> Option<CFRetained<CGImage>> {
@@ -315,7 +315,7 @@ impl CGImageSource {
 
     #[doc(alias = "CGImageSourceUpdateData")]
     #[inline]
-    pub unsafe fn update_data(self: &CGImageSource, data: &CFData, r#final: bool) {
+    pub unsafe fn update_data(&self, data: &CFData, r#final: bool) {
         extern "C-unwind" {
             fn CGImageSourceUpdateData(isrc: &CGImageSource, data: &CFData, r#final: bool);
         }
@@ -325,11 +325,7 @@ impl CGImageSource {
     #[doc(alias = "CGImageSourceUpdateDataProvider")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn update_data_provider(
-        self: &CGImageSource,
-        provider: &CGDataProvider,
-        r#final: bool,
-    ) {
+    pub unsafe fn update_data_provider(&self, provider: &CGDataProvider, r#final: bool) {
         extern "C-unwind" {
             fn CGImageSourceUpdateDataProvider(
                 isrc: &CGImageSource,
@@ -342,7 +338,7 @@ impl CGImageSource {
 
     #[doc(alias = "CGImageSourceGetStatus")]
     #[inline]
-    pub unsafe fn status(self: &CGImageSource) -> CGImageSourceStatus {
+    pub unsafe fn status(&self) -> CGImageSourceStatus {
         extern "C-unwind" {
             fn CGImageSourceGetStatus(isrc: &CGImageSource) -> CGImageSourceStatus;
         }
@@ -351,7 +347,7 @@ impl CGImageSource {
 
     #[doc(alias = "CGImageSourceGetStatusAtIndex")]
     #[inline]
-    pub unsafe fn status_at_index(self: &CGImageSource, index: usize) -> CGImageSourceStatus {
+    pub unsafe fn status_at_index(&self, index: usize) -> CGImageSourceStatus {
         extern "C-unwind" {
             fn CGImageSourceGetStatusAtIndex(
                 isrc: &CGImageSource,
@@ -363,7 +359,7 @@ impl CGImageSource {
 
     #[doc(alias = "CGImageSourceGetPrimaryImageIndex")]
     #[inline]
-    pub unsafe fn primary_image_index(self: &CGImageSource) -> usize {
+    pub unsafe fn primary_image_index(&self) -> usize {
         extern "C-unwind" {
             fn CGImageSourceGetPrimaryImageIndex(isrc: &CGImageSource) -> usize;
         }
@@ -373,7 +369,7 @@ impl CGImageSource {
     #[doc(alias = "CGImageSourceCopyAuxiliaryDataInfoAtIndex")]
     #[inline]
     pub unsafe fn auxiliary_data_info_at_index(
-        self: &CGImageSource,
+        &self,
         index: usize,
         auxiliary_image_data_type: &CFString,
     ) -> Option<CFRetained<CFDictionary>> {

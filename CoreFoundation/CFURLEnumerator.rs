@@ -146,7 +146,7 @@ impl CFURLEnumerator {
     #[cfg(all(feature = "CFError", feature = "CFURL"))]
     #[inline]
     pub unsafe fn next_url(
-        self: &CFURLEnumerator,
+        &self,
         url: *mut *const CFURL,
         error: *mut *mut CFError,
     ) -> CFURLEnumeratorResult {
@@ -162,7 +162,7 @@ impl CFURLEnumerator {
 
     #[doc(alias = "CFURLEnumeratorSkipDescendents")]
     #[inline]
-    pub unsafe fn skip_descendents(self: &CFURLEnumerator) {
+    pub unsafe fn skip_descendents(&self) {
         extern "C-unwind" {
             fn CFURLEnumeratorSkipDescendents(enumerator: &CFURLEnumerator);
         }
@@ -171,7 +171,7 @@ impl CFURLEnumerator {
 
     #[doc(alias = "CFURLEnumeratorGetDescendentLevel")]
     #[inline]
-    pub unsafe fn descendent_level(self: &CFURLEnumerator) -> CFIndex {
+    pub unsafe fn descendent_level(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFURLEnumeratorGetDescendentLevel(enumerator: &CFURLEnumerator) -> CFIndex;
         }
@@ -181,7 +181,7 @@ impl CFURLEnumerator {
     #[doc(alias = "CFURLEnumeratorGetSourceDidChange")]
     #[deprecated = "Use File System Events API instead"]
     #[inline]
-    pub unsafe fn source_did_change(self: &CFURLEnumerator) -> bool {
+    pub unsafe fn source_did_change(&self) -> bool {
         extern "C-unwind" {
             fn CFURLEnumeratorGetSourceDidChange(enumerator: &CFURLEnumerator) -> Boolean;
         }

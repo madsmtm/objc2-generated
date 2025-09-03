@@ -188,7 +188,7 @@ impl CMFormatDescription {
     /// Returns: The media type of the CMFormatDescription.
     #[doc(alias = "CMFormatDescriptionGetMediaType")]
     #[inline]
-    pub unsafe fn media_type(self: &CMFormatDescription) -> CMMediaType {
+    pub unsafe fn media_type(&self) -> CMMediaType {
         extern "C-unwind" {
             fn CMFormatDescriptionGetMediaType(desc: &CMFormatDescription) -> CMMediaType;
         }
@@ -210,7 +210,7 @@ impl CMFormatDescription {
     /// Returns: The media subtype of the CMFormatDescription.
     #[doc(alias = "CMFormatDescriptionGetMediaSubType")]
     #[inline]
-    pub unsafe fn media_sub_type(self: &CMFormatDescription) -> FourCharCode {
+    pub unsafe fn media_sub_type(&self) -> FourCharCode {
         extern "C-unwind" {
             fn CMFormatDescriptionGetMediaSubType(desc: &CMFormatDescription) -> FourCharCode;
         }
@@ -228,7 +228,7 @@ impl CMFormatDescription {
     /// Returns: An immutable dictionary containing all the extensions of the CMFormatDescription.  May be NULL.
     #[doc(alias = "CMFormatDescriptionGetExtensions")]
     #[inline]
-    pub unsafe fn extensions(self: &CMFormatDescription) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn extensions(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CMFormatDescriptionGetExtensions(
                 desc: &CMFormatDescription,
@@ -311,10 +311,7 @@ impl CMFormatDescription {
     /// Returns: The specified extension of the CMFormatDescription.  May be NULL.
     #[doc(alias = "CMFormatDescriptionGetExtension")]
     #[inline]
-    pub unsafe fn extension(
-        self: &CMFormatDescription,
-        extension_key: &CFString,
-    ) -> Option<CFRetained<CFPropertyList>> {
+    pub unsafe fn extension(&self, extension_key: &CFString) -> Option<CFRetained<CFPropertyList>> {
         extern "C-unwind" {
             fn CMFormatDescriptionGetExtension(
                 desc: &CMFormatDescription,

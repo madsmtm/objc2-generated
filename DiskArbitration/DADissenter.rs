@@ -97,7 +97,7 @@ impl DADissenter {
     #[doc(alias = "DADissenterGetStatus")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub unsafe fn status(self: &DADissenter) -> DAReturn {
+    pub unsafe fn status(&self) -> DAReturn {
         extern "C-unwind" {
             fn DADissenterGetStatus(dissenter: &DADissenter) -> DAReturn;
         }
@@ -111,7 +111,7 @@ impl DADissenter {
     /// Returns: The return code string.
     #[doc(alias = "DADissenterGetStatusString")]
     #[inline]
-    pub unsafe fn status_string(self: &DADissenter) -> Option<CFRetained<CFString>> {
+    pub unsafe fn status_string(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn DADissenterGetStatusString(dissenter: &DADissenter) -> Option<NonNull<CFString>>;
         }

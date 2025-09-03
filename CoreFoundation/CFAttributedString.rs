@@ -115,7 +115,7 @@ impl CFAttributedString {
     /// Returns the string for the attributed string. For performance reasons, this will often point at the backing store of the attributed string, and it might change if the attributed string is edited.  However, this is an implementation detail, and definitely not something that should be counted on.
     #[doc(alias = "CFAttributedStringGetString")]
     #[inline]
-    pub fn string(self: &CFAttributedString) -> Option<CFRetained<CFString>> {
+    pub fn string(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFAttributedStringGetString(a_str: &CFAttributedString)
                 -> Option<NonNull<CFString>>;
@@ -127,7 +127,7 @@ impl CFAttributedString {
     /// Returns the length of the attributed string in characters; same as CFStringGetLength(CFAttributedStringGetString(aStr))
     #[doc(alias = "CFAttributedStringGetLength")]
     #[inline]
-    pub fn length(self: &CFAttributedString) -> CFIndex {
+    pub fn length(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFAttributedStringGetLength(a_str: &CFAttributedString) -> CFIndex;
         }
@@ -141,7 +141,7 @@ impl CFAttributedString {
     #[cfg(feature = "CFDictionary")]
     #[inline]
     pub unsafe fn attributes(
-        self: &CFAttributedString,
+        &self,
         loc: CFIndex,
         effective_range: *mut CFRange,
     ) -> Option<CFRetained<CFDictionary>> {
@@ -160,7 +160,7 @@ impl CFAttributedString {
     #[doc(alias = "CFAttributedStringGetAttribute")]
     #[inline]
     pub unsafe fn attribute(
-        self: &CFAttributedString,
+        &self,
         loc: CFIndex,
         attr_name: Option<&CFString>,
         effective_range: *mut CFRange,
@@ -182,7 +182,7 @@ impl CFAttributedString {
     #[cfg(feature = "CFDictionary")]
     #[inline]
     pub unsafe fn attributes_and_longest_effective_range(
-        self: &CFAttributedString,
+        &self,
         loc: CFIndex,
         in_range: CFRange,
         longest_effective_range: *mut CFRange,
@@ -210,7 +210,7 @@ impl CFAttributedString {
     #[doc(alias = "CFAttributedStringGetAttributeAndLongestEffectiveRange")]
     #[inline]
     pub unsafe fn attribute_and_longest_effective_range(
-        self: &CFAttributedString,
+        &self,
         loc: CFIndex,
         attr_name: Option<&CFString>,
         in_range: CFRange,
@@ -417,7 +417,7 @@ impl CFAttributedString {
     #[doc(alias = "CFAttributedStringGetBidiLevelsAndResolvedDirections")]
     #[inline]
     pub unsafe fn bidi_levels_and_resolved_directions(
-        self: &CFAttributedString,
+        &self,
         range: CFRange,
         base_direction: i8,
         bidi_levels: *mut u8,

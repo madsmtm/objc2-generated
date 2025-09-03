@@ -230,7 +230,7 @@ impl VNElementType {
     #[doc(alias = "VNElementTypeSize")]
     #[cfg(feature = "VNTypes")]
     #[inline]
-    pub unsafe fn size(self: VNElementType) -> NSUInteger {
+    pub unsafe fn size(self) -> NSUInteger {
         extern "C-unwind" {
             fn VNElementTypeSize(element_type: VNElementType) -> NSUInteger;
         }

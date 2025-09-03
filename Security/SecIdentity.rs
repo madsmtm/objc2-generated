@@ -65,7 +65,7 @@ impl SecIdentity {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn copy_certificate(
-        self: &SecIdentity,
+        &self,
         certificate_ref: NonNull<*mut SecCertificate>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -89,10 +89,7 @@ impl SecIdentity {
     #[doc(alias = "SecIdentityCopyPrivateKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn copy_private_key(
-        self: &SecIdentity,
-        private_key_ref: NonNull<*mut SecKey>,
-    ) -> OSStatus {
+    pub unsafe fn copy_private_key(&self, private_key_ref: NonNull<*mut SecKey>) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentityCopyPrivateKey(
                 identity_ref: &SecIdentity,
@@ -181,11 +178,7 @@ impl SecIdentity {
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_preference(
-        self: &SecIdentity,
-        name: &CFString,
-        key_usage: CSSM_KEYUSE,
-    ) -> OSStatus {
+    pub unsafe fn set_preference(&self, name: &CFString, key_usage: CSSM_KEYUSE) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentitySetPreference(
                 identity: &SecIdentity,

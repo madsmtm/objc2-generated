@@ -60,10 +60,7 @@ impl SecTrustedApplication {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_data(
-        self: &SecTrustedApplication,
-        data: NonNull<*const CFData>,
-    ) -> OSStatus {
+    pub unsafe fn copy_data(&self, data: NonNull<*const CFData>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustedApplicationCopyData(
                 app_ref: &SecTrustedApplication,
@@ -84,7 +81,7 @@ impl SecTrustedApplication {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn set_data(self: &SecTrustedApplication, data: &CFData) -> OSStatus {
+    pub unsafe fn set_data(&self, data: &CFData) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustedApplicationSetData(
                 app_ref: &SecTrustedApplication,

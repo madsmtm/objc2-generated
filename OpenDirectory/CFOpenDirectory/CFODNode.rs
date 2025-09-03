@@ -141,10 +141,7 @@ impl ODNodeRef {
     #[doc(alias = "ODNodeCopySubnodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn subnode_names(
-        self: &ODNodeRef,
-        error: *mut *mut CFError,
-    ) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn subnode_names(&self, error: *mut *mut CFError) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn ODNodeCopySubnodeNames(
                 node: &ODNodeRef,
@@ -170,7 +167,7 @@ impl ODNodeRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn unreachable_subnode_names(
-        self: &ODNodeRef,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
@@ -193,7 +190,7 @@ impl ODNodeRef {
     #[doc(alias = "ODNodeGetName")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn name(self: &ODNodeRef) -> Option<CFRetained<CFString>> {
+    pub unsafe fn name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn ODNodeGetName(node: &ODNodeRef) -> Option<NonNull<CFString>>;
         }
@@ -217,7 +214,7 @@ impl ODNodeRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn details(
-        self: &ODNodeRef,
+        &self,
         keys: Option<&CFArray>,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFDictionary>> {
@@ -246,7 +243,7 @@ impl ODNodeRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn supported_record_types(
-        self: &ODNodeRef,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
@@ -279,7 +276,7 @@ impl ODNodeRef {
     ))]
     #[inline]
     pub unsafe fn supported_attributes(
-        self: &ODNodeRef,
+        &self,
         record_type: Option<&ODRecordType>,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFArray>> {
@@ -320,7 +317,7 @@ impl ODNodeRef {
     ))]
     #[inline]
     pub unsafe fn set_credentials(
-        self: &ODNodeRef,
+        &self,
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         password: Option<&CFString>,
@@ -369,7 +366,7 @@ impl ODNodeRef {
     ))]
     #[inline]
     pub unsafe fn set_credentials_extended(
-        self: &ODNodeRef,
+        &self,
         record_type: Option<&ODRecordType>,
         auth_type: Option<&ODAuthenticationType>,
         auth_items: Option<&CFArray>,
@@ -409,7 +406,7 @@ impl ODNodeRef {
     #[deprecated]
     #[inline]
     pub unsafe fn set_credentials_using_kerberos_cache(
-        self: &ODNodeRef,
+        &self,
         cache_name: Option<&CFString>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -451,7 +448,7 @@ impl ODNodeRef {
     ))]
     #[inline]
     pub unsafe fn create_record(
-        self: &ODNodeRef,
+        &self,
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         attribute_dict: Option<&CFDictionary>,
@@ -497,7 +494,7 @@ impl ODNodeRef {
     ))]
     #[inline]
     pub unsafe fn copy_record(
-        self: &ODNodeRef,
+        &self,
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         attributes: Option<&CFType>,
@@ -533,7 +530,7 @@ impl ODNodeRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn custom_call(
-        self: &ODNodeRef,
+        &self,
         custom_code: CFIndex,
         data: Option<&CFData>,
         error: *mut *mut CFError,
@@ -574,7 +571,7 @@ impl ODNodeRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn custom_function(
-        self: &ODNodeRef,
+        &self,
         function: Option<&CFString>,
         payload: Option<&CFType>,
         error: *mut *mut CFError,
@@ -604,10 +601,7 @@ impl ODNodeRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODNodeCopyAccountPolicies"]
     #[inline]
-    pub unsafe fn policies(
-        self: &ODNodeRef,
-        error: *mut *mut CFError,
-    ) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn policies(&self, error: *mut *mut CFError) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODNodeCopyPolicies(
                 node: &ODNodeRef,
@@ -634,7 +628,7 @@ impl ODNodeRef {
     #[deprecated]
     #[inline]
     pub unsafe fn supported_policies(
-        self: &ODNodeRef,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -663,7 +657,7 @@ impl ODNodeRef {
     #[deprecated = "use ODNodeSetAccountPolicies"]
     #[inline]
     pub unsafe fn set_policies(
-        self: &ODNodeRef,
+        &self,
         policies: Option<&CFDictionary>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -698,7 +692,7 @@ impl ODNodeRef {
     #[deprecated = "use ODNodeAddAccountPolicy"]
     #[inline]
     pub unsafe fn set_policy(
-        self: &ODNodeRef,
+        &self,
         policy_type: Option<&ODPolicyType>,
         value: Option<&CFType>,
         error: *mut *mut CFError,
@@ -733,7 +727,7 @@ impl ODNodeRef {
     #[deprecated = "use ODNodeRemoveAccountPolicy"]
     #[inline]
     pub unsafe fn remove_policy(
-        self: &ODNodeRef,
+        &self,
         policy_type: Option<&ODPolicyType>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -777,7 +771,7 @@ impl ODNodeRef {
     ))]
     #[inline]
     pub unsafe fn add_account_policy(
-        self: &ODNodeRef,
+        &self,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
         error: *mut *mut CFError,
@@ -814,7 +808,7 @@ impl ODNodeRef {
     ))]
     #[inline]
     pub unsafe fn remove_account_policy(
-        self: &ODNodeRef,
+        &self,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
         error: *mut *mut CFError,
@@ -856,7 +850,7 @@ impl ODNodeRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn set_account_policies(
-        self: &ODNodeRef,
+        &self,
         policies: Option<&CFDictionary>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -885,7 +879,7 @@ impl ODNodeRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn account_policies(
-        self: &ODNodeRef,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -924,7 +918,7 @@ impl ODNodeRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn password_content_check(
-        self: &ODNodeRef,
+        &self,
         password: Option<&CFString>,
         record_name: Option<&CFString>,
         error: *mut *mut CFError,

@@ -214,7 +214,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexFlush")]
     #[inline]
-    pub unsafe fn flush(self: &SKIndex) -> bool {
+    pub unsafe fn flush(&self) -> bool {
         extern "C-unwind" {
             fn SKIndexFlush(in_index: &SKIndex) -> Boolean;
         }
@@ -224,7 +224,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexSetMaximumBytesBeforeFlush")]
     #[inline]
-    pub unsafe fn set_maximum_bytes_before_flush(self: &SKIndex, in_bytes_for_update: CFIndex) {
+    pub unsafe fn set_maximum_bytes_before_flush(&self, in_bytes_for_update: CFIndex) {
         extern "C-unwind" {
             fn SKIndexSetMaximumBytesBeforeFlush(in_index: &SKIndex, in_bytes_for_update: CFIndex);
         }
@@ -233,7 +233,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexGetMaximumBytesBeforeFlush")]
     #[inline]
-    pub unsafe fn maximum_bytes_before_flush(self: &SKIndex) -> CFIndex {
+    pub unsafe fn maximum_bytes_before_flush(&self) -> CFIndex {
         extern "C-unwind" {
             fn SKIndexGetMaximumBytesBeforeFlush(in_index: &SKIndex) -> CFIndex;
         }
@@ -242,7 +242,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexCompact")]
     #[inline]
-    pub unsafe fn compact(self: &SKIndex) -> bool {
+    pub unsafe fn compact(&self) -> bool {
         extern "C-unwind" {
             fn SKIndexCompact(in_index: &SKIndex) -> Boolean;
         }
@@ -252,7 +252,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexGetIndexType")]
     #[inline]
-    pub unsafe fn index_type(self: &SKIndex) -> SKIndexType {
+    pub unsafe fn index_type(&self) -> SKIndexType {
         extern "C-unwind" {
             fn SKIndexGetIndexType(in_index: &SKIndex) -> SKIndexType;
         }
@@ -261,7 +261,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexGetAnalysisProperties")]
     #[inline]
-    pub unsafe fn analysis_properties(self: &SKIndex) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn analysis_properties(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SKIndexGetAnalysisProperties(in_index: &SKIndex) -> Option<NonNull<CFDictionary>>;
         }
@@ -271,7 +271,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexGetDocumentCount")]
     #[inline]
-    pub unsafe fn document_count(self: &SKIndex) -> CFIndex {
+    pub unsafe fn document_count(&self) -> CFIndex {
         extern "C-unwind" {
             fn SKIndexGetDocumentCount(in_index: &SKIndex) -> CFIndex;
         }
@@ -280,7 +280,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexClose")]
     #[inline]
-    pub unsafe fn close(self: &SKIndex) {
+    pub unsafe fn close(&self) {
         extern "C-unwind" {
             fn SKIndexClose(in_index: &SKIndex);
         }
@@ -296,7 +296,7 @@ impl SKIndex {
     #[cfg(feature = "SKDocument")]
     #[inline]
     pub unsafe fn add_document_with_text(
-        self: &SKIndex,
+        &self,
         in_document: Option<&SKDocument>,
         in_document_text: Option<&CFString>,
         in_can_replace: bool,
@@ -319,7 +319,7 @@ impl SKIndex {
     #[cfg(feature = "SKDocument")]
     #[inline]
     pub unsafe fn add_document(
-        self: &SKIndex,
+        &self,
         in_document: Option<&SKDocument>,
         in_mime_type_hint: Option<&CFString>,
         in_can_replace: bool,
@@ -341,7 +341,7 @@ impl SKIndex {
     #[doc(alias = "SKIndexRemoveDocument")]
     #[cfg(feature = "SKDocument")]
     #[inline]
-    pub unsafe fn remove_document(self: &SKIndex, in_document: Option<&SKDocument>) -> bool {
+    pub unsafe fn remove_document(&self, in_document: Option<&SKDocument>) -> bool {
         extern "C-unwind" {
             fn SKIndexRemoveDocument(
                 in_index: &SKIndex,
@@ -356,7 +356,7 @@ impl SKIndex {
     #[cfg(feature = "SKDocument")]
     #[inline]
     pub unsafe fn document_properties(
-        self: &SKIndex,
+        &self,
         in_document: Option<&SKDocument>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -373,7 +373,7 @@ impl SKIndex {
     #[cfg(feature = "SKDocument")]
     #[inline]
     pub unsafe fn set_document_properties(
-        self: &SKIndex,
+        &self,
         in_document: Option<&SKDocument>,
         in_properties: Option<&CFDictionary>,
     ) {
@@ -390,10 +390,7 @@ impl SKIndex {
     #[doc(alias = "SKIndexGetDocumentState")]
     #[cfg(feature = "SKDocument")]
     #[inline]
-    pub unsafe fn document_state(
-        self: &SKIndex,
-        in_document: Option<&SKDocument>,
-    ) -> SKDocumentIndexState {
+    pub unsafe fn document_state(&self, in_document: Option<&SKDocument>) -> SKDocumentIndexState {
         extern "C-unwind" {
             fn SKIndexGetDocumentState(
                 in_index: &SKIndex,
@@ -406,7 +403,7 @@ impl SKIndex {
     #[doc(alias = "SKIndexGetDocumentID")]
     #[cfg(feature = "SKDocument")]
     #[inline]
-    pub unsafe fn document_id(self: &SKIndex, in_document: Option<&SKDocument>) -> SKDocumentID {
+    pub unsafe fn document_id(&self, in_document: Option<&SKDocument>) -> SKDocumentID {
         extern "C-unwind" {
             fn SKIndexGetDocumentID(
                 in_index: &SKIndex,
@@ -420,7 +417,7 @@ impl SKIndex {
     #[cfg(feature = "SKDocument")]
     #[inline]
     pub unsafe fn document_for_document_id(
-        self: &SKIndex,
+        &self,
         in_document_id: SKDocumentID,
     ) -> Option<CFRetained<SKDocument>> {
         extern "C-unwind" {
@@ -437,7 +434,7 @@ impl SKIndex {
     #[cfg(feature = "SKDocument")]
     #[inline]
     pub unsafe fn rename_document(
-        self: &SKIndex,
+        &self,
         in_document: Option<&SKDocument>,
         in_new_name: Option<&CFString>,
     ) -> bool {
@@ -456,7 +453,7 @@ impl SKIndex {
     #[cfg(feature = "SKDocument")]
     #[inline]
     pub unsafe fn move_document(
-        self: &SKIndex,
+        &self,
         in_document: Option<&SKDocument>,
         in_new_parent: Option<&SKDocument>,
     ) -> bool {
@@ -493,7 +490,7 @@ impl SKIndexDocumentIterator {
     #[doc(alias = "SKIndexDocumentIteratorCopyNext")]
     #[cfg(feature = "SKDocument")]
     #[inline]
-    pub unsafe fn next(self: &SKIndexDocumentIterator) -> Option<CFRetained<SKDocument>> {
+    pub unsafe fn next(&self) -> Option<CFRetained<SKDocument>> {
         extern "C-unwind" {
             fn SKIndexDocumentIteratorCopyNext(
                 in_iterator: &SKIndexDocumentIterator,
@@ -507,7 +504,7 @@ impl SKIndexDocumentIterator {
 impl SKIndex {
     #[doc(alias = "SKIndexGetMaximumDocumentID")]
     #[inline]
-    pub unsafe fn maximum_document_id(self: &SKIndex) -> SKDocumentID {
+    pub unsafe fn maximum_document_id(&self) -> SKDocumentID {
         extern "C-unwind" {
             fn SKIndexGetMaximumDocumentID(in_index: &SKIndex) -> SKDocumentID;
         }
@@ -516,7 +513,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexGetDocumentTermCount")]
     #[inline]
-    pub unsafe fn document_term_count(self: &SKIndex, in_document_id: SKDocumentID) -> CFIndex {
+    pub unsafe fn document_term_count(&self, in_document_id: SKDocumentID) -> CFIndex {
         extern "C-unwind" {
             fn SKIndexGetDocumentTermCount(
                 in_index: &SKIndex,
@@ -529,7 +526,7 @@ impl SKIndex {
     #[doc(alias = "SKIndexCopyTermIDArrayForDocumentID")]
     #[inline]
     pub unsafe fn term_id_array_for_document_id(
-        self: &SKIndex,
+        &self,
         in_document_id: SKDocumentID,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
@@ -545,7 +542,7 @@ impl SKIndex {
     #[doc(alias = "SKIndexGetDocumentTermFrequency")]
     #[inline]
     pub unsafe fn document_term_frequency(
-        self: &SKIndex,
+        &self,
         in_document_id: SKDocumentID,
         in_term_id: CFIndex,
     ) -> CFIndex {
@@ -561,7 +558,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexGetMaximumTermID")]
     #[inline]
-    pub unsafe fn maximum_term_id(self: &SKIndex) -> CFIndex {
+    pub unsafe fn maximum_term_id(&self) -> CFIndex {
         extern "C-unwind" {
             fn SKIndexGetMaximumTermID(in_index: &SKIndex) -> CFIndex;
         }
@@ -570,7 +567,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexGetTermDocumentCount")]
     #[inline]
-    pub unsafe fn term_document_count(self: &SKIndex, in_term_id: CFIndex) -> CFIndex {
+    pub unsafe fn term_document_count(&self, in_term_id: CFIndex) -> CFIndex {
         extern "C-unwind" {
             fn SKIndexGetTermDocumentCount(in_index: &SKIndex, in_term_id: CFIndex) -> CFIndex;
         }
@@ -580,7 +577,7 @@ impl SKIndex {
     #[doc(alias = "SKIndexCopyDocumentIDArrayForTermID")]
     #[inline]
     pub unsafe fn document_id_array_for_term_id(
-        self: &SKIndex,
+        &self,
         in_term_id: CFIndex,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
@@ -596,7 +593,7 @@ impl SKIndex {
     #[doc(alias = "SKIndexCopyTermStringForTermID")]
     #[inline]
     pub unsafe fn term_string_for_term_id(
-        self: &SKIndex,
+        &self,
         in_term_id: CFIndex,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
@@ -611,10 +608,7 @@ impl SKIndex {
 
     #[doc(alias = "SKIndexGetTermIDForTermString")]
     #[inline]
-    pub unsafe fn term_id_for_term_string(
-        self: &SKIndex,
-        in_term_string: Option<&CFString>,
-    ) -> CFIndex {
+    pub unsafe fn term_id_for_term_string(&self, in_term_string: Option<&CFString>) -> CFIndex {
         extern "C-unwind" {
             fn SKIndexGetTermIDForTermString(
                 in_index: &SKIndex,

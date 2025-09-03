@@ -290,7 +290,7 @@ impl SCNetworkInterface {
     /// NULL if no interface types are supported.
     #[doc(alias = "SCNetworkInterfaceGetSupportedInterfaceTypes")]
     #[inline]
-    pub fn supported_interface_types(self: &SCNetworkInterface) -> Option<CFRetained<CFArray>> {
+    pub fn supported_interface_types(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SCNetworkInterfaceGetSupportedInterfaceTypes(
                 interface: &SCNetworkInterface,
@@ -309,7 +309,7 @@ impl SCNetworkInterface {
     /// NULL if no protocol types are supported.
     #[doc(alias = "SCNetworkInterfaceGetSupportedProtocolTypes")]
     #[inline]
-    pub fn supported_protocol_types(self: &SCNetworkInterface) -> Option<CFRetained<CFArray>> {
+    pub fn supported_protocol_types(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SCNetworkInterfaceGetSupportedProtocolTypes(
                 interface: &SCNetworkInterface,
@@ -333,7 +333,7 @@ impl SCNetworkInterface {
     #[doc(alias = "SCNetworkInterfaceCreateWithInterface")]
     #[inline]
     pub fn with_interface(
-        self: &SCNetworkInterface,
+        &self,
         interface_type: &CFString,
     ) -> Option<CFRetained<SCNetworkInterface>> {
         extern "C-unwind" {
@@ -355,7 +355,7 @@ impl SCNetworkInterface {
     /// NULL if no BSD name is available.
     #[doc(alias = "SCNetworkInterfaceGetBSDName")]
     #[inline]
-    pub fn bsd_name(self: &SCNetworkInterface) -> Option<CFRetained<CFString>> {
+    pub fn bsd_name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCNetworkInterfaceGetBSDName(
                 interface: &SCNetworkInterface,
@@ -374,7 +374,7 @@ impl SCNetworkInterface {
     /// or an error was encountered.
     #[doc(alias = "SCNetworkInterfaceGetConfiguration")]
     #[inline]
-    pub fn configuration(self: &SCNetworkInterface) -> Option<CFRetained<CFDictionary>> {
+    pub fn configuration(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SCNetworkInterfaceGetConfiguration(
                 interface: &SCNetworkInterface,
@@ -396,7 +396,7 @@ impl SCNetworkInterface {
     #[doc(alias = "SCNetworkInterfaceGetExtendedConfiguration")]
     #[inline]
     pub fn extended_configuration(
-        self: &SCNetworkInterface,
+        &self,
         extended_type: &CFString,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -416,7 +416,7 @@ impl SCNetworkInterface {
     /// Returns: A string representing the hardware (MAC) address for the interface.
     #[doc(alias = "SCNetworkInterfaceGetHardwareAddressString")]
     #[inline]
-    pub fn hardware_address_string(self: &SCNetworkInterface) -> Option<CFRetained<CFString>> {
+    pub fn hardware_address_string(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCNetworkInterfaceGetHardwareAddressString(
                 interface: &SCNetworkInterface,
@@ -434,7 +434,7 @@ impl SCNetworkInterface {
     /// NULL if this is a leaf interface.
     #[doc(alias = "SCNetworkInterfaceGetInterface")]
     #[inline]
-    pub fn interface(self: &SCNetworkInterface) -> Option<CFRetained<SCNetworkInterface>> {
+    pub fn interface(&self) -> Option<CFRetained<SCNetworkInterface>> {
         extern "C-unwind" {
             fn SCNetworkInterfaceGetInterface(
                 interface: &SCNetworkInterface,
@@ -451,7 +451,7 @@ impl SCNetworkInterface {
     /// Returns: The interface type.
     #[doc(alias = "SCNetworkInterfaceGetInterfaceType")]
     #[inline]
-    pub fn interface_type(self: &SCNetworkInterface) -> Option<CFRetained<CFString>> {
+    pub fn interface_type(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCNetworkInterfaceGetInterfaceType(
                 interface: &SCNetworkInterface,
@@ -470,7 +470,7 @@ impl SCNetworkInterface {
     /// NULL if no name is available.
     #[doc(alias = "SCNetworkInterfaceGetLocalizedDisplayName")]
     #[inline]
-    pub fn localized_display_name(self: &SCNetworkInterface) -> Option<CFRetained<CFString>> {
+    pub fn localized_display_name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCNetworkInterfaceGetLocalizedDisplayName(
                 interface: &SCNetworkInterface,
@@ -489,10 +489,7 @@ impl SCNetworkInterface {
     /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
     #[doc(alias = "SCNetworkInterfaceSetConfiguration")]
     #[inline]
-    pub unsafe fn set_configuration(
-        self: &SCNetworkInterface,
-        config: Option<&CFDictionary>,
-    ) -> bool {
+    pub unsafe fn set_configuration(&self, config: Option<&CFDictionary>) -> bool {
         extern "C-unwind" {
             fn SCNetworkInterfaceSetConfiguration(
                 interface: &SCNetworkInterface,
@@ -513,7 +510,7 @@ impl SCNetworkInterface {
     #[doc(alias = "SCNetworkInterfaceSetExtendedConfiguration")]
     #[inline]
     pub unsafe fn set_extended_configuration(
-        self: &SCNetworkInterface,
+        &self,
         extended_type: &CFString,
         config: Option<&CFDictionary>,
     ) -> bool {
@@ -555,7 +552,7 @@ impl SCNetworkInterface {
     #[doc(alias = "SCNetworkInterfaceCopyMediaOptions")]
     #[inline]
     pub unsafe fn media_options(
-        self: &SCNetworkInterface,
+        &self,
         current: *mut *const CFDictionary,
         active: *mut *const CFDictionary,
         available: *mut *const CFArray,
@@ -646,7 +643,7 @@ impl SCNetworkInterface {
     #[doc(alias = "SCNetworkInterfaceCopyMTU")]
     #[inline]
     pub unsafe fn mtu(
-        self: &SCNetworkInterface,
+        &self,
         mtu_cur: *mut c_int,
         mtu_min: *mut c_int,
         mtu_max: *mut c_int,
@@ -677,11 +674,7 @@ impl SCNetworkInterface {
     /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
     #[doc(alias = "SCNetworkInterfaceSetMediaOptions")]
     #[inline]
-    pub fn set_media_options(
-        self: &SCNetworkInterface,
-        subtype: Option<&CFString>,
-        options: Option<&CFArray>,
-    ) -> bool {
+    pub fn set_media_options(&self, subtype: Option<&CFString>, options: Option<&CFArray>) -> bool {
         extern "C-unwind" {
             fn SCNetworkInterfaceSetMediaOptions(
                 interface: &SCNetworkInterface,
@@ -704,7 +697,7 @@ impl SCNetworkInterface {
     /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
     #[doc(alias = "SCNetworkInterfaceSetMTU")]
     #[inline]
-    pub fn set_mtu(self: &SCNetworkInterface, mtu: c_int) -> bool {
+    pub fn set_mtu(&self, mtu: c_int) -> bool {
         extern "C-unwind" {
             fn SCNetworkInterfaceSetMTU(interface: &SCNetworkInterface, mtu: c_int) -> Boolean;
         }
@@ -733,7 +726,7 @@ impl SCNetworkInterface {
     /// Returns: Returns TRUE if the notification was sent; FALSE otherwise.
     #[doc(alias = "SCNetworkInterfaceForceConfigurationRefresh")]
     #[inline]
-    pub fn force_configuration_refresh(self: &SCNetworkInterface) -> bool {
+    pub fn force_configuration_refresh(&self) -> bool {
         extern "C-unwind" {
             fn SCNetworkInterfaceForceConfigurationRefresh(
                 interface: &SCNetworkInterface,
@@ -948,7 +941,7 @@ impl SCBondStatus {
     /// Returns: The list of interfaces.
     #[doc(alias = "SCBondStatusGetMemberInterfaces")]
     #[inline]
-    pub fn member_interfaces(self: &SCBondStatus) -> Option<CFRetained<CFArray>> {
+    pub fn member_interfaces(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SCBondStatusGetMemberInterfaces(
                 bond_status: &SCBondStatus,
@@ -974,7 +967,7 @@ impl SCBondStatus {
     #[doc(alias = "SCBondStatusGetInterfaceStatus")]
     #[inline]
     pub fn interface_status(
-        self: &SCBondStatus,
+        &self,
         interface: Option<&SCNetworkInterface>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -1213,7 +1206,7 @@ impl SCNetworkProtocol {
     /// or an error was encountered.
     #[doc(alias = "SCNetworkProtocolGetConfiguration")]
     #[inline]
-    pub fn configuration(self: &SCNetworkProtocol) -> Option<CFRetained<CFDictionary>> {
+    pub fn configuration(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SCNetworkProtocolGetConfiguration(
                 protocol: &SCNetworkProtocol,
@@ -1230,7 +1223,7 @@ impl SCNetworkProtocol {
     /// Returns: TRUE if the protocol is enabled.
     #[doc(alias = "SCNetworkProtocolGetEnabled")]
     #[inline]
-    pub fn enabled(self: &SCNetworkProtocol) -> bool {
+    pub fn enabled(&self) -> bool {
         extern "C-unwind" {
             fn SCNetworkProtocolGetEnabled(protocol: &SCNetworkProtocol) -> Boolean;
         }
@@ -1245,7 +1238,7 @@ impl SCNetworkProtocol {
     /// Returns: The protocol type.
     #[doc(alias = "SCNetworkProtocolGetProtocolType")]
     #[inline]
-    pub fn protocol_type(self: &SCNetworkProtocol) -> Option<CFRetained<CFString>> {
+    pub fn protocol_type(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCNetworkProtocolGetProtocolType(
                 protocol: &SCNetworkProtocol,
@@ -1264,10 +1257,7 @@ impl SCNetworkProtocol {
     /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
     #[doc(alias = "SCNetworkProtocolSetConfiguration")]
     #[inline]
-    pub unsafe fn set_configuration(
-        self: &SCNetworkProtocol,
-        config: Option<&CFDictionary>,
-    ) -> bool {
+    pub unsafe fn set_configuration(&self, config: Option<&CFDictionary>) -> bool {
         extern "C-unwind" {
             fn SCNetworkProtocolSetConfiguration(
                 protocol: &SCNetworkProtocol,
@@ -1287,7 +1277,7 @@ impl SCNetworkProtocol {
     /// Returns: TRUE if the enabled status was saved; FALSE if an error was encountered.
     #[doc(alias = "SCNetworkProtocolSetEnabled")]
     #[inline]
-    pub fn set_enabled(self: &SCNetworkProtocol, enabled: bool) -> bool {
+    pub fn set_enabled(&self, enabled: bool) -> bool {
         extern "C-unwind" {
             fn SCNetworkProtocolSetEnabled(
                 protocol: &SCNetworkProtocol,
@@ -1325,7 +1315,7 @@ impl SCNetworkService {
     /// protocol was already present or an error was encountered.
     #[doc(alias = "SCNetworkServiceAddProtocolType")]
     #[inline]
-    pub fn add_protocol_type(self: &SCNetworkService, protocol_type: &CFString) -> bool {
+    pub fn add_protocol_type(&self, protocol_type: &CFString) -> bool {
         extern "C-unwind" {
             fn SCNetworkServiceAddProtocolType(
                 service: &SCNetworkService,
@@ -1361,7 +1351,7 @@ impl SCNetworkService {
     /// You must release the returned value.
     #[doc(alias = "SCNetworkServiceCopyProtocols")]
     #[inline]
-    pub fn protocols(self: &SCNetworkService) -> Option<CFRetained<CFArray>> {
+    pub fn protocols(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SCNetworkServiceCopyProtocols(
                 service: &SCNetworkService,
@@ -1432,7 +1422,7 @@ impl SCNetworkService {
     /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
     #[doc(alias = "SCNetworkServiceEstablishDefaultConfiguration")]
     #[inline]
-    pub fn establish_default_configuration(self: &SCNetworkService) -> bool {
+    pub fn establish_default_configuration(&self) -> bool {
         extern "C-unwind" {
             fn SCNetworkServiceEstablishDefaultConfiguration(service: &SCNetworkService)
                 -> Boolean;
@@ -1448,7 +1438,7 @@ impl SCNetworkService {
     /// Returns: TRUE if the service is enabled.
     #[doc(alias = "SCNetworkServiceGetEnabled")]
     #[inline]
-    pub fn enabled(self: &SCNetworkService) -> bool {
+    pub fn enabled(&self) -> bool {
         extern "C-unwind" {
             fn SCNetworkServiceGetEnabled(service: &SCNetworkService) -> Boolean;
         }
@@ -1464,7 +1454,7 @@ impl SCNetworkService {
     /// NULL if an error was encountered.
     #[doc(alias = "SCNetworkServiceGetInterface")]
     #[inline]
-    pub fn interface(self: &SCNetworkService) -> Option<CFRetained<SCNetworkInterface>> {
+    pub fn interface(&self) -> Option<CFRetained<SCNetworkInterface>> {
         extern "C-unwind" {
             fn SCNetworkServiceGetInterface(
                 service: &SCNetworkService,
@@ -1481,7 +1471,7 @@ impl SCNetworkService {
     /// Returns: The [user specified] name.
     #[doc(alias = "SCNetworkServiceGetName")]
     #[inline]
-    pub fn name(self: &SCNetworkService) -> Option<CFRetained<CFString>> {
+    pub fn name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCNetworkServiceGetName(service: &SCNetworkService) -> Option<NonNull<CFString>>;
         }
@@ -1499,10 +1489,7 @@ impl SCNetworkService {
     /// You must release the returned value.
     #[doc(alias = "SCNetworkServiceCopyProtocol")]
     #[inline]
-    pub fn protocol(
-        self: &SCNetworkService,
-        protocol_type: &CFString,
-    ) -> Option<CFRetained<SCNetworkProtocol>> {
+    pub fn protocol(&self, protocol_type: &CFString) -> Option<CFRetained<SCNetworkProtocol>> {
         extern "C-unwind" {
             fn SCNetworkServiceCopyProtocol(
                 service: &SCNetworkService,
@@ -1520,7 +1507,7 @@ impl SCNetworkService {
     /// Returns: The service identifier.
     #[doc(alias = "SCNetworkServiceGetServiceID")]
     #[inline]
-    pub fn service_id(self: &SCNetworkService) -> Option<CFRetained<CFString>> {
+    pub fn service_id(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCNetworkServiceGetServiceID(
                 service: &SCNetworkService,
@@ -1537,7 +1524,7 @@ impl SCNetworkService {
     /// Returns: TRUE if the service was removed; FALSE if an error was encountered.
     #[doc(alias = "SCNetworkServiceRemove")]
     #[inline]
-    pub fn remove(self: &SCNetworkService) -> bool {
+    pub fn remove(&self) -> bool {
         extern "C-unwind" {
             fn SCNetworkServiceRemove(service: &SCNetworkService) -> Boolean;
         }
@@ -1555,7 +1542,7 @@ impl SCNetworkService {
     /// protocol was not configured or an error was encountered.
     #[doc(alias = "SCNetworkServiceRemoveProtocolType")]
     #[inline]
-    pub fn remove_protocol_type(self: &SCNetworkService, protocol_type: &CFString) -> bool {
+    pub fn remove_protocol_type(&self, protocol_type: &CFString) -> bool {
         extern "C-unwind" {
             fn SCNetworkServiceRemoveProtocolType(
                 service: &SCNetworkService,
@@ -1575,7 +1562,7 @@ impl SCNetworkService {
     /// Returns: TRUE if the enabled status was saved; FALSE if an error was encountered.
     #[doc(alias = "SCNetworkServiceSetEnabled")]
     #[inline]
-    pub fn set_enabled(self: &SCNetworkService, enabled: bool) -> bool {
+    pub fn set_enabled(&self, enabled: bool) -> bool {
         extern "C-unwind" {
             fn SCNetworkServiceSetEnabled(service: &SCNetworkService, enabled: Boolean) -> Boolean;
         }
@@ -1597,7 +1584,7 @@ impl SCNetworkService {
     /// same string.
     #[doc(alias = "SCNetworkServiceSetName")]
     #[inline]
-    pub fn set_name(self: &SCNetworkService, name: Option<&CFString>) -> bool {
+    pub fn set_name(&self, name: Option<&CFString>) -> bool {
         extern "C-unwind" {
             fn SCNetworkServiceSetName(
                 service: &SCNetworkService,
@@ -1637,7 +1624,7 @@ impl SCNetworkSet {
     /// to add a service to more than one set on a pre-10.5 system.
     #[doc(alias = "SCNetworkSetAddService")]
     #[inline]
-    pub fn add_service(self: &SCNetworkSet, service: &SCNetworkService) -> bool {
+    pub fn add_service(&self, service: &SCNetworkService) -> bool {
         extern "C-unwind" {
             fn SCNetworkSetAddService(set: &SCNetworkSet, service: &SCNetworkService) -> Boolean;
         }
@@ -1655,7 +1642,7 @@ impl SCNetworkSet {
     /// Returns: TRUE if the interface is represented in the set; FALSE if not.
     #[doc(alias = "SCNetworkSetContainsInterface")]
     #[inline]
-    pub fn contains_interface(self: &SCNetworkSet, interface: &SCNetworkInterface) -> bool {
+    pub fn contains_interface(&self, interface: &SCNetworkInterface) -> bool {
         extern "C-unwind" {
             fn SCNetworkSetContainsInterface(
                 set: &SCNetworkSet,
@@ -1707,7 +1694,7 @@ impl SCNetworkSet {
     /// You must release the returned value.
     #[doc(alias = "SCNetworkSetCopyServices")]
     #[inline]
-    pub fn services(self: &SCNetworkSet) -> Option<CFRetained<CFArray>> {
+    pub fn services(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SCNetworkSetCopyServices(set: &SCNetworkSet) -> Option<NonNull<CFArray>>;
         }
@@ -1763,7 +1750,7 @@ impl SCNetworkSet {
     /// Returns: The [user specified] name.
     #[doc(alias = "SCNetworkSetGetName")]
     #[inline]
-    pub fn name(self: &SCNetworkSet) -> Option<CFRetained<CFString>> {
+    pub fn name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCNetworkSetGetName(set: &SCNetworkSet) -> Option<NonNull<CFString>>;
         }
@@ -1778,7 +1765,7 @@ impl SCNetworkSet {
     /// Returns: The set identifier.
     #[doc(alias = "SCNetworkSetGetSetID")]
     #[inline]
-    pub fn set_id(self: &SCNetworkSet) -> Option<CFRetained<CFString>> {
+    pub fn set_id(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCNetworkSetGetSetID(set: &SCNetworkSet) -> Option<NonNull<CFString>>;
         }
@@ -1797,7 +1784,7 @@ impl SCNetworkSet {
     /// was encountered.
     #[doc(alias = "SCNetworkSetGetServiceOrder")]
     #[inline]
-    pub fn service_order(self: &SCNetworkSet) -> Option<CFRetained<CFArray>> {
+    pub fn service_order(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SCNetworkSetGetServiceOrder(set: &SCNetworkSet) -> Option<NonNull<CFArray>>;
         }
@@ -1812,7 +1799,7 @@ impl SCNetworkSet {
     /// Returns: TRUE if the set was removed; FALSE if an error was encountered.
     #[doc(alias = "SCNetworkSetRemove")]
     #[inline]
-    pub fn remove(self: &SCNetworkSet) -> bool {
+    pub fn remove(&self) -> bool {
         extern "C-unwind" {
             fn SCNetworkSetRemove(set: &SCNetworkSet) -> Boolean;
         }
@@ -1830,7 +1817,7 @@ impl SCNetworkSet {
     /// service was not already present or an error was encountered.
     #[doc(alias = "SCNetworkSetRemoveService")]
     #[inline]
-    pub fn remove_service(self: &SCNetworkSet, service: &SCNetworkService) -> bool {
+    pub fn remove_service(&self, service: &SCNetworkService) -> bool {
         extern "C-unwind" {
             fn SCNetworkSetRemoveService(set: &SCNetworkSet, service: &SCNetworkService)
                 -> Boolean;
@@ -1847,7 +1834,7 @@ impl SCNetworkSet {
     /// FALSE if an error was encountered.
     #[doc(alias = "SCNetworkSetSetCurrent")]
     #[inline]
-    pub fn set_current(self: &SCNetworkSet) -> bool {
+    pub fn set_current(&self) -> bool {
         extern "C-unwind" {
             fn SCNetworkSetSetCurrent(set: &SCNetworkSet) -> Boolean;
         }
@@ -1868,7 +1855,7 @@ impl SCNetworkSet {
     /// you attemp to name two sets with the same string.
     #[doc(alias = "SCNetworkSetSetName")]
     #[inline]
-    pub fn set_name(self: &SCNetworkSet, name: Option<&CFString>) -> bool {
+    pub fn set_name(&self, name: Option<&CFString>) -> bool {
         extern "C-unwind" {
             fn SCNetworkSetSetName(set: &SCNetworkSet, name: Option<&CFString>) -> Boolean;
         }
@@ -1885,7 +1872,7 @@ impl SCNetworkSet {
     /// Returns: TRUE if the new service order was saved; FALSE if an error was encountered.
     #[doc(alias = "SCNetworkSetSetServiceOrder")]
     #[inline]
-    pub unsafe fn set_service_order(self: &SCNetworkSet, new_order: &CFArray) -> bool {
+    pub unsafe fn set_service_order(&self, new_order: &CFArray) -> bool {
         extern "C-unwind" {
             fn SCNetworkSetSetServiceOrder(set: &SCNetworkSet, new_order: &CFArray) -> Boolean;
         }

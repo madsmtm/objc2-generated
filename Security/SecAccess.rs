@@ -283,7 +283,7 @@ impl SecAccess {
     #[deprecated = "CSSM is not supported"]
     #[inline]
     pub unsafe fn get_owner_and_acl(
-        self: &SecAccess,
+        &self,
         owner: NonNull<CSSM_ACL_OWNER_PROTOTYPE_PTR>,
         acl_count: NonNull<uint32>,
         acls: NonNull<CSSM_ACL_ENTRY_INFO_PTR>,
@@ -317,7 +317,7 @@ impl SecAccess {
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn copy_owner_and_acl(
-        self: &SecAccess,
+        &self,
         user_id: *mut libc::uid_t,
         group_id: *mut libc::gid_t,
         owner_type: *mut SecAccessOwnerType,
@@ -346,7 +346,7 @@ impl SecAccess {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn copy_acl_list(self: &SecAccess, acl_list: NonNull<*const CFArray>) -> OSStatus {
+    pub unsafe fn copy_acl_list(&self, acl_list: NonNull<*const CFArray>) -> OSStatus {
         extern "C-unwind" {
             fn SecAccessCopyACLList(
                 access_ref: &SecAccess,
@@ -372,7 +372,7 @@ impl SecAccess {
     #[deprecated = "CSSM is not supported"]
     #[inline]
     pub unsafe fn copy_selected_acl_list(
-        self: &SecAccess,
+        &self,
         action: CSSM_ACL_AUTHORIZATION_TAG,
         acl_list: NonNull<*const CFArray>,
     ) -> OSStatus {
@@ -398,7 +398,7 @@ impl SecAccess {
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn matching_acl_list(
-        self: &SecAccess,
+        &self,
         authorization_tag: &CFType,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {

@@ -175,10 +175,7 @@ impl LSSharedFileList {
     #[cfg(feature = "objc2-security")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn set_authorization(
-        self: &LSSharedFileList,
-        in_authorization: AuthorizationRef,
-    ) -> OSStatus {
+    pub unsafe fn set_authorization(&self, in_authorization: AuthorizationRef) -> OSStatus {
         extern "C-unwind" {
             fn LSSharedFileListSetAuthorization(
                 in_list: &LSSharedFileList,
@@ -216,7 +213,7 @@ impl LSSharedFileList {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn remove_observer(
-        self: &LSSharedFileList,
+        &self,
         in_runloop: &CFRunLoop,
         in_runloop_mode: &CFString,
         callback: LSSharedFileListChangedProcPtr,
@@ -239,7 +236,7 @@ impl LSSharedFileList {
     #[doc(alias = "LSSharedFileListGetSeedValue")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn seed_value(self: &LSSharedFileList) -> u32 {
+    pub unsafe fn seed_value(&self) -> u32 {
         extern "C-unwind" {
             fn LSSharedFileListGetSeedValue(in_list: &LSSharedFileList) -> u32;
         }
@@ -249,10 +246,7 @@ impl LSSharedFileList {
     #[doc(alias = "LSSharedFileListCopyProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn property(
-        self: &LSSharedFileList,
-        in_property_name: &CFString,
-    ) -> Option<CFRetained<CFType>> {
+    pub unsafe fn property(&self, in_property_name: &CFString) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn LSSharedFileListCopyProperty(
                 in_list: &LSSharedFileList,
@@ -267,7 +261,7 @@ impl LSSharedFileList {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn set_property(
-        self: &LSSharedFileList,
+        &self,
         in_property_name: &CFString,
         in_property_data: Option<&CFType>,
     ) -> OSStatus {
@@ -284,10 +278,7 @@ impl LSSharedFileList {
     #[doc(alias = "LSSharedFileListCopySnapshot")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn snapshot(
-        self: &LSSharedFileList,
-        out_snapshot_seed: *mut u32,
-    ) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn snapshot(&self, out_snapshot_seed: *mut u32) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn LSSharedFileListCopySnapshot(
                 in_list: &LSSharedFileList,
@@ -303,7 +294,7 @@ impl LSSharedFileList {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn insert_item_url(
-        self: &LSSharedFileList,
+        &self,
         insert_after_this_item: &LSSharedFileListItem,
         in_display_name: Option<&CFString>,
         in_icon_ref: IconRef,
@@ -346,7 +337,7 @@ impl LSSharedFileList {
     #[deprecated]
     #[inline]
     pub unsafe fn insert_item_fs_ref(
-        self: &LSSharedFileList,
+        &self,
         insert_after_this_item: &LSSharedFileListItem,
         in_display_name: Option<&CFString>,
         in_icon_ref: IconRef,
@@ -417,7 +408,7 @@ impl LSSharedFileList {
     #[doc(alias = "LSSharedFileListRemoveAllItems")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn remove_all_items(self: &LSSharedFileList) -> OSStatus {
+    pub unsafe fn remove_all_items(&self) -> OSStatus {
         extern "C-unwind" {
             fn LSSharedFileListRemoveAllItems(in_list: &LSSharedFileList) -> OSStatus;
         }
@@ -429,7 +420,7 @@ impl LSSharedFileListItem {
     #[doc(alias = "LSSharedFileListItemGetID")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn id(self: &LSSharedFileListItem) -> u32 {
+    pub unsafe fn id(&self) -> u32 {
         extern "C-unwind" {
             fn LSSharedFileListItemGetID(in_item: &LSSharedFileListItem) -> u32;
         }
@@ -440,7 +431,7 @@ impl LSSharedFileListItem {
     #[cfg(all(feature = "IconsCore", feature = "LaunchServices"))]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn copy_icon_ref(self: &LSSharedFileListItem) -> IconRef {
+    pub unsafe fn copy_icon_ref(&self) -> IconRef {
         extern "C-unwind" {
             fn LSSharedFileListItemCopyIconRef(in_item: &LSSharedFileListItem) -> IconRef;
         }
@@ -450,7 +441,7 @@ impl LSSharedFileListItem {
     #[doc(alias = "LSSharedFileListItemCopyDisplayName")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn display_name(self: &LSSharedFileListItem) -> CFRetained<CFString> {
+    pub unsafe fn display_name(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn LSSharedFileListItemCopyDisplayName(
                 in_item: &LSSharedFileListItem,
@@ -467,7 +458,7 @@ impl LSSharedFileListItem {
     #[deprecated]
     #[inline]
     pub unsafe fn resolve(
-        self: &LSSharedFileListItem,
+        &self,
         in_flags: LSSharedFileListResolutionFlags,
         out_url: *mut *const CFURL,
         out_ref: *mut FSRef,
@@ -487,7 +478,7 @@ impl LSSharedFileListItem {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn resolved_url(
-        self: &LSSharedFileListItem,
+        &self,
         in_flags: LSSharedFileListResolutionFlags,
         out_error: *mut *mut CFError,
     ) -> Option<CFRetained<CFURL>> {
@@ -505,10 +496,7 @@ impl LSSharedFileListItem {
     #[doc(alias = "LSSharedFileListItemCopyProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn property(
-        self: &LSSharedFileListItem,
-        in_property_name: &CFString,
-    ) -> Option<CFRetained<CFType>> {
+    pub unsafe fn property(&self, in_property_name: &CFString) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn LSSharedFileListItemCopyProperty(
                 in_item: &LSSharedFileListItem,
@@ -523,7 +511,7 @@ impl LSSharedFileListItem {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn set_property(
-        self: &LSSharedFileListItem,
+        &self,
         in_property_name: &CFString,
         in_property_data: &CFType,
     ) -> OSStatus {

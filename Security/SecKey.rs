@@ -423,7 +423,7 @@ impl SecKey {
     ))]
     #[deprecated]
     #[inline]
-    pub unsafe fn cssm_key(self: &SecKey, cssm_key: NonNull<*const CSSM_KEY>) -> OSStatus {
+    pub unsafe fn cssm_key(&self, cssm_key: NonNull<*const CSSM_KEY>) -> OSStatus {
         extern "C-unwind" {
             fn SecKeyGetCSSMKey(key: &SecKey, cssm_key: NonNull<*const CSSM_KEY>) -> OSStatus;
         }
@@ -443,7 +443,7 @@ impl SecKey {
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn csp_handle(self: &SecKey, csp_handle: NonNull<CSSM_CSP_HANDLE>) -> OSStatus {
+    pub unsafe fn csp_handle(&self, csp_handle: NonNull<CSSM_CSP_HANDLE>) -> OSStatus {
         extern "C-unwind" {
             fn SecKeyGetCSPHandle(
                 key_ref: &SecKey,
@@ -474,7 +474,7 @@ impl SecKey {
     #[deprecated]
     #[inline]
     pub unsafe fn credentials(
-        self: &SecKey,
+        &self,
         operation: CSSM_ACL_AUTHORIZATION_TAG,
         credential_type: SecCredentialType,
         out_credentials: NonNull<*const CSSM_ACCESS_CREDENTIALS>,
@@ -682,7 +682,7 @@ impl SecKey {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn wrap_symmetric(
-        self: &SecKey,
+        &self,
         wrapping_key: &SecKey,
         parameters: &CFDictionary,
         error: *mut *mut CFError,
@@ -918,7 +918,7 @@ impl SecKey {
     #[doc(alias = "SecKeyGetBlockSize")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn block_size(self: &SecKey) -> usize {
+    pub unsafe fn block_size(&self) -> usize {
         extern "C-unwind" {
             fn SecKeyGetBlockSize(key: &SecKey) -> usize;
         }
@@ -942,7 +942,7 @@ impl SecKey {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn external_representation(
-        self: &SecKey,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
@@ -977,7 +977,7 @@ impl SecKey {
     #[doc(alias = "SecKeyCopyAttributes")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn attributes(self: &SecKey) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn attributes(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SecKeyCopyAttributes(key: &SecKey) -> Option<NonNull<CFDictionary>>;
         }
@@ -995,7 +995,7 @@ impl SecKey {
     #[doc(alias = "SecKeyCopyPublicKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn public_key(self: &SecKey) -> Option<CFRetained<SecKey>> {
+    pub unsafe fn public_key(&self) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecKeyCopyPublicKey(key: &SecKey) -> Option<NonNull<SecKey>>;
         }
@@ -1901,7 +1901,7 @@ impl SecKey {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn signature(
-        self: &SecKey,
+        &self,
         algorithm: &SecKeyAlgorithm,
         data_to_sign: &CFData,
         error: *mut *mut CFError,
@@ -1939,7 +1939,7 @@ impl SecKey {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn verify_signature(
-        self: &SecKey,
+        &self,
         algorithm: &SecKeyAlgorithm,
         signed_data: &CFData,
         signature: &CFData,
@@ -1978,7 +1978,7 @@ impl SecKey {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn encrypted_data(
-        self: &SecKey,
+        &self,
         algorithm: &SecKeyAlgorithm,
         plaintext: &CFData,
         error: *mut *mut CFError,
@@ -2015,7 +2015,7 @@ impl SecKey {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn decrypted_data(
-        self: &SecKey,
+        &self,
         algorithm: &SecKeyAlgorithm,
         ciphertext: &CFData,
         error: *mut *mut CFError,
@@ -2068,7 +2068,7 @@ impl SecKey {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn key_exchange_result(
-        self: &SecKey,
+        &self,
         algorithm: &SecKeyAlgorithm,
         public_key: &SecKey,
         parameters: &CFDictionary,
@@ -2149,7 +2149,7 @@ impl SecKey {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn is_algorithm_supported(
-        self: &SecKey,
+        &self,
         operation: SecKeyOperationType,
         algorithm: &SecKeyAlgorithm,
     ) -> bool {

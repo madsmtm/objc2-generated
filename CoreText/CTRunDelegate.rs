@@ -200,7 +200,7 @@ impl CTRunDelegate {
     /// Returns: The refCon value of the supplied run delegate.
     #[doc(alias = "CTRunDelegateGetRefCon")]
     #[inline]
-    pub unsafe fn ref_con(self: &CTRunDelegate) -> NonNull<c_void> {
+    pub unsafe fn ref_con(&self) -> NonNull<c_void> {
         extern "C-unwind" {
             fn CTRunDelegateGetRefCon(run_delegate: &CTRunDelegate) -> Option<NonNull<c_void>>;
         }

@@ -136,7 +136,7 @@ impl CVMetalBufferCache {
     #[doc(alias = "CVMetalBufferCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]
-    pub unsafe fn flush(self: &CVMetalBufferCache, options: CVOptionFlags) {
+    pub unsafe fn flush(&self, options: CVOptionFlags) {
         extern "C-unwind" {
             fn CVMetalBufferCacheFlush(buffer_cache: &CVMetalBufferCache, options: CVOptionFlags);
         }

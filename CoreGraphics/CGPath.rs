@@ -729,7 +729,7 @@ impl CGPath {
     #[doc(alias = "CGPathApplyWithBlock")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn apply_with_block(self: &CGPath, block: CGPathApplyBlock) {
+    pub unsafe fn apply_with_block(&self, block: CGPathApplyBlock) {
         extern "C-unwind" {
             fn CGPathApplyWithBlock(path: &CGPath, block: CGPathApplyBlock);
         }

@@ -383,7 +383,7 @@ impl MTAudioProcessingTap {
     /// Returns: The tapStorage returned by the init callback.
     #[doc(alias = "MTAudioProcessingTapGetStorage")]
     #[inline]
-    pub unsafe fn storage(self: &MTAudioProcessingTap) -> NonNull<c_void> {
+    pub unsafe fn storage(&self) -> NonNull<c_void> {
         extern "C-unwind" {
             fn MTAudioProcessingTapGetStorage(
                 tap: &MTAudioProcessingTap,
@@ -423,7 +423,7 @@ impl MTAudioProcessingTap {
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
     #[inline]
     pub unsafe fn source_audio(
-        self: &MTAudioProcessingTap,
+        &self,
         number_frames: CMItemCount,
         buffer_list_in_out: NonNull<AudioBufferList>,
         flags_out: *mut MTAudioProcessingTapFlags,

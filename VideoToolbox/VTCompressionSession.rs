@@ -170,7 +170,7 @@ impl VTCompressionSession {
     /// Calling VTCompressionSessionInvalidate ensures a deterministic, orderly teardown.
     #[doc(alias = "VTCompressionSessionInvalidate")]
     #[inline]
-    pub unsafe fn invalidate(self: &VTCompressionSession) {
+    pub unsafe fn invalidate(&self) {
         extern "C-unwind" {
             fn VTCompressionSessionInvalidate(session: &VTCompressionSession);
         }
@@ -210,9 +210,7 @@ impl VTCompressionSession {
     #[doc(alias = "VTCompressionSessionGetPixelBufferPool")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
-    pub unsafe fn pixel_buffer_pool(
-        self: &VTCompressionSession,
-    ) -> Option<CFRetained<CVPixelBufferPool>> {
+    pub unsafe fn pixel_buffer_pool(&self) -> Option<CFRetained<CVPixelBufferPool>> {
         extern "C-unwind" {
             fn VTCompressionSessionGetPixelBufferPool(
                 session: &VTCompressionSession,
@@ -233,7 +231,7 @@ impl VTCompressionSession {
     /// Parameter `session`: The compression session.
     #[doc(alias = "VTCompressionSessionPrepareToEncodeFrames")]
     #[inline]
-    pub unsafe fn prepare_to_encode_frames(self: &VTCompressionSession) -> OSStatus {
+    pub unsafe fn prepare_to_encode_frames(&self) -> OSStatus {
         extern "C-unwind" {
             fn VTCompressionSessionPrepareToEncodeFrames(
                 session: &VTCompressionSession,
@@ -278,7 +276,7 @@ impl VTCompressionSession {
     ))]
     #[inline]
     pub unsafe fn encode_frame(
-        self: &VTCompressionSession,
+        &self,
         image_buffer: &CVImageBuffer,
         presentation_time_stamp: CMTime,
         duration: CMTime,
@@ -371,7 +369,7 @@ impl VTCompressionSession {
     ))]
     #[inline]
     pub unsafe fn encode_frame_with_output_handler(
-        self: &VTCompressionSession,
+        &self,
         image_buffer: &CVImageBuffer,
         presentation_time_stamp: CMTime,
         duration: CMTime,
@@ -413,7 +411,7 @@ impl VTCompressionSession {
     #[cfg(feature = "objc2-core-media")]
     #[inline]
     pub unsafe fn complete_frames(
-        self: &VTCompressionSession,
+        &self,
         complete_until_presentation_time_stamp: CMTime,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -470,7 +468,7 @@ impl VTCompressionSession {
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
     pub unsafe fn encode_multi_image_frame(
-        self: &VTCompressionSession,
+        &self,
         tagged_buffer_group: &CMTaggedBufferGroup,
         presentation_time_stamp: CMTime,
         duration: CMTime,
@@ -535,7 +533,7 @@ impl VTCompressionSession {
     #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
     #[inline]
     pub unsafe fn encode_multi_image_frame_with_output_handler(
-        self: &VTCompressionSession,
+        &self,
         tagged_buffer_group: &CMTaggedBufferGroup,
         presentation_time_stamp: CMTime,
         duration: CMTime,
@@ -600,7 +598,7 @@ impl VTCompressionSession {
     #[doc(alias = "VTCompressionSessionBeginPass")]
     #[inline]
     pub unsafe fn begin_pass(
-        self: &VTCompressionSession,
+        &self,
         begin_pass_flags: VTCompressionSessionOptionFlags,
         reserved: *mut u32,
     ) -> OSStatus {
@@ -625,7 +623,7 @@ impl VTCompressionSession {
     #[doc(alias = "VTCompressionSessionEndPass")]
     #[inline]
     pub unsafe fn end_pass(
-        self: &VTCompressionSession,
+        &self,
         further_passes_requested_out: *mut Boolean,
         reserved: *mut u32,
     ) -> OSStatus {
@@ -654,7 +652,7 @@ impl VTCompressionSession {
     #[cfg(feature = "objc2-core-media")]
     #[inline]
     pub unsafe fn time_ranges_for_next_pass(
-        self: &VTCompressionSession,
+        &self,
         time_range_count_out: NonNull<CMItemCount>,
         time_range_array_out: NonNull<*const CMTimeRange>,
     ) -> OSStatus {

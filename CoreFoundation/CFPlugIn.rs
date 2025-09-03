@@ -81,7 +81,7 @@ impl CFPlugIn {
     #[doc(alias = "CFPlugInGetBundle")]
     #[cfg(feature = "CFBundle")]
     #[inline]
-    pub fn bundle(self: &CFPlugIn) -> Option<CFRetained<CFBundle>> {
+    pub fn bundle(&self) -> Option<CFRetained<CFBundle>> {
         extern "C-unwind" {
             fn CFPlugInGetBundle(plug_in: &CFPlugIn) -> Option<NonNull<CFBundle>>;
         }
@@ -92,7 +92,7 @@ impl CFPlugIn {
     #[doc(alias = "CFPlugInSetLoadOnDemand")]
     #[cfg(feature = "CFBundle")]
     #[inline]
-    pub fn set_load_on_demand(self: &CFPlugIn, flag: bool) {
+    pub fn set_load_on_demand(&self, flag: bool) {
         extern "C-unwind" {
             fn CFPlugInSetLoadOnDemand(plug_in: &CFPlugIn, flag: Boolean);
         }
@@ -102,7 +102,7 @@ impl CFPlugIn {
     #[doc(alias = "CFPlugInIsLoadOnDemand")]
     #[cfg(feature = "CFBundle")]
     #[inline]
-    pub fn is_load_on_demand(self: &CFPlugIn) -> bool {
+    pub fn is_load_on_demand(&self) -> bool {
         extern "C-unwind" {
             fn CFPlugInIsLoadOnDemand(plug_in: &CFPlugIn) -> Boolean;
         }
@@ -300,7 +300,7 @@ impl CFPlugInInstance {
     #[doc(alias = "CFPlugInInstanceGetInterfaceFunctionTable")]
     #[inline]
     pub unsafe fn interface_function_table(
-        self: &CFPlugInInstance,
+        &self,
         interface_name: Option<&CFString>,
         ftbl: *mut *mut c_void,
     ) -> bool {
@@ -317,7 +317,7 @@ impl CFPlugInInstance {
 
     #[doc(alias = "CFPlugInInstanceGetFactoryName")]
     #[inline]
-    pub fn factory_name(self: &CFPlugInInstance) -> Option<CFRetained<CFString>> {
+    pub fn factory_name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFPlugInInstanceGetFactoryName(
                 instance: &CFPlugInInstance,
@@ -329,7 +329,7 @@ impl CFPlugInInstance {
 
     #[doc(alias = "CFPlugInInstanceGetInstanceData")]
     #[inline]
-    pub fn instance_data(self: &CFPlugInInstance) -> *mut c_void {
+    pub fn instance_data(&self) -> *mut c_void {
         extern "C-unwind" {
             fn CFPlugInInstanceGetInstanceData(instance: &CFPlugInInstance) -> *mut c_void;
         }

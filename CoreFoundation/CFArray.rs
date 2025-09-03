@@ -408,7 +408,7 @@ impl CFArray {
     /// Returns: The number of values in the array.
     #[doc(alias = "CFArrayGetCount")]
     #[inline]
-    pub fn count(self: &CFArray) -> CFIndex {
+    pub fn count(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFArrayGetCount(the_array: &CFArray) -> CFIndex;
         }
@@ -438,7 +438,7 @@ impl CFArray {
     /// within the specified range.
     #[doc(alias = "CFArrayGetCountOfValue")]
     #[inline]
-    pub unsafe fn count_of_value(self: &CFArray, range: CFRange, value: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFArrayGetCountOfValue(
                 the_array: &CFArray,
@@ -472,7 +472,7 @@ impl CFArray {
     /// otherwise false.
     #[doc(alias = "CFArrayContainsValue")]
     #[inline]
-    pub unsafe fn contains_value(self: &CFArray, range: CFRange, value: *const c_void) -> bool {
+    pub unsafe fn contains_value(&self, range: CFRange, value: *const c_void) -> bool {
         extern "C-unwind" {
             fn CFArrayContainsValue(
                 the_array: &CFArray,
@@ -497,7 +497,7 @@ impl CFArray {
     /// Returns: The value with the given index in the array.
     #[doc(alias = "CFArrayGetValueAtIndex")]
     #[inline]
-    pub unsafe fn value_at_index(self: &CFArray, idx: CFIndex) -> *const c_void {
+    pub unsafe fn value_at_index(&self, idx: CFIndex) -> *const c_void {
         extern "C-unwind" {
             fn CFArrayGetValueAtIndex(the_array: &CFArray, idx: CFIndex) -> *const c_void;
         }
@@ -524,7 +524,7 @@ impl CFArray {
     /// range.length pointers, the behavior is undefined.
     #[doc(alias = "CFArrayGetValues")]
     #[inline]
-    pub unsafe fn values(self: &CFArray, range: CFRange, values: *mut *const c_void) {
+    pub unsafe fn values(&self, range: CFRange, values: *mut *const c_void) {
         extern "C-unwind" {
             fn CFArrayGetValues(the_array: &CFArray, range: CFRange, values: *mut *const c_void);
         }
@@ -559,7 +559,7 @@ impl CFArray {
     #[doc(alias = "CFArrayApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
-        self: &CFArray,
+        &self,
         range: CFRange,
         applier: CFArrayApplierFunction,
         context: *mut c_void,
@@ -600,11 +600,7 @@ impl CFArray {
     /// kCFNotFound if no value in the range matched.
     #[doc(alias = "CFArrayGetFirstIndexOfValue")]
     #[inline]
-    pub unsafe fn first_index_of_value(
-        self: &CFArray,
-        range: CFRange,
-        value: *const c_void,
-    ) -> CFIndex {
+    pub unsafe fn first_index_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFArrayGetFirstIndexOfValue(
                 the_array: &CFArray,
@@ -640,11 +636,7 @@ impl CFArray {
     /// kCFNotFound if no value in the range matched.
     #[doc(alias = "CFArrayGetLastIndexOfValue")]
     #[inline]
-    pub unsafe fn last_index_of_value(
-        self: &CFArray,
-        range: CFRange,
-        value: *const c_void,
-    ) -> CFIndex {
+    pub unsafe fn last_index_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFArrayGetLastIndexOfValue(
                 the_array: &CFArray,
@@ -697,7 +689,7 @@ impl CFArray {
     #[doc(alias = "CFArrayBSearchValues")]
     #[inline]
     pub unsafe fn b_search_values(
-        self: &CFArray,
+        &self,
         range: CFRange,
         value: *const c_void,
         comparator: CFComparatorFunction,

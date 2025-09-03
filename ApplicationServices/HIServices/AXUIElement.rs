@@ -218,10 +218,7 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementCopyAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn copy_attribute_names(
-        self: &AXUIElement,
-        names: NonNull<*const CFArray>,
-    ) -> AXError {
+    pub unsafe fn copy_attribute_names(&self, names: NonNull<*const CFArray>) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyAttributeNames(
                 element: &AXUIElement,
@@ -300,7 +297,7 @@ impl AXUIElement {
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn copy_attribute_value(
-        self: &AXUIElement,
+        &self,
         attribute: &CFString,
         value: NonNull<*const CFType>,
     ) -> AXError {
@@ -375,7 +372,7 @@ impl AXUIElement {
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn attribute_value_count(
-        self: &AXUIElement,
+        &self,
         attribute: &CFString,
         count: NonNull<CFIndex>,
     ) -> AXError {
@@ -476,7 +473,7 @@ impl AXUIElement {
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn copy_attribute_values(
-        self: &AXUIElement,
+        &self,
         attribute: &CFString,
         index: CFIndex,
         max_values: CFIndex,
@@ -569,7 +566,7 @@ impl AXUIElement {
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn is_attribute_settable(
-        self: &AXUIElement,
+        &self,
         attribute: &CFString,
         settable: NonNull<Boolean>,
     ) -> AXError {
@@ -646,11 +643,7 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementSetAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn set_attribute_value(
-        self: &AXUIElement,
-        attribute: &CFString,
-        value: &CFType,
-    ) -> AXError {
+    pub unsafe fn set_attribute_value(&self, attribute: &CFString, value: &CFType) -> AXError {
         extern "C-unwind" {
             fn AXUIElementSetAttributeValue(
                 element: &AXUIElement,
@@ -753,7 +746,7 @@ impl AXUIElement {
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn copy_multiple_attribute_values(
-        self: &AXUIElement,
+        &self,
         attributes: &CFArray,
         options: AXCopyMultipleAttributeOptions,
         values: NonNull<*const CFArray>,
@@ -840,7 +833,7 @@ impl AXUIElement {
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn copy_parameterized_attribute_names(
-        self: &AXUIElement,
+        &self,
         names: NonNull<*const CFArray>,
     ) -> AXError {
         extern "C-unwind" {
@@ -927,7 +920,7 @@ impl AXUIElement {
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn copy_parameterized_attribute_value(
-        self: &AXUIElement,
+        &self,
         parameterized_attribute: &CFString,
         parameter: &CFType,
         result: NonNull<*const CFType>,
@@ -1007,7 +1000,7 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementCopyActionNames")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn copy_action_names(self: &AXUIElement, names: NonNull<*const CFArray>) -> AXError {
+    pub unsafe fn copy_action_names(&self, names: NonNull<*const CFArray>) -> AXError {
         extern "C-unwind" {
             fn AXUIElementCopyActionNames(
                 element: &AXUIElement,
@@ -1078,7 +1071,7 @@ impl AXUIElement {
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn copy_action_description(
-        self: &AXUIElement,
+        &self,
         action: &CFString,
         description: NonNull<*const CFString>,
     ) -> AXError {
@@ -1164,7 +1157,7 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementPerformAction")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn perform_action(self: &AXUIElement, action: &CFString) -> AXError {
+    pub unsafe fn perform_action(&self, action: &CFString) -> AXError {
         extern "C-unwind" {
             fn AXUIElementPerformAction(element: &AXUIElement, action: &CFString) -> AXError;
         }
@@ -1243,7 +1236,7 @@ impl AXUIElement {
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn copy_element_at_position(
-        self: &AXUIElement,
+        &self,
         x: c_float,
         y: c_float,
         element: NonNull<*const AXUIElement>,
@@ -1330,7 +1323,7 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementGetPid")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
-    pub unsafe fn pid(self: &AXUIElement, pid: NonNull<libc::pid_t>) -> AXError {
+    pub unsafe fn pid(&self, pid: NonNull<libc::pid_t>) -> AXError {
         extern "C-unwind" {
             fn AXUIElementGetPid(element: &AXUIElement, pid: NonNull<libc::pid_t>) -> AXError;
         }
@@ -1390,10 +1383,7 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementSetMessagingTimeout")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn set_messaging_timeout(
-        self: &AXUIElement,
-        timeout_in_seconds: c_float,
-    ) -> AXError {
+    pub unsafe fn set_messaging_timeout(&self, timeout_in_seconds: c_float) -> AXError {
         extern "C-unwind" {
             fn AXUIElementSetMessagingTimeout(
                 element: &AXUIElement,
@@ -1480,7 +1470,7 @@ impl AXUIElement {
     #[deprecated]
     #[inline]
     pub unsafe fn post_keyboard_event(
-        self: &AXUIElement,
+        &self,
         key_char: CGCharCode,
         virtual_key: CGKeyCode,
         key_down: bool,
@@ -1577,7 +1567,7 @@ impl AXTextMarker {
     /// Returns: The length of the data
     #[doc(alias = "AXTextMarkerGetLength")]
     #[inline]
-    pub unsafe fn length(self: &AXTextMarker) -> CFIndex {
+    pub unsafe fn length(&self) -> CFIndex {
         extern "C-unwind" {
             fn AXTextMarkerGetLength(marker: &AXTextMarker) -> CFIndex;
         }
@@ -1593,7 +1583,7 @@ impl AXTextMarker {
     /// Returns: a pointer to the byte data used to identify this location in text.
     #[doc(alias = "AXTextMarkerGetBytePtr")]
     #[inline]
-    pub unsafe fn byte_ptr(self: &AXTextMarker) -> NonNull<u8> {
+    pub unsafe fn byte_ptr(&self) -> NonNull<u8> {
         extern "C-unwind" {
             fn AXTextMarkerGetBytePtr(the_text_marker: &AXTextMarker) -> Option<NonNull<u8>>;
         }
@@ -1730,7 +1720,7 @@ impl AXTextMarkerRange {
     /// Returns: The start text marker object
     #[doc(alias = "AXTextMarkerRangeCopyStartMarker")]
     #[inline]
-    pub unsafe fn start_marker(self: &AXTextMarkerRange) -> CFRetained<AXTextMarker> {
+    pub unsafe fn start_marker(&self) -> CFRetained<AXTextMarker> {
         extern "C-unwind" {
             fn AXTextMarkerRangeCopyStartMarker(
                 text_marker_range: &AXTextMarkerRange,
@@ -1751,7 +1741,7 @@ impl AXTextMarkerRange {
     /// Returns: The end text marker object
     #[doc(alias = "AXTextMarkerRangeCopyEndMarker")]
     #[inline]
-    pub unsafe fn end_marker(self: &AXTextMarkerRange) -> CFRetained<AXTextMarker> {
+    pub unsafe fn end_marker(&self) -> CFRetained<AXTextMarker> {
         extern "C-unwind" {
             fn AXTextMarkerRangeCopyEndMarker(
                 text_marker_range: &AXTextMarkerRange,
@@ -2043,7 +2033,7 @@ impl AXObserver {
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn add_notification(
-        self: &AXObserver,
+        &self,
         element: &AXUIElement,
         notification: &CFString,
         refcon: *mut c_void,
@@ -2134,7 +2124,7 @@ impl AXObserver {
     #[cfg(feature = "AXError")]
     #[inline]
     pub unsafe fn remove_notification(
-        self: &AXObserver,
+        &self,
         element: &AXUIElement,
         notification: &CFString,
     ) -> AXError {
@@ -2184,7 +2174,7 @@ impl AXObserver {
     /// .
     #[doc(alias = "AXObserverGetRunLoopSource")]
     #[inline]
-    pub unsafe fn run_loop_source(self: &AXObserver) -> CFRetained<CFRunLoopSource> {
+    pub unsafe fn run_loop_source(&self) -> CFRetained<CFRunLoopSource> {
         extern "C-unwind" {
             fn AXObserverGetRunLoopSource(
                 observer: &AXObserver,

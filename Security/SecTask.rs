@@ -78,7 +78,7 @@ impl SecTask {
     #[doc(alias = "SecTaskCopyValueForEntitlement")]
     #[inline]
     pub unsafe fn value_for_entitlement(
-        self: &SecTask,
+        &self,
         entitlement: &CFString,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFType>> {
@@ -108,7 +108,7 @@ impl SecTask {
     #[doc(alias = "SecTaskCopyValuesForEntitlements")]
     #[inline]
     pub unsafe fn values_for_entitlements(
-        self: &SecTask,
+        &self,
         entitlements: &CFArray,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFDictionary>> {
@@ -133,7 +133,7 @@ impl SecTask {
     #[doc(alias = "SecTaskCopySigningIdentifier")]
     #[inline]
     pub unsafe fn signing_identifier(
-        self: &SecTask,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
@@ -151,7 +151,7 @@ impl SecTask {
     /// Parameter `task`: A previously created SecTask object
     #[doc(alias = "SecTaskGetCodeSignStatus")]
     #[inline]
-    pub unsafe fn code_sign_status(self: &SecTask) -> u32 {
+    pub unsafe fn code_sign_status(&self) -> u32 {
         extern "C-unwind" {
             fn SecTaskGetCodeSignStatus(task: &SecTask) -> u32;
         }

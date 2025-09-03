@@ -334,7 +334,7 @@ impl IOBluetoothUserNotificationRef {
     /// Parameter `notificationRef`: The target IOBluetoothUserNotificationRef to be unregistered
     #[doc(alias = "IOBluetoothUserNotificationUnregister")]
     #[inline]
-    pub unsafe fn unregister(self: &IOBluetoothUserNotificationRef) {
+    pub unsafe fn unregister(&self) {
         extern "C-unwind" {
             fn IOBluetoothUserNotificationUnregister(
                 notification_ref: &IOBluetoothUserNotificationRef,
@@ -365,7 +365,7 @@ impl IOBluetoothL2CAPChannelRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn register_for_channel_close_notification(
-        self: &IOBluetoothL2CAPChannelRef,
+        &self,
         callback: IOBluetoothUserNotificationCallback,
         in_ref_con: *mut c_void,
     ) -> Option<CFRetained<IOBluetoothUserNotificationRef>> {

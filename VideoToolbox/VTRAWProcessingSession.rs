@@ -101,7 +101,7 @@ impl VTRAWProcessingSession {
     /// Calling VTRAWProcessingSessionInvalidate ensures a deterministic, orderly teardown.
     #[doc(alias = "VTRAWProcessingSessionInvalidate")]
     #[inline]
-    pub unsafe fn invalidate(self: &VTRAWProcessingSession) {
+    pub unsafe fn invalidate(&self) {
         extern "C-unwind" {
             fn VTRAWProcessingSessionInvalidate(session: &VTRAWProcessingSession);
         }
@@ -136,7 +136,7 @@ impl VTRAWProcessingSession {
     #[cfg(feature = "block2")]
     #[inline]
     pub unsafe fn set_parameter_changed_hander(
-        self: &VTRAWProcessingSession,
+        &self,
         parameter_change_handler: VTRAWProcessingParameterChangeHandler,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -185,7 +185,7 @@ impl VTRAWProcessingSession {
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
     #[inline]
     pub unsafe fn process_frame(
-        self: &VTRAWProcessingSession,
+        &self,
         input_pixel_buffer: &CVPixelBuffer,
         frame_options: Option<&CFDictionary>,
         output_handler: VTRAWProcessingOutputHandler,
@@ -216,7 +216,7 @@ impl VTRAWProcessingSession {
     /// Parameter `session`: The RAW processing session.
     #[doc(alias = "VTRAWProcessingSessionCompleteFrames")]
     #[inline]
-    pub unsafe fn complete_frames(self: &VTRAWProcessingSession) -> OSStatus {
+    pub unsafe fn complete_frames(&self) -> OSStatus {
         extern "C-unwind" {
             fn VTRAWProcessingSessionCompleteFrames(session: &VTRAWProcessingSession) -> OSStatus;
         }
@@ -238,7 +238,7 @@ impl VTRAWProcessingSession {
     #[doc(alias = "VTRAWProcessingSessionCopyProcessingParameters")]
     #[inline]
     pub unsafe fn copy_processing_parameters(
-        self: &VTRAWProcessingSession,
+        &self,
         out_parameter_array: NonNull<*const CFArray>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -272,7 +272,7 @@ impl VTRAWProcessingSession {
     #[doc(alias = "VTRAWProcessingSessionSetProcessingParameters")]
     #[inline]
     pub unsafe fn set_processing_parameters(
-        self: &VTRAWProcessingSession,
+        &self,
         processing_parameters: &CFDictionary,
     ) -> OSStatus {
         extern "C-unwind" {

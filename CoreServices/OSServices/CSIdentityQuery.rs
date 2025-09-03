@@ -169,7 +169,7 @@ impl CSIdentityQuery {
     #[doc(alias = "CSIdentityQueryCopyResults")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    pub unsafe fn results(self: &CSIdentityQuery) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn results(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CSIdentityQueryCopyResults(query: &CSIdentityQuery) -> Option<NonNull<CFArray>>;
         }
@@ -180,11 +180,7 @@ impl CSIdentityQuery {
     #[doc(alias = "CSIdentityQueryExecute")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    pub unsafe fn execute(
-        self: &CSIdentityQuery,
-        flags: CSIdentityQueryFlags,
-        error: *mut *mut CFError,
-    ) -> bool {
+    pub unsafe fn execute(&self, flags: CSIdentityQueryFlags, error: *mut *mut CFError) -> bool {
         extern "C-unwind" {
             fn CSIdentityQueryExecute(
                 query: &CSIdentityQuery,
@@ -263,7 +259,7 @@ impl CSIdentityQuery {
     #[cfg(feature = "CSIdentity")]
     #[inline]
     pub unsafe fn execute_asynchronously(
-        self: &CSIdentityQuery,
+        &self,
         flags: CSIdentityQueryFlags,
         client_context: *const CSIdentityQueryClientContext,
         run_loop: Option<&CFRunLoop>,
@@ -293,7 +289,7 @@ impl CSIdentityQuery {
     #[doc(alias = "CSIdentityQueryStop")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    pub unsafe fn stop(self: &CSIdentityQuery) {
+    pub unsafe fn stop(&self) {
         extern "C-unwind" {
             fn CSIdentityQueryStop(query: &CSIdentityQuery);
         }

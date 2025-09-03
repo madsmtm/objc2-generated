@@ -979,7 +979,7 @@ impl MLCActivationType {
     /// Returns a textual description of the activation type, suitable for debugging.
     #[doc(alias = "MLCActivationTypeDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCActivationType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCActivationTypeDebugDescription(
                 activation_type: MLCActivationType,
@@ -995,7 +995,7 @@ impl MLCArithmeticOperation {
     /// Returns a textual description of the arithmetic operation, suitable for debugging.
     #[doc(alias = "MLCArithmeticOperationDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCArithmeticOperation) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCArithmeticOperationDebugDescription(
                 operation: MLCArithmeticOperation,
@@ -1011,7 +1011,7 @@ impl MLCPaddingPolicy {
     /// Returns a textual description of the padding policy, suitable for debugging.
     #[doc(alias = "MLCPaddingPolicyDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCPaddingPolicy) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCPaddingPolicyDebugDescription(padding_policy: MLCPaddingPolicy) -> *mut NSString;
         }
@@ -1025,7 +1025,7 @@ impl MLCLossType {
     /// Returns a textual description of the loss type, suitable for debugging.
     #[doc(alias = "MLCLossTypeDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCLossType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCLossTypeDebugDescription(loss_type: MLCLossType) -> *mut NSString;
         }
@@ -1039,7 +1039,7 @@ impl MLCReductionType {
     /// Returns a textual description of the reduction type, suitable for debugging.
     #[doc(alias = "MLCReductionTypeDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCReductionType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCReductionTypeDebugDescription(reduction_type: MLCReductionType) -> *mut NSString;
         }
@@ -1053,7 +1053,7 @@ impl MLCPaddingType {
     /// Returns a textual description of the padding type, suitable for debugging.
     #[doc(alias = "MLCPaddingTypeDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCPaddingType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCPaddingTypeDebugDescription(padding_type: MLCPaddingType) -> *mut NSString;
         }
@@ -1067,7 +1067,7 @@ impl MLCConvolutionType {
     /// Returns a textual description of the convolution type, suitable for debugging.
     #[doc(alias = "MLCConvolutionTypeDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCConvolutionType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCConvolutionTypeDebugDescription(
                 convolution_type: MLCConvolutionType,
@@ -1083,7 +1083,7 @@ impl MLCPoolingType {
     /// Returns a textual description of the pooling type, suitable for debugging.
     #[doc(alias = "MLCPoolingTypeDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCPoolingType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCPoolingTypeDebugDescription(pooling_type: MLCPoolingType) -> *mut NSString;
         }
@@ -1097,7 +1097,7 @@ impl MLCSoftmaxOperation {
     /// Returns a textual description of the softmax operation, suitable for debugging.
     #[doc(alias = "MLCSoftmaxOperationDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCSoftmaxOperation) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCSoftmaxOperationDebugDescription(operation: MLCSoftmaxOperation)
                 -> *mut NSString;
@@ -1112,7 +1112,7 @@ impl MLCSampleMode {
     /// Returns a textual description of the sample mode, suitable for debugging.
     #[doc(alias = "MLCSampleModeDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCSampleMode) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCSampleModeDebugDescription(mode: MLCSampleMode) -> *mut NSString;
         }
@@ -1126,7 +1126,7 @@ impl MLCLSTMResultMode {
     /// Returns a textual description of the LSTM result mode, suitable for debugging.
     #[doc(alias = "MLCLSTMResultModeDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCLSTMResultMode) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCLSTMResultModeDebugDescription(mode: MLCLSTMResultMode) -> *mut NSString;
         }
@@ -1140,7 +1140,7 @@ impl MLCComparisonOperation {
     /// Returns a textual description of the comparison operation, suitable for debugging.
     #[doc(alias = "MLCComparisonOperationDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCComparisonOperation) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCComparisonOperationDebugDescription(
                 operation: MLCComparisonOperation,
@@ -1156,7 +1156,7 @@ impl MLCGradientClippingType {
     /// Returns a textual description of the gradient clipping type, suitable for debugging.
     #[doc(alias = "MLCGradientClippingTypeDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(self: MLCGradientClippingType) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn MLCGradientClippingTypeDebugDescription(
                 gradient_clipping_type: MLCGradientClippingType,

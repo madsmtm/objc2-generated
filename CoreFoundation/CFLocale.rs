@@ -338,7 +338,7 @@ impl CFLocale {
 
     #[doc(alias = "CFLocaleGetIdentifier")]
     #[inline]
-    pub fn identifier(self: &CFLocale) -> Option<CFRetained<CFLocaleIdentifier>> {
+    pub fn identifier(&self) -> Option<CFRetained<CFLocaleIdentifier>> {
         extern "C-unwind" {
             fn CFLocaleGetIdentifier(locale: &CFLocale) -> Option<NonNull<CFLocaleIdentifier>>;
         }
@@ -348,7 +348,7 @@ impl CFLocale {
 
     #[doc(alias = "CFLocaleGetValue")]
     #[inline]
-    pub fn value(self: &CFLocale, key: Option<&CFLocaleKey>) -> Option<CFRetained<CFType>> {
+    pub fn value(&self, key: Option<&CFLocaleKey>) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFLocaleGetValue(
                 locale: &CFLocale,
@@ -362,7 +362,7 @@ impl CFLocale {
     #[doc(alias = "CFLocaleCopyDisplayNameForPropertyValue")]
     #[inline]
     pub fn display_name_for_property_value(
-        self: &CFLocale,
+        &self,
         key: Option<&CFLocaleKey>,
         value: Option<&CFString>,
     ) -> Option<CFRetained<CFString>> {

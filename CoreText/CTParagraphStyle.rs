@@ -509,7 +509,7 @@ impl CTParagraphStyle {
     /// "paragraphStyle".
     #[doc(alias = "CTParagraphStyleCreateCopy")]
     #[inline]
-    pub unsafe fn copy(self: &CTParagraphStyle) -> CFRetained<CTParagraphStyle> {
+    pub unsafe fn copy(&self) -> CFRetained<CTParagraphStyle> {
         extern "C-unwind" {
             fn CTParagraphStyleCreateCopy(
                 paragraph_style: &CTParagraphStyle,
@@ -557,7 +557,7 @@ impl CTParagraphStyle {
     #[doc(alias = "CTParagraphStyleGetValueForSpecifier")]
     #[inline]
     pub unsafe fn value_for_specifier(
-        self: &CTParagraphStyle,
+        &self,
         spec: CTParagraphStyleSpecifier,
         value_buffer_size: usize,
         value_buffer: NonNull<c_void>,

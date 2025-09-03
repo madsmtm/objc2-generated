@@ -49,7 +49,7 @@ impl ColorSyncCMM {
 
     #[doc(alias = "ColorSyncCMMGetBundle")]
     #[inline]
-    pub unsafe fn bundle(self: &ColorSyncCMM) -> Option<CFRetained<CFBundle>> {
+    pub unsafe fn bundle(&self) -> Option<CFRetained<CFBundle>> {
         extern "C-unwind" {
             fn ColorSyncCMMGetBundle(param1: &ColorSyncCMM) -> Option<NonNull<CFBundle>>;
         }
@@ -59,7 +59,7 @@ impl ColorSyncCMM {
 
     #[doc(alias = "ColorSyncCMMCopyLocalizedName")]
     #[inline]
-    pub unsafe fn localized_name(self: &ColorSyncCMM) -> Option<CFRetained<CFString>> {
+    pub unsafe fn localized_name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn ColorSyncCMMCopyLocalizedName(param1: &ColorSyncCMM) -> Option<NonNull<CFString>>;
         }
@@ -69,7 +69,7 @@ impl ColorSyncCMM {
 
     #[doc(alias = "ColorSyncCMMCopyCMMIdentifier")]
     #[inline]
-    pub unsafe fn cmm_identifier(self: &ColorSyncCMM) -> Option<CFRetained<CFString>> {
+    pub unsafe fn cmm_identifier(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn ColorSyncCMMCopyCMMIdentifier(param1: &ColorSyncCMM) -> Option<NonNull<CFString>>;
         }

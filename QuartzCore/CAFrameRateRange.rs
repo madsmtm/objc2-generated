@@ -50,7 +50,7 @@ impl CAFrameRateRange {
 
     #[doc(alias = "CAFrameRateRangeIsEqualToRange")]
     #[inline]
-    pub unsafe fn is_equal_to_range(self: CAFrameRateRange, other: CAFrameRateRange) -> bool {
+    pub unsafe fn is_equal_to_range(self, other: CAFrameRateRange) -> bool {
         extern "C-unwind" {
             fn CAFrameRateRangeIsEqualToRange(
                 range: CAFrameRateRange,

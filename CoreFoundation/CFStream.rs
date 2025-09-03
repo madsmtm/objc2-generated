@@ -451,7 +451,7 @@ extern "C-unwind" {
 impl CFReadStream {
     #[doc(alias = "CFReadStreamGetStatus")]
     #[inline]
-    pub fn status(self: &CFReadStream) -> CFStreamStatus {
+    pub fn status(&self) -> CFStreamStatus {
         extern "C-unwind" {
             fn CFReadStreamGetStatus(stream: &CFReadStream) -> CFStreamStatus;
         }
@@ -462,7 +462,7 @@ impl CFReadStream {
 impl CFWriteStream {
     #[doc(alias = "CFWriteStreamGetStatus")]
     #[inline]
-    pub fn status(self: &CFWriteStream) -> CFStreamStatus {
+    pub fn status(&self) -> CFStreamStatus {
         extern "C-unwind" {
             fn CFWriteStreamGetStatus(stream: &CFWriteStream) -> CFStreamStatus;
         }
@@ -474,7 +474,7 @@ impl CFReadStream {
     #[doc(alias = "CFReadStreamCopyError")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub fn copy_error(self: &CFReadStream) -> Option<CFRetained<CFError>> {
+    pub fn copy_error(&self) -> Option<CFRetained<CFError>> {
         extern "C-unwind" {
             fn CFReadStreamCopyError(stream: &CFReadStream) -> Option<NonNull<CFError>>;
         }
@@ -487,7 +487,7 @@ impl CFWriteStream {
     #[doc(alias = "CFWriteStreamCopyError")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub fn copy_error(self: &CFWriteStream) -> Option<CFRetained<CFError>> {
+    pub fn copy_error(&self) -> Option<CFRetained<CFError>> {
         extern "C-unwind" {
             fn CFWriteStreamCopyError(stream: &CFWriteStream) -> Option<NonNull<CFError>>;
         }
@@ -499,7 +499,7 @@ impl CFWriteStream {
 impl CFReadStream {
     #[doc(alias = "CFReadStreamOpen")]
     #[inline]
-    pub fn open(self: &CFReadStream) -> bool {
+    pub fn open(&self) -> bool {
         extern "C-unwind" {
             fn CFReadStreamOpen(stream: &CFReadStream) -> Boolean;
         }
@@ -511,7 +511,7 @@ impl CFReadStream {
 impl CFWriteStream {
     #[doc(alias = "CFWriteStreamOpen")]
     #[inline]
-    pub fn open(self: &CFWriteStream) -> bool {
+    pub fn open(&self) -> bool {
         extern "C-unwind" {
             fn CFWriteStreamOpen(stream: &CFWriteStream) -> Boolean;
         }
@@ -523,7 +523,7 @@ impl CFWriteStream {
 impl CFReadStream {
     #[doc(alias = "CFReadStreamClose")]
     #[inline]
-    pub fn close(self: &CFReadStream) {
+    pub fn close(&self) {
         extern "C-unwind" {
             fn CFReadStreamClose(stream: &CFReadStream);
         }
@@ -534,7 +534,7 @@ impl CFReadStream {
 impl CFWriteStream {
     #[doc(alias = "CFWriteStreamClose")]
     #[inline]
-    pub fn close(self: &CFWriteStream) {
+    pub fn close(&self) {
         extern "C-unwind" {
             fn CFWriteStreamClose(stream: &CFWriteStream);
         }
@@ -545,7 +545,7 @@ impl CFWriteStream {
 impl CFReadStream {
     #[doc(alias = "CFReadStreamHasBytesAvailable")]
     #[inline]
-    pub fn has_bytes_available(self: &CFReadStream) -> bool {
+    pub fn has_bytes_available(&self) -> bool {
         extern "C-unwind" {
             fn CFReadStreamHasBytesAvailable(stream: &CFReadStream) -> Boolean;
         }
@@ -555,7 +555,7 @@ impl CFReadStream {
 
     #[doc(alias = "CFReadStreamRead")]
     #[inline]
-    pub unsafe fn read(self: &CFReadStream, buffer: *mut u8, buffer_length: CFIndex) -> CFIndex {
+    pub unsafe fn read(&self, buffer: *mut u8, buffer_length: CFIndex) -> CFIndex {
         extern "C-unwind" {
             fn CFReadStreamRead(
                 stream: &CFReadStream,
@@ -569,7 +569,7 @@ impl CFReadStream {
     #[doc(alias = "CFReadStreamGetBuffer")]
     #[inline]
     pub unsafe fn buffer(
-        self: &CFReadStream,
+        &self,
         max_bytes_to_read: CFIndex,
         num_bytes_read: *mut CFIndex,
     ) -> *const u8 {
@@ -587,7 +587,7 @@ impl CFReadStream {
 impl CFWriteStream {
     #[doc(alias = "CFWriteStreamCanAcceptBytes")]
     #[inline]
-    pub fn can_accept_bytes(self: &CFWriteStream) -> bool {
+    pub fn can_accept_bytes(&self) -> bool {
         extern "C-unwind" {
             fn CFWriteStreamCanAcceptBytes(stream: &CFWriteStream) -> Boolean;
         }
@@ -597,11 +597,7 @@ impl CFWriteStream {
 
     #[doc(alias = "CFWriteStreamWrite")]
     #[inline]
-    pub unsafe fn write(
-        self: &CFWriteStream,
-        buffer: *const u8,
-        buffer_length: CFIndex,
-    ) -> CFIndex {
+    pub unsafe fn write(&self, buffer: *const u8, buffer_length: CFIndex) -> CFIndex {
         extern "C-unwind" {
             fn CFWriteStreamWrite(
                 stream: &CFWriteStream,
@@ -617,7 +613,7 @@ impl CFReadStream {
     #[doc(alias = "CFReadStreamCopyProperty")]
     #[inline]
     pub fn property(
-        self: &CFReadStream,
+        &self,
         property_name: Option<&CFStreamPropertyKey>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
@@ -635,7 +631,7 @@ impl CFWriteStream {
     #[doc(alias = "CFWriteStreamCopyProperty")]
     #[inline]
     pub fn property(
-        self: &CFWriteStream,
+        &self,
         property_name: Option<&CFStreamPropertyKey>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
@@ -653,7 +649,7 @@ impl CFReadStream {
     #[doc(alias = "CFReadStreamSetProperty")]
     #[inline]
     pub unsafe fn set_property(
-        self: &CFReadStream,
+        &self,
         property_name: Option<&CFStreamPropertyKey>,
         property_value: Option<&CFType>,
     ) -> bool {
@@ -673,7 +669,7 @@ impl CFWriteStream {
     #[doc(alias = "CFWriteStreamSetProperty")]
     #[inline]
     pub unsafe fn set_property(
-        self: &CFWriteStream,
+        &self,
         property_name: Option<&CFStreamPropertyKey>,
         property_value: Option<&CFType>,
     ) -> bool {
@@ -693,7 +689,7 @@ impl CFReadStream {
     #[doc(alias = "CFReadStreamSetClient")]
     #[inline]
     pub unsafe fn set_client(
-        self: &CFReadStream,
+        &self,
         stream_events: CFOptionFlags,
         client_cb: CFReadStreamClientCallBack,
         client_context: *mut CFStreamClientContext,
@@ -715,7 +711,7 @@ impl CFWriteStream {
     #[doc(alias = "CFWriteStreamSetClient")]
     #[inline]
     pub unsafe fn set_client(
-        self: &CFWriteStream,
+        &self,
         stream_events: CFOptionFlags,
         client_cb: CFWriteStreamClientCallBack,
         client_context: *mut CFStreamClientContext,
@@ -738,7 +734,7 @@ impl CFReadStream {
     #[cfg(feature = "CFRunLoop")]
     #[inline]
     pub fn schedule_with_run_loop(
-        self: &CFReadStream,
+        &self,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFRunLoopMode>,
     ) {
@@ -758,7 +754,7 @@ impl CFWriteStream {
     #[cfg(feature = "CFRunLoop")]
     #[inline]
     pub fn schedule_with_run_loop(
-        self: &CFWriteStream,
+        &self,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFRunLoopMode>,
     ) {
@@ -778,7 +774,7 @@ impl CFReadStream {
     #[cfg(feature = "CFRunLoop")]
     #[inline]
     pub fn unschedule_from_run_loop(
-        self: &CFReadStream,
+        &self,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFRunLoopMode>,
     ) {
@@ -798,7 +794,7 @@ impl CFWriteStream {
     #[cfg(feature = "CFRunLoop")]
     #[inline]
     pub fn unschedule_from_run_loop(
-        self: &CFWriteStream,
+        &self,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFRunLoopMode>,
     ) {
@@ -817,7 +813,7 @@ impl CFReadStream {
     #[doc(alias = "CFReadStreamSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_dispatch_queue(self: &CFReadStream, q: Option<&DispatchQueue>) {
+    pub unsafe fn set_dispatch_queue(&self, q: Option<&DispatchQueue>) {
         extern "C-unwind" {
             fn CFReadStreamSetDispatchQueue(stream: &CFReadStream, q: Option<&DispatchQueue>);
         }
@@ -829,7 +825,7 @@ impl CFWriteStream {
     #[doc(alias = "CFWriteStreamSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_dispatch_queue(self: &CFWriteStream, q: Option<&DispatchQueue>) {
+    pub unsafe fn set_dispatch_queue(&self, q: Option<&DispatchQueue>) {
         extern "C-unwind" {
             fn CFWriteStreamSetDispatchQueue(stream: &CFWriteStream, q: Option<&DispatchQueue>);
         }
@@ -841,7 +837,7 @@ impl CFReadStream {
     #[doc(alias = "CFReadStreamCopyDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn dispatch_queue(self: &CFReadStream) -> Option<DispatchRetained<DispatchQueue>> {
+    pub unsafe fn dispatch_queue(&self) -> Option<DispatchRetained<DispatchQueue>> {
         extern "C-unwind" {
             fn CFReadStreamCopyDispatchQueue(
                 stream: &CFReadStream,
@@ -856,7 +852,7 @@ impl CFWriteStream {
     #[doc(alias = "CFWriteStreamCopyDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn dispatch_queue(self: &CFWriteStream) -> Option<DispatchRetained<DispatchQueue>> {
+    pub unsafe fn dispatch_queue(&self) -> Option<DispatchRetained<DispatchQueue>> {
         extern "C-unwind" {
             fn CFWriteStreamCopyDispatchQueue(
                 stream: &CFWriteStream,
@@ -894,7 +890,7 @@ unsafe impl RefEncode for CFStreamErrorDomain {
 impl CFReadStream {
     #[doc(alias = "CFReadStreamGetError")]
     #[inline]
-    pub fn error(self: &CFReadStream) -> CFStreamError {
+    pub fn error(&self) -> CFStreamError {
         extern "C-unwind" {
             fn CFReadStreamGetError(stream: &CFReadStream) -> CFStreamError;
         }
@@ -905,7 +901,7 @@ impl CFReadStream {
 impl CFWriteStream {
     #[doc(alias = "CFWriteStreamGetError")]
     #[inline]
-    pub fn error(self: &CFWriteStream) -> CFStreamError {
+    pub fn error(&self) -> CFStreamError {
         extern "C-unwind" {
             fn CFWriteStreamGetError(stream: &CFWriteStream) -> CFStreamError;
         }

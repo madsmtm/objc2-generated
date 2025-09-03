@@ -100,7 +100,7 @@ impl CFNumberFormatter {
     #[doc(alias = "CFNumberFormatterGetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub unsafe fn locale(self: &CFNumberFormatter) -> Option<CFRetained<CFLocale>> {
+    pub unsafe fn locale(&self) -> Option<CFRetained<CFLocale>> {
         extern "C-unwind" {
             fn CFNumberFormatterGetLocale(
                 formatter: &CFNumberFormatter,
@@ -112,7 +112,7 @@ impl CFNumberFormatter {
 
     #[doc(alias = "CFNumberFormatterGetStyle")]
     #[inline]
-    pub unsafe fn style(self: &CFNumberFormatter) -> CFNumberFormatterStyle {
+    pub unsafe fn style(&self) -> CFNumberFormatterStyle {
         extern "C-unwind" {
             fn CFNumberFormatterGetStyle(formatter: &CFNumberFormatter) -> CFNumberFormatterStyle;
         }
@@ -121,7 +121,7 @@ impl CFNumberFormatter {
 
     #[doc(alias = "CFNumberFormatterGetFormat")]
     #[inline]
-    pub unsafe fn format(self: &CFNumberFormatter) -> Option<CFRetained<CFString>> {
+    pub unsafe fn format(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFNumberFormatterGetFormat(
                 formatter: &CFNumberFormatter,
@@ -133,7 +133,7 @@ impl CFNumberFormatter {
 
     #[doc(alias = "CFNumberFormatterSetFormat")]
     #[inline]
-    pub unsafe fn set_format(self: &CFNumberFormatter, format_string: Option<&CFString>) {
+    pub unsafe fn set_format(&self, format_string: Option<&CFString>) {
         extern "C-unwind" {
             fn CFNumberFormatterSetFormat(
                 formatter: &CFNumberFormatter,
@@ -238,7 +238,7 @@ impl CFNumberFormatter {
     #[cfg(feature = "CFNumber")]
     #[inline]
     pub unsafe fn value_from_string(
-        self: &CFNumberFormatter,
+        &self,
         string: Option<&CFString>,
         rangep: *mut CFRange,
         number_type: CFNumberType,
@@ -261,11 +261,7 @@ impl CFNumberFormatter {
 
     #[doc(alias = "CFNumberFormatterSetProperty")]
     #[inline]
-    pub unsafe fn set_property(
-        self: &CFNumberFormatter,
-        key: Option<&CFNumberFormatterKey>,
-        value: Option<&CFType>,
-    ) {
+    pub unsafe fn set_property(&self, key: Option<&CFNumberFormatterKey>, value: Option<&CFType>) {
         extern "C-unwind" {
             fn CFNumberFormatterSetProperty(
                 formatter: &CFNumberFormatter,
@@ -279,7 +275,7 @@ impl CFNumberFormatter {
     #[doc(alias = "CFNumberFormatterCopyProperty")]
     #[inline]
     pub unsafe fn property(
-        self: &CFNumberFormatter,
+        &self,
         key: Option<&CFNumberFormatterKey>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {

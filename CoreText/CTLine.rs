@@ -204,7 +204,7 @@ impl CTLine {
     #[doc(alias = "CTLineCreateTruncatedLine")]
     #[inline]
     pub unsafe fn truncated_line(
-        self: &CTLine,
+        &self,
         width: c_double,
         truncation_type: CTLineTruncationType,
         truncation_token: Option<&CTLine>,
@@ -246,7 +246,7 @@ impl CTLine {
     #[doc(alias = "CTLineCreateJustifiedLine")]
     #[inline]
     pub unsafe fn justified_line(
-        self: &CTLine,
+        &self,
         justification_factor: CGFloat,
         justification_width: c_double,
     ) -> Option<CFRetained<CTLine>> {
@@ -275,7 +275,7 @@ impl CTLine {
     /// Returns: The total glyph count for the line passed in.
     #[doc(alias = "CTLineGetGlyphCount")]
     #[inline]
-    pub unsafe fn glyph_count(self: &CTLine) -> CFIndex {
+    pub unsafe fn glyph_count(&self) -> CFIndex {
         extern "C-unwind" {
             fn CTLineGetGlyphCount(line: &CTLine) -> CFIndex;
         }
@@ -291,7 +291,7 @@ impl CTLine {
     /// Returns: A CFArrayRef containing the CTRun objects that make up the line.
     #[doc(alias = "CTLineGetGlyphRuns")]
     #[inline]
-    pub unsafe fn glyph_runs(self: &CTLine) -> CFRetained<CFArray> {
+    pub unsafe fn glyph_runs(&self) -> CFRetained<CFArray> {
         extern "C-unwind" {
             fn CTLineGetGlyphRuns(line: &CTLine) -> Option<NonNull<CFArray>>;
         }
@@ -313,7 +313,7 @@ impl CTLine {
     /// empty range will be returned.
     #[doc(alias = "CTLineGetStringRange")]
     #[inline]
-    pub unsafe fn string_range(self: &CTLine) -> CFRange {
+    pub unsafe fn string_range(&self) -> CFRange {
         extern "C-unwind" {
             fn CTLineGetStringRange(line: &CTLine) -> CFRange;
         }
@@ -341,7 +341,7 @@ impl CTLine {
     #[doc(alias = "CTLineGetPenOffsetForFlush")]
     #[inline]
     pub unsafe fn pen_offset_for_flush(
-        self: &CTLine,
+        &self,
         flush_factor: CGFloat,
         flush_width: c_double,
     ) -> c_double {
@@ -373,7 +373,7 @@ impl CTLine {
     #[doc(alias = "CTLineDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn draw(self: &CTLine, context: &CGContext) {
+    pub unsafe fn draw(&self, context: &CGContext) {
         extern "C-unwind" {
             fn CTLineDraw(line: &CTLine, context: &CGContext);
         }
@@ -411,7 +411,7 @@ impl CTLine {
     #[doc(alias = "CTLineGetTypographicBounds")]
     #[inline]
     pub unsafe fn typographic_bounds(
-        self: &CTLine,
+        &self,
         ascent: *mut CGFloat,
         descent: *mut CGFloat,
         leading: *mut CGFloat,
@@ -442,7 +442,7 @@ impl CTLine {
     /// is invalid this function will return CGRectNull.
     #[doc(alias = "CTLineGetBoundsWithOptions")]
     #[inline]
-    pub unsafe fn bounds_with_options(self: &CTLine, options: CTLineBoundsOptions) -> CGRect {
+    pub unsafe fn bounds_with_options(&self, options: CTLineBoundsOptions) -> CGRect {
         extern "C-unwind" {
             fn CTLineGetBoundsWithOptions(line: &CTLine, options: CTLineBoundsOptions) -> CGRect;
         }
@@ -464,7 +464,7 @@ impl CTLine {
     /// this function will always return zero.
     #[doc(alias = "CTLineGetTrailingWhitespaceWidth")]
     #[inline]
-    pub unsafe fn trailing_whitespace_width(self: &CTLine) -> c_double {
+    pub unsafe fn trailing_whitespace_width(&self) -> c_double {
         extern "C-unwind" {
             fn CTLineGetTrailingWhitespaceWidth(line: &CTLine) -> c_double;
         }
@@ -502,7 +502,7 @@ impl CTLine {
     #[doc(alias = "CTLineGetImageBounds")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn image_bounds(self: &CTLine, context: Option<&CGContext>) -> CGRect {
+    pub unsafe fn image_bounds(&self, context: Option<&CGContext>) -> CGRect {
         extern "C-unwind" {
             fn CTLineGetImageBounds(line: &CTLine, context: Option<&CGContext>) -> CGRect;
         }
@@ -532,7 +532,7 @@ impl CTLine {
     /// failure, this function will return kCFNotFound.
     #[doc(alias = "CTLineGetStringIndexForPosition")]
     #[inline]
-    pub unsafe fn string_index_for_position(self: &CTLine, position: CGPoint) -> CFIndex {
+    pub unsafe fn string_index_for_position(&self, position: CGPoint) -> CFIndex {
         extern "C-unwind" {
             fn CTLineGetStringIndexForPosition(line: &CTLine, position: CGPoint) -> CFIndex;
         }
@@ -572,7 +572,7 @@ impl CTLine {
     #[doc(alias = "CTLineGetOffsetForStringIndex")]
     #[inline]
     pub unsafe fn offset_for_string_index(
-        self: &CTLine,
+        &self,
         char_index: CFIndex,
         secondary_offset: *mut CGFloat,
     ) -> CGFloat {
@@ -597,7 +597,7 @@ impl CTLine {
     #[cfg(feature = "block2")]
     #[inline]
     pub unsafe fn enumerate_caret_offsets(
-        self: &CTLine,
+        &self,
         block: &block2::DynBlock<dyn Fn(c_double, CFIndex, bool, NonNull<bool>)>,
     ) {
         extern "C-unwind" {

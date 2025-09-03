@@ -167,7 +167,7 @@ impl CTTypesetter {
     #[cfg(feature = "CTLine")]
     #[inline]
     pub unsafe fn line_with_offset(
-        self: &CTTypesetter,
+        &self,
         string_range: CFRange,
         offset: c_double,
     ) -> CFRetained<CTLine> {
@@ -188,7 +188,7 @@ impl CTTypesetter {
     #[doc(alias = "CTTypesetterCreateLine")]
     #[cfg(feature = "CTLine")]
     #[inline]
-    pub unsafe fn line(self: &CTTypesetter, string_range: CFRange) -> CFRetained<CTLine> {
+    pub unsafe fn line(&self, string_range: CFRange) -> CFRetained<CTLine> {
         extern "C-unwind" {
             fn CTTypesetterCreateLine(
                 typesetter: &CTTypesetter,
@@ -228,7 +228,7 @@ impl CTTypesetter {
     #[doc(alias = "CTTypesetterSuggestLineBreakWithOffset")]
     #[inline]
     pub unsafe fn suggest_line_break_with_offset(
-        self: &CTTypesetter,
+        &self,
         start_index: CFIndex,
         width: c_double,
         offset: c_double,
@@ -247,11 +247,7 @@ impl CTTypesetter {
     /// Equivalent to CTTypesetterSuggestLineBreakWithOffset with offset = 0.0.
     #[doc(alias = "CTTypesetterSuggestLineBreak")]
     #[inline]
-    pub unsafe fn suggest_line_break(
-        self: &CTTypesetter,
-        start_index: CFIndex,
-        width: c_double,
-    ) -> CFIndex {
+    pub unsafe fn suggest_line_break(&self, start_index: CFIndex, width: c_double) -> CFIndex {
         extern "C-unwind" {
             fn CTTypesetterSuggestLineBreak(
                 typesetter: &CTTypesetter,
@@ -294,7 +290,7 @@ impl CTTypesetter {
     #[doc(alias = "CTTypesetterSuggestClusterBreakWithOffset")]
     #[inline]
     pub unsafe fn suggest_cluster_break_with_offset(
-        self: &CTTypesetter,
+        &self,
         start_index: CFIndex,
         width: c_double,
         offset: c_double,
@@ -313,11 +309,7 @@ impl CTTypesetter {
     /// Equivalent to CTTypesetterSuggestClusterBreakWithOffset with offset = 0.0.
     #[doc(alias = "CTTypesetterSuggestClusterBreak")]
     #[inline]
-    pub unsafe fn suggest_cluster_break(
-        self: &CTTypesetter,
-        start_index: CFIndex,
-        width: c_double,
-    ) -> CFIndex {
+    pub unsafe fn suggest_cluster_break(&self, start_index: CFIndex, width: c_double) -> CFIndex {
         extern "C-unwind" {
             fn CTTypesetterSuggestClusterBreak(
                 typesetter: &CTTypesetter,

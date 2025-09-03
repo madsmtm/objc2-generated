@@ -156,7 +156,7 @@ impl SecACL {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn remove(self: &SecACL) -> OSStatus {
+    pub unsafe fn remove(&self) -> OSStatus {
         extern "C-unwind" {
             fn SecACLRemove(acl_ref: &SecACL) -> OSStatus;
         }
@@ -182,7 +182,7 @@ impl SecACL {
     #[deprecated = "CSSM is not supported"]
     #[inline]
     pub unsafe fn copy_simple_contents(
-        self: &SecACL,
+        &self,
         application_list: NonNull<*const CFArray>,
         description: NonNull<*const CFString>,
         prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
@@ -214,7 +214,7 @@ impl SecACL {
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn copy_contents(
-        self: &SecACL,
+        &self,
         application_list: NonNull<*const CFArray>,
         description: NonNull<*const CFString>,
         prompt_selector: NonNull<SecKeychainPromptSelector>,
@@ -249,7 +249,7 @@ impl SecACL {
     #[deprecated = "CSSM is not supported"]
     #[inline]
     pub unsafe fn set_simple_contents(
-        self: &SecACL,
+        &self,
         application_list: Option<&CFArray>,
         description: &CFString,
         prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
@@ -281,7 +281,7 @@ impl SecACL {
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
     pub unsafe fn set_contents(
-        self: &SecACL,
+        &self,
         application_list: Option<&CFArray>,
         description: &CFString,
         prompt_selector: SecKeychainPromptSelector,
@@ -314,7 +314,7 @@ impl SecACL {
     #[deprecated = "CSSM is not supported"]
     #[inline]
     pub unsafe fn get_authorizations(
-        self: &SecACL,
+        &self,
         tags: NonNull<CSSM_ACL_AUTHORIZATION_TAG>,
         tag_count: NonNull<uint32>,
     ) -> OSStatus {
@@ -337,7 +337,7 @@ impl SecACL {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn authorizations(self: &SecACL) -> CFRetained<CFArray> {
+    pub unsafe fn authorizations(&self) -> CFRetained<CFArray> {
         extern "C-unwind" {
             fn SecACLCopyAuthorizations(acl: &SecACL) -> Option<NonNull<CFArray>>;
         }
@@ -364,7 +364,7 @@ impl SecACL {
     #[deprecated = "CSSM is not supported"]
     #[inline]
     pub unsafe fn set_authorizations(
-        self: &SecACL,
+        &self,
         tags: NonNull<CSSM_ACL_AUTHORIZATION_TAG>,
         tag_count: uint32,
     ) -> OSStatus {
@@ -389,7 +389,7 @@ impl SecACL {
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
-    pub unsafe fn update_authorizations(self: &SecACL, authorizations: &CFArray) -> OSStatus {
+    pub unsafe fn update_authorizations(&self, authorizations: &CFArray) -> OSStatus {
         extern "C-unwind" {
             fn SecACLUpdateAuthorizations(acl: &SecACL, authorizations: &CFArray) -> OSStatus;
         }

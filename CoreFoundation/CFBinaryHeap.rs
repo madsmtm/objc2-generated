@@ -296,7 +296,7 @@ impl CFBinaryHeap {
     /// Returns: The number of values in the binary heap.
     #[doc(alias = "CFBinaryHeapGetCount")]
     #[inline]
-    pub unsafe fn count(self: &CFBinaryHeap) -> CFIndex {
+    pub unsafe fn count(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFBinaryHeapGetCount(heap: &CFBinaryHeap) -> CFIndex;
         }
@@ -318,7 +318,7 @@ impl CFBinaryHeap {
     /// Returns: The number of times the given value occurs in the binary heap.
     #[doc(alias = "CFBinaryHeapGetCountOfValue")]
     #[inline]
-    pub unsafe fn count_of_value(self: &CFBinaryHeap, value: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFBinaryHeapGetCountOfValue(heap: &CFBinaryHeap, value: *const c_void) -> CFIndex;
         }
@@ -340,7 +340,7 @@ impl CFBinaryHeap {
     /// Returns: true, if the value is in the specified binary heap, otherwise false.
     #[doc(alias = "CFBinaryHeapContainsValue")]
     #[inline]
-    pub unsafe fn contains_value(self: &CFBinaryHeap, value: *const c_void) -> bool {
+    pub unsafe fn contains_value(&self, value: *const c_void) -> bool {
         extern "C-unwind" {
             fn CFBinaryHeapContainsValue(heap: &CFBinaryHeap, value: *const c_void) -> Boolean;
         }
@@ -358,7 +358,7 @@ impl CFBinaryHeap {
     /// binary heap contains no values.
     #[doc(alias = "CFBinaryHeapGetMinimum")]
     #[inline]
-    pub unsafe fn minimum(self: &CFBinaryHeap) -> *const c_void {
+    pub unsafe fn minimum(&self) -> *const c_void {
         extern "C-unwind" {
             fn CFBinaryHeapGetMinimum(heap: &CFBinaryHeap) -> *const c_void;
         }
@@ -379,7 +379,7 @@ impl CFBinaryHeap {
     /// Returns: true, if a minimum value was found in the specified binary heap, otherwise false.
     #[doc(alias = "CFBinaryHeapGetMinimumIfPresent")]
     #[inline]
-    pub unsafe fn minimum_if_present(self: &CFBinaryHeap, value: *mut *const c_void) -> bool {
+    pub unsafe fn minimum_if_present(&self, value: *mut *const c_void) -> bool {
         extern "C-unwind" {
             fn CFBinaryHeapGetMinimumIfPresent(
                 heap: &CFBinaryHeap,
@@ -401,7 +401,7 @@ impl CFBinaryHeap {
     /// C array of at least CFBinaryHeapGetCount() pointers, the behavior is undefined.
     #[doc(alias = "CFBinaryHeapGetValues")]
     #[inline]
-    pub unsafe fn values(self: &CFBinaryHeap, values: *mut *const c_void) {
+    pub unsafe fn values(&self, values: *mut *const c_void) {
         extern "C-unwind" {
             fn CFBinaryHeapGetValues(heap: &CFBinaryHeap, values: *mut *const c_void);
         }
@@ -428,7 +428,7 @@ impl CFBinaryHeap {
     #[doc(alias = "CFBinaryHeapApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
-        self: &CFBinaryHeap,
+        &self,
         applier: CFBinaryHeapApplierFunction,
         context: *mut c_void,
     ) {
@@ -453,7 +453,7 @@ impl CFBinaryHeap {
     /// retain callback, the behavior is undefined.
     #[doc(alias = "CFBinaryHeapAddValue")]
     #[inline]
-    pub unsafe fn add_value(self: &CFBinaryHeap, value: *const c_void) {
+    pub unsafe fn add_value(&self, value: *const c_void) {
         extern "C-unwind" {
             fn CFBinaryHeapAddValue(heap: &CFBinaryHeap, value: *const c_void);
         }
@@ -466,7 +466,7 @@ impl CFBinaryHeap {
     /// parameter is not a valid mutable CFBinaryHeap, the behavior is undefined.
     #[doc(alias = "CFBinaryHeapRemoveMinimumValue")]
     #[inline]
-    pub unsafe fn remove_minimum_value(self: &CFBinaryHeap) {
+    pub unsafe fn remove_minimum_value(&self) {
         extern "C-unwind" {
             fn CFBinaryHeapRemoveMinimumValue(heap: &CFBinaryHeap);
         }
@@ -480,7 +480,7 @@ impl CFBinaryHeap {
     /// the behavior is undefined.
     #[doc(alias = "CFBinaryHeapRemoveAllValues")]
     #[inline]
-    pub unsafe fn remove_all_values(self: &CFBinaryHeap) {
+    pub unsafe fn remove_all_values(&self) {
         extern "C-unwind" {
             fn CFBinaryHeapRemoveAllValues(heap: &CFBinaryHeap);
         }

@@ -265,7 +265,7 @@ impl CTRubyAnnotation {
     /// "rubyAnnotation".
     #[doc(alias = "CTRubyAnnotationCreateCopy")]
     #[inline]
-    pub unsafe fn copy(self: &CTRubyAnnotation) -> CFRetained<CTRubyAnnotation> {
+    pub unsafe fn copy(&self) -> CFRetained<CTRubyAnnotation> {
         extern "C-unwind" {
             fn CTRubyAnnotationCreateCopy(
                 ruby_annotation: &CTRubyAnnotation,
@@ -287,7 +287,7 @@ impl CTRubyAnnotation {
     /// function will return its alignment. Otherwise it will return kCTRubyAlignmentInvalid.
     #[doc(alias = "CTRubyAnnotationGetAlignment")]
     #[inline]
-    pub unsafe fn alignment(self: &CTRubyAnnotation) -> CTRubyAlignment {
+    pub unsafe fn alignment(&self) -> CTRubyAlignment {
         extern "C-unwind" {
             fn CTRubyAnnotationGetAlignment(ruby_annotation: &CTRubyAnnotation) -> CTRubyAlignment;
         }
@@ -304,7 +304,7 @@ impl CTRubyAnnotation {
     /// function will return its overhang value. Otherwise it will return kCTRubyOverhangInvalid.
     #[doc(alias = "CTRubyAnnotationGetOverhang")]
     #[inline]
-    pub unsafe fn overhang(self: &CTRubyAnnotation) -> CTRubyOverhang {
+    pub unsafe fn overhang(&self) -> CTRubyOverhang {
         extern "C-unwind" {
             fn CTRubyAnnotationGetOverhang(ruby_annotation: &CTRubyAnnotation) -> CTRubyOverhang;
         }
@@ -321,7 +321,7 @@ impl CTRubyAnnotation {
     /// function will return its sizeFactor. Otherwise it will return 0.
     #[doc(alias = "CTRubyAnnotationGetSizeFactor")]
     #[inline]
-    pub unsafe fn size_factor(self: &CTRubyAnnotation) -> CGFloat {
+    pub unsafe fn size_factor(&self) -> CGFloat {
         extern "C-unwind" {
             fn CTRubyAnnotationGetSizeFactor(ruby_annotation: &CTRubyAnnotation) -> CGFloat;
         }
@@ -342,7 +342,7 @@ impl CTRubyAnnotation {
     #[doc(alias = "CTRubyAnnotationGetTextForPosition")]
     #[inline]
     pub unsafe fn text_for_position(
-        self: &CTRubyAnnotation,
+        &self,
         position: CTRubyPosition,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {

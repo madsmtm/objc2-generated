@@ -171,7 +171,7 @@ impl CGColorConversionInfo {
     #[cfg(feature = "CGImage")]
     #[inline]
     pub unsafe fn convert_data(
-        self: &CGColorConversionInfo,
+        &self,
         width: usize,
         height: usize,
         dst_data: NonNull<c_void>,

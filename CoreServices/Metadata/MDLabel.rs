@@ -48,7 +48,7 @@ impl MDItem {
     #[doc(alias = "MDItemCopyLabels")]
     #[cfg(feature = "MDItem")]
     #[inline]
-    pub unsafe fn labels(self: &MDItem) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn labels(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn MDItemCopyLabels(item: &MDItem) -> Option<NonNull<CFArray>>;
         }
@@ -66,7 +66,7 @@ impl MDItem {
     #[doc(alias = "MDItemSetLabel")]
     #[cfg(feature = "MDItem")]
     #[inline]
-    pub unsafe fn set_label(self: &MDItem, label: Option<&MDLabel>) -> bool {
+    pub unsafe fn set_label(&self, label: Option<&MDLabel>) -> bool {
         extern "C-unwind" {
             fn MDItemSetLabel(item: &MDItem, label: Option<&MDLabel>) -> Boolean;
         }
@@ -84,7 +84,7 @@ impl MDItem {
     #[doc(alias = "MDItemRemoveLabel")]
     #[cfg(feature = "MDItem")]
     #[inline]
-    pub unsafe fn remove_label(self: &MDItem, label: Option<&MDLabel>) -> bool {
+    pub unsafe fn remove_label(&self, label: Option<&MDLabel>) -> bool {
         extern "C-unwind" {
             fn MDItemRemoveLabel(item: &MDItem, label: Option<&MDLabel>) -> Boolean;
         }
@@ -157,7 +157,7 @@ impl MDLabel {
     /// Returns: A CFTypeRef, or NULL on failure, or if the attribute does not exist, or if the attribute is not readable.
     #[doc(alias = "MDLabelCopyAttribute")]
     #[inline]
-    pub unsafe fn attribute(self: &MDLabel, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
+    pub unsafe fn attribute(&self, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn MDLabelCopyAttribute(
                 label: &MDLabel,
@@ -175,7 +175,7 @@ impl MDLabel {
     /// Returns: A CFStringRef, or NULL on failure.
     #[doc(alias = "MDLabelCopyAttributeName")]
     #[inline]
-    pub unsafe fn attribute_name(self: &MDLabel) -> Option<CFRetained<CFString>> {
+    pub unsafe fn attribute_name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn MDLabelCopyAttributeName(label: &MDLabel) -> Option<NonNull<CFString>>;
         }
@@ -190,7 +190,7 @@ impl MDLabel {
     /// Returns: True if a label definition or override was successfully deleted.
     #[doc(alias = "MDLabelDelete")]
     #[inline]
-    pub unsafe fn delete(self: &MDLabel) -> bool {
+    pub unsafe fn delete(&self) -> bool {
         extern "C-unwind" {
             fn MDLabelDelete(label: &MDLabel) -> Boolean;
         }
@@ -207,7 +207,7 @@ impl MDLabel {
     /// Returns: True if the label definition or override was successfully updated.
     #[doc(alias = "MDLabelSetAttributes")]
     #[inline]
-    pub unsafe fn set_attributes(self: &MDLabel, attrs: Option<&CFDictionary>) -> bool {
+    pub unsafe fn set_attributes(&self, attrs: Option<&CFDictionary>) -> bool {
         extern "C-unwind" {
             fn MDLabelSetAttributes(label: &MDLabel, attrs: Option<&CFDictionary>) -> Boolean;
         }

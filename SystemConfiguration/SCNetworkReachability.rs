@@ -316,10 +316,7 @@ impl SCNetworkReachability {
     #[doc(alias = "SCNetworkReachabilityGetFlags")]
     #[deprecated]
     #[inline]
-    pub unsafe fn flags(
-        self: &SCNetworkReachability,
-        flags: NonNull<SCNetworkReachabilityFlags>,
-    ) -> bool {
+    pub unsafe fn flags(&self, flags: NonNull<SCNetworkReachabilityFlags>) -> bool {
         extern "C-unwind" {
             fn SCNetworkReachabilityGetFlags(
                 target: &SCNetworkReachability,
@@ -348,7 +345,7 @@ impl SCNetworkReachability {
     #[deprecated]
     #[inline]
     pub unsafe fn set_callback(
-        self: &SCNetworkReachability,
+        &self,
         callout: SCNetworkReachabilityCallBack,
         context: *mut SCNetworkReachabilityContext,
     ) -> bool {
@@ -379,11 +376,7 @@ impl SCNetworkReachability {
     #[doc(alias = "SCNetworkReachabilityScheduleWithRunLoop")]
     #[deprecated]
     #[inline]
-    pub fn schedule_with_run_loop(
-        self: &SCNetworkReachability,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) -> bool {
+    pub fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
         extern "C-unwind" {
             fn SCNetworkReachabilityScheduleWithRunLoop(
                 target: &SCNetworkReachability,
@@ -413,11 +406,7 @@ impl SCNetworkReachability {
     #[doc(alias = "SCNetworkReachabilityUnscheduleFromRunLoop")]
     #[deprecated]
     #[inline]
-    pub fn unschedule_from_run_loop(
-        self: &SCNetworkReachability,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) -> bool {
+    pub fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
         extern "C-unwind" {
             fn SCNetworkReachabilityUnscheduleFromRunLoop(
                 target: &SCNetworkReachability,
@@ -445,10 +434,7 @@ impl SCNetworkReachability {
     #[cfg(feature = "dispatch2")]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_dispatch_queue(
-        self: &SCNetworkReachability,
-        queue: Option<&DispatchQueue>,
-    ) -> bool {
+    pub unsafe fn set_dispatch_queue(&self, queue: Option<&DispatchQueue>) -> bool {
         extern "C-unwind" {
             fn SCNetworkReachabilitySetDispatchQueue(
                 target: &SCNetworkReachability,

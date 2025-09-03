@@ -224,7 +224,7 @@ impl CFStringTokenizer {
     /// specified range must not exceed the length of the string.
     #[doc(alias = "CFStringTokenizerSetString")]
     #[inline]
-    pub unsafe fn set_string(self: &CFStringTokenizer, string: Option<&CFString>, range: CFRange) {
+    pub unsafe fn set_string(&self, string: Option<&CFString>, range: CFRange) {
         extern "C-unwind" {
             fn CFStringTokenizerSetString(
                 tokenizer: &CFStringTokenizer,
@@ -253,10 +253,7 @@ impl CFStringTokenizer {
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
     #[doc(alias = "CFStringTokenizerGoToTokenAtIndex")]
     #[inline]
-    pub unsafe fn go_to_token_at_index(
-        self: &CFStringTokenizer,
-        index: CFIndex,
-    ) -> CFStringTokenizerTokenType {
+    pub unsafe fn go_to_token_at_index(&self, index: CFIndex) -> CFStringTokenizerTokenType {
         extern "C-unwind" {
             fn CFStringTokenizerGoToTokenAtIndex(
                 tokenizer: &CFStringTokenizer,
@@ -289,7 +286,7 @@ impl CFStringTokenizer {
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
     #[doc(alias = "CFStringTokenizerAdvanceToNextToken")]
     #[inline]
-    pub unsafe fn advance_to_next_token(self: &CFStringTokenizer) -> CFStringTokenizerTokenType {
+    pub unsafe fn advance_to_next_token(&self) -> CFStringTokenizerTokenType {
         extern "C-unwind" {
             fn CFStringTokenizerAdvanceToNextToken(
                 tokenizer: &CFStringTokenizer,
@@ -306,7 +303,7 @@ impl CFStringTokenizer {
     /// Returns: Range of current token, or {kCFNotFound,0} if there is no current token.
     #[doc(alias = "CFStringTokenizerGetCurrentTokenRange")]
     #[inline]
-    pub unsafe fn current_token_range(self: &CFStringTokenizer) -> CFRange {
+    pub unsafe fn current_token_range(&self) -> CFRange {
         extern "C-unwind" {
             fn CFStringTokenizerGetCurrentTokenRange(tokenizer: &CFStringTokenizer) -> CFRange;
         }
@@ -327,7 +324,7 @@ impl CFStringTokenizer {
     #[doc(alias = "CFStringTokenizerCopyCurrentTokenAttribute")]
     #[inline]
     pub unsafe fn current_token_attribute(
-        self: &CFStringTokenizer,
+        &self,
         attribute: CFOptionFlags,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
@@ -371,7 +368,7 @@ impl CFStringTokenizer {
     #[cfg(feature = "CFArray")]
     #[inline]
     pub unsafe fn current_sub_tokens(
-        self: &CFStringTokenizer,
+        &self,
         ranges: *mut CFRange,
         max_range_length: CFIndex,
         derived_sub_tokens: Option<&CFMutableArray>,

@@ -402,7 +402,7 @@ impl CFXMLNode {
     #[doc(alias = "CFXMLNodeGetTypeCode")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub unsafe fn type_code(self: &CFXMLNode) -> CFXMLNodeTypeCode {
+    pub unsafe fn type_code(&self) -> CFXMLNodeTypeCode {
         extern "C-unwind" {
             fn CFXMLNodeGetTypeCode(node: &CFXMLNode) -> CFXMLNodeTypeCode;
         }
@@ -412,7 +412,7 @@ impl CFXMLNode {
     #[doc(alias = "CFXMLNodeGetString")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub unsafe fn string(self: &CFXMLNode) -> Option<CFRetained<CFString>> {
+    pub unsafe fn string(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFXMLNodeGetString(node: &CFXMLNode) -> Option<NonNull<CFString>>;
         }
@@ -423,7 +423,7 @@ impl CFXMLNode {
     #[doc(alias = "CFXMLNodeGetInfoPtr")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub unsafe fn info_ptr(self: &CFXMLNode) -> *const c_void {
+    pub unsafe fn info_ptr(&self) -> *const c_void {
         extern "C-unwind" {
             fn CFXMLNodeGetInfoPtr(node: &CFXMLNode) -> *const c_void;
         }
@@ -433,7 +433,7 @@ impl CFXMLNode {
     #[doc(alias = "CFXMLNodeGetVersion")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub unsafe fn version(self: &CFXMLNode) -> CFIndex {
+    pub unsafe fn version(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFXMLNodeGetVersion(node: &CFXMLNode) -> CFIndex;
         }

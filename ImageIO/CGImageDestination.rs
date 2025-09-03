@@ -144,7 +144,7 @@ impl CGImageDestination {
 
     #[doc(alias = "CGImageDestinationSetProperties")]
     #[inline]
-    pub unsafe fn set_properties(self: &CGImageDestination, properties: Option<&CFDictionary>) {
+    pub unsafe fn set_properties(&self, properties: Option<&CFDictionary>) {
         extern "C-unwind" {
             fn CGImageDestinationSetProperties(
                 idst: &CGImageDestination,
@@ -157,11 +157,7 @@ impl CGImageDestination {
     #[doc(alias = "CGImageDestinationAddImage")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn add_image(
-        self: &CGImageDestination,
-        image: &CGImage,
-        properties: Option<&CFDictionary>,
-    ) {
+    pub unsafe fn add_image(&self, image: &CGImage, properties: Option<&CFDictionary>) {
         extern "C-unwind" {
             fn CGImageDestinationAddImage(
                 idst: &CGImageDestination,
@@ -176,7 +172,7 @@ impl CGImageDestination {
     #[cfg(feature = "CGImageSource")]
     #[inline]
     pub unsafe fn add_image_from_source(
-        self: &CGImageDestination,
+        &self,
         isrc: &CGImageSource,
         index: usize,
         properties: Option<&CFDictionary>,
@@ -194,7 +190,7 @@ impl CGImageDestination {
 
     #[doc(alias = "CGImageDestinationFinalize")]
     #[inline]
-    pub unsafe fn finalize(self: &CGImageDestination) -> bool {
+    pub unsafe fn finalize(&self) -> bool {
         extern "C-unwind" {
             fn CGImageDestinationFinalize(idst: &CGImageDestination) -> bool;
         }
@@ -205,7 +201,7 @@ impl CGImageDestination {
     #[cfg(all(feature = "CGImageMetadata", feature = "objc2-core-graphics"))]
     #[inline]
     pub unsafe fn add_image_and_metadata(
-        self: &CGImageDestination,
+        &self,
         image: &CGImage,
         metadata: Option<&CGImageMetadata>,
         options: Option<&CFDictionary>,
@@ -265,7 +261,7 @@ impl CGImageDestination {
     #[cfg(feature = "CGImageSource")]
     #[inline]
     pub unsafe fn copy_image_source(
-        self: &CGImageDestination,
+        &self,
         isrc: &CGImageSource,
         options: Option<&CFDictionary>,
         err: *mut *mut CFError,
@@ -284,7 +280,7 @@ impl CGImageDestination {
     #[doc(alias = "CGImageDestinationAddAuxiliaryDataInfo")]
     #[inline]
     pub unsafe fn add_auxiliary_data_info(
-        self: &CGImageDestination,
+        &self,
         auxiliary_image_data_type: &CFString,
         auxiliary_data_info_dictionary: &CFDictionary,
     ) {

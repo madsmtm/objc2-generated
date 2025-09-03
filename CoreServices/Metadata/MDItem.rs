@@ -132,7 +132,7 @@ impl MDItem {
     /// does not exist, of if the attribute is not readable.
     #[doc(alias = "MDItemCopyAttribute")]
     #[inline]
-    pub unsafe fn attribute(self: &MDItem, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
+    pub unsafe fn attribute(&self, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn MDItemCopyAttribute(
                 item: &MDItem,
@@ -156,10 +156,7 @@ impl MDItem {
     /// in the dictionary.
     #[doc(alias = "MDItemCopyAttributes")]
     #[inline]
-    pub unsafe fn attributes(
-        self: &MDItem,
-        names: Option<&CFArray>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn attributes(&self, names: Option<&CFArray>) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn MDItemCopyAttributes(
                 item: &MDItem,
@@ -178,7 +175,7 @@ impl MDItem {
     /// failure.
     #[doc(alias = "MDItemCopyAttributeNames")]
     #[inline]
-    pub unsafe fn attribute_names(self: &MDItem) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn attribute_names(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn MDItemCopyAttributeNames(item: &MDItem) -> Option<NonNull<CFArray>>;
         }

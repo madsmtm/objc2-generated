@@ -67,7 +67,7 @@ impl CFUserNotification {
     #[cfg(feature = "CFDate")]
     #[inline]
     pub unsafe fn receive_response(
-        self: &CFUserNotification,
+        &self,
         timeout: CFTimeInterval,
         response_flags: *mut CFOptionFlags,
     ) -> i32 {
@@ -84,7 +84,7 @@ impl CFUserNotification {
     #[doc(alias = "CFUserNotificationGetResponseValue")]
     #[inline]
     pub unsafe fn response_value(
-        self: &CFUserNotification,
+        &self,
         key: Option<&CFString>,
         idx: CFIndex,
     ) -> Option<CFRetained<CFString>> {
@@ -102,7 +102,7 @@ impl CFUserNotification {
     #[doc(alias = "CFUserNotificationGetResponseDictionary")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
-    pub fn response_dictionary(self: &CFUserNotification) -> Option<CFRetained<CFDictionary>> {
+    pub fn response_dictionary(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CFUserNotificationGetResponseDictionary(
                 user_notification: &CFUserNotification,
@@ -116,7 +116,7 @@ impl CFUserNotification {
     #[cfg(all(feature = "CFDate", feature = "CFDictionary"))]
     #[inline]
     pub unsafe fn update(
-        self: &CFUserNotification,
+        &self,
         timeout: CFTimeInterval,
         flags: CFOptionFlags,
         dictionary: Option<&CFDictionary>,
@@ -134,7 +134,7 @@ impl CFUserNotification {
 
     #[doc(alias = "CFUserNotificationCancel")]
     #[inline]
-    pub fn cancel(self: &CFUserNotification) -> i32 {
+    pub fn cancel(&self) -> i32 {
         extern "C-unwind" {
             fn CFUserNotificationCancel(user_notification: &CFUserNotification) -> i32;
         }

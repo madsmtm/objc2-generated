@@ -77,7 +77,7 @@ impl CMTimeRange {
     #[doc(alias = "CMTimeRangeGetUnion")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn union(self: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange {
+    pub unsafe fn union(self, other_range: CMTimeRange) -> CMTimeRange {
         extern "C-unwind" {
             fn CMTimeRangeGetUnion(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange;
         }
@@ -101,7 +101,7 @@ impl CMTimeRange {
     #[doc(alias = "CMTimeRangeGetIntersection")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn intersection(self: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange {
+    pub unsafe fn intersection(self, other_range: CMTimeRange) -> CMTimeRange {
         extern "C-unwind" {
             fn CMTimeRangeGetIntersection(
                 range: CMTimeRange,
@@ -127,7 +127,7 @@ impl CMTimeRange {
     #[doc(alias = "CMTimeRangeEqual")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn equal(self: CMTimeRange, range2: CMTimeRange) -> bool {
+    pub unsafe fn equal(self, range2: CMTimeRange) -> bool {
         extern "C-unwind" {
             fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> Boolean;
         }
@@ -152,7 +152,7 @@ impl CMTimeRange {
     #[doc(alias = "CMTimeRangeContainsTime")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn contains_time(self: CMTimeRange, time: CMTime) -> bool {
+    pub unsafe fn contains_time(self, time: CMTime) -> bool {
         extern "C-unwind" {
             fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> Boolean;
         }
@@ -177,7 +177,7 @@ impl CMTimeRange {
     #[doc(alias = "CMTimeRangeContainsTimeRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn contains_time_range(self: CMTimeRange, other_range: CMTimeRange) -> bool {
+    pub unsafe fn contains_time_range(self, other_range: CMTimeRange) -> bool {
         extern "C-unwind" {
             fn CMTimeRangeContainsTimeRange(
                 range: CMTimeRange,
@@ -201,7 +201,7 @@ impl CMTimeRange {
     #[doc(alias = "CMTimeRangeGetEnd")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn end(self: CMTimeRange) -> CMTime {
+    pub unsafe fn end(self) -> CMTime {
         extern "C-unwind" {
             fn CMTimeRangeGetEnd(range: CMTimeRange) -> CMTime;
         }
@@ -226,7 +226,7 @@ impl CMTime {
     #[cfg(feature = "CMTime")]
     #[inline]
     pub unsafe fn map_time_from_range_to_range(
-        self: CMTime,
+        self,
         from_range: CMTimeRange,
         to_range: CMTimeRange,
     ) -> CMTime {
@@ -252,7 +252,7 @@ impl CMTime {
     #[doc(alias = "CMTimeClampToRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn clamp_to_range(self: CMTime, range: CMTimeRange) -> CMTime {
+    pub unsafe fn clamp_to_range(self, range: CMTimeRange) -> CMTime {
         extern "C-unwind" {
             fn CMTimeClampToRange(time: CMTime, range: CMTimeRange) -> CMTime;
         }
@@ -270,7 +270,7 @@ impl CMTime {
     #[cfg(feature = "CMTime")]
     #[inline]
     pub unsafe fn map_duration_from_range_to_range(
-        self: CMTime,
+        self,
         from_range: CMTimeRange,
         to_range: CMTimeRange,
     ) -> CMTime {
@@ -293,7 +293,7 @@ impl CMTime {
     #[doc(alias = "CMTimeFoldIntoRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn fold_into_range(self: CMTime, fold_range: CMTimeRange) -> CMTime {
+    pub unsafe fn fold_into_range(self, fold_range: CMTimeRange) -> CMTime {
         extern "C-unwind" {
             fn CMTimeFoldIntoRange(time: CMTime, fold_range: CMTimeRange) -> CMTime;
         }
@@ -325,7 +325,7 @@ impl CMTimeRange {
     #[cfg(feature = "CMTime")]
     #[inline]
     pub unsafe fn as_dictionary(
-        self: CMTimeRange,
+        self,
         allocator: Option<&CFAllocator>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -402,7 +402,7 @@ impl CMTimeRange {
     #[doc(alias = "CMTimeRangeShow")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn show(self: CMTimeRange) {
+    pub unsafe fn show(self) {
         extern "C-unwind" {
             fn CMTimeRangeShow(range: CMTimeRange);
         }
@@ -490,7 +490,7 @@ impl CMTimeMapping {
     #[cfg(feature = "CMTime")]
     #[inline]
     pub unsafe fn as_dictionary(
-        self: CMTimeMapping,
+        self,
         allocator: Option<&CFAllocator>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -567,7 +567,7 @@ impl CMTimeMapping {
     #[doc(alias = "CMTimeMappingShow")]
     #[cfg(feature = "CMTime")]
     #[inline]
-    pub unsafe fn show(self: CMTimeMapping) {
+    pub unsafe fn show(self) {
         extern "C-unwind" {
             fn CMTimeMappingShow(mapping: CMTimeMapping);
         }

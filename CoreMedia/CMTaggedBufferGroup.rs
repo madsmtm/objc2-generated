@@ -131,7 +131,7 @@ impl CMTaggedBufferGroup {
     #[doc(alias = "CMTaggedBufferGroupGetCount")]
     #[cfg(feature = "CMBase")]
     #[inline]
-    pub unsafe fn count(self: &CMTaggedBufferGroup) -> CMItemCount {
+    pub unsafe fn count(&self) -> CMItemCount {
         extern "C-unwind" {
             fn CMTaggedBufferGroupGetCount(group: &CMTaggedBufferGroup) -> CMItemCount;
         }
@@ -149,7 +149,7 @@ impl CMTaggedBufferGroup {
     #[cfg(feature = "CMTagCollection")]
     #[inline]
     pub unsafe fn tag_collection_at_index(
-        self: &CMTaggedBufferGroup,
+        &self,
         index: CFIndex,
     ) -> Option<CFRetained<CMTagCollection>> {
         extern "C-unwind" {
@@ -173,7 +173,7 @@ impl CMTaggedBufferGroup {
     #[cfg(feature = "objc2-core-video")]
     #[inline]
     pub unsafe fn cv_pixel_buffer_at_index(
-        self: &CMTaggedBufferGroup,
+        &self,
         index: CFIndex,
     ) -> Option<CFRetained<CVPixelBuffer>> {
         extern "C-unwind" {
@@ -199,7 +199,7 @@ impl CMTaggedBufferGroup {
     #[cfg(all(feature = "CMTag", feature = "objc2-core-video"))]
     #[inline]
     pub unsafe fn cv_pixel_buffer_for_tag(
-        self: &CMTaggedBufferGroup,
+        &self,
         tag: CMTag,
         index_out: *mut CFIndex,
     ) -> Option<CFRetained<CVPixelBuffer>> {
@@ -227,7 +227,7 @@ impl CMTaggedBufferGroup {
     #[cfg(all(feature = "CMTagCollection", feature = "objc2-core-video"))]
     #[inline]
     pub unsafe fn cv_pixel_buffer_for_tag_collection(
-        self: &CMTaggedBufferGroup,
+        &self,
         tag_collection: &CMTagCollection,
         index_out: *mut CFIndex,
     ) -> Option<CFRetained<CVPixelBuffer>> {
@@ -255,7 +255,7 @@ impl CMTaggedBufferGroup {
     #[cfg(feature = "CMSampleBuffer")]
     #[inline]
     pub unsafe fn cm_sample_buffer_at_index(
-        self: &CMTaggedBufferGroup,
+        &self,
         index: CFIndex,
     ) -> Option<CFRetained<CMSampleBuffer>> {
         extern "C-unwind" {
@@ -281,7 +281,7 @@ impl CMTaggedBufferGroup {
     #[cfg(all(feature = "CMSampleBuffer", feature = "CMTag"))]
     #[inline]
     pub unsafe fn cm_sample_buffer_for_tag(
-        self: &CMTaggedBufferGroup,
+        &self,
         tag: CMTag,
         index_out: *mut CFIndex,
     ) -> Option<CFRetained<CMSampleBuffer>> {
@@ -309,7 +309,7 @@ impl CMTaggedBufferGroup {
     #[cfg(all(feature = "CMSampleBuffer", feature = "CMTagCollection"))]
     #[inline]
     pub unsafe fn cm_sample_buffer_for_tag_collection(
-        self: &CMTaggedBufferGroup,
+        &self,
         tag_collection: &CMTagCollection,
         index_out: *mut CFIndex,
     ) -> Option<CFRetained<CMSampleBuffer>> {
@@ -339,7 +339,7 @@ impl CMTaggedBufferGroup {
     #[cfg(all(feature = "CMBase", feature = "CMTagCollection"))]
     #[inline]
     pub unsafe fn number_of_matches_for_tag_collection(
-        self: &CMTaggedBufferGroup,
+        &self,
         tag_collection: &CMTagCollection,
     ) -> CMItemCount {
         extern "C-unwind" {
@@ -466,9 +466,7 @@ impl CMSampleBuffer {
     #[doc(alias = "CMSampleBufferGetTaggedBufferGroup")]
     #[cfg(feature = "CMSampleBuffer")]
     #[inline]
-    pub unsafe fn tagged_buffer_group(
-        self: &CMSampleBuffer,
-    ) -> Option<CFRetained<CMTaggedBufferGroup>> {
+    pub unsafe fn tagged_buffer_group(&self) -> Option<CFRetained<CMTaggedBufferGroup>> {
         extern "C-unwind" {
             fn CMSampleBufferGetTaggedBufferGroup(
                 sbuf: &CMSampleBuffer,

@@ -54,7 +54,7 @@ unsafe impl ConcreteType for GLKMatrixStack {
 impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackPush")]
     #[inline]
-    pub unsafe fn push(self: &GLKMatrixStack) {
+    pub unsafe fn push(&self) {
         extern "C-unwind" {
             fn GLKMatrixStackPush(stack: &GLKMatrixStack);
         }
@@ -63,7 +63,7 @@ impl GLKMatrixStack {
 
     #[doc(alias = "GLKMatrixStackPop")]
     #[inline]
-    pub unsafe fn pop(self: &GLKMatrixStack) {
+    pub unsafe fn pop(&self) {
         extern "C-unwind" {
             fn GLKMatrixStackPop(stack: &GLKMatrixStack);
         }
@@ -72,7 +72,7 @@ impl GLKMatrixStack {
 
     #[doc(alias = "GLKMatrixStackSize")]
     #[inline]
-    pub unsafe fn size(self: &GLKMatrixStack) -> c_int {
+    pub unsafe fn size(&self) -> c_int {
         extern "C-unwind" {
             fn GLKMatrixStackSize(stack: &GLKMatrixStack) -> c_int;
         }
@@ -82,7 +82,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackLoadMatrix4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn load_matrix4(self: &GLKMatrixStack, matrix: GLKMatrix4) {
+    pub unsafe fn load_matrix4(&self, matrix: GLKMatrix4) {
         extern "C-unwind" {
             fn GLKMatrixStackLoadMatrix4(stack: &GLKMatrixStack, matrix: GLKMatrix4);
         }
@@ -92,7 +92,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackGetMatrix4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn matrix4(self: &GLKMatrixStack) -> GLKMatrix4 {
+    pub unsafe fn matrix4(&self) -> GLKMatrix4 {
         extern "C-unwind" {
             fn GLKMatrixStackGetMatrix4(stack: &GLKMatrixStack) -> GLKMatrix4;
         }
@@ -102,7 +102,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackGetMatrix3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn matrix3(self: &GLKMatrixStack) -> GLKMatrix3 {
+    pub unsafe fn matrix3(&self) -> GLKMatrix3 {
         extern "C-unwind" {
             fn GLKMatrixStackGetMatrix3(stack: &GLKMatrixStack) -> GLKMatrix3;
         }
@@ -112,7 +112,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackGetMatrix2")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn matrix2(self: &GLKMatrixStack) -> GLKMatrix2 {
+    pub unsafe fn matrix2(&self) -> GLKMatrix2 {
         extern "C-unwind" {
             fn GLKMatrixStackGetMatrix2(stack: &GLKMatrixStack) -> GLKMatrix2;
         }
@@ -122,7 +122,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackGetMatrix4Inverse")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn matrix4_inverse(self: &GLKMatrixStack) -> GLKMatrix4 {
+    pub unsafe fn matrix4_inverse(&self) -> GLKMatrix4 {
         extern "C-unwind" {
             fn GLKMatrixStackGetMatrix4Inverse(stack: &GLKMatrixStack) -> GLKMatrix4;
         }
@@ -132,7 +132,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackGetMatrix4InverseTranspose")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn matrix4_inverse_transpose(self: &GLKMatrixStack) -> GLKMatrix4 {
+    pub unsafe fn matrix4_inverse_transpose(&self) -> GLKMatrix4 {
         extern "C-unwind" {
             fn GLKMatrixStackGetMatrix4InverseTranspose(stack: &GLKMatrixStack) -> GLKMatrix4;
         }
@@ -142,7 +142,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackGetMatrix3Inverse")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn matrix3_inverse(self: &GLKMatrixStack) -> GLKMatrix3 {
+    pub unsafe fn matrix3_inverse(&self) -> GLKMatrix3 {
         extern "C-unwind" {
             fn GLKMatrixStackGetMatrix3Inverse(stack: &GLKMatrixStack) -> GLKMatrix3;
         }
@@ -152,7 +152,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackGetMatrix3InverseTranspose")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn matrix3_inverse_transpose(self: &GLKMatrixStack) -> GLKMatrix3 {
+    pub unsafe fn matrix3_inverse_transpose(&self) -> GLKMatrix3 {
         extern "C-unwind" {
             fn GLKMatrixStackGetMatrix3InverseTranspose(stack: &GLKMatrixStack) -> GLKMatrix3;
         }
@@ -162,7 +162,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackMultiplyMatrix4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn multiply_matrix4(self: &GLKMatrixStack, matrix: GLKMatrix4) {
+    pub unsafe fn multiply_matrix4(&self, matrix: GLKMatrix4) {
         extern "C-unwind" {
             fn GLKMatrixStackMultiplyMatrix4(stack: &GLKMatrixStack, matrix: GLKMatrix4);
         }
@@ -171,7 +171,7 @@ impl GLKMatrixStack {
 
     #[doc(alias = "GLKMatrixStackMultiplyMatrixStack")]
     #[inline]
-    pub unsafe fn multiply_matrix_stack(self: &GLKMatrixStack, stack_right: &GLKMatrixStack) {
+    pub unsafe fn multiply_matrix_stack(&self, stack_right: &GLKMatrixStack) {
         extern "C-unwind" {
             fn GLKMatrixStackMultiplyMatrixStack(
                 stack_left: &GLKMatrixStack,
@@ -183,7 +183,7 @@ impl GLKMatrixStack {
 
     #[doc(alias = "GLKMatrixStackTranslate")]
     #[inline]
-    pub unsafe fn translate(self: &GLKMatrixStack, tx: c_float, ty: c_float, tz: c_float) {
+    pub unsafe fn translate(&self, tx: c_float, ty: c_float, tz: c_float) {
         extern "C-unwind" {
             fn GLKMatrixStackTranslate(
                 stack: &GLKMatrixStack,
@@ -198,7 +198,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackTranslateWithVector3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn translate_with_vector3(self: &GLKMatrixStack, translation_vector: GLKVector3) {
+    pub unsafe fn translate_with_vector3(&self, translation_vector: GLKVector3) {
         extern "C-unwind" {
             fn GLKMatrixStackTranslateWithVector3(
                 stack: &GLKMatrixStack,
@@ -211,7 +211,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackTranslateWithVector4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn translate_with_vector4(self: &GLKMatrixStack, translation_vector: GLKVector4) {
+    pub unsafe fn translate_with_vector4(&self, translation_vector: GLKVector4) {
         extern "C-unwind" {
             fn GLKMatrixStackTranslateWithVector4(
                 stack: &GLKMatrixStack,
@@ -223,7 +223,7 @@ impl GLKMatrixStack {
 
     #[doc(alias = "GLKMatrixStackScale")]
     #[inline]
-    pub unsafe fn scale(self: &GLKMatrixStack, sx: c_float, sy: c_float, sz: c_float) {
+    pub unsafe fn scale(&self, sx: c_float, sy: c_float, sz: c_float) {
         extern "C-unwind" {
             fn GLKMatrixStackScale(stack: &GLKMatrixStack, sx: c_float, sy: c_float, sz: c_float);
         }
@@ -233,7 +233,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackScaleWithVector3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn scale_with_vector3(self: &GLKMatrixStack, scale_vector: GLKVector3) {
+    pub unsafe fn scale_with_vector3(&self, scale_vector: GLKVector3) {
         extern "C-unwind" {
             fn GLKMatrixStackScaleWithVector3(stack: &GLKMatrixStack, scale_vector: GLKVector3);
         }
@@ -243,7 +243,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackScaleWithVector4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn scale_with_vector4(self: &GLKMatrixStack, scale_vector: GLKVector4) {
+    pub unsafe fn scale_with_vector4(&self, scale_vector: GLKVector4) {
         extern "C-unwind" {
             fn GLKMatrixStackScaleWithVector4(stack: &GLKMatrixStack, scale_vector: GLKVector4);
         }
@@ -252,13 +252,7 @@ impl GLKMatrixStack {
 
     #[doc(alias = "GLKMatrixStackRotate")]
     #[inline]
-    pub unsafe fn rotate(
-        self: &GLKMatrixStack,
-        radians: c_float,
-        x: c_float,
-        y: c_float,
-        z: c_float,
-    ) {
+    pub unsafe fn rotate(&self, radians: c_float, x: c_float, y: c_float, z: c_float) {
         extern "C-unwind" {
             fn GLKMatrixStackRotate(
                 stack: &GLKMatrixStack,
@@ -274,11 +268,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackRotateWithVector3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn rotate_with_vector3(
-        self: &GLKMatrixStack,
-        radians: c_float,
-        axis_vector: GLKVector3,
-    ) {
+    pub unsafe fn rotate_with_vector3(&self, radians: c_float, axis_vector: GLKVector3) {
         extern "C-unwind" {
             fn GLKMatrixStackRotateWithVector3(
                 stack: &GLKMatrixStack,
@@ -292,11 +282,7 @@ impl GLKMatrixStack {
     #[doc(alias = "GLKMatrixStackRotateWithVector4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
-    pub unsafe fn rotate_with_vector4(
-        self: &GLKMatrixStack,
-        radians: c_float,
-        axis_vector: GLKVector4,
-    ) {
+    pub unsafe fn rotate_with_vector4(&self, radians: c_float, axis_vector: GLKVector4) {
         extern "C-unwind" {
             fn GLKMatrixStackRotateWithVector4(
                 stack: &GLKMatrixStack,
@@ -309,7 +295,7 @@ impl GLKMatrixStack {
 
     #[doc(alias = "GLKMatrixStackRotateX")]
     #[inline]
-    pub unsafe fn rotate_x(self: &GLKMatrixStack, radians: c_float) {
+    pub unsafe fn rotate_x(&self, radians: c_float) {
         extern "C-unwind" {
             fn GLKMatrixStackRotateX(stack: &GLKMatrixStack, radians: c_float);
         }
@@ -318,7 +304,7 @@ impl GLKMatrixStack {
 
     #[doc(alias = "GLKMatrixStackRotateY")]
     #[inline]
-    pub unsafe fn rotate_y(self: &GLKMatrixStack, radians: c_float) {
+    pub unsafe fn rotate_y(&self, radians: c_float) {
         extern "C-unwind" {
             fn GLKMatrixStackRotateY(stack: &GLKMatrixStack, radians: c_float);
         }
@@ -327,7 +313,7 @@ impl GLKMatrixStack {
 
     #[doc(alias = "GLKMatrixStackRotateZ")]
     #[inline]
-    pub unsafe fn rotate_z(self: &GLKMatrixStack, radians: c_float) {
+    pub unsafe fn rotate_z(&self, radians: c_float) {
         extern "C-unwind" {
             fn GLKMatrixStackRotateZ(stack: &GLKMatrixStack, radians: c_float);
         }

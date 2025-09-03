@@ -60,7 +60,7 @@ extern "C" {
 impl CMSEncoder {
     #[doc(alias = "CMSEncoderSetSignerAlgorithm")]
     #[inline]
-    pub unsafe fn set_signer_algorithm(self: &CMSEncoder, digest_algorithm: &CFString) -> OSStatus {
+    pub unsafe fn set_signer_algorithm(&self, digest_algorithm: &CFString) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderSetSignerAlgorithm(
                 cms_encoder: &CMSEncoder,
@@ -72,7 +72,7 @@ impl CMSEncoder {
 
     #[doc(alias = "CMSEncoderAddSigners")]
     #[inline]
-    pub unsafe fn add_signers(self: &CMSEncoder, signer_or_array: &CFType) -> OSStatus {
+    pub unsafe fn add_signers(&self, signer_or_array: &CFType) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderAddSigners(cms_encoder: &CMSEncoder, signer_or_array: &CFType)
                 -> OSStatus;
@@ -82,10 +82,7 @@ impl CMSEncoder {
 
     #[doc(alias = "CMSEncoderCopySigners")]
     #[inline]
-    pub unsafe fn copy_signers(
-        self: &CMSEncoder,
-        signers_out: NonNull<*const CFArray>,
-    ) -> OSStatus {
+    pub unsafe fn copy_signers(&self, signers_out: NonNull<*const CFArray>) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopySigners(
                 cms_encoder: &CMSEncoder,
@@ -97,7 +94,7 @@ impl CMSEncoder {
 
     #[doc(alias = "CMSEncoderAddRecipients")]
     #[inline]
-    pub unsafe fn add_recipients(self: &CMSEncoder, recipient_or_array: &CFType) -> OSStatus {
+    pub unsafe fn add_recipients(&self, recipient_or_array: &CFType) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderAddRecipients(
                 cms_encoder: &CMSEncoder,
@@ -109,10 +106,7 @@ impl CMSEncoder {
 
     #[doc(alias = "CMSEncoderCopyRecipients")]
     #[inline]
-    pub unsafe fn copy_recipients(
-        self: &CMSEncoder,
-        recipients_out: NonNull<*const CFArray>,
-    ) -> OSStatus {
+    pub unsafe fn copy_recipients(&self, recipients_out: NonNull<*const CFArray>) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopyRecipients(
                 cms_encoder: &CMSEncoder,
@@ -124,7 +118,7 @@ impl CMSEncoder {
 
     #[doc(alias = "CMSEncoderSetHasDetachedContent")]
     #[inline]
-    pub unsafe fn set_has_detached_content(self: &CMSEncoder, detached_content: bool) -> OSStatus {
+    pub unsafe fn set_has_detached_content(&self, detached_content: bool) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderSetHasDetachedContent(
                 cms_encoder: &CMSEncoder,
@@ -136,10 +130,7 @@ impl CMSEncoder {
 
     #[doc(alias = "CMSEncoderGetHasDetachedContent")]
     #[inline]
-    pub unsafe fn has_detached_content(
-        self: &CMSEncoder,
-        detached_content_out: NonNull<Boolean>,
-    ) -> OSStatus {
+    pub unsafe fn has_detached_content(&self, detached_content_out: NonNull<Boolean>) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderGetHasDetachedContent(
                 cms_encoder: &CMSEncoder,
@@ -154,7 +145,7 @@ impl CMSEncoder {
     #[deprecated]
     #[inline]
     pub unsafe fn set_encapsulated_content_type(
-        self: &CMSEncoder,
+        &self,
         e_content_type: NonNull<SecAsn1Oid>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -169,7 +160,7 @@ impl CMSEncoder {
     #[doc(alias = "CMSEncoderSetEncapsulatedContentTypeOID")]
     #[inline]
     pub unsafe fn set_encapsulated_content_type_oid(
-        self: &CMSEncoder,
+        &self,
         e_content_type_oid: &CFType,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -184,7 +175,7 @@ impl CMSEncoder {
     #[doc(alias = "CMSEncoderCopyEncapsulatedContentType")]
     #[inline]
     pub unsafe fn copy_encapsulated_content_type(
-        self: &CMSEncoder,
+        &self,
         e_content_type_out: NonNull<*const CFData>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -198,7 +189,7 @@ impl CMSEncoder {
 
     #[doc(alias = "CMSEncoderAddSupportingCerts")]
     #[inline]
-    pub unsafe fn add_supporting_certs(self: &CMSEncoder, cert_or_array: &CFType) -> OSStatus {
+    pub unsafe fn add_supporting_certs(&self, cert_or_array: &CFType) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderAddSupportingCerts(
                 cms_encoder: &CMSEncoder,
@@ -210,10 +201,7 @@ impl CMSEncoder {
 
     #[doc(alias = "CMSEncoderCopySupportingCerts")]
     #[inline]
-    pub unsafe fn copy_supporting_certs(
-        self: &CMSEncoder,
-        certs_out: NonNull<*const CFArray>,
-    ) -> OSStatus {
+    pub unsafe fn copy_supporting_certs(&self, certs_out: NonNull<*const CFArray>) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderCopySupportingCerts(
                 cms_encoder: &CMSEncoder,
@@ -263,10 +251,7 @@ unsafe impl RefEncode for CMSSignedAttributes {
 impl CMSEncoder {
     #[doc(alias = "CMSEncoderAddSignedAttributes")]
     #[inline]
-    pub unsafe fn add_signed_attributes(
-        self: &CMSEncoder,
-        signed_attributes: CMSSignedAttributes,
-    ) -> OSStatus {
+    pub unsafe fn add_signed_attributes(&self, signed_attributes: CMSSignedAttributes) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderAddSignedAttributes(
                 cms_encoder: &CMSEncoder,
@@ -309,7 +294,7 @@ impl CMSEncoder {
     #[doc(alias = "CMSEncoderSetCertificateChainMode")]
     #[inline]
     pub unsafe fn set_certificate_chain_mode(
-        self: &CMSEncoder,
+        &self,
         chain_mode: CMSCertificateChainMode,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -324,7 +309,7 @@ impl CMSEncoder {
     #[doc(alias = "CMSEncoderGetCertificateChainMode")]
     #[inline]
     pub unsafe fn certificate_chain_mode(
-        self: &CMSEncoder,
+        &self,
         chain_mode_out: NonNull<CMSCertificateChainMode>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -338,11 +323,7 @@ impl CMSEncoder {
 
     #[doc(alias = "CMSEncoderUpdateContent")]
     #[inline]
-    pub unsafe fn update_content(
-        self: &CMSEncoder,
-        content: NonNull<c_void>,
-        content_len: usize,
-    ) -> OSStatus {
+    pub unsafe fn update_content(&self, content: NonNull<c_void>, content_len: usize) -> OSStatus {
         extern "C-unwind" {
             fn CMSEncoderUpdateContent(
                 cms_encoder: &CMSEncoder,
@@ -356,7 +337,7 @@ impl CMSEncoder {
     #[doc(alias = "CMSEncoderCopyEncodedContent")]
     #[inline]
     pub unsafe fn copy_encoded_content(
-        self: &CMSEncoder,
+        &self,
         encoded_content_out: NonNull<*const CFData>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -449,7 +430,7 @@ impl CMSEncoder {
     #[doc(alias = "CMSEncoderCopySignerTimestamp")]
     #[inline]
     pub unsafe fn copy_signer_timestamp(
-        self: &CMSEncoder,
+        &self,
         signer_index: usize,
         timestamp: NonNull<CFAbsoluteTime>,
     ) -> OSStatus {
@@ -466,7 +447,7 @@ impl CMSEncoder {
     #[doc(alias = "CMSEncoderCopySignerTimestampWithPolicy")]
     #[inline]
     pub unsafe fn copy_signer_timestamp_with_policy(
-        self: &CMSEncoder,
+        &self,
         time_stamp_policy: Option<&CFType>,
         signer_index: usize,
         timestamp: NonNull<CFAbsoluteTime>,

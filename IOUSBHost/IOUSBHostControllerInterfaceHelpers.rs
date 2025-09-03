@@ -9,7 +9,7 @@ impl IOUSBHostCIMessageStatus {
     #[doc(alias = "IOUSBHostCIMessageStatusToIOReturn")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
-    pub unsafe fn to_io_return(self: IOUSBHostCIMessageStatus) -> IOReturn {
+    pub unsafe fn to_io_return(self) -> IOReturn {
         extern "C-unwind" {
             fn IOUSBHostCIMessageStatusToIOReturn(status: IOUSBHostCIMessageStatus) -> IOReturn;
         }
@@ -32,7 +32,7 @@ impl IOUSBHostCILinkState {
     #[doc(alias = "IOUSBHostCILinkStateEnabled")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
-    pub unsafe fn enabled(self: IOUSBHostCILinkState) -> bool {
+    pub unsafe fn enabled(self) -> bool {
         extern "C-unwind" {
             fn IOUSBHostCILinkStateEnabled(link_state: IOUSBHostCILinkState) -> bool;
         }
@@ -45,7 +45,7 @@ impl IOUSBHostCIMessageType {
     #[doc(alias = "IOUSBHostCIMessageTypeToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
-    pub unsafe fn to_string(self: IOUSBHostCIMessageType) -> *const c_char {
+    pub unsafe fn to_string(self) -> *const c_char {
         extern "C-unwind" {
             fn IOUSBHostCIMessageTypeToString(r#type: IOUSBHostCIMessageType) -> *const c_char;
         }
@@ -58,7 +58,7 @@ impl IOUSBHostCIMessageStatus {
     #[doc(alias = "IOUSBHostCIMessageStatusToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
-    pub unsafe fn to_string(self: IOUSBHostCIMessageStatus) -> *const c_char {
+    pub unsafe fn to_string(self) -> *const c_char {
         extern "C-unwind" {
             fn IOUSBHostCIMessageStatusToString(status: IOUSBHostCIMessageStatus) -> *const c_char;
         }
@@ -71,7 +71,7 @@ impl IOUSBHostCILinkState {
     #[doc(alias = "IOUSBHostCILinkStateToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
-    pub unsafe fn to_string(self: IOUSBHostCILinkState) -> *const c_char {
+    pub unsafe fn to_string(self) -> *const c_char {
         extern "C-unwind" {
             fn IOUSBHostCILinkStateToString(link_state: IOUSBHostCILinkState) -> *const c_char;
         }
@@ -84,7 +84,7 @@ impl IOUSBHostCIDeviceSpeed {
     #[doc(alias = "IOUSBHostCIDeviceSpeedToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
-    pub unsafe fn to_string(self: IOUSBHostCIDeviceSpeed) -> *const c_char {
+    pub unsafe fn to_string(self) -> *const c_char {
         extern "C-unwind" {
             fn IOUSBHostCIDeviceSpeedToString(speed: IOUSBHostCIDeviceSpeed) -> *const c_char;
         }
@@ -97,7 +97,7 @@ impl IOUSBHostCIExceptionType {
     #[doc(alias = "IOUSBHostCIExceptionTypeToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
-    pub unsafe fn to_string(self: IOUSBHostCIExceptionType) -> *const c_char {
+    pub unsafe fn to_string(self) -> *const c_char {
         extern "C-unwind" {
             fn IOUSBHostCIExceptionTypeToString(
                 exception_type: IOUSBHostCIExceptionType,
@@ -112,7 +112,7 @@ impl IOUSBHostCIControllerState {
     #[doc(alias = "IOUSBHostCIControllerStateToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
-    pub unsafe fn to_string(self: IOUSBHostCIControllerState) -> *const c_char {
+    pub unsafe fn to_string(self) -> *const c_char {
         extern "C-unwind" {
             fn IOUSBHostCIControllerStateToString(
                 controller_state: IOUSBHostCIControllerState,
@@ -127,7 +127,7 @@ impl IOUSBHostCIPortState {
     #[doc(alias = "IOUSBHostCIPortStateToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
-    pub unsafe fn to_string(self: IOUSBHostCIPortState) -> *const c_char {
+    pub unsafe fn to_string(self) -> *const c_char {
         extern "C-unwind" {
             fn IOUSBHostCIPortStateToString(port_state: IOUSBHostCIPortState) -> *const c_char;
         }
@@ -140,7 +140,7 @@ impl IOUSBHostCIDeviceState {
     #[doc(alias = "IOUSBHostCIDeviceStateToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
-    pub unsafe fn to_string(self: IOUSBHostCIDeviceState) -> *const c_char {
+    pub unsafe fn to_string(self) -> *const c_char {
         extern "C-unwind" {
             fn IOUSBHostCIDeviceStateToString(
                 device_state: IOUSBHostCIDeviceState,
@@ -155,7 +155,7 @@ impl IOUSBHostCIEndpointState {
     #[doc(alias = "IOUSBHostCIEndpointStateToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
-    pub unsafe fn to_string(self: IOUSBHostCIEndpointState) -> *const c_char {
+    pub unsafe fn to_string(self) -> *const c_char {
         extern "C-unwind" {
             fn IOUSBHostCIEndpointStateToString(
                 endpoint_state: IOUSBHostCIEndpointState,

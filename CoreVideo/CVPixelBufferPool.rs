@@ -90,7 +90,7 @@ impl CVPixelBufferPool {
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
     #[doc(alias = "CVPixelBufferPoolGetAttributes")]
     #[inline]
-    pub unsafe fn attributes(self: &CVPixelBufferPool) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn attributes(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CVPixelBufferPoolGetAttributes(
                 pool: &CVPixelBufferPool,
@@ -110,9 +110,7 @@ impl CVPixelBufferPool {
     /// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
     #[doc(alias = "CVPixelBufferPoolGetPixelBufferAttributes")]
     #[inline]
-    pub unsafe fn pixel_buffer_attributes(
-        self: &CVPixelBufferPool,
-    ) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn pixel_buffer_attributes(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CVPixelBufferPoolGetPixelBufferAttributes(
                 pool: &CVPixelBufferPool,
@@ -243,7 +241,7 @@ impl CVPixelBufferPool {
     #[doc(alias = "CVPixelBufferPoolFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]
-    pub unsafe fn flush(self: &CVPixelBufferPool, options: CVPixelBufferPoolFlushFlags) {
+    pub unsafe fn flush(&self, options: CVPixelBufferPoolFlushFlags) {
         extern "C-unwind" {
             fn CVPixelBufferPoolFlush(
                 pool: &CVPixelBufferPool,

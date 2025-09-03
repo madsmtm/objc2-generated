@@ -150,7 +150,7 @@ impl CFMutableData {
 impl CFData {
     #[doc(alias = "CFDataGetLength")]
     #[inline]
-    pub fn length(self: &CFData) -> CFIndex {
+    pub fn length(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFDataGetLength(the_data: &CFData) -> CFIndex;
         }
@@ -159,7 +159,7 @@ impl CFData {
 
     #[doc(alias = "CFDataGetBytePtr")]
     #[inline]
-    pub fn byte_ptr(self: &CFData) -> *const u8 {
+    pub fn byte_ptr(&self) -> *const u8 {
         extern "C-unwind" {
             fn CFDataGetBytePtr(the_data: &CFData) -> *const u8;
         }
@@ -181,7 +181,7 @@ impl CFMutableData {
 impl CFData {
     #[doc(alias = "CFDataGetBytes")]
     #[inline]
-    pub unsafe fn bytes(self: &CFData, range: CFRange, buffer: *mut u8) {
+    pub unsafe fn bytes(&self, range: CFRange, buffer: *mut u8) {
         extern "C-unwind" {
             fn CFDataGetBytes(the_data: &CFData, range: CFRange, buffer: *mut u8);
         }
@@ -282,7 +282,7 @@ impl CFData {
     #[doc(alias = "CFDataFind")]
     #[inline]
     pub unsafe fn find(
-        self: &CFData,
+        &self,
         data_to_find: Option<&CFData>,
         search_range: CFRange,
         compare_options: CFDataSearchFlags,

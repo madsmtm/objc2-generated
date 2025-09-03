@@ -122,7 +122,7 @@ impl VTHDRPerFrameMetadataGenerationSession {
     #[cfg(feature = "objc2-core-video")]
     #[inline]
     pub unsafe fn attach_metadata(
-        self: &VTHDRPerFrameMetadataGenerationSession,
+        &self,
         pixel_buffer: &CVPixelBuffer,
         scene_change: bool,
     ) -> OSStatus {

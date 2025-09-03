@@ -233,7 +233,7 @@ impl CFUUID {
 
     #[doc(alias = "CFUUIDGetUUIDBytes")]
     #[inline]
-    pub fn uuid_bytes(self: &CFUUID) -> CFUUIDBytes {
+    pub fn uuid_bytes(&self) -> CFUUIDBytes {
         extern "C-unwind" {
             fn CFUUIDGetUUIDBytes(uuid: &CFUUID) -> CFUUIDBytes;
         }

@@ -204,7 +204,7 @@ impl CTFrame {
     /// then an empty range will be returned.
     #[doc(alias = "CTFrameGetStringRange")]
     #[inline]
-    pub unsafe fn string_range(self: &CTFrame) -> CFRange {
+    pub unsafe fn string_range(&self) -> CFRange {
         extern "C-unwind" {
             fn CTFrameGetStringRange(frame: &CTFrame) -> CFRange;
         }
@@ -230,7 +230,7 @@ impl CTFrame {
     /// in the frame, then an empty range will be returned.
     #[doc(alias = "CTFrameGetVisibleStringRange")]
     #[inline]
-    pub unsafe fn visible_string_range(self: &CTFrame) -> CFRange {
+    pub unsafe fn visible_string_range(&self) -> CFRange {
         extern "C-unwind" {
             fn CTFrameGetVisibleStringRange(frame: &CTFrame) -> CFRange;
         }
@@ -244,7 +244,7 @@ impl CTFrame {
     #[doc(alias = "CTFrameGetPath")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn path(self: &CTFrame) -> CFRetained<CGPath> {
+    pub unsafe fn path(&self) -> CFRetained<CGPath> {
         extern "C-unwind" {
             fn CTFrameGetPath(frame: &CTFrame) -> Option<NonNull<CGPath>>;
         }
@@ -272,7 +272,7 @@ impl CTFrame {
     /// will return NULL.
     #[doc(alias = "CTFrameGetFrameAttributes")]
     #[inline]
-    pub unsafe fn frame_attributes(self: &CTFrame) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn frame_attributes(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CTFrameGetFrameAttributes(frame: &CTFrame) -> Option<NonNull<CFDictionary>>;
         }
@@ -298,7 +298,7 @@ impl CTFrame {
     /// CTLine objects that make up the frame.
     #[doc(alias = "CTFrameGetLines")]
     #[inline]
-    pub unsafe fn lines(self: &CTFrame) -> CFRetained<CFArray> {
+    pub unsafe fn lines(&self) -> CFRetained<CFArray> {
         extern "C-unwind" {
             fn CTFrameGetLines(frame: &CTFrame) -> Option<NonNull<CFArray>>;
         }
@@ -338,7 +338,7 @@ impl CTFrame {
     /// on framesetting in the first place.
     #[doc(alias = "CTFrameGetLineOrigins")]
     #[inline]
-    pub unsafe fn line_origins(self: &CTFrame, range: CFRange, origins: NonNull<CGPoint>) {
+    pub unsafe fn line_origins(&self, range: CFRange, origins: NonNull<CGPoint>) {
         extern "C-unwind" {
             fn CTFrameGetLineOrigins(frame: &CTFrame, range: CFRange, origins: NonNull<CGPoint>);
         }
@@ -364,7 +364,7 @@ impl CTFrame {
     #[doc(alias = "CTFrameDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn draw(self: &CTFrame, context: &CGContext) {
+    pub unsafe fn draw(&self, context: &CGContext) {
         extern "C-unwind" {
             fn CTFrameDraw(frame: &CTFrame, context: &CGContext);
         }

@@ -48,7 +48,7 @@ impl DDDeviceProtocol {
     /// Converts a device protocol type to a string for logging, etc.
     #[doc(alias = "DDDeviceProtocolToString")]
     #[inline]
-    pub unsafe fn to_string(self: DDDeviceProtocol) -> Retained<NSString> {
+    pub unsafe fn to_string(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn DDDeviceProtocolToString(in_value: DDDeviceProtocol) -> *mut NSString;
         }
@@ -100,7 +100,7 @@ impl DDDeviceCategory {
     /// Converts a device category to a string for logging, etc.
     #[doc(alias = "DDDeviceCategoryToString")]
     #[inline]
-    pub unsafe fn to_string(self: DDDeviceCategory) -> Retained<NSString> {
+    pub unsafe fn to_string(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn DDDeviceCategoryToString(in_value: DDDeviceCategory) -> *mut NSString;
         }
@@ -146,7 +146,7 @@ impl DDDeviceState {
     /// Converts a device state to a string for logging, etc.
     #[doc(alias = "DDDeviceStateToString")]
     #[inline]
-    pub unsafe fn to_string(self: DDDeviceState) -> Retained<NSString> {
+    pub unsafe fn to_string(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn DDDeviceStateToString(in_value: DDDeviceState) -> *mut NSString;
         }
@@ -211,7 +211,7 @@ impl DDDeviceMediaPlaybackState {
     /// Converts a device media playback state to a string for logging, etc.
     #[doc(alias = "DDDeviceMediaPlaybackStateToString")]
     #[inline]
-    pub unsafe fn to_string(self: DDDeviceMediaPlaybackState) -> Retained<NSString> {
+    pub unsafe fn to_string(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn DDDeviceMediaPlaybackStateToString(
                 in_value: DDDeviceMediaPlaybackState,

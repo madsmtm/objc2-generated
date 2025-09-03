@@ -425,7 +425,7 @@ impl CMBlockBuffer {
     #[doc(alias = "CMBlockBufferAppendMemoryBlock")]
     #[inline]
     pub unsafe fn append_memory_block(
-        self: &CMBlockBuffer,
+        &self,
         memory_block: *mut c_void,
         block_length: usize,
         block_allocator: Option<&CFAllocator>,
@@ -485,7 +485,7 @@ impl CMBlockBuffer {
     #[doc(alias = "CMBlockBufferAppendBufferReference")]
     #[inline]
     pub unsafe fn append_buffer_reference(
-        self: &CMBlockBuffer,
+        &self,
         target_b_buf: &CMBlockBuffer,
         offset_to_data: usize,
         data_length: usize,
@@ -523,7 +523,7 @@ impl CMBlockBuffer {
     /// Returns: Returns kCMBlockBufferNoErr if successful.
     #[doc(alias = "CMBlockBufferAssureBlockMemory")]
     #[inline]
-    pub unsafe fn assure_block_memory(self: &CMBlockBuffer) -> OSStatus {
+    pub unsafe fn assure_block_memory(&self) -> OSStatus {
         extern "C-unwind" {
             fn CMBlockBufferAssureBlockMemory(the_buffer: &CMBlockBuffer) -> OSStatus;
         }
@@ -554,7 +554,7 @@ impl CMBlockBuffer {
     #[doc(alias = "CMBlockBufferAccessDataBytes")]
     #[inline]
     pub unsafe fn access_data_bytes(
-        self: &CMBlockBuffer,
+        &self,
         offset: usize,
         length: usize,
         temporary_block: NonNull<c_void>,
@@ -602,7 +602,7 @@ impl CMBlockBuffer {
     #[doc(alias = "CMBlockBufferCopyDataBytes")]
     #[inline]
     pub unsafe fn copy_data_bytes(
-        self: &CMBlockBuffer,
+        &self,
         offset_to_data: usize,
         data_length: usize,
         destination: NonNull<c_void>,
@@ -737,7 +737,7 @@ impl CMBlockBuffer {
     #[doc(alias = "CMBlockBufferGetDataPointer")]
     #[inline]
     pub unsafe fn data_pointer(
-        self: &CMBlockBuffer,
+        &self,
         offset: usize,
         length_at_offset_out: *mut usize,
         total_length_out: *mut usize,
@@ -777,7 +777,7 @@ impl CMBlockBuffer {
     /// Returns: Returns the total data length available via this CMBlockBuffer, or zero if it is empty, NULL, or somehow invalid.
     #[doc(alias = "CMBlockBufferGetDataLength")]
     #[inline]
-    pub unsafe fn data_length(self: &CMBlockBuffer) -> usize {
+    pub unsafe fn data_length(&self) -> usize {
         extern "C-unwind" {
             fn CMBlockBufferGetDataLength(the_buffer: &CMBlockBuffer) -> usize;
         }
@@ -802,7 +802,7 @@ impl CMBlockBuffer {
     /// CMBlockBuffer is NULL or empty.
     #[doc(alias = "CMBlockBufferIsRangeContiguous")]
     #[inline]
-    pub unsafe fn is_range_contiguous(self: &CMBlockBuffer, offset: usize, length: usize) -> bool {
+    pub unsafe fn is_range_contiguous(&self, offset: usize, length: usize) -> bool {
         extern "C-unwind" {
             fn CMBlockBufferIsRangeContiguous(
                 the_buffer: &CMBlockBuffer,
@@ -826,7 +826,7 @@ impl CMBlockBuffer {
     /// Returns: Returns the result of the emptiness test. Will return false if the CMBlockBuffer is NULL.
     #[doc(alias = "CMBlockBufferIsEmpty")]
     #[inline]
-    pub unsafe fn is_empty(self: &CMBlockBuffer) -> bool {
+    pub unsafe fn is_empty(&self) -> bool {
         extern "C-unwind" {
             fn CMBlockBufferIsEmpty(the_buffer: &CMBlockBuffer) -> Boolean;
         }

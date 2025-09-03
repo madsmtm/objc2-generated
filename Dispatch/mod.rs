@@ -49,7 +49,7 @@ impl DispatchTime {
     #[doc(alias = "dispatch_time")]
     #[must_use]
     #[inline]
-    pub fn time(self: DispatchTime, delta: i64) -> DispatchTime {
+    pub fn time(self, delta: i64) -> DispatchTime {
         extern "C" {
             fn dispatch_time(when: DispatchTime, delta: i64) -> DispatchTime;
         }
@@ -324,7 +324,7 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_async")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_async_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+    pub unsafe fn exec_async_with_block(&self, block: dispatch_block_t) {
         extern "C" {
             fn dispatch_async(queue: &DispatchQueue, block: dispatch_block_t);
         }
@@ -352,11 +352,7 @@ impl DispatchQueue {
     /// The result of passing NULL in this parameter is undefined.
     #[doc(alias = "dispatch_async_f")]
     #[inline]
-    pub unsafe fn exec_async_f(
-        self: &DispatchQueue,
-        context: *mut c_void,
-        work: dispatch_function_t,
-    ) {
+    pub unsafe fn exec_async_f(&self, context: *mut c_void, work: dispatch_function_t) {
         extern "C" {
             fn dispatch_async_f(
                 queue: &DispatchQueue,
@@ -370,7 +366,7 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_sync")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_sync_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+    pub unsafe fn exec_sync_with_block(&self, block: dispatch_block_t) {
         extern "C" {
             fn dispatch_sync(queue: &DispatchQueue, block: dispatch_block_t);
         }
@@ -396,11 +392,7 @@ impl DispatchQueue {
     /// The result of passing NULL in this parameter is undefined.
     #[doc(alias = "dispatch_sync_f")]
     #[inline]
-    pub unsafe fn exec_sync_f(
-        self: &DispatchQueue,
-        context: *mut c_void,
-        work: dispatch_function_t,
-    ) {
+    pub unsafe fn exec_sync_f(&self, context: *mut c_void, work: dispatch_function_t) {
         extern "C" {
             fn dispatch_sync_f(
                 queue: &DispatchQueue,
@@ -414,7 +406,7 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_sync_and_wait_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+    pub unsafe fn exec_sync_and_wait_with_block(&self, block: dispatch_block_t) {
         extern "C" {
             fn dispatch_async_and_wait(queue: &DispatchQueue, block: dispatch_block_t);
         }
@@ -440,11 +432,7 @@ impl DispatchQueue {
     /// The result of passing NULL in this parameter is undefined.
     #[doc(alias = "dispatch_async_and_wait_f")]
     #[inline]
-    pub unsafe fn exec_sync_and_wait_f(
-        self: &DispatchQueue,
-        context: *mut c_void,
-        work: dispatch_function_t,
-    ) {
+    pub unsafe fn exec_sync_and_wait_f(&self, context: *mut c_void, work: dispatch_function_t) {
         extern "C" {
             fn dispatch_async_and_wait_f(
                 queue: &DispatchQueue,
@@ -1069,10 +1057,7 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_queue_get_qos_class")]
     #[must_use]
     #[inline]
-    pub unsafe fn qos_class(
-        self: &DispatchQueue,
-        relative_priority_ptr: *mut c_int,
-    ) -> DispatchQoS {
+    pub unsafe fn qos_class(&self, relative_priority_ptr: *mut c_int) -> DispatchQoS {
         extern "C" {
             fn dispatch_queue_get_qos_class(
                 queue: &DispatchQueue,
@@ -1203,7 +1188,7 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_barrier_async")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier_async_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+    pub unsafe fn barrier_async_with_block(&self, block: dispatch_block_t) {
         extern "C" {
             fn dispatch_barrier_async(queue: &DispatchQueue, block: dispatch_block_t);
         }
@@ -1236,11 +1221,7 @@ impl DispatchQueue {
     /// The result of passing NULL in this parameter is undefined.
     #[doc(alias = "dispatch_barrier_async_f")]
     #[inline]
-    pub unsafe fn barrier_async_f(
-        self: &DispatchQueue,
-        context: *mut c_void,
-        work: dispatch_function_t,
-    ) {
+    pub unsafe fn barrier_async_f(&self, context: *mut c_void, work: dispatch_function_t) {
         extern "C" {
             fn dispatch_barrier_async_f(
                 queue: &DispatchQueue,
@@ -1254,7 +1235,7 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_barrier_sync")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier_sync_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+    pub unsafe fn barrier_sync_with_block(&self, block: dispatch_block_t) {
         extern "C" {
             fn dispatch_barrier_sync(queue: &DispatchQueue, block: dispatch_block_t);
         }
@@ -1283,11 +1264,7 @@ impl DispatchQueue {
     /// The result of passing NULL in this parameter is undefined.
     #[doc(alias = "dispatch_barrier_sync_f")]
     #[inline]
-    pub unsafe fn barrier_sync_f(
-        self: &DispatchQueue,
-        context: *mut c_void,
-        work: dispatch_function_t,
-    ) {
+    pub unsafe fn barrier_sync_f(&self, context: *mut c_void, work: dispatch_function_t) {
         extern "C" {
             fn dispatch_barrier_sync_f(
                 queue: &DispatchQueue,
@@ -1301,7 +1278,7 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_barrier_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier_async_and_wait_with_block(self: &DispatchQueue, block: dispatch_block_t) {
+    pub unsafe fn barrier_async_and_wait_with_block(&self, block: dispatch_block_t) {
         extern "C" {
             fn dispatch_barrier_async_and_wait(queue: &DispatchQueue, block: dispatch_block_t);
         }
@@ -1331,11 +1308,7 @@ impl DispatchQueue {
     /// The result of passing NULL in this parameter is undefined.
     #[doc(alias = "dispatch_barrier_async_and_wait_f")]
     #[inline]
-    pub unsafe fn barrier_async_and_wait_f(
-        self: &DispatchQueue,
-        context: *mut c_void,
-        work: dispatch_function_t,
-    ) {
+    pub unsafe fn barrier_async_and_wait_f(&self, context: *mut c_void, work: dispatch_function_t) {
         extern "C" {
             fn dispatch_barrier_async_and_wait_f(
                 queue: &DispatchQueue,
@@ -1402,7 +1375,7 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_queue_get_specific")]
     #[must_use]
     #[inline]
-    pub unsafe fn specific(self: &DispatchQueue, key: NonNull<c_void>) -> *mut c_void {
+    pub unsafe fn specific(&self, key: NonNull<c_void>) -> *mut c_void {
         extern "C" {
             fn dispatch_queue_get_specific(
                 queue: &DispatchQueue,
@@ -1471,7 +1444,7 @@ impl DispatchQueue {
     /// The result of passing NULL in this parameter is undefined.
     #[doc(alias = "dispatch_assert_queue")]
     #[inline]
-    pub fn assert(self: &DispatchQueue) {
+    pub fn assert(&self) {
         extern "C-unwind" {
             #[cfg_attr(target_vendor = "apple", link_name = "dispatch_assert_queue$V2")]
             fn dispatch_assert_queue(queue: &DispatchQueue);
@@ -1496,7 +1469,7 @@ impl DispatchQueue {
     /// The result of passing NULL in this parameter is undefined.
     #[doc(alias = "dispatch_assert_queue_barrier")]
     #[inline]
-    pub fn assert_barrier(self: &DispatchQueue) {
+    pub fn assert_barrier(&self) {
         extern "C-unwind" {
             fn dispatch_assert_queue_barrier(queue: &DispatchQueue);
         }
@@ -1518,7 +1491,7 @@ impl DispatchQueue {
     /// The result of passing NULL in this parameter is undefined.
     #[doc(alias = "dispatch_assert_queue_not")]
     #[inline]
-    pub fn assert_not(self: &DispatchQueue) {
+    pub fn assert_not(&self) {
         extern "C-unwind" {
             #[cfg_attr(target_vendor = "apple", link_name = "dispatch_assert_queue_not$V2")]
             fn dispatch_assert_queue_not(queue: &DispatchQueue);
@@ -2390,7 +2363,7 @@ impl DispatchSource {
     #[doc(alias = "dispatch_source_set_event_handler")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn set_event_handler_with_block(self: &DispatchSource, handler: dispatch_block_t) {
+    pub unsafe fn set_event_handler_with_block(&self, handler: dispatch_block_t) {
         extern "C" {
             fn dispatch_source_set_event_handler(
                 source: &DispatchSource,
@@ -2412,7 +2385,7 @@ impl DispatchSource {
     /// the dispatch source current at the time the event handler was set.
     #[doc(alias = "dispatch_source_set_event_handler_f")]
     #[inline]
-    pub fn set_event_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
+    pub fn set_event_handler_f(&self, handler: dispatch_function_t) {
         extern "C" {
             fn dispatch_source_set_event_handler_f(
                 source: &DispatchSource,
@@ -2425,7 +2398,7 @@ impl DispatchSource {
     #[doc(alias = "dispatch_source_set_cancel_handler")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn set_cancel_handler_with_block(self: &DispatchSource, handler: dispatch_block_t) {
+    pub unsafe fn set_cancel_handler_with_block(&self, handler: dispatch_block_t) {
         extern "C" {
             fn dispatch_source_set_cancel_handler(
                 source: &DispatchSource,
@@ -2450,7 +2423,7 @@ impl DispatchSource {
     /// context of the dispatch source at the time the handler call is made.
     #[doc(alias = "dispatch_source_set_cancel_handler_f")]
     #[inline]
-    pub fn set_cancel_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
+    pub fn set_cancel_handler_f(&self, handler: dispatch_function_t) {
         extern "C" {
             fn dispatch_source_set_cancel_handler_f(
                 source: &DispatchSource,
@@ -2479,7 +2452,7 @@ impl DispatchSource {
     /// The result of passing NULL in this parameter is undefined.
     #[doc(alias = "dispatch_source_cancel")]
     #[inline]
-    pub fn cancel(self: &DispatchSource) {
+    pub fn cancel(&self) {
         extern "C" {
             fn dispatch_source_cancel(source: &DispatchSource);
         }
@@ -2497,7 +2470,7 @@ impl DispatchSource {
     #[doc(alias = "dispatch_source_testcancel")]
     #[must_use]
     #[inline]
-    pub fn testcancel(self: &DispatchSource) -> isize {
+    pub fn testcancel(&self) -> isize {
         extern "C" {
             fn dispatch_source_testcancel(source: &DispatchSource) -> isize;
         }
@@ -2528,7 +2501,7 @@ impl DispatchSource {
     #[doc(alias = "dispatch_source_get_handle")]
     #[must_use]
     #[inline]
-    pub fn handle(self: &DispatchSource) -> usize {
+    pub fn handle(&self) -> usize {
         extern "C" {
             fn dispatch_source_get_handle(source: &DispatchSource) -> usize;
         }
@@ -2559,7 +2532,7 @@ impl DispatchSource {
     #[doc(alias = "dispatch_source_get_mask")]
     #[must_use]
     #[inline]
-    pub fn mask(self: &DispatchSource) -> usize {
+    pub fn mask(&self) -> usize {
         extern "C" {
             fn dispatch_source_get_mask(source: &DispatchSource) -> usize;
         }
@@ -2597,7 +2570,7 @@ impl DispatchSource {
     #[doc(alias = "dispatch_source_get_data")]
     #[must_use]
     #[inline]
-    pub fn data(self: &DispatchSource) -> usize {
+    pub fn data(&self) -> usize {
         extern "C" {
             fn dispatch_source_get_data(source: &DispatchSource) -> usize;
         }
@@ -2617,7 +2590,7 @@ impl DispatchSource {
     /// and will not result in the submission of the event handler block.
     #[doc(alias = "dispatch_source_merge_data")]
     #[inline]
-    pub fn merge_data(self: &DispatchSource, value: usize) {
+    pub fn merge_data(&self, value: usize) {
         extern "C" {
             fn dispatch_source_merge_data(source: &DispatchSource, value: usize);
         }
@@ -2669,7 +2642,7 @@ impl DispatchSource {
     /// Parameter `leeway`: The nanosecond leeway for the timer.
     #[doc(alias = "dispatch_source_set_timer")]
     #[inline]
-    pub fn set_timer(self: &DispatchSource, start: DispatchTime, interval: u64, leeway: u64) {
+    pub fn set_timer(&self, start: DispatchTime, interval: u64, leeway: u64) {
         extern "C" {
             fn dispatch_source_set_timer(
                 source: &DispatchSource,
@@ -2684,10 +2657,7 @@ impl DispatchSource {
     #[doc(alias = "dispatch_source_set_registration_handler")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn set_registration_handler_with_block(
-        self: &DispatchSource,
-        handler: dispatch_block_t,
-    ) {
+    pub unsafe fn set_registration_handler_with_block(&self, handler: dispatch_block_t) {
         extern "C" {
             fn dispatch_source_set_registration_handler(
                 source: &DispatchSource,
@@ -2712,7 +2682,7 @@ impl DispatchSource {
     /// current context of the dispatch source at the time the handler call is made.
     #[doc(alias = "dispatch_source_set_registration_handler_f")]
     #[inline]
-    pub fn set_registration_handler_f(self: &DispatchSource, handler: dispatch_function_t) {
+    pub fn set_registration_handler_f(&self, handler: dispatch_function_t) {
         extern "C" {
             fn dispatch_source_set_registration_handler_f(
                 source: &DispatchSource,
@@ -2749,11 +2719,7 @@ impl DispatchGroup {
     #[doc(alias = "dispatch_group_async")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_async_with_block(
-        self: &DispatchGroup,
-        queue: &DispatchQueue,
-        block: dispatch_block_t,
-    ) {
+    pub unsafe fn exec_async_with_block(&self, queue: &DispatchQueue, block: dispatch_block_t) {
         extern "C" {
             fn dispatch_group_async(
                 group: &DispatchGroup,
@@ -2788,7 +2754,7 @@ impl DispatchGroup {
     #[doc(alias = "dispatch_group_async_f")]
     #[inline]
     pub unsafe fn exec_async_f(
-        self: &DispatchGroup,
+        &self,
         queue: &DispatchQueue,
         context: *mut c_void,
         work: dispatch_function_t,
@@ -2846,11 +2812,7 @@ impl DispatchGroup {
     #[doc(alias = "dispatch_group_notify")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn notify_with_block(
-        self: &DispatchGroup,
-        queue: &DispatchQueue,
-        block: dispatch_block_t,
-    ) {
+    pub unsafe fn notify_with_block(&self, queue: &DispatchQueue, block: dispatch_block_t) {
         extern "C" {
             fn dispatch_group_notify(
                 group: &DispatchGroup,
@@ -2881,7 +2843,7 @@ impl DispatchGroup {
     #[doc(alias = "dispatch_group_notify_f")]
     #[inline]
     pub unsafe fn notify_f(
-        self: &DispatchGroup,
+        &self,
         queue: &DispatchQueue,
         context: *mut c_void,
         work: dispatch_function_t,
@@ -2924,7 +2886,7 @@ impl DispatchGroup {
     /// The result of passing NULL in this parameter is undefined.
     #[doc(alias = "dispatch_group_leave")]
     #[inline]
-    pub unsafe fn leave(self: &DispatchGroup) {
+    pub unsafe fn leave(&self) {
         extern "C" {
             fn dispatch_group_leave(group: &DispatchGroup);
         }
@@ -2979,7 +2941,7 @@ impl DispatchSemaphore {
     /// Returns: Returns zero on success, or non-zero if the timeout occurred.
     #[doc(alias = "dispatch_semaphore_wait")]
     #[inline]
-    pub fn wait(self: &DispatchSemaphore, timeout: DispatchTime) -> isize {
+    pub fn wait(&self, timeout: DispatchTime) -> isize {
         extern "C" {
             fn dispatch_semaphore_wait(dsema: &DispatchSemaphore, timeout: DispatchTime) -> isize;
         }
@@ -3001,7 +2963,7 @@ impl DispatchSemaphore {
     /// returned.
     #[doc(alias = "dispatch_semaphore_signal")]
     #[inline]
-    pub fn signal(self: &DispatchSemaphore) -> isize {
+    pub fn signal(&self) -> isize {
         extern "C" {
             fn dispatch_semaphore_signal(dsema: &DispatchSemaphore) -> isize;
         }
@@ -3118,7 +3080,7 @@ impl DispatchData {
     /// Returns: The number of bytes represented by the data object.
     #[doc(alias = "dispatch_data_get_size")]
     #[inline]
-    pub fn size(self: &DispatchData) -> usize {
+    pub fn size(&self) -> usize {
         extern "C" {
             fn dispatch_data_get_size(data: &DispatchData) -> usize;
         }
@@ -3149,7 +3111,7 @@ impl DispatchData {
     #[must_use]
     #[inline]
     pub unsafe fn map(
-        self: &DispatchData,
+        &self,
         buffer_ptr: *mut *const c_void,
         size_ptr: *mut usize,
     ) -> DispatchRetained<DispatchData> {
@@ -3184,7 +3146,7 @@ impl DispatchData {
     #[doc(alias = "dispatch_data_create_concat")]
     #[must_use]
     #[inline]
-    pub fn concat(self: &DispatchData, data2: &DispatchData) -> DispatchRetained<DispatchData> {
+    pub fn concat(&self, data2: &DispatchData) -> DispatchRetained<DispatchData> {
         extern "C" {
             fn dispatch_data_create_concat(
                 data1: &DispatchData,
@@ -3216,11 +3178,7 @@ impl DispatchData {
     #[doc(alias = "dispatch_data_create_subrange")]
     #[must_use]
     #[inline]
-    pub unsafe fn subrange(
-        self: &DispatchData,
-        offset: usize,
-        length: usize,
-    ) -> DispatchRetained<DispatchData> {
+    pub unsafe fn subrange(&self, offset: usize, length: usize) -> DispatchRetained<DispatchData> {
         extern "C" {
             fn dispatch_data_create_subrange(
                 data: &DispatchData,
@@ -3278,7 +3236,7 @@ impl DispatchData {
     #[doc(alias = "dispatch_data_apply")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn apply(self: &DispatchData, applier: dispatch_data_applier_t) -> bool {
+    pub unsafe fn apply(&self, applier: dispatch_data_applier_t) -> bool {
         extern "C" {
             fn dispatch_data_apply(data: &DispatchData, applier: dispatch_data_applier_t) -> bool;
         }
@@ -3304,7 +3262,7 @@ impl DispatchData {
     #[must_use]
     #[inline]
     pub unsafe fn region(
-        self: &DispatchData,
+        &self,
         location: usize,
         offset_ptr: NonNull<usize>,
     ) -> DispatchRetained<DispatchData> {
@@ -3650,7 +3608,7 @@ impl DispatchIO {
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]
     pub unsafe fn read(
-        self: &DispatchIO,
+        &self,
         offset: libc::off_t,
         length: usize,
         queue: &DispatchQueue,
@@ -3717,7 +3675,7 @@ impl DispatchIO {
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]
     pub unsafe fn write(
-        self: &DispatchIO,
+        &self,
         offset: libc::off_t,
         data: &DispatchData,
         queue: &DispatchQueue,
@@ -3753,7 +3711,7 @@ impl DispatchIO {
     /// Parameter `flags`: The flags for the close operation.
     #[doc(alias = "dispatch_io_close")]
     #[inline]
-    pub fn close(self: &DispatchIO, flags: DispatchIOCloseFlags) {
+    pub fn close(&self, flags: DispatchIOCloseFlags) {
         extern "C" {
             fn dispatch_io_close(channel: &DispatchIO, flags: DispatchIOCloseFlags);
         }
@@ -3783,7 +3741,7 @@ impl DispatchIO {
     #[doc(alias = "dispatch_io_barrier")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier(self: &DispatchIO, barrier: dispatch_block_t) {
+    pub unsafe fn barrier(&self, barrier: dispatch_block_t) {
         extern "C" {
             fn dispatch_io_barrier(channel: &DispatchIO, barrier: dispatch_block_t);
         }
@@ -3806,7 +3764,7 @@ impl DispatchIO {
     #[doc(alias = "dispatch_io_get_descriptor")]
     #[must_use]
     #[inline]
-    pub fn descriptor(self: &DispatchIO) -> dispatch_fd_t {
+    pub fn descriptor(&self) -> dispatch_fd_t {
         extern "C" {
             fn dispatch_io_get_descriptor(channel: &DispatchIO) -> dispatch_fd_t;
         }
@@ -3830,7 +3788,7 @@ impl DispatchIO {
     /// Parameter `high_water`: The number of bytes to use as a high water mark.
     #[doc(alias = "dispatch_io_set_high_water")]
     #[inline]
-    pub fn set_high_water(self: &DispatchIO, high_water: usize) {
+    pub fn set_high_water(&self, high_water: usize) {
         extern "C" {
             fn dispatch_io_set_high_water(channel: &DispatchIO, high_water: usize);
         }
@@ -3864,7 +3822,7 @@ impl DispatchIO {
     /// Parameter `low_water`: The number of bytes to use as a low water mark.
     #[doc(alias = "dispatch_io_set_low_water")]
     #[inline]
-    pub fn set_low_water(self: &DispatchIO, low_water: usize) {
+    pub fn set_low_water(&self, low_water: usize) {
         extern "C" {
             fn dispatch_io_set_low_water(channel: &DispatchIO, low_water: usize);
         }
@@ -3895,7 +3853,7 @@ impl DispatchIO {
     /// interval time.
     #[doc(alias = "dispatch_io_set_interval")]
     #[inline]
-    pub fn set_interval(self: &DispatchIO, interval: u64, flags: DispatchIOIntervalFlags) {
+    pub fn set_interval(&self, interval: u64, flags: DispatchIOIntervalFlags) {
         extern "C" {
             fn dispatch_io_set_interval(
                 channel: &DispatchIO,
@@ -3977,10 +3935,7 @@ impl DispatchWorkloop {
     /// Parameter `frequency`: The requested autorelease frequency.
     #[doc(alias = "dispatch_workloop_set_autorelease_frequency")]
     #[inline]
-    pub fn set_autorelease_frequency(
-        self: &DispatchWorkloop,
-        frequency: DispatchAutoReleaseFrequency,
-    ) {
+    pub fn set_autorelease_frequency(&self, frequency: DispatchAutoReleaseFrequency) {
         extern "C" {
             fn dispatch_workloop_set_autorelease_frequency(
                 workloop: &DispatchWorkloop,

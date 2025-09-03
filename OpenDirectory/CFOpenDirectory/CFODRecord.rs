@@ -49,7 +49,7 @@ impl ODRecordRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn set_node_credentials(
-        self: &ODRecordRef,
+        &self,
         username: Option<&CFString>,
         password: Option<&CFString>,
         error: *mut *mut CFError,
@@ -96,7 +96,7 @@ impl ODRecordRef {
     ))]
     #[inline]
     pub unsafe fn set_node_credentials_extended(
-        self: &ODRecordRef,
+        &self,
         record_type: Option<&ODRecordType>,
         auth_type: Option<&ODAuthenticationType>,
         auth_items: Option<&CFArray>,
@@ -136,7 +136,7 @@ impl ODRecordRef {
     #[deprecated]
     #[inline]
     pub unsafe fn set_node_credentials_using_kerberos_cache(
-        self: &ODRecordRef,
+        &self,
         cache_name: Option<&CFString>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -196,7 +196,7 @@ impl ODRecordRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn verify_password(
-        self: &ODRecordRef,
+        &self,
         password: Option<&CFString>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -238,7 +238,7 @@ impl ODRecordRef {
     ))]
     #[inline]
     pub unsafe fn verify_password_extended(
-        self: &ODRecordRef,
+        &self,
         auth_type: Option<&ODAuthenticationType>,
         auth_items: Option<&CFArray>,
         out_auth_items: *mut *const CFArray,
@@ -285,7 +285,7 @@ impl ODRecordRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn change_password(
-        self: &ODRecordRef,
+        &self,
         old_password: Option<&CFString>,
         new_password: Option<&CFString>,
         error: *mut *mut CFError,
@@ -311,7 +311,7 @@ impl ODRecordRef {
     #[doc(alias = "ODRecordGetRecordType")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn record_type(self: &ODRecordRef) -> Option<CFRetained<CFString>> {
+    pub unsafe fn record_type(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn ODRecordGetRecordType(record: &ODRecordRef) -> Option<NonNull<CFString>>;
         }
@@ -330,7 +330,7 @@ impl ODRecordRef {
     #[doc(alias = "ODRecordGetRecordName")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn record_name(self: &ODRecordRef) -> Option<CFRetained<CFString>> {
+    pub unsafe fn record_name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn ODRecordGetRecordName(record: &ODRecordRef) -> Option<NonNull<CFString>>;
         }
@@ -359,7 +359,7 @@ impl ODRecordRef {
     ))]
     #[inline]
     pub unsafe fn values(
-        self: &ODRecordRef,
+        &self,
         attribute: Option<&ODAttributeType>,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFArray>> {
@@ -398,7 +398,7 @@ impl ODRecordRef {
     ))]
     #[inline]
     pub unsafe fn set_value(
-        self: &ODRecordRef,
+        &self,
         attribute: Option<&ODAttributeType>,
         value_or_values: Option<&CFType>,
         error: *mut *mut CFError,
@@ -434,7 +434,7 @@ impl ODRecordRef {
     ))]
     #[inline]
     pub unsafe fn add_value(
-        self: &ODRecordRef,
+        &self,
         attribute: Option<&ODAttributeType>,
         value: Option<&CFType>,
         error: *mut *mut CFError,
@@ -471,7 +471,7 @@ impl ODRecordRef {
     ))]
     #[inline]
     pub unsafe fn remove_value(
-        self: &ODRecordRef,
+        &self,
         attribute: Option<&ODAttributeType>,
         value: Option<&CFType>,
         error: *mut *mut CFError,
@@ -507,7 +507,7 @@ impl ODRecordRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn details(
-        self: &ODRecordRef,
+        &self,
         attributes: Option<&CFArray>,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFDictionary>> {
@@ -535,7 +535,7 @@ impl ODRecordRef {
     #[doc(alias = "ODRecordSynchronize")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn synchronize(self: &ODRecordRef, error: *mut *mut CFError) -> bool {
+    pub unsafe fn synchronize(&self, error: *mut *mut CFError) -> bool {
         extern "C-unwind" {
             fn ODRecordSynchronize(record: &ODRecordRef, error: *mut *mut CFError) -> bool;
         }
@@ -555,7 +555,7 @@ impl ODRecordRef {
     #[doc(alias = "ODRecordDelete")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn delete(self: &ODRecordRef, error: *mut *mut CFError) -> bool {
+    pub unsafe fn delete(&self, error: *mut *mut CFError) -> bool {
         extern "C-unwind" {
             fn ODRecordDelete(record: &ODRecordRef, error: *mut *mut CFError) -> bool;
         }
@@ -580,7 +580,7 @@ impl ODRecordRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn add_member(
-        self: &ODRecordRef,
+        &self,
         member: Option<&ODRecordRef>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -610,7 +610,7 @@ impl ODRecordRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn remove_member(
-        self: &ODRecordRef,
+        &self,
         member: Option<&ODRecordRef>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -641,7 +641,7 @@ impl ODRecordRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn contains_member(
-        self: &ODRecordRef,
+        &self,
         member: Option<&ODRecordRef>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -668,10 +668,7 @@ impl ODRecordRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordCopyAccountPolicies"]
     #[inline]
-    pub unsafe fn policies(
-        self: &ODRecordRef,
-        error: *mut *mut CFError,
-    ) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn policies(&self, error: *mut *mut CFError) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn ODRecordCopyPolicies(
                 record: &ODRecordRef,
@@ -696,7 +693,7 @@ impl ODRecordRef {
     #[deprecated = "use ODRecordAuthenticationAllowed and similar functions"]
     #[inline]
     pub unsafe fn effective_policies(
-        self: &ODRecordRef,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -725,7 +722,7 @@ impl ODRecordRef {
     #[deprecated]
     #[inline]
     pub unsafe fn supported_policies(
-        self: &ODRecordRef,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -754,7 +751,7 @@ impl ODRecordRef {
     #[deprecated = "use ODRecordSetAccountPolicies"]
     #[inline]
     pub unsafe fn set_policies(
-        self: &ODRecordRef,
+        &self,
         policies: Option<&CFDictionary>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -789,7 +786,7 @@ impl ODRecordRef {
     #[deprecated = "use ODRecordAddAccountPolicy"]
     #[inline]
     pub unsafe fn set_policy(
-        self: &ODRecordRef,
+        &self,
         policy: Option<&ODPolicyType>,
         value: Option<&CFType>,
         error: *mut *mut CFError,
@@ -824,7 +821,7 @@ impl ODRecordRef {
     #[deprecated = "use ODRecordRemoveAccountPolicy"]
     #[inline]
     pub unsafe fn remove_policy(
-        self: &ODRecordRef,
+        &self,
         policy: Option<&ODPolicyType>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -868,7 +865,7 @@ impl ODRecordRef {
     ))]
     #[inline]
     pub unsafe fn add_account_policy(
-        self: &ODRecordRef,
+        &self,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
         error: *mut *mut CFError,
@@ -905,7 +902,7 @@ impl ODRecordRef {
     ))]
     #[inline]
     pub unsafe fn remove_account_policy(
-        self: &ODRecordRef,
+        &self,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
         error: *mut *mut CFError,
@@ -948,7 +945,7 @@ impl ODRecordRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn set_account_policies(
-        self: &ODRecordRef,
+        &self,
         policies: Option<&CFDictionary>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -978,7 +975,7 @@ impl ODRecordRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn account_policies(
-        self: &ODRecordRef,
+        &self,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -1018,7 +1015,7 @@ impl ODRecordRef {
     #[doc(alias = "ODRecordAuthenticationAllowed")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn authentication_allowed(self: &ODRecordRef, error: *mut *mut CFError) -> bool {
+    pub unsafe fn authentication_allowed(&self, error: *mut *mut CFError) -> bool {
         extern "C-unwind" {
             fn ODRecordAuthenticationAllowed(
                 record: &ODRecordRef,
@@ -1053,7 +1050,7 @@ impl ODRecordRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn password_change_allowed(
-        self: &ODRecordRef,
+        &self,
         new_password: Option<&CFString>,
         error: *mut *mut CFError,
     ) -> bool {
@@ -1084,7 +1081,7 @@ impl ODRecordRef {
     /// specified time.
     #[doc(alias = "ODRecordWillPasswordExpire")]
     #[inline]
-    pub unsafe fn will_password_expire(self: &ODRecordRef, will_expire_in: u64) -> bool {
+    pub unsafe fn will_password_expire(&self, will_expire_in: u64) -> bool {
         extern "C-unwind" {
             fn ODRecordWillPasswordExpire(record: &ODRecordRef, will_expire_in: u64) -> bool;
         }
@@ -1108,7 +1105,7 @@ impl ODRecordRef {
     /// specified time.
     #[doc(alias = "ODRecordWillAuthenticationsExpire")]
     #[inline]
-    pub unsafe fn will_authentications_expire(self: &ODRecordRef, will_expire_in: u64) -> bool {
+    pub unsafe fn will_authentications_expire(&self, will_expire_in: u64) -> bool {
         extern "C-unwind" {
             fn ODRecordWillAuthenticationsExpire(record: &ODRecordRef, will_expire_in: u64)
                 -> bool;
@@ -1133,7 +1130,7 @@ impl ODRecordRef {
     /// change policies, kODExpirationTimeNeverExpires is returned.
     #[doc(alias = "ODRecordSecondsUntilPasswordExpires")]
     #[inline]
-    pub unsafe fn seconds_until_password_expires(self: &ODRecordRef) -> i64 {
+    pub unsafe fn seconds_until_password_expires(&self) -> i64 {
         extern "C-unwind" {
             fn ODRecordSecondsUntilPasswordExpires(record: &ODRecordRef) -> i64;
         }
@@ -1157,7 +1154,7 @@ impl ODRecordRef {
     /// kODExpirationTimeNeverExpires is returned.
     #[doc(alias = "ODRecordSecondsUntilAuthenticationsExpire")]
     #[inline]
-    pub unsafe fn seconds_until_authentications_expire(self: &ODRecordRef) -> i64 {
+    pub unsafe fn seconds_until_authentications_expire(&self) -> i64 {
         extern "C-unwind" {
             fn ODRecordSecondsUntilAuthenticationsExpire(record: &ODRecordRef) -> i64;
         }

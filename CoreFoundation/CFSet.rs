@@ -458,7 +458,7 @@ impl CFSet {
     /// Returns: The number of values in the set.
     #[doc(alias = "CFSetGetCount")]
     #[inline]
-    pub fn count(self: &CFSet) -> CFIndex {
+    pub fn count(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFSetGetCount(the_set: &CFSet) -> CFIndex;
         }
@@ -482,7 +482,7 @@ impl CFSet {
     /// Returns: The number of times the given value occurs in the set.
     #[doc(alias = "CFSetGetCountOfValue")]
     #[inline]
-    pub unsafe fn count_of_value(self: &CFSet, value: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFSetGetCountOfValue(the_set: &CFSet, value: *const c_void) -> CFIndex;
         }
@@ -504,7 +504,7 @@ impl CFSet {
     /// Returns: true, if the value is in the set, otherwise false.
     #[doc(alias = "CFSetContainsValue")]
     #[inline]
-    pub unsafe fn contains_value(self: &CFSet, value: *const c_void) -> bool {
+    pub unsafe fn contains_value(&self, value: *const c_void) -> bool {
         extern "C-unwind" {
             fn CFSetContainsValue(the_set: &CFSet, value: *const c_void) -> Boolean;
         }
@@ -526,7 +526,7 @@ impl CFSet {
     /// Returns: The value in the set with the given hash.
     #[doc(alias = "CFSetGetValue")]
     #[inline]
-    pub unsafe fn value(self: &CFSet, value: *const c_void) -> *const c_void {
+    pub unsafe fn value(&self, value: *const c_void) -> *const c_void {
         extern "C-unwind" {
             fn CFSetGetValue(the_set: &CFSet, value: *const c_void) -> *const c_void;
         }
@@ -558,7 +558,7 @@ impl CFSet {
     #[doc(alias = "CFSetGetValueIfPresent")]
     #[inline]
     pub unsafe fn value_if_present(
-        self: &CFSet,
+        &self,
         candidate: *const c_void,
         value: *mut *const c_void,
     ) -> bool {
@@ -585,7 +585,7 @@ impl CFSet {
     /// CFSetGetCount() pointers, the behavior is undefined.
     #[doc(alias = "CFSetGetValues")]
     #[inline]
-    pub unsafe fn values(self: &CFSet, values: *mut *const c_void) {
+    pub unsafe fn values(&self, values: *mut *const c_void) {
         extern "C-unwind" {
             fn CFSetGetValues(the_set: &CFSet, values: *mut *const c_void);
         }
@@ -611,11 +611,7 @@ impl CFSet {
     /// undefined.
     #[doc(alias = "CFSetApplyFunction")]
     #[inline]
-    pub unsafe fn apply_function(
-        self: &CFSet,
-        applier: CFSetApplierFunction,
-        context: *mut c_void,
-    ) {
+    pub unsafe fn apply_function(&self, applier: CFSetApplierFunction, context: *mut c_void) {
         extern "C-unwind" {
             fn CFSetApplyFunction(
                 the_set: &CFSet,

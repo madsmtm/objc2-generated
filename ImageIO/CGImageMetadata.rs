@@ -389,7 +389,7 @@ impl CGImageMetadataTag {
     /// Returns a copy of the tag's namespace
     #[doc(alias = "CGImageMetadataTagCopyNamespace")]
     #[inline]
-    pub unsafe fn namespace(self: &CGImageMetadataTag) -> Option<CFRetained<CFString>> {
+    pub unsafe fn namespace(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CGImageMetadataTagCopyNamespace(
                 tag: &CGImageMetadataTag,
@@ -402,7 +402,7 @@ impl CGImageMetadataTag {
     /// Returns a copy of the tag's prefix
     #[doc(alias = "CGImageMetadataTagCopyPrefix")]
     #[inline]
-    pub unsafe fn prefix(self: &CGImageMetadataTag) -> Option<CFRetained<CFString>> {
+    pub unsafe fn prefix(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CGImageMetadataTagCopyPrefix(tag: &CGImageMetadataTag) -> Option<NonNull<CFString>>;
         }
@@ -413,7 +413,7 @@ impl CGImageMetadataTag {
     /// Returns a copy of the tag's name
     #[doc(alias = "CGImageMetadataTagCopyName")]
     #[inline]
-    pub unsafe fn name(self: &CGImageMetadataTag) -> Option<CFRetained<CFString>> {
+    pub unsafe fn name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CGImageMetadataTagCopyName(tag: &CGImageMetadataTag) -> Option<NonNull<CFString>>;
         }
@@ -431,7 +431,7 @@ impl CGImageMetadataTag {
     /// CGImageMetadataSetValueWithPath to mutate a metadata value.
     #[doc(alias = "CGImageMetadataTagCopyValue")]
     #[inline]
-    pub unsafe fn value(self: &CGImageMetadataTag) -> Option<CFRetained<CFType>> {
+    pub unsafe fn value(&self) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CGImageMetadataTagCopyValue(tag: &CGImageMetadataTag) -> Option<NonNull<CFType>>;
         }
@@ -445,7 +445,7 @@ impl CGImageMetadataTag {
     /// This is primarily used to determine how to interpret the tag's value.
     #[doc(alias = "CGImageMetadataTagGetType")]
     #[inline]
-    pub unsafe fn r#type(self: &CGImageMetadataTag) -> CGImageMetadataType {
+    pub unsafe fn r#type(&self) -> CGImageMetadataType {
         extern "C-unwind" {
             fn CGImageMetadataTagGetType(tag: &CGImageMetadataTag) -> CGImageMetadataType;
         }
@@ -464,7 +464,7 @@ impl CGImageMetadataTag {
     /// The copy is shallow, the qualifiers are not deep copied.
     #[doc(alias = "CGImageMetadataTagCopyQualifiers")]
     #[inline]
-    pub unsafe fn qualifiers(self: &CGImageMetadataTag) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn qualifiers(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CGImageMetadataTagCopyQualifiers(
                 tag: &CGImageMetadataTag,
@@ -486,7 +486,7 @@ impl CGImageMetadata {
     /// CGImageMetadataTagRefs in a CGImageMetadataRef.
     #[doc(alias = "CGImageMetadataCopyTags")]
     #[inline]
-    pub unsafe fn tags(self: &CGImageMetadata) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn tags(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CGImageMetadataCopyTags(metadata: &CGImageMetadata) -> Option<NonNull<CFArray>>;
         }
@@ -584,7 +584,7 @@ impl CGImageMetadata {
     #[doc(alias = "CGImageMetadataCopyTagWithPath")]
     #[inline]
     pub unsafe fn tag_with_path(
-        self: &CGImageMetadata,
+        &self,
         parent: Option<&CGImageMetadataTag>,
         path: &CFString,
     ) -> Option<CFRetained<CGImageMetadataTag>> {
@@ -627,7 +627,7 @@ impl CGImageMetadata {
     #[doc(alias = "CGImageMetadataCopyStringValueWithPath")]
     #[inline]
     pub unsafe fn string_value_with_path(
-        self: &CGImageMetadata,
+        &self,
         parent: Option<&CGImageMetadataTag>,
         path: &CFString,
     ) -> Option<CFRetained<CFString>> {
@@ -662,7 +662,7 @@ impl CGMutableImageMetadata {
     #[doc(alias = "CGImageMetadataRegisterNamespaceForPrefix")]
     #[inline]
     pub unsafe fn register_namespace_for_prefix(
-        self: &CGMutableImageMetadata,
+        &self,
         xmlns: &CFString,
         prefix: &CFString,
         err: *mut *mut CFError,
@@ -740,7 +740,7 @@ impl CGMutableImageMetadata {
     #[doc(alias = "CGImageMetadataSetTagWithPath")]
     #[inline]
     pub unsafe fn set_tag_with_path(
-        self: &CGMutableImageMetadata,
+        &self,
         parent: Option<&CGImageMetadataTag>,
         path: &CFString,
         tag: &CGImageMetadataTag,
@@ -837,7 +837,7 @@ impl CGMutableImageMetadata {
     #[doc(alias = "CGImageMetadataSetValueWithPath")]
     #[inline]
     pub unsafe fn set_value_with_path(
-        self: &CGMutableImageMetadata,
+        &self,
         parent: Option<&CGImageMetadataTag>,
         path: &CFString,
         value: &CFType,
@@ -878,7 +878,7 @@ impl CGMutableImageMetadata {
     #[doc(alias = "CGImageMetadataRemoveTagWithPath")]
     #[inline]
     pub unsafe fn remove_tag_with_path(
-        self: &CGMutableImageMetadata,
+        &self,
         parent: Option<&CGImageMetadataTag>,
         path: &CFString,
     ) -> bool {
@@ -931,7 +931,7 @@ impl CGImageMetadata {
     #[cfg(feature = "block2")]
     #[inline]
     pub unsafe fn enumerate_tags_using_block(
-        self: &CGImageMetadata,
+        &self,
         root_path: Option<&CFString>,
         options: Option<&CFDictionary>,
         block: CGImageMetadataTagBlock,
@@ -987,7 +987,7 @@ impl CGImageMetadata {
     #[doc(alias = "CGImageMetadataCopyTagMatchingImageProperty")]
     #[inline]
     pub unsafe fn tag_matching_image_property(
-        self: &CGImageMetadata,
+        &self,
         dictionary_name: &CFString,
         property_name: &CFString,
     ) -> Option<CFRetained<CGImageMetadataTag>> {
@@ -1044,7 +1044,7 @@ impl CGMutableImageMetadata {
     #[doc(alias = "CGImageMetadataSetValueMatchingImageProperty")]
     #[inline]
     pub unsafe fn set_value_matching_image_property(
-        self: &CGMutableImageMetadata,
+        &self,
         dictionary_name: &CFString,
         property_name: &CFString,
         value: &CFType,
@@ -1085,10 +1085,7 @@ impl CGImageMetadata {
     /// NULL if an error occurred.
     #[doc(alias = "CGImageMetadataCreateXMPData")]
     #[inline]
-    pub unsafe fn xmp_data(
-        self: &CGImageMetadata,
-        options: Option<&CFDictionary>,
-    ) -> Option<CFRetained<CFData>> {
+    pub unsafe fn xmp_data(&self, options: Option<&CFDictionary>) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CGImageMetadataCreateXMPData(
                 metadata: &CGImageMetadata,

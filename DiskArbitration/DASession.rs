@@ -67,11 +67,7 @@ impl DASession {
     /// Parameter `runLoopMode`: The run loop mode in which the session should be scheduled.
     #[doc(alias = "DASessionScheduleWithRunLoop")]
     #[inline]
-    pub unsafe fn schedule_with_run_loop(
-        self: &DASession,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) {
+    pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
         extern "C-unwind" {
             fn DASessionScheduleWithRunLoop(
                 session: &DASession,
@@ -91,11 +87,7 @@ impl DASession {
     /// Parameter `runLoopMode`: The run loop mode in which the session is scheduled.
     #[doc(alias = "DASessionUnscheduleFromRunLoop")]
     #[inline]
-    pub unsafe fn unschedule_from_run_loop(
-        self: &DASession,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) {
+    pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
         extern "C-unwind" {
             fn DASessionUnscheduleFromRunLoop(
                 session: &DASession,
@@ -114,7 +106,7 @@ impl DASession {
     #[doc(alias = "DASessionSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_dispatch_queue(self: &DASession, queue: Option<&DispatchQueue>) {
+    pub unsafe fn set_dispatch_queue(&self, queue: Option<&DispatchQueue>) {
         extern "C-unwind" {
             fn DASessionSetDispatchQueue(session: &DASession, queue: Option<&DispatchQueue>);
         }
@@ -163,11 +155,7 @@ impl DAApprovalSession {
 
     #[doc(alias = "DAApprovalSessionScheduleWithRunLoop")]
     #[inline]
-    pub unsafe fn schedule_with_run_loop(
-        self: &DAApprovalSession,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) {
+    pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
         extern "C-unwind" {
             fn DAApprovalSessionScheduleWithRunLoop(
                 session: &DAApprovalSession,
@@ -180,11 +168,7 @@ impl DAApprovalSession {
 
     #[doc(alias = "DAApprovalSessionUnscheduleFromRunLoop")]
     #[inline]
-    pub unsafe fn unschedule_from_run_loop(
-        self: &DAApprovalSession,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) {
+    pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
         extern "C-unwind" {
             fn DAApprovalSessionUnscheduleFromRunLoop(
                 session: &DAApprovalSession,

@@ -103,7 +103,7 @@ impl CFNetDiagnostic {
     #[doc(alias = "CFNetDiagnosticSetName")]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_name(self: &CFNetDiagnostic, name: &CFString) {
+    pub unsafe fn set_name(&self, name: &CFString) {
         extern "C-unwind" {
             fn CFNetDiagnosticSetName(details: &CFNetDiagnostic, name: &CFString);
         }
@@ -113,7 +113,7 @@ impl CFNetDiagnostic {
     #[doc(alias = "CFNetDiagnosticDiagnoseProblemInteractively")]
     #[deprecated]
     #[inline]
-    pub unsafe fn diagnose_problem_interactively(self: &CFNetDiagnostic) -> CFNetDiagnosticStatus {
+    pub unsafe fn diagnose_problem_interactively(&self) -> CFNetDiagnosticStatus {
         extern "C-unwind" {
             fn CFNetDiagnosticDiagnoseProblemInteractively(
                 details: &CFNetDiagnostic,
@@ -126,7 +126,7 @@ impl CFNetDiagnostic {
     #[deprecated]
     #[inline]
     pub unsafe fn copy_network_status_passively(
-        self: &CFNetDiagnostic,
+        &self,
         description: *mut *const CFString,
     ) -> CFNetDiagnosticStatus {
         extern "C-unwind" {

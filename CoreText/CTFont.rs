@@ -593,7 +593,7 @@ impl CTFont {
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
     pub unsafe fn copy_with_attributes(
-        self: &CTFont,
+        &self,
         size: CGFloat,
         matrix: *const CGAffineTransform,
         attributes: Option<&CTFontDescriptor>,
@@ -635,7 +635,7 @@ impl CTFont {
     #[cfg(feature = "CTFontTraits")]
     #[inline]
     pub unsafe fn copy_with_symbolic_traits(
-        self: &CTFont,
+        &self,
         size: CGFloat,
         matrix: *const CGAffineTransform,
         sym_trait_value: CTFontSymbolicTraits,
@@ -675,7 +675,7 @@ impl CTFont {
     #[doc(alias = "CTFontCreateCopyWithFamily")]
     #[inline]
     pub unsafe fn copy_with_family(
-        self: &CTFont,
+        &self,
         size: CGFloat,
         matrix: *const CGAffineTransform,
         family: &CFString,
@@ -717,11 +717,7 @@ impl CTFont {
     /// See also: kCTFontCascadeListAttribute
     #[doc(alias = "CTFontCreateForString")]
     #[inline]
-    pub unsafe fn for_string(
-        self: &CTFont,
-        string: &CFString,
-        range: CFRange,
-    ) -> CFRetained<CTFont> {
+    pub unsafe fn for_string(&self, string: &CFString, range: CFRange) -> CFRetained<CTFont> {
         extern "C-unwind" {
             fn CTFontCreateForString(
                 current_font: &CTFont,
@@ -764,7 +760,7 @@ impl CTFont {
     #[doc(alias = "CTFontCreateForStringWithLanguage")]
     #[inline]
     pub unsafe fn for_string_with_language(
-        self: &CTFont,
+        &self,
         string: &CFString,
         range: CFRange,
         language: Option<&CFString>,
@@ -793,7 +789,7 @@ impl CTFont {
     #[doc(alias = "CTFontCopyFontDescriptor")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
-    pub unsafe fn font_descriptor(self: &CTFont) -> CFRetained<CTFontDescriptor> {
+    pub unsafe fn font_descriptor(&self) -> CFRetained<CTFontDescriptor> {
         extern "C-unwind" {
             fn CTFontCopyFontDescriptor(font: &CTFont) -> Option<NonNull<CTFontDescriptor>>;
         }
@@ -815,7 +811,7 @@ impl CTFont {
     /// Returns: This function returns a retained reference to an arbitrary attribute. If the requested attribute is not present, NULL is returned. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
     #[doc(alias = "CTFontCopyAttribute")]
     #[inline]
-    pub unsafe fn attribute(self: &CTFont, attribute: &CFString) -> Option<CFRetained<CFType>> {
+    pub unsafe fn attribute(&self, attribute: &CFString) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CTFontCopyAttribute(font: &CTFont, attribute: &CFString) -> Option<NonNull<CFType>>;
         }
@@ -832,7 +828,7 @@ impl CTFont {
     /// Returns: This function returns the point size of the given font reference. This is the point size provided when the font was created.
     #[doc(alias = "CTFontGetSize")]
     #[inline]
-    pub unsafe fn size(self: &CTFont) -> CGFloat {
+    pub unsafe fn size(&self) -> CGFloat {
         extern "C-unwind" {
             fn CTFontGetSize(font: &CTFont) -> CGFloat;
         }
@@ -848,7 +844,7 @@ impl CTFont {
     /// Returns: This function returns the transformation matrix for this given font reference. This is the matrix that was provided when the font was created.
     #[doc(alias = "CTFontGetMatrix")]
     #[inline]
-    pub unsafe fn matrix(self: &CTFont) -> CGAffineTransform {
+    pub unsafe fn matrix(&self) -> CGAffineTransform {
         extern "C-unwind" {
             fn CTFontGetMatrix(font: &CTFont) -> CGAffineTransform;
         }
@@ -865,7 +861,7 @@ impl CTFont {
     #[doc(alias = "CTFontGetSymbolicTraits")]
     #[cfg(feature = "CTFontTraits")]
     #[inline]
-    pub unsafe fn symbolic_traits(self: &CTFont) -> CTFontSymbolicTraits {
+    pub unsafe fn symbolic_traits(&self) -> CTFontSymbolicTraits {
         extern "C-unwind" {
             fn CTFontGetSymbolicTraits(font: &CTFont) -> CTFontSymbolicTraits;
         }
@@ -881,7 +877,7 @@ impl CTFont {
     /// Returns: This function returns a retained reference to the font traits dictionary. Individual traits can be accessed with the trait key constants. See CTFontTraits.h for a definition of the font traits.
     #[doc(alias = "CTFontCopyTraits")]
     #[inline]
-    pub unsafe fn traits(self: &CTFont) -> CFRetained<CFDictionary> {
+    pub unsafe fn traits(&self) -> CFRetained<CFDictionary> {
         extern "C-unwind" {
             fn CTFontCopyTraits(font: &CTFont) -> Option<NonNull<CFDictionary>>;
         }
@@ -904,7 +900,7 @@ impl CTFont {
     #[doc(alias = "CTFontCopyDefaultCascadeListForLanguages")]
     #[inline]
     pub unsafe fn default_cascade_list_for_languages(
-        self: &CTFont,
+        &self,
         language_pref_list: Option<&CFArray>,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
@@ -926,7 +922,7 @@ impl CTFont {
     /// Returns: This function returns a retained reference to the PostScript name of the font.
     #[doc(alias = "CTFontCopyPostScriptName")]
     #[inline]
-    pub unsafe fn post_script_name(self: &CTFont) -> CFRetained<CFString> {
+    pub unsafe fn post_script_name(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CTFontCopyPostScriptName(font: &CTFont) -> Option<NonNull<CFString>>;
         }
@@ -945,7 +941,7 @@ impl CTFont {
     /// Returns: This function returns a retained reference to the family name of the font.
     #[doc(alias = "CTFontCopyFamilyName")]
     #[inline]
-    pub unsafe fn family_name(self: &CTFont) -> CFRetained<CFString> {
+    pub unsafe fn family_name(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CTFontCopyFamilyName(font: &CTFont) -> Option<NonNull<CFString>>;
         }
@@ -964,7 +960,7 @@ impl CTFont {
     /// Returns: This function returns a retained reference to the full name of the font.
     #[doc(alias = "CTFontCopyFullName")]
     #[inline]
-    pub unsafe fn full_name(self: &CTFont) -> CFRetained<CFString> {
+    pub unsafe fn full_name(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CTFontCopyFullName(font: &CTFont) -> Option<NonNull<CFString>>;
         }
@@ -983,7 +979,7 @@ impl CTFont {
     /// Returns: This function returns a retained reference to the localized display name of the font.
     #[doc(alias = "CTFontCopyDisplayName")]
     #[inline]
-    pub unsafe fn display_name(self: &CTFont) -> CFRetained<CFString> {
+    pub unsafe fn display_name(&self) -> CFRetained<CFString> {
         extern "C-unwind" {
             fn CTFontCopyDisplayName(font: &CTFont) -> Option<NonNull<CFString>>;
         }
@@ -1005,7 +1001,7 @@ impl CTFont {
     /// Returns: This function creates the requested name for the font, or NULL if the font does not have an entry for the requested name. The Unicode version of the name will be preferred, otherwise the first available will be used.
     #[doc(alias = "CTFontCopyName")]
     #[inline]
-    pub unsafe fn name(self: &CTFont, name_key: &CFString) -> Option<CFRetained<CFString>> {
+    pub unsafe fn name(&self, name_key: &CFString) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CTFontCopyName(font: &CTFont, name_key: &CFString) -> Option<NonNull<CFString>>;
         }
@@ -1030,7 +1026,7 @@ impl CTFont {
     #[doc(alias = "CTFontCopyLocalizedName")]
     #[inline]
     pub unsafe fn localized_name(
-        self: &CTFont,
+        &self,
         name_key: &CFString,
         actual_language: *mut *const CFString,
     ) -> Option<CFRetained<CFString>> {
@@ -1054,7 +1050,7 @@ impl CTFont {
     /// Returns: This function returns a retained reference to the font's character set. This character set covers the nominal referenced by the font's Unicode cmap table (or equivalent).
     #[doc(alias = "CTFontCopyCharacterSet")]
     #[inline]
-    pub unsafe fn character_set(self: &CTFont) -> CFRetained<CFCharacterSet> {
+    pub unsafe fn character_set(&self) -> CFRetained<CFCharacterSet> {
         extern "C-unwind" {
             fn CTFontCopyCharacterSet(font: &CTFont) -> Option<NonNull<CFCharacterSet>>;
         }
@@ -1073,7 +1069,7 @@ impl CTFont {
     /// Returns: This function returns the best string encoding for the font.
     #[doc(alias = "CTFontGetStringEncoding")]
     #[inline]
-    pub unsafe fn string_encoding(self: &CTFont) -> CFStringEncoding {
+    pub unsafe fn string_encoding(&self) -> CFStringEncoding {
         extern "C-unwind" {
             fn CTFontGetStringEncoding(font: &CTFont) -> CFStringEncoding;
         }
@@ -1089,7 +1085,7 @@ impl CTFont {
     /// Returns: This function returns a retained reference to an array of languages supported by the font. The array contains language identifier strings as CFStringRefs. The format of the language identifier will conform to UTS #35.
     #[doc(alias = "CTFontCopySupportedLanguages")]
     #[inline]
-    pub unsafe fn supported_languages(self: &CTFont) -> CFRetained<CFArray> {
+    pub unsafe fn supported_languages(&self) -> CFRetained<CFArray> {
         extern "C-unwind" {
             fn CTFontCopySupportedLanguages(font: &CTFont) -> Option<NonNull<CFArray>>;
         }
@@ -1125,7 +1121,7 @@ impl CTFont {
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     pub unsafe fn glyphs_for_characters(
-        self: &CTFont,
+        &self,
         characters: NonNull<UniChar>,
         glyphs: NonNull<CGGlyph>,
         count: CFIndex,
@@ -1150,7 +1146,7 @@ impl CTFont {
     /// Returns: This function returns the font ascent metric scaled based on the point size and matrix of the font reference.
     #[doc(alias = "CTFontGetAscent")]
     #[inline]
-    pub unsafe fn ascent(self: &CTFont) -> CGFloat {
+    pub unsafe fn ascent(&self) -> CGFloat {
         extern "C-unwind" {
             fn CTFontGetAscent(font: &CTFont) -> CGFloat;
         }
@@ -1166,7 +1162,7 @@ impl CTFont {
     /// Returns: This function returns the font descent metric scaled based on the point size and matrix of the font reference.
     #[doc(alias = "CTFontGetDescent")]
     #[inline]
-    pub unsafe fn descent(self: &CTFont) -> CGFloat {
+    pub unsafe fn descent(&self) -> CGFloat {
         extern "C-unwind" {
             fn CTFontGetDescent(font: &CTFont) -> CGFloat;
         }
@@ -1182,7 +1178,7 @@ impl CTFont {
     /// Returns: This function returns the font leading metric scaled based on the point size and matrix of the font reference.
     #[doc(alias = "CTFontGetLeading")]
     #[inline]
-    pub unsafe fn leading(self: &CTFont) -> CGFloat {
+    pub unsafe fn leading(&self) -> CGFloat {
         extern "C-unwind" {
             fn CTFontGetLeading(font: &CTFont) -> CGFloat;
         }
@@ -1198,7 +1194,7 @@ impl CTFont {
     /// Returns: This function returns the units per em of the font.
     #[doc(alias = "CTFontGetUnitsPerEm")]
     #[inline]
-    pub unsafe fn units_per_em(self: &CTFont) -> c_uint {
+    pub unsafe fn units_per_em(&self) -> c_uint {
         extern "C-unwind" {
             fn CTFontGetUnitsPerEm(font: &CTFont) -> c_uint;
         }
@@ -1214,7 +1210,7 @@ impl CTFont {
     /// Returns: This function returns the number of glyphs in the font.
     #[doc(alias = "CTFontGetGlyphCount")]
     #[inline]
-    pub unsafe fn glyph_count(self: &CTFont) -> CFIndex {
+    pub unsafe fn glyph_count(&self) -> CFIndex {
         extern "C-unwind" {
             fn CTFontGetGlyphCount(font: &CTFont) -> CFIndex;
         }
@@ -1230,7 +1226,7 @@ impl CTFont {
     /// Returns: This will return the design bounding box of the font, which is the rectangle defined by xMin, yMin, xMax, and yMax values for the font.
     #[doc(alias = "CTFontGetBoundingBox")]
     #[inline]
-    pub unsafe fn bounding_box(self: &CTFont) -> CGRect {
+    pub unsafe fn bounding_box(&self) -> CGRect {
         extern "C-unwind" {
             fn CTFontGetBoundingBox(font: &CTFont) -> CGRect;
         }
@@ -1246,7 +1242,7 @@ impl CTFont {
     /// Returns: This function returns the font underline position metric scaled based on the point size and matrix of the font reference.
     #[doc(alias = "CTFontGetUnderlinePosition")]
     #[inline]
-    pub unsafe fn underline_position(self: &CTFont) -> CGFloat {
+    pub unsafe fn underline_position(&self) -> CGFloat {
         extern "C-unwind" {
             fn CTFontGetUnderlinePosition(font: &CTFont) -> CGFloat;
         }
@@ -1262,7 +1258,7 @@ impl CTFont {
     /// Returns: This function returns the font underline thickness metric scaled based on the point size and matrix of the font reference.
     #[doc(alias = "CTFontGetUnderlineThickness")]
     #[inline]
-    pub unsafe fn underline_thickness(self: &CTFont) -> CGFloat {
+    pub unsafe fn underline_thickness(&self) -> CGFloat {
         extern "C-unwind" {
             fn CTFontGetUnderlineThickness(font: &CTFont) -> CGFloat;
         }
@@ -1278,7 +1274,7 @@ impl CTFont {
     /// Returns: This function returns the transformed slant angle of the font. This is equivalent to the italic or caret angle with any skew from the transformation matrix applied.
     #[doc(alias = "CTFontGetSlantAngle")]
     #[inline]
-    pub unsafe fn slant_angle(self: &CTFont) -> CGFloat {
+    pub unsafe fn slant_angle(&self) -> CGFloat {
         extern "C-unwind" {
             fn CTFontGetSlantAngle(font: &CTFont) -> CGFloat;
         }
@@ -1294,7 +1290,7 @@ impl CTFont {
     /// Returns: This function returns the font cap height metric scaled based on the point size and matrix of the font reference.
     #[doc(alias = "CTFontGetCapHeight")]
     #[inline]
-    pub unsafe fn cap_height(self: &CTFont) -> CGFloat {
+    pub unsafe fn cap_height(&self) -> CGFloat {
         extern "C-unwind" {
             fn CTFontGetCapHeight(font: &CTFont) -> CGFloat;
         }
@@ -1310,7 +1306,7 @@ impl CTFont {
     /// Returns: This function returns the font X height metric scaled based on the point size and matrix of the font reference.
     #[doc(alias = "CTFontGetXHeight")]
     #[inline]
-    pub unsafe fn x_height(self: &CTFont) -> CGFloat {
+    pub unsafe fn x_height(&self) -> CGFloat {
         extern "C-unwind" {
             fn CTFontGetXHeight(font: &CTFont) -> CGFloat;
         }
@@ -1330,7 +1326,7 @@ impl CTFont {
     #[doc(alias = "CTFontGetGlyphWithName")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn glyph_with_name(self: &CTFont, glyph_name: &CFString) -> CGGlyph {
+    pub unsafe fn glyph_with_name(&self, glyph_name: &CFString) -> CGGlyph {
         extern "C-unwind" {
             fn CTFontGetGlyphWithName(font: &CTFont, glyph_name: &CFString) -> CGGlyph;
         }
@@ -1353,7 +1349,7 @@ impl CTFont {
     #[doc(alias = "CTFontCopyNameForGlyph")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn name_for_glyph(self: &CTFont, glyph: CGGlyph) -> Option<CFRetained<CFString>> {
+    pub unsafe fn name_for_glyph(&self, glyph: CGGlyph) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CTFontCopyNameForGlyph(font: &CTFont, glyph: CGGlyph) -> Option<NonNull<CFString>>;
         }
@@ -1384,7 +1380,7 @@ impl CTFont {
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
     pub unsafe fn bounding_rects_for_glyphs(
-        self: &CTFont,
+        &self,
         orientation: CTFontOrientation,
         glyphs: NonNull<CGGlyph>,
         bounding_rects: *mut CGRect,
@@ -1428,7 +1424,7 @@ impl CTFont {
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     pub unsafe fn optical_bounds_for_glyphs(
-        self: &CTFont,
+        &self,
         glyphs: NonNull<CGGlyph>,
         bounding_rects: *mut CGRect,
         count: CFIndex,
@@ -1469,7 +1465,7 @@ impl CTFont {
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
     pub unsafe fn advances_for_glyphs(
-        self: &CTFont,
+        &self,
         orientation: CTFontOrientation,
         glyphs: NonNull<CGGlyph>,
         advances: *mut CGSize,
@@ -1504,7 +1500,7 @@ impl CTFont {
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     pub unsafe fn vertical_translations_for_glyphs(
-        self: &CTFont,
+        &self,
         glyphs: NonNull<CGGlyph>,
         translations: NonNull<CGSize>,
         count: CFIndex,
@@ -1540,7 +1536,7 @@ impl CTFont {
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     pub unsafe fn path_for_glyph(
-        self: &CTFont,
+        &self,
         glyph: CGGlyph,
         matrix: *const CGAffineTransform,
     ) -> Option<CFRetained<CGPath>> {
@@ -1634,7 +1630,7 @@ impl CTFont {
     /// Returns: An array of variation axis dictionaries or null if the font does not support variations.
     #[doc(alias = "CTFontCopyVariationAxes")]
     #[inline]
-    pub unsafe fn variation_axes(self: &CTFont) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn variation_axes(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CTFontCopyVariationAxes(font: &CTFont) -> Option<NonNull<CFArray>>;
         }
@@ -1658,7 +1654,7 @@ impl CTFont {
     /// See also: kCTFontVariationAxisDefaultValueKey
     #[doc(alias = "CTFontCopyVariation")]
     #[inline]
-    pub unsafe fn variation(self: &CTFont) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn variation(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CTFontCopyVariation(font: &CTFont) -> Option<NonNull<CFDictionary>>;
         }
@@ -1809,7 +1805,7 @@ impl CTFont {
     /// Returns: This function returns an array of font feature dictionaries for the font reference.
     #[doc(alias = "CTFontCopyFeatures")]
     #[inline]
-    pub unsafe fn features(self: &CTFont) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn features(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CTFontCopyFeatures(font: &CTFont) -> Option<NonNull<CFArray>>;
         }
@@ -1829,7 +1825,7 @@ impl CTFont {
     /// Returns: This function returns a normalized array of font feature setting dictionaries. The array will only contain the non-default settings that should be applied to the font, or NULL if the default settings should be used.
     #[doc(alias = "CTFontCopyFeatureSettings")]
     #[inline]
-    pub unsafe fn feature_settings(self: &CTFont) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn feature_settings(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CTFontCopyFeatureSettings(font: &CTFont) -> Option<NonNull<CFArray>>;
         }
@@ -1851,7 +1847,7 @@ impl CTFont {
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
     pub unsafe fn graphics_font(
-        self: &CTFont,
+        &self,
         attributes: *mut *const CTFontDescriptor,
     ) -> CFRetained<CGFont> {
         extern "C-unwind" {
@@ -2147,7 +2143,7 @@ impl CTFont {
     #[doc(alias = "CTFontCopyAvailableTables")]
     #[inline]
     pub unsafe fn available_tables(
-        self: &CTFont,
+        &self,
         options: CTFontTableOptions,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
@@ -2174,7 +2170,7 @@ impl CTFont {
     /// Returns: Returns true if the call was successful and the requested table is present.
     #[doc(alias = "CTFontHasTable")]
     #[inline]
-    pub unsafe fn has_table(self: &CTFont, tag: CTFontTableTag) -> bool {
+    pub unsafe fn has_table(&self, tag: CTFontTableTag) -> bool {
         extern "C-unwind" {
             fn CTFontHasTable(font: &CTFont, tag: CTFontTableTag) -> bool;
         }
@@ -2197,7 +2193,7 @@ impl CTFont {
     #[doc(alias = "CTFontCopyTable")]
     #[inline]
     pub unsafe fn table(
-        self: &CTFont,
+        &self,
         table: CTFontTableTag,
         options: CTFontTableOptions,
     ) -> Option<CFRetained<CFData>> {
@@ -2235,7 +2231,7 @@ impl CTFont {
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     pub unsafe fn draw_glyphs(
-        self: &CTFont,
+        &self,
         glyphs: NonNull<CGGlyph>,
         positions: NonNull<CGPoint>,
         count: usize,
@@ -2280,7 +2276,7 @@ impl CTFont {
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
     pub unsafe fn ligature_caret_positions(
-        self: &CTFont,
+        &self,
         glyph: CGGlyph,
         positions: *mut CGFloat,
         max_positions: CFIndex,
@@ -2406,7 +2402,7 @@ impl CTFont {
     #[cfg(all(feature = "CTRunDelegate", feature = "objc2"))]
     #[inline]
     pub unsafe fn typographic_bounds_for_adaptive_image_provider(
-        self: &CTFont,
+        &self,
         provider: Option<&ProtocolObject<dyn CTAdaptiveImageProviding>>,
     ) -> CGRect {
         extern "C-unwind" {
@@ -2426,7 +2422,7 @@ impl CTFont {
     ))]
     #[inline]
     pub unsafe fn draw_image_from_adaptive_image_provider_at_point(
-        self: &CTFont,
+        &self,
         provider: &ProtocolObject<dyn CTAdaptiveImageProviding>,
         point: CGPoint,
         context: &CGContext,

@@ -199,7 +199,7 @@ impl SecPolicy {
     #[doc(alias = "SecPolicyCopyProperties")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn properties(self: &SecPolicy) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn properties(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SecPolicyCopyProperties(policy_ref: &SecPolicy) -> Option<NonNull<CFDictionary>>;
         }
@@ -459,7 +459,7 @@ impl SecPolicy {
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn oid(self: &SecPolicy, oid: NonNull<SecAsn1Oid>) -> OSStatus {
+    pub unsafe fn oid(&self, oid: NonNull<SecAsn1Oid>) -> OSStatus {
         extern "C-unwind" {
             fn SecPolicyGetOID(policy_ref: &SecPolicy, oid: NonNull<SecAsn1Oid>) -> OSStatus;
         }
@@ -480,7 +480,7 @@ impl SecPolicy {
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn value(self: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus {
+    pub unsafe fn value(&self, value: NonNull<SecAsn1Item>) -> OSStatus {
         extern "C-unwind" {
             fn SecPolicyGetValue(policy_ref: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus;
         }
@@ -504,7 +504,7 @@ impl SecPolicy {
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_value(self: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus {
+    pub unsafe fn set_value(&self, value: NonNull<SecAsn1Item>) -> OSStatus {
         extern "C-unwind" {
             fn SecPolicySetValue(policy_ref: &SecPolicy, value: NonNull<SecAsn1Item>) -> OSStatus;
         }
@@ -530,7 +530,7 @@ impl SecPolicy {
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_properties(self: &SecPolicy, properties: &CFDictionary) -> OSStatus {
+    pub unsafe fn set_properties(&self, properties: &CFDictionary) -> OSStatus {
         extern "C-unwind" {
             fn SecPolicySetProperties(
                 policy_ref: &SecPolicy,
@@ -553,7 +553,7 @@ impl SecPolicy {
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn tp_handle(self: &SecPolicy, tp_handle: NonNull<CSSM_TP_HANDLE>) -> OSStatus {
+    pub unsafe fn tp_handle(&self, tp_handle: NonNull<CSSM_TP_HANDLE>) -> OSStatus {
         extern "C-unwind" {
             fn SecPolicyGetTPHandle(
                 policy_ref: &SecPolicy,

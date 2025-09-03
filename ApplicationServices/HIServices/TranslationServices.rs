@@ -103,7 +103,7 @@ impl Translation {
     #[doc(alias = "TranslationPerformForData")]
     #[inline]
     pub unsafe fn perform_for_data(
-        self: &Translation,
+        &self,
         in_source_data: Option<&CFData>,
         out_destination_data: *mut *const CFData,
     ) -> OSStatus {
@@ -120,7 +120,7 @@ impl Translation {
     #[doc(alias = "TranslationPerformForURL")]
     #[inline]
     pub unsafe fn perform_for_url(
-        self: &Translation,
+        &self,
         in_source_url: Option<&CFURL>,
         in_destination_url: Option<&CFURL>,
         out_translated_url: *mut *const CFURL,
@@ -140,10 +140,7 @@ impl Translation {
 
     #[doc(alias = "TranslationCopySourceType")]
     #[inline]
-    pub unsafe fn copy_source_type(
-        self: &Translation,
-        out_source_type: *mut *const CFString,
-    ) -> OSStatus {
+    pub unsafe fn copy_source_type(&self, out_source_type: *mut *const CFString) -> OSStatus {
         extern "C-unwind" {
             fn TranslationCopySourceType(
                 in_translation: &Translation,
@@ -156,7 +153,7 @@ impl Translation {
     #[doc(alias = "TranslationCopyDestinationType")]
     #[inline]
     pub unsafe fn copy_destination_type(
-        self: &Translation,
+        &self,
         out_destination_type: *mut *const CFString,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -171,7 +168,7 @@ impl Translation {
     #[doc(alias = "TranslationGetTranslationFlags")]
     #[inline]
     pub unsafe fn translation_flags(
-        self: &Translation,
+        &self,
         out_translation_flags: *mut TranslationFlags,
     ) -> OSStatus {
         extern "C-unwind" {

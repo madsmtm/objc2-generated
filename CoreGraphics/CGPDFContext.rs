@@ -367,7 +367,7 @@ unsafe impl RefEncode for CGPDFTagType {
 impl CGPDFTagType {
     #[doc(alias = "CGPDFTagTypeGetName")]
     #[inline]
-    pub unsafe fn name(self: CGPDFTagType) -> *const c_char {
+    pub unsafe fn name(self) -> *const c_char {
         extern "C-unwind" {
             fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *const c_char;
         }

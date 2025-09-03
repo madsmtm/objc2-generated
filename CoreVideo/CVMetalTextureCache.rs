@@ -205,7 +205,7 @@ impl CVMetalTextureCache {
     #[doc(alias = "CVMetalTextureCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]
-    pub unsafe fn flush(self: &CVMetalTextureCache, options: CVOptionFlags) {
+    pub unsafe fn flush(&self, options: CVOptionFlags) {
         extern "C-unwind" {
             fn CVMetalTextureCacheFlush(
                 texture_cache: &CVMetalTextureCache,

@@ -295,7 +295,7 @@ impl SecTrust {
     /// requiring a fresh evaluation for the newly-set policies.
     #[doc(alias = "SecTrustSetPolicies")]
     #[inline]
-    pub unsafe fn set_policies(self: &SecTrust, policies: &CFType) -> OSStatus {
+    pub unsafe fn set_policies(&self, policies: &CFType) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetPolicies(trust: &SecTrust, policies: &CFType) -> OSStatus;
         }
@@ -312,7 +312,7 @@ impl SecTrust {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     #[doc(alias = "SecTrustCopyPolicies")]
     #[inline]
-    pub unsafe fn copy_policies(self: &SecTrust, policies: NonNull<*const CFArray>) -> OSStatus {
+    pub unsafe fn copy_policies(&self, policies: NonNull<*const CFArray>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustCopyPolicies(
                 trust: &SecTrust,
@@ -338,7 +338,7 @@ impl SecTrust {
     /// the trust evaluation includes the SSL policy, otherwise it is disabled.
     #[doc(alias = "SecTrustSetNetworkFetchAllowed")]
     #[inline]
-    pub unsafe fn set_network_fetch_allowed(self: &SecTrust, allow_fetch: bool) -> OSStatus {
+    pub unsafe fn set_network_fetch_allowed(&self, allow_fetch: bool) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetNetworkFetchAllowed(trust: &SecTrust, allow_fetch: Boolean) -> OSStatus;
         }
@@ -359,10 +359,7 @@ impl SecTrust {
     /// the trust evaluation includes the SSL policy, otherwise it is disabled.
     #[doc(alias = "SecTrustGetNetworkFetchAllowed")]
     #[inline]
-    pub unsafe fn network_fetch_allowed(
-        self: &SecTrust,
-        allow_fetch: NonNull<Boolean>,
-    ) -> OSStatus {
+    pub unsafe fn network_fetch_allowed(&self, allow_fetch: NonNull<Boolean>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetNetworkFetchAllowed(
                 trust: &SecTrust,
@@ -387,7 +384,7 @@ impl SecTrust {
     #[doc(alias = "SecTrustSetAnchorCertificates")]
     #[inline]
     pub unsafe fn set_anchor_certificates(
-        self: &SecTrust,
+        &self,
         anchor_certificates: Option<&CFArray>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -411,10 +408,7 @@ impl SecTrust {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[doc(alias = "SecTrustSetAnchorCertificatesOnly")]
     #[inline]
-    pub unsafe fn set_anchor_certificates_only(
-        self: &SecTrust,
-        anchor_certificates_only: bool,
-    ) -> OSStatus {
+    pub unsafe fn set_anchor_certificates_only(&self, anchor_certificates_only: bool) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetAnchorCertificatesOnly(
                 trust: &SecTrust,
@@ -438,7 +432,7 @@ impl SecTrust {
     #[doc(alias = "SecTrustCopyCustomAnchorCertificates")]
     #[inline]
     pub unsafe fn copy_custom_anchor_certificates(
-        self: &SecTrust,
+        &self,
         anchors: NonNull<*const CFArray>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -465,7 +459,7 @@ impl SecTrust {
     /// implicitly as the verification time.
     #[doc(alias = "SecTrustSetVerifyDate")]
     #[inline]
-    pub unsafe fn set_verify_date(self: &SecTrust, verify_date: &CFDate) -> OSStatus {
+    pub unsafe fn set_verify_date(&self, verify_date: &CFDate) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetVerifyDate(trust: &SecTrust, verify_date: &CFDate) -> OSStatus;
         }
@@ -485,7 +479,7 @@ impl SecTrust {
     /// indicating that the current date/time is implicitly used for verification.
     #[doc(alias = "SecTrustGetVerifyTime")]
     #[inline]
-    pub unsafe fn verify_time(self: &SecTrust) -> CFAbsoluteTime {
+    pub unsafe fn verify_time(&self) -> CFAbsoluteTime {
         extern "C-unwind" {
             fn SecTrustGetVerifyTime(trust: &SecTrust) -> CFAbsoluteTime;
         }
@@ -509,7 +503,7 @@ impl SecTrust {
     #[doc(alias = "SecTrustEvaluate")]
     #[deprecated]
     #[inline]
-    pub unsafe fn evaluate(self: &SecTrust, result: NonNull<SecTrustResultType>) -> OSStatus {
+    pub unsafe fn evaluate(&self, result: NonNull<SecTrustResultType>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustEvaluate(trust: &SecTrust, result: NonNull<SecTrustResultType>) -> OSStatus;
         }
@@ -541,7 +535,7 @@ impl SecTrust {
     #[doc(alias = "SecTrustEvaluateWithError")]
     #[must_use]
     #[inline]
-    pub unsafe fn evaluate_with_error(self: &SecTrust, error: *mut *mut CFError) -> bool {
+    pub unsafe fn evaluate_with_error(&self, error: *mut *mut CFError) -> bool {
         extern "C-unwind" {
             fn SecTrustEvaluateWithError(trust: &SecTrust, error: *mut *mut CFError) -> bool;
         }
@@ -575,7 +569,7 @@ impl SecTrust {
     /// obtaining the current evaluation result of a given trust reference.
     #[doc(alias = "SecTrustGetTrustResult")]
     #[inline]
-    pub unsafe fn trust_result(self: &SecTrust, result: NonNull<SecTrustResultType>) -> OSStatus {
+    pub unsafe fn trust_result(&self, result: NonNull<SecTrustResultType>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetTrustResult(
                 trust: &SecTrust,
@@ -598,7 +592,7 @@ impl SecTrust {
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn public_key(self: &SecTrust) -> Option<CFRetained<SecKey>> {
+    pub unsafe fn public_key(&self) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecTrustCopyPublicKey(trust: &SecTrust) -> Option<NonNull<SecKey>>;
         }
@@ -620,7 +614,7 @@ impl SecTrust {
     #[doc(alias = "SecTrustCopyKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
-    pub unsafe fn key(self: &SecTrust) -> Option<CFRetained<SecKey>> {
+    pub unsafe fn key(&self) -> Option<CFRetained<SecKey>> {
         extern "C-unwind" {
             fn SecTrustCopyKey(trust: &SecTrust) -> Option<NonNull<SecKey>>;
         }
@@ -641,7 +635,7 @@ impl SecTrust {
     /// result other than kSecTrustResultInvalid is present for the trust object.
     #[doc(alias = "SecTrustGetCertificateCount")]
     #[inline]
-    pub unsafe fn certificate_count(self: &SecTrust) -> CFIndex {
+    pub unsafe fn certificate_count(&self) -> CFIndex {
         extern "C-unwind" {
             fn SecTrustGetCertificateCount(trust: &SecTrust) -> CFIndex;
         }
@@ -667,10 +661,7 @@ impl SecTrust {
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn certificate_at_index(
-        self: &SecTrust,
-        ix: CFIndex,
-    ) -> Option<CFRetained<SecCertificate>> {
+    pub unsafe fn certificate_at_index(&self, ix: CFIndex) -> Option<CFRetained<SecCertificate>> {
         extern "C-unwind" {
             fn SecTrustGetCertificateAtIndex(
                 trust: &SecTrust,
@@ -699,7 +690,7 @@ impl SecTrust {
     /// current application/server/protocol combination.
     #[doc(alias = "SecTrustCopyExceptions")]
     #[inline]
-    pub unsafe fn exceptions(self: &SecTrust) -> Option<CFRetained<CFData>> {
+    pub unsafe fn exceptions(&self) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SecTrustCopyExceptions(trust: &SecTrust) -> Option<NonNull<CFData>>;
         }
@@ -735,7 +726,7 @@ impl SecTrust {
     /// this cert should be considered valid, and so on.
     #[doc(alias = "SecTrustSetExceptions")]
     #[inline]
-    pub unsafe fn set_exceptions(self: &SecTrust, exceptions: Option<&CFData>) -> bool {
+    pub unsafe fn set_exceptions(&self, exceptions: Option<&CFData>) -> bool {
         extern "C-unwind" {
             fn SecTrustSetExceptions(trust: &SecTrust, exceptions: Option<&CFData>) -> bool;
         }
@@ -760,7 +751,7 @@ impl SecTrust {
     #[doc(alias = "SecTrustCopyProperties")]
     #[deprecated]
     #[inline]
-    pub unsafe fn properties(self: &SecTrust) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn properties(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SecTrustCopyProperties(trust: &SecTrust) -> Option<NonNull<CFArray>>;
         }
@@ -782,7 +773,7 @@ impl SecTrust {
     /// "Trust Result Constants" section for a list of currently defined keys.
     #[doc(alias = "SecTrustCopyResult")]
     #[inline]
-    pub unsafe fn result(self: &SecTrust) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn result(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn SecTrustCopyResult(trust: &SecTrust) -> Option<NonNull<CFDictionary>>;
         }
@@ -805,7 +796,7 @@ impl SecTrust {
     /// an OCSP server for current revocation information.
     #[doc(alias = "SecTrustSetOCSPResponse")]
     #[inline]
-    pub unsafe fn set_ocsp_response(self: &SecTrust, response_data: Option<&CFType>) -> OSStatus {
+    pub unsafe fn set_ocsp_response(&self, response_data: Option<&CFType>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetOCSPResponse(
                 trust: &SecTrust,
@@ -829,7 +820,7 @@ impl SecTrust {
     #[doc(alias = "SecTrustSetSignedCertificateTimestamps")]
     #[inline]
     pub unsafe fn set_signed_certificate_timestamps(
-        self: &SecTrust,
+        &self,
         sct_array: Option<&CFArray>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -848,7 +839,7 @@ impl SecTrust {
     /// Returns: A CFArray of the SecCertificateRefs for the resulting certificate chain
     #[doc(alias = "SecTrustCopyCertificateChain")]
     #[inline]
-    pub unsafe fn certificate_chain(self: &SecTrust) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn certificate_chain(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SecTrustCopyCertificateChain(trust: &SecTrust) -> Option<NonNull<CFArray>>;
         }
@@ -929,7 +920,7 @@ impl SecTrust {
     /// can be fetched from the network.
     #[doc(alias = "SecTrustSetOptions")]
     #[inline]
-    pub unsafe fn set_options(self: &SecTrust, options: SecTrustOptionFlags) -> OSStatus {
+    pub unsafe fn set_options(&self, options: SecTrustOptionFlags) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetOptions(trust_ref: &SecTrust, options: SecTrustOptionFlags) -> OSStatus;
         }
@@ -955,11 +946,7 @@ impl SecTrust {
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_parameters(
-        self: &SecTrust,
-        action: CSSM_TP_ACTION,
-        action_data: &CFData,
-    ) -> OSStatus {
+    pub unsafe fn set_parameters(&self, action: CSSM_TP_ACTION, action_data: &CFData) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetParameters(
                 trust_ref: &SecTrust,
@@ -989,7 +976,7 @@ impl SecTrust {
     #[doc(alias = "SecTrustSetKeychains")]
     #[deprecated]
     #[inline]
-    pub unsafe fn set_keychains(self: &SecTrust, keychain_or_array: Option<&CFType>) -> OSStatus {
+    pub unsafe fn set_keychains(&self, keychain_or_array: Option<&CFType>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustSetKeychains(
                 trust: &SecTrust,
@@ -1031,7 +1018,7 @@ impl SecTrust {
     #[deprecated]
     #[inline]
     pub unsafe fn get_trust(
-        self: &SecTrust,
+        &self,
         result: *mut SecTrustResultType,
         cert_chain: *mut *const CFArray,
         status_chain: *mut *mut CSSM_TP_APPLE_EVIDENCE_INFO,
@@ -1065,7 +1052,7 @@ impl SecTrust {
     #[deprecated]
     #[inline]
     pub unsafe fn cssm_result(
-        self: &SecTrust,
+        &self,
         result: NonNull<CSSM_TP_VERIFY_CONTEXT_RESULT_PTR>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -1098,7 +1085,7 @@ impl SecTrust {
     #[doc(alias = "SecTrustGetCssmResultCode")]
     #[deprecated]
     #[inline]
-    pub unsafe fn cssm_result_code(self: &SecTrust, result_code: NonNull<OSStatus>) -> OSStatus {
+    pub unsafe fn cssm_result_code(&self, result_code: NonNull<OSStatus>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetCssmResultCode(
                 trust: &SecTrust,
@@ -1121,7 +1108,7 @@ impl SecTrust {
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     #[inline]
-    pub unsafe fn tp_handle(self: &SecTrust, handle: NonNull<CSSM_TP_HANDLE>) -> OSStatus {
+    pub unsafe fn tp_handle(&self, handle: NonNull<CSSM_TP_HANDLE>) -> OSStatus {
         extern "C-unwind" {
             fn SecTrustGetTPHandle(trust: &SecTrust, handle: NonNull<CSSM_TP_HANDLE>) -> OSStatus;
         }

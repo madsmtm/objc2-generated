@@ -1879,11 +1879,7 @@ impl IOHIDEventSystemClient {
     /// Returns: Returns true on success.
     #[doc(alias = "IOHIDEventSystemClientSetProperty")]
     #[inline]
-    pub unsafe fn set_property(
-        self: &IOHIDEventSystemClient,
-        key: &CFString,
-        property: &CFType,
-    ) -> bool {
+    pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
         extern "C-unwind" {
             fn IOHIDEventSystemClientSetProperty(
                 client: &IOHIDEventSystemClient,
@@ -1916,10 +1912,7 @@ impl IOHIDEventSystemClient {
     /// Caller is responsible for calling CFRelease on the property.
     #[doc(alias = "IOHIDEventSystemClientCopyProperty")]
     #[inline]
-    pub unsafe fn property(
-        self: &IOHIDEventSystemClient,
-        key: &CFString,
-    ) -> Option<CFRetained<CFType>> {
+    pub unsafe fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn IOHIDEventSystemClientCopyProperty(
                 client: &IOHIDEventSystemClient,
@@ -1974,7 +1967,7 @@ impl IOHIDEventSystemClient {
     /// available to the client. Caller is responsible for releasing the array.
     #[doc(alias = "IOHIDEventSystemClientCopyServices")]
     #[inline]
-    pub unsafe fn services(self: &IOHIDEventSystemClient) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn services(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn IOHIDEventSystemClientCopyServices(
                 client: &IOHIDEventSystemClient,
@@ -2030,11 +2023,7 @@ impl IOHIDServiceClient {
     /// Returns: Returns true on success.
     #[doc(alias = "IOHIDServiceClientSetProperty")]
     #[inline]
-    pub unsafe fn set_property(
-        self: &IOHIDServiceClient,
-        key: &CFString,
-        property: &CFType,
-    ) -> bool {
+    pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
         extern "C-unwind" {
             fn IOHIDServiceClientSetProperty(
                 service: &IOHIDServiceClient,
@@ -2063,10 +2052,7 @@ impl IOHIDServiceClient {
     /// Caller is responsible for calling CFRelease on the property.
     #[doc(alias = "IOHIDServiceClientCopyProperty")]
     #[inline]
-    pub unsafe fn property(
-        self: &IOHIDServiceClient,
-        key: &CFString,
-    ) -> Option<CFRetained<CFType>> {
+    pub unsafe fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn IOHIDServiceClientCopyProperty(
                 service: &IOHIDServiceClient,
@@ -2101,7 +2087,7 @@ impl IOHIDServiceClient {
     /// Returns: Returns a CFTypeRef containing the registry ID for the service.
     #[doc(alias = "IOHIDServiceClientGetRegistryID")]
     #[inline]
-    pub unsafe fn registry_id(self: &IOHIDServiceClient) -> CFRetained<CFType> {
+    pub unsafe fn registry_id(&self) -> CFRetained<CFType> {
         extern "C-unwind" {
             fn IOHIDServiceClientGetRegistryID(
                 service: &IOHIDServiceClient,
@@ -2134,7 +2120,7 @@ impl IOHIDServiceClient {
     #[doc(alias = "IOHIDServiceClientConformsTo")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub unsafe fn conforms_to(self: &IOHIDServiceClient, usage_page: u32, usage: u32) -> bool {
+    pub unsafe fn conforms_to(&self, usage_page: u32, usage: u32) -> bool {
         extern "C-unwind" {
             fn IOHIDServiceClientConformsTo(
                 service: &IOHIDServiceClient,
@@ -2297,10 +2283,7 @@ impl IOHIDUserDevice {
     #[doc(alias = "IOHIDUserDeviceRegisterGetReportBlock")]
     #[cfg(all(feature = "block2", feature = "hid"))]
     #[inline]
-    pub unsafe fn register_get_report_block(
-        self: &IOHIDUserDevice,
-        block: IOHIDUserDeviceGetReportBlock,
-    ) {
+    pub unsafe fn register_get_report_block(&self, block: IOHIDUserDeviceGetReportBlock) {
         extern "C-unwind" {
             fn IOHIDUserDeviceRegisterGetReportBlock(
                 device: &IOHIDUserDevice,
@@ -2325,10 +2308,7 @@ impl IOHIDUserDevice {
     #[doc(alias = "IOHIDUserDeviceRegisterSetReportBlock")]
     #[cfg(all(feature = "block2", feature = "hid"))]
     #[inline]
-    pub unsafe fn register_set_report_block(
-        self: &IOHIDUserDevice,
-        block: IOHIDUserDeviceSetReportBlock,
-    ) {
+    pub unsafe fn register_set_report_block(&self, block: IOHIDUserDeviceSetReportBlock) {
         extern "C-unwind" {
             fn IOHIDUserDeviceRegisterSetReportBlock(
                 device: &IOHIDUserDevice,
@@ -2357,7 +2337,7 @@ impl IOHIDUserDevice {
     #[doc(alias = "IOHIDUserDeviceSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_dispatch_queue(self: &IOHIDUserDevice, queue: &DispatchQueue) {
+    pub unsafe fn set_dispatch_queue(&self, queue: &DispatchQueue) {
         extern "C-unwind" {
             fn IOHIDUserDeviceSetDispatchQueue(device: &IOHIDUserDevice, queue: &DispatchQueue);
         }
@@ -2391,7 +2371,7 @@ impl IOHIDUserDevice {
     #[doc(alias = "IOHIDUserDeviceSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_cancel_handler(self: &IOHIDUserDevice, handler: dispatch_block_t) {
+    pub unsafe fn set_cancel_handler(&self, handler: dispatch_block_t) {
         extern "C-unwind" {
             fn IOHIDUserDeviceSetCancelHandler(device: &IOHIDUserDevice, handler: dispatch_block_t);
         }
@@ -2418,7 +2398,7 @@ impl IOHIDUserDevice {
     /// Parameter `device`: Reference to an IOHIDUserDevice.
     #[doc(alias = "IOHIDUserDeviceActivate")]
     #[inline]
-    pub unsafe fn activate(self: &IOHIDUserDevice) {
+    pub unsafe fn activate(&self) {
         extern "C-unwind" {
             fn IOHIDUserDeviceActivate(device: &IOHIDUserDevice);
         }
@@ -2453,7 +2433,7 @@ impl IOHIDUserDevice {
     /// Parameter `device`: Reference to an IOHIDUserDevice
     #[doc(alias = "IOHIDUserDeviceCancel")]
     #[inline]
-    pub unsafe fn cancel(self: &IOHIDUserDevice) {
+    pub unsafe fn cancel(&self) {
         extern "C-unwind" {
             fn IOHIDUserDeviceCancel(device: &IOHIDUserDevice);
         }
@@ -2469,7 +2449,7 @@ impl IOHIDUserDevice {
     /// Returns: Returns the property on success.
     #[doc(alias = "IOHIDUserDeviceCopyProperty")]
     #[inline]
-    pub unsafe fn property(self: &IOHIDUserDevice, key: &CFString) -> Option<CFRetained<CFType>> {
+    pub unsafe fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn IOHIDUserDeviceCopyProperty(
                 device: &IOHIDUserDevice,
@@ -2492,7 +2472,7 @@ impl IOHIDUserDevice {
     /// Returns: Returns true on success.
     #[doc(alias = "IOHIDUserDeviceSetProperty")]
     #[inline]
-    pub unsafe fn set_property(self: &IOHIDUserDevice, key: &CFString, property: &CFType) -> bool {
+    pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
         extern "C-unwind" {
             fn IOHIDUserDeviceSetProperty(
                 device: &IOHIDUserDevice,
@@ -2523,7 +2503,7 @@ impl IOHIDUserDevice {
     #[doc(alias = "IOHIDUserDeviceHandleReportWithTimeStamp")]
     #[inline]
     pub unsafe fn handle_report_with_time_stamp(
-        self: &IOHIDUserDevice,
+        &self,
         timestamp: u64,
         report: NonNull<u8>,
         report_length: CFIndex,

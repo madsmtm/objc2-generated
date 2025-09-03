@@ -70,7 +70,7 @@ impl VTPixelTransferSession {
     /// Calling VTPixelTransferSessionInvalidate ensures a deterministic, orderly teardown.
     #[doc(alias = "VTPixelTransferSessionInvalidate")]
     #[inline]
-    pub unsafe fn invalidate(self: &VTPixelTransferSession) {
+    pub unsafe fn invalidate(&self) {
         extern "C-unwind" {
             fn VTPixelTransferSessionInvalidate(session: &VTPixelTransferSession);
         }
@@ -111,7 +111,7 @@ impl VTPixelTransferSession {
     #[cfg(feature = "objc2-core-video")]
     #[inline]
     pub unsafe fn transfer_image(
-        self: &VTPixelTransferSession,
+        &self,
         source_buffer: &CVPixelBuffer,
         destination_buffer: &CVPixelBuffer,
     ) -> OSStatus {

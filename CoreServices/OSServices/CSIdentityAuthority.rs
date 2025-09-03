@@ -68,7 +68,7 @@ pub unsafe extern "C-unwind" fn CSGetManagedIdentityAuthority(
 impl CSIdentityAuthority {
     #[doc(alias = "CSIdentityAuthorityCopyLocalizedName")]
     #[inline]
-    pub unsafe fn localized_name(self: &CSIdentityAuthority) -> Option<CFRetained<CFString>> {
+    pub unsafe fn localized_name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CSIdentityAuthorityCopyLocalizedName(
                 authority: &CSIdentityAuthority,

@@ -191,7 +191,7 @@ impl VTDecompressionSession {
     /// Calling VTDecompressionSessionInvalidate ensures a deterministic, orderly teardown.
     #[doc(alias = "VTDecompressionSessionInvalidate")]
     #[inline]
-    pub unsafe fn invalidate(self: &VTDecompressionSession) {
+    pub unsafe fn invalidate(&self) {
         extern "C-unwind" {
             fn VTDecompressionSessionInvalidate(session: &VTDecompressionSession);
         }
@@ -243,7 +243,7 @@ impl VTDecompressionSession {
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
     pub unsafe fn decode_frame(
-        self: &VTDecompressionSession,
+        &self,
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
         source_frame_ref_con: *mut c_void,
@@ -340,7 +340,7 @@ impl VTDecompressionSession {
     ))]
     #[inline]
     pub unsafe fn decode_frame_with_output_handler(
-        self: &VTDecompressionSession,
+        &self,
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
         info_flags_out: *mut VTDecodeInfoFlags,
@@ -375,7 +375,7 @@ impl VTDecompressionSession {
     /// To wait for them, call VTDecompressionSessionWaitForAsynchronousFrames instead.
     #[doc(alias = "VTDecompressionSessionFinishDelayedFrames")]
     #[inline]
-    pub unsafe fn finish_delayed_frames(self: &VTDecompressionSession) -> OSStatus {
+    pub unsafe fn finish_delayed_frames(&self) -> OSStatus {
         extern "C-unwind" {
             fn VTDecompressionSessionFinishDelayedFrames(
                 session: &VTDecompressionSession,
@@ -393,7 +393,7 @@ impl VTDecompressionSession {
     #[cfg(feature = "objc2-core-media")]
     #[inline]
     pub unsafe fn can_accept_format_description(
-        self: &VTDecompressionSession,
+        &self,
         new_format_desc: &CMFormatDescription,
     ) -> bool {
         extern "C-unwind" {
@@ -413,7 +413,7 @@ impl VTDecompressionSession {
     /// so clients don't have to call both.
     #[doc(alias = "VTDecompressionSessionWaitForAsynchronousFrames")]
     #[inline]
-    pub unsafe fn wait_for_asynchronous_frames(self: &VTDecompressionSession) -> OSStatus {
+    pub unsafe fn wait_for_asynchronous_frames(&self) -> OSStatus {
         extern "C-unwind" {
             fn VTDecompressionSessionWaitForAsynchronousFrames(
                 session: &VTDecompressionSession,
@@ -433,7 +433,7 @@ impl VTDecompressionSession {
     #[cfg(feature = "objc2-core-video")]
     #[inline]
     pub unsafe fn copy_black_pixel_buffer(
-        self: &VTDecompressionSession,
+        &self,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -529,7 +529,7 @@ impl VTDecompressionSession {
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
     pub unsafe fn set_multi_image_callback(
-        self: &VTDecompressionSession,
+        &self,
         output_multi_image_callback: VTDecompressionOutputMultiImageCallback,
         output_multi_image_refcon: *mut c_void,
     ) -> OSStatus {
@@ -636,7 +636,7 @@ impl VTDecompressionSession {
     ))]
     #[inline]
     pub unsafe fn decode_frame_with_multi_image_capable_output_handler(
-        self: &VTDecompressionSession,
+        &self,
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
         info_flags_out: *mut VTDecodeInfoFlags,

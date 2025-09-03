@@ -233,7 +233,7 @@ impl NSEdgeInsets {
     #[doc(alias = "NSEdgeInsetsEqual")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn equal(self: NSEdgeInsets, b_insets: NSEdgeInsets) -> bool {
+    pub unsafe fn equal(self, b_insets: NSEdgeInsets) -> bool {
         extern "C-unwind" {
             fn NSEdgeInsetsEqual(a_insets: NSEdgeInsets, b_insets: NSEdgeInsets) -> Bool;
         }

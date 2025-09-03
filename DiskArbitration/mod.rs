@@ -398,7 +398,7 @@ impl DADisk {
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
     pub unsafe fn mount(
-        self: &DADisk,
+        &self,
         path: Option<&CFURL>,
         options: DADiskMountOptions,
         callback: DADiskMountCallback,
@@ -433,7 +433,7 @@ impl DADisk {
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
     pub unsafe fn mount_with_arguments(
-        self: &DADisk,
+        &self,
         path: Option<&CFURL>,
         options: DADiskMountOptions,
         callback: DADiskMountCallback,
@@ -518,7 +518,7 @@ impl DADisk {
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
     pub unsafe fn rename(
-        self: &DADisk,
+        &self,
         name: &CFString,
         options: DADiskRenameOptions,
         callback: DADiskRenameCallback,
@@ -565,7 +565,7 @@ impl DADisk {
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
     pub unsafe fn unmount(
-        self: &DADisk,
+        &self,
         options: DADiskUnmountOptions,
         callback: DADiskUnmountCallback,
         context: *mut c_void,
@@ -646,7 +646,7 @@ impl DADisk {
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
     pub unsafe fn eject(
-        self: &DADisk,
+        &self,
         options: DADiskEjectOptions,
         callback: DADiskEjectCallback,
         context: *mut c_void,
@@ -748,7 +748,7 @@ impl DADisk {
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
     pub unsafe fn claim(
-        self: &DADisk,
+        &self,
         options: DADiskClaimOptions,
         release: DADiskClaimReleaseCallback,
         release_context: *mut c_void,
@@ -785,7 +785,7 @@ impl DADisk {
     #[doc(alias = "DADiskIsClaimed")]
     #[cfg(feature = "DADisk")]
     #[inline]
-    pub unsafe fn is_claimed(self: &DADisk) -> bool {
+    pub unsafe fn is_claimed(&self) -> bool {
         extern "C-unwind" {
             fn DADiskIsClaimed(disk: &DADisk) -> Boolean;
         }
@@ -799,7 +799,7 @@ impl DADisk {
     #[doc(alias = "DADiskUnclaim")]
     #[cfg(feature = "DADisk")]
     #[inline]
-    pub unsafe fn unclaim(self: &DADisk) {
+    pub unsafe fn unclaim(&self) {
         extern "C-unwind" {
             fn DADiskUnclaim(disk: &DADisk);
         }
@@ -853,7 +853,7 @@ impl DADisk {
     #[doc(alias = "DADiskGetOptions")]
     #[cfg(feature = "DADisk")]
     #[inline]
-    pub unsafe fn options(self: &DADisk) -> DADiskOptions {
+    pub unsafe fn options(&self) -> DADiskOptions {
         extern "C-unwind" {
             fn DADiskGetOptions(disk: &DADisk) -> DADiskOptions;
         }
@@ -872,7 +872,7 @@ impl DADisk {
     #[doc(alias = "DADiskSetOptions")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "libc"))]
     #[inline]
-    pub unsafe fn set_options(self: &DADisk, options: DADiskOptions, value: bool) -> DAReturn {
+    pub unsafe fn set_options(&self, options: DADiskOptions, value: bool) -> DAReturn {
         extern "C-unwind" {
             fn DADiskSetOptions(disk: &DADisk, options: DADiskOptions, value: Boolean) -> DAReturn;
         }

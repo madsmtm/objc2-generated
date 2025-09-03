@@ -581,7 +581,7 @@ impl CFDictionary {
     /// Returns: The number of values in the dictionary.
     #[doc(alias = "CFDictionaryGetCount")]
     #[inline]
-    pub fn count(self: &CFDictionary) -> CFIndex {
+    pub fn count(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFDictionaryGetCount(the_dict: &CFDictionary) -> CFIndex;
         }
@@ -606,7 +606,7 @@ impl CFDictionary {
     /// 0 otherwise.
     #[doc(alias = "CFDictionaryGetCountOfKey")]
     #[inline]
-    pub unsafe fn count_of_key(self: &CFDictionary, key: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_key(&self, key: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFDictionaryGetCountOfKey(the_dict: &CFDictionary, key: *const c_void) -> CFIndex;
         }
@@ -628,7 +628,7 @@ impl CFDictionary {
     /// Returns: The number of times the given value occurs in the dictionary.
     #[doc(alias = "CFDictionaryGetCountOfValue")]
     #[inline]
-    pub unsafe fn count_of_value(self: &CFDictionary, value: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFDictionaryGetCountOfValue(
                 the_dict: &CFDictionary,
@@ -655,7 +655,7 @@ impl CFDictionary {
     /// Returns: true, if the key is in the dictionary, otherwise false.
     #[doc(alias = "CFDictionaryContainsKey")]
     #[inline]
-    pub unsafe fn contains_ptr_key(self: &CFDictionary, key: *const c_void) -> bool {
+    pub unsafe fn contains_ptr_key(&self, key: *const c_void) -> bool {
         extern "C-unwind" {
             fn CFDictionaryContainsKey(the_dict: &CFDictionary, key: *const c_void) -> Boolean;
         }
@@ -678,7 +678,7 @@ impl CFDictionary {
     /// Returns: true, if the value is in the dictionary, otherwise false.
     #[doc(alias = "CFDictionaryContainsValue")]
     #[inline]
-    pub unsafe fn contains_ptr_value(self: &CFDictionary, value: *const c_void) -> bool {
+    pub unsafe fn contains_ptr_value(&self, value: *const c_void) -> bool {
         extern "C-unwind" {
             fn CFDictionaryContainsValue(the_dict: &CFDictionary, value: *const c_void) -> Boolean;
         }
@@ -707,7 +707,7 @@ impl CFDictionary {
     /// NULL-no-found from NULL-is-the-value.
     #[doc(alias = "CFDictionaryGetValue")]
     #[inline]
-    pub unsafe fn value(self: &CFDictionary, key: *const c_void) -> *const c_void {
+    pub unsafe fn value(&self, key: *const c_void) -> *const c_void {
         extern "C-unwind" {
             fn CFDictionaryGetValue(the_dict: &CFDictionary, key: *const c_void) -> *const c_void;
         }
@@ -739,11 +739,7 @@ impl CFDictionary {
     /// Returns: true, if a matching key was found, false otherwise.
     #[doc(alias = "CFDictionaryGetValueIfPresent")]
     #[inline]
-    pub unsafe fn value_if_present(
-        self: &CFDictionary,
-        key: *const c_void,
-        value: *mut *const c_void,
-    ) -> bool {
+    pub unsafe fn value_if_present(&self, key: *const c_void, value: *mut *const c_void) -> bool {
         extern "C-unwind" {
             fn CFDictionaryGetValueIfPresent(
                 the_dict: &CFDictionary,
@@ -777,11 +773,7 @@ impl CFDictionary {
     /// or NULL, the behavior is undefined.
     #[doc(alias = "CFDictionaryGetKeysAndValues")]
     #[inline]
-    pub unsafe fn keys_and_values(
-        self: &CFDictionary,
-        keys: *mut *const c_void,
-        values: *mut *const c_void,
-    ) {
+    pub unsafe fn keys_and_values(&self, keys: *mut *const c_void, values: *mut *const c_void) {
         extern "C-unwind" {
             fn CFDictionaryGetKeysAndValues(
                 the_dict: &CFDictionary,
@@ -812,7 +804,7 @@ impl CFDictionary {
     #[doc(alias = "CFDictionaryApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
-        self: &CFDictionary,
+        &self,
         applier: CFDictionaryApplierFunction,
         context: *mut c_void,
     ) {

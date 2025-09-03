@@ -50,7 +50,7 @@ impl SKSummary {
 
     #[doc(alias = "SKSummaryGetSentenceCount")]
     #[inline]
-    pub unsafe fn sentence_count(self: &SKSummary) -> CFIndex {
+    pub unsafe fn sentence_count(&self) -> CFIndex {
         extern "C-unwind" {
             fn SKSummaryGetSentenceCount(summary: &SKSummary) -> CFIndex;
         }
@@ -59,7 +59,7 @@ impl SKSummary {
 
     #[doc(alias = "SKSummaryGetParagraphCount")]
     #[inline]
-    pub unsafe fn paragraph_count(self: &SKSummary) -> CFIndex {
+    pub unsafe fn paragraph_count(&self) -> CFIndex {
         extern "C-unwind" {
             fn SKSummaryGetParagraphCount(summary: &SKSummary) -> CFIndex;
         }
@@ -68,7 +68,7 @@ impl SKSummary {
 
     #[doc(alias = "SKSummaryCopySentenceAtIndex")]
     #[inline]
-    pub unsafe fn sentence_at_index(self: &SKSummary, i: CFIndex) -> Option<CFRetained<CFString>> {
+    pub unsafe fn sentence_at_index(&self, i: CFIndex) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SKSummaryCopySentenceAtIndex(
                 summary: &SKSummary,
@@ -81,7 +81,7 @@ impl SKSummary {
 
     #[doc(alias = "SKSummaryCopyParagraphAtIndex")]
     #[inline]
-    pub unsafe fn paragraph_at_index(self: &SKSummary, i: CFIndex) -> Option<CFRetained<CFString>> {
+    pub unsafe fn paragraph_at_index(&self, i: CFIndex) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SKSummaryCopyParagraphAtIndex(
                 summary: &SKSummary,
@@ -95,7 +95,7 @@ impl SKSummary {
     #[doc(alias = "SKSummaryCopySentenceSummaryString")]
     #[inline]
     pub unsafe fn sentence_summary_string(
-        self: &SKSummary,
+        &self,
         num_sentences: CFIndex,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
@@ -111,7 +111,7 @@ impl SKSummary {
     #[doc(alias = "SKSummaryCopyParagraphSummaryString")]
     #[inline]
     pub unsafe fn paragraph_summary_string(
-        self: &SKSummary,
+        &self,
         num_paragraphs: CFIndex,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
@@ -127,7 +127,7 @@ impl SKSummary {
     #[doc(alias = "SKSummaryGetSentenceSummaryInfo")]
     #[inline]
     pub unsafe fn sentence_summary_info(
-        self: &SKSummary,
+        &self,
         num_sentences_in_summary: CFIndex,
         out_rank_order_of_sentences: *mut CFIndex,
         out_sentence_index_of_sentences: *mut CFIndex,
@@ -156,7 +156,7 @@ impl SKSummary {
     #[doc(alias = "SKSummaryGetParagraphSummaryInfo")]
     #[inline]
     pub unsafe fn paragraph_summary_info(
-        self: &SKSummary,
+        &self,
         num_paragraphs_in_summary: CFIndex,
         out_rank_order_of_paragraphs: *mut CFIndex,
         out_paragraph_index_of_paragraphs: *mut CFIndex,

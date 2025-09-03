@@ -515,7 +515,7 @@ impl CTFontDescriptor {
     #[doc(alias = "CTFontDescriptorCreateCopyWithAttributes")]
     #[inline]
     pub unsafe fn copy_with_attributes(
-        self: &CTFontDescriptor,
+        &self,
         attributes: &CFDictionary,
     ) -> CFRetained<CTFontDescriptor> {
         extern "C-unwind" {
@@ -543,7 +543,7 @@ impl CTFontDescriptor {
     #[doc(alias = "CTFontDescriptorCreateCopyWithFamily")]
     #[inline]
     pub unsafe fn copy_with_family(
-        self: &CTFontDescriptor,
+        &self,
         family: &CFString,
     ) -> Option<CFRetained<CTFontDescriptor>> {
         extern "C-unwind" {
@@ -573,7 +573,7 @@ impl CTFontDescriptor {
     #[cfg(feature = "CTFontTraits")]
     #[inline]
     pub unsafe fn copy_with_symbolic_traits(
-        self: &CTFontDescriptor,
+        &self,
         sym_trait_value: CTFontSymbolicTraits,
         sym_trait_mask: CTFontSymbolicTraits,
     ) -> Option<CFRetained<CTFontDescriptor>> {
@@ -606,7 +606,7 @@ impl CTFontDescriptor {
     #[doc(alias = "CTFontDescriptorCreateCopyWithVariation")]
     #[inline]
     pub unsafe fn copy_with_variation(
-        self: &CTFontDescriptor,
+        &self,
         variation_identifier: &CFNumber,
         variation_value: CGFloat,
     ) -> CFRetained<CTFontDescriptor> {
@@ -644,7 +644,7 @@ impl CTFontDescriptor {
     #[doc(alias = "CTFontDescriptorCreateCopyWithFeature")]
     #[inline]
     pub unsafe fn copy_with_feature(
-        self: &CTFontDescriptor,
+        &self,
         feature_type_identifier: &CFNumber,
         feature_selector_identifier: &CFNumber,
     ) -> CFRetained<CTFontDescriptor> {
@@ -680,7 +680,7 @@ impl CTFontDescriptor {
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptors")]
     #[inline]
     pub unsafe fn matching_font_descriptors(
-        self: &CTFontDescriptor,
+        &self,
         mandatory_attributes: Option<&CFSet>,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
@@ -707,7 +707,7 @@ impl CTFontDescriptor {
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptor")]
     #[inline]
     pub unsafe fn matching_font_descriptor(
-        self: &CTFontDescriptor,
+        &self,
         mandatory_attributes: Option<&CFSet>,
     ) -> Option<CFRetained<CTFontDescriptor>> {
         extern "C-unwind" {
@@ -839,7 +839,7 @@ impl CTFontDescriptor {
     /// Returns: A retained reference to the font descriptor attributes dictionary. This dictionary will contain the minimum number of attributes to fully specify this particular font descriptor.
     #[doc(alias = "CTFontDescriptorCopyAttributes")]
     #[inline]
-    pub unsafe fn attributes(self: &CTFontDescriptor) -> CFRetained<CFDictionary> {
+    pub unsafe fn attributes(&self) -> CFRetained<CFDictionary> {
         extern "C-unwind" {
             fn CTFontDescriptorCopyAttributes(
                 descriptor: &CTFontDescriptor,
@@ -863,10 +863,7 @@ impl CTFontDescriptor {
     /// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
     #[doc(alias = "CTFontDescriptorCopyAttribute")]
     #[inline]
-    pub unsafe fn attribute(
-        self: &CTFontDescriptor,
-        attribute: &CFString,
-    ) -> Option<CFRetained<CFType>> {
+    pub unsafe fn attribute(&self, attribute: &CFString) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CTFontDescriptorCopyAttribute(
                 descriptor: &CTFontDescriptor,
@@ -899,7 +896,7 @@ impl CTFontDescriptor {
     #[doc(alias = "CTFontDescriptorCopyLocalizedAttribute")]
     #[inline]
     pub unsafe fn localized_attribute(
-        self: &CTFontDescriptor,
+        &self,
         attribute: &CFString,
         language: *mut *const CFString,
     ) -> Option<CFRetained<CFType>> {

@@ -25,7 +25,7 @@ impl SCPreferences {
     #[cfg(feature = "SCPreferences")]
     #[inline]
     pub fn set_computer_name(
-        self: &SCPreferences,
+        &self,
         name: Option<&CFString>,
         name_encoding: CFStringEncoding,
     ) -> bool {
@@ -58,7 +58,7 @@ impl SCPreferences {
     #[doc(alias = "SCPreferencesSetLocalHostName")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    pub fn set_local_host_name(self: &SCPreferences, name: Option<&CFString>) -> bool {
+    pub fn set_local_host_name(&self, name: Option<&CFString>) -> bool {
         extern "C-unwind" {
             fn SCPreferencesSetLocalHostName(
                 prefs: &SCPreferences,

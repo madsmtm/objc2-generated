@@ -112,7 +112,7 @@ impl CFNotificationCenter {
     #[cfg(feature = "CFDictionary")]
     #[inline]
     pub unsafe fn add_observer(
-        self: &CFNotificationCenter,
+        &self,
         observer: *const c_void,
         call_back: CFNotificationCallback,
         name: Option<&CFString>,
@@ -144,7 +144,7 @@ impl CFNotificationCenter {
     #[doc(alias = "CFNotificationCenterRemoveObserver")]
     #[inline]
     pub unsafe fn remove_observer(
-        self: &CFNotificationCenter,
+        &self,
         observer: *const c_void,
         name: Option<&CFNotificationName>,
         object: *const c_void,
@@ -162,7 +162,7 @@ impl CFNotificationCenter {
 
     #[doc(alias = "CFNotificationCenterRemoveEveryObserver")]
     #[inline]
-    pub unsafe fn remove_every_observer(self: &CFNotificationCenter, observer: *const c_void) {
+    pub unsafe fn remove_every_observer(&self, observer: *const c_void) {
         extern "C-unwind" {
             fn CFNotificationCenterRemoveEveryObserver(
                 center: &CFNotificationCenter,
@@ -176,7 +176,7 @@ impl CFNotificationCenter {
     #[cfg(feature = "CFDictionary")]
     #[inline]
     pub unsafe fn post_notification(
-        self: &CFNotificationCenter,
+        &self,
         name: Option<&CFNotificationName>,
         object: *const c_void,
         user_info: Option<&CFDictionary>,
@@ -213,7 +213,7 @@ impl CFNotificationCenter {
     #[cfg(feature = "CFDictionary")]
     #[inline]
     pub unsafe fn post_notification_with_options(
-        self: &CFNotificationCenter,
+        &self,
         name: Option<&CFNotificationName>,
         object: *const c_void,
         user_info: Option<&CFDictionary>,

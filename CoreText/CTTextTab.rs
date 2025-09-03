@@ -101,7 +101,7 @@ impl CTTextTab {
     #[doc(alias = "CTTextTabGetAlignment")]
     #[cfg(feature = "CTParagraphStyle")]
     #[inline]
-    pub unsafe fn alignment(self: &CTTextTab) -> CTTextAlignment {
+    pub unsafe fn alignment(&self) -> CTTextAlignment {
         extern "C-unwind" {
             fn CTTextTabGetAlignment(tab: &CTTextTab) -> CTTextAlignment;
         }
@@ -117,7 +117,7 @@ impl CTTextTab {
     /// Returns: The tab's ruler location relative to the back margin.
     #[doc(alias = "CTTextTabGetLocation")]
     #[inline]
-    pub unsafe fn location(self: &CTTextTab) -> c_double {
+    pub unsafe fn location(&self) -> c_double {
         extern "C-unwind" {
             fn CTTextTabGetLocation(tab: &CTTextTab) -> c_double;
         }
@@ -134,7 +134,7 @@ impl CTTextTab {
     /// no dictionary is present.
     #[doc(alias = "CTTextTabGetOptions")]
     #[inline]
-    pub unsafe fn options(self: &CTTextTab) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn options(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CTTextTabGetOptions(tab: &CTTextTab) -> Option<NonNull<CFDictionary>>;
         }

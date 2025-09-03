@@ -198,7 +198,7 @@ impl CMTagCollection {
     #[doc(alias = "CMTagCollectionCreateCopy")]
     #[inline]
     pub unsafe fn create_copy(
-        self: &CMTagCollection,
+        &self,
         allocator: Option<&CFAllocator>,
         new_collection_copy_out: NonNull<*const CMTagCollection>,
     ) -> OSStatus {
@@ -226,7 +226,7 @@ impl CMTagCollection {
     #[doc(alias = "CMTagCollectionCreateMutableCopy")]
     #[inline]
     pub unsafe fn create_mutable_copy(
-        self: &CMTagCollection,
+        &self,
         allocator: Option<&CFAllocator>,
         new_mutable_collection_copy_out: NonNull<*mut CMMutableTagCollection>,
     ) -> OSStatus {
@@ -275,7 +275,7 @@ impl CMTagCollection {
     #[doc(alias = "CMTagCollectionGetCount")]
     #[cfg(feature = "CMBase")]
     #[inline]
-    pub unsafe fn count(self: &CMTagCollection) -> CMItemCount {
+    pub unsafe fn count(&self) -> CMItemCount {
         extern "C-unwind" {
             fn CMTagCollectionGetCount(tag_collection: &CMTagCollection) -> CMItemCount;
         }
@@ -292,7 +292,7 @@ impl CMTagCollection {
     #[doc(alias = "CMTagCollectionContainsTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    pub unsafe fn contains_tag(self: &CMTagCollection, tag: CMTag) -> bool {
+    pub unsafe fn contains_tag(&self, tag: CMTag) -> bool {
         extern "C-unwind" {
             fn CMTagCollectionContainsTag(tag_collection: &CMTagCollection, tag: CMTag) -> Boolean;
         }
@@ -312,7 +312,7 @@ impl CMTagCollection {
     #[doc(alias = "CMTagCollectionContainsTagsOfCollection")]
     #[inline]
     pub unsafe fn contains_tags_of_collection(
-        self: &CMTagCollection,
+        &self,
         contained_tag_collection: &CMTagCollection,
     ) -> bool {
         extern "C-unwind" {
@@ -341,7 +341,7 @@ impl CMTagCollection {
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
     pub unsafe fn contains_specified_tags(
-        self: &CMTagCollection,
+        &self,
         contained_tags: NonNull<CMTag>,
         contained_tag_count: CMItemCount,
     ) -> bool {
@@ -368,7 +368,7 @@ impl CMTagCollection {
     #[doc(alias = "CMTagCollectionContainsCategory")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    pub unsafe fn contains_category(self: &CMTagCollection, category: CMTagCategory) -> bool {
+    pub unsafe fn contains_category(&self, category: CMTagCategory) -> bool {
         extern "C-unwind" {
             fn CMTagCollectionContainsCategory(
                 tag_collection: &CMTagCollection,
@@ -391,10 +391,7 @@ impl CMTagCollection {
     #[doc(alias = "CMTagCollectionGetCountOfCategory")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
-    pub unsafe fn count_of_category(
-        self: &CMTagCollection,
-        category: CMTagCategory,
-    ) -> CMItemCount {
+    pub unsafe fn count_of_category(&self, category: CMTagCategory) -> CMItemCount {
         extern "C-unwind" {
             fn CMTagCollectionGetCountOfCategory(
                 tag_collection: &CMTagCollection,
@@ -421,7 +418,7 @@ impl CMTagCollection {
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
     pub unsafe fn tags(
-        self: &CMTagCollection,
+        &self,
         tag_buffer: NonNull<CMTag>,
         tag_buffer_count: CMItemCount,
         number_of_tags_copied: *mut CMItemCount,
@@ -456,7 +453,7 @@ impl CMTagCollection {
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
     pub unsafe fn tags_with_category(
-        self: &CMTagCollection,
+        &self,
         category: CMTagCategory,
         tag_buffer: NonNull<CMTag>,
         tag_buffer_count: CMItemCount,
@@ -497,7 +494,7 @@ impl CMTagCollection {
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
     pub unsafe fn count_tags_with_filter_function(
-        self: &CMTagCollection,
+        &self,
         filter_applier: CMTagCollectionTagFilterFunction,
         context: *mut c_void,
     ) -> CMItemCount {
@@ -532,7 +529,7 @@ impl CMTagCollection {
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
     pub unsafe fn tags_with_filter_function(
-        self: &CMTagCollection,
+        &self,
         tag_buffer: NonNull<CMTag>,
         tag_buffer_count: CMItemCount,
         number_of_tags_copied: *mut CMItemCount,
@@ -618,11 +615,7 @@ impl CMTagCollection {
     #[doc(alias = "CMTagCollectionApply")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    pub unsafe fn apply(
-        self: &CMTagCollection,
-        applier: CMTagCollectionApplierFunction,
-        context: *mut c_void,
-    ) {
+    pub unsafe fn apply(&self, applier: CMTagCollectionApplierFunction, context: *mut c_void) {
         extern "C-unwind" {
             fn CMTagCollectionApply(
                 tag_collection: &CMTagCollection,
@@ -648,7 +641,7 @@ impl CMTagCollection {
     #[cfg(feature = "CMTag")]
     #[inline]
     pub unsafe fn apply_until(
-        self: &CMTagCollection,
+        &self,
         applier: CMTagCollectionTagFilterFunction,
         context: *mut c_void,
     ) -> CMTag {
@@ -671,7 +664,7 @@ impl CMTagCollection {
     /// Returns: True if there are no tags, false otherwise.
     #[doc(alias = "CMTagCollectionIsEmpty")]
     #[inline]
-    pub unsafe fn is_empty(self: &CMTagCollection) -> bool {
+    pub unsafe fn is_empty(&self) -> bool {
         extern "C-unwind" {
             fn CMTagCollectionIsEmpty(tag_collection: &CMTagCollection) -> Boolean;
         }
@@ -815,7 +808,7 @@ impl CMMutableTagCollection {
     #[doc(alias = "CMTagCollectionAddTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    pub unsafe fn add_tag(self: &CMMutableTagCollection, tag_to_add: CMTag) -> OSStatus {
+    pub unsafe fn add_tag(&self, tag_to_add: CMTag) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionAddTag(
                 tag_collection: &CMMutableTagCollection,
@@ -837,7 +830,7 @@ impl CMMutableTagCollection {
     #[doc(alias = "CMTagCollectionRemoveTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    pub unsafe fn remove_tag(self: &CMMutableTagCollection, tag_to_remove: CMTag) -> OSStatus {
+    pub unsafe fn remove_tag(&self, tag_to_remove: CMTag) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionRemoveTag(
                 tag_collection: &CMMutableTagCollection,
@@ -856,7 +849,7 @@ impl CMMutableTagCollection {
     /// Returns: OSStatus indicating if the operation succeeded.
     #[doc(alias = "CMTagCollectionRemoveAllTags")]
     #[inline]
-    pub unsafe fn remove_all_tags(self: &CMMutableTagCollection) -> OSStatus {
+    pub unsafe fn remove_all_tags(&self) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionRemoveAllTags(tag_collection: &CMMutableTagCollection) -> OSStatus;
         }
@@ -875,10 +868,7 @@ impl CMMutableTagCollection {
     #[doc(alias = "CMTagCollectionRemoveAllTagsOfCategory")]
     #[cfg(feature = "CMTag")]
     #[inline]
-    pub unsafe fn remove_all_tags_of_category(
-        self: &CMMutableTagCollection,
-        category: CMTagCategory,
-    ) -> OSStatus {
+    pub unsafe fn remove_all_tags_of_category(&self, category: CMTagCategory) -> OSStatus {
         extern "C-unwind" {
             fn CMTagCollectionRemoveAllTagsOfCategory(
                 tag_collection: &CMMutableTagCollection,
@@ -898,7 +888,7 @@ impl CMMutableTagCollection {
     #[doc(alias = "CMTagCollectionAddTagsFromCollection")]
     #[inline]
     pub unsafe fn add_tags_from_collection(
-        self: &CMMutableTagCollection,
+        &self,
         collection_with_tags_to_add: &CMTagCollection,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -923,7 +913,7 @@ impl CMMutableTagCollection {
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
     pub unsafe fn add_tags_from_array(
-        self: &CMMutableTagCollection,
+        &self,
         tags: NonNull<CMTag>,
         tag_count: CMItemCount,
     ) -> OSStatus {
@@ -951,7 +941,7 @@ impl CMTagCollection {
     #[doc(alias = "CMTagCollectionCopyAsDictionary")]
     #[inline]
     pub unsafe fn as_dictionary(
-        self: &CMTagCollection,
+        &self,
         allocator: Option<&CFAllocator>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -1003,10 +993,7 @@ impl CMTagCollection {
     /// Returns: A CFDataRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFData.
     #[doc(alias = "CMTagCollectionCopyAsData")]
     #[inline]
-    pub unsafe fn as_data(
-        self: &CMTagCollection,
-        allocator: Option<&CFAllocator>,
-    ) -> Option<CFRetained<CFData>> {
+    pub unsafe fn as_data(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CMTagCollectionCopyAsData(
                 tag_collection: &CMTagCollection,

@@ -77,7 +77,7 @@ impl CFDate {
 
     #[doc(alias = "CFDateGetAbsoluteTime")]
     #[inline]
-    pub fn absolute_time(self: &CFDate) -> CFAbsoluteTime {
+    pub fn absolute_time(&self) -> CFAbsoluteTime {
         extern "C-unwind" {
             fn CFDateGetAbsoluteTime(the_date: &CFDate) -> CFAbsoluteTime;
         }
@@ -86,7 +86,7 @@ impl CFDate {
 
     #[doc(alias = "CFDateGetTimeIntervalSinceDate")]
     #[inline]
-    pub fn time_interval_since_date(self: &CFDate, other_date: Option<&CFDate>) -> CFTimeInterval {
+    pub fn time_interval_since_date(&self, other_date: Option<&CFDate>) -> CFTimeInterval {
         extern "C-unwind" {
             fn CFDateGetTimeIntervalSinceDate(
                 the_date: &CFDate,
@@ -99,7 +99,7 @@ impl CFDate {
     #[doc(alias = "CFDateCompare")]
     #[inline]
     pub unsafe fn compare(
-        self: &CFDate,
+        &self,
         other_date: Option<&CFDate>,
         context: *mut c_void,
     ) -> CFComparisonResult {
@@ -240,7 +240,7 @@ impl CFGregorianDate {
     #[doc(alias = "CFGregorianDateIsValid")]
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     #[inline]
-    pub unsafe fn is_valid(self: CFGregorianDate, unit_flags: CFOptionFlags) -> bool {
+    pub unsafe fn is_valid(self, unit_flags: CFOptionFlags) -> bool {
         extern "C-unwind" {
             fn CFGregorianDateIsValid(gdate: CFGregorianDate, unit_flags: CFOptionFlags)
                 -> Boolean;
@@ -252,7 +252,7 @@ impl CFGregorianDate {
     #[doc(alias = "CFGregorianDateGetAbsoluteTime")]
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     #[inline]
-    pub unsafe fn absolute_time(self: CFGregorianDate, tz: Option<&CFTimeZone>) -> CFAbsoluteTime {
+    pub unsafe fn absolute_time(self, tz: Option<&CFTimeZone>) -> CFAbsoluteTime {
         extern "C-unwind" {
             fn CFGregorianDateGetAbsoluteTime(
                 gdate: CFGregorianDate,

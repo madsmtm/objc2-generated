@@ -87,7 +87,7 @@ impl SecIdentitySearch {
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn copy_next(self: &SecIdentitySearch, identity: *mut *mut SecIdentity) -> OSStatus {
+    pub unsafe fn copy_next(&self, identity: *mut *mut SecIdentity) -> OSStatus {
         extern "C-unwind" {
             fn SecIdentitySearchCopyNext(
                 search_ref: &SecIdentitySearch,

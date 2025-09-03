@@ -90,10 +90,7 @@ impl SecPolicySearch {
     #[cfg(feature = "SecBase")]
     #[deprecated]
     #[inline]
-    pub unsafe fn copy_next(
-        self: &SecPolicySearch,
-        policy_ref: NonNull<*mut SecPolicy>,
-    ) -> OSStatus {
+    pub unsafe fn copy_next(&self, policy_ref: NonNull<*mut SecPolicy>) -> OSStatus {
         extern "C-unwind" {
             fn SecPolicySearchCopyNext(
                 search_ref: &SecPolicySearch,

@@ -238,7 +238,7 @@ impl SCPreferences {
     /// FALSE if an error occurred.
     #[doc(alias = "SCPreferencesLock")]
     #[inline]
-    pub fn lock(self: &SCPreferences, wait: bool) -> bool {
+    pub fn lock(&self, wait: bool) -> bool {
         extern "C-unwind" {
             fn SCPreferencesLock(prefs: &SCPreferences, wait: Boolean) -> Boolean;
         }
@@ -264,7 +264,7 @@ impl SCPreferences {
     /// FALSE if an error occurred.
     #[doc(alias = "SCPreferencesCommitChanges")]
     #[inline]
-    pub fn commit_changes(self: &SCPreferences) -> bool {
+    pub fn commit_changes(&self) -> bool {
         extern "C-unwind" {
             fn SCPreferencesCommitChanges(prefs: &SCPreferences) -> Boolean;
         }
@@ -281,7 +281,7 @@ impl SCPreferences {
     /// FALSE if an error occurred.
     #[doc(alias = "SCPreferencesApplyChanges")]
     #[inline]
-    pub fn apply_changes(self: &SCPreferences) -> bool {
+    pub fn apply_changes(&self) -> bool {
         extern "C-unwind" {
             fn SCPreferencesApplyChanges(prefs: &SCPreferences) -> Boolean;
         }
@@ -301,7 +301,7 @@ impl SCPreferences {
     /// FALSE if an error occurred.
     #[doc(alias = "SCPreferencesUnlock")]
     #[inline]
-    pub fn unlock(self: &SCPreferences) -> bool {
+    pub fn unlock(&self) -> bool {
         extern "C-unwind" {
             fn SCPreferencesUnlock(prefs: &SCPreferences) -> Boolean;
         }
@@ -318,7 +318,7 @@ impl SCPreferences {
     /// preferences at the time of the call to the SCPreferencesCreate function.
     #[doc(alias = "SCPreferencesGetSignature")]
     #[inline]
-    pub fn signature(self: &SCPreferences) -> Option<CFRetained<CFData>> {
+    pub fn signature(&self) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn SCPreferencesGetSignature(prefs: &SCPreferences) -> Option<NonNull<CFData>>;
         }
@@ -334,7 +334,7 @@ impl SCPreferences {
     /// You must release the returned value.
     #[doc(alias = "SCPreferencesCopyKeyList")]
     #[inline]
-    pub fn key_list(self: &SCPreferences) -> Option<CFRetained<CFArray>> {
+    pub fn key_list(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SCPreferencesCopyKeyList(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
         }
@@ -358,7 +358,7 @@ impl SCPreferences {
     /// NULL if no value was located.
     #[doc(alias = "SCPreferencesGetValue")]
     #[inline]
-    pub fn value(self: &SCPreferences, key: &CFString) -> Option<CFRetained<CFPropertyList>> {
+    pub fn value(&self, key: &CFString) -> Option<CFRetained<CFPropertyList>> {
         extern "C-unwind" {
             fn SCPreferencesGetValue(
                 prefs: &SCPreferences,
@@ -387,7 +387,7 @@ impl SCPreferences {
     /// if an error occurred.
     #[doc(alias = "SCPreferencesAddValue")]
     #[inline]
-    pub unsafe fn add_value(self: &SCPreferences, key: &CFString, value: &CFPropertyList) -> bool {
+    pub unsafe fn add_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
         extern "C-unwind" {
             fn SCPreferencesAddValue(
                 prefs: &SCPreferences,
@@ -416,7 +416,7 @@ impl SCPreferences {
     /// FALSE if an error occurred.
     #[doc(alias = "SCPreferencesSetValue")]
     #[inline]
-    pub unsafe fn set_value(self: &SCPreferences, key: &CFString, value: &CFPropertyList) -> bool {
+    pub unsafe fn set_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
         extern "C-unwind" {
             fn SCPreferencesSetValue(
                 prefs: &SCPreferences,
@@ -442,7 +442,7 @@ impl SCPreferences {
     /// FALSE if the key did not exist or if an error occurred.
     #[doc(alias = "SCPreferencesRemoveValue")]
     #[inline]
-    pub fn remove_value(self: &SCPreferences, key: &CFString) -> bool {
+    pub fn remove_value(&self, key: &CFString) -> bool {
         extern "C-unwind" {
             fn SCPreferencesRemoveValue(prefs: &SCPreferences, key: &CFString) -> Boolean;
         }
@@ -467,7 +467,7 @@ impl SCPreferences {
     #[doc(alias = "SCPreferencesSetCallback")]
     #[inline]
     pub unsafe fn set_callback(
-        self: &SCPreferences,
+        &self,
         callout: SCPreferencesCallBack,
         context: *mut SCPreferencesContext,
     ) -> bool {
@@ -498,11 +498,7 @@ impl SCPreferences {
     /// FALSE otherwise.
     #[doc(alias = "SCPreferencesScheduleWithRunLoop")]
     #[inline]
-    pub fn schedule_with_run_loop(
-        self: &SCPreferences,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) -> bool {
+    pub fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
         extern "C-unwind" {
             fn SCPreferencesScheduleWithRunLoop(
                 prefs: &SCPreferences,
@@ -530,11 +526,7 @@ impl SCPreferences {
     /// FALSE otherwise.
     #[doc(alias = "SCPreferencesUnscheduleFromRunLoop")]
     #[inline]
-    pub fn unschedule_from_run_loop(
-        self: &SCPreferences,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) -> bool {
+    pub fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
         extern "C-unwind" {
             fn SCPreferencesUnscheduleFromRunLoop(
                 prefs: &SCPreferences,
@@ -558,7 +550,7 @@ impl SCPreferences {
     #[doc(alias = "SCPreferencesSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_dispatch_queue(self: &SCPreferences, queue: Option<&DispatchQueue>) -> bool {
+    pub unsafe fn set_dispatch_queue(&self, queue: Option<&DispatchQueue>) -> bool {
         extern "C-unwind" {
             fn SCPreferencesSetDispatchQueue(
                 prefs: &SCPreferences,
@@ -580,7 +572,7 @@ impl SCPreferences {
     /// Parameter `prefs`: The preferences session.
     #[doc(alias = "SCPreferencesSynchronize")]
     #[inline]
-    pub fn synchronize(self: &SCPreferences) {
+    pub fn synchronize(&self) {
         extern "C-unwind" {
             fn SCPreferencesSynchronize(prefs: &SCPreferences);
         }

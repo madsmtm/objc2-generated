@@ -592,9 +592,7 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorTextAnimation {
 impl UIWritingToolsCoordinatorTextAnimation {
     #[doc(alias = "UIWritingToolsCoordinatorTextAnimationDebugDescription")]
     #[inline]
-    pub unsafe fn debug_description(
-        self: UIWritingToolsCoordinatorTextAnimation,
-    ) -> Retained<NSString> {
+    pub unsafe fn debug_description(self) -> Retained<NSString> {
         extern "C-unwind" {
             fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
                 animation_type: UIWritingToolsCoordinatorTextAnimation,

@@ -67,7 +67,7 @@ impl VTPixelRotationSession {
     /// Calling VTPixelRotationSessionInvalidate ensures a deterministic, orderly teardown.
     #[doc(alias = "VTPixelRotationSessionInvalidate")]
     #[inline]
-    pub unsafe fn invalidate(self: &VTPixelRotationSession) {
+    pub unsafe fn invalidate(&self) {
         extern "C-unwind" {
             fn VTPixelRotationSessionInvalidate(session: &VTPixelRotationSession);
         }
@@ -110,7 +110,7 @@ impl VTPixelRotationSession {
     #[cfg(feature = "objc2-core-video")]
     #[inline]
     pub unsafe fn rotate_image(
-        self: &VTPixelRotationSession,
+        &self,
         source_buffer: &CVPixelBuffer,
         destination_buffer: &CVPixelBuffer,
     ) -> OSStatus {

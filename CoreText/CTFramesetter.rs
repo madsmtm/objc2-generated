@@ -131,7 +131,7 @@ impl CTFramesetter {
     #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
     #[inline]
     pub unsafe fn frame(
-        self: &CTFramesetter,
+        &self,
         string_range: CFRange,
         path: &CGPath,
         frame_attributes: Option<&CFDictionary>,
@@ -168,7 +168,7 @@ impl CTFramesetter {
     #[doc(alias = "CTFramesetterGetTypesetter")]
     #[cfg(feature = "CTTypesetter")]
     #[inline]
-    pub unsafe fn typesetter(self: &CTFramesetter) -> CFRetained<CTTypesetter> {
+    pub unsafe fn typesetter(&self) -> CFRetained<CTTypesetter> {
         extern "C-unwind" {
             fn CTFramesetterGetTypesetter(
                 framesetter: &CTFramesetter,
@@ -214,7 +214,7 @@ impl CTFramesetter {
     #[doc(alias = "CTFramesetterSuggestFrameSizeWithConstraints")]
     #[inline]
     pub unsafe fn suggest_frame_size_with_constraints(
-        self: &CTFramesetter,
+        &self,
         string_range: CFRange,
         frame_attributes: Option<&CFDictionary>,
         constraints: CGSize,

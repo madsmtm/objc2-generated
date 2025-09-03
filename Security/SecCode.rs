@@ -53,7 +53,7 @@ impl SecCode {
     #[cfg(feature = "CSCommon")]
     #[inline]
     pub unsafe fn copy_static_code(
-        self: &SecCode,
+        &self,
         flags: SecCSFlags,
         static_code: NonNull<*const SecStaticCode>,
     ) -> OSStatus {
@@ -86,11 +86,7 @@ impl SecCode {
     #[doc(alias = "SecCodeCopyHost")]
     #[cfg(feature = "CSCommon")]
     #[inline]
-    pub unsafe fn copy_host(
-        self: &SecCode,
-        flags: SecCSFlags,
-        host: NonNull<*mut SecCode>,
-    ) -> OSStatus {
+    pub unsafe fn copy_host(&self, flags: SecCSFlags, host: NonNull<*mut SecCode>) -> OSStatus {
         extern "C-unwind" {
             fn SecCodeCopyHost(
                 guest: &SecCode,
@@ -251,7 +247,7 @@ impl SecCode {
     #[cfg(feature = "CSCommon")]
     #[inline]
     pub unsafe fn check_validity(
-        self: &SecCode,
+        &self,
         flags: SecCSFlags,
         requirement: Option<&SecRequirement>,
     ) -> OSStatus {
@@ -296,7 +292,7 @@ impl SecCode {
     #[cfg(feature = "CSCommon")]
     #[inline]
     pub unsafe fn check_validity_with_errors(
-        self: &SecCode,
+        &self,
         flags: SecCSFlags,
         requirement: Option<&SecRequirement>,
         errors: *mut *mut CFError,

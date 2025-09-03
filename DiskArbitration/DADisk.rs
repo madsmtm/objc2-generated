@@ -308,7 +308,7 @@ impl DADisk {
     /// The BSD device name can be used with opendev() to open the BSD device.
     #[doc(alias = "DADiskGetBSDName")]
     #[inline]
-    pub unsafe fn bsd_name(self: &DADisk) -> *const c_char {
+    pub unsafe fn bsd_name(&self) -> *const c_char {
         extern "C-unwind" {
             fn DADiskGetBSDName(disk: &DADisk) -> *const c_char;
         }
@@ -331,7 +331,7 @@ impl DADisk {
     /// with CFRelease().
     #[doc(alias = "DADiskCopyDescription")]
     #[inline]
-    pub unsafe fn description(self: &DADisk) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn description(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn DADiskCopyDescription(disk: &DADisk) -> Option<NonNull<CFDictionary>>;
         }
@@ -350,7 +350,7 @@ impl DADisk {
     /// with CFRelease().
     #[doc(alias = "DADiskCopyWholeDisk")]
     #[inline]
-    pub unsafe fn whole_disk(self: &DADisk) -> Option<CFRetained<DADisk>> {
+    pub unsafe fn whole_disk(&self) -> Option<CFRetained<DADisk>> {
         extern "C-unwind" {
             fn DADiskCopyWholeDisk(disk: &DADisk) -> Option<NonNull<DADisk>>;
         }

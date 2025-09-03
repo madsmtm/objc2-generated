@@ -183,10 +183,7 @@ impl CVDisplayLink {
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn set_current_cg_display(
-        self: &CVDisplayLink,
-        display_id: CGDirectDisplayID,
-    ) -> CVReturn {
+    pub unsafe fn set_current_cg_display(&self, display_id: CGDirectDisplayID) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkSetCurrentCGDisplay(
                 display_link: &CVDisplayLink,
@@ -211,7 +208,7 @@ impl CVDisplayLink {
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
     pub unsafe fn set_current_cg_display_from_open_gl_context(
-        self: &CVDisplayLink,
+        &self,
         cgl_context: CGLContextObj,
         cgl_pixel_format: CGLPixelFormatObj,
     ) -> CVReturn {
@@ -238,7 +235,7 @@ impl CVDisplayLink {
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn current_cg_display(self: &CVDisplayLink) -> CGDirectDisplayID {
+    pub unsafe fn current_cg_display(&self) -> CGDirectDisplayID {
         extern "C-unwind" {
             fn CVDisplayLinkGetCurrentCGDisplay(display_link: &CVDisplayLink) -> CGDirectDisplayID;
         }
@@ -261,7 +258,7 @@ impl CVDisplayLink {
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
     pub unsafe fn set_output_callback(
-        self: &CVDisplayLink,
+        &self,
         callback: CVDisplayLinkOutputCallback,
         user_info: *mut c_void,
     ) -> CVReturn {
@@ -288,10 +285,7 @@ impl CVDisplayLink {
     #[cfg(all(feature = "CVBase", feature = "CVReturn", feature = "block2"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn set_output_handler(
-        self: &CVDisplayLink,
-        handler: CVDisplayLinkOutputHandler,
-    ) -> CVReturn {
+    pub unsafe fn set_output_handler(&self, handler: CVDisplayLinkOutputHandler) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkSetOutputHandler(
                 display_link: &CVDisplayLink,
@@ -313,7 +307,7 @@ impl CVDisplayLink {
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn start(self: &CVDisplayLink) -> CVReturn {
+    pub unsafe fn start(&self) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkStart(display_link: &CVDisplayLink) -> CVReturn;
         }
@@ -331,7 +325,7 @@ impl CVDisplayLink {
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn stop(self: &CVDisplayLink) -> CVReturn {
+    pub unsafe fn stop(&self) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkStop(display_link: &CVDisplayLink) -> CVReturn;
         }
@@ -349,7 +343,7 @@ impl CVDisplayLink {
     #[cfg(feature = "CVBase")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn nominal_output_video_refresh_period(self: &CVDisplayLink) -> CVTime {
+    pub unsafe fn nominal_output_video_refresh_period(&self) -> CVTime {
         extern "C-unwind" {
             fn CVDisplayLinkGetNominalOutputVideoRefreshPeriod(
                 display_link: &CVDisplayLink,
@@ -369,7 +363,7 @@ impl CVDisplayLink {
     #[cfg(feature = "CVBase")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn output_video_latency(self: &CVDisplayLink) -> CVTime {
+    pub unsafe fn output_video_latency(&self) -> CVTime {
         extern "C-unwind" {
             fn CVDisplayLinkGetOutputVideoLatency(display_link: &CVDisplayLink) -> CVTime;
         }
@@ -386,7 +380,7 @@ impl CVDisplayLink {
     #[doc(alias = "CVDisplayLinkGetActualOutputVideoRefreshPeriod")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn actual_output_video_refresh_period(self: &CVDisplayLink) -> c_double {
+    pub unsafe fn actual_output_video_refresh_period(&self) -> c_double {
         extern "C-unwind" {
             fn CVDisplayLinkGetActualOutputVideoRefreshPeriod(
                 display_link: &CVDisplayLink,
@@ -405,7 +399,7 @@ impl CVDisplayLink {
     #[doc(alias = "CVDisplayLinkIsRunning")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn is_running(self: &CVDisplayLink) -> bool {
+    pub unsafe fn is_running(&self) -> bool {
         extern "C-unwind" {
             fn CVDisplayLinkIsRunning(display_link: &CVDisplayLink) -> Boolean;
         }
@@ -426,7 +420,7 @@ impl CVDisplayLink {
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn current_time(self: &CVDisplayLink, out_time: NonNull<CVTimeStamp>) -> CVReturn {
+    pub unsafe fn current_time(&self, out_time: NonNull<CVTimeStamp>) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkGetCurrentTime(
                 display_link: &CVDisplayLink,
@@ -453,7 +447,7 @@ impl CVDisplayLink {
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
     pub unsafe fn translate_time(
-        self: &CVDisplayLink,
+        &self,
         in_time: NonNull<CVTimeStamp>,
         out_time: NonNull<CVTimeStamp>,
     ) -> CVReturn {

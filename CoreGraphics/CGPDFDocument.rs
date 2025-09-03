@@ -246,7 +246,7 @@ unsafe impl ConcreteType for CGPDFDocument {
 impl CGPDFDocument {
     #[doc(alias = "CGPDFDocumentGetOutline")]
     #[inline]
-    pub unsafe fn outline(self: &CGPDFDocument) -> Option<CFRetained<CFDictionary>> {
+    pub unsafe fn outline(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CGPDFDocumentGetOutline(document: &CGPDFDocument) -> Option<NonNull<CFDictionary>>;
         }
@@ -256,7 +256,7 @@ impl CGPDFDocument {
 
     #[doc(alias = "CGPDFDocumentGetAccessPermissions")]
     #[inline]
-    pub unsafe fn access_permissions(self: &CGPDFDocument) -> CGPDFAccessPermissions {
+    pub unsafe fn access_permissions(&self) -> CGPDFAccessPermissions {
         extern "C-unwind" {
             fn CGPDFDocumentGetAccessPermissions(
                 document: &CGPDFDocument,

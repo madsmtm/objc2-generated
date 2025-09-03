@@ -97,10 +97,7 @@ impl VTFrameSilo {
     #[doc(alias = "VTFrameSiloAddSampleBuffer")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
-    pub unsafe fn add_sample_buffer(
-        self: &VTFrameSilo,
-        sample_buffer: &CMSampleBuffer,
-    ) -> OSStatus {
+    pub unsafe fn add_sample_buffer(&self, sample_buffer: &CMSampleBuffer) -> OSStatus {
         extern "C-unwind" {
             fn VTFrameSiloAddSampleBuffer(
                 silo: &VTFrameSilo,
@@ -120,7 +117,7 @@ impl VTFrameSilo {
     #[cfg(feature = "objc2-core-media")]
     #[inline]
     pub unsafe fn set_time_ranges_for_next_pass(
-        self: &VTFrameSilo,
+        &self,
         time_range_count: CMItemCount,
         time_range_array: NonNull<CMTimeRange>,
     ) -> OSStatus {
@@ -141,10 +138,7 @@ impl VTFrameSilo {
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
     #[doc(alias = "VTFrameSiloGetProgressOfCurrentPass")]
     #[inline]
-    pub unsafe fn progress_of_current_pass(
-        self: &VTFrameSilo,
-        progress_out: NonNull<f32>,
-    ) -> OSStatus {
+    pub unsafe fn progress_of_current_pass(&self, progress_out: NonNull<f32>) -> OSStatus {
         extern "C-unwind" {
             fn VTFrameSiloGetProgressOfCurrentPass(
                 silo: &VTFrameSilo,
@@ -172,7 +166,7 @@ impl VTFrameSilo {
     #[cfg(feature = "objc2-core-media")]
     #[inline]
     pub unsafe fn call_function_for_each_sample_buffer(
-        self: &VTFrameSilo,
+        &self,
         time_range: CMTimeRange,
         refcon: *mut c_void,
         callback: unsafe extern "C-unwind" fn(*mut c_void, NonNull<CMSampleBuffer>) -> OSStatus,
@@ -209,7 +203,7 @@ impl VTFrameSilo {
     #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
     #[inline]
     pub unsafe fn call_block_for_each_sample_buffer(
-        self: &VTFrameSilo,
+        &self,
         time_range: CMTimeRange,
         handler: &block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus>,
     ) -> OSStatus {

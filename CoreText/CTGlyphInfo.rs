@@ -229,7 +229,7 @@ impl CTGlyphInfo {
     /// be returned. Otherwise, this function will return NULL.
     #[doc(alias = "CTGlyphInfoGetGlyphName")]
     #[inline]
-    pub unsafe fn glyph_name(self: &CTGlyphInfo) -> Option<CFRetained<CFString>> {
+    pub unsafe fn glyph_name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CTGlyphInfoGetGlyphName(glyph_info: &CTGlyphInfo) -> Option<NonNull<CFString>>;
         }
@@ -251,7 +251,7 @@ impl CTGlyphInfo {
     #[doc(alias = "CTGlyphInfoGetGlyph")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn glyph(self: &CTGlyphInfo) -> CGGlyph {
+    pub unsafe fn glyph(&self) -> CGGlyph {
         extern "C-unwind" {
             fn CTGlyphInfoGetGlyph(glyph_info: &CTGlyphInfo) -> CGGlyph;
         }
@@ -272,7 +272,7 @@ impl CTGlyphInfo {
     #[doc(alias = "CTGlyphInfoGetCharacterIdentifier")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn character_identifier(self: &CTGlyphInfo) -> CGFontIndex {
+    pub unsafe fn character_identifier(&self) -> CGFontIndex {
         extern "C-unwind" {
             fn CTGlyphInfoGetCharacterIdentifier(glyph_info: &CTGlyphInfo) -> CGFontIndex;
         }
@@ -295,7 +295,7 @@ impl CTGlyphInfo {
     /// glyph info.
     #[doc(alias = "CTGlyphInfoGetCharacterCollection")]
     #[inline]
-    pub unsafe fn character_collection(self: &CTGlyphInfo) -> CTCharacterCollection {
+    pub unsafe fn character_collection(&self) -> CTCharacterCollection {
         extern "C-unwind" {
             fn CTGlyphInfoGetCharacterCollection(glyph_info: &CTGlyphInfo)
                 -> CTCharacterCollection;

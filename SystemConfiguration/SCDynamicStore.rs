@@ -297,7 +297,7 @@ impl SCDynamicStore {
     #[doc(alias = "SCDynamicStoreSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_dispatch_queue(self: &SCDynamicStore, queue: Option<&DispatchQueue>) -> bool {
+    pub unsafe fn set_dispatch_queue(&self, queue: Option<&DispatchQueue>) -> bool {
         extern "C-unwind" {
             fn SCDynamicStoreSetDispatchQueue(
                 store: &SCDynamicStore,
@@ -379,11 +379,7 @@ impl SCDynamicStore {
     /// present in the dynamic store or if an error was encountered.
     #[doc(alias = "SCDynamicStoreAddTemporaryValue")]
     #[inline]
-    pub unsafe fn add_temporary_value(
-        self: &SCDynamicStore,
-        key: &CFString,
-        value: &CFPropertyList,
-    ) -> bool {
+    pub unsafe fn add_temporary_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
         extern "C-unwind" {
             fn SCDynamicStoreAddTemporaryValue(
                 store: &SCDynamicStore,
@@ -570,7 +566,7 @@ impl SCDynamicStore {
     #[doc(alias = "SCDynamicStoreSetNotificationKeys")]
     #[inline]
     pub unsafe fn set_notification_keys(
-        self: &SCDynamicStore,
+        &self,
         keys: Option<&CFArray>,
         patterns: Option<&CFArray>,
     ) -> bool {
@@ -598,7 +594,7 @@ impl SCDynamicStore {
     /// You must release the returned value.
     #[doc(alias = "SCDynamicStoreCopyNotifiedKeys")]
     #[inline]
-    pub fn notified_keys(self: &SCDynamicStore) -> Option<CFRetained<CFArray>> {
+    pub fn notified_keys(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SCDynamicStoreCopyNotifiedKeys(store: &SCDynamicStore) -> Option<NonNull<CFArray>>;
         }

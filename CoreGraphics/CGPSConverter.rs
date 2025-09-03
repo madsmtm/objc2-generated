@@ -109,7 +109,7 @@ impl CGPSConverter {
     #[cfg(all(feature = "CGDataConsumer", feature = "CGDataProvider"))]
     #[inline]
     pub unsafe fn convert(
-        self: &CGPSConverter,
+        &self,
         provider: &CGDataProvider,
         consumer: &CGDataConsumer,
         options: Option<&CFDictionary>,
@@ -127,7 +127,7 @@ impl CGPSConverter {
 
     #[doc(alias = "CGPSConverterAbort")]
     #[inline]
-    pub unsafe fn abort(self: &CGPSConverter) -> bool {
+    pub unsafe fn abort(&self) -> bool {
         extern "C-unwind" {
             fn CGPSConverterAbort(converter: &CGPSConverter) -> bool;
         }
@@ -136,7 +136,7 @@ impl CGPSConverter {
 
     #[doc(alias = "CGPSConverterIsConverting")]
     #[inline]
-    pub unsafe fn is_converting(self: &CGPSConverter) -> bool {
+    pub unsafe fn is_converting(&self) -> bool {
         extern "C-unwind" {
             fn CGPSConverterIsConverting(converter: &CGPSConverter) -> bool;
         }

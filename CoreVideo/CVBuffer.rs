@@ -90,7 +90,7 @@ impl CVBuffer {
     #[doc(alias = "CVBufferSetAttachment")]
     #[inline]
     pub unsafe fn set_attachment(
-        self: &CVBuffer,
+        &self,
         key: &CFString,
         value: &CFType,
         attachment_mode: CVAttachmentMode,
@@ -121,7 +121,7 @@ impl CVBuffer {
     #[deprecated]
     #[inline]
     pub unsafe fn get_attachment(
-        self: &CVBuffer,
+        &self,
         key: &CFString,
         attachment_mode: *mut CVAttachmentMode,
     ) -> Option<CFRetained<CFType>> {
@@ -145,7 +145,7 @@ impl CVBuffer {
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
     #[doc(alias = "CVBufferRemoveAttachment")]
     #[inline]
-    pub unsafe fn remove_attachment(self: &CVBuffer, key: &CFString) {
+    pub unsafe fn remove_attachment(&self, key: &CFString) {
         extern "C-unwind" {
             fn CVBufferRemoveAttachment(buffer: &CVBuffer, key: &CFString);
         }
@@ -159,7 +159,7 @@ impl CVBuffer {
     /// Parameter `buffer`: Target CVBuffer object.
     #[doc(alias = "CVBufferRemoveAllAttachments")]
     #[inline]
-    pub unsafe fn remove_all_attachments(self: &CVBuffer) {
+    pub unsafe fn remove_all_attachments(&self) {
         extern "C-unwind" {
             fn CVBufferRemoveAllAttachments(buffer: &CVBuffer);
         }
@@ -178,7 +178,7 @@ impl CVBuffer {
     #[deprecated]
     #[inline]
     pub unsafe fn get_attachments(
-        self: &CVBuffer,
+        &self,
         attachment_mode: CVAttachmentMode,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -199,7 +199,7 @@ impl CVBuffer {
     #[doc(alias = "CVBufferSetAttachments")]
     #[inline]
     pub unsafe fn set_attachments(
-        self: &CVBuffer,
+        &self,
         the_attachments: &CFDictionary,
         attachment_mode: CVAttachmentMode,
     ) {
@@ -223,7 +223,7 @@ impl CVBuffer {
     /// Parameter `destinationBuffer`: CVBuffer to copy attachments to.
     #[doc(alias = "CVBufferPropagateAttachments")]
     #[inline]
-    pub unsafe fn propagate_attachments(self: &CVBuffer, destination_buffer: &CVBuffer) {
+    pub unsafe fn propagate_attachments(&self, destination_buffer: &CVBuffer) {
         extern "C-unwind" {
             fn CVBufferPropagateAttachments(
                 source_buffer: &CVBuffer,
@@ -243,7 +243,7 @@ impl CVBuffer {
     #[doc(alias = "CVBufferCopyAttachments")]
     #[inline]
     pub unsafe fn attachments(
-        self: &CVBuffer,
+        &self,
         attachment_mode: CVAttachmentMode,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
@@ -270,7 +270,7 @@ impl CVBuffer {
     #[doc(alias = "CVBufferCopyAttachment")]
     #[inline]
     pub unsafe fn attachment(
-        self: &CVBuffer,
+        &self,
         key: &CFString,
         attachment_mode: *mut CVAttachmentMode,
     ) -> Option<CFRetained<CFType>> {
@@ -294,7 +294,7 @@ impl CVBuffer {
     /// Returns: True if an attachment with this key is present, otherwise false.
     #[doc(alias = "CVBufferHasAttachment")]
     #[inline]
-    pub unsafe fn has_attachment(self: &CVBuffer, key: &CFString) -> bool {
+    pub unsafe fn has_attachment(&self, key: &CFString) -> bool {
         extern "C-unwind" {
             fn CVBufferHasAttachment(buffer: &CVBuffer, key: &CFString) -> Boolean;
         }

@@ -613,7 +613,7 @@ impl UIImage {
     #[cfg(feature = "UIImage")]
     #[inline]
     pub unsafe fn write_to_saved_photos_album(
-        self: &UIImage,
+        &self,
         completion_target: Option<&AnyObject>,
         completion_selector: Option<Sel>,
         context_info: *mut c_void,

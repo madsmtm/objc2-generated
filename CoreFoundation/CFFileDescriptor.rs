@@ -105,7 +105,7 @@ impl CFFileDescriptor {
 
     #[doc(alias = "CFFileDescriptorGetNativeDescriptor")]
     #[inline]
-    pub fn native_descriptor(self: &CFFileDescriptor) -> CFFileDescriptorNativeDescriptor {
+    pub fn native_descriptor(&self) -> CFFileDescriptorNativeDescriptor {
         extern "C-unwind" {
             fn CFFileDescriptorGetNativeDescriptor(
                 f: &CFFileDescriptor,
@@ -116,7 +116,7 @@ impl CFFileDescriptor {
 
     #[doc(alias = "CFFileDescriptorGetContext")]
     #[inline]
-    pub unsafe fn context(self: &CFFileDescriptor, context: *mut CFFileDescriptorContext) {
+    pub unsafe fn context(&self, context: *mut CFFileDescriptorContext) {
         extern "C-unwind" {
             fn CFFileDescriptorGetContext(
                 f: &CFFileDescriptor,
@@ -128,7 +128,7 @@ impl CFFileDescriptor {
 
     #[doc(alias = "CFFileDescriptorEnableCallBacks")]
     #[inline]
-    pub fn enable_call_backs(self: &CFFileDescriptor, call_back_types: CFOptionFlags) {
+    pub fn enable_call_backs(&self, call_back_types: CFOptionFlags) {
         extern "C-unwind" {
             fn CFFileDescriptorEnableCallBacks(
                 f: &CFFileDescriptor,
@@ -140,7 +140,7 @@ impl CFFileDescriptor {
 
     #[doc(alias = "CFFileDescriptorDisableCallBacks")]
     #[inline]
-    pub fn disable_call_backs(self: &CFFileDescriptor, call_back_types: CFOptionFlags) {
+    pub fn disable_call_backs(&self, call_back_types: CFOptionFlags) {
         extern "C-unwind" {
             fn CFFileDescriptorDisableCallBacks(
                 f: &CFFileDescriptor,
@@ -152,7 +152,7 @@ impl CFFileDescriptor {
 
     #[doc(alias = "CFFileDescriptorInvalidate")]
     #[inline]
-    pub fn invalidate(self: &CFFileDescriptor) {
+    pub fn invalidate(&self) {
         extern "C-unwind" {
             fn CFFileDescriptorInvalidate(f: &CFFileDescriptor);
         }
@@ -161,7 +161,7 @@ impl CFFileDescriptor {
 
     #[doc(alias = "CFFileDescriptorIsValid")]
     #[inline]
-    pub fn is_valid(self: &CFFileDescriptor) -> bool {
+    pub fn is_valid(&self) -> bool {
         extern "C-unwind" {
             fn CFFileDescriptorIsValid(f: &CFFileDescriptor) -> Boolean;
         }

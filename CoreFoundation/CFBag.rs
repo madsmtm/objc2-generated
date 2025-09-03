@@ -232,7 +232,7 @@ impl CFMutableBag {
 impl CFBag {
     #[doc(alias = "CFBagGetCount")]
     #[inline]
-    pub unsafe fn count(self: &CFBag) -> CFIndex {
+    pub unsafe fn count(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFBagGetCount(the_bag: &CFBag) -> CFIndex;
         }
@@ -241,7 +241,7 @@ impl CFBag {
 
     #[doc(alias = "CFBagGetCountOfValue")]
     #[inline]
-    pub unsafe fn count_of_value(self: &CFBag, value: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
         extern "C-unwind" {
             fn CFBagGetCountOfValue(the_bag: &CFBag, value: *const c_void) -> CFIndex;
         }
@@ -250,7 +250,7 @@ impl CFBag {
 
     #[doc(alias = "CFBagContainsValue")]
     #[inline]
-    pub unsafe fn contains_value(self: &CFBag, value: *const c_void) -> bool {
+    pub unsafe fn contains_value(&self, value: *const c_void) -> bool {
         extern "C-unwind" {
             fn CFBagContainsValue(the_bag: &CFBag, value: *const c_void) -> Boolean;
         }
@@ -260,7 +260,7 @@ impl CFBag {
 
     #[doc(alias = "CFBagGetValue")]
     #[inline]
-    pub unsafe fn value(self: &CFBag, value: *const c_void) -> *const c_void {
+    pub unsafe fn value(&self, value: *const c_void) -> *const c_void {
         extern "C-unwind" {
             fn CFBagGetValue(the_bag: &CFBag, value: *const c_void) -> *const c_void;
         }
@@ -270,7 +270,7 @@ impl CFBag {
     #[doc(alias = "CFBagGetValueIfPresent")]
     #[inline]
     pub unsafe fn value_if_present(
-        self: &CFBag,
+        &self,
         candidate: *const c_void,
         value: *mut *const c_void,
     ) -> bool {
@@ -287,7 +287,7 @@ impl CFBag {
 
     #[doc(alias = "CFBagGetValues")]
     #[inline]
-    pub unsafe fn values(self: &CFBag, values: *mut *const c_void) {
+    pub unsafe fn values(&self, values: *mut *const c_void) {
         extern "C-unwind" {
             fn CFBagGetValues(the_bag: &CFBag, values: *mut *const c_void);
         }
@@ -296,11 +296,7 @@ impl CFBag {
 
     #[doc(alias = "CFBagApplyFunction")]
     #[inline]
-    pub unsafe fn apply_function(
-        self: &CFBag,
-        applier: CFBagApplierFunction,
-        context: *mut c_void,
-    ) {
+    pub unsafe fn apply_function(&self, applier: CFBagApplierFunction, context: *mut c_void) {
         extern "C-unwind" {
             fn CFBagApplyFunction(
                 the_bag: &CFBag,

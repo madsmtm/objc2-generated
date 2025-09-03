@@ -70,7 +70,7 @@ impl SKSearch {
 
     #[doc(alias = "SKSearchCancel")]
     #[inline]
-    pub unsafe fn cancel(self: &SKSearch) {
+    pub unsafe fn cancel(&self) {
         extern "C-unwind" {
             fn SKSearchCancel(in_search: &SKSearch);
         }
@@ -81,7 +81,7 @@ impl SKSearch {
     #[cfg(feature = "SKIndex")]
     #[inline]
     pub unsafe fn find_matches(
-        self: &SKSearch,
+        &self,
         in_maximum_count: CFIndex,
         out_document_i_ds_array: *mut SKDocumentID,
         out_scores_array: *mut c_float,
@@ -118,7 +118,7 @@ impl SKIndex {
     #[cfg(feature = "SKIndex")]
     #[inline]
     pub unsafe fn copy_info_for_document_ids(
-        self: &SKIndex,
+        &self,
         in_count: CFIndex,
         in_document_i_ds_array: *mut SKDocumentID,
         out_names_array: *mut *const CFString,
@@ -148,7 +148,7 @@ impl SKIndex {
     #[cfg(all(feature = "SKDocument", feature = "SKIndex"))]
     #[inline]
     pub unsafe fn copy_document_refs_for_document_ids(
-        self: &SKIndex,
+        &self,
         in_count: CFIndex,
         in_document_i_ds_array: *mut SKDocumentID,
         out_document_refs_array: *mut *const SKDocument,
@@ -175,7 +175,7 @@ impl SKIndex {
     #[cfg(feature = "SKIndex")]
     #[inline]
     pub unsafe fn copy_document_urls_for_document_ids(
-        self: &SKIndex,
+        &self,
         in_count: CFIndex,
         in_document_i_ds_array: *mut SKDocumentID,
         out_document_ur_ls_array: *mut *const CFURL,
@@ -300,7 +300,7 @@ impl SKSearchGroup {
     #[doc(alias = "SKSearchGroupCopyIndexes")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn indexes(self: &SKSearchGroup) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn indexes(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SKSearchGroupCopyIndexes(
                 in_search_group: &SKSearchGroup,
@@ -382,7 +382,7 @@ impl SKSearchResults {
     #[doc(alias = "SKSearchResultsGetCount")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn count(self: &SKSearchResults) -> CFIndex {
+    pub unsafe fn count(&self) -> CFIndex {
         extern "C-unwind" {
             fn SKSearchResultsGetCount(in_search_results: &SKSearchResults) -> CFIndex;
         }
@@ -394,7 +394,7 @@ impl SKSearchResults {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn info_in_range(
-        self: &SKSearchResults,
+        &self,
         in_range: CFRange,
         out_documents_array: *mut *const SKDocument,
         out_indexes_array: *mut *mut SKIndex,
@@ -423,10 +423,7 @@ impl SKSearchResults {
     #[doc(alias = "SKSearchResultsCopyMatchingTerms")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn matching_terms(
-        self: &SKSearchResults,
-        in_item: CFIndex,
-    ) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn matching_terms(&self, in_item: CFIndex) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn SKSearchResultsCopyMatchingTerms(
                 in_search_results: &SKSearchResults,

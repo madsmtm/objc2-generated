@@ -184,7 +184,7 @@ impl SecStaticCode {
     #[cfg(feature = "CSCommon")]
     #[inline]
     pub unsafe fn check_validity(
-        self: &SecStaticCode,
+        &self,
         flags: SecCSFlags,
         requirement: Option<&SecRequirement>,
     ) -> OSStatus {
@@ -202,7 +202,7 @@ impl SecStaticCode {
     #[cfg(feature = "CSCommon")]
     #[inline]
     pub unsafe fn check_validity_with_errors(
-        self: &SecStaticCode,
+        &self,
         flags: SecCSFlags,
         requirement: Option<&SecRequirement>,
         errors: *mut *mut CFError,

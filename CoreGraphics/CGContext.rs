@@ -758,7 +758,7 @@ impl CGContext {
 
     #[doc(alias = "CGContextResetClip")]
     #[inline]
-    pub unsafe fn reset_clip(self: &CGContext) {
+    pub unsafe fn reset_clip(&self) {
         extern "C-unwind" {
             fn CGContextResetClip(c: &CGContext);
         }
@@ -1030,7 +1030,7 @@ impl CGContext {
 
     #[doc(alias = "CGContextSetEDRTargetHeadroom")]
     #[inline]
-    pub unsafe fn set_edr_target_headroom(self: &CGContext, headroom: c_float) -> bool {
+    pub unsafe fn set_edr_target_headroom(&self, headroom: c_float) -> bool {
         extern "C-unwind" {
             fn CGContextSetEDRTargetHeadroom(c: &CGContext, headroom: c_float) -> bool;
         }
@@ -1039,7 +1039,7 @@ impl CGContext {
 
     #[doc(alias = "CGContextGetEDRTargetHeadroom")]
     #[inline]
-    pub unsafe fn edr_target_headroom(self: &CGContext) -> c_float {
+    pub unsafe fn edr_target_headroom(&self) -> c_float {
         extern "C-unwind" {
             fn CGContextGetEDRTargetHeadroom(c: &CGContext) -> c_float;
         }
@@ -1075,7 +1075,7 @@ impl CGContext {
     #[cfg(all(feature = "CGImage", feature = "CGToneMapping"))]
     #[inline]
     pub unsafe fn draw_image_applying_tone_mapping(
-        self: &CGContext,
+        &self,
         r: CGRect,
         image: &CGImage,
         method: CGToneMapping,
@@ -1208,7 +1208,7 @@ impl CGContext {
     #[cfg(feature = "CGGradient")]
     #[inline]
     pub unsafe fn draw_conic_gradient(
-        self: &CGContext,
+        &self,
         gradient: Option<&CGGradient>,
         center: CGPoint,
         angle: CGFloat,

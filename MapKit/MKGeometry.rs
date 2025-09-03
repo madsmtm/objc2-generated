@@ -245,7 +245,7 @@ impl MKMapRect {
 impl MKMapRect {
     #[doc(alias = "MKMapRectUnion")]
     #[inline]
-    pub unsafe fn union(self: MKMapRect, rect2: MKMapRect) -> MKMapRect {
+    pub unsafe fn union(self, rect2: MKMapRect) -> MKMapRect {
         extern "C-unwind" {
             fn MKMapRectUnion(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
         }
@@ -254,7 +254,7 @@ impl MKMapRect {
 
     #[doc(alias = "MKMapRectIntersection")]
     #[inline]
-    pub unsafe fn intersection(self: MKMapRect, rect2: MKMapRect) -> MKMapRect {
+    pub unsafe fn intersection(self, rect2: MKMapRect) -> MKMapRect {
         extern "C-unwind" {
             fn MKMapRectIntersection(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;
         }
@@ -263,7 +263,7 @@ impl MKMapRect {
 
     #[doc(alias = "MKMapRectInset")]
     #[inline]
-    pub unsafe fn inset(self: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect {
+    pub unsafe fn inset(self, dx: c_double, dy: c_double) -> MKMapRect {
         extern "C-unwind" {
             fn MKMapRectInset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
         }
@@ -272,7 +272,7 @@ impl MKMapRect {
 
     #[doc(alias = "MKMapRectOffset")]
     #[inline]
-    pub unsafe fn offset(self: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect {
+    pub unsafe fn offset(self, dx: c_double, dy: c_double) -> MKMapRect {
         extern "C-unwind" {
             fn MKMapRectOffset(rect: MKMapRect, dx: c_double, dy: c_double) -> MKMapRect;
         }
@@ -283,7 +283,7 @@ impl MKMapRect {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn divide(
-        self: MKMapRect,
+        self,
         slice: NonNull<MKMapRect>,
         remainder: NonNull<MKMapRect>,
         amount: c_double,
@@ -303,7 +303,7 @@ impl MKMapRect {
 
     #[doc(alias = "MKMapRectContainsPoint")]
     #[inline]
-    pub unsafe fn contains_point(self: MKMapRect, point: MKMapPoint) -> bool {
+    pub unsafe fn contains_point(self, point: MKMapPoint) -> bool {
         extern "C-unwind" {
             fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> Bool;
         }
@@ -312,7 +312,7 @@ impl MKMapRect {
 
     #[doc(alias = "MKMapRectContainsRect")]
     #[inline]
-    pub unsafe fn contains_rect(self: MKMapRect, rect2: MKMapRect) -> bool {
+    pub unsafe fn contains_rect(self, rect2: MKMapRect) -> bool {
         extern "C-unwind" {
             fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
         }
@@ -321,7 +321,7 @@ impl MKMapRect {
 
     #[doc(alias = "MKMapRectIntersectsRect")]
     #[inline]
-    pub unsafe fn intersects_rect(self: MKMapRect, rect2: MKMapRect) -> bool {
+    pub unsafe fn intersects_rect(self, rect2: MKMapRect) -> bool {
         extern "C-unwind" {
             fn MKMapRectIntersectsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
         }
@@ -345,7 +345,7 @@ impl MKCoordinateRegion {
 impl MKMapRect {
     #[doc(alias = "MKMapRectSpans180thMeridian")]
     #[inline]
-    pub unsafe fn spans180th_meridian(self: MKMapRect) -> bool {
+    pub unsafe fn spans180th_meridian(self) -> bool {
         extern "C-unwind" {
             fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> Bool;
         }
@@ -354,7 +354,7 @@ impl MKMapRect {
 
     #[doc(alias = "MKMapRectRemainder")]
     #[inline]
-    pub unsafe fn remainder(self: MKMapRect) -> MKMapRect {
+    pub unsafe fn remainder(self) -> MKMapRect {
         extern "C-unwind" {
             fn MKMapRectRemainder(rect: MKMapRect) -> MKMapRect;
         }

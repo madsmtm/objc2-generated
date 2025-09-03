@@ -205,7 +205,7 @@ impl ODQueryRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn results(
-        self: &ODQueryRef,
+        &self,
         allow_partial_results: bool,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFArray>> {
@@ -230,7 +230,7 @@ impl ODQueryRef {
     /// Parameter `query`: an ODQueryRef to use
     #[doc(alias = "ODQuerySynchronize")]
     #[inline]
-    pub unsafe fn synchronize(self: &ODQueryRef) {
+    pub unsafe fn synchronize(&self) {
         extern "C-unwind" {
             fn ODQuerySynchronize(query: &ODQueryRef);
         }
@@ -250,11 +250,7 @@ impl ODQueryRef {
     #[doc(alias = "ODQuerySetCallback")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn set_callback(
-        self: &ODQueryRef,
-        callback: ODQueryCallback,
-        user_info: *mut c_void,
-    ) {
+    pub unsafe fn set_callback(&self, callback: ODQueryCallback, user_info: *mut c_void) {
         extern "C-unwind" {
             fn ODQuerySetCallback(
                 query: &ODQueryRef,
@@ -281,7 +277,7 @@ impl ODQueryRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(
-        self: &ODQueryRef,
+        &self,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
     ) {
@@ -308,7 +304,7 @@ impl ODQueryRef {
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(
-        self: &ODQueryRef,
+        &self,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
     ) {
@@ -334,7 +330,7 @@ impl ODQueryRef {
     #[doc(alias = "ODQuerySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_dispatch_queue(self: &ODQueryRef, queue: Option<&DispatchQueue>) {
+    pub unsafe fn set_dispatch_queue(&self, queue: Option<&DispatchQueue>) {
         extern "C-unwind" {
             fn ODQuerySetDispatchQueue(query: &ODQueryRef, queue: Option<&DispatchQueue>);
         }
