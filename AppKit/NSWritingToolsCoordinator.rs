@@ -524,6 +524,15 @@ impl NSWritingToolsCoordinator {
         #[unsafe(method_family = none)]
         pub unsafe fn resultOptions(&self) -> NSWritingToolsResultOptions;
 
+        #[unsafe(method(includesTextListMarkers))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn includesTextListMarkers(&self) -> bool;
+
+        /// Setter for [`includesTextListMarkers`][Self::includesTextListMarkers].
+        #[unsafe(method(setIncludesTextListMarkers:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setIncludesTextListMarkers(&self, includes_text_list_markers: bool);
+
         /// Informs the coordinator about changes your app made to the text
         /// in the specified context object.
         ///
@@ -1289,7 +1298,7 @@ extern_protocol!(
         /// starts at character `100` in your text storage, and an interaction occurs
         /// with the character at location `102`, specify a range with a location of
         /// `2` and a length of `1`.
-        #[deprecated = "Not used anymore"]
+        #[deprecated = "In macOS 15.4 and later, NSWritingToolsCoordinator automatically determines the location of the character at the specified point in your view's coordinate system and no longer calls this method."]
         #[optional]
         #[unsafe(method(writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:))]
         #[unsafe(method_family = none)]

@@ -82,11 +82,11 @@ impl AVComposition {
     extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
-        /// Parameter `URL`: An instance of NSURL that references a media resource.
-        ///
-        /// Returns: An instance of AVAsset.
-        ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
+        ///
+        /// - Parameter URL: An instance of NSURL that references a media resource.
+        ///
+        /// - Returns: An instance of AVAsset.
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
@@ -322,11 +322,11 @@ impl AVMutableComposition {
     extern_methods!(
         /// Returns an instance of AVAsset for inspection of a media resource.
         ///
-        /// Parameter `URL`: An instance of NSURL that references a media resource.
-        ///
-        /// Returns: An instance of AVAsset.
-        ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
+        ///
+        /// - Parameter URL: An instance of NSURL that references a media resource.
+        ///
+        /// - Returns: An instance of AVAsset.
         #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;

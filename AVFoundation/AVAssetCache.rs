@@ -9,7 +9,6 @@ use crate::*;
 extern_class!(
     /// AVAssetCache is a class vended by an AVAsset used for the inspection of locally available media data.
     ///
-    ///
     /// AVAssetCaches are vended by AVURLAsset's assetCache property.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
@@ -30,11 +29,15 @@ extern_conformance!(
 
 impl AVAssetCache {
     extern_methods!(
+        /// Returns YES if a complete rendition of an AVAsset is available to be played without a network connection.
+        ///
+        /// An answer of YES does not indicate that any given media selection is available for offline playback. To determine if a specific media selection is available offline, see mediaSelectionOptionsInMediaSelectionGroup:.
         #[unsafe(method(isPlayableOffline))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlayableOffline(&self) -> bool;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
+        /// Returns an array of AVMediaSelectionOptions in an AVMediaSelectionGroup that are available for offline operations, e.g. playback.
         #[unsafe(method(mediaSelectionOptionsInMediaSelectionGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionOptionsInMediaSelectionGroup(
@@ -49,5 +52,28 @@ impl AVAssetCache {
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+/// AVAssetCacheCustomMediaSelectionScheme.
+impl AVAssetCache {
+    extern_methods!(
+        #[cfg(feature = "AVMediaSelectionGroup")]
+        /// For each AVMediaPresentationSelector defined by the AVCustomMediaSelectionScheme of an AVMediaSelectionGroup, returns the AVMediaPresentationSettings that can be satisfied for offline operations, e.g. playback.
+        #[unsafe(method(mediaPresentationSettingsForMediaSelectionGroup:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mediaPresentationSettingsForMediaSelectionGroup(
+            &self,
+            media_selection_group: &AVMediaSelectionGroup,
+        ) -> Retained<NSDictionary<AVMediaPresentationSelector, NSArray<AVMediaPresentationSetting>>>;
+
+        #[cfg(feature = "AVMediaSelectionGroup")]
+        /// Returns an array of extended language tags for languages that can be selected for offline operations via use of the AVMediaSelectionGroup's AVCustomMediaSelectionScheme.
+        #[unsafe(method(mediaPresentationLanguagesForMediaSelectionGroup:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mediaPresentationLanguagesForMediaSelectionGroup(
+            &self,
+            media_selection_group: &AVMediaSelectionGroup,
+        ) -> Retained<NSArray<NSString>>;
     );
 }

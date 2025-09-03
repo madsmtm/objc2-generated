@@ -307,6 +307,15 @@ impl MTKView {
             &self,
         ) -> Option<Retained<MTLRenderPassDescriptor>>;
 
+        /// A render pass descriptor generated from the currentDrawable's texture and the view's depth, stencil, and sample buffers and clear values.
+        ///
+        /// This is a convience property.  The view does not use this descriptor and there is no requirement for an app to use this descriptor.
+        #[unsafe(method(currentMTL4RenderPassDescriptor))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn currentMTL4RenderPassDescriptor(
+            &self,
+        ) -> Option<Retained<MTL4RenderPassDescriptor>>;
+
         /// The rate you want the view to redraw its contents.
         ///
         /// When your application sets its preferred frame rate, the view chooses a frame rate as close to that as possible based on the capabilities of the screen the view is displayed on. The actual frame rate chosen is usually a factor of the maximum refresh rate of the screen to provide a consistent frame rate. For example, if the maximum refresh rate of the screen is 60 frames per second, that is also the highest frame rate the view sets as the actual frame rate. However, if you ask for a lower frame rate, it might choose 30, 20, 15 or some other factor to be the actual frame rate. Your application should choose a frame rate that it can consistently maintain. The default value is 60 frames per second.

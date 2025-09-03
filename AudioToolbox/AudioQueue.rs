@@ -160,6 +160,8 @@ pub const kAudioQueueProperty_EnableTimePitch: AudioQueuePropertyID = 0x715f7470
 pub const kAudioQueueProperty_TimePitchAlgorithm: AudioQueuePropertyID = 0x71747061;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_timepitchbypass?language=objc)
 pub const kAudioQueueProperty_TimePitchBypass: AudioQueuePropertyID = 0x71747062;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_intendedspatialexperience?language=objc)
+pub const kAudioQueueProperty_IntendedSpatialExperience: AudioQueuePropertyID = 0x6973656f;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuetimepitchalgorithm_spectral?language=objc)
 pub const kAudioQueueTimePitchAlgorithm_Spectral: u32 = 0x73706563;

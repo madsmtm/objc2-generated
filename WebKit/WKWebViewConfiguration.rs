@@ -3,9 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-app-kit")]
-#[cfg(target_os = "macos")]
-use objc2_app_kit::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -225,6 +222,21 @@ impl WKWebViewConfiguration {
             allows_air_play_for_media_playback: bool,
         );
 
+        /// A Boolean value indicating whether the System Screen Time blocking view should be shown.
+        ///
+        /// The default value is YES.
+        #[unsafe(method(showsSystemScreenTimeBlockingView))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn showsSystemScreenTimeBlockingView(&self) -> bool;
+
+        /// Setter for [`showsSystemScreenTimeBlockingView`][Self::showsSystemScreenTimeBlockingView].
+        #[unsafe(method(setShowsSystemScreenTimeBlockingView:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setShowsSystemScreenTimeBlockingView(
+            &self,
+            shows_system_screen_time_blocking_view: bool,
+        );
+
         /// A Boolean value indicating whether HTTP requests to servers known to support HTTPS should be automatically upgraded to HTTPS requests.
         ///
         /// The default value is YES.
@@ -338,25 +350,6 @@ impl WKWebViewConfiguration {
         #[unsafe(method(setSupportsAdaptiveImageGlyph:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsAdaptiveImageGlyph(&self, supports_adaptive_image_glyph: bool);
-
-        #[cfg(feature = "objc2-app-kit")]
-        #[cfg(target_os = "macos")]
-        /// The preferred behavior of Writing Tools.
-        ///
-        /// The default behavior is equivalent to `NSWritingToolsBehaviorLimited`.
-        #[unsafe(method(writingToolsBehavior))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn writingToolsBehavior(&self) -> NSWritingToolsBehavior;
-
-        #[cfg(feature = "objc2-app-kit")]
-        #[cfg(target_os = "macos")]
-        /// Setter for [`writingToolsBehavior`][Self::writingToolsBehavior].
-        #[unsafe(method(setWritingToolsBehavior:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setWritingToolsBehavior(
-            &self,
-            writing_tools_behavior: NSWritingToolsBehavior,
-        );
     );
 }
 

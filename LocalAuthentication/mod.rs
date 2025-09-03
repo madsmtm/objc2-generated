@@ -155,6 +155,10 @@ pub use self::__LAPublicDefines::kLABiometryTypeTouchID;
 #[cfg(feature = "LAPublicDefines")]
 pub use self::__LAPublicDefines::kLACompanionTypeMac;
 #[cfg(feature = "LAPublicDefines")]
+pub use self::__LAPublicDefines::kLACompanionTypeNone;
+#[cfg(feature = "LAPublicDefines")]
+pub use self::__LAPublicDefines::kLACompanionTypeVision;
+#[cfg(feature = "LAPublicDefines")]
 pub use self::__LAPublicDefines::kLACompanionTypeWatch;
 #[cfg(feature = "LAPublicDefines")]
 pub use self::__LAPublicDefines::kLACredentialSmartCardPIN;

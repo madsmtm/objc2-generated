@@ -10,8 +10,285 @@ use objc2_core_graphics::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-uniform-type-identifiers")]
+use objc2_uniform_type_identifiers::*;
 
 use crate::*;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotdisplayintent?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SCScreenshotDisplayIntent(pub NSInteger);
+impl SCScreenshotDisplayIntent {
+    #[doc(alias = "SCScreenshotDisplayIntentCanonical")]
+    pub const Canonical: Self = Self(0);
+    #[doc(alias = "SCScreenshotDisplayIntentLocal")]
+    pub const Local: Self = Self(1);
+}
+
+unsafe impl Encode for SCScreenshotDisplayIntent {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for SCScreenshotDisplayIntent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotdynamicrange?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SCScreenshotDynamicRange(pub NSInteger);
+impl SCScreenshotDynamicRange {
+    #[doc(alias = "SCScreenshotDynamicRangeSDR")]
+    pub const SDR: Self = Self(0);
+    #[doc(alias = "SCScreenshotDynamicRangeHDR")]
+    pub const HDR: Self = Self(1);
+    #[doc(alias = "SCScreenshotDynamicRangeSDRAndHDR")]
+    pub const SDRAndHDR: Self = Self(2);
+}
+
+unsafe impl Encode for SCScreenshotDynamicRange {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for SCScreenshotDynamicRange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct SCScreenshotConfiguration;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCScreenshotConfiguration {}
+);
+
+impl SCScreenshotConfiguration {
+    extern_methods!(
+        /// SCScreenshotProperty for output width as measured in pixels. Default is the width of the content being captured.
+        #[unsafe(method(width))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn width(&self) -> NSInteger;
+
+        /// Setter for [`width`][Self::width].
+        #[unsafe(method(setWidth:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWidth(&self, width: NSInteger);
+
+        /// SCScreenshotProperty for output height as measured in pixels. Default is the height of the content being captured.
+        #[unsafe(method(height))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn height(&self) -> NSInteger;
+
+        /// Setter for [`height`][Self::height].
+        #[unsafe(method(setHeight:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setHeight(&self, height: NSInteger);
+
+        /// SCScreenshotProperty that specifies whether the cursor should appear in the screenshot.  By default the cursor is visible.
+        #[unsafe(method(showsCursor))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn showsCursor(&self) -> bool;
+
+        /// Setter for [`showsCursor`][Self::showsCursor].
+        #[unsafe(method(setShowsCursor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setShowsCursor(&self, shows_cursor: bool);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// SCScreenshotProperty that specifies that the screenshot only samples a subset of the frame input. If not set, then the entire screenshot will be captured. The rectangle is specified in points in the display’s logical coordinate system.
+        #[unsafe(method(sourceRect))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sourceRect(&self) -> CGRect;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`sourceRect`][Self::sourceRect].
+        #[unsafe(method(setSourceRect:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSourceRect(&self, source_rect: CGRect);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// SCScreenshotProperty that specifies that the screenshot outputs into a subset of the output CGimage.If not set then the output surface is used. The rectangle is specified in pixels in the display's coordinate system.
+        #[unsafe(method(destinationRect))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn destinationRect(&self) -> CGRect;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`destinationRect`][Self::destinationRect].
+        #[unsafe(method(setDestinationRect:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDestinationRect(&self, destination_rect: CGRect);
+
+        /// SCScreenshotProperty to ignore framing on windows (will ignore shadows).
+        #[unsafe(method(ignoreShadows))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn ignoreShadows(&self) -> bool;
+
+        /// Setter for [`ignoreShadows`][Self::ignoreShadows].
+        #[unsafe(method(setIgnoreShadows:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setIgnoreShadows(&self, ignore_shadows: bool);
+
+        /// SCScreenshotProperty to ignore framing on windows in the display bounded sharing case (will ignore shadows).
+        #[unsafe(method(ignoreClipping))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn ignoreClipping(&self) -> bool;
+
+        /// Setter for [`ignoreClipping`][Self::ignoreClipping].
+        #[unsafe(method(setIgnoreClipping:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setIgnoreClipping(&self, ignore_clipping: bool);
+
+        /// SCScreenshotProperty to show the child windows of the applications and windows being captured.  Child windows are included by default.
+        #[unsafe(method(includeChildWindows))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn includeChildWindows(&self) -> bool;
+
+        /// Setter for [`includeChildWindows`][Self::includeChildWindows].
+        #[unsafe(method(setIncludeChildWindows:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setIncludeChildWindows(&self, include_child_windows: bool);
+
+        /// Specifies the render type of the screenshot.
+        #[unsafe(method(displayIntent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn displayIntent(&self) -> SCScreenshotDisplayIntent;
+
+        /// Setter for [`displayIntent`][Self::displayIntent].
+        #[unsafe(method(setDisplayIntent:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDisplayIntent(&self, display_intent: SCScreenshotDisplayIntent);
+
+        /// Specifies the CGImage to return to the client.
+        #[unsafe(method(dynamicRange))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dynamicRange(&self) -> SCScreenshotDynamicRange;
+
+        /// Setter for [`dynamicRange`][Self::dynamicRange].
+        #[unsafe(method(setDynamicRange:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDynamicRange(&self, dynamic_range: SCScreenshotDynamicRange);
+
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// Specifies the screenshot file format.
+        #[unsafe(method(contentType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contentType(&self) -> Retained<UTType>;
+
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// Setter for [`contentType`][Self::contentType].
+        #[unsafe(method(setContentType:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setContentType(&self, content_type: &UTType);
+
+        /// Specifies output URL to save the screenshot.  If the imageOutputURL is nil, then the file will not be saved.
+        #[unsafe(method(fileURL))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
+
+        /// Setter for [`fileURL`][Self::fileURL].
+        #[unsafe(method(setFileURL:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
+
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// an array of UTTypes that corresponds to the file formats that are supported. ScreenCaptureKit can save the CGImage into heic, jpeg, and png
+        #[unsafe(method(supportedContentTypes))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportedContentTypes() -> Retained<NSArray<UTType>>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl SCScreenshotConfiguration {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotoutput?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct SCScreenshotOutput;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SCScreenshotOutput {}
+);
+
+impl SCScreenshotOutput {
+    extern_methods!(
+        #[cfg(feature = "objc2-core-graphics")]
+        /// SCScreenshotOutput property that denotes the SDR CGimage
+        #[unsafe(method(sdrImage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sdrImage(&self) -> Option<Retained<CGImage>>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`sdrImage`][Self::sdrImage].
+        #[unsafe(method(setSdrImage:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSdrImage(&self, sdr_image: Option<&CGImage>);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        /// SCScreenshotOutput property that denotes the HDR CGimage
+        #[unsafe(method(hdrImage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hdrImage(&self) -> Option<Retained<CGImage>>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`hdrImage`][Self::hdrImage].
+        #[unsafe(method(setHdrImage:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setHdrImage(&self, hdr_image: Option<&CGImage>);
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[unsafe(method(testImage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn testImage(&self) -> Option<Retained<CGImage>>;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`testImage`][Self::testImage].
+        #[unsafe(method(setTestImage:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTestImage(&self, test_image: Option<&CGImage>);
+
+        /// SCScreenshotOutput property to specify the location where the image was saved.  If a fileURL in the screenshot configuration was not specified, then the fileURL will be nil
+        #[unsafe(method(fileURL))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
+
+        /// Setter for [`fileURL`][Self::fileURL].
+        #[unsafe(method(setFileURL:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl SCScreenshotOutput {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotmanager?language=objc)
@@ -89,6 +366,46 @@ impl SCScreenshotManager {
         pub unsafe fn captureImageInRect_completionHandler(
             rect: CGRect,
             completion_handler: Option<&block2::DynBlock<dyn Fn(*mut CGImage, *mut NSError)>>,
+        );
+
+        #[cfg(all(feature = "SCStream", feature = "block2"))]
+        /// captureScreenshotWithFilter:configuration:completionHandler:
+        ///
+        /// Parameter `contentFilter`: is the filter containing the content to take a screenshot of
+        ///
+        /// Parameter `config`: is the screenshot configuration containing information on how to format the screenshot
+        ///
+        /// Parameter `completionHandler`: is the handler that will deliver the SCScreenshotOutput object to the client
+        ///
+        /// this method returns an SCScreenshotOutput object containing CGImages of the screenshot requested by the client
+        #[unsafe(method(captureScreenshotWithFilter:configuration:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn captureScreenshotWithFilter_configuration_completionHandler(
+            content_filter: &SCContentFilter,
+            config: &SCScreenshotConfiguration,
+            completion_handler: Option<
+                &block2::DynBlock<dyn Fn(*mut SCScreenshotOutput, *mut NSError)>,
+            >,
+        );
+
+        #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// captureScreenshotWithRect:configuration:completionHandler:
+        ///
+        /// Parameter `rect`: the rect for the region in points on the screen space for the screen shot, this is display agnostic and supports multiple displays
+        ///
+        /// Parameter `config`: is the screenshot configuration containing information on how to format the screenshot
+        ///
+        /// Parameter `completionHandler`: is the handler that will deliver the SCScreenshotOutput object to the client
+        ///
+        /// this method returns an SCScreenshotOutput object containing CGImages of the screenshot requested by the client
+        #[unsafe(method(captureScreenshotWithRect:configuration:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn captureScreenshotWithRect_configuration_completionHandler(
+            rect: CGRect,
+            config: &SCScreenshotConfiguration,
+            completion_handler: Option<
+                &block2::DynBlock<dyn Fn(*mut SCScreenshotOutput, *mut NSError)>,
+            >,
         );
     );
 }

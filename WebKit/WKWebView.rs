@@ -84,6 +84,26 @@ unsafe impl RefEncode for WKFullscreenState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebviewdatatype?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct WKWebViewDataType(pub NSUInteger);
+bitflags::bitflags! {
+    impl WKWebViewDataType: NSUInteger {
+        #[doc(alias = "WKWebViewDataTypeSessionStorage")]
+        const SessionStorage = 1<<0;
+    }
+}
+
+unsafe impl Encode for WKWebViewDataType {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for WKWebViewDataType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
@@ -834,6 +854,11 @@ impl WKWebView {
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractionState(&self, interaction_state: Option<&AnyObject>);
 
+        /// A Boolean value indicating whether Screen Time blocking has occurred.
+        #[unsafe(method(isBlockedByScreenTime))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isBlockedByScreenTime(&self) -> bool;
+
         #[cfg(feature = "WKNavigation")]
         /// Sets the webpage contents from the passed data as if it was the
         /// response to the supplied request. The request is never actually sent to the
@@ -1003,6 +1028,24 @@ impl WKWebView {
         #[unsafe(method(isWritingToolsActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isWritingToolsActive(&self) -> bool;
+
+        #[cfg(feature = "block2")]
+        #[unsafe(method(fetchDataOfTypes:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn fetchDataOfTypes_completionHandler(
+            &self,
+            data_types: WKWebViewDataType,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[unsafe(method(restoreData:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn restoreData_completionHandler(
+            &self,
+            data: &NSData,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+        );
     );
 }
 

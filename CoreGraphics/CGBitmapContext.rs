@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
+use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -10,7 +12,7 @@ use crate::*;
 pub type CGBitmapContextReleaseDataCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
 
-#[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
+#[cfg(all(feature = "CGColorSpace", feature = "CGContext", feature = "CGImage"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CGBitmapContextCreateWithData(
     data: *mut c_void,
@@ -19,7 +21,7 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreateWithData(
     bits_per_component: usize,
     bytes_per_row: usize,
     space: Option<&CGColorSpace>,
-    bitmap_info: u32,
+    bitmap_info: CGBitmapInfo,
     release_callback: CGBitmapContextReleaseDataCallback,
     release_info: *mut c_void,
 ) -> Option<CFRetained<CGContext>> {
@@ -31,7 +33,7 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreateWithData(
             bits_per_component: usize,
             bytes_per_row: usize,
             space: Option<&CGColorSpace>,
-            bitmap_info: u32,
+            bitmap_info: CGBitmapInfo,
             release_callback: CGBitmapContextReleaseDataCallback,
             release_info: *mut c_void,
         ) -> Option<NonNull<CGContext>>;
@@ -52,7 +54,7 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreateWithData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
+#[cfg(all(feature = "CGColorSpace", feature = "CGContext", feature = "CGImage"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CGBitmapContextCreate(
     data: *mut c_void,
@@ -61,7 +63,7 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreate(
     bits_per_component: usize,
     bytes_per_row: usize,
     space: Option<&CGColorSpace>,
-    bitmap_info: u32,
+    bitmap_info: CGBitmapInfo,
 ) -> Option<CFRetained<CGContext>> {
     extern "C-unwind" {
         fn CGBitmapContextCreate(
@@ -71,7 +73,7 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreate(
             bits_per_component: usize,
             bytes_per_row: usize,
             space: Option<&CGColorSpace>,
-            bitmap_info: u32,
+            bitmap_info: CGBitmapInfo,
         ) -> Option<NonNull<CGContext>>;
     }
     let ret = unsafe {
@@ -86,6 +88,276 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreate(
         )
     };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolormodel?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CGColorModel(pub u32);
+bitflags::bitflags! {
+    impl CGColorModel: u32 {
+        #[doc(alias = "kCGColorModelNoColorant")]
+        const NoColorant = 0<<0;
+        #[doc(alias = "kCGColorModelGray")]
+        const Gray = 1<<0;
+        #[doc(alias = "kCGColorModelRGB")]
+        const RGB = 1<<1;
+        #[doc(alias = "kCGColorModelCMYK")]
+        const CMYK = 1<<2;
+        #[doc(alias = "kCGColorModelLab")]
+        const Lab = 1<<3;
+        #[doc(alias = "kCGColorModelDeviceN")]
+        const DeviceN = 1<<4;
+    }
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CGColorModel {
+    const ENCODING: Encoding = u32::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CGColorModel {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcomponent?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CGComponent(pub u32);
+impl CGComponent {
+    #[doc(alias = "kCGComponentUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "kCGComponentInteger8Bit")]
+    pub const Integer8Bit: Self = Self(1);
+    #[doc(alias = "kCGComponentInteger10Bit")]
+    pub const Integer10Bit: Self = Self(6);
+    #[doc(alias = "kCGComponentInteger16Bit")]
+    pub const Integer16Bit: Self = Self(2);
+    #[doc(alias = "kCGComponentInteger32Bit")]
+    pub const Integer32Bit: Self = Self(3);
+    #[doc(alias = "kCGComponentFloat16Bit")]
+    pub const Float16Bit: Self = Self(5);
+    #[doc(alias = "kCGComponentFloat32Bit")]
+    pub const Float32Bit: Self = Self(4);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CGComponent {
+    const ENCODING: Encoding = u32::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CGComponent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontentinfo?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct CGContentInfo {
+    pub deepestImageComponent: CGComponent,
+    pub contentColorModels: CGColorModel,
+    pub hasWideGamut: bool,
+    pub hasTransparency: bool,
+    pub largestContentHeadroom: c_float,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CGContentInfo {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <CGComponent>::ENCODING,
+            <CGColorModel>::ENCODING,
+            Encoding::Bool,
+            Encoding::Bool,
+            <c_float>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CGContentInfo {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CGBitmapLayout(pub u32);
+impl CGBitmapLayout {
+    #[doc(alias = "kCGBitmapLayoutAlphaOnly")]
+    pub const AlphaOnly: Self = Self(0);
+    #[doc(alias = "kCGBitmapLayoutGray")]
+    pub const Gray: Self = Self(1);
+    #[doc(alias = "kCGBitmapLayoutGrayAlpha")]
+    pub const GrayAlpha: Self = Self(2);
+    #[doc(alias = "kCGBitmapLayoutRGBA")]
+    pub const RGBA: Self = Self(3);
+    #[doc(alias = "kCGBitmapLayoutARGB")]
+    pub const ARGB: Self = Self(4);
+    #[doc(alias = "kCGBitmapLayoutRGBX")]
+    pub const RGBX: Self = Self(5);
+    #[doc(alias = "kCGBitmapLayoutXRGB")]
+    pub const XRGB: Self = Self(6);
+    #[doc(alias = "kCGBitmapLayoutBGRA")]
+    pub const BGRA: Self = Self(7);
+    #[doc(alias = "kCGBitmapLayoutBGRX")]
+    pub const BGRX: Self = Self(8);
+    #[doc(alias = "kCGBitmapLayoutABGR")]
+    pub const ABGR: Self = Self(9);
+    #[doc(alias = "kCGBitmapLayoutXBGR")]
+    pub const XBGR: Self = Self(10);
+    #[doc(alias = "kCGBitmapLayoutCMYK")]
+    pub const CMYK: Self = Self(11);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for CGBitmapLayout {
+    const ENCODING: Encoding = u32::ENCODING;
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for CGBitmapLayout {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapparameters?language=objc)
+#[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct CGBitmapParameters {
+    pub width: usize,
+    pub height: usize,
+    pub bytesPerPixel: usize,
+    pub alignedBytesPerRow: usize,
+    pub component: CGComponent,
+    pub layout: CGBitmapLayout,
+    pub format: CGImagePixelFormatInfo,
+    pub colorSpace: NonNull<CGColorSpace>,
+    pub hasPremultipliedAlpha: bool,
+    pub byteOrder: CFByteOrder,
+    pub edrTargetHeadroom: c_float,
+}
+
+#[cfg(all(feature = "CGColorSpace", feature = "CGImage", feature = "objc2"))]
+unsafe impl Encode for CGBitmapParameters {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <usize>::ENCODING,
+            <usize>::ENCODING,
+            <usize>::ENCODING,
+            <usize>::ENCODING,
+            <CGComponent>::ENCODING,
+            <CGBitmapLayout>::ENCODING,
+            <CGImagePixelFormatInfo>::ENCODING,
+            <NonNull<CGColorSpace>>::ENCODING,
+            Encoding::Bool,
+            <CFByteOrder>::ENCODING,
+            <c_float>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(all(feature = "CGColorSpace", feature = "CGImage", feature = "objc2"))]
+unsafe impl RefEncode for CGBitmapParameters {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[cfg(all(
+    feature = "CGColorSpace",
+    feature = "CGContext",
+    feature = "CGImage",
+    feature = "CGRenderingBufferProvider",
+    feature = "block2"
+))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGBitmapContextCreateAdaptive(
+    width: usize,
+    height: usize,
+    auxiliary_info: Option<&CFDictionary>,
+    on_resolve: Option<
+        &block2::DynBlock<dyn Fn(NonNull<CGContentInfo>, NonNull<CGBitmapParameters>) -> bool>,
+    >,
+    on_allocate: Option<
+        &block2::DynBlock<
+            dyn Fn(
+                NonNull<CGContentInfo>,
+                NonNull<CGBitmapParameters>,
+            ) -> *mut CGRenderingBufferProvider,
+        >,
+    >,
+    on_free: Option<
+        &block2::DynBlock<
+            dyn Fn(
+                NonNull<CGRenderingBufferProvider>,
+                NonNull<CGContentInfo>,
+                NonNull<CGBitmapParameters>,
+            ),
+        >,
+    >,
+    on_error: Option<
+        &block2::DynBlock<
+            dyn Fn(NonNull<CFError>, NonNull<CGContentInfo>, NonNull<CGBitmapParameters>),
+        >,
+    >,
+) -> Option<CFRetained<CGContext>> {
+    extern "C-unwind" {
+        fn CGBitmapContextCreateAdaptive(
+            width: usize,
+            height: usize,
+            auxiliary_info: Option<&CFDictionary>,
+            on_resolve: Option<
+                &block2::DynBlock<
+                    dyn Fn(NonNull<CGContentInfo>, NonNull<CGBitmapParameters>) -> bool,
+                >,
+            >,
+            on_allocate: Option<
+                &block2::DynBlock<
+                    dyn Fn(
+                        NonNull<CGContentInfo>,
+                        NonNull<CGBitmapParameters>,
+                    ) -> *mut CGRenderingBufferProvider,
+                >,
+            >,
+            on_free: Option<
+                &block2::DynBlock<
+                    dyn Fn(
+                        NonNull<CGRenderingBufferProvider>,
+                        NonNull<CGContentInfo>,
+                        NonNull<CGBitmapParameters>,
+                    ),
+                >,
+            >,
+            on_error: Option<
+                &block2::DynBlock<
+                    dyn Fn(NonNull<CFError>, NonNull<CGContentInfo>, NonNull<CGBitmapParameters>),
+                >,
+            >,
+        ) -> Option<NonNull<CGContext>>;
+    }
+    let ret = unsafe {
+        CGBitmapContextCreateAdaptive(
+            width,
+            height,
+            auxiliary_info,
+            on_resolve,
+            on_allocate,
+            on_free,
+            on_error,
+        )
+    };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgadaptivemaximumbitdepth?language=objc)
+    pub static kCGAdaptiveMaximumBitDepth: &'static CFString;
 }
 
 extern "C-unwind" {

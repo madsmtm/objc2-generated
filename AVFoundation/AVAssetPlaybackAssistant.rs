@@ -41,6 +41,26 @@ extern "C" {
         &'static AVAssetPlaybackConfigurationOption;
 }
 
+extern "C" {
+    /// Indicates whether the asset calls for the use of a non-rectilinear projection for rendering video.
+    ///
+    /// Clients may use this property to determine whether to configure a non-rectilinear projection when displaying video.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionnonrectilinearprojection?language=objc)
+    pub static AVAssetPlaybackConfigurationOptionNonRectilinearProjection:
+        &'static AVAssetPlaybackConfigurationOption;
+}
+
+extern "C" {
+    /// Indicates whether the asset is Apple Immersive Video.
+    ///
+    /// Clients may use this property to switch into specific display and control modes for Apple Immersive Video playback.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionappleimmersivevideo?language=objc)
+    pub static AVAssetPlaybackConfigurationOptionAppleImmersiveVideo:
+        &'static AVAssetPlaybackConfigurationOption;
+}
+
 extern_class!(
     /// AVAssetPlaybackAssistant provides playback information for an asset.
     ///
@@ -73,9 +93,9 @@ impl AVAssetPlaybackAssistant {
         #[cfg(feature = "AVAsset")]
         /// Returns an instance of AVAssetPlaybackAssistant for inspection of an AVAsset object.
         ///
-        /// Parameter `asset`: An instance of AVAsset.
+        /// - Parameter asset: An instance of AVAsset.
         ///
-        /// Returns: An instance of AVAssetPlaybackAssistant.
+        /// - Returns: An instance of AVAssetPlaybackAssistant.
         #[unsafe(method(assetPlaybackAssistantWithAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetPlaybackAssistantWithAsset(asset: &AVAsset) -> Retained<Self>;
@@ -83,9 +103,9 @@ impl AVAssetPlaybackAssistant {
         #[cfg(feature = "block2")]
         /// Calls the completionHandler with information about the asset.
         ///
-        /// Parameter `completionHandler`: Called with an array of AVAssetPlaybackConfigurationOption values describing capabilities of the asset.
-        ///
         /// completionHandler is called when all of the AVAssetPlaybackConfigurationOption values have been loaded. If AVAssetPlaybackAssistant encounters failures when inspecting the contents of the asset, it will return no AVAssetPlaybackConfigurationOptions associated with those contents.
+        ///
+        /// - Parameter completionHandler: Called with an array of AVAssetPlaybackConfigurationOption values describing capabilities of the asset.
         #[unsafe(method(loadPlaybackConfigurationOptionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPlaybackConfigurationOptionsWithCompletionHandler(

@@ -12,6 +12,7 @@ extern_class!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalerttemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPAlertTemplate;
@@ -61,7 +62,7 @@ impl CPAlertTemplate {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(titleVariants))]
         #[unsafe(method_family = none)]
@@ -72,7 +73,7 @@ impl CPAlertTemplate {
         /// (up to this count) will be kept.
         #[unsafe(method(maximumActionCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumActionCount() -> NSUInteger;
+        pub unsafe fn maximumActionCount(mtm: MainThreadMarker) -> NSUInteger;
 
         #[cfg(feature = "CPAlertAction")]
         #[unsafe(method(actions))]

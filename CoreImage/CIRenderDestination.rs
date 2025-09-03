@@ -188,6 +188,20 @@ impl CIRenderDestination {
             &self,
             blends_in_destination_color_space: bool,
         );
+
+        /// Tell the next using this destination to capture a Metal trace.
+        ///
+        /// If this property is set to a file-based URL, then the next render using this
+        /// destination will capture a Metal trace, deleting any existing file if present.
+        /// This property is nil by default.
+        #[unsafe(method(captureTraceURL))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn captureTraceURL(&self) -> Option<Retained<NSURL>>;
+
+        /// Setter for [`captureTraceURL`][Self::captureTraceURL].
+        #[unsafe(method(setCaptureTraceURL:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCaptureTraceURL(&self, capture_trace_url: Option<&NSURL>);
     );
 }
 

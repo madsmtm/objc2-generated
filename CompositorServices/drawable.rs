@@ -43,6 +43,36 @@ unsafe impl RefEncode for cp_drawable_state {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The target where the drawable will be displayed/used.
+///
+/// Use these constants to determine whether content should
+/// be drawn for certain targets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_target?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct cp_drawable_target(pub u32);
+impl cp_drawable_target {
+    /// A drawable that is targeting the built-in display,
+    /// this is what a user will see in the device.
+    #[doc(alias = "cp_drawable_target_built_in")]
+    pub const built_in: Self = Self(0);
+    /// A drawable that will be used for capture purposes,
+    /// this could be used for video or AirPlay streaming and
+    /// will be visible to users outside of the device.
+    #[doc(alias = "cp_drawable_target_capture")]
+    pub const capture: Self = Self(1);
+}
+
+unsafe impl Encode for cp_drawable_target {
+    const ENCODING: Encoding = u32::ENCODING;
+}
+
+unsafe impl RefEncode for cp_drawable_target {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable?language=objc)
 #[repr(C)]
 #[derive(Debug)]
@@ -87,6 +117,26 @@ impl cp_drawable {
             fn cp_drawable_get_texture_count(drawable: cp_drawable_t) -> usize;
         }
         unsafe { cp_drawable_get_texture_count(drawable) }
+    }
+
+    /// Returns the number of tracking areas textures available in the drawable.
+    ///
+    /// - Parameters:
+    /// - drawable: The drawable for a frame.
+    /// - Returns: The number of textures available for drawing. For example, a return
+    /// value of `2` indicates there are two tracking areas textures available.
+    ///
+    /// Use the returned value as the maximum number of textures to retrieve
+    /// from the ``cp_drawable_get_tracking_areas_texture``function.
+    /// This will be equal to ``cp_drawable_get_texture_count`` when tracking
+    /// areas textures are enabled through the configuration otherwise will be 0.
+    #[doc(alias = "cp_drawable_get_tracking_areas_texture_count")]
+    #[inline]
+    pub unsafe fn tracking_areas_texture_count(drawable: cp_drawable_t) -> usize {
+        extern "C-unwind" {
+            fn cp_drawable_get_tracking_areas_texture_count(drawable: cp_drawable_t) -> usize;
+        }
+        unsafe { cp_drawable_get_tracking_areas_texture_count(drawable) }
     }
 
     /// Returns the depth texture at the specified index in the drawable.
@@ -149,6 +199,64 @@ impl cp_drawable {
         let ret = unsafe { cp_drawable_get_color_texture(drawable, index) };
         unsafe { Retained::retain_autoreleased(ret) }
             .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+
+    /// Returns the tracking areas texture at the specified index in the drawable.
+    ///
+    /// - Parameters:
+    /// - drawable: The drawable for a frame.
+    /// - index: The index of the texture you want. The index must
+    /// be greater than or equal to `0` and less than the value that
+    /// ``cp_drawable_get_tracking_areas_texture_count`` returns.
+    /// - Returns: The Metal object index texture at the specified index.
+    ///
+    /// Use the returned texture in your render pipeline to store the tracking areas ID
+    /// used for hover effects and indirect gestures. The layer’s texture topology determines
+    /// the layout and content for each texture. The drawable’s views contain
+    /// information about how those views map to the textures.
+    #[doc(alias = "cp_drawable_get_tracking_areas_texture")]
+    #[cfg(feature = "objc2-metal")]
+    #[inline]
+    pub unsafe fn tracking_areas_texture(
+        drawable: cp_drawable_t,
+        index: usize,
+    ) -> Retained<ProtocolObject<dyn MTLTexture>> {
+        extern "C-unwind" {
+            fn cp_drawable_get_tracking_areas_texture(
+                drawable: cp_drawable_t,
+                index: usize,
+            ) -> *mut ProtocolObject<dyn MTLTexture>;
+        }
+        let ret = unsafe { cp_drawable_get_tracking_areas_texture(drawable, index) };
+        unsafe { Retained::retain_autoreleased(ret) }
+            .expect("function was marked as returning non-null, but actually returned NULL")
+    }
+
+    /// Returns a tracking area which is create on the drawable's list of tracking areas.
+    ///
+    /// - Parameters:
+    /// - drawable: The drawable for a frame.
+    /// - identifier: The unique identifier for the tracking area.
+    /// - Returns: A tracking area that was created.
+    ///
+    /// A tracking area describes a region of a view that interacts
+    /// with the gaze/cursor.
+    /// Cannot use ``cp_tracking_area_identifier_invalid`` as
+    /// an identifier.
+    #[doc(alias = "cp_drawable_add_tracking_area")]
+    #[cfg(feature = "tracking_area")]
+    #[inline]
+    pub unsafe fn add_tracking_area(
+        drawable: cp_drawable_t,
+        identifier: cp_tracking_area_identifier,
+    ) -> cp_tracking_area_t {
+        extern "C-unwind" {
+            fn cp_drawable_add_tracking_area(
+                drawable: cp_drawable_t,
+                identifier: cp_tracking_area_identifier,
+            ) -> cp_tracking_area_t;
+        }
+        unsafe { cp_drawable_add_tracking_area(drawable, identifier) }
     }
 
     /// Returns the number of rasterization rate maps associated with the
@@ -297,6 +405,8 @@ impl cp_drawable {
     /// frame’s content. If the command buffer is already committed,
     /// this function aborts your app with an error.
     ///
+    /// - Note: Commit the command buffer after calling present.
+    ///
     /// Call this function as the last step before committing the specified
     /// command buffer. Specifically, call it after you finish encoding all
     /// the work required to render the frame, and immediately before you
@@ -321,10 +431,35 @@ impl cp_drawable {
         unsafe { cp_drawable_encode_present(drawable, command_buffer) }
     }
 
+    /// Encodes a notification event to the specified command buffer to present
+    /// the drawable’s content onscreen.
+    ///
+    /// - Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    /// - Note: Commit the command buffer to the layer queue before calling present.
+    ///
+    /// Call this function as the last step before committing the specified
+    /// command buffer. Specifically, call it after you finish encoding all
+    /// the work required to render the frame, and immediately before you
+    /// call the command buffer’s
+    /// <doc
+    /// ://com.apple.documentation/documentation/metal/mtlcommandbuffer/1443003-commit>
+    /// method. The function adds a presentation event to the buffer that
+    /// causes the compositor to display your frame.
+    #[doc(alias = "cp_drawable_mtl4_encode_present")]
+    #[inline]
+    pub unsafe fn mtl4_encode_present(drawable: cp_drawable_t) {
+        extern "C-unwind" {
+            fn cp_drawable_mtl4_encode_present(drawable: cp_drawable_t);
+        }
+        unsafe { cp_drawable_mtl4_encode_present(drawable) }
+    }
+
     /// Returns a value that indicates the current operational state
     /// of the drawable type.
     ///
-    /// - Parameters: The drawable to test.
+    /// - Parameters: The drawable to check.
     /// - Returns: ``cp_drawable_state/cp_drawable_state_rendering`` if the
     /// drawable type is ready for you to draw your content, or any other value if
     /// the compositor currently owns the drawable.
@@ -340,6 +475,26 @@ impl cp_drawable {
             fn cp_drawable_get_state(drawable: cp_drawable_t) -> cp_drawable_state;
         }
         unsafe { cp_drawable_get_state(drawable) }
+    }
+
+    /// Returns a value that indicates the target of the drawable type.
+    ///
+    /// - Parameters: The drawable to check.
+    /// - Returns: ``cp_drawable_target/cp_drawable_target_built_in`` if the
+    /// drawable will be displayed for the user in the device, or any other value if the drawable
+    /// maybe used for other purposes.
+    ///
+    /// When drawing for the drawable this can be used to alter
+    /// what is rendered for different targets.
+    /// Renderer should always prioritize ``cp_drawable_target/cp_drawable_target_built_in``
+    /// target type.
+    #[doc(alias = "cp_drawable_get_target")]
+    #[inline]
+    pub unsafe fn target(drawable: cp_drawable_t) -> cp_drawable_target {
+        extern "C-unwind" {
+            fn cp_drawable_get_target(drawable: cp_drawable_t) -> cp_drawable_target;
+        }
+        unsafe { cp_drawable_get_target(drawable) }
     }
 
     /// Returns the index of the frame of content for you to produce.
@@ -384,11 +539,153 @@ impl cp_drawable {
         }
         unsafe { cp_drawable_get_frame_timing(drawable) }
     }
+
+    /// Returns whether content capture is protected and it is safe to
+    /// draw content that should be protected from capture.
+    ///
+    /// - Parameters:
+    /// - drawable: The drawable for a frame.
+    /// - Returns: Whether it is safe to draw content that is for built-in
+    /// display only. When this value is true, any capture of content
+    /// being displayed on the built-in display will be obscured by the
+    /// system. If false, it cannot be assumed that content will not
+    /// be seen by users outside of the device, both live and recorded.
+    ///
+    /// Use this function to ensure that drawing that is only meant for
+    /// eyes in the device is not drawn when false.
+    /// Only adopt if app has adopted SwiftUI `activatesContentCaptureProtected`
+    /// scene modifier and drawing will have content that is not desired
+    /// to meant to be captured.
+    /// For ``cp_drawable_target_capture`` this will
+    /// always return false as it is upto the renderer to handle drawing
+    /// content that will be captured beyond the built-in displays.
+    #[doc(alias = "cp_drawable_is_content_capture_protected")]
+    #[inline]
+    pub unsafe fn is_content_capture_protected(drawable: cp_drawable_t) -> bool {
+        extern "C-unwind" {
+            fn cp_drawable_is_content_capture_protected(drawable: cp_drawable_t) -> bool;
+        }
+        unsafe { cp_drawable_is_content_capture_protected(drawable) }
+    }
+
+    /// Adds a render context to a drawable.
+    /// This object will draw any content that the compositor needs to render
+    /// in the application.
+    /// - Note: The render context can only be used when the layer renderer is using layered layout
+    /// or in platforms that only render one view (ex: simulator)
+    ///
+    /// - Note: The render context makes use of the device_anchor set in
+    /// ``cp_drawable_set_device_anchor`` the device_anchor should be set in the
+    /// drawable before calling ``cp_drawable_add_render_context``.
+    #[doc(alias = "cp_drawable_add_render_context")]
+    #[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
+    #[inline]
+    pub unsafe fn add_render_context(
+        drawable: cp_drawable_t,
+        cmd_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
+    ) -> cp_drawable_render_context_t {
+        extern "C-unwind" {
+            fn cp_drawable_add_render_context(
+                drawable: cp_drawable_t,
+                cmd_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
+            ) -> cp_drawable_render_context_t;
+        }
+        unsafe { cp_drawable_add_render_context(drawable, cmd_buffer) }
+    }
+
+    /// Adds a render context to a drawable.
+    /// This object will draw any content that the compositor needs to render
+    /// in the application.
+    /// - Note: The render context can only be used when the layer renderer is using layered layout
+    /// or in platforms that only render one view (ex: simulator)
+    ///
+    /// - Note: The render context makes use of the device_anchor set in
+    /// ``cp_drawable_set_device_anchor`` the device_anchor should be set in the
+    /// drawable before calling ``cp_drawable_add_render_context``.
+    #[doc(alias = "cp_drawable_add_mtl4_render_context")]
+    #[cfg(feature = "drawable_render_context")]
+    #[inline]
+    pub unsafe fn add_mtl4_render_context(drawable: cp_drawable_t) -> cp_drawable_render_context_t {
+        extern "C-unwind" {
+            fn cp_drawable_add_mtl4_render_context(
+                drawable: cp_drawable_t,
+            ) -> cp_drawable_render_context_t;
+        }
+        unsafe { cp_drawable_add_mtl4_render_context(drawable) }
+    }
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_array?language=objc)
+#[repr(C)]
+#[derive(Debug)]
+pub struct cp_drawable_array {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+unsafe impl RefEncode for cp_drawable_array {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_drawable_array", &[]));
+}
+
+/// An opaque type that contains the drawable types and other information
+/// you need to set up your render pipeline.
+///
+/// See ``cp_drawable_t`` for more information about drawables.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_array_t?language=objc)
+pub type cp_drawable_array_t = *mut cp_drawable_array;
+
+impl cp_drawable_array {
+    /// Returns the drawable at the specified index in the array.
+    ///
+    /// - Parameters:
+    /// - drawable_array: The drawable array for a frame.
+    /// - index: The index of the drawable you want. The index must
+    /// be greater than or equal to `0` and less than the value that
+    /// ``cp_drawable_array_get_count`` returns.
+    /// - Returns: The drawable available for drawing at the specified index.
+    ///
+    /// The ``cp_drawable_t`` type contains the textures and other
+    /// information you need to set up your render descriptor in Metal.
+    #[doc(alias = "cp_drawable_array_get_drawable")]
+    #[inline]
+    pub unsafe fn drawable(drawable_array: cp_drawable_array_t, index: usize) -> cp_drawable_t {
+        extern "C-unwind" {
+            fn cp_drawable_array_get_drawable(
+                drawable_array: cp_drawable_array_t,
+                index: usize,
+            ) -> cp_drawable_t;
+        }
+        unsafe { cp_drawable_array_get_drawable(drawable_array, index) }
+    }
+
+    /// Returns the number of drawables in the array.
+    ///
+    /// - Parameters:
+    /// - drawable_array: The drawable array for a frame.
+    /// - Returns: The number of drawables available for drawing. For example, a return
+    /// value of `2` indicates there are two drawables for this frame.
+    ///
+    /// Use the returned value as the maximum number of textures to retrieve
+    /// from the ``cp_drawable_array_get_drawable`` functions.
+    #[doc(alias = "cp_drawable_array_get_count")]
+    #[inline]
+    pub unsafe fn count(drawable_array: cp_drawable_array_t) -> usize {
+        extern "C-unwind" {
+            fn cp_drawable_array_get_count(drawable_array: cp_drawable_array_t) -> usize;
+        }
+        unsafe { cp_drawable_array_get_count(drawable_array) }
+    }
 }
 
 extern "C-unwind" {
     #[deprecated = "renamed to `cp_drawable::texture_count`"]
     pub fn cp_drawable_get_texture_count(drawable: cp_drawable_t) -> usize;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_drawable::tracking_areas_texture_count`"]
+    pub fn cp_drawable_get_tracking_areas_texture_count(drawable: cp_drawable_t) -> usize;
 }
 
 #[cfg(feature = "objc2-metal")]
@@ -425,6 +722,33 @@ pub unsafe extern "C-unwind" fn cp_drawable_get_color_texture(
     let ret = unsafe { cp_drawable_get_color_texture(drawable, index) };
     unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+#[cfg(feature = "objc2-metal")]
+#[deprecated = "renamed to `cp_drawable::tracking_areas_texture`"]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_drawable_get_tracking_areas_texture(
+    drawable: cp_drawable_t,
+    index: usize,
+) -> Retained<ProtocolObject<dyn MTLTexture>> {
+    extern "C-unwind" {
+        fn cp_drawable_get_tracking_areas_texture(
+            drawable: cp_drawable_t,
+            index: usize,
+        ) -> *mut ProtocolObject<dyn MTLTexture>;
+    }
+    let ret = unsafe { cp_drawable_get_tracking_areas_texture(drawable, index) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "tracking_area")]
+    #[deprecated = "renamed to `cp_drawable::add_tracking_area`"]
+    pub fn cp_drawable_add_tracking_area(
+        drawable: cp_drawable_t,
+        identifier: cp_tracking_area_identifier,
+    ) -> cp_tracking_area_t;
 }
 
 extern "C-unwind" {
@@ -489,8 +813,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[deprecated = "renamed to `cp_drawable::mtl4_encode_present`"]
+    pub fn cp_drawable_mtl4_encode_present(drawable: cp_drawable_t);
+}
+
+extern "C-unwind" {
     #[deprecated = "renamed to `cp_drawable::state`"]
     pub fn cp_drawable_get_state(drawable: cp_drawable_t) -> cp_drawable_state;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_drawable::target`"]
+    pub fn cp_drawable_get_target(drawable: cp_drawable_t) -> cp_drawable_target;
 }
 
 extern "C-unwind" {
@@ -505,4 +839,39 @@ extern "C-unwind" {
     #[cfg(feature = "frame_timing")]
     #[deprecated = "renamed to `cp_drawable::frame_timing`"]
     pub fn cp_drawable_get_frame_timing(drawable: cp_drawable_t) -> cp_frame_timing_t;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_drawable::is_content_capture_protected`"]
+    pub fn cp_drawable_is_content_capture_protected(drawable: cp_drawable_t) -> bool;
+}
+
+extern "C-unwind" {
+    #[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
+    #[deprecated = "renamed to `cp_drawable::add_render_context`"]
+    pub fn cp_drawable_add_render_context(
+        drawable: cp_drawable_t,
+        cmd_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
+    ) -> cp_drawable_render_context_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "drawable_render_context")]
+    #[deprecated = "renamed to `cp_drawable::add_mtl4_render_context`"]
+    pub fn cp_drawable_add_mtl4_render_context(
+        drawable: cp_drawable_t,
+    ) -> cp_drawable_render_context_t;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_drawable_array::drawable`"]
+    pub fn cp_drawable_array_get_drawable(
+        drawable_array: cp_drawable_array_t,
+        index: usize,
+    ) -> cp_drawable_t;
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `cp_drawable_array::count`"]
+    pub fn cp_drawable_array_get_count(drawable_array: cp_drawable_array_t) -> usize;
 }

@@ -76,6 +76,7 @@ extern_conformance!(
 impl MTLLogStateDescriptor {
     extern_methods!(
         /// level indicates the minimum level of the logs that will be printed.
+        ///
         /// All the logs with level less than given level will be skipped on the GPU Side.
         #[unsafe(method(level))]
         #[unsafe(method_family = none)]

@@ -51,6 +51,22 @@ impl UIViewControllerTransition {
             >,
         ) -> Retained<Self>;
 
+        #[cfg(all(
+            feature = "UIBarButtonItem",
+            feature = "UIBarItem",
+            feature = "UIZoomTransitionOptions",
+            feature = "block2"
+        ))]
+        /// Zoom from the `UIBarButtonItem` provided by the `sourceBarButtonItemProvider` to the presented or pushed view controller's view.
+        #[unsafe(method(zoomWithOptions:sourceBarButtonItemProvider:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn zoomWithOptions_sourceBarButtonItemProvider(
+            options: Option<&UIZoomTransitionOptions>,
+            source_bar_button_item_provider: &block2::DynBlock<
+                dyn Fn(NonNull<UIZoomTransitionSourceViewProviderContext>) -> *mut UIBarButtonItem,
+            >,
+        ) -> Retained<Self>;
+
         /// View slides up from the bottom of the screen. Same as `UIModalTransitionStyle.coverVertical`.
         #[unsafe(method(coverVerticalTransition))]
         #[unsafe(method_family = none)]

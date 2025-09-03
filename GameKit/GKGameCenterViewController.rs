@@ -23,6 +23,7 @@ impl GKGameCenterViewControllerState {
     #[doc(alias = "GKGameCenterViewControllerStateAchievements")]
     pub const Achievements: Self = Self(1);
     #[doc(alias = "GKGameCenterViewControllerStateChallenges")]
+    #[deprecated]
     pub const Challenges: Self = Self(2);
     #[doc(alias = "GKGameCenterViewControllerStateLocalPlayerProfile")]
     pub const LocalPlayerProfile: Self = Self(3);
@@ -41,11 +42,14 @@ unsafe impl RefEncode for GKGameCenterViewControllerState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller?language=objc)
+    /// View controller that provides the standard user interface for leaderboards, achievements, and challenges. Present modally from the top view controller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
+    #[deprecated]
     pub struct GKGameCenterViewController;
 );
 
@@ -265,6 +269,7 @@ impl GKGameCenterViewController {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecentercontrollerdelegate?language=objc)
+    #[deprecated]
     pub unsafe trait GKGameCenterControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

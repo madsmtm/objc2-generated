@@ -31,5 +31,14 @@ extern_protocol!(
         #[unsafe(method(touchedInput))]
         #[unsafe(method_family = none)]
         unsafe fn touchedInput(&self) -> Option<Retained<ProtocolObject<dyn GCTouchedStateInput>>>;
+
+        #[cfg(feature = "GCLinearInput")]
+        /// Get the input containing the measured force applied to the button.
+        ///
+        /// Some buttons feature load cells (also known as button force transducers)
+        /// capable of measuring applied mechanical force.
+        #[unsafe(method(forceInput))]
+        #[unsafe(method_family = none)]
+        unsafe fn forceInput(&self) -> Option<Retained<ProtocolObject<dyn GCLinearInput>>>;
     }
 );

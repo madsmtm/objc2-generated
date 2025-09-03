@@ -10,35 +10,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// All communication about matches is performed through this delegate.
+    /// Methods that the session calls with the result of a match request.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shsessiondelegate?language=objc)
     pub unsafe trait SHSessionDelegate: NSObjectProtocol {
         #[cfg(feature = "SHMatch")]
-        /// A match was found in the
-        /// `SHCatalog`for the provided
-        /// `SHSignature`
-        /// Parameter `session`: The
-        /// `SHSession`that made the match
+        /// Tells the delegate that the query signature matches an item in the catalog.
         ///
-        /// Parameter `match`: The
-        /// `SHMatch`of the matching audio
+        /// - Parameters:
+        /// - session: The session object that performs the match.
+        /// - match: The matching items from the catalog.
         #[optional]
         #[unsafe(method(session:didFindMatch:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didFindMatch(&self, session: &SHSession, r#match: &SHMatch);
 
         #[cfg(feature = "SHSignature")]
-        /// The
-        /// `SHSignature`did not match anything
+        /// Tells the delegate that the query signature doesn't match an item in the catalog, or that there's an error.
         ///
-        /// Parameter `session`: The
-        /// `SHSession`that attempted to match the
-        /// `SHSignature`
-        /// Parameter `signature`: The
-        /// `SHSignature`that did not match
+        /// You can retry the match if the error indicates an issue in communicating with the catalog server, such as ``SHError/Code/matchAttemptFailed``.
         ///
-        /// Parameter `error`: An optional error. If simply no match was found this will be set to nil. It will be populated if there was an issue performing the match
+        /// - Parameters:
+        /// - session: The session object that performs the match.
+        /// - signature: The query signature to use for the match.
+        /// - error: The error that occurs; otherwise, `nil`, which indicates that there's no match.
         #[optional]
         #[unsafe(method(session:didNotFindMatchForSignature:error:))]
         #[unsafe(method_family = none)]
@@ -52,23 +47,46 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A
-    /// `SHSession`matches instances of
-    /// `SHSignature`against a
-    /// `SHCatalog`
+    /// An object that matches a specific audio recording when a segment of that recording is part of captured sound in the Shazam catalog or your custom catalog.
     ///
-    /// A
-    /// `SHSession`can be used in two distinct ways to match against a
-    /// `SHCatalog`
-    /// 1. Pass a
-    /// `SHSignature`to the -[SHSession matchSignature:] method and respond to matches sent to the delegate
-    /// There is a 1 to 1 relationship between calls to this method and calls to the delegate
-    /// 2. Pass a continuous stream of
-    /// `AVAudioPCMBuffer`to the -[SHSession matchStreamingBuffer:atTime:] method, matches are sent to the delegate.
-    /// ShazamKit will convert the buffers in SHSignature objects internally and perform matches against the
-    /// `SHCatalog.`The details of how the matching
-    /// is performed is an implementation detail and is subject to change. As such there will be many callbacks to the delegate per stream of audio, and the same match
-    /// may be reported multiple times in succession.
+    /// Prepare to make matches by:
+    ///
+    /// - Creating a session for the catalog that contains the reference signatures
+    /// - Adding your delegate that receives the match results
+    ///
+    /// Search for a match in one of two ways:
+    ///
+    /// - Generate a signature for the captured audio and call ``match(_:)``
+    /// - Call ``matchStreamingBuffer(_:at:)`` with a streaming audio buffer, and ShazamKit generates the signature for you
+    ///
+    /// Searching the catalog is asynchronous. The session calls your delegate methods with the result.
+    ///
+    /// Matching songs in Shazam music requires enabling your app to access the catalog. For more information on enabling your app, see [Enable ShazamKit for an App ID](https://developer.apple.com/help/account/configure-app-services/shazamkit).
+    ///
+    /// The code below shows searching for a match in the Shazam catalog using an existing audio buffer:
+    ///
+    /// ```swift
+    /// // Set up the session.
+    /// let session = SHSession()
+    ///
+    /// // Create a signature from the captured audio buffer.
+    /// let signatureGenerator = SHSignatureGenerator()
+    /// try signatureGenerator.append(buffer, at: audioTime)
+    /// let signature = signatureGenerator.signature()
+    ///
+    /// // Check for a match.
+    /// let result = await session.result(from: signature)
+    ///
+    /// // Use the result.
+    /// switch result {
+    /// case .match(let match):
+    /// // Match found.
+    /// case .noMatch(let signature):
+    /// // No match found.
+    /// case .error(let error, let signature):
+    /// // An error occurred.
+    /// }
+    /// ```
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shsession?language=objc)
     #[unsafe(super(NSObject))]
@@ -83,13 +101,12 @@ extern_conformance!(
 impl SHSession {
     extern_methods!(
         #[cfg(feature = "SHCatalog")]
-        /// The
-        /// `SHCatalog`used to initialize this session and which all matches will be made against
+        /// The catalog object containing the reference signatures and their associated metadata that the session uses to perform matches.
         #[unsafe(method(catalog))]
         #[unsafe(method_family = none)]
         pub unsafe fn catalog(&self) -> Retained<SHCatalog>;
 
-        /// A delegate for communicating the results of matching
+        /// The object that the session calls with the result of a match request.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SHSessionDelegate>>>;
@@ -100,40 +117,38 @@ impl SHSession {
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SHSessionDelegate>>);
 
-        /// Create A new
-        /// `SHSession`that searches the Shazam Catalog
+        /// Creates a new session object for matching songs in the Shazam Music catalog.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "SHCatalog")]
-        /// Create A new
-        /// `SHSession`based upon the supplied
-        /// `SHCatalog`
-        /// Parameter `catalog`: The store of signatures to match against
+        /// Creates a new session object for matching audio in a custom catalog.
+        ///
+        /// - Parameters:
+        /// - catalog: The catalog that contains the reference audio signatures and their associated metadata.
         #[unsafe(method(initWithCatalog:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCatalog(this: Allocated<Self>, catalog: &SHCatalog)
             -> Retained<Self>;
 
         #[cfg(feature = "objc2-avf-audio")]
-        /// Flow audio buffers for matching into the session
+        /// Converts the audio in the buffer to a signature, and searches the reference signatures in the session catalog.
         ///
-        /// Audio will be converted into signatures and matched against the
-        /// `SHCatalog.`Results are communicated through the delegate.
-        /// The initial buffer specifies the
-        /// `AVAudioFormat`and all subsequent buffers must contain the same format otherwise an error will be communicated through
-        /// the delegate.
+        /// This method continues to generate signatures and perform searches until the audio in the buffer stops, which may result in multiple calls to the ``SHSession/delegate``.
         ///
-        /// It is advisable but not required to pass an
-        /// `AVAudioTime`along with the audio buffer. The audio provided must be contiguous, gaps in the audio will have adverse
-        /// effects on the ability to match the audio. The time variable is validated by the session to ensure that the audio is contiguous and mitigate the effect of discontiguous audio.
+        /// The audio buffer must be in one of the supported formats. For the list of the supported audio formats, see ``SHSignatureGenerator/append(_:at:)``.
         ///
-        /// Parameter `buffer`: A buffer of audio to be used for recognition
+        /// To use the microphone as input for the buffer, see
+        /// <doc
+        /// :matching-audio-using-the-built-in-microphone>.
         ///
-        /// Parameter `time`: Where in the stream the audio occurs
+        /// > Note:
+        /// > You must use the audio format of the first call to this method in the current session in all subsequent calls for the session.
         ///
-        /// Note: This method only accepts PCM audio formats. The following sample rates are recommended but not required: 48000, 44100, 32000, 16000.
+        /// - Parameters:
+        /// - buffer: An audio buffer.
+        /// - time: The start time of the audio to use for generating the signatures.
         #[unsafe(method(matchStreamingBuffer:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchStreamingBuffer_atTime(
@@ -143,11 +158,10 @@ impl SHSession {
         );
 
         #[cfg(feature = "SHSignature")]
-        /// Match the
-        /// `SHSignature`against the provided
-        /// `SHCatalog`
-        /// Parameter `signature`: a
-        /// `SHSignature`to be matched
+        /// Searches for the query signature in the reference signatures that the session catalog contains.
+        ///
+        /// - Parameters:
+        /// - signature: The signature for searching the catalog of reference signatures.
         #[unsafe(method(matchSignature:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchSignature(&self, signature: &SHSignature);

@@ -1254,6 +1254,10 @@ extern "C" {
     ///
     /// Indicates half equirectangular projection of a 180 degree hemisphere to a rectangular plane, where longitude and latitude of the sphere are mapped linearly to the x,y axes of the plane
     ///
+    /// Indicates a projection described mathematically by a model of camera lens calibration parameters. Parameters may be found in lens calibration metadata in kCMFormatDescriptionExtension_CameraCalibrationDataLensCollection with algorithm_kind being parametric lens
+    ///
+    /// Indicates a proprietary projection used for Apple Immersive Video.
+    ///
     /// The value is a CFString holding one of the kCMFormatDescriptionProjectionKind_* constants.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_projectionkind?language=objc)
@@ -1273,6 +1277,16 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionprojectionkind_halfequirectangular?language=objc)
     pub static kCMFormatDescriptionProjectionKind_HalfEquirectangular: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionprojectionkind_parametricimmersive?language=objc)
+    pub static kCMFormatDescriptionProjectionKind_ParametricImmersive: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionprojectionkind_appleimmersivevideo?language=objc)
+    pub static kCMFormatDescriptionProjectionKind_AppleImmersiveVideo: &'static CFString;
 }
 
 extern "C" {
@@ -1296,6 +1310,214 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionviewpackingkind_overunder?language=objc)
     pub static kCMFormatDescriptionViewPackingKind_OverUnder: &'static CFString;
+}
+
+extern "C" {
+    /// Specifies intrinsic and extrinsic parameters for single or multiple lenses.
+    ///
+    /// The property value is an array of dictionaries describing the camera calibration data for each lens. The camera calibration data includes intrinsics and extrinics with other parameters.
+    /// For a stereoscopic camera system, the left and right lens signaling can be done with the kCMFormatDescriptionCameraCalibration_LensRole key and its value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_cameracalibrationdatalenscollection?language=objc)
+    pub static kCMFormatDescriptionExtension_CameraCalibrationDataLensCollection: &'static CFString;
+}
+
+extern "C" {
+    /// The following keys are required in each kCMFormatDescriptionExtension_CameraCalibrationDataLensCollection dictionary.
+    ///
+    ///
+    ///
+    /// Specifies the camera calibration methodology.
+    ///
+    /// If the algorithm kind is ParametricLens, the camera lens collection requires camera intrinsic and extrinsic parameters.
+    ///
+    ///
+    ///
+    /// Specifies the kind of lens (e.g., color).
+    ///
+    ///
+    ///
+    /// Specifies a unique number associated with a lens.
+    ///
+    ///
+    ///
+    /// Specifies the particular use of the lens in the camera system (e.g., left or right for a stereo system).
+    ///
+    /// For a stereoscopic camera system, one lens should have the left role and another should have the right role.
+    ///
+    ///
+    ///
+    /// Specifies the first and second radial distortion coefficients(k1 and k2) used to correct the distortion that appeared as curved lines for straight lines and the first and second tangential distortion coefficients(p1 and p2) used to correct the distortion caused by a lens's improper alignment of physical elements.
+    ///
+    /// The values are in a CFArray of four CFNumbers in k1, k2, p1 and p2 order.
+    ///
+    ///
+    ///
+    /// Specifies a three element polynomial for mapping x axis UV parameters with an adjustment using the equation `x' = polynomialX[0] + polynomialX[1]*x + polynomialX[2]*x^3`.
+    ///
+    /// The values are in a CFArray of three CFNumbers(float) in the order polynomialX[0], polynomialX[1]
+    /// &
+    /// polynomialX[2].
+    /// The polynomial transform origin is at the center of the frame. The default values of elements of polynomialX[] are [0.0, 1.0, 0.0].
+    ///
+    ///
+    ///
+    /// Specifies a three element polynomial for mapping y axis UV parameters with an adjustment using the equation `y' = polynomialY[0] + polynomialY[1]*y + polynomialY[2]*y^3`.
+    ///
+    /// The values are in a CFArray of three CFNumbers(float) in the order polynomialY[0], polynomialY[1]
+    /// &
+    /// polynomialY[2].
+    /// The polynomial transform origin is at the center of the frame. The default values of elements of polynomialY[] are [0.0, 1.0, 0.0].
+    ///
+    ///
+    ///
+    /// Specifies the outer limit of the calibration validity in degrees of angle eccentric from the optical axis.
+    ///
+    /// The value is linked to radial distortion corrections with k1 and k2.
+    ///
+    ///
+    ///
+    /// Specifies the 3x3 camera intrinsic matrix for camera calibration.
+    ///
+    /// Camera intrinsic matrix is a CFData containing a matrix_float3x3, which is column-major. Each element is in IEEE754 native-endian 32-bit floating point. It has the following contents:
+    /// fx    s    cx
+    /// 0    fy    cy
+    /// 0    0    1
+    /// fx and fy are the focal length in pixels. For square pixels, they will have the same value.
+    /// cx and cy are the coordinates of the principal point. The origin is the upper left of the frame.
+    /// s is an optional skew factor.
+    ///
+    ///
+    ///
+    /// Specifies the offset of the point of perspective relative to the rectilinear projection.
+    ///
+    ///
+    ///
+    /// Specifies the image dimensions to which the camera’s intrinsic matrix values are relative.
+    ///
+    /// Values are width and height in a CFDictionary. Dictionary keys are compatible with CGSize dictionary, namely "Width" and "Height".
+    ///
+    ///
+    ///
+    /// Identifies how the origin of the camera system's extrinsics are determined.
+    ///
+    /// The 'blin' value indicates the center of transform is determined by the point mid way along the dimensions indicated by the StereoCameraSystemBaselineBox held in the StereoCameraSystemBox.
+    /// Each left and right lens within a stereoscopic camera system is equidistant from this point, so the 'blin' value is halved when associated with the respective left and right lenses.
+    ///
+    ///
+    ///
+    /// Specifies a camera’s orientation to a world or scene coordinate system. The orientation value is a unit quaternion(ix, iy, and iz) instead of the classical 3x3 matrix.
+    ///
+    /// The values are in a CFArray of three CFNumbers in ix, iy, and iz order.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_lensalgorithmkind?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_LensAlgorithmKind: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibrationlensalgorithmkind_parametriclens?language=objc)
+    pub static kCMFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens:
+        &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_lensdomain?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_LensDomain: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibrationlensdomain_color?language=objc)
+    pub static kCMFormatDescriptionCameraCalibrationLensDomain_Color: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_lensidentifier?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_LensIdentifier: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_lensrole?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_LensRole: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibrationlensrole_mono?language=objc)
+    pub static kCMFormatDescriptionCameraCalibrationLensRole_Mono: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibrationlensrole_left?language=objc)
+    pub static kCMFormatDescriptionCameraCalibrationLensRole_Left: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibrationlensrole_right?language=objc)
+    pub static kCMFormatDescriptionCameraCalibrationLensRole_Right: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_lensdistortions?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_LensDistortions: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_lensframeadjustmentspolynomialx?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX:
+        &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_lensframeadjustmentspolynomialy?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY:
+        &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_radialanglelimit?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_RadialAngleLimit: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_intrinsicmatrix?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_IntrinsicMatrix: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_intrinsicmatrixprojectionoffset?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset:
+        &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_intrinsicmatrixreferencedimensions?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions:
+        &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_extrinsicoriginsource?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_ExtrinsicOriginSource: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibrationextrinsicoriginsource_stereocamerasystembaseline?language=objc)
+    pub static kCMFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline:
+        &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncameracalibration_extrinsicorientationquaternion?language=objc)
+    pub static kCMFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion:
+        &'static CFString;
+}
+
+extern "C" {
+    /// Indicates that the image description contains projected media data converted from an external format
+    ///
+    /// This format description extension is included if boxes containing external stereoscopic or spherical projection information were parsed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_convertedfromexternalsphericaltags?language=objc)
+    pub static kCMFormatDescriptionExtension_ConvertedFromExternalSphericalTags: &'static CFString;
 }
 
 extern "C-unwind" {

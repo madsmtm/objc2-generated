@@ -42,6 +42,10 @@ extern_class!(
     pub struct PHLivePhoto;
 );
 
+unsafe impl Send for PHLivePhoto {}
+
+unsafe impl Sync for PHLivePhoto {}
+
 extern_conformance!(
     unsafe impl NSCoding for PHLivePhoto {}
 );

@@ -54,6 +54,22 @@ impl PKInkingTool {
             width: CGFloat,
         ) -> Retained<Self>;
 
+        #[cfg(all(
+            feature = "PKInkType",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
+        #[cfg(target_os = "macos")]
+        #[unsafe(method(initWithInkType:color:width:azimuth:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithInkType_color_width_azimuth(
+            this: Allocated<Self>,
+            r#type: &PKInkType,
+            color: &NSColor,
+            width: CGFloat,
+            angle: CGFloat,
+        ) -> Retained<Self>;
+
         #[cfg(all(feature = "PKInkType", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[unsafe(method(initWithInkType:color:))]
@@ -114,6 +130,12 @@ impl PKInkingTool {
         #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The base angle of the ink.
+        #[unsafe(method(azimuth))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn azimuth(&self) -> CGFloat;
 
         #[cfg(feature = "PKInk")]
         /// The ink that this tool will create strokes with.

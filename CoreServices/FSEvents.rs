@@ -35,6 +35,8 @@ pub const kFSEventStreamCreateFlagUseExtendedData: c_uint = 0x00000040;
 pub const kFSEventStreamCreateFlagFullHistory: c_uint = 0x00000080;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kfseventstreamcreatewithdocid?language=objc)
 pub const kFSEventStreamCreateWithDocID: c_uint = 0x00000100;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kfseventstreamcreatedevicestate?language=objc)
+pub const kFSEventStreamCreateDeviceState: c_uint = 0x00000200;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreameventflags?language=objc)
 pub type FSEventStreamEventFlags = u32;

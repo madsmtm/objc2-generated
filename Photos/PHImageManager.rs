@@ -440,6 +440,10 @@ extern_class!(
     pub struct PHImageManager;
 );
 
+unsafe impl Send for PHImageManager {}
+
+unsafe impl Sync for PHImageManager {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for PHImageManager {}
 );
@@ -589,17 +593,23 @@ extern_class!(
     pub struct PHCachingImageManager;
 );
 
+unsafe impl Send for PHCachingImageManager {}
+
+unsafe impl Sync for PHCachingImageManager {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for PHCachingImageManager {}
 );
 
 impl PHCachingImageManager {
     extern_methods!(
+        #[deprecated = "This property is unused and will be removed in a future release"]
         #[unsafe(method(allowsCachingHighQualityImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCachingHighQualityImages(&self) -> bool;
 
         /// Setter for [`allowsCachingHighQualityImages`][Self::allowsCachingHighQualityImages].
+        #[deprecated = "This property is unused and will be removed in a future release"]
         #[unsafe(method(setAllowsCachingHighQualityImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCachingHighQualityImages(

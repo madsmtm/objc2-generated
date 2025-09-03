@@ -121,9 +121,9 @@ pub type MTLCoordinate2D = MTLSamplePosition;
 
 // TODO: pub fn MTLCoordinate2DMake(x: c_float,y: c_float,) -> MTLCoordinate2D;
 
-/// Handle of the GPU resource suitable for storing in an Argument Buffer
+/// Handle of the GPU resource used for binding resources to argument tables, navigating resource view pools and storing resources in an argument buffer
 ///
-/// A MTLResourceID represents a specific GPU resource, mutating this handle is undefined unless the mutation results in the value equalling an already existing handle of the same resource type.
+/// MTLResourceID represents a specific GPU resource. This handle can be mutated by modifying textureID or samplerID values to get to individual resource views in a resource view pool.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceid?language=objc)
 #[repr(C)]

@@ -17,6 +17,8 @@ bitflags::bitflags! {
         const Walking = 1<<1;
         #[doc(alias = "MKDirectionsTransportTypeTransit")]
         const Transit = 1<<2;
+        #[doc(alias = "MKDirectionsTransportTypeCycling")]
+        const Cycling = 1<<3;
         #[doc(alias = "MKDirectionsTransportTypeAny")]
         const Any = 0x0FFFFFFF;
     }

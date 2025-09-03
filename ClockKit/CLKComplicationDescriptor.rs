@@ -13,6 +13,10 @@ extern_class!(
     pub struct CLKComplicationDescriptor;
 );
 
+unsafe impl Send for CLKComplicationDescriptor {}
+
+unsafe impl Sync for CLKComplicationDescriptor {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for CLKComplicationDescriptor {}
 );

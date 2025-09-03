@@ -613,6 +613,18 @@ impl PDFAnnotation {
         #[unsafe(method_family = none)]
         pub unsafe fn setButtonWidgetStateString(&self, button_widget_state_string: &NSString);
 
+        #[unsafe(method(signatureAnnotationForRendering))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn signatureAnnotationForRendering(&self) -> Option<Retained<AnyObject>>;
+
+        /// Setter for [`signatureAnnotationForRendering`][Self::signatureAnnotationForRendering].
+        #[unsafe(method(setSignatureAnnotationForRendering:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSignatureAnnotationForRendering(
+            &self,
+            signature_annotation_for_rendering: Option<&AnyObject>,
+        );
+
         #[unsafe(method(isOpen))]
         #[unsafe(method_family = none)]
         pub unsafe fn isOpen(&self) -> bool;

@@ -46,6 +46,33 @@ impl LAPolicy {
     /// not end the authentication. Instead, it switches the authentication mechanism to user password.
     #[doc(alias = "LAPolicyDeviceOwnerAuthentication")]
     pub const DeviceOwnerAuthentication: Self = Self(2);
+    /// Device owner will be authenticated by a companion device e.g. Watch, Mac, etc.
+    ///
+    ///
+    /// Companion authentication is required. If no nearby paired companion device can be found,
+    /// LAErrorCompanionNotAvailable is returned.
+    ///
+    /// Users should follow instructions on the companion device to authenticate.
+    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithCompanion")]
+    pub const DeviceOwnerAuthenticationWithCompanion: Self = Self(3);
+    /// Device owner will be authenticated by biometry or a companion device e.g. Watch, Mac, etc.
+    ///
+    ///
+    /// Companion or biometric authentication is required. If no nearby paired companion device can be found,
+    /// it behaves as LAPolicyDeviceOwnerAuthenticationWithBiometrics. Similarly, if biometry is
+    /// unavailable it behaves as LAPolicyDeviceOwnerAuthenticationWithCompanion.
+    ///
+    /// Depending on the companion type and biometry and companion availability,
+    /// either a user is asked to authenticate with biometry and on a companion device in parallel
+    /// or the companion authentication takes precedence
+    /// and a user is asked to authenticate exclusively on the companion device if available.
+    /// Users should follow instructions on the companion device to authenticate.
+    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion")]
+    pub const DeviceOwnerAuthenticationWithBiometricsOrCompanion: Self = Self(4);
+    /// Device owner will be authenticated by device passcode. The authentication will also succeed if the wrist detection is enabled,
+    /// correct passcode was entered in the past and the watch has been on the wrist ever since.
+    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWristDetection")]
+    pub const DeviceOwnerAuthenticationWithWristDetection: Self = Self(5);
     /// Device owner will be authenticated by Watch.
     ///
     ///
@@ -57,15 +84,6 @@ impl LAPolicy {
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWatch")]
     #[deprecated]
     pub const DeviceOwnerAuthenticationWithWatch: Self = Self(3);
-    /// Device owner will be authenticated by a companion device e.g. Watch, Mac, etc.
-    ///
-    ///
-    /// Companion authentication is required. If no nearby paired companion device can be found,
-    /// LAErrorCompanionNotAvailable is returned.
-    ///
-    /// Users should follow instructions on the companion device to authenticate.
-    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithCompanion")]
-    pub const DeviceOwnerAuthenticationWithCompanion: Self = Self(3);
     /// Device owner will be authenticated by biometry or Watch.
     ///
     ///
@@ -79,21 +97,6 @@ impl LAPolicy {
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch")]
     #[deprecated]
     pub const DeviceOwnerAuthenticationWithBiometricsOrWatch: Self = Self(4);
-    /// Device owner will be authenticated by biometry or a companion device e.g. Watch, Mac, etc.
-    ///
-    ///
-    /// Companion or biometric authentication is required. If no nearby paired companion device can be found,
-    /// it behaves as LAPolicyDeviceOwnerAuthenticationWithBiometrics. Similarly, if biometry is
-    /// unavailable it behaves as LAPolicyDeviceOwnerAuthenticationWithCompanion.
-    ///
-    /// When both mechanisms are available, user is asked to use biometry and companion authentication
-    /// will run in parallel. Users should follow instructions on the companion device to authenticate.
-    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion")]
-    pub const DeviceOwnerAuthenticationWithBiometricsOrCompanion: Self = Self(4);
-    /// Device owner will be authenticated by device passcode. The authentication will also succeed if the wrist detection is enabled,
-    /// correct passcode was entered in the past and the watch has been on the wrist ever since.
-    #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWristDetection")]
-    pub const DeviceOwnerAuthenticationWithWristDetection: Self = Self(5);
 }
 
 unsafe impl Encode for LAPolicy {

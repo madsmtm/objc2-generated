@@ -71,6 +71,21 @@ impl UINavigationBarAppearance {
         #[unsafe(method_family = none)]
         pub unsafe fn setTitlePositionAdjustment(&self, title_position_adjustment: UIOffset);
 
+        /// The default text attributes to apply to the subtitle rendered in the navigation bar.
+        #[unsafe(method(subtitleTextAttributes))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn subtitleTextAttributes(
+            &self,
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
+
+        /// Setter for [`subtitleTextAttributes`][Self::subtitleTextAttributes].
+        #[unsafe(method(setSubtitleTextAttributes:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSubtitleTextAttributes(
+            &self,
+            subtitle_text_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
+        );
+
         /// Large Title text attributes. If the font or color are unspecified, appropriate defaults are supplied.
         #[unsafe(method(largeTitleTextAttributes))]
         #[unsafe(method_family = none)]
@@ -86,6 +101,22 @@ impl UINavigationBarAppearance {
             large_title_text_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         );
 
+        /// The default text attributes to apply to the subtitle when it’s rendered under
+        /// the large title.
+        #[unsafe(method(largeSubtitleTextAttributes))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn largeSubtitleTextAttributes(
+            &self,
+        ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
+
+        /// Setter for [`largeSubtitleTextAttributes`][Self::largeSubtitleTextAttributes].
+        #[unsafe(method(setLargeSubtitleTextAttributes:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLargeSubtitleTextAttributes(
+            &self,
+            large_subtitle_text_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
+        );
+
         #[cfg(feature = "UIBarButtonItemAppearance")]
         /// The appearance for plain-style bar button items
         #[unsafe(method(buttonAppearance))]
@@ -99,18 +130,21 @@ impl UINavigationBarAppearance {
         pub unsafe fn setButtonAppearance(&self, button_appearance: &UIBarButtonItemAppearance);
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
-        /// The appearance for done-style bar button items
-        #[unsafe(method(doneButtonAppearance))]
+        /// The appearance attributes for Prominent buttons.
+        ///
+        /// Use this property to configure the appearance of bar button items that use `UIBarButtonItemStyleProminent`.
+        /// If the navigation bar doesn't have any buttons using this style, this property has no effect.
+        #[unsafe(method(prominentButtonAppearance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doneButtonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
+        pub unsafe fn prominentButtonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
-        /// Setter for [`doneButtonAppearance`][Self::doneButtonAppearance].
-        #[unsafe(method(setDoneButtonAppearance:))]
+        /// Setter for [`prominentButtonAppearance`][Self::prominentButtonAppearance].
+        #[unsafe(method(setProminentButtonAppearance:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDoneButtonAppearance(
+        pub unsafe fn setProminentButtonAppearance(
             &self,
-            done_button_appearance: &UIBarButtonItemAppearance,
+            prominent_button_appearance: &UIBarButtonItemAppearance,
         );
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
@@ -152,6 +186,23 @@ impl UINavigationBarAppearance {
             &self,
             back_indicator_image: Option<&UIImage>,
             back_indicator_transition_mask_image: Option<&UIImage>,
+        );
+
+        #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// The appearance for done-style bar button items
+        #[deprecated]
+        #[unsafe(method(doneButtonAppearance))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn doneButtonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
+
+        #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// Setter for [`doneButtonAppearance`][Self::doneButtonAppearance].
+        #[deprecated]
+        #[unsafe(method(setDoneButtonAppearance:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDoneButtonAppearance(
+            &self,
+            done_button_appearance: &UIBarButtonItemAppearance,
         );
     );
 }

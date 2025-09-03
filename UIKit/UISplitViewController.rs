@@ -125,6 +125,8 @@ impl UISplitViewControllerColumn {
     pub const Secondary: Self = Self(2);
     #[doc(alias = "UISplitViewControllerColumnCompact")]
     pub const Compact: Self = Self(3);
+    #[doc(alias = "UISplitViewControllerColumnInspector")]
+    pub const Inspector: Self = Self(4);
 }
 
 unsafe impl Encode for UISplitViewControllerColumn {
@@ -335,6 +337,10 @@ impl UISplitViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn showColumn(&self, column: UISplitViewControllerColumn);
 
+        #[unsafe(method(isShowingColumn:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isShowingColumn(&self, column: UISplitViewControllerColumn) -> bool;
+
         #[unsafe(method(viewControllers))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewControllers(&self) -> Retained<NSArray<UIViewController>>;
@@ -507,6 +513,104 @@ impl UISplitViewController {
         #[unsafe(method(supplementaryColumnWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn supplementaryColumnWidth(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(preferredSecondaryColumnWidthFraction))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preferredSecondaryColumnWidthFraction(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredSecondaryColumnWidthFraction`][Self::preferredSecondaryColumnWidthFraction].
+        #[unsafe(method(setPreferredSecondaryColumnWidthFraction:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPreferredSecondaryColumnWidthFraction(
+            &self,
+            preferred_secondary_column_width_fraction: CGFloat,
+        );
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(preferredSecondaryColumnWidth))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preferredSecondaryColumnWidth(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredSecondaryColumnWidth`][Self::preferredSecondaryColumnWidth].
+        #[unsafe(method(setPreferredSecondaryColumnWidth:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPreferredSecondaryColumnWidth(
+            &self,
+            preferred_secondary_column_width: CGFloat,
+        );
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(minimumSecondaryColumnWidth))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn minimumSecondaryColumnWidth(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumSecondaryColumnWidth`][Self::minimumSecondaryColumnWidth].
+        #[unsafe(method(setMinimumSecondaryColumnWidth:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMinimumSecondaryColumnWidth(
+            &self,
+            minimum_secondary_column_width: CGFloat,
+        );
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(preferredInspectorColumnWidthFraction))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preferredInspectorColumnWidthFraction(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredInspectorColumnWidthFraction`][Self::preferredInspectorColumnWidthFraction].
+        #[unsafe(method(setPreferredInspectorColumnWidthFraction:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPreferredInspectorColumnWidthFraction(
+            &self,
+            preferred_inspector_column_width_fraction: CGFloat,
+        );
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(preferredInspectorColumnWidth))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preferredInspectorColumnWidth(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredInspectorColumnWidth`][Self::preferredInspectorColumnWidth].
+        #[unsafe(method(setPreferredInspectorColumnWidth:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPreferredInspectorColumnWidth(
+            &self,
+            preferred_inspector_column_width: CGFloat,
+        );
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(minimumInspectorColumnWidth))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn minimumInspectorColumnWidth(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumInspectorColumnWidth`][Self::minimumInspectorColumnWidth].
+        #[unsafe(method(setMinimumInspectorColumnWidth:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMinimumInspectorColumnWidth(
+            &self,
+            minimum_inspector_column_width: CGFloat,
+        );
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(maximumInspectorColumnWidth))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumInspectorColumnWidth(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumInspectorColumnWidth`][Self::maximumInspectorColumnWidth].
+        #[unsafe(method(setMaximumInspectorColumnWidth:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMaximumInspectorColumnWidth(
+            &self,
+            maximum_inspector_column_width: CGFloat,
+        );
 
         #[unsafe(method(primaryEdge))]
         #[unsafe(method_family = none)]
@@ -785,6 +889,26 @@ extern_protocol!(
         #[unsafe(method(splitViewController:willHideColumn:))]
         #[unsafe(method_family = none)]
         unsafe fn splitViewController_willHideColumn(
+            &self,
+            svc: &UISplitViewController,
+            column: UISplitViewControllerColumn,
+        );
+
+        #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        #[optional]
+        #[unsafe(method(splitViewController:didShowColumn:))]
+        #[unsafe(method_family = none)]
+        unsafe fn splitViewController_didShowColumn(
+            &self,
+            svc: &UISplitViewController,
+            column: UISplitViewControllerColumn,
+        );
+
+        #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        #[optional]
+        #[unsafe(method(splitViewController:didHideColumn:))]
+        #[unsafe(method_family = none)]
+        unsafe fn splitViewController_didHideColumn(
             &self,
             svc: &UISplitViewController,
             column: UISplitViewControllerColumn,

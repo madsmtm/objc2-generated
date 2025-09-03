@@ -3089,6 +3089,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyopenexrcompression?language=objc)
+    pub static kCGImagePropertyOpenEXRCompression: &'static CFString;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyopenexraspectratio?language=objc)
     pub static kCGImagePropertyOpenEXRAspectRatio: &'static CFString;
 }

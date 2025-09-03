@@ -52,6 +52,36 @@ impl PKIdentityElement {
         #[unsafe(method_family = none)]
         pub unsafe fn addressElement() -> Retained<PKIdentityElement>;
 
+        /// The user's height on record with the issuer.
+        #[unsafe(method(heightElement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn heightElement() -> Retained<PKIdentityElement>;
+
+        /// The user's weight on record with the issuer.
+        #[unsafe(method(weightElement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn weightElement() -> Retained<PKIdentityElement>;
+
+        /// The user's eye color on record with the issuer.
+        #[unsafe(method(eyeColorElement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn eyeColorElement() -> Retained<PKIdentityElement>;
+
+        /// The user's hair color on record with the issuer.
+        #[unsafe(method(hairColorElement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hairColorElement() -> Retained<PKIdentityElement>;
+
+        /// The user's organ donor status on record with the issuer.
+        #[unsafe(method(organDonorStatusElement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn organDonorStatusElement() -> Retained<PKIdentityElement>;
+
+        /// The user's veteran status on record with the issuer.
+        #[unsafe(method(veteranStatusElement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn veteranStatusElement() -> Retained<PKIdentityElement>;
+
         /// The state or government that issued the identity document.
         #[unsafe(method(issuingAuthorityElement))]
         #[unsafe(method_family = none)]
@@ -76,7 +106,7 @@ impl PKIdentityElement {
         #[unsafe(method_family = none)]
         pub unsafe fn documentDHSComplianceStatusElement() -> Retained<PKIdentityElement>;
 
-        /// The doument's number, as defined by the document's issuing authority.
+        /// The document's number, as defined by the document's issuing authority.
         #[unsafe(method(documentNumberElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn documentNumberElement() -> Retained<PKIdentityElement>;

@@ -51,7 +51,7 @@ impl UITabSidebarItem {
         pub unsafe fn configurationState(&self) -> Retained<UICellConfigurationState>;
 
         #[cfg(feature = "UIContentConfiguration")]
-        /// The content coinfiguration to use when displaying this item.
+        /// The content configuration to use when displaying this item.
         #[unsafe(method(contentConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentConfiguration(

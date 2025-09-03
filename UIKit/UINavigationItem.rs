@@ -72,11 +72,23 @@ impl UINavigationItemSearchBarPlacement {
     #[doc(alias = "UINavigationItemSearchBarPlacementAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The navigation bar will place the search bar inline with other content, on the trailing edge.
-    #[doc(alias = "UINavigationItemSearchBarPlacementInline")]
-    pub const Inline: Self = Self(1);
+    /// On iPhone, when the navigation bar belongs to a UINavigationController, the search bar may be integrated into the toolbar.
+    #[doc(alias = "UINavigationItemSearchBarPlacementIntegrated")]
+    pub const Integrated: Self = Self(1);
     /// The navigation bar will place the search bar vertically stacked with other content.
     #[doc(alias = "UINavigationItemSearchBarPlacementStacked")]
     pub const Stacked: Self = Self(2);
+    /// Placement is the same as Integrated, except that in regular width on iPad, the search bar is centered in the navigation bar.
+    /// Only respected when used in a view controller that is a descendant of a tab bar controller or when using a navigation item style that requires a leading aligned title
+    #[doc(alias = "UINavigationItemSearchBarPlacementIntegratedCentered")]
+    pub const IntegratedCentered: Self = Self(3);
+    /// Placement is the same as Integrated, except that the inactive search bar is always shown as a button even when space permits a search field.
+    #[doc(alias = "UINavigationItemSearchBarPlacementIntegratedButton")]
+    pub const IntegratedButton: Self = Self(4);
+    /// Placement is the same as Integrated, except that the inactive search bar is always shown as a button even when space permits a search field.
+    #[doc(alias = "UINavigationItemSearchBarPlacementInline")]
+    #[deprecated]
+    pub const Inline: Self = Self(UINavigationItemSearchBarPlacement::Integrated.0);
 }
 
 unsafe impl Encode for UINavigationItemSearchBarPlacement {
@@ -202,6 +214,18 @@ impl UINavigationItem {
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
+        /// An attributed string that is rendered as the title in the navigation bar.
+        ///
+        /// If `titleView` is non-nil, this property is ignored.
+        #[unsafe(method(attributedTitle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
+
+        /// Setter for [`attributedTitle`][Self::attributedTitle].
+        #[unsafe(method(setAttributedTitle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
+
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Custom view to use in lieu of a title. May be sized horizontally. Only used when item is topmost on the stack.
         #[unsafe(method(titleView))]
@@ -213,6 +237,109 @@ impl UINavigationItem {
         #[unsafe(method(setTitleView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleView(&self, title_view: Option<&UIView>);
+
+        /// A string to display as the subtitle in the navigation bar.
+        ///
+        /// If `attributedSubtitle` is `non-nil`, this property just returns the `String`
+        /// representation of the `attributedString`.
+        /// If `subtitleView` is non-nil, this property is ignored.
+        #[unsafe(method(subtitle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`subtitle`][Self::subtitle].
+        #[unsafe(method(setSubtitle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
+
+        /// An attributed string to display as the subtitle in the navigation bar.
+        ///
+        /// If non-nil, this property takes precedence over the `subtitle` property.
+        /// If `subtitleView` is non-nil, this property is ignored.
+        /// If `titleView` is non-nil, this property is ignored.
+        #[unsafe(method(attributedSubtitle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn attributedSubtitle(&self) -> Option<Retained<NSAttributedString>>;
+
+        /// Setter for [`attributedSubtitle`][Self::attributedSubtitle].
+        #[unsafe(method(setAttributedSubtitle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAttributedSubtitle(
+            &self,
+            attributed_subtitle: Option<&NSAttributedString>,
+        );
+
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// A custom view to display below the title in the navigation bar.
+        ///
+        /// If non-nil, this property takes precedence over the `subtitle` and `attributedSubtitle` properties.
+        /// The view's layout constraints will determine its size, or the view may override `sizeThatFits(_:)`
+        /// to return its desired size.
+        #[unsafe(method(subtitleView))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn subtitleView(&self) -> Option<Retained<UIView>>;
+
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Setter for [`subtitleView`][Self::subtitleView].
+        #[unsafe(method(setSubtitleView:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSubtitleView(&self, subtitle_view: Option<&UIView>);
+
+        /// String to be used as the large title.
+        ///
+        /// When `nil`, the navigation bar will use the navigation item's current title.
+        #[unsafe(method(largeTitle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn largeTitle(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`largeTitle`][Self::largeTitle].
+        #[unsafe(method(setLargeTitle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLargeTitle(&self, large_title: Option<&NSString>);
+
+        /// String to be rendered below the large title.
+        ///
+        /// When `nil`, the navigation bar will fall back to the `subtitle`.
+        #[unsafe(method(largeSubtitle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn largeSubtitle(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`largeSubtitle`][Self::largeSubtitle].
+        #[unsafe(method(setLargeSubtitle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLargeSubtitle(&self, large_subtitle: Option<&NSString>);
+
+        /// An attributed string to be rendered below the large title.
+        ///
+        /// When `nil`, the navigation bar will fall back to the `largeSubtitle`.
+        /// If a `largeSubtitleView` is set, this property is ignored.
+        #[unsafe(method(largeAttributedSubtitle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn largeAttributedSubtitle(&self) -> Option<Retained<NSAttributedString>>;
+
+        /// Setter for [`largeAttributedSubtitle`][Self::largeAttributedSubtitle].
+        #[unsafe(method(setLargeAttributedSubtitle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLargeAttributedSubtitle(
+            &self,
+            large_attributed_subtitle: Option<&NSAttributedString>,
+        );
+
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// A custom view to display below the large title.
+        ///
+        /// When non-nil, this takes precedence over any other subtitle.
+        /// The view's layout constraints will determine its size, or the view may override `sizeThatFits(_:)`
+        /// to return its desired size.
+        #[unsafe(method(largeSubtitleView))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn largeSubtitleView(&self) -> Option<Retained<UIView>>;
+
+        #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Setter for [`largeSubtitleView`][Self::largeSubtitleView].
+        #[unsafe(method(setLargeSubtitleView:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLargeSubtitleView(&self, large_subtitle_view: Option<&UIView>);
 
         /// Explanatory text to display above the navigation bar buttons.
         #[unsafe(method(prompt))]
@@ -579,7 +706,7 @@ impl UINavigationItem {
         pub unsafe fn setSearchController(&self, search_controller: Option<&UISearchController>);
 
         /// If this property is true (the default), the searchController’s search bar will hide as the user scrolls in the top view controller’s scroll view. If false, the search bar will remain visible and pinned underneath the navigation bar.
-        /// Not appicable and ignored for UINavigationItemSearchBarPlacementInline
+        /// Not applicable and ignored for `UINavigationItemSearchBarPlacementIntegrated`
         #[unsafe(method(hidesSearchBarWhenScrolling))]
         #[unsafe(method_family = none)]
         pub unsafe fn hidesSearchBarWhenScrolling(&self) -> bool;
@@ -606,6 +733,49 @@ impl UINavigationItem {
         #[unsafe(method(searchBarPlacement))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchBarPlacement(&self) -> UINavigationItemSearchBarPlacement;
+
+        #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// When `searchBarPlacement` is `.integrated` or `.integratedButton` and a search controller is present, use this bar button item in the view controller's `toolbarItems` to control the placement of the search bar among them when the search bar is appearing in the UIToolbar on iPhone.
+        /// Without this bar button item, the positioning for the search bar defaults to trailingmost for the UIToolbar case.
+        /// This bar button item will be ignored during toolbar layout if `searchController` is `nil`.
+        /// UIBarButtonItemGroup will throw an NSInvalidArgumentException when this bar button item is included in its initialization.
+        /// UINavigationItem will throw an NSInvalidArgumentException when this bar button item is included in leftBarButtonItems or rightBarButtonItems.
+        #[unsafe(method(searchBarPlacementBarButtonItem))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn searchBarPlacementBarButtonItem(&self) -> Retained<UIBarButtonItem>;
+
+        /// Defaults to `YES`
+        /// Set to `NO` to prevent the search bar from being placed among other UIToolbar items on iPhone
+        #[unsafe(method(searchBarPlacementAllowsToolbarIntegration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn searchBarPlacementAllowsToolbarIntegration(&self) -> bool;
+
+        /// Setter for [`searchBarPlacementAllowsToolbarIntegration`][Self::searchBarPlacementAllowsToolbarIntegration].
+        #[unsafe(method(setSearchBarPlacementAllowsToolbarIntegration:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSearchBarPlacementAllowsToolbarIntegration(
+            &self,
+            search_bar_placement_allows_toolbar_integration: bool,
+        );
+
+        /// `AllowsExternalIntegration` means that something at a higher scope may take the search bar and integrate it somewhere other than the navigation bar (or toolbar) directly associated with this navigation item.
+        /// On iOS 19, UISplitViewController uses this to allow Mac-like placement of the search bar on iPad.
+        /// Defaults to `NO`
+        /// Set to `YES` to allow the containing UISplitViewController to place the search bar in the navigation bar for the trailingmost column independent of the column used for this view controller.
+        /// Ignored when `searchController` is `nil`, when `searchBarPlacement` is `.stacked`, or when not contained in a UISplitViewController.
+        /// When the top view controller's navigation item has this property set to `YES` in more than one column at the same time, only one will be respected; the columns are checked in order of `.inspector`, `.secondary`, `.supplementary`, `.primary`
+        /// If the search bar has a scope bar, the scope bar will not be moved into a different column.
+        #[unsafe(method(searchBarPlacementAllowsExternalIntegration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn searchBarPlacementAllowsExternalIntegration(&self) -> bool;
+
+        /// Setter for [`searchBarPlacementAllowsExternalIntegration`][Self::searchBarPlacementAllowsExternalIntegration].
+        #[unsafe(method(setSearchBarPlacementAllowsExternalIntegration:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSearchBarPlacementAllowsExternalIntegration(
+            &self,
+            search_bar_placement_allows_external_integration: bool,
+        );
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// When set and this item is topmost, overrides the hosting navigation bar's standardAppearance. See UINavigationBar.standardAppearance for further details.

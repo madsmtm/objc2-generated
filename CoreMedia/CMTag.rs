@@ -316,6 +316,8 @@ impl CMProjectionType {
     pub const HalfEquirectangular: Self = Self(0x68657175);
     #[doc(alias = "kCMProjectionType_Fisheye")]
     pub const Fisheye: Self = Self(0x66697368);
+    #[doc(alias = "kCMProjectionType_ParametricImmersive")]
+    pub const ParametricImmersive: Self = Self(0x7072696d);
 }
 
 #[cfg(feature = "objc2")]
@@ -356,9 +358,16 @@ extern "C" {
     pub static kCMTagProjectionTypeFisheye: CMTag;
 }
 
+extern "C" {
+    /// A CMTag of category kCMTagCategory_ProjectionType and the value kCMTagProjectionType_ParametricImmersive (OSType).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagprojectiontypeparametricimmersive?language=objc)
+    pub static kCMTagProjectionTypeParametricImmersive: CMTag;
+}
+
 /// Constants used with kCMTagCategory_PackingType to signal the nature of any packing applied in a buffer or channel.
 ///
-/// A video packing can be one of several types including frame-packing for stereo views or texture atlasing. A CMTag having a CMTagCategory of kCMTagCategory_ProjectionType has a value that is an OSType indicating the kind of packing using a kCMPackingType_* constant.  Examples of frame-packing include side-by-side and over-under packing, There may be related CMTags if a kind of packing requires additional parameters. The requirements will be documented with the specific kind of packing.
+/// A video packing can be one of several types including frame-packing for stereo views or texture atlasing. A CMTag having a CMTagCategory of kCMTagCategory_PackingType has a value that is an OSType indicating the kind of packing using a kCMPackingType_* constant.  Examples of frame-packing include side-by-side and over-under packing, There may be related CMTags if a kind of packing requires additional parameters. The requirements will be documented with the specific kind of packing.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpackingtype?language=objc)
 // NS_ENUM

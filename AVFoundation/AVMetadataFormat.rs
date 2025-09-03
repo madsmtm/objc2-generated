@@ -694,6 +694,34 @@ extern "C" {
 }
 
 extern "C" {
+    /// A value of type `kCMMetadataBaseDataType_UInt8` indicating whether this movie is intended as a Cinematic Video (1) or not (0).
+    ///
+    /// This movie-level metadata is automatically added (with a value of 1) to a movie recorded using the Cinematic Video API. Clients can override it with a value of 0 to signal that this movie is not to be treated as a Cinematic Video by Apple's software like Photos.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeycinematicvideointent?language=objc)
+    pub static AVMetadataQuickTimeMetadataKeyCinematicVideoIntent: Option<&'static AVMetadataKey>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the lens model (e.g. "iPhone 16 Pro back camera 6.765mm f/1.78").
+    ///
+    /// This is track-level metadata for video track that is associated with the camera.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeycameralensmodel?language=objc)
+    pub static AVMetadataQuickTimeMetadataKeyCameraLensModel: Option<&'static AVMetadataKey>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating focal length normalized to the 35mm film equivalent value (e.g. "50.00mm").
+    ///
+    /// This is track-level metadata for video track that is associated with the camera.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeycamerafocallength35mmequivalent?language=objc)
+    pub static AVMetadataQuickTimeMetadataKeyCameraFocalLength35mmEquivalent:
+        Option<&'static AVMetadataKey>;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformatitunesmetadata?language=objc)
     pub static AVMetadataFormatiTunesMetadata: Option<&'static AVMetadataFormat>;
 }
@@ -1421,7 +1449,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspaceicy?language=objc)
+    /// Icecast/ShoutCAST streaming metadata
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspaceicy?language=objc)
     pub static AVMetadataKeySpaceIcy: Option<&'static AVMetadataKeySpace>;
 }
 
@@ -1436,26 +1466,38 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformathlsmetadata?language=objc)
+    /// HTTP Live Streaming metadata
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformathlsmetadata?language=objc)
     pub static AVMetadataFormatHLSMetadata: Option<&'static AVMetadataFormat>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspacehlsdaterange?language=objc)
+    /// HLS Metadata does not define its own keySpace or keys. Use of the keySpace AVMetadataKeySpaceQuickTimeMetadata and its keys is recommended.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspacehlsdaterange?language=objc)
     pub static AVMetadataKeySpaceHLSDateRange: Option<&'static AVMetadataKeySpace>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspaceaudiofile?language=objc)
+    /// Keys for metadata provided by AudioToolbox's AudioFile interface. See
+    /// <AudioToolbox
+    /// /AudioFile.h>
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspaceaudiofile?language=objc)
     pub static AVMetadataKeySpaceAudioFile: Option<&'static AVMetadataKeySpace>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformatunknown?language=objc)
+    /// Metadata format for AVMetadataItems of unknown provenance. This can occur when metadata is provided generically by an intermediate interface, such as AudioToolbox's AudioFile interface.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformatunknown?language=objc)
     pub static AVMetadataFormatUnknown: Option<&'static AVMetadataFormat>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributekey?language=objc)
+/// Extra attribute keys
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributekey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type AVMetadataExtraAttributeKey = NSString;
 
@@ -1474,8 +1516,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// More information about the item; specific to the
-    /// item keySpace
+    /// More information about the item; specific to the item keySpace
     /// &
     /// key.
     ///

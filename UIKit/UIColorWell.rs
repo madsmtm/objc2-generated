@@ -161,6 +161,28 @@ impl UIColorWell {
         #[unsafe(method(setSelectedColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedColor(&self, selected_color: Option<&UIColor>);
+
+        /// If set to `NO` the eyedropper functionality is not supported for this color well.
+        #[unsafe(method(supportsEyedropper))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportsEyedropper(&self) -> bool;
+
+        /// Setter for [`supportsEyedropper`][Self::supportsEyedropper].
+        #[unsafe(method(setSupportsEyedropper:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSupportsEyedropper(&self, supports_eyedropper: bool);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The maximum exposure to apply to a color when returned by the color well.
+        #[unsafe(method(maximumLinearExposure))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumLinearExposure(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumLinearExposure`][Self::maximumLinearExposure].
+        #[unsafe(method(setMaximumLinearExposure:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
     );
 }
 
@@ -196,14 +218,20 @@ impl UIColorWell {
     );
 }
 
-/// Methods declared on superclass `NSObject`.
+/// Methods declared on superclass `UIView`.
 #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
 impl UIColorWell {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
 
+/// Methods declared on superclass `NSObject`.
+#[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
+impl UIColorWell {
+    extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;

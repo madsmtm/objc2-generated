@@ -87,7 +87,8 @@ impl ARGeoAnchor {
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
         #[cfg(feature = "ARGeoTrackingTypes")]
-        /// The source of altitude information. If the user did not provide the altitude, ARKit populates this property to indicate the expected accuracy depending on the available altitude data.
+        /// The source of altitude information. If the user did not provide the altitude, ARKit populates this property to indicate the expected accuracy
+        /// depending on the available altitude data.
         #[unsafe(method(altitudeSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn altitudeSource(&self) -> ARAltitudeSource;

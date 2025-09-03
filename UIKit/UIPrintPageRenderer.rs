@@ -32,7 +32,6 @@ unsafe impl RefEncode for UIPrintRenderingQuality {
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintpagerenderer?language=objc)
     #[unsafe(super(NSObject))]
-    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPrintPageRenderer;
 );
@@ -173,6 +172,6 @@ impl UIPrintPageRenderer {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     );
 }

@@ -11,7 +11,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontroller?language=objc)
+    /// Standard view controller for sending friend requests to other players. Present modally from the top view controller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

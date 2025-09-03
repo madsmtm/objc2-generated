@@ -121,6 +121,26 @@ unsafe impl RefEncode for cp_axis_direction_convention {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Render quality controls the quality which drawing happens at.
+///
+/// This can be used to increase the quality of what users see,
+/// however this directly impacts the memory allocated for resources
+/// which is billed to the app as well as per-frame GPU time. The app
+/// should monitor its frame rate to ensure its not regularly missing
+/// frames and will likely need to change the quality based on scene
+/// complexity that is being shown.
+///
+/// To control the memory allocated for resources
+///
+/// See: ``cp_layer_renderer_configuration_set_max_render_quality``
+/// To control the per-frame GPU cost
+///
+/// See: ``cp_layer_renderer_set_render_quality``
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_render_quality_t?language=objc)
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type cp_render_quality_t = c_float;
+
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "renamed to `cp_time::to_cf_time_interval`"]

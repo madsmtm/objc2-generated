@@ -114,6 +114,7 @@ unsafe impl RefEncode for CPTripEstimateStyle {
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPMapTemplate;
@@ -376,13 +377,13 @@ impl CPMapTemplate {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplatedelegate?language=objc)
-    pub unsafe trait CPMapTemplateDelegate: NSObjectProtocol {
+    pub unsafe trait CPMapTemplateDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "CPTemplate")]
         /// Determines if the template should provide navigation metadata.
         ///
@@ -521,6 +522,132 @@ extern_protocol!(
             &self,
             map_template: &CPMapTemplate,
             velocity: CGPoint,
+        );
+
+        #[cfg(feature = "CPTemplate")]
+        /// Tells the delegate that the zoom gesture started.
+        ///
+        /// - Parameters:
+        /// - mapTemplate: The ``CPMapTemplate`` the gesture applies to.
+        #[optional]
+        #[unsafe(method(mapTemplateDidBeginZoomGesture:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplateDidBeginZoomGesture(&self, map_template: &CPMapTemplate);
+
+        #[cfg(all(feature = "CPTemplate", feature = "objc2-core-foundation"))]
+        /// Tells the delegate that a person is zooming on the map.
+        ///
+        /// - Parameters:
+        /// - mapTemplate: The ``CPMapTemplate`` the gesture applies to.
+        /// - center: A ``CGPoint`` that indicates the center point of the zoom.
+        /// - scale: A ``CGFloat`` that indicates the scale factor relative to the zoom gesture in screen coordinates.
+        /// - velocity: The velocity of the zoom gesture in scale factor per second.
+        #[optional]
+        #[unsafe(method(mapTemplate:didUpdateZoomGestureWithCenter:scale:velocity:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didUpdateZoomGestureWithCenter_scale_velocity(
+            &self,
+            map_template: &CPMapTemplate,
+            center: CGPoint,
+            scale: CGFloat,
+            velocity: CGFloat,
+        );
+
+        #[cfg(all(feature = "CPTemplate", feature = "objc2-core-foundation"))]
+        /// Tells the delegate that a person stopped zooming the map.
+        ///
+        /// - Parameters:
+        /// - mapTemplate: The ``CPMapTemplate`` the gesture applies to.
+        /// - velocity: The velocity of the zoom gesture in scale factor per second.
+        #[optional]
+        #[unsafe(method(mapTemplate:didEndZoomGestureWithVelocity:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didEndZoomGestureWithVelocity(
+            &self,
+            map_template: &CPMapTemplate,
+            velocity: CGFloat,
+        );
+
+        #[cfg(feature = "CPTemplate")]
+        /// Tells the delegate that the rotation gesture started.
+        ///
+        /// - Parameters:
+        /// - mapTemplate: The ``CPMapTemplate`` the gesture applies to.
+        #[optional]
+        #[unsafe(method(mapTemplateDidBeginRotationGesture:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplateDidBeginRotationGesture(&self, map_template: &CPMapTemplate);
+
+        #[cfg(all(feature = "CPTemplate", feature = "objc2-core-foundation"))]
+        /// Tells the delegate that a person is rotating the map.
+        ///
+        /// - Parameters:
+        /// - mapTemplate: The ``CPMapTemplate`` the gesture applies to.
+        /// - center: A ``CGPoint`` that indicates the center between two fingers performing the rotation gesture.
+        /// - rotation: A ``CGFloat`` that indicates the rotation of the gesture in radians.
+        /// - velocity: The velocity of the rotation gesture in radians per second.
+        #[optional]
+        #[unsafe(method(mapTemplate:didRotateWithCenter:rotation:velocity:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didRotateWithCenter_rotation_velocity(
+            &self,
+            map_template: &CPMapTemplate,
+            center: CGPoint,
+            rotation: CGFloat,
+            velocity: CGFloat,
+        );
+
+        #[cfg(all(feature = "CPTemplate", feature = "objc2-core-foundation"))]
+        /// Tells the delegate that a person stopped rotating the map.
+        ///
+        /// - Parameters:
+        /// - mapTemplate: The ``CPMapTemplate`` the gesture applies to.
+        /// - velocity: The velocity of the rotation gesture in radians per second.
+        #[optional]
+        #[unsafe(method(mapTemplate:rotationDidEndWithVelocity:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_rotationDidEndWithVelocity(
+            &self,
+            map_template: &CPMapTemplate,
+            velocity: CGFloat,
+        );
+
+        #[cfg(feature = "CPTemplate")]
+        /// Tells the delegate that the pitch gesture started.
+        ///
+        /// - Parameters:
+        /// - mapTemplate: The ``CPMapTemplate`` the gesture applies to.
+        #[optional]
+        #[unsafe(method(mapTemplateDidBeginPitchGesture:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplateDidBeginPitchGesture(&self, map_template: &CPMapTemplate);
+
+        #[cfg(all(feature = "CPTemplate", feature = "objc2-core-foundation"))]
+        /// Called when a pitch gesture changes. May not be called when connected to some CarPlay systems
+        ///
+        /// Tells the delegate that a person is pitching the map.
+        ///
+        /// - Parameters:
+        /// - mapTemplate: The ``CPMapTemplate`` the gesture applies to.
+        /// - center: A ``CGPoint`` that indicates the center between two fingers performing the pitch gesture.
+        #[optional]
+        #[unsafe(method(mapTemplate:pitchWithCenter:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_pitchWithCenter(&self, map_template: &CPMapTemplate, center: CGPoint);
+
+        #[cfg(all(feature = "CPTemplate", feature = "objc2-core-foundation"))]
+        /// Tells the delegate that a person stopped pitching the map.
+        ///
+        /// - Parameters:
+        /// - mapTemplate: The ``CPMapTemplate`` the gesture applies to.
+        /// - center: A ``CGPoint`` that indicates the center between two fingers performing the pitch gesture.
+        #[optional]
+        #[unsafe(method(mapTemplate:pitchEndedWithCenter:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_pitchEndedWithCenter(
+            &self,
+            map_template: &CPMapTemplate,
+            center: CGPoint,
         );
 
         #[cfg(all(feature = "CPNavigationAlert", feature = "CPTemplate"))]

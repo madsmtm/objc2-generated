@@ -12,17 +12,22 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengestate?language=objc)
 // NS_ENUM
+#[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKChallengeState(pub NSInteger);
 impl GKChallengeState {
     #[doc(alias = "GKChallengeStateInvalid")]
+    #[deprecated]
     pub const Invalid: Self = Self(0);
     #[doc(alias = "GKChallengeStatePending")]
+    #[deprecated]
     pub const Pending: Self = Self(1);
     #[doc(alias = "GKChallengeStateCompleted")]
+    #[deprecated]
     pub const Completed: Self = Self(2);
     #[doc(alias = "GKChallengeStateDeclined")]
+    #[deprecated]
     pub const Declined: Self = Self(3);
 }
 
@@ -38,6 +43,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallenge?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated]
     pub struct GKChallenge;
 );
 
@@ -57,6 +63,7 @@ impl GKChallenge {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// Query challenges for the current game issued to the local player -- equivalent GKChallenge objects are not guaranteed to be pointer equivalent across calls, but equal GKChallenge objects will have equal hashes
+        #[deprecated]
         #[unsafe(method(loadReceivedChallengesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadReceivedChallengesWithCompletionHandler(
@@ -66,6 +73,7 @@ impl GKChallenge {
         );
 
         /// Any GKChallenge object to be declined must be in a state of GKChallengeStatePending in order to be successfully cancelled
+        #[deprecated]
         #[unsafe(method(decline))]
         #[unsafe(method_family = none)]
         pub unsafe fn decline(&self);
@@ -83,21 +91,25 @@ impl GKChallenge {
         pub unsafe fn receivingPlayer(&self) -> Option<Retained<GKPlayer>>;
 
         /// Current state of the challenge
+        #[deprecated]
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> GKChallengeState;
 
         /// Date the challenge was issued
+        #[deprecated]
         #[unsafe(method(issueDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn issueDate(&self) -> Retained<NSDate>;
 
         /// Date the challenge was completed or aborted
+        #[deprecated]
         #[unsafe(method(completionDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionDate(&self) -> Option<Retained<NSDate>>;
 
         /// The message sent to receivers of this challenge
+        #[deprecated]
         #[unsafe(method(message))]
         #[unsafe(method_family = none)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
@@ -138,6 +150,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkscorechallenge?language=objc)
     #[unsafe(super(GKChallenge, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated]
     pub struct GKScoreChallenge;
 );
 
@@ -187,6 +200,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementchallenge?language=objc)
     #[unsafe(super(GKChallenge, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated]
     pub struct GKAchievementChallenge;
 );
 
@@ -206,6 +220,7 @@ impl GKAchievementChallenge {
     extern_methods!(
         #[cfg(feature = "GKAchievement")]
         /// The achievement to achieve to satisfy this challenge
+        #[deprecated]
         #[unsafe(method(achievement))]
         #[unsafe(method_family = none)]
         pub unsafe fn achievement(&self) -> Option<Retained<GKAchievement>>;
@@ -242,6 +257,7 @@ impl GKScore {
         );
 
         #[cfg(all(feature = "GKLeaderboardScore", feature = "block2"))]
+        #[deprecated]
         #[unsafe(method(reportLeaderboardScores:withEligibleChallenges:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportLeaderboardScores_withEligibleChallenges_withCompletionHandler(
@@ -258,6 +274,7 @@ impl GKAchievement {
     extern_methods!(
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Given a list of players, return a subset of that list containing only players that are eligible to receive a challenge for the achievement.
+        #[deprecated]
         #[unsafe(method(selectChallengeablePlayers:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectChallengeablePlayers_withCompletionHandler(
@@ -270,6 +287,7 @@ impl GKAchievement {
 
         #[cfg(feature = "block2")]
         /// Use this alternative to reportAchievements:withCompletionHandler: to allow only certain specific challenges to be completed. Pass nil to avoid completing any challenges.
+        #[deprecated]
         #[unsafe(method(reportAchievements:withEligibleChallenges:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportAchievements_withEligibleChallenges_withCompletionHandler(
@@ -371,6 +389,7 @@ impl GKScore {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completion(
@@ -412,6 +431,7 @@ impl GKLeaderboardEntry {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completion(
@@ -453,6 +473,7 @@ impl GKAchievement {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completion(

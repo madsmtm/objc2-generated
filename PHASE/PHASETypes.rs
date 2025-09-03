@@ -44,6 +44,37 @@ unsafe impl RefEncode for PHASEUpdateMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Rendering Mode for a PHASE Engine.
+///
+/// A local engine is connected to an audio device and renders audio in real-time in the application process.
+/// In this mode the engine receives all its inputs from the client such as acoustic configuration.
+/// Updating an engine configured with `PHASERenderingModeLocal` executes any pending API commands locally.
+///
+/// A client engine is connected to an audio device and renders audio in real-time in a secure process.
+/// In this mode the engine receives inputs from the client and renders in a server.
+/// In supported platforms this allows the server to apply privacy sensitive effects such as room virtual acoustics, low latency head-tracking and personalized Spatial Audio.
+/// Updating an engine configured with `PHASERenderingModeClient` syncs any pending API commands to the server for processing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaserenderingmode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHASERenderingMode(pub NSInteger);
+impl PHASERenderingMode {
+    #[doc(alias = "PHASERenderingModeLocal")]
+    pub const Local: Self = Self(0);
+    #[doc(alias = "PHASERenderingModeClient")]
+    pub const Client: Self = Self(1);
+}
+
+unsafe impl Encode for PHASERenderingMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for PHASERenderingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// Rendering state for sound events.
 ///
 /// The sound event is stopped.
@@ -578,6 +609,8 @@ unsafe impl RefEncode for PHASECalibrationMode {
 ///
 /// On capable devices, listener orientation will be automatically rotated based on user's head-orientation.
 ///
+/// On capable devices, listener position will be automatically set based on user's position.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseautomaticheadtrackingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -587,6 +620,8 @@ bitflags::bitflags! {
     impl PHASEAutomaticHeadTrackingFlags: NSUInteger {
         #[doc(alias = "PHASEAutomaticHeadTrackingFlagOrientation")]
         const Orientation = 1<<0;
+        #[doc(alias = "PHASEAutomaticHeadTrackingFlagPosition")]
+        const Position = 1<<1;
     }
 }
 

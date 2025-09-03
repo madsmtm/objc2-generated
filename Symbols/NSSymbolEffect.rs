@@ -1008,6 +1008,162 @@ impl NSSymbolBreatheEffect {
 }
 
 extern_class!(
+    /// A symbol effect that applies the DrawOn animation to symbol images.
+    ///
+    /// The DrawOn animation makes the symbol visible either as a whole, or
+    /// one motion group at a time, animating parts of the symbol with draw data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboldrawoneffect?language=objc)
+    #[unsafe(super(NSSymbolEffect, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NSSymbolDrawOnEffect;
+);
+
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolDrawOnEffect {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolDrawOnEffect {}
+);
+
+unsafe impl CopyingHelper for NSSymbolDrawOnEffect {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolDrawOnEffect {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolDrawOnEffect {}
+);
+
+impl NSSymbolDrawOnEffect {
+    extern_methods!(
+        /// The default draw on effect, determined by the system.
+        #[unsafe(method(effect))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effect() -> Retained<Self>;
+
+        /// Returns a copy of the effect requesting an animation that
+        /// applies separately to each motion group.
+        #[unsafe(method(effectWithByLayer))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
+
+        /// Returns a copy of the effect requesting an animation that
+        /// applies to all motion groups simultaneously.
+        #[unsafe(method(effectWithWholeSymbol))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
+
+        /// Returns a copy of the effect requesting an animation that
+        /// applies separately to each motion group, where only
+        /// one motion group is active at a time.
+        #[unsafe(method(effectWithIndividually))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effectWithIndividually(&self) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSSymbolEffect`.
+impl NSSymbolDrawOnEffect {
+    extern_methods!(
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// A symbol effect that applies the DrawOff animation to symbol images.
+    ///
+    /// The DrawOff animation makes the symbol hidden either as a whole, or
+    /// one motion group at a time, animating parts of the symbol with draw data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboldrawoffeffect?language=objc)
+    #[unsafe(super(NSSymbolEffect, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NSSymbolDrawOffEffect;
+);
+
+extern_conformance!(
+    unsafe impl NSCoding for NSSymbolDrawOffEffect {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for NSSymbolDrawOffEffect {}
+);
+
+unsafe impl CopyingHelper for NSSymbolDrawOffEffect {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NSSymbolDrawOffEffect {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for NSSymbolDrawOffEffect {}
+);
+
+impl NSSymbolDrawOffEffect {
+    extern_methods!(
+        /// The default draw off effect, determined by the system.
+        #[unsafe(method(effect))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effect() -> Retained<Self>;
+
+        /// Returns a copy of the effect requesting an animation that
+        /// applies separately to each motion group.
+        #[unsafe(method(effectWithByLayer))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
+
+        /// Returns a copy of the effect requesting an animation that
+        /// applies to all motion groups simultaneously.
+        #[unsafe(method(effectWithWholeSymbol))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
+
+        /// Returns a copy of the effect requesting an animation that
+        /// applies separately to each motion group, where only
+        /// one motion group is active at a time.
+        #[unsafe(method(effectWithIndividually))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effectWithIndividually(&self) -> Retained<Self>;
+
+        /// Returns a copy of the effect that animates in reverse. This cancels the nonReversed variant.
+        #[unsafe(method(effectWithReversed))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effectWithReversed(&self) -> Retained<Self>;
+
+        /// Returns a copy of the effect that only animates forwards. This cancels the reversed variant.
+        #[unsafe(method(effectWithNonReversed))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn effectWithNonReversed(&self) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSSymbolEffect`.
+impl NSSymbolDrawOffEffect {
+    extern_methods!(
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
+
+extern_class!(
     /// An abstract base class for transitions that can be applied to both NSImageViews and
     /// UIImageViews that have symbol-based images.
     ///

@@ -52,6 +52,8 @@ bitflags::bitflags! {
         const StrongerKeyAvailable = 1<<4;
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserKeyInvalid")]
         const UserKeyInvalid = 1<<5;
+        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsSetupAssistant")]
+        const SetupAssistant = 1<<6;
     }
 }
 
@@ -259,6 +261,35 @@ extern_protocol!(
             new_key: &SecKey,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
             completion: &block2::DynBlock<dyn Fn(Bool)>,
+        );
+
+        #[cfg(all(
+            feature = "ASAuthorizationProviderExtensionLoginManager",
+            feature = "block2"
+        ))]
+        /// Request the display names for the supplied group identifiers.  The completion key is the identifier and the value is the display name.
+        #[optional]
+        #[unsafe(method(displayNamesForGroups:loginManager:completion:))]
+        #[unsafe(method_family = none)]
+        unsafe fn displayNamesForGroups_loginManager_completion(
+            &self,
+            groups: &NSArray<NSString>,
+            login_manager: &ASAuthorizationProviderExtensionLoginManager,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSDictionary<NSString, NSString>>)>,
+        );
+
+        #[cfg(all(
+            feature = "ASAuthorizationProviderExtensionLoginManager",
+            feature = "block2"
+        ))]
+        /// Request the profile picture for the current user in jpeg format.
+        #[optional]
+        #[unsafe(method(profilePictureForUserUsingLoginManager:completion:))]
+        #[unsafe(method_family = none)]
+        unsafe fn profilePictureForUserUsingLoginManager_completion(
+            &self,
+            login_manager: &ASAuthorizationProviderExtensionLoginManager,
+            completion: &block2::DynBlock<dyn Fn(NonNull<NSData>)>,
         );
     }
 );

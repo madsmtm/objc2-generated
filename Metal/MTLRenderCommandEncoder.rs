@@ -359,7 +359,7 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrendercommandencoder?language=objc)
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLRenderCommandEncoder: MTLCommandEncoder {
-        #[cfg(feature = "MTLRenderPipeline")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]
         /// Sets the current render pipeline state object.
         #[unsafe(method(setRenderPipelineState:))]
         #[unsafe(method_family = none)]
@@ -1326,9 +1326,9 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MTLAllocation",
+            feature = "MTLArgument",
             feature = "MTLBuffer",
-            feature = "MTLResource",
-            feature = "MTLStageInputOutputDescriptor"
+            feature = "MTLResource"
         ))]
         /// Draw primitives with an index list.
         ///
@@ -1359,9 +1359,9 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MTLAllocation",
+            feature = "MTLArgument",
             feature = "MTLBuffer",
-            feature = "MTLResource",
-            feature = "MTLStageInputOutputDescriptor"
+            feature = "MTLResource"
         ))]
         /// Draw primitives with an index list.
         ///
@@ -1411,9 +1411,9 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MTLAllocation",
+            feature = "MTLArgument",
             feature = "MTLBuffer",
-            feature = "MTLResource",
-            feature = "MTLStageInputOutputDescriptor"
+            feature = "MTLResource"
         ))]
         /// Draw primitives with an index list.
         ///
@@ -1473,9 +1473,9 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MTLAllocation",
+            feature = "MTLArgument",
             feature = "MTLBuffer",
-            feature = "MTLResource",
-            feature = "MTLStageInputOutputDescriptor"
+            feature = "MTLResource"
         ))]
         /// Draw primitives with an index list using an indirect buffer see MTLDrawIndexedPrimitivesIndirectArguments.
         ///

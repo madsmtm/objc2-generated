@@ -96,7 +96,7 @@ impl AVAssetReaderOutput {
         ///
         /// The default value is NO, which means that the asset reader output may not be reconfigured once reading has begun.  When the value of this property is NO, AVAssetReader may be able to read media data more efficiently, particularly when multiple asset reader outputs are attached.
         ///
-        /// This property throws an exception if a value is set after reading has started (the asset reader has progressed beyond AVAssetReaderStatusUnknown).
+        /// This property throws an exception if a value is set after reading has started (the asset reader has progressed beyond AVAssetReaderStatusUnknown) or after an AVAssetReaderOutput.Provider is attached.
         #[unsafe(method(supportsRandomAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsRandomAccess(&self) -> bool;
@@ -573,9 +573,7 @@ impl AVAssetReaderVideoCompositionOutput {
 }
 
 extern_class!(
-    /// Defines an interface for reading metadata, packaged as instances of AVTimedMetadataGroup, from a single AVAssetReaderTrackOutput object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreaderoutputmetadataadaptor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreaderoutputmetadataadaptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetReaderOutputMetadataAdaptor;
@@ -658,9 +656,7 @@ impl AVAssetReaderOutputMetadataAdaptor {
 }
 
 extern_class!(
-    /// An adaptor class for reading instances of AVCaptionGroup from a track containing timed text (i.e. subtitles or closed captions).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreaderoutputcaptionadaptor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreaderoutputcaptionadaptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetReaderOutputCaptionAdaptor;

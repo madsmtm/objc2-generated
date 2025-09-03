@@ -83,6 +83,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputthumbstick?language=objc)
+    pub static GCInputThumbstick: Option<&'static GCInputDirectionPadName>;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputleftthumbstick?language=objc)
     pub static GCInputLeftThumbstick: Option<&'static GCInputDirectionPadName>;
 }
@@ -93,6 +98,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputthumbstickbutton?language=objc)
+    pub static GCInputThumbstickButton: Option<&'static GCInputButtonName>;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputleftthumbstickbutton?language=objc)
     pub static GCInputLeftThumbstickButton: Option<&'static GCInputButtonName>;
 }
@@ -100,6 +110,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputrightthumbstickbutton?language=objc)
     pub static GCInputRightThumbstickButton: Option<&'static GCInputButtonName>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputgripbutton?language=objc)
+    pub static GCInputGripButton: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
@@ -123,6 +138,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputrightbumper?language=objc)
     pub static GCInputRightBumper: Option<&'static GCInputButtonName>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputtrigger?language=objc)
+    pub static GCInputTrigger: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
@@ -274,4 +294,25 @@ pub unsafe extern "C-unwind" fn GCInputArcadeButtonName(
     }
     let ret = unsafe { GCInputArcadeButtonName(row, column) };
     unsafe { Retained::retain_autoreleased(ret) }
+}
+
+extern "C" {
+    /// The stylus tip button used to detect contact with a surface.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputstylustip?language=objc)
+    pub static GCInputStylusTip: Option<&'static GCInputButtonName>;
+}
+
+extern "C" {
+    /// The stylus button used for interacting with virtual objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputstylusprimarybutton?language=objc)
+    pub static GCInputStylusPrimaryButton: Option<&'static GCInputButtonName>;
+}
+
+extern "C" {
+    /// The stylus button used for drawing and writing in air.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputstylussecondarybutton?language=objc)
+    pub static GCInputStylusSecondaryButton: Option<&'static GCInputButtonName>;
 }

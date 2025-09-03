@@ -12,7 +12,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest?language=objc)
+    /// An abstract class that represents a request to recognize speech from an audio source.
+    ///
+    /// Don't create ``SFSpeechRecognitionRequest`` objects directly. Create an ``SFSpeechURLRecognitionRequest`` or ``SFSpeechAudioBufferRecognitionRequest`` object instead. Use the properties of this class to configure various aspects of your request object before you start the speech recognition process. For example, use the ``shouldReportPartialResults`` property to specify whether you want partial results or only the final result of speech recognition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechRecognitionRequest;
@@ -25,6 +29,9 @@ extern_conformance!(
 impl SFSpeechRecognitionRequest {
     extern_methods!(
         #[cfg(feature = "SFSpeechRecognitionTaskHint")]
+        /// A value that indicates the type of speech recognition being performed.
+        ///
+        /// The default value of this property is ``SFSpeechRecognitionTaskHint/unspecified``. For a valid list of values, see ``SFSpeechRecognitionTaskHint``.
         #[unsafe(method(taskHint))]
         #[unsafe(method_family = none)]
         pub unsafe fn taskHint(&self) -> SFSpeechRecognitionTaskHint;
@@ -35,6 +42,9 @@ impl SFSpeechRecognitionRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setTaskHint(&self, task_hint: SFSpeechRecognitionTaskHint);
 
+        /// A Boolean value that indicates whether you want intermediate results returned for each utterance.
+        ///
+        /// The default value of this property is `true`. If you want only final results (and you don't care about intermediate results), set this property to `false` to prevent the system from doing extra work.
         #[unsafe(method(shouldReportPartialResults))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldReportPartialResults(&self) -> bool;
@@ -44,6 +54,13 @@ impl SFSpeechRecognitionRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldReportPartialResults(&self, should_report_partial_results: bool);
 
+        /// An array of phrases that should be recognized, even if they are not in the system vocabulary.
+        ///
+        /// Use this property to specify short custom phrases that are unique to your app. You might include phrases with the names of characters, products, or places that are specific to your app. You might also include domain-specific terminology or unusual or made-up words. Assigning custom phrases to this property improves the likelihood of those phrases being recognized.
+        ///
+        /// Keep phrases relatively brief, limiting them to one or two words whenever possible. Lengthy phrases are less likely to be recognized. In addition, try to limit each phrase to something the user can say without pausing.
+        ///
+        /// Limit the total number of phrases to no more than 100.
         #[unsafe(method(contextualStrings))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextualStrings(&self) -> Retained<NSArray<NSString>>;
@@ -53,6 +70,9 @@ impl SFSpeechRecognitionRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setContextualStrings(&self, contextual_strings: &NSArray<NSString>);
 
+        /// An identifier string that you use to describe the type of interaction associated with the speech recognition request.
+        ///
+        /// If different parts of your app have different speech recognition needs, you can use this property to identify the part of your app that is making each request. For example, if one part of your app lets users speak phone numbers and another part lets users speak street addresses, consistently identifying the part of the app that makes a recognition request may help improve the accuracy of the results.
         #[deprecated = "Not used anymore"]
         #[unsafe(method(interactionIdentifier))]
         #[unsafe(method_family = none)]
@@ -64,6 +84,12 @@ impl SFSpeechRecognitionRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractionIdentifier(&self, interaction_identifier: Option<&NSString>);
 
+        /// A Boolean value that determines whether a request must keep its audio data on the device.
+        ///
+        /// Set this property to `true` to prevent an ``SFSpeechRecognitionRequest`` from sending audio over the network. However, on-device requests won't be as accurate.
+        ///
+        /// > Note:
+        /// > The request only honors this setting if the ``SFSpeechRecognizer/supportsOnDeviceRecognition`` (``SFSpeechRecognizer``) property is also `true`.
         #[unsafe(method(requiresOnDeviceRecognition))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresOnDeviceRecognition(&self) -> bool;
@@ -73,6 +99,9 @@ impl SFSpeechRecognitionRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresOnDeviceRecognition(&self, requires_on_device_recognition: bool);
 
+        /// A Boolean value that indicates whether to add punctuation to speech recognition results.
+        ///
+        /// Set this property to `true` for the speech framework to automatically include punctuation in the recognition results. Punctuation includes a period or question mark at the end of a sentence, and a comma within a sentence.
         #[unsafe(method(addsPunctuation))]
         #[unsafe(method_family = none)]
         pub unsafe fn addsPunctuation(&self) -> bool;
@@ -114,7 +143,45 @@ impl SFSpeechRecognitionRequest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechurlrecognitionrequest?language=objc)
+    /// A request to recognize speech in a recorded audio file.
+    ///
+    /// Use this object to perform speech recognition on the contents of an audio file.
+    ///
+    /// The following example shows a method that performs recognition on an audio file based on the user's default language and prints out the transcription.
+    ///
+    /// Listing 1. Getting a speech recognizer and making a recognition request
+    ///
+    /// ```swift
+    /// func recognizeFile(url: URL) {
+    /// // Create a speech recognizer associated with the user's default language.
+    /// guard let myRecognizer = SFSpeechRecognizer() else {
+    /// // The system doesn't support the user's default language.
+    /// return
+    /// }
+    ///
+    /// guard myRecognizer.isAvailable else {
+    /// // The recognizer isn't available.
+    /// return
+    /// }
+    ///
+    /// // Create and execute a speech recognition request for the audio file at the URL.
+    /// let request = SFSpeechURLRecognitionRequest(url: url)
+    /// myRecognizer.recognitionTask(with: request) { (result, error) in
+    /// guard let result else {
+    /// // Recognition failed, so check the error for details and handle it.
+    /// return
+    /// }
+    ///
+    /// // Print the speech transcription with the highest confidence that the
+    /// // system recognized.
+    /// if result.isFinal {
+    /// print(result.bestTranscription.formattedString)
+    /// }
+    /// }
+    /// }
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechurlrecognitionrequest?language=objc)
     #[unsafe(super(SFSpeechRecognitionRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechURLRecognitionRequest;
@@ -130,10 +197,14 @@ impl SFSpeechURLRecognitionRequest {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Creates a speech recognition request, initialized with the specified URL.
+        ///
+        /// Use this method to create a request to recognize speech in a recorded audio file that resides at the specified URL. Pass the request to the recognizer's ``SFSpeechRecognizer/recognitionTask(with:delegate:)`` method to start recognition.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
+        /// The URL of the audio file.
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
@@ -150,7 +221,15 @@ impl SFSpeechURLRecognitionRequest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest?language=objc)
+    /// A request to recognize speech from captured audio content, such as audio from the device's microphone.
+    ///
+    /// Use an ``SFSpeechAudioBufferRecognitionRequest`` object to perform speech recognition on live audio, or on a set of existing audio buffers. For example, use this request object to route audio from a device's microphone to the speech recognizer.
+    ///
+    /// The request object contains no audio initially. As you capture audio, call ``append(_:)`` or ``appendAudioSampleBuffer(_:)`` to add audio samples to the request object. The speech recognizer continuously analyzes the audio you appended, stopping only when you call the ``endAudio()`` method. You must call ``endAudio()`` explicitly to stop the speech recognition process.
+    ///
+    /// For a complete example of how to use audio buffers with speech recognition, see [SpeakToMe: Using Speech Recognition with AVAudioEngine](https://developer.apple.com/library/archive/samplecode/SpeakToMe/Introduction/Intro.html#//apple_ref/doc/uid/TP40017110).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest?language=objc)
     #[unsafe(super(SFSpeechRecognitionRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechAudioBufferRecognitionRequest;
@@ -163,20 +242,38 @@ extern_conformance!(
 impl SFSpeechAudioBufferRecognitionRequest {
     extern_methods!(
         #[cfg(feature = "objc2-avf-audio")]
+        /// The preferred audio format for optimal speech recognition.
+        ///
+        /// Use the audio format in this property as a hint for optimal recording, but don't depend on the value remaining unchanged.
         #[unsafe(method(nativeAudioFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn nativeAudioFormat(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "objc2-avf-audio")]
+        /// Appends audio in the PCM format to the end of the recognition request.
+        ///
+        /// The audio must be in a native format and uncompressed.
+        ///
+        /// - Parameters:
+        /// - audioPCMBuffer: An audio buffer that contains audio in the PCM format.
         #[unsafe(method(appendAudioPCMBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendAudioPCMBuffer(&self, audio_pcm_buffer: &AVAudioPCMBuffer);
 
         #[cfg(feature = "objc2-core-media")]
+        /// Appends audio to the end of the recognition request.
+        ///
+        /// The audio must be in a native format.
+        ///
+        /// - Parameters:
+        /// - sampleBuffer: A buffer of audio.
         #[unsafe(method(appendAudioSampleBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendAudioSampleBuffer(&self, sample_buffer: &CMSampleBuffer);
 
+        /// Marks the end of audio input for the recognition request.
+        ///
+        /// Call this method explicitly to let the speech recognizer know that no more audio input is coming.
         #[unsafe(method(endAudio))]
         #[unsafe(method_family = none)]
         pub unsafe fn endAudio(&self);

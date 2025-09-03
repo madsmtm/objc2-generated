@@ -125,6 +125,34 @@ impl GKLeaderboard {
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
+        /// The description of this Leaderboard as configured by the developer in App Store Connect.
+        #[unsafe(method(leaderboardDescription))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn leaderboardDescription(&self) -> Retained<NSString>;
+
+        #[cfg(feature = "GKReleaseState")]
+        /// The release state of the leaderboard in App Store Connect.
+        #[unsafe(method(releaseState))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn releaseState(&self) -> GKReleaseState;
+
+        /// The identifier of the game activity associated with this leaderboard, as configured by the developer in App Store Connect.
+        #[unsafe(method(activityIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn activityIdentifier(&self) -> Retained<NSString>;
+
+        /// The properties when associating this leaderboard with a game activity, as configured by the developer in App Store Connect.
+        #[unsafe(method(activityProperties))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn activityProperties(&self) -> Retained<NSDictionary<NSString, NSString>>;
+
+        /// A Boolean value that indicates whether the current leaderboard isn't visible in Game Center views.
+        ///
+        /// You can still submit scores to a hidden leaderboard.
+        #[unsafe(method(isHidden))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isHidden(&self) -> bool;
+
         #[cfg(feature = "block2")]
         /// Loads classic and recurring leaderboards associated with the supplied App Store Connect leaderboard IDs.
         /// If leaderboardIDs is nil, this loads all classic and recurring leaderboards for this game.
@@ -392,6 +420,7 @@ impl GKLeaderboard {
     extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Asynchronously load the image. Error will be nil on success.
         #[unsafe(method(loadImageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(

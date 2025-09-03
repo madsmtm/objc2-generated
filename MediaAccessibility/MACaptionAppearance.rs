@@ -709,3 +709,66 @@ extern "C-unwind" {
         behavior: *mut MACaptionAppearanceBehavior,
     ) -> MACaptionAppearanceTextEdgeStyle;
 }
+
+/// Copies all system and user defined profiles, each represented by a CFString containing a non-human-readable ID
+///
+/// Returns: An array of strings where each string represents a unique caption profile ID.
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileIDs() -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn MACaptionAppearanceCopyProfileIDs() -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { MACaptionAppearanceCopyProfileIDs() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+extern "C-unwind" {
+    /// Sets the currently-selected caption drawing profileID system wide. Behavior is undefined if NULL or an invalid profileID is provided
+    ///
+    /// Parameter `profileID`: The profileID to make active.
+    pub fn MACaptionAppearanceSetActiveProfileID(profile_id: &CFString);
+}
+
+/// Gets the currently-selected caption drawing profileID system wide.
+///
+/// Returns: The currently-selected profileID.
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyActiveProfileID() -> CFRetained<CFString> {
+    extern "C-unwind" {
+        fn MACaptionAppearanceCopyActiveProfileID() -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { MACaptionAppearanceCopyActiveProfileID() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+/// Copies the human-readable name of a profileID
+///
+/// Parameter `profileID`: The profileID to copy the name of
+///
+/// Returns: A human-readable name of the provided profileID
+#[inline]
+pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileName(
+    profile_id: &CFString,
+) -> CFRetained<CFString> {
+    extern "C-unwind" {
+        fn MACaptionAppearanceCopyProfileName(profile_id: &CFString) -> Option<NonNull<CFString>>;
+    }
+    let ret = unsafe { MACaptionAppearanceCopyProfileName(profile_id) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
+}
+
+extern "C-unwind" {
+    /// Executes a block of code as if the provided profileID was active. This is used in cases such as a need to get the fonts and colors of a profileID without changing the currently selected profileID.
+    ///
+    /// Parameter `profileID`: The profileID which will appear active when executing the block
+    ///
+    /// Parameter `aBlock`: the block of code to execute
+    #[cfg(feature = "block2")]
+    pub fn MACaptionAppearanceExecuteBlockForProfileID(
+        profile_id: &CFString,
+        a_block: &block2::DynBlock<dyn Fn()>,
+    );
+}

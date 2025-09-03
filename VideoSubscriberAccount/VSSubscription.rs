@@ -11,21 +11,21 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vssubscriptionaccesslevel?language=objc)
 // NS_ENUM
-#[deprecated]
+#[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VSSubscriptionAccessLevel(pub NSInteger);
 impl VSSubscriptionAccessLevel {
     #[doc(alias = "VSSubscriptionAccessLevelUnknown")]
-    #[deprecated]
+    #[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
     pub const Unknown: Self = Self(0);
     /// The default access level. Setting a subscription with this level will raise an exception.
     #[doc(alias = "VSSubscriptionAccessLevelFreeWithAccount")]
-    #[deprecated]
+    #[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
     pub const FreeWithAccount: Self = Self(1);
     /// The customer has access to content that is offered for free to users with a valid account.  This value corresponds content in your availability feed with the "account" offering type.
     #[doc(alias = "VSSubscriptionAccessLevelPaid")]
-    #[deprecated]
+    #[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
     pub const Paid: Self = Self(2);
 }
 
@@ -44,7 +44,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vssubscription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated]
+    #[deprecated = "Use VSUserAccount instead."]
     pub struct VSSubscription;
 );
 
@@ -69,13 +69,13 @@ impl VSSubscription {
         ///
         /// This might also be useful if the subscription only grants access to content
         /// that is time-limited, e.g. a single season of games for a sports league.
-        #[deprecated]
+        #[deprecated = "Use VSUserAccount instead."]
         #[unsafe(method(expirationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`expirationDate`][Self::expirationDate].
-        #[deprecated]
+        #[deprecated = "Use VSUserAccount instead."]
         #[unsafe(method(setExpirationDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpirationDate(&self, expiration_date: Option<&NSDate>);
@@ -85,13 +85,13 @@ impl VSSubscription {
         /// It is an error to provide a subscription with an unknown access level as
         /// the current subscription.  Instead, choose the access level that describes
         /// the content that the subscriber can play.
-        #[deprecated]
+        #[deprecated = "Use VSUserAccount instead."]
         #[unsafe(method(accessLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessLevel(&self) -> VSSubscriptionAccessLevel;
 
         /// Setter for [`accessLevel`][Self::accessLevel].
-        #[deprecated]
+        #[deprecated = "Use VSUserAccount instead."]
         #[unsafe(method(setAccessLevel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessLevel(&self, access_level: VSSubscriptionAccessLevel);
@@ -99,13 +99,13 @@ impl VSSubscription {
         /// Identifies a subset of content from your catalog that subscriber can play.
         ///
         /// Only provide values that are used in your availability feed's tier restrictions.
-        #[deprecated]
+        #[deprecated = "Use VSUserAccount instead."]
         #[unsafe(method(tierIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn tierIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`tierIdentifiers`][Self::tierIdentifiers].
-        #[deprecated]
+        #[deprecated = "Use VSUserAccount instead."]
         #[unsafe(method(setTierIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTierIdentifiers(&self, tier_identifiers: Option<&NSArray<NSString>>);

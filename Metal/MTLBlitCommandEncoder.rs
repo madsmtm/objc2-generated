@@ -430,7 +430,7 @@ extern_protocol!(
             feature = "MTLIndirectCommandBuffer",
             feature = "MTLResource"
         ))]
-        /// Optimizes a subset of the texture data to ensure the best possible performance when accessing content on the CPU at the expense of GPU-access performance.
+        /// Encodes a command that can improve the performance of a range of commands within an indirect command buffer.
         #[unsafe(method(optimizeIndirectCommandBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn optimizeIndirectCommandBuffer_withRange(
@@ -494,6 +494,33 @@ extern_protocol!(
             range: NSRange,
             destination_buffer: &ProtocolObject<dyn MTLBuffer>,
             destination_offset: NSUInteger,
+        );
+
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTensor"
+        ))]
+        /// Encodes a command to copy data from a slice of one tensor into a slice of another tensor.
+        ///
+        /// This command applies reshapes if `sourceTensor` and `destinationTensor` are not aliasable.
+        /// - Parameters:
+        /// - sourceTensor: A tensor instance that this command copies data from.
+        /// - sourceOrigin: An array of offsets, in elements, to the first element of the slice of `sourceTensor` that this command copies data from.
+        /// - sourceDimensions: An array of sizes, in elements, of the slice `sourceTensor` that this command copies data from.
+        /// - destinationTensor: A tensor instance that this command copies data to.
+        /// - destinationOrigin: An array of offsets, in elements, to the first element of the slice of `destinationTensor` that this command copies data to.
+        /// - destinationDimensions: An array of sizes, in elements, of the slice of `destinationTensor` that this command copies data to.
+        #[unsafe(method(copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:))]
+        #[unsafe(method_family = none)]
+        unsafe fn copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions(
+            &self,
+            source_tensor: &ProtocolObject<dyn MTLTensor>,
+            source_origin: &MTLTensorExtents,
+            source_dimensions: &MTLTensorExtents,
+            destination_tensor: &ProtocolObject<dyn MTLTensor>,
+            destination_origin: &MTLTensorExtents,
+            destination_dimensions: &MTLTensorExtents,
         );
     }
 );

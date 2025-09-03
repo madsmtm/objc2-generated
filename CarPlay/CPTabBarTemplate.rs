@@ -10,6 +10,7 @@ use crate::*;
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptabbartemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPTabBarTemplate;
@@ -39,7 +40,7 @@ impl CPTabBarTemplate {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Initialize the tab bar with an array of templates. Each template in the array
         /// becomes a tab on the tab bar.
@@ -77,7 +78,7 @@ impl CPTabBarTemplate {
         /// than this number of tabs in your tab bar template.
         #[unsafe(method(maximumTabCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumTabCount() -> NSInteger;
+        pub unsafe fn maximumTabCount(mtm: MainThreadMarker) -> NSInteger;
 
         /// The currently-visible templates in the tab bar. Each template corresponds to
         /// a single tab on the tab bar.
@@ -118,7 +119,7 @@ impl CPTabBarTemplate {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptabbartemplatedelegate?language=objc)
-    pub unsafe trait CPTabBarTemplateDelegate: NSObjectProtocol {
+    pub unsafe trait CPTabBarTemplateDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "CPTemplate")]
         /// The user has selected one of the tabs in the tab bar template, bringing the selected template to the foreground.
         #[unsafe(method(tabBarTemplate:didSelectTemplate:))]

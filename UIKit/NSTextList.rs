@@ -193,6 +193,10 @@ impl NSTextList {
         #[unsafe(method(markerForItemNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn markerForItemNumber(&self, item_number: NSInteger) -> Retained<NSString>;
+
+        #[unsafe(method(includesTextListMarkers))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn includesTextListMarkers() -> bool;
     );
 }
 

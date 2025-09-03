@@ -389,6 +389,50 @@ impl CMTaggedBufferGroup {
         }
     }
 
+    /// Creates a format description for a CMTaggedBufferGroup with extensions.
+    ///
+    /// Parameter `allocator`: CFAllocator to be used when creating the CMFormatDescription. Pass kCFAllocatorDefault to use the default allocator.
+    ///
+    /// Parameter `taggedBufferGroup`: The tagged buffer group for which we are creating the format description.
+    ///
+    /// Parameter `extensions`: Dictionary of extension key/value pairs.  Keys are always CFStrings. Values are always property list objects (ie. CFData, CFString, CFArray, CFDictionary, CFDate, CFBoolean, or CFNumber). Can be NULL.
+    ///
+    /// Parameter `formatDescriptionOut`: Returned newly-created tagged buffer group CMFormatDescription
+    ///
+    /// The returned CMTaggedBufferGroupFormatDescription could be used to create a CMSampleBuffer
+    /// wrapping the CMTaggedBufferGroup using CMSampleBufferCreateForTaggedBufferGroup.
+    /// If you are going to call CMSampleBufferCreateForTaggedBufferGroup on a series of matching
+    /// CMTaggedBufferGroups, it is more efficient to create the CMTaggedBufferGroupFormatDescription
+    /// once and use it for all of the CMSampleBuffers.
+    /// The caller owns the returned CMFormatDescription, and must release it when done with it.
+    /// All input parameters are copied (the extensions are deep-copied).  The caller can deallocate them or re-use them after making this call.
+    #[doc(alias = "CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions")]
+    #[cfg(feature = "CMFormatDescription")]
+    #[inline]
+    pub unsafe fn format_description_create_for_tagged_buffer_group_with_extensions(
+        allocator: Option<&CFAllocator>,
+        tagged_buffer_group: &CMTaggedBufferGroup,
+        extensions: Option<&CFDictionary>,
+        format_description_out: NonNull<*const CMTaggedBufferGroupFormatDescription>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions(
+                allocator: Option<&CFAllocator>,
+                tagged_buffer_group: &CMTaggedBufferGroup,
+                extensions: Option<&CFDictionary>,
+                format_description_out: NonNull<*const CMTaggedBufferGroupFormatDescription>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions(
+                allocator,
+                tagged_buffer_group,
+                extensions,
+                format_description_out,
+            )
+        }
+    }
+
     /// Checks to see if a given format description matches a tagged buffer group.
     ///
     /// Parameter `desc`: The format description to validate.
@@ -650,6 +694,17 @@ extern "C-unwind" {
     pub fn CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup(
         allocator: Option<&CFAllocator>,
         tagged_buffer_group: &CMTaggedBufferGroup,
+        format_description_out: NonNull<*const CMTaggedBufferGroupFormatDescription>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CMFormatDescription")]
+    #[deprecated = "renamed to `CMTaggedBufferGroup::format_description_create_for_tagged_buffer_group_with_extensions`"]
+    pub fn CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions(
+        allocator: Option<&CFAllocator>,
+        tagged_buffer_group: &CMTaggedBufferGroup,
+        extensions: Option<&CFDictionary>,
         format_description_out: NonNull<*const CMTaggedBufferGroupFormatDescription>,
     ) -> OSStatus;
 }

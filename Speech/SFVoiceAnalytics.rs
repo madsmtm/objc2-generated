@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfacousticfeature?language=objc)
+    /// The value of a voice analysis metric.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfacousticfeature?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFAcousticFeature;
@@ -35,10 +37,12 @@ extern_conformance!(
 
 impl SFAcousticFeature {
     extern_methods!(
+        /// An array of feature values, one value per audio frame, corresponding to a transcript segment of recorded audio.
         #[unsafe(method(acousticFeatureValuePerFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn acousticFeatureValuePerFrame(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// The duration of the audio frame.
         #[unsafe(method(frameDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameDuration(&self) -> NSTimeInterval;
@@ -59,7 +63,18 @@ impl SFAcousticFeature {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfvoiceanalytics?language=objc)
+    /// A collection of vocal analysis metrics.
+    ///
+    /// Use an ``SFAcousticFeature`` object to access the `SFVoiceAnalytics` insights. Voice analytics include the following features:
+    ///
+    /// - Use ``jitter`` to measure how pitch varies in audio.
+    /// - Use ``shimmer`` to measure how amplitude varies in audio.
+    /// - Use ``pitch`` to measure the highness and lowness of the tone.
+    /// - Use ``voicing`` to identify voiced regions in speech.
+    ///
+    /// These results are part of the ``SFTranscriptionSegment`` object and are available when the system sends the ``SFSpeechRecognitionResult/isFinal`` flag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfvoiceanalytics?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFVoiceAnalytics;
@@ -87,18 +102,26 @@ extern_conformance!(
 
 impl SFVoiceAnalytics {
     extern_methods!(
+        /// The variation in pitch in each frame of a transcription segment, expressed as a percentage of the frame's fundamental frequency.
         #[unsafe(method(jitter))]
         #[unsafe(method_family = none)]
         pub unsafe fn jitter(&self) -> Retained<SFAcousticFeature>;
 
+        /// The variation in vocal volume stability (amplitude) in each frame of a transcription segment, expressed in decibels.
         #[unsafe(method(shimmer))]
         #[unsafe(method_family = none)]
         pub unsafe fn shimmer(&self) -> Retained<SFAcousticFeature>;
 
+        /// The highness or lowness of the tone (fundamental frequency) in each frame of a transcription segment, expressed as a logarithm.
+        ///
+        /// The value is a logarithm (base `e`) of the normalized pitch estimate for each frame.
         #[unsafe(method(pitch))]
         #[unsafe(method_family = none)]
         pub unsafe fn pitch(&self) -> Retained<SFAcousticFeature>;
 
+        /// The likelihood of a voice in each frame of a transcription segment.
+        ///
+        /// The `voicing` value is expressed as a probability in the range `[0.0, 1.0]`.
         #[unsafe(method(voicing))]
         #[unsafe(method_family = none)]
         pub unsafe fn voicing(&self) -> Retained<SFAcousticFeature>;

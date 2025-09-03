@@ -707,3 +707,40 @@ impl UITraitSceneCaptureState {
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraithdrheadroomusagelimit?language=objc)
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct UITraitHDRHeadroomUsageLimit;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitHDRHeadroomUsageLimit {}
+);
+
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitHDRHeadroomUsageLimit {}
+);
+
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitHDRHeadroomUsageLimit {}
+);
+
+impl UITraitHDRHeadroomUsageLimit {
+    extern_methods!();
+}
+
+/// Methods declared on superclass `NSObject`.
+impl UITraitHDRHeadroomUsageLimit {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+    );
+}

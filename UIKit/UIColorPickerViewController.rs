@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -159,6 +161,28 @@ impl UIColorPickerViewController {
         #[unsafe(method(setSupportsAlpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsAlpha(&self, supports_alpha: bool);
+
+        /// If set to `NO` the eyedropper functionality is not supported for this color picker.
+        #[unsafe(method(supportsEyedropper))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportsEyedropper(&self) -> bool;
+
+        /// Setter for [`supportsEyedropper`][Self::supportsEyedropper].
+        #[unsafe(method(setSupportsEyedropper:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSupportsEyedropper(&self, supports_eyedropper: bool);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The maximum exposure to apply to a color when returned by the color picker.
+        #[unsafe(method(maximumLinearExposure))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumLinearExposure(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumLinearExposure`][Self::maximumLinearExposure].
+        #[unsafe(method(setMaximumLinearExposure:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
 
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]

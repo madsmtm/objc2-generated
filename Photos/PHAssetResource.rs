@@ -3,6 +3,8 @@
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-uniform-type-identifiers")]
+use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
@@ -28,13 +30,20 @@ impl PHAssetResource {
         #[unsafe(method_family = none)]
         pub unsafe fn assetLocalIdentifier(&self) -> Retained<NSString>;
 
-        #[unsafe(method(uniformTypeIdentifier))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn uniformTypeIdentifier(&self) -> Retained<NSString>;
-
         #[unsafe(method(originalFilename))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalFilename(&self) -> Retained<NSString>;
+
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// The type of data associated with this asset resource (the data can be retrieved via PHAssetResourceManager)
+        #[unsafe(method(contentType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contentType(&self) -> Retained<UTType>;
+
+        #[deprecated = "Use contentType instead"]
+        #[unsafe(method(uniformTypeIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn uniformTypeIdentifier(&self) -> Retained<NSString>;
 
         #[unsafe(method(pixelWidth))]
         #[unsafe(method_family = none)]

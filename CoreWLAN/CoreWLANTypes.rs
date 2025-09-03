@@ -213,6 +213,9 @@ unsafe impl RefEncode for CWErr {
 ///
 /// IEEE 802.11ax physical layer mode.
 ///
+///
+/// IEEE 802.11be physical layer mode.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwphymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]

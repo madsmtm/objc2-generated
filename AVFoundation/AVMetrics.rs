@@ -25,9 +25,8 @@ extern_protocol!(
     pub unsafe trait AVMetricEventStreamSubscriber {
         /// Delegate callback to receive metric events.
         ///
-        /// Parameter `event`: The metric event.
-        ///
-        /// Parameter `publisher`: The publisher which generated the current event.
+        /// - Parameter event: The metric event.
+        /// - Parameter publisher: The publisher which generated the current event.
         #[unsafe(method(publisher:didReceiveEvent:))]
         #[unsafe(method_family = none)]
         unsafe fn publisher_didReceiveEvent(
@@ -77,9 +76,8 @@ impl AVMetricEventStream {
         #[cfg(feature = "dispatch2")]
         /// Set a subscriber delegate.
         ///
-        /// Parameter `subscriber`: A subscriber delegate object conforming to AVMetricEventStreamSubscriber.
-        ///
-        /// Parameter `queue`: Dispatch queue for the delegate callbacks.
+        /// - Parameter subscriber: A subscriber delegate object conforming to AVMetricEventStreamSubscriber.
+        /// - Parameter queue: Dispatch queue for the delegate callbacks.
         #[unsafe(method(setSubscriber:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriber_queue(
@@ -90,14 +88,14 @@ impl AVMetricEventStream {
 
         /// Subscribe to a specific metric event class.
         ///
-        /// Parameter `metricEventClass`: Type of metric event class to subscribe to.
+        /// - Parameter metricEventClass: Type of metric event class to subscribe to.
         #[unsafe(method(subscribeToMetricEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscribeToMetricEvent(&self, metric_event_class: &AnyClass);
 
         /// Subscribe to set of metric event classes.
         ///
-        /// Parameter `metricEventClasses`: Set of metric event classes to subscribe to.
+        /// - Parameter metricEventClasses: Set of metric event classes to subscribe to.
         #[unsafe(method(subscribeToMetricEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscribeToMetricEvents(&self, metric_event_classes: &NSArray<AnyClass>);
@@ -351,7 +349,7 @@ impl AVMetricHLSPlaylistRequestEvent {
         pub unsafe fn isMultivariantPlaylist(&self) -> bool;
 
         #[cfg(feature = "AVMediaFormat")]
-        /// Returns the media type.  If the value cannot be determined, returns AVMediaTypeMuxed.
+        /// Returns the media type. If the value cannot be determined, returns AVMediaTypeMuxed.
         #[unsafe(method(mediaType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
@@ -413,7 +411,7 @@ impl AVMetricHLSMediaSegmentRequestEvent {
         pub unsafe fn isMapSegment(&self) -> bool;
 
         #[cfg(feature = "AVMediaFormat")]
-        /// Returns the media type.  If the value cannot be determined, returns AVMediaTypeMuxed.
+        /// Returns the media type. If the value cannot be determined, returns AVMediaTypeMuxed.
         #[unsafe(method(mediaType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
@@ -481,7 +479,7 @@ impl AVMetricContentKeyRequestEvent {
         pub unsafe fn contentKeySpecifier(&self) -> Retained<AVContentKeySpecifier>;
 
         #[cfg(feature = "AVMediaFormat")]
-        /// Returns the media type.  If the value cannot be determined, returns AVMediaTypeMuxed.
+        /// Returns the media type. If the value cannot be determined, returns AVMediaTypeMuxed.
         #[unsafe(method(mediaType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
@@ -977,7 +975,7 @@ impl AVMetricPlayerItemPlaybackSummaryEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn playbackDuration(&self) -> NSInteger;
 
-        /// Returns the total number of media requests performed by the player.
+        /// Returns the total number of media requests performed by the player. This includes playlist requests, media segment requests, and content key requests.
         #[unsafe(method(mediaResourceRequestCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaResourceRequestCount(&self) -> NSInteger;
@@ -1001,5 +999,77 @@ impl AVMetricPlayerItemPlaybackSummaryEvent {
         #[unsafe(method(timeWeightedPeakBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeWeightedPeakBitrate(&self) -> NSInteger;
+    );
+}
+
+extern_class!(
+    /// Represents a summary metric event with aggregated metrics for the entire download task.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricdownloadsummaryevent?language=objc)
+    #[unsafe(super(AVMetricEvent, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVMetricDownloadSummaryEvent;
+);
+
+unsafe impl Send for AVMetricDownloadSummaryEvent {}
+
+unsafe impl Sync for AVMetricDownloadSummaryEvent {}
+
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricDownloadSummaryEvent {}
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricDownloadSummaryEvent {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricDownloadSummaryEvent {}
+);
+
+impl AVMetricDownloadSummaryEvent {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        /// Returns the error event if any. If no value is available, returns nil.
+        #[unsafe(method(errorEvent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn errorEvent(&self) -> Option<Retained<AVMetricErrorEvent>>;
+
+        /// Returns the total count of recoverable errors encountered during the download. If no errors were encountered, returns 0.
+        ///
+        /// Error counts may not be consistent across OS versions. Comparisons should be made within a given OS version, as error reporting is subject to change with OS updates.
+        #[unsafe(method(recoverableErrorCount))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn recoverableErrorCount(&self) -> NSInteger;
+
+        /// Returns the total number of media requests performed by the download task. This includes playlist requests, media segment requests, and content key requests.
+        #[unsafe(method(mediaResourceRequestCount))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mediaResourceRequestCount(&self) -> NSInteger;
+
+        /// Returns the total number of bytes downloaded by the download task.
+        #[unsafe(method(bytesDownloadedCount))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bytesDownloadedCount(&self) -> NSInteger;
+
+        /// Returns the total duration of the download in seconds.
+        #[unsafe(method(downloadDuration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn downloadDuration(&self) -> NSTimeInterval;
+
+        #[cfg(feature = "AVAssetVariant")]
+        /// Returns the variants that were downloaded.
+        #[unsafe(method(variants))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn variants(&self) -> Retained<NSArray<AVAssetVariant>>;
     );
 }

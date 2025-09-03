@@ -380,6 +380,60 @@ impl AVCaptureDeviceInput {
         #[unsafe(method(setWindNoiseRemovalEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWindNoiseRemovalEnabled(&self, wind_noise_removal_enabled: bool);
+
+        /// A BOOL value specifying whether Cinematic Video capture is supported.
+        ///
+        ///
+        /// With Cinematic Video capture, you get a simulated depth-of-field effect that keeps your subjects—people, pets, and more—in sharp focus while applying a pleasing blur to the background (or foreground). Depending on the focus mode (see `AVCaptureCinematicVideoFocusMode` for detail), the camera either uses machine learning to automatically detect and focus on subjects in the scene, or it fixes focus on a subject until it exits the scene. Cinematic Videos can be played back and edited using the Cinematic framework.
+        ///
+        /// The simulated aperture can be adjusted before the recording starts using the simulatedAperture property. Focus transitions can be dynamically controlled using the Cinematic Video specific focus methods on AVCaptureDevice.
+        ///
+        /// The resulted movie file can be played back and edited with the Cinematic framework.
+        ///
+        /// This property returns YES if the session's current configuration allows Cinematic Video capture. When switching cameras or formats this property may change. When this property changes from YES to NO, cinematicVideoCaptureEnabled also reverts to NO. If you've previously opted in for Cinematic Video capture and then change configurations, you may need to set cinematicVideoCaptureEnabled = YES again. This property is key-value observable.
+        ///
+        /// AVCaptureDepthDataOutput is not supported when cinematicVideoCaptureEnabled is set to true. Running an AVCaptureSession with both of these features throws an NSInvalidArgumentException.
+        #[unsafe(method(isCinematicVideoCaptureSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isCinematicVideoCaptureSupported(&self) -> bool;
+
+        /// A BOOL value specifying whether the Cinematic Video effect is applied to any AVCaptureMovieFileOutput, AVCaptureVideoDataOutput, AVCaptureMetadataOutput, and AVCaptureVideoPreviewLayer added to the same capture session.
+        ///
+        ///
+        /// Default is NO. Set to YES to enable support for Cinematic Video capture.
+        ///
+        /// When set to YES, the corresponding AVCaptureDevice's focusMode will be updated to AVCaptureFocusModeContinuousAutoFocus. While this is property is YES any attempt to change the focus mode will result in an exception.
+        ///
+        /// This property may only be set to YES if cinematicVideoCaptureSupported is YES. Enabling Cinematic Video capture requires a lengthy reconfiguration of the capture render pipeline, so if you intend to capture Cinematic Video, you should set this property to YES before calling -[AVCaptureSession startRunning] or within -[AVCaptureSession beginConfiguration] and -[AVCaptureSession commitConfiguration] while running.
+        #[unsafe(method(isCinematicVideoCaptureEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isCinematicVideoCaptureEnabled(&self) -> bool;
+
+        /// Setter for [`isCinematicVideoCaptureEnabled`][Self::isCinematicVideoCaptureEnabled].
+        #[unsafe(method(setCinematicVideoCaptureEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCinematicVideoCaptureEnabled(&self, cinematic_video_capture_enabled: bool);
+
+        /// Shallow depth of field simulated aperture.
+        ///
+        ///
+        /// When capturing a Cinematic Video, use this property to control the amount of blur in the simulated depth of field effect.
+        ///
+        /// This property only takes effect when cinematicVideoCaptureEnabled is set to YES.
+        ///
+        /// Setting this property throws an NSRangeException if simulatedAperture is set to a value less than the AVCaptureDevice's activeFormat.minSimulatedAperture or greater than the AVCaptureDevice's activeFormat.maxSimulatedAperture. This property may only be set if AVCaptureDevice's activeFormat.minSimulatedAperture returns a non-zero value, otherwise an NSInvalidArgumentException is thrown. This property can only be set before a Cinematic Video capture starts. An NSInvalidArgumentException is thrown if simulatedAperture is set when a Cinematic Video is being captured.
+        ///
+        /// This property is initialized to the device.activeFormat's defaultSimulatedAperture.
+        ///
+        /// This property is key-value observable.
+        #[unsafe(method(simulatedAperture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn simulatedAperture(&self) -> c_float;
+
+        /// Setter for [`simulatedAperture`][Self::simulatedAperture].
+        #[unsafe(method(setSimulatedAperture:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSimulatedAperture(&self, simulated_aperture: c_float);
     );
 }
 

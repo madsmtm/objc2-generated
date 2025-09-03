@@ -422,6 +422,64 @@ unsafe impl RefEncode for AudioStreamPacketDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure to provide a description of the dependencies of one audio packet on other audio packets.
+///
+///
+/// 1 if the packet is independently decodable, 0 otherwise.
+///
+/// The count of packets that must be decoded after this packet in order to refresh the decoder,
+/// if the packet is independently decodable.  This value should be ignored if
+/// ``mIsIndependentlyDecodable`` is 0.
+///
+/// Currently unused.
+///
+/// Reserved for future use.
+///
+///
+/// For independently decodable packets, the ``mPreRollCount`` indicates how many additional packets need
+/// to be decoded after this packet in order for the decoder to start returning optimal output,
+/// if this is the first packet decoded since the decoder was initialized.
+///
+/// For example, if this packet is packet #123 of some given packet stream, and ``mIsIndependentlyDecodable``
+/// is 0, or ``mIsIndependentlyDecodable`` is 1 and ``mPreRollCount`` is non-zero, and the client desires optimal
+/// output starting with the output corresponding with packet #123 (because for example the client
+/// is an audio player whose user seeks to a starting playback position corresponding with packet #123),
+/// the client would scan back, starting at packet #122, searching for an independently decodable
+/// packet with a preroll not intersecting packet #123.  If for packet #122 ``mIsIndependentlyDecodable``
+/// is 0, or ``mIsIndependentlyDecodable`` is 1 but ``mPreRollCount`` is 2 or more, the client would still not
+/// get optimal output for packet #123 if starting here, so the client continues to scan back.
+/// If for packet #121 ``mIsIndependentlyDecodable`` is 1 and ``mPreRollCount`` is 2 or less, the client would
+/// start decoding from this point, but discard the output equivalent of the two extra input packets
+/// (desired first output packet - actual first decoded packet, or 122 - 120 == 2).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiostreampacketdependencydescription?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct AudioStreamPacketDependencyDescription {
+    pub mIsIndependentlyDecodable: u32,
+    pub mPreRollCount: u32,
+    pub mFlags: u32,
+    pub mReserved: u32,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AudioStreamPacketDependencyDescription {
+    const ENCODING: Encoding = Encoding::Struct(
+        "AudioStreamPacketDependencyDescription",
+        &[
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AudioStreamPacketDependencyDescription {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// Constants that describe the type of SMPTE time.
 ///
 /// 24 Frame

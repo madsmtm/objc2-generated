@@ -307,7 +307,8 @@ impl ARFrame {
         #[cfg(all(feature = "ARRaycastQuery", feature = "objc2-core-foundation"))]
         /// Creates a raycast query originating from the point on the captured image, aligned along the center of the field of view of the camera.
         ///
-        /// A 2D point in the captured image’s coordinate space and the field of view of the frame's camera is used to create a ray in the 3D cooridnate space originating at the point.
+        /// A 2D point in the captured image’s coordinate space and the field of view of the frame's camera is used to create a ray in the 3D
+        /// cooridnate space originating at the point.
         ///
         /// Parameter `point`: A point in the image-space coordinate system of the captured image.
         /// Values should range from (0,0) - upper left corner to (1,1) - lower right corner.

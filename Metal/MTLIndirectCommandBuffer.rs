@@ -224,6 +224,19 @@ impl MTLIndirectCommandBufferDescriptor {
             &self,
             support_dynamic_attribute_stride: bool,
         );
+
+        /// Specifies if the indirect command buffer should support color attachment mapping.
+        #[unsafe(method(supportColorAttachmentMapping))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportColorAttachmentMapping(&self) -> bool;
+
+        /// Setter for [`supportColorAttachmentMapping`][Self::supportColorAttachmentMapping].
+        #[unsafe(method(setSupportColorAttachmentMapping:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSupportColorAttachmentMapping(
+            &self,
+            support_color_attachment_mapping: bool,
+        );
     );
 }
 

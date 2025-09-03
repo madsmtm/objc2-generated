@@ -8,107 +8,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneconfiguration?language=objc)
-    #[unsafe(super(NSObject))]
-    #[thread_kind = MainThreadOnly]
-    #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct UISceneConfiguration;
-);
-
-extern_conformance!(
-    unsafe impl NSCoding for UISceneConfiguration {}
-);
-
-extern_conformance!(
-    unsafe impl NSCopying for UISceneConfiguration {}
-);
-
-unsafe impl CopyingHelper for UISceneConfiguration {
-    type Result = Self;
-}
-
-extern_conformance!(
-    unsafe impl NSObjectProtocol for UISceneConfiguration {}
-);
-
-extern_conformance!(
-    unsafe impl NSSecureCoding for UISceneConfiguration {}
-);
-
-impl UISceneConfiguration {
-    extern_methods!(
-        #[cfg(feature = "UISceneDefinitions")]
-        #[unsafe(method(configurationWithName:sessionRole:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithName_sessionRole(
-            name: Option<&NSString>,
-            session_role: &UISceneSessionRole,
-            mtm: MainThreadMarker,
-        ) -> Retained<Self>;
-
-        #[cfg(feature = "UISceneDefinitions")]
-        #[unsafe(method(initWithName:sessionRole:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithName_sessionRole(
-            this: Allocated<Self>,
-            name: Option<&NSString>,
-            session_role: &UISceneSessionRole,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(name))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
-
-        #[cfg(feature = "UISceneDefinitions")]
-        #[unsafe(method(role))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn role(&self) -> Retained<UISceneSessionRole>;
-
-        #[unsafe(method(sceneClass))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn sceneClass(&self) -> Option<&'static AnyClass>;
-
-        /// Setter for [`sceneClass`][Self::sceneClass].
-        #[unsafe(method(setSceneClass:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setSceneClass(&self, scene_class: Option<&AnyClass>);
-
-        #[unsafe(method(delegateClass))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn delegateClass(&self) -> Option<&'static AnyClass>;
-
-        /// Setter for [`delegateClass`][Self::delegateClass].
-        #[unsafe(method(setDelegateClass:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setDelegateClass(&self, delegate_class: Option<&AnyClass>);
-
-        #[cfg(feature = "UIStoryboard")]
-        #[unsafe(method(storyboard))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn storyboard(&self) -> Option<Retained<UIStoryboard>>;
-
-        #[cfg(feature = "UIStoryboard")]
-        /// Setter for [`storyboard`][Self::storyboard].
-        #[unsafe(method(setStoryboard:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setStoryboard(&self, storyboard: Option<&UIStoryboard>);
-    );
-}
-
-/// Methods declared on superclass `NSObject`.
-impl UISceneConfiguration {
-    extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-    );
-}
-
-extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
@@ -148,6 +47,7 @@ impl UISceneSession {
         #[unsafe(method_family = none)]
         pub unsafe fn role(&self) -> Retained<UISceneSessionRole>;
 
+        #[cfg(feature = "UISceneConfiguration")]
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<UISceneConfiguration>;

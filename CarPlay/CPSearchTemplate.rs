@@ -10,6 +10,7 @@ use crate::*;
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpsearchtemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPSearchTemplate;
@@ -60,13 +61,13 @@ impl CPSearchTemplate {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpsearchtemplatedelegate?language=objc)
-    pub unsafe trait CPSearchTemplateDelegate: NSObjectProtocol {
+    pub unsafe trait CPSearchTemplateDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "CPListItem", feature = "CPTemplate", feature = "block2"))]
         /// The user has entered characters in the search text field.
         ///

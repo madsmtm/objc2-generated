@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -146,6 +148,7 @@ impl CPAssistantCellConfiguration {
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplisttemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPListTemplate;
@@ -180,7 +183,7 @@ impl CPListTemplate {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "CPListSection")]
         /// Initialize a list template with one or more sections of items and an optional title.
@@ -213,6 +216,18 @@ impl CPListTemplate {
             assistant_cell_configuration: Option<&CPAssistantCellConfiguration>,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "CPGridButton", feature = "CPListSection"))]
+        /// Initialize a list template with one or more grid buttons to displayed in a list header.
+        #[unsafe(method(initWithTitle:sections:assistantCellConfiguration:headerGridButtons:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTitle_sections_assistantCellConfiguration_headerGridButtons(
+            this: Allocated<Self>,
+            title: Option<&NSString>,
+            sections: &NSArray<CPListSection>,
+            assistant_cell_configuration: Option<&CPAssistantCellConfiguration>,
+            header_grid_buttons: Option<&NSArray<CPGridButton>>,
+        ) -> Retained<Self>;
+
         /// The list template's delegate is informed of list selection events.
         #[deprecated]
         #[unsafe(method(delegate))]
@@ -238,7 +253,7 @@ impl CPListTemplate {
         /// Any items or sections beyond that limit will be trimmed.
         #[unsafe(method(maximumItemCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumItemCount() -> NSUInteger;
+        pub unsafe fn maximumItemCount(mtm: MainThreadMarker) -> NSUInteger;
 
         /// The maximum number of sections that may appear in a
         /// `CPListTemplate.`
@@ -247,7 +262,7 @@ impl CPListTemplate {
         /// Any sections beyond that limit will be trimmed.
         #[unsafe(method(maximumSectionCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumSectionCount() -> NSUInteger;
+        pub unsafe fn maximumSectionCount(mtm: MainThreadMarker) -> NSUInteger;
 
         #[cfg(feature = "CPListSection")]
         /// The sections displayed in this list.
@@ -369,6 +384,39 @@ impl CPListTemplate {
         pub unsafe fn setAssistantCellConfiguration(
             &self,
             assistant_cell_configuration: Option<&CPAssistantCellConfiguration>,
+        );
+
+        /// The maximum number of grid buttons that may appear in a
+        /// `CPListTemplate.`
+        /// Note: Your list template will display the first
+        /// `maximumHeaderGridButtonCount`buttons.
+        /// Any sections beyond that limit will be trimmed.
+        #[unsafe(method(maximumHeaderGridButtonCount))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumHeaderGridButtonCount(mtm: MainThreadMarker) -> NSUInteger;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The expected image size for your
+        /// `CPGridButton.`
+        /// To properly size your list images, your app should size them to the display scale of the car screen.
+        /// See -[CPInterfaceController carTraitCollection].
+        #[unsafe(method(maximumGridButtonImageSize))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumGridButtonImageSize(mtm: MainThreadMarker) -> CGSize;
+
+        #[cfg(feature = "CPGridButton")]
+        /// Assigning to this property will dynamically update the List Template and show the new header.
+        #[unsafe(method(headerGridButtons))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn headerGridButtons(&self) -> Option<Retained<NSArray<CPGridButton>>>;
+
+        #[cfg(feature = "CPGridButton")]
+        /// Setter for [`headerGridButtons`][Self::headerGridButtons].
+        #[unsafe(method(setHeaderGridButtons:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setHeaderGridButtons(
+            &self,
+            header_grid_buttons: Option<&NSArray<CPGridButton>>,
         );
     );
 }

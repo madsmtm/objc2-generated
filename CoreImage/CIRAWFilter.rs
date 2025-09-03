@@ -23,6 +23,16 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion9?language=objc)
+    pub static CIRAWDecoderVersion9: &'static CIRAWDecoderVersion;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion9dng?language=objc)
+    pub static CIRAWDecoderVersion9DNG: &'static CIRAWDecoderVersion;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion8?language=objc)
     pub static CIRAWDecoderVersion8: &'static CIRAWDecoderVersion;
 }

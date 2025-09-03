@@ -7,11 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An abstract base class for storing signatures
+    /// An abstract base class for storing reference signatures and their associated metadata.
     ///
-    ///
-    /// You should not create instances of this class directly, instead use subclasses to provide the
-    /// functionality that you need
+    /// This is the base class of your custom catalog.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shcatalog?language=objc)
     #[unsafe(super(NSObject))]
@@ -25,26 +23,12 @@ extern_conformance!(
 
 impl SHCatalog {
     extern_methods!(
-        /// The minimum
-        /// `SHSignature`duration that can be used to perform searches against this Catalog
-        ///
-        ///
-        /// A
-        /// `SHSignature`that contains less than the minimum duration in seconds will be discarded without matching.
-        ///
-        /// Note: A
-        /// `SHSignature`under this duration does not have enough entropy to provide accurate matches.
+        /// The minimum duration of a query signature that you use to match reference signatures in the catalog.
         #[unsafe(method(minimumQuerySignatureDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumQuerySignatureDuration(&self) -> NSTimeInterval;
 
-        /// The maximum
-        /// `SHSignature`duration that can be used to perform searches against this Catalog
-        ///
-        ///
-        /// A
-        /// `SHSignature`over this duration will be rejected without matching. A well scoped
-        /// `SHSignature`is more likely to provide accurate matches.
+        /// The maximum duration of a query signature that you use to match reference signatures in the catalog.
         #[unsafe(method(maximumQuerySignatureDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumQuerySignatureDuration(&self) -> NSTimeInterval;

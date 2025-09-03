@@ -245,6 +245,7 @@ extern_protocol!(
         unsafe fn undoManagerForWebView(
             &self,
             web_view: Option<&WebView>,
+            mtm: MainThreadMarker,
         ) -> Option<Retained<NSUndoManager>>;
     }
 );

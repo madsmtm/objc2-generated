@@ -11,13 +11,6 @@ use crate::*;
 
 /// These constants can be specified when creating AVPlayerInterstitialEvents in order to configure their behavior.
 ///
-///
-/// Indicates that the user may freely employ playback controls, as available, both within the primary content and in the interstitial content specified for the event.
-///
-/// Indicates that seeking within the primary content from a date prior to the date of the event to a date subsequent to the date of the event is not permitted.
-///
-/// Indicates that advancing the currentTime within an interstitial item, either by seeking ahead or by setting the playback rate to a value greater than the item's asset's preferredRate, is not permitted.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventrestrictions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -25,12 +18,16 @@ use crate::*;
 pub struct AVPlayerInterstitialEventRestrictions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVPlayerInterstitialEventRestrictions: NSUInteger {
+/// Indicates that the user may freely employ playback controls, as available, both within the primary content and in the interstitial content specified for the event.
         #[doc(alias = "AVPlayerInterstitialEventRestrictionNone")]
         const None = 0;
+/// Indicates that seeking within the primary content from a date prior to the date of the event to a date subsequent to the date of the event is not permitted.
         #[doc(alias = "AVPlayerInterstitialEventRestrictionConstrainsSeekingForwardInPrimaryContent")]
         const ConstrainsSeekingForwardInPrimaryContent = 1<<0;
+/// Indicates that advancing the currentTime within an interstitial item, either by seeking ahead or by setting the playback rate to a value greater than the item's asset's preferredRate, is not permitted.
         #[doc(alias = "AVPlayerInterstitialEventRestrictionRequiresPlaybackAtPreferredRateForAdvancement")]
         const RequiresPlaybackAtPreferredRateForAdvancement = 1<<2;
+/// Indicates that advancing the currentTime within an interstitial item, either by seeking ahead or by setting the playback rate to a value greater than the item's asset's preferredRate, is not permitted.
         #[doc(alias = "AVPlayerInterstitialEventRestrictionDefaultPolicy")]
         const DefaultPolicy = AVPlayerInterstitialEventRestrictions::None.0;
     }
@@ -46,38 +43,32 @@ unsafe impl RefEncode for AVPlayerInterstitialEventRestrictions {
 
 /// A particular cue can be specified when creating AVPlayerInterstitialEvents to override the start time/date to a predefined position.
 ///
-///
-/// No cue specified; event playback should start at event time (or date).
-///
-/// Event playback should occur before starting primary playback, regardless of initial primary playback position.
-///
-/// Event playback should occur after primary playback ends without error, either at the end of the primary asset or at the client-specified forward playback end time.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcue?language=objc)
 // NS_TYPED_ENUM
 pub type AVPlayerInterstitialEventCue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventnocue?language=objc)
+    /// No cue specified; event playback should start at event time (or date).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventnocue?language=objc)
     pub static AVPlayerInterstitialEventNoCue: &'static AVPlayerInterstitialEventCue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventjoincue?language=objc)
+    /// Event playback should occur before starting primary playback, regardless of initial primary playback position.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventjoincue?language=objc)
     pub static AVPlayerInterstitialEventJoinCue: &'static AVPlayerInterstitialEventCue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventleavecue?language=objc)
+    /// Event playback should occur after primary playback ends without error, either at the end of the primary asset or at the client-specified forward playback end time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventleavecue?language=objc)
     pub static AVPlayerInterstitialEventLeaveCue: &'static AVPlayerInterstitialEventCue;
 }
 
 /// These constants specify how an event occupies time on AVPlayerItemIntegratedTimeline.
-///
-///
-/// Indicates this interstitial event occupies a single point on AVPlayerItemIntegratedTimeline.
-///
-/// Indicates this interstitial event fills AVPlayerItemIntegratedTimeline with the duration of this event.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventtimelineoccupancy?language=objc)
 // NS_ENUM
@@ -85,8 +76,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVPlayerInterstitialEventTimelineOccupancy(pub NSInteger);
 impl AVPlayerInterstitialEventTimelineOccupancy {
+    /// Indicates this interstitial event occupies a single point on AVPlayerItemIntegratedTimeline.
     #[doc(alias = "AVPlayerInterstitialEventTimelineOccupancySinglePoint")]
     pub const SinglePoint: Self = Self(0);
+    /// Indicates this interstitial event fills AVPlayerItemIntegratedTimeline with the duration of this event.
     #[doc(alias = "AVPlayerInterstitialEventTimelineOccupancyFill")]
     pub const Fill: Self = Self(1);
 }
@@ -101,23 +94,19 @@ unsafe impl RefEncode for AVPlayerInterstitialEventTimelineOccupancy {
 
 /// These constants describe the status of the asset list response for an AVPlayerInterstitialEvent.
 ///
-///
-/// Indicates that the asset list response is now available and non-nil, meaning the asset list read was successful.
-///
-/// Indicates that asset list response has been cleared and reverted to its original state of nil.
-///
-/// Indicates that the asset list response is unavailable, meaning the asset list read failed.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventassetlistresponsestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVPlayerInterstitialEventAssetListResponseStatus(pub NSInteger);
 impl AVPlayerInterstitialEventAssetListResponseStatus {
+    /// Indicates that the asset list response is now available and non-nil, meaning the asset list read was successful.
     #[doc(alias = "AVPlayerInterstitialEventAssetListResponseStatusAvailable")]
     pub const Available: Self = Self(0);
+    /// Indicates that asset list response has been cleared and reverted to its original state of nil.
     #[doc(alias = "AVPlayerInterstitialEventAssetListResponseStatusCleared")]
     pub const Cleared: Self = Self(1);
+    /// Indicates that the asset list response is unavailable, meaning the asset list read failed.
     #[doc(alias = "AVPlayerInterstitialEventAssetListResponseStatusUnavailable")]
     pub const Unavailable: Self = Self(2);
 }
@@ -130,9 +119,38 @@ unsafe impl RefEncode for AVPlayerInterstitialEventAssetListResponseStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// These constants describe the state for a skippable AVPlayerInterstitialEvent.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventskippableeventstate?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AVPlayerInterstitialEventSkippableEventState(pub NSInteger);
+impl AVPlayerInterstitialEventSkippableEventState {
+    /// Indicates that the interstitial event is not skippable.
+    #[doc(alias = "AVPlayerInterstitialEventSkippableEventStateNotSkippable")]
+    pub const NotSkippable: Self = Self(0);
+    /// Indicates that the interstitial event will eventually become eligible to be skipped.
+    #[doc(alias = "AVPlayerInterstitialEventSkippableEventStateNotYetEligible")]
+    pub const NotYetEligible: Self = Self(1);
+    /// Indicates that the interstitial event is currently skippable.
+    #[doc(alias = "AVPlayerInterstitialEventSkippableEventStateEligible")]
+    pub const Eligible: Self = Self(2);
+    /// Indicates that the interstitial event is no longer eligible to be skipped.
+    #[doc(alias = "AVPlayerInterstitialEventSkippableEventStateNoLongerEligible")]
+    pub const NoLongerEligible: Self = Self(3);
+}
+
+unsafe impl Encode for AVPlayerInterstitialEventSkippableEventState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVPlayerInterstitialEventSkippableEventState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// An AVPlayerInterstitialEvent provides instructions for temporarily suspending the playback of primary content in order to play alternative interstitial content instead, resuming playback of the primary content when playback of the interstitial content is complete or is canceled.
-    ///
     ///
     /// The primary content is specified as an instance of AVPlayerItem, designated as the primary item of the interstitial event.
     ///
@@ -175,23 +193,16 @@ impl AVPlayerInterstitialEvent {
         #[cfg(all(feature = "AVPlayerItem", feature = "objc2-core-media"))]
         /// Returns an instance of AVPlayerInterstitialEvent for use in scheduling interstitial playback.
         ///
-        /// Parameter `primaryItem`: An AVPlayerItem representing the primary content during the playback of which the interstitial event should occur. The primaryItem must have an AVAsset that provides an intrinsic mapping from its timeline to real-time dates.
+        /// - Parameter primaryItem: An AVPlayerItem representing the primary content during the playback of which the interstitial event should occur. The primaryItem must have an AVAsset that provides an intrinsic mapping from its timeline to real-time dates.
+        /// - Parameter identifier: An external identifier for the event.
+        /// - Parameter time: The time within the duration of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
+        /// - Parameter templateItems: An array of AVPlayerItems with configurations that will be reproduced for the playback of interstitial content. An NSInvalidArgumentException will be raised if any of the template items employs an AVAsset that lacks a URL, such as an AVComposition.
+        /// - Parameter restrictions: Indicates restrictions on the use of end user playback controls that are imposed by the event.
+        /// - Parameter resumptionOffset: Specifies the offset in time at which playback of the primary item should resume after interstitial playback has finished. Definite numeric values are supported. The value kCMTimeIndefinite can also be used, in order to specify that the effective resumption time offset should accord with the wallclock time elapsed during interstitial playback.
+        /// - Parameter playoutLimit: Specifies the offset from the beginning of the interstitial at which interstitial playback should end, if the interstitial asset(s) are longer. Pass a positive numeric value, or kCMTimeInvalid to indicate no playout limit.
+        /// - Parameter userDefinedAttributes: Storage for attributes defined by the client or the content vendor. Attribute names should begin with X- for uniformity with server insertion.
         ///
-        /// Parameter `identifier`: An external identifier for the event.
-        ///
-        /// Parameter `time`: The time within the duration of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
-        ///
-        /// Parameter `templateItems`: An array of AVPlayerItems with configurations that will be reproduced for the playback of interstitial content. An NSInvalidArgumentException will be raised if any of the template items employs an AVAsset that lacks a URL, such as an AVComposition.
-        ///
-        /// Parameter `restrictions`: Indicates restrictions on the use of end user playback controls that are imposed by the event.
-        ///
-        /// Parameter `resumptionOffset`: Specifies the offset in time at which playback of the primary item should resume after interstitial playback has finished. Definite numeric values are supported. The value kCMTimeIndefinite can also be used, in order to specify that the effective resumption time offset should accord with the wallclock time elapsed during interstitial playback.
-        ///
-        /// Parameter `playoutLimit`: Specifies the offset from the beginning of the interstitial at which interstitial playback should end, if the interstitial asset(s) are longer. Pass a positive numeric value, or kCMTimeInvalid to indicate no playout limit.
-        ///
-        /// Parameter `userDefinedAttributes`: Storage for attributes defined by the client or the content vendor. Attribute names should begin with X- for uniformity with server insertion.
-        ///
-        /// Returns: An instance of AVPlayerInterstitialEvent.
+        /// - Returns: An instance of AVPlayerInterstitialEvent.
         #[deprecated = "Use interstitialEventWithPrimaryItem:time: instead"]
         #[unsafe(method(interstitialEventWithPrimaryItem:identifier:time:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:))]
         #[unsafe(method_family = none)]
@@ -209,23 +220,16 @@ impl AVPlayerInterstitialEvent {
         #[cfg(all(feature = "AVPlayerItem", feature = "objc2-core-media"))]
         /// Returns an instance of AVPlayerInterstitialEvent for use in scheduling interstitial playback.
         ///
-        /// Parameter `primaryItem`: An AVPlayerItem representing the primary content during the playback of which the interstitial event should occur. The primaryItem must have an AVAsset that provides an intrinsic mapping from its timeline to real-time dates.
+        /// - Parameter primaryItem: An AVPlayerItem representing the primary content during the playback of which the interstitial event should occur. The primaryItem must have an AVAsset that provides an intrinsic mapping from its timeline to real-time dates.
+        /// - Parameter identifier: An external identifier for the event.
+        /// - Parameter date: The date within the date range of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
+        /// - Parameter templateItems: An array of AVPlayerItems with configurations that will be reproduced for the playback of interstitial content. An NSInvalidArgumentException will be raised if any of the template items employs an AVAsset that lacks a URL, such as an AVComposition.
+        /// - Parameter restrictions: Indicates restrictions on the use of end user playback controls that are imposed by the event.
+        /// - Parameter resumptionOffset: Specifies the offset in time at which playback of the primary item should resume after interstitial playback has finished. Definite numeric values are supported. The value kCMTimeIndefinite can also be used, in order to specify that the effective resumption time offset should accord with the wallclock time elapsed during interstitial playback.
+        /// - Parameter playoutLimit: Specifies the offset from the beginning of the interstitial at which interstitial playback should end, if the interstitial asset(s) are longer. Pass a positive numeric value, or kCMTimeInvalid to indicate no playout limit.
+        /// - Parameter userDefinedAttributes: Storage for attributes defined by the client or the content vendor. Attribute names should begin with X- for uniformity with server insertion.
         ///
-        /// Parameter `identifier`: An external identifier for the event.
-        ///
-        /// Parameter `date`: The date within the date range of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
-        ///
-        /// Parameter `templateItems`: An array of AVPlayerItems with configurations that will be reproduced for the playback of interstitial content. An NSInvalidArgumentException will be raised if any of the template items employs an AVAsset that lacks a URL, such as an AVComposition.
-        ///
-        /// Parameter `restrictions`: Indicates restrictions on the use of end user playback controls that are imposed by the event.
-        ///
-        /// Parameter `resumptionOffset`: Specifies the offset in time at which playback of the primary item should resume after interstitial playback has finished. Definite numeric values are supported. The value kCMTimeIndefinite can also be used, in order to specify that the effective resumption time offset should accord with the wallclock time elapsed during interstitial playback.
-        ///
-        /// Parameter `playoutLimit`: Specifies the offset from the beginning of the interstitial at which interstitial playback should end, if the interstitial asset(s) are longer. Pass a positive numeric value, or kCMTimeInvalid to indicate no playout limit.
-        ///
-        /// Parameter `userDefinedAttributes`: Storage for attributes defined by the client or the content vendor. Attribute names should begin with X- for uniformity with server insertion.
-        ///
-        /// Returns: An instance of AVPlayerInterstitialEvent.
+        /// - Returns: An instance of AVPlayerInterstitialEvent.
         #[deprecated = "Use interstitialEventWithPrimaryItem:date: instead"]
         #[unsafe(method(interstitialEventWithPrimaryItem:identifier:date:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:))]
         #[unsafe(method_family = none)]
@@ -243,11 +247,10 @@ impl AVPlayerInterstitialEvent {
         #[cfg(all(feature = "AVPlayerItem", feature = "objc2-core-media"))]
         /// Returns an instance of AVPlayerInterstitialEvent for use in scheduling interstitial playback.
         ///
-        /// Parameter `primaryItem`: An AVPlayerItem representing the primary content during the playback of which the interstitial event should occur. The primaryItem must have an AVAsset that provides an intrinsic mapping from its timeline to real-time dates.
+        /// - Parameter primaryItem: An AVPlayerItem representing the primary content during the playback of which the interstitial event should occur. The primaryItem must have an AVAsset that provides an intrinsic mapping from its timeline to real-time dates.
+        /// - Parameter time: The time within the duration of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
         ///
-        /// Parameter `time`: The time within the duration of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
-        ///
-        /// Returns: An instance of AVPlayerInterstitialEvent.
+        /// - Returns: An instance of AVPlayerInterstitialEvent.
         #[unsafe(method(interstitialEventWithPrimaryItem:time:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventWithPrimaryItem_time(
@@ -258,11 +261,10 @@ impl AVPlayerInterstitialEvent {
         #[cfg(feature = "AVPlayerItem")]
         /// Returns an instance of AVPlayerInterstitialEvent for use in scheduling interstitial playback.
         ///
-        /// Parameter `primaryItem`: An AVPlayerItem representing the primary content during the playback of which the interstitial event should occur. The primaryItem must have an AVAsset that provides an intrinsic mapping from its timeline to real-time dates.
+        /// - Parameter primaryItem: An AVPlayerItem representing the primary content during the playback of which the interstitial event should occur. The primaryItem must have an AVAsset that provides an intrinsic mapping from its timeline to real-time dates.
+        /// - Parameter date: The date within the date range of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
         ///
-        /// Parameter `date`: The date within the date range of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
-        ///
-        /// Returns: An instance of AVPlayerInterstitialEvent.
+        /// - Returns: An instance of AVPlayerInterstitialEvent.
         #[unsafe(method(interstitialEventWithPrimaryItem:date:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventWithPrimaryItem_date(
@@ -388,12 +390,26 @@ impl AVPlayerInterstitialEvent {
         #[unsafe(method(contentMayVary))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentMayVary(&self) -> bool;
+
+        #[cfg(feature = "objc2-core-media")]
+        /// The time range within the duration of the interstitial event for which a skip button should be displayed.
+        ///
+        /// The start of the time range should indicate at which point the skip button should appear. The duration of the time range should indicate how long the skip button should be available. If this value is set to kCMTimePositiveInfinity, then the skip button will be available for the remainder of the interstitial's duration after appearing. If either the start or duration of the time range is kCMTimeInvalid, then the interstitial will NOT be eligible to be skipped.
+        #[unsafe(method(skipControlTimeRange))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn skipControlTimeRange(&self) -> CMTimeRange;
+
+        /// The key defined in the AVPlayerInterstitialEventController's localizedStringsBundle that points to the localized label for the skip button.
+        ///
+        /// If the value of the property is nil, the skip button may contain a generic label depending on the implementation of the UI that's in use. To ensure the best available user experience in various playback configurations, including external playback, set a value for this property that provides localized translations of skip control labels.
+        #[unsafe(method(skipControlLocalizedLabelBundleKey))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn skipControlLocalizedLabelBundleKey(&self) -> Option<Retained<NSString>>;
     );
 }
 
 extern_class!(
     /// An AVPlayerInterstitialEventMonitor allows you to observe the scheduling and progress of interstitial events, specified either intrinsically within the content of primary items, such as via use of directives carried by HLS media playlists, or via use of an AVPlayerInterstitialEventController.
-    ///
     ///
     /// The schedule of interstitial events is provided as an array of AVPlayerInterstitialEvents. For each AVPlayerInterstitialEvent, when the primary player's current item is the primary item of the interstitial event and its currentDate reaches the date of the event, playback of the primary item by the primary player is temporarily suspended, i.e. its timeControlStatus changes to AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate and its reasonForWaitingToPlay will change to AVPlayerWaitingDuringInterstitialEventReason. During this suspension, playback of items that replicate the interstitial template items of the event are played by the interstitial player, which temporarily assumes the output configuration of the primary player; for example, its visual content will be routed to AVPlayerLayers that reference the primary player. Once the interstitial player has advanced through playback of the interstitial items specified by the event or its current item otherwise becomes nil, playback of the primary content will resume, at an offset from the time at which it was suspended as specified by the event.
     ///
@@ -418,9 +434,9 @@ impl AVPlayerInterstitialEventMonitor {
         #[cfg(feature = "AVPlayer")]
         /// Returns an instance of AVPlayerInterstitialEvent for use in observing and scheduling interstitial playback.
         ///
-        /// Parameter `primaryPlayer`: The AVPlayer that will play the primaryItems of the receiver's interstitial events.
+        /// - Parameter primaryPlayer: The AVPlayer that will play the primaryItems of the receiver's interstitial events.
         ///
-        /// Returns: An instance of AVPlayerInterstitialEventMonitor.
+        /// - Returns: An instance of AVPlayerInterstitialEventMonitor.
         #[unsafe(method(interstitialEventMonitorWithPrimaryPlayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventMonitorWithPrimaryPlayer(
@@ -460,6 +476,23 @@ impl AVPlayerInterstitialEventMonitor {
         #[unsafe(method(currentEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentEvent(&self) -> Option<Retained<AVPlayerInterstitialEvent>>;
+
+        /// The skippable event state for the currentEvent.
+        ///
+        /// If currentEvent is nil, then the value will be AVPlayerInterstitialEventSkippableEventStateNotSkippable.
+        #[unsafe(method(currentEventSkippableState))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn currentEventSkippableState(
+            &self,
+        ) -> AVPlayerInterstitialEventSkippableEventState;
+
+        /// The skip control label for the currentEvent.
+        ///
+        /// If a localizedStringsBundle has been set on the AVPlayerInterstitialEventController, and a skipControlLocalizedLabelBundleKey is set on the currentEvent, then this value will be the localized string that was matched to the event's skipControlLocalizedLabelBundleKey for the corresponding system language in the supplied Bundle, if any.
+        /// If currentEvent is nil, then the value will be nil.
+        #[unsafe(method(currentEventSkipControlLabel))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn currentEventSkipControlLabel(&self) -> Option<Retained<NSString>>;
     );
 }
 
@@ -535,10 +568,140 @@ extern "C" {
         &'static NSString;
 }
 
-extern_class!(
-    /// An AVPlayerInterstitialEventController allows you to specify a schedule of interstitial events for items played by a primary player.
-    /// By creating an instance of AVPlayerInterstitialEventController and setting a schedule of interstitial events, you pre-empt directives the are intrinsic to the items played by the primary player, if any exist, causing them to be ignored.
+extern "C" {
+    /// A notification that's posted whenever the currentEventSkippableState of an AVPlayerInterstitialEventMonitor changes.
     ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippablestatedidchangenotification?language=objc)
+    pub static AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeNotification:
+        &'static NSNotificationName;
+}
+
+extern "C" {
+    /// The dictionary key for the AVPlayerInterstitial event that had its skippable event state changed in the payload of the AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeNotification.
+    ///
+    /// The value corresponding to this key is of type AVPlayerInterstitialEvent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippablestatedidchangeeventkey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeEventKey:
+        &'static NSString;
+}
+
+extern "C" {
+    /// The dictionary key for the skippable event state in the payload of the AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeNotification.
+    ///
+    /// The value corresponding to this key is an NSNumber containing type AVPlayerInterstitialEventSkippableEventState.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippablestatedidchangestatekey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeStateKey:
+        &'static NSString;
+}
+
+extern "C" {
+    /// The dictionary key for the skip label of the event in the payload of the AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeNotification.
+    ///
+    /// The value corresponding to this key is an NSString that's the localized skip label if a localizedStringsBundle is set on the AVPlayerInterstitialEventController and a skipControlLocalizedLabelBundleKey on the AVPlayerInterstitialEvent whose skippable event state changed. Note that this key will not be present if there is no localizedStringsBundle set, or if the currentEventSkippableState changed to AVPlayerInterstitialEventSkippableEventStateNotSkippable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippablestatedidchangeskipcontrollabelkey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeSkipControlLabelKey:
+        &'static NSString;
+}
+
+extern "C" {
+    /// A notification that's posted whenever an event was skipped via skip control.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippednotification?language=objc)
+    pub static AVPlayerInterstitialEventMonitorCurrentEventSkippedNotification:
+        &'static NSNotificationName;
+}
+
+extern "C" {
+    /// The dictionary key for the AVPlayerInterstitialEvent that was skipped in the payload of the AVPlayerInterstitialEventMonitorCurrentEventSkippedNotification.
+    ///
+    /// The value corresponding to this key is of type AVPlayerInterstitialEvent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippedeventkey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorCurrentEventSkippedEventKey: &'static NSString;
+}
+
+extern "C" {
+    /// A notification that is posted whenever an AVPlayerInterstitialEvent with loaded assets was unscheduled prior to playing.
+    ///
+    /// Carries a userInfo dictionary that can contain the following keys and values:
+    /// 1. AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledEventKey, with a value that indicates which AVPlayerInterstitialEvent was unscheduled.
+    /// 2. AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledErrorKey, with an NSError value. This key will only be present if the AVPlayerInterstitialEvent was unscheduled due to an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventwasunschedulednotification?language=objc)
+    pub static AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledNotification:
+        &'static NSNotificationName;
+}
+
+extern "C" {
+    /// The dictionary key for the AVPlayerInterstitialEvent that was unscheduled in the payload of the AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledNotification.
+    ///
+    /// The value corresponding to this key is of type AVPlayerInterstitialEvent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventwasunscheduledeventkey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledEventKey:
+        &'static NSString;
+}
+
+extern "C" {
+    /// The dictionary key to indicate whether the event that was unscheduled was due to an error.
+    ///
+    /// The value corresponding to this key is of type NSError. This key only exists in the payload of AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledNotification if the interstitial event was unscheduled due to an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventwasunschedulederrorkey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledErrorKey:
+        &'static NSString;
+}
+
+extern "C" {
+    /// A notification that is posted whenever an AVPlayerInterstitialEvent finished playing.
+    ///
+    /// Carries a userInfo dictionary that can contain the following keys and values:
+    /// 1. AVPlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey, with a value that indicates the AVPlayerInterstitialEvent that finished playing.
+    /// 2. AVPlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey, with a value that indicates how long that AVPlayerInterstitialEvent played out for.
+    /// 3. AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey, with a value that indicates whether the AVPlayerInterstitialEvent was fully played out.
+    ///
+    /// Note that cancelling an AVPlayerInterstitialEvent after playback started but prior to playback finishing will also trigger this event.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventdidfinishnotification?language=objc)
+    pub static AVPlayerInterstitialEventMonitorInterstitialEventDidFinishNotification:
+        &'static NSNotificationName;
+}
+
+extern "C" {
+    /// The dictionary key for the AVPlayerInterstitialEvent that finished playing in the payload of the AVPlayerInterstitialEventMonitorInterstitialEventDidFinishNotification.
+    ///
+    /// The value corresponding to this key is of type AVPlayerInterstitialEvent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventdidfinisheventkey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey:
+        &'static NSString;
+}
+
+extern "C" {
+    /// The dictionary key for the playout time of the event that finished playing in the payload of the AVPlayerInterstitialEventMonitorInterstitialEventDidFinishNotification.
+    ///
+    /// The value corresponding to this key is of type CMTime as a NSDictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventdidfinishplayouttimekey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey:
+        &'static NSString;
+}
+
+extern "C" {
+    /// The dictionary key to indicate whether the event that finished playing was fully played out in the payload of the AVPlayerInterstitialEventMonitorInterstitialEventDidFinishNotification.
+    ///
+    /// The value corresponding to this key is of type NSNumber with a BOOL value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventdidfinishdidplayentireeventkey?language=objc)
+    pub static AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey:
+        &'static NSString;
+}
+
+extern_class!(
+    /// An AVPlayerInterstitialEventController allows you to specify a schedule of interstitial events for items played by a primary player. By creating an instance of AVPlayerInterstitialEventController and setting a schedule of interstitial events, you pre-empt directives the are intrinsic to the items played by the primary player, if any exist, causing them to be ignored.
     ///
     /// The schedule of interstitial events is specified as an array of AVPlayerInterstitialEvents. For each AVPlayerInterstitialEvent, when the primary player's current item is the primary item of the interstitial event and its currentDate reaches the date of the event, playback of the primary item by the primary player is temporarily suspended, i.e. its timeControlStatus changes to AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate and its reasonForWaitingToPlay will change to AVPlayerWaitingDuringInterstitialEventReason. During this suspension, playback of items that replicate the interstitial template items of the event are played by the interstitial player, which temporarily assumes the output configuration of the primary player; for example, its visual content will be routed to AVPlayerLayers that reference the primary player. Once the interstitial player has advanced through playback of the interstitial items specified by the event or its current item otherwise becomes nil, playback of the primary content will resume, at an offset from the time at which it was suspended as specified by the event.
     ///
@@ -559,11 +722,11 @@ impl AVPlayerInterstitialEventController {
         #[cfg(feature = "AVPlayer")]
         /// Returns an instance of AVPlayerInterstitialEvent for use in observing and scheduling interstitial playback.
         ///
-        /// Parameter `primaryPlayer`: The AVPlayer that will play the primaryItems of the receiver's interstitial events.
-        ///
-        /// Returns: An instance of AVPlayerInterstitialEventController.
-        ///
         /// This method throws an exception if the primary player is an interstitial player.
+        ///
+        /// - Parameter primaryPlayer: The AVPlayer that will play the primaryItems of the receiver's interstitial events.
+        ///
+        /// - Returns: An instance of AVPlayerInterstitialEventController.
         #[unsafe(method(interstitialEventControllerWithPrimaryPlayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventControllerWithPrimaryPlayer(
@@ -604,14 +767,50 @@ impl AVPlayerInterstitialEventController {
         #[cfg(feature = "objc2-core-media")]
         /// Causes the playback of any and all interstitial content currently in progress to be abandoned and the playback of primary content to be resumed.
         ///
-        /// Parameter `resumptionOffset`: Specifies the offset in time at which playback of the primary player's current item should resume after interstitial playback has finished. To specify that the effective resumption time offset should accord with the wallclock time elapsed during interstitial playback, pass a value of kCMTimeIndefinite.
-        ///
         /// If invoked during the handling of coinciding interstitial events, they will all be canceled.
         /// When you cancel interstitial events via the use of this method, the value of resumptionOffset that you pass overrides the events' resumptionOffset.
         /// Has no effect while currentEvent is nil.
+        ///
+        /// - Parameter resumptionOffset: Specifies the offset in time at which playback of the primary player's current item should resume after interstitial playback has finished. To specify that the effective resumption time offset should match with the wallclock time elapsed during interstitial playback, pass a value of kCMTimeIndefinite. To specify that the effective resumption time offset should match with the projected playback time, pass a value of kCMTimeInvalid.
         #[unsafe(method(cancelCurrentEventWithResumptionOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelCurrentEventWithResumptionOffset(&self, resumption_offset: CMTime);
+
+        /// Causes the playback of the currently playing interstital event to be abandoned.
+        ///
+        /// Note that coinciding events will NOT be skipped.
+        /// This results in AVPlayerInterstitialEventMonitorCurrentEventSkippedNotification being posted.
+        /// Has no effect while the currentEvent is nil.
+        #[unsafe(method(skipCurrentEvent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn skipCurrentEvent(&self);
+
+        /// The bundle that contains the localized strings to be used by the AVPlayerInterstitialEventController.
+        ///
+        /// If the value of the property is nil, any UI elements triggered by the AVPlayerInterstitialEventController, such as the skip button, may contain a generic label based on the implementation of the UI that's in use. To ensure the best available user experience in various playback configurations, including external playback, set a value for this property that provides localized translations of skip control labels.
+        #[unsafe(method(localizedStringsBundle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn localizedStringsBundle(&self) -> Option<Retained<NSBundle>>;
+
+        /// Setter for [`localizedStringsBundle`][Self::localizedStringsBundle].
+        #[unsafe(method(setLocalizedStringsBundle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLocalizedStringsBundle(&self, localized_strings_bundle: Option<&NSBundle>);
+
+        /// The name of the table in the bundle that contains the localized strings to be used by the AVPlayerInterstitialEventController.
+        ///
+        /// If the value of the property is nil, it will default to "Localizable"
+        #[unsafe(method(localizedStringsTableName))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn localizedStringsTableName(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`localizedStringsTableName`][Self::localizedStringsTableName].
+        #[unsafe(method(setLocalizedStringsTableName:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLocalizedStringsTableName(
+            &self,
+            localized_strings_table_name: Option<&NSString>,
+        );
     );
 }
 
@@ -621,9 +820,9 @@ impl AVPlayerInterstitialEventController {
         #[cfg(feature = "AVPlayer")]
         /// Returns an instance of AVPlayerInterstitialEvent for use in observing and scheduling interstitial playback.
         ///
-        /// Parameter `primaryPlayer`: The AVPlayer that will play the primaryItems of the receiver's interstitial events.
+        /// - Parameter primaryPlayer: The AVPlayer that will play the primaryItems of the receiver's interstitial events.
         ///
-        /// Returns: An instance of AVPlayerInterstitialEventMonitor.
+        /// - Returns: An instance of AVPlayerInterstitialEventMonitor.
         #[unsafe(method(interstitialEventMonitorWithPrimaryPlayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventMonitorWithPrimaryPlayer(

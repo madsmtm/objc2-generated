@@ -55,6 +55,48 @@ unsafe impl RefEncode for PKAutomaticPassPresentationSuppressionResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarycapability?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PKPassLibraryCapability(pub NSInteger);
+impl PKPassLibraryCapability {
+    #[doc(alias = "PKPassLibraryCapabilityBackgroundAddPasses")]
+    pub const BackgroundAddPasses: Self = Self(0);
+}
+
+unsafe impl Encode for PKPassLibraryCapability {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for PKPassLibraryCapability {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryauthorizationstatus?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PKPassLibraryAuthorizationStatus(pub NSInteger);
+impl PKPassLibraryAuthorizationStatus {
+    #[doc(alias = "PKPassLibraryAuthorizationStatusNotDetermined")]
+    pub const NotDetermined: Self = Self(-1);
+    #[doc(alias = "PKPassLibraryAuthorizationStatusDenied")]
+    pub const Denied: Self = Self(0);
+    #[doc(alias = "PKPassLibraryAuthorizationStatusAuthorized")]
+    pub const Authorized: Self = Self(1);
+    #[doc(alias = "PKPassLibraryAuthorizationStatusRestricted")]
+    pub const Restricted: Self = Self(2);
+}
+
+unsafe impl Encode for PKPassLibraryAuthorizationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for PKPassLibraryAuthorizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksuppressionrequesttoken?language=objc)
 pub type PKSuppressionRequestToken = NSUInteger;
 
@@ -316,6 +358,22 @@ impl PKPassLibrary {
             &self,
             secure_element_pass: &PKSecureElementPass,
             completion: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
+        );
+
+        #[unsafe(method(authorizationStatusForCapability:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn authorizationStatusForCapability(
+            &self,
+            capability: PKPassLibraryCapability,
+        ) -> PKPassLibraryAuthorizationStatus;
+
+        #[cfg(feature = "block2")]
+        #[unsafe(method(requestAuthorizationForCapability:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requestAuthorizationForCapability_completion(
+            &self,
+            capability: PKPassLibraryCapability,
+            completion: &block2::DynBlock<dyn Fn(PKPassLibraryAuthorizationStatus)>,
         );
     );
 }

@@ -193,6 +193,16 @@ bitflags::bitflags! {
         const PreferredFramesPerSecond60 = 3<<24;
         #[doc(alias = "UIViewAnimationOptionPreferredFramesPerSecond30")]
         const PreferredFramesPerSecond30 = 7<<24;
+/// Flush all pending updates (including traits, properties, and layout) whenever the animation context changes.
+/// This includes flushing updates:
+/// - Before entering an animation scope, for invalidations that happened previously without animation.
+/// - Before entering a nested animation scope, for invalidations that happened in the outer animation scope.
+/// - Before exiting any animation scope, for invalidations that happened in that animation scope.
+/// - Before disabling animations, for invalidations that happened in the animation scope with animations enabled.
+/// - Before re-enabling animations, for invalidations that happened in the scope with animations disabled.
+/// This animation option implicitly applies to any nested animation scopes, even if they don't explicitly use this option.
+        #[doc(alias = "UIViewAnimationOptionFlushUpdates")]
+        const FlushUpdates = 1<<28;
     }
 }
 
@@ -312,52 +322,6 @@ unsafe impl RefEncode for UISemanticContentAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicoordinatespace?language=objc)
-    pub unsafe trait UICoordinateSpace: NSObjectProtocol + MainThreadOnly {
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(convertPoint:toCoordinateSpace:))]
-        #[unsafe(method_family = none)]
-        fn convertPoint_toCoordinateSpace(
-            &self,
-            point: CGPoint,
-            coordinate_space: &ProtocolObject<dyn UICoordinateSpace>,
-        ) -> CGPoint;
-
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(convertPoint:fromCoordinateSpace:))]
-        #[unsafe(method_family = none)]
-        fn convertPoint_fromCoordinateSpace(
-            &self,
-            point: CGPoint,
-            coordinate_space: &ProtocolObject<dyn UICoordinateSpace>,
-        ) -> CGPoint;
-
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(convertRect:toCoordinateSpace:))]
-        #[unsafe(method_family = none)]
-        fn convertRect_toCoordinateSpace(
-            &self,
-            rect: CGRect,
-            coordinate_space: &ProtocolObject<dyn UICoordinateSpace>,
-        ) -> CGRect;
-
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(convertRect:fromCoordinateSpace:))]
-        #[unsafe(method_family = none)]
-        fn convertRect_fromCoordinateSpace(
-            &self,
-            rect: CGRect,
-            coordinate_space: &ProtocolObject<dyn UICoordinateSpace>,
-        ) -> CGRect;
-
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(bounds))]
-        #[unsafe(method_family = none)]
-        fn bounds(&self) -> CGRect;
-    }
-);
-
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview?language=objc)
     #[unsafe(super(UIResponder, NSObject))]
@@ -446,6 +410,10 @@ impl UIView {
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(isUserInteractionEnabled))]
         #[unsafe(method_family = none)]
@@ -556,10 +524,6 @@ impl UIView {
 #[cfg(feature = "UIResponder")]
 impl UIView {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
@@ -820,6 +784,24 @@ impl UIView {
         #[unsafe(method(viewWithTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewWithTag(&self, tag: NSInteger) -> Option<Retained<UIView>>;
+
+        /// Call to manually request a properties update for the view.
+        /// Multiple requests may be coalesced into a single update alongside the next layout pass.
+        #[unsafe(method(setNeedsUpdateProperties))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setNeedsUpdateProperties(&self);
+
+        /// Override point for subclasses to update properties of this view.
+        /// Never call this method directly; use `setNeedsUpdateProperties` to schedule an update.
+        #[unsafe(method(updateProperties))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updateProperties(&self);
+
+        /// Forces an immediate properties update for this view (and its view controller, if applicable)
+        /// and any subviews, including any view controllers or views in its subtree.
+        #[unsafe(method(updatePropertiesIfNeeded))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updatePropertiesIfNeeded(&self);
 
         #[unsafe(method(setNeedsLayout))]
         #[unsafe(method_family = none)]
@@ -1864,3 +1846,41 @@ impl UIView {
 extern_conformance!(
     unsafe impl UITraitChangeObservable for UIView {}
 );
+
+/// LayoutRegions.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
+        #[cfg(all(feature = "UILayoutGuide", feature = "UIViewLayoutRegion"))]
+        #[unsafe(method(layoutGuideForLayoutRegion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn layoutGuideForLayoutRegion(
+            &self,
+            layout_region: &UIViewLayoutRegion,
+        ) -> Retained<UILayoutGuide>;
+
+        #[cfg(all(
+            feature = "UIGeometry",
+            feature = "UIViewLayoutRegion",
+            feature = "objc2-core-foundation"
+        ))]
+        #[unsafe(method(edgeInsetsForLayoutRegion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn edgeInsetsForLayoutRegion(
+            &self,
+            layout_region: &UIViewLayoutRegion,
+        ) -> UIEdgeInsets;
+
+        #[cfg(all(
+            feature = "UIGeometry",
+            feature = "UIViewLayoutRegion",
+            feature = "objc2-core-foundation"
+        ))]
+        #[unsafe(method(directionalEdgeInsetsForLayoutRegion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn directionalEdgeInsetsForLayoutRegion(
+            &self,
+            layout_region: &UIViewLayoutRegion,
+        ) -> NSDirectionalEdgeInsets;
+    );
+}

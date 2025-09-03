@@ -109,6 +109,14 @@ impl MPNowPlayingInfoCenter {
         #[unsafe(method(setPlaybackState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaybackState(&self, playback_state: MPNowPlayingPlaybackState);
+
+        /// Keys related to animated artwork that are supported by the current platform.
+        ///
+        /// If you specify an instance of animated artwork (an `MPMediaItemAnimatedArtwork`) to
+        /// `nowPlayingInfo` using any key not in this collection it will be ignored.
+        #[unsafe(method(supportedAnimatedArtworkKeys))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportedAnimatedArtworkKeys() -> Retained<NSArray<NSString>>;
     );
 }
 
@@ -220,4 +228,18 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyexcludefromsuggestions?language=objc)
     pub static MPNowPlayingInfoPropertyExcludeFromSuggestions: &'static NSString;
+}
+
+extern "C" {
+    /// 1:1 (square) animated artwork for the current media item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfoproperty1x1animatedartwork?language=objc)
+    pub static MPNowPlayingInfoProperty1x1AnimatedArtwork: &'static NSString;
+}
+
+extern "C" {
+    /// 3:4 (tall) animated artwork for the current media item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfoproperty3x4animatedartwork?language=objc)
+    pub static MPNowPlayingInfoProperty3x4AnimatedArtwork: &'static NSString;
 }

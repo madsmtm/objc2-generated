@@ -109,6 +109,34 @@ unsafe impl RefEncode for MTLStoreActionOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// This enumeration controls if Metal accumulates visibility results between render encoders or resets them.
+///
+/// You can specify this property for ``MTLRenderCommandEncoders`` and for ``MTL4RenderCommandEncoders`` through
+/// their descriptors' ``MTLRenderCommandEncoder/visibilityResultType`` and ``MTL4RenderCommandEncoder/visibilityResultType``
+/// methods.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresulttype?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLVisibilityResultType(pub NSInteger);
+impl MTLVisibilityResultType {
+    /// Reset visibility result data when you create a render command encoder.
+    #[doc(alias = "MTLVisibilityResultTypeReset")]
+    pub const Reset: Self = Self(0);
+    /// Accumulate visibility results data across multiple render passes.
+    #[doc(alias = "MTLVisibilityResultTypeAccumulate")]
+    pub const Accumulate: Self = Self(1);
+}
+
+unsafe impl Encode for MTLVisibilityResultType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLVisibilityResultType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor?language=objc)
     #[unsafe(super(NSObject))]
@@ -921,6 +949,19 @@ impl MTLRenderPassDescriptor {
         pub fn sampleBufferAttachments(
             &self,
         ) -> Retained<MTLRenderPassSampleBufferAttachmentDescriptorArray>;
+
+        /// Specifies if Metal accumulates visibility results between render encoders or resets them.
+        #[unsafe(method(visibilityResultType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn visibilityResultType(&self) -> MTLVisibilityResultType;
+
+        /// Setter for [`visibilityResultType`][Self::visibilityResultType].
+        #[unsafe(method(setVisibilityResultType:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setVisibilityResultType(
+            &self,
+            visibility_result_type: MTLVisibilityResultType,
+        );
     );
 }
 

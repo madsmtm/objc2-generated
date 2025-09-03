@@ -192,6 +192,7 @@ impl AVAssetImageGenerator {
         /// - "renderSize" width or height is less than zero
         /// - "frameDuration" is invalid or less than or equal to zero
         /// - "sourceTrackIDForFrameTiming" is less than zero
+        /// - "outputBufferDescription" is non-nil
         #[unsafe(method(videoComposition))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoComposition(&self) -> Option<Retained<AVVideoComposition>>;

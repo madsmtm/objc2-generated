@@ -62,6 +62,7 @@ extern_class!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem?language=objc)
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPListItem;
 );
@@ -243,7 +244,7 @@ impl CPListItem {
         /// See -[CPInterfaceController carTraitCollection].
         #[unsafe(method(maximumImageSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumImageSize() -> CGSize;
+        pub unsafe fn maximumImageSize(mtm: MainThreadMarker) -> CGSize;
 
         /// Update the detail text in this list item, reloading this item in the table if needed.
         #[unsafe(method(setDetailText:))]
@@ -413,7 +414,7 @@ impl CPListItem {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 

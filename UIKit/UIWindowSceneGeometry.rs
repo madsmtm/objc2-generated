@@ -71,10 +71,25 @@ impl UIWindowSceneGeometry {
         #[unsafe(method_family = none)]
         pub unsafe fn systemFrame(&self) -> CGRect;
 
+        #[cfg(feature = "UIView")]
+        /// The coordinate space of the scene
+        #[unsafe(method(coordinateSpace))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn coordinateSpace(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
+
         #[cfg(feature = "UIOrientation")]
+        /// The interface orientation of the scene
         #[unsafe(method(interfaceOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceOrientation(&self) -> UIInterfaceOrientation;
+
+        /// If the scene's interface orientation is locked and preventing changes. To express a preference for this value, override  `UIViewController`'s `prefersInterfaceOrientationLocked`.
+        #[unsafe(method(isInterfaceOrientationLocked))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isInterfaceOrientationLocked(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The current app specified minimumSize. A value of 0,0 is returned if a minimum is not set by the application
@@ -92,5 +107,10 @@ impl UIWindowSceneGeometry {
         #[unsafe(method(resizingRestrictions))]
         #[unsafe(method_family = none)]
         pub unsafe fn resizingRestrictions(&self) -> UIWindowSceneResizingRestrictions;
+
+        /// Returns true when the scene is being resized interactively, otherwise false.
+        #[unsafe(method(isInteractivelyResizing))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isInteractivelyResizing(&self) -> bool;
     );
 }

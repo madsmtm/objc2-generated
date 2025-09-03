@@ -33,6 +33,11 @@ extern "C" {
     pub static UIActionPasteAndSearch: &'static UIActionIdentifier;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionnewfrompasteboard?language=objc)
+    pub static UIActionNewFromPasteboard: &'static UIActionIdentifier;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionhandler?language=objc)
 #[cfg(all(feature = "UIMenuElement", feature = "block2"))]
 pub type UIActionHandler = *mut block2::DynBlock<dyn Fn(NonNull<UIAction>)>;

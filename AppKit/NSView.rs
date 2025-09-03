@@ -1562,6 +1562,27 @@ impl NSView {
     );
 }
 
+/// NSCompactControlSizeMetrics.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
+        /// When this property is true, any NSControls in the view or its descendants will be sized with compact
+        /// metrics compatible with macOS 15 and earlier.
+        /// Defaults to false
+        #[unsafe(method(prefersCompactControlSizeMetrics))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prefersCompactControlSizeMetrics(&self) -> bool;
+
+        /// Setter for [`prefersCompactControlSizeMetrics`][Self::prefersCompactControlSizeMetrics].
+        #[unsafe(method(setPrefersCompactControlSizeMetrics:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPrefersCompactControlSizeMetrics(
+            &self,
+            prefers_compact_control_size_metrics: bool,
+        );
+    );
+}
+
 /// NSTrackingArea.
 #[cfg(feature = "NSResponder")]
 impl NSView {
