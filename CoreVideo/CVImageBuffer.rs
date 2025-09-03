@@ -339,12 +339,12 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpostdecodeprocessingsequencemetadatakey?language=objc)
-    pub static kCVImageBufferPostDecodeProcessingSequenceMetadataKey: &'static CFString;
+    pub static kCVImageBufferPostDecodeProcessingSequenceMetadataKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpostdecodeprocessingframemetadatakey?language=objc)
-    pub static kCVImageBufferPostDecodeProcessingFrameMetadataKey: &'static CFString;
+    pub static kCVImageBufferPostDecodeProcessingFrameMetadataKey: Option<&'static CFString>;
 }
 
 extern "C-unwind" {
