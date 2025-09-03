@@ -70,6 +70,66 @@ unsafe impl RefEncode for UIImageSymbolWeight {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagesymbolvariablevaluemode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIImageSymbolVariableValueMode(pub NSInteger);
+impl UIImageSymbolVariableValueMode {
+    /// Automatically selects an appropriate variable value mode for the symbol.
+    #[doc(alias = "UIImageSymbolVariableValueModeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// The "color" variable value mode. Sets the opacity of each variable layer to
+    /// either on or off depending on how its threshold compared to the current value.
+    #[doc(alias = "UIImageSymbolVariableValueModeColor")]
+    pub const Color: Self = Self(1);
+    /// The "draw" variable value mode. Changes the drawn length of each variable layer
+    /// to either based on how its range relates to the current value.
+    #[doc(alias = "UIImageSymbolVariableValueModeDraw")]
+    pub const Draw: Self = Self(2);
+}
+
+unsafe impl Encode for UIImageSymbolVariableValueMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIImageSymbolVariableValueMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+unsafe impl Send for UIImageSymbolVariableValueMode {}
+
+unsafe impl Sync for UIImageSymbolVariableValueMode {}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagesymbolcolorrenderingmode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIImageSymbolColorRenderingMode(pub NSInteger);
+impl UIImageSymbolColorRenderingMode {
+    /// Automatically uses an appropriate color rendering mode for the symbol’s color layers.
+    #[doc(alias = "UIImageSymbolColorRenderingModeAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// Renders the symbol’s color layers using flat colors.
+    #[doc(alias = "UIImageSymbolColorRenderingModeFlat")]
+    pub const Flat: Self = Self(1);
+    /// Renders the symbol’s color layers using gradients.
+    #[doc(alias = "UIImageSymbolColorRenderingModeGradient")]
+    pub const Gradient: Self = Self(2);
+}
+
+unsafe impl Encode for UIImageSymbolColorRenderingMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIImageSymbolColorRenderingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+unsafe impl Send for UIImageSymbolColorRenderingMode {}
+
+unsafe impl Sync for UIImageSymbolColorRenderingMode {}
+
 extern "C-unwind" {
     #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
     pub fn UIFontWeightForImageSymbolWeight(symbol_weight: UIImageSymbolWeight) -> UIFontWeight;
@@ -210,6 +270,20 @@ impl UIImageSymbolConfiguration {
         #[unsafe(method(configurationPreferringMonochrome))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationPreferringMonochrome() -> Retained<Self>;
+
+        /// Initializes a symbol configuration with a preferred variable value mode.
+        #[unsafe(method(configurationWithVariableValueMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configurationWithVariableValueMode(
+            variable_value_mode: UIImageSymbolVariableValueMode,
+        ) -> Retained<Self>;
+
+        /// Initializes a symbol configuration with a preferred color rendering mode.
+        #[unsafe(method(configurationWithColorRenderingMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configurationWithColorRenderingMode(
+            mode: UIImageSymbolColorRenderingMode,
+        ) -> Retained<Self>;
 
         #[unsafe(method(configurationWithoutTextStyle))]
         #[unsafe(method_family = none)]

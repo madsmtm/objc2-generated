@@ -42,6 +42,35 @@ impl ASAccessorySession {
         #[unsafe(method_family = none)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<ASAccessory>>;
 
+        #[cfg(feature = "ASPickerDisplaySettings")]
+        /// Settings that affect the display of the accessory picker.
+        ///
+        /// Use this property to configure settings like the picker timeout.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(pickerDisplaySettings))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn pickerDisplaySettings(&self) -> Option<Retained<ASPickerDisplaySettings>>;
+
+        #[cfg(feature = "ASPickerDisplaySettings")]
+        /// Setter for [`pickerDisplaySettings`][Self::pickerDisplaySettings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(setPickerDisplaySettings:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPickerDisplaySettings(
+            &self,
+            picker_display_settings: Option<&ASPickerDisplaySettings>,
+        );
+
         #[cfg(all(
             feature = "ASAccessoryEvent",
             feature = "block2",
@@ -165,6 +194,30 @@ impl ASAccessorySession {
             &self,
             accessory: &ASAccessory,
             rename_options: ASAccessoryRenameOptions,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+        );
+
+        #[cfg(all(
+            feature = "ASAccessory",
+            feature = "ASDiscoveryDescriptor",
+            feature = "block2"
+        ))]
+        /// Displays a view to upgrade an accessory with additional technology permissions.
+        ///
+        /// Call this method to upgrade previously-added SSID-based accessories to use WiFi Aware.
+        ///
+        /// - Parameters:
+        /// - accessory: The accessory to update.
+        /// - descriptor: An updated descriptor that the picker uses to add new technology authorization for the provided accessory.
+        /// - completionHandler: A block or closure that executes after the picker is shown. The completion handler receives an
+        /// <doc
+        /// ://com.apple.documentation/documentation/Foundation/NSError> instance if the upgrade operation encounters an error. In Swift, you can omit the completion handler by calling the method asynchronously and catching any error thrown by the method.
+        #[unsafe(method(updateAuthorization:descriptor:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updateAuthorization_descriptor_completionHandler(
+            &self,
+            accessory: &ASAccessory,
+            descriptor: &ASDiscoveryDescriptor,
             completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );

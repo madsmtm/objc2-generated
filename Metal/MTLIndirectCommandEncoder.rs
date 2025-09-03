@@ -9,7 +9,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectrendercommand?language=objc)
     pub unsafe trait MTLIndirectRenderCommand: NSObjectProtocol {
-        #[cfg(feature = "MTLRenderPipeline")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]
         #[unsafe(method(setRenderPipelineState:))]
         #[unsafe(method_family = none)]
         unsafe fn setRenderPipelineState(
@@ -121,10 +121,10 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MTLAllocation",
+            feature = "MTLArgument",
             feature = "MTLBuffer",
             feature = "MTLRenderCommandEncoder",
-            feature = "MTLResource",
-            feature = "MTLStageInputOutputDescriptor"
+            feature = "MTLResource"
         ))]
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:))]
         #[unsafe(method_family = none)]
@@ -213,7 +213,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcomputecommand?language=objc)
     pub unsafe trait MTLIndirectComputeCommand: NSObjectProtocol {
-        #[cfg(feature = "MTLComputePipeline")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLComputePipeline"))]
         #[unsafe(method(setComputePipelineState:))]
         #[unsafe(method_family = none)]
         unsafe fn setComputePipelineState(

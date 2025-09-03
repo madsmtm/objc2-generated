@@ -323,11 +323,6 @@ impl NSControl {
         #[unsafe(method_family = none)]
         pub unsafe fn takeIntegerValueFrom(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "NSEvent")]
-        #[unsafe(method(mouseDown:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn mouseDown(&self, event: &NSEvent);
-
         /// # Safety
         ///
         /// `sender` should be of the correct type.

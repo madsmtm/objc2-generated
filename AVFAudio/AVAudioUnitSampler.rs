@@ -199,10 +199,13 @@ impl AVAudioUnitSampler {
     extern_methods!(
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
-        /// initialize the node with the component description
+        /// Initialize the node with the component description for an AUv2 Audio Unit.
         ///
-        /// Parameter `description`: audio component description structure that describes the audio component of type kAudioUnitType_MusicDevice
+        /// - Parameter description: audio component description structure that describes the audio component of type kAudioUnitType_MusicDevice
         /// or kAudioUnitType_RemoteInstrument.
+        ///
+        /// - note: To load AUv3 audio units (or any audio unit asynchronously), use the class
+        /// method ``AVAudioUnit/instantiateWithComponentDescription:options:completionHandler:`` instead.
         #[unsafe(method(initWithAudioComponentDescription:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(

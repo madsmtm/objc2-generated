@@ -11,6 +11,8 @@ use objc2_av_foundation::*;
 #[cfg(feature = "objc2-core-location")]
 use objc2_core_location::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-uniform-type-identifiers")]
+use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
@@ -46,6 +48,13 @@ impl PHContentEditingInput {
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
+        #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// The type of data provided as the asset's content editing input image or video.
+        #[unsafe(method(contentType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contentType(&self) -> Option<Retained<UTType>>;
+
+        #[deprecated = "Use contentType instead"]
         #[unsafe(method(uniformTypeIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniformTypeIdentifier(&self) -> Option<Retained<NSString>>;

@@ -28,7 +28,7 @@ extern_conformance!(
 
 impl MTLFunctionConstantValues {
     extern_methods!(
-        #[cfg(feature = "MTLArgument")]
+        #[cfg(feature = "MTLDataType")]
         /// # Safety
         ///
         /// `value` must be a valid pointer.
@@ -41,7 +41,7 @@ impl MTLFunctionConstantValues {
             index: NSUInteger,
         );
 
-        #[cfg(feature = "MTLArgument")]
+        #[cfg(feature = "MTLDataType")]
         /// # Safety
         ///
         /// `values` must be a valid pointer.
@@ -54,7 +54,7 @@ impl MTLFunctionConstantValues {
             range: NSRange,
         );
 
-        #[cfg(feature = "MTLArgument")]
+        #[cfg(feature = "MTLDataType")]
         /// # Safety
         ///
         /// `value` must be a valid pointer.

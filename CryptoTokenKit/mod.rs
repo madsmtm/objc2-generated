@@ -32,9 +32,15 @@ mod __TKSmartCard;
 #[cfg(feature = "TKSmartCardATR")]
 #[path = "TKSmartCardATR.rs"]
 mod __TKSmartCardATR;
+#[cfg(feature = "TKSmartCardSlotNFCSession")]
+#[path = "TKSmartCardSlotNFCSession.rs"]
+mod __TKSmartCardSlotNFCSession;
 #[cfg(feature = "TKSmartCardToken")]
 #[path = "TKSmartCardToken.rs"]
 mod __TKSmartCardToken;
+#[cfg(feature = "TKSmartCardTokenRegistrationManager")]
+#[path = "TKSmartCardTokenRegistrationManager.rs"]
+mod __TKSmartCardTokenRegistrationManager;
 #[cfg(feature = "TKTLVRecord")]
 #[path = "TKTLVRecord.rs"]
 mod __TKTLVRecord;
@@ -91,6 +97,8 @@ pub use self::__TKSmartCardATR::TKSmartCardATR;
 pub use self::__TKSmartCardATR::TKSmartCardATRInterfaceGroup;
 #[cfg(feature = "TKSmartCardATR")]
 pub use self::__TKSmartCardATR::TKSmartCardProtocol;
+#[cfg(feature = "TKSmartCardSlotNFCSession")]
+pub use self::__TKSmartCardSlotNFCSession::TKSmartCardSlotNFCSession;
 #[cfg(all(feature = "TKSmartCardToken", feature = "TKToken"))]
 pub use self::__TKSmartCardToken::TKSmartCardToken;
 #[cfg(all(feature = "TKSmartCardToken", feature = "TKToken"))]
@@ -101,6 +109,8 @@ pub use self::__TKSmartCardToken::TKSmartCardTokenDriverDelegate;
 pub use self::__TKSmartCardToken::TKSmartCardTokenSession;
 #[cfg(all(feature = "TKSmartCardToken", feature = "TKToken"))]
 pub use self::__TKSmartCardToken::TKTokenSmartCardPINAuthOperation;
+#[cfg(feature = "TKSmartCardTokenRegistrationManager")]
+pub use self::__TKSmartCardTokenRegistrationManager::TKSmartCardTokenRegistrationManager;
 #[cfg(feature = "TKTLVRecord")]
 pub use self::__TKTLVRecord::TKBERTLVRecord;
 #[cfg(feature = "TKTLVRecord")]

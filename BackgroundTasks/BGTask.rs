@@ -34,23 +34,21 @@ impl BGTask {
         #[cfg(feature = "block2")]
         /// A handler called shortly before the task’s background time expires.
         ///
-        /// The time allocated by the system for expiration handlers doesn’t vary with
-        /// the number of background tasks. All expiration handlers must complete before
-        /// the allocated time.
+        /// There is a limit to how long your app has to perform its background work, and your work may need to be interrupted
+        /// if system conditions change. Assign a handler to this property to cancel any ongoing tasks, perform any needed
+        /// cleanup, and then call setTaskCompletedWithSuccess: to signal completion to the system and allow your app to be
+        /// suspended. This property is cleared after it is called by the system or when ``BGTask/setTaskCompletedWithSuccess:``
+        /// is called. This is to mitigate the impact of a retain cycle created by referencing the BGTask instance inside this
+        /// block.
         ///
-        /// Not setting an expiration handler results in the system marking your task as
-        /// complete and unsuccessful instead of sending a warning.
-        ///
-        /// The manager sets the value `expirationHandler` to `nil` after the handler
-        /// completes.
+        /// The handler may be called before the background process uses the full amount of its allocated time.
         ///
         /// - Parameters:
-        /// - expirationHandler: The expiration handler takes no arguments and has no
-        /// return value. Use the handler to cancel any ongoing work and to do any
-        /// required cleanup in as short a time as possible.
+        /// - expirationHandler: The expiration handler takes no arguments and has no return value. Use the handler to
+        /// cancel any ongoing work and to do any required cleanup in as short a time as possible.
         ///
-        /// The handler may be called before the background process uses the full amount of its
-        /// allocated time.
+        /// - Note: The manager sets the value `expirationHandler` to `nil` after the handler completes.
+        /// - Warning: Not setting an expiration handler results in the system marking your task as complete and unsuccessful instead of sending a warning.
         #[unsafe(method(expirationHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
@@ -72,18 +70,22 @@ impl BGTask {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        /// Informs the background task scheduler that the task is complete.
+        /// Inform the background task scheduler that the task is complete.
         ///
-        /// Not calling ``BGTask/setTaskCompletedWithSuccess:`` before the time for the
-        /// task expires may result in the system killing your app.
-        ///
-        /// You can reschedule an unsuccessful required task.
-        ///
-        /// - Important: If you don’t set an expiration handler, the system will mark
-        /// your task as complete and unsuccessful instead of sending a warning.
+        /// Call this method as soon as the background work associated with this task is complete. The system provides your app
+        /// with a limited amount of time to finish the task. If you do not call setTaskCompletedWithSuccess: on the task, the
+        /// system continues to run in the background until all the available time is consumed, wasting battery power. The
+        /// system suspends the app as soon as all background tasks are complete.
         ///
         /// - Parameters:
-        /// - success: A `Boolean` indicating if the task completed successfully or not.
+        /// - success: A `Boolean` indicating if the task completed successfully or not. If the task was unsuccessful, you
+        /// may request the system to try again later by submitting a new task request to the scheduler before calling this
+        /// method.
+        ///
+        /// - Important: If you don’t set an expiration handler, the system will mark your task as complete and unsuccessful
+        /// instead of sending a warning.
+        /// - Warning: Not calling ``BGTask/setTaskCompletedWithSuccess:`` before the time for the task expires may result in
+        /// the system killing your app.
         #[unsafe(method(setTaskCompletedWithSuccess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTaskCompletedWithSuccess(&self, success: bool);
@@ -199,6 +201,64 @@ impl BGAppRefreshTask {
 
 /// Methods declared on superclass `BGTask`.
 impl BGAppRefreshTask {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// A task meant to perform processing on behalf of a user initiated request.
+    ///
+    /// Continued processing tasks will present UI while in progress to provide awareness to the user.
+    /// ``BGContinuedProcessingTask``s _must_ report progress via the ``NSProgressReporting`` protocol conformance during
+    /// runtime and are subject to expiration based on changing system conditions and user input. Tasks that appear stalled
+    /// may be forcibly expired by the scheduler to preserve system resources.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtask?language=objc)
+    #[unsafe(super(BGTask, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct BGContinuedProcessingTask;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for BGContinuedProcessingTask {}
+);
+
+extern_conformance!(
+    unsafe impl NSProgressReporting for BGContinuedProcessingTask {}
+);
+
+impl BGContinuedProcessingTask {
+    extern_methods!(
+        /// The localized title displayed to the user.
+        #[unsafe(method(title))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn title(&self) -> Retained<NSString>;
+
+        /// The localized subtitle displayed to the user.
+        #[unsafe(method(subtitle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn subtitle(&self) -> Retained<NSString>;
+
+        /// Update the title and subtitle displayed in the live activity displayed to the user.
+        ///
+        /// - Parameters:
+        /// - title: The localized title displayed to the user.
+        /// - subtitle: The localized subtitle displayed to the user.
+        #[unsafe(method(updateTitle:subtitle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updateTitle_subtitle(&self, title: &NSString, subtitle: &NSString);
+    );
+}
+
+/// Methods declared on superclass `BGTask`.
+impl BGContinuedProcessingTask {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

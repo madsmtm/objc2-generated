@@ -4,6 +4,9 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(target_vendor = "apple")]
@@ -112,6 +115,13 @@ impl NSScreen {
         #[unsafe(method(auxiliaryTopRightArea))]
         #[unsafe(method_family = none)]
         pub unsafe fn auxiliaryTopRightArea(&self) -> NSRect;
+
+        #[cfg(feature = "objc2-core-graphics")]
+        #[cfg(target_vendor = "apple")]
+        /// The CGDirectDisplayID for this screen. This will return kCGNullDirectDisplay if there isn't one.
+        #[unsafe(method(CGDirectDisplayID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn CGDirectDisplayID(&self) -> CGDirectDisplayID;
     );
 }
 

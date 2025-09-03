@@ -109,6 +109,26 @@ impl PKPaymentButton {
             style: PKPaymentButtonStyle,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "PKConstants")]
+        #[unsafe(method(buttonWithType:style:disableCardArt:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn buttonWithType_style_disableCardArt(
+            button_type: PKPaymentButtonType,
+            button_style: PKPaymentButtonStyle,
+            disable_card_art: bool,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "PKConstants")]
+        #[unsafe(method(initWithPaymentButtonType:paymentButtonStyle:disableCardArt:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithPaymentButtonType_paymentButtonStyle_disableCardArt(
+            this: Allocated<Self>,
+            r#type: PKPaymentButtonType,
+            style: PKPaymentButtonStyle,
+            disable_card_art: bool,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(cornerRadius))]
         #[unsafe(method_family = none)]

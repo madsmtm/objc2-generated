@@ -70,6 +70,8 @@ bitflags::bitflags! {
         const List = 1<<2;
         #[doc(alias = "NSWritingToolsResultTable")]
         const Table = 1<<3;
+        #[doc(alias = "NSWritingToolsResultPresentationIntent")]
+        const PresentationIntent = 1<<4;
     }
 }
 

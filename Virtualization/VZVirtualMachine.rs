@@ -130,6 +130,20 @@ impl VZVirtualMachine {
             queue: &DispatchQueue,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "dispatch2")]
+        /// The queue associated with this virtual machine.
+        ///
+        /// This property is a reference to the queue used to create the virtual machine.
+        /// If no queue was passed, the default queue is the main queue.
+        ///
+        /// The property can be accessed from any queue or actor.
+        ///
+        /// Other properties or function calls on the VZVirtualMachine must happen on this queue.
+        /// The completion handlers from the asynchronous functions are also invoked on this queue.
+        #[unsafe(method(queue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn queue(&self) -> Retained<DispatchQueue>;
+
         /// Indicate whether or not virtualization is available.
         ///
         /// If virtualization is unavailable, no VZVirtualMachineConfiguration will validate.

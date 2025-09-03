@@ -3,7 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-use objc2_foundation::*;
 
 use crate::*;
 
@@ -67,35 +66,5 @@ impl UIFocusSystem {
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
             other_environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> bool;
-    );
-}
-
-/// Sound.
-impl UIFocusSystem {
-    extern_methods!(
-        #[cfg(feature = "UIFocus")]
-        /// Registers a sound file for a given identifier.
-        #[unsafe(method(registerURL:forSoundIdentifier:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn registerURL_forSoundIdentifier(
-            sound_file_url: &NSURL,
-            identifier: &UIFocusSoundIdentifier,
-            mtm: MainThreadMarker,
-        );
-    );
-}
-
-/// UIFocusSystem.
-#[cfg(all(
-    feature = "UIResponder",
-    feature = "UIScene",
-    feature = "UIWindowScene"
-))]
-impl UIWindowScene {
-    extern_methods!(
-        /// Returns the focus system that is responsible for this scene or nil if this scene does not support focus.
-        #[unsafe(method(focusSystem))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn focusSystem(&self) -> Option<Retained<UIFocusSystem>>;
     );
 }

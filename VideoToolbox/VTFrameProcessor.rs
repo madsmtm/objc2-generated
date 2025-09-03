@@ -4,6 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-media")]
+use objc2_core_media::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
 #[cfg(feature = "objc2-metal")]
@@ -84,6 +86,34 @@ impl VTFrameProcessor {
             parameters: &ProtocolObject<dyn VTFrameProcessorParameters>,
             completion_handler: &block2::DynBlock<
                 dyn Fn(NonNull<ProtocolObject<dyn VTFrameProcessorParameters>>, *mut NSError),
+            >,
+        );
+
+        #[cfg(all(
+            feature = "VTFrameProcessorParameters",
+            feature = "block2",
+            feature = "objc2-core-media",
+            feature = "objc2-foundation"
+        ))]
+        /// Used with VTFrameProcessor configurations which allow multiple output frames from a single processing call, such as frame rate conversion processor cases when the client needs access to output frames as they become available, rather than waiting for all output frames to be complete.
+        ///
+        /// This interface is suitable for low-latnecy scenarios when a call would generate multiple output frames, but waiting for all frames to be generated before beginning to use the frames is not ideal.  Because the frames that are returned may be used as references for frames still being generated, the output frames are strictly read-only.  If you want to modify the frames, you must create a copy first.
+        ///
+        /// Parameter `parameters`: A VTFrameProcessorParameters based object to specify additional frame based parameters to be used during processing. it needs to match the configuration type used during start session.
+        ///
+        /// Parameter `frameOutputHandler`: This frame output handler will be called once for each destination frame in the provided parameters if no errors are encountered.  The output handler will receive the same parameters object that was provided to the original call, a flag indicating if this is the final output to be called for this processing request, and the CMTime value associated with the VTFrameProcessorFrame that it is being called for.  An NSError parameter will contain an error code if processing was not successful.
+        #[unsafe(method(processWithParameters:frameOutputHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn processWithParameters_frameOutputHandler(
+            &self,
+            parameters: &ProtocolObject<dyn VTFrameProcessorParameters>,
+            frame_output_handler: &block2::DynBlock<
+                dyn Fn(
+                    NonNull<ProtocolObject<dyn VTFrameProcessorParameters>>,
+                    CMTime,
+                    Bool,
+                    *mut NSError,
+                ),
             >,
         );
 

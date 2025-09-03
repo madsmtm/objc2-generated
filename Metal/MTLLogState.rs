@@ -39,10 +39,14 @@ unsafe impl RefEncode for MTLLogLevel {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstate?language=objc)
-    pub unsafe trait MTLLogState: NSObjectProtocol {
+    pub unsafe trait MTLLogState: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "block2")]
         /// Add a function block to handle log message output.
         /// In the absence of any handlers, log messages go through the default handler.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(addLogHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn addLogHandler(
@@ -76,6 +80,7 @@ extern_conformance!(
 impl MTLLogStateDescriptor {
     extern_methods!(
         /// level indicates the minimum level of the logs that will be printed.
+        ///
         /// All the logs with level less than given level will be skipped on the GPU Side.
         #[unsafe(method(level))]
         #[unsafe(method_family = none)]

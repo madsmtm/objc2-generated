@@ -45,7 +45,6 @@ impl SecTask {
     ///
     /// Returns: The newly created SecTask object or NULL on error.  The caller must
     /// CFRelease the returned object.
-    /// #ifndef LEFT
     #[doc(alias = "SecTaskCreateFromSelf")]
     #[inline]
     pub unsafe fn from_self(allocator: Option<&CFAllocator>) -> Option<CFRetained<SecTask>> {

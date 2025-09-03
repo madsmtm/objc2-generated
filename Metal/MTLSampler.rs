@@ -359,7 +359,7 @@ extern_protocol!(
     /// An immutable collection of sampler state compiled for a single device.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerstate?language=objc)
-    pub unsafe trait MTLSamplerState: NSObjectProtocol {
+    pub unsafe trait MTLSamplerState: NSObjectProtocol + Send + Sync {
         /// A string to help identify this object.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]

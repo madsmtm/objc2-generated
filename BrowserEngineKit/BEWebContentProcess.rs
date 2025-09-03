@@ -89,3 +89,13 @@ impl BEWebContentProcess {
         ) -> Retained<ProtocolObject<dyn UIInteraction>>;
     );
 }
+
+/// BEExtensionProcessConformance.
+impl BEWebContentProcess {
+    extern_methods!();
+}
+
+#[cfg(feature = "BEExtensionProcess")]
+extern_conformance!(
+    unsafe impl BEExtensionProcess for BEWebContentProcess {}
+);

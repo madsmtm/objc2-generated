@@ -155,10 +155,10 @@ impl HKWorkoutSession {
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
-        /// Indicates the date when the workout session ended.
+        /// Indicates the date when the workout session stopped.
         ///
         /// This value is nil when a workout session is initialized. It is set when the workout session state
-        /// changes to HKWorkoutSessionStateEnded.
+        /// changes to HKWorkoutSessionStateStopped.
         #[unsafe(method(endDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
@@ -172,6 +172,12 @@ impl HKWorkoutSession {
         #[unsafe(method(currentActivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentActivity(&self) -> Retained<HKWorkoutActivity>;
+
+        #[cfg(feature = "HKObjectType")]
+        /// The quantity types the receiver is collecting.
+        #[unsafe(method(currentGeneratedTypes))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn currentGeneratedTypes(&self) -> Retained<NSSet<HKQuantityType>>;
 
         #[cfg(all(feature = "HKWorkout", feature = "HKWorkoutConfiguration"))]
         /// Parameter `activityType`: The activity type of the workout session.
@@ -327,6 +333,10 @@ impl HKWorkoutSession {
         /// the mirrored session.
         /// This method will fail if called for a session that is ended.
         /// The completion handler will be executed on an arbitrary background queue.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(startMirroringToCompanionDeviceWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMirroringToCompanionDeviceWithCompletion(
@@ -341,6 +351,10 @@ impl HKWorkoutSession {
         /// `didDisconnectFromRemoteDeviceWithError:` will be called to indicate that.
         /// When a workout session is ended, mirroring is automatically stopped.
         /// The completion handler will be executed on an arbitrary background queue.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(stopMirroringToCompanionDeviceWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopMirroringToCompanionDeviceWithCompletion(
@@ -358,6 +372,10 @@ impl HKWorkoutSession {
         /// If this limit is exceeded, an error will be returned in the completion handler.
         /// An error will also be returned if the session is not mirroring.
         /// The completion handler will be executed on an arbitrary background queue.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(sendDataToRemoteWorkoutSession:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendDataToRemoteWorkoutSession_completion(
@@ -478,6 +496,24 @@ extern_protocol!(
             &self,
             workout_session: &HKWorkoutSession,
             error: Option<&NSError>,
+        );
+
+        #[cfg(feature = "HKObjectType")]
+        /// This method is called when the generated types collected on session changed
+        ///
+        /// With new sample types added or removed, statistics for the currentGeneratedTypes may have changed and should be read again
+        ///
+        ///
+        /// Parameter `workoutSession`: The workout data source which provides data for active workout session.
+        ///
+        /// Parameter `generatedTypes`: The full set of sample types that are currently generated.
+        #[optional]
+        #[unsafe(method(workoutSession:didUpdateGeneratedTypes:))]
+        #[unsafe(method_family = none)]
+        unsafe fn workoutSession_didUpdateGeneratedTypes(
+            &self,
+            workout_session: &HKWorkoutSession,
+            generated_types: &NSSet<HKSampleType>,
         );
     }
 );

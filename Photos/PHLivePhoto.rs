@@ -42,6 +42,10 @@ extern_class!(
     pub struct PHLivePhoto;
 );
 
+unsafe impl Send for PHLivePhoto {}
+
+unsafe impl Sync for PHLivePhoto {}
+
 extern_conformance!(
     unsafe impl NSCoding for PHLivePhoto {}
 );
@@ -70,6 +74,12 @@ impl PHLivePhoto {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The dimensions of the live photo measured in pixels.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;

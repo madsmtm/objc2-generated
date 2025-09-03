@@ -11,7 +11,9 @@ use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cppointofinteresttemplatedelegate?language=objc)
-    pub unsafe trait CPPointOfInterestTemplateDelegate: NSObjectProtocol {
+    pub unsafe trait CPPointOfInterestTemplateDelegate:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[cfg(all(feature = "CPTemplate", feature = "objc2-map-kit"))]
         /// The user has changed the map region on the
         /// `CPPointOfInterestTemplate.`Your application
@@ -42,6 +44,7 @@ extern_protocol!(
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cppointofinteresttemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPPointOfInterestTemplate;
@@ -97,7 +100,7 @@ impl CPPointOfInterestTemplate {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Template title appears on the template point of interest picker
         #[unsafe(method(title))]

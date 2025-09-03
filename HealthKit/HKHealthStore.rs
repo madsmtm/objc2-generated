@@ -608,6 +608,10 @@ impl HKHealthStore {
         /// unavailable or authorization status is not determined for one or more of the provided types.
         ///
         /// The returned dictionary will map HKQuantityType to HKUnit.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(preferredUnitsForQuantityTypes:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredUnitsForQuantityTypes_completion(

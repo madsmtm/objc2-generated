@@ -129,6 +129,16 @@ impl NSSlider {
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
 
+        /// The value this slider will be filled from. This slider will be filled from its `neutralValue` to its current value. If `neutralValue` has not been explicitly set before, access to `neutralValue` will return `minValue`.
+        #[unsafe(method(neutralValue))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn neutralValue(&self) -> c_double;
+
+        /// Setter for [`neutralValue`][Self::neutralValue].
+        #[unsafe(method(setNeutralValue:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setNeutralValue(&self, neutral_value: c_double);
+
         #[unsafe(method(altIncrementValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn altIncrementValue(&self) -> c_double;

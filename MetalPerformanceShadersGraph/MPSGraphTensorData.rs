@@ -203,6 +203,20 @@ impl MPSGraphTensorData {
             image_batch: &MPSImageBatch,
         ) -> Retained<Self>;
 
+        /// Initializes an MPSGraphTensorData with an MTLTensor.
+        ///
+        /// The internal storage of the MTLTensor will be aliased. Requires tensor to support MTLTensorUsageMachineLearning.
+        ///
+        /// - Parameters:
+        /// - tensor: MTLTensor to be used within the MPSGraphTensorData
+        /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
+        #[unsafe(method(initWithMTLTensor:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithMTLTensor(
+            this: Allocated<Self>,
+            tensor: &ProtocolObject<dyn MTLTensor>,
+        ) -> Retained<Self>;
+
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Return an mpsndarray object will copy contents if the contents are not stored in an MPS ndarray.
         ///

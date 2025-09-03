@@ -77,8 +77,6 @@ impl GCEventViewController {
         /// Note that unlike UIView.userInteractionEnabled this only controls the flow of game controller events.
         ///
         ///
-        /// See: GCController
-        ///
         /// See: UIView.userInteractionEnabled
         #[unsafe(method(controllerUserInteractionEnabled))]
         #[unsafe(method_family = none)]

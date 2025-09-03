@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitionresult?language=objc)
+    /// An object that contains the partial or final results of a speech recognition request.
+    ///
+    /// Use an `SFSpeechRecognitionResult` object to retrieve the results of a speech recognition request. You don't create these objects directly. Instead, the Speech framework creates them and passes them to the handler block or delegate object you specified when starting your speech recognition task.
+    ///
+    /// A speech recognition result object contains one or more ``transcriptions`` of the current utterance. Each transcription has a confidence rating indicating how likely it is to be correct. You can also get the transcription with the highest rating directly from the ``bestTranscription`` property.
+    ///
+    /// If you requested partial results from the speech recognizer, the transcriptions may represent only part of the total audio content. Use the ``isFinal`` property to determine if the request contains partial or final results.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitionresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechRecognitionResult;
@@ -36,20 +44,28 @@ extern_conformance!(
 impl SFSpeechRecognitionResult {
     extern_methods!(
         #[cfg(feature = "SFTranscription")]
+        /// The transcription with the highest confidence level.
         #[unsafe(method(bestTranscription))]
         #[unsafe(method_family = none)]
         pub unsafe fn bestTranscription(&self) -> Retained<SFTranscription>;
 
         #[cfg(feature = "SFTranscription")]
+        /// An array of potential transcriptions, sorted in descending order of confidence.
+        ///
+        /// All transcriptions correspond to the same utterance, which can be a partial or final result of the overall request. The first transcription in the array has the highest confidence rating, followed by transcriptions with decreasing confidence ratings.
         #[unsafe(method(transcriptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn transcriptions(&self) -> Retained<NSArray<SFTranscription>>;
 
+        /// A Boolean value that indicates whether speech recognition is complete and whether the transcriptions are final.
+        ///
+        /// When a speech recognition request is final, its transcriptions don't change.
         #[unsafe(method(isFinal))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFinal(&self) -> bool;
 
         #[cfg(feature = "SFSpeechRecognitionMetadata")]
+        /// An object that contains the metadata results for a speech recognition request.
         #[unsafe(method(speechRecognitionMetadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn speechRecognitionMetadata(

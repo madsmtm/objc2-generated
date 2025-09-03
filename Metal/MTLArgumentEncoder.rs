@@ -169,7 +169,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn constantDataAtIndex(&self, index: NSUInteger) -> NonNull<c_void>;
 
-        #[cfg(feature = "MTLRenderPipeline")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]
         /// Sets a render pipeline state at a given bind point index
         #[unsafe(method(setRenderPipelineState:atIndex:))]
         #[unsafe(method_family = none)]
@@ -179,7 +179,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "MTLRenderPipeline")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]
         /// Set an array of render pipeline states at a given bind point index range
         ///
         /// # Safety
@@ -193,7 +193,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[cfg(feature = "MTLComputePipeline")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLComputePipeline"))]
         /// Sets a compute pipeline state at a given bind point index
         #[unsafe(method(setComputePipelineState:atIndex:))]
         #[unsafe(method_family = none)]
@@ -203,7 +203,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[cfg(feature = "MTLComputePipeline")]
+        #[cfg(all(feature = "MTLAllocation", feature = "MTLComputePipeline"))]
         /// Set an array of compute pipeline states at a given bind point index range
         ///
         /// # Safety

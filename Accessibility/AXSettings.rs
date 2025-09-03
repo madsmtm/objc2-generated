@@ -67,6 +67,12 @@ impl AXSettingsFeature {
     pub const PersonalVoiceAllowAppsToRequestToUse: Self = Self(1);
     #[doc(alias = "AXSettingsFeatureAllowAppsToAddAudioToCalls")]
     pub const AllowAppsToAddAudioToCalls: Self = Self(2);
+    #[doc(alias = "AXSettingsFeatureAssistiveTouch")]
+    pub const AssistiveTouch: Self = Self(3);
+    #[doc(alias = "AXSettingsFeatureAssistiveTouchDevices")]
+    pub const AssistiveTouchDevices: Self = Self(4);
+    #[doc(alias = "AXSettingsFeatureDwellControl")]
+    pub const DwellControl: Self = Self(5);
 }
 
 unsafe impl Encode for AXSettingsFeature {

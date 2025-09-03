@@ -134,6 +134,17 @@ impl CPWindow {
             this: Allocated<Self>,
             window_scene: &UIWindowScene,
         ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[deprecated = "Use init(windowScene:) instead."]
+        #[unsafe(method(initWithFrame:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+
+        #[deprecated = "Use init(windowScene:) instead."]
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -141,11 +152,6 @@ impl CPWindow {
 #[cfg(feature = "objc2-ui-kit")]
 impl CPWindow {
     extern_methods!(
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(initWithFrame:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
-
         /// # Safety
         ///
         /// `coder` possibly has further requirements.
@@ -162,10 +168,6 @@ impl CPWindow {
 #[cfg(feature = "objc2-ui-kit")]
 impl CPWindow {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;

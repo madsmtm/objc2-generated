@@ -257,7 +257,7 @@ impl MTLDepthStencilDescriptor {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthstencilstate?language=objc)
-    pub unsafe trait MTLDepthStencilState: NSObjectProtocol {
+    pub unsafe trait MTLDepthStencilState: NSObjectProtocol + Send + Sync {
         /// A string to help identify this object.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]

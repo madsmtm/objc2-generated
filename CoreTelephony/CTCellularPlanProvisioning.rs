@@ -3,6 +3,7 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
 use crate::*;
 
@@ -34,6 +35,29 @@ impl CTCellularPlanProvisioning {
             &self,
             request: &CTCellularPlanProvisioningRequest,
             completion_handler: &block2::DynBlock<dyn Fn(CTCellularPlanProvisioningAddPlanResult)>,
+        );
+
+        #[cfg(all(
+            feature = "CTCellularPlanProperties",
+            feature = "CTCellularPlanProvisioningRequest",
+            feature = "block2"
+        ))]
+        #[unsafe(method(addPlanWithRequest:properties:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addPlanWithRequest_properties_completionHandler(
+            &self,
+            request: &CTCellularPlanProvisioningRequest,
+            properties: Option<&CTCellularPlanProperties>,
+            completion_handler: &block2::DynBlock<dyn Fn(CTCellularPlanProvisioningAddPlanResult)>,
+        );
+
+        #[cfg(all(feature = "CTCellularPlanProperties", feature = "block2"))]
+        #[unsafe(method(updateCellularPlanProperties:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updateCellularPlanProperties_completionHandler(
+            &self,
+            properties: &CTCellularPlanProperties,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
     );
 }

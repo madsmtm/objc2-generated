@@ -341,6 +341,9 @@ bitflags::bitflags! {
 /// implies `RichText`,  and Writing Tools may provide attributes for tabular layout
         #[doc(alias = "UIWritingToolsResultTable")]
         const Table = 1<<3;
+/// implies `RichText`, `List`, and `Table`, and Writing Tools may provide text with presentation intent attributes. Writing Tools will use `NSPresentationIntent` instead of `NSTextList` and `NSTextTable` to represent lists and tables.
+        #[doc(alias = "UIWritingToolsResultPresentationIntent")]
+        const PresentationIntent = 1<<4;
     }
 }
 

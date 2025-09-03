@@ -285,6 +285,15 @@ impl AEAssessmentParticipantConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsNetworkAccess(&self, allows_network_access: bool);
 
+        #[unsafe(method(isRequired))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isRequired(&self) -> bool;
+
+        /// Setter for [`isRequired`][Self::isRequired].
+        #[unsafe(method(setRequired:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequired(&self, required: bool);
+
         #[unsafe(method(configurationInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
@@ -454,6 +463,8 @@ impl AEAssessmentErrorCode {
     pub const MultipleParticipantsNotSupported: Self = Self(3);
     #[doc(alias = "AEAssessmentErrorConfigurationUpdatesNotSupported")]
     pub const ConfigurationUpdatesNotSupported: Self = Self(4);
+    #[doc(alias = "AEAssessmentErrorRequiredParticipantsNotAvailable")]
+    pub const RequiredParticipantsNotAvailable: Self = Self(5);
 }
 
 unsafe impl Encode for AEAssessmentErrorCode {
@@ -462,4 +473,14 @@ unsafe impl Encode for AEAssessmentErrorCode {
 
 unsafe impl RefEncode for AEAssessmentErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aenotinstalledparticipantskey?language=objc)
+    pub static AENotInstalledParticipantsKey: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aerestrictedsystemparticipantskey?language=objc)
+    pub static AERestrictedSystemParticipantsKey: &'static NSString;
 }

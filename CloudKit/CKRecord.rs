@@ -23,14 +23,14 @@ extern "C" {
 }
 
 extern "C" {
-    /// For use in queries to match on record properties.  Matches `record.recordID`.  Value is a `CKRecordID`
+    /// For use in queries to match on record properties.  Matches `record.recordID`.  Value is a ``CKRecordID``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordrecordidkey?language=objc)
     pub static CKRecordRecordIDKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
-    /// For use in queries to match on record properties.  Matches `record.creatorUserRecordID`.  Value is a `CKRecordID`
+    /// For use in queries to match on record properties.  Matches `record.creatorUserRecordID`.  Value is a ``CKRecordID``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordcreatoruserrecordidkey?language=objc)
     pub static CKRecordCreatorUserRecordIDKey: &'static CKRecordFieldKey;
@@ -44,7 +44,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// For use in queries to match on record properties.  Matches `record.lastModifiedUserRecordID`.  Value is a `CKRecordID`
+    /// For use in queries to match on record properties.  Matches `record.lastModifiedUserRecordID`.  Value is a ``CKRecordID``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordlastmodifieduserrecordidkey?language=objc)
     pub static CKRecordLastModifiedUserRecordIDKey: &'static CKRecordFieldKey;

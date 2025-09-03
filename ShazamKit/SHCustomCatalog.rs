@@ -7,12 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Configure a custom catalog of
-    /// `SHSignature`objects to match against
+    /// An object for storing the reference signatures for custom audio recordings and their associated metadata.
     ///
-    /// Use a custom catalog if you intend to search against reference signatures that you have provided yourself. All matches will be performed locally on the device against the signatures added to this Catalog.
-    /// `SHMediaItem`can be built using custom data that will be returned when a match is made.
-    /// Once this catalog has been built it can be written to disk and loaded again at a later date.
+    /// Create a custom catalog by adding reference signatures that you generate from audio that you provide. You also add the associated metadata for each signature. Save your custom catalog and share it with others. You can also load a saved catalog.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shcustomcatalog?language=objc)
     #[unsafe(super(SHCatalog, NSObject))]
@@ -35,19 +32,14 @@ impl SHCustomCatalog {
         pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
 
         #[cfg(all(feature = "SHMediaItem", feature = "SHSignature"))]
-        /// Add a reference
-        /// `SHSignature`and its associated
-        /// `SHMediaItem`for matching
+        /// Adds a reference signature and its associated metadata to a catalog.
         ///
-        /// Parameter `signature`: The reference to match against
+        /// > Note:
+        /// > This system ignores calls to `addReferenceSignature(_:representing:)` after adding the catalog to an `SHSession`.
         ///
-        /// Parameter `mediaItems`: The metadata associated with the
-        /// `SHSignature`
-        /// Once the
-        /// `SHCatalog`had been added to a
-        /// `SHSession`further calls to this method will be ignored
-        ///
-        /// Returns: YES if the data was successfully added, NO on failure with a populated error parameter
+        /// - Parameters:
+        /// - signature: The reference signature for the audio recording.
+        /// - mediaItems: The metadata for the recording.
         #[unsafe(method(addReferenceSignature:representingMediaItems:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addReferenceSignature_representingMediaItems_error(
@@ -56,13 +48,11 @@ impl SHCustomCatalog {
             media_items: &NSArray<SHMediaItem>,
         ) -> Result<(), Retained<NSError>>;
 
-        /// Load a `shazamcatalog` file from a file path URL
+        /// Loads a saved custom catalog from a file.
         ///
-        /// Parameter `customCatalogURL`: The path to the `shazamcatalog` file.
-        ///
-        /// Parameter `error`: An error if the catalog could not be loaded
-        ///
-        /// Returns: YES if the data was successfully added, NO on failure with a populated error parameter
+        /// - Parameters:
+        /// - customCatalogURL: The file URL for a custom catalog.
+        /// - error: An output value in Objective-C that indicates the type of error; otherwise, `nil`.
         #[unsafe(method(addCustomCatalogFromURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addCustomCatalogFromURL_error(
@@ -70,17 +60,15 @@ impl SHCustomCatalog {
             custom_catalog_url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
 
-        /// Write this Catalog to a URL
+        /// Saves the custom catalog to a local file.
         ///
-        /// A Catalog can safely be shared among devices
+        /// If `destinationURL` is a directory, the system creates a `Signatures.shazamcatalog` file.
         ///
-        /// Note: If the `destinationURL` is a directory, a file named Signatures.shazamcatalog will be created
+        /// - Parameters:
+        /// - destinationURL: A URL for the saved custom catalog file.
+        /// - error: An output value in Objective-C that indicates the type of error; otherwise, `nil`.
         ///
-        /// Parameter `destinationURL`: The location to write to
-        ///
-        /// Parameter `error`: populated on error, otherwise nil
-        ///
-        /// Returns: YES on success, NO on failure with a populated error parameter
+        /// - Returns: `YES` if the catalog writes to the file; otherwise, `NO`.
         #[deprecated = "Use dataRepresentation"]
         #[unsafe(method(writeToURL:error:_))]
         #[unsafe(method_family = none)]
@@ -89,10 +77,14 @@ impl SHCustomCatalog {
             destination_url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Creates a new custom catalog object for storing reference audio signatures and their associated metadata.
+        ///
+        /// - Returns: A new custom catalog for storing processed reference audio recordings and their associated metadata.
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Creates a new custom catalog object for storing reference audio signatures and their associated metadata.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

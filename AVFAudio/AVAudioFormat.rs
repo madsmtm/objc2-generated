@@ -62,6 +62,10 @@ extern_class!(
     pub struct AVAudioFormat;
 );
 
+unsafe impl Send for AVAudioFormat {}
+
+unsafe impl Sync for AVAudioFormat {}
+
 extern_conformance!(
     unsafe impl NSCoding for AVAudioFormat {}
 );
@@ -240,22 +244,46 @@ impl AVAudioFormat {
         pub unsafe fn isEqual(&self, object: &AnyObject) -> bool;
 
         /// Describes whether the format is deinterleaved native-endian float.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isStandard))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStandard(&self) -> bool;
 
         /// An `AVAudioCommonFormat` identifying the format
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(commonFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn commonFormat(&self) -> AVAudioCommonFormat;
 
         #[cfg(feature = "AVAudioTypes")]
         /// The number of channels of audio data.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(channelCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelCount(&self) -> AVAudioChannelCount;
 
         /// A sampling rate in Hertz.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sampleRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleRate(&self) -> c_double;
@@ -263,12 +291,24 @@ impl AVAudioFormat {
         /// Describes whether the samples are interleaved.
         ///
         /// For non-PCM formats, the value is undefined.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isInterleaved))]
         #[unsafe(method_family = none)]
         pub unsafe fn isInterleaved(&self) -> bool;
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// Returns the AudioStreamBasicDescription, for use with lower-level audio API's.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(streamDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn streamDescription(&self) -> NonNull<AudioStreamBasicDescription>;
@@ -277,6 +317,12 @@ impl AVAudioFormat {
         /// The underlying AVAudioChannelLayout, if any.
         ///
         /// Only formats with more than 2 channels are required to have channel layouts.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(channelLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelLayout(&self) -> Option<Retained<AVAudioChannelLayout>>;
@@ -285,22 +331,44 @@ impl AVAudioFormat {
         ///
         /// A magic cookie contains metadata associated with encoders and decoders.
         /// Encoders produce a magic cookie, and some decoders require a magic cookie to decode properly.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(magicCookie))]
         #[unsafe(method_family = none)]
         pub unsafe fn magicCookie(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`magicCookie`][Self::magicCookie].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setMagicCookie:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMagicCookie(&self, magic_cookie: Option<&NSData>);
 
         /// Returns the format represented as a dictionary with keys from AVAudioSettings.h.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(settings))]
         #[unsafe(method_family = none)]
         pub unsafe fn settings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Converts to a CMAudioFormatDescriptionRef, for use with Core Media API's.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(formatDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn formatDescription(&self) -> Retained<CMAudioFormatDescription>;

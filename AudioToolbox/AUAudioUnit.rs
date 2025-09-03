@@ -2065,3 +2065,8 @@ extern_protocol!(
         unsafe fn setCallHostBlock(&self, call_host_block: CallHostBlock);
     }
 );
+
+/// IntendedSpatialExperience.
+impl AUAudioUnit {
+    extern_methods!();
+}

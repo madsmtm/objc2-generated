@@ -196,7 +196,7 @@ extern_protocol!(
     /// A descriptor for a single counter.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounter?language=objc)
-    pub unsafe trait MTLCounter: NSObjectProtocol {
+    pub unsafe trait MTLCounter: NSObjectProtocol + Send + Sync {
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         unsafe fn name(&self) -> Retained<NSString>;
@@ -208,7 +208,7 @@ extern_protocol!(
     /// a single pass.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterset?language=objc)
-    pub unsafe trait MTLCounterSet: NSObjectProtocol {
+    pub unsafe trait MTLCounterSet: NSObjectProtocol + Send + Sync {
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         unsafe fn name(&self) -> Retained<NSString>;

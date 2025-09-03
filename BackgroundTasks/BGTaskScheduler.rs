@@ -24,8 +24,7 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BGTaskSchedulerErrorCode(pub NSInteger);
 impl BGTaskSchedulerErrorCode {
-    /// A task scheduling error indicating that the app or extension can’t
-    /// schedule background work.
+    /// A task scheduling error indicating that the app or extension can’t schedule background work.
     ///
     /// This error usually occurs for one of following reasons:
     ///
@@ -34,36 +33,38 @@ impl BGTaskSchedulerErrorCode {
     /// - The keyboard extension either hasn’t set
     /// <doc
     /// ://com.apple.documentation/documentation/bundleresources/information_property_list/nsextension/nsextensionattributes/requestsopenaccess>
-    /// to `YES` in [The Info.plist
-    /// File](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html#//apple_ref/doc/uid/TP30000903-CH206-SW22),
-    /// or the user hasn’t granted open access.
+    /// to `YES` in [The Info.plist File](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html#//apple_ref/doc/uid/TP30000903-CH206-SW22), or the user hasn’t granted open access.
     /// - The extension type isn’t able to schedule background tasks.
     #[doc(alias = "BGTaskSchedulerErrorCodeUnavailable")]
     pub const Unavailable: Self = Self(1);
-    /// A task scheduling error indicating that there are too many pending tasks
-    /// of the type requested.
+    /// A task scheduling error indicating that there are too many pending tasks of the type requested.
     ///
-    /// Try canceling some existing task requests and then resubmit the request
-    /// that failed.
+    /// Try canceling some existing task requests and then resubmit the request that failed.
     #[doc(alias = "BGTaskSchedulerErrorCodeTooManyPendingTaskRequests")]
     pub const TooManyPendingTaskRequests: Self = Self(2);
-    /// A task scheduling error indicating the app isn’t permitted to schedule the
-    /// task.
+    /// A task scheduling error indicating the app isn’t permitted to schedule the task.
     ///
-    /// There are two causes for this error:
+    /// There are four causes for this error:
     ///
     /// - The app doesn’t set the appropriate mode in the
     /// <doc
     /// ://com.apple.documentation/documentation/bundleresources/information_property_list/uibackgroundmodes>
     /// array.
-    ///
     /// - The task identifier of the submitted task wasn’t in the
     /// <doc
     /// ://com.apple.documentation/documentation/bundleresources/information_property_list/bgtaskschedulerpermittedidentifiers>
-    /// array in [the Info.plist
-    /// File](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html#//apple_ref/doc/uid/TP30000903-CH206-SW22).
+    /// array in [the Info.plist](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html#//apple_ref/doc/uid/TP30000903-CH206-SW22).
+    /// - The task requested additional ``BGContinuedProcessingTaskRequestResources`` that are unavailable.
+    /// - The user has explicitly denied background launches for your app.
     #[doc(alias = "BGTaskSchedulerErrorCodeNotPermitted")]
     pub const NotPermitted: Self = Self(3);
+    /// A ``BGContinuedProcessingTaskRequest`` was not allowed to immediately run due to system conditions.
+    ///
+    /// This will only be returned when using the ``BGContinuedProcessingTaskRequestSubmissionStrategyFail`` when
+    /// submitting a ``BGContinuedProcessingTaskRequest``. Task requests that are successfully ran will not be
+    /// associated with any error code.
+    #[doc(alias = "BGTaskSchedulerErrorCodeImmediateRunIneligible")]
+    pub const ImmediateRunIneligible: Self = Self(4);
 }
 
 unsafe impl Encode for BGTaskSchedulerErrorCode {
@@ -107,42 +108,39 @@ impl BGTaskScheduler {
         #[unsafe(method_family = none)]
         pub unsafe fn sharedScheduler() -> Retained<BGTaskScheduler>;
 
+        #[cfg(feature = "BGTaskRequest")]
+        /// A bitfield of the resources the device supports for ``BackgroundTasks/BGContinuedProcessingTaskRequest`` instances.
+        #[unsafe(method(supportedResources))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportedResources() -> BGContinuedProcessingTaskRequestResources;
+
         #[cfg(all(feature = "BGTask", feature = "block2", feature = "dispatch2"))]
-        /// Register a launch handler for the task with the associated identifier that’s
-        /// executed on the specified queue.
+        /// Register a launch handler for the task with the associated identifier that’s executed on the specified queue.
         ///
         /// Every identifier in the
         /// <doc
         /// ://com.apple.documentation/documentation/bundleresources/information_property_list/bgtaskschedulerpermittedidentifiers>
-        /// requires a handler. Registration of all launch handlers must be complete
-        /// before the end of
+        /// requires a handler. Registration of all launch handlers must be complete before the end of
         /// <doc
         /// ://com.apple.documentation/documentation/uikit/uiapplicationdelegate/1623053-applicationdidfinishlaunching>.
         ///
-        /// - Important: Register each task identifier only once. The system kills the
-        /// app on the second registration of the same task identifier.
+        /// You must register launch handlers before your application finishes launching (``BGContinuedProcessingTask``
+        /// registrations are exempt from this requirement). Attempting to register a handler after launch or multiple handlers
+        /// for the same identifier is an error. Although you may submit task requests from some extensions, only the host app
+        /// will be launched to handle background work.
         ///
         /// - Parameters:
-        /// - identifier: A string containing the identifier of the task.
-        ///
-        /// - queue: A queue for executing the task. Pass `nil` to use a default
-        /// background queue.
-        ///
-        /// - launchHandler: The system runs the block of code for the launch handler
-        /// when it launches the app in the background. The block takes a single
-        /// parameter, a ``BGTask`` object used for assigning an expiration handler and
-        /// for setting a completion status. The block has no return value.
-        ///
+        /// - identifier: The identifier for the task that will be handled by the provided launch handler.
+        /// - queue: A queue for executing the task. Pass `nil` to use a default background queue.
+        /// - launchHandler: The system runs the block of code for the launch handler when it launches the app in the background. The block takes a single parameter, a ``BGTask`` object used for assigning an expiration handler and for setting a completion status. The block has no return value. Assign an expiration handler to the task's expirationHandler property and call setTaskCompletedWithSuccess: when the background work is complete.
         /// - Returns: Returns
         /// <doc
-        /// ://com.apple.documentation/documentation/objectivec/yes> if the launch
-        /// handler was registered. Returns
+        /// ://com.apple.documentation/documentation/objectivec/yes> if the launch handler was registered. Returns
         /// <doc
-        /// ://com.apple.documentation/documentation/objectivec/no> if the
-        /// identifier isn't included in the
+        /// ://com.apple.documentation/documentation/objectivec/no> if the identifier isn't included in the
         /// <doc
-        /// ://com.apple.documentation/documentation/bundleresources/information_property_list/bgtaskschedulerpermittedidentifiers>
-        /// `Info.plist`.
+        /// ://com.apple.documentation/documentation/bundleresources/information_property_list/bgtaskschedulerpermittedidentifiers> `Info.plist`.
+        /// - Important: Register each task identifier only once. The system kills the app on the second registration of the same task identifier.
         #[unsafe(method(registerForTaskWithIdentifier:usingQueue:launchHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForTaskWithIdentifier_usingQueue_launchHandler(
@@ -155,17 +153,15 @@ impl BGTaskScheduler {
         #[cfg(feature = "BGTaskRequest")]
         /// Submit a previously registered background task for execution.
         ///
-        /// Submitting a task request for an unexecuted task that’s already in the queue
-        /// replaces the previous task request.
+        /// Submitting a task request for an unexecuted task that’s already in the queue replaces the previous task request.
         ///
-        /// There can be a total of 1 refresh task and 10 processing tasks scheduled at
-        /// any time. Trying to schedule more tasks returns
-        /// ``BGTaskSchedulerErrorCode/BGTaskSchedulerErrorCodeTooManyPendingTaskRequests``.
+        /// There can be a total of 1 refresh task and 10 processing tasks scheduled at any time. Trying to schedule more tasks
+        /// returns ``BGTaskSchedulerErrorCode/BGTaskSchedulerErrorCodeTooManyPendingTaskRequests``.
         ///
         /// - Parameters:
-        /// - taskRequest: A background task request object specifying the task
-        /// - error: On input, a pointer to an error object. If an error occurs, this pointer is set to an error object containing the error information. Specify `nil` for this parameter to ignore the error information.
-        /// identifier and optional configuration information.
+        /// - taskRequest: The task request object representing the parameters of the background task to be scheduled.
+        /// - error: If an error occurs, upon return contains an error object that indicates why the request was rejected
+        /// - Returns: `YES` if the request was successfully submitted; `NO` if there was an error
         #[unsafe(method(submitTaskRequest:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitTaskRequest_error(
@@ -176,29 +172,28 @@ impl BGTaskScheduler {
         /// Cancel a previously scheduled task request.
         ///
         /// - Parameters:
-        /// - identifier: The string identifier of the task request to cancel.
+        /// - identifier: The identifier of the previously submitted task request to cancel.
         #[unsafe(method(cancelTaskRequestWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelTaskRequestWithIdentifier(&self, identifier: &NSString);
 
-        /// Cancel all scheduled task requests.
+        /// Cancel all previously submitted task requests.
         #[unsafe(method(cancelAllTaskRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelAllTaskRequests(&self);
 
         #[cfg(all(feature = "BGTaskRequest", feature = "block2"))]
-        /// Request a list of unexecuted scheduled task requests.
-        ///
-        /// - Parameters:
-        /// - completionHandler: The completion handler called with the pending tasks.
-        /// The handler may execute on a background thread.
+        /// Returns a list of all task requests that have been submitted but not yet completed.
         ///
         /// The handler takes a single parameter `tasksRequests`, an array of `BGTaskRequest`
         /// objects. The array is empty if there are no scheduled tasks.
         ///
-        /// The objects passed in the array are copies of the existing requests. Changing the
-        /// attributes of a request has no effect. To change the attributes submit a new
-        /// task request using ``BGTaskScheduler/submitTaskRequest:error:``.
+        /// The objects passed in the array are copies of the existing requests. Changing the attributes of a request has no
+        /// effect. To change the attributes submit a new task request using ``BGTaskScheduler/submitTaskRequest:error:``.
+        ///
+        /// - Parameters:
+        /// - completionHandler: The completion handler called with the pending tasks.
+        /// - Note: The handler may execute on a background thread.
         #[unsafe(method(getPendingTaskRequestsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPendingTaskRequestsWithCompletionHandler(

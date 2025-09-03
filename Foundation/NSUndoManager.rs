@@ -25,6 +25,7 @@ extern "C" {
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanager?language=objc)
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUndoManager;
 );
@@ -253,8 +254,7 @@ impl NSUndoManager {
         ///
         /// # Safety
         ///
-        /// - `target` should be of the correct type.
-        /// - `undo_handler` block must be sendable.
+        /// `target` should be of the correct type.
         #[unsafe(method(registerUndoWithTarget:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerUndoWithTarget_handler(
@@ -411,7 +411,7 @@ impl NSUndoManager {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 

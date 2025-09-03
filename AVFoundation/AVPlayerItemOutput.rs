@@ -22,6 +22,10 @@ extern_class!(
     pub struct AVPlayerItemOutput;
 );
 
+unsafe impl Send for AVPlayerItemOutput {}
+
+unsafe impl Sync for AVPlayerItemOutput {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerItemOutput {}
 );
@@ -73,11 +77,21 @@ impl AVPlayerItemOutput {
         /// The default value is NO, indicating that the output will be used in addition to normal rendering. If you want to render the media data provided by the output yourself instead of allowing it to be rendered as in normally would be by AVPlayer, set suppressesPlayerRendering to YES.
         ///
         /// Whenever any output is added to an AVPlayerItem that has suppressesPlayerRendering set to YES, the media data supplied to the output will not be rendered by AVPlayer. Other media data associated with the item but not provided to such an output is not affected. For example, if an output of class AVPlayerItemVideoOutput with a value of YES for suppressesPlayerRendering is added to an AVPlayerItem, video media for that item will not be rendered by the AVPlayer, while audio media, subtitle media, and other kinds of media, if present, will be rendered.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(suppressesPlayerRendering))]
         #[unsafe(method_family = none)]
         pub unsafe fn suppressesPlayerRendering(&self) -> bool;
 
         /// Setter for [`suppressesPlayerRendering`][Self::suppressesPlayerRendering].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSuppressesPlayerRendering:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuppressesPlayerRendering(&self, suppresses_player_rendering: bool);
@@ -103,6 +117,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemVideoOutput;
 );
+
+unsafe impl Send for AVPlayerItemVideoOutput {}
+
+unsafe impl Sync for AVPlayerItemVideoOutput {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerItemVideoOutput {}
@@ -229,6 +247,12 @@ impl AVPlayerItemVideoOutput {
 
         #[cfg(feature = "dispatch2")]
         /// The dispatch queue where the delegate is messaged.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegateQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
@@ -250,6 +274,8 @@ impl AVPlayerItemVideoOutput {
 
 extern_protocol!(
     /// Defines common delegate methods for objects participating in AVPlayerItemOutput pull sample output acquisition.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpulldelegate?language=objc)
     pub unsafe trait AVPlayerItemOutputPullDelegate: NSObjectProtocol + Send + Sync {
@@ -276,11 +302,17 @@ extern_class!(
     ///
     /// An instance of AVPlayerItemLegibleOutput is typically initialized using the -init method.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemLegibleOutput;
 );
+
+unsafe impl Send for AVPlayerItemLegibleOutput {}
+
+unsafe impl Sync for AVPlayerItemLegibleOutput {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerItemLegibleOutput {}
@@ -307,6 +339,12 @@ impl AVPlayerItemLegibleOutput {
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -317,6 +355,12 @@ impl AVPlayerItemLegibleOutput {
         /// The dispatch queue where the delegate is messaged.
         ///
         /// This property is not key-value observable.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegateQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
@@ -324,11 +368,21 @@ impl AVPlayerItemLegibleOutput {
         /// Permits advance invocation of the associated delegate, if any.
         ///
         /// If it is possible, an AVPlayerItemLegibleOutput will message its delegate advanceIntervalForDelegateInvocation seconds earlier than otherwise. If the value you provide is large, effectively requesting provision of samples earlier than the AVPlayerItemLegibleOutput is prepared to act on them, the delegate will be invoked as soon as possible.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(advanceIntervalForDelegateInvocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn advanceIntervalForDelegateInvocation(&self) -> NSTimeInterval;
 
         /// Setter for [`advanceIntervalForDelegateInvocation`][Self::advanceIntervalForDelegateInvocation].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAdvanceIntervalForDelegateInvocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdvanceIntervalForDelegateInvocation(
@@ -406,6 +460,12 @@ impl AVPlayerItemLegibleOutput {
         /// A string identifier indicating the degree of text styling to be applied to attributed strings vended by the receiver
         ///
         /// Valid values are AVPlayerItemLegibleOutputTextStylingResolutionDefault and AVPlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly.  An NSInvalidArgumentException is raised if this property is set to any other value.  The default value is AVPlayerItemLegibleOutputTextStylingResolutionDefault, which indicates that attributed strings vended by the receiver will include the same level of styling information that would be used if AVFoundation were rendering the text via AVPlayerLayer.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(textStylingResolution))]
         #[unsafe(method_family = none)]
         pub unsafe fn textStylingResolution(
@@ -415,6 +475,10 @@ impl AVPlayerItemLegibleOutput {
         /// Setter for [`textStylingResolution`][Self::textStylingResolution].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setTextStylingResolution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextStylingResolution(
@@ -426,6 +490,8 @@ impl AVPlayerItemLegibleOutput {
 
 extern_protocol!(
     /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to attributed string output.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemLegibleOutputPushDelegate:
@@ -465,6 +531,8 @@ extern_protocol!(
 extern_protocol!(
     /// Defines common delegate methods for objects participating in AVPlayerItemOutput push sample output acquisition.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemOutputPushDelegate: NSObjectProtocol + Send + Sync {
         /// A method invoked when the output is commencing a new sequence of media data.
@@ -483,11 +551,17 @@ extern_class!(
     ///
     /// Setting the value of suppressesPlayerRendering on an instance of AVPlayerItemMetadataOutput has no effect.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadataoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemMetadataOutput;
 );
+
+unsafe impl Send for AVPlayerItemMetadataOutput {}
+
+unsafe impl Sync for AVPlayerItemMetadataOutput {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerItemMetadataOutput {}
@@ -524,6 +598,12 @@ impl AVPlayerItemMetadataOutput {
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -534,6 +614,12 @@ impl AVPlayerItemMetadataOutput {
         /// The dispatch queue on which messages are sent to the delegate.
         ///
         /// This property is not key-value observable.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegateQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
@@ -541,11 +627,21 @@ impl AVPlayerItemMetadataOutput {
         /// Permits advance invocation of the associated delegate, if any.
         ///
         /// If it is possible, an AVPlayerItemMetadataOutput will message its delegate advanceIntervalForDelegateInvocation seconds earlier than otherwise. If the value you provide is large, effectively requesting provision of samples earlier than the AVPlayerItemMetadataOutput is prepared to act on them, the delegate will be invoked as soon as possible.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(advanceIntervalForDelegateInvocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn advanceIntervalForDelegateInvocation(&self) -> NSTimeInterval;
 
         /// Setter for [`advanceIntervalForDelegateInvocation`][Self::advanceIntervalForDelegateInvocation].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAdvanceIntervalForDelegateInvocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdvanceIntervalForDelegateInvocation(
@@ -606,11 +702,17 @@ extern_class!(
     ///
     /// An instance of AVPlayerItemRenderedLegibleOutput is initialized using the -init method.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemRenderedLegibleOutput;
 );
+
+unsafe impl Send for AVPlayerItemRenderedLegibleOutput {}
+
+unsafe impl Sync for AVPlayerItemRenderedLegibleOutput {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerItemRenderedLegibleOutput {}
@@ -658,6 +760,12 @@ impl AVPlayerItemRenderedLegibleOutput {
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -668,6 +776,12 @@ impl AVPlayerItemRenderedLegibleOutput {
         /// The dispatch queue where the delegate is messaged.
         ///
         /// This property is not key-value observable.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegateQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
@@ -675,11 +789,21 @@ impl AVPlayerItemRenderedLegibleOutput {
         /// Permits advance invocation of the associated delegate, if any.
         ///
         /// If it is possible, an AVPlayerItemRenderedLegibleOutput will message its delegate advanceIntervalForDelegateInvocation seconds earlier than otherwise. If the value you provide is large, effectively requesting provision of samples earlier than the AVPlayerItemRenderedLegibleOutput is prepared to act on them, the delegate will be invoked as soon as possible.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(advanceIntervalForDelegateInvocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn advanceIntervalForDelegateInvocation(&self) -> NSTimeInterval;
 
         /// Setter for [`advanceIntervalForDelegateInvocation`][Self::advanceIntervalForDelegateInvocation].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAdvanceIntervalForDelegateInvocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdvanceIntervalForDelegateInvocation(
@@ -691,12 +815,22 @@ impl AVPlayerItemRenderedLegibleOutput {
         /// Permits rendering of pixel buffers according to the set width and height
         ///
         /// The client is expected to set videodisplay size during init and may also set it again during playback. The pixel buffers will be rendered according to the set width and height of display area. If this property is set during the presentation time of a vended caption image, a new caption image rendered according to new videoDisplaySize, will be vended out. Setting this property with a zero height or width will result in an exception being thrown and it is client's responsibility to handle it using appropriate catch block.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(videoDisplaySize))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoDisplaySize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`videoDisplaySize`][Self::videoDisplaySize].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setVideoDisplaySize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoDisplaySize(&self, video_display_size: CGSize);

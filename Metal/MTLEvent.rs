@@ -11,7 +11,7 @@ use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlevent?language=objc)
-    pub unsafe trait MTLEvent: NSObjectProtocol {
+    pub unsafe trait MTLEvent: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "MTLDevice")]
         /// The device this event can be used with. Will be nil when the event is shared across devices (i.e. MTLSharedEvent).
         #[unsafe(method(device))]
@@ -41,6 +41,10 @@ extern_class!(
     pub struct MTLSharedEventListener;
 );
 
+unsafe impl Send for MTLSharedEventListener {}
+
+unsafe impl Sync for MTLSharedEventListener {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for MTLSharedEventListener {}
 );
@@ -63,6 +67,10 @@ impl MTLSharedEventListener {
         #[unsafe(method(dispatchQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatchQueue(&self) -> Retained<DispatchQueue>;
+
+        #[unsafe(method(sharedListener))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sharedListener() -> Retained<MTLSharedEventListener>;
     );
 }
 
@@ -128,6 +136,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSharedEventHandle;
 );
+
+unsafe impl Send for MTLSharedEventHandle {}
+
+unsafe impl Sync for MTLSharedEventHandle {}
 
 extern_conformance!(
     unsafe impl NSCoding for MTLSharedEventHandle {}

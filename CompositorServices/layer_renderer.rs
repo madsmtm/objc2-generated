@@ -157,6 +157,27 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_device(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns the command queue that the layer uses for drawing operations.
+///
+/// - Parameters layer_renderer: The layer renderer to query.
+///
+/// Should only be called with when supporting Metal4 through configuration.
+/// ``cp_layer_renderer_configuration_set_supports_mtl4``
+#[cfg(feature = "objc2-metal")]
+#[inline]
+pub unsafe extern "C-unwind" fn cp_layer_renderer_get_mtl4_command_queue(
+    layer_renderer: &cp_layer_renderer_t,
+) -> Retained<ProtocolObject<dyn MTL4CommandQueue>> {
+    extern "C-unwind" {
+        fn cp_layer_renderer_get_mtl4_command_queue(
+            layer_renderer: &cp_layer_renderer_t,
+        ) -> *mut ProtocolObject<dyn MTL4CommandQueue>;
+    }
+    let ret = unsafe { cp_layer_renderer_get_mtl4_command_queue(layer_renderer) };
+    unsafe { Retained::retain_autoreleased(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
 extern "C-unwind" {
     /// Returns the layer's current state, which indicates whether the layer is
     /// visible and ready for you to draw content.
@@ -246,5 +267,55 @@ extern "C-unwind" {
     pub fn cp_layer_renderer_set_minimum_frame_repeat_count(
         layer_renderer: &cp_layer_renderer_t,
         frame_repeat_count: c_int,
+    );
+}
+
+extern "C-unwind" {
+    /// Get the render quality to be used by the drawables.
+    ///
+    /// - Parameters:
+    /// - layer_renderer: The layer on which you're drawing.
+    ///
+    /// The render quality will increase the resolution at which rendering happens.
+    /// This value cannot exceed the quality specified on the layer renderer configuration
+    /// see ``cp_layer_renderer_configuration_set_max_render_quality``.
+    /// The quality will be changed to the target render quality over a set duration to hide
+    /// the transition of quality from the user.
+    ///
+    /// The renderer should monitor its frame rate to determine whether its making the frames
+    /// on time. If it is unable to maintain proper frame rate, the app should reduce the render
+    /// quality, reduce the scene complexity, or increase the frame repeat count see
+    /// ``cp_layer_renderer_set_minimum_frame_repeat_count``.
+    /// It is generally preferable to reduce anything else before increasing the frame repeat count.
+    #[cfg(feature = "cp_types")]
+    pub fn cp_layer_renderer_get_render_quality(
+        layer_renderer: &cp_layer_renderer_t,
+    ) -> cp_render_quality_t;
+}
+
+extern "C-unwind" {
+    /// Set the render quality to be used by the drawables.
+    ///
+    /// - Parameters:
+    /// - layer_renderer: The layer on which you're drawing.
+    /// - render_quality: The value of quality [0, 1].
+    /// With 0 being the minimum quality that is supported on the device,
+    /// and 1 being the highest quality that is supported on the device.
+    ///
+    /// The render quality will increase the resolution at which rendering happens.
+    /// This value cannot exceed the quality specified on the layer renderer configuration
+    /// see ``cp_layer_renderer_configuration_set_max_render_quality``.
+    /// The quality will be changed to the target render quality over a set duration to hide
+    /// the transition of quality from the user.
+    ///
+    /// The renderer should monitor its frame rate to determine whether its making the frames
+    /// on time. If it is unable to maintain proper frame rate, the app should reduce the render
+    /// quality, reduce the scene complexity, or increase the frame repeat count see
+    /// ``cp_layer_renderer_set_minimum_frame_repeat_count``.
+    /// It is generally preferable to reduce anything else before increasing the frame repeat count.
+    #[cfg(feature = "cp_types")]
+    pub fn cp_layer_renderer_set_render_quality(
+        layer_renderer: &cp_layer_renderer_t,
+        render_quality: cp_render_quality_t,
     );
 }
