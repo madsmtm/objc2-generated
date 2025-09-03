@@ -1291,6 +1291,8 @@ pub use self::__AudioConverter::kAudioConverterPropertyCalculateInputBufferSize;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::kAudioConverterPropertyCalculateOutputBufferSize;
 #[cfg(feature = "AudioConverter")]
+pub use self::__AudioConverter::kAudioConverterPropertyChannelMixMap;
+#[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::kAudioConverterPropertyDitherBitDepth;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::kAudioConverterPropertyDithering;
@@ -1310,6 +1312,8 @@ pub use self::__AudioConverter::kAudioConverterPropertyMinimumInputBufferSize;
 pub use self::__AudioConverter::kAudioConverterPropertyMinimumOutputBufferSize;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::kAudioConverterPropertyOutputCodecParameters;
+#[cfg(feature = "AudioConverter")]
+pub use self::__AudioConverter::kAudioConverterPropertyPerformDownmix;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::kAudioConverterPropertySettings;
 #[cfg(feature = "AudioConverter")]

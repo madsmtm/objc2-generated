@@ -779,7 +779,7 @@ extern_protocol!(
         /// Parameter `syntaxElements`: Array of NSString to represent the skipped syntax.
         ///
         ///
-        /// While the reported string content is human readable, it is highly technical and probably meaningful only to clients who are familiar with the source caption format. It is primarily designed for logging purpose and would not be suitable for UI purpose.
+        /// While the reported string content is human readable, it is highly technical and probably meaningful only to clients who are familiar with the source caption format. It is primarily designed for logging purposes and would not be suitable for UI purposes.
         #[optional]
         #[unsafe(method(captionAdaptor:didVendCaption:skippingUnsupportedSourceSyntaxElements:))]
         #[unsafe(method_family = none)]

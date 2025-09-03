@@ -44,9 +44,9 @@ impl UIScrollEdgeElementContainerInteraction {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`scrollView`][Self::scrollView].
-        #[unsafe(method(_setScrollView:))]
+        #[unsafe(method(setScrollView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn _setScrollView(&self, scroll_view: Option<&UIScrollView>);
+        pub unsafe fn setScrollView(&self, scroll_view: Option<&UIScrollView>);
 
         #[cfg(feature = "UIGeometry")]
         /// The edge of the scroll view to affect
@@ -56,9 +56,9 @@ impl UIScrollEdgeElementContainerInteraction {
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`edge`][Self::edge].
-        #[unsafe(method(_setEdge:))]
+        #[unsafe(method(setEdge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn _setEdge(&self, edge: UIRectEdge);
+        pub unsafe fn setEdge(&self, edge: UIRectEdge);
     );
 }
 

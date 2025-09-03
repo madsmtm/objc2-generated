@@ -463,11 +463,28 @@ impl AVAsynchronousVideoCompositionRequest {
         /// The method that the custom compositor calls when composition succeeds.
         ///
         /// - Parameter taggedBufferGroup: The tagged buffer group containing the composed tagged buffers. The tagged buffers must be compatible with the outputBufferDescription specified in the video composition. The outputBufferDescription must not be nil when calling this function.
+        /// NOTE: If ``AVVideoComposition/spatialConfigurations`` is not empty, then ``attach(spatialVideoConfiguration:to:)`` must be called with one of the spatial configurations. An exception will be thrown otherwise. Also, all pixel buffers must be associated with the same spatial configuration. An exception will be thrown otherwise.
         #[unsafe(method(finishWithComposedTaggedBufferGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWithComposedTaggedBufferGroup(
             &self,
             tagged_buffer_group: &CMTaggedBufferGroup,
+        );
+
+        #[cfg(all(feature = "AVSpatialVideoConfiguration", feature = "objc2-core-video"))]
+        /// Associates the pixel buffer with the specified spatial configuration.
+        /// - Parameters:
+        /// - spatialVideoConfiguration: The spatial configuration to associate with the pixel buffer.
+        /// - pixelBuffer: The pixel buffer to associate with the spatial configuration.
+        /// NOTE: The spatial configuration must be one of the spatial configurations specified in the ``AVVideoComposition/spatialConfigurations`` property. An exception will be thrown otherwise.
+        /// NOTE: All pixel buffers from the custom compositor must be associated with the same spatial configuration. An exception will be thrown otherwise.
+        /// A spatial configuration with all nil values indicates the video is not spatial. A nil spatial configuration also indicates the video is not spatial. The value can be nil, which indicates the output will not be spatial, but a spatial configuration with all nil values must be in the ``AVVideoComposition/spatialConfigurations`` property or an exception will be thrown.
+        #[unsafe(method(attachSpatialVideoConfiguration:toPixelBuffer:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn attachSpatialVideoConfiguration_toPixelBuffer(
+            &self,
+            spatial_video_configuration: Option<&AVSpatialVideoConfiguration>,
+            pixel_buffer: &CVPixelBuffer,
         );
     );
 }

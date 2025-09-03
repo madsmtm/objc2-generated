@@ -137,9 +137,6 @@ mod __CGPDFStream;
 #[cfg(feature = "CGPDFString")]
 #[path = "CGPDFString.rs"]
 mod __CGPDFString;
-#[cfg(feature = "CGPDFWrappedObject")]
-#[path = "CGPDFWrappedObject.rs"]
-mod __CGPDFWrappedObject;
 #[cfg(feature = "CGPSConverter")]
 #[path = "CGPSConverter.rs"]
 mod __CGPSConverter;
@@ -1354,6 +1351,8 @@ pub use self::__CGEventSource::CGEventSourceSetPixelsPerLine;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceSetUserData;
 #[cfg(feature = "CGEventTypes")]
+pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
+#[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::kCGEventMaskForAllEvents;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::kCGNotifyEventTapAdded;
@@ -1401,8 +1400,6 @@ pub use self::__CGEventTypes::CGMouseButton;
 pub use self::__CGEventTypes::CGScrollEventUnit;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGScrollPhase;
-#[cfg(feature = "CGEventTypes")]
-pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontIndexInvalid;
 #[cfg(feature = "CGFont")]
@@ -2047,24 +2044,6 @@ pub use self::__CGPDFString::CGPDFStringGetBytePtr;
 pub use self::__CGPDFString::CGPDFStringGetLength;
 #[cfg(feature = "CGPDFString")]
 pub use self::__CGPDFString::CGPDFStringRef;
-#[cfg(feature = "CGPDFWrappedObject")]
-pub use self::__CGPDFWrappedObject::CGPDFWrappedObject;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFWrappedObject"))]
-pub use self::__CGPDFWrappedObject::CGPDFWrappedObjectCreateWithArray;
-#[cfg(all(feature = "CGPDFObject", feature = "CGPDFWrappedObject"))]
-pub use self::__CGPDFWrappedObject::CGPDFWrappedObjectCreateWithBoolean;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFWrappedObject"))]
-pub use self::__CGPDFWrappedObject::CGPDFWrappedObjectCreateWithDictionary;
-#[cfg(all(feature = "CGPDFObject", feature = "CGPDFWrappedObject"))]
-pub use self::__CGPDFWrappedObject::CGPDFWrappedObjectCreateWithInteger;
-#[cfg(feature = "CGPDFWrappedObject")]
-pub use self::__CGPDFWrappedObject::CGPDFWrappedObjectCreateWithName;
-#[cfg(all(feature = "CGPDFObject", feature = "CGPDFWrappedObject"))]
-pub use self::__CGPDFWrappedObject::CGPDFWrappedObjectCreateWithReal;
-#[cfg(all(feature = "CGPDFStream", feature = "CGPDFWrappedObject"))]
-pub use self::__CGPDFWrappedObject::CGPDFWrappedObjectCreateWithStream;
-#[cfg(all(feature = "CGPDFString", feature = "CGPDFWrappedObject"))]
-pub use self::__CGPDFWrappedObject::CGPDFWrappedObjectCreateWithString;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverter;
 #[cfg(feature = "CGPSConverter")]

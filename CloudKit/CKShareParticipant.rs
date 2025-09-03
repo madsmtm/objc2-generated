@@ -87,17 +87,22 @@ unsafe impl RefEncode for CKShareParticipantRole {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipanttype?language=objc)
 // NS_ENUM
+#[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKShareParticipantType(pub NSInteger);
 impl CKShareParticipantType {
     #[doc(alias = "CKShareParticipantTypeUnknown")]
+    #[deprecated]
     pub const Unknown: Self = Self(0);
     #[doc(alias = "CKShareParticipantTypeOwner")]
+    #[deprecated]
     pub const Owner: Self = Self(1);
     #[doc(alias = "CKShareParticipantTypePrivateUser")]
+    #[deprecated]
     pub const PrivateUser: Self = Self(3);
     #[doc(alias = "CKShareParticipantTypePublicUser")]
+    #[deprecated]
     pub const PublicUser: Self = Self(4);
 }
 
@@ -166,11 +171,13 @@ impl CKShareParticipant {
         pub unsafe fn setRole(&self, role: CKShareParticipantRole);
 
         /// The default participant type is ``CKShareParticipantTypePrivateUser``.
+        #[deprecated]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CKShareParticipantType;
 
         /// Setter for [`type`][Self::type].
+        #[deprecated]
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: CKShareParticipantType);

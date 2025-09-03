@@ -1022,6 +1022,8 @@ impl AVPlayerItem {
     extern_methods!(
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Indicates the AVCustomMediaSelectionSchemes of AVMediaSelectionGroups of the receiver's asset with which an associated UI implementation should configure its interface for media selection.
+        ///
+        /// Recommended usage: if use of a custom media selection scheme is desired, set this property before either replacing an AVPlayer's current item with the receiver or adding the receiver to an AVQueuePlayer's play queue. This will satisfy requirements of UI implementations that commit to a configuration of UI elements as the receiver becomes ready to play.
         #[unsafe(method(preferredCustomMediaSelectionSchemes))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredCustomMediaSelectionSchemes(
@@ -1121,6 +1123,9 @@ impl AVPlayerItem {
         /// If nil is returned then there is no logging information currently available for this AVPlayerItem.
         /// An AVPlayerItemNewAccessLogEntryNotification will be posted when new logging information becomes available. However, accessLog might already return a non-nil value even before the first notification is posted.
         ///
+        /// In certain situations, this method may temporarily block the calling thread during the ongoing log collection process.
+        /// It is strongly recommended that the caller take appropriate measures to prevent blocking essential services such as the user interface, for example, by avoiding calling this method in the main thread.
+        ///
         /// - Returns: An autoreleased AVPlayerItemAccessLog instance.
         #[unsafe(method(accessLog))]
         #[unsafe(method_family = none)]
@@ -1130,6 +1135,9 @@ impl AVPlayerItem {
         ///
         /// An AVPlayerItemErrorLog provides methods to retrieve the error log in a format suitable for serialization.
         /// If nil is returned then there is no logging information currently available for this AVPlayerItem.
+        ///
+        /// In certain situations, this method may temporarily block the calling thread during the ongoing log collection process.
+        /// It is strongly recommended that the caller take appropriate measures to prevent blocking essential services such as the user interface, for example, by avoiding calling this method in the main thread.
         ///
         /// - Returns: An autoreleased AVPlayerItemErrorLog instance.
         #[unsafe(method(errorLog))]

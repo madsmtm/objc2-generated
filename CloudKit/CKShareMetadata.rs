@@ -85,6 +85,7 @@ impl CKShareMetadata {
         pub unsafe fn rootRecord(&self) -> Option<Retained<CKRecord>>;
 
         #[cfg(feature = "CKShareParticipant")]
+        #[deprecated]
         #[unsafe(method(participantType))]
         #[unsafe(method_family = none)]
         pub unsafe fn participantType(&self) -> CKShareParticipantType;
