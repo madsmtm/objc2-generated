@@ -131,6 +131,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4argumenttable?language=objc)
     pub unsafe trait MTL4ArgumentTable: NSObjectProtocol {
+        #[cfg(feature = "MTLGPUAddress")]
         /// Binds a GPU address to a buffer binding slot.
         ///
         /// - Parameters:
@@ -141,8 +142,9 @@ extern_protocol!(
         /// from which you created this argument table.
         #[unsafe(method(setAddress:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAddress_atIndex(&self, gpu_address: u64, binding_index: NSUInteger);
+        unsafe fn setAddress_atIndex(&self, gpu_address: MTLGPUAddress, binding_index: NSUInteger);
 
+        #[cfg(feature = "MTLGPUAddress")]
         /// Binds a GPU address to a buffer binding slot, providing a dynamic vertex stride.
         ///
         /// This method requires that the value of property ``MTL4ArgumentTableDescriptor/supportAttributeStrides`` on the
@@ -159,7 +161,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setAddress_attributeStride_atIndex(
             &self,
-            gpu_address: u64,
+            gpu_address: MTLGPUAddress,
             stride: NSUInteger,
             binding_index: NSUInteger,
         );

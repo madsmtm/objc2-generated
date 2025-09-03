@@ -20,6 +20,16 @@ extern_class!(
 
 #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
 extern_conformance!(
+    unsafe impl NSCopying for GKLocalPlayer {}
+);
+
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+unsafe impl CopyingHelper for GKLocalPlayer {
+    type Result = Self;
+}
+
+#[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+extern_conformance!(
     unsafe impl NSObjectProtocol for GKLocalPlayer {}
 );
 

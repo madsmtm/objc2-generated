@@ -129,6 +129,9 @@ extern_protocol!(
         /// Asks the delegate for the menu to be shown for the specified text ranges.
         ///
         ///
+        /// If the delegate does not implement this method then the `textView:editMenuForTextInRange:suggestedActions:` method will be called and passed the union range instead. If the delegate also does not implement that method then `nil` is assumed.
+        ///
+        ///
         /// Parameter `textView`: The text view requesting the menu.
         ///
         /// Parameter `ranges`: The text ranges for which the menu is presented for.
