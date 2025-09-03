@@ -9976,7 +9976,7 @@ impl NWHostEndpoint {
         #[deprecated = "Use `nw_endpoint_get_hostname` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
         #[unsafe(method(hostname))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hostname(&self) -> Retained<NSString>;
+        pub unsafe fn hostname(&self) -> Option<Retained<NSString>>;
 
         /// The endpoint's port.
         #[deprecated = "Use `nw_endpoint_get_port` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
