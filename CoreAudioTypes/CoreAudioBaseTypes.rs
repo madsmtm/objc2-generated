@@ -377,9 +377,11 @@ pub const kAppleLosslessFormatFlag_32BitSourceData: AudioFormatFlags = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsnativeendian?language=objc)
 pub const kAudioFormatFlagsNativeEndian: AudioFormatFlags = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagscanonical?language=objc)
+#[deprecated]
 pub const kAudioFormatFlagsCanonical: AudioFormatFlags =
     kAudioFormatFlagIsFloat | kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsaudiounitcanonical?language=objc)
+#[deprecated]
 pub const kAudioFormatFlagsAudioUnitCanonical: AudioFormatFlags = kAudioFormatFlagIsFloat
     | kAudioFormatFlagsNativeEndian
     | kAudioFormatFlagIsPacked

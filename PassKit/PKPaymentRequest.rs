@@ -115,6 +115,7 @@ impl PKShippingContactEditingMode {
     #[doc(alias = "PKShippingContactEditingModeStorePickup")]
     pub const StorePickup: Self = Self(2);
     #[doc(alias = "PKShippingContactEditingModeEnabled")]
+    #[deprecated]
     pub const Enabled: Self = Self(PKShippingContactEditingMode::Available.0);
 }
 

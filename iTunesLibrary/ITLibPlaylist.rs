@@ -192,6 +192,7 @@ impl ITLibPlaylist {
         pub unsafe fn isVisible(&self) -> bool;
 
         /// Whether or not every item in this playlist is exposed via this API.  Generally true but not that useful.
+        #[deprecated]
         #[unsafe(method(isAllItemsPlaylist))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAllItemsPlaylist(&self) -> bool;

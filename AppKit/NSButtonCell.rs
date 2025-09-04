@@ -466,14 +466,19 @@ impl NSButtonCell {
 pub struct NSGradientType(pub NSUInteger);
 impl NSGradientType {
     #[doc(alias = "NSGradientNone")]
+    #[deprecated]
     pub const None: Self = Self(0);
     #[doc(alias = "NSGradientConcaveWeak")]
+    #[deprecated]
     pub const ConcaveWeak: Self = Self(1);
     #[doc(alias = "NSGradientConcaveStrong")]
+    #[deprecated]
     pub const ConcaveStrong: Self = Self(2);
     #[doc(alias = "NSGradientConvexWeak")]
+    #[deprecated]
     pub const ConvexWeak: Self = Self(3);
     #[doc(alias = "NSGradientConvexStrong")]
+    #[deprecated]
     pub const ConvexStrong: Self = Self(4);
 }
 

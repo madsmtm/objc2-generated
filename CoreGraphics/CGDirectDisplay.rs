@@ -335,6 +335,7 @@ bitflags::bitflags! {
         #[doc(alias = "kCGCaptureNoOptions")]
         const NoOptions = 0;
         #[doc(alias = "kCGCaptureNoFill")]
+#[deprecated]
         const NoFill = 1<<0;
     }
 }

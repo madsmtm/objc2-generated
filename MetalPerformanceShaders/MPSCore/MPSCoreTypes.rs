@@ -216,6 +216,7 @@ impl MPSDataType {
     #[doc(alias = "MPSDataTypeSignedBit")]
     pub const SignedBit: Self = Self(0x20000000);
     #[doc(alias = "MPSDataTypeIntBit")]
+    #[deprecated]
     pub const IntBit: Self = Self(MPSDataType::SignedBit.0);
     #[doc(alias = "MPSDataTypeInt2")]
     pub const Int2: Self = Self(MPSDataType::SignedBit.0 | 2);

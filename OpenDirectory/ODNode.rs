@@ -194,6 +194,7 @@ impl ODNode {
         /// Unsupported method.
         ///
         /// Unsupported method.
+        #[deprecated]
         #[unsafe(method(setCredentialsUsingKerberosCache:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredentialsUsingKerberosCache_error(

@@ -93,6 +93,7 @@ impl SLRequest {
             filename: Option<&NSString>,
         );
 
+        #[deprecated]
         #[unsafe(method(addMultipartData:withName:type:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMultipartData_withName_type(

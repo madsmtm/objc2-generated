@@ -339,8 +339,10 @@ pub const kBluetoothRoleBecomeCentral: c_uint = 0x00;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothroleremainperipheral?language=objc)
 pub const kBluetoothRoleRemainPeripheral: c_uint = 0x01;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothrolebecomemaster?language=objc)
+#[deprecated]
 pub const kBluetoothRoleBecomeMaster: c_uint = kBluetoothRoleBecomeCentral;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothroleremainslave?language=objc)
+#[deprecated]
 pub const kBluetoothRoleRemainSlave: c_uint = kBluetoothRoleRemainPeripheral;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothseteventmask?language=objc)
@@ -1542,9 +1544,11 @@ pub const kBluetoothHCICommandReceiveSynchronizationTrain: c_uint = 0x0044;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandremoteoobextendeddatarequestreply?language=objc)
 pub const kBluetoothHCICommandRemoteOOBExtendedDataRequestReply: c_uint = 0x0045;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetconnectionlessslavebroadcast?language=objc)
+#[deprecated]
 pub const kBluetoothHCICommandSetConnectionlessSlaveBroadcast: c_uint =
     kBluetoothHCICommandSetConnectionlessPeripheralBroadcast;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetconnectionlessslavebroadcastreceive?language=objc)
+#[deprecated]
 pub const kBluetoothHCICommandSetConnectionlessSlaveBroadcastReceive: c_uint =
     kBluetoothHCICommandSetConnectionlessPeripheralBroadcastReceive;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgrouplinkpolicy?language=objc)
@@ -1794,6 +1798,7 @@ pub const kBluetoothHCICommandReadExtendedInquiryLength: c_uint = 0x0080;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteextendedinquirylength?language=objc)
 pub const kBluetoothHCICommandWriteExtendedInquiryLength: c_uint = 0x0081;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetconnectionlessslavebroadcastdata?language=objc)
+#[deprecated]
 pub const kBluetoothHCICommandSetConnectionlessSlaveBroadcastData: c_uint =
     kBluetoothHCICommandSetConnectionlessPeripheralBroadcastData;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgroupinformational?language=objc)
@@ -2191,6 +2196,7 @@ impl BluetoothLEFeatureBits {
     #[doc(alias = "kBluetoothLEFeatureExtendedScannerFilterPolicies")]
     pub const ExtendedScannerFilterPolicies: Self = Self(1 << 7);
     #[doc(alias = "kBluetoothLEFeatureSlaveInitiatedFeaturesExchange")]
+    #[deprecated]
     pub const SlaveInitiatedFeaturesExchange: Self =
         Self(BluetoothLEFeatureBits::PeripheralInitiatedFeaturesExchange.0);
 }
@@ -2251,8 +2257,10 @@ impl BluetoothFeatureBits {
     pub const kBluetoothFeatureAliasAuhentication: Self = Self(1 << 5);
     pub const kBluetoothFeatureLESupportedController: Self = Self(1 << 6);
     pub const kBluetoothFeature3SlotEnhancedDataRateACLPackets: Self = Self(1 << 7);
+    #[deprecated]
     pub const kBluetoothFeatureAFHCapableSlave: Self =
         Self(BluetoothFeatureBits::kBluetoothFeatureAFHCapablePeripheral.0);
+    #[deprecated]
     pub const kBluetoothFeatureAFHClassificationSlave: Self =
         Self(BluetoothFeatureBits::kBluetoothFeatureAFHClassificationPeripheral.0);
     pub const kBluetoothFeature5SlotEnhancedDataRateACLPackets: Self = Self(1 << 0);
@@ -2452,8 +2460,10 @@ impl BluetoothHCIRoles {
     #[doc(alias = "kBluetoothHCIPeripheralRole")]
     pub const PeripheralRole: Self = Self(0x01);
     #[doc(alias = "kBluetoothHCIMasterRole")]
+    #[deprecated]
     pub const MasterRole: Self = Self(BluetoothHCIRoles::CentralRole.0);
     #[doc(alias = "kBluetoothHCISlaveRole")]
+    #[deprecated]
     pub const SlaveRole: Self = Self(BluetoothHCIRoles::PeripheralRole.0);
 }
 
@@ -2488,6 +2498,7 @@ impl BluetoothHCILinkPolicySettingsValues {
     #[doc(alias = "kReservedForFutureUse")]
     pub const ReservedForFutureUse: Self = Self(0x0010);
     #[doc(alias = "kEnableMasterSlaveSwitch")]
+    #[deprecated]
     pub const EnableMasterSlaveSwitch: Self =
         Self(BluetoothHCILinkPolicySettingsValues::EnableCentralPeripheralSwitch.0);
 }
@@ -6218,6 +6229,7 @@ impl BluetoothLEScanFilter {
     #[doc(alias = "BluetoothLEScanFilterSafelist")]
     pub const Safelist: Self = Self(0x01);
     #[doc(alias = "BluetoothLEScanFilterWhitelist")]
+    #[deprecated]
     pub const Whitelist: Self = Self(BluetoothLEScanFilter::Safelist.0);
 }
 

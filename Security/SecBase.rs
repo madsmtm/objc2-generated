@@ -352,6 +352,7 @@ pub const errSecUnimplemented: OSStatus = -4;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdiskfull?language=objc)
 pub const errSecDiskFull: OSStatus = -34;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdskfull?language=objc)
+#[deprecated]
 pub const errSecDskFull: OSStatus = -34;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errsecio?language=objc)
 pub const errSecIO: OSStatus = -36;

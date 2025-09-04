@@ -1379,6 +1379,8 @@ pub type AudioUnitRenderProc = Option<
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_illegalinstrument?language=objc)
+#[deprecated]
 pub const kAudioUnitErr_IllegalInstrument: OSStatus = -10873;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_instrumenttypenotfound?language=objc)
+#[deprecated]
 pub const kAudioUnitErr_InstrumentTypeNotFound: OSStatus = -10872;

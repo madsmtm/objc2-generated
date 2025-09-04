@@ -389,8 +389,10 @@ extern "C" {
 pub struct CGGlyphDeprecatedEnum(pub i32);
 impl CGGlyphDeprecatedEnum {
     #[doc(alias = "CGGlyphMin")]
+    #[deprecated]
     pub const Min: Self = Self(0);
     #[doc(alias = "CGGlyphMax")]
+    #[deprecated]
     pub const Max: Self = Self(1);
 }
 

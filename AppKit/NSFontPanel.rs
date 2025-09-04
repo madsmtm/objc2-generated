@@ -293,16 +293,23 @@ pub const NSFontPanelStandardModesMask: c_uint = 0xFFFF;
 pub const NSFontPanelAllModesMask: c_uint = 0xFFFFFFFF;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfppreviewbutton?language=objc)
+#[deprecated]
 pub const NSFPPreviewButton: c_uint = 131;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfprevertbutton?language=objc)
+#[deprecated]
 pub const NSFPRevertButton: c_uint = 130;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpsetbutton?language=objc)
+#[deprecated]
 pub const NSFPSetButton: c_uint = 132;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfppreviewfield?language=objc)
+#[deprecated]
 pub const NSFPPreviewField: c_uint = 128;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpsizefield?language=objc)
+#[deprecated]
 pub const NSFPSizeField: c_uint = 129;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpsizetitle?language=objc)
+#[deprecated]
 pub const NSFPSizeTitle: c_uint = 133;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpcurrentfield?language=objc)
+#[deprecated]
 pub const NSFPCurrentField: c_uint = 134;

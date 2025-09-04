@@ -1396,6 +1396,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
+    #[deprecated]
     pub fn IOHIDGetButtonEventNum(
         connect: io_connect_t,
         button: NXMouseButton,
@@ -1676,6 +1677,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
+    #[deprecated]
     pub fn NXEventSystemInfo(
         handle: NXEventHandle,
         flavor: *mut c_char,
@@ -1710,6 +1712,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
+    #[deprecated]
     pub fn NXResetKeyboard(handle: NXEventHandle);
 }
 
@@ -1739,6 +1742,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
+    #[deprecated]
     pub fn NXResetMouse(handle: NXEventHandle);
 }
 

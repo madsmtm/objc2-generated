@@ -285,6 +285,7 @@ impl ITLibMediaItem {
         pub unsafe fn fileSize(&self) -> c_ulonglong;
 
         /// The size in bytes of this media item on disk. (deprecated: use fileSize instead)
+        #[deprecated]
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> NSUInteger;
@@ -417,6 +418,7 @@ impl ITLibMediaItem {
         pub unsafe fn year(&self) -> NSUInteger;
 
         /// The type of the file this media item refers to.
+        #[deprecated]
         #[unsafe(method(fileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileType(&self) -> NSUInteger;
@@ -432,6 +434,7 @@ impl ITLibMediaItem {
         pub unsafe fn skipDate(&self) -> Option<Retained<NSDate>>;
 
         /// The voice-over language of this media item
+        #[deprecated]
         #[unsafe(method(voiceOverLanguage))]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceOverLanguage(&self) -> Option<Retained<NSString>>;

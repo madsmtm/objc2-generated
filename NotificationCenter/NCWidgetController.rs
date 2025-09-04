@@ -25,6 +25,7 @@ impl NCWidgetController {
         #[unsafe(method_family = none)]
         pub unsafe fn widgetController() -> Retained<Self>;
 
+        #[deprecated]
         #[unsafe(method(defaultWidgetController))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultWidgetController() -> Retained<NCWidgetController>;

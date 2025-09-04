@@ -38,6 +38,7 @@ impl ITLibAlbum {
 
         #[cfg(feature = "ITLibArtist")]
         /// Deprecated. Will be removed in future versions.
+        #[deprecated]
         #[unsafe(method(artist))]
         #[unsafe(method_family = none)]
         pub unsafe fn artist(&self) -> Option<Retained<ITLibArtist>>;

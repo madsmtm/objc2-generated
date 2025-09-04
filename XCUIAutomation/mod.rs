@@ -2008,6 +2008,7 @@ impl XCUIDevice {
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
+        #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2098,6 +2099,7 @@ impl XCUIElementQuery {
         pub unsafe fn count(&self) -> NSUInteger;
 
         /// Returns an element that will resolve to the index into the query's result set.
+        #[deprecated]
         #[unsafe(method(elementAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementAtIndex(&self, index: NSUInteger) -> Retained<XCUIElement>;

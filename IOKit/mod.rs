@@ -10256,6 +10256,7 @@ pub unsafe extern "C-unwind" fn IOIteratorIsValid(iterator: io_iterator_t) -> bo
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
+    #[deprecated]
     pub fn IOServiceAddNotification(
         main_port: libc::mach_port_t,
         notification_type: io_name_t,
@@ -11319,6 +11320,7 @@ pub unsafe extern "C-unwind" fn IOBSDNameMatching(
 }
 
 #[cfg(feature = "libc")]
+#[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn IOOpenFirmwarePathMatching(
     main_port: libc::mach_port_t,
@@ -11356,6 +11358,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntryIDMatching(
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
+    #[deprecated]
     pub fn IOServiceOFPathToBSDName(
         main_port: libc::mach_port_t,
         open_firmware_path: io_name_t,

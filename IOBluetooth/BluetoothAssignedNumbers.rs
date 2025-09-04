@@ -1499,6 +1499,7 @@ impl BluetoothHCIExtendedInquiryResponseDataTypes {
     #[doc(alias = "kBluetoothHCIExtendedInquiryResponseDataTypeManufacturerSpecificData")]
     pub const TypeManufacturerSpecificData: Self = Self(0xFF);
     #[doc(alias = "kBluetoothHCIExtendedInquiryResponseDataTypeSlaveConnectionIntervalRange")]
+    #[deprecated]
     pub const TypeSlaveConnectionIntervalRange: Self =
         Self(BluetoothHCIExtendedInquiryResponseDataTypes::TypePeripheralConnectionIntervalRange.0);
 }

@@ -830,6 +830,7 @@ impl XCTestCase {
         /// of a failed assertion or any other reason. When replacing usage of this deprecated API, the representation using XCTIssue may vary.
         /// A NO value may be specified using the issue type `XCTIssueTypeUncaughtException`, and a YES value may be represented
         /// using a different issue type such as `XCTIssueTypeAssertionFailure` combined with other properties on XCTIssue.
+        #[deprecated]
         #[unsafe(method(recordFailureWithDescription:inFile:atLine:expected:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordFailureWithDescription_inFile_atLine_expected(
@@ -1006,6 +1007,7 @@ impl XCTestRun {
         /// of a failed assertion or any other reason. When replacing usage of this deprecated API, the representation using XCTIssue may vary.
         /// A NO value may be specified using the issue type `XCTIssueTypeUncaughtException`, and a YES value may be represented
         /// using a different issue type such as `XCTIssueTypeAssertionFailure` combined with other properties on XCTIssue.
+        #[deprecated]
         #[unsafe(method(recordFailureWithDescription:inFile:atLine:expected:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordFailureWithDescription_inFile_atLine_expected(
@@ -1031,6 +1033,7 @@ extern_conformance!(
 
 impl XCTestCaseRun {
     extern_methods!(
+        #[deprecated]
         #[unsafe(method(recordFailureInTest:withDescription:inFile:atLine:expected:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordFailureInTest_withDescription_inFile_atLine_expected(
@@ -1085,6 +1088,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestobserver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated]
     pub struct XCTestObserver;
 );
 
@@ -1154,6 +1158,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestlog?language=objc)
     #[unsafe(super(XCTestObserver, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated]
     pub struct XCTestLog;
 );
 
@@ -1329,6 +1334,7 @@ extern_protocol!(
         ///
         /// Parameter `lineNumber`: The line where the failure was reported or 0 if unknown. When replacing usage of this deprecated API, this
         /// can be obtained using the XCTSourceCodeLocation instance associated with an XCTIssue via its `sourceCodeContext` property
+        #[deprecated]
         #[optional]
         #[unsafe(method(testSuite:didFailWithDescription:inFile:atLine:))]
         #[unsafe(method_family = none)]
@@ -1360,6 +1366,7 @@ extern_protocol!(
         ///
         /// Parameter `lineNumber`: The line where the failure was reported or 0 if unknown. When replacing usage of this deprecated API, this
         /// can be obtained using the XCTSourceCodeLocation instance associated with an XCTIssue via its `sourceCodeContext` property
+        #[deprecated]
         #[optional]
         #[unsafe(method(testCase:didFailWithDescription:inFile:atLine:))]
         #[unsafe(method_family = none)]
@@ -1437,6 +1444,7 @@ impl XCTestObservationCenter {
 }
 
 extern "C-unwind" {
+    #[deprecated]
     pub fn XCTSelfTestMain() -> c_int;
 }
 
@@ -1444,6 +1452,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestprobe?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated]
     pub struct XCTestProbe;
 );
 
