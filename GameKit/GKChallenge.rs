@@ -326,6 +326,7 @@ impl GKAchievement {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengecomposecompletionblock?language=objc)
+#[deprecated]
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub type GKChallengeComposeCompletionBlock =

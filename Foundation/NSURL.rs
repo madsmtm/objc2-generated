@@ -148,6 +148,7 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurltypeidentifierkey?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Use NSURLContentTypeKey instead"]
     pub static NSURLTypeIdentifierKey: &'static NSURLResourceKey;
 }
 
@@ -387,12 +388,14 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlthumbnaildictionarykey?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Use the QuickLookThumbnailing framework and extension point instead"]
     pub static NSURLThumbnailDictionaryKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlthumbnailkey?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Use the QuickLookThumbnailing framework and extension point instead"]
     pub static NSURLThumbnailKey: &'static NSURLResourceKey;
 }
 
@@ -404,6 +407,7 @@ pub type NSURLThumbnailDictionaryItem = NSString;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsthumbnail1024x1024sizekey?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Use the QuickLookThumbnailing framework and extension point instead"]
     pub static NSThumbnail1024x1024SizeKey: &'static NSURLThumbnailDictionaryItem;
 }
 
@@ -770,6 +774,7 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitemisdownloadedkey?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Use NSURLUbiquitousItemDownloadingStatusKey instead"]
     pub static NSURLUbiquitousItemIsDownloadedKey: &'static NSURLResourceKey;
 }
 
@@ -794,12 +799,14 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitempercentdownloadedkey?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Use NSMetadataUbiquitousItemPercentDownloadedKey instead"]
     pub static NSURLUbiquitousItemPercentDownloadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlubiquitousitempercentuploadedkey?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Use NSMetadataUbiquitousItemPercentUploadedKey instead"]
     pub static NSURLUbiquitousItemPercentUploadedKey: &'static NSURLResourceKey;
 }
 

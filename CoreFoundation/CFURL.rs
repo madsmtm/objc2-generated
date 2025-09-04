@@ -1052,6 +1052,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltypeidentifierkey?language=objc)
+    #[deprecated = "Use NSURLContentTypeKey instead"]
     pub static kCFURLTypeIdentifierKey: Option<&'static CFString>;
 }
 
@@ -1067,6 +1068,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllabelcolorkey?language=objc)
+    #[deprecated = "Use NSURLLabelColorKey"]
     pub static kCFURLLabelColorKey: Option<&'static CFString>;
 }
 
@@ -1077,11 +1079,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurleffectiveiconkey?language=objc)
+    #[deprecated = "Use NSURLEffectiveIconKey"]
     pub static kCFURLEffectiveIconKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcustomiconkey?language=objc)
+    #[deprecated = "Use NSURLCustomIconKey"]
     pub static kCFURLCustomIconKey: Option<&'static CFString>;
 }
 
@@ -1507,6 +1511,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisdownloadedkey?language=objc)
+    #[deprecated = "Use kCFURLUbiquitousItemDownloadingStatusKey instead"]
     pub static kCFURLUbiquitousItemIsDownloadedKey: Option<&'static CFString>;
 }
 
@@ -1527,11 +1532,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitempercentdownloadedkey?language=objc)
+    #[deprecated = "Use NSMetadataQuery and NSMetadataUbiquitousItemPercentDownloadedKey on NSMetadataItem instead"]
     pub static kCFURLUbiquitousItemPercentDownloadedKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitempercentuploadedkey?language=objc)
+    #[deprecated = "Use NSMetadataQuery and NSMetadataUbiquitousItemPercentUploadedKey on NSMetadataItem instead"]
     pub static kCFURLUbiquitousItemPercentUploadedKey: Option<&'static CFString>;
 }
 

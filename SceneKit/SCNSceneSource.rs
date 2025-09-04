@@ -129,6 +129,7 @@ extern "C" {
     /// any code present in the loaded files.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceusesafemodekey?language=objc)
+    #[deprecated = "No longer supported"]
     pub static SCNSceneSourceUseSafeModeKey: &'static SCNSceneSourceLoadingOption;
 }
 

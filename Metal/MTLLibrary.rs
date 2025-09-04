@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedargument?language=objc)
+#[deprecated = "Use MTLBinding and cast to specific Binding (MTLTextureBinding, MTLBufferBinding, .etc) instead"]
 #[cfg(feature = "MTLArgument")]
 pub type MTLAutoreleasedArgument = MTLArgument;
 

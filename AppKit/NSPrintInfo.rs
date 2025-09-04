@@ -517,31 +517,37 @@ impl NSPrintInfo {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintformname?language=objc)
+    #[deprecated = "NSPrintInfo does not recognize this attribute"]
     pub static NSPrintFormName: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintjobfeatures?language=objc)
+    #[deprecated = "NSPrintInfo does not recognize this attribute. -[NSPrintInfo setUpPrintOperationDefaultValues] sets a default value of an empty dictionary"]
     pub static NSPrintJobFeatures: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintmanualfeed?language=objc)
+    #[deprecated = "NSPrintInfo does not recognize this attribute"]
     pub static NSPrintManualFeed: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpagespersheet?language=objc)
+    #[deprecated = "NSPrintInfo does not recognize this attribute. -[NSPrintInfo setUpPrintOperationDefaultValues] sets a default value of 1"]
     pub static NSPrintPagesPerSheet: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpaperfeed?language=objc)
+    #[deprecated = "NSPrintInfo does not recognize this attribute"]
     pub static NSPrintPaperFeed: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintsavepath?language=objc)
+    #[deprecated = "Use NSPrintJobSavingURL instead"]
     pub static NSPrintSavePath: &'static NSString;
 }
 
@@ -569,13 +575,16 @@ unsafe impl RefEncode for NSPrintingOrientation {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsautopagination?language=objc)
+#[deprecated]
 pub static NSAutoPagination: NSPrintingPaginationMode =
     NSPrintingPaginationMode(NSPrintingPaginationMode::Automatic.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfitpagination?language=objc)
+#[deprecated]
 pub static NSFitPagination: NSPrintingPaginationMode =
     NSPrintingPaginationMode(NSPrintingPaginationMode::Fit.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclippagination?language=objc)
+#[deprecated]
 pub static NSClipPagination: NSPrintingPaginationMode =
     NSPrintingPaginationMode(NSPrintingPaginationMode::Clip.0);

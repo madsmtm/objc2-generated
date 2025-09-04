@@ -763,6 +763,7 @@ pub const kAudioCodecOutputPrecedenceSampleRate: u32 = 2;
 /// renamed to AudioCodecMagicCookieInfo
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/magiccookieinfo?language=objc)
+#[deprecated]
 pub type MagicCookieInfo = AudioCodecMagicCookieInfo;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/khintbasic?language=objc)

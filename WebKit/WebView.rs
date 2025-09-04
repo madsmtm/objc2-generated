@@ -12,71 +12,85 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementdomnodekey?language=objc)
+    #[deprecated]
     pub static WebElementDOMNodeKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementframekey?language=objc)
+    #[deprecated]
     pub static WebElementFrameKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimagealtstringkey?language=objc)
+    #[deprecated]
     pub static WebElementImageAltStringKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimagekey?language=objc)
+    #[deprecated]
     pub static WebElementImageKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimagerectkey?language=objc)
+    #[deprecated]
     pub static WebElementImageRectKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimageurlkey?language=objc)
+    #[deprecated]
     pub static WebElementImageURLKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementisselectedkey?language=objc)
+    #[deprecated]
     pub static WebElementIsSelectedKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinkurlkey?language=objc)
+    #[deprecated]
     pub static WebElementLinkURLKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinktargetframekey?language=objc)
+    #[deprecated]
     pub static WebElementLinkTargetFrameKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinktitlekey?language=objc)
+    #[deprecated]
     pub static WebElementLinkTitleKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinklabelkey?language=objc)
+    #[deprecated]
     pub static WebElementLinkLabelKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewprogressstartednotification?language=objc)
+    #[deprecated]
     pub static WebViewProgressStartedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewprogressestimatechangednotification?language=objc)
+    #[deprecated]
     pub static WebViewProgressEstimateChangedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewprogressfinishednotification?language=objc)
+    #[deprecated]
     pub static WebViewProgressFinishedNotification: Option<&'static NSString>;
 }
 
@@ -930,26 +944,31 @@ extern_conformance!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidbegineditingnotification?language=objc)
+    #[deprecated]
     pub static WebViewDidBeginEditingNotification: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidchangenotification?language=objc)
+    #[deprecated]
     pub static WebViewDidChangeNotification: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidendeditingnotification?language=objc)
+    #[deprecated]
     pub static WebViewDidEndEditingNotification: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidchangetypingstylenotification?language=objc)
+    #[deprecated]
     pub static WebViewDidChangeTypingStyleNotification: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidchangeselectionnotification?language=objc)
+    #[deprecated]
     pub static WebViewDidChangeSelectionNotification: Option<&'static NSString>;
 }
 

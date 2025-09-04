@@ -9,6 +9,7 @@ extern "C" {
     /// Specifies an MD2 digest
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestmd2?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestMD2: &'static CFString;
 }
 
@@ -16,6 +17,7 @@ extern "C" {
     /// Specifies an MD4 digest
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestmd4?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestMD4: &'static CFString;
 }
 
@@ -23,6 +25,7 @@ extern "C" {
     /// Specifies an MD5 digest
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestmd5?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestMD5: &'static CFString;
 }
 
@@ -30,6 +33,7 @@ extern "C" {
     /// Specifies a SHA1 digest
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestsha1?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestSHA1: &'static CFString;
 }
 
@@ -37,6 +41,7 @@ extern "C" {
     /// Specifies a SHA2 digest.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestsha2?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestSHA2: &'static CFString;
 }
 
@@ -44,6 +49,7 @@ extern "C" {
     /// Specifies an HMAC using the MD5 digest algorithm.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigesthmacmd5?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestHMACMD5: &'static CFString;
 }
 
@@ -51,6 +57,7 @@ extern "C" {
     /// Specifies an HMAC using the SHA1 digest algorithm.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigesthmacsha1?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestHMACSHA1: &'static CFString;
 }
 
@@ -58,6 +65,7 @@ extern "C" {
     /// Specifies an HMAC using one of the SHA2 digest algorithms.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigesthmacsha2?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestHMACSHA2: &'static CFString;
 }
 
@@ -66,6 +74,7 @@ extern "C" {
     /// Returns one of the strings defined in the previous section.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigesttypeattribute?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestTypeAttribute: &'static CFString;
 }
 
@@ -74,6 +83,7 @@ extern "C" {
     /// Returns a CFNumberRef that contains the length in bytes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestlengthattribute?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestLengthAttribute: &'static CFString;
 }
 
@@ -84,6 +94,7 @@ extern "C" {
     /// a zero length key.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigesthmackeyattribute?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestHMACKeyAttribute: &'static CFString;
 }
 

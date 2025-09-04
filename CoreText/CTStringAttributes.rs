@@ -254,6 +254,7 @@ extern "C" {
     /// an attribute value of 1 corresponds to kTraditionalCharactersSelector.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctcharactershapeattributename?language=objc)
+    #[deprecated = "Use feature type kCharacterShapeType with the appropriate selector"]
     pub static kCTCharacterShapeAttributeName: &'static CFString;
 }
 

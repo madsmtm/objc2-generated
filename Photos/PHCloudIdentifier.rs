@@ -220,5 +220,6 @@ extern "C" {
     /// DEPRECATED: If the local object cannot be resolved from a global identifier, PHLocalIdentifierNotFound is provided in that array slot.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifiernotfound?language=objc)
+    #[deprecated]
     pub static PHLocalIdentifierNotFound: &'static NSString;
 }

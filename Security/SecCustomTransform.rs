@@ -132,12 +132,14 @@ unsafe impl RefEncode for SecTransformMetaAttributeType {
 /// it up by name.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformattribute?language=objc)
+#[deprecated = "SecTransform is no longer supported"]
 pub type SecTransformAttribute = CFType;
 
 /// This type signifies that either a CFStringRef or
 /// a SecTransformAttributeRef may be used.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformstringorattribute?language=objc)
+#[deprecated = "SecTransform is no longer supported"]
 pub type SecTransformStringOrAttribute = CFType;
 
 /// A block that overrides the default behavior of a
@@ -204,6 +206,7 @@ pub type SecTransformStringOrAttribute = CFType;
 /// </pre>
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformactionblock?language=objc)
+#[deprecated = "SecTransform is no longer supported"]
 #[cfg(feature = "block2")]
 pub type SecTransformActionBlock = *mut block2::DynBlock<dyn Fn() -> *const CFType>;
 
@@ -228,6 +231,7 @@ pub type SecTransformActionBlock = *mut block2::DynBlock<dyn Fn() -> *const CFTy
 /// See the example program in this header for more details.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformattributeactionblock?language=objc)
+#[deprecated = "SecTransform is no longer supported"]
 #[cfg(feature = "block2")]
 pub type SecTransformAttributeActionBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<SecTransformAttribute>, NonNull<CFType>) -> *const CFType>;
@@ -630,6 +634,7 @@ pub unsafe extern "C-unwind" fn SecTransformPushbackAttribute(
 /// example in the header section of this file for more detail.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcreatefp?language=objc)
+#[deprecated = "SecTransform is no longer supported"]
 #[cfg(all(feature = "SecTransform", feature = "block2"))]
 pub type SecTransformCreateFP = Option<
     unsafe extern "C-unwind" fn(
@@ -650,6 +655,7 @@ extern "C" {
     /// stipulating the error.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactioncanexecute?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionCanExecute: &'static CFString;
 }
 
@@ -660,6 +666,7 @@ extern "C" {
     /// SecTransformOverrideTransformAction block.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionstartingexecution?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionStartingExecution: &'static CFString;
 }
 
@@ -670,6 +677,7 @@ extern "C" {
     /// SecTransformOverrideTransformAction block.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionfinalize?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionFinalize: &'static CFString;
 }
 
@@ -681,6 +689,7 @@ extern "C" {
     /// a version number of a custom transform.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionexternalizeextradata?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionExternalizeExtraData: &'static CFString;
 }
 
@@ -691,6 +700,7 @@ extern "C" {
     /// is used with the SecTransformOverrideAttributeAction block.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionprocessdata?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionProcessData: &'static CFString;
 }
 
@@ -705,6 +715,7 @@ extern "C" {
     /// externalized custom transform.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactioninternalizeextradata?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionInternalizeExtraData: &'static CFString;
 }
 
@@ -718,6 +729,7 @@ extern "C" {
     /// SecTransformCustomSetAttribute to update and other attribute.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionattributenotification?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionAttributeNotification: &'static CFString;
 }
 
@@ -728,6 +740,7 @@ extern "C" {
     /// value is ok to set on the attribute or a CFErrorRef otherwise.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionattributevalidation?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionAttributeValidation: &'static CFString;
 }
 

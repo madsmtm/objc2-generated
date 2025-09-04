@@ -1050,16 +1050,19 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsexists?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kMDItemFSExists: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsisreadable?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kMDItemFSIsReadable: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsiswriteable?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kMDItemFSIsWriteable: Option<&'static CFString>;
 }
 
@@ -1563,6 +1566,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemsupportfiletype?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kMDItemSupportFileType: Option<&'static CFString>;
 }
 
@@ -1677,21 +1681,25 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabelicon?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kMDItemLabelIcon: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabelid?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kMDItemLabelID: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabelkind?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kMDItemLabelKind: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabeluuid?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kMDItemLabelUUID: Option<&'static CFString>;
 }
 

@@ -617,6 +617,7 @@ pub const NSFontUIOptimizedTrait: c_uint = 1 << 12;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcolorattribute?language=objc)
+    #[deprecated]
     pub static NSFontColorAttribute: &'static NSString;
 }
 

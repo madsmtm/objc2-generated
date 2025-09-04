@@ -2239,6 +2239,7 @@ unsafe impl RefEncode for NFCFeliCaPollingRequestCode {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/pollingrequestcode?language=objc)
+#[deprecated]
 pub type PollingRequestCode = NFCFeliCaPollingRequestCode;
 
 /// Time slot parameter for the polling command
@@ -2280,6 +2281,7 @@ unsafe impl RefEncode for NFCFeliCaPollingTimeSlot {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/pollingtimeslot?language=objc)
+#[deprecated]
 pub type PollingTimeSlot = NFCFeliCaPollingTimeSlot;
 
 /// Encryption Identifier parameter in response of Request Service V2
@@ -2309,6 +2311,7 @@ unsafe impl RefEncode for NFCFeliCaEncryptionId {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/encryptionid?language=objc)
+#[deprecated]
 pub type EncryptionId = NFCFeliCaEncryptionId;
 
 extern_protocol!(
@@ -3141,6 +3144,7 @@ unsafe impl RefEncode for NFCVASMode {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/vasmode?language=objc)
+#[deprecated]
 pub type VASMode = NFCVASMode;
 
 extern_class!(
@@ -3283,6 +3287,7 @@ unsafe impl RefEncode for NFCVASErrorCode {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/vaserrorcode?language=objc)
+#[deprecated]
 pub type VASErrorCode = NFCVASErrorCode;
 
 extern_class!(

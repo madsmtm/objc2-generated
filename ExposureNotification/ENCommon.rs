@@ -170,6 +170,7 @@ unsafe impl RefEncode for ENCalibrationConfidence {
 /// The value used when days since onset of symptoms is unspecified.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endayssinceonsetofsymptomsunknown?language=objc)
+#[deprecated = "Server must provide keys with days_since_onset_of_symptoms set."]
 pub static ENDaysSinceOnsetOfSymptomsUnknown: NSInteger = NSIntegerMax as _;
 
 /// How positive diagnosis was reported.

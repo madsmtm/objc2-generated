@@ -26,11 +26,13 @@ cf_objc2_type!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferpoolminimumbuffercountkey?language=objc)
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLBufferPoolMinimumBufferCountKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferpoolmaximumbufferagekey?language=objc)
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLBufferPoolMaximumBufferAgeKey: &'static CFString;
 }
 

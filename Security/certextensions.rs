@@ -167,14 +167,17 @@ unsafe impl RefEncode for CE_AuthorityKeyID {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_subjectkeyid?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CE_SubjectKeyID = SecAsn1Item;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_keyusage?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CE_KeyUsage = uint16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_crlreason?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CE_CrlReason = uint32;
 
@@ -309,10 +312,12 @@ unsafe impl RefEncode for CE_CertPolicies {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_netscapecerttype?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CE_NetscapeCertType = uint16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_crldistreasonflags?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CE_CrlDistReasonFlags = uint8;
 
@@ -571,6 +576,7 @@ unsafe impl RefEncode for CE_AuthorityInfoAccess {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_nameregistrationauthorities?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CE_NameRegistrationAuthorities = CE_GeneralNames;
 
@@ -924,6 +930,7 @@ unsafe impl RefEncode for CE_PolicyConstraints {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_inhibitanypolicy?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CE_InhibitAnyPolicy = uint32;
 

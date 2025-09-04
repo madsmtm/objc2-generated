@@ -2969,63 +2969,80 @@ impl NSWindow {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsborderlesswindowmask?language=objc)
+#[deprecated]
 pub static NSBorderlessWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::Borderless.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitledwindowmask?language=objc)
+#[deprecated]
 pub static NSTitledWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Titled.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclosablewindowmask?language=objc)
+#[deprecated]
 pub static NSClosableWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::Closable.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsminiaturizablewindowmask?language=objc)
+#[deprecated]
 pub static NSMiniaturizableWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::Miniaturizable.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsresizablewindowmask?language=objc)
+#[deprecated]
 pub static NSResizableWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::Resizable.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexturedbackgroundwindowmask?language=objc)
+#[deprecated]
 pub static NSTexturedBackgroundWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::TexturedBackground.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunifiedtitleandtoolbarwindowmask?language=objc)
+#[deprecated]
 pub static NSUnifiedTitleAndToolbarWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::UnifiedTitleAndToolbar.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfullscreenwindowmask?language=objc)
+#[deprecated]
 pub static NSFullScreenWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::FullScreen.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfullsizecontentviewwindowmask?language=objc)
+#[deprecated]
 pub static NSFullSizeContentViewWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::FullSizeContentView.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsutilitywindowmask?language=objc)
+#[deprecated]
 pub static NSUtilityWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::UtilityWindow.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocmodalwindowmask?language=objc)
+#[deprecated]
 pub static NSDocModalWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::DocModalWindow.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnonactivatingpanelmask?language=objc)
+#[deprecated]
 pub static NSNonactivatingPanelMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::NonactivatingPanel.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshudwindowmask?language=objc)
+#[deprecated]
 pub static NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::HUDWindow.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunscaledwindowmask?language=objc)
+#[deprecated = "NSUnscaledWindowMask is deprecated and has no effect. The scale factor for a window backing store is dynamic and dependent on the screen it is placed on."]
 pub static NSUnscaledWindowMask: NSWindowStyleMask = NSWindowStyleMask(1 << 11);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowfullscreenbutton?language=objc)
+#[deprecated = "The standard window button for NSWindowFullScreenButton is always nil; use NSWindowZoomButton instead"]
 pub static NSWindowFullScreenButton: NSWindowButton = NSWindowButton(7);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdockwindowlevel?language=objc)
+#[deprecated]
 pub static NSDockWindowLevel: NSWindowLevel = 20;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowsharingreadwrite?language=objc)
+#[deprecated = "Use NSWindowSharingReadOnly instead"]
 pub static NSWindowSharingReadWrite: NSWindowSharingType = NSWindowSharingType(2);

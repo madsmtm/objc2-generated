@@ -97,72 +97,95 @@ unsafe impl RefEncode for NSEventType {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedown?language=objc)
+#[deprecated]
 pub static NSLeftMouseDown: NSEventType = NSEventType(NSEventType::LeftMouseDown.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmouseup?language=objc)
+#[deprecated]
 pub static NSLeftMouseUp: NSEventType = NSEventType(NSEventType::LeftMouseUp.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedown?language=objc)
+#[deprecated]
 pub static NSRightMouseDown: NSEventType = NSEventType(NSEventType::RightMouseDown.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmouseup?language=objc)
+#[deprecated]
 pub static NSRightMouseUp: NSEventType = NSEventType(NSEventType::RightMouseUp.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmousemoved?language=objc)
+#[deprecated]
 pub static NSMouseMoved: NSEventType = NSEventType(NSEventType::MouseMoved.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedragged?language=objc)
+#[deprecated]
 pub static NSLeftMouseDragged: NSEventType = NSEventType(NSEventType::LeftMouseDragged.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedragged?language=objc)
+#[deprecated]
 pub static NSRightMouseDragged: NSEventType = NSEventType(NSEventType::RightMouseDragged.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseentered?language=objc)
+#[deprecated]
 pub static NSMouseEntered: NSEventType = NSEventType(NSEventType::MouseEntered.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseexited?language=objc)
+#[deprecated]
 pub static NSMouseExited: NSEventType = NSEventType(NSEventType::MouseExited.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeydown?language=objc)
+#[deprecated]
 pub static NSKeyDown: NSEventType = NSEventType(NSEventType::KeyDown.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeyup?language=objc)
+#[deprecated]
 pub static NSKeyUp: NSEventType = NSEventType(NSEventType::KeyUp.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsflagschanged?language=objc)
+#[deprecated]
 pub static NSFlagsChanged: NSEventType = NSEventType(NSEventType::FlagsChanged.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitdefined?language=objc)
+#[deprecated]
 pub static NSAppKitDefined: NSEventType = NSEventType(NSEventType::AppKitDefined.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssystemdefined?language=objc)
+#[deprecated]
 pub static NSSystemDefined: NSEventType = NSEventType(NSEventType::SystemDefined.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdefined?language=objc)
+#[deprecated]
 pub static NSApplicationDefined: NSEventType = NSEventType(NSEventType::ApplicationDefined.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsperiodic?language=objc)
+#[deprecated]
 pub static NSPeriodic: NSEventType = NSEventType(NSEventType::Periodic.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorupdate?language=objc)
+#[deprecated]
 pub static NSCursorUpdate: NSEventType = NSEventType(NSEventType::CursorUpdate.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollwheel?language=objc)
+#[deprecated]
 pub static NSScrollWheel: NSEventType = NSEventType(NSEventType::ScrollWheel.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletpoint?language=objc)
+#[deprecated]
 pub static NSTabletPoint: NSEventType = NSEventType(NSEventType::TabletPoint.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletproximity?language=objc)
+#[deprecated]
 pub static NSTabletProximity: NSEventType = NSEventType(NSEventType::TabletProximity.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedown?language=objc)
+#[deprecated]
 pub static NSOtherMouseDown: NSEventType = NSEventType(NSEventType::OtherMouseDown.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermouseup?language=objc)
+#[deprecated]
 pub static NSOtherMouseUp: NSEventType = NSEventType(NSEventType::OtherMouseUp.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedragged?language=objc)
+#[deprecated]
 pub static NSOtherMouseDragged: NSEventType = NSEventType(NSEventType::OtherMouseDragged.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventmask?language=objc)
@@ -252,75 +275,99 @@ unsafe impl RefEncode for NSEventMask {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedownmask?language=objc)
+#[deprecated]
 pub static NSLeftMouseDownMask: NSEventMask = NSEventMask(NSEventMask::LeftMouseDown.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmouseupmask?language=objc)
+#[deprecated]
 pub static NSLeftMouseUpMask: NSEventMask = NSEventMask(NSEventMask::LeftMouseUp.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedownmask?language=objc)
+#[deprecated]
 pub static NSRightMouseDownMask: NSEventMask = NSEventMask(NSEventMask::RightMouseDown.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmouseupmask?language=objc)
+#[deprecated]
 pub static NSRightMouseUpMask: NSEventMask = NSEventMask(NSEventMask::RightMouseUp.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmousemovedmask?language=objc)
+#[deprecated]
 pub static NSMouseMovedMask: NSEventMask = NSEventMask(NSEventMask::MouseMoved.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedraggedmask?language=objc)
+#[deprecated]
 pub static NSLeftMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::LeftMouseDragged.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedraggedmask?language=objc)
+#[deprecated]
 pub static NSRightMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::RightMouseDragged.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseenteredmask?language=objc)
+#[deprecated]
 pub static NSMouseEnteredMask: NSEventMask = NSEventMask(NSEventMask::MouseEntered.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseexitedmask?language=objc)
+#[deprecated]
 pub static NSMouseExitedMask: NSEventMask = NSEventMask(NSEventMask::MouseExited.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeydownmask?language=objc)
+#[deprecated]
 pub static NSKeyDownMask: NSEventMask = NSEventMask(NSEventMask::KeyDown.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeyupmask?language=objc)
+#[deprecated]
 pub static NSKeyUpMask: NSEventMask = NSEventMask(NSEventMask::KeyUp.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsflagschangedmask?language=objc)
+#[deprecated]
 pub static NSFlagsChangedMask: NSEventMask = NSEventMask(NSEventMask::FlagsChanged.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitdefinedmask?language=objc)
+#[deprecated]
 pub static NSAppKitDefinedMask: NSEventMask = NSEventMask(NSEventMask::AppKitDefined.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssystemdefinedmask?language=objc)
+#[deprecated]
 pub static NSSystemDefinedMask: NSEventMask = NSEventMask(NSEventMask::SystemDefined.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdefinedmask?language=objc)
+#[deprecated]
 pub static NSApplicationDefinedMask: NSEventMask = NSEventMask(NSEventMask::ApplicationDefined.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsperiodicmask?language=objc)
+#[deprecated]
 pub static NSPeriodicMask: NSEventMask = NSEventMask(NSEventMask::Periodic.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorupdatemask?language=objc)
+#[deprecated]
 pub static NSCursorUpdateMask: NSEventMask = NSEventMask(NSEventMask::CursorUpdate.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollwheelmask?language=objc)
+#[deprecated]
 pub static NSScrollWheelMask: NSEventMask = NSEventMask(NSEventMask::ScrollWheel.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletpointmask?language=objc)
+#[deprecated]
 pub static NSTabletPointMask: NSEventMask = NSEventMask(NSEventMask::TabletPoint.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletproximitymask?language=objc)
+#[deprecated]
 pub static NSTabletProximityMask: NSEventMask = NSEventMask(NSEventMask::TabletProximity.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedownmask?language=objc)
+#[deprecated]
 pub static NSOtherMouseDownMask: NSEventMask = NSEventMask(NSEventMask::OtherMouseDown.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermouseupmask?language=objc)
+#[deprecated]
 pub static NSOtherMouseUpMask: NSEventMask = NSEventMask(NSEventMask::OtherMouseUp.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedraggedmask?language=objc)
+#[deprecated]
 pub static NSOtherMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::OtherMouseDragged.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanyeventmask?language=objc)
+#[deprecated]
 pub static NSAnyEventMask: NSEventMask = NSEventMask(NSUIntegerMax as _);
 
 impl NSEventMask {
@@ -364,37 +411,46 @@ unsafe impl RefEncode for NSEventModifierFlags {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalphashiftkeymask?language=objc)
+#[deprecated]
 pub static NSAlphaShiftKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::CapsLock.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshiftkeymask?language=objc)
+#[deprecated]
 pub static NSShiftKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::Shift.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolkeymask?language=objc)
+#[deprecated]
 pub static NSControlKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::Control.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalternatekeymask?language=objc)
+#[deprecated]
 pub static NSAlternateKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::Option.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscommandkeymask?language=objc)
+#[deprecated]
 pub static NSCommandKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::Command.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnumericpadkeymask?language=objc)
+#[deprecated]
 pub static NSNumericPadKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NumericPad.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpkeymask?language=objc)
+#[deprecated]
 pub static NSHelpKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::Help.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfunctionkeymask?language=objc)
+#[deprecated]
 pub static NSFunctionKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::Function.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceindependentmodifierflagsmask?language=objc)
+#[deprecated]
 pub static NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::DeviceIndependentFlagsMask.0);
 
@@ -423,18 +479,22 @@ unsafe impl RefEncode for NSPointingDeviceType {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunknownpointingdevice?language=objc)
+#[deprecated]
 pub static NSUnknownPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Unknown.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspenpointingdevice?language=objc)
+#[deprecated]
 pub static NSPenPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Pen.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorpointingdevice?language=objc)
+#[deprecated]
 pub static NSCursorPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Cursor.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseraserpointingdevice?language=objc)
+#[deprecated]
 pub static NSEraserPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Eraser.0);
 
@@ -463,13 +523,16 @@ unsafe impl RefEncode for NSEventButtonMask {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspentipmask?language=objc)
+#[deprecated]
 pub static NSPenTipMask: NSEventButtonMask = NSEventButtonMask(NSEventButtonMask::PenTip.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspenlowersidemask?language=objc)
+#[deprecated]
 pub static NSPenLowerSideMask: NSEventButtonMask =
     NSEventButtonMask(NSEventButtonMask::PenLowerSide.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspenuppersidemask?language=objc)
+#[deprecated]
 pub static NSPenUpperSideMask: NSEventButtonMask =
     NSEventButtonMask(NSEventButtonMask::PenUpperSide.0);
 
@@ -586,42 +649,53 @@ unsafe impl RefEncode for NSEventSubtype {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowexposedeventtype?language=objc)
+#[deprecated]
 pub static NSWindowExposedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::WindowExposed.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationactivatedeventtype?language=objc)
+#[deprecated]
 pub static NSApplicationActivatedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::ApplicationActivated.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdeactivatedeventtype?language=objc)
+#[deprecated]
 pub static NSApplicationDeactivatedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::ApplicationDeactivated.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowmovedeventtype?language=objc)
+#[deprecated]
 pub static NSWindowMovedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::WindowMoved.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreenchangedeventtype?language=objc)
+#[deprecated]
 pub static NSScreenChangedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::ScreenChanged.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsawteventtype?language=objc)
+#[deprecated = "This subtype no longer exists"]
 pub static NSAWTEventType: NSEventSubtype = NSEventSubtype(16);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspoweroffeventtype?language=objc)
+#[deprecated]
 pub static NSPowerOffEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::PowerOff.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseeventsubtype?language=objc)
+#[deprecated]
 pub static NSMouseEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::MouseEvent.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletpointeventsubtype?language=objc)
+#[deprecated]
 pub static NSTabletPointEventSubtype: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::TabletPoint.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletproximityeventsubtype?language=objc)
+#[deprecated]
 pub static NSTabletProximityEventSubtype: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::TabletProximity.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoucheventsubtype?language=objc)
+#[deprecated]
 pub static NSTouchEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::Touch.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspressurebehavior?language=objc)

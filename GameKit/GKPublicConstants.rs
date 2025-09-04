@@ -104,6 +104,7 @@ unsafe impl RefEncode for GKPeerConnectionState {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerrordomain?language=objc)
+    #[deprecated = "No longer supported"]
     pub static GKVoiceChatServiceErrorDomain: Option<&'static NSString>;
 }
 

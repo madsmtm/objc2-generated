@@ -85,16 +85,19 @@ impl NSBindingSelectionMarker {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultiplevaluesmarker?language=objc)
+    #[deprecated]
     pub static NSMultipleValuesMarker: &'static AnyObject;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnoselectionmarker?language=objc)
+    #[deprecated]
     pub static NSNoSelectionMarker: &'static AnyObject;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnotapplicablemarker?language=objc)
+    #[deprecated]
     pub static NSNotApplicableMarker: &'static AnyObject;
 }
 

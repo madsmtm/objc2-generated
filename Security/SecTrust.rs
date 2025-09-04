@@ -211,6 +211,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustcertificatetransparencywhitelist?language=objc)
+    #[deprecated]
     pub static kSecTrustCertificateTransparencyWhiteList: &'static CFString;
 }
 
@@ -857,6 +858,7 @@ impl SecTrust {
 /// and iOS, as they avoid the need to explicitly specify these values.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustusersetting?language=objc)
+#[deprecated]
 pub type SecTrustUserSetting = SecTrustResultType;
 
 /// Options for customizing trust evaluation.

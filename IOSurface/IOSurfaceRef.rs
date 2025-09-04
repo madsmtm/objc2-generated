@@ -132,6 +132,7 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceisglobal?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated = "Global surfaces are insecure"]
     pub static kIOSurfaceIsGlobal: &'static CFString;
 }
 

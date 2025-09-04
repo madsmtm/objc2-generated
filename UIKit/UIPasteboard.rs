@@ -18,6 +18,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardnamefind?language=objc)
+    #[deprecated = "The Find pasteboard is no longer available."]
     pub static UIPasteboardNameFind: &'static NSString;
 }
 

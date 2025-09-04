@@ -294,20 +294,24 @@ extern_protocol!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerwillopennotification?language=objc)
+    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerWillOpenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerdidopennotification?language=objc)
+    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerDidOpenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerwillclosenotification?language=objc)
+    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerWillCloseNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerdidclosenotification?language=objc)
+    #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerDidCloseNotification: &'static NSNotificationName;
 }

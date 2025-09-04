@@ -197,61 +197,73 @@ unsafe impl RefEncode for SSLConnectionType {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_default?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_default: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_atsv1?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_ATSv1: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_atsv1_nopfs?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_ATSv1_noPFS: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_standard?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_standard: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_rc4_fallback?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_RC4_fallback: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_tlsv1_fallback?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_TLSv1_fallback: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_tlsv1_rc4_fallback?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_TLSv1_RC4_fallback: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_legacy?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_legacy: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_legacy_dhe?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_legacy_DHE: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_anonymous?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_anonymous: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_3des_fallback?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_3DES_fallback: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_tlsv1_3des_fallback?language=objc)
+    #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_TLSv1_3DES_fallback: &'static CFString;
 }
 

@@ -8,35 +8,42 @@ use objc2_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizervoicename?language=objc)
+#[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechSynthesizerVoiceName = NSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoiceattributekey?language=objc)
+#[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSVoiceAttributeKey = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicename?language=objc)
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceName: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoiceidentifier?language=objc)
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceIdentifier: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoiceage?language=objc)
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceAge: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicegender?language=objc)
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGender: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicedemotext?language=objc)
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceDemoText: &'static NSVoiceAttributeKey;
 }
 
@@ -56,6 +63,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechdictionarykey?language=objc)
+#[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechDictionaryKey = NSString;
 
@@ -90,21 +98,25 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicegendername?language=objc)
+#[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSVoiceGenderName = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicegenderneuter?language=objc)
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGenderNeuter: &'static NSVoiceGenderName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicegendermale?language=objc)
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGenderMale: &'static NSVoiceGenderName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicegenderfemale?language=objc)
+    #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGenderFemale: &'static NSVoiceGenderName;
 }
 
@@ -114,6 +126,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechpropertykey?language=objc)
+#[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechPropertyKey = NSString;
 
@@ -199,6 +212,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicelanguage?language=objc)
+    #[deprecated]
     pub static NSVoiceLanguage: &'static NSVoiceAttributeKey;
 }
 
@@ -459,6 +473,7 @@ extern_protocol!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechmode?language=objc)
+#[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechMode = NSString;
 
@@ -483,6 +498,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechstatuskey?language=objc)
+#[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechStatusKey = NSString;
 
@@ -507,6 +523,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeecherrorkey?language=objc)
+#[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechErrorKey = NSString;
 
@@ -536,6 +553,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizerinfokey?language=objc)
+#[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechSynthesizerInfoKey = NSString;
 
@@ -550,6 +568,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechphonemeinfokey?language=objc)
+#[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechPhonemeInfoKey = NSString;
 
@@ -579,6 +598,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechcommanddelimiterkey?language=objc)
+#[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechCommandDelimiterKey = NSString;
 

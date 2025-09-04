@@ -11,6 +11,7 @@ use crate::*;
 /// A block of code invoked when an operation on an MPSAccelerationStructure is completed
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructurecompletionhandler?language=objc)
+#[deprecated]
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "block2"))]
 pub type MPSAccelerationStructureCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut MPSAccelerationStructure)>;

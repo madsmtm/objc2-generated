@@ -11,6 +11,7 @@ use crate::*;
 pub type MDS_HANDLE = CSSM_DL_HANDLE;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/mds_db_handle?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type MDS_DB_HANDLE = CSSM_DL_DB_HANDLE;
 
@@ -145,10 +146,12 @@ unsafe impl RefEncode for mds_funcs {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/mds_funcs?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type MDS_FUNCS = mds_funcs;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/mds_funcs_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type MDS_FUNCS_PTR = *mut mds_funcs;
 

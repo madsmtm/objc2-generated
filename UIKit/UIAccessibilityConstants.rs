@@ -364,6 +364,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeechattributequeueannouncement?language=objc)
+    #[deprecated]
     pub static UIAccessibilitySpeechAttributeQueueAnnouncement: &'static NSAttributedStringKey;
 }
 

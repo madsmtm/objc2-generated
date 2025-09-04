@@ -536,65 +536,76 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgregoriancalendar?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSGregorianCalendar: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbuddhistcalendar?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSBuddhistCalendar: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nschinesecalendar?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSChineseCalendar: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshebrewcalendar?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSHebrewCalendar: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsislamiccalendar?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSIslamicCalendar: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsislamiccivilcalendar?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSIslamicCivilCalendar: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjapanesecalendar?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSJapaneseCalendar: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrepublicofchinacalendar?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSRepublicOfChinaCalendar: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersiancalendar?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSPersianCalendar: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindiancalendar?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSIndianCalendar: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso8601calendar?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSISO8601Calendar: &'static NSString;
 }

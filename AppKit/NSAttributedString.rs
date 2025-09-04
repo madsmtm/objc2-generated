@@ -1152,26 +1152,31 @@ pub static NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineSty
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactershapeattributename?language=objc)
+    #[deprecated = "This attribute is bound to a specific implementation of ATS feature and not generically supported by wide range of fonts. The majority of characters accessed through this API are now encoded in the Unicode standard. Use the CTFont feature API for fine control over character shape choices."]
     pub static NSCharacterShapeAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsusesscreenfontsdocumentattribute?language=objc)
+    #[deprecated]
     pub static NSUsesScreenFontsDocumentAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsobliquenessattributename?language=objc)
+    #[deprecated = "This attribute is not supported with TextKit 2"]
     pub static NSObliquenessAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsexpansionattributename?language=objc)
+    #[deprecated = "This attribute is not supported with TextKit 2"]
     pub static NSExpansionAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticalglyphformattributename?language=objc)
+    #[deprecated = "This attribute is not supported with TextKit 2"]
     pub static NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey;
 }
 
@@ -1184,11 +1189,13 @@ pub const NSSingleUnderlineStyle: c_uint = 1;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinestrikethroughmask?language=objc)
+    #[deprecated = "Use NSStrikethroughStyleAttributeName instead"]
     pub static NSUnderlineStrikethroughMask: NSUInteger;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinebywordmask?language=objc)
+    #[deprecated = "Use NSUnderlineByWord instead"]
     pub static NSUnderlineByWordMask: NSUInteger;
 }
 

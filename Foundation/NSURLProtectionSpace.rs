@@ -26,6 +26,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftp?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "FTP is deprecated and only supported in the classic loading mode"]
     pub static NSURLProtectionSpaceFTP: &'static NSString;
 }
 
@@ -50,6 +51,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftpproxy?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "FTP is deprecated and only supported in the classic loading mode"]
     pub static NSURLProtectionSpaceFTPProxy: &'static NSString;
 }
 

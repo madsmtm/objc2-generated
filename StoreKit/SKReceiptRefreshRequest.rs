@@ -61,15 +61,18 @@ extern "C-unwind" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisexpired?language=objc)
+    #[deprecated = "No longer supported"]
     pub static SKReceiptPropertyIsExpired: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisrevoked?language=objc)
+    #[deprecated = "No longer supported"]
     pub static SKReceiptPropertyIsRevoked: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisvolumepurchase?language=objc)
+    #[deprecated = "No longer supported"]
     pub static SKReceiptPropertyIsVolumePurchase: &'static NSString;
 }

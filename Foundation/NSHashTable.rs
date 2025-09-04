@@ -13,6 +13,7 @@ pub static NSHashTableStrongMemory: NSPointerFunctionsOptions =
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablezeroingweakmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
+#[deprecated = "GC no longer supported"]
 pub static NSHashTableZeroingWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::ZeroingWeakMemory.0);
 
@@ -465,6 +466,7 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinthashcallbacks?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Not supported"]
     pub static NSIntHashCallBacks: NSHashTableCallBacks;
 }
 

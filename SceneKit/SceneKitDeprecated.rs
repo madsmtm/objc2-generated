@@ -17,36 +17,43 @@ extern "C" {
     /// These keys are deprecated in 10.10. Please use the properties of SCNLight instead.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightattenuationstartkey?language=objc)
+    #[deprecated = "Use SCNLight.attenuationStartDistance instead"]
     pub static SCNLightAttenuationStartKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightattenuationendkey?language=objc)
+    #[deprecated = "Use SCNLight.attenuationEndDistance instead"]
     pub static SCNLightAttenuationEndKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightattenuationfalloffexponentkey?language=objc)
+    #[deprecated = "Use SCNLight.attenuationFalloffExponent instead"]
     pub static SCNLightAttenuationFalloffExponentKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightspotinneranglekey?language=objc)
+    #[deprecated = "Use SCNLight.spotInnerAngle instead"]
     pub static SCNLightSpotInnerAngleKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightspotouteranglekey?language=objc)
+    #[deprecated = "Use SCNLight.spotOuterAngle instead"]
     pub static SCNLightSpotOuterAngleKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightshadownearclippingkey?language=objc)
+    #[deprecated = "Use SCNLight.zNear instead"]
     pub static SCNLightShadowNearClippingKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightshadowfarclippingkey?language=objc)
+    #[deprecated = "Use SCNLight.zFar instead"]
     pub static SCNLightShadowFarClippingKey: &'static NSString;
 }
 

@@ -53,61 +53,73 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostonfacebook?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnFacebook: &'static NSSharingServiceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostontwitter?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnTwitter: &'static NSSharingServiceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostonsinaweibo?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnSinaWeibo: &'static NSSharingServiceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostontencentweibo?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnTencentWeibo: &'static NSSharingServiceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostonlinkedin?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnLinkedIn: &'static NSSharingServiceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameuseastwitterprofileimage?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNameUseAsTwitterProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameuseasfacebookprofileimage?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNameUseAsFacebookProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameuseaslinkedinprofileimage?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNameUseAsLinkedInProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostimageonflickr?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostImageOnFlickr: &'static NSSharingServiceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostvideoonvimeo?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostVideoOnVimeo: &'static NSSharingServiceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostvideoonyouku?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostVideoOnYouku: &'static NSSharingServiceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostvideoontudou?language=objc)
+    #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostVideoOnTudou: &'static NSSharingServiceName;
 }
 

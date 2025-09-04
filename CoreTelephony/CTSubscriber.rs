@@ -9,6 +9,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctsubscribertokenrefreshed?language=objc)
+    #[deprecated]
     pub static CTSubscriberTokenRefreshed: &'static NSString;
 }
 

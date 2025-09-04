@@ -6,252 +6,294 @@ use crate::*;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3signedcertificate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3SignedCertificate: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3signedcertificatecstruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3SignedCertificateCStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3certificate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3Certificate: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3certificatecstruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3CertificateCStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1version?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1Version: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1serialnumber?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SerialNumber: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1issuername?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1IssuerName: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1issuernamestd?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1IssuerNameStd: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1issuernamecstruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1IssuerNameCStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1issuernameldap?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1IssuerNameLDAP: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1validitynotbefore?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1ValidityNotBefore: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1validitynotafter?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1ValidityNotAfter: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1subjectname?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SubjectName: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1subjectnamestd?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SubjectNameStd: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1subjectnamecstruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SubjectNameCStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1subjectnameldap?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SubjectNameLDAP: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_cssmkeystruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_CSSMKeyStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1subjectpublickeycstruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SubjectPublicKeyCStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1subjectpublickeyalgorithm?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SubjectPublicKeyAlgorithm: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1subjectpublickeyalgorithmparameters?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SubjectPublicKeyAlgorithmParameters: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1subjectpublickey?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SubjectPublicKey: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1certificateissueruniqueid?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1CertificateIssuerUniqueId: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1certificatesubjectuniqueid?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1CertificateSubjectUniqueId: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3certificateextensionsstruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3CertificateExtensionsStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3certificateextensionscstruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3CertificateExtensionsCStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3certificatenumberofextensions?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3CertificateNumberOfExtensions: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3certificateextensionstruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3CertificateExtensionStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3certificateextensioncstruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3CertificateExtensionCStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3certificateextensionid?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3CertificateExtensionId: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3certificateextensioncritical?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3CertificateExtensionCritical: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3certificateextensiontype?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3CertificateExtensionType: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v3certificateextensionvalue?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V3CertificateExtensionValue: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1signaturestruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SignatureStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1signaturecstruct?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SignatureCStruct: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1signaturealgorithm?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SignatureAlgorithm: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1signaturealgorithmtbs?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SignatureAlgorithmTBS: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1signaturealgorithmparameters?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1SignatureAlgorithmParameters: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_x509v1signature?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_X509V1Signature: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_subjectsignaturebitmap?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_SubjectSignatureBitmap: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_subjectpicture?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_SubjectPicture: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_subjectemailaddress?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_SubjectEmailAddress: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_useexemptions?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_UseExemptions: SecAsn1Oid;
 }
 
@@ -262,6 +304,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_subjectdirectoryattributes?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_SubjectDirectoryAttributes: SecAsn1Oid;
 }
 
@@ -272,6 +315,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_subjectkeyidentifier?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_SubjectKeyIdentifier: SecAsn1Oid;
 }
 
@@ -282,6 +326,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_keyusage?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_KeyUsage: SecAsn1Oid;
 }
 
@@ -292,6 +337,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_privatekeyusageperiod?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_PrivateKeyUsagePeriod: SecAsn1Oid;
 }
 
@@ -302,6 +348,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_subjectaltname?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_SubjectAltName: SecAsn1Oid;
 }
 
@@ -312,6 +359,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_issueraltname?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_IssuerAltName: SecAsn1Oid;
 }
 
@@ -322,6 +370,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_basicconstraints?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_BasicConstraints: SecAsn1Oid;
 }
 
@@ -332,6 +381,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_crlnumber?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_CrlNumber: SecAsn1Oid;
 }
 
@@ -342,6 +392,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_crlreason?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_CrlReason: SecAsn1Oid;
 }
 
@@ -352,6 +403,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_holdinstructioncode?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_HoldInstructionCode: SecAsn1Oid;
 }
 
@@ -362,6 +414,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_invaliditydate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_InvalidityDate: SecAsn1Oid;
 }
 
@@ -372,6 +425,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_deltacrlindicator?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_DeltaCrlIndicator: SecAsn1Oid;
 }
 
@@ -382,6 +436,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_issuingdistributionpoint?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_IssuingDistributionPoint: SecAsn1Oid;
 }
 
@@ -392,6 +447,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_issuingdistributionpoints?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_IssuingDistributionPoints: SecAsn1Oid;
 }
 
@@ -402,6 +458,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_certissuer?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_CertIssuer: SecAsn1Oid;
 }
 
@@ -412,6 +469,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_nameconstraints?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_NameConstraints: SecAsn1Oid;
 }
 
@@ -422,6 +480,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_crldistributionpoints?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_CrlDistributionPoints: SecAsn1Oid;
 }
 
@@ -432,6 +491,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_certificatepolicies?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_CertificatePolicies: SecAsn1Oid;
 }
 
@@ -442,6 +502,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_policymappings?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_PolicyMappings: SecAsn1Oid;
 }
 
@@ -452,6 +513,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_policyconstraints?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_PolicyConstraints: SecAsn1Oid;
 }
 
@@ -462,6 +524,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_authoritykeyidentifier?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_AuthorityKeyIdentifier: SecAsn1Oid;
 }
 
@@ -472,6 +535,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_extendedkeyusage?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_ExtendedKeyUsage: SecAsn1Oid;
 }
 
@@ -482,6 +546,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_inhibitanypolicy?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_InhibitAnyPolicy: SecAsn1Oid;
 }
 
@@ -492,6 +557,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_authorityinfoaccess?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_AuthorityInfoAccess: SecAsn1Oid;
 }
 
@@ -502,6 +568,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_biometricinfo?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_BiometricInfo: SecAsn1Oid;
 }
 
@@ -512,6 +579,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_qc_statements?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_QC_Statements: SecAsn1Oid;
 }
 
@@ -522,6 +590,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_subjectinfoaccess?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_SubjectInfoAccess: SecAsn1Oid;
 }
 
@@ -532,6 +601,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_extendedkeyusageany?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_ExtendedKeyUsageAny: SecAsn1Oid;
 }
 
@@ -542,6 +612,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_serverauth?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_ServerAuth: SecAsn1Oid;
 }
 
@@ -552,6 +623,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_clientauth?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_ClientAuth: SecAsn1Oid;
 }
 
@@ -562,6 +634,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_extendedusecodesigning?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_ExtendedUseCodeSigning: SecAsn1Oid;
 }
 
@@ -572,6 +645,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_emailprotection?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_EmailProtection: SecAsn1Oid;
 }
 
@@ -582,6 +656,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_timestamping?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_TimeStamping: SecAsn1Oid;
 }
 
@@ -592,6 +667,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_ocspsigning?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_OCSPSigning: SecAsn1Oid;
 }
 
@@ -602,6 +678,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_kerbv5_pkinit_kp_client_auth?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_KERBv5_PKINIT_KP_CLIENT_AUTH: SecAsn1Oid;
 }
 
@@ -612,6 +689,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_kerbv5_pkinit_kp_kdc?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_KERBv5_PKINIT_KP_KDC: SecAsn1Oid;
 }
 
@@ -622,6 +700,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_eku_ipsec?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_EKU_IPSec: SecAsn1Oid;
 }
 
@@ -632,6 +711,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_dotmac_cert_extension?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_DOTMAC_CERT_EXTENSION: SecAsn1Oid;
 }
 
@@ -642,6 +722,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_dotmac_cert_identity?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_DOTMAC_CERT_IDENTITY: SecAsn1Oid;
 }
 
@@ -652,6 +733,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_dotmac_cert_email_sign?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_DOTMAC_CERT_EMAIL_SIGN: SecAsn1Oid;
 }
 
@@ -662,6 +744,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_dotmac_cert_email_encrypt?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_DOTMAC_CERT_EMAIL_ENCRYPT: SecAsn1Oid;
 }
 
@@ -672,6 +755,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_cert_policy?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_CERT_POLICY: SecAsn1Oid;
 }
 
@@ -682,6 +766,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_dotmac_cert_policy?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_DOTMAC_CERT_POLICY: SecAsn1Oid;
 }
 
@@ -692,6 +777,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_adc_cert_policy?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_ADC_CERT_POLICY: SecAsn1Oid;
 }
 
@@ -702,6 +788,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_macappstore_cert_policy?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_MACAPPSTORE_CERT_POLICY: SecAsn1Oid;
 }
 
@@ -712,6 +799,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_macappstore_receipt_cert_policy?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_MACAPPSTORE_RECEIPT_CERT_POLICY: SecAsn1Oid;
 }
 
@@ -722,6 +810,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_appleid_cert_policy?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLEID_CERT_POLICY: SecAsn1Oid;
 }
 
@@ -732,6 +821,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_appleid_sharing_cert_policy?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLEID_SHARING_CERT_POLICY: SecAsn1Oid;
 }
 
@@ -742,6 +832,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_mobile_store_signing_policy?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_MOBILE_STORE_SIGNING_POLICY: SecAsn1Oid;
 }
 
@@ -752,6 +843,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_test_mobile_store_signing_policy?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_TEST_MOBILE_STORE_SIGNING_POLICY: SecAsn1Oid;
 }
 
@@ -762,6 +854,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_eku_code_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EKU_CODE_SIGNING: SecAsn1Oid;
 }
 
@@ -772,6 +865,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_eku_code_signing_dev?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EKU_CODE_SIGNING_DEV: SecAsn1Oid;
 }
 
@@ -782,6 +876,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_eku_resource_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EKU_RESOURCE_SIGNING: SecAsn1Oid;
 }
 
@@ -792,6 +887,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_eku_ichat_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EKU_ICHAT_SIGNING: SecAsn1Oid;
 }
 
@@ -802,6 +898,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_eku_ichat_encryption?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EKU_ICHAT_ENCRYPTION: SecAsn1Oid;
 }
 
@@ -812,6 +909,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_eku_system_identity?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EKU_SYSTEM_IDENTITY: SecAsn1Oid;
 }
 
@@ -822,6 +920,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_eku_passbook_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EKU_PASSBOOK_SIGNING: SecAsn1Oid;
 }
 
@@ -832,6 +931,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_eku_profile_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EKU_PROFILE_SIGNING: SecAsn1Oid;
 }
 
@@ -842,6 +942,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_eku_qa_profile_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EKU_QA_PROFILE_SIGNING: SecAsn1Oid;
 }
 
@@ -852,6 +953,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION: SecAsn1Oid;
 }
 
@@ -862,6 +964,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_code_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_CODE_SIGNING: SecAsn1Oid;
 }
 
@@ -872,6 +975,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_apple_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_APPLE_SIGNING: SecAsn1Oid;
 }
 
@@ -882,6 +986,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_adc_dev_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_ADC_DEV_SIGNING: SecAsn1Oid;
 }
 
@@ -892,6 +997,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_adc_apple_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_ADC_APPLE_SIGNING: SecAsn1Oid;
 }
 
@@ -902,6 +1008,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_passbook_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_PASSBOOK_SIGNING: SecAsn1Oid;
 }
 
@@ -912,6 +1019,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_macappstore_receipt?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_MACAPPSTORE_RECEIPT: SecAsn1Oid;
 }
 
@@ -922,6 +1030,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_intermediate_marker?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_INTERMEDIATE_MARKER: SecAsn1Oid;
 }
 
@@ -932,6 +1041,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_wwdr_intermediate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_WWDR_INTERMEDIATE: SecAsn1Oid;
 }
 
@@ -942,6 +1052,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_itms_intermediate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_ITMS_INTERMEDIATE: SecAsn1Oid;
 }
 
@@ -952,6 +1063,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_aai_intermediate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_AAI_INTERMEDIATE: SecAsn1Oid;
 }
 
@@ -962,6 +1074,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_appleid_intermediate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_APPLEID_INTERMEDIATE: SecAsn1Oid;
 }
 
@@ -972,6 +1085,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_appleid_sharing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_APPLEID_SHARING: SecAsn1Oid;
 }
 
@@ -982,6 +1096,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_sysint2_intermediate?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_SYSINT2_INTERMEDIATE: SecAsn1Oid;
 }
 
@@ -992,6 +1107,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_developer_authentication?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_DEVELOPER_AUTHENTICATION: SecAsn1Oid;
 }
 
@@ -1002,6 +1118,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_server_authentication?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_SERVER_AUTHENTICATION: SecAsn1Oid;
 }
 
@@ -1012,6 +1129,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_escrow_service?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_ESCROW_SERVICE: SecAsn1Oid;
 }
 
@@ -1022,29 +1140,34 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_extension_provisioning_profile_signing?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_APPLE_EXTENSION_PROVISIONING_PROFILE_SIGNING: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_netscapecerttype?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_NetscapeCertType: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_netscapecertsequence?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_NetscapeCertSequence: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_netscapesgc?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_NetscapeSGC: SecAsn1Oid;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_microsoftsgc?language=objc)
     #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
     pub static CSSMOID_MicrosoftSGC: SecAsn1Oid;
 }

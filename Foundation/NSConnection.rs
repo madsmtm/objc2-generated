@@ -311,12 +311,14 @@ impl NSConnection {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectionreplymode?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Use NSXPCConnection instead"]
     pub static NSConnectionReplyMode: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondiddienotification?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Use NSXPCConnection instead"]
     pub static NSConnectionDidDieNotification: &'static NSString;
 }
 
@@ -386,12 +388,14 @@ extern_protocol!(
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfailedauthenticationexception?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Use NSXPCConnection instead"]
     pub static NSFailedAuthenticationException: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondidinitializenotification?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Use NSXPCConnection instead"]
     pub static NSConnectionDidInitializeNotification: &'static NSString;
 }
 

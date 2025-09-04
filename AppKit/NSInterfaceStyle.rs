@@ -20,6 +20,7 @@ pub const NSWindows95InterfaceStyle: c_uint = 2;
 pub const NSMacintoshInterfaceStyle: c_uint = 3;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinterfacestyle?language=objc)
+#[deprecated]
 pub type NSInterfaceStyle = NSUInteger;
 
 extern "C-unwind" {
@@ -49,5 +50,6 @@ impl NSResponder {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinterfacestyledefault?language=objc)
+    #[deprecated]
     pub static NSInterfaceStyleDefault: Option<&'static NSString>;
 }

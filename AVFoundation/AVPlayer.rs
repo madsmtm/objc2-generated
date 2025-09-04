@@ -935,6 +935,7 @@ extern "C" {
     /// This notification fires when a value is added or removed from the list of availableHDRModes.  This can be caused by display connection/disconnection or resource changes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeravailablehdrmodesdidchangenotification?language=objc)
+    #[deprecated]
     pub static AVPlayerAvailableHDRModesDidChangeNotification: &'static NSNotificationName;
 }
 

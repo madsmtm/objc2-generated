@@ -7,6 +7,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icrunloopmode?language=objc)
+    #[deprecated = "ICRunLoopMode has been deprecated and may break in future releases."]
     pub static ICRunLoopMode: Option<&'static NSString>;
 }
 

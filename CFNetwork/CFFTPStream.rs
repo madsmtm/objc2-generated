@@ -12,101 +12,121 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpusername?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPUserName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftppassword?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPPassword: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpusepassivemode?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPUsePassiveMode: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpresourcesize?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPResourceSize: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpfetchresourceinfo?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPFetchResourceInfo: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpfiletransferoffset?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPFileTransferOffset: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpattemptpersistentconnection?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPAttemptPersistentConnection: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpproxy?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPProxy: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpproxyhost?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPProxyHost: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpproxyport?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPProxyPort: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpproxyuser?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPProxyUser: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpproxypassword?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPProxyPassword: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcemode?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceMode: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcename?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourceowner?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceOwner: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcegroup?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceGroup: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcelink?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceLink: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcesize?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceSize: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcetype?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcemoddate?language=objc)
+    #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceModDate: &'static CFString;
 }
 

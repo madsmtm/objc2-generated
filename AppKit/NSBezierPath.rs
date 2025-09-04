@@ -589,41 +589,53 @@ impl NSBezierPath {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbuttlinecapstyle?language=objc)
+#[deprecated]
 pub static NSButtLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Butt.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundlinecapstyle?language=objc)
+#[deprecated]
 pub static NSRoundLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Round.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssquarelinecapstyle?language=objc)
+#[deprecated]
 pub static NSSquareLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Square.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmiterlinejoinstyle?language=objc)
+#[deprecated]
 pub static NSMiterLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Miter.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundlinejoinstyle?language=objc)
+#[deprecated]
 pub static NSRoundLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Round.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbevellinejoinstyle?language=objc)
+#[deprecated]
 pub static NSBevelLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Bevel.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnonzerowindingrule?language=objc)
+#[deprecated]
 pub static NSNonZeroWindingRule: NSWindingRule = NSWindingRule(NSWindingRule::NonZero.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevenoddwindingrule?language=objc)
+#[deprecated]
 pub static NSEvenOddWindingRule: NSWindingRule = NSWindingRule(NSWindingRule::EvenOdd.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmovetobezierpathelement?language=objc)
+#[deprecated]
 pub static NSMoveToBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::MoveTo.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinetobezierpathelement?language=objc)
+#[deprecated]
 pub static NSLineToBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::LineTo.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscurvetobezierpathelement?language=objc)
+#[deprecated]
 pub static NSCurveToBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::CurveTo.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclosepathbezierpathelement?language=objc)
+#[deprecated]
 pub static NSClosePathBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::ClosePath.0);

@@ -472,6 +472,7 @@ impl NSView {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewnoinstrinsicmetric?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated]
     pub static NSViewNoInstrinsicMetric: CGFloat;
 }
 

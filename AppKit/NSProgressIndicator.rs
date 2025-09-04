@@ -276,10 +276,12 @@ unsafe impl RefEncode for NSProgressIndicatorThickness {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorbarstyle?language=objc)
+#[deprecated]
 pub static NSProgressIndicatorBarStyle: NSProgressIndicatorStyle =
     NSProgressIndicatorStyle(NSProgressIndicatorStyle::Bar.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorspinningstyle?language=objc)
+#[deprecated]
 pub static NSProgressIndicatorSpinningStyle: NSProgressIndicatorStyle =
     NSProgressIndicatorStyle(NSProgressIndicatorStyle::Spinning.0);
 

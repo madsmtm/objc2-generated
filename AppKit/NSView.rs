@@ -1769,6 +1769,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewfocusdidchangenotification?language=objc)
+    #[deprecated]
     pub static NSViewFocusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1779,6 +1780,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewglobalframedidchangenotification?language=objc)
+    #[deprecated = "Use NSOpenGLView instead."]
     pub static NSViewGlobalFrameDidChangeNotification: &'static NSNotificationName;
 }
 

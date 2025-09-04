@@ -351,19 +351,25 @@ impl NSSliderCell {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkbelow?language=objc)
+#[deprecated]
 pub static NSTickMarkBelow: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Below.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkabove?language=objc)
+#[deprecated]
 pub static NSTickMarkAbove: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Above.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkleft?language=objc)
+#[deprecated]
 pub static NSTickMarkLeft: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Leading.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkright?language=objc)
+#[deprecated]
 pub static NSTickMarkRight: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Trailing.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinearslider?language=objc)
+#[deprecated]
 pub static NSLinearSlider: NSSliderType = NSSliderType(NSSliderType::Linear.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscircularslider?language=objc)
+#[deprecated]
 pub static NSCircularSlider: NSSliderType = NSSliderType(NSSliderType::Circular.0);

@@ -10,6 +10,7 @@ use crate::*;
 /// A type that defines a block used to load a Quick Look preview item.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewitemloadingblock?language=objc)
+#[deprecated = "Use void (^)(NSError * _Nullable) instead"]
 #[cfg(feature = "block2")]
 pub type QLPreviewItemLoadingBlock = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 

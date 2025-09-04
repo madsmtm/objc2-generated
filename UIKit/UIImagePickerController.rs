@@ -177,6 +177,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerreferenceurl?language=objc)
+    #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub static UIImagePickerControllerReferenceURL: &'static UIImagePickerControllerInfoKey;
 }
 
@@ -192,6 +193,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerphasset?language=objc)
+    #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub static UIImagePickerControllerPHAsset: &'static UIImagePickerControllerInfoKey;
 }
 

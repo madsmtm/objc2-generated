@@ -46,5 +46,6 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksklanguagetypes?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSKLanguageTypes: Option<&'static CFString>;
 }

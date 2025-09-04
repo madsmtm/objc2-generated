@@ -400,6 +400,7 @@ extern "C" {
     /// Value should be a CFString. The extension is used as a badge when producing an icon.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailpropertyextensionkey?language=objc)
+    #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     pub static kQLThumbnailPropertyExtensionKey: Option<&'static CFString>;
 }
 
@@ -407,6 +408,7 @@ extern "C" {
     /// Value should be a CGImage. The badge is used when producing an icon.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailpropertybadgeimagekey?language=objc)
+    #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     pub static kQLThumbnailPropertyBadgeImageKey: Option<&'static CFString>;
 }
 
@@ -417,6 +419,7 @@ extern "C" {
     /// By default, Quick Look will only accept files within the current document bundle.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailpropertybasebundlepathkey?language=objc)
+    #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     pub static kQLThumbnailPropertyBaseBundlePathKey: Option<&'static CFString>;
 }
 
@@ -453,6 +456,7 @@ extern "C" {
     /// Customizes Displayed name in the preview panel. This replaces the document's display name. Value is a CFString.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertydisplaynamekey?language=objc)
+    #[deprecated = "Use the title property of your QLPreviewingController in a Preview Extension."]
     pub static kQLPreviewPropertyDisplayNameKey: Option<&'static CFString>;
 }
 
@@ -460,6 +464,7 @@ extern "C" {
     /// Gives the width (in points) of the preview. Value is a CFNumber.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertywidthkey?language=objc)
+    #[deprecated = "Use the preferredContentSize property of your QLPreviewingController in a Preview Extension."]
     pub static kQLPreviewPropertyWidthKey: Option<&'static CFString>;
 }
 
@@ -467,6 +472,7 @@ extern "C" {
     /// Gives the height (in points) of the preview. Value is a CFNumber.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertyheightkey?language=objc)
+    #[deprecated = "Use the preferredContentSize property of your QLPreviewingController in a Preview Extension."]
     pub static kQLPreviewPropertyHeightKey: Option<&'static CFString>;
 }
 
@@ -477,6 +483,7 @@ extern "C" {
     /// By default, Quick Look will only accept files within the current document bundle.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertybasebundlepathkey?language=objc)
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyBaseBundlePathKey: Option<&'static CFString>;
 }
 
@@ -484,6 +491,7 @@ extern "C" {
     /// Gives the CFStringEncoding of the preview data if the preview type is plain text. Value is a CFNumber.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertystringencodingkey?language=objc)
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyStringEncodingKey: Option<&'static CFString>;
 }
 
@@ -514,6 +522,7 @@ extern "C" {
     /// Specify the preferred way to display PDF content. Value is a CFNumber using QLPreviewPDFStyle values.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertypdfstylekey?language=objc)
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyPDFStyleKey: Option<&'static CFString>;
 }
 
@@ -523,6 +532,7 @@ extern "C" {
     /// Use this value to provide more of the preview content.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewoptioncursorkey?language=objc)
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewOptionCursorKey: Option<&'static CFString>;
 }
 
@@ -531,6 +541,7 @@ extern "C" {
     /// (and if the preview genererator returns kQLReturnHasMore)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertycursorkey?language=objc)
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyCursorKey: Option<&'static CFString>;
 }
 
@@ -815,6 +826,7 @@ extern "C" {
     /// Gives the web content or attachment mime type. For the main data, default is text/html. Value is a CFString.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertymimetypekey?language=objc)
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyMIMETypeKey: Option<&'static CFString>;
 }
 
@@ -829,6 +841,7 @@ extern "C" {
     /// Gives the attachment data. Value is a CFData.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertyattachmentdatakey?language=objc)
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyAttachmentDataKey: Option<&'static CFString>;
 }
 
@@ -840,6 +853,7 @@ extern "C" {
     /// kQLPreviewPropertyMIMETypeKey and kQLPreviewPropertyTextEncodingNameKey keys.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertyattachmentskey?language=objc)
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyAttachmentsKey: Option<&'static CFString>;
 }
 
@@ -847,6 +861,7 @@ extern "C" {
     /// Is the "cid" URL scheme.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewcontentidscheme?language=objc)
+    #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewContentIDScheme: Option<&'static CFString>;
 }
 

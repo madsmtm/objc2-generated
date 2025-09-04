@@ -12,141 +12,169 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsmethodinvocationresult?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSMethodInvocationResult: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsfaultstring?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSFaultString: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsfaultcode?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSFaultCode: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsfaultextra?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSFaultExtra: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsnetworkstreamfaultstring?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSNetworkStreamFaultString: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsstreamerrormessage?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSStreamErrorMessage: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsstreamerrordomain?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSStreamErrorDomain: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsstreamerrorerror?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSStreamErrorError: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpmessage?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSHTTPMessage: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpresponsemessage?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSHTTPResponseMessage: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpextraheaders?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSHTTPExtraHeaders: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpversion?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSHTTPVersion: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpproxy?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSHTTPProxy: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpfollowsredirects?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSHTTPFollowsRedirects: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsdebugoutgoingheaders?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSDebugOutgoingHeaders: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsdebugoutgoingbody?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSDebugOutgoingBody: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsdebugincomingheaders?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSDebugIncomingHeaders: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsdebugincomingbody?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSDebugIncomingBody: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoapbodyencodingstyle?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSSOAPBodyEncodingStyle: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoapmethodnamespaceuri?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSSOAPMethodNamespaceURI: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoapstyledoc?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSSOAPStyleDoc: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoapstylerpc?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSSOAPStyleRPC: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoapmessageheaders?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSSOAPMessageHeaders: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsrecordparameterorder?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSRecordParameterOrder: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsrecordnamespaceuri?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSRecordNamespaceURI: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsrecordtype?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSRecordType: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsmethodinvocationresultparametername?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSMethodInvocationResultParameterName: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsmethodinvocationtimeoutvalue?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSMethodInvocationTimeoutValue: Option<&'static CFString>;
 }
 
@@ -306,6 +334,7 @@ impl WSMethodInvocation {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationcallbackprocptr?language=objc)
+#[deprecated = "No longer supported"]
 pub type WSMethodInvocationCallBackProcPtr =
     Option<unsafe extern "C-unwind" fn(*mut WSMethodInvocation, *mut c_void, *const CFDictionary)>;
 
@@ -379,6 +408,7 @@ pub unsafe extern "C-unwind" fn WSMethodResultIsFault(
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationserializationprocptr?language=objc)
+#[deprecated = "No longer supported"]
 pub type WSMethodInvocationSerializationProcPtr = Option<
     unsafe extern "C-unwind" fn(
         *mut WSMethodInvocation,
@@ -413,6 +443,7 @@ impl WSMethodInvocation {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationdeserializationprocptr?language=objc)
+#[deprecated = "No longer supported"]
 pub type WSMethodInvocationDeserializationProcPtr = Option<
     unsafe extern "C-unwind" fn(
         *mut WSMethodInvocation,

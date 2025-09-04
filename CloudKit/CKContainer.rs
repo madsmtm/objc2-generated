@@ -16,6 +16,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckownerdefaultname?language=objc)
+    #[deprecated]
     pub static CKOwnerDefaultName: &'static NSString;
 }
 
@@ -238,6 +239,7 @@ unsafe impl RefEncode for CKApplicationPermissionStatus {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckapplicationpermissionblock?language=objc)
+#[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
 #[cfg(feature = "block2")]
 pub type CKApplicationPermissionBlock =
     *mut block2::DynBlock<dyn Fn(CKApplicationPermissionStatus, *mut NSError)>;

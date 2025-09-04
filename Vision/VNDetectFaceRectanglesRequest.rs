@@ -79,6 +79,7 @@ impl VNDetectFaceRectanglesRequest {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision1?language=objc)
+#[deprecated]
 pub static VNDetectFaceRectanglesRequestRevision1: NSUInteger = 1;
 
 /// This request revision can calculate face roll and yaw properties. See [VNFaceObservation -roll] and [VNFaceObservation -yaw]  respectively.

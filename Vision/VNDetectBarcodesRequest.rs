@@ -129,9 +129,11 @@ impl VNDetectBarcodesRequest {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision1?language=objc)
+#[deprecated]
 pub static VNDetectBarcodesRequestRevision1: NSUInteger = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision2?language=objc)
+#[deprecated]
 pub static VNDetectBarcodesRequestRevision2: NSUInteger = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision3?language=objc)

@@ -215,16 +215,19 @@ unsafe impl RefEncode for VNElementType {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessingoption?language=objc)
+#[deprecated]
 // NS_TYPED_ENUM
 pub type VNVideoProcessingOption = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessingoptionframecadence?language=objc)
+    #[deprecated]
     pub static VNVideoProcessingOptionFrameCadence: Option<&'static VNVideoProcessingOption>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessingoptiontimeinterval?language=objc)
+    #[deprecated]
     pub static VNVideoProcessingOptionTimeInterval: Option<&'static VNVideoProcessingOption>;
 }
 

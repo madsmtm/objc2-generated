@@ -9,6 +9,7 @@ extern "C" {
     /// Indicates that no padding will be used when encrypting or decrypting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingnonekey?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingNoneKey: &'static CFString;
 }
 
@@ -16,6 +17,7 @@ extern "C" {
     /// Indicates that PKCS1 padding will be used when encrypting or decrypting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingpkcs1key?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingPKCS1Key: &'static CFString;
 }
 
@@ -23,6 +25,7 @@ extern "C" {
     /// Indicates that PKCS5 padding will be used when encrypting or decrypting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingpkcs5key?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingPKCS5Key: &'static CFString;
 }
 
@@ -30,6 +33,7 @@ extern "C" {
     /// Indicates that PKCS7 padding will be used when encrypting or decrypting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingpkcs7key?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingPKCS7Key: &'static CFString;
 }
 
@@ -37,6 +41,7 @@ extern "C" {
     /// Indicates that PKCS7 padding will be used when encrypting or decrypting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingoaepkey?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingOAEPKey: &'static CFString;
 }
 
@@ -44,6 +49,7 @@ extern "C" {
     /// Indicates that no mode will be used when encrypting or decrypting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecmodenonekey?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecModeNoneKey: &'static CFString;
 }
 
@@ -51,6 +57,7 @@ extern "C" {
     /// Indicates that ECB mode will be used when encrypting or decrypting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecmodeecbkey?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecModeECBKey: &'static CFString;
 }
 
@@ -58,6 +65,7 @@ extern "C" {
     /// Indicates that CBC mode will be used when encrypting or decrypting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecmodecbckey?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecModeCBCKey: &'static CFString;
 }
 
@@ -65,6 +73,7 @@ extern "C" {
     /// Indicates that CFB mode will be used when encrypting or decrypting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecmodecfbkey?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecModeCFBKey: &'static CFString;
 }
 
@@ -72,6 +81,7 @@ extern "C" {
     /// Indicates that OFB mode will be used when encrypting or decrypting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecmodeofbkey?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecModeOFBKey: &'static CFString;
 }
 
@@ -79,6 +89,7 @@ extern "C" {
     /// This attribute holds the encryption key for the transform. (ReadOnly)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecencryptkey?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecEncryptKey: &'static CFString;
 }
 
@@ -89,6 +100,7 @@ extern "C" {
     /// an appropriate value will be supplied for you.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingkey?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingKey: &'static CFString;
 }
 
@@ -99,6 +111,7 @@ extern "C" {
     /// value for this key, an appropriate value will be supplied for you.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecivkey?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecIVKey: &'static CFString;
 }
 
@@ -109,6 +122,7 @@ extern "C" {
     /// an appropriate value will be supplied for you.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecencryptionmode?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecEncryptionMode: &'static CFString;
 }
 
@@ -120,6 +134,7 @@ extern "C" {
     /// will be added.   It is ignored when the padding mode is not OAEP.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecoaepmessagelengthattributename?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecOAEPMessageLengthAttributeName: &'static CFString;
 }
 
@@ -131,6 +146,7 @@ extern "C" {
     /// OAEP padding modes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecoaepencodingparametersattributename?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecOAEPEncodingParametersAttributeName: &'static CFString;
 }
 
@@ -141,6 +157,7 @@ extern "C" {
     /// If unset SHA1 is used.   It is ifnored by non OAEP padding modes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecoaepmgf1digestalgorithmattributename?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecOAEPMGF1DigestAlgorithmAttributeName: &'static CFString;
 }
 

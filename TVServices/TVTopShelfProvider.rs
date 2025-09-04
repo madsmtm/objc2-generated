@@ -72,6 +72,7 @@ extern "C" {
     /// necessarily right away).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitemsdidchangenotification?language=objc)
+    #[deprecated = "TVTopShelfItemsDidChangeNotification has been replaced by [TVTopShelfContentProvider topShelfContentDidChange]"]
     pub static TVTopShelfItemsDidChangeNotification: &'static NSString;
 }
 

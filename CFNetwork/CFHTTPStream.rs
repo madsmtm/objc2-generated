@@ -39,56 +39,67 @@ unsafe impl RefEncode for CFStreamErrorHTTP {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpresponseheader?language=objc)
+    #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPResponseHeader: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpfinalurl?language=objc)
+    #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPFinalURL: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpfinalrequest?language=objc)
+    #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPFinalRequest: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpproxy?language=objc)
+    #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPProxy: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpproxyhost?language=objc)
+    #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPProxyHost: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpproxyport?language=objc)
+    #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPProxyPort: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpsproxyhost?language=objc)
+    #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPSProxyHost: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpsproxyport?language=objc)
+    #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPSProxyPort: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpshouldautoredirect?language=objc)
+    #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPShouldAutoredirect: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpattemptpersistentconnection?language=objc)
+    #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPAttemptPersistentConnection: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttprequestbyteswrittencount?language=objc)
+    #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPRequestBytesWrittenCount: &'static CFString;
 }
 

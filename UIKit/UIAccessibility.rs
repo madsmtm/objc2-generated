@@ -1432,6 +1432,7 @@ pub unsafe extern "C-unwind" fn UIAccessibilityIsVoiceOverRunning() -> bool {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityvoiceoverstatuschanged?language=objc)
+    #[deprecated]
     pub static UIAccessibilityVoiceOverStatusChanged: &'static NSString;
 }
 

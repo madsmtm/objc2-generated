@@ -6,11 +6,13 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentidentifier?language=objc)
+    #[deprecated = "INStartAudioCallIntentIdentifier is deprecated. Please adopt INStartCallIntentIdentifier instead"]
     pub static INStartAudioCallIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentidentifier?language=objc)
+    #[deprecated = "INStartVideoCallIntentIdentifier is deprecated. Please adopt INStartCallIntentIdentifier instead"]
     pub static INStartVideoCallIntentIdentifier: Option<&'static NSString>;
 }
 

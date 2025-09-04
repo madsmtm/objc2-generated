@@ -164,6 +164,7 @@ extern "C" {
     /// Action for setup entry point (of type SKCloudServiceSetupAction).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsactionkey?language=objc)
+    #[deprecated = "Use the action property of MusicSubscriptionOffer.Options from MusicKit"]
     pub static SKCloudServiceSetupOptionsActionKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
@@ -171,6 +172,7 @@ extern "C" {
     /// Identifier of the iTunes Store item the user is trying to access which requires cloud service setup (NSNumber).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsitunesitemidentifierkey?language=objc)
+    #[deprecated = "Use the itemID property of MusicSubscriptionOffer.Options from MusicKit"]
     pub static SKCloudServiceSetupOptionsITunesItemIdentifierKey:
         &'static SKCloudServiceSetupOptionsKey;
 }
@@ -179,6 +181,7 @@ extern "C" {
     /// iTunes Store affiliate token (NSString).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsaffiliatetokenkey?language=objc)
+    #[deprecated = "Use the affiliateToken property of MusicSubscriptionOffer.Options from MusicKit"]
     pub static SKCloudServiceSetupOptionsAffiliateTokenKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
@@ -186,6 +189,7 @@ extern "C" {
     /// iTunes Store affiliate campaign token (NSString).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionscampaigntokenkey?language=objc)
+    #[deprecated = "Use the campaignToken property of MusicSubscriptionOffer.Options from MusicKit"]
     pub static SKCloudServiceSetupOptionsCampaignTokenKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
@@ -194,35 +198,41 @@ extern "C" {
     /// When missing, the setup view will be configured in a way that is equivalent to using SKCloudServiceSetupMessageIdentifierJoin.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsmessageidentifierkey?language=objc)
+    #[deprecated = "Use the messageIdentifier property of MusicSubscriptionOffer.Options from MusicKit"]
     pub static SKCloudServiceSetupOptionsMessageIdentifierKey:
         &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupactionsubscribe?language=objc)
+    #[deprecated = "Use MusicSubscriptionOffer.Action.subscribe from MusicKit"]
     pub static SKCloudServiceSetupActionSubscribe: &'static SKCloudServiceSetupAction;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifierjoin?language=objc)
+    #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.join from MusicKit"]
     pub static SKCloudServiceSetupMessageIdentifierJoin:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifierconnect?language=objc)
+    #[deprecated = "No longer supported"]
     pub static SKCloudServiceSetupMessageIdentifierConnect:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifieraddmusic?language=objc)
+    #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.addMusic from MusicKit"]
     pub static SKCloudServiceSetupMessageIdentifierAddMusic:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifierplaymusic?language=objc)
+    #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.playMusic from MusicKit"]
     pub static SKCloudServiceSetupMessageIdentifierPlayMusic:
         &'static SKCloudServiceSetupMessageIdentifier;
 }

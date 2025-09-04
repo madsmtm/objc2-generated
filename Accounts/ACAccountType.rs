@@ -8,71 +8,85 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccounttypeidentifiertwitter?language=objc)
+    #[deprecated = "Use Twitter SDK instead"]
     pub static ACAccountTypeIdentifierTwitter: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccounttypeidentifierfacebook?language=objc)
+    #[deprecated = "Use Facebook SDK instead"]
     pub static ACAccountTypeIdentifierFacebook: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccounttypeidentifiersinaweibo?language=objc)
+    #[deprecated = "Use Sina Weibo SDK instead"]
     pub static ACAccountTypeIdentifierSinaWeibo: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccounttypeidentifiertencentweibo?language=objc)
+    #[deprecated = "Use Tencent Weibo SDK instead"]
     pub static ACAccountTypeIdentifierTencentWeibo: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccounttypeidentifierlinkedin?language=objc)
+    #[deprecated = "Use LinkedIn SDK instead"]
     pub static ACAccountTypeIdentifierLinkedIn: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookappidkey?language=objc)
+    #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookAppIdKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookpermissionskey?language=objc)
+    #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookPermissionsKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookaudiencekey?language=objc)
+    #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookAudienceKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookaudienceeveryone?language=objc)
+    #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookAudienceEveryone: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookaudiencefriends?language=objc)
+    #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookAudienceFriends: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookaudienceonlyme?language=objc)
+    #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookAudienceOnlyMe: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/aclinkedinappidkey?language=objc)
+    #[deprecated = "Use LinkedIn SDK instead"]
     pub static ACLinkedInAppIdKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/aclinkedinpermissionskey?language=objc)
+    #[deprecated = "Use LinkedIn SDK instead"]
     pub static ACLinkedInPermissionsKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/actencentweiboappidkey?language=objc)
+    #[deprecated = "Use Tencent Weibo SDK instead"]
     pub static ACTencentWeiboAppIdKey: Option<&'static NSString>;
 }
 

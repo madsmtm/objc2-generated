@@ -274,6 +274,7 @@ pub type MIDIReceiveBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDIEventList>,
 /// identifies the source of the data.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireadproc?language=objc)
+#[deprecated = "use MIDIReceiveBlock and MIDIEventLists"]
 pub type MIDIReadProc =
     Option<unsafe extern "C-unwind" fn(NonNull<MIDIPacketList>, *mut c_void, *mut c_void)>;
 
@@ -293,6 +294,7 @@ pub type MIDIReadProc =
 /// identifies the source of the data.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireadblock?language=objc)
+#[deprecated = "use MIDIReceiveBlock and MIDIEventLists"]
 #[cfg(feature = "block2")]
 pub type MIDIReadBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDIPacketList>, *mut c_void)>;
 
@@ -1112,6 +1114,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyfactorypatchnamefile?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated]
     pub static kMIDIPropertyFactoryPatchNameFile: &'static CFString;
 }
 
@@ -1125,6 +1128,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyuserpatchnamefile?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated]
     pub static kMIDIPropertyUserPatchNameFile: &'static CFString;
 }
 
@@ -1163,6 +1167,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertynameconfiguration?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated]
     pub static kMIDIPropertyNameConfiguration: &'static CFString;
 }
 

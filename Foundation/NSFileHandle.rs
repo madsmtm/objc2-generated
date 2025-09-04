@@ -233,6 +233,7 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationmonitormodes?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Not supported"]
     pub static NSFileHandleNotificationMonitorModes: &'static NSString;
 }
 

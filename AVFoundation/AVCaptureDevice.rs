@@ -610,6 +610,7 @@ extern "C" {
     /// A deprecated synonym for AVCaptureDeviceTypeExternal. Please use AVCaptureDeviceTypeExternal instead.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypeexternalunknown?language=objc)
+    #[deprecated]
     pub static AVCaptureDeviceTypeExternalUnknown: &'static AVCaptureDeviceType;
 }
 
@@ -617,6 +618,7 @@ extern "C" {
     /// A deprecated synonym for AVCaptureDeviceTypeBuiltInDualCamera. Please use AVCaptureDeviceTypeBuiltInDualCamera instead.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinduocamera?language=objc)
+    #[deprecated = "Use AVCaptureDeviceTypeBuiltInDualCamera instead."]
     pub static AVCaptureDeviceTypeBuiltInDuoCamera: &'static AVCaptureDeviceType;
 }
 
@@ -624,6 +626,7 @@ extern "C" {
     /// A deprecated synonym for AVCaptureDeviceTypeMicrophone. Please use AVCaptureDeviceTypeMicrophone instead.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinmicrophone?language=objc)
+    #[deprecated]
     pub static AVCaptureDeviceTypeBuiltInMicrophone: &'static AVCaptureDeviceType;
 }
 

@@ -34,6 +34,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleichat?language=objc)
+    #[deprecated]
     pub static kSecPolicyAppleiChat: &'static CFString;
 }
 

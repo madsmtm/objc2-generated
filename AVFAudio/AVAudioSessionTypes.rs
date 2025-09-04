@@ -206,6 +206,7 @@ extern "C" {
     /// not playing or recording audio.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryaudioprocessing?language=objc)
+    #[deprecated = "No longer supported"]
     pub static AVAudioSessionCategoryAudioProcessing: Option<&'static AVAudioSessionCategory>;
 }
 

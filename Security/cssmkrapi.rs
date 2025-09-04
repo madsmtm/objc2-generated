@@ -38,6 +38,7 @@ unsafe impl RefEncode for cssm_kr_name {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_name?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KR_NAME = cssm_kr_name;
 
@@ -98,10 +99,12 @@ unsafe impl RefEncode for cssm_kr_profile {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_profile?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_PROFILE = cssm_kr_profile;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_profile_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_PROFILE_PTR = *mut cssm_kr_profile;
 
@@ -140,10 +143,12 @@ unsafe impl RefEncode for cssm_kr_wrappedproductinfo {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_wrappedproduct_info?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_WRAPPEDPRODUCT_INFO = cssm_kr_wrappedproductinfo;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_wrappedproduct_info_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_WRAPPEDPRODUCT_INFO_PTR = *mut cssm_kr_wrappedproductinfo;
 
@@ -176,10 +181,12 @@ unsafe impl RefEncode for cssm_krsubservice {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_krsubservice?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KRSUBSERVICE = cssm_krsubservice;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_krsubservice_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KRSUBSERVICE_PTR = *mut cssm_krsubservice;
 
@@ -230,10 +237,12 @@ unsafe impl RefEncode for cssm_kr_policy_list_item {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_list_item?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_POLICY_LIST_ITEM = cssm_kr_policy_list_item;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_list_item_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_POLICY_LIST_ITEM_PTR = *mut cssm_kr_policy_list_item;
 
@@ -266,9 +275,11 @@ unsafe impl RefEncode for cssm_kr_policy_info {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_info?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_POLICY_INFO = cssm_kr_policy_info;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_info_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_POLICY_INFO_PTR = *mut cssm_kr_policy_info;

@@ -222,6 +222,7 @@ extern "C" {
     /// Value is a CFDictionary
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetpptp?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCEntNetPPTP: &'static CFString;
 }
 
@@ -285,6 +286,7 @@ extern "C" {
     /// Value is a CFNumber (0 or 1)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportallownetcreation?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortAllowNetCreation: &'static CFString;
 }
 
@@ -292,6 +294,7 @@ extern "C" {
     /// Value is a CFData
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportauthpassword?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortAuthPassword: &'static CFString;
 }
 
@@ -299,6 +302,7 @@ extern "C" {
     /// Value is a CFString
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportauthpasswordencryption?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortAuthPasswordEncryption: &'static CFString;
 }
 
@@ -306,6 +310,7 @@ extern "C" {
     /// Value is a CFString
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportjoinmode?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortJoinMode: &'static CFString;
 }
 
@@ -313,6 +318,7 @@ extern "C" {
     /// Value is a CFNumber (0 or 1)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportpowerenabled?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortPowerEnabled: &'static CFString;
 }
 
@@ -320,6 +326,7 @@ extern "C" {
     /// Value is a CFString
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportpreferrednetwork?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortPreferredNetwork: &'static CFString;
 }
 
@@ -327,36 +334,43 @@ extern "C" {
     /// Value is a CFNumber (0 or 1)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportsavepasswords?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortSavePasswords: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportjoinmodeautomatic?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortJoinModeAutomatic: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportjoinmodepreferred?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortJoinModePreferred: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportjoinmoderanked?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortJoinModeRanked: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportjoinmoderecent?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortJoinModeRecent: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportjoinmodestrongest?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortJoinModeStrongest: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportauthpasswordencryptionkeychain?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortAuthPasswordEncryptionKeychain: &'static CFString;
 }
 
@@ -483,6 +497,7 @@ extern "C" {
     /// Value is a CFNumber (0 or 1)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacesupportsmodemonhold?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropNetInterfaceSupportsModemOnHold: &'static CFString;
 }
 
@@ -523,6 +538,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetinterfacesubtypepptp?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCValNetInterfaceSubTypePPTP: &'static CFString;
 }
 
@@ -1079,6 +1095,7 @@ extern "C" {
     /// Value is a CFArray[CFString]
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppplugins?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropNetPPPPlugins: &'static CFString;
 }
 
@@ -1121,6 +1138,7 @@ extern "C" {
     /// Value is a CFArray[CFString]
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppautheapplugins?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropNetPPPAuthEAPPlugins: &'static CFString;
 }
 
@@ -1650,6 +1668,7 @@ extern "C" {
     /// Value is a CFString
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetsmbnetbiosscope?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropNetSMBNetBIOSScope: &'static CFString;
 }
 
@@ -1775,6 +1794,7 @@ extern "C" {
     /// Value is a CFString
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropusersconsoleusername?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropUsersConsoleUserName: &'static CFString;
 }
 
@@ -1782,6 +1802,7 @@ extern "C" {
     /// Value is a CFNumber
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropusersconsoleuseruid?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropUsersConsoleUserUID: &'static CFString;
 }
 
@@ -1789,5 +1810,6 @@ extern "C" {
     /// Value is a CFNumber
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropusersconsoleusergid?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCPropUsersConsoleUserGID: &'static CFString;
 }

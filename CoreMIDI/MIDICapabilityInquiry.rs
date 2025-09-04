@@ -372,17 +372,20 @@ impl MIDICIProfileState {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilechangedblock?language=objc)
+#[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "MIDIMessages", feature = "block2", feature = "objc2"))]
 pub type MIDICIProfileChangedBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<MIDICISession>, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool),
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicisessiondisconnectblock?language=objc)
+#[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "block2", feature = "objc2", feature = "objc2-foundation"))]
 pub type MIDICISessionDisconnectBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<MIDICISession>, NonNull<NSError>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilespecificdatablock?language=objc)
+#[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(
     feature = "MIDIMessages",
     feature = "block2",
@@ -394,6 +397,7 @@ pub type MIDICIProfileSpecificDataBlock = *mut block2::DynBlock<
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidiscoveryresponseblock?language=objc)
+#[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "block2", feature = "objc2", feature = "objc2-foundation"))]
 pub type MIDICIDiscoveryResponseBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<NSArray<MIDICIDiscoveredNode>>)>;

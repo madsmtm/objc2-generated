@@ -9,6 +9,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerrordomain?language=objc)
+    #[deprecated = "No longer supported"]
     pub static GKSessionErrorDomain: &'static NSString;
 }
 

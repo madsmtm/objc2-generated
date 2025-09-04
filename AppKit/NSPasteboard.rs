@@ -813,120 +813,144 @@ extern "C" {
     /// * Deprecated **
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringpboardtype?language=objc)
+    #[deprecated]
     pub static NSStringPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilenamespboardtype?language=objc)
+    #[deprecated = "Create multiple pasteboard items with NSPasteboardTypeFileURL or kUTTypeFileURL instead"]
     pub static NSFilenamesPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstiffpboardtype?language=objc)
+    #[deprecated]
     pub static NSTIFFPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrtfpboardtype?language=objc)
+    #[deprecated]
     pub static NSRTFPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabulartextpboardtype?language=objc)
+    #[deprecated]
     pub static NSTabularTextPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpboardtype?language=objc)
+    #[deprecated]
     pub static NSFontPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerpboardtype?language=objc)
+    #[deprecated]
     pub static NSRulerPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpboardtype?language=objc)
+    #[deprecated]
     pub static NSColorPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrtfdpboardtype?language=objc)
+    #[deprecated]
     pub static NSRTFDPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshtmlpboardtype?language=objc)
+    #[deprecated]
     pub static NSHTMLPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsurlpboardtype?language=objc)
+    #[deprecated]
     pub static NSURLPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfpboardtype?language=objc)
+    #[deprecated]
     pub static NSPDFPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultipletextselectionpboardtype?language=objc)
+    #[deprecated]
     pub static NSMultipleTextSelectionPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspostscriptpboardtype?language=objc)
+    #[deprecated]
     pub static NSPostScriptPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvcardpboardtype?language=objc)
+    #[deprecated]
     pub static NSVCardPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinktextpboardtype?language=objc)
+    #[deprecated]
     pub static NSInkTextPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilespromisepboardtype?language=objc)
+    #[deprecated]
     pub static NSFilesPromisePboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypefindpanelsearchoptions?language=objc)
+    #[deprecated]
     pub static NSPasteboardTypeFindPanelSearchOptions: &'static NSPasteboardType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgeneralpboard?language=objc)
+    #[deprecated]
     pub static NSGeneralPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpboard?language=objc)
+    #[deprecated]
     pub static NSFontPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerpboard?language=objc)
+    #[deprecated]
     pub static NSRulerPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpboard?language=objc)
+    #[deprecated]
     pub static NSFindPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragpboard?language=objc)
+    #[deprecated]
     pub static NSDragPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspictpboardtype?language=objc)
+    #[deprecated]
     pub static NSPICTPboardType: &'static NSPasteboardType;
 }

@@ -285,5 +285,6 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertymaster?language=objc)
+    #[deprecated]
     pub static ITLibPlaylistPropertyMaster: &'static NSString;
 }

@@ -245,6 +245,7 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenesessionroleexternaldisplay?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
+    #[deprecated]
     pub static UIWindowSceneSessionRoleExternalDisplay: &'static UISceneSessionRole;
 }
 

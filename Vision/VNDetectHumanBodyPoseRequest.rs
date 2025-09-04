@@ -9,150 +9,175 @@ use crate::*;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeynose?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyNose: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeylefteye?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyLeftEye: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrighteye?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyRightEye: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftear?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyLeftEar: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightear?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyRightEar: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftshoulder?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyLeftShoulder: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightshoulder?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyRightShoulder: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyneck?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyNeck: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftelbow?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyLeftElbow: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightelbow?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyRightElbow: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftwrist?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyLeftWrist: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightwrist?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyRightWrist: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeylefthip?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyLeftHip: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrighthip?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyRightHip: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyroot?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyRoot: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftknee?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyLeftKnee: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightknee?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyRightKnee: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyleftankle?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyLeftAnkle: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkkeyrightankle?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkKeyRightAnkle: &'static VNRecognizedPointKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeyface?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkRegionKeyFace: &'static VNRecognizedPointGroupKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeytorso?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkRegionKeyTorso: &'static VNRecognizedPointGroupKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeyleftarm?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkRegionKeyLeftArm: &'static VNRecognizedPointGroupKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeyrightarm?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkRegionKeyRightArm: &'static VNRecognizedPointGroupKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeyleftleg?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkRegionKeyLeftLeg: &'static VNRecognizedPointGroupKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbodylandmarkregionkeyrightleg?language=objc)
     #[cfg(feature = "VNTypes")]
+    #[deprecated]
     pub static VNBodyLandmarkRegionKeyRightLeg: &'static VNRecognizedPointGroupKey;
 }
 

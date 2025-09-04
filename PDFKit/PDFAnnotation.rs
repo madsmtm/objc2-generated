@@ -506,180 +506,216 @@ impl PDFAnnotation {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_appearancedictionary?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_AppearanceDictionary: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_appearancestate?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_AppearanceState: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_border?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Border: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_color?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Color: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_contents?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Contents: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_flags?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Flags: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_date?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Date: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_name?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Name: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_page?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Page: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_rect?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Rect: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_subtype?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Subtype: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_action?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Action: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_additionalactions?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_AdditionalActions: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_borderstyle?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_BorderStyle: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_defaultappearance?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_DefaultAppearance: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_destination?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Destination: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_highlightingmode?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_HighlightingMode: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_inklist?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Inklist: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_interiorcolor?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_InteriorColor: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_linepoints?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_LinePoints: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_lineendingstyles?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_LineEndingStyles: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_iconname?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_IconName: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_open?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Open: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_parent?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Parent: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_popup?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Popup: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_quadding?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_Quadding: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_quadpoints?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_QuadPoints: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_textlabel?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_TextLabel: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetdefaultvalue?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_WidgetDefaultValue: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetfieldflags?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_WidgetFieldFlags: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetfieldtype?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_WidgetFieldType: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetappearancedictionary?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_WidgetAppearanceDictionary: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetmaxlen?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_WidgetMaxLen: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetoptions?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_WidgetOptions: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgettextlabelui?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_WidgetTextLabelUI: &'static PDFAnnotationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetvalue?language=objc)
+    #[deprecated]
     pub static kPDFAnnotationKey_WidgetValue: &'static PDFAnnotationKey;
 }

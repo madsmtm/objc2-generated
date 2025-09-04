@@ -9,6 +9,7 @@ extern "C" {
     /// Specifies a base 64 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecbase64encoding?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecBase64Encoding: &'static CFString;
 }
 
@@ -16,6 +17,7 @@ extern "C" {
     /// Specifies a base 32 encoding
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecbase32encoding?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecBase32Encoding: &'static CFString;
 }
 
@@ -23,6 +25,7 @@ extern "C" {
     /// Specifies a compressed encoding.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseczlibencoding?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecZLibEncoding: &'static CFString;
 }
 
@@ -31,16 +34,19 @@ extern "C" {
     /// Returns one of the strings defined in the previous section.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecencodetypeattribute?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecEncodeTypeAttribute: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/kseclinelength64?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecLineLength64: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/kseclinelength76?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecLineLength76: &'static CFString;
 }
 
@@ -60,11 +66,13 @@ extern "C" {
     /// set line lengths of 64 or 76 bytes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecencodelinelengthattribute?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecEncodeLineLengthAttribute: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccompressionratio?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecCompressionRatio: &'static CFString;
 }
 

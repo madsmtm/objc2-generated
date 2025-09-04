@@ -93,9 +93,11 @@ pub const kSecTransformErrorAborted: CFIndex = 20;
 pub const kSecTransformInvalidArgument: CFIndex = 21;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransform?language=objc)
+#[deprecated = "SecTransform is no longer supported"]
 pub type SecTransform = CFType;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secgrouptransform?language=objc)
+#[deprecated = "SecTransform is no longer supported"]
 pub type SecGroupTransform = CFType;
 
 /// Return the CFTypeID for a SecTransform.
@@ -129,6 +131,7 @@ extern "C" {
     /// The name of the input attribute.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransforminputattributename?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformInputAttributeName: &'static CFString;
 }
 
@@ -136,6 +139,7 @@ extern "C" {
     /// The name of the output attribute.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformoutputattributename?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformOutputAttributeName: &'static CFString;
 }
 
@@ -148,6 +152,7 @@ extern "C" {
     /// stderr.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformdebugattributename?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformDebugAttributeName: &'static CFString;
 }
 
@@ -155,6 +160,7 @@ extern "C" {
     /// The name of the transform.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformtransformname?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformTransformName: &'static CFString;
 }
 
@@ -162,6 +168,7 @@ extern "C" {
     /// The name of the abort attribute.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformabortattributename?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformAbortAttributeName: &'static CFString;
 }
 

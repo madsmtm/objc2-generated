@@ -61,6 +61,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushtypecomplication?language=objc)
     #[cfg(feature = "PKDefines")]
+    #[deprecated = "Complication pushes are supported directly on watchOS now, so this should no longer be used on iOS."]
     pub static PKPushTypeComplication: &'static PKPushType;
 }
 

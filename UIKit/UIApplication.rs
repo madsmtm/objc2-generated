@@ -177,6 +177,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiminimumkeepalivetimeout?language=objc)
+    #[deprecated = "Please use PushKit for VoIP applications."]
     pub static UIMinimumKeepAliveTimeout: NSTimeInterval;
 }
 
@@ -1514,31 +1515,37 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillchangestatusbarorientationnotification?language=objc)
+    #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationWillChangeStatusBarOrientationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidchangestatusbarorientationnotification?language=objc)
+    #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationDidChangeStatusBarOrientationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstatusbarorientationuserinfokey?language=objc)
+    #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationStatusBarOrientationUserInfoKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillchangestatusbarframenotification?language=objc)
+    #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationWillChangeStatusBarFrameNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidchangestatusbarframenotification?language=objc)
+    #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationDidChangeStatusBarFrameNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstatusbarframeuserinfokey?language=objc)
+    #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationStatusBarFrameUserInfoKey: &'static NSString;
 }
 
@@ -1577,12 +1584,14 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionslocalnotificationkey?language=objc)
+    #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]"]
     pub static UIApplicationLaunchOptionsLocalNotificationKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsannotationkey?language=objc)
+    #[deprecated = "This dictionary key is no longer used."]
     pub static UIApplicationLaunchOptionsAnnotationKey: &'static UIApplicationLaunchOptionsKey;
 }
 

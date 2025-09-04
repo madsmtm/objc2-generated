@@ -60,6 +60,7 @@ unsafe impl RefEncode for CFNetDiagnosticStatusValues {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatus?language=objc)
+#[deprecated]
 pub type CFNetDiagnosticStatus = CFIndex;
 
 impl CFNetDiagnostic {

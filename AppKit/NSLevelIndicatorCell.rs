@@ -217,17 +217,21 @@ impl NSLevelIndicatorCell {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrelevancylevelindicatorstyle?language=objc)
+#[deprecated]
 pub static NSRelevancyLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::Relevancy.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontinuouscapacitylevelindicatorstyle?language=objc)
+#[deprecated]
 pub static NSContinuousCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::ContinuousCapacity.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdiscretecapacitylevelindicatorstyle?language=objc)
+#[deprecated]
 pub static NSDiscreteCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::DiscreteCapacity.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsratinglevelindicatorstyle?language=objc)
+#[deprecated]
 pub static NSRatingLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::Rating.0);

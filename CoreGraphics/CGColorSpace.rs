@@ -231,21 +231,25 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020_pq?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kCGColorSpaceITUR_2020_PQ: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020_hlg?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kCGColorSpaceITUR_2020_HLG: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacedisplayp3_pq_eotf?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kCGColorSpaceDisplayP3_PQ_EOTF: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020_pq_eotf?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kCGColorSpaceITUR_2020_PQ_EOTF: &'static CFString;
 }
 

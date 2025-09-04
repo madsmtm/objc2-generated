@@ -109,11 +109,13 @@ unsafe impl RefEncode for UIUserNotificationActionContext {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtextinputactionbuttontitlekey?language=objc)
+    #[deprecated = "Use UserNotifications Framework's -[UNTextInputNotificationAction textInputButtonTitle]"]
     pub static UIUserNotificationTextInputActionButtonTitleKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactionresponsetypedtextkey?language=objc)
+    #[deprecated = "Use UserNotifications Framework's -[UNTextInputNotificationResponse userText]"]
     pub static UIUserNotificationActionResponseTypedTextKey: &'static NSString;
 }
 

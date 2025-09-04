@@ -12,6 +12,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryitemchangednotification?language=objc)
+    #[deprecated]
     pub static WebHistoryItemChangedNotification: Option<&'static NSString>;
 }
 

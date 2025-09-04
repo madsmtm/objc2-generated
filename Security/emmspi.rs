@@ -106,6 +106,7 @@ unsafe impl RefEncode for cssm_state_funcs {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_state_funcs?language=objc)
+#[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -116,6 +117,7 @@ unsafe impl RefEncode for cssm_state_funcs {
 pub type CSSM_STATE_FUNCS = cssm_state_funcs;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_state_funcs_ptr?language=objc)
+#[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -181,6 +183,7 @@ unsafe impl RefEncode for cssm_manager_registration_info {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_registration_info?language=objc)
+#[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -191,6 +194,7 @@ unsafe impl RefEncode for cssm_manager_registration_info {
 pub type CSSM_MANAGER_REGISTRATION_INFO = cssm_manager_registration_info;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_registration_info_ptr?language=objc)
+#[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",

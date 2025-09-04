@@ -980,6 +980,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataid3metadatakeycommerical?language=objc)
+    #[deprecated]
     pub static AVMetadataID3MetadataKeyCommerical: Option<&'static AVMetadataKey>;
 }
 

@@ -148,9 +148,11 @@ unsafe impl RefEncode for AudioBufferList {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiosampletype?language=objc)
+#[deprecated]
 pub type AudioSampleType = f32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiounitsampletype?language=objc)
+#[deprecated]
 pub type AudioUnitSampleType = f32;
 
 /// A four char code indicating the general kind of data in the stream.

@@ -923,11 +923,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymatteholeattribute?language=objc)
+    #[deprecated]
     pub static NSAccessibilityMatteHoleAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymattecontentuielementattribute?language=objc)
+    #[deprecated]
     pub static NSAccessibilityMatteContentUIElementAttribute: &'static NSAccessibilityAttributeName;
 }
 
@@ -1856,5 +1858,6 @@ pub type NSAccessibilityLoadingToken = AnyObject;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortbuttonrole?language=objc)
+    #[deprecated]
     pub static NSAccessibilitySortButtonRole: &'static NSAccessibilityRole;
 }

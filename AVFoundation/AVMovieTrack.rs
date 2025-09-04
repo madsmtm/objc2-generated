@@ -634,6 +634,7 @@ extern "C" {
     /// This notification name has been deprecated. Use either AVFragmentedMovieTrackTimeRangeDidChangeNotification or AVFragmentedMovieTrackSegmentsDidChangeNotification instead; in either case, you can assume that timing changes to fragmented tracks result in changes to the total length of the sample data used by the track.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovietracktotalsampledatalengthdidchangenotification?language=objc)
+    #[deprecated = "Upon receipt of either AVFragmentedMovieTrackTimeRangeDidChangeNotification or AVFragmentedMovieTrackSegmentsDidChangeNotification, you can assume that the sender's totalSampleDataLength has changed."]
     pub static AVFragmentedMovieTrackTotalSampleDataLengthDidChangeNotification: &'static NSString;
 }
 

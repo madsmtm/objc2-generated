@@ -27,9 +27,11 @@ unsafe impl RefEncode for cssm_data {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1item?language=objc)
+#[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1Item = cssm_data;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1oid?language=objc)
+#[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1Oid = cssm_data;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1algid?language=objc)
@@ -101,10 +103,13 @@ unsafe impl RefEncode for SecAsn1Template_struct {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1template?language=objc)
+#[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1Template = SecAsn1Template_struct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1templatechooser?language=objc)
+#[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1TemplateChooser = core::ffi::c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1templatechooserptr?language=objc)
+#[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1TemplateChooserPtr = *mut SecAsn1TemplateChooser;

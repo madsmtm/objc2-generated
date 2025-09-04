@@ -16,6 +16,7 @@ extern "C" {
     /// By default, the highest media bitrate will be selected for download.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskminimumrequiredmediabitratekey?language=objc)
+    #[deprecated = "Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using desired comparison value against averageBitRate/peakBitRate instead"]
     pub static AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: &'static NSString;
 }
 
@@ -26,6 +27,7 @@ extern "C" {
     /// By default, the highest media presentation size will be selected for download.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskminimumrequiredpresentationsizekey?language=objc)
+    #[deprecated = "Use AVAssetDownloadConfiguration:variantQualifiers with predicateForPresentationWidth and predicateForPresentationHeight instead"]
     pub static AVAssetDownloadTaskMinimumRequiredPresentationSizeKey: &'static NSString;
 }
 
@@ -36,6 +38,7 @@ extern "C" {
     /// By default, media selections for AVAssetDownloadTask will be automatically selected.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskmediaselectionkey?language=objc)
+    #[deprecated = "Use AVAssetDownloadConfiguration:mediaSelections instead"]
     pub static AVAssetDownloadTaskMediaSelectionKey: &'static NSString;
 }
 
@@ -46,6 +49,7 @@ extern "C" {
     /// By default AVAssetDownloadTask will prefer multichannel by downloading the most capable multichannel rendition available in additon to stereo.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskmediaselectionprefersmultichannelkey?language=objc)
+    #[deprecated = "Use AVAssetDownloadConfiguration:variantQualifiers with predicateForChannelCount instead"]
     pub static AVAssetDownloadTaskMediaSelectionPrefersMultichannelKey: &'static NSString;
 }
 
@@ -56,6 +60,7 @@ extern "C" {
     /// By default AVAssetDownloadTask will prefer lossy audio representation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskpreferslosslessaudiokey?language=objc)
+    #[deprecated = "Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using [NSPredicate predicateWithFormat:@'%d in audioAttributes.formatIDs', kAudioFormatAppleLossless]"]
     pub static AVAssetDownloadTaskPrefersLosslessAudioKey: &'static NSString;
 }
 
@@ -66,6 +71,7 @@ extern "C" {
     /// By default AVAssetDownloadTask will prefer HDR content.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskprefershdrkey?language=objc)
+    #[deprecated = "Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using [NSPredicate predicateWithFormat:@'videoAttributes.videoRange == %@', AVVideoRangePQ]"]
     pub static AVAssetDownloadTaskPrefersHDRKey: &'static NSString;
 }
 

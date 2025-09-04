@@ -67,6 +67,7 @@ unsafe impl RefEncode for SecureDownloadTrustCallbackResult {
 /// Returns: A SecureDownloadTrustCallbackResult (see).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustsetupcallback?language=objc)
+#[deprecated = "SecureDownload is not supported"]
 #[cfg(feature = "SecTrust")]
 pub type SecureDownloadTrustSetupCallback = Option<
     unsafe extern "C-unwind" fn(*mut SecTrust, *mut c_void) -> SecureDownloadTrustCallbackResult,
@@ -84,6 +85,7 @@ pub type SecureDownloadTrustSetupCallback = Option<
 /// do not want to change the evaluation result.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustevaluatecallback?language=objc)
+#[deprecated = "SecureDownload is not supported"]
 #[cfg(feature = "SecTrust")]
 pub type SecureDownloadTrustEvaluateCallback = Option<
     unsafe extern "C-unwind" fn(

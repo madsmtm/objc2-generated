@@ -474,11 +474,13 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarseparatoritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
+    #[deprecated = "This item is no longer recommended and will be ignored on 10.7 and later."]
     pub static NSToolbarSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarcustomizetoolbaritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
+    #[deprecated = "This item is no longer recommended and will be ignored on 10.7 and later."]
     pub static NSToolbarCustomizeToolbarItemIdentifier: &'static NSToolbarItemIdentifier;
 }

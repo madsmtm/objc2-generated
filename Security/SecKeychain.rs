@@ -827,6 +827,7 @@ impl SecKeychain {
 /// To add your callback function, use the SecKeychainAddCallback function.  To remove your callback function, use the SecKeychainRemoveCallback function.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincallback?language=objc)
+#[deprecated = "SecKeychain is deprecated"]
 #[cfg(all(feature = "SecBase", feature = "libc"))]
 pub type SecKeychainCallback = Option<
     unsafe extern "C-unwind" fn(

@@ -160,41 +160,49 @@ unsafe impl RefEncode for CFURLError {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileexists?language=objc)
+    #[deprecated = "Use CFURLResourceIsReachable instead."]
     pub static kCFURLFileExists: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfiledirectorycontents?language=objc)
+    #[deprecated = "Use the CFURLEnumerator API instead."]
     pub static kCFURLFileDirectoryContents: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilelength?language=objc)
+    #[deprecated = "Use CFURLCopyResourcePropertyForKey with kCFURLFileSizeKey instead."]
     pub static kCFURLFileLength: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilelastmodificationtime?language=objc)
+    #[deprecated = "Use CFURLCopyResourcePropertyForKey with kCFURLContentModificationDateKey instead."]
     pub static kCFURLFileLastModificationTime: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileposixmode?language=objc)
+    #[deprecated = "Use CFURLCopyResourcePropertyForKey with kCFURLFileSecurityKey and then the CFFileSecurity API instead."]
     pub static kCFURLFilePOSIXMode: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileownerid?language=objc)
+    #[deprecated = "Use CFURLCopyResourcePropertyForKey with kCFURLFileSecurityKey and then the CFFileSecurity API instead."]
     pub static kCFURLFileOwnerID: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhttpstatuscode?language=objc)
+    #[deprecated = "Use NSHTTPURLResponse methods instead."]
     pub static kCFURLHTTPStatusCode: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhttpstatusline?language=objc)
+    #[deprecated = "Use NSHTTPURLResponse methods instead."]
     pub static kCFURLHTTPStatusLine: Option<&'static CFString>;
 }
 

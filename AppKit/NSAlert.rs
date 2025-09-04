@@ -325,10 +325,13 @@ impl NSAlert {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswarningalertstyle?language=objc)
+#[deprecated]
 pub static NSWarningAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Warning.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinformationalalertstyle?language=objc)
+#[deprecated]
 pub static NSInformationalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Informational.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscriticalalertstyle?language=objc)
+#[deprecated]
 pub static NSCriticalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Critical.0);

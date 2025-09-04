@@ -12,43 +12,52 @@ use objc2_javascript_core::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackevent?language=objc)
+#[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVPlaybackEvent = NSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemtype?language=objc)
+#[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVMediaItemType = NSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackeventproperty?language=objc)
+#[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVPlaybackEventProperty = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemtypevideo?language=objc)
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemTypeVideo: &'static TVMediaItemType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemtypeaudio?language=objc)
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemTypeAudio: &'static TVMediaItemType;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemcontentratingdomain?language=objc)
+#[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVMediaItemContentRatingDomain = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemcontentratingdomainmovie?language=objc)
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemContentRatingDomainMovie: &'static TVMediaItemContentRatingDomain;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemcontentratingdomaintvshow?language=objc)
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemContentRatingDomainTVShow: &'static TVMediaItemContentRatingDomain;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemcontentratingdomainmusic?language=objc)
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemContentRatingDomainMusic: &'static TVMediaItemContentRatingDomain;
 }
 

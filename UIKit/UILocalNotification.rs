@@ -224,5 +224,6 @@ impl UILocalNotification {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilocalnotificationdefaultsoundname?language=objc)
+    #[deprecated = "Use UserNotifications Framework's +[UNNotificationSound defaultSound]"]
     pub static UILocalNotificationDefaultSoundName: &'static NSString;
 }

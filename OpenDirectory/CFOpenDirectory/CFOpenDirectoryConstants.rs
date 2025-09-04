@@ -3108,6 +3108,7 @@ extern "C" {
     /// Deprecated.  Use kODAuthenticationTypeMPPEPrimaryKeys.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypemppemasterkeys?language=objc)
+    #[deprecated]
     pub static kODAuthenticationTypeMPPEMasterKeys: Option<&'static ODAuthenticationType>;
 }
 
@@ -3353,6 +3354,7 @@ extern "C" {
     /// salted SHA1 hash
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodauthenticationtypesecurehash?language=objc)
+    #[deprecated]
     pub static kODAuthenticationTypeSecureHash: Option<&'static ODAuthenticationType>;
 }
 

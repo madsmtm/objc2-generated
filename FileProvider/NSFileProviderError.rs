@@ -13,6 +13,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidererrorcollidingitemkey?language=objc)
+    #[deprecated = "NSFileProviderErrorItemKey"]
     pub static NSFileProviderErrorCollidingItemKey: &'static NSErrorUserInfoKey;
 }
 

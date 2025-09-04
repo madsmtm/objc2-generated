@@ -30,6 +30,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkbancomat?language=objc)
+    #[deprecated = "Use PKPaymentNetworkPagoBancomat instead."]
     pub static PKPaymentNetworkBancomat: Option<&'static PKPaymentNetwork>;
 }
 
@@ -45,11 +46,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkcartebancaire?language=objc)
+    #[deprecated = "Use PKPaymentNetworkCartesBancaires instead."]
     pub static PKPaymentNetworkCarteBancaire: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkcartebancaires?language=objc)
+    #[deprecated = "Use PKPaymentNetworkCartesBancaires instead."]
     pub static PKPaymentNetworkCarteBancaires: Option<&'static PKPaymentNetwork>;
 }
 

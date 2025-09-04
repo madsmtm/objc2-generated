@@ -586,17 +586,22 @@ pub const NSTextWritingDirectionEmbedding: c_uint = 0 << 1;
 pub const NSTextWritingDirectionOverride: c_uint = 1 << 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslefttextalignment?language=objc)
+#[deprecated]
 pub static NSLeftTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Left.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrighttextalignment?language=objc)
+#[deprecated]
 pub static NSRightTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Right.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscentertextalignment?language=objc)
+#[deprecated]
 pub static NSCenterTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Center.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsjustifiedtextalignment?language=objc)
+#[deprecated]
 pub static NSJustifiedTextAlignment: NSTextAlignment =
     NSTextAlignment(NSTextAlignment::Justified.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnaturaltextalignment?language=objc)
+#[deprecated]
 pub static NSNaturalTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Natural.0);

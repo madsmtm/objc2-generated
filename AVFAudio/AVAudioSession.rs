@@ -841,6 +841,7 @@ extern "C" {
     /// again.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionwassuspendedkey?language=objc)
+    #[deprecated = "No longer supported - see AVAudioSessionInterruptionReasonKey"]
     pub static AVAudioSessionInterruptionWasSuspendedKey: &'static NSString;
 }
 

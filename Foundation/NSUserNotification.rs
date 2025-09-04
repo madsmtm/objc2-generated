@@ -362,6 +362,7 @@ impl NSUserNotificationAction {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationdefaultsoundname?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub static NSUserNotificationDefaultSoundName: &'static NSString;
 }
 

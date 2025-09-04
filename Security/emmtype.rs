@@ -52,9 +52,11 @@ unsafe impl RefEncode for cssm_manager_event_notification {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_event_notification?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_MANAGER_EVENT_NOTIFICATION = cssm_manager_event_notification;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_event_notification_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_MANAGER_EVENT_NOTIFICATION_PTR = *mut cssm_manager_event_notification;

@@ -652,6 +652,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyfiletype?language=objc)
+    #[deprecated]
     pub static ITLibMediaItemPropertyFileType: &'static NSString;
 }
 
@@ -797,6 +798,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvoiceoverlanguage?language=objc)
+    #[deprecated]
     pub static ITLibMediaItemPropertyVoiceOverLanguage: &'static NSString;
 }
 

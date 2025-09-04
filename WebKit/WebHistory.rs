@@ -9,31 +9,37 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryitemsaddednotification?language=objc)
+    #[deprecated]
     pub static WebHistoryItemsAddedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryitemsremovednotification?language=objc)
+    #[deprecated]
     pub static WebHistoryItemsRemovedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryallitemsremovednotification?language=objc)
+    #[deprecated]
     pub static WebHistoryAllItemsRemovedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryloadednotification?language=objc)
+    #[deprecated]
     pub static WebHistoryLoadedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistorysavednotification?language=objc)
+    #[deprecated]
     pub static WebHistorySavedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryitemskey?language=objc)
+    #[deprecated]
     pub static WebHistoryItemsKey: Option<&'static NSString>;
 }
 

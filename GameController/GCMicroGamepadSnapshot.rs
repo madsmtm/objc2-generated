@@ -100,6 +100,7 @@ unsafe impl RefEncode for GCMicroGamepadSnapshotDataVersion {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccurrentmicrogamepadsnapshotdataversion?language=objc)
+    #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     pub static GCCurrentMicroGamepadSnapshotDataVersion: GCMicroGamepadSnapshotDataVersion;
 }
 

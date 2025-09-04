@@ -560,6 +560,7 @@ extern "C" {
     /// Specifies whether the content key request should require a persistable key to be returned from the key vendor. Value should be a NSNumber created with +[NSNumber numberWithBool:].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequeststreamingcontentkeyrequestrequirespersistentkey?language=objc)
+    #[deprecated = "Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] instead"]
     pub static AVAssetResourceLoadingRequestStreamingContentKeyRequestRequiresPersistentKey:
         &'static NSString;
 }

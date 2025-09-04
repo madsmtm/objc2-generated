@@ -44,76 +44,91 @@ cf_objc2_type!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistfavoritevolumes?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListFavoriteVolumes: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistfavoriteitems?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListFavoriteItems: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistrecentapplicationitems?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListRecentApplicationItems: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistrecentdocumentitems?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListRecentDocumentItems: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistrecentserveritems?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListRecentServerItems: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistsessionloginitems?language=objc)
+    #[deprecated]
     pub static kLSSharedFileListSessionLoginItems: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistgloballoginitems?language=objc)
+    #[deprecated]
     pub static kLSSharedFileListGlobalLoginItems: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistrecentitemsmaxamount?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListRecentItemsMaxAmount: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistvolumescomputervisible?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListVolumesComputerVisible: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistvolumesidiskvisible?language=objc)
+    #[deprecated = "iDisk is no longer available"]
     pub static kLSSharedFileListVolumesIDiskVisible: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistvolumesnetworkvisible?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListVolumesNetworkVisible: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistitembeforefirst?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListItemBeforeFirst: &'static LSSharedFileListItem;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistitemlast?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListItemLast: &'static LSSharedFileListItem;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistitemhidden?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListItemHidden: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistloginitemhidden?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kLSSharedFileListLoginItemHidden: &'static CFString;
 }
 

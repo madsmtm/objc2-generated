@@ -186,29 +186,37 @@ impl NSColorSpace {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunknowncolorspacemodel?language=objc)
+#[deprecated]
 pub static NSUnknownColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::Unknown.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraycolorspacemodel?language=objc)
+#[deprecated]
 pub static NSGrayColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Gray.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrgbcolorspacemodel?language=objc)
+#[deprecated]
 pub static NSRGBColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::RGB.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscmykcolorspacemodel?language=objc)
+#[deprecated]
 pub static NSCMYKColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::CMYK.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslabcolorspacemodel?language=objc)
+#[deprecated]
 pub static NSLABColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::LAB.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicencolorspacemodel?language=objc)
+#[deprecated]
 pub static NSDeviceNColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::DeviceN.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsindexedcolorspacemodel?language=objc)
+#[deprecated]
 pub static NSIndexedColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::Indexed.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspatterncolorspacemodel?language=objc)
+#[deprecated]
 pub static NSPatternColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::Patterned.0);

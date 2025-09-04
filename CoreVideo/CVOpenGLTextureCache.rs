@@ -32,21 +32,25 @@ cf_objc2_type!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodekey?language=objc)
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLTextureCacheChromaSamplingModeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodeautomatic?language=objc)
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLTextureCacheChromaSamplingModeAutomatic: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodehighestquality?language=objc)
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLTextureCacheChromaSamplingModeHighestQuality: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodebestperformance?language=objc)
+    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLTextureCacheChromaSamplingModeBestPerformance: &'static CFString;
 }
 

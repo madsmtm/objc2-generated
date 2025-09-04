@@ -10,6 +10,7 @@ extern "C" {
     /// The pasteboard type constant used when adding or accessing a WebArchive on the pasteboard.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webarchivepboardtype?language=objc)
+    #[deprecated]
     pub static WebArchivePboardType: Option<&'static NSString>;
 }
 

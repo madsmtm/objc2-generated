@@ -1294,36 +1294,46 @@ impl NSCell {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundstylelight?language=objc)
+#[deprecated]
 pub static NSBackgroundStyleLight: NSBackgroundStyle =
     NSBackgroundStyle(NSBackgroundStyle::Normal.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundstyledark?language=objc)
+#[deprecated]
 pub static NSBackgroundStyleDark: NSBackgroundStyle =
     NSBackgroundStyle(NSBackgroundStyle::Emphasized.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellstatevalue?language=objc)
+#[deprecated]
 pub type NSCellStateValue = NSControlStateValue;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmixedstate?language=objc)
+#[deprecated]
 pub static NSMixedState: NSControlStateValue = NSControlStateValueMixed;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoffstate?language=objc)
+#[deprecated]
 pub static NSOffState: NSControlStateValue = NSControlStateValueOff;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsonstate?language=objc)
+#[deprecated]
 pub static NSOnState: NSControlStateValue = NSControlStateValueOn;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsregularcontrolsize?language=objc)
+#[deprecated]
 pub static NSRegularControlSize: NSControlSize = NSControlSize(NSControlSize::Regular.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssmallcontrolsize?language=objc)
+#[deprecated]
 pub static NSSmallControlSize: NSControlSize = NSControlSize(NSControlSize::Small.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsminicontrolsize?language=objc)
+#[deprecated]
 pub static NSMiniControlSize: NSControlSize = NSControlSize(NSControlSize::Mini.0);
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltintdidchangenotification?language=objc)
+    #[deprecated = "Changes to the accent color can be manually observed by implementing -viewDidChangeEffectiveAppearance in a NSView subclass, or by Key-Value Observing the -effectiveAppearance property on NSApplication. Views are automatically redisplayed when the accent color changes."]
     pub static NSControlTintDidChangeNotification: &'static NSNotificationName;
 }
 

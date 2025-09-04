@@ -181,6 +181,7 @@ pub const NSOpenGLPFAPixelBuffer: c_uint = 90;
 pub const NSOpenGLPFARemotePixelBuffer: c_uint = 91;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpixelformatattribute?language=objc)
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub type NSOpenGLPixelFormatAttribute = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglprofileversionlegacy?language=objc)
@@ -668,61 +669,76 @@ impl NSOpenGLContext {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpswapinterval?language=objc)
+#[deprecated]
 pub static NSOpenGLCPSwapInterval: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SwapInterval.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpsurfaceorder?language=objc)
+#[deprecated]
 pub static NSOpenGLCPSurfaceOrder: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceOrder.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpsurfaceopacity?language=objc)
+#[deprecated]
 pub static NSOpenGLCPSurfaceOpacity: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceOpacity.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpsurfacebackingsize?language=objc)
+#[deprecated]
 pub static NSOpenGLCPSurfaceBackingSize: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceBackingSize.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpreclaimresources?language=objc)
+#[deprecated]
 pub static NSOpenGLCPReclaimResources: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::ReclaimResources.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpcurrentrendererid?language=objc)
+#[deprecated]
 pub static NSOpenGLCPCurrentRendererID: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::CurrentRendererID.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpgpuvertexprocessing?language=objc)
+#[deprecated]
 pub static NSOpenGLCPGPUVertexProcessing: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::GPUVertexProcessing.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpgpufragmentprocessing?language=objc)
+#[deprecated]
 pub static NSOpenGLCPGPUFragmentProcessing: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::GPUFragmentProcessing.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcphasdrawable?language=objc)
+#[deprecated]
 pub static NSOpenGLCPHasDrawable: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::HasDrawable.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpmpswapsinflight?language=objc)
+#[deprecated]
 pub static NSOpenGLCPMPSwapsInFlight: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::MPSwapsInFlight.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpswaprectangle?language=objc)
+#[deprecated]
 pub static NSOpenGLCPSwapRectangle: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SwapRectangle.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpswaprectangleenable?language=objc)
+#[deprecated]
 pub static NSOpenGLCPSwapRectangleEnable: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SwapRectangleEnable.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcprasterizationenable?language=objc)
+#[deprecated]
 pub static NSOpenGLCPRasterizationEnable: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::RasterizationEnable.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpstatevalidation?language=objc)
+#[deprecated]
 pub static NSOpenGLCPStateValidation: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::StateValidation.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpsurfacesurfacevolatile?language=objc)
+#[deprecated]
 pub static NSOpenGLCPSurfaceSurfaceVolatile: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceSurfaceVolatile.0);

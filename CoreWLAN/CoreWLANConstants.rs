@@ -28,6 +28,7 @@ extern "C" {
     /// dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwpowerdidchangenotification?language=objc)
+    #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypePowerDidChange event type"]
     pub static CWPowerDidChangeNotification: &'static NSString;
 }
 
@@ -47,6 +48,7 @@ extern "C" {
     /// dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwssiddidchangenotification?language=objc)
+    #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeSSIDDidChange event type"]
     pub static CWSSIDDidChangeNotification: &'static NSString;
 }
 
@@ -66,6 +68,7 @@ extern "C" {
     /// dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwbssiddidchangenotification?language=objc)
+    #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeBSSIDDidChange event type"]
     pub static CWBSSIDDidChangeNotification: &'static NSString;
 }
 
@@ -85,6 +88,7 @@ extern "C" {
     /// dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkdidchangenotification?language=objc)
+    #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeLinkDidChange event type"]
     pub static CWLinkDidChangeNotification: &'static NSString;
 }
 
@@ -104,6 +108,7 @@ extern "C" {
     /// dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwmodedidchangenotification?language=objc)
+    #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeModeDidChange event type"]
     pub static CWModeDidChangeNotification: &'static NSString;
 }
 
@@ -123,6 +128,7 @@ extern "C" {
     /// dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcountrycodedidchangenotification?language=objc)
+    #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeCountryCodeDidChange event type"]
     pub static CWCountryCodeDidChangeNotification: &'static NSString;
 }
 
@@ -142,6 +148,7 @@ extern "C" {
     /// dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwscancachedidupdatenotification?language=objc)
+    #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeScanCacheUpdated event type"]
     pub static CWScanCacheDidUpdateNotification: &'static NSString;
 }
 
@@ -161,6 +168,7 @@ extern "C" {
     /// dictionary.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitydidchangenotification?language=objc)
+    #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeLinkQualityDidChange event type"]
     pub static CWLinkQualityDidChangeNotification: &'static NSString;
 }
 
@@ -179,6 +187,7 @@ extern "C" {
     /// .
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitynotificationrssikey?language=objc)
+    #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeLinkQualityDidChange event type"]
     pub static CWLinkQualityNotificationRSSIKey: &'static NSString;
 }
 
@@ -197,5 +206,6 @@ extern "C" {
     /// .
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitynotificationtransmitratekey?language=objc)
+    #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeLinkQualityDidChange event type"]
     pub static CWLinkQualityNotificationTransmitRateKey: &'static NSString;
 }

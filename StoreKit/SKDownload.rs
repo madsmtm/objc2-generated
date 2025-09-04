@@ -43,6 +43,7 @@ unsafe impl RefEncode for SKDownloadState {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadtimeremainingunknown?language=objc)
+    #[deprecated = "Hosted content is no longer supported"]
     pub static SKDownloadTimeRemainingUnknown: NSTimeInterval;
 }
 

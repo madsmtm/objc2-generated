@@ -88,16 +88,19 @@ unsafe impl RefEncode for WSClientContext {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsxmlrpcprotocol?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSXMLRPCProtocol: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoap1999protocol?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSSOAP1999Protocol: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoap2001protocol?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kWSSOAP2001Protocol: Option<&'static CFString>;
 }
 

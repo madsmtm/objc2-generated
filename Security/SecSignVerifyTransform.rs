@@ -17,6 +17,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecinputisattributename?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecInputIsAttributeName: &'static CFString;
 }
 
@@ -32,6 +33,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecinputisraw?language=objc)
+    #[deprecated = "SecTransform is no longer supported"]
     pub static kSecInputIsRaw: &'static CFString;
 }
 

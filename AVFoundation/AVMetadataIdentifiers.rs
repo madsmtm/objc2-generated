@@ -1075,6 +1075,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatacommerical?language=objc)
+    #[deprecated = "No longer supported"]
     pub static AVMetadataIdentifierID3MetadataCommerical: Option<&'static AVMetadataIdentifier>;
 }
 

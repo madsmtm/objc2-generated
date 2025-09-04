@@ -38,6 +38,7 @@ extern "C" {
     /// Variable rate from 1/32 to 32.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithmlowqualityzerolatency?language=objc)
+    #[deprecated = "Use AVAudioTimePitchAlgorithmTimeDomain instead"]
     pub static AVAudioTimePitchAlgorithmLowQualityZeroLatency:
         Option<&'static AVAudioTimePitchAlgorithm>;
 }

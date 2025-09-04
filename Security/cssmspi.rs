@@ -7,6 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_spi_moduleeventhandler?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_SPI_ModuleEventHandler = Option<
     unsafe extern "C-unwind" fn(
@@ -58,28 +59,34 @@ unsafe impl RefEncode for cssm_module_funcs {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_module_funcs?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_MODULE_FUNCS = cssm_module_funcs;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_module_funcs_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_MODULE_FUNCS_PTR = *mut cssm_module_funcs;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls_malloc?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_UPCALLS_MALLOC =
     Option<unsafe extern "C-unwind" fn(CSSM_HANDLE, usize) -> *mut c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls_free?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_UPCALLS_FREE = Option<unsafe extern "C-unwind" fn(CSSM_HANDLE, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls_realloc?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_UPCALLS_REALLOC =
     Option<unsafe extern "C-unwind" fn(CSSM_HANDLE, *mut c_void, usize) -> *mut c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls_calloc?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_UPCALLS_CALLOC =
     Option<unsafe extern "C-unwind" fn(CSSM_HANDLE, usize, usize) -> *mut c_void>;
@@ -149,9 +156,11 @@ unsafe impl RefEncode for cssm_upcalls {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_UPCALLS = cssm_upcalls;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_UPCALLS_PTR = *mut cssm_upcalls;

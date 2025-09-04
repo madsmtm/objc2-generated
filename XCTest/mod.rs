@@ -1151,6 +1151,7 @@ extern "C" {
     /// XCTestObserverClassKey is deprecated and ignored.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestobserverclasskey?language=objc)
+    #[deprecated]
     pub static XCTestObserverClassKey: Option<&'static NSString>;
 }
 
@@ -1483,31 +1484,37 @@ impl XCTestProbe {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestedunitpath?language=objc)
+    #[deprecated]
     pub static XCTestedUnitPath: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopekey?language=objc)
+    #[deprecated]
     pub static XCTestScopeKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopeall?language=objc)
+    #[deprecated]
     pub static XCTestScopeAll: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopenone?language=objc)
+    #[deprecated]
     pub static XCTestScopeNone: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopeself?language=objc)
+    #[deprecated]
     pub static XCTestScopeSelf: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesttoolkey?language=objc)
+    #[deprecated]
     pub static XCTestToolKey: Option<&'static NSString>;
 }
 

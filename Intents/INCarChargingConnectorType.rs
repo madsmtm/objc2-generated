@@ -40,6 +40,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarchargingconnectortypetesla?language=objc)
+    #[deprecated = "INCarChargingConnectorTypeTesla is deprecated. Please adopt INCarChargingConnectorTypeNACSDC instead"]
     pub static INCarChargingConnectorTypeTesla: Option<&'static INCarChargingConnectorType>;
 }
 

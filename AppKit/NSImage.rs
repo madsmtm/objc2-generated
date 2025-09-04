@@ -1084,6 +1084,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamedotmac?language=objc)
+    #[deprecated]
     pub static NSImageNameDotMac: &'static NSImageName;
 }
 

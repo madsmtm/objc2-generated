@@ -14,6 +14,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologydidchangenotification?language=objc)
+    #[deprecated]
     pub static CTRadioAccessTechnologyDidChangeNotification: &'static NSString;
 }
 

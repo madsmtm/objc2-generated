@@ -158,15 +158,18 @@ impl SKCloudServiceController {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapabilitiesdidchangenotification?language=objc)
+    #[deprecated = "Use MusicSubscription.subscriptionUpdates from MusicKit"]
     pub static SKCloudServiceCapabilitiesDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorefrontcountrycodedidchangenotification?language=objc)
+    #[deprecated = "Use Storefront.updates"]
     pub static SKStorefrontCountryCodeDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorefrontidentifierdidchangenotification?language=objc)
+    #[deprecated = "Use Storefront.updates"]
     pub static SKStorefrontIdentifierDidChangeNotification: &'static NSNotificationName;
 }

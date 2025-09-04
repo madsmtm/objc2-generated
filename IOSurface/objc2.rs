@@ -353,5 +353,6 @@ impl DefaultRetained for IOSurface {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertyallocsizekey?language=objc)
     #[cfg(feature = "objc2-foundation")]
+    #[deprecated]
     pub static IOSurfacePropertyAllocSizeKey: &'static IOSurfacePropertyKey;
 }

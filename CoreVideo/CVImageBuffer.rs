@@ -135,11 +135,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_dci_p3?language=objc)
+    #[deprecated = "kCVImageBufferYCbCrMatrix_DCI_P3 no longer supported."]
     pub static kCVImageBufferYCbCrMatrix_DCI_P3: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_p3_d65?language=objc)
+    #[deprecated = "kCVImageBufferYCbCrMatrix_P3_D65 no longer supported."]
     pub static kCVImageBufferYCbCrMatrix_P3_D65: &'static CFString;
 }
 
@@ -210,11 +212,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_ebu_3213?language=objc)
+    #[deprecated]
     pub static kCVImageBufferTransferFunction_EBU_3213: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_smpte_c?language=objc)
+    #[deprecated]
     pub static kCVImageBufferTransferFunction_SMPTE_C: &'static CFString;
 }
 

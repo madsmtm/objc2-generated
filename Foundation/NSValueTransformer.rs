@@ -32,12 +32,14 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunarchivefromdatatransformername?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedunarchivefromdatatransformername?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated]
     pub static NSKeyedUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 

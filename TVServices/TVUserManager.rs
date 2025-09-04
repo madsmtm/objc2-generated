@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvuseridentifier?language=objc)
+#[deprecated = "User Management capability get-current-user is no longer supported. Please use runs-as-current-user-with-user-independent-keychain and kSecUseUserIndependentKeychain for sharing keychain items across users."]
 pub type TVUserIdentifier = NSString;
 
 extern_class!(
@@ -155,5 +156,6 @@ extern "C" {
     /// The object of the notification is nil. In order to start receiving notification you have to instantiate TVUserManager at least once.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvusermanagercurrentuseridentifierdidchangenotification?language=objc)
+    #[deprecated = "User Management capability get-current-user is no longer supported. Use the capability runs-as-current-user-with-user-independent-keychain, with it there is no need to be notified of user changes."]
     pub static TVUserManagerCurrentUserIdentifierDidChangeNotification: &'static NSNotificationName;
 }

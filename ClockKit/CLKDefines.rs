@@ -200,16 +200,19 @@ unsafe impl RefEncode for CLKGaugeProviderStyle {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clksimplegaugeproviderfillfractionempty?language=objc)
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub static CLKSimpleGaugeProviderFillFractionEmpty: c_float;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clklaunchedtimelineentrydatekey?language=objc)
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub static CLKLaunchedTimelineEntryDateKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clklaunchedcomplicationidentifierkey?language=objc)
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub static CLKLaunchedComplicationIdentifierKey: Option<&'static NSString>;
 }
 

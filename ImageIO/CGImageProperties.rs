@@ -790,6 +790,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsubsectimeorginal?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kCGImagePropertyExifSubsecTimeOrginal: &'static CFString;
 }
 

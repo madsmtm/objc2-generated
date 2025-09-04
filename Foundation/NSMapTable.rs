@@ -15,6 +15,7 @@ pub static NSMapTableStrongMemory: NSPointerFunctionsOptions =
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablezeroingweakmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
+#[deprecated = "GC no longer supported"]
 pub static NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::ZeroingWeakMemory.0);
 
@@ -543,6 +544,7 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintmapkeycallbacks?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Not supported"]
     pub static NSIntMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
@@ -581,6 +583,7 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintmapvaluecallbacks?language=objc)
     #[cfg(feature = "NSString")]
+    #[deprecated = "Not supported"]
     pub static NSIntMapValueCallBacks: NSMapTableValueCallBacks;
 }
 

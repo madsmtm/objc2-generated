@@ -224,11 +224,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagetexturetarget?language=objc)
+    #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCIImageTextureTarget: &'static CIImageOption;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagetextureformat?language=objc)
+    #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCIImageTextureFormat: &'static CIImageOption;
 }
 

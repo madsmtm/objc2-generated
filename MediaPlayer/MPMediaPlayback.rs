@@ -63,5 +63,6 @@ extern_protocol!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaybackispreparedtoplaydidchangenotification?language=objc)
+    #[deprecated = "Use AVPlayerViewController in AVKit."]
     pub static MPMediaPlaybackIsPreparedToPlayDidChangeNotification: Option<&'static NSString>;
 }

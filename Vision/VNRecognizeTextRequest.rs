@@ -199,9 +199,11 @@ impl DefaultRetained for VNRecognizeTextRequest {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision1?language=objc)
+#[deprecated]
 pub static VNRecognizeTextRequestRevision1: NSUInteger = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision2?language=objc)
+#[deprecated]
 pub static VNRecognizeTextRequestRevision2: NSUInteger = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision3?language=objc)

@@ -572,40 +572,49 @@ extern "C" {
     /// ********************** Deprecated ***********************
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nsobliquenessattributename?language=objc)
+    #[deprecated = "This attribute is not supported with TextKit 2"]
     pub static NSObliquenessAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsexpansionattributename?language=objc)
+    #[deprecated = "This attribute is not supported with TextKit 2"]
     pub static NSExpansionAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsverticalglyphformattributename?language=objc)
+    #[deprecated = "This attribute is not supported with TextKit 2"]
     pub static NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinepatternsolid?language=objc)
+#[deprecated]
 pub static NSUnderlinePatternSolid: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternSolid.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinepatterndot?language=objc)
+#[deprecated]
 pub static NSUnderlinePatternDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDot.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinepatterndash?language=objc)
+#[deprecated]
 pub static NSUnderlinePatternDash: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDash.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinepatterndashdot?language=objc)
+#[deprecated]
 pub static NSUnderlinePatternDashDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDashDot.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinepatterndashdotdot?language=objc)
+#[deprecated]
 pub static NSUnderlinePatternDashDotDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDashDotDot.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinebyword?language=objc)
+#[deprecated]
 pub static NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::ByWord.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextwritingdirection?language=objc)

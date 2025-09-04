@@ -491,90 +491,118 @@ unsafe impl RefEncode for NSGradientType {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarylightbutton?language=objc)
+#[deprecated]
 pub static NSMomentaryLightButton: NSButtonType = NSButtonType(NSButtonType::MomentaryLight.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspushonpushoffbutton?language=objc)
+#[deprecated]
 pub static NSPushOnPushOffButton: NSButtonType = NSButtonType(NSButtonType::PushOnPushOff.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstogglebutton?language=objc)
+#[deprecated]
 pub static NSToggleButton: NSButtonType = NSButtonType(NSButtonType::Toggle.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsswitchbutton?language=objc)
+#[deprecated]
 pub static NSSwitchButton: NSButtonType = NSButtonType(NSButtonType::Switch.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsradiobutton?language=objc)
+#[deprecated]
 pub static NSRadioButton: NSButtonType = NSButtonType(NSButtonType::Radio.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarychangebutton?language=objc)
+#[deprecated]
 pub static NSMomentaryChangeButton: NSButtonType = NSButtonType(NSButtonType::MomentaryChange.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsonoffbutton?language=objc)
+#[deprecated]
 pub static NSOnOffButton: NSButtonType = NSButtonType(NSButtonType::OnOff.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarypushinbutton?language=objc)
+#[deprecated]
 pub static NSMomentaryPushInButton: NSButtonType = NSButtonType(NSButtonType::MomentaryPushIn.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsacceleratorbutton?language=objc)
+#[deprecated]
 pub static NSAcceleratorButton: NSButtonType = NSButtonType(NSButtonType::Accelerator.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultilevelacceleratorbutton?language=objc)
+#[deprecated]
 pub static NSMultiLevelAcceleratorButton: NSButtonType =
     NSButtonType(NSButtonType::MultiLevelAccelerator.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarypushbutton?language=objc)
+#[deprecated = "This constant is misnamed and has the same effect as NSButtonTypeMomentaryLight. Use that name instead, or switch to NSButtonTypeMomentaryPushIn."]
 pub static NSMomentaryPushButton: NSButtonType = NSButtonType(NSButtonType::MomentaryLight.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarylight?language=objc)
+#[deprecated = "This constant is misnamed and has the same effect as NSButtonTypeMomentaryPushIn. Use that name instead, or switch to NSButtonTypeMomentaryLight."]
 pub static NSMomentaryLight: NSButtonType = NSButtonType(NSButtonType::MomentaryPushIn.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundedbezelstyle?language=objc)
+#[deprecated]
 pub static NSRoundedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Push.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsregularsquarebezelstyle?language=objc)
+#[deprecated]
 pub static NSRegularSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::FlexiblePush.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisclosurebezelstyle?language=objc)
+#[deprecated]
 pub static NSDisclosureBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Disclosure.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshadowlesssquarebezelstyle?language=objc)
+#[deprecated]
 pub static NSShadowlessSquareBezelStyle: NSBezelStyle =
     NSBezelStyle(NSBezelStyle::ShadowlessSquare.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscircularbezelstyle?language=objc)
+#[deprecated]
 pub static NSCircularBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Circular.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexturedsquarebezelstyle?language=objc)
+#[deprecated]
 pub static NSTexturedSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::TexturedSquare.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpbuttonbezelstyle?language=objc)
+#[deprecated]
 pub static NSHelpButtonBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::HelpButton.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssmallsquarebezelstyle?language=objc)
+#[deprecated]
 pub static NSSmallSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::SmallSquare.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexturedroundedbezelstyle?language=objc)
+#[deprecated]
 pub static NSTexturedRoundedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Toolbar.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundrectbezelstyle?language=objc)
+#[deprecated]
 pub static NSRoundRectBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::AccessoryBarAction.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrecessedbezelstyle?language=objc)
+#[deprecated]
 pub static NSRecessedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::AccessoryBar.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundeddisclosurebezelstyle?language=objc)
+#[deprecated]
 pub static NSRoundedDisclosureBezelStyle: NSBezelStyle =
     NSBezelStyle(NSBezelStyle::PushDisclosure.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinlinebezelstyle?language=objc)
+#[deprecated]
 pub static NSInlineBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Badge.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssmalliconbuttonbezelstyle?language=objc)
+#[deprecated = "This bezel style is obsolete and should not be used."]
 pub static NSSmallIconButtonBezelStyle: NSBezelStyle = NSBezelStyle(2);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsthicksquarebezelstyle?language=objc)
+#[deprecated]
 pub static NSThickSquareBezelStyle: NSBezelStyle = NSBezelStyle(3);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsthickersquarebezelstyle?language=objc)
+#[deprecated]
 pub static NSThickerSquareBezelStyle: NSBezelStyle = NSBezelStyle(4);
 
 /// NSDeprecated.

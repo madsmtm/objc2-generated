@@ -94,26 +94,31 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodechevc?language=objc)
+    #[deprecated]
     pub static AVVideoCodecHEVC: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodech264?language=objc)
+    #[deprecated]
     pub static AVVideoCodecH264: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodecjpeg?language=objc)
+    #[deprecated]
     pub static AVVideoCodecJPEG: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodecappleprores4444?language=objc)
+    #[deprecated]
     pub static AVVideoCodecAppleProRes4444: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodecappleprores422?language=objc)
+    #[deprecated]
     pub static AVVideoCodecAppleProRes422: Option<&'static NSString>;
 }
 

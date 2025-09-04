@@ -81,6 +81,7 @@ pub const CSSM_OK: c_uint = 0;
 pub const CSSM_MODULE_STRING_SIZE: c_uint = 64;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_data_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_DATA_PTR = *mut SecAsn1Item;
 
@@ -114,10 +115,12 @@ unsafe impl RefEncode for cssm_guid {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_guid?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_GUID = cssm_guid;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_guid_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_GUID_PTR = *mut cssm_guid;
 
@@ -179,10 +182,12 @@ unsafe impl RefEncode for cssm_version {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_version?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_VERSION = cssm_version;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_version_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_VERSION_PTR = *mut cssm_version;
 
@@ -240,10 +245,12 @@ unsafe impl RefEncode for cssm_subservice_uid {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_subservice_uid?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_SUBSERVICE_UID = cssm_subservice_uid;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_subservice_uid_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_SUBSERVICE_UID_PTR = *mut cssm_subservice_uid;
 
@@ -263,6 +270,7 @@ pub const CSSM_NOTIFY_REMOVE: c_uint = 2;
 pub const CSSM_NOTIFY_FAULT: c_uint = 3;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_api_moduleeventhandler?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_API_ModuleEventHandler = Option<
     unsafe extern "C-unwind" fn(
@@ -353,10 +361,12 @@ unsafe impl RefEncode for cssm_net_address {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_net_address?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_NET_ADDRESS = cssm_net_address;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_net_address_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_NET_ADDRESS_PTR = *mut cssm_net_address;
 
@@ -390,6 +400,7 @@ pub const CSSM_NET_PROTO_CMP: c_uint = 10;
 pub const CSSM_NET_PROTO_CMPS: c_uint = 11;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_callback?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CALLBACK =
     Option<unsafe extern "C-unwind" fn(CSSM_DATA_PTR, *mut c_void) -> CSSM_RETURN>;
@@ -424,10 +435,12 @@ unsafe impl RefEncode for cssm_crypto_data {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crypto_data?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CRYPTO_DATA = cssm_crypto_data;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crypto_data_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CRYPTO_DATA_PTR = *mut cssm_crypto_data;
 
@@ -767,14 +780,17 @@ unsafe impl RefEncode for cssm_list {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_list?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_LIST = cssm_list;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_list_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_LIST_PTR = *mut cssm_list;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_list_element?language=objc)
+#[deprecated]
 pub type CSSM_LIST_ELEMENT = cssm_list_element;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tuple?language=objc)
@@ -810,6 +826,7 @@ unsafe impl RefEncode for CSSM_TUPLE {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tuple_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TUPLE_PTR = *mut CSSM_TUPLE;
 
@@ -837,10 +854,12 @@ unsafe impl RefEncode for cssm_tuplegroup {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tuplegroup?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TUPLEGROUP = cssm_tuplegroup;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tuplegroup_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TUPLEGROUP_PTR = *mut cssm_tuplegroup;
 
@@ -896,10 +915,12 @@ unsafe impl RefEncode for cssm_sample {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_sample?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_SAMPLE = cssm_sample;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_sample_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_SAMPLE_PTR = *mut cssm_sample;
 
@@ -927,10 +948,12 @@ unsafe impl RefEncode for cssm_samplegroup {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_samplegroup?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_SAMPLEGROUP = cssm_samplegroup;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_samplegroup_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_SAMPLEGROUP_PTR = *mut cssm_samplegroup;
 
@@ -984,22 +1007,27 @@ unsafe impl RefEncode for cssm_memory_funcs {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_memory_funcs?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_MEMORY_FUNCS = cssm_memory_funcs;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_memory_funcs_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_MEMORY_FUNCS_PTR = *mut cssm_memory_funcs;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_api_memory_funcs?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_API_MEMORY_FUNCS = CSSM_MEMORY_FUNCS;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_api_memory_funcs_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_API_MEMORY_FUNCS_PTR = *mut CSSM_API_MEMORY_FUNCS;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_challenge_callback?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_CHALLENGE_CALLBACK = Option<
     unsafe extern "C-unwind" fn(
@@ -1107,10 +1135,12 @@ unsafe impl RefEncode for cssm_encoded_cert {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_cert?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ENCODED_CERT = cssm_encoded_cert;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_cert_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ENCODED_CERT_PTR = *mut cssm_encoded_cert;
 
@@ -1169,10 +1199,12 @@ unsafe impl RefEncode for cssm_parsed_cert {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_cert?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_PARSED_CERT = cssm_parsed_cert;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_cert_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_PARSED_CERT_PTR = *mut cssm_parsed_cert;
 
@@ -1200,10 +1232,12 @@ unsafe impl RefEncode for cssm_cert_pair {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_pair?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CERT_PAIR = cssm_cert_pair;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_pair_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CERT_PAIR_PTR = *mut cssm_cert_pair;
 
@@ -1288,10 +1322,12 @@ unsafe impl RefEncode for cssm_certgroup {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_certgroup?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CERTGROUP = cssm_certgroup;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_certgroup_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CERTGROUP_PTR = *mut cssm_certgroup;
 
@@ -1324,10 +1360,12 @@ unsafe impl RefEncode for cssm_base_certs {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_base_certs?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_BASE_CERTS = cssm_base_certs;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_base_certs_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_BASE_CERTS_PTR = *mut cssm_base_certs;
 
@@ -1364,10 +1402,12 @@ unsafe impl RefEncode for cssm_access_credentials {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_access_credentials?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACCESS_CREDENTIALS = cssm_access_credentials;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_access_credentials_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACCESS_CREDENTIALS_PTR = *mut cssm_access_credentials;
 
@@ -1471,10 +1511,12 @@ unsafe impl RefEncode for cssm_authorizationgroup {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_authorizationgroup?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_AUTHORIZATIONGROUP = cssm_authorizationgroup;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_authorizationgroup_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_AUTHORIZATIONGROUP_PTR = *mut cssm_authorizationgroup;
 
@@ -1502,10 +1544,12 @@ unsafe impl RefEncode for cssm_acl_validity_period {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_validity_period?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_ACL_VALIDITY_PERIOD = cssm_acl_validity_period;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_validity_period_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_ACL_VALIDITY_PERIOD_PTR = *mut cssm_acl_validity_period;
 
@@ -1542,10 +1586,12 @@ unsafe impl RefEncode for cssm_acl_entry_prototype {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_prototype?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_ENTRY_PROTOTYPE = cssm_acl_entry_prototype;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_prototype_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_ENTRY_PROTOTYPE_PTR = *mut cssm_acl_entry_prototype;
 
@@ -1573,14 +1619,17 @@ unsafe impl RefEncode for cssm_acl_owner_prototype {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_owner_prototype?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_ACL_OWNER_PROTOTYPE = cssm_acl_owner_prototype;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_owner_prototype_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_ACL_OWNER_PROTOTYPE_PTR = *mut cssm_acl_owner_prototype;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_subject_callback?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_ACL_SUBJECT_CALLBACK = Option<
     unsafe extern "C-unwind" fn(
@@ -1621,10 +1670,12 @@ unsafe impl RefEncode for cssm_acl_entry_input {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_input?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_ENTRY_INPUT = cssm_acl_entry_input;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_input_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_ENTRY_INPUT_PTR = *mut cssm_acl_entry_input;
 
@@ -1655,10 +1706,12 @@ unsafe impl RefEncode for cssm_resource_control_context {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_resource_control_context?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_RESOURCE_CONTROL_CONTEXT = cssm_resource_control_context;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_resource_control_context_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_RESOURCE_CONTROL_CONTEXT_PTR = *mut cssm_resource_control_context;
 
@@ -1693,10 +1746,12 @@ unsafe impl RefEncode for cssm_acl_entry_info {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_info?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_ENTRY_INFO = cssm_acl_entry_info;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_info_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_ENTRY_INFO_PTR = *mut cssm_acl_entry_info;
 
@@ -1740,10 +1795,12 @@ unsafe impl RefEncode for cssm_acl_edit {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_edit?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_EDIT = cssm_acl_edit;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_edit_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_EDIT_PTR = *mut cssm_acl_edit;
 
@@ -1776,9 +1833,11 @@ unsafe impl RefEncode for cssm_func_name_addr {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_func_name_addr?language=objc)
+#[deprecated]
 pub type CSSM_FUNC_NAME_ADDR = cssm_func_name_addr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_func_name_addr_ptr?language=objc)
+#[deprecated]
 pub type CSSM_FUNC_NAME_ADDR_PTR = *mut cssm_func_name_addr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_date?language=objc)
@@ -1809,10 +1868,12 @@ unsafe impl RefEncode for cssm_date {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_date?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DATE = cssm_date;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_date_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DATE_PTR = *mut cssm_date;
 
@@ -1837,10 +1898,12 @@ unsafe impl RefEncode for cssm_range {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_range?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_RANGE = cssm_range;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_range_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_RANGE_PTR = *mut cssm_range;
 
@@ -1867,10 +1930,12 @@ unsafe impl RefEncode for cssm_query_size_data {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_size_data?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_QUERY_SIZE_DATA = cssm_query_size_data;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_size_data_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_QUERY_SIZE_DATA_PTR = *mut cssm_query_size_data;
 
@@ -1902,10 +1967,12 @@ unsafe impl RefEncode for cssm_key_size {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key_size?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KEY_SIZE = cssm_key_size;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key_size_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KEY_SIZE_PTR = *mut cssm_key_size;
 
@@ -2413,10 +2480,12 @@ unsafe impl RefEncode for cssm_keyheader {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_keyheader?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KEYHEADER = cssm_keyheader;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_keyheader_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KEYHEADER_PTR = *mut cssm_keyheader;
 
@@ -2444,18 +2513,22 @@ unsafe impl RefEncode for cssm_key {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_KEY = cssm_key;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_KEY_PTR = *mut cssm_key;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_wrap_key?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_WRAP_KEY = CSSM_KEY;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_wrap_key_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_WRAP_KEY_PTR = *mut CSSM_KEY;
 
@@ -2493,10 +2566,12 @@ unsafe impl RefEncode for cssm_dl_db_handle {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_handle?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DL_DB_HANDLE = cssm_dl_db_handle;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_handle_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DL_DB_HANDLE_PTR = *mut cssm_dl_db_handle;
 
@@ -2779,6 +2854,7 @@ unsafe impl RefEncode for cssm_context_attribute {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context_attribute?language=objc)
+#[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -2787,6 +2863,7 @@ unsafe impl RefEncode for cssm_context_attribute {
 pub type CSSM_CONTEXT_ATTRIBUTE = cssm_context_attribute;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context_attribute_ptr?language=objc)
+#[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -2849,6 +2926,7 @@ unsafe impl RefEncode for cssm_context {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context?language=objc)
+#[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -2857,6 +2935,7 @@ unsafe impl RefEncode for cssm_context {
 pub type CSSM_CONTEXT = cssm_context;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context_ptr?language=objc)
+#[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -2968,10 +3047,12 @@ unsafe impl RefEncode for cssm_pkcs1_oaep_params {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs1_oaep_params?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_PKCS1_OAEP_PARAMS = cssm_pkcs1_oaep_params;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs1_oaep_params_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_PKCS1_OAEP_PARAMS_PTR = *mut cssm_pkcs1_oaep_params;
 
@@ -3017,10 +3098,12 @@ unsafe impl RefEncode for cssm_csp_operational_statistics {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_operational_statistics?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_CSP_OPERATIONAL_STATISTICS = cssm_csp_operational_statistics;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_operational_statistics_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_CSP_OPERATIONAL_STATISTICS_PTR = *mut cssm_csp_operational_statistics;
 
@@ -3051,10 +3134,12 @@ unsafe impl RefEncode for cssm_pkcs5_pbkdf1_params {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf1_params?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_PKCS5_PBKDF1_PARAMS = cssm_pkcs5_pbkdf1_params;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf1_params_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_PKCS5_PBKDF1_PARAMS_PTR = *mut cssm_pkcs5_pbkdf1_params;
 
@@ -3089,10 +3174,12 @@ unsafe impl RefEncode for cssm_pkcs5_pbkdf2_params {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf2_params?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_PKCS5_PBKDF2_PARAMS = cssm_pkcs5_pbkdf2_params;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf2_params_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_PKCS5_PBKDF2_PARAMS_PTR = *mut cssm_pkcs5_pbkdf2_params;
 
@@ -3120,10 +3207,12 @@ unsafe impl RefEncode for cssm_kea_derive_params {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kea_derive_params?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_KEA_DERIVE_PARAMS = cssm_kea_derive_params;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kea_derive_params_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_KEA_DERIVE_PARAMS_PTR = *mut cssm_kea_derive_params;
 
@@ -3154,10 +3243,12 @@ unsafe impl RefEncode for cssm_tp_authority_id {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_authority_id?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_AUTHORITY_ID = cssm_tp_authority_id;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_authority_id_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_AUTHORITY_ID_PTR = *mut cssm_tp_authority_id;
 
@@ -3187,12 +3278,14 @@ pub const CSSM_TP_AUTHORITY_REQUEST_CERTUSERECOVER: c_uint = 7;
 pub const CSSM_TP_AUTHORITY_REQUEST_CRLISSUE: c_uint = 256;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verification_results_callback?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_VERIFICATION_RESULTS_CALLBACK = Option<
     unsafe extern "C-unwind" fn(CSSM_MODULE_HANDLE, *mut c_void, CSSM_DATA_PTR) -> CSSM_RETURN,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_oid_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_OID_PTR = *mut SecAsn1Oid;
 
@@ -3220,10 +3313,12 @@ unsafe impl RefEncode for cssm_field {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_field?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_FIELD = cssm_field;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_field_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_FIELD_PTR = *mut cssm_field;
 
@@ -3256,10 +3351,12 @@ unsafe impl RefEncode for cssm_tp_policyinfo {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_policyinfo?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_POLICYINFO = cssm_tp_policyinfo;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_policyinfo_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_POLICYINFO_PTR = *mut cssm_tp_policyinfo;
 
@@ -3325,10 +3422,12 @@ unsafe impl RefEncode for cssm_dl_db_list {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_list?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DL_DB_LIST = cssm_dl_db_list;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_list_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DL_DB_LIST_PTR = *mut cssm_dl_db_list;
 
@@ -3372,10 +3471,12 @@ unsafe impl RefEncode for cssm_tp_callerauth_context {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_callerauth_context?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CALLERAUTH_CONTEXT = cssm_tp_callerauth_context;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_callerauth_context_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CALLERAUTH_CONTEXT_PTR = *mut cssm_tp_callerauth_context;
 
@@ -3477,10 +3578,12 @@ unsafe impl RefEncode for cssm_encoded_crl {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_crl?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ENCODED_CRL = cssm_encoded_crl;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_crl_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ENCODED_CRL_PTR = *mut cssm_encoded_crl;
 
@@ -3512,10 +3615,12 @@ unsafe impl RefEncode for cssm_parsed_crl {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_crl?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_PARSED_CRL = cssm_parsed_crl;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_crl_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_PARSED_CRL_PTR = *mut cssm_parsed_crl;
 
@@ -3543,10 +3648,12 @@ unsafe impl RefEncode for cssm_crl_pair {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crl_pair?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CRL_PAIR = cssm_crl_pair;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crl_pair_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CRL_PAIR_PTR = *mut cssm_crl_pair;
 
@@ -3629,10 +3736,12 @@ unsafe impl RefEncode for cssm_crlgroup {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crlgroup?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CRLGROUP = cssm_crlgroup;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crlgroup_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CRLGROUP_PTR = *mut cssm_crlgroup;
 
@@ -3660,10 +3769,12 @@ unsafe impl RefEncode for cssm_fieldgroup {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_fieldgroup?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_FIELDGROUP = cssm_fieldgroup;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_fieldgroup_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_FIELDGROUP_PTR = *mut cssm_fieldgroup;
 
@@ -3716,10 +3827,12 @@ unsafe impl RefEncode for cssm_evidence {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_evidence?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_EVIDENCE = cssm_evidence;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_evidence_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_EVIDENCE_PTR = *mut cssm_evidence;
 
@@ -3754,10 +3867,12 @@ unsafe impl RefEncode for cssm_tp_verify_context {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_VERIFY_CONTEXT = cssm_tp_verify_context;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_VERIFY_CONTEXT_PTR = *mut cssm_tp_verify_context;
 
@@ -3785,10 +3900,12 @@ unsafe impl RefEncode for cssm_tp_verify_context_result {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context_result?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_VERIFY_CONTEXT_RESULT = cssm_tp_verify_context_result;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context_result_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_VERIFY_CONTEXT_RESULT_PTR = *mut cssm_tp_verify_context_result;
 
@@ -3816,10 +3933,12 @@ unsafe impl RefEncode for cssm_tp_request_set {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_request_set?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_REQUEST_SET = cssm_tp_request_set;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_request_set_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_REQUEST_SET_PTR = *mut cssm_tp_request_set;
 
@@ -3846,10 +3965,12 @@ unsafe impl RefEncode for cssm_tp_result_set {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_result_set?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_RESULT_SET = cssm_tp_result_set;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_result_set_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_RESULT_SET_PTR = *mut cssm_tp_result_set;
 
@@ -3892,10 +4013,12 @@ unsafe impl RefEncode for cssm_tp_confirm_response {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_confirm_response?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_CONFIRM_RESPONSE = cssm_tp_confirm_response;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_confirm_response_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_CONFIRM_RESPONSE_PTR = *mut cssm_tp_confirm_response;
 
@@ -3946,10 +4069,12 @@ unsafe impl RefEncode for cssm_tp_certissue_input {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_input?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTISSUE_INPUT = cssm_tp_certissue_input;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_input_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTISSUE_INPUT_PTR = *mut cssm_tp_certissue_input;
 
@@ -4001,10 +4126,12 @@ unsafe impl RefEncode for cssm_tp_certissue_output {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_output?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTISSUE_OUTPUT = cssm_tp_certissue_output;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_output_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTISSUE_OUTPUT_PTR = *mut cssm_tp_certissue_output;
 
@@ -4079,10 +4206,12 @@ unsafe impl RefEncode for cssm_tp_certchange_input {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_input?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTCHANGE_INPUT = cssm_tp_certchange_input;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_input_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTCHANGE_INPUT_PTR = *mut cssm_tp_certchange_input;
 
@@ -4130,10 +4259,12 @@ unsafe impl RefEncode for cssm_tp_certchange_output {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_output?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTCHANGE_OUTPUT = cssm_tp_certchange_output;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_output_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTCHANGE_OUTPUT_PTR = *mut cssm_tp_certchange_output;
 
@@ -4166,10 +4297,12 @@ unsafe impl RefEncode for cssm_tp_certverify_input {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_input?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTVERIFY_INPUT = cssm_tp_certverify_input;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_input_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTVERIFY_INPUT_PTR = *mut cssm_tp_certverify_input;
 
@@ -4241,10 +4374,12 @@ unsafe impl RefEncode for cssm_tp_certverify_output {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_output?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_CERTVERIFY_OUTPUT = cssm_tp_certverify_output;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_output_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_CERTVERIFY_OUTPUT_PTR = *mut cssm_tp_certverify_output;
 
@@ -4289,10 +4424,12 @@ unsafe impl RefEncode for cssm_tp_certnotarize_input {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_input?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTNOTARIZE_INPUT = cssm_tp_certnotarize_input;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_input_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTNOTARIZE_INPUT_PTR = *mut cssm_tp_certnotarize_input;
 
@@ -4342,10 +4479,12 @@ unsafe impl RefEncode for cssm_tp_certnotarize_output {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_output?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTNOTARIZE_OUTPUT = cssm_tp_certnotarize_output;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_output_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTNOTARIZE_OUTPUT_PTR = *mut cssm_tp_certnotarize_output;
 
@@ -4380,10 +4519,12 @@ unsafe impl RefEncode for cssm_tp_certreclaim_input {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_input?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTRECLAIM_INPUT = cssm_tp_certreclaim_input;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_input_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTRECLAIM_INPUT_PTR = *mut cssm_tp_certreclaim_input;
 
@@ -4431,10 +4572,12 @@ unsafe impl RefEncode for cssm_tp_certreclaim_output {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_output?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTRECLAIM_OUTPUT = cssm_tp_certreclaim_output;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_output_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTRECLAIM_OUTPUT_PTR = *mut cssm_tp_certreclaim_output;
 
@@ -4471,10 +4614,12 @@ unsafe impl RefEncode for cssm_tp_crlissue_input {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_input?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CRLISSUE_INPUT = cssm_tp_crlissue_input;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_input_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CRLISSUE_INPUT_PTR = *mut cssm_tp_crlissue_input;
 
@@ -4526,10 +4671,12 @@ unsafe impl RefEncode for cssm_tp_crlissue_output {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_output?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CRLISSUE_OUTPUT = cssm_tp_crlissue_output;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_output_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CRLISSUE_OUTPUT_PTR = *mut cssm_tp_crlissue_output;
 
@@ -4620,10 +4767,12 @@ unsafe impl RefEncode for cssm_cert_bundle_header {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle_header?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_CERT_BUNDLE_HEADER = cssm_cert_bundle_header;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle_header_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_CERT_BUNDLE_HEADER_PTR = *mut cssm_cert_bundle_header;
 
@@ -4651,10 +4800,12 @@ unsafe impl RefEncode for cssm_cert_bundle {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CERT_BUNDLE = cssm_cert_bundle;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CERT_BUNDLE_PTR = *mut cssm_cert_bundle;
 
@@ -4760,10 +4911,12 @@ unsafe impl RefEncode for cssm_db_attribute_info {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_info?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_ATTRIBUTE_INFO = cssm_db_attribute_info;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_info_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_ATTRIBUTE_INFO_PTR = *mut cssm_db_attribute_info;
 
@@ -4796,10 +4949,12 @@ unsafe impl RefEncode for cssm_db_attribute_data {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_data?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_ATTRIBUTE_DATA = cssm_db_attribute_data;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_data_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_ATTRIBUTE_DATA_PTR = *mut cssm_db_attribute_data;
 
@@ -4888,10 +5043,12 @@ unsafe impl RefEncode for cssm_db_record_attribute_info {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_info?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_RECORD_ATTRIBUTE_INFO = cssm_db_record_attribute_info;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_info_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_RECORD_ATTRIBUTE_INFO_PTR = *mut cssm_db_record_attribute_info;
 
@@ -4926,10 +5083,12 @@ unsafe impl RefEncode for cssm_db_record_attribute_data {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_data?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_RECORD_ATTRIBUTE_DATA = cssm_db_record_attribute_data;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_data_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR = *mut cssm_db_record_attribute_data;
 
@@ -4960,10 +5119,12 @@ unsafe impl RefEncode for cssm_db_parsing_module_info {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_parsing_module_info?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DB_PARSING_MODULE_INFO = cssm_db_parsing_module_info;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_parsing_module_info_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DB_PARSING_MODULE_INFO_PTR = *mut cssm_db_parsing_module_info;
 
@@ -5016,10 +5177,12 @@ unsafe impl RefEncode for cssm_db_index_info {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_index_info?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_INDEX_INFO = cssm_db_index_info;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_index_info_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_INDEX_INFO_PTR = *mut cssm_db_index_info;
 
@@ -5047,10 +5210,12 @@ unsafe impl RefEncode for cssm_db_unique_record {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_unique_record?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_UNIQUE_RECORD = cssm_db_unique_record;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_unique_record_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_UNIQUE_RECORD_PTR = *mut cssm_db_unique_record;
 
@@ -5083,10 +5248,12 @@ unsafe impl RefEncode for cssm_db_record_index_info {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_index_info?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_RECORD_INDEX_INFO = cssm_db_record_index_info;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_index_info_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_RECORD_INDEX_INFO_PTR = *mut cssm_db_record_index_info;
 
@@ -5155,10 +5322,12 @@ unsafe impl RefEncode for cssm_dbinfo {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dbinfo?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DBINFO = cssm_dbinfo;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dbinfo_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DBINFO_PTR = *mut cssm_dbinfo;
 
@@ -5227,10 +5396,12 @@ unsafe impl RefEncode for cssm_selection_predicate {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_selection_predicate?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_SELECTION_PREDICATE = cssm_selection_predicate;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_selection_predicate_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_SELECTION_PREDICATE_PTR = *mut cssm_selection_predicate;
 
@@ -5264,10 +5435,12 @@ unsafe impl RefEncode for cssm_query_limits {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_limits?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_QUERY_LIMITS = cssm_query_limits;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_limits_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_QUERY_LIMITS_PTR = *mut cssm_query_limits;
 
@@ -5313,10 +5486,12 @@ unsafe impl RefEncode for cssm_query {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_QUERY = cssm_query;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_QUERY_PTR = *mut cssm_query;
 
@@ -5409,10 +5584,12 @@ unsafe impl RefEncode for cssm_name_list {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_name_list?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_NAME_LIST = cssm_name_list;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_name_list_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_NAME_LIST_PTR = *mut cssm_name_list;
 
@@ -5456,10 +5633,12 @@ unsafe impl RefEncode for cssm_db_schema_attribute_info {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_attribute_info?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_SCHEMA_ATTRIBUTE_INFO = cssm_db_schema_attribute_info;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_attribute_info_ptr?language=objc)
+#[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_SCHEMA_ATTRIBUTE_INFO_PTR = *mut cssm_db_schema_attribute_info;
 
@@ -5493,9 +5672,11 @@ unsafe impl RefEncode for cssm_db_schema_index_info {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_index_info?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DB_SCHEMA_INDEX_INFO = cssm_db_schema_index_info;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_index_info_ptr?language=objc)
+#[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DB_SCHEMA_INDEX_INFO_PTR = *mut cssm_db_schema_index_info;

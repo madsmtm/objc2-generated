@@ -552,6 +552,7 @@ unsafe impl RefEncode for cssm_spi_csp_funcs {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_spi_csp_funcs?language=objc)
+#[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -562,6 +563,7 @@ unsafe impl RefEncode for cssm_spi_csp_funcs {
 pub type CSSM_SPI_CSP_FUNCS = cssm_spi_csp_funcs;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_spi_csp_funcs_ptr?language=objc)
+#[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",

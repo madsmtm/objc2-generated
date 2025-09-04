@@ -116,6 +116,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenamelightcontent?language=objc)
+    #[deprecated = "Light content should use the default Aqua apppearance."]
     pub static NSAppearanceNameLightContent: &'static NSAppearanceName;
 }
 

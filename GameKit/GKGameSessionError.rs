@@ -8,6 +8,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerrordomain?language=objc)
+    #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub static GKGameSessionErrorDomain: &'static NSString;
 }
 

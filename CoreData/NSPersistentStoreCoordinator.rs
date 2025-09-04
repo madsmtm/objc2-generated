@@ -144,51 +144,61 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsxmlexternalrecordtype?language=objc)
+    #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSXMLExternalRecordType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbinaryexternalrecordtype?language=objc)
+    #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSBinaryExternalRecordType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsexternalrecordsfileformatoption?language=objc)
+    #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSExternalRecordsFileFormatOption: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsexternalrecordsdirectoryoption?language=objc)
+    #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSExternalRecordsDirectoryOption: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsexternalrecordextensionoption?language=objc)
+    #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSExternalRecordExtensionOption: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitynameinpathkey?language=objc)
+    #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSEntityNameInPathKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstoreuuidinpathkey?language=objc)
+    #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSStoreUUIDInPathKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstorepathkey?language=objc)
+    #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSStorePathKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmodelpathkey?language=objc)
+    #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSModelPathKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsobjecturikey?language=objc)
+    #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSObjectURIKey: &'static NSString;
 }
 
@@ -591,40 +601,48 @@ unsafe impl RefEncode for NSPersistentStoreUbiquitousTransitionType {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouscontentnamekey?language=objc)
+    #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreUbiquitousContentNameKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouscontenturlkey?language=objc)
+    #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreUbiquitousContentURLKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoredidimportubiquitouscontentchangesnotification?language=objc)
+    #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreDidImportUbiquitousContentChangesNotification: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontypekey?language=objc)
+    #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreUbiquitousTransitionTypeKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouspeertokenoption?language=objc)
+    #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreUbiquitousPeerTokenOption: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreremoveubiquitousmetadataoption?language=objc)
+    #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreRemoveUbiquitousMetadataOption: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouscontaineridentifierkey?language=objc)
+    #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreUbiquitousContainerIdentifierKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerebuildfromubiquitouscontentoption?language=objc)
+    #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreRebuildFromUbiquitousContentOption: &'static NSString;
 }

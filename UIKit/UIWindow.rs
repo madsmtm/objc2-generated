@@ -399,15 +399,18 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardcenterbeginuserinfokey?language=objc)
+    #[deprecated]
     pub static UIKeyboardCenterBeginUserInfoKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardcenterenduserinfokey?language=objc)
+    #[deprecated]
     pub static UIKeyboardCenterEndUserInfoKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardboundsuserinfokey?language=objc)
+    #[deprecated]
     pub static UIKeyboardBoundsUserInfoKey: &'static NSString;
 }

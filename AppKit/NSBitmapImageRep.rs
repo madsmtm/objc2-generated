@@ -544,52 +544,65 @@ impl NSBitmapImageRep {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstifffiletype?language=objc)
+#[deprecated]
 pub static NSTIFFFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::TIFF.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbmpfiletype?language=objc)
+#[deprecated]
 pub static NSBMPFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::BMP.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgiffiletype?language=objc)
+#[deprecated]
 pub static NSGIFFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::GIF.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsjpegfiletype?language=objc)
+#[deprecated]
 pub static NSJPEGFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::JPEG.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspngfiletype?language=objc)
+#[deprecated]
 pub static NSPNGFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::PNG.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsjpeg2000filetype?language=objc)
+#[deprecated]
 pub static NSJPEG2000FileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::JPEG2000.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalphafirstbitmapformat?language=objc)
+#[deprecated]
 pub static NSAlphaFirstBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::AlphaFirst.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalphanonpremultipliedbitmapformat?language=objc)
+#[deprecated]
 pub static NSAlphaNonpremultipliedBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::AlphaNonpremultiplied.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfloatingpointsamplesbitmapformat?language=objc)
+#[deprecated]
 pub static NSFloatingPointSamplesBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::FloatingPointSamples.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns16bitlittleendianbitmapformat?language=objc)
+#[deprecated]
 pub static NS16BitLittleEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::SixteenBitLittleEndian.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns32bitlittleendianbitmapformat?language=objc)
+#[deprecated]
 pub static NS32BitLittleEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::ThirtyTwoBitLittleEndian.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns16bitbigendianbitmapformat?language=objc)
+#[deprecated]
 pub static NS16BitBigEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::SixteenBitBigEndian.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns32bitbigendianbitmapformat?language=objc)
+#[deprecated]
 pub static NS32BitBigEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::ThirtyTwoBitBigEndian.0);

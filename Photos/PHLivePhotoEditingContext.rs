@@ -216,6 +216,7 @@ extern "C" {
     /// The error domain for all Live Photo Editing errors (Deprecated).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrordomain?language=objc)
+    #[deprecated]
     pub static PHLivePhotoEditingErrorDomain: &'static NSString;
 }
 

@@ -65,6 +65,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypeirda?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCNetworkInterfaceTypeIrDA: &'static CFString;
 }
 
@@ -85,6 +86,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypepptp?language=objc)
+    #[deprecated = "No longer supported"]
     pub static kSCNetworkInterfaceTypePPTP: &'static CFString;
 }
 

@@ -369,6 +369,7 @@ unsafe impl RefEncode for MTLBindingAccess {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentaccess?language=objc)
+#[deprecated]
 pub type MTLArgumentAccess = MTLBindingAccess;
 
 extern_class!(

@@ -8,6 +8,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmlkiterrordomain?language=objc)
+    #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMLKitErrorDomain: &'static NSString;
 }
 

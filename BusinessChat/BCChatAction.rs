@@ -17,6 +17,7 @@ extern "C" {
     /// Intent is used to help the support agent or business system identify the product, service, account, or other context when the customer tapped the button to send the message.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcparameternameintent?language=objc)
+    #[deprecated]
     pub static BCParameterNameIntent: &'static BCParameterName;
 }
 
@@ -24,6 +25,7 @@ extern "C" {
     /// Group is used to help the business or customer service platform route the message to the appropriate support agent group.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcparameternamegroup?language=objc)
+    #[deprecated]
     pub static BCParameterNameGroup: &'static BCParameterName;
 }
 
@@ -31,6 +33,7 @@ extern "C" {
     /// Body is used to help the customer by providing a pre-configured contextual message that the customer can tap to send to smooth the transition into Business Chat.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcparameternamebody?language=objc)
+    #[deprecated]
     pub static BCParameterNameBody: &'static BCParameterName;
 }
 

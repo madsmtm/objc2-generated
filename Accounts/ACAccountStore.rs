@@ -161,5 +161,6 @@ impl ACAccountStore {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoredidchangenotification?language=objc)
+    #[deprecated = "Public notification deprecated. Internal clients, see private header for replacement"]
     pub static ACAccountStoreDidChangeNotification: Option<&'static NSString>;
 }

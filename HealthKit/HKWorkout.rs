@@ -710,11 +710,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotaldistance?language=objc)
+    #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for the desired distance type"]
     pub static HKPredicateKeyPathWorkoutTotalDistance: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotalenergyburned?language=objc)
+    #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned"]
     pub static HKPredicateKeyPathWorkoutTotalEnergyBurned: &'static NSString;
 }
 
@@ -725,11 +727,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotalswimmingstrokecount?language=objc)
+    #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
     pub static HKPredicateKeyPathWorkoutTotalSwimmingStrokeCount: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotalflightsclimbed?language=objc)
+    #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierFlightsClimbed"]
     pub static HKPredicateKeyPathWorkoutTotalFlightsClimbed: &'static NSString;
 }
 

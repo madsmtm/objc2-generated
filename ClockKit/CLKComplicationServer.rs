@@ -9,6 +9,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationserveractivecomplicationsdidchangenotification?language=objc)
+    #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub static CLKComplicationServerActiveComplicationsDidChangeNotification: &'static NSString;
 }
 

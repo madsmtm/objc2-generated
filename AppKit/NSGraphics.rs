@@ -85,118 +85,147 @@ unsafe impl RefEncode for NSCompositingOperation {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeclear?language=objc)
+#[deprecated]
 pub static NSCompositeClear: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Clear.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecopy?language=objc)
+#[deprecated]
 pub static NSCompositeCopy: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Copy.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourceover?language=objc)
+#[deprecated]
 pub static NSCompositeSourceOver: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceOver.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourcein?language=objc)
+#[deprecated]
 pub static NSCompositeSourceIn: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceIn.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourceout?language=objc)
+#[deprecated]
 pub static NSCompositeSourceOut: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceOut.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourceatop?language=objc)
+#[deprecated]
 pub static NSCompositeSourceAtop: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceAtop.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationover?language=objc)
+#[deprecated]
 pub static NSCompositeDestinationOver: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationOver.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationin?language=objc)
+#[deprecated]
 pub static NSCompositeDestinationIn: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationIn.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationout?language=objc)
+#[deprecated]
 pub static NSCompositeDestinationOut: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationOut.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationatop?language=objc)
+#[deprecated]
 pub static NSCompositeDestinationAtop: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationAtop.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositexor?language=objc)
+#[deprecated]
 pub static NSCompositeXOR: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::XOR.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeplusdarker?language=objc)
+#[deprecated]
 pub static NSCompositePlusDarker: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::PlusDarker.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositehighlight?language=objc)
+#[deprecated]
 pub static NSCompositeHighlight: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Highlight.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositepluslighter?language=objc)
+#[deprecated]
 pub static NSCompositePlusLighter: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::PlusLighter.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositemultiply?language=objc)
+#[deprecated]
 pub static NSCompositeMultiply: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Multiply.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositescreen?language=objc)
+#[deprecated]
 pub static NSCompositeScreen: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Screen.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeoverlay?language=objc)
+#[deprecated]
 pub static NSCompositeOverlay: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Overlay.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedarken?language=objc)
+#[deprecated]
 pub static NSCompositeDarken: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Darken.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositelighten?language=objc)
+#[deprecated]
 pub static NSCompositeLighten: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Lighten.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecolordodge?language=objc)
+#[deprecated]
 pub static NSCompositeColorDodge: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::ColorDodge.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecolorburn?language=objc)
+#[deprecated]
 pub static NSCompositeColorBurn: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::ColorBurn.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesoftlight?language=objc)
+#[deprecated]
 pub static NSCompositeSoftLight: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SoftLight.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositehardlight?language=objc)
+#[deprecated]
 pub static NSCompositeHardLight: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::HardLight.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedifference?language=objc)
+#[deprecated]
 pub static NSCompositeDifference: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Difference.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeexclusion?language=objc)
+#[deprecated]
 pub static NSCompositeExclusion: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Exclusion.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositehue?language=objc)
+#[deprecated]
 pub static NSCompositeHue: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Hue.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesaturation?language=objc)
+#[deprecated]
 pub static NSCompositeSaturation: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Saturation.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecolor?language=objc)
+#[deprecated]
 pub static NSCompositeColor: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Color.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeluminosity?language=objc)
+#[deprecated]
 pub static NSCompositeLuminosity: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Luminosity.0);
 
@@ -362,11 +391,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscalibratedblackcolorspace?language=objc)
+    #[deprecated]
     pub static NSCalibratedBlackColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceblackcolorspace?language=objc)
+    #[deprecated]
     pub static NSDeviceBlackColorSpace: &'static NSColorSpaceName;
 }
 

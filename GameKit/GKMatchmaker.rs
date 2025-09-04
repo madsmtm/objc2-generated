@@ -51,6 +51,7 @@ unsafe impl RefEncode for GKInviteRecipientResponse {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviteeresponse?language=objc)
+#[deprecated]
 pub type GKInviteeResponse = GKInviteRecipientResponse;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchtype?language=objc)

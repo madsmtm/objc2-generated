@@ -1857,6 +1857,7 @@ extern "C" {
     /// NSApplicationLaunchRemoteNotificationKey is unimplemented.  Please use NSApplicationLaunchUserNotificationKey to get the NSUserNotification object.  The NSUserNotification object has an isRemote property to indicate whether this application was launched as a result of a remote notification
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationlaunchremotenotificationkey?language=objc)
+    #[deprecated]
     pub static NSApplicationLaunchRemoteNotificationKey: &'static NSString;
 }
 

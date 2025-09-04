@@ -356,30 +356,39 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnomodecolorpanel?language=objc)
+#[deprecated]
 pub static NSNoModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::None.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraymodecolorpanel?language=objc)
+#[deprecated]
 pub static NSGrayModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Gray.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrgbmodecolorpanel?language=objc)
+#[deprecated]
 pub static NSRGBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::RGB.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscmykmodecolorpanel?language=objc)
+#[deprecated]
 pub static NSCMYKModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::CMYK.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshsbmodecolorpanel?language=objc)
+#[deprecated]
 pub static NSHSBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::HSB.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscustompalettemodecolorpanel?language=objc)
+#[deprecated]
 pub static NSCustomPaletteModeColorPanel: NSColorPanelMode =
     NSColorPanelMode(NSColorPanelMode::CustomPalette.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlistmodecolorpanel?language=objc)
+#[deprecated]
 pub static NSColorListModeColorPanel: NSColorPanelMode =
     NSColorPanelMode(NSColorPanelMode::ColorList.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswheelmodecolorpanel?language=objc)
+#[deprecated]
 pub static NSWheelModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Wheel.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscrayonmodecolorpanel?language=objc)
+#[deprecated]
 pub static NSCrayonModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Crayon.0);

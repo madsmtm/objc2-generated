@@ -16,5 +16,6 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinibproxiedobjectskey?language=objc)
+    #[deprecated]
     pub static UINibProxiedObjectsKey: &'static NSString;
 }

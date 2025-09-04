@@ -100,5 +100,6 @@ extern "C" {
     /// Notification posted when the model collection has changed.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelcollectiondidchangenotification?language=objc)
+    #[deprecated = "Use Background Assets or NSURLSession instead."]
     pub static MLModelCollectionDidChangeNotification: &'static NSNotificationName;
 }

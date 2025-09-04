@@ -9,18 +9,21 @@ use crate::*;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrordomainipc?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated]
     pub static kSMErrorDomainIPC: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrordomainframework?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated]
     pub static kSMErrorDomainFramework: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrordomainlaunchd?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
+    #[deprecated]
     pub static kSMErrorDomainLaunchd: Option<&'static CFString>;
 }
 

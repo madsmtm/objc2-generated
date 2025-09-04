@@ -60,6 +60,7 @@ extern "C" {
     /// performed and any directional control characters are ignored.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptiondisablebidiprocessing?language=objc)
+    #[deprecated = "Deprecated"]
     pub static kCTTypesetterOptionDisableBidiProcessing: &'static CFString;
 }
 

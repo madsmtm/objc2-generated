@@ -23,6 +23,7 @@ unsafe impl RefEncode for SecAsn1Coder {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1coderref?language=objc)
+#[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1CoderRef = *mut SecAsn1Coder;
 
 impl SecAsn1Coder {

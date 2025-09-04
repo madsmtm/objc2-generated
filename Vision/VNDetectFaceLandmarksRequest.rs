@@ -126,6 +126,7 @@ impl VNDetectFaceLandmarksRequest {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision1?language=objc)
+#[deprecated]
 pub static VNDetectFaceLandmarksRequestRevision1: NSUInteger = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision2?language=objc)

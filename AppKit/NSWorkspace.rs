@@ -730,6 +730,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacefileoperationname?language=objc)
+#[deprecated]
 // NS_TYPED_ENUM
 pub type NSWorkspaceFileOperationName = NSString;
 
@@ -788,27 +789,32 @@ unsafe impl RefEncode for NSWorkspaceLaunchOptions {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchconfigurationkey?language=objc)
+#[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
 // NS_TYPED_ENUM
 pub type NSWorkspaceLaunchConfigurationKey = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchconfigurationappleevent?language=objc)
+    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setAppleEvent:] instead."]
     pub static NSWorkspaceLaunchConfigurationAppleEvent: &'static NSWorkspaceLaunchConfigurationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchconfigurationarguments?language=objc)
+    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setArguments:] instead."]
     pub static NSWorkspaceLaunchConfigurationArguments: &'static NSWorkspaceLaunchConfigurationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchconfigurationenvironment?language=objc)
+    #[deprecated = "Use -[NSWorkspaceOpenConfiguration setEnvironment:] instead."]
     pub static NSWorkspaceLaunchConfigurationEnvironment:
         &'static NSWorkspaceLaunchConfigurationKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchconfigurationarchitecture?language=objc)
+    #[deprecated = "Do not specify an architecutre. When unspecified, the architecture for a new application instance will be determined based on the available architectures in its executable."]
     pub static NSWorkspaceLaunchConfigurationArchitecture:
         &'static NSWorkspaceLaunchConfigurationKey;
 }
@@ -1085,80 +1091,96 @@ impl NSWorkspace {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacemoveoperation?language=objc)
+    #[deprecated = "Use -[NSFileManager moveItemAtURL:toURL:error:] instead."]
     pub static NSWorkspaceMoveOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacecopyoperation?language=objc)
+    #[deprecated = "Use -[NSFileManager copyItemAtURL:toURL:error:] instead."]
     pub static NSWorkspaceCopyOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelinkoperation?language=objc)
+    #[deprecated = "Use -[NSFileManager linkItemAtURL:toURL:error:] instead."]
     pub static NSWorkspaceLinkOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacecompressoperation?language=objc)
+    #[deprecated = "This operation is unimplemented."]
     pub static NSWorkspaceCompressOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedecompressoperation?language=objc)
+    #[deprecated = "This operation is unimplemented."]
     pub static NSWorkspaceDecompressOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceencryptoperation?language=objc)
+    #[deprecated = "This operation is unimplemented."]
     pub static NSWorkspaceEncryptOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedecryptoperation?language=objc)
+    #[deprecated = "This operation is unimplemented."]
     pub static NSWorkspaceDecryptOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedestroyoperation?language=objc)
+    #[deprecated = "Use -[NSFileManager removeItemAtURL:error:] instead."]
     pub static NSWorkspaceDestroyOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacerecycleoperation?language=objc)
+    #[deprecated = "Use -[NSWorkspace recycleURLs:completionHandler:] instead."]
     pub static NSWorkspaceRecycleOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceduplicateoperation?language=objc)
+    #[deprecated = "Use -[NSWorkspace duplicateURLs:completionHandler:] instead."]
     pub static NSWorkspaceDuplicateOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacedidperformfileoperationnotification?language=objc)
+    #[deprecated]
     pub static NSWorkspaceDidPerformFileOperationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsplainfiletype?language=objc)
+    #[deprecated]
     pub static NSPlainFileType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectoryfiletype?language=objc)
+    #[deprecated]
     pub static NSDirectoryFileType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationfiletype?language=objc)
+    #[deprecated]
     pub static NSApplicationFileType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilesystemfiletype?language=objc)
+    #[deprecated]
     pub static NSFilesystemFileType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshellcommandfiletype?language=objc)
+    #[deprecated]
     pub static NSShellCommandFileType: &'static NSString;
 }

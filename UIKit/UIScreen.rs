@@ -14,11 +14,13 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreendidconnectnotification?language=objc)
+    #[deprecated = "Use UISceneDelegate or related notifications to be informed of connecting scenes from other screens"]
     pub static UIScreenDidConnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreendiddisconnectnotification?language=objc)
+    #[deprecated = "Use UISceneDelegate or related notifications to be informed of disconnecting scenes from other screens"]
     pub static UIScreenDidDisconnectNotification: &'static NSNotificationName;
 }
 

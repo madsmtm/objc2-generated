@@ -1659,6 +1659,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturerfc4754?language=objc)
+    #[deprecated]
     pub static kSecKeyAlgorithmECDSASignatureRFC4754: &'static SecKeyAlgorithm;
 }
 

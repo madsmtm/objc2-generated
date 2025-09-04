@@ -9851,6 +9851,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomasterportdefault?language=objc)
     #[cfg(feature = "libc")]
+    #[deprecated]
     pub static kIOMasterPortDefault: libc::mach_port_t;
 }
 

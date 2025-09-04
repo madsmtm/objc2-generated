@@ -392,11 +392,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecuritylevelsslv2?language=objc)
+    #[deprecated]
     pub static kCFStreamSocketSecurityLevelSSLv2: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecuritylevelsslv3?language=objc)
+    #[deprecated]
     pub static kCFStreamSocketSecurityLevelSSLv3: &'static CFString;
 }
 

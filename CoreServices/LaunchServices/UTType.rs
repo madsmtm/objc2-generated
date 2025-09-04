@@ -52,21 +52,25 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttagclassfilenameextension?language=objc)
+    #[deprecated = "Use UTTagClassFilenameExtension instead."]
     pub static kUTTagClassFilenameExtension: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttagclassmimetype?language=objc)
+    #[deprecated = "Use UTTagClassMIMEType instead."]
     pub static kUTTagClassMIMEType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttagclassnspboardtype?language=objc)
+    #[deprecated = "NSPasteboard types are obsolete."]
     pub static kUTTagClassNSPboardType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttagclassostype?language=objc)
+    #[deprecated = "HFS file types are obsolete."]
     pub static kUTTagClassOSType: &'static CFString;
 }
 

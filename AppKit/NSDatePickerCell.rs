@@ -328,43 +328,54 @@ extern_protocol!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfieldandstepperdatepickerstyle?language=objc)
+#[deprecated]
 pub static NSTextFieldAndStepperDatePickerStyle: NSDatePickerStyle =
     NSDatePickerStyle(NSDatePickerStyle::TextFieldAndStepper.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclockandcalendardatepickerstyle?language=objc)
+#[deprecated]
 pub static NSClockAndCalendarDatePickerStyle: NSDatePickerStyle =
     NSDatePickerStyle(NSDatePickerStyle::ClockAndCalendar.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfielddatepickerstyle?language=objc)
+#[deprecated]
 pub static NSTextFieldDatePickerStyle: NSDatePickerStyle =
     NSDatePickerStyle(NSDatePickerStyle::TextField.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssingledatemode?language=objc)
+#[deprecated]
 pub static NSSingleDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerMode::Single.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrangedatemode?language=objc)
+#[deprecated]
 pub static NSRangeDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerMode::Range.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshourminutedatepickerelementflag?language=objc)
+#[deprecated]
 pub static NSHourMinuteDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::HourMinute.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshourminuteseconddatepickerelementflag?language=objc)
+#[deprecated]
 pub static NSHourMinuteSecondDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::HourMinuteSecond.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstimezonedatepickerelementflag?language=objc)
+#[deprecated]
 pub static NSTimeZoneDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::TimeZone.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsyearmonthdatepickerelementflag?language=objc)
+#[deprecated]
 pub static NSYearMonthDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::YearMonth.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsyearmonthdaydatepickerelementflag?language=objc)
+#[deprecated]
 pub static NSYearMonthDayDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::YearMonthDay.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseradatepickerelementflag?language=objc)
+#[deprecated]
 pub static NSEraDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::Era.0);

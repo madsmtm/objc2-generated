@@ -45,26 +45,31 @@ unsafe impl RefEncode for WebNavigationType {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionnavigationtypekey?language=objc)
+    #[deprecated]
     pub static WebActionNavigationTypeKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionelementkey?language=objc)
+    #[deprecated]
     pub static WebActionElementKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionbuttonkey?language=objc)
+    #[deprecated]
     pub static WebActionButtonKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionmodifierflagskey?language=objc)
+    #[deprecated]
     pub static WebActionModifierFlagsKey: Option<&'static NSString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionoriginalurlkey?language=objc)
+    #[deprecated]
     pub static WebActionOriginalURLKey: Option<&'static NSString>;
 }
 

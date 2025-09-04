@@ -88,6 +88,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamnetworkservicetypevoip?language=objc)
+    #[deprecated = "use PushKit for VoIP control purposes"]
     pub static kCFStreamNetworkServiceTypeVoIP: &'static CFString;
 }
 
@@ -200,20 +201,24 @@ extern "C-unwind" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertysslpeercertificates?language=objc)
+    #[deprecated]
     pub static kCFStreamPropertySSLPeerCertificates: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamsslallowsexpiredcertificates?language=objc)
+    #[deprecated]
     pub static kCFStreamSSLAllowsExpiredCertificates: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamsslallowsexpiredroots?language=objc)
+    #[deprecated]
     pub static kCFStreamSSLAllowsExpiredRoots: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamsslallowsanyroot?language=objc)
+    #[deprecated]
     pub static kCFStreamSSLAllowsAnyRoot: &'static CFString;
 }

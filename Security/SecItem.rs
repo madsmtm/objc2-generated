@@ -742,6 +742,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessiblealways?language=objc)
+    #[deprecated = "Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlock"]
     pub static kSecAttrAccessibleAlways: &'static CFString;
 }
 
@@ -762,6 +763,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessiblealwaysthisdeviceonly?language=objc)
+    #[deprecated = "Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly"]
     pub static kSecAttrAccessibleAlwaysThisDeviceOnly: &'static CFString;
 }
 
@@ -1348,6 +1350,7 @@ extern "C" {
     /// indicating whether the item is shared with other personas on the system.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseitemlist?language=objc)
+    #[deprecated = "Not implemented on this platform"]
     pub static kSecUseItemList: &'static CFString;
 }
 
@@ -1358,11 +1361,13 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseoperationprompt?language=objc)
+    #[deprecated = "Use kSecUseAuthenticationContext and set LAContext.localizedReason property"]
     pub static kSecUseOperationPrompt: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecusenoauthenticationui?language=objc)
+    #[deprecated = "Use kSecUseAuthenticationUI instead."]
     pub static kSecUseNoAuthenticationUI: &'static CFString;
 }
 
@@ -1401,11 +1406,13 @@ extern "C" {
     /// only with SecItemCopyMatching.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseauthenticationuiallow?language=objc)
+    #[deprecated = "Instead of kSecUseAuthenticationUI, use kSecUseAuthenticationContext and set LAContext.interactionNotAllowed property"]
     pub static kSecUseAuthenticationUIAllow: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseauthenticationuifail?language=objc)
+    #[deprecated = "Instead of kSecUseAuthenticationUI, use kSecUseAuthenticationContext and set LAContext.interactionNotAllowed property"]
     pub static kSecUseAuthenticationUIFail: &'static CFString;
 }
 

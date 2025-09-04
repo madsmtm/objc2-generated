@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccelerationvalue?language=objc)
+#[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
 pub type UIAccelerationValue = c_double;
 
 extern_class!(

@@ -315,7 +315,9 @@ impl NSBox {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsboxsecondary?language=objc)
+#[deprecated]
 pub static NSBoxSecondary: NSBoxType = NSBoxType(1);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsboxoldstyle?language=objc)
+#[deprecated = "NSBoxOldStyle is discouraged in modern application design. It should be replaced with either NSBoxPrimary or NSBoxCustom."]
 pub static NSBoxOldStyle: NSBoxType = NSBoxType(3);

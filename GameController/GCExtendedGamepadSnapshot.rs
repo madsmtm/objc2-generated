@@ -102,6 +102,7 @@ unsafe impl RefEncode for GCExtendedGamepadSnapshotDataVersion {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccurrentextendedgamepadsnapshotdataversion?language=objc)
+    #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     pub static GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion;
 }
 

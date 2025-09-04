@@ -715,16 +715,19 @@ extern_protocol!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtextbackgroundcolorkey?language=objc)
+    #[deprecated]
     pub static UITextInputTextBackgroundColorKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtextcolorkey?language=objc)
+    #[deprecated]
     pub static UITextInputTextColorKey: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtextfontkey?language=objc)
+    #[deprecated]
     pub static UITextInputTextFontKey: &'static NSString;
 }
 

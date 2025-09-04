@@ -9,16 +9,19 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayeritemtimejumpednotification?language=objc)
+    #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub static WKAudioFilePlayerItemTimeJumpedNotification: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayeritemdidplaytoendtimenotification?language=objc)
+    #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub static WKAudioFilePlayerItemDidPlayToEndTimeNotification: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayeritemfailedtoplaytoendtimenotification?language=objc)
+    #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub static WKAudioFilePlayerItemFailedToPlayToEndTimeNotification: &'static NSString;
 }
 

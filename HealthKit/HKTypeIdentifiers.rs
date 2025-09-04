@@ -1071,5 +1071,6 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifieraudioexposureevent?language=objc)
+    #[deprecated]
     pub static HKCategoryTypeIdentifierAudioExposureEvent: &'static HKCategoryTypeIdentifier;
 }

@@ -89,10 +89,12 @@ impl NSNib {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnibowner?language=objc)
+    #[deprecated]
     pub static NSNibOwner: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnibtoplevelobjects?language=objc)
+    #[deprecated]
     pub static NSNibTopLevelObjects: &'static NSString;
 }

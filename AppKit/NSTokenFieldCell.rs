@@ -395,10 +395,13 @@ extern_protocol!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefaulttokenstyle?language=objc)
+#[deprecated]
 pub static NSDefaultTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::Default.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsplaintexttokenstyle?language=objc)
+#[deprecated]
 pub static NSPlainTextTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::None.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundedtokenstyle?language=objc)
+#[deprecated]
 pub static NSRoundedTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::Rounded.0);

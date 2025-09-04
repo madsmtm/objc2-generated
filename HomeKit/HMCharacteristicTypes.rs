@@ -666,6 +666,7 @@ extern "C" {
     /// Characteristic type for manufacturer. The value of the characteristic is a string.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypemanufacturer?language=objc)
+    #[deprecated]
     pub static HMCharacteristicTypeManufacturer: &'static NSString;
 }
 
@@ -673,6 +674,7 @@ extern "C" {
     /// Characteristic type for model. The value of the characteristic is a string.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypemodel?language=objc)
+    #[deprecated]
     pub static HMCharacteristicTypeModel: &'static NSString;
 }
 
@@ -722,6 +724,7 @@ extern "C" {
     /// Characteristic type for serial number. The value of the characteristic is a string.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeserialnumber?language=objc)
+    #[deprecated = "No longer supported"]
     pub static HMCharacteristicTypeSerialNumber: &'static NSString;
 }
 
@@ -764,6 +767,7 @@ extern "C" {
     /// Characteristic type for firmware version. The value of the characteristic is a string.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypefirmwareversion?language=objc)
+    #[deprecated]
     pub static HMCharacteristicTypeFirmwareVersion: &'static NSString;
 }
 
