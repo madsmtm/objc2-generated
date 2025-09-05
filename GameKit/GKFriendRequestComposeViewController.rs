@@ -106,6 +106,7 @@ impl GKFriendRequestComposeViewController {
     );
 }
 
+#[deprecated = "No longer supported."]
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 impl GKFriendRequestComposeViewController {

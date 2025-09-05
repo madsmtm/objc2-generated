@@ -192,6 +192,7 @@ impl DOMMouseEvent {
 }
 
 /// DOMMouseEventDeprecated.
+#[deprecated]
 #[cfg(all(
     feature = "DOMEvent",
     feature = "DOMObject",

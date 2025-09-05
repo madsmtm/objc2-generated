@@ -137,6 +137,7 @@ impl DOMMutationEvent {
 }
 
 /// DOMMutationEventDeprecated.
+#[deprecated]
 #[cfg(all(
     feature = "DOMEvent",
     feature = "DOMObject",

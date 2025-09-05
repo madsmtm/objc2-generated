@@ -101,6 +101,7 @@ extern_protocol!(
 );
 
 /// GKGameSessionEventListener.
+#[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
 #[cfg(feature = "GKGameSession")]
 impl GKGameSession {
     extern_methods!(

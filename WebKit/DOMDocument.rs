@@ -605,6 +605,7 @@ impl DOMDocument {
 }
 
 /// DOMDocumentDeprecated.
+#[deprecated]
 #[cfg(all(
     feature = "DOMNode",
     feature = "DOMObject",

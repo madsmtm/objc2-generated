@@ -142,6 +142,7 @@ impl DOMCharacterData {
 }
 
 /// DOMCharacterDataDeprecated.
+#[deprecated]
 #[cfg(all(
     feature = "DOMNode",
     feature = "DOMObject",

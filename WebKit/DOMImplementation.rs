@@ -110,6 +110,7 @@ impl DOMImplementation {
 }
 
 /// DOMImplementationDeprecated.
+#[deprecated]
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMImplementation {
     extern_methods!(

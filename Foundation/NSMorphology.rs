@@ -431,6 +431,7 @@ impl NSMorphologyPronoun {
 }
 
 /// NSCustomPronouns.
+#[deprecated = "Use NSTermOfAddress instead"]
 impl NSMorphology {
     extern_methods!(
         #[cfg(feature = "NSString")]

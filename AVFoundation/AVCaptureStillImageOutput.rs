@@ -327,6 +327,7 @@ impl AVCaptureAutoExposureBracketedStillImageSettings {
 /// A "still image bracket" is a batch of images taken as quickly as possible in succession, optionally with different settings from picture to picture.
 ///
 /// In a bracketed capture, AVCaptureDevice flashMode property is ignored (flash is forced off), as is AVCaptureStillImageOutput's automaticallyEnablesStillImageStabilizationWhenAvailable property (stabilization is forced off).
+#[deprecated = "Use AVCapturePhotoOutput instead."]
 #[cfg(feature = "AVCaptureOutputBase")]
 impl AVCaptureStillImageOutput {
     extern_methods!(

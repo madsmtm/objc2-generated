@@ -317,6 +317,7 @@ impl DOMNode {
 }
 
 /// DOMNodeDeprecated.
+#[deprecated]
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMNode {
     extern_methods!(

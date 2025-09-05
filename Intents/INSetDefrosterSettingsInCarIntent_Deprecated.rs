@@ -7,6 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Deprecated.
+#[deprecated = "INSetDefrosterSettingsInCarIntent is deprecated. There is no replacement."]
 #[cfg(all(feature = "INIntent", feature = "INSetDefrosterSettingsInCarIntent"))]
 impl INSetDefrosterSettingsInCarIntent {
     extern_methods!(

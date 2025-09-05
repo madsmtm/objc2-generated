@@ -292,6 +292,7 @@ impl IKImageBrowserView {
 }
 
 /// IKMainMethods.
+#[deprecated = "Deprecated - Please use NSCollectionView instead"]
 impl IKImageBrowserView {
     extern_methods!(
         /// The receiver's data source. the data source is not retained by the receiver.
@@ -327,6 +328,7 @@ impl IKImageBrowserView {
 }
 
 /// IKAppearance.
+#[deprecated = "Deprecated - Please use NSCollectionView instead"]
 impl IKImageBrowserView {
     extern_methods!(
         /// Defines the cells appearance style.
@@ -414,6 +416,7 @@ impl IKImageBrowserView {
 }
 
 /// IKBrowsing.
+#[deprecated = "Deprecated - Please use NSCollectionView instead"]
 impl IKImageBrowserView {
     extern_methods!(
         /// Sets the zoom value to
@@ -557,6 +560,7 @@ impl IKImageBrowserView {
 }
 
 /// IKSelectionReorderingAndGrouping.
+#[deprecated = "Deprecated - Please use NSCollectionView instead"]
 impl IKImageBrowserView {
     extern_methods!(
         /// Returns the indexes of the selected cells
@@ -652,6 +656,7 @@ impl IKImageBrowserView {
 }
 
 /// IKDragNDrop.
+#[deprecated = "Deprecated - Please use NSCollectionView instead"]
 impl IKImageBrowserView {
     extern_methods!(
         /// Sets the receiver's dragging destination delegate to

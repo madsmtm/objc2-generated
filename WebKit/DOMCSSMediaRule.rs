@@ -107,6 +107,7 @@ impl DOMCSSMediaRule {
 }
 
 /// DOMCSSMediaRuleDeprecated.
+#[deprecated]
 #[cfg(all(
     feature = "DOMCSSRule",
     feature = "DOMObject",

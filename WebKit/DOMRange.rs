@@ -259,6 +259,7 @@ impl DOMRange {
 }
 
 /// DOMRangeDeprecated.
+#[deprecated]
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMRange {
     extern_methods!(

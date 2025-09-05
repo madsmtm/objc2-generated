@@ -7,6 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// WebDOMNodeOperations.
+#[deprecated]
 #[cfg(all(
     feature = "DOMNode",
     feature = "DOMObject",
@@ -24,6 +25,7 @@ impl DOMNode {
 }
 
 /// WebDOMDocumentOperations.
+#[deprecated]
 #[cfg(all(
     feature = "DOMDocument",
     feature = "DOMNode",
@@ -55,6 +57,7 @@ impl DOMDocument {
 }
 
 /// WebDOMRangeOperations.
+#[deprecated]
 #[cfg(all(
     feature = "DOMObject",
     feature = "DOMRange",
@@ -78,6 +81,7 @@ impl DOMRange {
 }
 
 /// WebDOMHTMLFrameElementOperations.
+#[deprecated]
 #[cfg(all(
     feature = "DOMElement",
     feature = "DOMHTMLElement",
@@ -98,6 +102,7 @@ impl DOMHTMLFrameElement {
 }
 
 /// WebDOMHTMLIFrameElementOperations.
+#[deprecated]
 #[cfg(all(
     feature = "DOMElement",
     feature = "DOMHTMLElement",
@@ -118,6 +123,7 @@ impl DOMHTMLIFrameElement {
 }
 
 /// WebDOMHTMLObjectElementOperations.
+#[deprecated]
 #[cfg(all(
     feature = "DOMElement",
     feature = "DOMHTMLElement",

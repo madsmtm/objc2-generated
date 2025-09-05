@@ -850,6 +850,7 @@ impl WebView {
 }
 
 /// WebIBActions.
+#[deprecated = "No longer supported; please adopt WKWebView."]
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 impl WebView {
@@ -973,6 +974,7 @@ extern "C" {
 }
 
 /// WebViewCSS.
+#[deprecated = "No longer supported; please adopt WKWebView."]
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 impl WebView {
@@ -996,6 +998,7 @@ impl WebView {
 }
 
 /// WebViewEditing.
+#[deprecated = "No longer supported; please adopt WKWebView."]
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 impl WebView {
@@ -1146,6 +1149,7 @@ impl WebView {
 }
 
 /// WebViewUndoableEditing.
+#[deprecated = "No longer supported; please adopt WKWebView."]
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 impl WebView {
@@ -1194,6 +1198,7 @@ impl WebView {
 }
 
 /// WebViewEditingActions.
+#[deprecated = "No longer supported; please adopt WKWebView."]
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 impl WebView {

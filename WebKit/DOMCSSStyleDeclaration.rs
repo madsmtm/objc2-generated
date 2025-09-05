@@ -139,6 +139,7 @@ impl DOMCSSStyleDeclaration {
 }
 
 /// DOMCSSStyleDeclarationDeprecated.
+#[deprecated]
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMCSSStyleDeclaration {
     extern_methods!(

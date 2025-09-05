@@ -511,6 +511,7 @@ impl AVAssetResourceLoader {
 }
 
 /// AVAssetResourceLoadingRequestContentKeyRequestSupport.
+#[deprecated = "AVAssetResourceLoader based key loading is no longer supported, transition to AVContentKeySession"]
 impl AVAssetResourceLoadingRequest {
     extern_methods!(
         /// Obtains a streaming content key request for a specific combination of application and content.

@@ -155,6 +155,7 @@ impl GKScore {
 }
 
 /// Deprecated.
+#[deprecated]
 impl GKScore {
     extern_methods!(
         #[cfg(feature = "block2")]

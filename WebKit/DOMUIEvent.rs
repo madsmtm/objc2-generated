@@ -139,6 +139,7 @@ impl DOMUIEvent {
 }
 
 /// DOMUIEventDeprecated.
+#[deprecated]
 #[cfg(all(
     feature = "DOMEvent",
     feature = "DOMObject",

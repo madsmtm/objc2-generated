@@ -7,6 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Deprecated.
+#[deprecated = "INSaveProfileInCarIntent is deprecated. There is no replacement."]
 #[cfg(all(feature = "INIntent", feature = "INSaveProfileInCarIntent"))]
 impl INSaveProfileInCarIntent {
     extern_methods!(

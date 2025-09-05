@@ -7,6 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// DOMCSS2Properties.
+#[deprecated]
 #[cfg(all(
     feature = "DOMCSSStyleDeclaration",
     feature = "DOMObject",

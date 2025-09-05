@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// DOMNodeExtensions.
+#[deprecated]
 #[cfg(all(
     feature = "DOMNode",
     feature = "DOMObject",
@@ -27,6 +28,7 @@ impl DOMNode {
 }
 
 /// DOMElementAppKitExtensions.
+#[deprecated]
 #[cfg(all(
     feature = "DOMElement",
     feature = "DOMNode",
@@ -44,6 +46,7 @@ impl DOMElement {
 }
 
 /// DOMHTMLDocumentExtensions.
+#[deprecated]
 #[cfg(all(
     feature = "DOMDocument",
     feature = "DOMHTMLDocument",

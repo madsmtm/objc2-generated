@@ -399,6 +399,7 @@ impl DOMElement {
 }
 
 /// DOMElementDeprecated.
+#[deprecated]
 #[cfg(all(
     feature = "DOMNode",
     feature = "DOMObject",

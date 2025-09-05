@@ -241,6 +241,7 @@ impl DOMHTMLSelectElement {
 }
 
 /// DOMHTMLSelectElementDeprecated.
+#[deprecated]
 #[cfg(all(
     feature = "DOMElement",
     feature = "DOMHTMLElement",

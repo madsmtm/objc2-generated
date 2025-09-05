@@ -150,6 +150,7 @@ impl DOMEvent {
 }
 
 /// DOMEventDeprecated.
+#[deprecated]
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMEvent {
     extern_methods!(

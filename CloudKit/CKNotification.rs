@@ -173,6 +173,7 @@ impl CKNotification {
 }
 
 /// DeprecatedAPSProperties.
+#[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
 impl CKNotification {
     extern_methods!(
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]

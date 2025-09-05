@@ -68,6 +68,7 @@ impl DOMXPathExpression {
 }
 
 /// DOMXPathExpressionDeprecated.
+#[deprecated]
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMXPathExpression {
     extern_methods!(

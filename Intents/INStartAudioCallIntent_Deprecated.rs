@@ -7,6 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Deprecated.
+#[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
 #[cfg(all(feature = "INIntent", feature = "INStartAudioCallIntent"))]
 impl INStartAudioCallIntent {
     extern_methods!(

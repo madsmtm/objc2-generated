@@ -222,6 +222,7 @@ impl DOMCSSPrimitiveValue {
 }
 
 /// DOMCSSPrimitiveValueDeprecated.
+#[deprecated]
 #[cfg(all(
     feature = "DOMCSSValue",
     feature = "DOMObject",

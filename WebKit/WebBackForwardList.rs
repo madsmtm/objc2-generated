@@ -164,6 +164,7 @@ impl WebBackForwardList {
 }
 
 /// WebBackForwardListDeprecated.
+#[deprecated]
 impl WebBackForwardList {
     extern_methods!(
         /// The size passed to this method determines whether the WebView

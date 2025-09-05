@@ -631,6 +631,7 @@ impl CLKRelativeDateTextProvider {
 }
 
 /// Localizable.
+#[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 impl CLKTextProvider {
     extern_methods!(
         #[unsafe(method(localizableTextProviderWithStringsFileTextKey:))]

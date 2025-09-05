@@ -147,6 +147,7 @@ impl GKVoiceChat {
 }
 
 /// Deprecated.
+#[deprecated = "No longer supported"]
 impl GKVoiceChat {
     extern_methods!(
         #[cfg(feature = "block2")]
@@ -172,6 +173,7 @@ impl GKVoiceChat {
 }
 
 /// Obsoleted.
+#[deprecated = "No longer supported"]
 impl GKVoiceChat {
     extern_methods!(
         /// * This property is obsolete. **

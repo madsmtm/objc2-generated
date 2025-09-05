@@ -125,6 +125,7 @@ impl DOMCSSStyleSheet {
 }
 
 /// DOMCSSStyleSheetDeprecated.
+#[deprecated]
 #[cfg(all(
     feature = "DOMObject",
     feature = "DOMStyleSheet",

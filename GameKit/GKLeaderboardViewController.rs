@@ -112,6 +112,7 @@ impl GKLeaderboardViewController {
     );
 }
 
+#[deprecated]
 #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 impl GKLeaderboardViewController {

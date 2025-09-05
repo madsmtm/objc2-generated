@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// Deprecated.
+#[deprecated = "INSearchCallHistoryIntent is deprecated. There is no replacement."]
 #[cfg(all(feature = "INIntent", feature = "INSearchCallHistoryIntent"))]
 impl INSearchCallHistoryIntent {
     extern_methods!(

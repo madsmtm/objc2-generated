@@ -111,6 +111,7 @@ impl DOMNamedNodeMap {
 }
 
 /// DOMNamedNodeMapDeprecated.
+#[deprecated]
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMNamedNodeMap {
     extern_methods!(
