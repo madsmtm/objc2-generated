@@ -154,8 +154,9 @@ impl PKPushRegistry {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn PKPushRegistryDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -179,6 +180,8 @@ impl PKPushRegistry {
 
         #[cfg(feature = "PKDefines")]
         /// Setter for [`desiredPushTypes`][Self::desiredPushTypes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDesiredPushTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDesiredPushTypes(&self, desired_push_types: Option<&NSSet<PKPushType>>);

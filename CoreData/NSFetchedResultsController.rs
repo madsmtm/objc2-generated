@@ -71,6 +71,9 @@ impl<ResultType: Message> NSFetchedResultsController<ResultType> {
         #[unsafe(method_family = none)]
         pub unsafe fn cacheName(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(

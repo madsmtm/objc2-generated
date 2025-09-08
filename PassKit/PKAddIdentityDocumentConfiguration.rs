@@ -120,6 +120,8 @@ impl PKJapanIndividualNumberCardMetadata {
         pub unsafe fn authenticationPassword(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`authenticationPassword`][Self::authenticationPassword].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthenticationPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthenticationPassword(&self, authentication_password: Option<&NSString>);
@@ -131,6 +133,8 @@ impl PKJapanIndividualNumberCardMetadata {
         pub unsafe fn signingPassword(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`signingPassword`][Self::signingPassword].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSigningPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSigningPassword(&self, signing_password: Option<&NSString>);

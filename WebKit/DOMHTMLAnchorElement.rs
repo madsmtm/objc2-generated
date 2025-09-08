@@ -89,6 +89,8 @@ impl DOMHTMLAnchorElement {
         pub unsafe fn charset(&self) -> Retained<NSString>;
 
         /// Setter for [`charset`][Self::charset].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setCharset:))]
         #[unsafe(method_family = none)]
@@ -100,6 +102,8 @@ impl DOMHTMLAnchorElement {
         pub unsafe fn coords(&self) -> Retained<NSString>;
 
         /// Setter for [`coords`][Self::coords].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setCoords:))]
         #[unsafe(method_family = none)]
@@ -111,6 +115,8 @@ impl DOMHTMLAnchorElement {
         pub unsafe fn hreflang(&self) -> Retained<NSString>;
 
         /// Setter for [`hreflang`][Self::hreflang].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setHreflang:))]
         #[unsafe(method_family = none)]
@@ -122,6 +128,8 @@ impl DOMHTMLAnchorElement {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
@@ -133,6 +141,8 @@ impl DOMHTMLAnchorElement {
         pub unsafe fn rel(&self) -> Retained<NSString>;
 
         /// Setter for [`rel`][Self::rel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setRel:))]
         #[unsafe(method_family = none)]
@@ -144,6 +154,8 @@ impl DOMHTMLAnchorElement {
         pub unsafe fn rev(&self) -> Retained<NSString>;
 
         /// Setter for [`rev`][Self::rev].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setRev:))]
         #[unsafe(method_family = none)]
@@ -155,6 +167,8 @@ impl DOMHTMLAnchorElement {
         pub unsafe fn shape(&self) -> Retained<NSString>;
 
         /// Setter for [`shape`][Self::shape].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setShape:))]
         #[unsafe(method_family = none)]
@@ -166,6 +180,8 @@ impl DOMHTMLAnchorElement {
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
@@ -177,6 +193,8 @@ impl DOMHTMLAnchorElement {
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
@@ -188,6 +206,8 @@ impl DOMHTMLAnchorElement {
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setAccessKey:))]
         #[unsafe(method_family = none)]
@@ -207,6 +227,8 @@ impl DOMHTMLAnchorElement {
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         /// Setter for [`href`][Self::href].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setHref:))]
         #[unsafe(method_family = none)]

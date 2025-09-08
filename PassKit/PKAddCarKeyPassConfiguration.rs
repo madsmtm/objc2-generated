@@ -32,6 +32,8 @@ impl PKAddCarKeyPassConfiguration {
         pub unsafe fn password(&self) -> Retained<NSString>;
 
         /// Setter for [`password`][Self::password].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPassword(&self, password: &NSString);
@@ -55,6 +57,8 @@ impl PKAddCarKeyPassConfiguration {
         pub unsafe fn manufacturerIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`manufacturerIdentifier`][Self::manufacturerIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setManufacturerIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setManufacturerIdentifier(&self, manufacturer_identifier: &NSString);

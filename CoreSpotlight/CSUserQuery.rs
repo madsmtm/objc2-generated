@@ -182,6 +182,8 @@ impl CSUserQuery {
 
         #[cfg(all(feature = "CSSuggestion", feature = "block2"))]
         /// Setter for [`foundSuggestionsHandler`][Self::foundSuggestionsHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFoundSuggestionsHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFoundSuggestionsHandler(

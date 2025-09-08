@@ -98,6 +98,8 @@ impl CPInformationTemplate {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -114,6 +116,8 @@ impl CPInformationTemplate {
 
         #[cfg(feature = "CPInformationItem")]
         /// Setter for [`items`][Self::items].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItems(&self, items: &NSArray<CPInformationItem>);
@@ -131,6 +135,8 @@ impl CPInformationTemplate {
 
         #[cfg(feature = "CPTextButton")]
         /// Setter for [`actions`][Self::actions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActions(&self, actions: &NSArray<CPTextButton>);

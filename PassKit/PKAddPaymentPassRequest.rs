@@ -67,6 +67,8 @@ impl PKAddPaymentPassRequestConfiguration {
         pub unsafe fn cardholderName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`cardholderName`][Self::cardholderName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCardholderName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCardholderName(&self, cardholder_name: Option<&NSString>);
@@ -76,6 +78,8 @@ impl PKAddPaymentPassRequestConfiguration {
         pub unsafe fn primaryAccountSuffix(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`primaryAccountSuffix`][Self::primaryAccountSuffix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrimaryAccountSuffix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryAccountSuffix(&self, primary_account_suffix: Option<&NSString>);
@@ -87,6 +91,8 @@ impl PKAddPaymentPassRequestConfiguration {
 
         #[cfg(feature = "PKLabeledValue")]
         /// Setter for [`cardDetails`][Self::cardDetails].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCardDetails:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCardDetails(&self, card_details: &NSArray<PKLabeledValue>);
@@ -96,6 +102,8 @@ impl PKAddPaymentPassRequestConfiguration {
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
@@ -105,6 +113,8 @@ impl PKAddPaymentPassRequestConfiguration {
         pub unsafe fn primaryAccountIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`primaryAccountIdentifier`][Self::primaryAccountIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrimaryAccountIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryAccountIdentifier(
@@ -119,6 +129,8 @@ impl PKAddPaymentPassRequestConfiguration {
 
         #[cfg(feature = "PKConstants")]
         /// Setter for [`paymentNetwork`][Self::paymentNetwork].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPaymentNetwork:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaymentNetwork(&self, payment_network: Option<&PKPaymentNetwork>);
@@ -128,6 +140,8 @@ impl PKAddPaymentPassRequestConfiguration {
         pub unsafe fn productIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
         /// Setter for [`productIdentifiers`][Self::productIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProductIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProductIdentifiers(&self, product_identifiers: &NSSet<NSString>);
@@ -178,6 +192,8 @@ impl PKAddPaymentPassRequest {
         pub unsafe fn encryptedPassData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`encryptedPassData`][Self::encryptedPassData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEncryptedPassData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEncryptedPassData(&self, encrypted_pass_data: Option<&NSData>);
@@ -187,6 +203,8 @@ impl PKAddPaymentPassRequest {
         pub unsafe fn activationData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`activationData`][Self::activationData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActivationData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivationData(&self, activation_data: Option<&NSData>);
@@ -196,6 +214,8 @@ impl PKAddPaymentPassRequest {
         pub unsafe fn ephemeralPublicKey(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`ephemeralPublicKey`][Self::ephemeralPublicKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEphemeralPublicKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEphemeralPublicKey(&self, ephemeral_public_key: Option<&NSData>);
@@ -205,6 +225,8 @@ impl PKAddPaymentPassRequest {
         pub unsafe fn wrappedKey(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`wrappedKey`][Self::wrappedKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWrappedKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWrappedKey(&self, wrapped_key: Option<&NSData>);

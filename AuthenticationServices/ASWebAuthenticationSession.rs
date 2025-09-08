@@ -120,8 +120,9 @@ impl ASWebAuthenticationSession {
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`presentationContextProvider`][Self::presentationContextProvider].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPresentationContextProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPresentationContextProvider(

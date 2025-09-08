@@ -94,6 +94,8 @@ impl INSnoozeTasksIntentResponse {
 
         #[cfg(feature = "INTask")]
         /// Setter for [`snoozedTasks`][Self::snoozedTasks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSnoozedTasks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSnoozedTasks(&self, snoozed_tasks: Option<&NSArray<INTask>>);

@@ -112,6 +112,9 @@ impl NSTextFinder {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(client))]
         #[unsafe(method_family = none)]
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn NSTextFinderClient>>>;
@@ -129,6 +132,9 @@ impl NSTextFinder {
         #[unsafe(method_family = none)]
         pub unsafe fn validateAction(&self, op: NSTextFinderAction) -> bool;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(findBarContainer))]
         #[unsafe(method_family = none)]
         pub unsafe fn findBarContainer(
@@ -249,6 +255,8 @@ extern_protocol!(
         unsafe fn selectedRanges(&self) -> Retained<NSArray<NSValue>>;
 
         /// Setter for [`selectedRanges`][Self::selectedRanges].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[optional]
         #[unsafe(method(setSelectedRanges:))]
         #[unsafe(method_family = none)]

@@ -97,6 +97,9 @@ impl UIVideoEditorController {
         #[unsafe(method_family = none)]
         pub unsafe fn canEditVideoAtPath(video_path: &NSString, mtm: MainThreadMarker) -> bool;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -122,6 +125,8 @@ impl UIVideoEditorController {
         pub unsafe fn videoPath(&self) -> Retained<NSString>;
 
         /// Setter for [`videoPath`][Self::videoPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoPath(&self, video_path: &NSString);

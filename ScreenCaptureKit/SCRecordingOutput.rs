@@ -34,6 +34,8 @@ impl SCRecordingOutputConfiguration {
         pub unsafe fn outputURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`outputURL`][Self::outputURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputURL(&self, output_url: &NSURL);
@@ -46,6 +48,8 @@ impl SCRecordingOutputConfiguration {
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Setter for [`videoCodecType`][Self::videoCodecType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoCodecType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoCodecType(&self, video_codec_type: &AVVideoCodecType);
@@ -58,6 +62,8 @@ impl SCRecordingOutputConfiguration {
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Setter for [`outputFileType`][Self::outputFileType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputFileType(&self, output_file_type: &AVFileType);

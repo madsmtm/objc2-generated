@@ -155,6 +155,8 @@ impl UIDynamicBehavior {
 
         #[cfg(feature = "block2")]
         /// Setter for [`action`][Self::action].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<&block2::DynBlock<dyn Fn()>>);

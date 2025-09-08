@@ -40,10 +40,15 @@ impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSCacheDelegate>>>;

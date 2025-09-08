@@ -54,6 +54,8 @@ impl CKFetchRecordZoneChangesOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`recordZoneIDs`][Self::recordZoneIDs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordZoneIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneIDs(&self, record_zone_i_ds: Option<&NSArray<CKRecordZoneID>>);
@@ -67,6 +69,8 @@ impl CKFetchRecordZoneChangesOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`configurationsByRecordZoneID`][Self::configurationsByRecordZoneID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfigurationsByRecordZoneID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationsByRecordZoneID(
@@ -113,6 +117,8 @@ impl CKFetchRecordZoneChangesOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`recordChangedBlock`][Self::recordChangedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[unsafe(method(setRecordChangedBlock:))]
         #[unsafe(method_family = none)]
@@ -136,6 +142,8 @@ impl CKFetchRecordZoneChangesOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`recordWasChangedBlock`][Self::recordWasChangedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordWasChangedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordWasChangedBlock(
@@ -158,6 +166,8 @@ impl CKFetchRecordZoneChangesOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`recordWithIDWasDeletedBlock`][Self::recordWithIDWasDeletedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordWithIDWasDeletedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordWithIDWasDeletedBlock(
@@ -203,6 +213,8 @@ impl CKFetchRecordZoneChangesOperation {
             feature = "block2"
         ))]
         /// Setter for [`recordZoneChangeTokensUpdatedBlock`][Self::recordZoneChangeTokensUpdatedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordZoneChangeTokensUpdatedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneChangeTokensUpdatedBlock(
@@ -239,6 +251,8 @@ impl CKFetchRecordZoneChangesOperation {
             feature = "block2"
         ))]
         /// Setter for [`recordZoneFetchCompletionBlock`][Self::recordZoneFetchCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordZoneFetchCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneFetchCompletionBlock(
@@ -277,6 +291,8 @@ impl CKFetchRecordZoneChangesOperation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`fetchRecordZoneChangesCompletionBlock`][Self::fetchRecordZoneChangesCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFetchRecordZoneChangesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRecordZoneChangesCompletionBlock(
@@ -324,6 +340,8 @@ impl CKFetchRecordZoneChangesOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`optionsByRecordZoneID`][Self::optionsByRecordZoneID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setOptionsByRecordZoneID:))]
         #[unsafe(method_family = none)]
@@ -372,6 +390,8 @@ impl CKFetchRecordZoneChangesConfiguration {
 
         #[cfg(feature = "CKServerChangeToken")]
         /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreviousServerChangeToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviousServerChangeToken(
@@ -401,6 +421,8 @@ impl CKFetchRecordZoneChangesConfiguration {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`desiredKeys`][Self::desiredKeys].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
@@ -458,6 +480,8 @@ impl CKFetchRecordZoneChangesOptions {
 
         #[cfg(feature = "CKServerChangeToken")]
         /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setPreviousServerChangeToken:))]
         #[unsafe(method_family = none)]
@@ -485,6 +509,8 @@ impl CKFetchRecordZoneChangesOptions {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`desiredKeys`][Self::desiredKeys].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]

@@ -196,6 +196,8 @@ impl NSSearchField {
         pub unsafe fn recentSearches(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`recentSearches`][Self::recentSearches].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecentSearches:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecentSearches(&self, recent_searches: &NSArray<NSString>);
@@ -207,6 +209,8 @@ impl NSSearchField {
         ) -> Option<Retained<NSSearchFieldRecentsAutosaveName>>;
 
         /// Setter for [`recentsAutosaveName`][Self::recentsAutosaveName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecentsAutosaveName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecentsAutosaveName(
@@ -258,8 +262,9 @@ impl NSSearchField {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSSearchFieldDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

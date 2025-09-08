@@ -62,6 +62,8 @@ impl NSTextInputContext {
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`allowedInputSourceLocales`][Self::allowedInputSourceLocales].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAllowedInputSourceLocales:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedInputSourceLocales(
@@ -120,6 +122,8 @@ impl NSTextInputContext {
         pub fn selectedKeyboardInputSource(&self) -> Option<Retained<NSTextInputSourceIdentifier>>;
 
         /// Setter for [`selectedKeyboardInputSource`][Self::selectedKeyboardInputSource].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedKeyboardInputSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedKeyboardInputSource(

@@ -308,6 +308,8 @@ impl AVAssetExportSession {
 
         #[cfg(feature = "AVMediaFormat")]
         /// Setter for [`outputFileType`][Self::outputFileType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputFileType(&self, output_file_type: Option<&AVFileType>);
@@ -317,6 +319,8 @@ impl AVAssetExportSession {
         pub unsafe fn outputURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`outputURL`][Self::outputURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputURL(&self, output_url: Option<&NSURL>);
@@ -544,6 +548,8 @@ impl AVAssetExportSession {
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`metadata`][Self::metadata].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: Option<&NSArray<AVMetadataItem>>);
@@ -574,6 +580,8 @@ impl AVAssetExportSession {
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudioTimePitchAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioTimePitchAlgorithm(
@@ -588,6 +596,8 @@ impl AVAssetExportSession {
 
         #[cfg(feature = "AVAudioMix")]
         /// Setter for [`audioMix`][Self::audioMix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudioMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioMix(&self, audio_mix: Option<&AVAudioMix>);
@@ -599,6 +609,8 @@ impl AVAssetExportSession {
 
         #[cfg(feature = "AVVideoComposition")]
         /// Setter for [`videoComposition`][Self::videoComposition].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoComposition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);
@@ -667,6 +679,8 @@ impl AVAssetExportSession {
         pub unsafe fn directoryForTemporaryFiles(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`directoryForTemporaryFiles`][Self::directoryForTemporaryFiles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDirectoryForTemporaryFiles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirectoryForTemporaryFiles(

@@ -211,6 +211,8 @@ impl MTLAccelerationStructureGeometryDescriptor {
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
@@ -818,6 +820,8 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         pub unsafe fn vertexBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`vertexBuffers`][Self::vertexBuffers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVertexBuffers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexBuffers(&self, vertex_buffers: &NSArray<MTLMotionKeyframeData>);
@@ -1001,6 +1005,8 @@ impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
         pub unsafe fn boundingBoxBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`boundingBoxBuffers`][Self::boundingBoxBuffers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBoundingBoxBuffers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBoundingBoxBuffers(
@@ -1461,6 +1467,8 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         pub unsafe fn controlPointBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`controlPointBuffers`][Self::controlPointBuffers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setControlPointBuffers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControlPointBuffers(
@@ -1515,6 +1523,8 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         pub unsafe fn radiusBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`radiusBuffers`][Self::radiusBuffers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRadiusBuffers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRadiusBuffers(&self, radius_buffers: &NSArray<MTLMotionKeyframeData>);

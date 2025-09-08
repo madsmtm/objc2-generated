@@ -83,8 +83,9 @@ impl NSTableHeaderView {
         pub unsafe fn tableView(&self) -> Option<Retained<NSTableView>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSTableView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`tableView`][Self::tableView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTableView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);

@@ -49,6 +49,8 @@ impl CXProviderConfiguration {
         pub unsafe fn iconTemplateImageData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`iconTemplateImageData`][Self::iconTemplateImageData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIconTemplateImageData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIconTemplateImageData(&self, icon_template_image_data: Option<&NSData>);
@@ -96,6 +98,8 @@ impl CXProviderConfiguration {
         pub unsafe fn supportedHandleTypes(&self) -> Retained<NSSet<NSNumber>>;
 
         /// Setter for [`supportedHandleTypes`][Self::supportedHandleTypes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedHandleTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedHandleTypes(&self, supported_handle_types: &NSSet<NSNumber>);

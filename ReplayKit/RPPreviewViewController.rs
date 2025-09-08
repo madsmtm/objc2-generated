@@ -59,8 +59,9 @@ impl RPPreviewViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn RPPreviewViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`previewControllerDelegate`][Self::previewControllerDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPreviewControllerDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewControllerDelegate(

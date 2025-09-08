@@ -36,6 +36,8 @@ impl CXCallUpdate {
 
         #[cfg(feature = "CXHandle")]
         /// Setter for [`remoteHandle`][Self::remoteHandle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRemoteHandle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemoteHandle(&self, remote_handle: Option<&CXHandle>);
@@ -47,6 +49,8 @@ impl CXCallUpdate {
         pub unsafe fn localizedCallerName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedCallerName`][Self::localizedCallerName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedCallerName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedCallerName(&self, localized_caller_name: Option<&NSString>);

@@ -85,8 +85,9 @@ impl NSControl {
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -179,6 +180,8 @@ impl NSControl {
         pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectValue`][Self::objectValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
@@ -188,6 +191,8 @@ impl NSControl {
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
         /// Setter for [`stringValue`][Self::stringValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStringValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStringValue(&self, string_value: &NSString);
@@ -197,6 +202,8 @@ impl NSControl {
         pub unsafe fn attributedStringValue(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedStringValue`][Self::attributedStringValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedStringValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedStringValue(&self, attributed_string_value: &NSAttributedString);
@@ -295,6 +302,8 @@ impl NSControl {
 
         #[cfg(feature = "NSFont")]
         /// Setter for [`font`][Self::font].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);

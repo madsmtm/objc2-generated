@@ -102,6 +102,8 @@ impl PKIdentityNationalIDCardDescriptor {
         pub unsafe fn regionCode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`regionCode`][Self::regionCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRegionCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRegionCode(&self, region_code: Option<&NSString>);

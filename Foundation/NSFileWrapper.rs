@@ -141,6 +141,8 @@ impl NSFileWrapper {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`preferredFilename`][Self::preferredFilename].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPreferredFilename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFilename(&self, preferred_filename: Option<&NSString>);
@@ -152,6 +154,8 @@ impl NSFileWrapper {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`filename`][Self::filename].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFilename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilename(&self, filename: Option<&NSString>);
@@ -163,6 +167,8 @@ impl NSFileWrapper {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`fileAttributes`][Self::fileAttributes].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFileAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileAttributes(&self, file_attributes: &NSDictionary<NSString, AnyObject>);

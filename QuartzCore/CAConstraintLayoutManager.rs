@@ -52,6 +52,8 @@ impl CALayer {
         pub unsafe fn constraints(&self) -> Option<Retained<NSArray<CAConstraint>>>;
 
         /// Setter for [`constraints`][Self::constraints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstraints(&self, constraints: Option<&NSArray<CAConstraint>>);

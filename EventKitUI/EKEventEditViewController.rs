@@ -89,8 +89,9 @@ impl EKEventEditViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn EKEventEditViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`editViewDelegate`][Self::editViewDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setEditViewDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEditViewDelegate(

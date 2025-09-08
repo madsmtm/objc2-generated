@@ -714,6 +714,8 @@ impl NEVPNManager {
         pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
 
         /// Setter for [`onDemandRules`][Self::onDemandRules].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOnDemandRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOnDemandRules(&self, on_demand_rules: Option<&NSArray<NEOnDemandRule>>);
@@ -734,6 +736,8 @@ impl NEVPNManager {
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
@@ -844,6 +848,8 @@ impl NETunnelProviderManager {
         pub unsafe fn safariDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`safariDomains`][Self::safariDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSafariDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSafariDomains(&self, safari_domains: &NSArray<NSString>);
@@ -855,6 +861,8 @@ impl NETunnelProviderManager {
         pub unsafe fn mailDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`mailDomains`][Self::mailDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMailDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMailDomains(&self, mail_domains: &NSArray<NSString>);
@@ -866,6 +874,8 @@ impl NETunnelProviderManager {
         pub unsafe fn calendarDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`calendarDomains`][Self::calendarDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCalendarDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalendarDomains(&self, calendar_domains: &NSArray<NSString>);
@@ -877,6 +887,8 @@ impl NETunnelProviderManager {
         pub unsafe fn contactsDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`contactsDomains`][Self::contactsDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContactsDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContactsDomains(&self, contacts_domains: &NSArray<NSString>);
@@ -886,6 +898,8 @@ impl NETunnelProviderManager {
         pub unsafe fn appRules(&self) -> Retained<NSArray<NEAppRule>>;
 
         /// Setter for [`appRules`][Self::appRules].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAppRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppRules(&self, app_rules: &NSArray<NEAppRule>);
@@ -896,6 +910,8 @@ impl NETunnelProviderManager {
         pub unsafe fn excludedDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`excludedDomains`][Self::excludedDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedDomains(&self, excluded_domains: &NSArray<NSString>);
@@ -905,6 +921,8 @@ impl NETunnelProviderManager {
         pub unsafe fn associatedDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`associatedDomains`][Self::associatedDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAssociatedDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAssociatedDomains(&self, associated_domains: &NSArray<NSString>);
@@ -1189,6 +1207,8 @@ impl NEAppRule {
         pub unsafe fn matchPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`matchPath`][Self::matchPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMatchPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchPath(&self, match_path: Option<&NSString>);
@@ -1199,6 +1219,8 @@ impl NEAppRule {
         pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`matchDomains`][Self::matchDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMatchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray>);
@@ -1212,6 +1234,8 @@ impl NEAppRule {
         pub unsafe fn matchTools(&self) -> Option<Retained<NSArray<NEAppRule>>>;
 
         /// Setter for [`matchTools`][Self::matchTools].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMatchTools:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchTools(&self, match_tools: Option<&NSArray<NEAppRule>>);
@@ -1330,6 +1354,8 @@ impl NEDNSProxyManager {
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
@@ -1545,6 +1571,8 @@ impl NEProxyServer {
         pub unsafe fn username(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`username`][Self::username].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUsername:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
@@ -1555,6 +1583,8 @@ impl NEProxyServer {
         pub unsafe fn password(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`password`][Self::password].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPassword(&self, password: Option<&NSString>);
@@ -1626,6 +1656,8 @@ impl NEProxySettings {
         pub unsafe fn proxyAutoConfigurationURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`proxyAutoConfigurationURL`][Self::proxyAutoConfigurationURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProxyAutoConfigurationURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProxyAutoConfigurationURL(
@@ -1639,6 +1671,8 @@ impl NEProxySettings {
         pub unsafe fn proxyAutoConfigurationJavaScript(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`proxyAutoConfigurationJavaScript`][Self::proxyAutoConfigurationJavaScript].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProxyAutoConfigurationJavaScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProxyAutoConfigurationJavaScript(
@@ -1662,6 +1696,8 @@ impl NEProxySettings {
         pub unsafe fn HTTPServer(&self) -> Option<Retained<NEProxyServer>>;
 
         /// Setter for [`HTTPServer`][Self::HTTPServer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHTTPServer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPServer(&self, http_server: Option<&NEProxyServer>);
@@ -1682,6 +1718,8 @@ impl NEProxySettings {
         pub unsafe fn HTTPSServer(&self) -> Option<Retained<NEProxyServer>>;
 
         /// Setter for [`HTTPSServer`][Self::HTTPSServer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHTTPSServer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPSServer(&self, https_server: Option<&NEProxyServer>);
@@ -1702,6 +1740,8 @@ impl NEProxySettings {
         pub unsafe fn exceptionList(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`exceptionList`][Self::exceptionList].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExceptionList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExceptionList(&self, exception_list: Option<&NSArray<NSString>>);
@@ -1712,6 +1752,8 @@ impl NEProxySettings {
         pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`matchDomains`][Self::matchDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMatchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
@@ -1772,6 +1814,8 @@ impl NEVPNProtocol {
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serverAddress`][Self::serverAddress].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setServerAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerAddress(&self, server_address: Option<&NSString>);
@@ -1782,6 +1826,8 @@ impl NEVPNProtocol {
         pub unsafe fn username(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`username`][Self::username].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUsername:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
@@ -1792,6 +1838,8 @@ impl NEVPNProtocol {
         pub unsafe fn passwordReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`passwordReference`][Self::passwordReference].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPasswordReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPasswordReference(&self, password_reference: Option<&NSData>);
@@ -1802,6 +1850,8 @@ impl NEVPNProtocol {
         pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityReference`][Self::identityReference].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentityReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
@@ -1812,6 +1862,8 @@ impl NEVPNProtocol {
         pub unsafe fn identityData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityData`][Self::identityData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentityData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityData(&self, identity_data: Option<&NSData>);
@@ -1822,6 +1874,8 @@ impl NEVPNProtocol {
         pub unsafe fn identityDataPassword(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identityDataPassword`][Self::identityDataPassword].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentityDataPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityDataPassword(&self, identity_data_password: Option<&NSString>);
@@ -1842,6 +1896,8 @@ impl NEVPNProtocol {
         pub unsafe fn proxySettings(&self) -> Option<Retained<NEProxySettings>>;
 
         /// Setter for [`proxySettings`][Self::proxySettings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProxySettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProxySettings(&self, proxy_settings: Option<&NEProxySettings>);
@@ -1927,6 +1983,8 @@ impl NEVPNProtocol {
         pub unsafe fn sliceUUID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`sliceUUID`][Self::sliceUUID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSliceUUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSliceUUID(&self, slice_uuid: Option<&NSString>);
@@ -1987,6 +2045,8 @@ impl NEDNSProxyProviderProtocol {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`providerConfiguration`][Self::providerConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProviderConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderConfiguration(
@@ -2000,6 +2060,8 @@ impl NEDNSProxyProviderProtocol {
         pub unsafe fn providerBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`providerBundleIdentifier`][Self::providerBundleIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProviderBundleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderBundleIdentifier(
@@ -2103,6 +2165,8 @@ impl NEDNSSettings {
         pub unsafe fn searchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`searchDomains`][Self::searchDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSearchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchDomains(&self, search_domains: Option<&NSArray<NSString>>);
@@ -2113,6 +2177,8 @@ impl NEDNSSettings {
         pub unsafe fn domainName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`domainName`][Self::domainName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDomainName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDomainName(&self, domain_name: Option<&NSString>);
@@ -2123,6 +2189,8 @@ impl NEDNSSettings {
         pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`matchDomains`][Self::matchDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMatchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
@@ -2187,6 +2255,8 @@ impl NEDNSOverTLSSettings {
         pub unsafe fn serverName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serverName`][Self::serverName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setServerName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerName(&self, server_name: Option<&NSString>);
@@ -2197,6 +2267,8 @@ impl NEDNSOverTLSSettings {
         pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityReference`][Self::identityReference].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentityReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
@@ -2266,6 +2338,8 @@ impl NEDNSOverHTTPSSettings {
         pub unsafe fn serverURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`serverURL`][Self::serverURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setServerURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerURL(&self, server_url: Option<&NSURL>);
@@ -2276,6 +2350,8 @@ impl NEDNSOverHTTPSSettings {
         pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityReference`][Self::identityReference].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentityReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
@@ -2409,6 +2485,8 @@ impl NEDNSSettingsManager {
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
@@ -2429,6 +2507,8 @@ impl NEDNSSettingsManager {
         pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
 
         /// Setter for [`onDemandRules`][Self::onDemandRules].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOnDemandRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOnDemandRules(&self, on_demand_rules: Option<&NSArray<NEOnDemandRule>>);
@@ -3482,6 +3562,8 @@ impl NEFilterControlProvider {
         ) -> Option<Retained<NSDictionary<NSString, NSDictionary<NSString, NSObject>>>>;
 
         /// Setter for [`remediationMap`][Self::remediationMap].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRemediationMap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemediationMap(
@@ -3497,6 +3579,8 @@ impl NEFilterControlProvider {
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         /// Setter for [`URLAppendStringMap`][Self::URLAppendStringMap].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setURLAppendStringMap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURLAppendStringMap(
@@ -4046,6 +4130,8 @@ impl NEFilterManager {
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
@@ -4289,6 +4375,8 @@ impl NEFilterProviderConfiguration {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`vendorConfiguration`][Self::vendorConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVendorConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVendorConfiguration(
@@ -4302,6 +4390,8 @@ impl NEFilterProviderConfiguration {
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serverAddress`][Self::serverAddress].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setServerAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerAddress(&self, server_address: Option<&NSString>);
@@ -4312,6 +4402,8 @@ impl NEFilterProviderConfiguration {
         pub unsafe fn username(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`username`][Self::username].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUsername:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
@@ -4322,6 +4414,8 @@ impl NEFilterProviderConfiguration {
         pub unsafe fn organization(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`organization`][Self::organization].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOrganization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrganization(&self, organization: Option<&NSString>);
@@ -4332,6 +4426,8 @@ impl NEFilterProviderConfiguration {
         pub unsafe fn passwordReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`passwordReference`][Self::passwordReference].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPasswordReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPasswordReference(&self, password_reference: Option<&NSData>);
@@ -4342,6 +4438,8 @@ impl NEFilterProviderConfiguration {
         pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityReference`][Self::identityReference].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentityReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
@@ -4355,6 +4453,8 @@ impl NEFilterProviderConfiguration {
         pub unsafe fn filterDataProviderBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`filterDataProviderBundleIdentifier`][Self::filterDataProviderBundleIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFilterDataProviderBundleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterDataProviderBundleIdentifier(
@@ -4371,6 +4471,8 @@ impl NEFilterProviderConfiguration {
         pub unsafe fn filterPacketProviderBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`filterPacketProviderBundleIdentifier`][Self::filterPacketProviderBundleIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFilterPacketProviderBundleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterPacketProviderBundleIdentifier(
@@ -5342,6 +5444,8 @@ impl NEHotspotHS20Settings {
         pub unsafe fn roamingConsortiumOIs(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`roamingConsortiumOIs`][Self::roamingConsortiumOIs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRoamingConsortiumOIs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRoamingConsortiumOIs(&self, roaming_consortium_o_is: &NSArray<NSString>);
@@ -5353,6 +5457,8 @@ impl NEHotspotHS20Settings {
         pub unsafe fn naiRealmNames(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`naiRealmNames`][Self::naiRealmNames].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNaiRealmNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNaiRealmNames(&self, nai_realm_names: &NSArray<NSString>);
@@ -5365,6 +5471,8 @@ impl NEHotspotHS20Settings {
         pub unsafe fn MCCAndMNCs(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`MCCAndMNCs`][Self::MCCAndMNCs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMCCAndMNCs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMCCAndMNCs(&self, mcc_and_mn_cs: &NSArray<NSString>);
@@ -5438,6 +5546,8 @@ impl NEHotspotEAPSettings {
         pub unsafe fn supportedEAPTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`supportedEAPTypes`][Self::supportedEAPTypes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedEAPTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedEAPTypes(&self, supported_eap_types: &NSArray<NSNumber>);
@@ -5449,6 +5559,8 @@ impl NEHotspotEAPSettings {
         pub unsafe fn username(&self) -> Retained<NSString>;
 
         /// Setter for [`username`][Self::username].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUsername:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsername(&self, username: &NSString);
@@ -5460,6 +5572,8 @@ impl NEHotspotEAPSettings {
         pub unsafe fn outerIdentity(&self) -> Retained<NSString>;
 
         /// Setter for [`outerIdentity`][Self::outerIdentity].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOuterIdentity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOuterIdentity(&self, outer_identity: &NSString);
@@ -5487,6 +5601,8 @@ impl NEHotspotEAPSettings {
         pub unsafe fn password(&self) -> Retained<NSString>;
 
         /// Setter for [`password`][Self::password].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPassword(&self, password: &NSString);
@@ -5499,6 +5615,8 @@ impl NEHotspotEAPSettings {
         pub unsafe fn trustedServerNames(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`trustedServerNames`][Self::trustedServerNames].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrustedServerNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrustedServerNames(&self, trusted_server_names: &NSArray<NSString>);
@@ -5639,6 +5757,8 @@ impl NEHotspotConfiguration {
         pub unsafe fn lifeTimeInDays(&self) -> Retained<NSNumber>;
 
         /// Setter for [`lifeTimeInDays`][Self::lifeTimeInDays].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLifeTimeInDays:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLifeTimeInDays(&self, life_time_in_days: &NSNumber);
@@ -6020,6 +6140,8 @@ impl NEIPv4Settings {
         pub unsafe fn router(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`router`][Self::router].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRouter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRouter(&self, router: Option<&NSString>);
@@ -6030,6 +6152,8 @@ impl NEIPv4Settings {
         pub unsafe fn includedRoutes(&self) -> Option<Retained<NSArray<NEIPv4Route>>>;
 
         /// Setter for [`includedRoutes`][Self::includedRoutes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIncludedRoutes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncludedRoutes(&self, included_routes: Option<&NSArray<NEIPv4Route>>);
@@ -6040,6 +6164,8 @@ impl NEIPv4Settings {
         pub unsafe fn excludedRoutes(&self) -> Option<Retained<NSArray<NEIPv4Route>>>;
 
         /// Setter for [`excludedRoutes`][Self::excludedRoutes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedRoutes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedRoutes(&self, excluded_routes: Option<&NSArray<NEIPv4Route>>);
@@ -6123,6 +6249,8 @@ impl NEIPv4Route {
         pub unsafe fn gatewayAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`gatewayAddress`][Self::gatewayAddress].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGatewayAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGatewayAddress(&self, gateway_address: Option<&NSString>);
@@ -6221,6 +6349,8 @@ impl NEIPv6Settings {
         pub unsafe fn includedRoutes(&self) -> Option<Retained<NSArray<NEIPv6Route>>>;
 
         /// Setter for [`includedRoutes`][Self::includedRoutes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIncludedRoutes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncludedRoutes(&self, included_routes: Option<&NSArray<NEIPv6Route>>);
@@ -6231,6 +6361,8 @@ impl NEIPv6Settings {
         pub unsafe fn excludedRoutes(&self) -> Option<Retained<NSArray<NEIPv6Route>>>;
 
         /// Setter for [`excludedRoutes`][Self::excludedRoutes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedRoutes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedRoutes(&self, excluded_routes: Option<&NSArray<NEIPv6Route>>);
@@ -6314,6 +6446,8 @@ impl NEIPv6Route {
         pub unsafe fn gatewayAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`gatewayAddress`][Self::gatewayAddress].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGatewayAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGatewayAddress(&self, gateway_address: Option<&NSString>);
@@ -6394,6 +6528,8 @@ impl NETunnelNetworkSettings {
         pub unsafe fn DNSSettings(&self) -> Option<Retained<NEDNSSettings>>;
 
         /// Setter for [`DNSSettings`][Self::DNSSettings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDNSSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDNSSettings(&self, dns_settings: Option<&NEDNSSettings>);
@@ -6404,6 +6540,8 @@ impl NETunnelNetworkSettings {
         pub unsafe fn proxySettings(&self) -> Option<Retained<NEProxySettings>>;
 
         /// Setter for [`proxySettings`][Self::proxySettings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProxySettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProxySettings(&self, proxy_settings: Option<&NEProxySettings>);
@@ -6464,6 +6602,8 @@ impl NEPacketTunnelNetworkSettings {
         pub unsafe fn IPv4Settings(&self) -> Option<Retained<NEIPv4Settings>>;
 
         /// Setter for [`IPv4Settings`][Self::IPv4Settings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIPv4Settings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIPv4Settings(&self, i_pv4_settings: Option<&NEIPv4Settings>);
@@ -6474,6 +6614,8 @@ impl NEPacketTunnelNetworkSettings {
         pub unsafe fn IPv6Settings(&self) -> Option<Retained<NEIPv6Settings>>;
 
         /// Setter for [`IPv6Settings`][Self::IPv6Settings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIPv6Settings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIPv6Settings(&self, i_pv6_settings: Option<&NEIPv6Settings>);
@@ -6484,6 +6626,8 @@ impl NEPacketTunnelNetworkSettings {
         pub unsafe fn tunnelOverheadBytes(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`tunnelOverheadBytes`][Self::tunnelOverheadBytes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTunnelOverheadBytes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTunnelOverheadBytes(&self, tunnel_overhead_bytes: Option<&NSNumber>);
@@ -6494,6 +6638,8 @@ impl NEPacketTunnelNetworkSettings {
         pub unsafe fn MTU(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`MTU`][Self::MTU].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMTU:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMTU(&self, mtu: Option<&NSNumber>);
@@ -6854,6 +7000,8 @@ impl NEOnDemandRule {
         pub unsafe fn DNSSearchDomainMatch(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`DNSSearchDomainMatch`][Self::DNSSearchDomainMatch].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDNSSearchDomainMatch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDNSSearchDomainMatch(
@@ -6867,6 +7015,8 @@ impl NEOnDemandRule {
         pub unsafe fn DNSServerAddressMatch(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`DNSServerAddressMatch`][Self::DNSServerAddressMatch].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDNSServerAddressMatch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDNSServerAddressMatch(
@@ -6893,6 +7043,8 @@ impl NEOnDemandRule {
         pub unsafe fn SSIDMatch(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`SSIDMatch`][Self::SSIDMatch].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSSIDMatch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSSIDMatch(&self, ssid_match: Option<&NSArray<NSString>>);
@@ -6903,6 +7055,8 @@ impl NEOnDemandRule {
         pub unsafe fn probeURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`probeURL`][Self::probeURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProbeURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProbeURL(&self, probe_url: Option<&NSURL>);
@@ -7114,6 +7268,8 @@ impl NEOnDemandRuleEvaluateConnection {
             -> Option<Retained<NSArray<NEEvaluateConnectionRule>>>;
 
         /// Setter for [`connectionRules`][Self::connectionRules].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConnectionRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConnectionRules(
@@ -7216,6 +7372,8 @@ impl NEEvaluateConnectionRule {
         pub unsafe fn useDNSServers(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`useDNSServers`][Self::useDNSServers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUseDNSServers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUseDNSServers(&self, use_dns_servers: Option<&NSArray<NSString>>);
@@ -7226,6 +7384,8 @@ impl NEEvaluateConnectionRule {
         pub unsafe fn probeURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`probeURL`][Self::probeURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProbeURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProbeURL(&self, probe_url: Option<&NSURL>);
@@ -7451,6 +7611,8 @@ impl NERelay {
         pub unsafe fn HTTP3RelayURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`HTTP3RelayURL`][Self::HTTP3RelayURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHTTP3RelayURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTP3RelayURL(&self, http3_relay_url: Option<&NSURL>);
@@ -7461,6 +7623,8 @@ impl NERelay {
         pub unsafe fn HTTP2RelayURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`HTTP2RelayURL`][Self::HTTP2RelayURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHTTP2RelayURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTP2RelayURL(&self, http2_relay_url: Option<&NSURL>);
@@ -7471,6 +7635,8 @@ impl NERelay {
         pub unsafe fn dnsOverHTTPSURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`dnsOverHTTPSURL`][Self::dnsOverHTTPSURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDnsOverHTTPSURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDnsOverHTTPSURL(&self, dns_over_httpsurl: Option<&NSURL>);
@@ -7482,6 +7648,8 @@ impl NERelay {
         pub unsafe fn syntheticDNSAnswerIPv4Prefix(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`syntheticDNSAnswerIPv4Prefix`][Self::syntheticDNSAnswerIPv4Prefix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSyntheticDNSAnswerIPv4Prefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSyntheticDNSAnswerIPv4Prefix(
@@ -7496,6 +7664,8 @@ impl NERelay {
         pub unsafe fn syntheticDNSAnswerIPv6Prefix(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`syntheticDNSAnswerIPv6Prefix`][Self::syntheticDNSAnswerIPv6Prefix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSyntheticDNSAnswerIPv6Prefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSyntheticDNSAnswerIPv6Prefix(
@@ -7511,6 +7681,8 @@ impl NERelay {
         ) -> Retained<NSDictionary<NSString, NSString>>;
 
         /// Setter for [`additionalHTTPHeaderFields`][Self::additionalHTTPHeaderFields].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAdditionalHTTPHeaderFields:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalHTTPHeaderFields(
@@ -7524,6 +7696,8 @@ impl NERelay {
         pub unsafe fn rawPublicKeys(&self) -> Option<Retained<NSArray<NSData>>>;
 
         /// Setter for [`rawPublicKeys`][Self::rawPublicKeys].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRawPublicKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRawPublicKeys(&self, raw_public_keys: Option<&NSArray<NSData>>);
@@ -7534,6 +7708,8 @@ impl NERelay {
         pub unsafe fn identityData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityData`][Self::identityData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentityData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityData(&self, identity_data: Option<&NSData>);
@@ -7544,6 +7720,8 @@ impl NERelay {
         pub unsafe fn identityDataPassword(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identityDataPassword`][Self::identityDataPassword].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentityDataPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityDataPassword(&self, identity_data_password: Option<&NSString>);
@@ -7719,6 +7897,8 @@ impl NERelayManager {
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
@@ -7759,6 +7939,8 @@ impl NERelayManager {
         pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`matchDomains`][Self::matchDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMatchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
@@ -7769,6 +7951,8 @@ impl NERelayManager {
         pub unsafe fn matchFQDNs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`matchFQDNs`][Self::matchFQDNs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMatchFQDNs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchFQDNs(&self, match_fqd_ns: Option<&NSArray<NSString>>);
@@ -7779,6 +7963,8 @@ impl NERelayManager {
         pub unsafe fn excludedDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`excludedDomains`][Self::excludedDomains].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedDomains(&self, excluded_domains: Option<&NSArray<NSString>>);
@@ -7789,6 +7975,8 @@ impl NERelayManager {
         pub unsafe fn excludedFQDNs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`excludedFQDNs`][Self::excludedFQDNs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedFQDNs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedFQDNs(&self, excluded_fqd_ns: Option<&NSArray<NSString>>);
@@ -7799,6 +7987,8 @@ impl NERelayManager {
         pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
 
         /// Setter for [`onDemandRules`][Self::onDemandRules].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOnDemandRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOnDemandRules(&self, on_demand_rules: Option<&NSArray<NEOnDemandRule>>);
@@ -7922,6 +8112,8 @@ impl NETransparentProxyNetworkSettings {
         pub unsafe fn includedNetworkRules(&self) -> Option<Retained<NSArray<NENetworkRule>>>;
 
         /// Setter for [`includedNetworkRules`][Self::includedNetworkRules].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIncludedNetworkRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncludedNetworkRules(
@@ -7942,6 +8134,8 @@ impl NETransparentProxyNetworkSettings {
         pub unsafe fn excludedNetworkRules(&self) -> Option<Retained<NSArray<NENetworkRule>>>;
 
         /// Setter for [`excludedNetworkRules`][Self::excludedNetworkRules].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedNetworkRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedNetworkRules(
@@ -8330,6 +8524,8 @@ impl NETunnelProviderProtocol {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`providerConfiguration`][Self::providerConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProviderConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderConfiguration(
@@ -8343,6 +8539,8 @@ impl NETunnelProviderProtocol {
         pub unsafe fn providerBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`providerBundleIdentifier`][Self::providerBundleIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProviderBundleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderBundleIdentifier(
@@ -8453,6 +8651,8 @@ impl NEVPNProtocolIPSec {
         pub unsafe fn sharedSecretReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`sharedSecretReference`][Self::sharedSecretReference].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSharedSecretReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSharedSecretReference(&self, shared_secret_reference: Option<&NSData>);
@@ -8463,6 +8663,8 @@ impl NEVPNProtocolIPSec {
         pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localIdentifier`][Self::localIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalIdentifier(&self, local_identifier: Option<&NSString>);
@@ -8473,6 +8675,8 @@ impl NEVPNProtocolIPSec {
         pub unsafe fn remoteIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`remoteIdentifier`][Self::remoteIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRemoteIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemoteIdentifier(&self, remote_identifier: Option<&NSString>);
@@ -8915,6 +9119,8 @@ impl NEVPNProtocolIKEv2 {
         pub unsafe fn serverCertificateIssuerCommonName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serverCertificateIssuerCommonName`][Self::serverCertificateIssuerCommonName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setServerCertificateIssuerCommonName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerCertificateIssuerCommonName(
@@ -8928,6 +9134,8 @@ impl NEVPNProtocolIKEv2 {
         pub unsafe fn serverCertificateCommonName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serverCertificateCommonName`][Self::serverCertificateCommonName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setServerCertificateCommonName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerCertificateCommonName(
@@ -9071,6 +9279,8 @@ impl NEVPNProtocolIKEv2 {
         pub unsafe fn ppkConfiguration(&self) -> Option<Retained<NEVPNIKEv2PPKConfiguration>>;
 
         /// Setter for [`ppkConfiguration`][Self::ppkConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPpkConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPpkConfiguration(
@@ -9160,6 +9370,8 @@ impl NEPrivateLTENetwork {
         pub unsafe fn mobileCountryCode(&self) -> Retained<NSString>;
 
         /// Setter for [`mobileCountryCode`][Self::mobileCountryCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMobileCountryCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMobileCountryCode(&self, mobile_country_code: &NSString);
@@ -9170,6 +9382,8 @@ impl NEPrivateLTENetwork {
         pub unsafe fn mobileNetworkCode(&self) -> Retained<NSString>;
 
         /// Setter for [`mobileNetworkCode`][Self::mobileNetworkCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMobileNetworkCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMobileNetworkCode(&self, mobile_network_code: &NSString);
@@ -9180,6 +9394,8 @@ impl NEPrivateLTENetwork {
         pub unsafe fn trackingAreaCode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`trackingAreaCode`][Self::trackingAreaCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrackingAreaCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackingAreaCode(&self, tracking_area_code: Option<&NSString>);
@@ -9225,6 +9441,8 @@ impl NEAppPushManager {
         pub unsafe fn matchSSIDs(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`matchSSIDs`][Self::matchSSIDs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMatchSSIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchSSIDs(&self, match_ssi_ds: &NSArray<NSString>);
@@ -9236,6 +9454,8 @@ impl NEAppPushManager {
         pub unsafe fn matchPrivateLTENetworks(&self) -> Retained<NSArray<NEPrivateLTENetwork>>;
 
         /// Setter for [`matchPrivateLTENetworks`][Self::matchPrivateLTENetworks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMatchPrivateLTENetworks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchPrivateLTENetworks(
@@ -9250,6 +9470,8 @@ impl NEAppPushManager {
         pub unsafe fn providerConfiguration(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`providerConfiguration`][Self::providerConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProviderConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderConfiguration(
@@ -9263,6 +9485,8 @@ impl NEAppPushManager {
         pub unsafe fn providerBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`providerBundleIdentifier`][Self::providerBundleIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProviderBundleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderBundleIdentifier(
@@ -9275,8 +9499,9 @@ impl NEAppPushManager {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NEAppPushDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NEAppPushDelegate>>);
@@ -9333,6 +9558,8 @@ impl NEAppPushManager {
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
@@ -10346,6 +10573,8 @@ impl NWTLSParameters {
         pub unsafe fn TLSSessionID(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`TLSSessionID`][Self::TLSSessionID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use `sec_protocol_options_set_tls_resumption_enabled` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
         #[unsafe(method(setTLSSessionID:))]
         #[unsafe(method_family = none)]
@@ -10361,6 +10590,8 @@ impl NWTLSParameters {
         pub unsafe fn SSLCipherSuites(&self) -> Option<Retained<NSSet<NSNumber>>>;
 
         /// Setter for [`SSLCipherSuites`][Self::SSLCipherSuites].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use `sec_protocol_options_append_tls_ciphersuite` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
         #[unsafe(method(setSSLCipherSuites:))]
         #[unsafe(method_family = none)]

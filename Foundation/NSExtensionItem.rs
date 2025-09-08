@@ -46,6 +46,8 @@ impl NSExtensionItem {
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedTitle`][Self::attributedTitle].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAttributedTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
@@ -57,6 +59,8 @@ impl NSExtensionItem {
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedContentText`][Self::attributedContentText].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAttributedContentText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedContentText(
@@ -71,6 +75,8 @@ impl NSExtensionItem {
 
         #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
         /// Setter for [`attachments`][Self::attachments].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAttachments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttachments(&self, attachments: Option<&NSArray<NSItemProvider>>);
@@ -82,6 +88,8 @@ impl NSExtensionItem {
 
         #[cfg(feature = "NSDictionary")]
         /// Setter for [`userInfo`][Self::userInfo].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);

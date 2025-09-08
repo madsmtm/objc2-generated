@@ -97,6 +97,8 @@ impl IOBluetoothPasskeyDisplay {
         pub unsafe fn passkey(&self) -> Retained<NSString>;
 
         /// Setter for [`passkey`][Self::passkey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPasskey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPasskey(&self, passkey: Option<&NSString>);
@@ -119,6 +121,9 @@ impl IOBluetoothPasskeyDisplay {
         #[unsafe(method_family = none)]
         pub unsafe fn setReturnHighlightImage(&self, return_highlight_image: Option<&NSImage>);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(centeredView))]
         #[unsafe(method_family = none)]
         pub unsafe fn centeredView(&self) -> Option<Retained<NSView>>;
@@ -128,6 +133,9 @@ impl IOBluetoothPasskeyDisplay {
         #[unsafe(method_family = none)]
         pub unsafe fn setCenteredView(&self, centered_view: Option<&NSView>);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(backgroundImageConstraint))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImageConstraint(&self) -> Option<Retained<NSLayoutConstraint>>;

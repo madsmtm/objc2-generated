@@ -69,6 +69,8 @@ impl MERAWProcessorPixelBufferManager {
         pub unsafe fn pixelBufferAttributes(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`pixelBufferAttributes`][Self::pixelBufferAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPixelBufferAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPixelBufferAttributes(

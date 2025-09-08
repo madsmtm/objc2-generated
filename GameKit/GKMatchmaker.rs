@@ -150,6 +150,8 @@ impl GKMatchRequest {
         pub unsafe fn inviteMessage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`inviteMessage`][Self::inviteMessage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInviteMessage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInviteMessage(&self, invite_message: Option<&NSString>);
@@ -188,6 +190,8 @@ impl GKMatchRequest {
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Setter for [`recipientResponseHandler`][Self::recipientResponseHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecipientResponseHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecipientResponseHandler(
@@ -207,6 +211,8 @@ impl GKMatchRequest {
 
         #[cfg(feature = "block2")]
         /// Setter for [`inviteeResponseHandler`][Self::inviteeResponseHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setInviteeResponseHandler:))]
         #[unsafe(method_family = none)]
@@ -239,6 +245,8 @@ impl GKMatchRequest {
         pub unsafe fn queueName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`queueName`][Self::queueName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setQueueName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQueueName(&self, queue_name: Option<&NSString>);
@@ -251,6 +259,8 @@ impl GKMatchRequest {
 
         #[cfg(feature = "GKDefines")]
         /// Setter for [`properties`][Self::properties].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProperties(&self, properties: Option<&GKMatchProperties>);
@@ -265,6 +275,8 @@ impl GKMatchRequest {
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKDefines", feature = "GKPlayer"))]
         /// Setter for [`recipientProperties`][Self::recipientProperties].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecipientProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecipientProperties(
@@ -619,6 +631,8 @@ impl GKMatchmaker {
 
         #[cfg(feature = "block2")]
         /// Setter for [`inviteHandler`][Self::inviteHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use the ``GKLocalPlayer/register(_:)`` method instead."]
         #[unsafe(method(setInviteHandler:))]
         #[unsafe(method_family = none)]

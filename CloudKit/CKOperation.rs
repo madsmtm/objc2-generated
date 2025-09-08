@@ -36,6 +36,8 @@ impl CKOperation {
         pub unsafe fn configuration(&self) -> Retained<CKOperationConfiguration>;
 
         /// Setter for [`configuration`][Self::configuration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(&self, configuration: Option<&CKOperationConfiguration>);
@@ -76,6 +78,8 @@ impl CKOperation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`longLivedOperationWasPersistedBlock`][Self::longLivedOperationWasPersistedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLongLivedOperationWasPersistedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLongLivedOperationWasPersistedBlock(

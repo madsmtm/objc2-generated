@@ -225,8 +225,9 @@ impl MFMessageComposeViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MFMessageComposeViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`messageComposeDelegate`][Self::messageComposeDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setMessageComposeDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessageComposeDelegate(
@@ -255,6 +256,8 @@ impl MFMessageComposeViewController {
         pub unsafe fn recipients(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`recipients`][Self::recipients].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecipients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecipients(&self, recipients: Option<&NSArray<NSString>>);
@@ -271,6 +274,8 @@ impl MFMessageComposeViewController {
         pub unsafe fn body(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`body`][Self::body].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBody:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBody(&self, body: Option<&NSString>);
@@ -287,6 +292,8 @@ impl MFMessageComposeViewController {
         pub unsafe fn subject(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subject`][Self::subject].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubject(&self, subject: Option<&NSString>);
@@ -309,6 +316,8 @@ impl MFMessageComposeViewController {
         #[cfg(feature = "objc2-messages")]
         #[cfg(not(target_os = "visionos"))]
         /// Setter for [`message`][Self::message].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMessage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessage(&self, message: Option<&MSMessage>);

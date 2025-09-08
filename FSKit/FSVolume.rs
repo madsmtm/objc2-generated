@@ -582,6 +582,8 @@ impl FSVolume {
 
         #[cfg(feature = "FSFileName")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &FSFileName);

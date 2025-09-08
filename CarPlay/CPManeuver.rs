@@ -294,6 +294,8 @@ impl CPManeuver {
         pub unsafe fn instructionVariants(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`instructionVariants`][Self::instructionVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInstructionVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstructionVariants(&self, instruction_variants: &NSArray<NSString>);
@@ -333,6 +335,8 @@ impl CPManeuver {
             -> Retained<NSArray<NSAttributedString>>;
 
         /// Setter for [`attributedInstructionVariants`][Self::attributedInstructionVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedInstructionVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedInstructionVariants(
@@ -378,6 +382,8 @@ impl CPManeuver {
         pub unsafe fn dashboardInstructionVariants(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`dashboardInstructionVariants`][Self::dashboardInstructionVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDashboardInstructionVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDashboardInstructionVariants(
@@ -406,6 +412,8 @@ impl CPManeuver {
         ) -> Retained<NSArray<NSAttributedString>>;
 
         /// Setter for [`dashboardAttributedInstructionVariants`][Self::dashboardAttributedInstructionVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDashboardAttributedInstructionVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDashboardAttributedInstructionVariants(
@@ -438,6 +446,8 @@ impl CPManeuver {
         pub unsafe fn notificationInstructionVariants(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`notificationInstructionVariants`][Self::notificationInstructionVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNotificationInstructionVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotificationInstructionVariants(
@@ -466,6 +476,8 @@ impl CPManeuver {
         ) -> Retained<NSArray<NSAttributedString>>;
 
         /// Setter for [`notificationAttributedInstructionVariants`][Self::notificationAttributedInstructionVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNotificationAttributedInstructionVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotificationAttributedInstructionVariants(
@@ -492,6 +504,8 @@ impl CPManeuver {
         pub unsafe fn roadFollowingManeuverVariants(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`roadFollowingManeuverVariants`][Self::roadFollowingManeuverVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRoadFollowingManeuverVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRoadFollowingManeuverVariants(
@@ -527,6 +541,8 @@ impl CPManeuver {
         pub unsafe fn junctionExitAngle(&self) -> Option<Retained<NSMeasurement<NSUnitAngle>>>;
 
         /// Setter for [`junctionExitAngle`][Self::junctionExitAngle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJunctionExitAngle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJunctionExitAngle(
@@ -543,6 +559,8 @@ impl CPManeuver {
         ) -> Option<Retained<NSSet<NSMeasurement<NSUnitAngle>>>>;
 
         /// Setter for [`junctionElementAngles`][Self::junctionElementAngles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJunctionElementAngles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJunctionElementAngles(
@@ -553,6 +571,10 @@ impl CPManeuver {
         #[cfg(feature = "CPLaneGuidance")]
         /// linkedLaneGuidance is the optional
         /// `CPLaneGuidance`associated with this maneuver // conditional - must be there if there is a corresponding lane guidance
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(linkedLaneGuidance))]
         #[unsafe(method_family = none)]
         pub unsafe fn linkedLaneGuidance(&self) -> Retained<CPLaneGuidance>;
@@ -570,6 +592,8 @@ impl CPManeuver {
         pub unsafe fn highwayExitLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`highwayExitLabel`][Self::highwayExitLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHighwayExitLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighwayExitLabel(&self, highway_exit_label: &NSString);

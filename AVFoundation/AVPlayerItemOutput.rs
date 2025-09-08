@@ -401,6 +401,8 @@ impl AVPlayerItemLegibleOutput {
         ) -> Retained<AVPlayerItemLegibleOutputTextStylingResolution>;
 
         /// Setter for [`textStylingResolution`][Self::textStylingResolution].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextStylingResolution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextStylingResolution(

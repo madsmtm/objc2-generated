@@ -429,6 +429,10 @@ extern_conformance!(
 impl ICScannerFeatureEnumeration {
     extern_methods!(
         /// The current value. The current value can be set to one of the possible values in the "values" property below￼.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(currentValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentValue(&self) -> Retained<AnyObject>;

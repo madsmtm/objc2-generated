@@ -60,8 +60,9 @@ impl CPInstrumentClusterController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CPInstrumentClusterControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -94,6 +95,8 @@ impl CPInstrumentClusterController {
         pub unsafe fn inactiveDescriptionVariants(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`inactiveDescriptionVariants`][Self::inactiveDescriptionVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInactiveDescriptionVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInactiveDescriptionVariants(
@@ -122,6 +125,8 @@ impl CPInstrumentClusterController {
         ) -> Retained<NSArray<NSAttributedString>>;
 
         /// Setter for [`attributedInactiveDescriptionVariants`][Self::attributedInactiveDescriptionVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedInactiveDescriptionVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedInactiveDescriptionVariants(

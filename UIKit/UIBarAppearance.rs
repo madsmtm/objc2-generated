@@ -96,6 +96,8 @@ impl UIBarAppearance {
 
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
         /// Setter for [`backgroundEffect`][Self::backgroundEffect].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundEffect(&self, background_effect: Option<&UIBlurEffect>);
@@ -108,6 +110,8 @@ impl UIBarAppearance {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
@@ -147,6 +151,8 @@ impl UIBarAppearance {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`shadowColor`][Self::shadowColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShadowColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowColor(&self, shadow_color: Option<&UIColor>);

@@ -593,6 +593,8 @@ impl NSWindow {
         pub fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub fn setTitle(&self, title: &NSString);
@@ -604,6 +606,8 @@ impl NSWindow {
         pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
         /// Setter for [`subtitle`][Self::subtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitle(&self, subtitle: &NSString);
@@ -671,6 +675,8 @@ impl NSWindow {
             feature = "NSViewController"
         ))]
         /// Setter for [`titlebarAccessoryViewControllers`][Self::titlebarAccessoryViewControllers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitlebarAccessoryViewControllers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitlebarAccessoryViewControllers(
@@ -713,6 +719,8 @@ impl NSWindow {
         pub unsafe fn representedURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`representedURL`][Self::representedURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRepresentedURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepresentedURL(&self, represented_url: Option<&NSURL>);
@@ -722,6 +730,8 @@ impl NSWindow {
         pub unsafe fn representedFilename(&self) -> Retained<NSString>;
 
         /// Setter for [`representedFilename`][Self::representedFilename].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRepresentedFilename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepresentedFilename(&self, represented_filename: &NSString);
@@ -754,8 +764,9 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSWindowDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSWindowDelegate>>);
@@ -990,6 +1001,8 @@ impl NSWindow {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub fn setBackgroundColor(&self, background_color: Option<&NSColor>);
@@ -1110,6 +1123,8 @@ impl NSWindow {
         pub unsafe fn miniwindowTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`miniwindowTitle`][Self::miniwindowTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMiniwindowTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMiniwindowTitle(&self, miniwindow_title: Option<&NSString>);
@@ -1557,8 +1572,9 @@ impl NSWindow {
         pub unsafe fn windowController(&self) -> Option<Retained<NSWindowController>>;
 
         #[cfg(feature = "NSWindowController")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`windowController`][Self::windowController].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setWindowController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWindowController(&self, window_controller: Option<&NSWindowController>);
@@ -1651,8 +1667,9 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`parentWindow`][Self::parentWindow].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setParentWindow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
@@ -1664,8 +1681,9 @@ impl NSWindow {
         pub unsafe fn appearanceSource(&self) -> Option<Retained<NSObject>>;
 
         #[cfg(feature = "NSAppearance")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`appearanceSource`][Self::appearanceSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAppearanceSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppearanceSource(&self, appearance_source: Option<&NSObject>);
@@ -1772,8 +1790,9 @@ impl NSWindow {
         pub unsafe fn initialFirstResponder(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`initialFirstResponder`][Self::initialFirstResponder].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setInitialFirstResponder:))]
         #[unsafe(method_family = none)]
         pub fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
@@ -1905,6 +1924,8 @@ impl NSWindow {
         pub fn tabbingIdentifier(&self) -> Retained<NSWindowTabbingIdentifier>;
 
         /// Setter for [`tabbingIdentifier`][Self::tabbingIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTabbingIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn setTabbingIdentifier(&self, tabbing_identifier: &NSWindowTabbingIdentifier);

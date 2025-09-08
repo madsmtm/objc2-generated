@@ -65,6 +65,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`elementValueDidChangeHandler`][Self::elementValueDidChangeHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setElementValueDidChangeHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setElementValueDidChangeHandler(
@@ -142,6 +144,8 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`inputStateAvailableHandler`][Self::inputStateAvailableHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInputStateAvailableHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setInputStateAvailableHandler(

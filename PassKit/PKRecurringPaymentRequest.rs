@@ -25,6 +25,8 @@ impl PKRecurringPaymentRequest {
         pub unsafe fn paymentDescription(&self) -> Retained<NSString>;
 
         /// Setter for [`paymentDescription`][Self::paymentDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPaymentDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaymentDescription(&self, payment_description: &NSString);
@@ -68,6 +70,8 @@ impl PKRecurringPaymentRequest {
         pub unsafe fn billingAgreement(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`billingAgreement`][Self::billingAgreement].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBillingAgreement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBillingAgreement(&self, billing_agreement: Option<&NSString>);

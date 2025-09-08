@@ -112,6 +112,8 @@ impl INPayBillIntentResponse {
 
         #[cfg(feature = "INPaymentAccount")]
         /// Setter for [`fromAccount`][Self::fromAccount].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INPayBillIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setFromAccount:))]
         #[unsafe(method_family = none)]
@@ -125,6 +127,8 @@ impl INPayBillIntentResponse {
 
         #[cfg(feature = "INBillDetails")]
         /// Setter for [`billDetails`][Self::billDetails].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INPayBillIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setBillDetails:))]
         #[unsafe(method_family = none)]
@@ -138,6 +142,8 @@ impl INPayBillIntentResponse {
 
         #[cfg(feature = "INPaymentAmount")]
         /// Setter for [`transactionAmount`][Self::transactionAmount].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INPayBillIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setTransactionAmount:))]
         #[unsafe(method_family = none)]
@@ -151,6 +157,8 @@ impl INPayBillIntentResponse {
 
         #[cfg(feature = "INDateComponentsRange")]
         /// Setter for [`transactionScheduledDate`][Self::transactionScheduledDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INPayBillIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setTransactionScheduledDate:))]
         #[unsafe(method_family = none)]
@@ -165,6 +173,8 @@ impl INPayBillIntentResponse {
         pub unsafe fn transactionNote(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`transactionNote`][Self::transactionNote].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INPayBillIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setTransactionNote:))]
         #[unsafe(method_family = none)]

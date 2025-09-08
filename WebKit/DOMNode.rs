@@ -109,6 +109,8 @@ impl DOMNode {
         pub unsafe fn nodeValue(&self) -> Retained<NSString>;
 
         /// Setter for [`nodeValue`][Self::nodeValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setNodeValue:))]
         #[unsafe(method_family = none)]
@@ -167,6 +169,8 @@ impl DOMNode {
         pub unsafe fn prefix(&self) -> Retained<NSString>;
 
         /// Setter for [`prefix`][Self::prefix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setPrefix:))]
         #[unsafe(method_family = none)]
@@ -192,6 +196,8 @@ impl DOMNode {
         pub unsafe fn textContent(&self) -> Retained<NSString>;
 
         /// Setter for [`textContent`][Self::textContent].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextContent(&self, text_content: Option<&NSString>);

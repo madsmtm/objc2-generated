@@ -85,6 +85,8 @@ impl ASDiscoveryDescriptor {
         pub unsafe fn bluetoothManufacturerDataBlob(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`bluetoothManufacturerDataBlob`][Self::bluetoothManufacturerDataBlob].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBluetoothManufacturerDataBlob:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothManufacturerDataBlob(
@@ -98,6 +100,8 @@ impl ASDiscoveryDescriptor {
         pub unsafe fn bluetoothManufacturerDataMask(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`bluetoothManufacturerDataMask`][Self::bluetoothManufacturerDataMask].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBluetoothManufacturerDataMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothManufacturerDataMask(
@@ -124,6 +128,8 @@ impl ASDiscoveryDescriptor {
         pub unsafe fn bluetoothNameSubstring(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`bluetoothNameSubstring`][Self::bluetoothNameSubstring].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBluetoothNameSubstring:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothNameSubstring(&self, bluetooth_name_substring: Option<&NSString>);
@@ -144,6 +150,8 @@ impl ASDiscoveryDescriptor {
         pub unsafe fn bluetoothServiceDataBlob(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`bluetoothServiceDataBlob`][Self::bluetoothServiceDataBlob].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBluetoothServiceDataBlob:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothServiceDataBlob(
@@ -157,6 +165,8 @@ impl ASDiscoveryDescriptor {
         pub unsafe fn bluetoothServiceDataMask(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`bluetoothServiceDataMask`][Self::bluetoothServiceDataMask].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBluetoothServiceDataMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothServiceDataMask(
@@ -172,6 +182,8 @@ impl ASDiscoveryDescriptor {
 
         #[cfg(feature = "objc2-core-bluetooth")]
         /// Setter for [`bluetoothServiceUUID`][Self::bluetoothServiceUUID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBluetoothServiceUUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothServiceUUID(&self, bluetooth_service_uuid: Option<&CBUUID>);
@@ -182,6 +194,8 @@ impl ASDiscoveryDescriptor {
         pub unsafe fn SSID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`SSID`][Self::SSID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSSID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSSID(&self, ssid: Option<&NSString>);
@@ -192,6 +206,8 @@ impl ASDiscoveryDescriptor {
         pub unsafe fn SSIDPrefix(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`SSIDPrefix`][Self::SSIDPrefix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSSIDPrefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSSIDPrefix(&self, ssid_prefix: Option<&NSString>);

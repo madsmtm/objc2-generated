@@ -104,8 +104,9 @@ impl UICalendarView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICalendarViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -143,6 +144,8 @@ impl UICalendarView {
         pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         /// Setter for [`calendar`][Self::calendar].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCalendar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: &NSCalendar);
@@ -166,6 +169,8 @@ impl UICalendarView {
 
         #[cfg(feature = "UIFontDescriptor")]
         /// Setter for [`fontDesign`][Self::fontDesign].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFontDesign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontDesign(&self, font_design: &UIFontDescriptorSystemDesign);
@@ -178,6 +183,8 @@ impl UICalendarView {
         pub unsafe fn availableDateRange(&self) -> Retained<NSDateInterval>;
 
         /// Setter for [`availableDateRange`][Self::availableDateRange].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAvailableDateRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAvailableDateRange(&self, available_date_range: &NSDateInterval);
@@ -202,6 +209,8 @@ impl UICalendarView {
         pub unsafe fn visibleDateComponents(&self) -> Retained<NSDateComponents>;
 
         /// Setter for [`visibleDateComponents`][Self::visibleDateComponents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVisibleDateComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVisibleDateComponents(&self, visible_date_components: &NSDateComponents);

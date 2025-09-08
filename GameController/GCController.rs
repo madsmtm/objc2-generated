@@ -198,6 +198,8 @@ impl GCController {
 
         #[cfg(feature = "block2")]
         /// Setter for [`controllerPausedHandler`][Self::controllerPausedHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use the Menu button found on the controller's input profile, if it exists."]
         #[unsafe(method(setControllerPausedHandler:))]
         #[unsafe(method_family = none)]

@@ -1085,8 +1085,9 @@ impl UICollectionView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -1100,8 +1101,9 @@ impl UICollectionView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDataSource>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
@@ -1115,8 +1117,9 @@ impl UICollectionView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDataSourcePrefetching>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`prefetchDataSource`][Self::prefetchDataSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPrefetchDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrefetchDataSource(
@@ -1141,8 +1144,9 @@ impl UICollectionView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDragDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dragDelegate`][Self::dragDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDragDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDragDelegate(
@@ -1156,8 +1160,9 @@ impl UICollectionView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDropDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dropDelegate`][Self::dropDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDropDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDropDelegate(
@@ -2113,6 +2118,8 @@ impl UICollectionViewPlaceholder {
             feature = "block2"
         ))]
         /// Setter for [`cellUpdateHandler`][Self::cellUpdateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCellUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellUpdateHandler(
@@ -2161,6 +2168,8 @@ impl UICollectionViewDropPlaceholder {
             feature = "block2"
         ))]
         /// Setter for [`previewParametersProvider`][Self::previewParametersProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreviewParametersProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewParametersProvider(

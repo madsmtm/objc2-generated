@@ -57,6 +57,8 @@ impl MSServiceAccount {
         pub unsafe fn clientID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`clientID`][Self::clientID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setClientID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClientID(&self, client_id: Option<&NSString>);
@@ -70,6 +72,8 @@ impl MSServiceAccount {
         pub unsafe fn clientSecret(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`clientSecret`][Self::clientSecret].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setClientSecret:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClientSecret(&self, client_secret: Option<&NSString>);
@@ -83,6 +87,8 @@ impl MSServiceAccount {
         pub unsafe fn configurationURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`configurationURL`][Self::configurationURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfigurationURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationURL(&self, configuration_url: Option<&NSURL>);
@@ -96,6 +102,8 @@ impl MSServiceAccount {
         pub unsafe fn authorizationTokenURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`authorizationTokenURL`][Self::authorizationTokenURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthorizationTokenURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthorizationTokenURL(&self, authorization_token_url: Option<&NSURL>);
@@ -109,6 +117,8 @@ impl MSServiceAccount {
         pub unsafe fn authorizationScope(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`authorizationScope`][Self::authorizationScope].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthorizationScope:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthorizationScope(&self, authorization_scope: Option<&NSString>);

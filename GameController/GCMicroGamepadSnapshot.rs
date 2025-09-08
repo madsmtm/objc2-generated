@@ -42,6 +42,8 @@ impl GCMicroGamepadSnapshot {
         pub unsafe fn snapshotData(&self) -> Retained<NSData>;
 
         /// Setter for [`snapshotData`][Self::snapshotData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
         #[unsafe(method(setSnapshotData:))]
         #[unsafe(method_family = none)]

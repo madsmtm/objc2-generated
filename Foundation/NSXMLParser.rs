@@ -64,6 +64,9 @@ impl NSXMLParser {
             stream: &NSInputStream,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSXMLParserDelegate>>>;
@@ -118,6 +121,8 @@ impl NSXMLParser {
 
         #[cfg(all(feature = "NSSet", feature = "NSURL"))]
         /// Setter for [`allowedExternalEntityURLs`][Self::allowedExternalEntityURLs].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAllowedExternalEntityURLs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedExternalEntityURLs(

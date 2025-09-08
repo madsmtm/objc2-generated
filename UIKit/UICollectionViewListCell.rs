@@ -203,6 +203,8 @@ impl UICollectionViewListCell {
 
         #[cfg(feature = "UICellAccessory")]
         /// Setter for [`accessories`][Self::accessories].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessories:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessories(&self, accessories: &NSArray<UICellAccessory>);

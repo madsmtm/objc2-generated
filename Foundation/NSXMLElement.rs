@@ -133,6 +133,8 @@ impl NSXMLElement {
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`attributes`][Self::attributes].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributes(&self, attributes: Option<&NSArray<NSXMLNode>>);
@@ -181,6 +183,8 @@ impl NSXMLElement {
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`namespaces`][Self::namespaces].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNamespaces:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNamespaces(&self, namespaces: Option<&NSArray<NSXMLNode>>);

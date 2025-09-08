@@ -298,6 +298,10 @@ impl IKImageBrowserView {
 impl IKImageBrowserView {
     extern_methods!(
         /// The receiver's data source. the data source is not retained by the receiver.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "Deprecated - Please use NSCollectionView instead"]
         #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]
@@ -316,6 +320,10 @@ impl IKImageBrowserView {
         pub unsafe fn reloadData(&self);
 
         /// The receiver's delegate. aDelegate is expected to implement the IKImageBrowserDelegate informal protocol.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "Deprecated - Please use NSCollectionView instead"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]

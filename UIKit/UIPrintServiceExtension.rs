@@ -38,6 +38,8 @@ impl UIPrinterDestination {
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// Setter for [`URL`][Self::URL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: &NSURL);
@@ -47,6 +49,8 @@ impl UIPrinterDestination {
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`displayName`][Self::displayName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplayName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
@@ -56,6 +60,8 @@ impl UIPrinterDestination {
         pub unsafe fn txtRecord(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`txtRecord`][Self::txtRecord].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTxtRecord:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTxtRecord(&self, txt_record: Option<&NSData>);

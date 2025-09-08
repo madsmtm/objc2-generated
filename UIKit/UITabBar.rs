@@ -123,8 +123,9 @@ impl UITabBar {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITabBarDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UITabBarDelegate>>);
@@ -136,6 +137,8 @@ impl UITabBar {
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
         /// Setter for [`items`][Self::items].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItems(&self, items: Option<&NSArray<UITabBarItem>>);
@@ -146,8 +149,9 @@ impl UITabBar {
         pub unsafe fn selectedItem(&self) -> Option<Retained<UITabBarItem>>;
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`selectedItem`][Self::selectedItem].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setSelectedItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedItem(&self, selected_item: Option<&UITabBarItem>);
@@ -204,6 +208,8 @@ impl UITabBar {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`unselectedItemTintColor`][Self::unselectedItemTintColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUnselectedItemTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnselectedItemTintColor(
@@ -319,6 +325,8 @@ impl UITabBar {
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         /// Setter for [`standardAppearance`][Self::standardAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStandardAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardAppearance(&self, standard_appearance: &UITabBarAppearance);
@@ -331,6 +339,8 @@ impl UITabBar {
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         /// Setter for [`scrollEdgeAppearance`][Self::scrollEdgeAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setScrollEdgeAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollEdgeAppearance(

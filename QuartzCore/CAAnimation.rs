@@ -206,6 +206,8 @@ impl CAPropertyAnimation {
         pub unsafe fn keyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`keyPath`][Self::keyPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyPath(&self, key_path: Option<&NSString>);
@@ -410,6 +412,8 @@ impl CAKeyframeAnimation {
         pub unsafe fn values(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`values`][Self::values].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValues(&self, values: Option<&NSArray>);
@@ -430,6 +434,8 @@ impl CAKeyframeAnimation {
         pub unsafe fn keyTimes(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`keyTimes`][Self::keyTimes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeyTimes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyTimes(&self, key_times: Option<&NSArray<NSNumber>>);
@@ -441,6 +447,8 @@ impl CAKeyframeAnimation {
 
         #[cfg(feature = "CAMediaTimingFunction")]
         /// Setter for [`timingFunctions`][Self::timingFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTimingFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimingFunctions(
@@ -453,6 +461,8 @@ impl CAKeyframeAnimation {
         pub unsafe fn calculationMode(&self) -> Retained<CAAnimationCalculationMode>;
 
         /// Setter for [`calculationMode`][Self::calculationMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCalculationMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalculationMode(&self, calculation_mode: &CAAnimationCalculationMode);
@@ -462,6 +472,8 @@ impl CAKeyframeAnimation {
         pub unsafe fn tensionValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`tensionValues`][Self::tensionValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTensionValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTensionValues(&self, tension_values: Option<&NSArray<NSNumber>>);
@@ -471,6 +483,8 @@ impl CAKeyframeAnimation {
         pub unsafe fn continuityValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`continuityValues`][Self::continuityValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContinuityValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContinuityValues(&self, continuity_values: Option<&NSArray<NSNumber>>);
@@ -480,6 +494,8 @@ impl CAKeyframeAnimation {
         pub unsafe fn biasValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`biasValues`][Self::biasValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBiasValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBiasValues(&self, bias_values: Option<&NSArray<NSNumber>>);
@@ -489,6 +505,8 @@ impl CAKeyframeAnimation {
         pub unsafe fn rotationMode(&self) -> Option<Retained<CAAnimationRotationMode>>;
 
         /// Setter for [`rotationMode`][Self::rotationMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRotationMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRotationMode(&self, rotation_mode: Option<&CAAnimationRotationMode>);
@@ -758,6 +776,8 @@ impl CATransition {
         pub unsafe fn r#type(&self) -> Retained<CATransitionType>;
 
         /// Setter for [`type`][Self::type].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: &CATransitionType);
@@ -767,6 +787,8 @@ impl CATransition {
         pub unsafe fn subtype(&self) -> Option<Retained<CATransitionSubtype>>;
 
         /// Setter for [`subtype`][Self::subtype].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtype:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtype(&self, subtype: Option<&CATransitionSubtype>);
@@ -908,6 +930,8 @@ impl CAAnimationGroup {
         pub unsafe fn animations(&self) -> Option<Retained<NSArray<CAAnimation>>>;
 
         /// Setter for [`animations`][Self::animations].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAnimations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimations(&self, animations: Option<&NSArray<CAAnimation>>);

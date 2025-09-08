@@ -26,6 +26,8 @@ pub unsafe trait NSUserActivityIntentsAdditions:
         unsafe fn suggestedInvocationPhrase(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`suggestedInvocationPhrase`][Self::suggestedInvocationPhrase].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSuggestedInvocationPhrase:))]
         #[unsafe(method_family = none)]
         unsafe fn setSuggestedInvocationPhrase(

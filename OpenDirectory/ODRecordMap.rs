@@ -25,6 +25,8 @@ impl ODRecordMap {
         pub unsafe fn native(&self) -> Retained<NSString>;
 
         /// Setter for [`native`][Self::native].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNative:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNative(&self, native: Option<&NSString>);
@@ -34,6 +36,8 @@ impl ODRecordMap {
         pub unsafe fn odPredicate(&self) -> Retained<NSDictionary>;
 
         /// Setter for [`odPredicate`][Self::odPredicate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOdPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOdPredicate(&self, od_predicate: Option<&NSDictionary>);

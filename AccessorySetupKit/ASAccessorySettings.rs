@@ -35,6 +35,8 @@ impl ASAccessorySettings {
         pub unsafe fn SSID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`SSID`][Self::SSID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSSID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSSID(&self, ssid: Option<&NSString>);
@@ -47,6 +49,8 @@ impl ASAccessorySettings {
         pub unsafe fn bluetoothTransportBridgingIdentifier(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`bluetoothTransportBridgingIdentifier`][Self::bluetoothTransportBridgingIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBluetoothTransportBridgingIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothTransportBridgingIdentifier(

@@ -138,6 +138,8 @@ impl UISceneOpenExternalURLOptions {
 
         #[cfg(feature = "UIEventAttribution")]
         /// Setter for [`eventAttribution`][Self::eventAttribution].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEventAttribution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEventAttribution(&self, event_attribution: Option<&UIEventAttribution>);

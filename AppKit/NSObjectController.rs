@@ -86,6 +86,9 @@ impl NSObjectController {
         #[unsafe(method_family = none)]
         pub unsafe fn prepareContent(&self);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(objectClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectClass(&self) -> Option<&'static AnyClass>;
@@ -187,6 +190,8 @@ impl NSObjectController {
         pub unsafe fn entityName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`entityName`][Self::entityName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEntityName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEntityName(&self, entity_name: Option<&NSString>);

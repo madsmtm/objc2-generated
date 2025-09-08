@@ -64,6 +64,8 @@ impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
 
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         /// Setter for [`allowedCredentials`][Self::allowedCredentials].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAllowedCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedCredentials(
@@ -77,6 +79,8 @@ impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
         pub unsafe fn appID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`appID`][Self::appID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAppID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppID(&self, app_id: Option<&NSString>);

@@ -39,8 +39,9 @@ impl NSLayoutGuide {
         pub unsafe fn owningView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`owningView`][Self::owningView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setOwningView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOwningView(&self, owning_view: Option<&NSView>);
@@ -52,6 +53,8 @@ impl NSLayoutGuide {
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);

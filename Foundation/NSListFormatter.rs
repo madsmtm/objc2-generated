@@ -44,6 +44,8 @@ impl NSListFormatter {
 
         #[cfg(feature = "NSLocale")]
         /// Setter for [`locale`][Self::locale].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
@@ -53,6 +55,8 @@ impl NSListFormatter {
         pub unsafe fn itemFormatter(&self) -> Option<Retained<NSFormatter>>;
 
         /// Setter for [`itemFormatter`][Self::itemFormatter].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setItemFormatter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemFormatter(&self, item_formatter: Option<&NSFormatter>);

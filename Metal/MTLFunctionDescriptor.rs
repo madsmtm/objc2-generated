@@ -82,6 +82,8 @@ impl MTLFunctionDescriptor {
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub fn setName(&self, name: Option<&NSString>);
@@ -92,6 +94,8 @@ impl MTLFunctionDescriptor {
         pub fn specializedName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`specializedName`][Self::specializedName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSpecializedName:))]
         #[unsafe(method_family = none)]
         pub fn setSpecializedName(&self, specialized_name: Option<&NSString>);
@@ -104,6 +108,8 @@ impl MTLFunctionDescriptor {
 
         #[cfg(feature = "MTLFunctionConstantValues")]
         /// Setter for [`constantValues`][Self::constantValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConstantValues:))]
         #[unsafe(method_family = none)]
         pub fn setConstantValues(&self, constant_values: Option<&MTLFunctionConstantValues>);
@@ -130,6 +136,8 @@ impl MTLFunctionDescriptor {
 
         #[cfg(feature = "MTLBinaryArchive")]
         /// Setter for [`binaryArchives`][Self::binaryArchives].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBinaryArchives:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBinaryArchives(

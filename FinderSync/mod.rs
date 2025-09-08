@@ -69,6 +69,8 @@ impl FIFinderSyncController {
         pub unsafe fn directoryURLs(&self) -> Retained<NSSet<NSURL>>;
 
         /// Setter for [`directoryURLs`][Self::directoryURLs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDirectoryURLs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirectoryURLs(&self, directory_ur_ls: Option<&NSSet<NSURL>>);

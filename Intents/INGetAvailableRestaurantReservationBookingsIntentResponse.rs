@@ -88,6 +88,8 @@ impl INGetAvailableRestaurantReservationBookingsIntentResponse {
         pub unsafe fn localizedRestaurantDescriptionText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedRestaurantDescriptionText`][Self::localizedRestaurantDescriptionText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedRestaurantDescriptionText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedRestaurantDescriptionText(
@@ -100,6 +102,8 @@ impl INGetAvailableRestaurantReservationBookingsIntentResponse {
         pub unsafe fn localizedBookingAdvisementText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedBookingAdvisementText`][Self::localizedBookingAdvisementText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedBookingAdvisementText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedBookingAdvisementText(
@@ -114,6 +118,8 @@ impl INGetAvailableRestaurantReservationBookingsIntentResponse {
 
         #[cfg(feature = "INTermsAndConditions")]
         /// Setter for [`termsAndConditions`][Self::termsAndConditions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTermsAndConditions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTermsAndConditions(

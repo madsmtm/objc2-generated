@@ -56,6 +56,8 @@ impl CKFetchDatabaseChangesOperation {
 
         #[cfg(feature = "CKServerChangeToken")]
         /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreviousServerChangeToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviousServerChangeToken(
@@ -105,6 +107,8 @@ impl CKFetchDatabaseChangesOperation {
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDChangedBlock`][Self::recordZoneWithIDChangedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordZoneWithIDChangedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDChangedBlock(
@@ -127,6 +131,8 @@ impl CKFetchDatabaseChangesOperation {
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasDeletedBlock`][Self::recordZoneWithIDWasDeletedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordZoneWithIDWasDeletedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasDeletedBlock(
@@ -154,6 +160,8 @@ impl CKFetchDatabaseChangesOperation {
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasPurgedBlock`][Self::recordZoneWithIDWasPurgedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordZoneWithIDWasPurgedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasPurgedBlock(
@@ -181,6 +189,8 @@ impl CKFetchDatabaseChangesOperation {
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock`][Self::recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
@@ -203,6 +213,8 @@ impl CKFetchDatabaseChangesOperation {
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         /// Setter for [`changeTokenUpdatedBlock`][Self::changeTokenUpdatedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChangeTokenUpdatedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChangeTokenUpdatedBlock(
@@ -236,6 +248,8 @@ impl CKFetchDatabaseChangesOperation {
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         /// Setter for [`fetchDatabaseChangesCompletionBlock`][Self::fetchDatabaseChangesCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFetchDatabaseChangesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchDatabaseChangesCompletionBlock(

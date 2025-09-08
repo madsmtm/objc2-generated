@@ -151,8 +151,9 @@ impl AVCaptureView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -180,6 +181,8 @@ impl AVCaptureView {
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Setter for [`videoGravity`][Self::videoGravity].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoGravity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);

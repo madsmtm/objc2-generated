@@ -56,6 +56,8 @@ impl VZGenericPlatformConfiguration {
 
         #[cfg(feature = "VZGenericMachineIdentifier")]
         /// Setter for [`machineIdentifier`][Self::machineIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMachineIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMachineIdentifier(&self, machine_identifier: &VZGenericMachineIdentifier);

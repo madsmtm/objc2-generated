@@ -99,8 +99,9 @@ impl UIAccelerometer {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIAccelerometerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

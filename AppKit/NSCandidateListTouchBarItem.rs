@@ -60,8 +60,9 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
             feature = "NSTextInputClient",
             feature = "NSView"
         ))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`client`][Self::client].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setClient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClient(&self, client: Option<&NSView>);
@@ -72,8 +73,9 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -130,6 +132,8 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
 
         #[cfg(feature = "block2")]
         /// Setter for [`attributedStringForCandidate`][Self::attributedStringForCandidate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedStringForCandidate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedStringForCandidate(
@@ -159,6 +163,8 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizationLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);

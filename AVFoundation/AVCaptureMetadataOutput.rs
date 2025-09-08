@@ -103,6 +103,8 @@ impl AVCaptureMetadataOutput {
 
         #[cfg(feature = "AVMetadataObject")]
         /// Setter for [`metadataObjectTypes`][Self::metadataObjectTypes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMetadataObjectTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadataObjectTypes(

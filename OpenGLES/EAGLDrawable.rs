@@ -48,6 +48,8 @@ extern_protocol!(
         unsafe fn drawableProperties(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`drawableProperties`][Self::drawableProperties].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDrawableProperties:))]
         #[unsafe(method_family = none)]
         unsafe fn setDrawableProperties(

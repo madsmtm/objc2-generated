@@ -142,6 +142,9 @@ impl NSTextContainer {
 impl NSTextContainer {
     extern_methods!(
         #[cfg(feature = "NSLayoutManager")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(layoutManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
@@ -164,6 +167,8 @@ impl NSTextContainer {
 
         #[cfg(feature = "UIBezierPath")]
         /// Setter for [`exclusionPaths`][Self::exclusionPaths].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExclusionPaths:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExclusionPaths(&self, exclusion_paths: &NSArray<UIBezierPath>);

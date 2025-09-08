@@ -243,6 +243,8 @@ extern_protocol!(
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         fn setLabel(&self, label: Option<&NSString>);
@@ -515,6 +517,8 @@ impl MTLCompileOptions {
         pub fn preprocessorMacros(&self) -> Option<Retained<NSDictionary<NSString, NSObject>>>;
 
         /// Setter for [`preprocessorMacros`][Self::preprocessorMacros].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreprocessorMacros:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreprocessorMacros(
@@ -607,6 +611,8 @@ impl MTLCompileOptions {
         pub fn installName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`installName`][Self::installName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInstallName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstallName(&self, install_name: Option<&NSString>);
@@ -623,6 +629,8 @@ impl MTLCompileOptions {
 
         #[cfg(feature = "MTLDynamicLibrary")]
         /// Setter for [`libraries`][Self::libraries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLibraries:))]
         #[unsafe(method_family = none)]
         pub fn setLibraries(
@@ -767,6 +775,8 @@ extern_protocol!(
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         fn setLabel(&self, label: Option<&NSString>);

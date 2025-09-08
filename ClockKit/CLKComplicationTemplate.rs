@@ -49,6 +49,8 @@ impl CLKComplicationTemplate {
 
         #[cfg(feature = "objc2-ui-kit")]
         /// Setter for [`tintColor`][Self::tintColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
@@ -86,6 +88,8 @@ impl CLKComplicationTemplateModularSmallSimpleText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -151,6 +155,8 @@ impl CLKComplicationTemplateModularSmallSimpleImage {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -218,6 +224,8 @@ impl CLKComplicationTemplateModularSmallRingText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -313,6 +321,8 @@ impl CLKComplicationTemplateModularSmallRingImage {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -408,6 +418,8 @@ impl CLKComplicationTemplateModularSmallStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line1TextProvider`][Self::line1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -421,6 +433,8 @@ impl CLKComplicationTemplateModularSmallStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line2TextProvider`][Self::line2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -501,6 +515,8 @@ impl CLKComplicationTemplateModularSmallStackImage {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`line1ImageProvider`][Self::line1ImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine1ImageProvider:))]
         #[unsafe(method_family = none)]
@@ -514,6 +530,8 @@ impl CLKComplicationTemplateModularSmallStackImage {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line2TextProvider`][Self::line2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -594,6 +612,8 @@ impl CLKComplicationTemplateModularSmallColumnsText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row1Column1TextProvider`][Self::row1Column1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow1Column1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -610,6 +630,8 @@ impl CLKComplicationTemplateModularSmallColumnsText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row1Column2TextProvider`][Self::row1Column2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow1Column2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -626,6 +648,8 @@ impl CLKComplicationTemplateModularSmallColumnsText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row2Column1TextProvider`][Self::row2Column1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow2Column1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -642,6 +666,8 @@ impl CLKComplicationTemplateModularSmallColumnsText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row2Column2TextProvider`][Self::row2Column2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow2Column2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -742,6 +768,8 @@ impl CLKComplicationTemplateModularLargeStandardBody {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`headerImageProvider`][Self::headerImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setHeaderImageProvider:))]
         #[unsafe(method_family = none)]
@@ -758,6 +786,8 @@ impl CLKComplicationTemplateModularLargeStandardBody {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`headerTextProvider`][Self::headerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setHeaderTextProvider:))]
         #[unsafe(method_family = none)]
@@ -771,6 +801,8 @@ impl CLKComplicationTemplateModularLargeStandardBody {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`body1TextProvider`][Self::body1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setBody1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -784,6 +816,8 @@ impl CLKComplicationTemplateModularLargeStandardBody {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`body2TextProvider`][Self::body2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setBody2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -912,6 +946,8 @@ impl CLKComplicationTemplateModularLargeTallBody {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`headerTextProvider`][Self::headerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setHeaderTextProvider:))]
         #[unsafe(method_family = none)]
@@ -925,6 +961,8 @@ impl CLKComplicationTemplateModularLargeTallBody {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`bodyTextProvider`][Self::bodyTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setBodyTextProvider:))]
         #[unsafe(method_family = none)]
@@ -994,6 +1032,8 @@ impl CLKComplicationTemplateModularLargeTable {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`headerImageProvider`][Self::headerImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setHeaderImageProvider:))]
         #[unsafe(method_family = none)]
@@ -1010,6 +1050,8 @@ impl CLKComplicationTemplateModularLargeTable {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`headerTextProvider`][Self::headerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setHeaderTextProvider:))]
         #[unsafe(method_family = none)]
@@ -1023,6 +1065,8 @@ impl CLKComplicationTemplateModularLargeTable {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row1Column1TextProvider`][Self::row1Column1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow1Column1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -1039,6 +1083,8 @@ impl CLKComplicationTemplateModularLargeTable {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row1Column2TextProvider`][Self::row1Column2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow1Column2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -1055,6 +1101,8 @@ impl CLKComplicationTemplateModularLargeTable {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row2Column1TextProvider`][Self::row2Column1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow2Column1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -1071,6 +1119,8 @@ impl CLKComplicationTemplateModularLargeTable {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row2Column2TextProvider`][Self::row2Column2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow2Column2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -1187,6 +1237,8 @@ impl CLKComplicationTemplateModularLargeColumns {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`row1ImageProvider`][Self::row1ImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow1ImageProvider:))]
         #[unsafe(method_family = none)]
@@ -1200,6 +1252,8 @@ impl CLKComplicationTemplateModularLargeColumns {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row1Column1TextProvider`][Self::row1Column1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow1Column1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -1216,6 +1270,8 @@ impl CLKComplicationTemplateModularLargeColumns {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row1Column2TextProvider`][Self::row1Column2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow1Column2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -1232,6 +1288,8 @@ impl CLKComplicationTemplateModularLargeColumns {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`row2ImageProvider`][Self::row2ImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow2ImageProvider:))]
         #[unsafe(method_family = none)]
@@ -1245,6 +1303,8 @@ impl CLKComplicationTemplateModularLargeColumns {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row2Column1TextProvider`][Self::row2Column1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow2Column1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -1261,6 +1321,8 @@ impl CLKComplicationTemplateModularLargeColumns {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row2Column2TextProvider`][Self::row2Column2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow2Column2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -1277,6 +1339,8 @@ impl CLKComplicationTemplateModularLargeColumns {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`row3ImageProvider`][Self::row3ImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow3ImageProvider:))]
         #[unsafe(method_family = none)]
@@ -1290,6 +1354,8 @@ impl CLKComplicationTemplateModularLargeColumns {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row3Column1TextProvider`][Self::row3Column1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow3Column1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -1306,6 +1372,8 @@ impl CLKComplicationTemplateModularLargeColumns {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row3Column2TextProvider`][Self::row3Column2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow3Column2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -1430,6 +1498,8 @@ impl CLKComplicationTemplateUtilitarianSmallSquare {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -1497,6 +1567,8 @@ impl CLKComplicationTemplateUtilitarianSmallRingText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -1592,6 +1664,8 @@ impl CLKComplicationTemplateUtilitarianSmallRingImage {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -1687,6 +1761,8 @@ impl CLKComplicationTemplateUtilitarianSmallFlat {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -1700,6 +1776,8 @@ impl CLKComplicationTemplateUtilitarianSmallFlat {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -1782,6 +1860,8 @@ impl CLKComplicationTemplateUtilitarianLargeFlat {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -1795,6 +1875,8 @@ impl CLKComplicationTemplateUtilitarianLargeFlat {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -1877,6 +1959,8 @@ impl CLKComplicationTemplateCircularSmallSimpleText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -1942,6 +2026,8 @@ impl CLKComplicationTemplateCircularSmallSimpleImage {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -2009,6 +2095,8 @@ impl CLKComplicationTemplateCircularSmallRingText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -2104,6 +2192,8 @@ impl CLKComplicationTemplateCircularSmallRingImage {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -2199,6 +2289,8 @@ impl CLKComplicationTemplateCircularSmallStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line1TextProvider`][Self::line1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -2212,6 +2304,8 @@ impl CLKComplicationTemplateCircularSmallStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line2TextProvider`][Self::line2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -2281,6 +2375,8 @@ impl CLKComplicationTemplateCircularSmallStackImage {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`line1ImageProvider`][Self::line1ImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine1ImageProvider:))]
         #[unsafe(method_family = none)]
@@ -2294,6 +2390,8 @@ impl CLKComplicationTemplateCircularSmallStackImage {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line2TextProvider`][Self::line2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -2363,6 +2461,8 @@ impl CLKComplicationTemplateExtraLargeSimpleText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -2428,6 +2528,8 @@ impl CLKComplicationTemplateExtraLargeSimpleImage {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -2495,6 +2597,8 @@ impl CLKComplicationTemplateExtraLargeRingText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -2590,6 +2694,8 @@ impl CLKComplicationTemplateExtraLargeRingImage {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -2685,6 +2791,8 @@ impl CLKComplicationTemplateExtraLargeStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line1TextProvider`][Self::line1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -2698,6 +2806,8 @@ impl CLKComplicationTemplateExtraLargeStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line2TextProvider`][Self::line2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -2778,6 +2888,8 @@ impl CLKComplicationTemplateExtraLargeStackImage {
 
         #[cfg(feature = "CLKImageProvider")]
         /// Setter for [`line1ImageProvider`][Self::line1ImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine1ImageProvider:))]
         #[unsafe(method_family = none)]
@@ -2791,6 +2903,8 @@ impl CLKComplicationTemplateExtraLargeStackImage {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line2TextProvider`][Self::line2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -2871,6 +2985,8 @@ impl CLKComplicationTemplateExtraLargeColumnsText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row1Column1TextProvider`][Self::row1Column1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow1Column1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -2887,6 +3003,8 @@ impl CLKComplicationTemplateExtraLargeColumnsText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row1Column2TextProvider`][Self::row1Column2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow1Column2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -2903,6 +3021,8 @@ impl CLKComplicationTemplateExtraLargeColumnsText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row2Column1TextProvider`][Self::row2Column1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow2Column1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -2919,6 +3039,8 @@ impl CLKComplicationTemplateExtraLargeColumnsText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`row2Column2TextProvider`][Self::row2Column2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setRow2Column2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -3019,6 +3141,8 @@ impl CLKComplicationTemplateGraphicCornerGaugeText {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -3032,6 +3156,8 @@ impl CLKComplicationTemplateGraphicCornerGaugeText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`leadingTextProvider`][Self::leadingTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLeadingTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3048,6 +3174,8 @@ impl CLKComplicationTemplateGraphicCornerGaugeText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`trailingTextProvider`][Self::trailingTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTrailingTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3064,6 +3192,8 @@ impl CLKComplicationTemplateGraphicCornerGaugeText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`outerTextProvider`][Self::outerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setOuterTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3154,6 +3284,8 @@ impl CLKComplicationTemplateGraphicCornerGaugeImage {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -3167,6 +3299,8 @@ impl CLKComplicationTemplateGraphicCornerGaugeImage {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`leadingTextProvider`][Self::leadingTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLeadingTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3183,6 +3317,8 @@ impl CLKComplicationTemplateGraphicCornerGaugeImage {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`trailingTextProvider`][Self::trailingTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTrailingTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3199,6 +3335,8 @@ impl CLKComplicationTemplateGraphicCornerGaugeImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -3297,6 +3435,8 @@ impl CLKComplicationTemplateGraphicCornerTextImage {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3310,6 +3450,8 @@ impl CLKComplicationTemplateGraphicCornerTextImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -3379,6 +3521,8 @@ impl CLKComplicationTemplateGraphicCornerStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`innerTextProvider`][Self::innerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setInnerTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3392,6 +3536,8 @@ impl CLKComplicationTemplateGraphicCornerStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`outerTextProvider`][Self::outerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setOuterTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3461,6 +3607,8 @@ impl CLKComplicationTemplateGraphicCornerCircularImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -3571,6 +3719,8 @@ impl CLKComplicationTemplateGraphicCircularImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -3642,6 +3792,8 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeRangeText {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -3655,6 +3807,8 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeRangeText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`leadingTextProvider`][Self::leadingTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLeadingTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3668,6 +3822,8 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeRangeText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`trailingTextProvider`][Self::trailingTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTrailingTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3681,6 +3837,8 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeRangeText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`centerTextProvider`][Self::centerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setCenterTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3758,6 +3916,8 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -3771,6 +3931,8 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`bottomTextProvider`][Self::bottomTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setBottomTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3784,6 +3946,8 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`centerTextProvider`][Self::centerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setCenterTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3859,6 +4023,8 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeImage {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -3872,6 +4038,8 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`bottomImageProvider`][Self::bottomImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setBottomImageProvider:))]
         #[unsafe(method_family = none)]
@@ -3888,6 +4056,8 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeImage {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`centerTextProvider`][Self::centerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setCenterTextProvider:))]
         #[unsafe(method_family = none)]
@@ -3971,6 +4141,8 @@ impl CLKComplicationTemplateGraphicCircularClosedGaugeText {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -3984,6 +4156,8 @@ impl CLKComplicationTemplateGraphicCircularClosedGaugeText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`centerTextProvider`][Self::centerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setCenterTextProvider:))]
         #[unsafe(method_family = none)]
@@ -4057,6 +4231,8 @@ impl CLKComplicationTemplateGraphicCircularClosedGaugeImage {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -4070,6 +4246,8 @@ impl CLKComplicationTemplateGraphicCircularClosedGaugeImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -4143,6 +4321,8 @@ impl CLKComplicationTemplateGraphicCircularStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line1TextProvider`][Self::line1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -4156,6 +4336,8 @@ impl CLKComplicationTemplateGraphicCircularStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line2TextProvider`][Self::line2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -4229,6 +4411,8 @@ impl CLKComplicationTemplateGraphicCircularStackImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`line1ImageProvider`][Self::line1ImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine1ImageProvider:))]
         #[unsafe(method_family = none)]
@@ -4245,6 +4429,8 @@ impl CLKComplicationTemplateGraphicCircularStackImage {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line2TextProvider`][Self::line2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -4312,6 +4498,8 @@ impl CLKComplicationTemplateGraphicBezelCircularText {
         pub unsafe fn circularTemplate(&self) -> Retained<CLKComplicationTemplateGraphicCircular>;
 
         /// Setter for [`circularTemplate`][Self::circularTemplate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setCircularTemplate:))]
         #[unsafe(method_family = none)]
@@ -4328,6 +4516,8 @@ impl CLKComplicationTemplateGraphicBezelCircularText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -4410,6 +4600,8 @@ impl CLKComplicationTemplateGraphicRectangularFullImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -4477,6 +4669,8 @@ impl CLKComplicationTemplateGraphicRectangularLargeImage {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`textProvider`][Self::textProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTextProvider:))]
         #[unsafe(method_family = none)]
@@ -4490,6 +4684,8 @@ impl CLKComplicationTemplateGraphicRectangularLargeImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -4559,6 +4755,8 @@ impl CLKComplicationTemplateGraphicRectangularStandardBody {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`headerImageProvider`][Self::headerImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setHeaderImageProvider:))]
         #[unsafe(method_family = none)]
@@ -4575,6 +4773,8 @@ impl CLKComplicationTemplateGraphicRectangularStandardBody {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`headerTextProvider`][Self::headerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setHeaderTextProvider:))]
         #[unsafe(method_family = none)]
@@ -4588,6 +4788,8 @@ impl CLKComplicationTemplateGraphicRectangularStandardBody {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`body1TextProvider`][Self::body1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setBody1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -4601,6 +4803,8 @@ impl CLKComplicationTemplateGraphicRectangularStandardBody {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`body2TextProvider`][Self::body2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setBody2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -4729,6 +4933,8 @@ impl CLKComplicationTemplateGraphicRectangularTextGauge {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`headerImageProvider`][Self::headerImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setHeaderImageProvider:))]
         #[unsafe(method_family = none)]
@@ -4745,6 +4951,8 @@ impl CLKComplicationTemplateGraphicRectangularTextGauge {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`headerTextProvider`][Self::headerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setHeaderTextProvider:))]
         #[unsafe(method_family = none)]
@@ -4758,6 +4966,8 @@ impl CLKComplicationTemplateGraphicRectangularTextGauge {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`body1TextProvider`][Self::body1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setBody1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -4771,6 +4981,8 @@ impl CLKComplicationTemplateGraphicRectangularTextGauge {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -4914,6 +5126,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -4989,6 +5203,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -5002,6 +5218,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`leadingTextProvider`][Self::leadingTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLeadingTextProvider:))]
         #[unsafe(method_family = none)]
@@ -5015,6 +5233,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`trailingTextProvider`][Self::trailingTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTrailingTextProvider:))]
         #[unsafe(method_family = none)]
@@ -5028,6 +5248,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`centerTextProvider`][Self::centerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setCenterTextProvider:))]
         #[unsafe(method_family = none)]
@@ -5109,6 +5331,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -5122,6 +5346,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`bottomTextProvider`][Self::bottomTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setBottomTextProvider:))]
         #[unsafe(method_family = none)]
@@ -5135,6 +5361,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`centerTextProvider`][Self::centerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setCenterTextProvider:))]
         #[unsafe(method_family = none)]
@@ -5211,6 +5439,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeImage {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -5224,6 +5454,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`bottomImageProvider`][Self::bottomImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setBottomImageProvider:))]
         #[unsafe(method_family = none)]
@@ -5240,6 +5472,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeImage {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`centerTextProvider`][Self::centerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setCenterTextProvider:))]
         #[unsafe(method_family = none)]
@@ -5324,6 +5558,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -5337,6 +5573,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`centerTextProvider`][Self::centerTextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setCenterTextProvider:))]
         #[unsafe(method_family = none)]
@@ -5411,6 +5649,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeImage {
 
         #[cfg(feature = "CLKGaugeProvider")]
         /// Setter for [`gaugeProvider`][Self::gaugeProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setGaugeProvider:))]
         #[unsafe(method_family = none)]
@@ -5424,6 +5664,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`imageProvider`][Self::imageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setImageProvider:))]
         #[unsafe(method_family = none)]
@@ -5498,6 +5740,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line1TextProvider`][Self::line1TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine1TextProvider:))]
         #[unsafe(method_family = none)]
@@ -5511,6 +5755,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularStackText {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line2TextProvider`][Self::line2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine2TextProvider:))]
         #[unsafe(method_family = none)]
@@ -5585,6 +5831,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularStackImage {
 
         #[cfg(feature = "CLKFullColorImageProvider")]
         /// Setter for [`line1ImageProvider`][Self::line1ImageProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine1ImageProvider:))]
         #[unsafe(method_family = none)]
@@ -5601,6 +5849,8 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularStackImage {
 
         #[cfg(feature = "CLKTextProvider")]
         /// Setter for [`line2TextProvider`][Self::line2TextProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setLine2TextProvider:))]
         #[unsafe(method_family = none)]

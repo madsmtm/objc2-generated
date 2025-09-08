@@ -94,6 +94,8 @@ impl INAddTasksIntentResponse {
 
         #[cfg(feature = "INTaskList")]
         /// Setter for [`modifiedTaskList`][Self::modifiedTaskList].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModifiedTaskList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModifiedTaskList(&self, modified_task_list: Option<&INTaskList>);
@@ -105,6 +107,8 @@ impl INAddTasksIntentResponse {
 
         #[cfg(feature = "INTask")]
         /// Setter for [`addedTasks`][Self::addedTasks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAddedTasks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAddedTasks(&self, added_tasks: Option<&NSArray<INTask>>);

@@ -52,6 +52,8 @@ impl AMAppleScriptAction {
 
         #[cfg(feature = "objc2-osa-kit")]
         /// Setter for [`script`][Self::script].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScript(&self, script: Option<&OSAScript>);

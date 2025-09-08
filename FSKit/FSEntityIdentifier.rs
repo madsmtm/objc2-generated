@@ -87,6 +87,8 @@ impl FSEntityIdentifier {
         pub unsafe fn uuid(&self) -> Retained<NSUUID>;
 
         /// Setter for [`uuid`][Self::uuid].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUuid:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUuid(&self, uuid: &NSUUID);
@@ -97,6 +99,8 @@ impl FSEntityIdentifier {
         pub unsafe fn qualifier(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`qualifier`][Self::qualifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setQualifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQualifier(&self, qualifier: Option<&NSData>);

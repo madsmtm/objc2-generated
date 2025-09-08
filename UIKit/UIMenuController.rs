@@ -115,6 +115,8 @@ impl UIMenuController {
         pub unsafe fn menuItems(&self) -> Option<Retained<NSArray<UIMenuItem>>>;
 
         /// Setter for [`menuItems`][Self::menuItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMenuItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenuItems(&self, menu_items: Option<&NSArray<UIMenuItem>>);
@@ -205,6 +207,8 @@ impl UIMenuItem {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "UIMenuItem is deprecated. Use UIEditMenuInteraction instead."]
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]

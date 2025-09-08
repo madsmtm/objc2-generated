@@ -736,6 +736,8 @@ impl MTLRenderPassDescriptor {
         pub fn depthAttachment(&self) -> Retained<MTLRenderPassDepthAttachmentDescriptor>;
 
         /// Setter for [`depthAttachment`][Self::depthAttachment].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDepthAttachment:))]
         #[unsafe(method_family = none)]
         pub fn setDepthAttachment(
@@ -748,6 +750,8 @@ impl MTLRenderPassDescriptor {
         pub fn stencilAttachment(&self) -> Retained<MTLRenderPassStencilAttachmentDescriptor>;
 
         /// Setter for [`stencilAttachment`][Self::stencilAttachment].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStencilAttachment:))]
         #[unsafe(method_family = none)]
         pub fn setStencilAttachment(

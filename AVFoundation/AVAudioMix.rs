@@ -101,6 +101,8 @@ impl AVMutableAudioMix {
         pub unsafe fn inputParameters(&self) -> Retained<NSArray<AVAudioMixInputParameters>>;
 
         /// Setter for [`inputParameters`][Self::inputParameters].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInputParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputParameters(
@@ -265,6 +267,8 @@ impl AVMutableAudioMixInputParameters {
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudioTimePitchAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioTimePitchAlgorithm(

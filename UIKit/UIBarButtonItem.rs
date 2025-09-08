@@ -317,6 +317,8 @@ impl UIBarButtonItem {
         pub unsafe fn possibleTitles(&self) -> Option<Retained<NSSet<NSString>>>;
 
         /// Setter for [`possibleTitles`][Self::possibleTitles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPossibleTitles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPossibleTitles(&self, possible_titles: Option<&NSSet<NSString>>);
@@ -345,8 +347,9 @@ impl UIBarButtonItem {
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -365,6 +368,8 @@ impl UIBarButtonItem {
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Setter for [`primaryAction`][Self::primaryAction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrimaryAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryAction(&self, primary_action: Option<&UIAction>);
@@ -377,6 +382,8 @@ impl UIBarButtonItem {
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Setter for [`menu`][Self::menu].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMenu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenu(&self, menu: Option<&UIMenu>);
@@ -448,6 +455,8 @@ impl UIBarButtonItem {
 
         #[cfg(feature = "UIMenuElement")]
         /// Setter for [`menuRepresentation`][Self::menuRepresentation].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMenuRepresentation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenuRepresentation(&self, menu_representation: Option<&UIMenuElement>);

@@ -112,8 +112,9 @@ impl SWCollaborationView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCloudSharingServiceDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`cloudSharingDelegate`][Self::cloudSharingDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setCloudSharingDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCloudSharingDelegate(
@@ -147,8 +148,9 @@ impl SWCollaborationView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SWCollaborationViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -161,6 +163,8 @@ impl SWCollaborationView {
         pub unsafe fn headerTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`headerTitle`][Self::headerTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHeaderTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeaderTitle(&self, header_title: &NSString);
@@ -170,6 +174,8 @@ impl SWCollaborationView {
         pub unsafe fn headerSubtitle(&self) -> Retained<NSString>;
 
         /// Setter for [`headerSubtitle`][Self::headerSubtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHeaderSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeaderSubtitle(&self, header_subtitle: &NSString);
@@ -194,8 +200,9 @@ impl SWCollaborationView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCloudSharingServiceDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`cloudSharingServiceDelegate`][Self::cloudSharingServiceDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setCloudSharingServiceDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCloudSharingServiceDelegate(
@@ -219,6 +226,8 @@ impl SWCollaborationView {
         pub unsafe fn manageButtonTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`manageButtonTitle`][Self::manageButtonTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setManageButtonTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setManageButtonTitle(&self, manage_button_title: &NSString);

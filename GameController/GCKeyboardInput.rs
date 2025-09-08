@@ -68,6 +68,8 @@ impl GCKeyboardInput {
             feature = "objc2-core-foundation"
         ))]
         /// Setter for [`keyChangedHandler`][Self::keyChangedHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeyChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyChangedHandler(

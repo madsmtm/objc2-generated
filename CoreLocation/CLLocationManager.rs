@@ -180,8 +180,9 @@ impl CLLocationManager {
         ) -> Option<Retained<ProtocolObject<dyn CLLocationManagerDelegate>>>;
 
         #[cfg(feature = "CLLocationManagerDelegate")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -200,6 +201,8 @@ impl CLLocationManager {
         pub unsafe fn purpose(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`purpose`][Self::purpose].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Set the purpose string in Info.plist using key NSLocationUsageDescription"]
         #[unsafe(method(setPurpose:))]
         #[unsafe(method_family = none)]

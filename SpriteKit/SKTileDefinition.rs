@@ -223,6 +223,8 @@ impl SKTileDefinition {
 
         #[cfg(feature = "SKTexture")]
         /// Setter for [`textures`][Self::textures].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextures:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextures(&self, textures: &NSArray<SKTexture>);
@@ -235,6 +237,8 @@ impl SKTileDefinition {
 
         #[cfg(feature = "SKTexture")]
         /// Setter for [`normalTextures`][Self::normalTextures].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNormalTextures:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNormalTextures(&self, normal_textures: &NSArray<SKTexture>);
@@ -255,6 +259,8 @@ impl SKTileDefinition {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);

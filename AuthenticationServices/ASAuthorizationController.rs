@@ -109,8 +109,9 @@ impl ASAuthorizationController {
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn ASAuthorizationControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -128,8 +129,9 @@ impl ASAuthorizationController {
             Retained<ProtocolObject<dyn ASAuthorizationControllerPresentationContextProviding>>,
         >;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`presentationContextProvider`][Self::presentationContextProvider].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPresentationContextProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPresentationContextProvider(
@@ -153,6 +155,8 @@ impl ASAuthorizationController {
 
         #[cfg(feature = "ASAuthorizationCustomMethod")]
         /// Setter for [`customAuthorizationMethods`][Self::customAuthorizationMethods].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomAuthorizationMethods:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomAuthorizationMethods(

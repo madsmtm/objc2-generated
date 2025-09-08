@@ -180,6 +180,8 @@ impl VNVideoProcessorRequestProcessingOptions {
         pub unsafe fn cadence(&self) -> Option<Retained<VNVideoProcessorCadence>>;
 
         /// Setter for [`cadence`][Self::cadence].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCadence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCadence(&self, cadence: Option<&VNVideoProcessorCadence>);

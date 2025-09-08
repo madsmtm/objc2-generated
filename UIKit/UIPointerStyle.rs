@@ -45,6 +45,8 @@ impl UIPointerStyle {
 
         #[cfg(feature = "UIPointerAccessory")]
         /// Setter for [`accessories`][Self::accessories].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessories:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessories(&self, accessories: &NSArray<UIPointerAccessory>);

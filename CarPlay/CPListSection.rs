@@ -123,6 +123,8 @@ impl CPListSection {
 
         #[cfg(feature = "objc2-ui-kit")]
         /// Setter for [`headerImage`][Self::headerImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHeaderImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeaderImage(&self, header_image: Option<&UIImage>);

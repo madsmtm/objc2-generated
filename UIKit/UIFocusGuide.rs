@@ -52,6 +52,8 @@ impl UIFocusGuide {
 
         #[cfg(feature = "UIFocus")]
         /// Setter for [`preferredFocusEnvironments`][Self::preferredFocusEnvironments].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredFocusEnvironments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFocusEnvironments(
@@ -67,8 +69,9 @@ impl UIFocusGuide {
         pub unsafe fn preferredFocusedView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`preferredFocusedView`][Self::preferredFocusedView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[unsafe(method(setPreferredFocusedView:))]
         #[unsafe(method_family = none)]

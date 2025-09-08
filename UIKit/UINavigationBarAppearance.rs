@@ -52,6 +52,8 @@ impl UINavigationBarAppearance {
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         /// Setter for [`titleTextAttributes`][Self::titleTextAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitleTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributes(
@@ -79,6 +81,8 @@ impl UINavigationBarAppearance {
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         /// Setter for [`largeTitleTextAttributes`][Self::largeTitleTextAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLargeTitleTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLargeTitleTextAttributes(
@@ -94,6 +98,8 @@ impl UINavigationBarAppearance {
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         /// Setter for [`buttonAppearance`][Self::buttonAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setButtonAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setButtonAppearance(&self, button_appearance: &UIBarButtonItemAppearance);
@@ -106,6 +112,8 @@ impl UINavigationBarAppearance {
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         /// Setter for [`doneButtonAppearance`][Self::doneButtonAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDoneButtonAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoneButtonAppearance(
@@ -121,6 +129,8 @@ impl UINavigationBarAppearance {
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         /// Setter for [`backButtonAppearance`][Self::backButtonAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackButtonAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackButtonAppearance(

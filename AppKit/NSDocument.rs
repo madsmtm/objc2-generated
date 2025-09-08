@@ -141,6 +141,8 @@ impl NSDocument {
         pub unsafe fn fileType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fileType`][Self::fileType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileType(&self, file_type: Option<&NSString>);
@@ -150,6 +152,8 @@ impl NSDocument {
         pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`fileURL`][Self::fileURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFileURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
@@ -159,6 +163,8 @@ impl NSDocument {
         pub unsafe fn fileModificationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`fileModificationDate`][Self::fileModificationDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFileModificationDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileModificationDate(&self, file_modification_date: Option<&NSDate>);
@@ -469,6 +475,8 @@ impl NSDocument {
         pub unsafe fn autosavedContentsFileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`autosavedContentsFileURL`][Self::autosavedContentsFileURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAutosavedContentsFileURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutosavedContentsFileURL(
@@ -613,6 +621,8 @@ impl NSDocument {
 
         #[cfg(feature = "NSPrintInfo")]
         /// Setter for [`printInfo`][Self::printInfo].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrintInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);
@@ -691,6 +701,8 @@ impl NSDocument {
 
         #[cfg(feature = "NSPreviewRepresentingActivityItem")]
         /// Setter for [`previewRepresentableActivityItems`][Self::previewRepresentableActivityItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreviewRepresentableActivityItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewRepresentableActivityItems(

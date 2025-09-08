@@ -588,6 +588,8 @@ impl METrackInfo {
         pub unsafe fn trackEdits(&self) -> Option<Retained<NSArray<NSValue>>>;
 
         /// Setter for [`trackEdits`][Self::trackEdits].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrackEdits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackEdits(&self, track_edits: Option<&NSArray<NSValue>>);
@@ -605,6 +607,8 @@ impl METrackInfo {
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`extendedLanguageTag`][Self::extendedLanguageTag].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExtendedLanguageTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtendedLanguageTag(&self, extended_language_tag: Option<&NSString>);
@@ -1343,6 +1347,8 @@ impl MEHEVCDependencyInfo {
         pub unsafe fn profileCompatibilityFlags(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`profileCompatibilityFlags`][Self::profileCompatibilityFlags].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProfileCompatibilityFlags:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProfileCompatibilityFlags(
@@ -1358,6 +1364,8 @@ impl MEHEVCDependencyInfo {
         pub unsafe fn constraintIndicatorFlags(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`constraintIndicatorFlags`][Self::constraintIndicatorFlags].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConstraintIndicatorFlags:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstraintIndicatorFlags(

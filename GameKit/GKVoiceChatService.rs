@@ -34,6 +34,9 @@ impl GKVoiceChatService {
         pub unsafe fn isVoIPAllowed() -> bool;
 
         #[cfg(feature = "GKPublicProtocols")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "No longer supported."]
         #[unsafe(method(client))]
         #[unsafe(method_family = none)]

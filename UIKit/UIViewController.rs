@@ -405,6 +405,8 @@ impl UIViewController {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -466,6 +468,8 @@ impl UIViewController {
         pub unsafe fn focusGroupIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`focusGroupIdentifier`][Self::focusGroupIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFocusGroupIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocusGroupIdentifier(&self, focus_group_identifier: Option<&NSString>);
@@ -476,6 +480,8 @@ impl UIViewController {
         pub unsafe fn interactionActivityTrackingBaseName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`interactionActivityTrackingBaseName`][Self::interactionActivityTrackingBaseName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInteractionActivityTrackingBaseName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractionActivityTrackingBaseName(
@@ -1030,11 +1036,16 @@ impl UIViewController {
         pub unsafe fn restorationIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`restorationIdentifier`][Self::restorationIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRestorationIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRestorationIdentifier(&self, restoration_identifier: Option<&NSString>);
 
         #[cfg(feature = "UIStateRestoration")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(restorationClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn restorationClass(&self) -> Option<&'static AnyClass>;
@@ -1086,8 +1097,9 @@ impl UIViewController {
         ) -> Option<Retained<ProtocolObject<dyn UIViewControllerTransitioningDelegate>>>;
 
         #[cfg(feature = "UIViewControllerTransitioning")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`transitioningDelegate`][Self::transitioningDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTransitioningDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransitioningDelegate(
@@ -1418,6 +1430,8 @@ impl UIViewController {
 
         #[cfg(feature = "UIContentConfiguration")]
         /// Setter for [`contentUnavailableConfiguration`][Self::contentUnavailableConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentUnavailableConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentUnavailableConfiguration(

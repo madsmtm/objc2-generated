@@ -145,6 +145,8 @@ extern_protocol!(
         unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         unsafe fn setName(&self, name: &NSString);

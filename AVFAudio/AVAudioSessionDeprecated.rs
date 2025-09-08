@@ -10,6 +10,9 @@ use crate::*;
 #[cfg(feature = "AVAudioSession")]
 impl AVAudioSession {
     extern_methods!(
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "No longer supported"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]

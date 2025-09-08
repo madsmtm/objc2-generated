@@ -54,6 +54,8 @@ impl CAEmitterCell {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -356,6 +358,8 @@ impl CAEmitterCell {
         pub unsafe fn minificationFilter(&self) -> Retained<NSString>;
 
         /// Setter for [`minificationFilter`][Self::minificationFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMinificationFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinificationFilter(&self, minification_filter: &NSString);
@@ -365,6 +369,8 @@ impl CAEmitterCell {
         pub unsafe fn magnificationFilter(&self) -> Retained<NSString>;
 
         /// Setter for [`magnificationFilter`][Self::magnificationFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMagnificationFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMagnificationFilter(&self, magnification_filter: &NSString);
@@ -383,6 +389,8 @@ impl CAEmitterCell {
         pub unsafe fn emitterCells(&self) -> Option<Retained<NSArray<CAEmitterCell>>>;
 
         /// Setter for [`emitterCells`][Self::emitterCells].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmitterCells:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmitterCells(&self, emitter_cells: Option<&NSArray<CAEmitterCell>>);
@@ -392,6 +400,8 @@ impl CAEmitterCell {
         pub unsafe fn style(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`style`][Self::style].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);

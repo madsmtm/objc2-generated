@@ -463,6 +463,8 @@ impl ARWorldTrackingConfiguration {
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Setter for [`detectionImages`][Self::detectionImages].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetectionImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetectionImages(&self, detection_images: Option<&NSSet<ARReferenceImage>>);
@@ -512,6 +514,8 @@ impl ARWorldTrackingConfiguration {
 
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Setter for [`detectionObjects`][Self::detectionObjects].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetectionObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetectionObjects(&self, detection_objects: &NSSet<ARReferenceObject>);
@@ -790,6 +794,8 @@ impl ARImageTrackingConfiguration {
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Setter for [`trackingImages`][Self::trackingImages].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrackingImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackingImages(&self, tracking_images: &NSSet<ARReferenceImage>);
@@ -1007,6 +1013,8 @@ impl ARBodyTrackingConfiguration {
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Setter for [`detectionImages`][Self::detectionImages].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetectionImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetectionImages(&self, detection_images: &NSSet<ARReferenceImage>);
@@ -1254,6 +1262,8 @@ impl ARGeoTrackingConfiguration {
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Setter for [`detectionImages`][Self::detectionImages].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetectionImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetectionImages(&self, detection_images: Option<&NSSet<ARReferenceImage>>);
@@ -1303,6 +1313,8 @@ impl ARGeoTrackingConfiguration {
 
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Setter for [`detectionObjects`][Self::detectionObjects].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetectionObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetectionObjects(&self, detection_objects: &NSSet<ARReferenceObject>);

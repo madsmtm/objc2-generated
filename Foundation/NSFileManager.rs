@@ -272,6 +272,9 @@ impl NSFileManager {
             dest_url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(

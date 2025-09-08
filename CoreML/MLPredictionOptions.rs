@@ -106,6 +106,8 @@ impl MLPredictionOptions {
         pub unsafe fn outputBackings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`outputBackings`][Self::outputBackings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputBackings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputBackings(&self, output_backings: &NSDictionary<NSString, AnyObject>);

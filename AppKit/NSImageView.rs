@@ -208,6 +208,8 @@ impl NSImageView {
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`symbolConfiguration`][Self::symbolConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSymbolConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSymbolConfiguration(
@@ -223,6 +225,8 @@ impl NSImageView {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`contentTintColor`][Self::contentTintColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);

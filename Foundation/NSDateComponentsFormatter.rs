@@ -185,6 +185,8 @@ impl NSDateComponentsFormatter {
 
         #[cfg(feature = "NSCalendar")]
         /// Setter for [`calendar`][Self::calendar].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCalendar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
@@ -196,6 +198,8 @@ impl NSDateComponentsFormatter {
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`referenceDate`][Self::referenceDate].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setReferenceDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReferenceDate(&self, reference_date: Option<&NSDate>);

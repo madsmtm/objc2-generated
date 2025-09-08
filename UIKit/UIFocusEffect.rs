@@ -126,8 +126,9 @@ impl UIFocusHaloEffect {
         pub unsafe fn containerView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`containerView`][Self::containerView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setContainerView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContainerView(&self, container_view: Option<&UIView>);
@@ -144,8 +145,9 @@ impl UIFocusHaloEffect {
         pub unsafe fn referenceView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`referenceView`][Self::referenceView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setReferenceView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReferenceView(&self, reference_view: Option<&UIView>);

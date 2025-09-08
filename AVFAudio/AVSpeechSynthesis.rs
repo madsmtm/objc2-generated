@@ -501,8 +501,9 @@ impl AVSpeechSynthesizer {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVSpeechSynthesizerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -767,6 +768,8 @@ impl AVSpeechSynthesisMarker {
         pub unsafe fn bookmarkName(&self) -> Retained<NSString>;
 
         /// Setter for [`bookmarkName`][Self::bookmarkName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBookmarkName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBookmarkName(&self, bookmark_name: &NSString);
@@ -776,6 +779,8 @@ impl AVSpeechSynthesisMarker {
         pub unsafe fn phoneme(&self) -> Retained<NSString>;
 
         /// Setter for [`phoneme`][Self::phoneme].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPhoneme:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhoneme(&self, phoneme: &NSString);

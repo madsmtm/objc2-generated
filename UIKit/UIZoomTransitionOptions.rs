@@ -41,6 +41,8 @@ impl UIZoomTransitionOptions {
 
         #[cfg(feature = "block2")]
         /// Setter for [`interactiveDismissShouldBegin`][Self::interactiveDismissShouldBegin].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInteractiveDismissShouldBegin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractiveDismissShouldBegin(
@@ -61,6 +63,8 @@ impl UIZoomTransitionOptions {
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`alignmentRectProvider`][Self::alignmentRectProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAlignmentRectProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlignmentRectProvider(

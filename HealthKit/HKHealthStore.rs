@@ -367,6 +367,8 @@ impl HKHealthStore {
 
         #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
         /// Setter for [`workoutSessionMirroringStartHandler`][Self::workoutSessionMirroringStartHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWorkoutSessionMirroringStartHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorkoutSessionMirroringStartHandler(

@@ -88,6 +88,8 @@ impl UIDocumentBrowserAction {
         pub unsafe fn supportedContentTypes(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`supportedContentTypes`][Self::supportedContentTypes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedContentTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedContentTypes(&self, supported_content_types: &NSArray<NSString>);

@@ -94,6 +94,8 @@ impl INGetReservationDetailsIntentResponse {
 
         #[cfg(feature = "INReservation")]
         /// Setter for [`reservations`][Self::reservations].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setReservations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReservations(&self, reservations: Option<&NSArray<INReservation>>);

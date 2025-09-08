@@ -147,6 +147,8 @@ impl AVPlayerView {
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Setter for [`videoGravity`][Self::videoGravity].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoGravity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);
@@ -182,8 +184,9 @@ impl AVPlayerView {
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn AVPlayerViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -203,6 +206,8 @@ impl AVPlayerView {
 
         #[cfg(feature = "AVPlaybackSpeed")]
         /// Setter for [`speeds`][Self::speeds].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSpeeds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeeds(&self, speeds: &NSArray<AVPlaybackSpeed>);
@@ -483,8 +488,9 @@ impl AVPlayerView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerViewPictureInPictureDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`pictureInPictureDelegate`][Self::pictureInPictureDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPictureInPictureDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPictureInPictureDelegate(

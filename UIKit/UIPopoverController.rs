@@ -45,8 +45,9 @@ impl UIPopoverController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
@@ -116,6 +117,8 @@ impl UIPopoverController {
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`passthroughViews`][Self::passthroughViews].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(setPassthroughViews:))]
         #[unsafe(method_family = none)]
@@ -165,6 +168,8 @@ impl UIPopoverController {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);

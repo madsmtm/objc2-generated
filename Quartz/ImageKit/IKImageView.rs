@@ -115,6 +115,10 @@ extern_conformance!(
 impl IKImageView {
     extern_methods!(
         /// Specifies the delegate object of the receiver.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
@@ -154,6 +158,8 @@ impl IKImageView {
         pub unsafe fn currentToolMode(&self) -> Retained<NSString>;
 
         /// Setter for [`currentToolMode`][Self::currentToolMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCurrentToolMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentToolMode(&self, current_tool_mode: Option<&NSString>);
@@ -233,6 +239,10 @@ impl IKImageView {
 
         #[cfg(feature = "objc2-core-image")]
         /// Specifies a Core Image filter for image correction.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(imageCorrection))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageCorrection(&self) -> Option<Retained<CIFilter>>;
@@ -244,6 +254,10 @@ impl IKImageView {
         pub unsafe fn setImageCorrection(&self, image_correction: Option<&CIFilter>);
 
         /// Specifies the background color for the image view.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;

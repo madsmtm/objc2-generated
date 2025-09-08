@@ -49,6 +49,8 @@ impl INIntent {
         pub unsafe fn suggestedInvocationPhrase(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`suggestedInvocationPhrase`][Self::suggestedInvocationPhrase].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSuggestedInvocationPhrase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuggestedInvocationPhrase(
@@ -77,6 +79,8 @@ impl INIntent {
 
         #[cfg(feature = "INIntentDonationMetadata")]
         /// Setter for [`donationMetadata`][Self::donationMetadata].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDonationMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDonationMetadata(

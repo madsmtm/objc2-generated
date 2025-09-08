@@ -68,6 +68,8 @@ impl NSPersistentContainer {
 
         #[cfg(feature = "NSPersistentStoreDescription")]
         /// Setter for [`persistentStoreDescriptions`][Self::persistentStoreDescriptions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPersistentStoreDescriptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPersistentStoreDescriptions(

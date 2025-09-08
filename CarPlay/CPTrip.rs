@@ -173,6 +173,8 @@ impl CPTrip {
         pub unsafe fn destinationNameVariants(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`destinationNameVariants`][Self::destinationNameVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDestinationNameVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationNameVariants(

@@ -120,6 +120,8 @@ impl MPSkipIntervalCommand {
         pub unsafe fn preferredIntervals(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`preferredIntervals`][Self::preferredIntervals].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredIntervals:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredIntervals(&self, preferred_intervals: &NSArray<NSNumber>);
@@ -170,6 +172,8 @@ impl MPFeedbackCommand {
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedTitle`][Self::localizedTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedTitle(&self, localized_title: &NSString);
@@ -182,6 +186,8 @@ impl MPFeedbackCommand {
         pub unsafe fn localizedShortTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedShortTitle`][Self::localizedShortTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedShortTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedShortTitle(&self, localized_short_title: &NSString);
@@ -269,6 +275,8 @@ impl MPChangePlaybackRateCommand {
         pub unsafe fn supportedPlaybackRates(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`supportedPlaybackRates`][Self::supportedPlaybackRates].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedPlaybackRates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedPlaybackRates(

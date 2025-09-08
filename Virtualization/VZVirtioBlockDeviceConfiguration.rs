@@ -80,6 +80,8 @@ impl VZVirtioBlockDeviceConfiguration {
         pub unsafe fn blockDeviceIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`blockDeviceIdentifier`][Self::blockDeviceIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBlockDeviceIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlockDeviceIdentifier(&self, block_device_identifier: &NSString);

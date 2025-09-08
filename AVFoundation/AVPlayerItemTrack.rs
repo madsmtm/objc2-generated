@@ -76,6 +76,8 @@ impl AVPlayerItemTrack {
         pub unsafe fn videoFieldMode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`videoFieldMode`][Self::videoFieldMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoFieldMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoFieldMode(&self, video_field_mode: Option<&NSString>);

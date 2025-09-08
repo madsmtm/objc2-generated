@@ -278,8 +278,9 @@ impl UISplitViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISplitViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -340,6 +341,8 @@ impl UISplitViewController {
         pub unsafe fn viewControllers(&self) -> Retained<NSArray<UIViewController>>;
 
         /// Setter for [`viewControllers`][Self::viewControllers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setViewControllers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setViewControllers(&self, view_controllers: &NSArray<UIViewController>);

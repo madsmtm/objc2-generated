@@ -114,6 +114,8 @@ impl NSOperation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionBlock`][Self::completionBlock].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionBlock(
@@ -154,6 +156,8 @@ impl NSOperation {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -383,6 +387,8 @@ impl NSOperationQueue {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);

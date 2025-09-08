@@ -30,6 +30,8 @@ impl ASAuthorizationProviderExtensionKerberosMapping {
         pub unsafe fn ticketKeyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`ticketKeyPath`][Self::ticketKeyPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTicketKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTicketKeyPath(&self, ticket_key_path: Option<&NSString>);
@@ -40,6 +42,8 @@ impl ASAuthorizationProviderExtensionKerberosMapping {
         pub unsafe fn messageBufferKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`messageBufferKeyName`][Self::messageBufferKeyName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMessageBufferKeyName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessageBufferKeyName(&self, message_buffer_key_name: Option<&NSString>);
@@ -50,6 +54,8 @@ impl ASAuthorizationProviderExtensionKerberosMapping {
         pub unsafe fn realmKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`realmKeyName`][Self::realmKeyName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRealmKeyName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRealmKeyName(&self, realm_key_name: Option<&NSString>);
@@ -60,6 +66,8 @@ impl ASAuthorizationProviderExtensionKerberosMapping {
         pub unsafe fn serviceNameKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serviceNameKeyName`][Self::serviceNameKeyName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setServiceNameKeyName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServiceNameKeyName(&self, service_name_key_name: Option<&NSString>);
@@ -70,6 +78,8 @@ impl ASAuthorizationProviderExtensionKerberosMapping {
         pub unsafe fn clientNameKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`clientNameKeyName`][Self::clientNameKeyName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setClientNameKeyName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClientNameKeyName(&self, client_name_key_name: Option<&NSString>);
@@ -82,6 +92,8 @@ impl ASAuthorizationProviderExtensionKerberosMapping {
         pub unsafe fn encryptionKeyTypeKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`encryptionKeyTypeKeyName`][Self::encryptionKeyTypeKeyName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEncryptionKeyTypeKeyName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEncryptionKeyTypeKeyName(
@@ -95,6 +107,8 @@ impl ASAuthorizationProviderExtensionKerberosMapping {
         pub unsafe fn sessionKeyKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`sessionKeyKeyName`][Self::sessionKeyKeyName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSessionKeyKeyName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSessionKeyKeyName(&self, session_key_key_name: Option<&NSString>);
@@ -300,6 +314,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn invalidCredentialPredicate(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`invalidCredentialPredicate`][Self::invalidCredentialPredicate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInvalidCredentialPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInvalidCredentialPredicate(
@@ -313,6 +329,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn accountDisplayName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accountDisplayName`][Self::accountDisplayName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccountDisplayName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountDisplayName(&self, account_display_name: Option<&NSString>);
@@ -333,6 +351,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn audience(&self) -> Retained<NSString>;
 
         /// Setter for [`audience`][Self::audience].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudience:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudience(&self, audience: &NSString);
@@ -343,6 +363,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn tokenEndpointURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`tokenEndpointURL`][Self::tokenEndpointURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTokenEndpointURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTokenEndpointURL(&self, token_endpoint_url: &NSURL);
@@ -353,6 +375,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn jwksEndpointURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`jwksEndpointURL`][Self::jwksEndpointURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJwksEndpointURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJwksEndpointURL(&self, jwks_endpoint_url: &NSURL);
@@ -365,6 +389,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn jwksTrustedRootCertificates(&self) -> Retained<NSArray>;
 
         /// Setter for [`jwksTrustedRootCertificates`][Self::jwksTrustedRootCertificates].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJwksTrustedRootCertificates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJwksTrustedRootCertificates(
@@ -378,6 +404,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn deviceContext(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`deviceContext`][Self::deviceContext].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDeviceContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeviceContext(&self, device_context: Option<&NSData>);
@@ -403,6 +431,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn nonceEndpointURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`nonceEndpointURL`][Self::nonceEndpointURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNonceEndpointURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNonceEndpointURL(&self, nonce_endpoint_url: &NSURL);
@@ -413,6 +443,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn nonceResponseKeypath(&self) -> Retained<NSString>;
 
         /// Setter for [`nonceResponseKeypath`][Self::nonceResponseKeypath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNonceResponseKeypath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNonceResponseKeypath(&self, nonce_response_keypath: &NSString);
@@ -423,6 +455,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn serverNonceClaimName(&self) -> Retained<NSString>;
 
         /// Setter for [`serverNonceClaimName`][Self::serverNonceClaimName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setServerNonceClaimName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerNonceClaimName(&self, server_nonce_claim_name: &NSString);
@@ -433,6 +467,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn customNonceRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`customNonceRequestValues`][Self::customNonceRequestValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomNonceRequestValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomNonceRequestValues(
@@ -474,6 +510,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn additionalScopes(&self) -> Retained<NSString>;
 
         /// Setter for [`additionalScopes`][Self::additionalScopes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAdditionalScopes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalScopes(&self, additional_scopes: &NSString);
@@ -484,6 +522,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn additionalAuthorizationScopes(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`additionalAuthorizationScopes`][Self::additionalAuthorizationScopes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAdditionalAuthorizationScopes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalAuthorizationScopes(
@@ -510,6 +550,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn previousRefreshTokenClaimName(&self) -> Retained<NSString>;
 
         /// Setter for [`previousRefreshTokenClaimName`][Self::previousRefreshTokenClaimName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreviousRefreshTokenClaimName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviousRefreshTokenClaimName(
@@ -523,6 +565,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn customRequestJWTParameterName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customRequestJWTParameterName`][Self::customRequestJWTParameterName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomRequestJWTParameterName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomRequestJWTParameterName(
@@ -536,6 +580,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn customLoginRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`customLoginRequestValues`][Self::customLoginRequestValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomLoginRequestValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomLoginRequestValues(
@@ -577,6 +623,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn uniqueIdentifierClaimName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`uniqueIdentifierClaimName`][Self::uniqueIdentifierClaimName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUniqueIdentifierClaimName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUniqueIdentifierClaimName(
@@ -590,6 +638,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn groupRequestClaimName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`groupRequestClaimName`][Self::groupRequestClaimName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGroupRequestClaimName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroupRequestClaimName(&self, group_request_claim_name: Option<&NSString>);
@@ -600,6 +650,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn groupResponseClaimName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`groupResponseClaimName`][Self::groupResponseClaimName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGroupResponseClaimName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroupResponseClaimName(
@@ -615,6 +667,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         ) -> Retained<NSArray<ASAuthorizationProviderExtensionKerberosMapping>>;
 
         /// Setter for [`kerberosTicketMappings`][Self::kerberosTicketMappings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKerberosTicketMappings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKerberosTicketMappings(
@@ -628,6 +682,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn refreshEndpointURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`refreshEndpointURL`][Self::refreshEndpointURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRefreshEndpointURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRefreshEndpointURL(&self, refresh_endpoint_url: Option<&NSURL>);
@@ -638,6 +694,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn customRefreshRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`customRefreshRequestValues`][Self::customRefreshRequestValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomRefreshRequestValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomRefreshRequestValues(
@@ -692,6 +750,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn federationRequestURN(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`federationRequestURN`][Self::federationRequestURN].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFederationRequestURN:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFederationRequestURN(&self, federation_request_urn: Option<&NSString>);
@@ -702,6 +762,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn federationMEXURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`federationMEXURL`][Self::federationMEXURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFederationMEXURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFederationMEXURL(&self, federation_mexurl: Option<&NSURL>);
@@ -712,6 +774,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn federationUserPreauthenticationURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`federationUserPreauthenticationURL`][Self::federationUserPreauthenticationURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFederationUserPreauthenticationURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFederationUserPreauthenticationURL(
@@ -725,6 +789,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn federationMEXURLKeypath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`federationMEXURLKeypath`][Self::federationMEXURLKeypath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFederationMEXURLKeypath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFederationMEXURLKeypath(
@@ -738,6 +804,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn federationPredicate(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`federationPredicate`][Self::federationPredicate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFederationPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFederationPredicate(&self, federation_predicate: Option<&NSString>);
@@ -750,6 +818,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         ) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`customFederationUserPreauthenticationRequestValues`][Self::customFederationUserPreauthenticationRequestValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomFederationUserPreauthenticationRequestValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomFederationUserPreauthenticationRequestValues(
@@ -761,6 +831,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// The public key to use for encrypting the embedded login assertion.
         ///
         /// Only applies to password authentication.  If set, the password will encrypted in an embedded assertion instead of the login request itself.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(loginRequestEncryptionPublicKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn loginRequestEncryptionPublicKey(&self) -> Option<Retained<SecKey>>;
@@ -780,6 +854,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn loginRequestEncryptionAPVPrefix(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`loginRequestEncryptionAPVPrefix`][Self::loginRequestEncryptionAPVPrefix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLoginRequestEncryptionAPVPrefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLoginRequestEncryptionAPVPrefix(
@@ -795,6 +871,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         ) -> Retained<ASAuthorizationProviderExtensionEncryptionAlgorithm>;
 
         /// Setter for [`loginRequestEncryptionAlgorithm`][Self::loginRequestEncryptionAlgorithm].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLoginRequestEncryptionAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLoginRequestEncryptionAlgorithm(
@@ -808,6 +886,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn loginRequestHPKEPreSharedKey(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`loginRequestHPKEPreSharedKey`][Self::loginRequestHPKEPreSharedKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLoginRequestHPKEPreSharedKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLoginRequestHPKEPreSharedKey(
@@ -821,6 +901,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn loginRequestHPKEPreSharedKeyID(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`loginRequestHPKEPreSharedKeyID`][Self::loginRequestHPKEPreSharedKeyID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLoginRequestHPKEPreSharedKeyID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLoginRequestHPKEPreSharedKeyID(
@@ -834,6 +916,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn keyEndpointURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`keyEndpointURL`][Self::keyEndpointURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeyEndpointURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyEndpointURL(&self, key_endpoint_url: Option<&NSURL>);
@@ -844,6 +928,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn customKeyExchangeRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`customKeyExchangeRequestValues`][Self::customKeyExchangeRequestValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomKeyExchangeRequestValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomKeyExchangeRequestValues(
@@ -885,6 +971,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn customKeyRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`customKeyRequestValues`][Self::customKeyRequestValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomKeyRequestValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomKeyRequestValues(
@@ -926,6 +1014,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn hpkePreSharedKey(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`hpkePreSharedKey`][Self::hpkePreSharedKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHpkePreSharedKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHpkePreSharedKey(&self, hpke_pre_shared_key: Option<&NSData>);
@@ -936,6 +1026,8 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         pub unsafe fn hpkePreSharedKeyID(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`hpkePreSharedKeyID`][Self::hpkePreSharedKeyID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHpkePreSharedKeyID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHpkePreSharedKeyID(&self, hpke_pre_shared_key_id: Option<&NSData>);

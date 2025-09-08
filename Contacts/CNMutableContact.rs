@@ -75,6 +75,8 @@ impl CNMutableContact {
         pub unsafe fn namePrefix(&self) -> Retained<NSString>;
 
         /// Setter for [`namePrefix`][Self::namePrefix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNamePrefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNamePrefix(&self, name_prefix: &NSString);
@@ -84,6 +86,8 @@ impl CNMutableContact {
         pub unsafe fn givenName(&self) -> Retained<NSString>;
 
         /// Setter for [`givenName`][Self::givenName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGivenName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGivenName(&self, given_name: &NSString);
@@ -93,6 +97,8 @@ impl CNMutableContact {
         pub unsafe fn middleName(&self) -> Retained<NSString>;
 
         /// Setter for [`middleName`][Self::middleName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMiddleName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMiddleName(&self, middle_name: &NSString);
@@ -102,6 +108,8 @@ impl CNMutableContact {
         pub unsafe fn familyName(&self) -> Retained<NSString>;
 
         /// Setter for [`familyName`][Self::familyName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFamilyName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFamilyName(&self, family_name: &NSString);
@@ -111,6 +119,8 @@ impl CNMutableContact {
         pub unsafe fn previousFamilyName(&self) -> Retained<NSString>;
 
         /// Setter for [`previousFamilyName`][Self::previousFamilyName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreviousFamilyName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviousFamilyName(&self, previous_family_name: &NSString);
@@ -120,6 +130,8 @@ impl CNMutableContact {
         pub unsafe fn nameSuffix(&self) -> Retained<NSString>;
 
         /// Setter for [`nameSuffix`][Self::nameSuffix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNameSuffix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNameSuffix(&self, name_suffix: &NSString);
@@ -129,6 +141,8 @@ impl CNMutableContact {
         pub unsafe fn nickname(&self) -> Retained<NSString>;
 
         /// Setter for [`nickname`][Self::nickname].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNickname:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNickname(&self, nickname: &NSString);
@@ -138,6 +152,8 @@ impl CNMutableContact {
         pub unsafe fn organizationName(&self) -> Retained<NSString>;
 
         /// Setter for [`organizationName`][Self::organizationName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOrganizationName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrganizationName(&self, organization_name: &NSString);
@@ -147,6 +163,8 @@ impl CNMutableContact {
         pub unsafe fn departmentName(&self) -> Retained<NSString>;
 
         /// Setter for [`departmentName`][Self::departmentName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDepartmentName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDepartmentName(&self, department_name: &NSString);
@@ -156,6 +174,8 @@ impl CNMutableContact {
         pub unsafe fn jobTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`jobTitle`][Self::jobTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJobTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJobTitle(&self, job_title: &NSString);
@@ -165,6 +185,8 @@ impl CNMutableContact {
         pub unsafe fn phoneticGivenName(&self) -> Retained<NSString>;
 
         /// Setter for [`phoneticGivenName`][Self::phoneticGivenName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPhoneticGivenName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhoneticGivenName(&self, phonetic_given_name: &NSString);
@@ -174,6 +196,8 @@ impl CNMutableContact {
         pub unsafe fn phoneticMiddleName(&self) -> Retained<NSString>;
 
         /// Setter for [`phoneticMiddleName`][Self::phoneticMiddleName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPhoneticMiddleName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhoneticMiddleName(&self, phonetic_middle_name: &NSString);
@@ -183,6 +207,8 @@ impl CNMutableContact {
         pub unsafe fn phoneticFamilyName(&self) -> Retained<NSString>;
 
         /// Setter for [`phoneticFamilyName`][Self::phoneticFamilyName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPhoneticFamilyName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhoneticFamilyName(&self, phonetic_family_name: &NSString);
@@ -192,6 +218,8 @@ impl CNMutableContact {
         pub unsafe fn phoneticOrganizationName(&self) -> Retained<NSString>;
 
         /// Setter for [`phoneticOrganizationName`][Self::phoneticOrganizationName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPhoneticOrganizationName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhoneticOrganizationName(&self, phonetic_organization_name: &NSString);
@@ -201,6 +229,8 @@ impl CNMutableContact {
         pub unsafe fn note(&self) -> Retained<NSString>;
 
         /// Setter for [`note`][Self::note].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNote:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNote(&self, note: &NSString);
@@ -210,6 +240,8 @@ impl CNMutableContact {
         pub unsafe fn imageData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`imageData`][Self::imageData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImageData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageData(&self, image_data: Option<&NSData>);
@@ -221,6 +253,8 @@ impl CNMutableContact {
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPhoneNumber"))]
         /// Setter for [`phoneNumbers`][Self::phoneNumbers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPhoneNumbers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhoneNumbers(
@@ -235,6 +269,8 @@ impl CNMutableContact {
 
         #[cfg(feature = "CNLabeledValue")]
         /// Setter for [`emailAddresses`][Self::emailAddresses].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmailAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmailAddresses(&self, email_addresses: &NSArray<CNLabeledValue<NSString>>);
@@ -246,6 +282,8 @@ impl CNMutableContact {
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPostalAddress"))]
         /// Setter for [`postalAddresses`][Self::postalAddresses].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPostalAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPostalAddresses(
@@ -260,6 +298,8 @@ impl CNMutableContact {
 
         #[cfg(feature = "CNLabeledValue")]
         /// Setter for [`urlAddresses`][Self::urlAddresses].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUrlAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUrlAddresses(&self, url_addresses: &NSArray<CNLabeledValue<NSString>>);
@@ -273,6 +313,8 @@ impl CNMutableContact {
 
         #[cfg(all(feature = "CNContactRelation", feature = "CNLabeledValue"))]
         /// Setter for [`contactRelations`][Self::contactRelations].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContactRelations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContactRelations(
@@ -287,6 +329,8 @@ impl CNMutableContact {
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNSocialProfile"))]
         /// Setter for [`socialProfiles`][Self::socialProfiles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSocialProfiles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSocialProfiles(
@@ -303,6 +347,8 @@ impl CNMutableContact {
 
         #[cfg(all(feature = "CNInstantMessageAddress", feature = "CNLabeledValue"))]
         /// Setter for [`instantMessageAddresses`][Self::instantMessageAddresses].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInstantMessageAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstantMessageAddresses(
@@ -318,6 +364,8 @@ impl CNMutableContact {
         pub unsafe fn birthday(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`birthday`][Self::birthday].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBirthday:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBirthday(&self, birthday: Option<&NSDateComponents>);
@@ -330,6 +378,8 @@ impl CNMutableContact {
         pub unsafe fn nonGregorianBirthday(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`nonGregorianBirthday`][Self::nonGregorianBirthday].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNonGregorianBirthday:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNonGregorianBirthday(
@@ -347,6 +397,8 @@ impl CNMutableContact {
 
         #[cfg(feature = "CNLabeledValue")]
         /// Setter for [`dates`][Self::dates].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDates(&self, dates: &NSArray<CNLabeledValue<NSDateComponents>>);

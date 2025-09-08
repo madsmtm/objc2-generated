@@ -92,6 +92,8 @@ impl AVCaptureAudioDataOutput {
         pub unsafe fn audioSettings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`audioSettings`][Self::audioSettings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudioSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioSettings(

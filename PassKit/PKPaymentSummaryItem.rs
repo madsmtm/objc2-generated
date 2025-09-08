@@ -60,6 +60,8 @@ impl PKPaymentSummaryItem {
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);
@@ -69,6 +71,8 @@ impl PKPaymentSummaryItem {
         pub unsafe fn amount(&self) -> Retained<NSDecimalNumber>;
 
         /// Setter for [`amount`][Self::amount].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAmount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAmount(&self, amount: &NSDecimalNumber);

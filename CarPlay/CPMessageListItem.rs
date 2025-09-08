@@ -323,6 +323,8 @@ impl CPMessageListItem {
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
@@ -332,6 +334,8 @@ impl CPMessageListItem {
         pub unsafe fn conversationIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`conversationIdentifier`][Self::conversationIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConversationIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConversationIdentifier(&self, conversation_identifier: Option<&NSString>);
@@ -341,6 +345,8 @@ impl CPMessageListItem {
         pub unsafe fn phoneOrEmailAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`phoneOrEmailAddress`][Self::phoneOrEmailAddress].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPhoneOrEmailAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhoneOrEmailAddress(&self, phone_or_email_address: Option<&NSString>);
@@ -378,6 +384,8 @@ impl CPMessageListItem {
         pub unsafe fn detailText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`detailText`][Self::detailText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetailText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetailText(&self, detail_text: Option<&NSString>);
@@ -387,6 +395,8 @@ impl CPMessageListItem {
         pub unsafe fn trailingText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`trailingText`][Self::trailingText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrailingText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrailingText(&self, trailing_text: Option<&NSString>);

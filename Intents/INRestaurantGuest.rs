@@ -57,6 +57,8 @@ impl INRestaurantGuest {
         pub unsafe fn phoneNumber(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`phoneNumber`][Self::phoneNumber].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPhoneNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhoneNumber(&self, phone_number: Option<&NSString>);
@@ -66,6 +68,8 @@ impl INRestaurantGuest {
         pub unsafe fn emailAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`emailAddress`][Self::emailAddress].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmailAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmailAddress(&self, email_address: Option<&NSString>);

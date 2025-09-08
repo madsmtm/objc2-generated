@@ -333,8 +333,9 @@ impl UIImagePickerController {
             >,
         >;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -358,6 +359,8 @@ impl UIImagePickerController {
         pub unsafe fn mediaTypes(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`mediaTypes`][Self::mediaTypes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMediaTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaTypes(&self, media_types: &NSArray<NSString>);
@@ -420,6 +423,8 @@ impl UIImagePickerController {
         pub unsafe fn videoExportPreset(&self) -> Retained<NSString>;
 
         /// Setter for [`videoExportPreset`][Self::videoExportPreset].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Will be removed in a future release, use PHPicker."]
         #[unsafe(method(setVideoExportPreset:))]
         #[unsafe(method_family = none)]

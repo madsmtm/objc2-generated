@@ -105,6 +105,8 @@ impl MKDirectionsRequest {
         pub unsafe fn departureDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`departureDate`][Self::departureDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDepartureDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDepartureDate(&self, departure_date: Option<&NSDate>);
@@ -114,6 +116,8 @@ impl MKDirectionsRequest {
         pub unsafe fn arrivalDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`arrivalDate`][Self::arrivalDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setArrivalDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArrivalDate(&self, arrival_date: Option<&NSDate>);

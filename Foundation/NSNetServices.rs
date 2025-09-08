@@ -131,6 +131,9 @@ impl NSNetService {
             mode: &NSRunLoopMode,
         );
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -296,6 +299,9 @@ impl NSNetServiceBrowser {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]

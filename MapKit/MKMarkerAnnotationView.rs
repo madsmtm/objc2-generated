@@ -98,6 +98,8 @@ impl MKMarkerAnnotationView {
         pub unsafe fn markerTintColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`markerTintColor`][Self::markerTintColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMarkerTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarkerTintColor(&self, marker_tint_color: Option<&NSColor>);
@@ -107,6 +109,8 @@ impl MKMarkerAnnotationView {
         pub unsafe fn glyphTintColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`glyphTintColor`][Self::glyphTintColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGlyphTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlyphTintColor(&self, glyph_tint_color: Option<&NSColor>);
@@ -116,6 +120,8 @@ impl MKMarkerAnnotationView {
         pub unsafe fn glyphText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`glyphText`][Self::glyphText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGlyphText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlyphText(&self, glyph_text: Option<&NSString>);
@@ -125,6 +131,8 @@ impl MKMarkerAnnotationView {
         pub unsafe fn glyphImage(&self) -> Option<Retained<NSImage>>;
 
         /// Setter for [`glyphImage`][Self::glyphImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGlyphImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlyphImage(&self, glyph_image: Option<&NSImage>);
@@ -134,6 +142,8 @@ impl MKMarkerAnnotationView {
         pub unsafe fn selectedGlyphImage(&self) -> Option<Retained<NSImage>>;
 
         /// Setter for [`selectedGlyphImage`][Self::selectedGlyphImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedGlyphImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedGlyphImage(&self, selected_glyph_image: Option<&NSImage>);

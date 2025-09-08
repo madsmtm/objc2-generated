@@ -407,8 +407,9 @@ impl NSWritingToolsCoordinator {
         pub unsafe fn effectContainerView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`effectContainerView`][Self::effectContainerView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setEffectContainerView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEffectContainerView(&self, effect_container_view: Option<&NSView>);
@@ -435,8 +436,9 @@ impl NSWritingToolsCoordinator {
         pub unsafe fn decorationContainerView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`decorationContainerView`][Self::decorationContainerView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDecorationContainerView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDecorationContainerView(&self, decoration_container_view: Option<&NSView>);

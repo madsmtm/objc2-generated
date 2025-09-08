@@ -693,6 +693,8 @@ impl NSAttributedStringMarkdownParsingOptions {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`languageCode`][Self::languageCode].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setLanguageCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanguageCode(&self, language_code: Option<&NSString>);

@@ -67,8 +67,9 @@ impl GKChallengesViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKChallengesViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`challengeDelegate`][Self::challengeDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "No longer supported"]
         #[unsafe(method(setChallengeDelegate:))]
         #[unsafe(method_family = none)]

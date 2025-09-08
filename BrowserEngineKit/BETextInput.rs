@@ -224,8 +224,9 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn BETextInputDelegate>>>;
 
         #[cfg(feature = "BETextInputDelegate")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`asyncInputDelegate`][Self::asyncInputDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAsyncInputDelegate:))]
         #[unsafe(method_family = none)]
         unsafe fn setAsyncInputDelegate(
@@ -489,6 +490,8 @@ extern_protocol!(
         unsafe fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;
 
         /// Setter for [`selectedTextRange`][Self::selectedTextRange].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedTextRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setSelectedTextRange(&self, selected_text_range: Option<&UITextRange>);

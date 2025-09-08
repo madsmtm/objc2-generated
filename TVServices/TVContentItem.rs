@@ -130,6 +130,8 @@ impl TVContentItem {
         pub unsafe fn imageURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`imageURL`][Self::imageURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use setImageURL:forTraits: to set image URLs into TVContentItem."]
         #[unsafe(method(setImageURL:))]
         #[unsafe(method_family = none)]
@@ -195,6 +197,8 @@ impl TVContentItem {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
@@ -213,6 +217,8 @@ impl TVContentItem {
         pub unsafe fn lastAccessedDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`lastAccessedDate`][Self::lastAccessedDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
         #[unsafe(method(setLastAccessedDate:))]
         #[unsafe(method_family = none)]
@@ -225,6 +231,8 @@ impl TVContentItem {
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`expirationDate`][Self::expirationDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
         #[unsafe(method(setExpirationDate:))]
         #[unsafe(method_family = none)]
@@ -238,6 +246,8 @@ impl TVContentItem {
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`creationDate`][Self::creationDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
         #[unsafe(method(setCreationDate:))]
         #[unsafe(method_family = none)]
@@ -253,6 +263,8 @@ impl TVContentItem {
         pub unsafe fn badgeCount(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`badgeCount`][Self::badgeCount].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
         #[unsafe(method(setBadgeCount:))]
         #[unsafe(method_family = none)]
@@ -267,6 +279,8 @@ impl TVContentItem {
         pub unsafe fn duration(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`duration`][Self::duration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
         #[unsafe(method(setDuration:))]
         #[unsafe(method_family = none)]
@@ -281,6 +295,8 @@ impl TVContentItem {
         pub unsafe fn currentPosition(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`currentPosition`][Self::currentPosition].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
         #[unsafe(method(setCurrentPosition:))]
         #[unsafe(method_family = none)]
@@ -296,6 +312,8 @@ impl TVContentItem {
         pub unsafe fn hasPlayedToEnd(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`hasPlayedToEnd`][Self::hasPlayedToEnd].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
         #[unsafe(method(setHasPlayedToEnd:))]
         #[unsafe(method_family = none)]
@@ -315,6 +333,8 @@ impl TVContentItem {
         pub unsafe fn playURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`playURL`][Self::playURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
         #[unsafe(method(setPlayURL:))]
         #[unsafe(method_family = none)]
@@ -334,6 +354,8 @@ impl TVContentItem {
         pub unsafe fn displayURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`displayURL`][Self::displayURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
         #[unsafe(method(setDisplayURL:))]
         #[unsafe(method_family = none)]
@@ -351,6 +373,8 @@ impl TVContentItem {
         pub unsafe fn topShelfItems(&self) -> Option<Retained<NSArray<TVContentItem>>>;
 
         /// Setter for [`topShelfItems`][Self::topShelfItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]
         #[unsafe(method(setTopShelfItems:))]
         #[unsafe(method_family = none)]

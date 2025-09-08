@@ -255,6 +255,10 @@ impl ICDevice {
         /// The delegate to receive messages once a session is opened on the device.
         ///
         /// The delegate must conform ICDeviceDelegate protocol. In addition it should respond to selectors defined in ICCameraDeviceDelegate protocol in order to effectively interact with the device object. The messages this delegate can expect to receive are described by these protocols.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn ICDeviceDelegate>>>;
@@ -434,6 +438,8 @@ impl ICDevice {
         pub unsafe fn autolaunchApplicationPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`autolaunchApplicationPath`][Self::autolaunchApplicationPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAutolaunchApplicationPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutolaunchApplicationPath(

@@ -96,6 +96,9 @@ impl NSStream {
         #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSStreamDelegate>>>;

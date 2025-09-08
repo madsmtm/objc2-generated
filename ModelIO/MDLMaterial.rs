@@ -539,6 +539,8 @@ impl MDLMaterialProperty {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -548,6 +550,8 @@ impl MDLMaterialProperty {
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`stringValue`][Self::stringValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStringValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStringValue(&self, string_value: Option<&NSString>);
@@ -557,6 +561,8 @@ impl MDLMaterialProperty {
         pub unsafe fn URLValue(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URLValue`][Self::URLValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setURLValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURLValue(&self, url_value: Option<&NSURL>);
@@ -704,6 +710,8 @@ impl MDLMaterialPropertyNode {
 
         #[cfg(feature = "block2")]
         /// Setter for [`evaluationFunction`][Self::evaluationFunction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEvaluationFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEvaluationFunction(
@@ -830,6 +838,8 @@ impl MDLScatteringFunction {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -1073,6 +1083,8 @@ impl MDLMaterial {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);

@@ -365,6 +365,8 @@ impl MKAnnotationView {
         pub unsafe fn clusteringIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`clusteringIdentifier`][Self::clusteringIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setClusteringIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClusteringIdentifier(&self, clustering_identifier: Option<&NSString>);

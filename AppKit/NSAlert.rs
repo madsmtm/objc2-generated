@@ -83,6 +83,8 @@ impl NSAlert {
         pub unsafe fn messageText(&self) -> Retained<NSString>;
 
         /// Setter for [`messageText`][Self::messageText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMessageText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessageText(&self, message_text: &NSString);
@@ -94,6 +96,8 @@ impl NSAlert {
         pub unsafe fn informativeText(&self) -> Retained<NSString>;
 
         /// Setter for [`informativeText`][Self::informativeText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInformativeText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInformativeText(&self, informative_text: &NSString);
@@ -181,6 +185,8 @@ impl NSAlert {
 
         #[cfg(feature = "NSHelpManager")]
         /// Setter for [`helpAnchor`][Self::helpAnchor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHelpAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
@@ -191,8 +197,9 @@ impl NSAlert {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSAlertDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSAlertDelegate>>);

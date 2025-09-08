@@ -59,6 +59,8 @@ impl CLKComplicationTimelineEntry {
 
         #[cfg(feature = "CLKComplicationTemplate")]
         /// Setter for [`complicationTemplate`][Self::complicationTemplate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setComplicationTemplate:))]
         #[unsafe(method_family = none)]
@@ -73,6 +75,8 @@ impl CLKComplicationTimelineEntry {
         pub unsafe fn timelineAnimationGroup(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`timelineAnimationGroup`][Self::timelineAnimationGroup].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setTimelineAnimationGroup:))]
         #[unsafe(method_family = none)]

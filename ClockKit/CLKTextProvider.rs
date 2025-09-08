@@ -60,6 +60,8 @@ impl CLKTextProvider {
         pub unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setAccessibilityLabel:))]
         #[unsafe(method_family = none)]
@@ -138,6 +140,8 @@ impl CLKSimpleTextProvider {
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// Setter for [`text`][Self::text].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
@@ -149,6 +153,8 @@ impl CLKSimpleTextProvider {
         pub unsafe fn shortText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`shortText`][Self::shortText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(setShortText:))]
         #[unsafe(method_family = none)]

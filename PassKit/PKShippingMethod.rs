@@ -28,6 +28,8 @@ impl PKShippingMethod {
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
@@ -37,6 +39,8 @@ impl PKShippingMethod {
         pub unsafe fn detail(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`detail`][Self::detail].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetail:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetail(&self, detail: Option<&NSString>);
@@ -48,6 +52,8 @@ impl PKShippingMethod {
 
         #[cfg(feature = "PKDateComponentsRange")]
         /// Setter for [`dateComponentsRange`][Self::dateComponentsRange].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDateComponentsRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDateComponentsRange(

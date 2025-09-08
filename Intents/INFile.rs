@@ -59,6 +59,8 @@ impl INFile {
         pub unsafe fn filename(&self) -> Retained<NSString>;
 
         /// Setter for [`filename`][Self::filename].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFilename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilename(&self, filename: &NSString);

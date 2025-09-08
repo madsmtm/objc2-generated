@@ -60,6 +60,8 @@ impl ARWorldMap {
 
         #[cfg(all(feature = "ARAnchor", feature = "objc2-foundation"))]
         /// Setter for [`anchors`][Self::anchors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAnchors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnchors(&self, anchors: &NSArray<ARAnchor>);

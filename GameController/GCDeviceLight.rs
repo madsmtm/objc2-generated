@@ -28,6 +28,8 @@ impl GCDeviceLight {
 
         #[cfg(feature = "GCColor")]
         /// Setter for [`color`][Self::color].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: &GCColor);

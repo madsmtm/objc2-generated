@@ -281,6 +281,9 @@ impl NSFontManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Sel);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "NSFontManager doesn't have any delegate method. This property should not be used."]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -386,8 +389,9 @@ impl NSFontManager {
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);

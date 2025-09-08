@@ -278,6 +278,8 @@ impl PDFDocument {
         pub unsafe fn documentAttributes(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`documentAttributes`][Self::documentAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDocumentAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDocumentAttributes(&self, document_attributes: Option<&NSDictionary>);
@@ -346,8 +348,9 @@ impl PDFDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn PDFDocumentDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

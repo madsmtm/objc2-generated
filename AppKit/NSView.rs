@@ -207,10 +207,16 @@ impl NSView {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSWindow")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(window))]
         #[unsafe(method_family = none)]
         pub fn window(&self) -> Option<Retained<NSWindow>>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(superview))]
         #[unsafe(method_family = none)]
         pub unsafe fn superview(&self) -> Option<Retained<NSView>>;
@@ -220,6 +226,8 @@ impl NSView {
         pub unsafe fn subviews(&self) -> Retained<NSArray<NSView>>;
 
         /// Setter for [`subviews`][Self::subviews].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubviews:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubviews(&self, subviews: &NSArray<NSView>);
@@ -232,6 +240,9 @@ impl NSView {
         #[unsafe(method_family = none)]
         pub unsafe fn ancestorSharedWithView(&self, view: &NSView) -> Option<Retained<NSView>>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(opaqueAncestor))]
         #[unsafe(method_family = none)]
         pub unsafe fn opaqueAncestor(&self) -> Option<Retained<NSView>>;
@@ -882,6 +893,8 @@ impl NSView {
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`backgroundFilters`][Self::backgroundFilters].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundFilters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundFilters(&self, background_filters: &NSArray<CIFilter>);
@@ -908,6 +921,8 @@ impl NSView {
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`contentFilters`][Self::contentFilters].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentFilters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentFilters(&self, content_filters: &NSArray<CIFilter>);
@@ -919,6 +934,8 @@ impl NSView {
 
         #[cfg(feature = "NSShadow")]
         /// Setter for [`shadow`][Self::shadow].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShadow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadow(&self, shadow: Option<&NSShadow>);
@@ -986,6 +1003,8 @@ impl NSView {
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`toolTip`][Self::toolTip].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setToolTip:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
@@ -1160,6 +1179,9 @@ extern_protocol!(
 #[cfg(feature = "NSResponder")]
 impl NSView {
     extern_methods!(
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(nextKeyView))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextKeyView(&self) -> Option<Retained<NSView>>;
@@ -1169,14 +1191,23 @@ impl NSView {
         #[unsafe(method_family = none)]
         pub unsafe fn setNextKeyView(&self, next_key_view: Option<&NSView>);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(previousKeyView))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousKeyView(&self) -> Option<Retained<NSView>>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(nextValidKeyView))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextValidKeyView(&self) -> Option<Retained<NSView>>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(previousValidKeyView))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousValidKeyView(&self) -> Option<Retained<NSView>>;
@@ -1493,6 +1524,8 @@ impl NSView {
 
         #[cfg(feature = "NSGestureRecognizer")]
         /// Setter for [`gestureRecognizers`][Self::gestureRecognizers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGestureRecognizers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGestureRecognizers(

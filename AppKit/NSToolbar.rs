@@ -142,8 +142,9 @@ impl NSToolbar {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSToolbarDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSToolbarDelegate>>);
@@ -196,6 +197,8 @@ impl NSToolbar {
         pub unsafe fn selectedItemIdentifier(&self) -> Option<Retained<NSToolbarItemIdentifier>>;
 
         /// Setter for [`selectedItemIdentifier`][Self::selectedItemIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedItemIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedItemIdentifier(
@@ -259,6 +262,8 @@ impl NSToolbar {
         pub unsafe fn itemIdentifiers(&self) -> Retained<NSArray<NSToolbarItemIdentifier>>;
 
         /// Setter for [`itemIdentifiers`][Self::itemIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setItemIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemIdentifiers(
@@ -275,6 +280,8 @@ impl NSToolbar {
         pub unsafe fn centeredItemIdentifiers(&self) -> Retained<NSSet<NSToolbarItemIdentifier>>;
 
         /// Setter for [`centeredItemIdentifiers`][Self::centeredItemIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCenteredItemIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCenteredItemIdentifiers(
@@ -458,6 +465,8 @@ impl NSToolbar {
         pub unsafe fn centeredItemIdentifier(&self) -> Option<Retained<NSToolbarItemIdentifier>>;
 
         /// Setter for [`centeredItemIdentifier`][Self::centeredItemIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use the centeredItemIdentifiers property instead"]
         #[unsafe(method(setCenteredItemIdentifier:))]
         #[unsafe(method_family = none)]

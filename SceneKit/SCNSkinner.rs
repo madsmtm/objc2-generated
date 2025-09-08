@@ -39,8 +39,9 @@ impl SCNSkinner {
         pub unsafe fn skeleton(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`skeleton`][Self::skeleton].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setSkeleton:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSkeleton(&self, skeleton: Option<&SCNNode>);

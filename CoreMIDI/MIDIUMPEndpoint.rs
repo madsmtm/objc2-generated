@@ -233,6 +233,8 @@ impl MIDIUMPEndpoint {
 
         #[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2-foundation"))]
         /// Setter for [`functionBlocks`][Self::functionBlocks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFunctionBlocks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFunctionBlocks(&self, function_blocks: &NSArray<MIDIUMPFunctionBlock>);

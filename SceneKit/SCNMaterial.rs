@@ -193,6 +193,8 @@ impl SCNMaterial {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -335,6 +337,8 @@ impl SCNMaterial {
         pub unsafe fn lightingModelName(&self) -> Retained<SCNLightingModel>;
 
         /// Setter for [`lightingModelName`][Self::lightingModelName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLightingModelName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLightingModelName(&self, lighting_model_name: &SCNLightingModel);

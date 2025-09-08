@@ -104,6 +104,8 @@ impl NSCollectionViewGridLayout {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColors`][Self::backgroundColors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColors(&self, background_colors: Option<&NSArray<NSColor>>);

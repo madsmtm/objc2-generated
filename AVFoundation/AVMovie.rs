@@ -800,6 +800,8 @@ impl AVMutableMovie {
         pub unsafe fn defaultMediaDataStorage(&self) -> Option<Retained<AVMediaDataStorage>>;
 
         /// Setter for [`defaultMediaDataStorage`][Self::defaultMediaDataStorage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultMediaDataStorage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultMediaDataStorage(
@@ -978,6 +980,8 @@ impl AVMutableMovie {
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`metadata`][Self::metadata].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSArray<AVMetadataItem>);

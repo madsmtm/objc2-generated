@@ -282,6 +282,8 @@ impl AVMutableMetadataItem {
 
         #[cfg(feature = "AVMetadataIdentifiers")]
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&AVMetadataIdentifier>);
@@ -291,6 +293,8 @@ impl AVMutableMetadataItem {
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`extendedLanguageTag`][Self::extendedLanguageTag].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExtendedLanguageTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtendedLanguageTag(&self, extended_language_tag: Option<&NSString>);
@@ -300,6 +304,8 @@ impl AVMutableMetadataItem {
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
         /// Setter for [`locale`][Self::locale].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
@@ -331,6 +337,8 @@ impl AVMutableMetadataItem {
         pub unsafe fn dataType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`dataType`][Self::dataType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDataType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataType(&self, data_type: Option<&NSString>);
@@ -341,6 +349,8 @@ impl AVMutableMetadataItem {
             -> Option<Retained<AnyObject /* NSObjectProtocol+ NSCopying */>>;
 
         /// Setter for [`value`][Self::value].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&AnyObject /* NSObjectProtocol+ NSCopying */>);
@@ -354,6 +364,8 @@ impl AVMutableMetadataItem {
 
         #[cfg(feature = "AVMetadataFormat")]
         /// Setter for [`extraAttributes`][Self::extraAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExtraAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtraAttributes(
@@ -389,6 +401,8 @@ impl AVMutableMetadataItem {
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`startDate`][Self::startDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStartDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartDate(&self, start_date: Option<&NSDate>);
@@ -405,6 +419,8 @@ impl AVMutableMetadataItem {
 
         #[cfg(feature = "AVMetadataFormat")]
         /// Setter for [`keySpace`][Self::keySpace].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeySpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeySpace(&self, key_space: Option<&AVMetadataKeySpace>);
@@ -414,6 +430,8 @@ impl AVMutableMetadataItem {
         pub unsafe fn key(&self) -> Option<Retained<AnyObject /* NSObjectProtocol+ NSCopying */>>;
 
         /// Setter for [`key`][Self::key].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKey(&self, key: Option<&AnyObject /* NSObjectProtocol+ NSCopying */>);

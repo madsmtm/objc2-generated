@@ -46,6 +46,8 @@ impl UIActivityItemsConfiguration {
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         /// Setter for [`supportedInteractions`][Self::supportedInteractions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedInteractions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedInteractions(

@@ -19,6 +19,9 @@ extern_conformance!(
 
 impl NSMetadataQuery {
     extern_methods!(
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -40,6 +43,8 @@ impl NSMetadataQuery {
 
         #[cfg(feature = "NSPredicate")]
         /// Setter for [`predicate`][Self::predicate].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
@@ -51,6 +56,8 @@ impl NSMetadataQuery {
 
         #[cfg(all(feature = "NSArray", feature = "NSSortDescriptor"))]
         /// Setter for [`sortDescriptors`][Self::sortDescriptors].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setSortDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
@@ -62,6 +69,8 @@ impl NSMetadataQuery {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`valueListAttributes`][Self::valueListAttributes].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setValueListAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueListAttributes(&self, value_list_attributes: &NSArray<NSString>);
@@ -73,6 +82,8 @@ impl NSMetadataQuery {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`groupingAttributes`][Self::groupingAttributes].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setGroupingAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroupingAttributes(&self, grouping_attributes: Option<&NSArray<NSString>>);
@@ -98,6 +109,8 @@ impl NSMetadataQuery {
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`searchScopes`][Self::searchScopes].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setSearchScopes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchScopes(&self, search_scopes: &NSArray);
@@ -109,6 +122,8 @@ impl NSMetadataQuery {
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`searchItems`][Self::searchItems].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setSearchItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchItems(&self, search_items: Option<&NSArray>);

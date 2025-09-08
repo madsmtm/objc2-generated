@@ -173,8 +173,9 @@ impl UIDocumentBrowserViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDocumentBrowserViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -338,6 +339,8 @@ impl UIDocumentBrowserViewController {
 
         #[cfg(feature = "UIDocumentBrowserAction")]
         /// Setter for [`customActions`][Self::customActions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomActions(&self, custom_actions: &NSArray<UIDocumentBrowserAction>);
@@ -361,6 +364,8 @@ impl UIDocumentBrowserViewController {
         pub unsafe fn localizedCreateDocumentActionTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedCreateDocumentActionTitle`][Self::localizedCreateDocumentActionTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedCreateDocumentActionTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedCreateDocumentActionTitle(
@@ -562,8 +567,9 @@ impl UIDocumentBrowserTransitionController {
         pub unsafe fn targetView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`targetView`][Self::targetView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTargetView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargetView(&self, target_view: Option<&UIView>);

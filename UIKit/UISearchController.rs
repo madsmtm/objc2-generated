@@ -230,8 +230,9 @@ impl UISearchController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISearchResultsUpdating>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`searchResultsUpdater`][Self::searchResultsUpdater].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setSearchResultsUpdater:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchResultsUpdater(
@@ -254,8 +255,9 @@ impl UISearchController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISearchControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -394,6 +396,8 @@ impl UISearchController {
 
         #[cfg(feature = "UISearchSuggestion")]
         /// Setter for [`searchSuggestions`][Self::searchSuggestions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSearchSuggestions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchSuggestions(

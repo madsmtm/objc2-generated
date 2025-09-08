@@ -37,8 +37,9 @@ impl BETextInteraction {
         ) -> Option<Retained<ProtocolObject<dyn BETextInteractionDelegate>>>;
 
         #[cfg(feature = "BETextInteractionDelegate")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -164,8 +165,9 @@ impl BETextInteraction {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIContextMenuInteractionDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`contextMenuInteractionDelegate`][Self::contextMenuInteractionDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setContextMenuInteractionDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContextMenuInteractionDelegate(

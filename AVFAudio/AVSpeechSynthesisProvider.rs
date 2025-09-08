@@ -289,6 +289,8 @@ impl AVSpeechSynthesisProviderAudioUnit {
 
         #[cfg(all(feature = "AVSpeechSynthesis", feature = "block2"))]
         /// Setter for [`speechSynthesisOutputMetadataBlock`][Self::speechSynthesisOutputMetadataBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSpeechSynthesisOutputMetadataBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeechSynthesisOutputMetadataBlock(

@@ -203,6 +203,8 @@ impl AVAssetWriter {
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`metadata`][Self::metadata].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSArray<AVMetadataItem>);
@@ -235,6 +237,8 @@ impl AVAssetWriter {
         pub unsafe fn directoryForTemporaryFiles(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`directoryForTemporaryFiles`][Self::directoryForTemporaryFiles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDirectoryForTemporaryFiles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirectoryForTemporaryFiles(
@@ -698,6 +702,8 @@ impl AVAssetWriter {
 
         #[cfg(feature = "AVMediaFormat")]
         /// Setter for [`outputFileTypeProfile`][Self::outputFileTypeProfile].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputFileTypeProfile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputFileTypeProfile(
@@ -715,8 +721,9 @@ impl AVAssetWriter {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAssetWriterDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

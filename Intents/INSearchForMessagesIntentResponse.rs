@@ -100,6 +100,8 @@ impl INSearchForMessagesIntentResponse {
 
         #[cfg(feature = "INMessage")]
         /// Setter for [`messages`][Self::messages].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMessages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessages(&self, messages: Option<&NSArray<INMessage>>);

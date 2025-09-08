@@ -78,6 +78,8 @@ impl INGetRestaurantGuestIntentResponse {
 
         #[cfg(all(feature = "INPerson", feature = "INRestaurantGuest"))]
         /// Setter for [`guest`][Self::guest].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGuest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGuest(&self, guest: Option<&INRestaurantGuest>);
@@ -91,6 +93,8 @@ impl INGetRestaurantGuestIntentResponse {
 
         #[cfg(feature = "INRestaurantGuestDisplayPreferences")]
         /// Setter for [`guestDisplayPreferences`][Self::guestDisplayPreferences].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGuestDisplayPreferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGuestDisplayPreferences(

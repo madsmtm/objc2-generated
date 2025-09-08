@@ -44,6 +44,8 @@ impl MSMessageTemplateLayout {
         pub unsafe fn caption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`caption`][Self::caption].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCaption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCaption(&self, caption: Option<&NSString>);
@@ -54,6 +56,8 @@ impl MSMessageTemplateLayout {
         pub unsafe fn subcaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subcaption`][Self::subcaption].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubcaption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubcaption(&self, subcaption: Option<&NSString>);
@@ -64,6 +68,8 @@ impl MSMessageTemplateLayout {
         pub unsafe fn trailingCaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`trailingCaption`][Self::trailingCaption].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrailingCaption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrailingCaption(&self, trailing_caption: Option<&NSString>);
@@ -74,6 +80,8 @@ impl MSMessageTemplateLayout {
         pub unsafe fn trailingSubcaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`trailingSubcaption`][Self::trailingSubcaption].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrailingSubcaption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrailingSubcaption(&self, trailing_subcaption: Option<&NSString>);
@@ -103,6 +111,8 @@ impl MSMessageTemplateLayout {
         pub unsafe fn mediaFileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`mediaFileURL`][Self::mediaFileURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMediaFileURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaFileURL(&self, media_file_url: Option<&NSURL>);
@@ -113,6 +123,8 @@ impl MSMessageTemplateLayout {
         pub unsafe fn imageTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`imageTitle`][Self::imageTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImageTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageTitle(&self, image_title: Option<&NSString>);
@@ -123,6 +135,8 @@ impl MSMessageTemplateLayout {
         pub unsafe fn imageSubtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`imageSubtitle`][Self::imageSubtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImageSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageSubtitle(&self, image_subtitle: Option<&NSString>);

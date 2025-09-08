@@ -62,6 +62,8 @@ impl VZUSBControllerConfiguration {
 
         #[cfg(feature = "VZUSBDeviceConfiguration")]
         /// Setter for [`usbDevices`][Self::usbDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUsbDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsbDevices(

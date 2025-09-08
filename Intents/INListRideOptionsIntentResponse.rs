@@ -111,6 +111,8 @@ impl INListRideOptionsIntentResponse {
 
         #[cfg(feature = "INRideOption")]
         /// Setter for [`rideOptions`][Self::rideOptions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRideOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRideOptions(&self, ride_options: Option<&NSArray<INRideOption>>);
@@ -122,6 +124,8 @@ impl INListRideOptionsIntentResponse {
 
         #[cfg(feature = "INPaymentMethod")]
         /// Setter for [`paymentMethods`][Self::paymentMethods].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPaymentMethods:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaymentMethods(&self, payment_methods: Option<&NSArray<INPaymentMethod>>);
@@ -131,6 +135,8 @@ impl INListRideOptionsIntentResponse {
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`expirationDate`][Self::expirationDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExpirationDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpirationDate(&self, expiration_date: Option<&NSDate>);

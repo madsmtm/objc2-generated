@@ -49,6 +49,8 @@ impl VZVirtioSoundDeviceConfiguration {
 
         #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
         /// Setter for [`streams`][Self::streams].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStreams:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStreams(&self, streams: &NSArray<VZVirtioSoundDeviceStreamConfiguration>);

@@ -42,6 +42,8 @@ impl CKAcceptSharesOperation {
 
         #[cfg(feature = "CKShareMetadata")]
         /// Setter for [`shareMetadatas`][Self::shareMetadatas].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShareMetadatas:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShareMetadatas(&self, share_metadatas: Option<&NSArray<CKShareMetadata>>);
@@ -73,6 +75,8 @@ impl CKAcceptSharesOperation {
             feature = "block2"
         ))]
         /// Setter for [`perShareCompletionBlock`][Self::perShareCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerShareCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerShareCompletionBlock(
@@ -109,6 +113,8 @@ impl CKAcceptSharesOperation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`acceptSharesCompletionBlock`][Self::acceptSharesCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAcceptSharesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAcceptSharesCompletionBlock(

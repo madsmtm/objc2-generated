@@ -174,8 +174,9 @@ impl NSAnimation {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSAnimationDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -188,6 +189,8 @@ impl NSAnimation {
         pub unsafe fn progressMarks(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`progressMarks`][Self::progressMarks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProgressMarks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressMarks(&self, progress_marks: &NSArray<NSNumber>);
@@ -358,6 +361,8 @@ impl NSViewAnimation {
         ) -> Retained<NSArray<NSDictionary<NSViewAnimationKey, AnyObject>>>;
 
         /// Setter for [`viewAnimations`][Self::viewAnimations].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setViewAnimations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setViewAnimations(
@@ -415,6 +420,8 @@ extern_protocol!(
         unsafe fn animations(&self) -> Retained<NSDictionary<NSAnimatablePropertyKey, AnyObject>>;
 
         /// Setter for [`animations`][Self::animations].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAnimations:))]
         #[unsafe(method_family = none)]
         unsafe fn setAnimations(

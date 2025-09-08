@@ -279,6 +279,8 @@ impl NSItemProvider {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`suggestedName`][Self::suggestedName].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setSuggestedName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuggestedName(&self, suggested_name: Option<&NSString>);
@@ -383,6 +385,8 @@ impl NSItemProvider {
             feature = "block2"
         ))]
         /// Setter for [`previewImageHandler`][Self::previewImageHandler].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPreviewImageHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewImageHandler(

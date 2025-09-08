@@ -182,6 +182,8 @@ impl UITextFormattingViewControllerFormattingDescriptor {
 
         #[cfg(feature = "UIFont")]
         /// Setter for [`fonts`][Self::fonts].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFonts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFonts(&self, fonts: Option<&NSArray<UIFont>>);
@@ -193,6 +195,8 @@ impl UITextFormattingViewControllerFormattingDescriptor {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`textColors`][Self::textColors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextColors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextColors(&self, text_colors: Option<&NSArray<UIColor>>);
@@ -233,6 +237,8 @@ impl UITextFormattingViewControllerFormattingDescriptor {
         ) -> Retained<NSSet<UITextFormattingViewControllerTextAlignment>>;
 
         /// Setter for [`textAlignments`][Self::textAlignments].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextAlignments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAlignments(
@@ -245,6 +251,8 @@ impl UITextFormattingViewControllerFormattingDescriptor {
         pub unsafe fn textLists(&self) -> Retained<NSSet<UITextFormattingViewControllerTextList>>;
 
         /// Setter for [`textLists`][Self::textLists].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextLists:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextLists(
@@ -258,6 +266,8 @@ impl UITextFormattingViewControllerFormattingDescriptor {
             -> Retained<NSSet<UITextFormattingViewControllerHighlight>>;
 
         /// Setter for [`highlights`][Self::highlights].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHighlights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighlights(
@@ -270,6 +280,8 @@ impl UITextFormattingViewControllerFormattingDescriptor {
         pub unsafe fn formattingStyleKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`formattingStyleKey`][Self::formattingStyleKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFormattingStyleKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormattingStyleKey(&self, formatting_style_key: Option<&NSString>);

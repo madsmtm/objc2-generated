@@ -91,6 +91,8 @@ impl MSMessage {
 
         #[cfg(feature = "MSMessageLayout")]
         /// Setter for [`layout`][Self::layout].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLayout(&self, layout: Option<&MSMessageLayout>);
@@ -105,6 +107,8 @@ impl MSMessage {
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
@@ -133,6 +137,8 @@ impl MSMessage {
         pub unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
@@ -146,6 +152,8 @@ impl MSMessage {
         pub unsafe fn summaryText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`summaryText`][Self::summaryText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSummaryText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSummaryText(&self, summary_text: Option<&NSString>);
@@ -159,6 +167,8 @@ impl MSMessage {
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         /// Setter for [`error`][Self::error].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setError(&self, error: Option<&NSError>);

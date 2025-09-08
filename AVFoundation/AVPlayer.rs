@@ -814,6 +814,8 @@ impl AVPlayer {
         pub unsafe fn audioOutputDeviceUniqueID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`audioOutputDeviceUniqueID`][Self::audioOutputDeviceUniqueID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudioOutputDeviceUniqueID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioOutputDeviceUniqueID(
@@ -858,6 +860,8 @@ impl AVPlayer {
 
         #[cfg(feature = "AVAnimation")]
         /// Setter for [`externalPlaybackVideoGravity`][Self::externalPlaybackVideoGravity].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExternalPlaybackVideoGravity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExternalPlaybackVideoGravity(

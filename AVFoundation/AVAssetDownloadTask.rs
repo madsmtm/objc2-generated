@@ -203,6 +203,8 @@ impl AVAssetDownloadConfiguration {
         pub unsafe fn artworkData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`artworkData`][Self::artworkData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setArtworkData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArtworkData(&self, artwork_data: Option<&NSData>);
@@ -224,6 +226,8 @@ impl AVAssetDownloadConfiguration {
         ) -> Retained<NSArray<AVAssetDownloadContentConfiguration>>;
 
         /// Setter for [`auxiliaryContentConfigurations`][Self::auxiliaryContentConfigurations].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuxiliaryContentConfigurations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuxiliaryContentConfigurations(
@@ -313,6 +317,8 @@ impl AVAssetDownloadContentConfiguration {
 
         #[cfg(feature = "AVAssetVariant")]
         /// Setter for [`variantQualifiers`][Self::variantQualifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVariantQualifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariantQualifiers(
@@ -330,6 +336,8 @@ impl AVAssetDownloadContentConfiguration {
 
         #[cfg(feature = "AVMediaSelection")]
         /// Setter for [`mediaSelections`][Self::mediaSelections].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMediaSelections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaSelections(&self, media_selections: &NSArray<AVMediaSelection>);

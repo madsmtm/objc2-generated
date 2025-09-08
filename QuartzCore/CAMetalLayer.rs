@@ -186,6 +186,8 @@ impl CAMetalLayer {
         pub unsafe fn developerHUDProperties(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`developerHUDProperties`][Self::developerHUDProperties].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDeveloperHUDProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeveloperHUDProperties(

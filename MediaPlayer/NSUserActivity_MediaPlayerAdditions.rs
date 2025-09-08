@@ -22,6 +22,8 @@ pub unsafe trait NSUserActivityMediaPlayerAdditions:
         unsafe fn externalMediaContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`externalMediaContentIdentifier`][Self::externalMediaContentIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExternalMediaContentIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn setExternalMediaContentIdentifier(

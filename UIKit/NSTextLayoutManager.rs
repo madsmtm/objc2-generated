@@ -104,8 +104,9 @@ impl NSTextLayoutManager {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextLayoutManagerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -316,6 +317,8 @@ impl NSTextLayoutManager {
 
         #[cfg(all(feature = "NSTextLayoutFragment", feature = "block2"))]
         /// Setter for [`renderingAttributesValidator`][Self::renderingAttributesValidator].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRenderingAttributesValidator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenderingAttributesValidator(

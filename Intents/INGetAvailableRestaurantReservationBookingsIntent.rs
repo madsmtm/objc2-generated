@@ -63,6 +63,8 @@ impl INGetAvailableRestaurantReservationBookingsIntent {
 
         #[cfg(feature = "INRestaurant")]
         /// Setter for [`restaurant`][Self::restaurant].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRestaurant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRestaurant(&self, restaurant: &INRestaurant);
@@ -81,6 +83,8 @@ impl INGetAvailableRestaurantReservationBookingsIntent {
         pub unsafe fn preferredBookingDateComponents(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`preferredBookingDateComponents`][Self::preferredBookingDateComponents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredBookingDateComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredBookingDateComponents(
@@ -93,6 +97,8 @@ impl INGetAvailableRestaurantReservationBookingsIntent {
         pub unsafe fn maximumNumberOfResults(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`maximumNumberOfResults`][Self::maximumNumberOfResults].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMaximumNumberOfResults:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumNumberOfResults(
@@ -105,6 +111,8 @@ impl INGetAvailableRestaurantReservationBookingsIntent {
         pub unsafe fn earliestBookingDateForResults(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`earliestBookingDateForResults`][Self::earliestBookingDateForResults].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEarliestBookingDateForResults:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEarliestBookingDateForResults(
@@ -117,6 +125,8 @@ impl INGetAvailableRestaurantReservationBookingsIntent {
         pub unsafe fn latestBookingDateForResults(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`latestBookingDateForResults`][Self::latestBookingDateForResults].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLatestBookingDateForResults:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLatestBookingDateForResults(

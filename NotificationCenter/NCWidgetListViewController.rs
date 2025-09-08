@@ -60,8 +60,9 @@ impl NCWidgetListViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NCWidgetListViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -74,6 +75,8 @@ impl NCWidgetListViewController {
         pub unsafe fn contents(&self) -> Retained<NSArray<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContents(&self, contents: &NSArray<AnyObject>);

@@ -211,6 +211,8 @@ impl MTLDepthStencilDescriptor {
         pub fn frontFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
 
         /// Setter for [`frontFaceStencil`][Self::frontFaceStencil].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFrontFaceStencil:))]
         #[unsafe(method_family = none)]
         pub fn setFrontFaceStencil(&self, front_face_stencil: Option<&MTLStencilDescriptor>);
@@ -220,6 +222,8 @@ impl MTLDepthStencilDescriptor {
         pub fn backFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
 
         /// Setter for [`backFaceStencil`][Self::backFaceStencil].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackFaceStencil:))]
         #[unsafe(method_family = none)]
         pub fn setBackFaceStencil(&self, back_face_stencil: Option<&MTLStencilDescriptor>);
@@ -230,6 +234,8 @@ impl MTLDepthStencilDescriptor {
         pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub fn setLabel(&self, label: Option<&NSString>);

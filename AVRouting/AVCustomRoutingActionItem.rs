@@ -42,6 +42,8 @@ impl AVCustomRoutingActionItem {
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// Setter for [`type`][Self::type].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: &UTType);
@@ -54,6 +56,8 @@ impl AVCustomRoutingActionItem {
         pub unsafe fn overrideTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`overrideTitle`][Self::overrideTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOverrideTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverrideTitle(&self, override_title: Option<&NSString>);

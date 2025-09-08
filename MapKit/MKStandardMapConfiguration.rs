@@ -105,6 +105,8 @@ impl MKStandardMapConfiguration {
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPointOfInterestFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestFilter(

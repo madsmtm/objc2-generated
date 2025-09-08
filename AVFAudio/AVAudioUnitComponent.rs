@@ -151,6 +151,8 @@ impl AVAudioUnitComponent {
         pub unsafe fn userTagNames(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`userTagNames`][Self::userTagNames].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUserTagNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserTagNames(&self, user_tag_names: &NSArray<NSString>);

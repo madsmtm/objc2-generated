@@ -40,6 +40,8 @@ impl DOMMediaList {
         pub unsafe fn mediaText(&self) -> Retained<NSString>;
 
         /// Setter for [`mediaText`][Self::mediaText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setMediaText:))]
         #[unsafe(method_family = none)]

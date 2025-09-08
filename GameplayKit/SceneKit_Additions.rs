@@ -27,8 +27,9 @@ pub unsafe trait SCNNodeGameplayKit:
         unsafe fn entity(&self) -> Option<Retained<GKEntity>>;
 
         #[cfg(feature = "GKEntity")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`entity`][Self::entity].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setEntity:))]
         #[unsafe(method_family = none)]
         unsafe fn setEntity(&self, entity: Option<&GKEntity>);

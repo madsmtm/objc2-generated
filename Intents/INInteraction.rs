@@ -160,6 +160,8 @@ impl INInteraction {
         pub unsafe fn dateInterval(&self) -> Option<Retained<NSDateInterval>>;
 
         /// Setter for [`dateInterval`][Self::dateInterval].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDateInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDateInterval(&self, date_interval: Option<&NSDateInterval>);
@@ -169,6 +171,8 @@ impl INInteraction {
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: &NSString);
@@ -178,6 +182,8 @@ impl INInteraction {
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`groupIdentifier`][Self::groupIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGroupIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroupIdentifier(&self, group_identifier: Option<&NSString>);

@@ -65,6 +65,8 @@ impl UISceneSessionActivationRequest {
 
         #[cfg(feature = "UISceneOptions")]
         /// Setter for [`options`][Self::options].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOptions(&self, options: Option<&UISceneActivationRequestOptions>);

@@ -73,6 +73,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
@@ -86,6 +88,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`subtitle`][Self::subtitle].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
@@ -99,6 +103,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`informativeText`][Self::informativeText].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setInformativeText:))]
         #[unsafe(method_family = none)]
@@ -112,6 +118,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`actionButtonTitle`][Self::actionButtonTitle].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setActionButtonTitle:))]
         #[unsafe(method_family = none)]
@@ -125,6 +133,8 @@ impl NSUserNotification {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`userInfo`][Self::userInfo].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
@@ -138,6 +148,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`deliveryDate`][Self::deliveryDate].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setDeliveryDate:))]
         #[unsafe(method_family = none)]
@@ -151,6 +163,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSTimeZone")]
         /// Setter for [`deliveryTimeZone`][Self::deliveryTimeZone].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setDeliveryTimeZone:))]
         #[unsafe(method_family = none)]
@@ -164,6 +178,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSCalendar")]
         /// Setter for [`deliveryRepeatInterval`][Self::deliveryRepeatInterval].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setDeliveryRepeatInterval:))]
         #[unsafe(method_family = none)]
@@ -196,6 +212,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`soundName`][Self::soundName].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setSoundName:))]
         #[unsafe(method_family = none)]
@@ -225,6 +243,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`otherButtonTitle`][Self::otherButtonTitle].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setOtherButtonTitle:))]
         #[unsafe(method_family = none)]
@@ -237,6 +257,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
@@ -257,6 +279,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`responsePlaceholder`][Self::responsePlaceholder].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setResponsePlaceholder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResponsePlaceholder(&self, response_placeholder: Option<&NSString>);
@@ -275,6 +299,8 @@ impl NSUserNotification {
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`additionalActions`][Self::additionalActions].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAdditionalActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalActions(
@@ -385,6 +411,9 @@ impl NSUserNotificationCenter {
         #[unsafe(method_family = none)]
         pub unsafe fn defaultUserNotificationCenter() -> Retained<NSUserNotificationCenter>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -409,6 +438,8 @@ impl NSUserNotificationCenter {
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`scheduledNotifications`][Self::scheduledNotifications].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setScheduledNotifications:))]
         #[unsafe(method_family = none)]

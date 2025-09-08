@@ -106,6 +106,8 @@ impl WebHistoryItem {
         pub unsafe fn alternateTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`alternateTitle`][Self::alternateTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setAlternateTitle:))]
         #[unsafe(method_family = none)]

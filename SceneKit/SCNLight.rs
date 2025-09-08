@@ -189,6 +189,8 @@ impl SCNLight {
         pub unsafe fn r#type(&self) -> Retained<SCNLightType>;
 
         /// Setter for [`type`][Self::type].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: &SCNLightType);
@@ -239,6 +241,8 @@ impl SCNLight {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -564,6 +568,8 @@ impl SCNLight {
         pub unsafe fn areaPolygonVertices(&self) -> Option<Retained<NSArray<NSValue>>>;
 
         /// Setter for [`areaPolygonVertices`][Self::areaPolygonVertices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAreaPolygonVertices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAreaPolygonVertices(

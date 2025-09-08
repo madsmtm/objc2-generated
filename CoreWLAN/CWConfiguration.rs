@@ -218,6 +218,8 @@ impl CWMutableConfiguration {
 
         #[cfg(feature = "CWNetworkProfile")]
         /// Setter for [`networkProfiles`][Self::networkProfiles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNetworkProfiles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkProfiles(&self, network_profiles: &NSOrderedSet<CWNetworkProfile>);

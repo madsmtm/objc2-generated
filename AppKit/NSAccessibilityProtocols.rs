@@ -419,8 +419,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn accessibilityTopLevelUIElement(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityTopLevelUIElement`][Self::accessibilityTopLevelUIElement].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAccessibilityTopLevelUIElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTopLevelUIElement(
@@ -433,6 +434,8 @@ extern_protocol!(
         unsafe fn accessibilityURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`accessibilityURL`][Self::accessibilityURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityURL:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityURL(&self, accessibility_url: Option<&NSURL>);
@@ -451,6 +454,8 @@ extern_protocol!(
         unsafe fn accessibilityValueDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityValueDescription`][Self::accessibilityValueDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityValueDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityValueDescription(
@@ -463,6 +468,8 @@ extern_protocol!(
         unsafe fn accessibilityVisibleChildren(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityVisibleChildren`][Self::accessibilityVisibleChildren].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityVisibleChildren:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVisibleChildren(
@@ -477,6 +484,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSAccessibilityConstants")]
         /// Setter for [`accessibilitySubrole`][Self::accessibilitySubrole].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilitySubrole:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySubrole(
@@ -489,6 +498,8 @@ extern_protocol!(
         unsafe fn accessibilityTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityTitle`][Self::accessibilityTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityTitle:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTitle(&self, accessibility_title: Option<&NSString>);
@@ -497,8 +508,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn accessibilityTitleUIElement(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityTitleUIElement`][Self::accessibilityTitleUIElement].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAccessibilityTitleUIElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTitleUIElement(
@@ -511,6 +523,8 @@ extern_protocol!(
         unsafe fn accessibilityNextContents(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityNextContents`][Self::accessibilityNextContents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityNextContents:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNextContents(
@@ -548,8 +562,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn accessibilityParent(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityParent`][Self::accessibilityParent].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAccessibilityParent:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityParent(&self, accessibility_parent: Option<&AnyObject>);
@@ -559,6 +574,8 @@ extern_protocol!(
         unsafe fn accessibilityPlaceholderValue(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityPlaceholderValue`][Self::accessibilityPlaceholderValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityPlaceholderValue:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPlaceholderValue(
@@ -571,6 +588,8 @@ extern_protocol!(
         unsafe fn accessibilityPreviousContents(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityPreviousContents`][Self::accessibilityPreviousContents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityPreviousContents:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPreviousContents(
@@ -585,6 +604,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSAccessibilityConstants")]
         /// Setter for [`accessibilityRole`][Self::accessibilityRole].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityRole:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRole(&self, accessibility_role: Option<&NSAccessibilityRole>);
@@ -594,6 +615,8 @@ extern_protocol!(
         unsafe fn accessibilityRoleDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityRoleDescription`][Self::accessibilityRoleDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityRoleDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRoleDescription(
@@ -636,6 +659,8 @@ extern_protocol!(
         unsafe fn accessibilitySelectedChildren(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySelectedChildren`][Self::accessibilitySelectedChildren].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilitySelectedChildren:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedChildren(
@@ -648,6 +673,8 @@ extern_protocol!(
         unsafe fn accessibilityServesAsTitleForUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityServesAsTitleForUIElements`][Self::accessibilityServesAsTitleForUIElements].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityServesAsTitleForUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityServesAsTitleForUIElements(
@@ -687,6 +714,8 @@ extern_protocol!(
         unsafe fn accessibilityLinkedUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityLinkedUIElements`][Self::accessibilityLinkedUIElements].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityLinkedUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLinkedUIElements(
@@ -698,8 +727,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn accessibilityWindow(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityWindow`][Self::accessibilityWindow].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAccessibilityWindow:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityWindow(&self, accessibility_window: Option<&AnyObject>);
@@ -709,6 +739,8 @@ extern_protocol!(
         unsafe fn accessibilityIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityIdentifier`][Self::accessibilityIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityIdentifier(&self, accessibility_identifier: Option<&NSString>);
@@ -718,6 +750,8 @@ extern_protocol!(
         unsafe fn accessibilityHelp(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityHelp`][Self::accessibilityHelp].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityHelp:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHelp(&self, accessibility_help: Option<&NSString>);
@@ -727,6 +761,8 @@ extern_protocol!(
         unsafe fn accessibilityFilename(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityFilename`][Self::accessibilityFilename].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityFilename:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFilename(&self, accessibility_filename: Option<&NSString>);
@@ -763,6 +799,8 @@ extern_protocol!(
         unsafe fn accessibilityChildren(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityChildren`][Self::accessibilityChildren].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityChildren:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityChildren(&self, accessibility_children: Option<&NSArray>);
@@ -774,6 +812,8 @@ extern_protocol!(
         ) -> Option<Retained<NSArray<ProtocolObject<dyn NSAccessibilityElementProtocol>>>>;
 
         /// Setter for [`accessibilityChildrenInNavigationOrder`][Self::accessibilityChildrenInNavigationOrder].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityChildrenInNavigationOrder:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityChildrenInNavigationOrder(
@@ -821,6 +861,8 @@ extern_protocol!(
         unsafe fn accessibilityContents(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityContents`][Self::accessibilityContents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityContents:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityContents(&self, accessibility_contents: Option<&NSArray>);
@@ -830,6 +872,8 @@ extern_protocol!(
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityLabel:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
@@ -851,6 +895,8 @@ extern_protocol!(
         unsafe fn accessibilitySharedFocusElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySharedFocusElements`][Self::accessibilitySharedFocusElements].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilitySharedFocusElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySharedFocusElements(
@@ -875,6 +921,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSAccessibilityCustomRotor")]
         /// Setter for [`accessibilityCustomRotors`][Self::accessibilityCustomRotors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityCustomRotors:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomRotors(
@@ -887,6 +935,8 @@ extern_protocol!(
         unsafe fn accessibilityUserInputLabels(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`accessibilityUserInputLabels`][Self::accessibilityUserInputLabels].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityUserInputLabels:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityUserInputLabels(
@@ -901,6 +951,8 @@ extern_protocol!(
         ) -> Option<Retained<NSArray<NSAttributedString>>>;
 
         /// Setter for [`accessibilityAttributedUserInputLabels`][Self::accessibilityAttributedUserInputLabels].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityAttributedUserInputLabels:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedUserInputLabels(
@@ -964,6 +1016,8 @@ extern_protocol!(
         unsafe fn accessibilityWindows(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityWindows`][Self::accessibilityWindows].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityWindows:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityWindows(&self, accessibility_windows: Option<&NSArray>);
@@ -972,8 +1026,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn accessibilityExtrasMenuBar(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityExtrasMenuBar`][Self::accessibilityExtrasMenuBar].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAccessibilityExtrasMenuBar:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityExtrasMenuBar(
@@ -985,8 +1040,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn accessibilityMenuBar(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityMenuBar`][Self::accessibilityMenuBar].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAccessibilityMenuBar:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMenuBar(&self, accessibility_menu_bar: Option<&AnyObject>);
@@ -996,6 +1052,8 @@ extern_protocol!(
         unsafe fn accessibilityColumnTitles(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityColumnTitles`][Self::accessibilityColumnTitles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityColumnTitles:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityColumnTitles(
@@ -1045,6 +1103,8 @@ extern_protocol!(
         unsafe fn accessibilityHorizontalUnitDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityHorizontalUnitDescription`][Self::accessibilityHorizontalUnitDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityHorizontalUnitDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHorizontalUnitDescription(
@@ -1057,6 +1117,8 @@ extern_protocol!(
         unsafe fn accessibilityVerticalUnitDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityVerticalUnitDescription`][Self::accessibilityVerticalUnitDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityVerticalUnitDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVerticalUnitDescription(
@@ -1085,6 +1147,8 @@ extern_protocol!(
         unsafe fn accessibilityHandles(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityHandles`][Self::accessibilityHandles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityHandles:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHandles(&self, accessibility_handles: Option<&NSArray>);
@@ -1126,8 +1190,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn accessibilityDisclosedByRow(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityDisclosedByRow`][Self::accessibilityDisclosedByRow].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAccessibilityDisclosedByRow:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDisclosedByRow(
@@ -1161,6 +1226,8 @@ extern_protocol!(
         unsafe fn accessibilityMarkerUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityMarkerUIElements`][Self::accessibilityMarkerUIElements].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityMarkerUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMarkerUIElements(
@@ -1208,6 +1275,8 @@ extern_protocol!(
         unsafe fn accessibilityUnitDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityUnitDescription`][Self::accessibilityUnitDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityUnitDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityUnitDescription(
@@ -1234,6 +1303,8 @@ extern_protocol!(
         unsafe fn accessibilityMarkerTypeDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityMarkerTypeDescription`][Self::accessibilityMarkerTypeDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityMarkerTypeDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMarkerTypeDescription(
@@ -1270,6 +1341,8 @@ extern_protocol!(
         unsafe fn accessibilityAllowedValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`accessibilityAllowedValues`][Self::accessibilityAllowedValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityAllowedValues:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAllowedValues(
@@ -1282,6 +1355,8 @@ extern_protocol!(
         unsafe fn accessibilityLabelUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityLabelUIElements`][Self::accessibilityLabelUIElements].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityLabelUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLabelUIElements(
@@ -1303,6 +1378,8 @@ extern_protocol!(
         unsafe fn accessibilitySplitters(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySplitters`][Self::accessibilitySplitters].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilitySplitters:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySplitters(&self, accessibility_splitters: Option<&NSArray>);
@@ -1336,6 +1413,8 @@ extern_protocol!(
         unsafe fn accessibilityTabs(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityTabs`][Self::accessibilityTabs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityTabs:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTabs(&self, accessibility_tabs: Option<&NSArray>);
@@ -1381,6 +1460,8 @@ extern_protocol!(
         unsafe fn accessibilityColumns(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityColumns`][Self::accessibilityColumns].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityColumns:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityColumns(&self, accessibility_columns: Option<&NSArray>);
@@ -1390,6 +1471,8 @@ extern_protocol!(
         unsafe fn accessibilityRows(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityRows`][Self::accessibilityRows].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityRows:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRows(&self, accessibility_rows: Option<&NSArray>);
@@ -1399,6 +1482,8 @@ extern_protocol!(
         unsafe fn accessibilityVisibleRows(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityVisibleRows`][Self::accessibilityVisibleRows].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityVisibleRows:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVisibleRows(&self, accessibility_visible_rows: Option<&NSArray>);
@@ -1408,6 +1493,8 @@ extern_protocol!(
         unsafe fn accessibilitySelectedRows(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySelectedRows`][Self::accessibilitySelectedRows].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilitySelectedRows:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedRows(
@@ -1420,6 +1507,8 @@ extern_protocol!(
         unsafe fn accessibilityVisibleColumns(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityVisibleColumns`][Self::accessibilityVisibleColumns].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityVisibleColumns:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVisibleColumns(
@@ -1432,6 +1521,8 @@ extern_protocol!(
         unsafe fn accessibilitySelectedColumns(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySelectedColumns`][Self::accessibilitySelectedColumns].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilitySelectedColumns:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedColumns(
@@ -1458,6 +1549,8 @@ extern_protocol!(
         unsafe fn accessibilityRowHeaderUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityRowHeaderUIElements`][Self::accessibilityRowHeaderUIElements].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityRowHeaderUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRowHeaderUIElements(
@@ -1470,6 +1563,8 @@ extern_protocol!(
         unsafe fn accessibilitySelectedCells(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySelectedCells`][Self::accessibilitySelectedCells].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilitySelectedCells:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedCells(
@@ -1482,6 +1577,8 @@ extern_protocol!(
         unsafe fn accessibilityVisibleCells(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityVisibleCells`][Self::accessibilityVisibleCells].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityVisibleCells:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVisibleCells(
@@ -1494,6 +1591,8 @@ extern_protocol!(
         unsafe fn accessibilityColumnHeaderUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityColumnHeaderUIElements`][Self::accessibilityColumnHeaderUIElements].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityColumnHeaderUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityColumnHeaderUIElements(
@@ -1559,6 +1658,8 @@ extern_protocol!(
         unsafe fn accessibilitySharedTextUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySharedTextUIElements`][Self::accessibilitySharedTextUIElements].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilitySharedTextUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySharedTextUIElements(
@@ -1595,6 +1696,8 @@ extern_protocol!(
         unsafe fn accessibilitySelectedText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilitySelectedText`][Self::accessibilitySelectedText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilitySelectedText:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedText(
@@ -1619,6 +1722,8 @@ extern_protocol!(
         unsafe fn accessibilitySelectedTextRanges(&self) -> Option<Retained<NSArray<NSValue>>>;
 
         /// Setter for [`accessibilitySelectedTextRanges`][Self::accessibilitySelectedTextRanges].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilitySelectedTextRanges:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedTextRanges(
@@ -1730,6 +1835,8 @@ extern_protocol!(
         unsafe fn accessibilityDocument(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityDocument`][Self::accessibilityDocument].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDocument(&self, accessibility_document: Option<&NSString>);
@@ -1797,6 +1904,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSAccessibilityCustomAction")]
         /// Setter for [`accessibilityCustomActions`][Self::accessibilityCustomActions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityCustomActions:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomActions(

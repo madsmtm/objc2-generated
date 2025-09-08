@@ -55,6 +55,8 @@ impl UIManagedDocument {
         pub unsafe fn persistentStoreOptions(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`persistentStoreOptions`][Self::persistentStoreOptions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPersistentStoreOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPersistentStoreOptions(
@@ -67,6 +69,8 @@ impl UIManagedDocument {
         pub unsafe fn modelConfiguration(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`modelConfiguration`][Self::modelConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModelConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModelConfiguration(&self, model_configuration: Option<&NSString>);

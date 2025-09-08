@@ -95,6 +95,8 @@ impl DOMDocument {
         pub unsafe fn xmlVersion(&self) -> Retained<NSString>;
 
         /// Setter for [`xmlVersion`][Self::xmlVersion].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setXmlVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setXmlVersion(&self, xml_version: Option<&NSString>);
@@ -113,6 +115,8 @@ impl DOMDocument {
         pub unsafe fn documentURI(&self) -> Retained<NSString>;
 
         /// Setter for [`documentURI`][Self::documentURI].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDocumentURI:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDocumentURI(&self, document_uri: Option<&NSString>);
@@ -135,6 +139,8 @@ impl DOMDocument {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
@@ -161,6 +167,8 @@ impl DOMDocument {
         pub unsafe fn cookie(&self) -> Retained<NSString>;
 
         /// Setter for [`cookie`][Self::cookie].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setCookie:))]
         #[unsafe(method_family = none)]
@@ -218,6 +226,8 @@ impl DOMDocument {
         pub unsafe fn charset(&self) -> Retained<NSString>;
 
         /// Setter for [`charset`][Self::charset].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCharset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCharset(&self, charset: Option<&NSString>);
@@ -243,6 +253,8 @@ impl DOMDocument {
         pub unsafe fn selectedStylesheetSet(&self) -> Retained<NSString>;
 
         /// Setter for [`selectedStylesheetSet`][Self::selectedStylesheetSet].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedStylesheetSet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedStylesheetSet(&self, selected_stylesheet_set: Option<&NSString>);

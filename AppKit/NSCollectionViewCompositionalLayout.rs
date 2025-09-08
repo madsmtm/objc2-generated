@@ -170,6 +170,8 @@ impl NSCollectionViewCompositionalLayoutConfiguration {
         ) -> Retained<NSArray<NSCollectionLayoutBoundarySupplementaryItem>>;
 
         /// Setter for [`boundarySupplementaryItems`][Self::boundarySupplementaryItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBoundarySupplementaryItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBoundarySupplementaryItems(
@@ -269,6 +271,8 @@ impl NSCollectionViewCompositionalLayout {
         ) -> Retained<NSCollectionViewCompositionalLayoutConfiguration>;
 
         /// Setter for [`configuration`][Self::configuration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(
@@ -395,6 +399,8 @@ impl NSCollectionLayoutSection {
         ) -> Retained<NSArray<NSCollectionLayoutBoundarySupplementaryItem>>;
 
         /// Setter for [`boundarySupplementaryItems`][Self::boundarySupplementaryItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBoundarySupplementaryItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBoundarySupplementaryItems(
@@ -423,6 +429,8 @@ impl NSCollectionLayoutSection {
 
         #[cfg(feature = "block2")]
         /// Setter for [`visibleItemsInvalidationHandler`][Self::visibleItemsInvalidationHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVisibleItemsInvalidationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVisibleItemsInvalidationHandler(
@@ -436,6 +444,8 @@ impl NSCollectionLayoutSection {
             -> Retained<NSArray<NSCollectionLayoutDecorationItem>>;
 
         /// Setter for [`decorationItems`][Self::decorationItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDecorationItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDecorationItems(
@@ -502,6 +512,8 @@ impl NSCollectionLayoutItem {
         pub unsafe fn edgeSpacing(&self) -> Option<Retained<NSCollectionLayoutEdgeSpacing>>;
 
         /// Setter for [`edgeSpacing`][Self::edgeSpacing].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEdgeSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEdgeSpacing(&self, edge_spacing: Option<&NSCollectionLayoutEdgeSpacing>);
@@ -652,6 +664,8 @@ impl NSCollectionLayoutGroup {
         ) -> Retained<NSArray<NSCollectionLayoutSupplementaryItem>>;
 
         /// Setter for [`supplementaryItems`][Self::supplementaryItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupplementaryItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupplementaryItems(
@@ -664,6 +678,8 @@ impl NSCollectionLayoutGroup {
         pub unsafe fn interItemSpacing(&self) -> Option<Retained<NSCollectionLayoutSpacing>>;
 
         /// Setter for [`interItemSpacing`][Self::interItemSpacing].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInterItemSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInterItemSpacing(

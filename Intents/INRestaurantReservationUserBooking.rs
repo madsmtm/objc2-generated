@@ -90,6 +90,8 @@ impl INRestaurantReservationUserBooking {
 
         #[cfg(all(feature = "INPerson", feature = "INRestaurantGuest"))]
         /// Setter for [`guest`][Self::guest].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGuest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGuest(&self, guest: &INRestaurantGuest);
@@ -99,6 +101,8 @@ impl INRestaurantReservationUserBooking {
         pub unsafe fn advisementText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`advisementText`][Self::advisementText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAdvisementText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdvisementText(&self, advisement_text: Option<&NSString>);
@@ -110,6 +114,8 @@ impl INRestaurantReservationUserBooking {
 
         #[cfg(feature = "INRestaurantOffer")]
         /// Setter for [`selectedOffer`][Self::selectedOffer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedOffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedOffer(&self, selected_offer: Option<&INRestaurantOffer>);
@@ -119,6 +125,8 @@ impl INRestaurantReservationUserBooking {
         pub unsafe fn guestProvidedSpecialRequestText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`guestProvidedSpecialRequestText`][Self::guestProvidedSpecialRequestText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGuestProvidedSpecialRequestText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGuestProvidedSpecialRequestText(
@@ -140,6 +148,8 @@ impl INRestaurantReservationUserBooking {
         pub unsafe fn dateStatusModified(&self) -> Retained<NSDate>;
 
         /// Setter for [`dateStatusModified`][Self::dateStatusModified].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDateStatusModified:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDateStatusModified(&self, date_status_modified: &NSDate);

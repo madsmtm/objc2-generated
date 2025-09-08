@@ -63,6 +63,9 @@ extern_conformance!(
 impl NSRelationshipDescription {
     extern_methods!(
         #[cfg(feature = "NSEntityDescription")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(destinationEntity))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationEntity(&self) -> Option<Retained<NSEntityDescription>>;
@@ -73,6 +76,9 @@ impl NSRelationshipDescription {
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationEntity(&self, destination_entity: Option<&NSEntityDescription>);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(inverseRelationship))]
         #[unsafe(method_family = none)]
         pub unsafe fn inverseRelationship(&self) -> Option<Retained<NSRelationshipDescription>>;

@@ -75,6 +75,8 @@ impl VSSubscription {
         pub unsafe fn expirationDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`expirationDate`][Self::expirationDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setExpirationDate:))]
         #[unsafe(method_family = none)]
@@ -105,6 +107,8 @@ impl VSSubscription {
         pub unsafe fn tierIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`tierIdentifiers`][Self::tierIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setTierIdentifiers:))]
         #[unsafe(method_family = none)]
@@ -118,6 +122,8 @@ impl VSSubscription {
         pub unsafe fn billingIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`billingIdentifier`][Self::billingIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBillingIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBillingIdentifier(&self, billing_identifier: Option<&NSString>);

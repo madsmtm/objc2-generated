@@ -306,6 +306,8 @@ impl CXProvider {
 
         #[cfg(feature = "CXProviderConfiguration")]
         /// Setter for [`configuration`][Self::configuration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(&self, configuration: &CXProviderConfiguration);

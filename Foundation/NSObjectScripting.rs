@@ -32,6 +32,8 @@ pub unsafe trait NSObjectNSScripting:
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`scriptingProperties`][Self::scriptingProperties].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setScriptingProperties:))]
         #[unsafe(method_family = none)]
         unsafe fn setScriptingProperties(

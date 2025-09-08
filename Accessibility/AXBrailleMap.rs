@@ -99,6 +99,8 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityBrailleMapRenderer`][Self::accessibilityBrailleMapRenderer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[optional]
         #[unsafe(method(setAccessibilityBrailleMapRenderer:))]
         #[unsafe(method_family = none)]

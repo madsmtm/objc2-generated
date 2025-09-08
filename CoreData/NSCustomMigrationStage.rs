@@ -48,6 +48,8 @@ impl NSCustomMigrationStage {
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
         /// Setter for [`willMigrateHandler`][Self::willMigrateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWillMigrateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWillMigrateHandler(
@@ -78,6 +80,8 @@ impl NSCustomMigrationStage {
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
         /// Setter for [`didMigrateHandler`][Self::didMigrateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDidMigrateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDidMigrateHandler(

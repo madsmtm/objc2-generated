@@ -54,6 +54,8 @@ impl NSTask {
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`executableURL`][Self::executableURL].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setExecutableURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExecutableURL(&self, executable_url: Option<&NSURL>);
@@ -65,6 +67,8 @@ impl NSTask {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`arguments`][Self::arguments].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArguments(&self, arguments: Option<&NSArray<NSString>>);
@@ -76,6 +80,8 @@ impl NSTask {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`environment`][Self::environment].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setEnvironment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnvironment(&self, environment: Option<&NSDictionary<NSString, NSString>>);
@@ -87,6 +93,8 @@ impl NSTask {
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`currentDirectoryURL`][Self::currentDirectoryURL].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCurrentDirectoryURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentDirectoryURL(&self, current_directory_url: Option<&NSURL>);
@@ -98,6 +106,8 @@ impl NSTask {
 
         #[cfg(feature = "NSData")]
         /// Setter for [`launchRequirementData`][Self::launchRequirementData].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setLaunchRequirementData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLaunchRequirementData(&self, launch_requirement_data: Option<&NSData>);
@@ -173,6 +183,8 @@ impl NSTask {
 
         #[cfg(feature = "block2")]
         /// Setter for [`terminationHandler`][Self::terminationHandler].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTerminationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTerminationHandler(
@@ -238,6 +250,8 @@ impl NSTask {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`launchPath`][Self::launchPath].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setLaunchPath:))]
         #[unsafe(method_family = none)]
@@ -251,6 +265,8 @@ impl NSTask {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`currentDirectoryPath`][Self::currentDirectoryPath].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setCurrentDirectoryPath:))]
         #[unsafe(method_family = none)]

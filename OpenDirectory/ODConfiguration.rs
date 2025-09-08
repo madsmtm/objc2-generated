@@ -58,6 +58,8 @@ impl ODConfiguration {
         pub unsafe fn nodeName(&self) -> Retained<NSString>;
 
         /// Setter for [`nodeName`][Self::nodeName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNodeName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNodeName(&self, node_name: Option<&NSString>);
@@ -67,6 +69,8 @@ impl ODConfiguration {
         pub unsafe fn comment(&self) -> Retained<NSString>;
 
         /// Setter for [`comment`][Self::comment].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setComment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setComment(&self, comment: Option<&NSString>);
@@ -87,6 +91,8 @@ impl ODConfiguration {
         pub unsafe fn templateName(&self) -> Retained<NSString>;
 
         /// Setter for [`templateName`][Self::templateName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTemplateName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTemplateName(&self, template_name: Option<&NSString>);
@@ -96,6 +102,8 @@ impl ODConfiguration {
         pub unsafe fn virtualSubnodes(&self) -> Retained<NSArray>;
 
         /// Setter for [`virtualSubnodes`][Self::virtualSubnodes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVirtualSubnodes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVirtualSubnodes(&self, virtual_subnodes: Option<&NSArray>);
@@ -114,6 +122,8 @@ impl ODConfiguration {
         pub unsafe fn preferredDestinationHostName(&self) -> Retained<NSString>;
 
         /// Setter for [`preferredDestinationHostName`][Self::preferredDestinationHostName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredDestinationHostName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredDestinationHostName(
@@ -223,6 +233,8 @@ impl ODConfiguration {
         pub unsafe fn defaultModuleEntries(&self) -> Retained<NSArray>;
 
         /// Setter for [`defaultModuleEntries`][Self::defaultModuleEntries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultModuleEntries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultModuleEntries(&self, default_module_entries: Option<&NSArray>);
@@ -232,6 +244,8 @@ impl ODConfiguration {
         pub unsafe fn authenticationModuleEntries(&self) -> Retained<NSArray>;
 
         /// Setter for [`authenticationModuleEntries`][Self::authenticationModuleEntries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthenticationModuleEntries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthenticationModuleEntries(
@@ -244,6 +258,8 @@ impl ODConfiguration {
         pub unsafe fn discoveryModuleEntries(&self) -> Retained<NSArray>;
 
         /// Setter for [`discoveryModuleEntries`][Self::discoveryModuleEntries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDiscoveryModuleEntries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDiscoveryModuleEntries(&self, discovery_module_entries: Option<&NSArray>);
@@ -253,6 +269,8 @@ impl ODConfiguration {
         pub unsafe fn generalModuleEntries(&self) -> Retained<NSArray>;
 
         /// Setter for [`generalModuleEntries`][Self::generalModuleEntries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGeneralModuleEntries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGeneralModuleEntries(&self, general_module_entries: Option<&NSArray>);

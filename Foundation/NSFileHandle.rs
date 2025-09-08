@@ -297,6 +297,8 @@ impl NSFileHandle {
 
         #[cfg(feature = "block2")]
         /// Setter for [`readabilityHandler`][Self::readabilityHandler].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setReadabilityHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReadabilityHandler(
@@ -313,6 +315,8 @@ impl NSFileHandle {
 
         #[cfg(feature = "block2")]
         /// Setter for [`writeabilityHandler`][Self::writeabilityHandler].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setWriteabilityHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWriteabilityHandler(

@@ -1650,6 +1650,8 @@ impl XCUIApplication {
         pub unsafe fn launchArguments(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`launchArguments`][Self::launchArguments].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLaunchArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLaunchArguments(&self, launch_arguments: &NSArray<NSString>);
@@ -1664,6 +1666,8 @@ impl XCUIApplication {
         pub unsafe fn launchEnvironment(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         /// Setter for [`launchEnvironment`][Self::launchEnvironment].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLaunchEnvironment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLaunchEnvironment(

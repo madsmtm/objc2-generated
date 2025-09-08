@@ -88,6 +88,8 @@ impl UIHoverEffectLayer {
 
         #[cfg(feature = "UIHoverStyle")]
         /// Setter for [`hoverStyle`][Self::hoverStyle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHoverStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHoverStyle(&self, hover_style: &UIHoverStyle);
@@ -108,8 +110,9 @@ impl UIHoverEffectLayer {
         pub unsafe fn containerView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`containerView`][Self::containerView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setContainerView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContainerView(&self, container_view: Option<&UIView>);

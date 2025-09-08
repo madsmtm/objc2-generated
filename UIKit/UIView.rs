@@ -485,6 +485,8 @@ impl UIView {
         pub unsafe fn focusGroupIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`focusGroupIdentifier`][Self::focusGroupIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFocusGroupIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocusGroupIdentifier(&self, focus_group_identifier: Option<&NSString>);
@@ -510,6 +512,8 @@ impl UIView {
 
         #[cfg(feature = "UIFocusEffect")]
         /// Setter for [`focusEffect`][Self::focusEffect].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFocusEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocusEffect(&self, focus_effect: Option<&UIFocusEffect>);
@@ -957,6 +961,8 @@ impl UIView {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub fn setBackgroundColor(&self, background_color: Option<&UIColor>);
@@ -1230,6 +1236,8 @@ impl UIView {
 
         #[cfg(feature = "UIGestureRecognizer")]
         /// Setter for [`gestureRecognizers`][Self::gestureRecognizers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGestureRecognizers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGestureRecognizers(
@@ -1285,6 +1293,8 @@ impl UIView {
 
         #[cfg(feature = "UIMotionEffect")]
         /// Setter for [`motionEffects`][Self::motionEffects].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMotionEffects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMotionEffects(&self, motion_effects: &NSArray<UIMotionEffect>);
@@ -1638,6 +1648,8 @@ impl UIView {
         pub unsafe fn restorationIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`restorationIdentifier`][Self::restorationIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRestorationIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRestorationIdentifier(&self, restoration_identifier: Option<&NSString>);
@@ -1814,6 +1826,8 @@ impl UIView {
 
         #[cfg(feature = "UIContentSizeCategory")]
         /// Setter for [`minimumContentSizeCategory`][Self::minimumContentSizeCategory].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMinimumContentSizeCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumContentSizeCategory(
@@ -1828,6 +1842,8 @@ impl UIView {
 
         #[cfg(feature = "UIContentSizeCategory")]
         /// Setter for [`maximumContentSizeCategory`][Self::maximumContentSizeCategory].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMaximumContentSizeCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumContentSizeCategory(

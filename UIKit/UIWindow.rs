@@ -116,8 +116,9 @@ impl UIWindow {
         pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
 
         #[cfg(all(feature = "UIScene", feature = "UIWindowScene"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`windowScene`][Self::windowScene].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setWindowScene:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWindowScene(&self, window_scene: Option<&UIWindowScene>);

@@ -146,8 +146,9 @@ impl SCNPhysicsWorld {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SCNPhysicsContactDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`contactDelegate`][Self::contactDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setContactDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContactDelegate(

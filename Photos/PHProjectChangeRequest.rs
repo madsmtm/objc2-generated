@@ -37,6 +37,8 @@ impl PHProjectChangeRequest {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -50,6 +52,8 @@ impl PHProjectChangeRequest {
         pub unsafe fn projectExtensionData(&self) -> Retained<NSData>;
 
         /// Setter for [`projectExtensionData`][Self::projectExtensionData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProjectExtensionData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProjectExtensionData(&self, project_extension_data: &NSData);

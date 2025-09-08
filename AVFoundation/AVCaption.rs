@@ -717,6 +717,8 @@ impl AVMutableCaption {
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// Setter for [`text`][Self::text].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: &NSString);
@@ -1206,6 +1208,8 @@ impl AVMutableCaption {
         pub unsafe fn region(&self) -> Retained<AVCaptionRegion>;
 
         /// Setter for [`region`][Self::region].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRegion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRegion(&self, region: &AVCaptionRegion);

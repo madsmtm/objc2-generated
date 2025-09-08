@@ -118,6 +118,8 @@ extern_protocol!(
         unsafe fn accessibilityCustomContent(&self) -> Retained<NSArray<AXCustomContent>>;
 
         /// Setter for [`accessibilityCustomContent`][Self::accessibilityCustomContent].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityCustomContent:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomContent(
@@ -133,6 +135,8 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityCustomContentBlock`][Self::accessibilityCustomContentBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[optional]
         #[unsafe(method(setAccessibilityCustomContentBlock:))]
         #[unsafe(method_family = none)]

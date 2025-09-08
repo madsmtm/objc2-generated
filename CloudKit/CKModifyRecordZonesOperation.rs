@@ -43,6 +43,8 @@ impl CKModifyRecordZonesOperation {
 
         #[cfg(feature = "CKRecordZone")]
         /// Setter for [`recordZonesToSave`][Self::recordZonesToSave].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordZonesToSave:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZonesToSave(
@@ -57,6 +59,8 @@ impl CKModifyRecordZonesOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`recordZoneIDsToDelete`][Self::recordZoneIDsToDelete].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordZoneIDsToDelete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneIDsToDelete(
@@ -88,6 +92,8 @@ impl CKModifyRecordZonesOperation {
             feature = "block2"
         ))]
         /// Setter for [`perRecordZoneSaveBlock`][Self::perRecordZoneSaveBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerRecordZoneSaveBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordZoneSaveBlock(
@@ -113,6 +119,8 @@ impl CKModifyRecordZonesOperation {
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`perRecordZoneDeleteBlock`][Self::perRecordZoneDeleteBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerRecordZoneDeleteBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordZoneDeleteBlock(
@@ -161,6 +169,8 @@ impl CKModifyRecordZonesOperation {
             feature = "block2"
         ))]
         /// Setter for [`modifyRecordZonesCompletionBlock`][Self::modifyRecordZonesCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModifyRecordZonesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModifyRecordZonesCompletionBlock(

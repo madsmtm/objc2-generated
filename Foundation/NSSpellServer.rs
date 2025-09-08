@@ -19,6 +19,9 @@ extern_conformance!(
 
 impl NSSpellServer {
     extern_methods!(
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(

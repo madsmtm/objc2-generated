@@ -116,8 +116,9 @@ impl CTTelephonyNetworkInfo {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CTTelephonyNetworkInfoDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -149,6 +150,8 @@ impl CTTelephonyNetworkInfo {
 
         #[cfg(feature = "block2")]
         /// Setter for [`serviceSubscriberCellularProvidersDidUpdateNotifier`][Self::serviceSubscriberCellularProvidersDidUpdateNotifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Deprecated with no replacement"]
         #[unsafe(method(setServiceSubscriberCellularProvidersDidUpdateNotifier:))]
         #[unsafe(method_family = none)]
@@ -169,6 +172,8 @@ impl CTTelephonyNetworkInfo {
 
         #[cfg(all(feature = "CTCarrier", feature = "block2"))]
         /// Setter for [`subscriberCellularProviderDidUpdateNotifier`][Self::subscriberCellularProviderDidUpdateNotifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setSubscriberCellularProviderDidUpdateNotifier:))]
         #[unsafe(method_family = none)]

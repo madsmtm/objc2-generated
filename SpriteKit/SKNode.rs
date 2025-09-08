@@ -297,6 +297,8 @@ impl SKNode {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -337,6 +339,8 @@ impl SKNode {
 
         #[cfg(feature = "SKReachConstraints")]
         /// Setter for [`reachConstraints`][Self::reachConstraints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setReachConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReachConstraints(&self, reach_constraints: Option<&SKReachConstraints>);
@@ -351,6 +355,8 @@ impl SKNode {
 
         #[cfg(feature = "SKConstraint")]
         /// Setter for [`constraints`][Self::constraints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstraints(&self, constraints: Option<&NSArray<SKConstraint>>);
@@ -366,6 +372,8 @@ impl SKNode {
 
         #[cfg(feature = "SKAttribute")]
         /// Setter for [`attributeValues`][Self::attributeValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setAttributeValues:))]
         #[unsafe(method_family = none)]

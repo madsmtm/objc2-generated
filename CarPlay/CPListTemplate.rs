@@ -221,8 +221,9 @@ impl CPListTemplate {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CPListTemplateDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
@@ -303,6 +304,8 @@ impl CPListTemplate {
         pub unsafe fn emptyViewTitleVariants(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`emptyViewTitleVariants`][Self::emptyViewTitleVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmptyViewTitleVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmptyViewTitleVariants(
@@ -325,6 +328,8 @@ impl CPListTemplate {
         pub unsafe fn emptyViewSubtitleVariants(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`emptyViewSubtitleVariants`][Self::emptyViewSubtitleVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmptyViewSubtitleVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmptyViewSubtitleVariants(

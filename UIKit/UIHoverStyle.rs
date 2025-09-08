@@ -115,6 +115,8 @@ impl UIView {
         pub unsafe fn hoverStyle(&self) -> Option<Retained<UIHoverStyle>>;
 
         /// Setter for [`hoverStyle`][Self::hoverStyle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHoverStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHoverStyle(&self, hover_style: Option<&UIHoverStyle>);

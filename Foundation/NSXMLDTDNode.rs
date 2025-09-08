@@ -145,6 +145,8 @@ impl NSXMLDTDNode {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`publicID`][Self::publicID].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPublicID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPublicID(&self, public_id: Option<&NSString>);
@@ -157,6 +159,8 @@ impl NSXMLDTDNode {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`systemID`][Self::systemID].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setSystemID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSystemID(&self, system_id: Option<&NSString>);
@@ -169,6 +173,8 @@ impl NSXMLDTDNode {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`notationName`][Self::notationName].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNotationName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotationName(&self, notation_name: Option<&NSString>);

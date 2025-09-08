@@ -311,6 +311,8 @@ impl NSMutableFontCollection {
 
         #[cfg(feature = "NSFontDescriptor")]
         /// Setter for [`queryDescriptors`][Self::queryDescriptors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setQueryDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQueryDescriptors(
@@ -325,6 +327,8 @@ impl NSMutableFontCollection {
 
         #[cfg(feature = "NSFontDescriptor")]
         /// Setter for [`exclusionDescriptors`][Self::exclusionDescriptors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExclusionDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExclusionDescriptors(

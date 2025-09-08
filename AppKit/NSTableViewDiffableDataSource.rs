@@ -196,6 +196,8 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             feature = "block2"
         ))]
         /// Setter for [`rowViewProvider`][Self::rowViewProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRowViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRowViewProvider(
@@ -225,6 +227,8 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             feature = "block2"
         ))]
         /// Setter for [`sectionHeaderViewProvider`][Self::sectionHeaderViewProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSectionHeaderViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSectionHeaderViewProvider(

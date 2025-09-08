@@ -82,6 +82,9 @@ impl NSManagedObject {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectContext")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(managedObjectContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn managedObjectContext(&self) -> Option<Retained<NSManagedObjectContext>>;

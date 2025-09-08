@@ -87,6 +87,8 @@ impl CKSubscription {
         pub unsafe fn notificationInfo(&self) -> Option<Retained<CKNotificationInfo>>;
 
         /// Setter for [`notificationInfo`][Self::notificationInfo].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNotificationInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotificationInfo(&self, notification_info: Option<&CKNotificationInfo>);
@@ -201,6 +203,8 @@ impl CKQuerySubscription {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`zoneID`][Self::zoneID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setZoneID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZoneID(&self, zone_id: Option<&CKRecordZoneID>);
@@ -302,6 +306,8 @@ impl CKRecordZoneSubscription {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`recordType`][Self::recordType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordType(&self, record_type: Option<&CKRecordType>);
@@ -383,6 +389,8 @@ impl CKDatabaseSubscription {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`recordType`][Self::recordType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordType(&self, record_type: Option<&CKRecordType>);
@@ -436,6 +444,8 @@ impl CKNotificationInfo {
         pub unsafe fn alertBody(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertBody`][Self::alertBody].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAlertBody:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlertBody(&self, alert_body: Option<&NSString>);
@@ -446,6 +456,8 @@ impl CKNotificationInfo {
         pub unsafe fn alertLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertLocalizationKey`][Self::alertLocalizationKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAlertLocalizationKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlertLocalizationKey(&self, alert_localization_key: Option<&NSString>);
@@ -458,6 +470,8 @@ impl CKNotificationInfo {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`alertLocalizationArgs`][Self::alertLocalizationArgs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAlertLocalizationArgs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlertLocalizationArgs(
@@ -471,6 +485,8 @@ impl CKNotificationInfo {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -481,6 +497,8 @@ impl CKNotificationInfo {
         pub unsafe fn titleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`titleLocalizationKey`][Self::titleLocalizationKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitleLocalizationKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleLocalizationKey(&self, title_localization_key: Option<&NSString>);
@@ -493,6 +511,8 @@ impl CKNotificationInfo {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`titleLocalizationArgs`][Self::titleLocalizationArgs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitleLocalizationArgs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleLocalizationArgs(
@@ -506,6 +526,8 @@ impl CKNotificationInfo {
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
@@ -516,6 +538,8 @@ impl CKNotificationInfo {
         pub unsafe fn subtitleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitleLocalizationKey`][Self::subtitleLocalizationKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitleLocalizationKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitleLocalizationKey(
@@ -533,6 +557,8 @@ impl CKNotificationInfo {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`subtitleLocalizationArgs`][Self::subtitleLocalizationArgs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitleLocalizationArgs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitleLocalizationArgs(
@@ -546,6 +572,8 @@ impl CKNotificationInfo {
         pub unsafe fn alertActionLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertActionLocalizationKey`][Self::alertActionLocalizationKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAlertActionLocalizationKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlertActionLocalizationKey(
@@ -559,6 +587,8 @@ impl CKNotificationInfo {
         pub unsafe fn alertLaunchImage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertLaunchImage`][Self::alertLaunchImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAlertLaunchImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlertLaunchImage(&self, alert_launch_image: Option<&NSString>);
@@ -569,6 +599,8 @@ impl CKNotificationInfo {
         pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`soundName`][Self::soundName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSoundName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSoundName(&self, sound_name: Option<&NSString>);
@@ -589,6 +621,8 @@ impl CKNotificationInfo {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`desiredKeys`][Self::desiredKeys].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
@@ -644,6 +678,8 @@ impl CKNotificationInfo {
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
@@ -657,6 +693,8 @@ impl CKNotificationInfo {
         pub unsafe fn collapseIDKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`collapseIDKey`][Self::collapseIDKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCollapseIDKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCollapseIDKey(&self, collapse_id_key: Option<&NSString>);

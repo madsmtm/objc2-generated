@@ -176,6 +176,8 @@ impl MPMusicPlayerController {
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         /// Setter for [`nowPlayingItem`][Self::nowPlayingItem].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNowPlayingItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNowPlayingItem(&self, now_playing_item: Option<&MPMediaItem>);

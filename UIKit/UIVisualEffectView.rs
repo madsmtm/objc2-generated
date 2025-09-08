@@ -113,6 +113,8 @@ impl UIVisualEffectView {
 
         #[cfg(feature = "UIVisualEffect")]
         /// Setter for [`effect`][Self::effect].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEffect(&self, effect: Option<&UIVisualEffect>);

@@ -67,6 +67,8 @@ impl MTLBinaryArchiveDescriptor {
         pub fn url(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`url`][Self::url].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUrl:))]
         #[unsafe(method_family = none)]
         pub fn setUrl(&self, url: Option<&NSURL>);
@@ -118,6 +120,8 @@ extern_protocol!(
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         fn setLabel(&self, label: Option<&NSString>);

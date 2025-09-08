@@ -82,6 +82,8 @@ impl GCControllerTouchpad {
 
         #[cfg(feature = "block2")]
         /// Setter for [`touchDown`][Self::touchDown].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTouchDown:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTouchDown(&self, touch_down: GCControllerTouchpadHandler);
@@ -94,6 +96,8 @@ impl GCControllerTouchpad {
 
         #[cfg(feature = "block2")]
         /// Setter for [`touchMoved`][Self::touchMoved].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTouchMoved:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTouchMoved(&self, touch_moved: GCControllerTouchpadHandler);
@@ -106,6 +110,8 @@ impl GCControllerTouchpad {
 
         #[cfg(feature = "block2")]
         /// Setter for [`touchUp`][Self::touchUp].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTouchUp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTouchUp(&self, touch_up: GCControllerTouchpadHandler);

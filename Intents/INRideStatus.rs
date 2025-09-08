@@ -43,6 +43,8 @@ impl INRideStatus {
         pub unsafe fn rideIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`rideIdentifier`][Self::rideIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRideIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRideIdentifier(&self, ride_identifier: Option<&NSString>);
@@ -65,6 +67,8 @@ impl INRideStatus {
 
         #[cfg(feature = "INRideCompletionStatus")]
         /// Setter for [`completionStatus`][Self::completionStatus].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompletionStatus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionStatus(
@@ -79,6 +83,8 @@ impl INRideStatus {
 
         #[cfg(feature = "INRideVehicle")]
         /// Setter for [`vehicle`][Self::vehicle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVehicle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVehicle(&self, vehicle: Option<&INRideVehicle>);
@@ -90,6 +96,8 @@ impl INRideStatus {
 
         #[cfg(all(feature = "INPerson", feature = "INRideDriver"))]
         /// Setter for [`driver`][Self::driver].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDriver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDriver(&self, driver: Option<&INRideDriver>);
@@ -99,6 +107,8 @@ impl INRideStatus {
         pub unsafe fn estimatedPickupDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`estimatedPickupDate`][Self::estimatedPickupDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEstimatedPickupDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEstimatedPickupDate(&self, estimated_pickup_date: Option<&NSDate>);
@@ -108,6 +118,8 @@ impl INRideStatus {
         pub unsafe fn estimatedDropOffDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`estimatedDropOffDate`][Self::estimatedDropOffDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEstimatedDropOffDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEstimatedDropOffDate(&self, estimated_drop_off_date: Option<&NSDate>);
@@ -117,6 +129,8 @@ impl INRideStatus {
         pub unsafe fn estimatedPickupEndDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`estimatedPickupEndDate`][Self::estimatedPickupEndDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEstimatedPickupEndDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEstimatedPickupEndDate(&self, estimated_pickup_end_date: Option<&NSDate>);
@@ -128,6 +142,8 @@ impl INRideStatus {
 
         #[cfg(feature = "INDateComponentsRange")]
         /// Setter for [`scheduledPickupTime`][Self::scheduledPickupTime].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setScheduledPickupTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScheduledPickupTime(
@@ -142,6 +158,8 @@ impl INRideStatus {
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`pickupLocation`][Self::pickupLocation].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPickupLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPickupLocation(&self, pickup_location: Option<&CLPlacemark>);
@@ -153,6 +171,8 @@ impl INRideStatus {
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`waypoints`][Self::waypoints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWaypoints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWaypoints(&self, waypoints: Option<&NSArray<CLPlacemark>>);
@@ -164,6 +184,8 @@ impl INRideStatus {
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`dropOffLocation`][Self::dropOffLocation].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDropOffLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDropOffLocation(&self, drop_off_location: Option<&CLPlacemark>);
@@ -175,6 +197,8 @@ impl INRideStatus {
 
         #[cfg(feature = "INRideOption")]
         /// Setter for [`rideOption`][Self::rideOption].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRideOption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRideOption(&self, ride_option: Option<&INRideOption>);
@@ -200,6 +224,8 @@ impl INRideStatus {
         ) -> Option<Retained<NSArray<NSUserActivity>>>;
 
         /// Setter for [`additionalActionActivities`][Self::additionalActionActivities].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAdditionalActionActivities:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalActionActivities(

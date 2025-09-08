@@ -56,6 +56,8 @@ impl NSLock {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub fn setName(&self, name: Option<&NSString>);
@@ -151,6 +153,8 @@ impl NSConditionLock {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -207,6 +211,8 @@ impl NSRecursiveLock {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -271,6 +277,8 @@ impl NSCondition {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);

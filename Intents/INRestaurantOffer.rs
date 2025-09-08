@@ -41,6 +41,8 @@ impl INRestaurantOffer {
         pub unsafe fn offerTitleText(&self) -> Retained<NSString>;
 
         /// Setter for [`offerTitleText`][Self::offerTitleText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOfferTitleText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOfferTitleText(&self, offer_title_text: &NSString);
@@ -50,6 +52,8 @@ impl INRestaurantOffer {
         pub unsafe fn offerDetailText(&self) -> Retained<NSString>;
 
         /// Setter for [`offerDetailText`][Self::offerDetailText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOfferDetailText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOfferDetailText(&self, offer_detail_text: &NSString);
@@ -59,6 +63,8 @@ impl INRestaurantOffer {
         pub unsafe fn offerIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`offerIdentifier`][Self::offerIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOfferIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOfferIdentifier(&self, offer_identifier: &NSString);

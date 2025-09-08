@@ -28,8 +28,9 @@ impl NSNibConnector {
         #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`source`][Self::source].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSource(&self, source: Option<&AnyObject>);
@@ -38,8 +39,9 @@ impl NSNibConnector {
         #[unsafe(method_family = none)]
         pub unsafe fn destination(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`destination`][Self::destination].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDestination:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestination(&self, destination: Option<&AnyObject>);
@@ -49,6 +51,8 @@ impl NSNibConnector {
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);

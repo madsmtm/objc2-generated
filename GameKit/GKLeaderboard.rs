@@ -237,6 +237,8 @@ impl GKLeaderboard {
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]
@@ -301,6 +303,8 @@ impl GKLeaderboard {
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]

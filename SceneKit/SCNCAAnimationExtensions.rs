@@ -87,6 +87,8 @@ pub unsafe trait CAAnimationSceneKitAdditions:
 
         #[cfg(feature = "SCNAnimation")]
         /// Setter for [`animationEvents`][Self::animationEvents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAnimationEvents:))]
         #[unsafe(method_family = none)]
         unsafe fn setAnimationEvents(&self, animation_events: Option<&NSArray<SCNAnimationEvent>>);

@@ -98,6 +98,8 @@ impl INSendMessageIntentResponse {
 
         #[cfg(feature = "INMessage")]
         /// Setter for [`sentMessages`][Self::sentMessages].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSentMessages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSentMessages(&self, sent_messages: Option<&NSArray<INMessage>>);

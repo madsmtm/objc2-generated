@@ -1850,6 +1850,8 @@ impl CATapDescription {
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -1862,6 +1864,8 @@ impl CATapDescription {
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`UUID`][Self::UUID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUUID(&self, uuid: &NSUUID);
@@ -1874,6 +1878,8 @@ impl CATapDescription {
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`processes`][Self::processes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProcesses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProcesses(&self, processes: &NSArray<NSNumber>);
@@ -1936,6 +1942,8 @@ impl CATapDescription {
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`deviceUID`][Self::deviceUID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDeviceUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeviceUID(&self, device_uid: Option<&NSString>);
@@ -1949,6 +1957,8 @@ impl CATapDescription {
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`stream`][Self::stream].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStream:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStream(&self, stream: Option<&NSNumber>);

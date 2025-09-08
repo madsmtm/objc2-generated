@@ -70,6 +70,8 @@ impl ASAuthorizationSingleSignOnRequest {
         pub unsafe fn authorizationOptions(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`authorizationOptions`][Self::authorizationOptions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthorizationOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthorizationOptions(

@@ -164,6 +164,8 @@ impl NSManagedObjectModel {
         pub unsafe fn versionIdentifiers(&self) -> Retained<NSSet>;
 
         /// Setter for [`versionIdentifiers`][Self::versionIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVersionIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVersionIdentifiers(&self, version_identifiers: &NSSet);

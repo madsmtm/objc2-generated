@@ -47,6 +47,8 @@ impl PKIdentityRequest {
         pub unsafe fn nonce(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`nonce`][Self::nonce].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNonce:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNonce(&self, nonce: Option<&NSData>);
@@ -59,6 +61,8 @@ impl PKIdentityRequest {
         pub unsafe fn merchantIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`merchantIdentifier`][Self::merchantIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMerchantIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMerchantIdentifier(&self, merchant_identifier: Option<&NSString>);

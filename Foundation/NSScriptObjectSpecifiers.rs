@@ -149,6 +149,9 @@ impl NSScriptObjectSpecifier {
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(childSpecifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn childSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
@@ -201,6 +204,8 @@ impl NSScriptObjectSpecifier {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`key`][Self::key].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKey(&self, key: &NSString);
@@ -515,6 +520,8 @@ impl NSNameSpecifier {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -1025,6 +1032,8 @@ impl NSUniqueIDSpecifier {
         pub unsafe fn uniqueID(&self) -> Retained<AnyObject>;
 
         /// Setter for [`uniqueID`][Self::uniqueID].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setUniqueID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUniqueID(&self, unique_id: &AnyObject);

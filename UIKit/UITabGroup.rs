@@ -67,6 +67,8 @@ impl UITabGroup {
         pub unsafe fn defaultChildIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`defaultChildIdentifier`][Self::defaultChildIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultChildIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultChildIdentifier(&self, default_child_identifier: Option<&NSString>);
@@ -77,6 +79,8 @@ impl UITabGroup {
         pub unsafe fn children(&self) -> Retained<NSArray<UITab>>;
 
         /// Setter for [`children`][Self::children].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChildren:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChildren(&self, children: &NSArray<UITab>);
@@ -89,6 +93,8 @@ impl UITabGroup {
         pub unsafe fn displayOrderIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`displayOrderIdentifiers`][Self::displayOrderIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplayOrderIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayOrderIdentifiers(
@@ -165,6 +171,8 @@ impl UITabGroup {
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Setter for [`sidebarActions`][Self::sidebarActions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSidebarActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSidebarActions(&self, sidebar_actions: &NSArray<UIAction>);

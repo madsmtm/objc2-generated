@@ -58,6 +58,8 @@ impl ASAuthorizationProviderExtensionAuthorizationResult {
         pub unsafe fn httpResponse(&self) -> Option<Retained<NSHTTPURLResponse>>;
 
         /// Setter for [`httpResponse`][Self::httpResponse].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHttpResponse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHttpResponse(&self, http_response: Option<&NSHTTPURLResponse>);

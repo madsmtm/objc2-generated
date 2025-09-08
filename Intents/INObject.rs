@@ -102,6 +102,8 @@ impl INObject {
         pub unsafe fn subtitleString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitleString`][Self::subtitleString].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitleString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitleString(&self, subtitle_string: Option<&NSString>);

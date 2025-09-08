@@ -121,6 +121,8 @@ impl NSPredicateEditor {
 
         #[cfg(feature = "NSPredicateEditorRowTemplate")]
         /// Setter for [`rowTemplates`][Self::rowTemplates].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRowTemplates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRowTemplates(&self, row_templates: &NSArray<NSPredicateEditorRowTemplate>);

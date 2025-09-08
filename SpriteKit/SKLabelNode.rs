@@ -195,6 +195,8 @@ impl SKLabelNode {
         pub unsafe fn fontName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fontName`][Self::fontName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFontName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontName(&self, font_name: Option<&NSString>);
@@ -204,6 +206,8 @@ impl SKLabelNode {
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
@@ -213,6 +217,8 @@ impl SKLabelNode {
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedText`][Self::attributedText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);

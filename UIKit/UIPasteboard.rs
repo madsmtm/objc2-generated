@@ -176,6 +176,8 @@ impl UIPasteboard {
         pub unsafe fn itemProviders(&self) -> Retained<NSArray<NSItemProvider>>;
 
         /// Setter for [`itemProviders`][Self::itemProviders].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setItemProviders:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemProviders(&self, item_providers: &NSArray<NSItemProvider>);
@@ -286,6 +288,8 @@ impl UIPasteboard {
         pub unsafe fn items(&self) -> Retained<NSArray<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`items`][Self::items].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItems(&self, items: &NSArray<NSDictionary<NSString, AnyObject>>);
@@ -307,6 +311,8 @@ impl UIPasteboard {
         pub unsafe fn string(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`string`][Self::string].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setString(&self, string: Option<&NSString>);
@@ -316,6 +322,8 @@ impl UIPasteboard {
         pub unsafe fn strings(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`strings`][Self::strings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStrings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrings(&self, strings: Option<&NSArray<NSString>>);
@@ -325,6 +333,8 @@ impl UIPasteboard {
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
@@ -334,6 +344,8 @@ impl UIPasteboard {
         pub unsafe fn URLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
         /// Setter for [`URLs`][Self::URLs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setURLs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURLs(&self, ur_ls: Option<&NSArray<NSURL>>);
@@ -345,6 +357,8 @@ impl UIPasteboard {
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
@@ -356,6 +370,8 @@ impl UIPasteboard {
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`images`][Self::images].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImages(&self, images: Option<&NSArray<UIImage>>);
@@ -367,6 +383,8 @@ impl UIPasteboard {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`color`][Self::color].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: Option<&UIColor>);
@@ -378,6 +396,8 @@ impl UIPasteboard {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`colors`][Self::colors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColors(&self, colors: Option<&NSArray<UIColor>>);

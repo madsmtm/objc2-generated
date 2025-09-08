@@ -27,6 +27,8 @@ extern_protocol!(
         unsafe fn uuid(&self) -> Retained<NSUUID>;
 
         /// Setter for [`uuid`][Self::uuid].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUuid:))]
         #[unsafe(method_family = none)]
         unsafe fn setUuid(&self, uuid: &NSUUID);

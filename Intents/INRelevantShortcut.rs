@@ -78,6 +78,8 @@ impl INRelevantShortcut {
 
         #[cfg(feature = "INRelevanceProvider")]
         /// Setter for [`relevanceProviders`][Self::relevanceProviders].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRelevanceProviders:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRelevanceProviders(
@@ -98,6 +100,8 @@ impl INRelevantShortcut {
 
         #[cfg(feature = "INDefaultCardTemplate")]
         /// Setter for [`watchTemplate`][Self::watchTemplate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWatchTemplate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWatchTemplate(&self, watch_template: Option<&INDefaultCardTemplate>);
@@ -110,6 +114,8 @@ impl INRelevantShortcut {
         pub unsafe fn widgetKind(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`widgetKind`][Self::widgetKind].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWidgetKind:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidgetKind(&self, widget_kind: Option<&NSString>);

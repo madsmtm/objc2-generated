@@ -290,6 +290,8 @@ impl DDDevice {
         pub unsafe fn displayImageName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`displayImageName`][Self::displayImageName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplayImageName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayImageName(&self, display_image_name: Option<&NSString>);
@@ -300,6 +302,8 @@ impl DDDevice {
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         /// Setter for [`displayName`][Self::displayName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplayName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayName(&self, display_name: &NSString);
@@ -310,6 +314,8 @@ impl DDDevice {
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: &NSString);
@@ -333,6 +339,8 @@ impl DDDevice {
         pub unsafe fn mediaContentTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`mediaContentTitle`][Self::mediaContentTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMediaContentTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaContentTitle(&self, media_content_title: Option<&NSString>);
@@ -343,6 +351,8 @@ impl DDDevice {
         pub unsafe fn mediaContentSubtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`mediaContentSubtitle`][Self::mediaContentSubtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMediaContentSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaContentSubtitle(&self, media_content_subtitle: Option<&NSString>);
@@ -385,6 +395,8 @@ impl DDDevice {
         pub unsafe fn SSID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`SSID`][Self::SSID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSSID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSSID(&self, ssid: Option<&NSString>);
@@ -405,6 +417,8 @@ impl DDDevice {
         pub unsafe fn txtRecordData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`txtRecordData`][Self::txtRecordData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTxtRecordData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTxtRecordData(&self, txt_record_data: Option<&NSData>);
@@ -416,6 +430,8 @@ impl DDDevice {
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
         /// Setter for [`url`][Self::url].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUrl:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUrl(&self, url: &NSURL);

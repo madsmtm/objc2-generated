@@ -49,6 +49,8 @@ impl SFSpeechRecognitionRequest {
         pub unsafe fn contextualStrings(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`contextualStrings`][Self::contextualStrings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContextualStrings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContextualStrings(&self, contextual_strings: &NSArray<NSString>);
@@ -59,6 +61,8 @@ impl SFSpeechRecognitionRequest {
         pub unsafe fn interactionIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`interactionIdentifier`][Self::interactionIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Not used anymore"]
         #[unsafe(method(setInteractionIdentifier:))]
         #[unsafe(method_family = none)]
@@ -91,6 +95,8 @@ impl SFSpeechRecognitionRequest {
 
         #[cfg(feature = "SFSpeechLanguageModel")]
         /// Setter for [`customizedLanguageModel`][Self::customizedLanguageModel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizedLanguageModel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizedLanguageModel(

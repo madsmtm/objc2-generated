@@ -41,6 +41,8 @@ impl EKReminder {
         pub unsafe fn startDateComponents(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`startDateComponents`][Self::startDateComponents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStartDateComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartDateComponents(
@@ -61,6 +63,8 @@ impl EKReminder {
         pub unsafe fn dueDateComponents(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`dueDateComponents`][Self::dueDateComponents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDueDateComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDueDateComponents(&self, due_date_components: Option<&NSDateComponents>);
@@ -84,6 +88,8 @@ impl EKReminder {
         pub unsafe fn completionDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`completionDate`][Self::completionDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompletionDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionDate(&self, completion_date: Option<&NSDate>);

@@ -73,6 +73,8 @@ impl NSXMLDTD {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`publicID`][Self::publicID].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPublicID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPublicID(&self, public_id: Option<&NSString>);
@@ -85,6 +87,8 @@ impl NSXMLDTD {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`systemID`][Self::systemID].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setSystemID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSystemID(&self, system_id: Option<&NSString>);

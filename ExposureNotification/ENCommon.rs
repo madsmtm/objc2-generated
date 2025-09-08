@@ -396,6 +396,8 @@ impl ENExposureConfiguration {
         ) -> Option<Retained<NSDictionary<NSNumber, NSNumber>>>;
 
         /// Setter for [`infectiousnessForDaysSinceOnsetOfSymptoms`][Self::infectiousnessForDaysSinceOnsetOfSymptoms].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInfectiousnessForDaysSinceOnsetOfSymptoms:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInfectiousnessForDaysSinceOnsetOfSymptoms(
@@ -493,6 +495,8 @@ impl ENExposureConfiguration {
         pub unsafe fn attenuationDurationThresholds(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`attenuationDurationThresholds`][Self::attenuationDurationThresholds].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttenuationDurationThresholds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttenuationDurationThresholds(
@@ -528,6 +532,8 @@ impl ENExposureConfiguration {
         pub unsafe fn attenuationLevelValues(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`attenuationLevelValues`][Self::attenuationLevelValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttenuationLevelValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttenuationLevelValues(
@@ -549,6 +555,8 @@ impl ENExposureConfiguration {
         pub unsafe fn daysSinceLastExposureLevelValues(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`daysSinceLastExposureLevelValues`][Self::daysSinceLastExposureLevelValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDaysSinceLastExposureLevelValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDaysSinceLastExposureLevelValues(
@@ -573,6 +581,8 @@ impl ENExposureConfiguration {
         pub unsafe fn durationLevelValues(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`durationLevelValues`][Self::durationLevelValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDurationLevelValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDurationLevelValues(&self, duration_level_values: &NSArray<NSNumber>);
@@ -591,6 +601,8 @@ impl ENExposureConfiguration {
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`metadata`][Self::metadata].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: Option<&NSDictionary>);
@@ -609,6 +621,8 @@ impl ENExposureConfiguration {
         pub unsafe fn transmissionRiskLevelValues(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`transmissionRiskLevelValues`][Self::transmissionRiskLevelValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTransmissionRiskLevelValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransmissionRiskLevelValues(
@@ -1047,6 +1061,8 @@ impl ENTemporaryExposureKey {
         pub unsafe fn keyData(&self) -> Retained<NSData>;
 
         /// Setter for [`keyData`][Self::keyData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeyData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyData(&self, key_data: &NSData);

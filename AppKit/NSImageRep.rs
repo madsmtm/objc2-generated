@@ -136,6 +136,8 @@ impl NSImageRep {
 
         #[cfg(feature = "NSGraphics")]
         /// Setter for [`colorSpaceName`][Self::colorSpaceName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColorSpaceName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorSpaceName(&self, color_space_name: &NSColorSpaceName);

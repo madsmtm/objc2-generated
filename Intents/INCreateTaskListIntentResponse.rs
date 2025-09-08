@@ -106,6 +106,8 @@ impl INCreateTaskListIntentResponse {
 
         #[cfg(feature = "INTaskList")]
         /// Setter for [`createdTaskList`][Self::createdTaskList].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INCreateTaskListIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setCreatedTaskList:))]
         #[unsafe(method_family = none)]

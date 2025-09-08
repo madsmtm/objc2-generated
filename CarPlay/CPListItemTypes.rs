@@ -69,6 +69,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// Setter for [`handler`][Self::handler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setHandler(

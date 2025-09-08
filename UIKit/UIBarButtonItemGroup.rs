@@ -83,6 +83,8 @@ impl UIBarButtonItemGroup {
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Setter for [`barButtonItems`][Self::barButtonItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBarButtonItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBarButtonItems(&self, bar_button_items: &NSArray<UIBarButtonItem>);
@@ -125,6 +127,8 @@ impl UIBarButtonItemGroup {
 
         #[cfg(feature = "UIMenuElement")]
         /// Setter for [`menuRepresentation`][Self::menuRepresentation].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMenuRepresentation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenuRepresentation(&self, menu_representation: Option<&UIMenuElement>);

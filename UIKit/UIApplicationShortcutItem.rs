@@ -252,6 +252,8 @@ impl UIMutableApplicationShortcutItem {
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: &NSString);
@@ -261,6 +263,8 @@ impl UIMutableApplicationShortcutItem {
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedTitle`][Self::localizedTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedTitle(&self, localized_title: &NSString);
@@ -270,6 +274,8 @@ impl UIMutableApplicationShortcutItem {
         pub unsafe fn localizedSubtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedSubtitle`][Self::localizedSubtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedSubtitle(&self, localized_subtitle: Option<&NSString>);
@@ -279,6 +285,8 @@ impl UIMutableApplicationShortcutItem {
         pub unsafe fn icon(&self) -> Option<Retained<UIApplicationShortcutIcon>>;
 
         /// Setter for [`icon`][Self::icon].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIcon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIcon(&self, icon: Option<&UIApplicationShortcutIcon>);
@@ -290,6 +298,8 @@ impl UIMutableApplicationShortcutItem {
         ) -> Option<Retained<NSDictionary<NSString, ProtocolObject<dyn NSSecureCoding>>>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(
@@ -302,6 +312,8 @@ impl UIMutableApplicationShortcutItem {
         pub unsafe fn targetContentIdentifier(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTargetContentIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargetContentIdentifier(

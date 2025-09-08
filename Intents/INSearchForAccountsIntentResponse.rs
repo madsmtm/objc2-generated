@@ -104,6 +104,8 @@ impl INSearchForAccountsIntentResponse {
 
         #[cfg(feature = "INPaymentAccount")]
         /// Setter for [`accounts`][Self::accounts].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccounts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccounts(&self, accounts: Option<&NSArray<INPaymentAccount>>);

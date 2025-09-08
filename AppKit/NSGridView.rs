@@ -602,6 +602,8 @@ impl NSGridCell {
 
         #[cfg(feature = "NSLayoutConstraint")]
         /// Setter for [`customPlacementConstraints`][Self::customPlacementConstraints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomPlacementConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomPlacementConstraints(

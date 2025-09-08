@@ -147,6 +147,8 @@ impl NSBox {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -238,6 +240,8 @@ impl NSBox {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`borderColor`][Self::borderColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBorderColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderColor(&self, border_color: &NSColor);
@@ -249,6 +253,8 @@ impl NSBox {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`fillColor`][Self::fillColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFillColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFillColor(&self, fill_color: &NSColor);

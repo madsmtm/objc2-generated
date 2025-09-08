@@ -125,6 +125,8 @@ impl EKRecurrenceRule {
 
         #[cfg(feature = "EKRecurrenceEnd")]
         /// Setter for [`recurrenceEnd`][Self::recurrenceEnd].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecurrenceEnd:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecurrenceEnd(&self, recurrence_end: Option<&EKRecurrenceEnd>);

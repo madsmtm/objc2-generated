@@ -80,6 +80,8 @@ impl INGetAvailableRestaurantReservationBookingDefaultsIntentResponse {
         pub unsafe fn maximumPartySize(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`maximumPartySize`][Self::maximumPartySize].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMaximumPartySize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumPartySize(&self, maximum_party_size: Option<&NSNumber>);
@@ -89,6 +91,8 @@ impl INGetAvailableRestaurantReservationBookingDefaultsIntentResponse {
         pub unsafe fn minimumPartySize(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`minimumPartySize`][Self::minimumPartySize].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMinimumPartySize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumPartySize(&self, minimum_party_size: Option<&NSNumber>);
@@ -100,6 +104,8 @@ impl INGetAvailableRestaurantReservationBookingDefaultsIntentResponse {
 
         #[cfg(feature = "INImage")]
         /// Setter for [`providerImage`][Self::providerImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProviderImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderImage(&self, provider_image: &INImage);

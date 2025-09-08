@@ -79,6 +79,8 @@ impl EKAlarm {
         pub unsafe fn absoluteDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`absoluteDate`][Self::absoluteDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAbsoluteDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAbsoluteDate(&self, absolute_date: Option<&NSDate>);
@@ -93,6 +95,8 @@ impl EKAlarm {
 
         #[cfg(feature = "EKStructuredLocation")]
         /// Setter for [`structuredLocation`][Self::structuredLocation].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStructuredLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStructuredLocation(
@@ -132,6 +136,8 @@ impl EKAlarm {
         pub unsafe fn emailAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`emailAddress`][Self::emailAddress].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmailAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmailAddress(&self, email_address: Option<&NSString>);
@@ -146,6 +152,8 @@ impl EKAlarm {
         pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`soundName`][Self::soundName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSoundName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSoundName(&self, sound_name: Option<&NSString>);
@@ -163,6 +171,8 @@ impl EKAlarm {
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`url`][Self::url].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setUrl:))]
         #[unsafe(method_family = none)]

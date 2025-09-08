@@ -93,8 +93,9 @@ impl UIPrintInteractionController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPrintInteractionControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -178,6 +179,8 @@ impl UIPrintInteractionController {
         pub unsafe fn printingItem(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`printingItem`][Self::printingItem].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrintingItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrintingItem(&self, printing_item: Option<&AnyObject>);
@@ -187,6 +190,8 @@ impl UIPrintInteractionController {
         pub unsafe fn printingItems(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`printingItems`][Self::printingItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrintingItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrintingItems(&self, printing_items: Option<&NSArray>);

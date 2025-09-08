@@ -133,6 +133,8 @@ impl UIActivityViewController {
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         /// Setter for [`completionHandler`][Self::completionHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -150,6 +152,8 @@ impl UIActivityViewController {
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         /// Setter for [`completionWithItemsHandler`][Self::completionWithItemsHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompletionWithItemsHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionWithItemsHandler(
@@ -164,6 +168,8 @@ impl UIActivityViewController {
 
         #[cfg(feature = "UIActivity")]
         /// Setter for [`excludedActivityTypes`][Self::excludedActivityTypes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedActivityTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedActivityTypes(

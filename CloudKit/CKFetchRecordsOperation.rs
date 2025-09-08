@@ -46,6 +46,8 @@ impl CKFetchRecordsOperation {
 
         #[cfg(feature = "CKRecordID")]
         /// Setter for [`recordIDs`][Self::recordIDs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordIDs(&self, record_i_ds: Option<&NSArray<CKRecordID>>);
@@ -63,6 +65,8 @@ impl CKFetchRecordsOperation {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`desiredKeys`][Self::desiredKeys].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
@@ -85,6 +89,8 @@ impl CKFetchRecordsOperation {
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordProgressBlock`][Self::perRecordProgressBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerRecordProgressBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordProgressBlock(
@@ -110,6 +116,8 @@ impl CKFetchRecordsOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordCompletionBlock`][Self::perRecordCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerRecordCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordCompletionBlock(
@@ -147,6 +155,8 @@ impl CKFetchRecordsOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`fetchRecordsCompletionBlock`][Self::fetchRecordsCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFetchRecordsCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRecordsCompletionBlock(

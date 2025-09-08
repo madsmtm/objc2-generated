@@ -320,6 +320,8 @@ impl SCNAnimation {
         pub unsafe fn keyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`keyPath`][Self::keyPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyPath(&self, key_path: Option<&NSString>);
@@ -467,6 +469,8 @@ impl SCNAnimation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`animationDidStart`][Self::animationDidStart].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAnimationDidStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationDidStart(&self, animation_did_start: SCNAnimationDidStartBlock);
@@ -481,6 +485,8 @@ impl SCNAnimation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`animationDidStop`][Self::animationDidStop].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAnimationDidStop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationDidStop(&self, animation_did_stop: SCNAnimationDidStopBlock);
@@ -493,6 +499,8 @@ impl SCNAnimation {
         pub unsafe fn animationEvents(&self) -> Option<Retained<NSArray<SCNAnimationEvent>>>;
 
         /// Setter for [`animationEvents`][Self::animationEvents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAnimationEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationEvents(

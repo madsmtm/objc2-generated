@@ -510,6 +510,8 @@ impl AVMutableVideoComposition {
 
         #[cfg(feature = "AVVideoCompositing")]
         /// Setter for [`instructions`][Self::instructions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInstructions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstructions(
@@ -535,6 +537,8 @@ impl AVMutableVideoComposition {
         pub unsafe fn sourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`sourceSampleDataTrackIDs`][Self::sourceSampleDataTrackIDs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSourceSampleDataTrackIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceSampleDataTrackIDs(
@@ -565,6 +569,8 @@ impl AVMutableVideoComposition {
         pub unsafe fn colorPrimaries(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`colorPrimaries`][Self::colorPrimaries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColorPrimaries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorPrimaries(&self, color_primaries: Option<&NSString>);
@@ -574,6 +580,8 @@ impl AVMutableVideoComposition {
         pub unsafe fn colorYCbCrMatrix(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`colorYCbCrMatrix`][Self::colorYCbCrMatrix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColorYCbCrMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorYCbCrMatrix(&self, color_y_cb_cr_matrix: Option<&NSString>);
@@ -583,6 +591,8 @@ impl AVMutableVideoComposition {
         pub unsafe fn colorTransferFunction(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`colorTransferFunction`][Self::colorTransferFunction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColorTransferFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorTransferFunction(&self, color_transfer_function: Option<&NSString>);
@@ -594,6 +604,8 @@ impl AVMutableVideoComposition {
         ) -> Retained<AVVideoCompositionPerFrameHDRDisplayMetadataPolicy>;
 
         /// Setter for [`perFrameHDRDisplayMetadataPolicy`][Self::perFrameHDRDisplayMetadataPolicy].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerFrameHDRDisplayMetadataPolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerFrameHDRDisplayMetadataPolicy(
@@ -874,6 +886,8 @@ impl AVMutableVideoCompositionInstruction {
         ) -> Retained<NSArray<AVVideoCompositionLayerInstruction>>;
 
         /// Setter for [`layerInstructions`][Self::layerInstructions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLayerInstructions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLayerInstructions(
@@ -895,6 +909,8 @@ impl AVMutableVideoCompositionInstruction {
         pub unsafe fn requiredSourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`requiredSourceSampleDataTrackIDs`][Self::requiredSourceSampleDataTrackIDs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRequiredSourceSampleDataTrackIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiredSourceSampleDataTrackIDs(

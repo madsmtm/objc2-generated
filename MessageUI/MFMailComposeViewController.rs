@@ -195,8 +195,9 @@ impl MFMailComposeViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MFMailComposeViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`mailComposeDelegate`][Self::mailComposeDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setMailComposeDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMailComposeDelegate(

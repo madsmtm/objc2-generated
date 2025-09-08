@@ -47,8 +47,9 @@ impl UIAccessibilityElement {
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityContainer(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityContainer`][Self::accessibilityContainer].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAccessibilityContainer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityContainer(&self, accessibility_container: Option<&AnyObject>);

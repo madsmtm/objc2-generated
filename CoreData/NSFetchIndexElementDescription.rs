@@ -89,6 +89,9 @@ impl NSFetchIndexElementDescription {
         pub unsafe fn setAscending(&self, ascending: bool);
 
         #[cfg(feature = "NSFetchIndexDescription")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(indexDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexDescription(&self) -> Option<Retained<NSFetchIndexDescription>>;

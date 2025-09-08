@@ -198,6 +198,8 @@ impl UITableViewRowAction {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use UIContextualAction and related APIs instead."]
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
@@ -211,6 +213,8 @@ impl UITableViewRowAction {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use UIContextualAction and related APIs instead."]
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
@@ -224,6 +228,8 @@ impl UITableViewRowAction {
 
         #[cfg(feature = "UIVisualEffect")]
         /// Setter for [`backgroundEffect`][Self::backgroundEffect].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use UIContextualAction and related APIs instead."]
         #[unsafe(method(setBackgroundEffect:))]
         #[unsafe(method_family = none)]
@@ -1220,8 +1226,9 @@ impl UITableView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSource>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
@@ -1233,8 +1240,9 @@ impl UITableView {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITableViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -1248,8 +1256,9 @@ impl UITableView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSourcePrefetching>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`prefetchDataSource`][Self::prefetchDataSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPrefetchDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrefetchDataSource(
@@ -1272,8 +1281,9 @@ impl UITableView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDragDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dragDelegate`][Self::dragDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDragDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDragDelegate(
@@ -1287,8 +1297,9 @@ impl UITableView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDropDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dropDelegate`][Self::dropDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDropDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDropDelegate(
@@ -1794,6 +1805,8 @@ impl UITableView {
 
         #[cfg(feature = "UIVisualEffect")]
         /// Setter for [`separatorEffect`][Self::separatorEffect].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSeparatorEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSeparatorEffect(&self, separator_effect: Option<&UIVisualEffect>);
@@ -2600,6 +2613,8 @@ impl UITableViewPlaceholder {
             feature = "block2"
         ))]
         /// Setter for [`cellUpdateHandler`][Self::cellUpdateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCellUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellUpdateHandler(
@@ -2646,6 +2661,8 @@ impl UITableViewDropPlaceholder {
             feature = "block2"
         ))]
         /// Setter for [`previewParametersProvider`][Self::previewParametersProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreviewParametersProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewParametersProvider(

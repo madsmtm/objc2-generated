@@ -16,6 +16,8 @@ extern_protocol!(
         unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         unsafe fn setTitle(&self, title: &NSString);
@@ -28,6 +30,8 @@ extern_protocol!(
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
         unsafe fn setImage(&self, image: Option<&UIImage>);
@@ -40,6 +44,8 @@ extern_protocol!(
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`selectedImage`][Self::selectedImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedImage:))]
         #[unsafe(method_family = none)]
         unsafe fn setSelectedImage(&self, selected_image: Option<&UIImage>);
@@ -50,6 +56,8 @@ extern_protocol!(
         unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`discoverabilityTitle`][Self::discoverabilityTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDiscoverabilityTitle:))]
         #[unsafe(method_family = none)]
         unsafe fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);

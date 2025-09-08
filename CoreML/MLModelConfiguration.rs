@@ -79,6 +79,8 @@ impl MLModelConfiguration {
         pub unsafe fn modelDisplayName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`modelDisplayName`][Self::modelDisplayName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModelDisplayName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModelDisplayName(&self, model_display_name: Option<&NSString>);
@@ -100,6 +102,8 @@ impl MLModelConfiguration {
 
         #[cfg(feature = "MLOptimizationHints")]
         /// Setter for [`optimizationHints`][Self::optimizationHints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOptimizationHints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOptimizationHints(&self, optimization_hints: &MLOptimizationHints);
@@ -199,6 +203,8 @@ impl MLModelConfiguration {
         pub unsafe fn functionName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`functionName`][Self::functionName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFunctionName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFunctionName(&self, function_name: Option<&NSString>);

@@ -399,6 +399,8 @@ impl CKSyncEngineFetchChangesOptions {
         pub unsafe fn scope(&self) -> Retained<CKSyncEngineFetchChangesScope>;
 
         /// Setter for [`scope`][Self::scope].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setScope:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScope(&self, scope: &CKSyncEngineFetchChangesScope);
@@ -433,6 +435,8 @@ impl CKSyncEngineFetchChangesOptions {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`prioritizedZoneIDs`][Self::prioritizedZoneIDs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrioritizedZoneIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrioritizedZoneIDs(&self, prioritized_zone_i_ds: &NSArray<CKRecordZoneID>);
@@ -575,6 +579,8 @@ impl CKSyncEngineSendChangesOptions {
         pub unsafe fn scope(&self) -> Retained<CKSyncEngineSendChangesScope>;
 
         /// Setter for [`scope`][Self::scope].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setScope:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScope(&self, scope: &CKSyncEngineSendChangesScope);

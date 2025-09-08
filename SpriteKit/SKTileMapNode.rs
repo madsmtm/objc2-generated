@@ -306,6 +306,8 @@ impl SKTileMapNode {
 
         #[cfg(feature = "SKAttribute")]
         /// Setter for [`attributeValues`][Self::attributeValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributeValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeValues(

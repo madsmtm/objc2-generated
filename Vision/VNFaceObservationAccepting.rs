@@ -19,6 +19,8 @@ extern_protocol!(
 
         #[cfg(feature = "VNObservation")]
         /// Setter for [`inputFaceObservations`][Self::inputFaceObservations].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInputFaceObservations:))]
         #[unsafe(method_family = none)]
         unsafe fn setInputFaceObservations(

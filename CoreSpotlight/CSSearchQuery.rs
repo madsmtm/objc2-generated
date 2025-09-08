@@ -101,6 +101,8 @@ impl CSSearchQueryContext {
         pub unsafe fn filterQueries(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`filterQueries`][Self::filterQueries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFilterQueries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterQueries(&self, filter_queries: &NSArray<NSString>);
@@ -189,6 +191,8 @@ impl CSSearchQuery {
 
         #[cfg(all(feature = "CSSearchableItem", feature = "block2"))]
         /// Setter for [`foundItemsHandler`][Self::foundItemsHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFoundItemsHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFoundItemsHandler(
@@ -205,6 +209,8 @@ impl CSSearchQuery {
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(
@@ -217,6 +223,8 @@ impl CSSearchQuery {
         pub unsafe fn protectionClasses(&self) -> Retained<NSArray<NSFileProtectionType>>;
 
         /// Setter for [`protectionClasses`][Self::protectionClasses].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProtectionClasses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProtectionClasses(

@@ -119,8 +119,9 @@ impl UITabBarController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITabBarControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -151,6 +152,8 @@ impl UITabBarController {
         pub unsafe fn customizationIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customizationIdentifier`][Self::customizationIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizationIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationIdentifier(
@@ -164,6 +167,8 @@ impl UITabBarController {
         pub unsafe fn compactTabIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`compactTabIdentifiers`][Self::compactTabIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompactTabIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompactTabIdentifiers(
@@ -192,6 +197,8 @@ impl UITabBarController {
 
         #[cfg(feature = "UITab")]
         /// Setter for [`tabs`][Self::tabs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTabs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTabs(&self, tabs: &NSArray<UITab>);
@@ -234,6 +241,8 @@ impl UITabBarController {
         pub unsafe fn viewControllers(&self) -> Option<Retained<NSArray<UIViewController>>>;
 
         /// Setter for [`viewControllers`][Self::viewControllers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setViewControllers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setViewControllers(
@@ -249,6 +258,9 @@ impl UITabBarController {
             animated: bool,
         );
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(selectedViewController))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedViewController(&self) -> Option<Retained<UIViewController>>;
@@ -282,6 +294,8 @@ impl UITabBarController {
         ) -> Option<Retained<NSArray<UIViewController>>>;
 
         /// Setter for [`customizableViewControllers`][Self::customizableViewControllers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizableViewControllers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizableViewControllers(

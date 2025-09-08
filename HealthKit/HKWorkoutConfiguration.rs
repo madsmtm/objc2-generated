@@ -112,6 +112,8 @@ impl HKWorkoutConfiguration {
 
         #[cfg(feature = "HKQuantity")]
         /// Setter for [`lapLength`][Self::lapLength].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLapLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLapLength(&self, lap_length: Option<&HKQuantity>);

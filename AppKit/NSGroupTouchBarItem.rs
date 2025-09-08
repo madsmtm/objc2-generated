@@ -71,6 +71,8 @@ impl NSGroupTouchBarItem {
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizationLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
@@ -125,6 +127,8 @@ impl NSGroupTouchBarItem {
 
         #[cfg(feature = "NSUserInterfaceCompression")]
         /// Setter for [`prioritizedCompressionOptions`][Self::prioritizedCompressionOptions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrioritizedCompressionOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrioritizedCompressionOptions(

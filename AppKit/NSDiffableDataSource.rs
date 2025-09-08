@@ -344,6 +344,8 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             feature = "block2"
         ))]
         /// Setter for [`supplementaryViewProvider`][Self::supplementaryViewProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupplementaryViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupplementaryViewProvider(

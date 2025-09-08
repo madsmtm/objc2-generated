@@ -251,6 +251,8 @@ impl NSXMLNode {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -273,6 +275,8 @@ impl NSXMLNode {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`stringValue`][Self::stringValue].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setStringValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStringValue(&self, string_value: Option<&NSString>);
@@ -377,6 +381,8 @@ impl NSXMLNode {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`URI`][Self::URI].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setURI:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURI(&self, uri: Option<&NSString>);

@@ -96,6 +96,8 @@ impl INSearchForMediaIntentResponse {
 
         #[cfg(feature = "INMediaItem")]
         /// Setter for [`mediaItems`][Self::mediaItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMediaItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaItems(&self, media_items: Option<&NSArray<INMediaItem>>);

@@ -148,8 +148,9 @@ impl GKFriendRequestComposeViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKFriendRequestComposeViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`composeViewDelegate`][Self::composeViewDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "No longer supported."]
         #[unsafe(method(setComposeViewDelegate:))]
         #[unsafe(method_family = none)]

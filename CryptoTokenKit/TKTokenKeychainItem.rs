@@ -49,6 +49,8 @@ impl TKTokenKeychainItem {
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
@@ -63,6 +65,8 @@ impl TKTokenKeychainItem {
 
         #[cfg(feature = "TKToken")]
         /// Setter for [`constraints`][Self::constraints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstraints(
@@ -179,6 +183,8 @@ impl TKTokenKeychainKey {
         pub unsafe fn keyType(&self) -> Retained<NSString>;
 
         /// Setter for [`keyType`][Self::keyType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeyType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyType(&self, key_type: &NSString);
@@ -189,6 +195,8 @@ impl TKTokenKeychainKey {
         pub unsafe fn applicationTag(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`applicationTag`][Self::applicationTag].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setApplicationTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApplicationTag(&self, application_tag: Option<&NSData>);
@@ -209,6 +217,8 @@ impl TKTokenKeychainKey {
         pub unsafe fn publicKeyData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`publicKeyData`][Self::publicKeyData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPublicKeyData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPublicKeyData(&self, public_key_data: Option<&NSData>);
@@ -219,6 +229,8 @@ impl TKTokenKeychainKey {
         pub unsafe fn publicKeyHash(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`publicKeyHash`][Self::publicKeyHash].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPublicKeyHash:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPublicKeyHash(&self, public_key_hash: Option<&NSData>);

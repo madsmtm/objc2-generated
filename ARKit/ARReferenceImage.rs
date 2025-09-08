@@ -50,6 +50,8 @@ impl ARReferenceImage {
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);

@@ -299,6 +299,10 @@ impl NSTextView {
 
         #[cfg(feature = "NSTextContainer")]
         /// *************** Get/Set the container and other stuff ****************
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(textContainer))]
         #[unsafe(method_family = none)]
         pub unsafe fn textContainer(&self) -> Option<Retained<NSTextContainer>>;
@@ -332,11 +336,17 @@ impl NSTextView {
         pub unsafe fn invalidateTextContainerOrigin(&self);
 
         #[cfg(feature = "NSLayoutManager")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(layoutManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSTextStorage")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(textStorage))]
         #[unsafe(method_family = none)]
         pub unsafe fn textStorage(&self) -> Option<Retained<NSTextStorage>>;
@@ -818,6 +828,8 @@ impl NSTextView {
         pub unsafe fn selectedRanges(&self) -> Retained<NSArray<NSValue>>;
 
         /// Setter for [`selectedRanges`][Self::selectedRanges].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedRanges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedRanges(&self, selected_ranges: &NSArray<NSValue>);
@@ -860,6 +872,8 @@ impl NSTextView {
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         /// Setter for [`selectedTextAttributes`][Self::selectedTextAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedTextAttributes(
@@ -874,6 +888,8 @@ impl NSTextView {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`insertionPointColor`][Self::insertionPointColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInsertionPointColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInsertionPointColor(&self, insertion_point_color: Option<&NSColor>);
@@ -889,6 +905,8 @@ impl NSTextView {
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         /// Setter for [`markedTextAttributes`][Self::markedTextAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMarkedTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarkedTextAttributes(
@@ -903,6 +921,8 @@ impl NSTextView {
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         /// Setter for [`linkTextAttributes`][Self::linkTextAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLinkTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLinkTextAttributes(
@@ -992,6 +1012,8 @@ impl NSTextView {
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         /// Setter for [`typingAttributes`][Self::typingAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTypingAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTypingAttributes(
@@ -1066,6 +1088,8 @@ impl NSTextView {
 
         #[cfg(feature = "NSParagraphStyle")]
         /// Setter for [`defaultParagraphStyle`][Self::defaultParagraphStyle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultParagraphStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultParagraphStyle(
@@ -1120,8 +1144,9 @@ impl NSTextView {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTextViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTextViewDelegate>>);
@@ -1178,6 +1203,8 @@ impl NSTextView {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
@@ -1219,6 +1246,8 @@ impl NSTextView {
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`allowedInputSourceLocales`][Self::allowedInputSourceLocales].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAllowedInputSourceLocales:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedInputSourceLocales(
@@ -1648,6 +1677,8 @@ impl NSTextView {
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         /// Setter for [`textHighlightAttributes`][Self::textHighlightAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextHighlightAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextHighlightAttributes(

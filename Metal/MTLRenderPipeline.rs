@@ -457,6 +457,8 @@ impl MTLRenderPipelineDescriptor {
         pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub fn setLabel(&self, label: Option<&NSString>);
@@ -493,6 +495,8 @@ impl MTLRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLVertexDescriptor")]
         /// Setter for [`vertexDescriptor`][Self::vertexDescriptor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVertexDescriptor:))]
         #[unsafe(method_family = none)]
         pub fn setVertexDescriptor(&self, vertex_descriptor: Option<&MTLVertexDescriptor>);
@@ -711,6 +715,8 @@ impl MTLRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLBinaryArchive")]
         /// Setter for [`binaryArchives`][Self::binaryArchives].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBinaryArchives:))]
         #[unsafe(method_family = none)]
         pub fn setBinaryArchives(
@@ -734,6 +740,8 @@ impl MTLRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLDynamicLibrary")]
         /// Setter for [`vertexPreloadedLibraries`][Self::vertexPreloadedLibraries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVertexPreloadedLibraries:))]
         #[unsafe(method_family = none)]
         pub fn setVertexPreloadedLibraries(
@@ -757,6 +765,8 @@ impl MTLRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLDynamicLibrary")]
         /// Setter for [`fragmentPreloadedLibraries`][Self::fragmentPreloadedLibraries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFragmentPreloadedLibraries:))]
         #[unsafe(method_family = none)]
         pub fn setFragmentPreloadedLibraries(
@@ -774,6 +784,8 @@ impl MTLRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`vertexLinkedFunctions`][Self::vertexLinkedFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVertexLinkedFunctions:))]
         #[unsafe(method_family = none)]
         pub fn setVertexLinkedFunctions(
@@ -791,6 +803,8 @@ impl MTLRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`fragmentLinkedFunctions`][Self::fragmentLinkedFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFragmentLinkedFunctions:))]
         #[unsafe(method_family = none)]
         pub fn setFragmentLinkedFunctions(
@@ -916,6 +930,8 @@ impl MTLRenderPipelineFunctionsDescriptor {
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`vertexAdditionalBinaryFunctions`][Self::vertexAdditionalBinaryFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVertexAdditionalBinaryFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexAdditionalBinaryFunctions(
@@ -933,6 +949,8 @@ impl MTLRenderPipelineFunctionsDescriptor {
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`fragmentAdditionalBinaryFunctions`][Self::fragmentAdditionalBinaryFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFragmentAdditionalBinaryFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFragmentAdditionalBinaryFunctions(
@@ -950,6 +968,8 @@ impl MTLRenderPipelineFunctionsDescriptor {
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`tileAdditionalBinaryFunctions`][Self::tileAdditionalBinaryFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTileAdditionalBinaryFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTileAdditionalBinaryFunctions(
@@ -1279,6 +1299,8 @@ impl MTLTileRenderPipelineDescriptor {
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
@@ -1361,6 +1383,8 @@ impl MTLTileRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLBinaryArchive")]
         /// Setter for [`binaryArchives`][Self::binaryArchives].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBinaryArchives:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBinaryArchives(
@@ -1384,6 +1408,8 @@ impl MTLTileRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLDynamicLibrary")]
         /// Setter for [`preloadedLibraries`][Self::preloadedLibraries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreloadedLibraries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreloadedLibraries(
@@ -1401,6 +1427,8 @@ impl MTLTileRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`linkedFunctions`][Self::linkedFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLinkedFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLinkedFunctions(&self, linked_functions: Option<&MTLLinkedFunctions>);
@@ -1488,6 +1516,8 @@ impl MTLMeshRenderPipelineDescriptor {
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
@@ -1789,6 +1819,8 @@ impl MTLMeshRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLBinaryArchive")]
         /// Setter for [`binaryArchives`][Self::binaryArchives].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBinaryArchives:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBinaryArchives(
@@ -1806,6 +1838,8 @@ impl MTLMeshRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`objectLinkedFunctions`][Self::objectLinkedFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setObjectLinkedFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectLinkedFunctions(
@@ -1823,6 +1857,8 @@ impl MTLMeshRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`meshLinkedFunctions`][Self::meshLinkedFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMeshLinkedFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMeshLinkedFunctions(
@@ -1840,6 +1876,8 @@ impl MTLMeshRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`fragmentLinkedFunctions`][Self::fragmentLinkedFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFragmentLinkedFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFragmentLinkedFunctions(

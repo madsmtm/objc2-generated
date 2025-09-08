@@ -168,8 +168,9 @@ extern_protocol!(
             feature = "NSResponder",
             feature = "NSView"
         ))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`sectionCollapseButton`][Self::sectionCollapseButton].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[optional]
         #[unsafe(method(setSectionCollapseButton:))]
         #[unsafe(method_family = none)]
@@ -273,8 +274,9 @@ impl NSCollectionViewItem {
         pub unsafe fn imageView(&self) -> Option<Retained<NSImageView>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView", feature = "NSView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`imageView`][Self::imageView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setImageView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageView(&self, image_view: Option<&NSImageView>);
@@ -285,8 +287,9 @@ impl NSCollectionViewItem {
         pub unsafe fn textField(&self) -> Option<Retained<NSTextField>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField", feature = "NSView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`textField`][Self::textField].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTextField:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
@@ -415,8 +418,9 @@ impl NSCollectionView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewDataSource>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
@@ -430,8 +434,9 @@ impl NSCollectionView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewPrefetching>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`prefetchDataSource`][Self::prefetchDataSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPrefetchDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrefetchDataSource(
@@ -444,6 +449,8 @@ impl NSCollectionView {
         pub unsafe fn content(&self) -> Retained<NSArray<AnyObject>>;
 
         /// Setter for [`content`][Self::content].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContent(&self, content: &NSArray<AnyObject>);
@@ -458,8 +465,9 @@ impl NSCollectionView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -538,6 +546,8 @@ impl NSCollectionView {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColors`][Self::backgroundColors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColors(&self, background_colors: Option<&NSArray<NSColor>>);
@@ -586,6 +596,8 @@ impl NSCollectionView {
         pub unsafe fn selectionIndexes(&self) -> Retained<NSIndexSet>;
 
         /// Setter for [`selectionIndexes`][Self::selectionIndexes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectionIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionIndexes(&self, selection_indexes: &NSIndexSet);
@@ -595,6 +607,8 @@ impl NSCollectionView {
         pub unsafe fn selectionIndexPaths(&self) -> Retained<NSSet<NSIndexPath>>;
 
         /// Setter for [`selectionIndexPaths`][Self::selectionIndexPaths].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectionIndexPaths:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionIndexPaths(&self, selection_index_paths: &NSSet<NSIndexPath>);

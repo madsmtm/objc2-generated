@@ -40,6 +40,8 @@ impl AVCaptionRenderer {
 
         #[cfg(feature = "AVCaption")]
         /// Setter for [`captions`][Self::captions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCaptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCaptions(&self, captions: &NSArray<AVCaption>);

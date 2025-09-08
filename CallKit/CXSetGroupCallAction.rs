@@ -72,6 +72,8 @@ impl CXSetGroupCallAction {
         pub unsafe fn callUUIDToGroupWith(&self) -> Option<Retained<NSUUID>>;
 
         /// Setter for [`callUUIDToGroupWith`][Self::callUUIDToGroupWith].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCallUUIDToGroupWith:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCallUUIDToGroupWith(&self, call_uuid_to_group_with: Option<&NSUUID>);

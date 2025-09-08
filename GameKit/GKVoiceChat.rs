@@ -83,6 +83,8 @@ impl GKVoiceChat {
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Setter for [`playerVoiceChatStateDidChangeHandler`][Self::playerVoiceChatStateDidChangeHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported"]
         #[unsafe(method(setPlayerVoiceChatStateDidChangeHandler:))]
         #[unsafe(method_family = none)]
@@ -160,6 +162,8 @@ impl GKVoiceChat {
 
         #[cfg(feature = "block2")]
         /// Setter for [`playerStateUpdateHandler`][Self::playerStateUpdateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setPlayerStateUpdateHandler:))]
         #[unsafe(method_family = none)]

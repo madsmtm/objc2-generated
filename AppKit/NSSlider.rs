@@ -160,6 +160,8 @@ impl NSSlider {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`trackFillColor`][Self::trackFillColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrackFillColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackFillColor(&self, track_fill_color: Option<&NSColor>);

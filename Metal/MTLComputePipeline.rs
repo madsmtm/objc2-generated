@@ -73,6 +73,8 @@ impl MTLComputePipelineDescriptor {
         pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub fn setLabel(&self, label: Option<&NSString>);
@@ -126,6 +128,8 @@ impl MTLComputePipelineDescriptor {
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Setter for [`stageInputDescriptor`][Self::stageInputDescriptor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStageInputDescriptor:))]
         #[unsafe(method_family = none)]
         pub fn setStageInputDescriptor(
@@ -166,6 +170,8 @@ impl MTLComputePipelineDescriptor {
 
         #[cfg(feature = "MTLDynamicLibrary")]
         /// Setter for [`insertLibraries`][Self::insertLibraries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setInsertLibraries:))]
         #[unsafe(method_family = none)]
@@ -190,6 +196,8 @@ impl MTLComputePipelineDescriptor {
 
         #[cfg(feature = "MTLDynamicLibrary")]
         /// Setter for [`preloadedLibraries`][Self::preloadedLibraries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreloadedLibraries:))]
         #[unsafe(method_family = none)]
         pub fn setPreloadedLibraries(
@@ -211,6 +219,8 @@ impl MTLComputePipelineDescriptor {
 
         #[cfg(feature = "MTLBinaryArchive")]
         /// Setter for [`binaryArchives`][Self::binaryArchives].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBinaryArchives:))]
         #[unsafe(method_family = none)]
         pub fn setBinaryArchives(
@@ -233,6 +243,8 @@ impl MTLComputePipelineDescriptor {
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`linkedFunctions`][Self::linkedFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLinkedFunctions:))]
         #[unsafe(method_family = none)]
         pub fn setLinkedFunctions(&self, linked_functions: Option<&MTLLinkedFunctions>);

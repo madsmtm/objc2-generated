@@ -31,6 +31,8 @@ impl UIMailConversationContext {
         pub unsafe fn responseSubject(&self) -> Retained<NSString>;
 
         /// Setter for [`responseSubject`][Self::responseSubject].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setResponseSubject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResponseSubject(&self, response_subject: &NSString);
@@ -51,6 +53,8 @@ impl UIMailConversationContext {
         pub unsafe fn responseSecondaryRecipientIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
         /// Setter for [`responseSecondaryRecipientIdentifiers`][Self::responseSecondaryRecipientIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setResponseSecondaryRecipientIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResponseSecondaryRecipientIdentifiers(

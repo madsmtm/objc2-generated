@@ -33,6 +33,8 @@ impl CNContactPicker {
         pub unsafe fn displayedKeys(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`displayedKeys`][Self::displayedKeys].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplayedKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayedKeys(&self, displayed_keys: &NSArray<NSString>);
@@ -46,8 +48,9 @@ impl CNContactPicker {
         ) -> Option<Retained<ProtocolObject<dyn CNContactPickerDelegate>>>;
 
         #[cfg(feature = "CNContactPickerDelegate")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

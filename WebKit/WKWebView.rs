@@ -162,8 +162,9 @@ impl WKWebView {
         ) -> Option<Retained<ProtocolObject<dyn WKNavigationDelegate>>>;
 
         #[cfg(feature = "WKNavigationDelegate")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`navigationDelegate`][Self::navigationDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setNavigationDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNavigationDelegate(
@@ -178,8 +179,9 @@ impl WKWebView {
         pub unsafe fn UIDelegate(&self) -> Option<Retained<ProtocolObject<dyn WKUIDelegate>>>;
 
         #[cfg(feature = "WKUIDelegate")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`UIDelegate`][Self::UIDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setUIDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&ProtocolObject<dyn WKUIDelegate>>);
@@ -723,6 +725,8 @@ impl WKWebView {
         pub unsafe fn customUserAgent(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customUserAgent`][Self::customUserAgent].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomUserAgent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomUserAgent(&self, custom_user_agent: Option<&NSString>);
@@ -821,6 +825,8 @@ impl WKWebView {
         pub unsafe fn mediaType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`mediaType`][Self::mediaType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMediaType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaType(&self, media_type: Option<&NSString>);
@@ -830,6 +836,8 @@ impl WKWebView {
         pub unsafe fn interactionState(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`interactionState`][Self::interactionState].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInteractionState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractionState(&self, interaction_state: Option<&AnyObject>);
@@ -934,6 +942,8 @@ impl WKWebView {
         pub unsafe fn underPageBackgroundColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`underPageBackgroundColor`][Self::underPageBackgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUnderPageBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnderPageBackgroundColor(

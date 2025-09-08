@@ -45,6 +45,8 @@ impl UIContentUnavailableButtonProperties {
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Setter for [`primaryAction`][Self::primaryAction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrimaryAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryAction(&self, primary_action: Option<&UIAction>);
@@ -57,6 +59,8 @@ impl UIContentUnavailableButtonProperties {
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Setter for [`menu`][Self::menu].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMenu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenu(&self, menu: Option<&UIMenu>);

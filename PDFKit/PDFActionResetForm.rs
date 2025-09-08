@@ -42,6 +42,8 @@ impl PDFActionResetForm {
         pub unsafe fn fields(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`fields`][Self::fields].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFields:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFields(&self, fields: Option<&NSArray<NSString>>);

@@ -77,6 +77,8 @@ impl NSPDFPanel {
         pub unsafe fn defaultFileName(&self) -> Retained<NSString>;
 
         /// Setter for [`defaultFileName`][Self::defaultFileName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultFileName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultFileName(&self, default_file_name: &NSString);

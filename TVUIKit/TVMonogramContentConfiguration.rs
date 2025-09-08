@@ -67,6 +67,8 @@ impl TVMonogramContentConfiguration {
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
@@ -82,6 +84,8 @@ impl TVMonogramContentConfiguration {
         pub unsafe fn secondaryText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`secondaryText`][Self::secondaryText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSecondaryText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryText(&self, secondary_text: Option<&NSString>);
@@ -97,6 +101,8 @@ impl TVMonogramContentConfiguration {
         pub unsafe fn personNameComponents(&self) -> Option<Retained<NSPersonNameComponents>>;
 
         /// Setter for [`personNameComponents`][Self::personNameComponents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPersonNameComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPersonNameComponents(
@@ -188,6 +194,8 @@ impl TVMonogramContentView {
         pub unsafe fn configuration(&self) -> Retained<TVMonogramContentConfiguration>;
 
         /// Setter for [`configuration`][Self::configuration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(&self, configuration: &TVMonogramContentConfiguration);
@@ -260,6 +268,8 @@ impl TVMonogramContentTextProperties {
         pub unsafe fn font(&self) -> Retained<UIFont>;
 
         /// Setter for [`font`][Self::font].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: &UIFont);
@@ -270,6 +280,8 @@ impl TVMonogramContentTextProperties {
         pub unsafe fn color(&self) -> Retained<UIColor>;
 
         /// Setter for [`color`][Self::color].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: &UIColor);

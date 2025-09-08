@@ -54,6 +54,8 @@ impl ACAccount {
         pub unsafe fn accountDescription(&self) -> Retained<NSString>;
 
         /// Setter for [`accountDescription`][Self::accountDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(setAccountDescription:))]
         #[unsafe(method_family = none)]
@@ -65,6 +67,8 @@ impl ACAccount {
         pub unsafe fn username(&self) -> Retained<NSString>;
 
         /// Setter for [`username`][Self::username].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(setUsername:))]
         #[unsafe(method_family = none)]

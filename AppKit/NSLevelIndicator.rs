@@ -211,6 +211,8 @@ impl NSLevelIndicator {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`fillColor`][Self::fillColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFillColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFillColor(&self, fill_color: Option<&NSColor>);
@@ -223,6 +225,8 @@ impl NSLevelIndicator {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`warningFillColor`][Self::warningFillColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWarningFillColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWarningFillColor(&self, warning_fill_color: Option<&NSColor>);
@@ -235,6 +239,8 @@ impl NSLevelIndicator {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`criticalFillColor`][Self::criticalFillColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCriticalFillColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCriticalFillColor(&self, critical_fill_color: Option<&NSColor>);

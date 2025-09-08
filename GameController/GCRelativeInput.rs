@@ -36,6 +36,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`deltaDidChangeHandler`][Self::deltaDidChangeHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDeltaDidChangeHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setDeltaDidChangeHandler(

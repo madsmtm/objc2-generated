@@ -400,6 +400,8 @@ impl ICCameraDevice {
 
         #[cfg(feature = "block2")]
         /// Setter for [`ptpEventHandler`][Self::ptpEventHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPtpEventHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPtpEventHandler(

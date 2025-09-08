@@ -76,6 +76,8 @@ impl NSToolbarItem {
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);
@@ -87,6 +89,8 @@ impl NSToolbarItem {
         pub unsafe fn paletteLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`paletteLabel`][Self::paletteLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPaletteLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaletteLabel(&self, palette_label: &NSString);
@@ -98,6 +102,8 @@ impl NSToolbarItem {
         pub unsafe fn possibleLabels(&self) -> Retained<NSSet<NSString>>;
 
         /// Setter for [`possibleLabels`][Self::possibleLabels].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPossibleLabels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPossibleLabels(&self, possible_labels: &NSSet<NSString>);
@@ -108,6 +114,8 @@ impl NSToolbarItem {
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`toolTip`][Self::toolTip].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setToolTip:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
@@ -149,8 +157,9 @@ impl NSToolbarItem {
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -195,6 +204,8 @@ impl NSToolbarItem {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);

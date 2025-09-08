@@ -549,6 +549,10 @@ impl IOBluetoothHandsFree {
         /// A IOBluetoothHandsFree delegate can optionally respond to any of the delegate methods in IOBluetoothHandsFreeDelegate and any subclasses delegates.
         ///
         /// Parameter `newDelegate`: The delegate for the hands free object. Pass nil to remove an existing delegate.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(

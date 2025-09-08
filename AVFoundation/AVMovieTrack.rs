@@ -129,6 +129,8 @@ impl AVMutableMovieTrack {
 
         #[cfg(feature = "AVMovie")]
         /// Setter for [`mediaDataStorage`][Self::mediaDataStorage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMediaDataStorage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaDataStorage(&self, media_data_storage: Option<&AVMediaDataStorage>);
@@ -145,6 +147,8 @@ impl AVMutableMovieTrack {
         pub unsafe fn sampleReferenceBaseURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`sampleReferenceBaseURL`][Self::sampleReferenceBaseURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSampleReferenceBaseURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSampleReferenceBaseURL(&self, sample_reference_base_url: Option<&NSURL>);
@@ -232,6 +236,8 @@ impl AVMutableMovieTrack {
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`languageCode`][Self::languageCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLanguageCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanguageCode(&self, language_code: Option<&NSString>);
@@ -244,6 +250,8 @@ impl AVMutableMovieTrack {
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`extendedLanguageTag`][Self::extendedLanguageTag].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExtendedLanguageTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtendedLanguageTag(&self, extended_language_tag: Option<&NSString>);
@@ -473,6 +481,8 @@ impl AVMutableMovieTrack {
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`metadata`][Self::metadata].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSArray<AVMetadataItem>);

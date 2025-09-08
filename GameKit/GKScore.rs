@@ -76,6 +76,8 @@ impl GKScore {
         pub unsafe fn leaderboardIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`leaderboardIdentifier`][Self::leaderboardIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setLeaderboardIdentifier:))]
         #[unsafe(method_family = none)]
@@ -181,6 +183,8 @@ impl GKScore {
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]

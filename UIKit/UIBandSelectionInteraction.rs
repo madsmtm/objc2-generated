@@ -89,6 +89,8 @@ impl UIBandSelectionInteraction {
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`shouldBeginHandler`][Self::shouldBeginHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShouldBeginHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldBeginHandler(

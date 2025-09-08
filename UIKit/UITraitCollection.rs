@@ -425,6 +425,8 @@ extern_protocol!(
 
         #[cfg(feature = "UIContentSizeCategory")]
         /// Setter for [`preferredContentSizeCategory`][Self::preferredContentSizeCategory].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredContentSizeCategory:))]
         #[unsafe(method_family = none)]
         unsafe fn setPreferredContentSizeCategory(
@@ -528,6 +530,8 @@ extern_protocol!(
         unsafe fn typesettingLanguage(&self) -> Retained<NSString>;
 
         /// Setter for [`typesettingLanguage`][Self::typesettingLanguage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTypesettingLanguage:))]
         #[unsafe(method_family = none)]
         unsafe fn setTypesettingLanguage(&self, typesetting_language: &NSString);

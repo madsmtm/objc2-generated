@@ -52,8 +52,9 @@ impl MDLRelativeAssetResolver {
         pub unsafe fn asset(&self) -> Option<Retained<MDLAsset>>;
 
         #[cfg(feature = "MDLAsset")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`asset`][Self::asset].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAsset(&self, asset: Option<&MDLAsset>);
@@ -111,6 +112,8 @@ impl MDLPathAssetResolver {
         pub unsafe fn path(&self) -> Retained<NSString>;
 
         /// Setter for [`path`][Self::path].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: &NSString);
@@ -156,6 +159,8 @@ impl MDLBundleAssetResolver {
         pub unsafe fn path(&self) -> Retained<NSString>;
 
         /// Setter for [`path`][Self::path].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: &NSString);

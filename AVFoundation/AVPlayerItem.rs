@@ -597,6 +597,8 @@ impl AVPlayerItem {
 
         #[cfg(feature = "AVVideoComposition")]
         /// Setter for [`videoComposition`][Self::videoComposition].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoComposition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);
@@ -648,6 +650,8 @@ impl AVPlayerItem {
 
         #[cfg(feature = "AVTextStyleRule")]
         /// Setter for [`textStyleRules`][Self::textStyleRules].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextStyleRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextStyleRules(&self, text_style_rules: Option<&NSArray<AVTextStyleRule>>);
@@ -662,6 +666,8 @@ impl AVPlayerItem {
 
         #[cfg(feature = "AVVideoSettings")]
         /// Setter for [`videoApertureMode`][Self::videoApertureMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoApertureMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoApertureMode(&self, video_aperture_mode: &AVVideoApertureMode);
@@ -696,6 +702,8 @@ impl AVPlayerItem {
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudioTimePitchAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioTimePitchAlgorithm(
@@ -744,6 +752,8 @@ impl AVPlayerItem {
 
         #[cfg(feature = "AVAudioMix")]
         /// Setter for [`audioMix`][Self::audioMix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudioMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioMix(&self, audio_mix: Option<&AVAudioMix>);

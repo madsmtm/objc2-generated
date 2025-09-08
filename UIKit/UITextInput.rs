@@ -172,6 +172,8 @@ impl UITextInputAssistantItem {
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Setter for [`leadingBarButtonGroups`][Self::leadingBarButtonGroups].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLeadingBarButtonGroups:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeadingBarButtonGroups(
@@ -187,6 +189,8 @@ impl UITextInputAssistantItem {
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Setter for [`trailingBarButtonGroups`][Self::trailingBarButtonGroups].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrailingBarButtonGroups:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrailingBarButtonGroups(
@@ -294,6 +298,8 @@ extern_protocol!(
         unsafe fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;
 
         /// Setter for [`selectedTextRange`][Self::selectedTextRange].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedTextRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setSelectedTextRange(&self, selected_text_range: Option<&UITextRange>);
@@ -309,6 +315,8 @@ extern_protocol!(
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         /// Setter for [`markedTextStyle`][Self::markedTextStyle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMarkedTextStyle:))]
         #[unsafe(method_family = none)]
         unsafe fn setMarkedTextStyle(
@@ -382,8 +390,9 @@ extern_protocol!(
         unsafe fn inputDelegate(&self)
             -> Option<Retained<ProtocolObject<dyn UITextInputDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`inputDelegate`][Self::inputDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setInputDelegate:))]
         #[unsafe(method_family = none)]
         unsafe fn setInputDelegate(

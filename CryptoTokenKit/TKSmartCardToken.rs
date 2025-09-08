@@ -55,6 +55,8 @@ impl TKTokenSmartCardPINAuthOperation {
         pub unsafe fn APDUTemplate(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`APDUTemplate`][Self::APDUTemplate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAPDUTemplate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAPDUTemplate(&self, apdu_template: Option<&NSData>);
@@ -87,6 +89,8 @@ impl TKTokenSmartCardPINAuthOperation {
         pub unsafe fn PIN(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`PIN`][Self::PIN].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPIN:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPIN(&self, pin: Option<&NSString>);

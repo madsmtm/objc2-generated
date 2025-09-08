@@ -145,8 +145,9 @@ impl GKGameCenterViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKGameCenterControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`gameCenterDelegate`][Self::gameCenterDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setGameCenterDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGameCenterDelegate(

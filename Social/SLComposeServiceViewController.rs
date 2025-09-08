@@ -82,6 +82,8 @@ impl SLComposeServiceViewController {
         pub unsafe fn placeholder(&self) -> Retained<NSString>;
 
         /// Setter for [`placeholder`][Self::placeholder].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPlaceholder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaceholder(&self, placeholder: Option<&NSString>);

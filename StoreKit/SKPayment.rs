@@ -130,6 +130,8 @@ impl SKMutablePayment {
         pub unsafe fn applicationUsername(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`applicationUsername`][Self::applicationUsername].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Create a Product.PurchaseOption.appAccountToken to use in Product.purchase(confirmIn:options:)"]
         #[unsafe(method(setApplicationUsername:))]
         #[unsafe(method_family = none)]
@@ -143,6 +145,8 @@ impl SKMutablePayment {
 
         #[cfg(feature = "SKPaymentDiscount")]
         /// Setter for [`paymentDiscount`][Self::paymentDiscount].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[unsafe(method(setPaymentDiscount:))]
         #[unsafe(method_family = none)]
@@ -154,6 +158,8 @@ impl SKMutablePayment {
         pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`productIdentifier`][Self::productIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use Product.purchase(confirmIn:options:)"]
         #[unsafe(method(setProductIdentifier:))]
         #[unsafe(method_family = none)]
@@ -176,6 +182,8 @@ impl SKMutablePayment {
         pub unsafe fn requestData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`requestData`][Self::requestData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Create Product.PurchaseOption.custom values to use in Product.purchase(confirmIn:options:)"]
         #[unsafe(method(setRequestData:))]
         #[unsafe(method_family = none)]

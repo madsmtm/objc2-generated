@@ -331,6 +331,8 @@ impl GKTurnBasedMatch {
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`message`][Self::message].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMessage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
@@ -802,8 +804,9 @@ impl GKTurnBasedEventHandler {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<NSObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

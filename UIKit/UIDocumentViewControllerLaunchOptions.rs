@@ -50,6 +50,8 @@ impl UIDocumentViewControllerLaunchOptions {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -62,6 +64,8 @@ impl UIDocumentViewControllerLaunchOptions {
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Setter for [`primaryAction`][Self::primaryAction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrimaryAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryAction(&self, primary_action: Option<&UIAction>);
@@ -74,6 +78,8 @@ impl UIDocumentViewControllerLaunchOptions {
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Setter for [`secondaryAction`][Self::secondaryAction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSecondaryAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryAction(&self, secondary_action: Option<&UIAction>);

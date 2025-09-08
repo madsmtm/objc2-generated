@@ -73,8 +73,9 @@ impl GKAchievementViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKAchievementViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`achievementDelegate`][Self::achievementDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[unsafe(method(setAchievementDelegate:))]
         #[unsafe(method_family = none)]

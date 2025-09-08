@@ -225,6 +225,8 @@ impl NSButton {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -235,6 +237,8 @@ impl NSButton {
         pub unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
@@ -245,6 +249,8 @@ impl NSButton {
         pub unsafe fn alternateTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`alternateTitle`][Self::alternateTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAlternateTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlternateTitle(&self, alternate_title: &NSString);
@@ -255,6 +261,8 @@ impl NSButton {
         pub unsafe fn attributedAlternateTitle(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedAlternateTitle`][Self::attributedAlternateTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedAlternateTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedAlternateTitle(
@@ -370,6 +378,8 @@ impl NSButton {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`bezelColor`][Self::bezelColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBezelColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBezelColor(&self, bezel_color: Option<&NSColor>);
@@ -382,6 +392,8 @@ impl NSButton {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`contentTintColor`][Self::contentTintColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
@@ -452,6 +464,8 @@ impl NSButton {
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`symbolConfiguration`][Self::symbolConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSymbolConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSymbolConfiguration(
@@ -497,6 +511,8 @@ impl NSButton {
         pub unsafe fn keyEquivalent(&self) -> Retained<NSString>;
 
         /// Setter for [`keyEquivalent`][Self::keyEquivalent].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeyEquivalent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyEquivalent(&self, key_equivalent: &NSString);

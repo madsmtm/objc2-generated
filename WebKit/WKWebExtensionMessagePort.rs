@@ -84,6 +84,8 @@ impl WKWebExtensionMessagePort {
 
         #[cfg(feature = "block2")]
         /// Setter for [`messageHandler`][Self::messageHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMessageHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessageHandler(
@@ -101,6 +103,8 @@ impl WKWebExtensionMessagePort {
 
         #[cfg(feature = "block2")]
         /// Setter for [`disconnectHandler`][Self::disconnectHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisconnectHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisconnectHandler(

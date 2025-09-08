@@ -167,6 +167,8 @@ impl NSPrintOperation {
         pub unsafe fn jobTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`jobTitle`][Self::jobTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJobTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJobTitle(&self, job_title: Option<&NSString>);
@@ -256,6 +258,8 @@ impl NSPrintOperation {
 
         #[cfg(feature = "NSPrintInfo")]
         /// Setter for [`printInfo`][Self::printInfo].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrintInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);

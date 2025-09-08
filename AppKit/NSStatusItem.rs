@@ -108,6 +108,8 @@ impl NSStatusItem {
         pub unsafe fn autosaveName(&self) -> Retained<NSStatusItemAutosaveName>;
 
         /// Setter for [`autosaveName`][Self::autosaveName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAutosaveName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSStatusItemAutosaveName>);
@@ -157,8 +159,9 @@ impl NSStatusItem {
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Use the receiver's button.target instead"]
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
@@ -170,6 +173,8 @@ impl NSStatusItem {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use the receiver's button.title instead"]
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
@@ -181,6 +186,8 @@ impl NSStatusItem {
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use the receiver's button.attributedTitle instead"]
         #[unsafe(method(setAttributedTitle:))]
         #[unsafe(method_family = none)]
@@ -240,6 +247,8 @@ impl NSStatusItem {
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`toolTip`][Self::toolTip].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use the receiver's button.toolTip instead"]
         #[unsafe(method(setToolTip:))]
         #[unsafe(method_family = none)]

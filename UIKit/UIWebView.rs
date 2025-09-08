@@ -177,6 +177,9 @@ extern_conformance!(
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIWebView {
     extern_methods!(
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]

@@ -48,6 +48,8 @@ impl UIDocumentProperties {
 
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession", feature = "block2"))]
         /// Setter for [`dragItemsProvider`][Self::dragItemsProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDragItemsProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDragItemsProvider(
@@ -81,6 +83,8 @@ impl UIDocumentProperties {
             feature = "block2"
         ))]
         /// Setter for [`activityViewControllerProvider`][Self::activityViewControllerProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActivityViewControllerProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityViewControllerProvider(

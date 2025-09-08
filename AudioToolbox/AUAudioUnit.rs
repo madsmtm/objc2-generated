@@ -768,6 +768,8 @@ impl AUAudioUnit {
 
         #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
         /// Setter for [`MIDIOutputEventBlock`][Self::MIDIOutputEventBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMIDIOutputEventBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMIDIOutputEventBlock(
@@ -837,6 +839,8 @@ impl AUAudioUnit {
         pub unsafe fn fullState(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`fullState`][Self::fullState].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFullState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFullState(&self, full_state: Option<&NSDictionary<NSString, AnyObject>>);
@@ -860,6 +864,8 @@ impl AUAudioUnit {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`fullStateForDocument`][Self::fullStateForDocument].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFullStateForDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFullStateForDocument(
@@ -1184,6 +1190,8 @@ impl AUAudioUnit {
 
         #[cfg(feature = "block2")]
         /// Setter for [`musicalContextBlock`][Self::musicalContextBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMusicalContextBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMusicalContextBlock(
@@ -1205,6 +1213,8 @@ impl AUAudioUnit {
 
         #[cfg(feature = "block2")]
         /// Setter for [`transportStateBlock`][Self::transportStateBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTransportStateBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransportStateBlock(
@@ -1224,6 +1234,8 @@ impl AUAudioUnit {
         pub unsafe fn contextName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`contextName`][Self::contextName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContextName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContextName(&self, context_name: Option<&NSString>);
@@ -1264,6 +1276,8 @@ impl AUAudioUnit {
         pub unsafe fn channelMap(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`channelMap`][Self::channelMap].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChannelMap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannelMap(&self, channel_map: Option<&NSArray<NSNumber>>);
@@ -1469,6 +1483,8 @@ impl AUAudioUnit {
             feature = "objc2-core-audio-types"
         ))]
         /// Setter for [`outputProvider`][Self::outputProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputProvider(&self, output_provider: AURenderPullInputBlock);
@@ -1491,6 +1507,8 @@ impl AUAudioUnit {
             feature = "objc2-core-audio-types"
         ))]
         /// Setter for [`inputHandler`][Self::inputHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInputHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputHandler(&self, input_handler: AUInputHandler);
@@ -1649,6 +1667,10 @@ impl AUAudioUnitBusArray {
         );
 
         /// The audio unit that owns the bus.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(ownerAudioUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn ownerAudioUnit(&self) -> Retained<AUAudioUnit>;
@@ -1732,6 +1754,8 @@ impl AUAudioUnitBus {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -1747,6 +1771,10 @@ impl AUAudioUnitBus {
         pub unsafe fn busType(&self) -> AUAudioUnitBusType;
 
         /// The audio unit that owns the bus.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(ownerAudioUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn ownerAudioUnit(&self) -> Retained<AUAudioUnit>;
@@ -1859,6 +1887,8 @@ impl AUAudioUnitPreset {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -1925,6 +1955,8 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`callHostBlock`][Self::callHostBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[optional]
         #[unsafe(method(setCallHostBlock:))]
         #[unsafe(method_family = none)]

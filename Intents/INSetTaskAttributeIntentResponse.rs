@@ -94,6 +94,8 @@ impl INSetTaskAttributeIntentResponse {
 
         #[cfg(feature = "INTask")]
         /// Setter for [`modifiedTask`][Self::modifiedTask].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModifiedTask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModifiedTask(&self, modified_task: Option<&INTask>);

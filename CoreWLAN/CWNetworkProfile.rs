@@ -187,6 +187,8 @@ impl CWMutableNetworkProfile {
         pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`ssidData`][Self::ssidData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSsidData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSsidData(&self, ssid_data: Option<&NSData>);

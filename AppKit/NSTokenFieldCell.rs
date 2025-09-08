@@ -145,6 +145,8 @@ impl NSTokenFieldCell {
         pub unsafe fn tokenizingCharacterSet(&self) -> Retained<NSCharacterSet>;
 
         /// Setter for [`tokenizingCharacterSet`][Self::tokenizingCharacterSet].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTokenizingCharacterSet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTokenizingCharacterSet(
@@ -164,8 +166,9 @@ impl NSTokenFieldCell {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTokenFieldCellDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

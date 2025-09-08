@@ -15,6 +15,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn headline(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`headline`][Self::headline].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHeadline:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeadline(&self, headline: Option<&NSString>);
@@ -24,6 +26,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn instructions(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`instructions`][Self::instructions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInstructions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstructions(&self, instructions: Option<&NSString>);
@@ -33,6 +37,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn thoroughfare(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`thoroughfare`][Self::thoroughfare].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setThoroughfare:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThoroughfare(&self, thoroughfare: Option<&NSString>);
@@ -42,6 +48,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn subThoroughfare(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subThoroughfare`][Self::subThoroughfare].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubThoroughfare:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubThoroughfare(&self, sub_thoroughfare: Option<&NSString>);
@@ -51,6 +59,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn postalCode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`postalCode`][Self::postalCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPostalCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPostalCode(&self, postal_code: Option<&NSString>);
@@ -60,6 +70,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn city(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`city`][Self::city].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCity(&self, city: Option<&NSString>);
@@ -69,6 +81,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn stateOrProvince(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`stateOrProvince`][Self::stateOrProvince].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStateOrProvince:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStateOrProvince(&self, state_or_province: Option<&NSString>);
@@ -78,6 +92,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn country(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`country`][Self::country].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCountry:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCountry(&self, country: Option<&NSString>);
@@ -87,6 +103,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn fullyFormattedAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fullyFormattedAddress`][Self::fullyFormattedAddress].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFullyFormattedAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFullyFormattedAddress(&self, fully_formatted_address: Option<&NSString>);
@@ -150,6 +168,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn namedLocation(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`namedLocation`][Self::namedLocation].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNamedLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNamedLocation(&self, named_location: Option<&NSString>);
@@ -168,6 +188,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn GPSStatus(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`GPSStatus`][Self::GPSStatus].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGPSStatus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGPSStatus(&self, gps_status: Option<&NSString>);
@@ -177,6 +199,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn GPSMeasureMode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`GPSMeasureMode`][Self::GPSMeasureMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGPSMeasureMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGPSMeasureMode(&self, gps_measure_mode: Option<&NSString>);
@@ -195,6 +219,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn GPSMapDatum(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`GPSMapDatum`][Self::GPSMapDatum].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGPSMapDatum:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGPSMapDatum(&self, gps_map_datum: Option<&NSString>);
@@ -240,6 +266,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn GPSProcessingMethod(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`GPSProcessingMethod`][Self::GPSProcessingMethod].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGPSProcessingMethod:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGPSProcessingMethod(&self, gps_processing_method: Option<&NSString>);
@@ -249,6 +277,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn GPSAreaInformation(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`GPSAreaInformation`][Self::GPSAreaInformation].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGPSAreaInformation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGPSAreaInformation(&self, gps_area_information: Option<&NSString>);

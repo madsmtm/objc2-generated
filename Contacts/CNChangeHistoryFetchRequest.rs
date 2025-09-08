@@ -53,6 +53,8 @@ impl CNChangeHistoryFetchRequest {
         pub unsafe fn startingToken(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`startingToken`][Self::startingToken].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStartingToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartingToken(&self, starting_token: Option<&NSData>);
@@ -76,6 +78,8 @@ impl CNChangeHistoryFetchRequest {
 
         #[cfg(feature = "CNContact")]
         /// Setter for [`additionalContactKeyDescriptors`][Self::additionalContactKeyDescriptors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAdditionalContactKeyDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalContactKeyDescriptors(
@@ -141,6 +145,8 @@ impl CNChangeHistoryFetchRequest {
         pub unsafe fn excludedTransactionAuthors(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`excludedTransactionAuthors`][Self::excludedTransactionAuthors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedTransactionAuthors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedTransactionAuthors(

@@ -102,6 +102,8 @@ impl NSScriptCommand {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`arguments`][Self::arguments].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArguments(&self, arguments: Option<&NSDictionary<NSString, AnyObject>>);
@@ -173,6 +175,8 @@ impl NSScriptCommand {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`scriptErrorString`][Self::scriptErrorString].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setScriptErrorString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScriptErrorString(&self, script_error_string: Option<&NSString>);

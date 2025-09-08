@@ -40,6 +40,8 @@ impl ODModuleEntry {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -49,6 +51,8 @@ impl ODModuleEntry {
         pub unsafe fn xpcServiceName(&self) -> Retained<NSString>;
 
         /// Setter for [`xpcServiceName`][Self::xpcServiceName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setXpcServiceName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setXpcServiceName(&self, xpc_service_name: Option<&NSString>);
@@ -58,6 +62,8 @@ impl ODModuleEntry {
         pub unsafe fn uuidString(&self) -> Retained<NSString>;
 
         /// Setter for [`uuidString`][Self::uuidString].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUuidString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUuidString(&self, uuid_string: Option<&NSString>);

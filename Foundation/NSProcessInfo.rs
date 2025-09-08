@@ -99,6 +99,8 @@ impl NSProcessInfo {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`processName`][Self::processName].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setProcessName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProcessName(&self, process_name: &NSString);

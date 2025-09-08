@@ -92,6 +92,8 @@ impl INGetCarLockStatusIntentResponse {
         pub unsafe fn locked(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`locked`][Self::locked].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocked:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocked(&self, locked: Option<&NSNumber>);

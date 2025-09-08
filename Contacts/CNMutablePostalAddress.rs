@@ -68,6 +68,8 @@ impl CNMutablePostalAddress {
         pub unsafe fn street(&self) -> Retained<NSString>;
 
         /// Setter for [`street`][Self::street].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStreet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStreet(&self, street: &NSString);
@@ -77,6 +79,8 @@ impl CNMutablePostalAddress {
         pub unsafe fn subLocality(&self) -> Retained<NSString>;
 
         /// Setter for [`subLocality`][Self::subLocality].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubLocality:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubLocality(&self, sub_locality: &NSString);
@@ -86,6 +90,8 @@ impl CNMutablePostalAddress {
         pub unsafe fn city(&self) -> Retained<NSString>;
 
         /// Setter for [`city`][Self::city].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCity(&self, city: &NSString);
@@ -95,6 +101,8 @@ impl CNMutablePostalAddress {
         pub unsafe fn subAdministrativeArea(&self) -> Retained<NSString>;
 
         /// Setter for [`subAdministrativeArea`][Self::subAdministrativeArea].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubAdministrativeArea:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubAdministrativeArea(&self, sub_administrative_area: &NSString);
@@ -104,6 +112,8 @@ impl CNMutablePostalAddress {
         pub unsafe fn state(&self) -> Retained<NSString>;
 
         /// Setter for [`state`][Self::state].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setState(&self, state: &NSString);
@@ -113,6 +123,8 @@ impl CNMutablePostalAddress {
         pub unsafe fn postalCode(&self) -> Retained<NSString>;
 
         /// Setter for [`postalCode`][Self::postalCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPostalCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPostalCode(&self, postal_code: &NSString);
@@ -122,6 +134,8 @@ impl CNMutablePostalAddress {
         pub unsafe fn country(&self) -> Retained<NSString>;
 
         /// Setter for [`country`][Self::country].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCountry:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCountry(&self, country: &NSString);
@@ -131,6 +145,8 @@ impl CNMutablePostalAddress {
         pub unsafe fn ISOCountryCode(&self) -> Retained<NSString>;
 
         /// Setter for [`ISOCountryCode`][Self::ISOCountryCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setISOCountryCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setISOCountryCode(&self, iso_country_code: &NSString);

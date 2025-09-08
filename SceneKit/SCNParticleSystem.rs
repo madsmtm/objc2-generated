@@ -463,8 +463,9 @@ impl SCNParticlePropertyController {
         pub unsafe fn inputOrigin(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`inputOrigin`][Self::inputOrigin].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setInputOrigin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputOrigin(&self, input_origin: Option<&SCNNode>);
@@ -474,6 +475,8 @@ impl SCNParticlePropertyController {
         pub unsafe fn inputProperty(&self) -> Option<Retained<SCNParticleProperty>>;
 
         /// Setter for [`inputProperty`][Self::inputProperty].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInputProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputProperty(&self, input_property: Option<&SCNParticleProperty>);
@@ -1071,6 +1074,8 @@ impl SCNParticleSystem {
 
         #[cfg(feature = "SCNNode")]
         /// Setter for [`colliderNodes`][Self::colliderNodes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColliderNodes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColliderNodes(&self, collider_nodes: Option<&NSArray<SCNNode>>);
@@ -1224,6 +1229,8 @@ impl SCNParticleSystem {
         ) -> Option<Retained<NSDictionary<SCNParticleProperty, SCNParticlePropertyController>>>;
 
         /// Setter for [`propertyControllers`][Self::propertyControllers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPropertyControllers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertyControllers(

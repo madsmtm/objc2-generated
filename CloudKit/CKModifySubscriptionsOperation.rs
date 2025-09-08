@@ -43,6 +43,8 @@ impl CKModifySubscriptionsOperation {
 
         #[cfg(feature = "CKSubscription")]
         /// Setter for [`subscriptionsToSave`][Self::subscriptionsToSave].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubscriptionsToSave:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriptionsToSave(
@@ -58,6 +60,8 @@ impl CKModifySubscriptionsOperation {
 
         #[cfg(feature = "CKSubscription")]
         /// Setter for [`subscriptionIDsToDelete`][Self::subscriptionIDsToDelete].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubscriptionIDsToDelete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriptionIDsToDelete(
@@ -83,6 +87,8 @@ impl CKModifySubscriptionsOperation {
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`perSubscriptionSaveBlock`][Self::perSubscriptionSaveBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerSubscriptionSaveBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerSubscriptionSaveBlock(
@@ -110,6 +116,8 @@ impl CKModifySubscriptionsOperation {
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`perSubscriptionDeleteBlock`][Self::perSubscriptionDeleteBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerSubscriptionDeleteBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerSubscriptionDeleteBlock(
@@ -150,6 +158,8 @@ impl CKModifySubscriptionsOperation {
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`modifySubscriptionsCompletionBlock`][Self::modifySubscriptionsCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModifySubscriptionsCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModifySubscriptionsCompletionBlock(

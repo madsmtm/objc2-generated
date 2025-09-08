@@ -94,6 +94,8 @@ impl INCreateNoteIntentResponse {
 
         #[cfg(feature = "INNote")]
         /// Setter for [`createdNote`][Self::createdNote].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCreatedNote:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCreatedNote(&self, created_note: Option<&INNote>);

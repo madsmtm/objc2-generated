@@ -457,6 +457,8 @@ impl NSMutableParagraphStyle {
         pub unsafe fn tabStops(&self) -> Retained<NSArray<NSTextTab>>;
 
         /// Setter for [`tabStops`][Self::tabStops].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTabStops:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTabStops(&self, tab_stops: Option<&NSArray<NSTextTab>>);
@@ -500,6 +502,8 @@ impl NSMutableParagraphStyle {
 
         #[cfg(feature = "NSTextList")]
         /// Setter for [`textLists`][Self::textLists].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextLists:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextLists(&self, text_lists: &NSArray<NSTextList>);
@@ -604,6 +608,8 @@ impl NSMutableParagraphStyle {
 
         #[cfg(feature = "NSTextTable")]
         /// Setter for [`textBlocks`][Self::textBlocks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextBlocks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextBlocks(&self, text_blocks: &NSArray<NSTextBlock>);

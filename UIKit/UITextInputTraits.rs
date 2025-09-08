@@ -571,6 +571,8 @@ extern_protocol!(
         unsafe fn textContentType(&self) -> Retained<UITextContentType>;
 
         /// Setter for [`textContentType`][Self::textContentType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[optional]
         #[unsafe(method(setTextContentType:))]
         #[unsafe(method_family = none)]
@@ -582,6 +584,8 @@ extern_protocol!(
         unsafe fn passwordRules(&self) -> Option<Retained<UITextInputPasswordRules>>;
 
         /// Setter for [`passwordRules`][Self::passwordRules].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[optional]
         #[unsafe(method(setPasswordRules:))]
         #[unsafe(method_family = none)]

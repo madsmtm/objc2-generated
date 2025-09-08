@@ -40,6 +40,8 @@ impl CPDashboardController {
 
         #[cfg(feature = "CPDashboardButton")]
         /// Setter for [`shortcutButtons`][Self::shortcutButtons].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShortcutButtons:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShortcutButtons(&self, shortcut_buttons: &NSArray<CPDashboardButton>);

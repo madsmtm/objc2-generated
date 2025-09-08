@@ -27,6 +27,8 @@ impl SKNode {
         pub unsafe fn accessibilityRole(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityRole`][Self::accessibilityRole].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityRole:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityRole(&self, accessibility_role: Option<&NSString>);
@@ -36,6 +38,8 @@ impl SKNode {
         pub unsafe fn accessibilityRoleDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityRoleDescription`][Self::accessibilityRoleDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityRoleDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityRoleDescription(
@@ -48,6 +52,8 @@ impl SKNode {
         pub unsafe fn accessibilitySubrole(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilitySubrole`][Self::accessibilitySubrole].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilitySubrole:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilitySubrole(&self, accessibility_subrole: Option<&NSString>);
@@ -67,8 +73,9 @@ impl SKNode {
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityParent(&self) -> Option<Retained<AnyObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityParent`][Self::accessibilityParent].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAccessibilityParent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityParent(&self, accessibility_parent: Option<&AnyObject>);
@@ -78,6 +85,8 @@ impl SKNode {
         pub unsafe fn accessibilityChildren(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityChildren`][Self::accessibilityChildren].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityChildren:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityChildren(&self, accessibility_children: Option<&NSArray>);
@@ -87,6 +96,8 @@ impl SKNode {
         pub unsafe fn accessibilityHelp(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityHelp`][Self::accessibilityHelp].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityHelp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityHelp(&self, accessibility_help: Option<&NSString>);
@@ -96,6 +107,8 @@ impl SKNode {
         pub unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);

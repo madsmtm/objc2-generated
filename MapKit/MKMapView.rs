@@ -131,8 +131,9 @@ impl MKMapView {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn MKMapViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn MKMapViewDelegate>>);
@@ -157,6 +158,8 @@ impl MKMapView {
 
         #[cfg(feature = "MKMapConfiguration")]
         /// Setter for [`preferredConfiguration`][Self::preferredConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredConfiguration(
@@ -252,6 +255,8 @@ impl MKMapView {
 
         #[cfg(feature = "MKMapCamera")]
         /// Setter for [`camera`][Self::camera].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCamera:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCamera(&self, camera: &MKMapCamera);
@@ -268,6 +273,8 @@ impl MKMapView {
 
         #[cfg(feature = "MKMapCameraZoomRange")]
         /// Setter for [`cameraZoomRange`][Self::cameraZoomRange].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCameraZoomRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraZoomRange(&self, camera_zoom_range: Option<&MKMapCameraZoomRange>);
@@ -288,6 +295,8 @@ impl MKMapView {
 
         #[cfg(feature = "MKMapCameraBoundary")]
         /// Setter for [`cameraBoundary`][Self::cameraBoundary].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCameraBoundary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraBoundary(&self, camera_boundary: Option<&MKMapCameraBoundary>);
@@ -445,6 +454,8 @@ impl MKMapView {
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setPointOfInterestFilter:))]
         #[unsafe(method_family = none)]
@@ -616,6 +627,8 @@ impl MKMapView {
 
         #[cfg(feature = "MKAnnotation")]
         /// Setter for [`selectedAnnotations`][Self::selectedAnnotations].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedAnnotations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedAnnotations(

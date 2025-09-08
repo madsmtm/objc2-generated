@@ -95,8 +95,9 @@ impl NSPageController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSPageControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -122,6 +123,8 @@ impl NSPageController {
         pub unsafe fn arrangedObjects(&self) -> Retained<NSArray>;
 
         /// Setter for [`arrangedObjects`][Self::arrangedObjects].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setArrangedObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArrangedObjects(&self, arranged_objects: &NSArray);

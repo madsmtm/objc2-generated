@@ -72,6 +72,8 @@ impl CXStartCallAction {
 
         #[cfg(feature = "CXHandle")]
         /// Setter for [`handle`][Self::handle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHandle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandle(&self, handle: &CXHandle);
@@ -81,6 +83,8 @@ impl CXStartCallAction {
         pub unsafe fn contactIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`contactIdentifier`][Self::contactIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContactIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContactIdentifier(&self, contact_identifier: Option<&NSString>);

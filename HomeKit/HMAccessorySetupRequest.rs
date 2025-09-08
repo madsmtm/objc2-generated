@@ -47,6 +47,8 @@ impl HMAccessorySetupRequest {
 
         #[cfg(feature = "HMAccessorySetupPayload")]
         /// Setter for [`payload`][Self::payload].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPayload:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPayload(&self, payload: Option<&HMAccessorySetupPayload>);
@@ -58,6 +60,8 @@ impl HMAccessorySetupRequest {
         pub unsafe fn homeUniqueIdentifier(&self) -> Option<Retained<NSUUID>>;
 
         /// Setter for [`homeUniqueIdentifier`][Self::homeUniqueIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHomeUniqueIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHomeUniqueIdentifier(&self, home_unique_identifier: Option<&NSUUID>);
@@ -72,6 +76,8 @@ impl HMAccessorySetupRequest {
         pub unsafe fn suggestedRoomUniqueIdentifier(&self) -> Option<Retained<NSUUID>>;
 
         /// Setter for [`suggestedRoomUniqueIdentifier`][Self::suggestedRoomUniqueIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSuggestedRoomUniqueIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuggestedRoomUniqueIdentifier(
@@ -89,6 +95,8 @@ impl HMAccessorySetupRequest {
         pub unsafe fn suggestedAccessoryName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`suggestedAccessoryName`][Self::suggestedAccessoryName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSuggestedAccessoryName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuggestedAccessoryName(&self, suggested_accessory_name: Option<&NSString>);

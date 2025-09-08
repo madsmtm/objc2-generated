@@ -70,6 +70,8 @@ impl DOMCharacterData {
         pub unsafe fn data(&self) -> Retained<NSString>;
 
         /// Setter for [`data`][Self::data].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setData:))]
         #[unsafe(method_family = none)]

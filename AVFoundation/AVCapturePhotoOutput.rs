@@ -598,6 +598,8 @@ impl AVCapturePhotoOutput {
         ) -> Option<Retained<AVCapturePhotoSettings>>;
 
         /// Setter for [`photoSettingsForSceneMonitoring`][Self::photoSettingsForSceneMonitoring].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPhotoSettingsForSceneMonitoring:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhotoSettingsForSceneMonitoring(
@@ -926,8 +928,9 @@ impl AVCapturePhotoOutputReadinessCoordinator {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCapturePhotoOutputReadinessCoordinatorDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -1494,6 +1497,8 @@ impl AVCapturePhotoSettings {
         pub unsafe fn rawFileFormat(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`rawFileFormat`][Self::rawFileFormat].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRawFileFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRawFileFormat(
@@ -1635,6 +1640,8 @@ impl AVCapturePhotoSettings {
 
         #[cfg(feature = "AVCaptureDevice")]
         /// Setter for [`virtualDeviceConstituentPhotoDeliveryEnabledDevices`][Self::virtualDeviceConstituentPhotoDeliveryEnabledDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVirtualDeviceConstituentPhotoDeliveryEnabledDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVirtualDeviceConstituentPhotoDeliveryEnabledDevices(
@@ -1796,6 +1803,8 @@ impl AVCapturePhotoSettings {
 
         #[cfg(feature = "AVSemanticSegmentationMatte")]
         /// Setter for [`enabledSemanticSegmentationMatteTypes`][Self::enabledSemanticSegmentationMatteTypes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEnabledSemanticSegmentationMatteTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabledSemanticSegmentationMatteTypes(
@@ -1832,6 +1841,8 @@ impl AVCapturePhotoSettings {
         pub unsafe fn metadata(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`metadata`][Self::metadata].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSDictionary<NSString, AnyObject>);
@@ -1845,6 +1856,8 @@ impl AVCapturePhotoSettings {
         pub unsafe fn livePhotoMovieFileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`livePhotoMovieFileURL`][Self::livePhotoMovieFileURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLivePhotoMovieFileURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLivePhotoMovieFileURL(&self, live_photo_movie_file_url: Option<&NSURL>);
@@ -1860,6 +1873,8 @@ impl AVCapturePhotoSettings {
 
         #[cfg(feature = "AVVideoSettings")]
         /// Setter for [`livePhotoVideoCodecType`][Self::livePhotoVideoCodecType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLivePhotoVideoCodecType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLivePhotoVideoCodecType(
@@ -1878,6 +1893,8 @@ impl AVCapturePhotoSettings {
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`livePhotoMovieMetadata`][Self::livePhotoMovieMetadata].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLivePhotoMovieMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLivePhotoMovieMetadata(
@@ -1904,6 +1921,8 @@ impl AVCapturePhotoSettings {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`previewPhotoFormat`][Self::previewPhotoFormat].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreviewPhotoFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewPhotoFormat(
@@ -1933,6 +1952,8 @@ impl AVCapturePhotoSettings {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`embeddedThumbnailPhotoFormat`][Self::embeddedThumbnailPhotoFormat].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmbeddedThumbnailPhotoFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmbeddedThumbnailPhotoFormat(
@@ -1962,6 +1983,8 @@ impl AVCapturePhotoSettings {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`rawEmbeddedThumbnailPhotoFormat`][Self::rawEmbeddedThumbnailPhotoFormat].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRawEmbeddedThumbnailPhotoFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRawEmbeddedThumbnailPhotoFormat(

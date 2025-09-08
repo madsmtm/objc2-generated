@@ -164,8 +164,9 @@ impl UIDocumentMenuViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDocumentMenuDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

@@ -37,6 +37,8 @@ impl NSPDFInfo {
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
@@ -55,6 +57,8 @@ impl NSPDFInfo {
         pub unsafe fn tagNames(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`tagNames`][Self::tagNames].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTagNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTagNames(&self, tag_names: &NSArray<NSString>);

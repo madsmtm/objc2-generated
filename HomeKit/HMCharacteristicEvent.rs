@@ -224,6 +224,8 @@ impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
         pub unsafe fn triggerValue(&self) -> Option<Retained<TriggerValueType>>;
 
         /// Setter for [`triggerValue`][Self::triggerValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTriggerValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTriggerValue(&self, trigger_value: Option<&TriggerValueType>);

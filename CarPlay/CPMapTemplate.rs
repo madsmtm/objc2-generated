@@ -286,8 +286,9 @@ impl CPMapTemplate {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CPMapTemplateDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`mapDelegate`][Self::mapDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setMapDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMapDelegate(

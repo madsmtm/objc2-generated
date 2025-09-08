@@ -75,8 +75,9 @@ impl ASAccountAuthenticationModificationController {
             Retained<ProtocolObject<dyn ASAccountAuthenticationModificationControllerDelegate>>,
         >;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -100,8 +101,9 @@ impl ASAccountAuthenticationModificationController {
             >,
         >;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`presentationContextProvider`][Self::presentationContextProvider].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPresentationContextProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPresentationContextProvider(

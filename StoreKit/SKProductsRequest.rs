@@ -55,8 +55,9 @@ impl SKProductsRequest {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SKProductsRequestDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Use Product.products(for:)"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

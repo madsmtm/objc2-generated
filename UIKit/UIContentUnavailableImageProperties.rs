@@ -55,6 +55,8 @@ impl UIContentUnavailableImageProperties {
             feature = "UIImageSymbolConfiguration"
         ))]
         /// Setter for [`preferredSymbolConfiguration`][Self::preferredSymbolConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredSymbolConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSymbolConfiguration(

@@ -42,6 +42,8 @@ impl CKFetchWebAuthTokenOperation {
         pub unsafe fn APIToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`APIToken`][Self::APIToken].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAPIToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAPIToken(&self, api_token: Option<&NSString>);
@@ -69,6 +71,8 @@ impl CKFetchWebAuthTokenOperation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`fetchWebAuthTokenCompletionBlock`][Self::fetchWebAuthTokenCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFetchWebAuthTokenCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchWebAuthTokenCompletionBlock(

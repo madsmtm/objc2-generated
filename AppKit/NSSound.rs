@@ -139,8 +139,9 @@ impl NSSound {
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn NSSoundDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSSoundDelegate>>);
@@ -183,6 +184,8 @@ impl NSSound {
         ) -> Option<Retained<NSSoundPlaybackDeviceIdentifier>>;
 
         /// Setter for [`playbackDeviceIdentifier`][Self::playbackDeviceIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPlaybackDeviceIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaybackDeviceIdentifier(

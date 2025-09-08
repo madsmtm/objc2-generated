@@ -290,6 +290,8 @@ impl AEAssessmentParticipantConfiguration {
         pub unsafe fn configurationInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`configurationInfo`][Self::configurationInfo].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfigurationInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationInfo(
@@ -334,8 +336,9 @@ impl AEAssessmentSession {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AEAssessmentSessionDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

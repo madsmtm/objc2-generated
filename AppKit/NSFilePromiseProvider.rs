@@ -30,6 +30,8 @@ impl NSFilePromiseProvider {
         pub unsafe fn fileType(&self) -> Retained<NSString>;
 
         /// Setter for [`fileType`][Self::fileType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileType(&self, file_type: &NSString);
@@ -40,8 +42,9 @@ impl NSFilePromiseProvider {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFilePromiseProviderDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

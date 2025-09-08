@@ -40,6 +40,8 @@ impl ILClassificationResponse {
         pub unsafe fn userString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`userString`][Self::userString].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUserString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserString(&self, user_string: Option<&NSString>);
@@ -49,6 +51,8 @@ impl ILClassificationResponse {
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);

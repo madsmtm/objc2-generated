@@ -47,6 +47,8 @@ impl CPLaneGuidance {
 
         #[cfg(feature = "CPLane")]
         /// Setter for [`lanes`][Self::lanes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLanes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanes(&self, lanes: &NSArray<CPLane>);
@@ -59,6 +61,8 @@ impl CPLaneGuidance {
         pub unsafe fn instructionVariants(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`instructionVariants`][Self::instructionVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInstructionVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstructionVariants(&self, instruction_variants: &NSArray<NSString>);

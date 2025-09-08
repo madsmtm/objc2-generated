@@ -30,6 +30,8 @@ impl VSAccountMetadataRequest {
         pub unsafe fn channelIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`channelIdentifier`][Self::channelIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChannelIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannelIdentifier(&self, channel_identifier: Option<&NSString>);
@@ -40,6 +42,8 @@ impl VSAccountMetadataRequest {
         pub unsafe fn supportedAccountProviderIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`supportedAccountProviderIdentifiers`][Self::supportedAccountProviderIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedAccountProviderIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedAccountProviderIdentifiers(
@@ -54,6 +58,8 @@ impl VSAccountMetadataRequest {
         pub unsafe fn featuredAccountProviderIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`featuredAccountProviderIdentifiers`][Self::featuredAccountProviderIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFeaturedAccountProviderIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFeaturedAccountProviderIdentifiers(
@@ -67,6 +73,8 @@ impl VSAccountMetadataRequest {
         pub unsafe fn verificationToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`verificationToken`][Self::verificationToken].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVerificationToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVerificationToken(&self, verification_token: Option<&NSString>);
@@ -105,6 +113,8 @@ impl VSAccountMetadataRequest {
         pub unsafe fn localizedVideoTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedVideoTitle`][Self::localizedVideoTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedVideoTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedVideoTitle(&self, localized_video_title: Option<&NSString>);
@@ -135,6 +145,8 @@ impl VSAccountMetadataRequest {
         pub unsafe fn attributeNames(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`attributeNames`][Self::attributeNames].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributeNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeNames(&self, attribute_names: &NSArray<NSString>);
@@ -151,6 +163,8 @@ impl VSAccountMetadataRequest {
 
         #[cfg(feature = "VSAccountProviderResponse")]
         /// Setter for [`supportedAuthenticationSchemes`][Self::supportedAuthenticationSchemes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedAuthenticationSchemes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedAuthenticationSchemes(
@@ -165,6 +179,8 @@ impl VSAccountMetadataRequest {
         pub unsafe fn accountProviderAuthenticationToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accountProviderAuthenticationToken`][Self::accountProviderAuthenticationToken].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccountProviderAuthenticationToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountProviderAuthenticationToken(
@@ -182,6 +198,8 @@ impl VSAccountMetadataRequest {
 
         #[cfg(feature = "VSAccountApplicationProvider")]
         /// Setter for [`applicationAccountProviders`][Self::applicationAccountProviders].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setApplicationAccountProviders:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApplicationAccountProviders(

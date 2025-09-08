@@ -89,6 +89,8 @@ impl DOMHTMLHtmlElement {
         pub unsafe fn version(&self) -> Retained<NSString>;
 
         /// Setter for [`version`][Self::version].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]

@@ -479,6 +479,10 @@ impl SCStreamConfiguration {
 
         #[cfg(feature = "objc2-core-graphics")]
         /// SCStreamProperty for background color. By default the background color is clear.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<CGColor>;
@@ -525,6 +529,10 @@ impl SCStreamConfiguration {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// SCStreamProperty that specifies the YCbCr matrix applied to the output surface.  The value must be one of the strings specified in https://developer.apple.com/documentation/coregraphics/quartz_display_services/display_stream_ycbcr_to_rgb_conversion_matrix_options. Should only be used if your pixel format is 420v or 420f.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(colorMatrix))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorMatrix(&self) -> Retained<CFString>;
@@ -538,6 +546,10 @@ impl SCStreamConfiguration {
         #[cfg(feature = "objc2-core-foundation")]
         /// SCStreamProperty that specifies the color space of the output buffer.  If not set the output buffer uses the same color space as the display. The value must be one of the strings specified in
         /// https://developer.apple.com/documentation/coregraphics/cgcolorspace/color_space_names.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(colorSpaceName))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorSpaceName(&self) -> Retained<CFString>;

@@ -75,6 +75,8 @@ impl ASAuthorizationOpenIDRequest {
 
         #[cfg(feature = "ASAuthorization")]
         /// Setter for [`requestedScopes`][Self::requestedScopes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRequestedScopes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequestedScopes(
@@ -90,6 +92,8 @@ impl ASAuthorizationOpenIDRequest {
         pub unsafe fn state(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`state`][Self::state].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setState(&self, state: Option<&NSString>);
@@ -102,6 +106,8 @@ impl ASAuthorizationOpenIDRequest {
         pub unsafe fn nonce(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`nonce`][Self::nonce].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNonce:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNonce(&self, nonce: Option<&NSString>);
@@ -112,6 +118,8 @@ impl ASAuthorizationOpenIDRequest {
         pub unsafe fn requestedOperation(&self) -> Retained<ASAuthorizationOpenIDOperation>;
 
         /// Setter for [`requestedOperation`][Self::requestedOperation].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRequestedOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequestedOperation(

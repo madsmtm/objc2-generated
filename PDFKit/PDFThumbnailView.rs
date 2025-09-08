@@ -82,8 +82,9 @@ impl PDFThumbnailView {
         pub unsafe fn PDFView(&self) -> Option<Retained<PDFView>>;
 
         #[cfg(feature = "PDFView")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`PDFView`][Self::PDFView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPDFView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPDFView(&self, pdf_view: Option<&PDFView>);
@@ -93,6 +94,8 @@ impl PDFThumbnailView {
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
@@ -125,6 +128,8 @@ impl PDFThumbnailView {
         pub unsafe fn labelFont(&self) -> Option<Retained<NSFont>>;
 
         /// Setter for [`labelFont`][Self::labelFont].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabelFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabelFont(&self, label_font: Option<&NSFont>);

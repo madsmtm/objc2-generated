@@ -44,6 +44,8 @@ impl CKFetchShareParticipantsOperation {
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         /// Setter for [`userIdentityLookupInfos`][Self::userIdentityLookupInfos].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUserIdentityLookupInfos:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserIdentityLookupInfos(
@@ -70,6 +72,8 @@ impl CKFetchShareParticipantsOperation {
 
         #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
         /// Setter for [`shareParticipantFetchedBlock`][Self::shareParticipantFetchedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
         #[unsafe(method(setShareParticipantFetchedBlock:))]
         #[unsafe(method_family = none)]
@@ -106,6 +110,8 @@ impl CKFetchShareParticipantsOperation {
             feature = "block2"
         ))]
         /// Setter for [`perShareParticipantCompletionBlock`][Self::perShareParticipantCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerShareParticipantCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerShareParticipantCompletionBlock(
@@ -148,6 +154,8 @@ impl CKFetchShareParticipantsOperation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`fetchShareParticipantsCompletionBlock`][Self::fetchShareParticipantsCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFetchShareParticipantsCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchShareParticipantsCompletionBlock(

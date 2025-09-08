@@ -235,6 +235,8 @@ impl UISearchTextField {
         pub unsafe fn tokens(&self) -> Retained<NSArray<UISearchToken>>;
 
         /// Setter for [`tokens`][Self::tokens].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTokens:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTokens(&self, tokens: &NSArray<UISearchToken>);
@@ -345,6 +347,8 @@ impl UISearchTextField {
 
         #[cfg(feature = "UISearchSuggestion")]
         /// Setter for [`searchSuggestions`][Self::searchSuggestions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSearchSuggestions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchSuggestions(

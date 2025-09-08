@@ -209,6 +209,8 @@ impl AVMutableTimedMetadataGroup {
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`items`][Self::items].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItems(&self, items: &NSArray<AVMetadataItem>);
@@ -376,6 +378,8 @@ impl AVMutableDateRangeMetadataGroup {
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`startDate`][Self::startDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStartDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartDate(&self, start_date: &NSDate);
@@ -385,6 +389,8 @@ impl AVMutableDateRangeMetadataGroup {
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`endDate`][Self::endDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEndDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndDate(&self, end_date: Option<&NSDate>);
@@ -396,6 +402,8 @@ impl AVMutableDateRangeMetadataGroup {
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`items`][Self::items].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItems(&self, items: &NSArray<AVMetadataItem>);

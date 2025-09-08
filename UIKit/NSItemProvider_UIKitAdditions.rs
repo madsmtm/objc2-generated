@@ -46,6 +46,8 @@ pub unsafe trait NSItemProviderUIKitAdditions:
         unsafe fn teamData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`teamData`][Self::teamData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTeamData:))]
         #[unsafe(method_family = none)]
         unsafe fn setTeamData(&self, team_data: Option<&NSData>);

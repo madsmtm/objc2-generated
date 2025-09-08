@@ -94,6 +94,8 @@ impl CKQueryOperation {
 
         #[cfg(feature = "CKQuery")]
         /// Setter for [`query`][Self::query].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setQuery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQuery(&self, query: Option<&CKQuery>);
@@ -103,6 +105,8 @@ impl CKQueryOperation {
         pub unsafe fn cursor(&self) -> Option<Retained<CKQueryCursor>>;
 
         /// Setter for [`cursor`][Self::cursor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCursor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursor(&self, cursor: Option<&CKQueryCursor>);
@@ -120,6 +124,8 @@ impl CKQueryOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`zoneID`][Self::zoneID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setZoneID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZoneID(&self, zone_id: Option<&CKRecordZoneID>);
@@ -154,6 +160,8 @@ impl CKQueryOperation {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`desiredKeys`][Self::desiredKeys].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
@@ -177,6 +185,8 @@ impl CKQueryOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`recordFetchedBlock`][Self::recordFetchedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use recordMatchedBlock instead, which surfaces per-record errors"]
         #[unsafe(method(setRecordFetchedBlock:))]
         #[unsafe(method_family = none)]
@@ -203,6 +213,8 @@ impl CKQueryOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`recordMatchedBlock`][Self::recordMatchedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordMatchedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordMatchedBlock(
@@ -239,6 +251,8 @@ impl CKQueryOperation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`queryCompletionBlock`][Self::queryCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setQueryCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQueryCompletionBlock(

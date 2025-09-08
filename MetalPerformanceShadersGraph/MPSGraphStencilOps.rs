@@ -74,6 +74,8 @@ impl MPSGraphStencilOpDescriptor {
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`offsets`][Self::offsets].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOffsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOffsets(&self, offsets: &MPSShape);
@@ -99,6 +101,8 @@ impl MPSGraphStencilOpDescriptor {
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`strides`][Self::strides].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStrides:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrides(&self, strides: &MPSShape);
@@ -124,6 +128,8 @@ impl MPSGraphStencilOpDescriptor {
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`dilationRates`][Self::dilationRates].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDilationRates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDilationRates(&self, dilation_rates: &MPSShape);
@@ -161,6 +167,8 @@ impl MPSGraphStencilOpDescriptor {
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`explicitPadding`][Self::explicitPadding].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExplicitPadding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExplicitPadding(&self, explicit_padding: &MPSShape);

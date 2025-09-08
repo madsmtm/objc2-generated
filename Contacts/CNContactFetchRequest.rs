@@ -67,6 +67,8 @@ impl CNContactFetchRequest {
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`predicate`][Self::predicate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
@@ -82,6 +84,8 @@ impl CNContactFetchRequest {
 
         #[cfg(feature = "CNContact")]
         /// Setter for [`keysToFetch`][Self::keysToFetch].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeysToFetch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeysToFetch(

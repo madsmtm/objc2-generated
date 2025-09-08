@@ -159,6 +159,8 @@ impl NSXPCConnection {
 
         #[cfg(feature = "block2")]
         /// Setter for [`interruptionHandler`][Self::interruptionHandler].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setInterruptionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInterruptionHandler(
@@ -173,6 +175,8 @@ impl NSXPCConnection {
 
         #[cfg(feature = "block2")]
         /// Setter for [`invalidationHandler`][Self::invalidationHandler].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setInvalidationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInvalidationHandler(
@@ -277,8 +281,9 @@ impl NSXPCListener {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSXPCListenerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -360,6 +365,9 @@ impl NSXPCInterface {
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceWithProtocol(protocol: &AnyProtocol) -> Retained<NSXPCInterface>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(protocol))]
         #[unsafe(method_family = none)]
         pub unsafe fn protocol(&self) -> Retained<AnyProtocol>;

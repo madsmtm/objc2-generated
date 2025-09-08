@@ -418,6 +418,8 @@ impl LAContext {
         pub unsafe fn localizedFallbackTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedFallbackTitle`][Self::localizedFallbackTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedFallbackTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedFallbackTitle(&self, localized_fallback_title: Option<&NSString>);
@@ -443,6 +445,8 @@ impl LAContext {
         pub unsafe fn localizedCancelTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedCancelTitle`][Self::localizedCancelTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedCancelTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedCancelTitle(&self, localized_cancel_title: Option<&NSString>);
@@ -487,6 +491,8 @@ impl LAContext {
         pub unsafe fn localizedReason(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedReason`][Self::localizedReason].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedReason:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedReason(&self, localized_reason: &NSString);

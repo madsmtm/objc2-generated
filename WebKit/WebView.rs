@@ -288,6 +288,10 @@ impl WebView {
 
         #[cfg(feature = "WebUIDelegate")]
         /// The WebView's WebUIDelegate.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(UIDelegate))]
         #[unsafe(method_family = none)]
@@ -302,6 +306,10 @@ impl WebView {
 
         #[cfg(feature = "WebResourceLoadDelegate")]
         /// The WebView's WebResourceLoadDelegate.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(resourceLoadDelegate))]
         #[unsafe(method_family = none)]
@@ -321,6 +329,10 @@ impl WebView {
 
         #[cfg(feature = "WebDownload")]
         /// The WebView's WebDownloadDelegate.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(downloadDelegate))]
         #[unsafe(method_family = none)]
@@ -340,6 +352,10 @@ impl WebView {
 
         #[cfg(feature = "WebFrameLoadDelegate")]
         /// The WebView's WebFrameLoadDelegate delegate.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(frameLoadDelegate))]
         #[unsafe(method_family = none)]
@@ -359,6 +375,10 @@ impl WebView {
 
         #[cfg(feature = "WebPolicyDelegate")]
         /// The WebView's WebPolicyDelegate.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(policyDelegate))]
         #[unsafe(method_family = none)]
@@ -454,6 +474,8 @@ impl WebView {
         pub unsafe fn applicationNameForUserAgent(&self) -> Retained<NSString>;
 
         /// Setter for [`applicationNameForUserAgent`][Self::applicationNameForUserAgent].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setApplicationNameForUserAgent:))]
         #[unsafe(method_family = none)]
@@ -474,6 +496,8 @@ impl WebView {
         pub unsafe fn customUserAgent(&self) -> Retained<NSString>;
 
         /// Setter for [`customUserAgent`][Self::customUserAgent].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setCustomUserAgent:))]
         #[unsafe(method_family = none)]
@@ -509,6 +533,8 @@ impl WebView {
         pub unsafe fn customTextEncodingName(&self) -> Retained<NSString>;
 
         /// Setter for [`customTextEncodingName`][Self::customTextEncodingName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setCustomTextEncodingName:))]
         #[unsafe(method_family = none)]
@@ -527,6 +553,8 @@ impl WebView {
         pub unsafe fn mediaStyle(&self) -> Retained<NSString>;
 
         /// Setter for [`mediaStyle`][Self::mediaStyle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setMediaStyle:))]
         #[unsafe(method_family = none)]
@@ -577,6 +605,8 @@ impl WebView {
         pub unsafe fn preferencesIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`preferencesIdentifier`][Self::preferencesIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setPreferencesIdentifier:))]
         #[unsafe(method_family = none)]
@@ -649,6 +679,8 @@ impl WebView {
         pub unsafe fn groupName(&self) -> Retained<NSString>;
 
         /// Setter for [`groupName`][Self::groupName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setGroupName:))]
         #[unsafe(method_family = none)]
@@ -778,6 +810,8 @@ impl WebView {
         pub unsafe fn mainFrameURL(&self) -> Retained<NSString>;
 
         /// Setter for [`mainFrameURL`][Self::mainFrameURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setMainFrameURL:))]
         #[unsafe(method_family = none)]
@@ -1116,6 +1150,9 @@ impl WebView {
         pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
         #[cfg(feature = "WebEditingDelegate")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(editingDelegate))]
         #[unsafe(method_family = none)]

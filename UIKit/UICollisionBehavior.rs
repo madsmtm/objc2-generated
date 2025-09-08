@@ -199,8 +199,9 @@ impl UICollisionBehavior {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollisionBehaviorDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`collisionDelegate`][Self::collisionDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setCollisionDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCollisionDelegate(

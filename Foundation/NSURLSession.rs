@@ -68,6 +68,8 @@ impl NSURLSession {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`sessionDescription`][Self::sessionDescription].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setSessionDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSessionDescription(&self, session_description: Option<&NSString>);
@@ -499,6 +501,8 @@ impl NSURLSessionTask {
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`earliestBeginDate`][Self::earliestBeginDate].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setEarliestBeginDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEarliestBeginDate(&self, earliest_begin_date: Option<&NSDate>);
@@ -550,6 +554,8 @@ impl NSURLSessionTask {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`taskDescription`][Self::taskDescription].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTaskDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTaskDescription(&self, task_description: Option<&NSString>);
@@ -1287,6 +1293,8 @@ impl NSURLSessionConfiguration {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`sharedContainerIdentifier`][Self::sharedContainerIdentifier].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setSharedContainerIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSharedContainerIdentifier(
@@ -1310,6 +1318,8 @@ impl NSURLSessionConfiguration {
 
         #[cfg(feature = "NSDictionary")]
         /// Setter for [`connectionProxyDictionary`][Self::connectionProxyDictionary].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setConnectionProxyDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConnectionProxyDictionary(
@@ -1358,6 +1368,8 @@ impl NSURLSessionConfiguration {
 
         #[cfg(feature = "NSDictionary")]
         /// Setter for [`HTTPAdditionalHeaders`][Self::HTTPAdditionalHeaders].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setHTTPAdditionalHeaders:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPAdditionalHeaders(
@@ -1437,6 +1449,8 @@ impl NSURLSessionConfiguration {
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`protocolClasses`][Self::protocolClasses].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setProtocolClasses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProtocolClasses(&self, protocol_classes: Option<&NSArray<AnyClass>>);

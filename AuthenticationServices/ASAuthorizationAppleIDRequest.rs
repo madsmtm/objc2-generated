@@ -73,6 +73,8 @@ impl ASAuthorizationAppleIDRequest {
         pub unsafe fn user(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`user`][Self::user].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUser:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUser(&self, user: Option<&NSString>);

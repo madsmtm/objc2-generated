@@ -143,6 +143,8 @@ impl AVCaptureSlider {
         pub unsafe fn localizedValueFormat(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedValueFormat`][Self::localizedValueFormat].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedValueFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedValueFormat(&self, localized_value_format: Option<&NSString>);
@@ -153,6 +155,8 @@ impl AVCaptureSlider {
         pub unsafe fn prominentValues(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`prominentValues`][Self::prominentValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProminentValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProminentValues(&self, prominent_values: &NSArray<NSNumber>);
@@ -173,6 +177,8 @@ impl AVCaptureSlider {
         pub unsafe fn accessibilityIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityIdentifier`][Self::accessibilityIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityIdentifier(

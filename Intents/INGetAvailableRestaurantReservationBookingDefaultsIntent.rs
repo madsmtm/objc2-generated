@@ -58,6 +58,8 @@ impl INGetAvailableRestaurantReservationBookingDefaultsIntent {
 
         #[cfg(feature = "INRestaurant")]
         /// Setter for [`restaurant`][Self::restaurant].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRestaurant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRestaurant(&self, restaurant: Option<&INRestaurant>);

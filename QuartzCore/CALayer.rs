@@ -324,6 +324,8 @@ impl CALayer {
         pub unsafe fn sublayers(&self) -> Option<Retained<NSArray<CALayer>>>;
 
         /// Setter for [`sublayers`][Self::sublayers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSublayers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSublayers(&self, sublayers: Option<&NSArray<CALayer>>);
@@ -450,6 +452,8 @@ impl CALayer {
         pub fn contentsGravity(&self) -> Retained<CALayerContentsGravity>;
 
         /// Setter for [`contentsGravity`][Self::contentsGravity].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentsGravity:))]
         #[unsafe(method_family = none)]
         pub fn setContentsGravity(&self, contents_gravity: &CALayerContentsGravity);
@@ -481,6 +485,8 @@ impl CALayer {
         pub fn contentsFormat(&self) -> Retained<CALayerContentsFormat>;
 
         /// Setter for [`contentsFormat`][Self::contentsFormat].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentsFormat:))]
         #[unsafe(method_family = none)]
         pub fn setContentsFormat(&self, contents_format: &CALayerContentsFormat);
@@ -502,6 +508,8 @@ impl CALayer {
         pub unsafe fn toneMapMode(&self) -> Retained<CAToneMapMode>;
 
         /// Setter for [`toneMapMode`][Self::toneMapMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setToneMapMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setToneMapMode(&self, tone_map_mode: &CAToneMapMode);
@@ -520,6 +528,8 @@ impl CALayer {
         pub fn minificationFilter(&self) -> Retained<CALayerContentsFilter>;
 
         /// Setter for [`minificationFilter`][Self::minificationFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMinificationFilter:))]
         #[unsafe(method_family = none)]
         pub fn setMinificationFilter(&self, minification_filter: &CALayerContentsFilter);
@@ -529,6 +539,8 @@ impl CALayer {
         pub fn magnificationFilter(&self) -> Retained<CALayerContentsFilter>;
 
         /// Setter for [`magnificationFilter`][Self::magnificationFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMagnificationFilter:))]
         #[unsafe(method_family = none)]
         pub fn setMagnificationFilter(&self, magnification_filter: &CALayerContentsFilter);
@@ -655,6 +667,8 @@ impl CALayer {
         pub fn cornerCurve(&self) -> Retained<CALayerCornerCurve>;
 
         /// Setter for [`cornerCurve`][Self::cornerCurve].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCornerCurve:))]
         #[unsafe(method_family = none)]
         pub fn setCornerCurve(&self, corner_curve: &CALayerCornerCurve);
@@ -718,6 +732,8 @@ impl CALayer {
         pub unsafe fn filters(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`filters`][Self::filters].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFilters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilters(&self, filters: Option<&NSArray>);
@@ -727,6 +743,8 @@ impl CALayer {
         pub unsafe fn backgroundFilters(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`backgroundFilters`][Self::backgroundFilters].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundFilters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundFilters(&self, background_filters: Option<&NSArray>);
@@ -879,6 +897,8 @@ impl CALayer {
         ) -> Option<Retained<NSDictionary<NSString, ProtocolObject<dyn CAAction>>>>;
 
         /// Setter for [`actions`][Self::actions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActions:))]
         #[unsafe(method_family = none)]
         pub fn setActions(
@@ -915,6 +935,8 @@ impl CALayer {
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub fn setName(&self, name: Option<&NSString>);
@@ -923,8 +945,9 @@ impl CALayer {
         #[unsafe(method_family = none)]
         pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn CALayerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn CALayerDelegate>>);
@@ -934,6 +957,8 @@ impl CALayer {
         pub unsafe fn style(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`style`][Self::style].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);

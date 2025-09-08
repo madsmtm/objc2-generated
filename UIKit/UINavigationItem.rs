@@ -198,6 +198,8 @@ impl UINavigationItem {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -220,6 +222,8 @@ impl UINavigationItem {
         pub unsafe fn prompt(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`prompt`][Self::prompt].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrompt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrompt(&self, prompt: Option<&NSString>);
@@ -242,6 +246,8 @@ impl UINavigationItem {
         pub unsafe fn backButtonTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`backButtonTitle`][Self::backButtonTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackButtonTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackButtonTitle(&self, back_button_title: Option<&NSString>);
@@ -281,6 +287,8 @@ impl UINavigationItem {
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Setter for [`backAction`][Self::backAction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackAction(&self, back_action: Option<&UIAction>);
@@ -295,6 +303,8 @@ impl UINavigationItem {
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
         /// Setter for [`titleMenuProvider`][Self::titleMenuProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitleMenuProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleMenuProvider(
@@ -312,8 +322,9 @@ impl UINavigationItem {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UINavigationItemRenameDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`renameDelegate`][Self::renameDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setRenameDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenameDelegate(
@@ -343,6 +354,8 @@ impl UINavigationItem {
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Setter for [`leftBarButtonItems`][Self::leftBarButtonItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLeftBarButtonItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeftBarButtonItems(
@@ -357,6 +370,8 @@ impl UINavigationItem {
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Setter for [`rightBarButtonItems`][Self::rightBarButtonItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRightBarButtonItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRightBarButtonItems(
@@ -443,6 +458,8 @@ impl UINavigationItem {
         pub unsafe fn customizationIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customizationIdentifier`][Self::customizationIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizationIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationIdentifier(
@@ -458,6 +475,8 @@ impl UINavigationItem {
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Setter for [`leadingItemGroups`][Self::leadingItemGroups].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLeadingItemGroups:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeadingItemGroups(
@@ -473,6 +492,8 @@ impl UINavigationItem {
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Setter for [`centerItemGroups`][Self::centerItemGroups].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCenterItemGroups:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCenterItemGroups(
@@ -488,6 +509,8 @@ impl UINavigationItem {
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Setter for [`trailingItemGroups`][Self::trailingItemGroups].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrailingItemGroups:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrailingItemGroups(
@@ -615,6 +638,8 @@ impl UINavigationItem {
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// Setter for [`standardAppearance`][Self::standardAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStandardAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardAppearance(
@@ -630,6 +655,8 @@ impl UINavigationItem {
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// Setter for [`compactAppearance`][Self::compactAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompactAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompactAppearance(
@@ -645,6 +672,8 @@ impl UINavigationItem {
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// Setter for [`scrollEdgeAppearance`][Self::scrollEdgeAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setScrollEdgeAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollEdgeAppearance(
@@ -662,6 +691,8 @@ impl UINavigationItem {
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// Setter for [`compactScrollEdgeAppearance`][Self::compactScrollEdgeAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompactScrollEdgeAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompactScrollEdgeAppearance(

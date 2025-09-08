@@ -48,6 +48,8 @@ impl VNCoreMLModel {
         pub unsafe fn inputImageFeatureName(&self) -> Retained<NSString>;
 
         /// Setter for [`inputImageFeatureName`][Self::inputImageFeatureName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInputImageFeatureName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputImageFeatureName(&self, input_image_feature_name: &NSString);

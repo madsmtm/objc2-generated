@@ -81,6 +81,8 @@ impl INMediaUserContext {
         pub unsafe fn numberOfLibraryItems(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`numberOfLibraryItems`][Self::numberOfLibraryItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNumberOfLibraryItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfLibraryItems(&self, number_of_library_items: Option<&NSNumber>);

@@ -93,6 +93,8 @@ impl NSWindowController {
 
         #[cfg(feature = "NSWindow")]
         /// Setter for [`windowFrameAutosaveName`][Self::windowFrameAutosaveName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWindowFrameAutosaveName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWindowFrameAutosaveName(
@@ -118,6 +120,8 @@ impl NSWindowController {
 
         #[cfg(feature = "NSPreviewRepresentingActivityItem")]
         /// Setter for [`previewRepresentableActivityItems`][Self::previewRepresentableActivityItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreviewRepresentableActivityItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewRepresentableActivityItems(
@@ -127,6 +131,9 @@ impl NSWindowController {
             >,
         );
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(document))]
         #[unsafe(method_family = none)]
         pub unsafe fn document(&self) -> Option<Retained<AnyObject>>;

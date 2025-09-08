@@ -44,8 +44,9 @@ impl GKDialogController {
         #[unsafe(method_family = none)]
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`parentWindow`][Self::parentWindow].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setParentWindow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);

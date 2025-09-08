@@ -103,6 +103,8 @@ impl QLPreviewReply {
         ) -> Retained<NSDictionary<NSString, QLPreviewReplyAttachment>>;
 
         /// Setter for [`attachments`][Self::attachments].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttachments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttachments(
@@ -116,6 +118,8 @@ impl QLPreviewReply {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);

@@ -146,6 +146,8 @@ impl SCNGeometry {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -160,6 +162,8 @@ impl SCNGeometry {
 
         #[cfg(feature = "SCNMaterial")]
         /// Setter for [`materials`][Self::materials].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMaterials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaterials(&self, materials: &NSArray<SCNMaterial>);
@@ -356,6 +360,8 @@ impl SCNGeometry {
 
         #[cfg(feature = "SCNLevelOfDetail")]
         /// Setter for [`levelsOfDetail`][Self::levelsOfDetail].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLevelsOfDetail:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLevelsOfDetail(

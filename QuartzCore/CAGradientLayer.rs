@@ -49,6 +49,8 @@ impl CAGradientLayer {
         pub unsafe fn colors(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`colors`][Self::colors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColors(&self, colors: Option<&NSArray>);
@@ -58,6 +60,8 @@ impl CAGradientLayer {
         pub unsafe fn locations(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`locations`][Self::locations].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocations(&self, locations: Option<&NSArray<NSNumber>>);
@@ -89,6 +93,8 @@ impl CAGradientLayer {
         pub unsafe fn r#type(&self) -> Retained<CAGradientLayerType>;
 
         /// Setter for [`type`][Self::type].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: &CAGradientLayerType);

@@ -117,6 +117,8 @@ impl MTLCaptureDescriptor {
         pub fn outputURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`outputURL`][Self::outputURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputURL:))]
         #[unsafe(method_family = none)]
         pub fn setOutputURL(&self, output_url: Option<&NSURL>);

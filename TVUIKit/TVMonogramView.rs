@@ -124,6 +124,8 @@ impl TVMonogramView {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
@@ -136,6 +138,8 @@ impl TVMonogramView {
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]

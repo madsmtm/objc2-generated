@@ -87,6 +87,8 @@ impl EKCalendarItem {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -96,6 +98,8 @@ impl EKCalendarItem {
         pub unsafe fn location(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`location`][Self::location].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocation(&self, location: Option<&NSString>);
@@ -105,6 +109,8 @@ impl EKCalendarItem {
         pub unsafe fn notes(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`notes`][Self::notes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNotes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotes(&self, notes: Option<&NSString>);
@@ -114,6 +120,8 @@ impl EKCalendarItem {
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
@@ -131,6 +139,8 @@ impl EKCalendarItem {
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// Setter for [`timeZone`][Self::timeZone].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTimeZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
@@ -163,6 +173,8 @@ impl EKCalendarItem {
 
         #[cfg(feature = "EKAlarm")]
         /// Setter for [`alarms`][Self::alarms].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAlarms:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlarms(&self, alarms: Option<&NSArray<EKAlarm>>);
@@ -191,6 +203,8 @@ impl EKCalendarItem {
 
         #[cfg(feature = "EKRecurrenceRule")]
         /// Setter for [`recurrenceRules`][Self::recurrenceRules].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecurrenceRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecurrenceRules(

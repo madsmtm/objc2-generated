@@ -113,6 +113,8 @@ impl WebPreferences {
         pub unsafe fn standardFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`standardFontFamily`][Self::standardFontFamily].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setStandardFontFamily:))]
         #[unsafe(method_family = none)]
@@ -124,6 +126,8 @@ impl WebPreferences {
         pub unsafe fn fixedFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`fixedFontFamily`][Self::fixedFontFamily].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setFixedFontFamily:))]
         #[unsafe(method_family = none)]
@@ -135,6 +139,8 @@ impl WebPreferences {
         pub unsafe fn serifFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`serifFontFamily`][Self::serifFontFamily].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setSerifFontFamily:))]
         #[unsafe(method_family = none)]
@@ -146,6 +152,8 @@ impl WebPreferences {
         pub unsafe fn sansSerifFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`sansSerifFontFamily`][Self::sansSerifFontFamily].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setSansSerifFontFamily:))]
         #[unsafe(method_family = none)]
@@ -157,6 +165,8 @@ impl WebPreferences {
         pub unsafe fn cursiveFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`cursiveFontFamily`][Self::cursiveFontFamily].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setCursiveFontFamily:))]
         #[unsafe(method_family = none)]
@@ -168,6 +178,8 @@ impl WebPreferences {
         pub unsafe fn fantasyFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`fantasyFontFamily`][Self::fantasyFontFamily].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setFantasyFontFamily:))]
         #[unsafe(method_family = none)]
@@ -223,6 +235,8 @@ impl WebPreferences {
         pub unsafe fn defaultTextEncodingName(&self) -> Retained<NSString>;
 
         /// Setter for [`defaultTextEncodingName`][Self::defaultTextEncodingName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setDefaultTextEncodingName:))]
         #[unsafe(method_family = none)]

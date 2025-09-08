@@ -38,6 +38,8 @@ impl MKMapSnapshotOptions {
 
         #[cfg(feature = "MKMapConfiguration")]
         /// Setter for [`preferredConfiguration`][Self::preferredConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredConfiguration(
@@ -52,6 +54,8 @@ impl MKMapSnapshotOptions {
 
         #[cfg(feature = "MKMapCamera")]
         /// Setter for [`camera`][Self::camera].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCamera:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCamera(&self, camera: &MKMapCamera);
@@ -99,6 +103,8 @@ impl MKMapSnapshotOptions {
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use preferredConfiguration"]
         #[unsafe(method(setPointOfInterestFilter:))]
         #[unsafe(method_family = none)]

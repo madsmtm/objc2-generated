@@ -160,6 +160,8 @@ impl DOMElement {
         pub unsafe fn innerHTML(&self) -> Retained<NSString>;
 
         /// Setter for [`innerHTML`][Self::innerHTML].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setInnerHTML:))]
         #[unsafe(method_family = none)]
@@ -171,6 +173,8 @@ impl DOMElement {
         pub unsafe fn outerHTML(&self) -> Retained<NSString>;
 
         /// Setter for [`outerHTML`][Self::outerHTML].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setOuterHTML:))]
         #[unsafe(method_family = none)]
@@ -182,6 +186,8 @@ impl DOMElement {
         pub unsafe fn className(&self) -> Retained<NSString>;
 
         /// Setter for [`className`][Self::className].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setClassName:))]
         #[unsafe(method_family = none)]

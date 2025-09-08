@@ -86,6 +86,8 @@ impl UIPrintPageRenderer {
 
         #[cfg(feature = "UIPrintFormatter")]
         /// Setter for [`printFormatters`][Self::printFormatters].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrintFormatters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrintFormatters(

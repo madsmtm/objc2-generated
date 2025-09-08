@@ -59,6 +59,8 @@ impl CAEmitterLayer {
 
         #[cfg(feature = "CAEmitterCell")]
         /// Setter for [`emitterCells`][Self::emitterCells].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmitterCells:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmitterCells(&self, emitter_cells: Option<&NSArray<CAEmitterCell>>);
@@ -130,6 +132,8 @@ impl CAEmitterLayer {
         pub unsafe fn emitterShape(&self) -> Retained<CAEmitterLayerEmitterShape>;
 
         /// Setter for [`emitterShape`][Self::emitterShape].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmitterShape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmitterShape(&self, emitter_shape: &CAEmitterLayerEmitterShape);
@@ -139,6 +143,8 @@ impl CAEmitterLayer {
         pub unsafe fn emitterMode(&self) -> Retained<CAEmitterLayerEmitterMode>;
 
         /// Setter for [`emitterMode`][Self::emitterMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmitterMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmitterMode(&self, emitter_mode: &CAEmitterLayerEmitterMode);
@@ -148,6 +154,8 @@ impl CAEmitterLayer {
         pub unsafe fn renderMode(&self) -> Retained<CAEmitterLayerRenderMode>;
 
         /// Setter for [`renderMode`][Self::renderMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRenderMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenderMode(&self, render_mode: &CAEmitterLayerRenderMode);

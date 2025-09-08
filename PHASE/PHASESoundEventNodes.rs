@@ -194,8 +194,9 @@ impl PHASEGeneratorNodeDefinition {
         pub unsafe fn group(&self) -> Option<Retained<PHASEGroup>>;
 
         #[cfg(feature = "PHASEGroup")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`group`][Self::group].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroup(&self, group: Option<&PHASEGroup>);

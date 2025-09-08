@@ -36,6 +36,8 @@ impl ILMessageFilterCapabilitiesQueryResponse {
         pub unsafe fn transactionalSubActions(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`transactionalSubActions`][Self::transactionalSubActions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTransactionalSubActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransactionalSubActions(
@@ -49,6 +51,8 @@ impl ILMessageFilterCapabilitiesQueryResponse {
         pub unsafe fn promotionalSubActions(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`promotionalSubActions`][Self::promotionalSubActions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPromotionalSubActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPromotionalSubActions(&self, promotional_sub_actions: &NSArray<NSNumber>);

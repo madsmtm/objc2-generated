@@ -75,6 +75,8 @@ impl CKSyncEngineConfiguration {
 
         #[cfg(feature = "CKSyncEngineState")]
         /// Setter for [`stateSerialization`][Self::stateSerialization].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStateSerialization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStateSerialization(
@@ -90,8 +92,9 @@ impl CKSyncEngineConfiguration {
             -> Option<Retained<ProtocolObject<dyn CKSyncEngineDelegate>>>;
 
         #[cfg(feature = "CKSyncEngine")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -140,6 +143,8 @@ impl CKSyncEngineConfiguration {
 
         #[cfg(feature = "CKSubscription")]
         /// Setter for [`subscriptionID`][Self::subscriptionID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubscriptionID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriptionID(&self, subscription_id: Option<&CKSubscriptionID>);

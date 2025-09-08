@@ -47,6 +47,8 @@ impl BGTaskRequest {
         pub unsafe fn earliestBeginDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`earliestBeginDate`][Self::earliestBeginDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEarliestBeginDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEarliestBeginDate(&self, earliest_begin_date: Option<&NSDate>);
@@ -205,6 +207,10 @@ extern_conformance!(
 impl BGHealthResearchTaskRequest {
     extern_methods!(
         /// A String indicating file protection availability required for processing.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(protectionTypeOfRequiredData))]
         #[unsafe(method_family = none)]
         pub unsafe fn protectionTypeOfRequiredData(&self) -> Retained<NSFileProtectionType>;

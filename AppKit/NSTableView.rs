@@ -396,8 +396,9 @@ impl NSTableView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTableViewDataSource>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
@@ -409,8 +410,9 @@ impl NSTableView {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTableViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -505,6 +507,8 @@ impl NSTableView {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
@@ -516,6 +520,8 @@ impl NSTableView {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`gridColor`][Self::gridColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGridColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGridColor(&self, grid_color: &NSColor);
@@ -660,6 +666,8 @@ impl NSTableView {
         pub unsafe fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
 
         /// Setter for [`sortDescriptors`][Self::sortDescriptors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSortDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
@@ -687,8 +695,9 @@ impl NSTableView {
         pub unsafe fn highlightedTableColumn(&self) -> Option<Retained<NSTableColumn>>;
 
         #[cfg(feature = "NSTableColumn")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`highlightedTableColumn`][Self::highlightedTableColumn].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setHighlightedTableColumn:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighlightedTableColumn(
@@ -913,6 +922,8 @@ impl NSTableView {
         pub unsafe fn autosaveName(&self) -> Option<Retained<NSTableViewAutosaveName>>;
 
         /// Setter for [`autosaveName`][Self::autosaveName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAutosaveName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSTableViewAutosaveName>);

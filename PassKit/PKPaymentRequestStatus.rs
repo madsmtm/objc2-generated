@@ -45,6 +45,8 @@ impl PKPaymentAuthorizationResult {
         pub unsafe fn errors(&self) -> Retained<NSArray<NSError>>;
 
         /// Setter for [`errors`][Self::errors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setErrors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setErrors(&self, errors: Option<&NSArray<NSError>>);
@@ -112,6 +114,8 @@ impl PKPaymentRequestUpdate {
 
         #[cfg(feature = "PKPaymentSummaryItem")]
         /// Setter for [`paymentSummaryItems`][Self::paymentSummaryItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPaymentSummaryItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaymentSummaryItems(
@@ -126,6 +130,8 @@ impl PKPaymentRequestUpdate {
 
         #[cfg(all(feature = "PKPaymentSummaryItem", feature = "PKShippingMethod"))]
         /// Setter for [`shippingMethods`][Self::shippingMethods].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShippingMethods:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShippingMethods(&self, shipping_methods: &NSArray<PKShippingMethod>);
@@ -138,6 +144,8 @@ impl PKPaymentRequestUpdate {
 
         #[cfg(feature = "PKPaymentTokenContext")]
         /// Setter for [`multiTokenContexts`][Self::multiTokenContexts].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMultiTokenContexts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMultiTokenContexts(
@@ -235,6 +243,8 @@ impl PKPaymentRequestShippingContactUpdate {
 
         #[cfg(all(feature = "PKPaymentSummaryItem", feature = "PKShippingMethod"))]
         /// Setter for [`shippingMethods`][Self::shippingMethods].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShippingMethods:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShippingMethods(&self, shipping_methods: &NSArray<PKShippingMethod>);
@@ -244,6 +254,8 @@ impl PKPaymentRequestShippingContactUpdate {
         pub unsafe fn errors(&self) -> Retained<NSArray<NSError>>;
 
         /// Setter for [`errors`][Self::errors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setErrors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setErrors(&self, errors: Option<&NSArray<NSError>>);
@@ -344,6 +356,8 @@ impl PKPaymentRequestPaymentMethodUpdate {
         pub unsafe fn errors(&self) -> Retained<NSArray<NSError>>;
 
         /// Setter for [`errors`][Self::errors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setErrors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setErrors(&self, errors: Option<&NSArray<NSError>>);
@@ -463,6 +477,8 @@ impl PKPaymentRequestCouponCodeUpdate {
         pub unsafe fn errors(&self) -> Retained<NSArray<NSError>>;
 
         /// Setter for [`errors`][Self::errors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setErrors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setErrors(&self, errors: Option<&NSArray<NSError>>);
@@ -531,6 +547,8 @@ impl PKPaymentOrderDetails {
         pub unsafe fn orderTypeIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`orderTypeIdentifier`][Self::orderTypeIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOrderTypeIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrderTypeIdentifier(&self, order_type_identifier: &NSString);
@@ -540,6 +558,8 @@ impl PKPaymentOrderDetails {
         pub unsafe fn orderIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`orderIdentifier`][Self::orderIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOrderIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrderIdentifier(&self, order_identifier: &NSString);
@@ -549,6 +569,8 @@ impl PKPaymentOrderDetails {
         pub unsafe fn webServiceURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`webServiceURL`][Self::webServiceURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWebServiceURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWebServiceURL(&self, web_service_url: &NSURL);
@@ -558,6 +580,8 @@ impl PKPaymentOrderDetails {
         pub unsafe fn authenticationToken(&self) -> Retained<NSString>;
 
         /// Setter for [`authenticationToken`][Self::authenticationToken].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthenticationToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthenticationToken(&self, authentication_token: &NSString);

@@ -23,6 +23,8 @@ extern_protocol!(
 
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         /// Setter for [`excludedCredentials`][Self::excludedCredentials].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedCredentials:))]
         #[unsafe(method_family = none)]
         unsafe fn setExcludedCredentials(

@@ -32,6 +32,8 @@ impl CTCallCenter {
 
         #[cfg(all(feature = "CTCall", feature = "block2"))]
         /// Setter for [`callEventHandler`][Self::callEventHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCallEventHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCallEventHandler(

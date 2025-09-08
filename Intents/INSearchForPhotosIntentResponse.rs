@@ -104,6 +104,8 @@ impl INSearchForPhotosIntentResponse {
         pub unsafe fn searchResultsCount(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`searchResultsCount`][Self::searchResultsCount].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INSearchForPhotosIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setSearchResultsCount:))]
         #[unsafe(method_family = none)]

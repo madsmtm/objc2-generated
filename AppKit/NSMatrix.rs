@@ -154,6 +154,9 @@ impl NSMatrix {
             cols_wide: NSInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(cellClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellClass(&self) -> &'static AnyClass;
@@ -170,6 +173,8 @@ impl NSMatrix {
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`prototype`][Self::prototype].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrototype:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrototype(&self, prototype: Option<&NSCell>);
@@ -317,6 +322,8 @@ impl NSMatrix {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
@@ -328,6 +335,8 @@ impl NSMatrix {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`cellBackgroundColor`][Self::cellBackgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCellBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellBackgroundColor(&self, cell_background_color: Option<&NSColor>);
@@ -551,8 +560,9 @@ impl NSMatrix {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSMatrixDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMatrixDelegate>>);

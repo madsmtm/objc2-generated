@@ -44,6 +44,8 @@ impl UIView {
         pub unsafe fn interactions(&self) -> Retained<NSArray<ProtocolObject<dyn UIInteraction>>>;
 
         /// Setter for [`interactions`][Self::interactions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInteractions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractions(

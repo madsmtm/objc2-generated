@@ -16,6 +16,8 @@ impl NSDocument {
         pub unsafe fn lastComponentOfFileName(&self) -> Retained<NSString>;
 
         /// Setter for [`lastComponentOfFileName`][Self::lastComponentOfFileName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLastComponentOfFileName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLastComponentOfFileName(&self, last_component_of_file_name: &NSString);

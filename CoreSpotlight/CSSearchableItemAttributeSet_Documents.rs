@@ -21,6 +21,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn subject(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subject`][Self::subject].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubject(&self, subject: Option<&NSString>);
@@ -30,6 +32,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn theme(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`theme`][Self::theme].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTheme:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTheme(&self, theme: Option<&NSString>);
@@ -39,6 +43,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn contentDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`contentDescription`][Self::contentDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentDescription(&self, content_description: Option<&NSString>);
@@ -48,6 +54,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
@@ -57,6 +65,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn audiences(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`audiences`][Self::audiences].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudiences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudiences(&self, audiences: Option<&NSArray<NSString>>);
@@ -111,6 +121,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn creator(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`creator`][Self::creator].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCreator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCreator(&self, creator: Option<&NSString>);
@@ -120,6 +132,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn encodingApplications(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`encodingApplications`][Self::encodingApplications].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEncodingApplications:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEncodingApplications(
@@ -132,6 +146,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn kind(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`kind`][Self::kind].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKind:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKind(&self, kind: Option<&NSString>);
@@ -141,6 +157,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn fontNames(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`fontNames`][Self::fontNames].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFontNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontNames(&self, font_names: Option<&NSArray<NSString>>);

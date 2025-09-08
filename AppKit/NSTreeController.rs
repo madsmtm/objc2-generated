@@ -61,6 +61,8 @@ impl NSTreeController {
         pub unsafe fn childrenKeyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`childrenKeyPath`][Self::childrenKeyPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChildrenKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChildrenKeyPath(&self, children_key_path: Option<&NSString>);
@@ -70,6 +72,8 @@ impl NSTreeController {
         pub unsafe fn countKeyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`countKeyPath`][Self::countKeyPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCountKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCountKeyPath(&self, count_key_path: Option<&NSString>);
@@ -79,6 +83,8 @@ impl NSTreeController {
         pub unsafe fn leafKeyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`leafKeyPath`][Self::leafKeyPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLeafKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeafKeyPath(&self, leaf_key_path: Option<&NSString>);
@@ -88,6 +94,8 @@ impl NSTreeController {
         pub unsafe fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
 
         /// Setter for [`sortDescriptors`][Self::sortDescriptors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSortDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);

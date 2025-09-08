@@ -516,6 +516,8 @@ impl MIDICISession {
 
         #[cfg(all(feature = "MIDIMessages", feature = "block2"))]
         /// Setter for [`profileChangedCallback`][Self::profileChangedCallback].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(setProfileChangedCallback:))]
         #[unsafe(method_family = none)]
@@ -540,6 +542,8 @@ impl MIDICISession {
             feature = "objc2-foundation"
         ))]
         /// Setter for [`profileSpecificDataHandler`][Self::profileSpecificDataHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(setProfileSpecificDataHandler:))]
         #[unsafe(method_family = none)]

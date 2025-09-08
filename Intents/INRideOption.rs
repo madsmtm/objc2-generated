@@ -60,6 +60,8 @@ impl INRideOption {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -69,6 +71,8 @@ impl INRideOption {
         pub unsafe fn estimatedPickupDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`estimatedPickupDate`][Self::estimatedPickupDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEstimatedPickupDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEstimatedPickupDate(&self, estimated_pickup_date: &NSDate);
@@ -80,6 +84,8 @@ impl INRideOption {
 
         #[cfg(feature = "INPriceRange")]
         /// Setter for [`priceRange`][Self::priceRange].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPriceRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPriceRange(&self, price_range: Option<&INPriceRange>);
@@ -89,6 +95,8 @@ impl INRideOption {
         pub unsafe fn usesMeteredFare(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`usesMeteredFare`][Self::usesMeteredFare].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUsesMeteredFare:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesMeteredFare(&self, uses_metered_fare: Option<&NSNumber>);
@@ -98,6 +106,8 @@ impl INRideOption {
         pub unsafe fn disclaimerMessage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`disclaimerMessage`][Self::disclaimerMessage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisclaimerMessage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisclaimerMessage(&self, disclaimer_message: Option<&NSString>);
@@ -111,6 +121,8 @@ impl INRideOption {
 
         #[cfg(feature = "INRidePartySizeOption")]
         /// Setter for [`availablePartySizeOptions`][Self::availablePartySizeOptions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAvailablePartySizeOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAvailablePartySizeOptions(
@@ -124,6 +136,8 @@ impl INRideOption {
             -> Option<Retained<NSString>>;
 
         /// Setter for [`availablePartySizeOptionsSelectionPrompt`][Self::availablePartySizeOptionsSelectionPrompt].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAvailablePartySizeOptionsSelectionPrompt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAvailablePartySizeOptionsSelectionPrompt(
@@ -136,6 +150,8 @@ impl INRideOption {
         pub unsafe fn specialPricing(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`specialPricing`][Self::specialPricing].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSpecialPricing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpecialPricing(&self, special_pricing: Option<&NSString>);
@@ -147,6 +163,8 @@ impl INRideOption {
 
         #[cfg(feature = "INImage")]
         /// Setter for [`specialPricingBadgeImage`][Self::specialPricingBadgeImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSpecialPricingBadgeImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpecialPricingBadgeImage(
@@ -161,6 +179,8 @@ impl INRideOption {
 
         #[cfg(feature = "INRideFareLineItem")]
         /// Setter for [`fareLineItems`][Self::fareLineItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFareLineItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFareLineItems(
@@ -201,6 +221,8 @@ impl INRideOption {
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);

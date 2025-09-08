@@ -290,6 +290,8 @@ impl AVAssetReaderTrackOutput {
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudioTimePitchAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioTimePitchAlgorithm(
@@ -411,6 +413,8 @@ impl AVAssetReaderAudioMixOutput {
 
         #[cfg(feature = "AVAudioMix")]
         /// Setter for [`audioMix`][Self::audioMix].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudioMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioMix(&self, audio_mix: Option<&AVAudioMix>);
@@ -428,6 +432,8 @@ impl AVAssetReaderAudioMixOutput {
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudioTimePitchAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioTimePitchAlgorithm(
@@ -555,6 +561,8 @@ impl AVAssetReaderVideoCompositionOutput {
 
         #[cfg(feature = "AVVideoComposition")]
         /// Setter for [`videoComposition`][Self::videoComposition].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoComposition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);
@@ -753,8 +761,9 @@ impl AVAssetReaderOutputCaptionAdaptor {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAssetReaderCaptionValidationHandling>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`validationDelegate`][Self::validationDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setValidationDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValidationDelegate(

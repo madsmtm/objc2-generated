@@ -133,6 +133,8 @@ impl NSXMLDocument {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`characterEncoding`][Self::characterEncoding].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCharacterEncoding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCharacterEncoding(&self, character_encoding: Option<&NSString>);
@@ -145,6 +147,8 @@ impl NSXMLDocument {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`version`][Self::version].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVersion(&self, version: Option<&NSString>);
@@ -180,6 +184,8 @@ impl NSXMLDocument {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`MIMEType`][Self::MIMEType].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setMIMEType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMIMEType(&self, mime_type: Option<&NSString>);
@@ -192,6 +198,8 @@ impl NSXMLDocument {
 
         #[cfg(feature = "NSXMLDTD")]
         /// Setter for [`DTD`][Self::DTD].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setDTD:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDTD(&self, dtd: Option<&NSXMLDTD>);

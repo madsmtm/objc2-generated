@@ -30,6 +30,8 @@ impl UICalendarSelectionMultiDate {
         pub unsafe fn selectedDates(&self) -> Retained<NSArray<NSDateComponents>>;
 
         /// Setter for [`selectedDates`][Self::selectedDates].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedDates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedDates(&self, selected_dates: &NSArray<NSDateComponents>);

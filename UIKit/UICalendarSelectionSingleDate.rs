@@ -40,6 +40,8 @@ impl UICalendarSelectionSingleDate {
         pub unsafe fn selectedDate(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`selectedDate`][Self::selectedDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedDate(&self, selected_date: Option<&NSDateComponents>);

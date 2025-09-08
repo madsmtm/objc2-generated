@@ -59,8 +59,9 @@ impl NSOpenGLLayer {
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`view`][Self::view].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setView(&self, view: Option<&NSView>);

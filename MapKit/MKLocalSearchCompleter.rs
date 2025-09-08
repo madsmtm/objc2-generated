@@ -74,6 +74,8 @@ impl MKLocalSearchCompleter {
         pub unsafe fn queryFragment(&self) -> Retained<NSString>;
 
         /// Setter for [`queryFragment`][Self::queryFragment].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setQueryFragment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQueryFragment(&self, query_fragment: &NSString);
@@ -127,6 +129,8 @@ impl MKLocalSearchCompleter {
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPointOfInterestFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestFilter(
@@ -141,6 +145,8 @@ impl MKLocalSearchCompleter {
 
         #[cfg(feature = "MKAddressFilter")]
         /// Setter for [`addressFilter`][Self::addressFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAddressFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAddressFilter(&self, address_filter: Option<&MKAddressFilter>);
@@ -151,8 +157,9 @@ impl MKLocalSearchCompleter {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MKLocalSearchCompleterDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

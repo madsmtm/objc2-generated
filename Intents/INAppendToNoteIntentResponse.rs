@@ -109,6 +109,8 @@ impl INAppendToNoteIntentResponse {
 
         #[cfg(feature = "INNote")]
         /// Setter for [`note`][Self::note].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INAppendToNoteIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setNote:))]
         #[unsafe(method_family = none)]

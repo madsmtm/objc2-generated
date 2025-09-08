@@ -112,6 +112,8 @@ impl INSearchForBillsIntentResponse {
 
         #[cfg(feature = "INBillDetails")]
         /// Setter for [`bills`][Self::bills].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INSearchForBillsIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setBills:))]
         #[unsafe(method_family = none)]

@@ -115,8 +115,9 @@ impl GKTurnBasedMatchmakerViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKTurnBasedMatchmakerViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`turnBasedMatchmakerDelegate`][Self::turnBasedMatchmakerDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTurnBasedMatchmakerDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTurnBasedMatchmakerDelegate(

@@ -80,6 +80,8 @@ impl NSTabViewItem {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`color`][Self::color].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: &NSColor);
@@ -89,6 +91,8 @@ impl NSTabViewItem {
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);
@@ -159,8 +163,9 @@ impl NSTabViewItem {
         ) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`initialFirstResponder`][Self::initialFirstResponder].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setInitialFirstResponder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
@@ -170,6 +175,8 @@ impl NSTabViewItem {
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`toolTip`][Self::toolTip].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setToolTip:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);

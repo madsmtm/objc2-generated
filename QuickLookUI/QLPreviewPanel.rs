@@ -123,6 +123,10 @@ impl QLPreviewPanel {
         pub unsafe fn updateController(&self);
 
         /// The preview panel data source.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
@@ -194,6 +198,10 @@ impl QLPreviewPanel {
         ///
         /// The class assigned as the delegate should conform to the
         /// ``QuickLookUI/QLPreviewPanelDelegate`` protocol.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;

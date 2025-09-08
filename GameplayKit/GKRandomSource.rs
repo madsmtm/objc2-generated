@@ -253,6 +253,8 @@ impl GKARC4RandomSource {
         pub unsafe fn seed(&self) -> Retained<NSData>;
 
         /// Setter for [`seed`][Self::seed].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSeed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSeed(&self, seed: &NSData);

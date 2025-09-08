@@ -99,6 +99,8 @@ impl WKPickerItem {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -108,6 +110,8 @@ impl WKPickerItem {
         pub unsafe fn caption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`caption`][Self::caption].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCaption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCaption(&self, caption: Option<&NSString>);
@@ -119,6 +123,8 @@ impl WKPickerItem {
 
         #[cfg(feature = "WKImage")]
         /// Setter for [`accessoryImage`][Self::accessoryImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessoryImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryImage(&self, accessory_image: Option<&WKImage>);
@@ -130,6 +136,8 @@ impl WKPickerItem {
 
         #[cfg(feature = "WKImage")]
         /// Setter for [`contentImage`][Self::contentImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentImage(&self, content_image: Option<&WKImage>);

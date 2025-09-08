@@ -125,6 +125,8 @@ impl UIListContentTextProperties {
             feature = "block2"
         ))]
         /// Setter for [`colorTransformer`][Self::colorTransformer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorTransformer(

@@ -25,6 +25,8 @@ impl PKPaymentTokenContext {
         pub unsafe fn merchantIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`merchantIdentifier`][Self::merchantIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMerchantIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMerchantIdentifier(&self, merchant_identifier: &NSString);
@@ -34,6 +36,8 @@ impl PKPaymentTokenContext {
         pub unsafe fn externalIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`externalIdentifier`][Self::externalIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExternalIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExternalIdentifier(&self, external_identifier: &NSString);
@@ -43,6 +47,8 @@ impl PKPaymentTokenContext {
         pub unsafe fn merchantName(&self) -> Retained<NSString>;
 
         /// Setter for [`merchantName`][Self::merchantName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMerchantName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMerchantName(&self, merchant_name: &NSString);
@@ -52,6 +58,8 @@ impl PKPaymentTokenContext {
         pub unsafe fn merchantDomain(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`merchantDomain`][Self::merchantDomain].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMerchantDomain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMerchantDomain(&self, merchant_domain: Option<&NSString>);
@@ -61,6 +69,8 @@ impl PKPaymentTokenContext {
         pub unsafe fn amount(&self) -> Retained<NSDecimalNumber>;
 
         /// Setter for [`amount`][Self::amount].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAmount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAmount(&self, amount: &NSDecimalNumber);

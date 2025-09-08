@@ -153,6 +153,10 @@ extern_conformance!(
 impl IKScannerDeviceView {
     extern_methods!(
         /// delegate of the IKScannerDeviceView.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -169,6 +173,10 @@ impl IKScannerDeviceView {
 
         #[cfg(feature = "objc2-image-capture-core")]
         /// the scanner device.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(scannerDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn scannerDevice(&self) -> Option<Retained<ICScannerDevice>>;
@@ -225,6 +233,8 @@ impl IKScannerDeviceView {
         pub unsafe fn scanControlLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`scanControlLabel`][Self::scanControlLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setScanControlLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScanControlLabel(&self, scan_control_label: Option<&NSString>);
@@ -235,6 +245,8 @@ impl IKScannerDeviceView {
         pub unsafe fn overviewControlLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`overviewControlLabel`][Self::overviewControlLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOverviewControlLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverviewControlLabel(&self, overview_control_label: Option<&NSString>);
@@ -268,6 +280,8 @@ impl IKScannerDeviceView {
         pub unsafe fn documentName(&self) -> Retained<NSString>;
 
         /// Setter for [`documentName`][Self::documentName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDocumentName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDocumentName(&self, document_name: Option<&NSString>);

@@ -156,6 +156,8 @@ impl AVCaptureVideoPreviewLayer {
 
         #[cfg(feature = "AVAnimation")]
         /// Setter for [`videoGravity`][Self::videoGravity].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoGravity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);

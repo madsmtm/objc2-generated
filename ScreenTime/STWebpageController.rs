@@ -76,6 +76,8 @@ impl STWebpageController {
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
@@ -148,6 +150,8 @@ impl STWebpageController {
 
         #[cfg(feature = "STWebHistory")]
         /// Setter for [`profileIdentifier`][Self::profileIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProfileIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProfileIdentifier(

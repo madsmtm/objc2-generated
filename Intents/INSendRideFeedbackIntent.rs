@@ -63,6 +63,8 @@ impl INSendRideFeedbackIntent {
         pub unsafe fn rating(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`rating`][Self::rating].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRating:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRating(&self, rating: Option<&NSNumber>);
@@ -74,6 +76,8 @@ impl INSendRideFeedbackIntent {
 
         #[cfg(feature = "INCurrencyAmount")]
         /// Setter for [`tip`][Self::tip].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTip:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTip(&self, tip: Option<&INCurrencyAmount>);

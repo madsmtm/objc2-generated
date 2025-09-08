@@ -46,6 +46,8 @@ impl NSTouchBar {
         ) -> Option<Retained<NSTouchBarCustomizationIdentifier>>;
 
         /// Setter for [`customizationIdentifier`][Self::customizationIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizationIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationIdentifier(
@@ -62,6 +64,8 @@ impl NSTouchBar {
 
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`customizationAllowedItemIdentifiers`][Self::customizationAllowedItemIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizationAllowedItemIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationAllowedItemIdentifiers(
@@ -78,6 +82,8 @@ impl NSTouchBar {
 
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`customizationRequiredItemIdentifiers`][Self::customizationRequiredItemIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizationRequiredItemIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationRequiredItemIdentifiers(
@@ -92,6 +98,8 @@ impl NSTouchBar {
 
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`defaultItemIdentifiers`][Self::defaultItemIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultItemIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultItemIdentifiers(
@@ -111,6 +119,8 @@ impl NSTouchBar {
 
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`principalItemIdentifier`][Self::principalItemIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrincipalItemIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrincipalItemIdentifier(
@@ -127,6 +137,8 @@ impl NSTouchBar {
 
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`escapeKeyReplacementItemIdentifier`][Self::escapeKeyReplacementItemIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEscapeKeyReplacementItemIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEscapeKeyReplacementItemIdentifier(
@@ -141,6 +153,8 @@ impl NSTouchBar {
 
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`templateItems`][Self::templateItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTemplateItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTemplateItems(&self, template_items: &NSSet<NSTouchBarItem>);
@@ -149,8 +163,9 @@ impl NSTouchBar {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTouchBarDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTouchBarDelegate>>);

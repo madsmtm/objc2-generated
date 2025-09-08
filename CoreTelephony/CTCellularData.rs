@@ -55,6 +55,8 @@ impl CTCellularData {
 
         #[cfg(feature = "block2")]
         /// Setter for [`cellularDataRestrictionDidUpdateNotifier`][Self::cellularDataRestrictionDidUpdateNotifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCellularDataRestrictionDidUpdateNotifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellularDataRestrictionDidUpdateNotifier(

@@ -89,6 +89,8 @@ impl DOMHTMLBaseElement {
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         /// Setter for [`href`][Self::href].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setHref:))]
         #[unsafe(method_family = none)]
@@ -100,6 +102,8 @@ impl DOMHTMLBaseElement {
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]

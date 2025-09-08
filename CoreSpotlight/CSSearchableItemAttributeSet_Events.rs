@@ -51,6 +51,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn importantDates(&self) -> Option<Retained<NSArray<NSDate>>>;
 
         /// Setter for [`importantDates`][Self::importantDates].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImportantDates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImportantDates(&self, important_dates: Option<&NSArray<NSDate>>);

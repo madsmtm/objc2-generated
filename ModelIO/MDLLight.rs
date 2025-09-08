@@ -84,6 +84,8 @@ impl MDLLight {
         pub unsafe fn colorSpace(&self) -> Retained<NSString>;
 
         /// Setter for [`colorSpace`][Self::colorSpace].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColorSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorSpace(&self, color_space: &NSString);

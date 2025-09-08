@@ -58,6 +58,8 @@ impl CKFetchRecordChangesOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`recordZoneID`][Self::recordZoneID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setRecordZoneID:))]
         #[unsafe(method_family = none)]
@@ -71,6 +73,8 @@ impl CKFetchRecordChangesOperation {
 
         #[cfg(feature = "CKServerChangeToken")]
         /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setPreviousServerChangeToken:))]
         #[unsafe(method_family = none)]
@@ -104,6 +108,8 @@ impl CKFetchRecordChangesOperation {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`desiredKeys`][Self::desiredKeys].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]
@@ -122,6 +128,8 @@ impl CKFetchRecordChangesOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`recordChangedBlock`][Self::recordChangedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setRecordChangedBlock:))]
         #[unsafe(method_family = none)]
@@ -144,6 +152,8 @@ impl CKFetchRecordChangesOperation {
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`recordWithIDWasDeletedBlock`][Self::recordWithIDWasDeletedBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setRecordWithIDWasDeletedBlock:))]
         #[unsafe(method_family = none)]
@@ -189,6 +199,8 @@ impl CKFetchRecordChangesOperation {
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         /// Setter for [`fetchRecordChangesCompletionBlock`][Self::fetchRecordChangesCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setFetchRecordChangesCompletionBlock:))]
         #[unsafe(method_family = none)]

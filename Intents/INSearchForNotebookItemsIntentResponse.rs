@@ -94,6 +94,8 @@ impl INSearchForNotebookItemsIntentResponse {
 
         #[cfg(feature = "INNote")]
         /// Setter for [`notes`][Self::notes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNotes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotes(&self, notes: Option<&NSArray<INNote>>);
@@ -105,6 +107,8 @@ impl INSearchForNotebookItemsIntentResponse {
 
         #[cfg(feature = "INTaskList")]
         /// Setter for [`taskLists`][Self::taskLists].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTaskLists:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTaskLists(&self, task_lists: Option<&NSArray<INTaskList>>);
@@ -116,6 +120,8 @@ impl INSearchForNotebookItemsIntentResponse {
 
         #[cfg(feature = "INTask")]
         /// Setter for [`tasks`][Self::tasks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTasks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTasks(&self, tasks: Option<&NSArray<INTask>>);

@@ -36,6 +36,9 @@ impl NSResponder {
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(nextResponder))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextResponder(&self) -> Option<Retained<NSResponder>>;

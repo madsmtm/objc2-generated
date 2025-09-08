@@ -106,6 +106,8 @@ impl INDeleteTasksIntentResponse {
 
         #[cfg(feature = "INTask")]
         /// Setter for [`deletedTasks`][Self::deletedTasks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INDeleteTasksIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setDeletedTasks:))]
         #[unsafe(method_family = none)]

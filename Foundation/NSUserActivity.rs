@@ -48,6 +48,8 @@ impl NSUserActivity {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -59,6 +61,8 @@ impl NSUserActivity {
 
         #[cfg(feature = "NSDictionary")]
         /// Setter for [`userInfo`][Self::userInfo].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
@@ -75,6 +79,8 @@ impl NSUserActivity {
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
         /// Setter for [`requiredUserInfoKeys`][Self::requiredUserInfoKeys].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setRequiredUserInfoKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiredUserInfoKeys(
@@ -98,6 +104,8 @@ impl NSUserActivity {
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`webpageURL`][Self::webpageURL].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setWebpageURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWebpageURL(&self, webpage_url: Option<&NSURL>);
@@ -109,6 +117,8 @@ impl NSUserActivity {
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`referrerURL`][Self::referrerURL].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setReferrerURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReferrerURL(&self, referrer_url: Option<&NSURL>);
@@ -120,6 +130,8 @@ impl NSUserActivity {
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`expirationDate`][Self::expirationDate].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setExpirationDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpirationDate(&self, expiration_date: Option<&NSDate>);
@@ -131,6 +143,8 @@ impl NSUserActivity {
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
         /// Setter for [`keywords`][Self::keywords].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setKeywords:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeywords(&self, keywords: &NSSet<NSString>);
@@ -150,8 +164,9 @@ impl NSUserActivity {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSUserActivityDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -166,6 +181,8 @@ impl NSUserActivity {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTargetContentIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargetContentIdentifier(
@@ -240,6 +257,8 @@ impl NSUserActivity {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`persistentIdentifier`][Self::persistentIdentifier].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPersistentIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPersistentIdentifier(

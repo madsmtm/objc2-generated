@@ -77,6 +77,8 @@ impl MKLocalSearchRequest {
         pub unsafe fn naturalLanguageQuery(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`naturalLanguageQuery`][Self::naturalLanguageQuery].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNaturalLanguageQuery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNaturalLanguageQuery(&self, natural_language_query: Option<&NSString>);
@@ -119,6 +121,8 @@ impl MKLocalSearchRequest {
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPointOfInterestFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestFilter(
@@ -133,6 +137,8 @@ impl MKLocalSearchRequest {
 
         #[cfg(feature = "MKAddressFilter")]
         /// Setter for [`addressFilter`][Self::addressFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAddressFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAddressFilter(&self, address_filter: Option<&MKAddressFilter>);

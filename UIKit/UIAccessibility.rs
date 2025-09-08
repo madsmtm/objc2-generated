@@ -141,6 +141,8 @@ pub unsafe trait NSObjectUIAccessibility:
         unsafe fn accessibilityLabel(&self, mtm: MainThreadMarker) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityLabel:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLabel(
@@ -157,6 +159,8 @@ pub unsafe trait NSObjectUIAccessibility:
         ) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`accessibilityAttributedLabel`][Self::accessibilityAttributedLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityAttributedLabel:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedLabel(
@@ -170,6 +174,8 @@ pub unsafe trait NSObjectUIAccessibility:
         unsafe fn accessibilityHint(&self, mtm: MainThreadMarker) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityHint`][Self::accessibilityHint].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityHint:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHint(
@@ -186,6 +192,8 @@ pub unsafe trait NSObjectUIAccessibility:
         ) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`accessibilityAttributedHint`][Self::accessibilityAttributedHint].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityAttributedHint:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedHint(
@@ -199,6 +207,8 @@ pub unsafe trait NSObjectUIAccessibility:
         unsafe fn accessibilityValue(&self, mtm: MainThreadMarker) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityValue`][Self::accessibilityValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityValue:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityValue(
@@ -215,6 +225,8 @@ pub unsafe trait NSObjectUIAccessibility:
         ) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`accessibilityAttributedValue`][Self::accessibilityAttributedValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityAttributedValue:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedValue(
@@ -257,6 +269,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "UIBezierPath")]
         /// Setter for [`accessibilityPath`][Self::accessibilityPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityPath:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPath(
@@ -388,6 +402,8 @@ pub unsafe trait NSObjectUIAccessibility:
         ) -> Retained<NSArray<NSAttributedString>>;
 
         /// Setter for [`accessibilityAttributedUserInputLabels`][Self::accessibilityAttributedUserInputLabels].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityAttributedUserInputLabels:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedUserInputLabels(
@@ -404,6 +420,8 @@ pub unsafe trait NSObjectUIAccessibility:
         ) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityHeaderElements`][Self::accessibilityHeaderElements].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityHeaderElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHeaderElements(
@@ -473,6 +491,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`isAccessibilityElementBlock`][Self::isAccessibilityElementBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIsAccessibilityElementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setIsAccessibilityElementBlock(
@@ -488,6 +508,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityLabelBlock`][Self::accessibilityLabelBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityLabelBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLabelBlock(
@@ -503,6 +525,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityValueBlock`][Self::accessibilityValueBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityValueBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityValueBlock(
@@ -518,6 +542,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityHintBlock`][Self::accessibilityHintBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityHintBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHintBlock(
@@ -533,6 +559,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityTraitsBlock`][Self::accessibilityTraitsBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityTraitsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTraitsBlock(
@@ -549,6 +577,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityIdentifierBlock`][Self::accessibilityIdentifierBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityIdentifierBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityIdentifierBlock(
@@ -567,6 +597,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityHeaderElementsBlock`][Self::accessibilityHeaderElementsBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityHeaderElementsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHeaderElementsBlock(
@@ -585,6 +617,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedLabelBlock`][Self::accessibilityAttributedLabelBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityAttributedLabelBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedLabelBlock(
@@ -603,6 +637,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedHintBlock`][Self::accessibilityAttributedHintBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityAttributedHintBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedHintBlock(
@@ -618,6 +654,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityLanguageBlock`][Self::accessibilityLanguageBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityLanguageBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLanguageBlock(
@@ -636,6 +674,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityTextualContextBlock`][Self::accessibilityTextualContextBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityTextualContextBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTextualContextBlock(
@@ -654,6 +694,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityUserInputLabelsBlock`][Self::accessibilityUserInputLabelsBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityUserInputLabelsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityUserInputLabelsBlock(
@@ -672,6 +714,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedUserInputLabelsBlock`][Self::accessibilityAttributedUserInputLabelsBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityAttributedUserInputLabelsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedUserInputLabelsBlock(
@@ -690,6 +734,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedValueBlock`][Self::accessibilityAttributedValueBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityAttributedValueBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedValueBlock(
@@ -708,6 +754,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityElementsHiddenBlock`][Self::accessibilityElementsHiddenBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityElementsHiddenBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityElementsHiddenBlock(
@@ -726,6 +774,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityRespondsToUserInteractionBlock`][Self::accessibilityRespondsToUserInteractionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityRespondsToUserInteractionBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRespondsToUserInteractionBlock(
@@ -741,6 +791,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityViewIsModalBlock`][Self::accessibilityViewIsModalBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityViewIsModalBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityViewIsModalBlock(
@@ -759,6 +811,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityShouldGroupAccessibilityChildrenBlock`][Self::accessibilityShouldGroupAccessibilityChildrenBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityShouldGroupAccessibilityChildrenBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityShouldGroupAccessibilityChildrenBlock(
@@ -777,6 +831,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityExpandedStatusBlock`][Self::accessibilityExpandedStatusBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityExpandedStatusBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityExpandedStatusBlock(
@@ -794,6 +850,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityElementsBlock`][Self::accessibilityElementsBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityElementsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityElementsBlock(
@@ -809,6 +867,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`automationElementsBlock`][Self::automationElementsBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAutomationElementsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAutomationElementsBlock(
@@ -827,6 +887,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityContainerTypeBlock`][Self::accessibilityContainerTypeBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityContainerTypeBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityContainerTypeBlock(
@@ -845,6 +907,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`accessibilityActivationPointBlock`][Self::accessibilityActivationPointBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityActivationPointBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityActivationPointBlock(
@@ -860,6 +924,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`accessibilityFrameBlock`][Self::accessibilityFrameBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityFrameBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFrameBlock(
@@ -878,6 +944,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityNavigationStyleBlock`][Self::accessibilityNavigationStyleBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityNavigationStyleBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNavigationStyleBlock(
@@ -893,6 +961,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(all(feature = "UIBezierPath", feature = "block2"))]
         /// Setter for [`accessibilityPathBlock`][Self::accessibilityPathBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityPathBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPathBlock(
@@ -908,6 +978,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityActivateBlock`][Self::accessibilityActivateBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityActivateBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityActivateBlock(
@@ -923,6 +995,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityIncrementBlock`][Self::accessibilityIncrementBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityIncrementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityIncrementBlock(
@@ -938,6 +1012,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityDecrementBlock`][Self::accessibilityDecrementBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityDecrementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDecrementBlock(
@@ -956,6 +1032,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityPerformEscapeBlock`][Self::accessibilityPerformEscapeBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityPerformEscapeBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPerformEscapeBlock(
@@ -971,6 +1049,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityMagicTapBlock`][Self::accessibilityMagicTapBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityMagicTapBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMagicTapBlock(
@@ -989,6 +1069,8 @@ pub unsafe trait NSObjectUIAccessibility:
 
         #[cfg(all(feature = "UIAccessibilityCustomAction", feature = "block2"))]
         /// Setter for [`accessibilityCustomActionsBlock`][Self::accessibilityCustomActionsBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityCustomActionsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomActionsBlock(
@@ -1211,6 +1293,8 @@ pub unsafe trait NSObjectUIAccessibilityDragging:
 
         #[cfg(feature = "UIAccessibilityLocationDescriptor")]
         /// Setter for [`accessibilityDragSourceDescriptors`][Self::accessibilityDragSourceDescriptors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityDragSourceDescriptors:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDragSourceDescriptors(
@@ -1231,6 +1315,8 @@ pub unsafe trait NSObjectUIAccessibilityDragging:
 
         #[cfg(feature = "UIAccessibilityLocationDescriptor")]
         /// Setter for [`accessibilityDropPointDescriptors`][Self::accessibilityDropPointDescriptors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityDropPointDescriptors:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDropPointDescriptors(
@@ -1323,6 +1409,8 @@ pub unsafe trait NSObjectUIAccessibilityTextNavigation:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityPreviousTextNavigationElementBlock`][Self::accessibilityPreviousTextNavigationElementBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityPreviousTextNavigationElementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPreviousTextNavigationElementBlock(
@@ -1341,6 +1429,8 @@ pub unsafe trait NSObjectUIAccessibilityTextNavigation:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityNextTextNavigationElementBlock`][Self::accessibilityNextTextNavigationElementBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityNextTextNavigationElementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNextTextNavigationElementBlock(
@@ -1373,8 +1463,9 @@ pub unsafe trait NSObjectUIAccessibilityTextOperations:
         ) -> Option<Retained<ProtocolObject<dyn UITextInput>>>;
 
         #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityTextInputResponder`][Self::accessibilityTextInputResponder].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAccessibilityTextInputResponder:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTextInputResponder(
@@ -1401,6 +1492,8 @@ pub unsafe trait NSObjectUIAccessibilityTextOperations:
             feature = "block2"
         ))]
         /// Setter for [`accessibilityTextInputResponderBlock`][Self::accessibilityTextInputResponderBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityTextInputResponderBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTextInputResponderBlock(

@@ -38,6 +38,8 @@ extern_protocol!(
         unsafe fn configuration(&self) -> Retained<ProtocolObject<dyn UIContentConfiguration>>;
 
         /// Setter for [`configuration`][Self::configuration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
         unsafe fn setConfiguration(

@@ -17,6 +17,8 @@ impl INSendMessageIntentResponse {
 
         #[cfg(feature = "INMessage")]
         /// Setter for [`sentMessage`][Self::sentMessage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setSentMessage:))]
         #[unsafe(method_family = none)]

@@ -52,6 +52,8 @@ impl VZNetworkDeviceConfiguration {
 
         #[cfg(feature = "VZMACAddress")]
         /// Setter for [`MACAddress`][Self::MACAddress].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMACAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMACAddress(&self, mac_address: &VZMACAddress);

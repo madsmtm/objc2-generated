@@ -97,6 +97,8 @@ impl ASAuthorizationProviderExtensionLoginManager {
         pub unsafe fn loginUserName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`loginUserName`][Self::loginUserName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setLoginUserName:))]
         #[unsafe(method_family = none)]
@@ -129,6 +131,8 @@ impl ASAuthorizationProviderExtensionLoginManager {
         pub unsafe fn ssoTokens(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`ssoTokens`][Self::ssoTokens].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSsoTokens:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSsoTokens(&self, sso_tokens: Option<&NSDictionary>);

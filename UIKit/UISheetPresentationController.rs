@@ -172,8 +172,9 @@ impl UISheetPresentationController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISheetPresentationControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -250,6 +251,8 @@ impl UISheetPresentationController {
         pub unsafe fn detents(&self) -> Retained<NSArray<UISheetPresentationControllerDetent>>;
 
         /// Setter for [`detents`][Self::detents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetents(&self, detents: &NSArray<UISheetPresentationControllerDetent>);
@@ -265,6 +268,8 @@ impl UISheetPresentationController {
         ) -> Option<Retained<UISheetPresentationControllerDetentIdentifier>>;
 
         /// Setter for [`selectedDetentIdentifier`][Self::selectedDetentIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedDetentIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedDetentIdentifier(
@@ -279,6 +284,8 @@ impl UISheetPresentationController {
         ) -> Option<Retained<UISheetPresentationControllerDetentIdentifier>>;
 
         /// Setter for [`largestUndimmedDetentIdentifier`][Self::largestUndimmedDetentIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLargestUndimmedDetentIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLargestUndimmedDetentIdentifier(

@@ -42,8 +42,9 @@ impl UIPreviewInteraction {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPreviewInteractionDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

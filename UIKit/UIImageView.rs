@@ -185,6 +185,8 @@ impl UIImageView {
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`animationImages`][Self::animationImages].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAnimationImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationImages(&self, animation_images: Option<&NSArray<UIImage>>);
@@ -196,6 +198,8 @@ impl UIImageView {
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`highlightedAnimationImages`][Self::highlightedAnimationImages].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHighlightedAnimationImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighlightedAnimationImages(

@@ -64,6 +64,8 @@ impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialParameters")]
         /// Setter for [`credentialParameters`][Self::credentialParameters].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCredentialParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredentialParameters(
@@ -81,6 +83,8 @@ impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
 
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         /// Setter for [`excludedCredentials`][Self::excludedCredentials].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedCredentials(

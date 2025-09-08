@@ -56,6 +56,8 @@ impl INRestaurant {
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`location`][Self::location].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocation(&self, location: &CLLocation);
@@ -65,6 +67,8 @@ impl INRestaurant {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -74,6 +78,8 @@ impl INRestaurant {
         pub unsafe fn vendorIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`vendorIdentifier`][Self::vendorIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVendorIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVendorIdentifier(&self, vendor_identifier: &NSString);
@@ -83,6 +89,8 @@ impl INRestaurant {
         pub unsafe fn restaurantIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`restaurantIdentifier`][Self::restaurantIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRestaurantIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRestaurantIdentifier(&self, restaurant_identifier: &NSString);

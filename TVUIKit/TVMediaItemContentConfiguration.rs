@@ -91,6 +91,8 @@ impl TVMediaItemContentConfiguration {
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
@@ -106,6 +108,8 @@ impl TVMediaItemContentConfiguration {
         pub unsafe fn secondaryText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`secondaryText`][Self::secondaryText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSecondaryText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryText(&self, secondary_text: Option<&NSString>);
@@ -131,6 +135,8 @@ impl TVMediaItemContentConfiguration {
         pub unsafe fn badgeText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`badgeText`][Self::badgeText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBadgeText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeText(&self, badge_text: Option<&NSString>);
@@ -141,6 +147,8 @@ impl TVMediaItemContentConfiguration {
         pub unsafe fn badgeProperties(&self) -> Retained<TVMediaItemContentBadgeProperties>;
 
         /// Setter for [`badgeProperties`][Self::badgeProperties].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBadgeProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeProperties(
@@ -243,6 +251,8 @@ impl TVMediaItemContentView {
         pub unsafe fn configuration(&self) -> Retained<TVMediaItemContentConfiguration>;
 
         /// Setter for [`configuration`][Self::configuration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(&self, configuration: &TVMediaItemContentConfiguration);
@@ -315,6 +325,8 @@ impl TVMediaItemContentTextProperties {
         pub unsafe fn font(&self) -> Retained<UIFont>;
 
         /// Setter for [`font`][Self::font].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: &UIFont);
@@ -325,6 +337,8 @@ impl TVMediaItemContentTextProperties {
         pub unsafe fn color(&self) -> Retained<UIColor>;
 
         /// Setter for [`color`][Self::color].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: &UIColor);
@@ -394,6 +408,8 @@ impl TVMediaItemContentBadgeProperties {
         pub unsafe fn backgroundColor(&self) -> Retained<UIColor>;
 
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &UIColor);
@@ -404,6 +420,8 @@ impl TVMediaItemContentBadgeProperties {
         pub unsafe fn font(&self) -> Retained<UIFont>;
 
         /// Setter for [`font`][Self::font].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: &UIFont);
@@ -414,6 +432,8 @@ impl TVMediaItemContentBadgeProperties {
         pub unsafe fn color(&self) -> Retained<UIColor>;
 
         /// Setter for [`color`][Self::color].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: &UIColor);

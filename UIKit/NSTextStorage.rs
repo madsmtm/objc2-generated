@@ -86,8 +86,9 @@ impl NSTextStorage {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextStorageDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -129,8 +130,9 @@ impl NSTextStorage {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextStorageObserving>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`textStorageObserver`][Self::textStorageObserver].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTextStorageObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextStorageObserver(

@@ -56,6 +56,8 @@ impl UITextFormattingViewControllerConfiguration {
 
         #[cfg(feature = "UITextFormattingViewControllerFormattingStyle")]
         /// Setter for [`formattingStyles`][Self::formattingStyles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFormattingStyles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormattingStyles(
@@ -74,6 +76,8 @@ impl UITextFormattingViewControllerConfiguration {
 
         #[cfg(feature = "UIFontPickerViewControllerConfiguration")]
         /// Setter for [`fontPickerConfiguration`][Self::fontPickerConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFontPickerConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontPickerConfiguration(

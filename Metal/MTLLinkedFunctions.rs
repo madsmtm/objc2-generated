@@ -45,6 +45,8 @@ impl MTLLinkedFunctions {
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`functions`][Self::functions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFunctions:))]
         #[unsafe(method_family = none)]
         pub fn setFunctions(&self, functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>);
@@ -58,6 +60,8 @@ impl MTLLinkedFunctions {
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`binaryFunctions`][Self::binaryFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBinaryFunctions:))]
         #[unsafe(method_family = none)]
         pub fn setBinaryFunctions(
@@ -75,6 +79,8 @@ impl MTLLinkedFunctions {
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`groups`][Self::groups].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGroups:))]
         #[unsafe(method_family = none)]
         pub fn setGroups(
@@ -95,6 +101,8 @@ impl MTLLinkedFunctions {
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`privateFunctions`][Self::privateFunctions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrivateFunctions:))]
         #[unsafe(method_family = none)]
         pub fn setPrivateFunctions(

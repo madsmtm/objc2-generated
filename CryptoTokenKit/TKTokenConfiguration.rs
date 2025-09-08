@@ -103,6 +103,8 @@ impl TKTokenConfiguration {
         pub unsafe fn configurationData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`configurationData`][Self::configurationData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfigurationData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationData(&self, configuration_data: Option<&NSData>);
@@ -115,6 +117,8 @@ impl TKTokenConfiguration {
 
         #[cfg(feature = "TKTokenKeychainItem")]
         /// Setter for [`keychainItems`][Self::keychainItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeychainItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeychainItems(&self, keychain_items: &NSArray<TKTokenKeychainItem>);

@@ -29,6 +29,8 @@ impl UIConversationContext {
         pub unsafe fn threadIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`threadIdentifier`][Self::threadIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setThreadIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThreadIdentifier(&self, thread_identifier: &NSString);
@@ -41,6 +43,8 @@ impl UIConversationContext {
 
         #[cfg(feature = "UIConversationEntry")]
         /// Setter for [`entries`][Self::entries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEntries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEntries(&self, entries: &NSArray<UIConversationEntry>);
@@ -51,6 +55,8 @@ impl UIConversationContext {
         pub unsafe fn selfIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
         /// Setter for [`selfIdentifiers`][Self::selfIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelfIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelfIdentifiers(&self, self_identifiers: &NSSet<NSString>);
@@ -61,6 +67,8 @@ impl UIConversationContext {
         pub unsafe fn responsePrimaryRecipientIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
         /// Setter for [`responsePrimaryRecipientIdentifiers`][Self::responsePrimaryRecipientIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setResponsePrimaryRecipientIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResponsePrimaryRecipientIdentifiers(
@@ -76,6 +84,8 @@ impl UIConversationContext {
         ) -> Retained<NSDictionary<NSString, NSPersonNameComponents>>;
 
         /// Setter for [`participantNameByIdentifier`][Self::participantNameByIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setParticipantNameByIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticipantNameByIdentifier(

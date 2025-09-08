@@ -53,6 +53,8 @@ impl NSEntityMapping {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -71,6 +73,8 @@ impl NSEntityMapping {
         pub unsafe fn sourceEntityName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`sourceEntityName`][Self::sourceEntityName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSourceEntityName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceEntityName(&self, source_entity_name: Option<&NSString>);
@@ -80,6 +84,8 @@ impl NSEntityMapping {
         pub unsafe fn sourceEntityVersionHash(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`sourceEntityVersionHash`][Self::sourceEntityVersionHash].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSourceEntityVersionHash:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceEntityVersionHash(
@@ -92,6 +98,8 @@ impl NSEntityMapping {
         pub unsafe fn destinationEntityName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`destinationEntityName`][Self::destinationEntityName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDestinationEntityName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationEntityName(&self, destination_entity_name: Option<&NSString>);
@@ -101,6 +109,8 @@ impl NSEntityMapping {
         pub unsafe fn destinationEntityVersionHash(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`destinationEntityVersionHash`][Self::destinationEntityVersionHash].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDestinationEntityVersionHash:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationEntityVersionHash(
@@ -159,6 +169,8 @@ impl NSEntityMapping {
         pub unsafe fn entityMigrationPolicyClassName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`entityMigrationPolicyClassName`][Self::entityMigrationPolicyClassName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEntityMigrationPolicyClassName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEntityMigrationPolicyClassName(

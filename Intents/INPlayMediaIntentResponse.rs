@@ -104,6 +104,8 @@ impl INPlayMediaIntentResponse {
         pub unsafe fn nowPlayingInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`nowPlayingInfo`][Self::nowPlayingInfo].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNowPlayingInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNowPlayingInfo(

@@ -57,6 +57,8 @@ impl NSDockTile {
         pub unsafe fn badgeLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`badgeLabel`][Self::badgeLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBadgeLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeLabel(&self, badge_label: Option<&NSString>);

@@ -126,6 +126,8 @@ impl NSText {
         pub unsafe fn string(&self) -> Retained<NSString>;
 
         /// Setter for [`string`][Self::string].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setString(&self, string: &NSString);
@@ -158,6 +160,9 @@ impl NSText {
         #[unsafe(method_family = none)]
         pub unsafe fn readRTFDFromFile(&self, path: &NSString) -> bool;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTextDelegate>>>;
@@ -237,6 +242,8 @@ impl NSText {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
@@ -276,6 +283,8 @@ impl NSText {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`textColor`][Self::textColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);

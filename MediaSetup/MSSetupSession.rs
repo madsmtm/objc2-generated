@@ -106,8 +106,9 @@ impl MSSetupSession {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MSAuthenticationPresentationContext>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`presentationContext`][Self::presentationContext].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPresentationContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPresentationContext(

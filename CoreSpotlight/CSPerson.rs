@@ -62,6 +62,8 @@ impl CSPerson {
         pub unsafe fn contactIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`contactIdentifier`][Self::contactIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContactIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContactIdentifier(&self, contact_identifier: Option<&NSString>);

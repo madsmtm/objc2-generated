@@ -170,6 +170,8 @@ impl HMMutableCharacteristicThresholdRangeEvent {
 
         #[cfg(feature = "HMNumberRange")]
         /// Setter for [`thresholdRange`][Self::thresholdRange].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setThresholdRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThresholdRange(&self, threshold_range: &HMNumberRange);

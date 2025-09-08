@@ -136,6 +136,8 @@ impl GKLeaderboardViewController {
         pub unsafe fn category(&self) -> Retained<NSString>;
 
         /// Setter for [`category`][Self::category].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]
@@ -148,8 +150,9 @@ impl GKLeaderboardViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKLeaderboardViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`leaderboardDelegate`][Self::leaderboardDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated]
         #[unsafe(method(setLeaderboardDelegate:))]
         #[unsafe(method_family = none)]

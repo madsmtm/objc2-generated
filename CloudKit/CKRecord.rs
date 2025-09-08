@@ -337,6 +337,8 @@ impl CKRecord {
 
         #[cfg(feature = "CKReference")]
         /// Setter for [`parent`][Self::parent].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setParent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParent(&self, parent: Option<&CKReference>);

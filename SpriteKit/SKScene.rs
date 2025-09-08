@@ -232,8 +232,9 @@ impl SKScene {
         pub unsafe fn camera(&self) -> Option<Retained<SKCameraNode>>;
 
         #[cfg(feature = "SKCameraNode")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`camera`][Self::camera].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setCamera:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCamera(&self, camera: Option<&SKCameraNode>);
@@ -245,8 +246,9 @@ impl SKScene {
         #[unsafe(method_family = none)]
         pub unsafe fn listener(&self) -> Option<Retained<SKNode>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`listener`][Self::listener].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setListener:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListener(&self, listener: Option<&SKNode>);
@@ -270,8 +272,9 @@ impl SKScene {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SKSceneDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SKSceneDelegate>>);

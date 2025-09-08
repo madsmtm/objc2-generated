@@ -61,6 +61,8 @@ impl INGetUserCurrentRestaurantReservationBookingsIntent {
 
         #[cfg(feature = "INRestaurant")]
         /// Setter for [`restaurant`][Self::restaurant].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRestaurant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRestaurant(&self, restaurant: Option<&INRestaurant>);
@@ -70,6 +72,8 @@ impl INGetUserCurrentRestaurantReservationBookingsIntent {
         pub unsafe fn reservationIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`reservationIdentifier`][Self::reservationIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setReservationIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReservationIdentifier(&self, reservation_identifier: Option<&NSString>);
@@ -79,6 +83,8 @@ impl INGetUserCurrentRestaurantReservationBookingsIntent {
         pub unsafe fn maximumNumberOfResults(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`maximumNumberOfResults`][Self::maximumNumberOfResults].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMaximumNumberOfResults:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumNumberOfResults(
@@ -91,6 +97,8 @@ impl INGetUserCurrentRestaurantReservationBookingsIntent {
         pub unsafe fn earliestBookingDateForResults(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`earliestBookingDateForResults`][Self::earliestBookingDateForResults].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEarliestBookingDateForResults:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEarliestBookingDateForResults(

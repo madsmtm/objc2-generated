@@ -241,6 +241,8 @@ impl MPSGraphExecutableSerializationDescriptor {
         pub unsafe fn minimumDeploymentTarget(&self) -> Retained<NSString>;
 
         /// Setter for [`minimumDeploymentTarget`][Self::minimumDeploymentTarget].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMinimumDeploymentTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumDeploymentTarget(&self, minimum_deployment_target: &NSString);

@@ -41,6 +41,8 @@ extern_protocol!(
         unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         unsafe fn setTitle(&self, title: &NSString);
@@ -52,6 +54,8 @@ extern_protocol!(
         unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedTitle:))]
         #[unsafe(method_family = none)]
         unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
@@ -147,6 +151,8 @@ impl AXNumericDataAxisDescriptor {
 
         #[cfg(feature = "block2")]
         /// Setter for [`valueDescriptionProvider`][Self::valueDescriptionProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setValueDescriptionProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueDescriptionProvider(
@@ -160,6 +166,8 @@ impl AXNumericDataAxisDescriptor {
         pub unsafe fn gridlinePositions(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`gridlinePositions`][Self::gridlinePositions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGridlinePositions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGridlinePositions(&self, gridline_positions: &NSArray<NSNumber>);
@@ -232,6 +240,8 @@ impl AXCategoricalDataAxisDescriptor {
         pub unsafe fn categoryOrder(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`categoryOrder`][Self::categoryOrder].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCategoryOrder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategoryOrder(&self, category_order: &NSArray<NSString>);
@@ -301,6 +311,8 @@ impl AXDataPointValue {
         pub unsafe fn category(&self) -> Retained<NSString>;
 
         /// Setter for [`category`][Self::category].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategory(&self, category: &NSString);
@@ -353,6 +365,8 @@ impl AXDataPoint {
         pub unsafe fn xValue(&self) -> Retained<AXDataPointValue>;
 
         /// Setter for [`xValue`][Self::xValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setXValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setXValue(&self, x_value: &AXDataPointValue);
@@ -363,6 +377,8 @@ impl AXDataPoint {
         pub unsafe fn yValue(&self) -> Option<Retained<AXDataPointValue>>;
 
         /// Setter for [`yValue`][Self::yValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setYValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setYValue(&self, y_value: Option<&AXDataPointValue>);
@@ -375,6 +391,8 @@ impl AXDataPoint {
         pub unsafe fn additionalValues(&self) -> Retained<NSArray<AXDataPointValue>>;
 
         /// Setter for [`additionalValues`][Self::additionalValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAdditionalValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalValues(&self, additional_values: &NSArray<AXDataPointValue>);
@@ -385,6 +403,8 @@ impl AXDataPoint {
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
@@ -395,6 +415,8 @@ impl AXDataPoint {
         pub unsafe fn attributedLabel(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedLabel`][Self::attributedLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedLabel(&self, attributed_label: Option<&NSAttributedString>);
@@ -465,6 +487,8 @@ impl AXDataSeriesDescriptor {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -476,6 +500,8 @@ impl AXDataSeriesDescriptor {
         pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedName`][Self::attributedName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedName(&self, attributed_name: &NSAttributedString);
@@ -496,6 +522,8 @@ impl AXDataSeriesDescriptor {
         pub unsafe fn dataPoints(&self) -> Retained<NSArray<AXDataPoint>>;
 
         /// Setter for [`dataPoints`][Self::dataPoints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDataPoints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataPoints(&self, data_points: &NSArray<AXDataPoint>);
@@ -588,6 +616,8 @@ impl AXChartDescriptor {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -599,6 +629,8 @@ impl AXChartDescriptor {
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
@@ -610,6 +642,8 @@ impl AXChartDescriptor {
         pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`summary`][Self::summary].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSummary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
@@ -645,6 +679,8 @@ impl AXChartDescriptor {
         pub unsafe fn series(&self) -> Retained<NSArray<AXDataSeriesDescriptor>>;
 
         /// Setter for [`series`][Self::series].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSeries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSeries(&self, series: &NSArray<AXDataSeriesDescriptor>);
@@ -679,6 +715,8 @@ impl AXChartDescriptor {
         ) -> Option<Retained<NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>>;
 
         /// Setter for [`additionalAxes`][Self::additionalAxes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAdditionalAxes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalAxes(

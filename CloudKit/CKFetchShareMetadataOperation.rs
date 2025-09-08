@@ -45,6 +45,8 @@ impl CKFetchShareMetadataOperation {
         pub unsafe fn shareURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
         /// Setter for [`shareURLs`][Self::shareURLs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShareURLs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShareURLs(&self, share_ur_ls: Option<&NSArray<NSURL>>);
@@ -82,6 +84,8 @@ impl CKFetchShareMetadataOperation {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`rootRecordDesiredKeys`][Self::rootRecordDesiredKeys].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRootRecordDesiredKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRootRecordDesiredKeys(
@@ -105,6 +109,8 @@ impl CKFetchShareMetadataOperation {
 
         #[cfg(all(feature = "CKShareMetadata", feature = "block2"))]
         /// Setter for [`perShareMetadataBlock`][Self::perShareMetadataBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerShareMetadataBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerShareMetadataBlock(
@@ -141,6 +147,8 @@ impl CKFetchShareMetadataOperation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`fetchShareMetadataCompletionBlock`][Self::fetchShareMetadataCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFetchShareMetadataCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchShareMetadataCompletionBlock(

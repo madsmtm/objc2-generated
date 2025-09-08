@@ -36,6 +36,8 @@ impl PHAssetResourceCreationOptions {
         pub unsafe fn originalFilename(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`originalFilename`][Self::originalFilename].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOriginalFilename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOriginalFilename(&self, original_filename: Option<&NSString>);
@@ -45,6 +47,8 @@ impl PHAssetResourceCreationOptions {
         pub unsafe fn uniformTypeIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`uniformTypeIdentifier`][Self::uniformTypeIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUniformTypeIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUniformTypeIdentifier(&self, uniform_type_identifier: Option<&NSString>);

@@ -94,6 +94,8 @@ impl INListCarsIntentResponse {
 
         #[cfg(feature = "INCar")]
         /// Setter for [`cars`][Self::cars].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCars:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCars(&self, cars: Option<&NSArray<INCar>>);

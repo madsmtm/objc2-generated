@@ -28,8 +28,9 @@ pub unsafe trait HKHealthStoreUIKit:
             mtm: MainThreadMarker,
         ) -> Option<Retained<UIViewController>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`authorizationViewControllerPresenter`][Self::authorizationViewControllerPresenter].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setAuthorizationViewControllerPresenter:))]
         #[unsafe(method_family = none)]
         unsafe fn setAuthorizationViewControllerPresenter(

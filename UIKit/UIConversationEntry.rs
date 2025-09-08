@@ -28,6 +28,8 @@ impl UIConversationEntry {
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// Setter for [`text`][Self::text].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: &NSString);
@@ -38,6 +40,8 @@ impl UIConversationEntry {
         pub unsafe fn senderIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`senderIdentifier`][Self::senderIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSenderIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSenderIdentifier(&self, sender_identifier: &NSString);
@@ -48,6 +52,8 @@ impl UIConversationEntry {
         pub unsafe fn sentDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`sentDate`][Self::sentDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSentDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSentDate(&self, sent_date: &NSDate);
@@ -58,6 +64,8 @@ impl UIConversationEntry {
         pub unsafe fn entryIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`entryIdentifier`][Self::entryIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEntryIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEntryIdentifier(&self, entry_identifier: &NSString);
@@ -70,6 +78,8 @@ impl UIConversationEntry {
         pub unsafe fn replyThreadIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`replyThreadIdentifier`][Self::replyThreadIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setReplyThreadIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReplyThreadIdentifier(&self, reply_thread_identifier: Option<&NSString>);
@@ -80,6 +90,8 @@ impl UIConversationEntry {
         pub unsafe fn primaryRecipientIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
         /// Setter for [`primaryRecipientIdentifiers`][Self::primaryRecipientIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrimaryRecipientIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryRecipientIdentifiers(

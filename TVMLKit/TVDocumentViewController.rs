@@ -216,8 +216,9 @@ impl TVDocumentViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn TVDocumentViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

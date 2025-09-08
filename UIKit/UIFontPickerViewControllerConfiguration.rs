@@ -64,6 +64,8 @@ impl UIFontPickerViewControllerConfiguration {
         pub unsafe fn filteredLanguagesPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`filteredLanguagesPredicate`][Self::filteredLanguagesPredicate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use languageFilter"]
         #[unsafe(method(setFilteredLanguagesPredicate:))]
         #[unsafe(method_family = none)]

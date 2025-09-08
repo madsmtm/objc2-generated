@@ -37,6 +37,8 @@ impl QLThumbnailReply {
         pub unsafe fn extensionBadge(&self) -> Retained<NSString>;
 
         /// Setter for [`extensionBadge`][Self::extensionBadge].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExtensionBadge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtensionBadge(&self, extension_badge: &NSString);

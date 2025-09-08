@@ -50,8 +50,9 @@ impl NSWindowTabGroup {
         pub unsafe fn selectedWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`selectedWindow`][Self::selectedWindow].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setSelectedWindow:))]
         #[unsafe(method_family = none)]
         pub fn setSelectedWindow(&self, selected_window: Option<&NSWindow>);

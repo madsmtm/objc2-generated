@@ -1743,6 +1743,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`scheme`][Self::scheme].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setScheme:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScheme(&self, scheme: Option<&NSString>);
@@ -1754,6 +1756,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`user`][Self::user].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setUser:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUser(&self, user: Option<&NSString>);
@@ -1765,6 +1769,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`password`][Self::password].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPassword(&self, password: Option<&NSString>);
@@ -1776,6 +1782,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`host`][Self::host].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setHost:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHost(&self, host: Option<&NSString>);
@@ -1787,6 +1795,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`port`][Self::port].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPort:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPort(&self, port: Option<&NSNumber>);
@@ -1798,6 +1808,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`path`][Self::path].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: Option<&NSString>);
@@ -1809,6 +1821,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`query`][Self::query].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setQuery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQuery(&self, query: Option<&NSString>);
@@ -1820,6 +1834,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`fragment`][Self::fragment].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFragment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFragment(&self, fragment: Option<&NSString>);
@@ -1831,6 +1847,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`percentEncodedUser`][Self::percentEncodedUser].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPercentEncodedUser:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPercentEncodedUser(&self, percent_encoded_user: Option<&NSString>);
@@ -1842,6 +1860,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`percentEncodedPassword`][Self::percentEncodedPassword].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPercentEncodedPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPercentEncodedPassword(&self, percent_encoded_password: Option<&NSString>);
@@ -1854,6 +1874,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`percentEncodedHost`][Self::percentEncodedHost].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "Use encodedHost instead"]
         #[unsafe(method(setPercentEncodedHost:))]
         #[unsafe(method_family = none)]
@@ -1866,6 +1888,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`percentEncodedPath`][Self::percentEncodedPath].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPercentEncodedPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPercentEncodedPath(&self, percent_encoded_path: Option<&NSString>);
@@ -1877,6 +1901,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`percentEncodedQuery`][Self::percentEncodedQuery].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPercentEncodedQuery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPercentEncodedQuery(&self, percent_encoded_query: Option<&NSString>);
@@ -1888,6 +1914,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`percentEncodedFragment`][Self::percentEncodedFragment].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPercentEncodedFragment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPercentEncodedFragment(&self, percent_encoded_fragment: Option<&NSString>);
@@ -1899,6 +1927,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`encodedHost`][Self::encodedHost].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setEncodedHost:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEncodedHost(&self, encoded_host: Option<&NSString>);
@@ -1950,6 +1980,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`queryItems`][Self::queryItems].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setQueryItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQueryItems(&self, query_items: Option<&NSArray<NSURLQueryItem>>);
@@ -1961,6 +1993,8 @@ impl NSURLComponents {
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`percentEncodedQueryItems`][Self::percentEncodedQueryItems].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPercentEncodedQueryItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPercentEncodedQueryItems(

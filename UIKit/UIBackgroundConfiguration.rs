@@ -171,6 +171,8 @@ impl UIBackgroundConfiguration {
             feature = "block2"
         ))]
         /// Setter for [`backgroundColorTransformer`][Self::backgroundColorTransformer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColorTransformer(
@@ -195,6 +197,8 @@ impl UIBackgroundConfiguration {
 
         #[cfg(feature = "UIVisualEffect")]
         /// Setter for [`visualEffect`][Self::visualEffect].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVisualEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVisualEffect(&self, visual_effect: Option<&UIVisualEffect>);
@@ -251,6 +255,8 @@ impl UIBackgroundConfiguration {
             feature = "block2"
         ))]
         /// Setter for [`strokeColorTransformer`][Self::strokeColorTransformer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStrokeColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColorTransformer(

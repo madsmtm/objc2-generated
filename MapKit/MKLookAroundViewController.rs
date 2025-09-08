@@ -110,8 +110,9 @@ impl MKLookAroundViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MKLookAroundViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -126,6 +127,8 @@ impl MKLookAroundViewController {
 
         #[cfg(feature = "MKLookAroundScene")]
         /// Setter for [`scene`][Self::scene].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setScene:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScene(&self, scene: Option<&MKLookAroundScene>);
@@ -155,6 +158,8 @@ impl MKLookAroundViewController {
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPointOfInterestFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestFilter(

@@ -122,6 +122,8 @@ impl UIPrintInfo {
         pub unsafe fn printerID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`printerID`][Self::printerID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrinterID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrinterID(&self, printer_id: Option<&NSString>);
@@ -131,6 +133,8 @@ impl UIPrintInfo {
         pub unsafe fn jobName(&self) -> Retained<NSString>;
 
         /// Setter for [`jobName`][Self::jobName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJobName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJobName(&self, job_name: &NSString);

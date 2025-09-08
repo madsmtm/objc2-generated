@@ -57,6 +57,8 @@ impl VZMacGraphicsDeviceConfiguration {
             feature = "VZMacGraphicsDisplayConfiguration"
         ))]
         /// Setter for [`displays`][Self::displays].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplays:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplays(&self, displays: &NSArray<VZMacGraphicsDisplayConfiguration>);

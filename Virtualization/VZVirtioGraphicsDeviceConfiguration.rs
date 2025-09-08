@@ -60,6 +60,8 @@ impl VZVirtioGraphicsDeviceConfiguration {
             feature = "VZVirtioGraphicsScanoutConfiguration"
         ))]
         /// Setter for [`scanouts`][Self::scanouts].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setScanouts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScanouts(&self, scanouts: &NSArray<VZVirtioGraphicsScanoutConfiguration>);

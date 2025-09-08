@@ -41,6 +41,8 @@ impl GKNoise {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`gradientColors`][Self::gradientColors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGradientColors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGradientColors(&self, gradient_colors: &NSDictionary<NSNumber, NSColor>);

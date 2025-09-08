@@ -38,6 +38,8 @@ extern_protocol!(
 
         #[cfg(feature = "FSContainer")]
         /// Setter for [`containerStatus`][Self::containerStatus].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContainerStatus:))]
         #[unsafe(method_family = none)]
         unsafe fn setContainerStatus(&self, container_status: &FSContainerStatus);

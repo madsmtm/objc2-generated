@@ -52,6 +52,8 @@ impl INMessageLinkMetadata {
         pub unsafe fn siteName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`siteName`][Self::siteName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSiteName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSiteName(&self, site_name: Option<&NSString>);
@@ -61,6 +63,8 @@ impl INMessageLinkMetadata {
         pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`summary`][Self::summary].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSummary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
@@ -70,6 +74,8 @@ impl INMessageLinkMetadata {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -79,6 +85,8 @@ impl INMessageLinkMetadata {
         pub unsafe fn openGraphType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`openGraphType`][Self::openGraphType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOpenGraphType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOpenGraphType(&self, open_graph_type: Option<&NSString>);
@@ -88,6 +96,8 @@ impl INMessageLinkMetadata {
         pub unsafe fn linkURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`linkURL`][Self::linkURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLinkURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLinkURL(&self, link_url: Option<&NSURL>);

@@ -219,6 +219,8 @@ impl AVCaptureSession {
 
         #[cfg(feature = "AVCaptureSessionPreset")]
         /// Setter for [`sessionPreset`][Self::sessionPreset].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSessionPreset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSessionPreset(&self, session_preset: &AVCaptureSessionPreset);

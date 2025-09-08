@@ -168,6 +168,8 @@ impl NSPrintPanel {
 
         #[cfg(feature = "NSHelpManager")]
         /// Setter for [`helpAnchor`][Self::helpAnchor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHelpAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
@@ -177,6 +179,8 @@ impl NSPrintPanel {
         pub unsafe fn jobStyleHint(&self) -> Option<Retained<NSPrintPanelJobStyleHint>>;
 
         /// Setter for [`jobStyleHint`][Self::jobStyleHint].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJobStyleHint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJobStyleHint(&self, job_style_hint: Option<&NSPrintPanelJobStyleHint>);

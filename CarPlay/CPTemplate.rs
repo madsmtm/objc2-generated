@@ -61,6 +61,8 @@ impl CPTemplate {
         pub unsafe fn tabTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`tabTitle`][Self::tabTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTabTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTabTitle(&self, tab_title: Option<&NSString>);

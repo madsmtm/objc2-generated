@@ -63,6 +63,8 @@ impl UIView {
         pub unsafe fn largeContentTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`largeContentTitle`][Self::largeContentTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLargeContentTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLargeContentTitle(&self, large_content_title: Option<&NSString>);

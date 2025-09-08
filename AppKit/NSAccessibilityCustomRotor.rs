@@ -154,6 +154,8 @@ impl NSAccessibilityCustomRotor {
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);
@@ -166,8 +168,9 @@ impl NSAccessibilityCustomRotor {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`itemSearchDelegate`][Self::itemSearchDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setItemSearchDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemSearchDelegate(
@@ -190,8 +193,9 @@ impl NSAccessibilityCustomRotor {
         ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityElementLoading>>>;
 
         #[cfg(feature = "NSAccessibilityProtocols")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`itemLoadingDelegate`][Self::itemLoadingDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setItemLoadingDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemLoadingDelegate(
@@ -269,6 +273,8 @@ impl NSAccessibilityCustomRotorSearchParameters {
         pub unsafe fn filterString(&self) -> Retained<NSString>;
 
         /// Setter for [`filterString`][Self::filterString].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFilterString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterString(&self, filter_string: &NSString);
@@ -374,6 +380,8 @@ impl NSAccessibilityCustomRotorItemResult {
         pub unsafe fn customLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customLabel`][Self::customLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomLabel(&self, custom_label: Option<&NSString>);

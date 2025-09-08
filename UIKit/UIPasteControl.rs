@@ -262,8 +262,9 @@ impl UIPasteControl {
         ) -> Option<Retained<ProtocolObject<dyn UIPasteConfigurationSupporting>>>;
 
         #[cfg(feature = "UIPasteConfigurationSupporting")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(

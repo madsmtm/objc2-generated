@@ -118,6 +118,8 @@ impl NSUndoManager {
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         /// Setter for [`runLoopModes`][Self::runLoopModes].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setRunLoopModes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRunLoopModes(&self, run_loop_modes: &NSArray<NSRunLoopMode>);

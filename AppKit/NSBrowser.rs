@@ -181,8 +181,9 @@ impl NSBrowser {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSBrowserDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSBrowserDelegate>>);
@@ -355,6 +356,8 @@ impl NSBrowser {
         pub unsafe fn pathSeparator(&self) -> Retained<NSString>;
 
         /// Setter for [`pathSeparator`][Self::pathSeparator].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPathSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPathSeparator(&self, path_separator: &NSString);
@@ -410,6 +413,8 @@ impl NSBrowser {
         pub unsafe fn selectionIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
         /// Setter for [`selectionIndexPath`][Self::selectionIndexPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectionIndexPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionIndexPath(&self, selection_index_path: Option<&NSIndexPath>);
@@ -419,6 +424,8 @@ impl NSBrowser {
         pub unsafe fn selectionIndexPaths(&self) -> Retained<NSArray<NSIndexPath>>;
 
         /// Setter for [`selectionIndexPaths`][Self::selectionIndexPaths].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectionIndexPaths:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionIndexPaths(&self, selection_index_paths: &NSArray<NSIndexPath>);
@@ -622,6 +629,8 @@ impl NSBrowser {
         pub unsafe fn columnsAutosaveName(&self) -> Retained<NSBrowserColumnsAutosaveName>;
 
         /// Setter for [`columnsAutosaveName`][Self::columnsAutosaveName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColumnsAutosaveName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColumnsAutosaveName(

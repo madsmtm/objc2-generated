@@ -475,6 +475,8 @@ extern_protocol!(
         unsafe fn technique(&self) -> Option<Retained<SCNTechnique>>;
 
         /// Setter for [`technique`][Self::technique].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTechnique:))]
         #[unsafe(method_family = none)]
         unsafe fn setTechnique(&self, technique: Option<&SCNTechnique>);

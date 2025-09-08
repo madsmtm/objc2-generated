@@ -150,8 +150,9 @@ impl NSRulerView {
         pub unsafe fn scrollView(&self) -> Option<Retained<NSScrollView>>;
 
         #[cfg(feature = "NSScrollView")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`scrollView`][Self::scrollView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setScrollView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollView(&self, scroll_view: Option<&NSScrollView>);
@@ -221,6 +222,8 @@ impl NSRulerView {
         pub unsafe fn measurementUnits(&self) -> Retained<NSRulerViewUnitName>;
 
         /// Setter for [`measurementUnits`][Self::measurementUnits].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMeasurementUnits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMeasurementUnits(&self, measurement_units: &NSRulerViewUnitName);
@@ -241,8 +244,9 @@ impl NSRulerView {
         #[unsafe(method_family = none)]
         pub unsafe fn clientView(&self) -> Option<Retained<NSView>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`clientView`][Self::clientView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setClientView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClientView(&self, client_view: Option<&NSView>);
@@ -264,6 +268,8 @@ impl NSRulerView {
 
         #[cfg(feature = "NSRulerMarker")]
         /// Setter for [`markers`][Self::markers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMarkers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarkers(&self, markers: Option<&NSArray<NSRulerMarker>>);

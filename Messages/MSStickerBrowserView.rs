@@ -152,8 +152,9 @@ impl MSStickerBrowserView {
         ) -> Option<Retained<ProtocolObject<dyn MSStickerBrowserViewDataSource>>>;
 
         #[cfg(feature = "MSStickerBrowserViewDataSource")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(

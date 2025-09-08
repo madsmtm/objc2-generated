@@ -60,6 +60,8 @@ impl EAGLSharegroup {
         pub unsafe fn debugLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`debugLabel`][Self::debugLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDebugLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDebugLabel(&self, debug_label: Option<&NSString>);
@@ -134,6 +136,8 @@ impl EAGLContext {
         pub unsafe fn debugLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`debugLabel`][Self::debugLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDebugLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDebugLabel(&self, debug_label: Option<&NSString>);

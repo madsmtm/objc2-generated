@@ -207,6 +207,8 @@ impl MPMediaPlaylistCreationMetadata {
         pub unsafe fn authorDisplayName(&self) -> Retained<NSString>;
 
         /// Setter for [`authorDisplayName`][Self::authorDisplayName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthorDisplayName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthorDisplayName(&self, author_display_name: Option<&NSString>);
@@ -216,6 +218,8 @@ impl MPMediaPlaylistCreationMetadata {
         pub unsafe fn descriptionText(&self) -> Retained<NSString>;
 
         /// Setter for [`descriptionText`][Self::descriptionText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDescriptionText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDescriptionText(&self, description_text: &NSString);

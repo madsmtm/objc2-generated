@@ -37,6 +37,9 @@ impl UISearchDisplayController {
             view_controller: &UIViewController,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -101,8 +104,9 @@ impl UISearchDisplayController {
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSource>>>;
 
         #[cfg(feature = "UITableView")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`searchResultsDataSource`][Self::searchResultsDataSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(setSearchResultsDataSource:))]
         #[unsafe(method_family = none)]
@@ -120,8 +124,9 @@ impl UISearchDisplayController {
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDelegate>>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`searchResultsDelegate`][Self::searchResultsDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(setSearchResultsDelegate:))]
         #[unsafe(method_family = none)]
@@ -135,6 +140,8 @@ impl UISearchDisplayController {
         pub unsafe fn searchResultsTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`searchResultsTitle`][Self::searchResultsTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSearchResultsTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchResultsTitle(&self, search_results_title: Option<&NSString>);

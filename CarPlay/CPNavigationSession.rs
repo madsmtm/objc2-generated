@@ -129,6 +129,8 @@ impl CPNavigationSession {
 
         #[cfg(feature = "CPManeuver")]
         /// Setter for [`upcomingManeuvers`][Self::upcomingManeuvers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUpcomingManeuvers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpcomingManeuvers(&self, upcoming_maneuvers: &NSArray<CPManeuver>);
@@ -142,6 +144,8 @@ impl CPNavigationSession {
 
         #[cfg(feature = "CPLaneGuidance")]
         /// Setter for [`currentLaneGuidance`][Self::currentLaneGuidance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCurrentLaneGuidance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentLaneGuidance(&self, current_lane_guidance: Option<&CPLaneGuidance>);
@@ -167,6 +171,8 @@ impl CPNavigationSession {
         pub unsafe fn currentRoadNameVariants(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`currentRoadNameVariants`][Self::currentRoadNameVariants].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCurrentRoadNameVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentRoadNameVariants(

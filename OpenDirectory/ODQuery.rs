@@ -120,6 +120,10 @@ impl ODQuery {
         /// The currently set delegate
         ///
         /// The query delegate which will receive asynchronous query results.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn ODQueryDelegate>>>;

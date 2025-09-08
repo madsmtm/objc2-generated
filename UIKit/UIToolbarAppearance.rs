@@ -52,6 +52,8 @@ impl UIToolbarAppearance {
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         /// Setter for [`buttonAppearance`][Self::buttonAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setButtonAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setButtonAppearance(&self, button_appearance: &UIBarButtonItemAppearance);
@@ -64,6 +66,8 @@ impl UIToolbarAppearance {
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
         /// Setter for [`doneButtonAppearance`][Self::doneButtonAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDoneButtonAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoneButtonAppearance(

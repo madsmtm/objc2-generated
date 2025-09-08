@@ -94,6 +94,8 @@ impl DOMHTMLTableCellElement {
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setAlign:))]
         #[unsafe(method_family = none)]
@@ -105,6 +107,8 @@ impl DOMHTMLTableCellElement {
         pub unsafe fn axis(&self) -> Retained<NSString>;
 
         /// Setter for [`axis`][Self::axis].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setAxis:))]
         #[unsafe(method_family = none)]
@@ -116,6 +120,8 @@ impl DOMHTMLTableCellElement {
         pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
         /// Setter for [`bgColor`][Self::bgColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setBgColor:))]
         #[unsafe(method_family = none)]
@@ -127,6 +133,8 @@ impl DOMHTMLTableCellElement {
         pub unsafe fn ch(&self) -> Retained<NSString>;
 
         /// Setter for [`ch`][Self::ch].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setCh:))]
         #[unsafe(method_family = none)]
@@ -138,6 +146,8 @@ impl DOMHTMLTableCellElement {
         pub unsafe fn chOff(&self) -> Retained<NSString>;
 
         /// Setter for [`chOff`][Self::chOff].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setChOff:))]
         #[unsafe(method_family = none)]
@@ -171,6 +181,8 @@ impl DOMHTMLTableCellElement {
         pub unsafe fn headers(&self) -> Retained<NSString>;
 
         /// Setter for [`headers`][Self::headers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setHeaders:))]
         #[unsafe(method_family = none)]
@@ -182,6 +194,8 @@ impl DOMHTMLTableCellElement {
         pub unsafe fn height(&self) -> Retained<NSString>;
 
         /// Setter for [`height`][Self::height].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
@@ -204,6 +218,8 @@ impl DOMHTMLTableCellElement {
         pub unsafe fn vAlign(&self) -> Retained<NSString>;
 
         /// Setter for [`vAlign`][Self::vAlign].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setVAlign:))]
         #[unsafe(method_family = none)]
@@ -215,6 +231,8 @@ impl DOMHTMLTableCellElement {
         pub unsafe fn width(&self) -> Retained<NSString>;
 
         /// Setter for [`width`][Self::width].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
@@ -226,6 +244,8 @@ impl DOMHTMLTableCellElement {
         pub unsafe fn abbr(&self) -> Retained<NSString>;
 
         /// Setter for [`abbr`][Self::abbr].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setAbbr:))]
         #[unsafe(method_family = none)]
@@ -237,6 +257,8 @@ impl DOMHTMLTableCellElement {
         pub unsafe fn scope(&self) -> Retained<NSString>;
 
         /// Setter for [`scope`][Self::scope].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setScope:))]
         #[unsafe(method_family = none)]

@@ -94,6 +94,8 @@ impl AVCaptureVideoDataOutput {
         pub unsafe fn videoSettings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`videoSettings`][Self::videoSettings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoSettings(

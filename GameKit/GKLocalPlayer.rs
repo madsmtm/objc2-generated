@@ -366,6 +366,8 @@ impl GKLocalPlayer {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Setter for [`authenticateHandler`][Self::authenticateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthenticateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthenticateHandler(

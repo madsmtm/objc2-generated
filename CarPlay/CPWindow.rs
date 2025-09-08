@@ -96,8 +96,9 @@ impl CPWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`windowScene`][Self::windowScene].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setWindowScene:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWindowScene(&self, window_scene: Option<&UIWindowScene>);
@@ -111,8 +112,9 @@ impl CPWindow {
         ) -> Option<Retained<CPTemplateApplicationScene>>;
 
         #[cfg(feature = "CPTemplateApplicationScene")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`templateApplicationScene`][Self::templateApplicationScene].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTemplateApplicationScene:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTemplateApplicationScene(

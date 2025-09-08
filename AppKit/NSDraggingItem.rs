@@ -56,6 +56,8 @@ impl NSDraggingImageComponent {
         pub unsafe fn key(&self) -> Retained<NSDraggingImageComponentKey>;
 
         /// Setter for [`key`][Self::key].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKey(&self, key: &NSDraggingImageComponentKey);
@@ -136,6 +138,8 @@ impl NSDraggingItem {
 
         #[cfg(feature = "block2")]
         /// Setter for [`imageComponentsProvider`][Self::imageComponentsProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImageComponentsProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageComponentsProvider(

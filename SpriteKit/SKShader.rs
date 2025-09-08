@@ -116,6 +116,8 @@ impl SKShader {
         pub unsafe fn source(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`source`][Self::source].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSource(&self, source: Option<&NSString>);
@@ -131,6 +133,8 @@ impl SKShader {
 
         #[cfg(feature = "SKUniform")]
         /// Setter for [`uniforms`][Self::uniforms].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUniforms:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUniforms(&self, uniforms: &NSArray<SKUniform>);
@@ -156,6 +160,8 @@ impl SKShader {
 
         #[cfg(feature = "SKAttribute")]
         /// Setter for [`attributes`][Self::attributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributes(&self, attributes: &NSArray<SKAttribute>);

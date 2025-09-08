@@ -165,6 +165,8 @@ impl UITextFormattingViewController {
 
         #[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
         /// Setter for [`formattingDescriptor`][Self::formattingDescriptor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFormattingDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormattingDescriptor(
@@ -179,8 +181,9 @@ impl UITextFormattingViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextFormattingViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

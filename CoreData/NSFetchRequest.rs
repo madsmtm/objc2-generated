@@ -235,6 +235,8 @@ impl<ResultType: Message> NSFetchRequest<ResultType> {
         ) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`relationshipKeyPathsForPrefetching`][Self::relationshipKeyPathsForPrefetching].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRelationshipKeyPathsForPrefetching:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRelationshipKeyPathsForPrefetching(
@@ -265,6 +267,8 @@ impl<ResultType: Message> NSFetchRequest<ResultType> {
         pub unsafe fn propertiesToFetch(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`propertiesToFetch`][Self::propertiesToFetch].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPropertiesToFetch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertiesToFetch(&self, properties_to_fetch: Option<&NSArray>);
@@ -304,6 +308,8 @@ impl<ResultType: Message> NSFetchRequest<ResultType> {
         pub unsafe fn propertiesToGroupBy(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`propertiesToGroupBy`][Self::propertiesToGroupBy].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPropertiesToGroupBy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertiesToGroupBy(&self, properties_to_group_by: Option<&NSArray>);

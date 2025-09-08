@@ -136,6 +136,8 @@ impl CMIOExtensionDeviceProperties {
 
         #[cfg(feature = "CMIOExtensionProperties")]
         /// Setter for [`propertiesDictionary`][Self::propertiesDictionary].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPropertiesDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertiesDictionary(

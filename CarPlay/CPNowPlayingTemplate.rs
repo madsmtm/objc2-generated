@@ -134,6 +134,8 @@ impl CPNowPlayingTemplate {
         pub unsafe fn upNextTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`upNextTitle`][Self::upNextTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUpNextTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpNextTitle(&self, up_next_title: &NSString);

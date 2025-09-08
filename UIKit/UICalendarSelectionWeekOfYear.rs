@@ -30,6 +30,8 @@ impl UICalendarSelectionWeekOfYear {
         pub unsafe fn selectedWeekOfYear(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`selectedWeekOfYear`][Self::selectedWeekOfYear].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedWeekOfYear:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedWeekOfYear(

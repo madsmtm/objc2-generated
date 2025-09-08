@@ -46,6 +46,8 @@ impl CKFetchRecordZonesOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`recordZoneIDs`][Self::recordZoneIDs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordZoneIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneIDs(&self, record_zone_i_ds: Option<&NSArray<CKRecordZoneID>>);
@@ -74,6 +76,8 @@ impl CKFetchRecordZonesOperation {
             feature = "block2"
         ))]
         /// Setter for [`perRecordZoneCompletionBlock`][Self::perRecordZoneCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerRecordZoneCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordZoneCompletionBlock(
@@ -121,6 +125,8 @@ impl CKFetchRecordZonesOperation {
             feature = "block2"
         ))]
         /// Setter for [`fetchRecordZonesCompletionBlock`][Self::fetchRecordZonesCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFetchRecordZonesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRecordZonesCompletionBlock(

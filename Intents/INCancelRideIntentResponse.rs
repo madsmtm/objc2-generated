@@ -90,6 +90,8 @@ impl INCancelRideIntentResponse {
 
         #[cfg(feature = "INCurrencyAmount")]
         /// Setter for [`cancellationFee`][Self::cancellationFee].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCancellationFee:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCancellationFee(&self, cancellation_fee: Option<&INCurrencyAmount>);
@@ -99,6 +101,8 @@ impl INCancelRideIntentResponse {
         pub unsafe fn cancellationFeeThreshold(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`cancellationFeeThreshold`][Self::cancellationFeeThreshold].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCancellationFeeThreshold:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCancellationFeeThreshold(

@@ -139,8 +139,9 @@ impl AVAudioRecorder {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAudioRecorderDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -201,6 +202,8 @@ impl AVAudioRecorder {
 
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Setter for [`channelAssignments`][Self::channelAssignments].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChannelAssignments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannelAssignments(

@@ -69,6 +69,8 @@ impl INBookRestaurantReservationIntent {
 
         #[cfg(feature = "INRestaurant")]
         /// Setter for [`restaurant`][Self::restaurant].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRestaurant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRestaurant(&self, restaurant: &INRestaurant);
@@ -78,6 +80,8 @@ impl INBookRestaurantReservationIntent {
         pub unsafe fn bookingDateComponents(&self) -> Retained<NSDateComponents>;
 
         /// Setter for [`bookingDateComponents`][Self::bookingDateComponents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBookingDateComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBookingDateComponents(&self, booking_date_components: &NSDateComponents);
@@ -96,6 +100,8 @@ impl INBookRestaurantReservationIntent {
         pub unsafe fn bookingIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`bookingIdentifier`][Self::bookingIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBookingIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBookingIdentifier(&self, booking_identifier: Option<&NSString>);
@@ -107,6 +113,8 @@ impl INBookRestaurantReservationIntent {
 
         #[cfg(all(feature = "INPerson", feature = "INRestaurantGuest"))]
         /// Setter for [`guest`][Self::guest].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGuest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGuest(&self, guest: Option<&INRestaurantGuest>);
@@ -118,6 +126,8 @@ impl INBookRestaurantReservationIntent {
 
         #[cfg(feature = "INRestaurantOffer")]
         /// Setter for [`selectedOffer`][Self::selectedOffer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedOffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedOffer(&self, selected_offer: Option<&INRestaurantOffer>);
@@ -127,6 +137,8 @@ impl INBookRestaurantReservationIntent {
         pub unsafe fn guestProvidedSpecialRequestText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`guestProvidedSpecialRequestText`][Self::guestProvidedSpecialRequestText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGuestProvidedSpecialRequestText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGuestProvidedSpecialRequestText(

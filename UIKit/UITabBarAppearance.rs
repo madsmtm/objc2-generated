@@ -39,6 +39,8 @@ impl UITabBarItemStateAppearance {
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         /// Setter for [`titleTextAttributes`][Self::titleTextAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitleTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributes(
@@ -66,6 +68,8 @@ impl UITabBarItemStateAppearance {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`iconColor`][Self::iconColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIconColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIconColor(&self, icon_color: Option<&UIColor>);
@@ -90,6 +94,8 @@ impl UITabBarItemStateAppearance {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`badgeBackgroundColor`][Self::badgeBackgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBadgeBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeBackgroundColor(&self, badge_background_color: Option<&UIColor>);
@@ -102,6 +108,8 @@ impl UITabBarItemStateAppearance {
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         /// Setter for [`badgeTextAttributes`][Self::badgeTextAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBadgeTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeTextAttributes(
@@ -278,6 +286,8 @@ impl UITabBarAppearance {
         pub unsafe fn stackedLayoutAppearance(&self) -> Retained<UITabBarItemAppearance>;
 
         /// Setter for [`stackedLayoutAppearance`][Self::stackedLayoutAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStackedLayoutAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStackedLayoutAppearance(
@@ -291,6 +301,8 @@ impl UITabBarAppearance {
         pub unsafe fn inlineLayoutAppearance(&self) -> Retained<UITabBarItemAppearance>;
 
         /// Setter for [`inlineLayoutAppearance`][Self::inlineLayoutAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInlineLayoutAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInlineLayoutAppearance(
@@ -304,6 +316,8 @@ impl UITabBarAppearance {
         pub unsafe fn compactInlineLayoutAppearance(&self) -> Retained<UITabBarItemAppearance>;
 
         /// Setter for [`compactInlineLayoutAppearance`][Self::compactInlineLayoutAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompactInlineLayoutAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompactInlineLayoutAppearance(
@@ -319,6 +333,8 @@ impl UITabBarAppearance {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`selectionIndicatorTintColor`][Self::selectionIndicatorTintColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectionIndicatorTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionIndicatorTintColor(

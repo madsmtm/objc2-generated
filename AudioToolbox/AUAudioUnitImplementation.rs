@@ -288,6 +288,8 @@ impl AUParameterNode {
 
         #[cfg(feature = "block2")]
         /// Setter for [`implementorValueObserver`][Self::implementorValueObserver].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImplementorValueObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImplementorValueObserver(
@@ -307,6 +309,8 @@ impl AUParameterNode {
 
         #[cfg(feature = "block2")]
         /// Setter for [`implementorValueProvider`][Self::implementorValueProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImplementorValueProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImplementorValueProvider(
@@ -325,6 +329,8 @@ impl AUParameterNode {
 
         #[cfg(feature = "block2")]
         /// Setter for [`implementorStringFromValueCallback`][Self::implementorStringFromValueCallback].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImplementorStringFromValueCallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImplementorStringFromValueCallback(
@@ -342,6 +348,8 @@ impl AUParameterNode {
 
         #[cfg(feature = "block2")]
         /// Setter for [`implementorValueFromStringCallback`][Self::implementorValueFromStringCallback].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImplementorValueFromStringCallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImplementorValueFromStringCallback(
@@ -359,6 +367,8 @@ impl AUParameterNode {
 
         #[cfg(feature = "block2")]
         /// Setter for [`implementorDisplayNameWithLengthCallback`][Self::implementorDisplayNameWithLengthCallback].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImplementorDisplayNameWithLengthCallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImplementorDisplayNameWithLengthCallback(

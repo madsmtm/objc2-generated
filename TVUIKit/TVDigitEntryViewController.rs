@@ -59,6 +59,8 @@ impl TVDigitEntryViewController {
 
         #[cfg(feature = "block2")]
         /// Setter for [`entryCompletionHandler`][Self::entryCompletionHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEntryCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEntryCompletionHandler(
@@ -74,6 +76,8 @@ impl TVDigitEntryViewController {
         pub unsafe fn titleText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`titleText`][Self::titleText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitleText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleText(&self, title_text: Option<&NSString>);
@@ -86,6 +90,8 @@ impl TVDigitEntryViewController {
         pub unsafe fn promptText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`promptText`][Self::promptText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPromptText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPromptText(&self, prompt_text: Option<&NSString>);

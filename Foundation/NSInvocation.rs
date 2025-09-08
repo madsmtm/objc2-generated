@@ -39,6 +39,9 @@ impl NSInvocation {
         #[unsafe(method_family = none)]
         pub unsafe fn argumentsRetained(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;

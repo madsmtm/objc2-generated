@@ -203,8 +203,9 @@ impl NSOutlineView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSOutlineViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -218,8 +219,9 @@ impl NSOutlineView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSOutlineViewDataSource>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
@@ -228,6 +230,9 @@ impl NSOutlineView {
         );
 
         #[cfg(feature = "NSTableColumn")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(outlineTableColumn))]
         #[unsafe(method_family = none)]
         pub unsafe fn outlineTableColumn(&self) -> Option<Retained<NSTableColumn>>;

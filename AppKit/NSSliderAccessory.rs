@@ -39,6 +39,8 @@ impl NSSliderAccessory {
         pub unsafe fn behavior(&self) -> Retained<NSSliderAccessoryBehavior>;
 
         /// Setter for [`behavior`][Self::behavior].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBehavior(&self, behavior: &NSSliderAccessoryBehavior);

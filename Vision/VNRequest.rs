@@ -307,6 +307,8 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setProgressHandler(&self, progress_handler: VNRequestProgressHandler);

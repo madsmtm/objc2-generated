@@ -121,6 +121,8 @@ impl EKEvent {
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`startDate`][Self::startDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStartDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartDate(&self, start_date: Option<&NSDate>);
@@ -133,6 +135,8 @@ impl EKEvent {
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`endDate`][Self::endDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEndDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndDate(&self, end_date: Option<&NSDate>);
@@ -148,6 +152,8 @@ impl EKEvent {
 
         #[cfg(feature = "EKStructuredLocation")]
         /// Setter for [`structuredLocation`][Self::structuredLocation].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStructuredLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStructuredLocation(

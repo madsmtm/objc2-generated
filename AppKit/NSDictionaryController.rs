@@ -29,6 +29,8 @@ impl NSDictionaryControllerKeyValuePair {
         pub unsafe fn key(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`key`][Self::key].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKey(&self, key: Option<&NSString>);
@@ -47,6 +49,8 @@ impl NSDictionaryControllerKeyValuePair {
         pub unsafe fn localizedKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedKey`][Self::localizedKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedKey(&self, localized_key: Option<&NSString>);
@@ -133,6 +137,8 @@ impl NSDictionaryController {
         pub unsafe fn initialKey(&self) -> Retained<NSString>;
 
         /// Setter for [`initialKey`][Self::initialKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInitialKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialKey(&self, initial_key: &NSString);
@@ -151,6 +157,8 @@ impl NSDictionaryController {
         pub unsafe fn includedKeys(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`includedKeys`][Self::includedKeys].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIncludedKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncludedKeys(&self, included_keys: &NSArray<NSString>);
@@ -160,6 +168,8 @@ impl NSDictionaryController {
         pub unsafe fn excludedKeys(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`excludedKeys`][Self::excludedKeys].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedKeys(&self, excluded_keys: &NSArray<NSString>);
@@ -169,6 +179,8 @@ impl NSDictionaryController {
         pub unsafe fn localizedKeyDictionary(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         /// Setter for [`localizedKeyDictionary`][Self::localizedKeyDictionary].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedKeyDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedKeyDictionary(
@@ -181,6 +193,8 @@ impl NSDictionaryController {
         pub unsafe fn localizedKeyTable(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedKeyTable`][Self::localizedKeyTable].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedKeyTable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedKeyTable(&self, localized_key_table: Option<&NSString>);

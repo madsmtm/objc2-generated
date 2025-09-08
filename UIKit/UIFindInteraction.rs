@@ -85,6 +85,8 @@ impl UIFindInteraction {
         pub unsafe fn searchText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`searchText`][Self::searchText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSearchText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchText(&self, search_text: Option<&NSString>);
@@ -95,6 +97,8 @@ impl UIFindInteraction {
         pub unsafe fn replacementText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`replacementText`][Self::replacementText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setReplacementText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReplacementText(&self, replacement_text: Option<&NSString>);
@@ -111,6 +115,8 @@ impl UIFindInteraction {
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
         /// Setter for [`optionsMenuProvider`][Self::optionsMenuProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOptionsMenuProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOptionsMenuProvider(

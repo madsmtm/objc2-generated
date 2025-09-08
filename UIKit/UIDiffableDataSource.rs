@@ -521,6 +521,8 @@ impl<SectionType: Message, ItemType: Message>
 
         #[cfg(feature = "block2")]
         /// Setter for [`canReorderItemHandler`][Self::canReorderItemHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCanReorderItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanReorderItemHandler(
@@ -539,6 +541,8 @@ impl<SectionType: Message, ItemType: Message>
 
         #[cfg(feature = "block2")]
         /// Setter for [`willReorderHandler`][Self::willReorderHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWillReorderHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWillReorderHandler(
@@ -561,6 +565,8 @@ impl<SectionType: Message, ItemType: Message>
 
         #[cfg(feature = "block2")]
         /// Setter for [`didReorderHandler`][Self::didReorderHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDidReorderHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDidReorderHandler(
@@ -646,6 +652,8 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
 
         #[cfg(feature = "block2")]
         /// Setter for [`shouldExpandItemHandler`][Self::shouldExpandItemHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShouldExpandItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldExpandItemHandler(
@@ -664,6 +672,8 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
 
         #[cfg(feature = "block2")]
         /// Setter for [`willExpandItemHandler`][Self::willExpandItemHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWillExpandItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWillExpandItemHandler(
@@ -680,6 +690,8 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
 
         #[cfg(feature = "block2")]
         /// Setter for [`shouldCollapseItemHandler`][Self::shouldCollapseItemHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShouldCollapseItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldCollapseItemHandler(
@@ -698,6 +710,8 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
 
         #[cfg(feature = "block2")]
         /// Setter for [`willCollapseItemHandler`][Self::willCollapseItemHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWillCollapseItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWillCollapseItemHandler(
@@ -719,6 +733,8 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
 
         #[cfg(all(feature = "NSDiffableDataSourceSectionSnapshot", feature = "block2"))]
         /// Setter for [`snapshotForExpandingParentItemHandler`][Self::snapshotForExpandingParentItemHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSnapshotForExpandingParentItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSnapshotForExpandingParentItemHandler(
@@ -846,6 +862,8 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             feature = "block2"
         ))]
         /// Setter for [`supplementaryViewProvider`][Self::supplementaryViewProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupplementaryViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupplementaryViewProvider(
@@ -933,6 +951,8 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         >;
 
         /// Setter for [`reorderingHandlers`][Self::reorderingHandlers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setReorderingHandlers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReorderingHandlers(
@@ -979,6 +999,8 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ) -> Retained<UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemIdentifierType>>;
 
         /// Setter for [`sectionSnapshotHandlers`][Self::sectionSnapshotHandlers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSectionSnapshotHandlers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSectionSnapshotHandlers(

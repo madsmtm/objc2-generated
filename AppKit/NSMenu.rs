@@ -133,6 +133,8 @@ impl NSMenu {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -179,6 +181,9 @@ impl NSMenu {
         #[unsafe(method_family = none)]
         pub unsafe fn menuBarVisible(mtm: MainThreadMarker) -> bool;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(supermenu))]
         #[unsafe(method_family = none)]
         pub unsafe fn supermenu(&self) -> Option<Retained<NSMenu>>;
@@ -244,6 +249,8 @@ impl NSMenu {
 
         #[cfg(feature = "NSMenuItem")]
         /// Setter for [`itemArray`][Self::itemArray].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setItemArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemArray(&self, item_array: &NSArray<NSMenuItem>);
@@ -330,8 +337,9 @@ impl NSMenu {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSMenuDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMenuDelegate>>);
@@ -521,6 +529,8 @@ impl NSMenu {
 
         #[cfg(feature = "NSMenuItem")]
         /// Setter for [`selectedItems`][Self::selectedItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedItems(&self, selected_items: &NSArray<NSMenuItem>);

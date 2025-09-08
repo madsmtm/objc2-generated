@@ -69,6 +69,8 @@ impl NSShadow {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`shadowColor`][Self::shadowColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShadowColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowColor(&self, shadow_color: Option<&NSColor>);

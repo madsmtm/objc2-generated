@@ -69,6 +69,8 @@ impl CKSystemSharingUIObserver {
             feature = "block2"
         ))]
         /// Setter for [`systemSharingUIDidSaveShareBlock`][Self::systemSharingUIDidSaveShareBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSystemSharingUIDidSaveShareBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSystemSharingUIDidSaveShareBlock(
@@ -93,6 +95,8 @@ impl CKSystemSharingUIObserver {
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`systemSharingUIDidStopSharingBlock`][Self::systemSharingUIDidStopSharingBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSystemSharingUIDidStopSharingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSystemSharingUIDidStopSharingBlock(

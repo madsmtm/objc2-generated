@@ -64,6 +64,8 @@ impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
 
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         /// Setter for [`allowedCredentials`][Self::allowedCredentials].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAllowedCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedCredentials(

@@ -51,6 +51,8 @@ impl CKDiscoverAllUserIdentitiesOperation {
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
         /// Setter for [`userIdentityDiscoveredBlock`][Self::userIdentityDiscoveredBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(setUserIdentityDiscoveredBlock:))]
         #[unsafe(method_family = none)]
@@ -85,6 +87,8 @@ impl CKDiscoverAllUserIdentitiesOperation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`discoverAllUserIdentitiesCompletionBlock`][Self::discoverAllUserIdentitiesCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(setDiscoverAllUserIdentitiesCompletionBlock:))]
         #[unsafe(method_family = none)]

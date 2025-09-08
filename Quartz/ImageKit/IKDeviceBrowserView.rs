@@ -104,6 +104,10 @@ extern_conformance!(
 impl IKDeviceBrowserView {
     extern_methods!(
         /// delegate of the IKDeviceBrowserView.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(

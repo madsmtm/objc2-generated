@@ -143,6 +143,8 @@ impl NSTimer {
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`fireDate`][Self::fireDate].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFireDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFireDate(&self, fire_date: &NSDate);

@@ -69,6 +69,8 @@ impl NSUserDefaultsController {
         pub unsafe fn initialValues(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`initialValues`][Self::initialValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInitialValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialValues(

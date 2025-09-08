@@ -48,6 +48,8 @@ impl GCMouseInput {
 
         #[cfg(feature = "block2")]
         /// Setter for [`mouseMovedHandler`][Self::mouseMovedHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMouseMovedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMouseMovedHandler(&self, mouse_moved_handler: GCMouseMoved);

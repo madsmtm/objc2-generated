@@ -161,6 +161,8 @@ impl NSDateFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`dateFormat`][Self::dateFormat].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setDateFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDateFormat(&self, date_format: Option<&NSString>);
@@ -190,6 +192,8 @@ impl NSDateFormatter {
 
         #[cfg(feature = "NSLocale")]
         /// Setter for [`locale`][Self::locale].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
@@ -219,6 +223,8 @@ impl NSDateFormatter {
 
         #[cfg(feature = "NSTimeZone")]
         /// Setter for [`timeZone`][Self::timeZone].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTimeZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
@@ -230,6 +236,8 @@ impl NSDateFormatter {
 
         #[cfg(feature = "NSCalendar")]
         /// Setter for [`calendar`][Self::calendar].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCalendar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
@@ -250,6 +258,8 @@ impl NSDateFormatter {
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`twoDigitStartDate`][Self::twoDigitStartDate].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTwoDigitStartDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTwoDigitStartDate(&self, two_digit_start_date: Option<&NSDate>);
@@ -261,6 +271,8 @@ impl NSDateFormatter {
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`defaultDate`][Self::defaultDate].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setDefaultDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultDate(&self, default_date: Option<&NSDate>);
@@ -272,6 +284,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`eraSymbols`][Self::eraSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setEraSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEraSymbols(&self, era_symbols: Option<&NSArray<NSString>>);
@@ -283,6 +297,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`monthSymbols`][Self::monthSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setMonthSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMonthSymbols(&self, month_symbols: Option<&NSArray<NSString>>);
@@ -294,6 +310,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`shortMonthSymbols`][Self::shortMonthSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setShortMonthSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShortMonthSymbols(&self, short_month_symbols: Option<&NSArray<NSString>>);
@@ -305,6 +323,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`weekdaySymbols`][Self::weekdaySymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setWeekdaySymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWeekdaySymbols(&self, weekday_symbols: Option<&NSArray<NSString>>);
@@ -316,6 +336,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`shortWeekdaySymbols`][Self::shortWeekdaySymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setShortWeekdaySymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShortWeekdaySymbols(
@@ -330,6 +352,8 @@ impl NSDateFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`AMSymbol`][Self::AMSymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAMSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAMSymbol(&self, am_symbol: Option<&NSString>);
@@ -341,6 +365,8 @@ impl NSDateFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`PMSymbol`][Self::PMSymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPMSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPMSymbol(&self, pm_symbol: Option<&NSString>);
@@ -352,6 +378,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`longEraSymbols`][Self::longEraSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setLongEraSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLongEraSymbols(&self, long_era_symbols: Option<&NSArray<NSString>>);
@@ -363,6 +391,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`veryShortMonthSymbols`][Self::veryShortMonthSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setVeryShortMonthSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVeryShortMonthSymbols(
@@ -377,6 +407,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`standaloneMonthSymbols`][Self::standaloneMonthSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setStandaloneMonthSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandaloneMonthSymbols(
@@ -391,6 +423,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`shortStandaloneMonthSymbols`][Self::shortStandaloneMonthSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setShortStandaloneMonthSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShortStandaloneMonthSymbols(
@@ -405,6 +439,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`veryShortStandaloneMonthSymbols`][Self::veryShortStandaloneMonthSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setVeryShortStandaloneMonthSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVeryShortStandaloneMonthSymbols(
@@ -419,6 +455,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`veryShortWeekdaySymbols`][Self::veryShortWeekdaySymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setVeryShortWeekdaySymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVeryShortWeekdaySymbols(
@@ -433,6 +471,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`standaloneWeekdaySymbols`][Self::standaloneWeekdaySymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setStandaloneWeekdaySymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandaloneWeekdaySymbols(
@@ -447,6 +487,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`shortStandaloneWeekdaySymbols`][Self::shortStandaloneWeekdaySymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setShortStandaloneWeekdaySymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShortStandaloneWeekdaySymbols(
@@ -461,6 +503,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`veryShortStandaloneWeekdaySymbols`][Self::veryShortStandaloneWeekdaySymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setVeryShortStandaloneWeekdaySymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVeryShortStandaloneWeekdaySymbols(
@@ -475,6 +519,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`quarterSymbols`][Self::quarterSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setQuarterSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQuarterSymbols(&self, quarter_symbols: Option<&NSArray<NSString>>);
@@ -486,6 +532,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`shortQuarterSymbols`][Self::shortQuarterSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setShortQuarterSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShortQuarterSymbols(
@@ -500,6 +548,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`standaloneQuarterSymbols`][Self::standaloneQuarterSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setStandaloneQuarterSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandaloneQuarterSymbols(
@@ -514,6 +564,8 @@ impl NSDateFormatter {
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`shortStandaloneQuarterSymbols`][Self::shortStandaloneQuarterSymbols].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setShortStandaloneQuarterSymbols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShortStandaloneQuarterSymbols(
@@ -528,6 +580,8 @@ impl NSDateFormatter {
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`gregorianStartDate`][Self::gregorianStartDate].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setGregorianStartDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGregorianStartDate(&self, gregorian_start_date: Option<&NSDate>);

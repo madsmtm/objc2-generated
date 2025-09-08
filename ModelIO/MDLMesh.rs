@@ -234,6 +234,8 @@ impl MDLMesh {
 
         #[cfg(feature = "MDLVertexDescriptor")]
         /// Setter for [`vertexDescriptor`][Self::vertexDescriptor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVertexDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexDescriptor(&self, vertex_descriptor: &MDLVertexDescriptor);
@@ -278,6 +280,8 @@ impl MDLMesh {
 
         #[cfg(feature = "MDLSubmesh")]
         /// Setter for [`submeshes`][Self::submeshes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubmeshes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubmeshes(&self, submeshes: Option<&NSMutableArray<MDLSubmesh>>);

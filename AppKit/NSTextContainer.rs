@@ -142,6 +142,9 @@ impl NSTextContainer {
 impl NSTextContainer {
     extern_methods!(
         #[cfg(feature = "NSLayoutManager")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(layoutManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
@@ -164,6 +167,8 @@ impl NSTextContainer {
 
         #[cfg(feature = "NSBezierPath")]
         /// Setter for [`exclusionPaths`][Self::exclusionPaths].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExclusionPaths:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExclusionPaths(&self, exclusion_paths: &NSArray<NSBezierPath>);
@@ -184,8 +189,9 @@ impl NSTextContainer {
             feature = "NSTextView",
             feature = "NSView"
         ))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`textView`][Self::textView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTextView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextView(&self, text_view: Option<&NSTextView>);

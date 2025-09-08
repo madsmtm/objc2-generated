@@ -36,8 +36,9 @@ impl MPPlayableContentManager {
         ) -> Option<Retained<ProtocolObject<dyn MPPlayableContentDataSource>>>;
 
         #[cfg(feature = "MPPlayableContentDataSource")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Use CarPlay framework"]
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
@@ -55,8 +56,9 @@ impl MPPlayableContentManager {
         ) -> Option<Retained<ProtocolObject<dyn MPPlayableContentDelegate>>>;
 
         #[cfg(feature = "MPPlayableContentDelegate")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Use CarPlay framework"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
@@ -78,6 +80,8 @@ impl MPPlayableContentManager {
         pub unsafe fn nowPlayingIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`nowPlayingIdentifiers`][Self::nowPlayingIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use CarPlay framework"]
         #[unsafe(method(setNowPlayingIdentifiers:))]
         #[unsafe(method_family = none)]

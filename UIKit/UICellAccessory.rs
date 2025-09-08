@@ -244,6 +244,8 @@ impl UICellAccessoryDetail {
 
         #[cfg(feature = "block2")]
         /// Setter for [`actionHandler`][Self::actionHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::DynBlock<dyn Fn()>>);
@@ -386,6 +388,8 @@ impl UICellAccessoryDelete {
 
         #[cfg(feature = "block2")]
         /// Setter for [`actionHandler`][Self::actionHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::DynBlock<dyn Fn()>>);
@@ -469,6 +473,8 @@ impl UICellAccessoryInsert {
 
         #[cfg(feature = "block2")]
         /// Setter for [`actionHandler`][Self::actionHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::DynBlock<dyn Fn()>>);
@@ -720,6 +726,8 @@ impl UICellAccessoryOutlineDisclosure {
 
         #[cfg(feature = "block2")]
         /// Setter for [`actionHandler`][Self::actionHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::DynBlock<dyn Fn()>>);
@@ -804,6 +812,8 @@ impl UICellAccessoryPopUpMenu {
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
         /// Setter for [`selectedElementDidChangeHandler`][Self::selectedElementDidChangeHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedElementDidChangeHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedElementDidChangeHandler(
@@ -1043,6 +1053,8 @@ impl UICellAccessoryCustomView {
 
         #[cfg(feature = "block2")]
         /// Setter for [`position`][Self::position].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: UICellAccessoryPosition);

@@ -110,6 +110,8 @@ impl MPSGraphShapedType {
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`shape`][Self::shape].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShape(&self, shape: Option<&MPSShape>);

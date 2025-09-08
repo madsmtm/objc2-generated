@@ -221,6 +221,9 @@ impl UIApplication {
         #[unsafe(method_family = none)]
         pub fn sharedApplication(mtm: MainThreadMarker) -> Retained<UIApplication>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -574,6 +577,8 @@ impl UIApplication {
 
         #[cfg(feature = "UILocalNotification")]
         /// Setter for [`scheduledLocalNotifications`][Self::scheduledLocalNotifications].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter getPendingNotificationRequestsWithCompletionHandler:]"]
         #[unsafe(method(setScheduledLocalNotifications:))]
         #[unsafe(method_family = none)]
@@ -644,6 +649,8 @@ impl UIApplication {
 
         #[cfg(feature = "UIApplicationShortcutItem")]
         /// Setter for [`shortcutItems`][Self::shortcutItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShortcutItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShortcutItems(

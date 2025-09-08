@@ -249,6 +249,8 @@ impl AVVideoOutputSpecification {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`defaultPixelBufferAttributes`][Self::defaultPixelBufferAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setDefaultPixelBufferAttributes:))]
         #[unsafe(method_family = none)]
@@ -280,6 +282,8 @@ impl AVVideoOutputSpecification {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`defaultOutputSettings`][Self::defaultOutputSettings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultOutputSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultOutputSettings(

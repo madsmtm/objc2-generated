@@ -80,6 +80,9 @@ impl NSTableCellView {
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(textField))]
         #[unsafe(method_family = none)]
         pub unsafe fn textField(&self) -> Option<Retained<NSTextField>>;
@@ -91,6 +94,9 @@ impl NSTableCellView {
         pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView"))]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(imageView))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageView(&self) -> Option<Retained<NSImageView>>;

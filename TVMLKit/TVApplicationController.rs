@@ -42,6 +42,8 @@ impl TVApplicationControllerContext {
         pub unsafe fn javaScriptApplicationURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`javaScriptApplicationURL`][Self::javaScriptApplicationURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(setJavaScriptApplicationURL:))]
         #[unsafe(method_family = none)]
@@ -54,6 +56,8 @@ impl TVApplicationControllerContext {
         pub unsafe fn storageIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`storageIdentifier`][Self::storageIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(setStorageIdentifier:))]
         #[unsafe(method_family = none)]
@@ -87,6 +91,8 @@ impl TVApplicationControllerContext {
         pub unsafe fn launchOptions(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`launchOptions`][Self::launchOptions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(setLaunchOptions:))]
         #[unsafe(method_family = none)]

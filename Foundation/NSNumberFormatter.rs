@@ -225,6 +225,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSLocale")]
         /// Setter for [`locale`][Self::locale].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
@@ -254,6 +256,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`negativeFormat`][Self::negativeFormat].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNegativeFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNegativeFormat(&self, negative_format: Option<&NSString>);
@@ -267,6 +271,8 @@ impl NSNumberFormatter {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForNegativeValues`][Self::textAttributesForNegativeValues].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTextAttributesForNegativeValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNegativeValues(
@@ -281,6 +287,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`positiveFormat`][Self::positiveFormat].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPositiveFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositiveFormat(&self, positive_format: Option<&NSString>);
@@ -294,6 +302,8 @@ impl NSNumberFormatter {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForPositiveValues`][Self::textAttributesForPositiveValues].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTextAttributesForPositiveValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForPositiveValues(
@@ -317,6 +327,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`decimalSeparator`][Self::decimalSeparator].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setDecimalSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDecimalSeparator(&self, decimal_separator: Option<&NSString>);
@@ -337,6 +349,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`currencyDecimalSeparator`][Self::currencyDecimalSeparator].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCurrencyDecimalSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrencyDecimalSeparator(
@@ -360,6 +374,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`groupingSeparator`][Self::groupingSeparator].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setGroupingSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroupingSeparator(&self, grouping_separator: Option<&NSString>);
@@ -371,6 +387,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`zeroSymbol`][Self::zeroSymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setZeroSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZeroSymbol(&self, zero_symbol: Option<&NSString>);
@@ -384,6 +402,8 @@ impl NSNumberFormatter {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForZero`][Self::textAttributesForZero].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTextAttributesForZero:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForZero(
@@ -398,6 +418,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`nilSymbol`][Self::nilSymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNilSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNilSymbol(&self, nil_symbol: &NSString);
@@ -411,6 +433,8 @@ impl NSNumberFormatter {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForNil`][Self::textAttributesForNil].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTextAttributesForNil:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNil(
@@ -425,6 +449,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`notANumberSymbol`][Self::notANumberSymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNotANumberSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotANumberSymbol(&self, not_a_number_symbol: Option<&NSString>);
@@ -438,6 +464,8 @@ impl NSNumberFormatter {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForNotANumber`][Self::textAttributesForNotANumber].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTextAttributesForNotANumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNotANumber(
@@ -452,6 +480,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`positiveInfinitySymbol`][Self::positiveInfinitySymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPositiveInfinitySymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositiveInfinitySymbol(&self, positive_infinity_symbol: &NSString);
@@ -465,6 +495,8 @@ impl NSNumberFormatter {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForPositiveInfinity`][Self::textAttributesForPositiveInfinity].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTextAttributesForPositiveInfinity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForPositiveInfinity(
@@ -479,6 +511,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`negativeInfinitySymbol`][Self::negativeInfinitySymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNegativeInfinitySymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNegativeInfinitySymbol(&self, negative_infinity_symbol: &NSString);
@@ -492,6 +526,8 @@ impl NSNumberFormatter {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForNegativeInfinity`][Self::textAttributesForNegativeInfinity].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTextAttributesForNegativeInfinity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNegativeInfinity(
@@ -506,6 +542,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`positivePrefix`][Self::positivePrefix].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPositivePrefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositivePrefix(&self, positive_prefix: Option<&NSString>);
@@ -517,6 +555,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`positiveSuffix`][Self::positiveSuffix].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPositiveSuffix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositiveSuffix(&self, positive_suffix: Option<&NSString>);
@@ -528,6 +568,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`negativePrefix`][Self::negativePrefix].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNegativePrefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNegativePrefix(&self, negative_prefix: Option<&NSString>);
@@ -539,6 +581,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`negativeSuffix`][Self::negativeSuffix].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNegativeSuffix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNegativeSuffix(&self, negative_suffix: Option<&NSString>);
@@ -550,6 +594,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`currencyCode`][Self::currencyCode].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCurrencyCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrencyCode(&self, currency_code: Option<&NSString>);
@@ -561,6 +607,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`currencySymbol`][Self::currencySymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCurrencySymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrencySymbol(&self, currency_symbol: Option<&NSString>);
@@ -572,6 +620,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`internationalCurrencySymbol`][Self::internationalCurrencySymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setInternationalCurrencySymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInternationalCurrencySymbol(
@@ -586,6 +636,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`percentSymbol`][Self::percentSymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPercentSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPercentSymbol(&self, percent_symbol: Option<&NSString>);
@@ -597,6 +649,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`perMillSymbol`][Self::perMillSymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPerMillSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerMillSymbol(&self, per_mill_symbol: Option<&NSString>);
@@ -608,6 +662,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`minusSign`][Self::minusSign].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setMinusSign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinusSign(&self, minus_sign: Option<&NSString>);
@@ -619,6 +675,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`plusSign`][Self::plusSign].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPlusSign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlusSign(&self, plus_sign: Option<&NSString>);
@@ -630,6 +688,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`exponentSymbol`][Self::exponentSymbol].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setExponentSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExponentSymbol(&self, exponent_symbol: Option<&NSString>);
@@ -659,6 +719,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`multiplier`][Self::multiplier].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setMultiplier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMultiplier(&self, multiplier: Option<&NSNumber>);
@@ -679,6 +741,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`paddingCharacter`][Self::paddingCharacter].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPaddingCharacter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingCharacter(&self, padding_character: Option<&NSString>);
@@ -708,6 +772,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`roundingIncrement`][Self::roundingIncrement].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setRoundingIncrement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRoundingIncrement(&self, rounding_increment: Option<&NSNumber>);
@@ -755,6 +821,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`minimum`][Self::minimum].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setMinimum:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimum(&self, minimum: Option<&NSNumber>);
@@ -766,6 +834,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`maximum`][Self::maximum].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setMaximum:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximum(&self, maximum: Option<&NSNumber>);
@@ -777,6 +847,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`currencyGroupingSeparator`][Self::currencyGroupingSeparator].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCurrencyGroupingSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrencyGroupingSeparator(
@@ -868,6 +940,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`thousandSeparator`][Self::thousandSeparator].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setThousandSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThousandSeparator(&self, thousand_separator: Option<&NSString>);
@@ -888,6 +962,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`format`][Self::format].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormat(&self, format: &NSString);
@@ -899,6 +975,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedStringForZero`][Self::attributedStringForZero].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAttributedStringForZero:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedStringForZero(
@@ -913,6 +991,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedStringForNil`][Self::attributedStringForNil].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAttributedStringForNil:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedStringForNil(
@@ -927,6 +1007,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedStringForNotANumber`][Self::attributedStringForNotANumber].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAttributedStringForNotANumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedStringForNotANumber(
@@ -941,6 +1023,8 @@ impl NSNumberFormatter {
 
         #[cfg(feature = "NSDecimalNumber")]
         /// Setter for [`roundingBehavior`][Self::roundingBehavior].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setRoundingBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRoundingBehavior(&self, rounding_behavior: &NSDecimalNumberHandler);

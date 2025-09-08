@@ -38,8 +38,9 @@ impl UILayoutGuide {
         pub unsafe fn owningView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`owningView`][Self::owningView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setOwningView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOwningView(&self, owning_view: Option<&UIView>);
@@ -49,6 +50,8 @@ impl UILayoutGuide {
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: &NSString);

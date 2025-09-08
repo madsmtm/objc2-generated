@@ -112,6 +112,8 @@ impl SCNReferenceNode {
         pub unsafe fn referenceURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`referenceURL`][Self::referenceURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setReferenceURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReferenceURL(&self, reference_url: &NSURL);

@@ -44,6 +44,8 @@ impl MKMapItem {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -53,6 +55,8 @@ impl MKMapItem {
         pub unsafe fn phoneNumber(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`phoneNumber`][Self::phoneNumber].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPhoneNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhoneNumber(&self, phone_number: Option<&NSString>);
@@ -71,6 +75,8 @@ impl MKMapItem {
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// Setter for [`timeZone`][Self::timeZone].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTimeZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
@@ -83,6 +89,8 @@ impl MKMapItem {
 
         #[cfg(feature = "MKPointOfInterestCategory")]
         /// Setter for [`pointOfInterestCategory`][Self::pointOfInterestCategory].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPointOfInterestCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestCategory(

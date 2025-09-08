@@ -97,6 +97,8 @@ impl UIShadowProperties {
 
         #[cfg(feature = "UIBezierPath")]
         /// Setter for [`path`][Self::path].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: Option<&UIBezierPath>);

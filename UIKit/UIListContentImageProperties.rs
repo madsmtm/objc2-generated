@@ -55,6 +55,8 @@ impl UIListContentImageProperties {
             feature = "UIImageSymbolConfiguration"
         ))]
         /// Setter for [`preferredSymbolConfiguration`][Self::preferredSymbolConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredSymbolConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSymbolConfiguration(
@@ -90,6 +92,8 @@ impl UIListContentImageProperties {
             feature = "block2"
         ))]
         /// Setter for [`tintColorTransformer`][Self::tintColorTransformer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTintColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColorTransformer(
@@ -217,6 +221,8 @@ impl UIListContentImageProperties {
             feature = "block2"
         ))]
         /// Setter for [`strokeColorTransformer`][Self::strokeColorTransformer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStrokeColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColorTransformer(

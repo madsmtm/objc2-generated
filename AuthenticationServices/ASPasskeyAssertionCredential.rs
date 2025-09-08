@@ -141,6 +141,8 @@ impl ASPasskeyAssertionCredential {
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionOutput")]
         /// Setter for [`extensionOutput`][Self::extensionOutput].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExtensionOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtensionOutput(

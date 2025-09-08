@@ -81,6 +81,8 @@ impl UIContextMenuConfiguration {
         ) -> Retained<NSSet<ProtocolObject<dyn NSCopying>>>;
 
         /// Setter for [`secondaryItemIdentifiers`][Self::secondaryItemIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSecondaryItemIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryItemIdentifiers(

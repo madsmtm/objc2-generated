@@ -83,6 +83,8 @@ impl TVTopShelfCarouselItem {
         pub unsafe fn contextTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`contextTitle`][Self::contextTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContextTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContextTitle(&self, context_title: Option<&NSString>);
@@ -93,6 +95,8 @@ impl TVTopShelfCarouselItem {
         pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`summary`][Self::summary].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSummary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
@@ -103,6 +107,8 @@ impl TVTopShelfCarouselItem {
         pub unsafe fn genre(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`genre`][Self::genre].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGenre:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGenre(&self, genre: Option<&NSString>);
@@ -123,6 +129,8 @@ impl TVTopShelfCarouselItem {
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`creationDate`][Self::creationDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCreationDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCreationDate(&self, creation_date: Option<&NSDate>);
@@ -147,6 +155,8 @@ impl TVTopShelfCarouselItem {
         pub unsafe fn previewVideoURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`previewVideoURL`][Self::previewVideoURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreviewVideoURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewVideoURL(&self, preview_video_url: Option<&NSURL>);
@@ -159,6 +169,8 @@ impl TVTopShelfCarouselItem {
         pub unsafe fn cinemagraphURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`cinemagraphURL`][Self::cinemagraphURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCinemagraphURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCinemagraphURL(&self, cinemagraph_url: Option<&NSURL>);
@@ -171,6 +183,8 @@ impl TVTopShelfCarouselItem {
 
         #[cfg(feature = "TVTopShelfNamedAttribute")]
         /// Setter for [`namedAttributes`][Self::namedAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNamedAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNamedAttributes(

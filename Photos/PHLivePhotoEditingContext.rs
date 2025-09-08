@@ -81,6 +81,8 @@ impl PHLivePhotoEditingContext {
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
         /// Setter for [`frameProcessor`][Self::frameProcessor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFrameProcessor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFrameProcessor(&self, frame_processor: PHLivePhotoFrameProcessingBlock);

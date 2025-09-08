@@ -65,8 +65,9 @@ impl CSSearchableIndex {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CSSearchableIndexDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`indexDelegate`][Self::indexDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setIndexDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexDelegate(

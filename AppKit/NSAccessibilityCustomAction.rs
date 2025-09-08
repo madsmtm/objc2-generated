@@ -43,6 +43,8 @@ impl NSAccessibilityCustomAction {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -54,6 +56,8 @@ impl NSAccessibilityCustomAction {
 
         #[cfg(feature = "block2")]
         /// Setter for [`handler`][Self::handler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(&self, handler: Option<&block2::DynBlock<dyn Fn() -> Bool>>);
@@ -62,8 +66,9 @@ impl NSAccessibilityCustomAction {
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&ProtocolObject<dyn NSObjectProtocol>>);

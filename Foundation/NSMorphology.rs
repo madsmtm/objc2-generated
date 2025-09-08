@@ -509,6 +509,8 @@ impl NSMorphologyCustomPronoun {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`subjectForm`][Self::subjectForm].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(setSubjectForm:))]
         #[unsafe(method_family = none)]
@@ -522,6 +524,8 @@ impl NSMorphologyCustomPronoun {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`objectForm`][Self::objectForm].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(setObjectForm:))]
         #[unsafe(method_family = none)]
@@ -535,6 +539,8 @@ impl NSMorphologyCustomPronoun {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`possessiveForm`][Self::possessiveForm].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(setPossessiveForm:))]
         #[unsafe(method_family = none)]
@@ -548,6 +554,8 @@ impl NSMorphologyCustomPronoun {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`possessiveAdjectiveForm`][Self::possessiveAdjectiveForm].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(setPossessiveAdjectiveForm:))]
         #[unsafe(method_family = none)]
@@ -564,6 +572,8 @@ impl NSMorphologyCustomPronoun {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`reflexiveForm`][Self::reflexiveForm].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(setReflexiveForm:))]
         #[unsafe(method_family = none)]

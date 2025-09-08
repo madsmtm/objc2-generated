@@ -196,6 +196,8 @@ impl NSSearchFieldCell {
         pub unsafe fn recentSearches(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`recentSearches`][Self::recentSearches].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecentSearches:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecentSearches(&self, recent_searches: Option<&NSArray<NSString>>);
@@ -209,6 +211,8 @@ impl NSSearchFieldCell {
 
         #[cfg(feature = "NSSearchField")]
         /// Setter for [`recentsAutosaveName`][Self::recentsAutosaveName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecentsAutosaveName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecentsAutosaveName(

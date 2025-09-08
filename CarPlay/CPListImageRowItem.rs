@@ -114,6 +114,8 @@ impl CPListImageRowItem {
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
@@ -140,6 +142,8 @@ impl CPListImageRowItem {
 
         #[cfg(all(feature = "CPListItemTypes", feature = "block2", feature = "dispatch2"))]
         /// Setter for [`handler`][Self::handler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(
@@ -218,6 +222,8 @@ impl CPListImageRowItem {
         pub unsafe fn imageTitles(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`imageTitles`][Self::imageTitles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImageTitles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageTitles(&self, image_titles: &NSArray<NSString>);
@@ -235,6 +241,8 @@ impl CPListImageRowItem {
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// Setter for [`listImageRowHandler`][Self::listImageRowHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setListImageRowHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListImageRowHandler(

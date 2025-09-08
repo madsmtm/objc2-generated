@@ -42,6 +42,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn colorSpace(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`colorSpace`][Self::colorSpace].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColorSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorSpace(&self, color_space: Option<&NSString>);
@@ -87,6 +89,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn acquisitionMake(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`acquisitionMake`][Self::acquisitionMake].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAcquisitionMake:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAcquisitionMake(&self, acquisition_make: Option<&NSString>);
@@ -96,6 +100,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn acquisitionModel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`acquisitionModel`][Self::acquisitionModel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAcquisitionModel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAcquisitionModel(&self, acquisition_model: Option<&NSString>);
@@ -105,6 +111,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn cameraOwner(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`cameraOwner`][Self::cameraOwner].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCameraOwner:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraOwner(&self, camera_owner: Option<&NSString>);
@@ -114,6 +122,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn lensModel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`lensModel`][Self::lensModel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLensModel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLensModel(&self, lens_model: Option<&NSString>);
@@ -141,6 +151,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn layerNames(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`layerNames`][Self::layerNames].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLayerNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLayerNames(&self, layer_names: Option<&NSArray<NSString>>);
@@ -168,6 +180,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn profileName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`profileName`][Self::profileName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProfileName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProfileName(&self, profile_name: Option<&NSString>);
@@ -213,6 +227,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn EXIFVersion(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`EXIFVersion`][Self::EXIFVersion].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEXIFVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEXIFVersion(&self, exif_version: Option<&NSString>);
@@ -222,6 +238,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn EXIFGPSVersion(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`EXIFGPSVersion`][Self::EXIFGPSVersion].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEXIFGPSVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEXIFGPSVersion(&self, exifgps_version: Option<&NSString>);
@@ -249,6 +267,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn meteringMode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`meteringMode`][Self::meteringMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMeteringMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMeteringMode(&self, metering_mode: Option<&NSString>);
@@ -276,6 +296,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn exposureProgram(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`exposureProgram`][Self::exposureProgram].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExposureProgram:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExposureProgram(&self, exposure_program: Option<&NSString>);
@@ -285,6 +307,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn exposureTimeString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`exposureTimeString`][Self::exposureTimeString].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExposureTimeString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExposureTimeString(&self, exposure_time_string: Option<&NSString>);

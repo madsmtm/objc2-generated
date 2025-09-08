@@ -214,6 +214,8 @@ impl PKPaymentRequest {
         pub unsafe fn merchantIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`merchantIdentifier`][Self::merchantIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMerchantIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMerchantIdentifier(&self, merchant_identifier: &NSString);
@@ -223,6 +225,8 @@ impl PKPaymentRequest {
         pub unsafe fn countryCode(&self) -> Retained<NSString>;
 
         /// Setter for [`countryCode`][Self::countryCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCountryCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCountryCode(&self, country_code: &NSString);
@@ -234,6 +238,8 @@ impl PKPaymentRequest {
 
         #[cfg(feature = "PKConstants")]
         /// Setter for [`supportedNetworks`][Self::supportedNetworks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedNetworks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedNetworks(&self, supported_networks: &NSArray<PKPaymentNetwork>);
@@ -261,6 +267,8 @@ impl PKPaymentRequest {
         pub unsafe fn couponCode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`couponCode`][Self::couponCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCouponCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCouponCode(&self, coupon_code: Option<&NSString>);
@@ -284,6 +292,8 @@ impl PKPaymentRequest {
 
         #[cfg(feature = "PKPaymentSummaryItem")]
         /// Setter for [`paymentSummaryItems`][Self::paymentSummaryItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPaymentSummaryItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaymentSummaryItems(
@@ -296,6 +306,8 @@ impl PKPaymentRequest {
         pub unsafe fn currencyCode(&self) -> Retained<NSString>;
 
         /// Setter for [`currencyCode`][Self::currencyCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCurrencyCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrencyCode(&self, currency_code: &NSString);
@@ -385,6 +397,8 @@ impl PKPaymentRequest {
 
         #[cfg(all(feature = "PKPaymentSummaryItem", feature = "PKShippingMethod"))]
         /// Setter for [`shippingMethods`][Self::shippingMethods].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShippingMethods:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShippingMethods(
@@ -418,6 +432,8 @@ impl PKPaymentRequest {
         pub unsafe fn applicationData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`applicationData`][Self::applicationData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setApplicationData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApplicationData(&self, application_data: Option<&NSData>);
@@ -427,6 +443,8 @@ impl PKPaymentRequest {
         pub unsafe fn supportedCountries(&self) -> Option<Retained<NSSet<NSString>>>;
 
         /// Setter for [`supportedCountries`][Self::supportedCountries].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedCountries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedCountries(&self, supported_countries: Option<&NSSet<NSString>>);
@@ -438,6 +456,8 @@ impl PKPaymentRequest {
 
         #[cfg(feature = "PKPaymentTokenContext")]
         /// Setter for [`multiTokenContexts`][Self::multiTokenContexts].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMultiTokenContexts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMultiTokenContexts(

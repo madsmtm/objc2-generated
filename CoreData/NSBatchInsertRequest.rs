@@ -49,6 +49,8 @@ impl NSBatchInsertRequest {
         ) -> Option<Retained<NSArray<NSDictionary<NSString, AnyObject>>>>;
 
         /// Setter for [`objectsToInsert`][Self::objectsToInsert].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setObjectsToInsert:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectsToInsert(
@@ -65,6 +67,8 @@ impl NSBatchInsertRequest {
 
         #[cfg(feature = "block2")]
         /// Setter for [`dictionaryHandler`][Self::dictionaryHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDictionaryHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDictionaryHandler(
@@ -85,6 +89,8 @@ impl NSBatchInsertRequest {
 
         #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
         /// Setter for [`managedObjectHandler`][Self::managedObjectHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setManagedObjectHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setManagedObjectHandler(

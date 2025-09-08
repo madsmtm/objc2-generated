@@ -579,6 +579,8 @@ impl SKEmitterNode {
 
         #[cfg(feature = "SKAction")]
         /// Setter for [`particleAction`][Self::particleAction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setParticleAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleAction(&self, particle_action: Option<&SKAction>);
@@ -599,8 +601,9 @@ impl SKEmitterNode {
         #[unsafe(method_family = none)]
         pub unsafe fn targetNode(&self) -> Option<Retained<SKNode>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`targetNode`][Self::targetNode].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTargetNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargetNode(&self, target_node: Option<&SKNode>);
@@ -625,6 +628,8 @@ impl SKEmitterNode {
 
         #[cfg(feature = "SKAttribute")]
         /// Setter for [`attributeValues`][Self::attributeValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributeValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeValues(

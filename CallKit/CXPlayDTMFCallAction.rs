@@ -91,6 +91,8 @@ impl CXPlayDTMFCallAction {
         pub unsafe fn digits(&self) -> Retained<NSString>;
 
         /// Setter for [`digits`][Self::digits].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDigits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDigits(&self, digits: &NSString);

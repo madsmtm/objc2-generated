@@ -112,6 +112,8 @@ impl INTransferMoneyIntentResponse {
 
         #[cfg(feature = "INPaymentAccount")]
         /// Setter for [`fromAccount`][Self::fromAccount].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INTransferMoneyIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setFromAccount:))]
         #[unsafe(method_family = none)]
@@ -125,6 +127,8 @@ impl INTransferMoneyIntentResponse {
 
         #[cfg(feature = "INPaymentAccount")]
         /// Setter for [`toAccount`][Self::toAccount].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INTransferMoneyIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setToAccount:))]
         #[unsafe(method_family = none)]
@@ -138,6 +142,8 @@ impl INTransferMoneyIntentResponse {
 
         #[cfg(feature = "INPaymentAmount")]
         /// Setter for [`transactionAmount`][Self::transactionAmount].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INTransferMoneyIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setTransactionAmount:))]
         #[unsafe(method_family = none)]
@@ -151,6 +157,8 @@ impl INTransferMoneyIntentResponse {
 
         #[cfg(feature = "INDateComponentsRange")]
         /// Setter for [`transactionScheduledDate`][Self::transactionScheduledDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INTransferMoneyIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setTransactionScheduledDate:))]
         #[unsafe(method_family = none)]
@@ -165,6 +173,8 @@ impl INTransferMoneyIntentResponse {
         pub unsafe fn transactionNote(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`transactionNote`][Self::transactionNote].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INTransferMoneyIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setTransactionNote:))]
         #[unsafe(method_family = none)]
@@ -178,6 +188,8 @@ impl INTransferMoneyIntentResponse {
 
         #[cfg(feature = "INCurrencyAmount")]
         /// Setter for [`transferFee`][Self::transferFee].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INTransferMoneyIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setTransferFee:))]
         #[unsafe(method_family = none)]

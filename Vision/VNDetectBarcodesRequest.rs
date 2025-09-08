@@ -73,6 +73,8 @@ impl VNDetectBarcodesRequest {
 
         #[cfg(feature = "VNTypes")]
         /// Setter for [`symbologies`][Self::symbologies].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSymbologies:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSymbologies(&self, symbologies: &NSArray<VNBarcodeSymbology>);

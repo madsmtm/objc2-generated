@@ -81,6 +81,8 @@ impl CAShapeLayer {
         pub unsafe fn fillRule(&self) -> Retained<CAShapeLayerFillRule>;
 
         /// Setter for [`fillRule`][Self::fillRule].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFillRule:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFillRule(&self, fill_rule: &CAShapeLayerFillRule);
@@ -145,6 +147,8 @@ impl CAShapeLayer {
         pub unsafe fn lineCap(&self) -> Retained<CAShapeLayerLineCap>;
 
         /// Setter for [`lineCap`][Self::lineCap].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLineCap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineCap(&self, line_cap: &CAShapeLayerLineCap);
@@ -154,6 +158,8 @@ impl CAShapeLayer {
         pub unsafe fn lineJoin(&self) -> Retained<CAShapeLayerLineJoin>;
 
         /// Setter for [`lineJoin`][Self::lineJoin].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLineJoin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineJoin(&self, line_join: &CAShapeLayerLineJoin);
@@ -174,6 +180,8 @@ impl CAShapeLayer {
         pub unsafe fn lineDashPattern(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`lineDashPattern`][Self::lineDashPattern].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLineDashPattern:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);

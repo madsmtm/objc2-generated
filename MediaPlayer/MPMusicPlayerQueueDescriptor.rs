@@ -131,6 +131,8 @@ impl MPMusicPlayerStoreQueueDescriptor {
         pub unsafe fn storeIDs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`storeIDs`][Self::storeIDs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStoreIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStoreIDs(&self, store_i_ds: Option<&NSArray<NSString>>);
@@ -140,6 +142,8 @@ impl MPMusicPlayerStoreQueueDescriptor {
         pub unsafe fn startItemID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`startItemID`][Self::startItemID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStartItemID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartItemID(&self, start_item_id: Option<&NSString>);
@@ -239,6 +243,8 @@ impl MPMusicPlayerPlayParametersQueueDescriptor {
         pub unsafe fn playParametersQueue(&self) -> Retained<NSArray<MPMusicPlayerPlayParameters>>;
 
         /// Setter for [`playParametersQueue`][Self::playParametersQueue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPlayParametersQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayParametersQueue(

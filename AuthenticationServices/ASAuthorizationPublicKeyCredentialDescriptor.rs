@@ -18,6 +18,8 @@ extern_protocol!(
         unsafe fn credentialID(&self) -> Retained<NSData>;
 
         /// Setter for [`credentialID`][Self::credentialID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCredentialID:))]
         #[unsafe(method_family = none)]
         unsafe fn setCredentialID(&self, credential_id: &NSData);

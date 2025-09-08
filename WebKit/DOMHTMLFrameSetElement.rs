@@ -89,6 +89,8 @@ impl DOMHTMLFrameSetElement {
         pub unsafe fn cols(&self) -> Retained<NSString>;
 
         /// Setter for [`cols`][Self::cols].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setCols:))]
         #[unsafe(method_family = none)]
@@ -100,6 +102,8 @@ impl DOMHTMLFrameSetElement {
         pub unsafe fn rows(&self) -> Retained<NSString>;
 
         /// Setter for [`rows`][Self::rows].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setRows:))]
         #[unsafe(method_family = none)]

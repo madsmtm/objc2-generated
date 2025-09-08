@@ -177,6 +177,8 @@ impl SCNNode {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -661,6 +663,8 @@ impl SCNNode {
 
         #[cfg(feature = "SCNConstraint")]
         /// Setter for [`constraints`][Self::constraints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstraints(&self, constraints: Option<&NSArray<SCNConstraint>>);
@@ -677,6 +681,8 @@ impl SCNNode {
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`filters`][Self::filters].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFilters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilters(&self, filters: Option<&NSArray<CIFilter>>);
@@ -705,6 +711,10 @@ impl SCNNode {
         /// Setting a renderer delegate prevents the SceneKit renderer from drawing the node and lets you use custom OpenGL code instead.
         /// The preferred way to customize the rendering is to tweak the material properties of the different materials of the node's geometry. SCNMaterial conforms to the SCNShadable protocol and allows for more advanced rendering using GLSL.
         /// You would typically use a renderer delegate with a node that has no geometry and only serves as a location in space. An example would be attaching a particle system to that node and render it with custom OpenGL code.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(rendererDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rendererDelegate(

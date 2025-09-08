@@ -162,6 +162,8 @@ impl CPPointOfInterest {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -172,6 +174,8 @@ impl CPPointOfInterest {
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
@@ -182,6 +186,8 @@ impl CPPointOfInterest {
         pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`summary`][Self::summary].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSummary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
@@ -196,6 +202,8 @@ impl CPPointOfInterest {
         pub unsafe fn detailTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`detailTitle`][Self::detailTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetailTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetailTitle(&self, detail_title: Option<&NSString>);
@@ -210,6 +218,8 @@ impl CPPointOfInterest {
         pub unsafe fn detailSubtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`detailSubtitle`][Self::detailSubtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetailSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetailSubtitle(&self, detail_subtitle: Option<&NSString>);
@@ -224,6 +234,8 @@ impl CPPointOfInterest {
         pub unsafe fn detailSummary(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`detailSummary`][Self::detailSummary].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetailSummary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetailSummary(&self, detail_summary: Option<&NSString>);

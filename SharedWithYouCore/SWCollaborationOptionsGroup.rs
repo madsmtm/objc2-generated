@@ -53,6 +53,8 @@ impl SWCollaborationOptionsGroup {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -68,6 +70,8 @@ impl SWCollaborationOptionsGroup {
         pub unsafe fn footer(&self) -> Retained<NSString>;
 
         /// Setter for [`footer`][Self::footer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFooter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFooter(&self, footer: &NSString);
@@ -80,6 +84,8 @@ impl SWCollaborationOptionsGroup {
 
         #[cfg(feature = "SWCollaborationOption")]
         /// Setter for [`options`][Self::options].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOptions(&self, options: &NSArray<SWCollaborationOption>);

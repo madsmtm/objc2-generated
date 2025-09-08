@@ -77,6 +77,8 @@ impl UIMailConversationEntry {
         pub unsafe fn responseSecondaryRecipientIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
         /// Setter for [`responseSecondaryRecipientIdentifiers`][Self::responseSecondaryRecipientIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setResponseSecondaryRecipientIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResponseSecondaryRecipientIdentifiers(

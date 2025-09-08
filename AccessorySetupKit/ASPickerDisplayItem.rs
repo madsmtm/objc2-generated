@@ -155,6 +155,8 @@ impl ASMigrationDisplayItem {
         pub unsafe fn peripheralIdentifier(&self) -> Option<Retained<NSUUID>>;
 
         /// Setter for [`peripheralIdentifier`][Self::peripheralIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPeripheralIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPeripheralIdentifier(&self, peripheral_identifier: Option<&NSUUID>);
@@ -165,6 +167,8 @@ impl ASMigrationDisplayItem {
         pub unsafe fn hotspotSSID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`hotspotSSID`][Self::hotspotSSID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHotspotSSID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHotspotSSID(&self, hotspot_ssid: Option<&NSString>);

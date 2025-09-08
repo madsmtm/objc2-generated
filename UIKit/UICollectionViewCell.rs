@@ -338,6 +338,8 @@ impl UICollectionViewCell {
             feature = "block2"
         ))]
         /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfigurationUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationUpdateHandler(
@@ -357,6 +359,8 @@ impl UICollectionViewCell {
 
         #[cfg(feature = "UIContentConfiguration")]
         /// Setter for [`contentConfiguration`][Self::contentConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentConfiguration(
@@ -420,6 +424,8 @@ impl UICollectionViewCell {
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setter for [`backgroundConfiguration`][Self::backgroundConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundConfiguration(

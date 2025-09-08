@@ -104,6 +104,8 @@ impl PDFBorder {
         pub unsafe fn dashPattern(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`dashPattern`][Self::dashPattern].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDashPattern:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDashPattern(&self, dash_pattern: Option<&NSArray>);

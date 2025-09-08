@@ -350,6 +350,8 @@ impl PDFAnnotation {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`font`][Self::font].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
@@ -363,6 +365,8 @@ impl PDFAnnotation {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`fontColor`][Self::fontColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFontColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontColor(&self, font_color: Option<&NSColor>);
@@ -376,6 +380,8 @@ impl PDFAnnotation {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`interiorColor`][Self::interiorColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInteriorColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInteriorColor(&self, interior_color: Option<&NSColor>);
@@ -451,6 +457,8 @@ impl PDFAnnotation {
         pub unsafe fn quadrilateralPoints(&self) -> Option<Retained<NSArray<NSValue>>>;
 
         /// Setter for [`quadrilateralPoints`][Self::quadrilateralPoints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setQuadrilateralPoints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQuadrilateralPoints(
@@ -472,6 +480,8 @@ impl PDFAnnotation {
         pub unsafe fn widgetFieldType(&self) -> Retained<PDFAnnotationWidgetSubtype>;
 
         /// Setter for [`widgetFieldType`][Self::widgetFieldType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWidgetFieldType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidgetFieldType(&self, widget_field_type: &PDFAnnotationWidgetSubtype);
@@ -525,6 +535,8 @@ impl PDFAnnotation {
         pub unsafe fn widgetStringValue(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`widgetStringValue`][Self::widgetStringValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWidgetStringValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidgetStringValue(&self, widget_string_value: Option<&NSString>);
@@ -534,6 +546,8 @@ impl PDFAnnotation {
         pub unsafe fn widgetDefaultStringValue(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`widgetDefaultStringValue`][Self::widgetDefaultStringValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWidgetDefaultStringValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidgetDefaultStringValue(
@@ -582,6 +596,8 @@ impl PDFAnnotation {
         pub unsafe fn choices(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`choices`][Self::choices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChoices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChoices(&self, choices: Option<&NSArray<NSString>>);
@@ -591,6 +607,8 @@ impl PDFAnnotation {
         pub unsafe fn values(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`values`][Self::values].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValues(&self, values: Option<&NSArray<NSString>>);
@@ -609,6 +627,8 @@ impl PDFAnnotation {
         pub unsafe fn buttonWidgetStateString(&self) -> Retained<NSString>;
 
         /// Setter for [`buttonWidgetStateString`][Self::buttonWidgetStateString].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setButtonWidgetStateString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setButtonWidgetStateString(&self, button_widget_state_string: &NSString);
@@ -656,6 +676,8 @@ impl PDFAnnotation {
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
@@ -665,6 +687,8 @@ impl PDFAnnotation {
         pub unsafe fn fieldName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fieldName`][Self::fieldName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFieldName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFieldName(&self, field_name: Option<&NSString>);
@@ -674,6 +698,8 @@ impl PDFAnnotation {
         pub unsafe fn caption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`caption`][Self::caption].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCaption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCaption(&self, caption: Option<&NSString>);
@@ -687,6 +713,8 @@ impl PDFAnnotation {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
@@ -696,6 +724,8 @@ impl PDFAnnotation {
         pub unsafe fn stampName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`stampName`][Self::stampName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStampName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStampName(&self, stamp_name: Option<&NSString>);

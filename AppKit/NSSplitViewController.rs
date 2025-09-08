@@ -117,6 +117,8 @@ impl NSSplitViewController {
 
         #[cfg(feature = "NSSplitViewItem")]
         /// Setter for [`splitViewItems`][Self::splitViewItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSplitViewItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSplitViewItems(&self, split_view_items: &NSArray<NSSplitViewItem>);

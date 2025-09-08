@@ -108,6 +108,8 @@ impl INRequestPaymentIntentResponse {
 
         #[cfg(feature = "INPaymentRecord")]
         /// Setter for [`paymentRecord`][Self::paymentRecord].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPaymentRecord:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaymentRecord(&self, payment_record: Option<&INPaymentRecord>);

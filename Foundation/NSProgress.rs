@@ -122,6 +122,8 @@ impl NSProgress {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`localizedDescription`][Self::localizedDescription].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
@@ -133,6 +135,8 @@ impl NSProgress {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`localizedAdditionalDescription`][Self::localizedAdditionalDescription].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedAdditionalDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedAdditionalDescription(
@@ -173,6 +177,8 @@ impl NSProgress {
 
         #[cfg(feature = "block2")]
         /// Setter for [`cancellationHandler`][Self::cancellationHandler].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCancellationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCancellationHandler(
@@ -187,6 +193,8 @@ impl NSProgress {
 
         #[cfg(feature = "block2")]
         /// Setter for [`pausingHandler`][Self::pausingHandler].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPausingHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPausingHandler(
@@ -201,6 +209,8 @@ impl NSProgress {
 
         #[cfg(feature = "block2")]
         /// Setter for [`resumingHandler`][Self::resumingHandler].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setResumingHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResumingHandler(
@@ -253,6 +263,8 @@ impl NSProgress {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`kind`][Self::kind].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setKind:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKind(&self, kind: Option<&NSProgressKind>);
@@ -264,6 +276,8 @@ impl NSProgress {
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`estimatedTimeRemaining`][Self::estimatedTimeRemaining].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setEstimatedTimeRemaining:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEstimatedTimeRemaining(&self, estimated_time_remaining: Option<&NSNumber>);
@@ -275,6 +289,8 @@ impl NSProgress {
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`throughput`][Self::throughput].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setThroughput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThroughput(&self, throughput: Option<&NSNumber>);
@@ -286,6 +302,8 @@ impl NSProgress {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`fileOperationKind`][Self::fileOperationKind].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFileOperationKind:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileOperationKind(
@@ -300,6 +318,8 @@ impl NSProgress {
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`fileURL`][Self::fileURL].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFileURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
@@ -311,6 +331,8 @@ impl NSProgress {
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`fileTotalCount`][Self::fileTotalCount].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFileTotalCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileTotalCount(&self, file_total_count: Option<&NSNumber>);
@@ -322,6 +344,8 @@ impl NSProgress {
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`fileCompletedCount`][Self::fileCompletedCount].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFileCompletedCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileCompletedCount(&self, file_completed_count: Option<&NSNumber>);

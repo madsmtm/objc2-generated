@@ -58,6 +58,9 @@ extern_protocol!(
         unsafe fn cellBaselineOffset(&self) -> NSPoint;
 
         #[cfg(feature = "NSTextAttachment")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(attachment))]
         #[unsafe(method_family = none)]
         unsafe fn attachment(&self) -> Option<Retained<NSTextAttachment>>;

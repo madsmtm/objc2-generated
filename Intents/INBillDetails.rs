@@ -71,6 +71,8 @@ impl INBillDetails {
 
         #[cfg(feature = "INBillPayee")]
         /// Setter for [`billPayee`][Self::billPayee].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INBillDetails is deprecated. There is no replacement."]
         #[unsafe(method(setBillPayee:))]
         #[unsafe(method_family = none)]
@@ -84,6 +86,8 @@ impl INBillDetails {
 
         #[cfg(feature = "INCurrencyAmount")]
         /// Setter for [`amountDue`][Self::amountDue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INBillDetails is deprecated. There is no replacement."]
         #[unsafe(method(setAmountDue:))]
         #[unsafe(method_family = none)]
@@ -97,6 +101,8 @@ impl INBillDetails {
 
         #[cfg(feature = "INCurrencyAmount")]
         /// Setter for [`minimumDue`][Self::minimumDue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INBillDetails is deprecated. There is no replacement."]
         #[unsafe(method(setMinimumDue:))]
         #[unsafe(method_family = none)]
@@ -110,6 +116,8 @@ impl INBillDetails {
 
         #[cfg(feature = "INCurrencyAmount")]
         /// Setter for [`lateFee`][Self::lateFee].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INBillDetails is deprecated. There is no replacement."]
         #[unsafe(method(setLateFee:))]
         #[unsafe(method_family = none)]
@@ -121,6 +129,8 @@ impl INBillDetails {
         pub unsafe fn dueDate(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`dueDate`][Self::dueDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INBillDetails is deprecated. There is no replacement."]
         #[unsafe(method(setDueDate:))]
         #[unsafe(method_family = none)]
@@ -132,6 +142,8 @@ impl INBillDetails {
         pub unsafe fn paymentDate(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`paymentDate`][Self::paymentDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INBillDetails is deprecated. There is no replacement."]
         #[unsafe(method(setPaymentDate:))]
         #[unsafe(method_family = none)]

@@ -47,6 +47,8 @@ impl UIPreviewParameters {
 
         #[cfg(feature = "UIBezierPath")]
         /// Setter for [`visiblePath`][Self::visiblePath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVisiblePath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVisiblePath(&self, visible_path: Option<&UIBezierPath>);
@@ -58,6 +60,8 @@ impl UIPreviewParameters {
 
         #[cfg(feature = "UIBezierPath")]
         /// Setter for [`shadowPath`][Self::shadowPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShadowPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowPath(&self, shadow_path: Option<&UIBezierPath>);
@@ -69,6 +73,8 @@ impl UIPreviewParameters {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);

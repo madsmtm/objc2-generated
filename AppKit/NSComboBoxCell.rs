@@ -195,6 +195,9 @@ impl NSComboBoxCell {
         #[unsafe(method_family = none)]
         pub unsafe fn completedString(&self, string: &NSString) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(

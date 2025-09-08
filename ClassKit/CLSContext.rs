@@ -195,6 +195,8 @@ impl CLSContext {
         pub unsafe fn customTypeName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customTypeName`][Self::customTypeName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomTypeName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomTypeName(&self, custom_type_name: Option<&NSString>);
@@ -209,6 +211,8 @@ impl CLSContext {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -233,6 +237,8 @@ impl CLSContext {
         pub unsafe fn topic(&self) -> Option<Retained<CLSContextTopic>>;
 
         /// Setter for [`topic`][Self::topic].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTopic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTopic(&self, topic: Option<&CLSContextTopic>);
@@ -299,6 +305,8 @@ impl CLSContext {
         pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`summary`][Self::summary].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSummary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);

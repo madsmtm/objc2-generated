@@ -92,6 +92,8 @@ impl TVTopShelfItem {
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`expirationDate`][Self::expirationDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExpirationDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpirationDate(&self, expiration_date: Option<&NSDate>);

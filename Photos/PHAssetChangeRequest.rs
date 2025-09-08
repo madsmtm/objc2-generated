@@ -157,6 +157,8 @@ impl PHContentEditingInputRequestOptions {
 
         #[cfg(all(feature = "PHAdjustmentData", feature = "block2"))]
         /// Setter for [`canHandleAdjustmentData`][Self::canHandleAdjustmentData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCanHandleAdjustmentData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanHandleAdjustmentData(
@@ -184,6 +186,8 @@ impl PHContentEditingInputRequestOptions {
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(

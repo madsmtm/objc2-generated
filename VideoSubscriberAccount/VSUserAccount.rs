@@ -69,6 +69,8 @@ impl VSUserAccount {
         pub unsafe fn updateURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`updateURL`][Self::updateURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUpdateURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpdateURL(&self, update_url: Option<&NSURL>);
@@ -99,6 +101,8 @@ impl VSUserAccount {
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
@@ -126,6 +130,8 @@ impl VSUserAccount {
         pub unsafe fn subscriptionBillingCycleEndDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`subscriptionBillingCycleEndDate`][Self::subscriptionBillingCycleEndDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubscriptionBillingCycleEndDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriptionBillingCycleEndDate(
@@ -138,6 +144,8 @@ impl VSUserAccount {
         pub unsafe fn tierIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`tierIdentifiers`][Self::tierIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTierIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTierIdentifiers(&self, tier_identifiers: Option<&NSArray<NSString>>);
@@ -147,6 +155,8 @@ impl VSUserAccount {
         pub unsafe fn billingIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`billingIdentifier`][Self::billingIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBillingIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBillingIdentifier(&self, billing_identifier: Option<&NSString>);
@@ -156,6 +166,8 @@ impl VSUserAccount {
         pub unsafe fn authenticationData(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`authenticationData`][Self::authenticationData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthenticationData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthenticationData(&self, authentication_data: Option<&NSString>);

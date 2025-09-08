@@ -52,6 +52,8 @@ impl AVCaptureStillImageOutput {
         pub unsafe fn outputSettings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`outputSettings`][Self::outputSettings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use AVCapturePhotoOutput instead."]
         #[unsafe(method(setOutputSettings:))]
         #[unsafe(method_family = none)]

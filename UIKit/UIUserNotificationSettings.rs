@@ -285,6 +285,8 @@ impl UIMutableUserNotificationCategory {
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use UserNotifications Framework's UNNotificationCategory"]
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
@@ -460,6 +462,8 @@ impl UIMutableUserNotificationAction {
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use UserNotifications Framework's UNNotificationAction"]
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
@@ -471,6 +475,8 @@ impl UIMutableUserNotificationAction {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use UserNotifications Framework's UNNotificationAction"]
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
@@ -490,6 +496,8 @@ impl UIMutableUserNotificationAction {
         pub unsafe fn parameters(&self) -> Retained<NSDictionary>;
 
         /// Setter for [`parameters`][Self::parameters].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParameters(&self, parameters: &NSDictionary);

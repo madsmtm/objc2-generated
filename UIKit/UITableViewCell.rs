@@ -364,6 +364,8 @@ impl UITableViewCell {
             feature = "block2"
         ))]
         /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfigurationUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationUpdateHandler(
@@ -389,6 +391,8 @@ impl UITableViewCell {
 
         #[cfg(feature = "UIContentConfiguration")]
         /// Setter for [`contentConfiguration`][Self::contentConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentConfiguration(
@@ -448,6 +452,8 @@ impl UITableViewCell {
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setter for [`backgroundConfiguration`][Self::backgroundConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundConfiguration(
@@ -731,6 +737,8 @@ impl UITableViewCell {
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
@@ -838,6 +846,9 @@ impl UITableViewCell {
         #[unsafe(method_family = none)]
         pub unsafe fn setHidesAccessoryWhenEditing(&self, hides_accessory_when_editing: bool);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated]
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]

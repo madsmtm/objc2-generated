@@ -387,6 +387,8 @@ impl INMessage {
 
         #[cfg(feature = "INSticker")]
         /// Setter for [`sticker`][Self::sticker].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSticker:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSticker(&self, sticker: Option<&INSticker>);
@@ -399,6 +401,8 @@ impl INMessage {
 
         #[cfg(feature = "INMessageReaction")]
         /// Setter for [`reaction`][Self::reaction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setReaction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReaction(&self, reaction: Option<&INMessageReaction>);

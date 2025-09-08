@@ -68,6 +68,8 @@ impl UIWindowSceneActivationRequestOptions {
 
         #[cfg(feature = "UIWindowScenePlacement")]
         /// Setter for [`placement`][Self::placement].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPlacement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlacement(&self, placement: Option<&UIWindowScenePlacement>);

@@ -95,8 +95,9 @@ impl UIWindowScene {
         ) -> Option<Retained<ProtocolObject<dyn UIActivityItemsConfigurationProviding>>>;
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`activityItemsConfigurationSource`][Self::activityItemsConfigurationSource].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setActivityItemsConfigurationSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityItemsConfigurationSource(

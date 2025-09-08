@@ -34,6 +34,8 @@ impl ASAuthorizationProviderExtensionUserLoginConfiguration {
         pub unsafe fn loginUserName(&self) -> Retained<NSString>;
 
         /// Setter for [`loginUserName`][Self::loginUserName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLoginUserName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLoginUserName(&self, login_user_name: &NSString);

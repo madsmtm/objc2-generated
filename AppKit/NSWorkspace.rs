@@ -423,6 +423,8 @@ impl NSWorkspaceOpenConfiguration {
         pub unsafe fn arguments(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`arguments`][Self::arguments].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArguments(&self, arguments: &NSArray<NSString>);
@@ -432,6 +434,8 @@ impl NSWorkspaceOpenConfiguration {
         pub unsafe fn environment(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         /// Setter for [`environment`][Self::environment].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEnvironment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnvironment(&self, environment: &NSDictionary<NSString, NSString>);

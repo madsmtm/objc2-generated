@@ -23,6 +23,8 @@ extern_protocol!(
         unsafe fn userID(&self) -> Retained<NSData>;
 
         /// Setter for [`userID`][Self::userID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUserID:))]
         #[unsafe(method_family = none)]
         unsafe fn setUserID(&self, user_id: &NSData);
@@ -33,6 +35,8 @@ extern_protocol!(
         unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         unsafe fn setName(&self, name: &NSString);
@@ -43,6 +47,8 @@ extern_protocol!(
         unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`displayName`][Self::displayName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplayName:))]
         #[unsafe(method_family = none)]
         unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
@@ -53,6 +59,8 @@ extern_protocol!(
         unsafe fn challenge(&self) -> Retained<NSData>;
 
         /// Setter for [`challenge`][Self::challenge].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChallenge:))]
         #[unsafe(method_family = none)]
         unsafe fn setChallenge(&self, challenge: &NSData);

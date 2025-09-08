@@ -139,6 +139,8 @@ impl UIInputViewController {
         pub unsafe fn primaryLanguage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`primaryLanguage`][Self::primaryLanguage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrimaryLanguage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryLanguage(&self, primary_language: Option<&NSString>);

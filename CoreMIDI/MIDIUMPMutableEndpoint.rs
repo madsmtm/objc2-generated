@@ -55,6 +55,8 @@ impl MIDIUMPMutableEndpoint {
             feature = "objc2-foundation"
         ))]
         /// Setter for [`mutableFunctionBlocks`][Self::mutableFunctionBlocks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMutableFunctionBlocks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMutableFunctionBlocks(

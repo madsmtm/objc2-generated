@@ -280,6 +280,8 @@ extern_protocol!(
         ) -> Option<Retained<NSDictionary<SCNShaderModifierEntryPoint, NSString>>>;
 
         /// Setter for [`shaderModifiers`][Self::shaderModifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[optional]
         #[unsafe(method(setShaderModifiers:))]
         #[unsafe(method_family = none)]
@@ -355,6 +357,8 @@ impl SCNProgram {
         pub unsafe fn vertexShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`vertexShader`][Self::vertexShader].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVertexShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexShader(&self, vertex_shader: Option<&NSString>);
@@ -365,6 +369,8 @@ impl SCNProgram {
         pub unsafe fn fragmentShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fragmentShader`][Self::fragmentShader].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFragmentShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFragmentShader(&self, fragment_shader: Option<&NSString>);
@@ -375,6 +381,8 @@ impl SCNProgram {
         pub unsafe fn tessellationControlShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`tessellationControlShader`][Self::tessellationControlShader].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTessellationControlShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTessellationControlShader(
@@ -388,6 +396,8 @@ impl SCNProgram {
         pub unsafe fn tessellationEvaluationShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`tessellationEvaluationShader`][Self::tessellationEvaluationShader].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTessellationEvaluationShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTessellationEvaluationShader(
@@ -401,6 +411,8 @@ impl SCNProgram {
         pub unsafe fn geometryShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`geometryShader`][Self::geometryShader].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGeometryShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGeometryShader(&self, geometry_shader: Option<&NSString>);
@@ -413,6 +425,8 @@ impl SCNProgram {
         pub unsafe fn vertexFunctionName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`vertexFunctionName`][Self::vertexFunctionName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVertexFunctionName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexFunctionName(&self, vertex_function_name: Option<&NSString>);
@@ -425,6 +439,8 @@ impl SCNProgram {
         pub unsafe fn fragmentFunctionName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fragmentFunctionName`][Self::fragmentFunctionName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFragmentFunctionName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFragmentFunctionName(&self, fragment_function_name: Option<&NSString>);
@@ -484,6 +500,10 @@ impl SCNProgram {
         pub unsafe fn semanticForSymbol(&self, symbol: &NSString) -> Option<Retained<NSString>>;
 
         /// Determines the receiver's delegate
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SCNProgramDelegate>>>;

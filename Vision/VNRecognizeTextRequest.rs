@@ -96,6 +96,8 @@ impl VNRecognizeTextRequest {
         pub unsafe fn recognitionLanguages(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`recognitionLanguages`][Self::recognitionLanguages].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecognitionLanguages:))]
         #[unsafe(method_family = none)]
         pub fn setRecognitionLanguages(&self, recognition_languages: &NSArray<NSString>);
@@ -106,6 +108,8 @@ impl VNRecognizeTextRequest {
         pub fn customWords(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`customWords`][Self::customWords].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomWords:))]
         #[unsafe(method_family = none)]
         pub fn setCustomWords(&self, custom_words: &NSArray<NSString>);

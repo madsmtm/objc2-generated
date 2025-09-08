@@ -49,6 +49,9 @@ extern_conformance!(
 
 impl SFChooseIdentityTableCellView {
     extern_methods!(
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(issuerTextField))]
         #[unsafe(method_family = none)]
         pub unsafe fn issuerTextField(&self) -> Option<Retained<NSTextField>>;

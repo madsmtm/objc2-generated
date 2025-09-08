@@ -30,6 +30,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`pressedDidChangeHandler`][Self::pressedDidChangeHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPressedDidChangeHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setPressedDidChangeHandler(

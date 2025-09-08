@@ -150,6 +150,8 @@ extern_protocol!(
         unsafe fn alertMessage(&self) -> Retained<NSString>;
 
         /// Setter for [`alertMessage`][Self::alertMessage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAlertMessage:))]
         #[unsafe(method_family = none)]
         unsafe fn setAlertMessage(&self, alert_message: &NSString);
@@ -989,6 +991,8 @@ impl NFCISO15693CustomCommandConfiguration {
         pub unsafe fn requestParameters(&self) -> Retained<NSData>;
 
         /// Setter for [`requestParameters`][Self::requestParameters].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRequestParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequestParameters(&self, request_parameters: &NSData);
@@ -2921,6 +2925,8 @@ impl NFCNDEFPayload {
         pub unsafe fn r#type(&self) -> Retained<NSData>;
 
         /// Setter for [`type`][Self::type].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: &NSData);
@@ -2930,6 +2936,8 @@ impl NFCNDEFPayload {
         pub unsafe fn identifier(&self) -> Retained<NSData>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: &NSData);
@@ -2939,6 +2947,8 @@ impl NFCNDEFPayload {
         pub unsafe fn payload(&self) -> Retained<NSData>;
 
         /// Setter for [`payload`][Self::payload].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPayload:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPayload(&self, payload: &NSData);
@@ -3081,6 +3091,8 @@ impl NFCNDEFMessage {
         pub unsafe fn records(&self) -> Retained<NSArray<NFCNDEFPayload>>;
 
         /// Setter for [`records`][Self::records].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecords:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecords(&self, records: &NSArray<NFCNDEFPayload>);

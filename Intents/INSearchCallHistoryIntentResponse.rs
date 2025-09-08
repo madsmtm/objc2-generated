@@ -109,6 +109,8 @@ impl INSearchCallHistoryIntentResponse {
 
         #[cfg(feature = "INCallRecord")]
         /// Setter for [`callRecords`][Self::callRecords].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCallRecords:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCallRecords(&self, call_records: Option<&NSArray<INCallRecord>>);

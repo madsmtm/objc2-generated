@@ -134,6 +134,9 @@ impl NSConnection {
         #[unsafe(method_family = none)]
         pub unsafe fn setRootObject(&self, root_object: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]

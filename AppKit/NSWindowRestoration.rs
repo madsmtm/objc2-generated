@@ -76,6 +76,9 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn setRestorable(&self, restorable: bool);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(restorationClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn restorationClass(&self) -> Option<&'static AnyClass>;

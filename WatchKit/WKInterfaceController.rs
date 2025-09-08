@@ -666,6 +666,8 @@ impl WKUserNotificationInterfaceController {
 
         #[cfg(feature = "objc2-user-notifications")]
         /// Setter for [`notificationActions`][Self::notificationActions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNotificationActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotificationActions(

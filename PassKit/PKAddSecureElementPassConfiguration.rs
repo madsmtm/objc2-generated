@@ -53,6 +53,10 @@ impl PKAddPassMetadataPreview {
 
         #[cfg(feature = "objc2-core-graphics")]
         /// CGImage representing the pass in our provisioning UI.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(passThumbnailImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn passThumbnailImage(&self) -> Option<Retained<CGImage>>;
@@ -90,6 +94,8 @@ impl PKAddSecureElementPassConfiguration {
         pub unsafe fn issuerIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`issuerIdentifier`][Self::issuerIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIssuerIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIssuerIdentifier(&self, issuer_identifier: Option<&NSString>);
@@ -99,6 +105,8 @@ impl PKAddSecureElementPassConfiguration {
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);

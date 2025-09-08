@@ -158,6 +158,8 @@ impl AVAssetImageGenerator {
         pub unsafe fn apertureMode(&self) -> Option<Retained<AVAssetImageGeneratorApertureMode>>;
 
         /// Setter for [`apertureMode`][Self::apertureMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setApertureMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApertureMode(
@@ -175,6 +177,8 @@ impl AVAssetImageGenerator {
         ) -> Retained<AVAssetImageGeneratorDynamicRangePolicy>;
 
         /// Setter for [`dynamicRangePolicy`][Self::dynamicRangePolicy].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDynamicRangePolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDynamicRangePolicy(
@@ -198,6 +202,8 @@ impl AVAssetImageGenerator {
 
         #[cfg(feature = "AVVideoComposition")]
         /// Setter for [`videoComposition`][Self::videoComposition].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoComposition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);

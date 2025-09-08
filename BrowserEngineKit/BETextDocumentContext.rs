@@ -79,6 +79,8 @@ impl BETextDocumentContext {
         pub unsafe fn autocorrectedRanges(&self) -> Retained<NSArray<NSValue>>;
 
         /// Setter for [`autocorrectedRanges`][Self::autocorrectedRanges].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAutocorrectedRanges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutocorrectedRanges(&self, autocorrected_ranges: &NSArray<NSValue>);

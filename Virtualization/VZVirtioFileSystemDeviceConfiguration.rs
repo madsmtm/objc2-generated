@@ -70,6 +70,8 @@ impl VZVirtioFileSystemDeviceConfiguration {
         pub unsafe fn tag(&self) -> Retained<NSString>;
 
         /// Setter for [`tag`][Self::tag].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTag(&self, tag: &NSString);

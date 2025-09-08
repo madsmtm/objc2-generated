@@ -304,6 +304,8 @@ impl UIButton {
 
         #[cfg(feature = "UIButtonConfiguration")]
         /// Setter for [`configuration`][Self::configuration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(&self, configuration: Option<&UIButtonConfiguration>);
@@ -326,6 +328,8 @@ impl UIButton {
 
         #[cfg(feature = "block2")]
         /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConfigurationUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationUpdateHandler(
@@ -410,6 +414,8 @@ impl UIButton {
             feature = "block2"
         ))]
         /// Setter for [`pointerStyleProvider`][Self::pointerStyleProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPointerStyleProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointerStyleProvider(
@@ -425,6 +431,8 @@ impl UIButton {
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Setter for [`menu`][Self::menu].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMenu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenu(&self, menu: Option<&UIMenu>);

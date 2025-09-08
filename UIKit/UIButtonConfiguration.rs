@@ -337,6 +337,8 @@ impl UIButtonConfiguration {
             feature = "block2"
         ))]
         /// Setter for [`imageColorTransformer`][Self::imageColorTransformer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImageColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageColorTransformer(
@@ -359,6 +361,8 @@ impl UIButtonConfiguration {
             feature = "UIImageSymbolConfiguration"
         ))]
         /// Setter for [`preferredSymbolConfigurationForImage`][Self::preferredSymbolConfigurationForImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredSymbolConfigurationForImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSymbolConfigurationForImage(
@@ -391,6 +395,8 @@ impl UIButtonConfiguration {
             feature = "block2"
         ))]
         /// Setter for [`activityIndicatorColorTransformer`][Self::activityIndicatorColorTransformer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActivityIndicatorColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityIndicatorColorTransformer(
@@ -403,6 +409,8 @@ impl UIButtonConfiguration {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -412,6 +420,8 @@ impl UIButtonConfiguration {
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
@@ -425,6 +435,8 @@ impl UIButtonConfiguration {
 
         #[cfg(feature = "block2")]
         /// Setter for [`titleTextAttributesTransformer`][Self::titleTextAttributesTransformer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitleTextAttributesTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributesTransformer(
@@ -449,6 +461,8 @@ impl UIButtonConfiguration {
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
@@ -458,6 +472,8 @@ impl UIButtonConfiguration {
         pub unsafe fn attributedSubtitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedSubtitle`][Self::attributedSubtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedSubtitle(
@@ -474,6 +490,8 @@ impl UIButtonConfiguration {
 
         #[cfg(feature = "block2")]
         /// Setter for [`subtitleTextAttributesTransformer`][Self::subtitleTextAttributesTransformer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitleTextAttributesTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitleTextAttributesTransformer(
@@ -518,6 +536,8 @@ impl UIButtonConfiguration {
             feature = "block2"
         ))]
         /// Setter for [`indicatorColorTransformer`][Self::indicatorColorTransformer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIndicatorColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndicatorColorTransformer(

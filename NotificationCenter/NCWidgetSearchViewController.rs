@@ -60,8 +60,9 @@ impl NCWidgetSearchViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NCWidgetSearchViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -74,6 +75,8 @@ impl NCWidgetSearchViewController {
         pub unsafe fn searchResults(&self) -> Option<Retained<NSArray<AnyObject>>>;
 
         /// Setter for [`searchResults`][Self::searchResults].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSearchResults:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchResults(&self, search_results: Option<&NSArray<AnyObject>>);
@@ -83,6 +86,8 @@ impl NCWidgetSearchViewController {
         pub unsafe fn searchDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`searchDescription`][Self::searchDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSearchDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchDescription(&self, search_description: Option<&NSString>);
@@ -92,6 +97,8 @@ impl NCWidgetSearchViewController {
         pub unsafe fn searchResultsPlaceholderString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`searchResultsPlaceholderString`][Self::searchResultsPlaceholderString].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSearchResultsPlaceholderString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchResultsPlaceholderString(
@@ -104,6 +111,8 @@ impl NCWidgetSearchViewController {
         pub unsafe fn searchResultKeyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`searchResultKeyPath`][Self::searchResultKeyPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSearchResultKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchResultKeyPath(&self, search_result_key_path: Option<&NSString>);

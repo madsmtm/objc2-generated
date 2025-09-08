@@ -92,6 +92,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         pub unsafe fn carIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`carIdentifier`][Self::carIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCarIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCarIdentifier(&self, car_identifier: Option<&NSString>);
@@ -101,6 +103,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         pub unsafe fn fuelPercentRemaining(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`fuelPercentRemaining`][Self::fuelPercentRemaining].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFuelPercentRemaining:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFuelPercentRemaining(&self, fuel_percent_remaining: Option<&NSNumber>);
@@ -110,6 +114,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         pub unsafe fn chargePercentRemaining(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`chargePercentRemaining`][Self::chargePercentRemaining].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChargePercentRemaining:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChargePercentRemaining(&self, charge_percent_remaining: Option<&NSNumber>);
@@ -119,6 +125,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         pub unsafe fn distanceRemaining(&self) -> Option<Retained<NSMeasurement<NSUnitLength>>>;
 
         /// Setter for [`distanceRemaining`][Self::distanceRemaining].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDistanceRemaining:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDistanceRemaining(
@@ -131,6 +139,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         pub unsafe fn charging(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`charging`][Self::charging].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCharging:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCharging(&self, charging: Option<&NSNumber>);
@@ -140,6 +150,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         pub unsafe fn minutesToFull(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`minutesToFull`][Self::minutesToFull].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMinutesToFull:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinutesToFull(&self, minutes_to_full: Option<&NSNumber>);
@@ -149,6 +161,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         pub unsafe fn maximumDistance(&self) -> Option<Retained<NSMeasurement<NSUnitLength>>>;
 
         /// Setter for [`maximumDistance`][Self::maximumDistance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMaximumDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumDistance(
@@ -163,6 +177,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         ) -> Option<Retained<NSMeasurement<NSUnitLength>>>;
 
         /// Setter for [`distanceRemainingElectric`][Self::distanceRemainingElectric].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDistanceRemainingElectric:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDistanceRemainingElectric(
@@ -177,6 +193,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         ) -> Option<Retained<NSMeasurement<NSUnitLength>>>;
 
         /// Setter for [`maximumDistanceElectric`][Self::maximumDistanceElectric].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMaximumDistanceElectric:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumDistanceElectric(
@@ -190,6 +208,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
             -> Option<Retained<NSMeasurement<NSUnitLength>>>;
 
         /// Setter for [`distanceRemainingFuel`][Self::distanceRemainingFuel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDistanceRemainingFuel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDistanceRemainingFuel(
@@ -202,6 +222,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         pub unsafe fn maximumDistanceFuel(&self) -> Option<Retained<NSMeasurement<NSUnitLength>>>;
 
         /// Setter for [`maximumDistanceFuel`][Self::maximumDistanceFuel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMaximumDistanceFuel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumDistanceFuel(
@@ -216,6 +238,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`consumptionFormulaArguments`][Self::consumptionFormulaArguments].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConsumptionFormulaArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConsumptionFormulaArguments(
@@ -230,6 +254,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`chargingFormulaArguments`][Self::chargingFormulaArguments].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChargingFormulaArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChargingFormulaArguments(
@@ -242,6 +268,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         pub unsafe fn dateOfLastStateUpdate(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`dateOfLastStateUpdate`][Self::dateOfLastStateUpdate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDateOfLastStateUpdate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDateOfLastStateUpdate(
@@ -256,6 +284,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
 
         #[cfg(feature = "INCarChargingConnectorType")]
         /// Setter for [`activeConnector`][Self::activeConnector].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActiveConnector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActiveConnector(
@@ -270,6 +300,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         ) -> Option<Retained<NSMeasurement<NSUnitEnergy>>>;
 
         /// Setter for [`maximumBatteryCapacity`][Self::maximumBatteryCapacity].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMaximumBatteryCapacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumBatteryCapacity(
@@ -284,6 +316,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         ) -> Option<Retained<NSMeasurement<NSUnitEnergy>>>;
 
         /// Setter for [`currentBatteryCapacity`][Self::currentBatteryCapacity].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCurrentBatteryCapacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentBatteryCapacity(
@@ -298,6 +332,8 @@ impl INGetCarPowerLevelStatusIntentResponse {
         ) -> Option<Retained<NSMeasurement<NSUnitEnergy>>>;
 
         /// Setter for [`minimumBatteryCapacity`][Self::minimumBatteryCapacity].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMinimumBatteryCapacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumBatteryCapacity(

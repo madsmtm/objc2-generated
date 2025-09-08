@@ -158,6 +158,8 @@ impl NSTimeZone {
         pub unsafe fn defaultTimeZone() -> Retained<NSTimeZone>;
 
         /// Setter for [`defaultTimeZone`][Self::defaultTimeZone].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setDefaultTimeZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultTimeZone(default_time_zone: &NSTimeZone);
@@ -178,6 +180,8 @@ impl NSTimeZone {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`abbreviationDictionary`][Self::abbreviationDictionary].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAbbreviationDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAbbreviationDictionary(

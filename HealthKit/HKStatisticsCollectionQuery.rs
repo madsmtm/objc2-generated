@@ -124,6 +124,8 @@ impl HKStatisticsCollectionQuery {
 
         #[cfg(feature = "block2")]
         /// Setter for [`initialResultsHandler`][Self::initialResultsHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInitialResultsHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialResultsHandler(
@@ -155,6 +157,8 @@ impl HKStatisticsCollectionQuery {
 
         #[cfg(all(feature = "HKStatistics", feature = "block2"))]
         /// Setter for [`statisticsUpdateHandler`][Self::statisticsUpdateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStatisticsUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatisticsUpdateHandler(

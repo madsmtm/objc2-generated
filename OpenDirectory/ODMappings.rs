@@ -25,6 +25,8 @@ impl ODMappings {
         pub unsafe fn comment(&self) -> Retained<NSString>;
 
         /// Setter for [`comment`][Self::comment].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setComment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setComment(&self, comment: Option<&NSString>);
@@ -34,6 +36,8 @@ impl ODMappings {
         pub unsafe fn templateName(&self) -> Retained<NSString>;
 
         /// Setter for [`templateName`][Self::templateName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTemplateName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTemplateName(&self, template_name: Option<&NSString>);
@@ -43,6 +47,8 @@ impl ODMappings {
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
@@ -56,6 +62,8 @@ impl ODMappings {
         pub unsafe fn function(&self) -> Retained<NSString>;
 
         /// Setter for [`function`][Self::function].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFunction(&self, function: Option<&NSString>);
@@ -65,6 +73,8 @@ impl ODMappings {
         pub unsafe fn functionAttributes(&self) -> Retained<NSArray>;
 
         /// Setter for [`functionAttributes`][Self::functionAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFunctionAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFunctionAttributes(&self, function_attributes: Option<&NSArray>);

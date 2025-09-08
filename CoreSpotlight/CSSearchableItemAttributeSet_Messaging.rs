@@ -46,6 +46,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn accountIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accountIdentifier`][Self::accountIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccountIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountIdentifier(&self, account_identifier: Option<&NSString>);
@@ -55,6 +57,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn accountHandles(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`accountHandles`][Self::accountHandles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccountHandles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountHandles(&self, account_handles: Option<&NSArray<NSString>>);
@@ -64,6 +68,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn HTMLContentData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`HTMLContentData`][Self::HTMLContentData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHTMLContentData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTMLContentData(&self, html_content_data: Option<&NSData>);
@@ -73,6 +79,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn textContent(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`textContent`][Self::textContent].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTextContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextContent(&self, text_content: Option<&NSString>);
@@ -84,6 +92,8 @@ impl CSSearchableItemAttributeSet {
 
         #[cfg(feature = "CSPerson")]
         /// Setter for [`authors`][Self::authors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthors(&self, authors: Option<&NSArray<CSPerson>>);
@@ -95,6 +105,8 @@ impl CSSearchableItemAttributeSet {
 
         #[cfg(feature = "CSPerson")]
         /// Setter for [`primaryRecipients`][Self::primaryRecipients].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrimaryRecipients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryRecipients(&self, primary_recipients: Option<&NSArray<CSPerson>>);
@@ -106,6 +118,8 @@ impl CSSearchableItemAttributeSet {
 
         #[cfg(feature = "CSPerson")]
         /// Setter for [`additionalRecipients`][Self::additionalRecipients].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAdditionalRecipients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalRecipients(
@@ -120,6 +134,8 @@ impl CSSearchableItemAttributeSet {
 
         #[cfg(feature = "CSPerson")]
         /// Setter for [`hiddenAdditionalRecipients`][Self::hiddenAdditionalRecipients].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHiddenAdditionalRecipients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHiddenAdditionalRecipients(
@@ -132,6 +148,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn emailHeaders(&self) -> Option<Retained<NSDictionary<NSString, NSArray>>>;
 
         /// Setter for [`emailHeaders`][Self::emailHeaders].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmailHeaders:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmailHeaders(
@@ -144,6 +162,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn mailboxIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`mailboxIdentifiers`][Self::mailboxIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMailboxIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMailboxIdentifiers(&self, mailbox_identifiers: Option<&NSArray<NSString>>);
@@ -153,6 +173,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn authorNames(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`authorNames`][Self::authorNames].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthorNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthorNames(&self, author_names: Option<&NSArray<NSString>>);
@@ -162,6 +184,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn recipientNames(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`recipientNames`][Self::recipientNames].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecipientNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecipientNames(&self, recipient_names: Option<&NSArray<NSString>>);
@@ -171,6 +195,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn authorEmailAddresses(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`authorEmailAddresses`][Self::authorEmailAddresses].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthorEmailAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthorEmailAddresses(
@@ -183,6 +209,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn recipientEmailAddresses(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`recipientEmailAddresses`][Self::recipientEmailAddresses].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecipientEmailAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecipientEmailAddresses(
@@ -195,6 +223,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn authorAddresses(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`authorAddresses`][Self::authorAddresses].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAuthorAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthorAddresses(&self, author_addresses: Option<&NSArray<NSString>>);
@@ -204,6 +234,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn recipientAddresses(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`recipientAddresses`][Self::recipientAddresses].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecipientAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecipientAddresses(&self, recipient_addresses: Option<&NSArray<NSString>>);
@@ -213,6 +245,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn phoneNumbers(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`phoneNumbers`][Self::phoneNumbers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPhoneNumbers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhoneNumbers(&self, phone_numbers: Option<&NSArray<NSString>>);
@@ -222,6 +256,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn emailAddresses(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`emailAddresses`][Self::emailAddresses].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEmailAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmailAddresses(&self, email_addresses: Option<&NSArray<NSString>>);
@@ -231,6 +267,8 @@ impl CSSearchableItemAttributeSet {
         pub unsafe fn instantMessageAddresses(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`instantMessageAddresses`][Self::instantMessageAddresses].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInstantMessageAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstantMessageAddresses(

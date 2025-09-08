@@ -597,6 +597,8 @@ impl AVPlayerInterstitialEventController {
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerInterstitialEvent>>;
 
         /// Setter for [`events`][Self::events].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEvents(&self, events: Option<&NSArray<AVPlayerInterstitialEvent>>);

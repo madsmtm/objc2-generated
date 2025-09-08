@@ -12,6 +12,10 @@ extern_protocol!(
         /// Property for accessing custom data to be preserved by the host
         ///
         /// Getter- Return the custom data to be preserved by the host before closing the view.                Setter- A NSDictionary containing the view data to restore when the view is opened. This property should set prior to opening the view. The au view should be written in such a way that it can store this dictionary and use its information when the view is opened and user interface elements are created. The view should retain this dictionary until it is finished with it, and should not release the dictionary. This dictionary is owned by the host.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(customViewPersistentData))]
         #[unsafe(method_family = none)]
         unsafe fn customViewPersistentData(

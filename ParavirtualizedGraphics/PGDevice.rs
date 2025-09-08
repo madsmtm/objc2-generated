@@ -108,6 +108,8 @@ impl PGDeviceDescriptor {
 
         #[cfg(feature = "block2")]
         /// Setter for [`raiseInterrupt`][Self::raiseInterrupt].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRaiseInterrupt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRaiseInterrupt(&self, raise_interrupt: PGRaiseInterrupt);

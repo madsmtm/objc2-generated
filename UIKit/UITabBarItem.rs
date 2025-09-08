@@ -129,6 +129,8 @@ impl UITabBarItem {
         pub unsafe fn badgeValue(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`badgeValue`][Self::badgeValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBadgeValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeValue(&self, badge_value: Option<&NSString>);
@@ -174,6 +176,8 @@ impl UITabBarItem {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`badgeColor`][Self::badgeColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBadgeColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeColor(&self, badge_color: Option<&UIColor>);
@@ -205,6 +209,8 @@ impl UITabBarItem {
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         /// Setter for [`standardAppearance`][Self::standardAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStandardAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardAppearance(
@@ -220,6 +226,8 @@ impl UITabBarItem {
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         /// Setter for [`scrollEdgeAppearance`][Self::scrollEdgeAppearance].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setScrollEdgeAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollEdgeAppearance(

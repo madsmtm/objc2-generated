@@ -45,6 +45,8 @@ impl INRideVehicle {
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`location`][Self::location].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocation(&self, location: Option<&CLLocation>);
@@ -54,6 +56,8 @@ impl INRideVehicle {
         pub unsafe fn registrationPlate(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`registrationPlate`][Self::registrationPlate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRegistrationPlate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRegistrationPlate(&self, registration_plate: Option<&NSString>);
@@ -63,6 +67,8 @@ impl INRideVehicle {
         pub unsafe fn manufacturer(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`manufacturer`][Self::manufacturer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setManufacturer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setManufacturer(&self, manufacturer: Option<&NSString>);
@@ -72,6 +78,8 @@ impl INRideVehicle {
         pub unsafe fn model(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`model`][Self::model].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModel(&self, model: Option<&NSString>);
@@ -83,6 +91,8 @@ impl INRideVehicle {
 
         #[cfg(feature = "INImage")]
         /// Setter for [`mapAnnotationImage`][Self::mapAnnotationImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMapAnnotationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMapAnnotationImage(&self, map_annotation_image: Option<&INImage>);

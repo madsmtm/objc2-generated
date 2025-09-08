@@ -254,6 +254,8 @@ impl AVAssetResourceLoadingRequest {
         pub unsafe fn response(&self) -> Option<Retained<NSURLResponse>>;
 
         /// Setter for [`response`][Self::response].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setResponse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResponse(&self, response: Option<&NSURLResponse>);
@@ -266,6 +268,8 @@ impl AVAssetResourceLoadingRequest {
         pub unsafe fn redirect(&self) -> Option<Retained<NSURLRequest>>;
 
         /// Setter for [`redirect`][Self::redirect].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRedirect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRedirect(&self, redirect: Option<&NSURLRequest>);
@@ -353,6 +357,8 @@ impl AVAssetResourceLoadingContentInformationRequest {
         pub unsafe fn contentType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`contentType`][Self::contentType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentType(&self, content_type: Option<&NSString>);
@@ -396,6 +402,8 @@ impl AVAssetResourceLoadingContentInformationRequest {
         pub unsafe fn renewalDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`renewalDate`][Self::renewalDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRenewalDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenewalDate(&self, renewal_date: Option<&NSDate>);

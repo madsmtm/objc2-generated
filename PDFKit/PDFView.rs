@@ -401,8 +401,9 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn PDFViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn PDFViewDelegate>>);
@@ -415,8 +416,9 @@ impl PDFView {
         ) -> Option<Retained<ProtocolObject<dyn PDFPageOverlayViewProvider>>>;
 
         #[cfg(feature = "PDFPageOverlayViewProvider")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`pageOverlayViewProvider`][Self::pageOverlayViewProvider].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPageOverlayViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPageOverlayViewProvider(
@@ -546,6 +548,8 @@ impl PDFView {
 
         #[cfg(feature = "PDFSelection")]
         /// Setter for [`highlightedSelections`][Self::highlightedSelections].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHighlightedSelections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighlightedSelections(

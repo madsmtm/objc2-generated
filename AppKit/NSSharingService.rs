@@ -156,8 +156,9 @@ impl NSSharingService {
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn NSSharingServiceDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -185,6 +186,8 @@ impl NSSharingService {
         pub unsafe fn menuItemTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`menuItemTitle`][Self::menuItemTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMenuItemTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenuItemTitle(&self, menu_item_title: &NSString);
@@ -195,6 +198,8 @@ impl NSSharingService {
         pub unsafe fn recipients(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`recipients`][Self::recipients].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecipients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecipients(&self, recipients: Option<&NSArray<NSString>>);
@@ -204,6 +209,8 @@ impl NSSharingService {
         pub unsafe fn subject(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subject`][Self::subject].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubject(&self, subject: Option<&NSString>);
@@ -538,8 +545,9 @@ impl NSSharingServicePicker {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSSharingServicePickerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

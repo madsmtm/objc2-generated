@@ -239,6 +239,8 @@ impl NSUserAutomatorTask {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`variables`][Self::variables].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setVariables:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariables(&self, variables: Option<&NSDictionary<NSString, AnyObject>>);

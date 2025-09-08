@@ -101,6 +101,8 @@ impl CKModifyRecordsOperation {
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`recordsToSave`][Self::recordsToSave].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordsToSave:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordsToSave(&self, records_to_save: Option<&NSArray<CKRecord>>);
@@ -112,6 +114,8 @@ impl CKModifyRecordsOperation {
 
         #[cfg(feature = "CKRecordID")]
         /// Setter for [`recordIDsToDelete`][Self::recordIDsToDelete].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecordIDsToDelete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordIDsToDelete(
@@ -144,6 +148,8 @@ impl CKModifyRecordsOperation {
         pub unsafe fn clientChangeTokenData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`clientChangeTokenData`][Self::clientChangeTokenData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setClientChangeTokenData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClientChangeTokenData(&self, client_change_token_data: Option<&NSData>);
@@ -182,6 +188,8 @@ impl CKModifyRecordsOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`perRecordProgressBlock`][Self::perRecordProgressBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerRecordProgressBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordProgressBlock(
@@ -210,6 +218,8 @@ impl CKModifyRecordsOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`perRecordCompletionBlock`][Self::perRecordCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setPerRecordCompletionBlock:))]
         #[unsafe(method_family = none)]
@@ -241,6 +251,8 @@ impl CKModifyRecordsOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordSaveBlock`][Self::perRecordSaveBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerRecordSaveBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordSaveBlock(
@@ -265,6 +277,8 @@ impl CKModifyRecordsOperation {
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordDeleteBlock`][Self::perRecordDeleteBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerRecordDeleteBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordDeleteBlock(
@@ -306,6 +320,8 @@ impl CKModifyRecordsOperation {
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`modifyRecordsCompletionBlock`][Self::modifyRecordsCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModifyRecordsCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModifyRecordsCompletionBlock(

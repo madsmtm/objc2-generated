@@ -42,6 +42,8 @@ impl UIPasteConfiguration {
         pub unsafe fn acceptableTypeIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`acceptableTypeIdentifiers`][Self::acceptableTypeIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAcceptableTypeIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAcceptableTypeIdentifiers(

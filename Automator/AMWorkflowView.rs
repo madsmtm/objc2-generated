@@ -75,8 +75,9 @@ impl AMWorkflowView {
         pub unsafe fn workflowController(&self) -> Option<Retained<AMWorkflowController>>;
 
         #[cfg(feature = "AMWorkflowController")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`workflowController`][Self::workflowController].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setWorkflowController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorkflowController(

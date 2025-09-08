@@ -65,6 +65,8 @@ impl SCNTransaction {
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`animationTimingFunction`][Self::animationTimingFunction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAnimationTimingFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationTimingFunction(
@@ -87,6 +89,8 @@ impl SCNTransaction {
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionBlock`][Self::completionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionBlock(completion_block: Option<&block2::DynBlock<dyn Fn()>>);

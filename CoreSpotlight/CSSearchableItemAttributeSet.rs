@@ -261,6 +261,8 @@ pub unsafe trait NSUserActivityCSSearchableItemAttributeSet:
         unsafe fn contentAttributeSet(&self) -> Option<Retained<CSSearchableItemAttributeSet>>;
 
         /// Setter for [`contentAttributeSet`][Self::contentAttributeSet].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentAttributeSet:))]
         #[unsafe(method_family = none)]
         unsafe fn setContentAttributeSet(

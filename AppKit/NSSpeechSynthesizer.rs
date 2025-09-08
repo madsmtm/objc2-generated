@@ -303,8 +303,9 @@ impl NSSpeechSynthesizer {
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn NSSpeechSynthesizerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

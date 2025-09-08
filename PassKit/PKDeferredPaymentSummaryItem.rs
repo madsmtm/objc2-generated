@@ -28,6 +28,8 @@ impl PKDeferredPaymentSummaryItem {
         pub unsafe fn deferredDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`deferredDate`][Self::deferredDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDeferredDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeferredDate(&self, deferred_date: &NSDate);

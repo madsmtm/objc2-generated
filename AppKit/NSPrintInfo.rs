@@ -294,6 +294,8 @@ impl NSPrintInfo {
 
         #[cfg(feature = "NSPrinter")]
         /// Setter for [`paperName`][Self::paperName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPaperName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaperName(&self, paper_name: Option<&NSPrinterPaperName>);
@@ -415,6 +417,8 @@ impl NSPrintInfo {
         pub unsafe fn jobDisposition(&self) -> Retained<NSPrintJobDispositionValue>;
 
         /// Setter for [`jobDisposition`][Self::jobDisposition].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJobDisposition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJobDisposition(&self, job_disposition: &NSPrintJobDispositionValue);
@@ -426,6 +430,8 @@ impl NSPrintInfo {
 
         #[cfg(feature = "NSPrinter")]
         /// Setter for [`printer`][Self::printer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrinter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrinter(&self, printer: &NSPrinter);

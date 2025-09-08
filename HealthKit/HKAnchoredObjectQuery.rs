@@ -62,6 +62,8 @@ impl HKAnchoredObjectQuery {
             feature = "block2"
         ))]
         /// Setter for [`updateHandler`][Self::updateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpdateHandler(

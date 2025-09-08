@@ -76,6 +76,8 @@ impl NSDateIntervalFormatter {
 
         #[cfg(feature = "NSLocale")]
         /// Setter for [`locale`][Self::locale].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
@@ -87,6 +89,8 @@ impl NSDateIntervalFormatter {
 
         #[cfg(feature = "NSCalendar")]
         /// Setter for [`calendar`][Self::calendar].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCalendar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
@@ -98,6 +102,8 @@ impl NSDateIntervalFormatter {
 
         #[cfg(feature = "NSTimeZone")]
         /// Setter for [`timeZone`][Self::timeZone].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTimeZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
@@ -109,6 +115,8 @@ impl NSDateIntervalFormatter {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`dateTemplate`][Self::dateTemplate].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setDateTemplate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDateTemplate(&self, date_template: Option<&NSString>);

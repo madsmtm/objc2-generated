@@ -112,6 +112,8 @@ impl INGetVisualCodeIntentResponse {
 
         #[cfg(feature = "INImage")]
         /// Setter for [`visualCodeImage`][Self::visualCodeImage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "INGetVisualCodeIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(setVisualCodeImage:))]
         #[unsafe(method_family = none)]

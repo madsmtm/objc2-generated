@@ -57,6 +57,8 @@ impl NLLanguageRecognizer {
 
         #[cfg(feature = "NLLanguage")]
         /// Setter for [`languageHints`][Self::languageHints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLanguageHints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanguageHints(&self, language_hints: &NSDictionary<NLLanguage, NSNumber>);
@@ -68,6 +70,8 @@ impl NLLanguageRecognizer {
 
         #[cfg(feature = "NLLanguage")]
         /// Setter for [`languageConstraints`][Self::languageConstraints].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLanguageConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanguageConstraints(&self, language_constraints: &NSArray<NLLanguage>);

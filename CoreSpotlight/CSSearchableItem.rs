@@ -104,6 +104,8 @@ impl CSSearchableItem {
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`uniqueIdentifier`][Self::uniqueIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUniqueIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUniqueIdentifier(&self, unique_identifier: &NSString);
@@ -113,6 +115,8 @@ impl CSSearchableItem {
         pub unsafe fn domainIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`domainIdentifier`][Self::domainIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDomainIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDomainIdentifier(&self, domain_identifier: Option<&NSString>);
@@ -122,6 +126,8 @@ impl CSSearchableItem {
         pub unsafe fn expirationDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`expirationDate`][Self::expirationDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExpirationDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpirationDate(&self, expiration_date: Option<&NSDate>);

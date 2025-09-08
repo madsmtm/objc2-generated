@@ -142,6 +142,8 @@ impl UIMenu {
 
         #[cfg(feature = "UIMenuDisplayPreferences")]
         /// Setter for [`displayPreferences`][Self::displayPreferences].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplayPreferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayPreferences(

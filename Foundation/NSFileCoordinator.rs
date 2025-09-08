@@ -156,6 +156,8 @@ impl NSFileCoordinator {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`purposeIdentifier`][Self::purposeIdentifier].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPurposeIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPurposeIdentifier(&self, purpose_identifier: &NSString);

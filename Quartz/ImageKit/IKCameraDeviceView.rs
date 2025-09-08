@@ -136,6 +136,10 @@ extern_conformance!(
 impl IKCameraDeviceView {
     extern_methods!(
         /// Delegate of the IKCameraDeviceView.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -152,6 +156,10 @@ impl IKCameraDeviceView {
 
         #[cfg(feature = "objc2-image-capture-core")]
         /// the camera device.
+        ///
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(cameraDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraDevice(&self) -> Option<Retained<ICCameraDevice>>;
@@ -198,6 +206,8 @@ impl IKCameraDeviceView {
         pub unsafe fn downloadAllControlLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`downloadAllControlLabel`][Self::downloadAllControlLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDownloadAllControlLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDownloadAllControlLabel(
@@ -211,6 +221,8 @@ impl IKCameraDeviceView {
         pub unsafe fn downloadSelectedControlLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`downloadSelectedControlLabel`][Self::downloadSelectedControlLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDownloadSelectedControlLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDownloadSelectedControlLabel(

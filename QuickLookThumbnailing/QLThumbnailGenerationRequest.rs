@@ -101,6 +101,8 @@ impl QLThumbnailGenerationRequest {
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// Setter for [`contentType`][Self::contentType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentType(&self, content_type: Option<&UTType>);

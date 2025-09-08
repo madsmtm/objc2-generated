@@ -75,6 +75,8 @@ impl NSTableColumn {
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
@@ -95,8 +97,9 @@ impl NSTableColumn {
             feature = "NSTableView",
             feature = "NSView"
         ))]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`tableView`][Self::tableView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTableView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
@@ -139,6 +142,8 @@ impl NSTableColumn {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -182,6 +187,8 @@ impl NSTableColumn {
         pub unsafe fn sortDescriptorPrototype(&self) -> Option<Retained<NSSortDescriptor>>;
 
         /// Setter for [`sortDescriptorPrototype`][Self::sortDescriptorPrototype].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSortDescriptorPrototype:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSortDescriptorPrototype(
@@ -203,6 +210,8 @@ impl NSTableColumn {
         pub unsafe fn headerToolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`headerToolTip`][Self::headerToolTip].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHeaderToolTip:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeaderToolTip(&self, header_tool_tip: Option<&NSString>);

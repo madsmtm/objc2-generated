@@ -48,6 +48,8 @@ impl SWCollaborationShareOptions {
 
         #[cfg(feature = "SWCollaborationOptionsGroup")]
         /// Setter for [`optionsGroups`][Self::optionsGroups].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOptionsGroups:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOptionsGroups(
@@ -61,6 +63,8 @@ impl SWCollaborationShareOptions {
         pub unsafe fn summary(&self) -> Retained<NSString>;
 
         /// Setter for [`summary`][Self::summary].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSummary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSummary(&self, summary: &NSString);

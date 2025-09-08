@@ -103,6 +103,8 @@ impl INGetUserCurrentRestaurantReservationBookingsIntentResponse {
             feature = "INRestaurantReservationUserBooking"
         ))]
         /// Setter for [`userCurrentBookings`][Self::userCurrentBookings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUserCurrentBookings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserCurrentBookings(

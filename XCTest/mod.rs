@@ -1857,6 +1857,8 @@ impl XCTAttachment {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -1867,6 +1869,8 @@ impl XCTAttachment {
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
@@ -2161,6 +2165,8 @@ impl XCTExpectedFailureOptions {
 
         #[cfg(feature = "block2")]
         /// Setter for [`issueMatcher`][Self::issueMatcher].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIssueMatcher:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIssueMatcher(
@@ -2445,6 +2451,8 @@ impl XCTMutableIssue {
         pub unsafe fn compactDescription(&self) -> Retained<NSString>;
 
         /// Setter for [`compactDescription`][Self::compactDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompactDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompactDescription(&self, compact_description: &NSString);
@@ -2454,6 +2462,8 @@ impl XCTMutableIssue {
         pub unsafe fn detailedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`detailedDescription`][Self::detailedDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetailedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetailedDescription(&self, detailed_description: Option<&NSString>);
@@ -2481,6 +2491,8 @@ impl XCTMutableIssue {
         pub unsafe fn attachments(&self) -> Retained<NSArray<XCTAttachment>>;
 
         /// Setter for [`attachments`][Self::attachments].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttachments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttachments(&self, attachments: &NSArray<XCTAttachment>);
@@ -3548,8 +3560,9 @@ impl XCTWaiter {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn XCTWaiterDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn XCTWaiterDelegate>>);
@@ -3906,6 +3919,8 @@ impl XCTestExpectation {
         pub unsafe fn expectationDescription(&self) -> Retained<NSString>;
 
         /// Setter for [`expectationDescription`][Self::expectationDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExpectationDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpectationDescription(&self, expectation_description: &NSString);
@@ -4088,6 +4103,8 @@ impl XCTKVOExpectation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`handler`][Self::handler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(&self, handler: XCKeyValueObservingExpectationHandler);
@@ -4192,6 +4209,8 @@ impl XCTNSNotificationExpectation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`handler`][Self::handler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(&self, handler: XCNotificationExpectationHandler);
@@ -4273,6 +4292,8 @@ impl XCTNSPredicateExpectation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`handler`][Self::handler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(&self, handler: XCPredicateExpectationHandler);
@@ -4641,6 +4662,8 @@ impl XCTDarwinNotificationExpectation {
 
         #[cfg(feature = "block2")]
         /// Setter for [`handler`][Self::handler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(&self, handler: XCTDarwinNotificationExpectationHandler);

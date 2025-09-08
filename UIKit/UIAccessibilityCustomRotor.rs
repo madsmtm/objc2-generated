@@ -130,6 +130,8 @@ pub unsafe trait NSObjectUIAccessibilityCustomRotor:
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityCustomRotorsBlock`][Self::accessibilityCustomRotorsBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessibilityCustomRotorsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomRotorsBlock(
@@ -239,6 +241,8 @@ impl UIAccessibilityCustomRotor {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -248,6 +252,8 @@ impl UIAccessibilityCustomRotor {
         pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedName`][Self::attributedName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedName(&self, attributed_name: &NSAttributedString);
@@ -259,6 +265,8 @@ impl UIAccessibilityCustomRotor {
 
         #[cfg(feature = "block2")]
         /// Setter for [`itemSearchBlock`][Self::itemSearchBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setItemSearchBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemSearchBlock(
@@ -314,8 +322,9 @@ impl UIAccessibilityCustomRotorItemResult {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`targetElement`][Self::targetElement].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTargetElement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargetElement(

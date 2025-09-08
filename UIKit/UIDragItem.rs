@@ -72,6 +72,8 @@ impl UIDragItem {
 
         #[cfg(all(feature = "UIDragPreview", feature = "block2"))]
         /// Setter for [`previewProvider`][Self::previewProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreviewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewProvider(

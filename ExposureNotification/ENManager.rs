@@ -161,6 +161,8 @@ impl ENManager {
 
         #[cfg(feature = "block2")]
         /// Setter for [`activityHandler`][Self::activityHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActivityHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityHandler(&self, activity_handler: ENActivityHandler);
@@ -189,6 +191,8 @@ impl ENManager {
 
         #[cfg(feature = "dispatch2")]
         /// Setter for [`invalidationHandler`][Self::invalidationHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInvalidationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInvalidationHandler(&self, invalidation_handler: dispatch_block_t);
@@ -321,6 +325,8 @@ impl ENManager {
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Setter for [`diagnosisKeysAvailableHandler`][Self::diagnosisKeysAvailableHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDiagnosisKeysAvailableHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDiagnosisKeysAvailableHandler(

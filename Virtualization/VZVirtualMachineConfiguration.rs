@@ -151,6 +151,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZAudioDeviceConfiguration")]
         /// Setter for [`audioDevices`][Self::audioDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAudioDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioDevices(&self, audio_devices: &NSArray<VZAudioDeviceConfiguration>);
@@ -165,6 +167,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZConsoleDeviceConfiguration")]
         /// Setter for [`consoleDevices`][Self::consoleDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setConsoleDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConsoleDevices(
@@ -184,6 +188,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
         /// Setter for [`directorySharingDevices`][Self::directorySharingDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDirectorySharingDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirectorySharingDevices(
@@ -201,6 +207,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZEntropyDeviceConfiguration")]
         /// Setter for [`entropyDevices`][Self::entropyDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEntropyDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEntropyDevices(
@@ -220,6 +228,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
         /// Setter for [`memoryBalloonDevices`][Self::memoryBalloonDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMemoryBalloonDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMemoryBalloonDevices(
@@ -237,6 +247,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZNetworkDeviceConfiguration")]
         /// Setter for [`networkDevices`][Self::networkDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNetworkDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkDevices(
@@ -254,6 +266,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZSerialPortConfiguration")]
         /// Setter for [`serialPorts`][Self::serialPorts].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSerialPorts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSerialPorts(&self, serial_ports: &NSArray<VZSerialPortConfiguration>);
@@ -268,6 +282,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZSocketDeviceConfiguration")]
         /// Setter for [`socketDevices`][Self::socketDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSocketDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSocketDevices(
@@ -289,6 +305,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZStorageDeviceConfiguration")]
         /// Setter for [`storageDevices`][Self::storageDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStorageDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStorageDevices(
@@ -308,6 +326,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZKeyboardConfiguration")]
         /// Setter for [`keyboards`][Self::keyboards].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKeyboards:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyboards(&self, keyboards: &NSArray<VZKeyboardConfiguration>);
@@ -324,6 +344,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZPointingDeviceConfiguration")]
         /// Setter for [`pointingDevices`][Self::pointingDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPointingDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointingDevices(
@@ -341,6 +363,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZGraphicsDeviceConfiguration")]
         /// Setter for [`graphicsDevices`][Self::graphicsDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGraphicsDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGraphicsDevices(
@@ -361,6 +385,8 @@ impl VZVirtualMachineConfiguration {
 
         #[cfg(feature = "VZUSBControllerConfiguration")]
         /// Setter for [`usbControllers`][Self::usbControllers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUsbControllers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsbControllers(

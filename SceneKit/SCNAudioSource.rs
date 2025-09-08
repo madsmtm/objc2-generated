@@ -197,6 +197,8 @@ impl SCNAudioPlayer {
 
         #[cfg(feature = "block2")]
         /// Setter for [`willStartPlayback`][Self::willStartPlayback].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setWillStartPlayback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWillStartPlayback(
@@ -212,6 +214,8 @@ impl SCNAudioPlayer {
 
         #[cfg(feature = "block2")]
         /// Setter for [`didFinishPlayback`][Self::didFinishPlayback].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDidFinishPlayback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDidFinishPlayback(

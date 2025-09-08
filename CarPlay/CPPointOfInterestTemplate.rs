@@ -105,6 +105,8 @@ impl CPPointOfInterestTemplate {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -149,8 +151,9 @@ impl CPPointOfInterestTemplate {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CPPointOfInterestTemplateDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`pointOfInterestDelegate`][Self::pointOfInterestDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPointOfInterestDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestDelegate(

@@ -25,6 +25,8 @@ impl PKDisbursementRequest {
         pub unsafe fn merchantIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`merchantIdentifier`][Self::merchantIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMerchantIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMerchantIdentifier(&self, merchant_identifier: &NSString);
@@ -34,6 +36,8 @@ impl PKDisbursementRequest {
         pub unsafe fn regionCode(&self) -> Retained<NSString>;
 
         /// Setter for [`regionCode`][Self::regionCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRegionCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRegionCode(&self, region_code: &NSString);
@@ -45,6 +49,8 @@ impl PKDisbursementRequest {
 
         #[cfg(feature = "PKConstants")]
         /// Setter for [`supportedNetworks`][Self::supportedNetworks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedNetworks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedNetworks(&self, supported_networks: &NSArray<PKPaymentNetwork>);
@@ -67,6 +73,8 @@ impl PKDisbursementRequest {
 
         #[cfg(feature = "PKPaymentSummaryItem")]
         /// Setter for [`summaryItems`][Self::summaryItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSummaryItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSummaryItems(&self, summary_items: &NSArray<PKPaymentSummaryItem>);
@@ -76,6 +84,8 @@ impl PKDisbursementRequest {
         pub unsafe fn currencyCode(&self) -> Retained<NSString>;
 
         /// Setter for [`currencyCode`][Self::currencyCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCurrencyCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrencyCode(&self, currency_code: &NSString);
@@ -110,6 +120,8 @@ impl PKDisbursementRequest {
         pub unsafe fn supportedRegions(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`supportedRegions`][Self::supportedRegions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedRegions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedRegions(&self, supported_regions: Option<&NSArray<NSString>>);
@@ -119,6 +131,8 @@ impl PKDisbursementRequest {
         pub unsafe fn applicationData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`applicationData`][Self::applicationData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setApplicationData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApplicationData(&self, application_data: Option<&NSData>);

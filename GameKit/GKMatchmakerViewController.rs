@@ -89,8 +89,9 @@ impl GKMatchmakerViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKMatchmakerViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`matchmakerDelegate`][Self::matchmakerDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setMatchmakerDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchmakerDelegate(
@@ -172,6 +173,8 @@ impl GKMatchmakerViewController {
         pub unsafe fn defaultInvitationMessage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`defaultInvitationMessage`][Self::defaultInvitationMessage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "No longer supported."]
         #[unsafe(method(setDefaultInvitationMessage:))]
         #[unsafe(method_family = none)]

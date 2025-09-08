@@ -74,8 +74,9 @@ impl SKCloudServiceSetupViewController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SKCloudServiceSetupViewControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

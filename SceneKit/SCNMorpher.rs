@@ -67,6 +67,8 @@ impl SCNMorpher {
 
         #[cfg(feature = "SCNGeometry")]
         /// Setter for [`targets`][Self::targets].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTargets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargets(&self, targets: &NSArray<SCNGeometry>);

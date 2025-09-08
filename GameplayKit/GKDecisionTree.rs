@@ -123,6 +123,8 @@ impl GKDecisionTree {
 
         #[cfg(feature = "GKRandomSource")]
         /// Setter for [`randomSource`][Self::randomSource].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRandomSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRandomSource(&self, random_source: &GKRandomSource);

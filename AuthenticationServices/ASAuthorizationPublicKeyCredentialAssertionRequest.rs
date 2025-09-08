@@ -18,6 +18,8 @@ extern_protocol!(
         unsafe fn challenge(&self) -> Retained<NSData>;
 
         /// Setter for [`challenge`][Self::challenge].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChallenge:))]
         #[unsafe(method_family = none)]
         unsafe fn setChallenge(&self, challenge: &NSData);
@@ -28,6 +30,8 @@ extern_protocol!(
         unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`relyingPartyIdentifier`][Self::relyingPartyIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRelyingPartyIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn setRelyingPartyIdentifier(&self, relying_party_identifier: &NSString);
@@ -42,6 +46,8 @@ extern_protocol!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialDescriptor")]
         /// Setter for [`allowedCredentials`][Self::allowedCredentials].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAllowedCredentials:))]
         #[unsafe(method_family = none)]
         unsafe fn setAllowedCredentials(

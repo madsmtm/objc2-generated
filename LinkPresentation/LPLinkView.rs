@@ -130,6 +130,8 @@ impl LPLinkView {
 
         #[cfg(feature = "LPLinkMetadata")]
         /// Setter for [`metadata`][Self::metadata].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &LPLinkMetadata);

@@ -19,6 +19,8 @@ extern_protocol!(
 
         #[cfg(feature = "UIPasteConfiguration")]
         /// Setter for [`pasteConfiguration`][Self::pasteConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPasteConfiguration:))]
         #[unsafe(method_family = none)]
         unsafe fn setPasteConfiguration(&self, paste_configuration: Option<&UIPasteConfiguration>);

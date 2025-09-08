@@ -28,6 +28,8 @@ pub unsafe trait NSPasteboardItemSWCollaborationMetadata:
 
         #[cfg(feature = "objc2-shared-with-you-core")]
         /// Setter for [`collaborationMetadata`][Self::collaborationMetadata].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCollaborationMetadata:))]
         #[unsafe(method_family = none)]
         unsafe fn setCollaborationMetadata(

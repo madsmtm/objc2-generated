@@ -2634,6 +2634,8 @@ impl SCNText {
         pub unsafe fn string(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`string`][Self::string].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setString(&self, string: Option<&AnyObject>);
@@ -2694,6 +2696,8 @@ impl SCNText {
         pub unsafe fn truncationMode(&self) -> Retained<NSString>;
 
         /// Setter for [`truncationMode`][Self::truncationMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTruncationMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTruncationMode(&self, truncation_mode: &NSString);
@@ -2706,6 +2710,8 @@ impl SCNText {
         pub unsafe fn alignmentMode(&self) -> Retained<NSString>;
 
         /// Setter for [`alignmentMode`][Self::alignmentMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAlignmentMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlignmentMode(&self, alignment_mode: &NSString);
@@ -2750,6 +2756,8 @@ impl SCNText {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`chamferProfile`][Self::chamferProfile].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChamferProfile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferProfile(&self, chamfer_profile: Option<&NSBezierPath>);
@@ -2987,6 +2995,8 @@ impl SCNShape {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`path`][Self::path].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: Option<&NSBezierPath>);
@@ -3043,6 +3053,8 @@ impl SCNShape {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`chamferProfile`][Self::chamferProfile].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChamferProfile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferProfile(&self, chamfer_profile: Option<&NSBezierPath>);

@@ -161,8 +161,9 @@ impl UIPresentationController {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIAdaptivePresentationControllerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -246,6 +247,8 @@ impl UIPresentationController {
 
         #[cfg(feature = "UITraitCollection")]
         /// Setter for [`overrideTraitCollection`][Self::overrideTraitCollection].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use the traitOverrides property instead"]
         #[unsafe(method(setOverrideTraitCollection:))]
         #[unsafe(method_family = none)]

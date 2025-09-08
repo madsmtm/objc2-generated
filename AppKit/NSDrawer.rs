@@ -78,6 +78,9 @@ impl NSDrawer {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSWindow")]
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(parentWindow))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
@@ -108,6 +111,9 @@ impl NSDrawer {
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSDrawerDelegate>>>;

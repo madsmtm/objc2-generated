@@ -70,6 +70,8 @@ impl SWCollaborationMetadata {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -82,6 +84,8 @@ impl SWCollaborationMetadata {
 
         #[cfg(feature = "SWCollaborationShareOptions")]
         /// Setter for [`defaultShareOptions`][Self::defaultShareOptions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultShareOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultShareOptions(
@@ -99,6 +103,8 @@ impl SWCollaborationMetadata {
 
         #[cfg(feature = "SWCollaborationShareOptions")]
         /// Setter for [`userSelectedShareOptions`][Self::userSelectedShareOptions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUserSelectedShareOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserSelectedShareOptions(
@@ -114,6 +120,8 @@ impl SWCollaborationMetadata {
         pub unsafe fn initiatorHandle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`initiatorHandle`][Self::initiatorHandle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInitiatorHandle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitiatorHandle(&self, initiator_handle: Option<&NSString>);

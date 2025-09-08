@@ -31,8 +31,9 @@ impl SWCollaborationCoordinator {
         ) -> Option<Retained<ProtocolObject<dyn SWCollaborationActionHandler>>>;
 
         #[cfg(feature = "SWCollaborationActionHandler")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`actionHandler`][Self::actionHandler].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionHandler(

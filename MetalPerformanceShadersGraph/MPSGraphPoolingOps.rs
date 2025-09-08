@@ -422,6 +422,8 @@ impl MPSGraphPooling4DOpDescriptor {
         pub unsafe fn kernelSizes(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`kernelSizes`][Self::kernelSizes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKernelSizes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKernelSizes(&self, kernel_sizes: &NSArray<NSNumber>);
@@ -444,6 +446,8 @@ impl MPSGraphPooling4DOpDescriptor {
         pub unsafe fn strides(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`strides`][Self::strides].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStrides:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrides(&self, strides: &NSArray<NSNumber>);
@@ -466,6 +470,8 @@ impl MPSGraphPooling4DOpDescriptor {
         pub unsafe fn dilationRates(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`dilationRates`][Self::dilationRates].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDilationRates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDilationRates(&self, dilation_rates: &NSArray<NSNumber>);
@@ -500,6 +506,8 @@ impl MPSGraphPooling4DOpDescriptor {
         pub unsafe fn paddingValues(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`paddingValues`][Self::paddingValues].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPaddingValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingValues(&self, padding_values: &NSArray<NSNumber>);

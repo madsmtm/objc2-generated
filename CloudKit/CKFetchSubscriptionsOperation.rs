@@ -46,6 +46,8 @@ impl CKFetchSubscriptionsOperation {
 
         #[cfg(feature = "CKSubscription")]
         /// Setter for [`subscriptionIDs`][Self::subscriptionIDs].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubscriptionIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriptionIDs(
@@ -71,6 +73,8 @@ impl CKFetchSubscriptionsOperation {
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`perSubscriptionCompletionBlock`][Self::perSubscriptionCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPerSubscriptionCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerSubscriptionCompletionBlock(
@@ -112,6 +116,8 @@ impl CKFetchSubscriptionsOperation {
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`fetchSubscriptionCompletionBlock`][Self::fetchSubscriptionCompletionBlock].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFetchSubscriptionCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchSubscriptionCompletionBlock(

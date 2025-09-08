@@ -54,6 +54,8 @@ impl INRestaurantReservationBooking {
 
         #[cfg(feature = "INRestaurant")]
         /// Setter for [`restaurant`][Self::restaurant].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRestaurant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRestaurant(&self, restaurant: &INRestaurant);
@@ -63,6 +65,8 @@ impl INRestaurantReservationBooking {
         pub unsafe fn bookingDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`bookingDescription`][Self::bookingDescription].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBookingDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBookingDescription(&self, booking_description: Option<&NSString>);
@@ -72,6 +76,8 @@ impl INRestaurantReservationBooking {
         pub unsafe fn bookingDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`bookingDate`][Self::bookingDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBookingDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBookingDate(&self, booking_date: &NSDate);
@@ -90,6 +96,8 @@ impl INRestaurantReservationBooking {
         pub unsafe fn bookingIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`bookingIdentifier`][Self::bookingIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBookingIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBookingIdentifier(&self, booking_identifier: &NSString);
@@ -110,6 +118,8 @@ impl INRestaurantReservationBooking {
 
         #[cfg(feature = "INRestaurantOffer")]
         /// Setter for [`offers`][Self::offers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOffers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOffers(&self, offers: Option<&NSArray<INRestaurantOffer>>);

@@ -550,6 +550,8 @@ impl NSMutableURLRequest {
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`URL`][Self::URL].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
@@ -603,6 +605,8 @@ impl NSMutableURLRequest {
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`mainDocumentURL`][Self::mainDocumentURL].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setMainDocumentURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMainDocumentURL(&self, main_document_url: Option<&NSURL>);
@@ -730,6 +734,8 @@ impl NSMutableURLRequest {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`cookiePartitionIdentifier`][Self::cookiePartitionIdentifier].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCookiePartitionIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCookiePartitionIdentifier(
@@ -948,6 +954,8 @@ impl NSMutableURLRequest {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`HTTPMethod`][Self::HTTPMethod].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setHTTPMethod:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPMethod(&self, http_method: &NSString);
@@ -976,6 +984,8 @@ impl NSMutableURLRequest {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`allHTTPHeaderFields`][Self::allHTTPHeaderFields].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAllHTTPHeaderFields:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllHTTPHeaderFields(
@@ -1032,6 +1042,8 @@ impl NSMutableURLRequest {
 
         #[cfg(feature = "NSData")]
         /// Setter for [`HTTPBody`][Self::HTTPBody].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setHTTPBody:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPBody(&self, http_body: Option<&NSData>);

@@ -203,6 +203,8 @@ impl WKWebViewConfiguration {
         pub unsafe fn applicationNameForUserAgent(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`applicationNameForUserAgent`][Self::applicationNameForUserAgent].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setApplicationNameForUserAgent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApplicationNameForUserAgent(
@@ -260,6 +262,8 @@ impl WKWebViewConfiguration {
 
         #[cfg(feature = "WKWebpagePreferences")]
         /// Setter for [`defaultWebpagePreferences`][Self::defaultWebpagePreferences].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultWebpagePreferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultWebpagePreferences(

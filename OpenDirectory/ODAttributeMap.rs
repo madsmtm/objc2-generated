@@ -25,6 +25,8 @@ impl ODAttributeMap {
         pub unsafe fn customQueryFunction(&self) -> Retained<NSString>;
 
         /// Setter for [`customQueryFunction`][Self::customQueryFunction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomQueryFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomQueryFunction(&self, custom_query_function: Option<&NSString>);
@@ -34,6 +36,8 @@ impl ODAttributeMap {
         pub unsafe fn customTranslationFunction(&self) -> Retained<NSString>;
 
         /// Setter for [`customTranslationFunction`][Self::customTranslationFunction].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomTranslationFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomTranslationFunction(
@@ -46,6 +50,8 @@ impl ODAttributeMap {
         pub unsafe fn customAttributes(&self) -> Retained<NSArray>;
 
         /// Setter for [`customAttributes`][Self::customAttributes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomAttributes(&self, custom_attributes: Option<&NSArray>);
@@ -55,6 +61,8 @@ impl ODAttributeMap {
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);

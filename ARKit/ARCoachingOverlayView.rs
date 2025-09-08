@@ -144,8 +144,9 @@ impl ARCoachingOverlayView {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn ARCoachingOverlayViewDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -164,8 +165,9 @@ impl ARCoachingOverlayView {
         pub unsafe fn sessionProvider(&self) -> Option<Retained<NSObject>>;
 
         #[cfg(feature = "ARSession")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`sessionProvider`][Self::sessionProvider].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setSessionProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSessionProvider(&self, session_provider: Option<&NSObject>);

@@ -50,6 +50,8 @@ impl NSScanner {
 
         #[cfg(feature = "NSCharacterSet")]
         /// Setter for [`charactersToBeSkipped`][Self::charactersToBeSkipped].
+        ///
+        /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCharactersToBeSkipped:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCharactersToBeSkipped(

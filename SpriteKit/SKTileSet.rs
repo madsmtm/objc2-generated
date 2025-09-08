@@ -218,6 +218,8 @@ impl SKTileSet {
         pub unsafe fn tileGroups(&self) -> Retained<NSArray<SKTileGroup>>;
 
         /// Setter for [`tileGroups`][Self::tileGroups].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTileGroups:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTileGroups(&self, tile_groups: &NSArray<SKTileGroup>);
@@ -228,6 +230,8 @@ impl SKTileSet {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -358,6 +362,8 @@ impl SKTileGroup {
         pub unsafe fn rules(&self) -> Retained<NSArray<SKTileGroupRule>>;
 
         /// Setter for [`rules`][Self::rules].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRules(&self, rules: &NSArray<SKTileGroupRule>);
@@ -368,6 +374,8 @@ impl SKTileGroup {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -463,6 +471,8 @@ impl SKTileGroupRule {
 
         #[cfg(feature = "SKTileDefinition")]
         /// Setter for [`tileDefinitions`][Self::tileDefinitions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTileDefinitions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTileDefinitions(&self, tile_definitions: &NSArray<SKTileDefinition>);
@@ -473,6 +483,8 @@ impl SKTileGroupRule {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);

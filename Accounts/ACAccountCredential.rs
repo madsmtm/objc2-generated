@@ -46,6 +46,8 @@ impl ACAccountCredential {
         pub unsafe fn oauthToken(&self) -> Retained<NSString>;
 
         /// Setter for [`oauthToken`][Self::oauthToken].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(setOauthToken:))]
         #[unsafe(method_family = none)]

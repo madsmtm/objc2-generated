@@ -85,8 +85,9 @@ impl MKPitchControl {
         pub unsafe fn mapView(&self) -> Option<Retained<MKMapView>>;
 
         #[cfg(feature = "MKMapView")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`mapView`][Self::mapView].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setMapView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMapView(&self, map_view: Option<&MKMapView>);

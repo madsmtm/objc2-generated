@@ -151,6 +151,8 @@ impl TVCaptionButtonView {
         pub unsafe fn contentText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`contentText`][Self::contentText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentText(&self, content_text: Option<&NSString>);
@@ -161,6 +163,8 @@ impl TVCaptionButtonView {
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -171,6 +175,8 @@ impl TVCaptionButtonView {
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);

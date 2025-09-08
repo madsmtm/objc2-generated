@@ -270,8 +270,9 @@ impl PDFAnnotation {
         pub unsafe fn page(&self) -> Option<Retained<PDFPage>>;
 
         #[cfg(feature = "PDFPage")]
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`page`][Self::page].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setPage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPage(&self, page: Option<&PDFPage>);
@@ -281,6 +282,8 @@ impl PDFAnnotation {
         pub unsafe fn r#type(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`type`][Self::type].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
@@ -317,6 +320,8 @@ impl PDFAnnotation {
         pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`modificationDate`][Self::modificationDate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModificationDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModificationDate(&self, modification_date: Option<&NSDate>);
@@ -326,6 +331,8 @@ impl PDFAnnotation {
         pub unsafe fn userName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`userName`][Self::userName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUserName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserName(&self, user_name: Option<&NSString>);
@@ -359,6 +366,8 @@ impl PDFAnnotation {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`color`][Self::color].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: &NSColor);
@@ -368,6 +377,8 @@ impl PDFAnnotation {
         pub unsafe fn contents(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`contents`][Self::contents].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContents(&self, contents: Option<&NSString>);

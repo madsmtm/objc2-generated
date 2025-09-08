@@ -92,6 +92,8 @@ extern_protocol!(
         unsafe fn fillMode(&self) -> Retained<CAMediaTimingFillMode>;
 
         /// Setter for [`fillMode`][Self::fillMode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFillMode:))]
         #[unsafe(method_family = none)]
         unsafe fn setFillMode(&self, fill_mode: &CAMediaTimingFillMode);

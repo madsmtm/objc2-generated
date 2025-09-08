@@ -92,8 +92,9 @@ impl MDLObject {
         #[unsafe(method_family = none)]
         pub unsafe fn parent(&self) -> Option<Retained<MDLObject>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`parent`][Self::parent].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setParent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParent(&self, parent: Option<&MDLObject>);

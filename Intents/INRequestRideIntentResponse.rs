@@ -109,6 +109,8 @@ impl INRequestRideIntentResponse {
 
         #[cfg(feature = "INRideStatus")]
         /// Setter for [`rideStatus`][Self::rideStatus].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRideStatus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRideStatus(&self, ride_status: Option<&INRideStatus>);

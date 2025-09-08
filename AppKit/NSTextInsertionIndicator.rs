@@ -137,6 +137,8 @@ impl NSTextInsertionIndicator {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`color`][Self::color].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: Option<&NSColor>);
@@ -165,6 +167,8 @@ impl NSTextInsertionIndicator {
 
         #[cfg(feature = "block2")]
         /// Setter for [`effectsViewInserter`][Self::effectsViewInserter].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEffectsViewInserter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEffectsViewInserter(

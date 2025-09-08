@@ -39,8 +39,9 @@ impl NSSpeechRecognizer {
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn NSSpeechRecognizerDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -53,6 +54,8 @@ impl NSSpeechRecognizer {
         pub unsafe fn commands(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`commands`][Self::commands].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCommands:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCommands(&self, commands: Option<&NSArray<NSString>>);
@@ -62,6 +65,8 @@ impl NSSpeechRecognizer {
         pub unsafe fn displayedCommandsTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`displayedCommandsTitle`][Self::displayedCommandsTitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplayedCommandsTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayedCommandsTitle(&self, displayed_commands_title: Option<&NSString>);

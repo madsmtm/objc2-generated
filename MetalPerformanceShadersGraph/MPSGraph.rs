@@ -393,6 +393,8 @@ impl MPSGraphExecutionDescriptor {
         ) -> Option<Retained<MPSGraphCompilationDescriptor>>;
 
         /// Setter for [`compilationDescriptor`][Self::compilationDescriptor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompilationDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompilationDescriptor(

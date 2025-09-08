@@ -47,6 +47,8 @@ impl UISceneActivationConditions {
         ) -> Retained<NSPredicate>;
 
         /// Setter for [`canActivateForTargetContentIdentifierPredicate`][Self::canActivateForTargetContentIdentifierPredicate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCanActivateForTargetContentIdentifierPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanActivateForTargetContentIdentifierPredicate(
@@ -61,6 +63,8 @@ impl UISceneActivationConditions {
         ) -> Retained<NSPredicate>;
 
         /// Setter for [`prefersToActivateForTargetContentIdentifierPredicate`][Self::prefersToActivateForTargetContentIdentifierPredicate].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrefersToActivateForTargetContentIdentifierPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrefersToActivateForTargetContentIdentifierPredicate(
@@ -94,6 +98,8 @@ pub unsafe trait NSUserActivityUISceneActivationConditions:
         unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTargetContentIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn setTargetContentIdentifier(&self, target_content_identifier: Option<&NSString>);

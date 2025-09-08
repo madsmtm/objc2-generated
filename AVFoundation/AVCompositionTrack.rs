@@ -159,6 +159,8 @@ impl AVMutableCompositionTrack {
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`languageCode`][Self::languageCode].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLanguageCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanguageCode(&self, language_code: Option<&NSString>);
@@ -171,6 +173,8 @@ impl AVMutableCompositionTrack {
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`extendedLanguageTag`][Self::extendedLanguageTag].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExtendedLanguageTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtendedLanguageTag(&self, extended_language_tag: Option<&NSString>);
@@ -212,6 +216,8 @@ impl AVMutableCompositionTrack {
 
         #[cfg(all(feature = "AVAssetTrackSegment", feature = "AVCompositionTrackSegment"))]
         /// Setter for [`segments`][Self::segments].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSegments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegments(&self, segments: Option<&NSArray<AVCompositionTrackSegment>>);

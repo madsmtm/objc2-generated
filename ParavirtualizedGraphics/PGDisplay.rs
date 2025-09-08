@@ -101,6 +101,8 @@ impl PGDisplayDescriptor {
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -141,6 +143,8 @@ impl PGDisplayDescriptor {
 
         #[cfg(feature = "block2")]
         /// Setter for [`modeChangeHandler`][Self::modeChangeHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModeChangeHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModeChangeHandler(&self, mode_change_handler: PGDisplayModeChangeHandler);
@@ -155,6 +159,8 @@ impl PGDisplayDescriptor {
 
         #[cfg(feature = "block2")]
         /// Setter for [`newFrameEventHandler`][Self::newFrameEventHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNewFrameEventHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNewFrameEventHandler(
@@ -172,6 +178,8 @@ impl PGDisplayDescriptor {
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         /// Setter for [`cursorGlyphHandler`][Self::cursorGlyphHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCursorGlyphHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursorGlyphHandler(
@@ -189,6 +197,8 @@ impl PGDisplayDescriptor {
 
         #[cfg(feature = "block2")]
         /// Setter for [`cursorShowHandler`][Self::cursorShowHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCursorShowHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursorShowHandler(&self, cursor_show_handler: PGDisplayCursorShowHandler);
@@ -203,6 +213,8 @@ impl PGDisplayDescriptor {
 
         #[cfg(feature = "block2")]
         /// Setter for [`cursorMoveHandler`][Self::cursorMoveHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCursorMoveHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursorMoveHandler(&self, cursor_move_handler: PGDisplayCursorMoveHandler);
@@ -385,6 +397,8 @@ extern_protocol!(
         unsafe fn modeList(&self) -> Retained<NSArray<PGDisplayMode>>;
 
         /// Setter for [`modeList`][Self::modeList].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModeList:))]
         #[unsafe(method_family = none)]
         unsafe fn setModeList(&self, mode_list: &NSArray<PGDisplayMode>);

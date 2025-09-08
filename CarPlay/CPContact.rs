@@ -67,6 +67,8 @@ impl CPContact {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
@@ -93,6 +95,8 @@ impl CPContact {
 
         #[cfg(feature = "CPButton")]
         /// Setter for [`actions`][Self::actions].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActions(&self, actions: Option<&NSArray<CPButton>>);
@@ -103,6 +107,8 @@ impl CPContact {
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
@@ -113,6 +119,8 @@ impl CPContact {
         pub unsafe fn informativeText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`informativeText`][Self::informativeText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInformativeText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInformativeText(&self, informative_text: Option<&NSString>);

@@ -178,8 +178,9 @@ impl NSRuleEditor {
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn NSRuleEditorDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -192,6 +193,8 @@ impl NSRuleEditor {
         pub unsafe fn formattingStringsFilename(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`formattingStringsFilename`][Self::formattingStringsFilename].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFormattingStringsFilename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormattingStringsFilename(
@@ -206,6 +209,8 @@ impl NSRuleEditor {
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         /// Setter for [`formattingDictionary`][Self::formattingDictionary].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFormattingDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormattingDictionary(
@@ -342,6 +347,9 @@ impl NSRuleEditor {
             extend: bool,
         );
 
+        /// # Safety
+        ///
+        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(rowClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn rowClass(&self) -> &'static AnyClass;
@@ -356,6 +364,8 @@ impl NSRuleEditor {
         pub unsafe fn rowTypeKeyPath(&self) -> Retained<NSString>;
 
         /// Setter for [`rowTypeKeyPath`][Self::rowTypeKeyPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRowTypeKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRowTypeKeyPath(&self, row_type_key_path: &NSString);
@@ -365,6 +375,8 @@ impl NSRuleEditor {
         pub unsafe fn subrowsKeyPath(&self) -> Retained<NSString>;
 
         /// Setter for [`subrowsKeyPath`][Self::subrowsKeyPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubrowsKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubrowsKeyPath(&self, subrows_key_path: &NSString);
@@ -374,6 +386,8 @@ impl NSRuleEditor {
         pub unsafe fn criteriaKeyPath(&self) -> Retained<NSString>;
 
         /// Setter for [`criteriaKeyPath`][Self::criteriaKeyPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCriteriaKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCriteriaKeyPath(&self, criteria_key_path: &NSString);
@@ -383,6 +397,8 @@ impl NSRuleEditor {
         pub unsafe fn displayValuesKeyPath(&self) -> Retained<NSString>;
 
         /// Setter for [`displayValuesKeyPath`][Self::displayValuesKeyPath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplayValuesKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayValuesKeyPath(&self, display_values_key_path: &NSString);

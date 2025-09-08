@@ -89,6 +89,8 @@ impl DOMHTMLFrameElement {
         pub unsafe fn frameBorder(&self) -> Retained<NSString>;
 
         /// Setter for [`frameBorder`][Self::frameBorder].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setFrameBorder:))]
         #[unsafe(method_family = none)]
@@ -100,6 +102,8 @@ impl DOMHTMLFrameElement {
         pub unsafe fn longDesc(&self) -> Retained<NSString>;
 
         /// Setter for [`longDesc`][Self::longDesc].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setLongDesc:))]
         #[unsafe(method_family = none)]
@@ -111,6 +115,8 @@ impl DOMHTMLFrameElement {
         pub unsafe fn marginHeight(&self) -> Retained<NSString>;
 
         /// Setter for [`marginHeight`][Self::marginHeight].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setMarginHeight:))]
         #[unsafe(method_family = none)]
@@ -122,6 +128,8 @@ impl DOMHTMLFrameElement {
         pub unsafe fn marginWidth(&self) -> Retained<NSString>;
 
         /// Setter for [`marginWidth`][Self::marginWidth].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setMarginWidth:))]
         #[unsafe(method_family = none)]
@@ -133,6 +141,8 @@ impl DOMHTMLFrameElement {
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
@@ -155,6 +165,8 @@ impl DOMHTMLFrameElement {
         pub unsafe fn scrolling(&self) -> Retained<NSString>;
 
         /// Setter for [`scrolling`][Self::scrolling].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setScrolling:))]
         #[unsafe(method_family = none)]
@@ -166,6 +178,8 @@ impl DOMHTMLFrameElement {
         pub unsafe fn src(&self) -> Retained<NSString>;
 
         /// Setter for [`src`][Self::src].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated]
         #[unsafe(method(setSrc:))]
         #[unsafe(method_family = none)]
@@ -187,6 +201,8 @@ impl DOMHTMLFrameElement {
         pub unsafe fn location(&self) -> Retained<NSString>;
 
         /// Setter for [`location`][Self::location].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocation(&self, location: Option<&NSString>);

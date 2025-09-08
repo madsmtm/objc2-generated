@@ -68,6 +68,8 @@ impl PKBarcodeEventMetadataResponse {
         pub unsafe fn paymentInformation(&self) -> Retained<NSData>;
 
         /// Setter for [`paymentInformation`][Self::paymentInformation].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPaymentInformation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaymentInformation(&self, payment_information: &NSData);
@@ -180,6 +182,8 @@ impl PKBarcodeEventSignatureResponse {
         pub unsafe fn signedData(&self) -> Retained<NSData>;
 
         /// Setter for [`signedData`][Self::signedData].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSignedData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSignedData(&self, signed_data: &NSData);

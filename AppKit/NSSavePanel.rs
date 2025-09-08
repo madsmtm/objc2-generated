@@ -124,6 +124,8 @@ impl NSSavePanel {
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
@@ -135,6 +137,8 @@ impl NSSavePanel {
         pub unsafe fn directoryURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`directoryURL`][Self::directoryURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDirectoryURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirectoryURL(&self, directory_url: Option<&NSURL>);
@@ -154,6 +158,8 @@ impl NSSavePanel {
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`allowedContentTypes`][Self::allowedContentTypes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAllowedContentTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedContentTypes(&self, allowed_content_types: &NSArray<UTType>);
@@ -181,6 +187,8 @@ impl NSSavePanel {
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`currentContentType`][Self::currentContentType].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCurrentContentType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentContentType(&self, current_content_type: Option<&UTType>);
@@ -204,8 +212,9 @@ impl NSSavePanel {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSOpenSavePanelDelegate>>>;
 
-        /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -272,6 +281,8 @@ impl NSSavePanel {
         pub unsafe fn prompt(&self) -> Retained<NSString>;
 
         /// Setter for [`prompt`][Self::prompt].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrompt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrompt(&self, prompt: Option<&NSString>);
@@ -283,6 +294,8 @@ impl NSSavePanel {
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -294,6 +307,8 @@ impl NSSavePanel {
         pub unsafe fn nameFieldLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`nameFieldLabel`][Self::nameFieldLabel].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNameFieldLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNameFieldLabel(&self, name_field_label: Option<&NSString>);
@@ -308,6 +323,8 @@ impl NSSavePanel {
         pub unsafe fn nameFieldStringValue(&self) -> Retained<NSString>;
 
         /// Setter for [`nameFieldStringValue`][Self::nameFieldStringValue].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setNameFieldStringValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNameFieldStringValue(&self, name_field_string_value: &NSString);
@@ -318,6 +335,8 @@ impl NSSavePanel {
         pub unsafe fn message(&self) -> Retained<NSString>;
 
         /// Setter for [`message`][Self::message].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMessage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
@@ -350,6 +369,8 @@ impl NSSavePanel {
         pub unsafe fn tagNames(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`tagNames`][Self::tagNames].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTagNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTagNames(&self, tag_names: Option<&NSArray<NSString>>);
@@ -612,6 +633,8 @@ impl NSSavePanel {
         pub unsafe fn allowedFileTypes(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`allowedFileTypes`][Self::allowedFileTypes].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[deprecated = "Use -allowedContentTypes instead"]
         #[unsafe(method(setAllowedFileTypes:))]
         #[unsafe(method_family = none)]

@@ -82,6 +82,8 @@ impl CNContactViewController {
 
         #[cfg(feature = "objc2-contacts")]
         /// Setter for [`contact`][Self::contact].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContact:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContact(&self, contact: Option<&CNContact>);

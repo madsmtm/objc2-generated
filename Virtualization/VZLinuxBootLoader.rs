@@ -58,6 +58,8 @@ impl VZLinuxBootLoader {
         pub unsafe fn kernelURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`kernelURL`][Self::kernelURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setKernelURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKernelURL(&self, kernel_url: &NSURL);
@@ -73,6 +75,8 @@ impl VZLinuxBootLoader {
         pub unsafe fn commandLine(&self) -> Retained<NSString>;
 
         /// Setter for [`commandLine`][Self::commandLine].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCommandLine:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCommandLine(&self, command_line: &NSString);
@@ -83,6 +87,8 @@ impl VZLinuxBootLoader {
         pub unsafe fn initialRamdiskURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`initialRamdiskURL`][Self::initialRamdiskURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInitialRamdiskURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialRamdiskURL(&self, initial_ramdisk_url: Option<&NSURL>);

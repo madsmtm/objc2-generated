@@ -340,6 +340,8 @@ impl NSSegmentedControl {
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`selectedSegmentBezelColor`][Self::selectedSegmentBezelColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedSegmentBezelColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedSegmentBezelColor(

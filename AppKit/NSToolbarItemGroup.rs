@@ -121,6 +121,8 @@ impl NSToolbarItemGroup {
         pub unsafe fn subitems(&self) -> Retained<NSArray<NSToolbarItem>>;
 
         /// Setter for [`subitems`][Self::subitems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubitems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubitems(&self, subitems: &NSArray<NSToolbarItem>);

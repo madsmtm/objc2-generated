@@ -45,6 +45,8 @@ impl AVCaptureAudioPreviewOutput {
         pub unsafe fn outputDeviceUniqueID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`outputDeviceUniqueID`][Self::outputDeviceUniqueID].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputDeviceUniqueID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputDeviceUniqueID(&self, output_device_unique_id: Option<&NSString>);

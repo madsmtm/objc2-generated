@@ -196,6 +196,8 @@ impl UICollectionLayoutListConfiguration {
 
         #[cfg(feature = "UIListSeparatorConfiguration")]
         /// Setter for [`separatorConfiguration`][Self::separatorConfiguration].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSeparatorConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSeparatorConfiguration(
@@ -213,6 +215,8 @@ impl UICollectionLayoutListConfiguration {
 
         #[cfg(all(feature = "UIListSeparatorConfiguration", feature = "block2"))]
         /// Setter for [`itemSeparatorHandler`][Self::itemSeparatorHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setItemSeparatorHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemSeparatorHandler(
@@ -244,6 +248,8 @@ impl UICollectionLayoutListConfiguration {
 
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
         /// Setter for [`leadingSwipeActionsConfigurationProvider`][Self::leadingSwipeActionsConfigurationProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLeadingSwipeActionsConfigurationProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeadingSwipeActionsConfigurationProvider(
@@ -262,6 +268,8 @@ impl UICollectionLayoutListConfiguration {
 
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
         /// Setter for [`trailingSwipeActionsConfigurationProvider`][Self::trailingSwipeActionsConfigurationProvider].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrailingSwipeActionsConfigurationProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrailingSwipeActionsConfigurationProvider(

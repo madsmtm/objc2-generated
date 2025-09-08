@@ -268,6 +268,8 @@ impl ICScannerDevice {
         pub unsafe fn documentName(&self) -> Retained<NSString>;
 
         /// Setter for [`documentName`][Self::documentName].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDocumentName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDocumentName(&self, document_name: &NSString);
@@ -278,6 +280,8 @@ impl ICScannerDevice {
         pub unsafe fn documentUTI(&self) -> Retained<NSString>;
 
         /// Setter for [`documentUTI`][Self::documentUTI].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDocumentUTI:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDocumentUTI(&self, document_uti: &NSString);
@@ -290,6 +294,8 @@ impl ICScannerDevice {
         pub unsafe fn defaultUsername(&self) -> Retained<NSString>;
 
         /// Setter for [`defaultUsername`][Self::defaultUsername].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultUsername:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultUsername(&self, default_username: &NSString);

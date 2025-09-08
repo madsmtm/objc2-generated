@@ -87,6 +87,8 @@ impl PDFAppearanceCharacteristics {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
@@ -100,6 +102,8 @@ impl PDFAppearanceCharacteristics {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`borderColor`][Self::borderColor].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBorderColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderColor(&self, border_color: Option<&NSColor>);
@@ -118,6 +122,8 @@ impl PDFAppearanceCharacteristics {
         pub unsafe fn caption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`caption`][Self::caption].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCaption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCaption(&self, caption: Option<&NSString>);
@@ -127,6 +133,8 @@ impl PDFAppearanceCharacteristics {
         pub unsafe fn rolloverCaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`rolloverCaption`][Self::rolloverCaption].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRolloverCaption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRolloverCaption(&self, rollover_caption: Option<&NSString>);
@@ -136,6 +144,8 @@ impl PDFAppearanceCharacteristics {
         pub unsafe fn downCaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`downCaption`][Self::downCaption].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDownCaption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDownCaption(&self, down_caption: Option<&NSString>);
