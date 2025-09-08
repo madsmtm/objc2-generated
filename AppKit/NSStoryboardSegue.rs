@@ -52,19 +52,19 @@ impl NSStoryboardSegue {
 
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Option<Retained<NSStoryboardSegueIdentifier>>;
+        pub fn identifier(&self) -> Option<Retained<NSStoryboardSegueIdentifier>>;
 
         #[unsafe(method(sourceController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceController(&self) -> Retained<AnyObject>;
+        pub fn sourceController(&self) -> Retained<AnyObject>;
 
         #[unsafe(method(destinationController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn destinationController(&self) -> Retained<AnyObject>;
+        pub fn destinationController(&self) -> Retained<AnyObject>;
 
         #[unsafe(method(perform))]
         #[unsafe(method_family = none)]
-        pub unsafe fn perform(&self);
+        pub fn perform(&self);
     );
 }
 
@@ -73,12 +73,19 @@ impl NSStoryboardSegue {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSStoryboardSegue {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(

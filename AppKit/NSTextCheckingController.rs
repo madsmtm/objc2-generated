@@ -23,7 +23,7 @@ impl NSTextCheckingController {
         #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
         #[unsafe(method(initWithClient:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithClient(
+        pub fn initWithClient(
             this: Allocated<Self>,
             client: &ProtocolObject<dyn NSTextCheckingClient>,
         ) -> Retained<Self>;
@@ -35,27 +35,27 @@ impl NSTextCheckingController {
         #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
         #[unsafe(method(client))]
         #[unsafe(method_family = none)]
-        pub unsafe fn client(&self) -> Retained<ProtocolObject<dyn NSTextCheckingClient>>;
+        pub fn client(&self) -> Retained<ProtocolObject<dyn NSTextCheckingClient>>;
 
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidate(&self);
+        pub fn invalidate(&self);
 
         #[unsafe(method(didChangeTextInRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn didChangeTextInRange(&self, range: NSRange);
+        pub fn didChangeTextInRange(&self, range: NSRange);
 
         #[unsafe(method(insertedTextInRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertedTextInRange(&self, range: NSRange);
+        pub fn insertedTextInRange(&self, range: NSRange);
 
         #[unsafe(method(didChangeSelectedRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn didChangeSelectedRange(&self);
+        pub fn didChangeSelectedRange(&self);
 
         #[unsafe(method(considerTextCheckingForRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn considerTextCheckingForRange(&self, range: NSRange);
+        pub fn considerTextCheckingForRange(&self, range: NSRange);
 
         #[cfg(feature = "NSSpellChecker")]
         /// # Safety
@@ -121,11 +121,11 @@ impl NSTextCheckingController {
 
         #[unsafe(method(updateCandidates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateCandidates(&self);
+        pub fn updateCandidates(&self);
 
         #[unsafe(method(validAnnotations))]
         #[unsafe(method_family = none)]
-        pub unsafe fn validAnnotations(&self) -> Retained<NSArray<NSAttributedStringKey>>;
+        pub fn validAnnotations(&self) -> Retained<NSArray<NSAttributedStringKey>>;
 
         #[cfg(feature = "NSMenu")]
         /// # Safety
@@ -143,12 +143,12 @@ impl NSTextCheckingController {
 
         #[unsafe(method(spellCheckerDocumentTag))]
         #[unsafe(method_family = none)]
-        pub unsafe fn spellCheckerDocumentTag(&self) -> NSInteger;
+        pub fn spellCheckerDocumentTag(&self) -> NSInteger;
 
         /// Setter for [`spellCheckerDocumentTag`][Self::spellCheckerDocumentTag].
         #[unsafe(method(setSpellCheckerDocumentTag:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSpellCheckerDocumentTag(&self, spell_checker_document_tag: NSInteger);
+        pub fn setSpellCheckerDocumentTag(&self, spell_checker_document_tag: NSInteger);
     );
 }
 

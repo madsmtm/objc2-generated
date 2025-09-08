@@ -31,26 +31,26 @@ impl NSStatusBar {
     extern_methods!(
         #[unsafe(method(systemStatusBar))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemStatusBar() -> Retained<NSStatusBar>;
+        pub fn systemStatusBar() -> Retained<NSStatusBar>;
 
         #[cfg(all(feature = "NSStatusItem", feature = "objc2-core-foundation"))]
         #[unsafe(method(statusItemWithLength:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn statusItemWithLength(&self, length: CGFloat) -> Retained<NSStatusItem>;
+        pub fn statusItemWithLength(&self, length: CGFloat) -> Retained<NSStatusItem>;
 
         #[cfg(feature = "NSStatusItem")]
         #[unsafe(method(removeStatusItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeStatusItem(&self, item: &NSStatusItem);
+        pub fn removeStatusItem(&self, item: &NSStatusItem);
 
         #[unsafe(method(isVertical))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isVertical(&self) -> bool;
+        pub fn isVertical(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(thickness))]
         #[unsafe(method_family = none)]
-        pub unsafe fn thickness(&self) -> CGFloat;
+        pub fn thickness(&self) -> CGFloat;
     );
 }
 

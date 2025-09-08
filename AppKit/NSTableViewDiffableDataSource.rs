@@ -127,14 +127,14 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         #[cfg(feature = "NSDiffableDataSource")]
         #[unsafe(method(snapshot))]
         #[unsafe(method_family = none)]
-        pub unsafe fn snapshot(
+        pub fn snapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
         #[cfg(feature = "NSDiffableDataSource")]
         #[unsafe(method(applySnapshot:animatingDifferences:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applySnapshot_animatingDifferences(
+        pub fn applySnapshot_animatingDifferences(
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
             animating_differences: bool,
@@ -143,7 +143,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         #[cfg(all(feature = "NSDiffableDataSource", feature = "block2"))]
         #[unsafe(method(applySnapshot:animatingDifferences:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applySnapshot_animatingDifferences_completion(
+        pub fn applySnapshot_animatingDifferences_completion(
             &self,
             snapshot: &NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>,
             animating_differences: bool,
@@ -152,28 +152,22 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
 
         #[unsafe(method(itemIdentifierForRow:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemIdentifierForRow(
-            &self,
-            row: NSInteger,
-        ) -> Option<Retained<ItemIdentifierType>>;
+        pub fn itemIdentifierForRow(&self, row: NSInteger) -> Option<Retained<ItemIdentifierType>>;
 
         #[unsafe(method(rowForItemIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rowForItemIdentifier(&self, identifier: &ItemIdentifierType) -> NSInteger;
+        pub fn rowForItemIdentifier(&self, identifier: &ItemIdentifierType) -> NSInteger;
 
         #[unsafe(method(sectionIdentifierForRow:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sectionIdentifierForRow(
+        pub fn sectionIdentifierForRow(
             &self,
             row: NSInteger,
         ) -> Option<Retained<SectionIdentifierType>>;
 
         #[unsafe(method(rowForSectionIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rowForSectionIdentifier(
-            &self,
-            identifier: &SectionIdentifierType,
-        ) -> NSInteger;
+        pub fn rowForSectionIdentifier(&self, identifier: &SectionIdentifierType) -> NSInteger;
 
         #[cfg(all(
             feature = "NSControl",
@@ -258,15 +252,12 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         #[cfg(feature = "NSTableView")]
         #[unsafe(method(defaultRowAnimation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultRowAnimation(&self) -> NSTableViewAnimationOptions;
+        pub fn defaultRowAnimation(&self) -> NSTableViewAnimationOptions;
 
         #[cfg(feature = "NSTableView")]
         /// Setter for [`defaultRowAnimation`][Self::defaultRowAnimation].
         #[unsafe(method(setDefaultRowAnimation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultRowAnimation(
-            &self,
-            default_row_animation: NSTableViewAnimationOptions,
-        );
+        pub fn setDefaultRowAnimation(&self, default_row_animation: NSTableViewAnimationOptions);
     );
 }

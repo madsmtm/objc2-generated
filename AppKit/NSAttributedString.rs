@@ -249,7 +249,7 @@ pub unsafe trait NSAttributedStringAttributeFixing:
     extern_methods!(
         #[unsafe(method(fixAttributesInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn fixAttributesInRange(&self, range: NSRange);
+        fn fixAttributesInRange(&self, range: NSRange);
     );
 }
 
@@ -576,11 +576,11 @@ pub unsafe trait NSAttributedStringKitAdditions:
     extern_methods!(
         #[unsafe(method(containsAttachmentsInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
+        fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
 
         #[unsafe(method(prefersRTFDInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn prefersRTFDInRange(&self, range: NSRange) -> bool;
+        fn prefersRTFDInRange(&self, range: NSRange) -> bool;
     );
 }
 
@@ -655,15 +655,15 @@ pub unsafe trait NSAttributedStringAppKitAttributeFixing:
     extern_methods!(
         #[unsafe(method(fixFontAttributeInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn fixFontAttributeInRange(&self, range: NSRange);
+        fn fixFontAttributeInRange(&self, range: NSRange);
 
         #[unsafe(method(fixParagraphStyleAttributeInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn fixParagraphStyleAttributeInRange(&self, range: NSRange);
+        fn fixParagraphStyleAttributeInRange(&self, range: NSRange);
 
         #[unsafe(method(fixAttachmentAttributeInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn fixAttachmentAttributeInRange(&self, range: NSRange);
+        fn fixAttachmentAttributeInRange(&self, range: NSRange);
     );
 }
 
@@ -1027,21 +1027,21 @@ pub unsafe trait NSAttributedStringAppKitAdditions:
     extern_methods!(
         #[unsafe(method(fontAttributesInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn fontAttributesInRange(
+        fn fontAttributesInRange(
             &self,
             range: NSRange,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[unsafe(method(rulerAttributesInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn rulerAttributesInRange(
+        fn rulerAttributesInRange(
             &self,
             range: NSRange,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[unsafe(method(lineBreakBeforeIndex:withinRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn lineBreakBeforeIndex_withinRange(
+        fn lineBreakBeforeIndex_withinRange(
             &self,
             location: NSUInteger,
             a_range: NSRange,
@@ -1049,7 +1049,7 @@ pub unsafe trait NSAttributedStringAppKitAdditions:
 
         #[unsafe(method(lineBreakByHyphenatingBeforeIndex:withinRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn lineBreakByHyphenatingBeforeIndex_withinRange(
+        fn lineBreakByHyphenatingBeforeIndex_withinRange(
             &self,
             location: NSUInteger,
             a_range: NSRange,
@@ -1057,47 +1057,31 @@ pub unsafe trait NSAttributedStringAppKitAdditions:
 
         #[unsafe(method(doubleClickAtIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn doubleClickAtIndex(&self, location: NSUInteger) -> NSRange;
+        fn doubleClickAtIndex(&self, location: NSUInteger) -> NSRange;
 
         #[unsafe(method(nextWordFromIndex:forward:))]
         #[unsafe(method_family = none)]
-        unsafe fn nextWordFromIndex_forward(
-            &self,
-            location: NSUInteger,
-            is_forward: bool,
-        ) -> NSUInteger;
+        fn nextWordFromIndex_forward(&self, location: NSUInteger, is_forward: bool) -> NSUInteger;
 
         #[cfg(feature = "NSTextTable")]
         #[unsafe(method(rangeOfTextBlock:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn rangeOfTextBlock_atIndex(
-            &self,
-            block: &NSTextBlock,
-            location: NSUInteger,
-        ) -> NSRange;
+        fn rangeOfTextBlock_atIndex(&self, block: &NSTextBlock, location: NSUInteger) -> NSRange;
 
         #[cfg(feature = "NSTextTable")]
         #[unsafe(method(rangeOfTextTable:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn rangeOfTextTable_atIndex(
-            &self,
-            table: &NSTextTable,
-            location: NSUInteger,
-        ) -> NSRange;
+        fn rangeOfTextTable_atIndex(&self, table: &NSTextTable, location: NSUInteger) -> NSRange;
 
         #[cfg(feature = "NSTextList")]
         #[unsafe(method(rangeOfTextList:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn rangeOfTextList_atIndex(
-            &self,
-            list: &NSTextList,
-            location: NSUInteger,
-        ) -> NSRange;
+        fn rangeOfTextList_atIndex(&self, list: &NSTextList, location: NSUInteger) -> NSRange;
 
         #[cfg(feature = "NSTextList")]
         #[unsafe(method(itemNumberInTextList:atIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn itemNumberInTextList_atIndex(
+        fn itemNumberInTextList_atIndex(
             &self,
             list: &NSTextList,
             location: NSUInteger,
@@ -1119,11 +1103,11 @@ pub unsafe trait NSAttributedStringPasteboardAdditions:
     extern_methods!(
         #[unsafe(method(textTypes))]
         #[unsafe(method_family = none)]
-        unsafe fn textTypes() -> Retained<NSArray<NSString>>;
+        fn textTypes() -> Retained<NSArray<NSString>>;
 
         #[unsafe(method(textUnfilteredTypes))]
         #[unsafe(method_family = none)]
-        unsafe fn textUnfilteredTypes() -> Retained<NSArray<NSString>>;
+        fn textUnfilteredTypes() -> Retained<NSArray<NSString>>;
     );
 }
 
@@ -1151,30 +1135,30 @@ pub unsafe trait NSMutableAttributedStringAppKitAdditions:
     extern_methods!(
         #[unsafe(method(superscriptRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn superscriptRange(&self, range: NSRange);
+        fn superscriptRange(&self, range: NSRange);
 
         #[unsafe(method(subscriptRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn subscriptRange(&self, range: NSRange);
+        fn subscriptRange(&self, range: NSRange);
 
         #[unsafe(method(unscriptRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn unscriptRange(&self, range: NSRange);
+        fn unscriptRange(&self, range: NSRange);
 
         #[cfg(feature = "NSFontManager")]
         #[unsafe(method(applyFontTraits:range:))]
         #[unsafe(method_family = none)]
-        unsafe fn applyFontTraits_range(&self, trait_mask: NSFontTraitMask, range: NSRange);
+        fn applyFontTraits_range(&self, trait_mask: NSFontTraitMask, range: NSRange);
 
         #[cfg(feature = "NSText")]
         #[unsafe(method(setAlignment:range:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAlignment_range(&self, alignment: NSTextAlignment, range: NSRange);
+        fn setAlignment_range(&self, alignment: NSTextAlignment, range: NSRange);
 
         #[cfg(feature = "NSText")]
         #[unsafe(method(setBaseWritingDirection:range:))]
         #[unsafe(method_family = none)]
-        unsafe fn setBaseWritingDirection_range(
+        fn setBaseWritingDirection_range(
             &self,
             writing_direction: NSWritingDirection,
             range: NSRange,
@@ -1271,27 +1255,27 @@ pub unsafe trait NSAttributedStringNSDeprecatedKitAdditions:
     extern_methods!(
         #[unsafe(method(containsAttachments))]
         #[unsafe(method_family = none)]
-        unsafe fn containsAttachments(&self) -> bool;
+        fn containsAttachments(&self) -> bool;
 
         #[deprecated]
         #[unsafe(method(textFileTypes))]
         #[unsafe(method_family = none)]
-        unsafe fn textFileTypes() -> Retained<NSArray>;
+        fn textFileTypes() -> Retained<NSArray>;
 
         #[deprecated]
         #[unsafe(method(textPasteboardTypes))]
         #[unsafe(method_family = none)]
-        unsafe fn textPasteboardTypes() -> Retained<NSArray>;
+        fn textPasteboardTypes() -> Retained<NSArray>;
 
         #[deprecated]
         #[unsafe(method(textUnfilteredFileTypes))]
         #[unsafe(method_family = none)]
-        unsafe fn textUnfilteredFileTypes() -> Retained<NSArray>;
+        fn textUnfilteredFileTypes() -> Retained<NSArray>;
 
         #[deprecated]
         #[unsafe(method(textUnfilteredPasteboardTypes))]
         #[unsafe(method_family = none)]
-        unsafe fn textUnfilteredPasteboardTypes() -> Retained<NSArray>;
+        fn textUnfilteredPasteboardTypes() -> Retained<NSArray>;
 
         /// # Safety
         ///

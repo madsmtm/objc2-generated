@@ -13,7 +13,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(numberOfItemsForScrubber:))]
         #[unsafe(method_family = none)]
-        unsafe fn numberOfItemsForScrubber(&self, scrubber: &NSScrubber) -> NSInteger;
+        fn numberOfItemsForScrubber(&self, scrubber: &NSScrubber) -> NSInteger;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -22,7 +22,7 @@ extern_protocol!(
         ))]
         #[unsafe(method(scrubber:viewForItemAtIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrubber_viewForItemAtIndex(
+        fn scrubber_viewForItemAtIndex(
             &self,
             scrubber: &NSScrubber,
             index: NSInteger,
@@ -37,17 +37,13 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scrubber:didSelectItemAtIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrubber_didSelectItemAtIndex(
-            &self,
-            scrubber: &NSScrubber,
-            selected_index: NSInteger,
-        );
+        fn scrubber_didSelectItemAtIndex(&self, scrubber: &NSScrubber, selected_index: NSInteger);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[unsafe(method(scrubber:didHighlightItemAtIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrubber_didHighlightItemAtIndex(
+        fn scrubber_didHighlightItemAtIndex(
             &self,
             scrubber: &NSScrubber,
             highlighted_index: NSInteger,
@@ -57,29 +53,25 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scrubber:didChangeVisibleRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrubber_didChangeVisibleRange(
-            &self,
-            scrubber: &NSScrubber,
-            visible_range: NSRange,
-        );
+        fn scrubber_didChangeVisibleRange(&self, scrubber: &NSScrubber, visible_range: NSRange);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[unsafe(method(didBeginInteractingWithScrubber:))]
         #[unsafe(method_family = none)]
-        unsafe fn didBeginInteractingWithScrubber(&self, scrubber: &NSScrubber);
+        fn didBeginInteractingWithScrubber(&self, scrubber: &NSScrubber);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[unsafe(method(didFinishInteractingWithScrubber:))]
         #[unsafe(method_family = none)]
-        unsafe fn didFinishInteractingWithScrubber(&self, scrubber: &NSScrubber);
+        fn didFinishInteractingWithScrubber(&self, scrubber: &NSScrubber);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[unsafe(method(didCancelInteractingWithScrubber:))]
         #[unsafe(method_family = none)]
-        unsafe fn didCancelInteractingWithScrubber(&self, scrubber: &NSScrubber);
+        fn didCancelInteractingWithScrubber(&self, scrubber: &NSScrubber);
     }
 );
 
@@ -155,19 +147,15 @@ impl NSScrubberSelectionStyle {
     extern_methods!(
         #[unsafe(method(outlineOverlayStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn outlineOverlayStyle(
-            mtm: MainThreadMarker,
-        ) -> Retained<NSScrubberSelectionStyle>;
+        pub fn outlineOverlayStyle(mtm: MainThreadMarker) -> Retained<NSScrubberSelectionStyle>;
 
         #[unsafe(method(roundedBackgroundStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn roundedBackgroundStyle(
-            mtm: MainThreadMarker,
-        ) -> Retained<NSScrubberSelectionStyle>;
+        pub fn roundedBackgroundStyle(mtm: MainThreadMarker) -> Retained<NSScrubberSelectionStyle>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -183,7 +171,7 @@ impl NSScrubberSelectionStyle {
         ))]
         #[unsafe(method(makeSelectionView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn makeSelectionView(&self) -> Option<Retained<NSScrubberSelectionView>>;
+        pub fn makeSelectionView(&self) -> Option<Retained<NSScrubberSelectionView>>;
     );
 }
 
@@ -192,7 +180,7 @@ impl NSScrubberSelectionStyle {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -272,73 +260,68 @@ impl NSScrubber {
     extern_methods!(
         #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataSource(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn NSScrubberDataSource>>>;
+        pub fn dataSource(&self) -> Option<Retained<ProtocolObject<dyn NSScrubberDataSource>>>;
 
         /// Setter for [`dataSource`][Self::dataSource].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDataSource(
-            &self,
-            data_source: Option<&ProtocolObject<dyn NSScrubberDataSource>>,
-        );
+        pub fn setDataSource(&self, data_source: Option<&ProtocolObject<dyn NSScrubberDataSource>>);
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSScrubberDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSScrubberDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSScrubberDelegate>>);
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSScrubberDelegate>>);
 
         #[cfg(feature = "NSScrubberLayout")]
         #[unsafe(method(scrubberLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrubberLayout(&self) -> Retained<NSScrubberLayout>;
+        pub fn scrubberLayout(&self) -> Retained<NSScrubberLayout>;
 
         #[cfg(feature = "NSScrubberLayout")]
         /// Setter for [`scrubberLayout`][Self::scrubberLayout].
         #[unsafe(method(setScrubberLayout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScrubberLayout(&self, scrubber_layout: &NSScrubberLayout);
+        pub fn setScrubberLayout(&self, scrubber_layout: &NSScrubberLayout);
 
         /// Returns the number of items represented by the scrubber control.
         #[unsafe(method(numberOfItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfItems(&self) -> NSInteger;
+        pub fn numberOfItems(&self) -> NSInteger;
 
         /// The index of the currently highlighted item within the control. If there is no highlighted item, the value of this property is (-1).
         #[unsafe(method(highlightedIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn highlightedIndex(&self) -> NSInteger;
+        pub fn highlightedIndex(&self) -> NSInteger;
 
         /// The index of the selected item within the control. If there is no selected item, the value of this property is (-1). Setting this property through the animator proxy will animate the selection change. Programmatic selection changes do not trigger delegate callbacks.
         #[unsafe(method(selectedIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedIndex(&self) -> NSInteger;
+        pub fn selectedIndex(&self) -> NSInteger;
 
         /// Setter for [`selectedIndex`][Self::selectedIndex].
         #[unsafe(method(setSelectedIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
+        pub fn setSelectedIndex(&self, selected_index: NSInteger);
 
         /// Describes the interaction mode for the scrubber control. See the
         /// `NSScrubberMode`enumeration for a list of possible values. The default value is
         /// `NSScrubberModeFixed.`
         #[unsafe(method(mode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mode(&self) -> NSScrubberMode;
+        pub fn mode(&self) -> NSScrubberMode;
 
         /// Setter for [`mode`][Self::mode].
         #[unsafe(method(setMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMode(&self, mode: NSScrubberMode);
+        pub fn setMode(&self, mode: NSScrubberMode);
 
         /// If the value of
         /// `itemAlignment`is not
@@ -346,12 +329,12 @@ impl NSScrubber {
         /// `NSScrubberAlignmentNone.`
         #[unsafe(method(itemAlignment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemAlignment(&self) -> NSScrubberAlignment;
+        pub fn itemAlignment(&self) -> NSScrubberAlignment;
 
         /// Setter for [`itemAlignment`][Self::itemAlignment].
         #[unsafe(method(setItemAlignment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setItemAlignment(&self, item_alignment: NSScrubberAlignment);
+        pub fn setItemAlignment(&self, item_alignment: NSScrubberAlignment);
 
         /// When
         /// `continuous`is
@@ -362,12 +345,12 @@ impl NSScrubber {
         /// `NO.`
         #[unsafe(method(isContinuous))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isContinuous(&self) -> bool;
+        pub fn isContinuous(&self) -> bool;
 
         /// Setter for [`isContinuous`][Self::isContinuous].
         #[unsafe(method(setContinuous:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContinuous(&self, continuous: bool);
+        pub fn setContinuous(&self, continuous: bool);
 
         /// When
         /// `floatsSelectionViews`is
@@ -377,24 +360,23 @@ impl NSScrubber {
         /// `NO.`
         #[unsafe(method(floatsSelectionViews))]
         #[unsafe(method_family = none)]
-        pub unsafe fn floatsSelectionViews(&self) -> bool;
+        pub fn floatsSelectionViews(&self) -> bool;
 
         /// Setter for [`floatsSelectionViews`][Self::floatsSelectionViews].
         #[unsafe(method(setFloatsSelectionViews:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFloatsSelectionViews(&self, floats_selection_views: bool);
+        pub fn setFloatsSelectionViews(&self, floats_selection_views: bool);
 
         /// Specifies a style of decoration to place behind items that are selected and/or highlighted. The default value is
         /// `nil,`indicating no built-in background decoration.
         #[unsafe(method(selectionBackgroundStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectionBackgroundStyle(&self)
-            -> Option<Retained<NSScrubberSelectionStyle>>;
+        pub fn selectionBackgroundStyle(&self) -> Option<Retained<NSScrubberSelectionStyle>>;
 
         /// Setter for [`selectionBackgroundStyle`][Self::selectionBackgroundStyle].
         #[unsafe(method(setSelectionBackgroundStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectionBackgroundStyle(
+        pub fn setSelectionBackgroundStyle(
             &self,
             selection_background_style: Option<&NSScrubberSelectionStyle>,
         );
@@ -403,12 +385,12 @@ impl NSScrubber {
         /// `nil,`indicating no built-in overlay decoration.
         #[unsafe(method(selectionOverlayStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectionOverlayStyle(&self) -> Option<Retained<NSScrubberSelectionStyle>>;
+        pub fn selectionOverlayStyle(&self) -> Option<Retained<NSScrubberSelectionStyle>>;
 
         /// Setter for [`selectionOverlayStyle`][Self::selectionOverlayStyle].
         #[unsafe(method(setSelectionOverlayStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectionOverlayStyle(
+        pub fn setSelectionOverlayStyle(
             &self,
             selection_overlay_style: Option<&NSScrubberSelectionStyle>,
         );
@@ -419,12 +401,12 @@ impl NSScrubber {
         /// `NO.`
         #[unsafe(method(showsArrowButtons))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsArrowButtons(&self) -> bool;
+        pub fn showsArrowButtons(&self) -> bool;
 
         /// Setter for [`showsArrowButtons`][Self::showsArrowButtons].
         #[unsafe(method(setShowsArrowButtons:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsArrowButtons(&self, shows_arrow_buttons: bool);
+        pub fn setShowsArrowButtons(&self, shows_arrow_buttons: bool);
 
         /// If
         /// `showsAdditionalContentIndicators`is
@@ -432,12 +414,12 @@ impl NSScrubber {
         /// `NO.`
         #[unsafe(method(showsAdditionalContentIndicators))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsAdditionalContentIndicators(&self) -> bool;
+        pub fn showsAdditionalContentIndicators(&self) -> bool;
 
         /// Setter for [`showsAdditionalContentIndicators`][Self::showsAdditionalContentIndicators].
         #[unsafe(method(setShowsAdditionalContentIndicators:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsAdditionalContentIndicators(
+        pub fn setShowsAdditionalContentIndicators(
             &self,
             shows_additional_content_indicators: bool,
         );
@@ -449,7 +431,7 @@ impl NSScrubber {
         /// `nil.`
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
+        pub fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
@@ -457,7 +439,7 @@ impl NSScrubber {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
+        pub fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         /// If non-nil, the
         /// `backgroundView`is displayed below the scrubber content. The view's layout is managed by
@@ -466,16 +448,16 @@ impl NSScrubber {
         /// `nil.`
         #[unsafe(method(backgroundView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundView(&self) -> Option<Retained<NSView>>;
+        pub fn backgroundView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`backgroundView`][Self::backgroundView].
         #[unsafe(method(setBackgroundView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundView(&self, background_view: Option<&NSView>);
+        pub fn setBackgroundView(&self, background_view: Option<&NSView>);
 
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -487,7 +469,7 @@ impl NSScrubber {
         /// Invalidate all data within the scrubber control, triggering a reload of all content, and clearing the current selection.
         #[unsafe(method(reloadData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reloadData(&self);
+        pub fn reloadData(&self);
 
         #[cfg(feature = "block2")]
         /// Updates inside the
@@ -497,41 +479,38 @@ impl NSScrubber {
         /// `updateBlock`finishes executing.
         #[unsafe(method(performSequentialBatchUpdates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performSequentialBatchUpdates(
-            &self,
-            update_block: &block2::DynBlock<dyn Fn() + '_>,
-        );
+        pub fn performSequentialBatchUpdates(&self, update_block: &block2::DynBlock<dyn Fn() + '_>);
 
         /// Inserts new items at the specified indexes. NSScrubber will request views for each new index from the
         /// `dataSource.`This method uses the same semantics as
         /// `NSMutableArray;`each index in the set specifies the destination index after all previous insertions have occurred. Therefore, an NSIndexSet of [1,2,3] will result in three new contiguous items.
         #[unsafe(method(insertItemsAtIndexes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertItemsAtIndexes(&self, indexes: &NSIndexSet);
+        pub fn insertItemsAtIndexes(&self, indexes: &NSIndexSet);
 
         /// Removes the items at the specified indexes. This method uses the same semantics as
         /// `NSMutableArray.`
         #[unsafe(method(removeItemsAtIndexes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeItemsAtIndexes(&self, indexes: &NSIndexSet);
+        pub fn removeItemsAtIndexes(&self, indexes: &NSIndexSet);
 
         /// Reloads the items at the specified indexes. NSScrubber will request new views for each item and smoothly crossfade between them before discarding the original views.
         #[unsafe(method(reloadItemsAtIndexes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reloadItemsAtIndexes(&self, indexes: &NSIndexSet);
+        pub fn reloadItemsAtIndexes(&self, indexes: &NSIndexSet);
 
         /// Moves an item from one index to another.
         /// `oldIndex`refers to the item's index prior to the movement, whereas
         /// `newIndex`refers to the item's final location.
         #[unsafe(method(moveItemAtIndex:toIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn moveItemAtIndex_toIndex(&self, old_index: NSInteger, new_index: NSInteger);
+        pub fn moveItemAtIndex_toIndex(&self, old_index: NSInteger, new_index: NSInteger);
 
         /// Scrolls an item to a given alignment within the control. If
         /// `NSScrubberAlignmentNone`is provided, then the control scrolls the minimum amount necessary to make the item visible. Scrolling is animated if called on the animator proxy.
         #[unsafe(method(scrollItemAtIndex:toAlignment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollItemAtIndex_toAlignment(
+        pub fn scrollItemAtIndex_toAlignment(
             &self,
             index: NSInteger,
             alignment: NSScrubberAlignment,
@@ -543,7 +522,7 @@ impl NSScrubber {
         /// `nil`otherwise.
         #[unsafe(method(itemViewForItemAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemViewForItemAtIndex(
+        pub fn itemViewForItemAtIndex(
             &self,
             index: NSInteger,
         ) -> Option<Retained<NSScrubberItemView>>;
@@ -577,7 +556,7 @@ impl NSScrubber {
         /// `nib`removes a previous registration.
         #[unsafe(method(registerNib:forItemIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerNib_forItemIdentifier(
+        pub fn registerNib_forItemIdentifier(
             &self,
             nib: Option<&NSNib>,
             item_identifier: &NSUserInterfaceItemIdentifier,
@@ -612,7 +591,7 @@ impl NSScrubber {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -622,6 +601,6 @@ impl NSScrubber {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

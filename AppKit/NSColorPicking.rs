@@ -18,7 +18,7 @@ extern_protocol!(
         ))]
         #[unsafe(method(initWithPickerMask:colorPanel:))]
         #[unsafe(method_family = init)]
-        unsafe fn initWithPickerMask_colorPanel(
+        fn initWithPickerMask_colorPanel(
             this: Allocated<Self>,
             mask: NSUInteger,
             owning_color_panel: &NSColorPanel,
@@ -27,7 +27,7 @@ extern_protocol!(
         #[cfg(feature = "NSImage")]
         #[unsafe(method(provideNewButtonImage))]
         #[unsafe(method_family = none)]
-        unsafe fn provideNewButtonImage(&self) -> Retained<NSImage>;
+        fn provideNewButtonImage(&self) -> Retained<NSImage>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -37,11 +37,7 @@ extern_protocol!(
         ))]
         #[unsafe(method(insertNewButtonImage:in:))]
         #[unsafe(method_family = none)]
-        unsafe fn insertNewButtonImage_in(
-            &self,
-            new_button_image: &NSImage,
-            button_cell: &NSButtonCell,
-        );
+        fn insertNewButtonImage_in(&self, new_button_image: &NSImage, button_cell: &NSButtonCell);
 
         /// # Safety
         ///
@@ -60,25 +56,25 @@ extern_protocol!(
         #[cfg(feature = "NSColorList")]
         #[unsafe(method(attachColorList:))]
         #[unsafe(method_family = none)]
-        unsafe fn attachColorList(&self, color_list: &NSColorList);
+        fn attachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "NSColorList")]
         #[unsafe(method(detachColorList:))]
         #[unsafe(method_family = none)]
-        unsafe fn detachColorList(&self, color_list: &NSColorList);
+        fn detachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "NSColorPanel")]
         #[unsafe(method(setMode:))]
         #[unsafe(method_family = none)]
-        unsafe fn setMode(&self, mode: NSColorPanelMode);
+        fn setMode(&self, mode: NSColorPanelMode);
 
         #[unsafe(method(buttonToolTip))]
         #[unsafe(method_family = none)]
-        unsafe fn buttonToolTip(&self) -> Retained<NSString>;
+        fn buttonToolTip(&self) -> Retained<NSString>;
 
         #[unsafe(method(minContentSize))]
         #[unsafe(method_family = none)]
-        unsafe fn minContentSize(&self) -> NSSize;
+        fn minContentSize(&self) -> NSSize;
     }
 );
 
@@ -88,21 +84,21 @@ extern_protocol!(
         #[cfg(feature = "NSColorPanel")]
         #[unsafe(method(supportsMode:))]
         #[unsafe(method_family = none)]
-        unsafe fn supportsMode(&self, mode: NSColorPanelMode) -> bool;
+        fn supportsMode(&self, mode: NSColorPanelMode) -> bool;
 
         #[cfg(feature = "NSColorPanel")]
         #[unsafe(method(currentMode))]
         #[unsafe(method_family = none)]
-        unsafe fn currentMode(&self) -> NSColorPanelMode;
+        fn currentMode(&self) -> NSColorPanelMode;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(provideNewView:))]
         #[unsafe(method_family = none)]
-        unsafe fn provideNewView(&self, initial_request: bool) -> Retained<NSView>;
+        fn provideNewView(&self, initial_request: bool) -> Retained<NSView>;
 
         #[cfg(feature = "NSColor")]
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
-        unsafe fn setColor(&self, new_color: &NSColor);
+        fn setColor(&self, new_color: &NSColor);
     }
 );

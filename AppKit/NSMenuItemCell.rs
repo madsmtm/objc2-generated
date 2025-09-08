@@ -72,7 +72,7 @@ impl NSMenuItemCell {
     extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
+        pub fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -84,109 +84,97 @@ impl NSMenuItemCell {
         #[cfg(feature = "NSMenuItem")]
         #[unsafe(method(menuItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn menuItem(&self) -> Option<Retained<NSMenuItem>>;
+        pub fn menuItem(&self) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
         /// Setter for [`menuItem`][Self::menuItem].
         #[unsafe(method(setMenuItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMenuItem(&self, menu_item: Option<&NSMenuItem>);
+        pub fn setMenuItem(&self, menu_item: Option<&NSMenuItem>);
 
         #[unsafe(method(needsSizing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn needsSizing(&self) -> bool;
+        pub fn needsSizing(&self) -> bool;
 
         /// Setter for [`needsSizing`][Self::needsSizing].
         #[unsafe(method(setNeedsSizing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsSizing(&self, needs_sizing: bool);
+        pub fn setNeedsSizing(&self, needs_sizing: bool);
 
         #[unsafe(method(calcSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn calcSize(&self);
+        pub fn calcSize(&self);
 
         #[unsafe(method(needsDisplay))]
         #[unsafe(method_family = none)]
-        pub unsafe fn needsDisplay(&self) -> bool;
+        pub fn needsDisplay(&self) -> bool;
 
         /// Setter for [`needsDisplay`][Self::needsDisplay].
         #[unsafe(method(setNeedsDisplay:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsDisplay(&self, needs_display: bool);
+        pub fn setNeedsDisplay(&self, needs_display: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(stateImageWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stateImageWidth(&self) -> CGFloat;
+        pub fn stateImageWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(imageWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageWidth(&self) -> CGFloat;
+        pub fn imageWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(titleWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn titleWidth(&self) -> CGFloat;
+        pub fn titleWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(keyEquivalentWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyEquivalentWidth(&self) -> CGFloat;
+        pub fn keyEquivalentWidth(&self) -> CGFloat;
 
         #[unsafe(method(stateImageRectForBounds:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stateImageRectForBounds(&self, cell_frame: NSRect) -> NSRect;
+        pub fn stateImageRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
         #[unsafe(method(titleRectForBounds:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn titleRectForBounds(&self, cell_frame: NSRect) -> NSRect;
+        pub fn titleRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
         #[unsafe(method(keyEquivalentRectForBounds:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyEquivalentRectForBounds(&self, cell_frame: NSRect) -> NSRect;
+        pub fn keyEquivalentRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(drawSeparatorItemWithFrame:inView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawSeparatorItemWithFrame_inView(
-            &self,
-            cell_frame: NSRect,
-            control_view: &NSView,
-        );
+        pub fn drawSeparatorItemWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(drawStateImageWithFrame:inView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawStateImageWithFrame_inView(
-            &self,
-            cell_frame: NSRect,
-            control_view: &NSView,
-        );
+        pub fn drawStateImageWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(drawImageWithFrame:inView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawImageWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
+        pub fn drawImageWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(drawTitleWithFrame:inView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawTitleWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
+        pub fn drawTitleWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(drawKeyEquivalentWithFrame:inView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawKeyEquivalentWithFrame_inView(
-            &self,
-            cell_frame: NSRect,
-            control_view: &NSView,
-        );
+        pub fn drawKeyEquivalentWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(drawBorderAndBackgroundWithFrame:inView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawBorderAndBackgroundWithFrame_inView(
+        pub fn drawBorderAndBackgroundWithFrame_inView(
             &self,
             cell_frame: NSRect,
             control_view: &NSView,
@@ -194,12 +182,12 @@ impl NSMenuItemCell {
 
         #[unsafe(method(tag))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tag(&self) -> NSInteger;
+        pub fn tag(&self) -> NSInteger;
 
         /// Setter for [`tag`][Self::tag].
         #[unsafe(method(setTag:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTag(&self, tag: NSInteger);
+        pub fn setTag(&self, tag: NSInteger);
     );
 }
 
@@ -210,10 +198,7 @@ impl NSMenuItemCell {
         #[cfg(feature = "NSImage")]
         #[unsafe(method(initImageCell:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initImageCell(
-            this: Allocated<Self>,
-            image: Option<&NSImage>,
-        ) -> Retained<Self>;
+        pub fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Retained<Self>;
     );
 }
 
@@ -223,7 +208,7 @@ impl NSMenuItemCell {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -233,6 +218,6 @@ impl NSMenuItemCell {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

@@ -145,66 +145,66 @@ impl NSImageView {
         /// Returns: An initialized image view.
         #[unsafe(method(imageViewWithImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageViewWithImage(image: &NSImage, mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn imageViewWithImage(image: &NSImage, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
-        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
+        pub fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`image`][Self::image].
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImage(&self, image: Option<&NSImage>);
+        pub fn setImage(&self, image: Option<&NSImage>);
 
         #[unsafe(method(isEditable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEditable(&self) -> bool;
+        pub fn isEditable(&self) -> bool;
 
         /// Setter for [`isEditable`][Self::isEditable].
         #[unsafe(method(setEditable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEditable(&self, editable: bool);
+        pub fn setEditable(&self, editable: bool);
 
         #[cfg(feature = "NSImageCell")]
         #[unsafe(method(imageAlignment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
+        pub fn imageAlignment(&self) -> NSImageAlignment;
 
         #[cfg(feature = "NSImageCell")]
         /// Setter for [`imageAlignment`][Self::imageAlignment].
         #[unsafe(method(setImageAlignment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
+        pub fn setImageAlignment(&self, image_alignment: NSImageAlignment);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(imageScaling))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageScaling(&self) -> NSImageScaling;
+        pub fn imageScaling(&self) -> NSImageScaling;
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`imageScaling`][Self::imageScaling].
         #[unsafe(method(setImageScaling:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
+        pub fn setImageScaling(&self, image_scaling: NSImageScaling);
 
         #[cfg(feature = "NSImageCell")]
         #[unsafe(method(imageFrameStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
+        pub fn imageFrameStyle(&self) -> NSImageFrameStyle;
 
         #[cfg(feature = "NSImageCell")]
         /// Setter for [`imageFrameStyle`][Self::imageFrameStyle].
         #[unsafe(method(setImageFrameStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
+        pub fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
 
         #[cfg(feature = "NSImage")]
         /// Specifies a combination of point size, weight, and scale to use when sizing and displaying symbol images. If a symbol configuration isn't provided, the image view uses a default size, weight, and scale provided by the system. The default value is `nil`.
         #[unsafe(method(symbolConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn symbolConfiguration(&self) -> Option<Retained<NSImageSymbolConfiguration>>;
+        pub fn symbolConfiguration(&self) -> Option<Retained<NSImageSymbolConfiguration>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`symbolConfiguration`][Self::symbolConfiguration].
@@ -212,7 +212,7 @@ impl NSImageView {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSymbolConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSymbolConfiguration(
+        pub fn setSymbolConfiguration(
             &self,
             symbol_configuration: Option<&NSImageSymbolConfiguration>,
         );
@@ -221,7 +221,7 @@ impl NSImageView {
         /// A tint color to be used when rendering template image content. This color may be combined with other effects to produce a theme-appropriate rendition of the template image. A nil value indicates the standard set of effects without color modification. The default value is nil.
         #[unsafe(method(contentTintColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentTintColor(&self) -> Option<Retained<NSColor>>;
+        pub fn contentTintColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`contentTintColor`][Self::contentTintColor].
@@ -229,37 +229,35 @@ impl NSImageView {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentTintColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
+        pub fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
 
         #[unsafe(method(animates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animates(&self) -> bool;
+        pub fn animates(&self) -> bool;
 
         /// Setter for [`animates`][Self::animates].
         #[unsafe(method(setAnimates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimates(&self, animates: bool);
+        pub fn setAnimates(&self, animates: bool);
 
         #[unsafe(method(allowsCutCopyPaste))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsCutCopyPaste(&self) -> bool;
+        pub fn allowsCutCopyPaste(&self) -> bool;
 
         /// Setter for [`allowsCutCopyPaste`][Self::allowsCutCopyPaste].
         #[unsafe(method(setAllowsCutCopyPaste:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsCutCopyPaste(&self, allows_cut_copy_paste: bool);
+        pub fn setAllowsCutCopyPaste(&self, allows_cut_copy_paste: bool);
 
         /// Default preferred image dynamic range. Defaults to `NSImageDynamicRangeConstrainedHigh` on macOS 14 and higher, `NSImageDynamicRangeStandard` otherwise. Set to another value to change the default for all subsequently created `NSImageView`s in your app.
         #[unsafe(method(defaultPreferredImageDynamicRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultPreferredImageDynamicRange(
-            mtm: MainThreadMarker,
-        ) -> NSImageDynamicRange;
+        pub fn defaultPreferredImageDynamicRange(mtm: MainThreadMarker) -> NSImageDynamicRange;
 
         /// Setter for [`defaultPreferredImageDynamicRange`][Self::defaultPreferredImageDynamicRange].
         #[unsafe(method(setDefaultPreferredImageDynamicRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultPreferredImageDynamicRange(
+        pub fn setDefaultPreferredImageDynamicRange(
             default_preferred_image_dynamic_range: NSImageDynamicRange,
             mtm: MainThreadMarker,
         );
@@ -267,12 +265,12 @@ impl NSImageView {
         /// Preferred dynamic range when displaying an image in the receiving image view.
         #[unsafe(method(preferredImageDynamicRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredImageDynamicRange(&self) -> NSImageDynamicRange;
+        pub fn preferredImageDynamicRange(&self) -> NSImageDynamicRange;
 
         /// Setter for [`preferredImageDynamicRange`][Self::preferredImageDynamicRange].
         #[unsafe(method(setPreferredImageDynamicRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredImageDynamicRange(
+        pub fn setPreferredImageDynamicRange(
             &self,
             preferred_image_dynamic_range: NSImageDynamicRange,
         );
@@ -280,7 +278,7 @@ impl NSImageView {
         /// Resolved dynamic range based on fully resolved image content. Note: this will return `NSImageDynamicRangeUnspecified` if the image view has not or can not resolve the content (either because it has no resolvable image content or has not resolved because the image view hasn't displayed.)
         #[unsafe(method(imageDynamicRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageDynamicRange(&self) -> NSImageDynamicRange;
+        pub fn imageDynamicRange(&self) -> NSImageDynamicRange;
     );
 }
 
@@ -290,7 +288,7 @@ impl NSImageView {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -310,7 +308,7 @@ impl NSImageView {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -320,6 +318,6 @@ impl NSImageView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

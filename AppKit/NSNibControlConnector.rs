@@ -30,7 +30,7 @@ impl NSNibControlConnector {
     extern_methods!(
         #[unsafe(method(establishConnection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn establishConnection(&self);
+        pub fn establishConnection(&self);
     );
 }
 
@@ -40,10 +40,18 @@ impl NSNibControlConnector {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSNibConnector")]
+impl DefaultRetained for NSNibControlConnector {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

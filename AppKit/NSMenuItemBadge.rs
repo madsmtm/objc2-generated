@@ -66,24 +66,24 @@ impl NSMenuItemBadge {
         /// the number of available updates.
         #[unsafe(method(updatesWithCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updatesWithCount(item_count: NSInteger) -> Retained<Self>;
+        pub fn updatesWithCount(item_count: NSInteger) -> Retained<Self>;
 
         /// Creates a badge with an integer count and a label representing
         /// the number of new items.
         #[unsafe(method(newItemsWithCount:))]
         #[unsafe(method_family = new)]
-        pub unsafe fn newItemsWithCount(item_count: NSInteger) -> Retained<Self>;
+        pub fn newItemsWithCount(item_count: NSInteger) -> Retained<Self>;
 
         /// Creates a badge with an integer count and a label representing
         /// the number of alerts.
         #[unsafe(method(alertsWithCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alertsWithCount(item_count: NSInteger) -> Retained<Self>;
+        pub fn alertsWithCount(item_count: NSInteger) -> Retained<Self>;
 
         /// Initializes the badge with a count and a pre-defined badge type.
         #[unsafe(method(initWithCount:type:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCount_type(
+        pub fn initWithCount_type(
             this: Allocated<Self>,
             item_count: NSInteger,
             r#type: NSMenuItemBadgeType,
@@ -92,13 +92,12 @@ impl NSMenuItemBadge {
         /// Initializes the badge with an integer count and an empty string.
         #[unsafe(method(initWithCount:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCount(this: Allocated<Self>, item_count: NSInteger)
-            -> Retained<Self>;
+        pub fn initWithCount(this: Allocated<Self>, item_count: NSInteger) -> Retained<Self>;
 
         /// Initializes the badge with the provided custom string.
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
+        pub fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -108,20 +107,20 @@ impl NSMenuItemBadge {
         /// to create a badge, the value is 0.
         #[unsafe(method(itemCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemCount(&self) -> NSInteger;
+        pub fn itemCount(&self) -> NSInteger;
 
         /// The type of items the badge displays. If a custom string was used
         /// to create a badge, this value is
         /// `NSMenuItemBadgeTypeNone.`
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> NSMenuItemBadgeType;
+        pub fn r#type(&self) -> NSMenuItemBadgeType;
 
         /// The string representation of the badge as it would appear when the
         /// badge is displayed.
         #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
+        pub fn stringValue(&self) -> Option<Retained<NSString>>;
     );
 }
 

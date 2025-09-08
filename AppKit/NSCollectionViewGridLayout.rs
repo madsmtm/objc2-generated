@@ -32,75 +32,75 @@ impl NSCollectionViewGridLayout {
     extern_methods!(
         #[unsafe(method(margins))]
         #[unsafe(method_family = none)]
-        pub unsafe fn margins(&self) -> NSEdgeInsets;
+        pub fn margins(&self) -> NSEdgeInsets;
 
         /// Setter for [`margins`][Self::margins].
         #[unsafe(method(setMargins:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMargins(&self, margins: NSEdgeInsets);
+        pub fn setMargins(&self, margins: NSEdgeInsets);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(minimumInteritemSpacing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
+        pub fn minimumInteritemSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumInteritemSpacing`][Self::minimumInteritemSpacing].
         #[unsafe(method(setMinimumInteritemSpacing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
+        pub fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(minimumLineSpacing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
+        pub fn minimumLineSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumLineSpacing`][Self::minimumLineSpacing].
         #[unsafe(method(setMinimumLineSpacing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
+        pub fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
         #[unsafe(method(maximumNumberOfRows))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumNumberOfRows(&self) -> NSUInteger;
+        pub fn maximumNumberOfRows(&self) -> NSUInteger;
 
         /// Setter for [`maximumNumberOfRows`][Self::maximumNumberOfRows].
         #[unsafe(method(setMaximumNumberOfRows:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumNumberOfRows(&self, maximum_number_of_rows: NSUInteger);
+        pub fn setMaximumNumberOfRows(&self, maximum_number_of_rows: NSUInteger);
 
         #[unsafe(method(maximumNumberOfColumns))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumNumberOfColumns(&self) -> NSUInteger;
+        pub fn maximumNumberOfColumns(&self) -> NSUInteger;
 
         /// Setter for [`maximumNumberOfColumns`][Self::maximumNumberOfColumns].
         #[unsafe(method(setMaximumNumberOfColumns:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumNumberOfColumns(&self, maximum_number_of_columns: NSUInteger);
+        pub fn setMaximumNumberOfColumns(&self, maximum_number_of_columns: NSUInteger);
 
         #[unsafe(method(minimumItemSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumItemSize(&self) -> NSSize;
+        pub fn minimumItemSize(&self) -> NSSize;
 
         /// Setter for [`minimumItemSize`][Self::minimumItemSize].
         #[unsafe(method(setMinimumItemSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumItemSize(&self, minimum_item_size: NSSize);
+        pub fn setMinimumItemSize(&self, minimum_item_size: NSSize);
 
         #[unsafe(method(maximumItemSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumItemSize(&self) -> NSSize;
+        pub fn maximumItemSize(&self) -> NSSize;
 
         /// Setter for [`maximumItemSize`][Self::maximumItemSize].
         #[unsafe(method(setMaximumItemSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumItemSize(&self, maximum_item_size: NSSize);
+        pub fn setMaximumItemSize(&self, maximum_item_size: NSSize);
 
         #[cfg(feature = "NSColor")]
         #[unsafe(method(backgroundColors))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundColors(&self) -> Retained<NSArray<NSColor>>;
+        pub fn backgroundColors(&self) -> Retained<NSArray<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColors`][Self::backgroundColors].
@@ -108,7 +108,7 @@ impl NSCollectionViewGridLayout {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColors:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundColors(&self, background_colors: Option<&NSArray<NSColor>>);
+        pub fn setBackgroundColors(&self, background_colors: Option<&NSArray<NSColor>>);
     );
 }
 
@@ -118,10 +118,10 @@ impl NSCollectionViewGridLayout {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

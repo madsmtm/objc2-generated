@@ -92,7 +92,7 @@ impl NSPopover {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -106,14 +106,14 @@ impl NSPopover {
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSPopoverDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSPopoverDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPopoverDelegate>>);
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPopoverDelegate>>);
 
         #[cfg(feature = "NSAppearance")]
         /// The appearance of the popover. The popover's contentView will inherit this appearance. The default effective appearance is the NSAppearanceNameVibrantLight appearance.
@@ -121,63 +121,60 @@ impl NSPopover {
         /// To prevent conflicts with the previous appearance property, this is only available for apps that target 10.10 and higher.
         #[unsafe(method(appearance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
+        pub fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
         #[cfg(feature = "NSAppearance")]
         /// Setter for [`appearance`][Self::appearance].
         #[unsafe(method(setAppearance:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
+        pub fn setAppearance(&self, appearance: Option<&NSAppearance>);
 
         #[cfg(feature = "NSAppearance")]
         #[unsafe(method(effectiveAppearance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effectiveAppearance(&self) -> Retained<NSAppearance>;
+        pub fn effectiveAppearance(&self) -> Retained<NSAppearance>;
 
         #[unsafe(method(behavior))]
         #[unsafe(method_family = none)]
-        pub unsafe fn behavior(&self) -> NSPopoverBehavior;
+        pub fn behavior(&self) -> NSPopoverBehavior;
 
         /// Setter for [`behavior`][Self::behavior].
         #[unsafe(method(setBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBehavior(&self, behavior: NSPopoverBehavior);
+        pub fn setBehavior(&self, behavior: NSPopoverBehavior);
 
         #[unsafe(method(animates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animates(&self) -> bool;
+        pub fn animates(&self) -> bool;
 
         /// Setter for [`animates`][Self::animates].
         #[unsafe(method(setAnimates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimates(&self, animates: bool);
+        pub fn setAnimates(&self, animates: bool);
 
         #[cfg(feature = "NSViewController")]
         #[unsafe(method(contentViewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentViewController(&self) -> Option<Retained<NSViewController>>;
+        pub fn contentViewController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(feature = "NSViewController")]
         /// Setter for [`contentViewController`][Self::contentViewController].
         #[unsafe(method(setContentViewController:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentViewController(
-            &self,
-            content_view_controller: Option<&NSViewController>,
-        );
+        pub fn setContentViewController(&self, content_view_controller: Option<&NSViewController>);
 
         #[unsafe(method(contentSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentSize(&self) -> NSSize;
+        pub fn contentSize(&self) -> NSSize;
 
         /// Setter for [`contentSize`][Self::contentSize].
         #[unsafe(method(setContentSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentSize(&self, content_size: NSSize);
+        pub fn setContentSize(&self, content_size: NSSize);
 
         #[unsafe(method(isShown))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isShown(&self) -> bool;
+        pub fn isShown(&self) -> bool;
 
         /// Returns
         /// `YES`if the window is detached to an implicitly created detached window,
@@ -185,25 +182,25 @@ impl NSPopover {
         /// `-detachableWindowForPopover:.`
         #[unsafe(method(isDetached))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDetached(&self) -> bool;
+        pub fn isDetached(&self) -> bool;
 
         #[unsafe(method(positioningRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn positioningRect(&self) -> NSRect;
+        pub fn positioningRect(&self) -> NSRect;
 
         /// Setter for [`positioningRect`][Self::positioningRect].
         #[unsafe(method(setPositioningRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPositioningRect(&self, positioning_rect: NSRect);
+        pub fn setPositioningRect(&self, positioning_rect: NSRect);
 
         #[unsafe(method(hasFullSizeContent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasFullSizeContent(&self) -> bool;
+        pub fn hasFullSizeContent(&self) -> bool;
 
         /// Setter for [`hasFullSizeContent`][Self::hasFullSizeContent].
         #[unsafe(method(setHasFullSizeContent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHasFullSizeContent(&self, has_full_size_content: bool);
+        pub fn setHasFullSizeContent(&self, has_full_size_content: bool);
 
         #[cfg(feature = "NSView")]
         /// Shows the popover anchored to the specified view.
@@ -220,7 +217,7 @@ impl NSPopover {
         /// - Note: If the positioning view isn’t visible (its window isn’t visible, or the positioning rect is outside of its visible rect), this method does nothing.
         #[unsafe(method(showRelativeToRect:ofView:preferredEdge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showRelativeToRect_ofView_preferredEdge(
+        pub fn showRelativeToRect_ofView_preferredEdge(
             &self,
             positioning_rect: NSRect,
             positioning_view: &NSView,
@@ -236,7 +233,7 @@ impl NSPopover {
         /// `NSInvalidArgumentException`if it cannot locate the toolbar item. This could happen because the item is not in a toolbar, or because the toolbar is not in a window.
         #[unsafe(method(showRelativeToToolbarItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showRelativeToToolbarItem(&self, toolbar_item: &NSToolbarItem);
+        pub fn showRelativeToToolbarItem(&self, toolbar_item: &NSToolbarItem);
 
         /// # Safety
         ///
@@ -247,7 +244,7 @@ impl NSPopover {
 
         #[unsafe(method(close))]
         #[unsafe(method_family = none)]
-        pub unsafe fn close(&self);
+        pub fn close(&self);
     );
 }
 
@@ -257,7 +254,7 @@ impl NSPopover {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -312,7 +309,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(popoverShouldClose:))]
         #[unsafe(method_family = none)]
-        unsafe fn popoverShouldClose(&self, popover: &NSPopover) -> bool;
+        fn popoverShouldClose(&self, popover: &NSPopover) -> bool;
 
         #[cfg(feature = "NSResponder")]
         /// Return
@@ -330,7 +327,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(popoverShouldDetach:))]
         #[unsafe(method_family = none)]
-        unsafe fn popoverShouldDetach(&self, popover: &NSPopover) -> bool;
+        fn popoverShouldDetach(&self, popover: &NSPopover) -> bool;
 
         #[cfg(feature = "NSResponder")]
         /// This is called when the popover has been released in an implicitly detached state, i.e. not when detached to a custom window returned from
@@ -339,7 +336,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(popoverDidDetach:))]
         #[unsafe(method_family = none)]
-        unsafe fn popoverDidDetach(&self, popover: &NSPopover);
+        fn popoverDidDetach(&self, popover: &NSPopover);
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         /// Return a custom window to which the popover should be detached. This should be used when the content of the detached window is wanted to be different from the content of the popover. If the same content should be used in the detached window, only
@@ -356,33 +353,30 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(detachableWindowForPopover:))]
         #[unsafe(method_family = none)]
-        unsafe fn detachableWindowForPopover(
-            &self,
-            popover: &NSPopover,
-        ) -> Option<Retained<NSWindow>>;
+        fn detachableWindowForPopover(&self, popover: &NSPopover) -> Option<Retained<NSWindow>>;
 
         /// Invoked on the delegate when the NSPopoverWillShowNotification notification is sent.  This method will also be invoked on the popover.
         #[optional]
         #[unsafe(method(popoverWillShow:))]
         #[unsafe(method_family = none)]
-        unsafe fn popoverWillShow(&self, notification: &NSNotification);
+        fn popoverWillShow(&self, notification: &NSNotification);
 
         /// Invoked on the delegate when the NSPopoverDidShowNotification notification is sent.  This method will also be invoked on the popover.
         #[optional]
         #[unsafe(method(popoverDidShow:))]
         #[unsafe(method_family = none)]
-        unsafe fn popoverDidShow(&self, notification: &NSNotification);
+        fn popoverDidShow(&self, notification: &NSNotification);
 
         /// Invoked on the delegate when the NSPopoverWillCloseNotification notification is sent.  This method will also be invoked on the popover.
         #[optional]
         #[unsafe(method(popoverWillClose:))]
         #[unsafe(method_family = none)]
-        unsafe fn popoverWillClose(&self, notification: &NSNotification);
+        fn popoverWillClose(&self, notification: &NSNotification);
 
         /// Invoked on the delegate when the NSPopoverDidCloseNotification notification is sent.  This method will also be invoked on the popover.
         #[optional]
         #[unsafe(method(popoverDidClose:))]
         #[unsafe(method_family = none)]
-        unsafe fn popoverDidClose(&self, notification: &NSNotification);
+        fn popoverDidClose(&self, notification: &NSNotification);
     }
 );

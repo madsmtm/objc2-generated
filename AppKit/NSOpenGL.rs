@@ -41,11 +41,15 @@ unsafe impl RefEncode for NSOpenGLGlobalOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-open-gl")]
-    #[cfg(target_vendor = "apple")]
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-    pub fn NSOpenGLSetOption(pname: NSOpenGLGlobalOption, param: GLint);
+#[cfg(feature = "objc2-open-gl")]
+#[cfg(target_vendor = "apple")]
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+#[inline]
+pub extern "C-unwind" fn NSOpenGLSetOption(pname: NSOpenGLGlobalOption, param: GLint) {
+    extern "C-unwind" {
+        fn NSOpenGLSetOption(pname: NSOpenGLGlobalOption, param: GLint);
+    }
+    unsafe { NSOpenGLSetOption(pname, param) }
 }
 
 extern "C-unwind" {
@@ -255,7 +259,7 @@ impl NSOpenGLPixelFormat {
         #[deprecated]
         #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributes(&self) -> Option<Retained<NSData>>;
+        pub fn attributes(&self) -> Option<Retained<NSData>>;
 
         /// # Safety
         ///
@@ -283,13 +287,13 @@ impl NSOpenGLPixelFormat {
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(numberOfVirtualScreens))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfVirtualScreens(&self) -> GLint;
+        pub fn numberOfVirtualScreens(&self) -> GLint;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(CGLPixelFormatObj))]
         #[unsafe(method_family = none)]
-        pub unsafe fn CGLPixelFormatObj(&self) -> CGLPixelFormatObj;
+        pub fn CGLPixelFormatObj(&self) -> CGLPixelFormatObj;
     );
 }
 
@@ -298,12 +302,19 @@ impl NSOpenGLPixelFormat {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSOpenGLPixelFormat {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -329,7 +340,7 @@ impl NSOpenGLPixelBuffer {
         #[deprecated]
         #[unsafe(method(initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTextureTarget_textureInternalFormat_textureMaxMipMapLevel_pixelsWide_pixelsHigh(
+        pub fn initWithTextureTarget_textureInternalFormat_textureMaxMipMapLevel_pixelsWide_pixelsHigh(
             this: Allocated<Self>,
             target: GLenum,
             format: GLenum,
@@ -355,42 +366,42 @@ impl NSOpenGLPixelBuffer {
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(CGLPBufferObj))]
         #[unsafe(method_family = none)]
-        pub unsafe fn CGLPBufferObj(&self) -> CGLPBufferObj;
+        pub fn CGLPBufferObj(&self) -> CGLPBufferObj;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
         #[deprecated]
         #[unsafe(method(pixelsWide))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pixelsWide(&self) -> GLsizei;
+        pub fn pixelsWide(&self) -> GLsizei;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
         #[deprecated]
         #[unsafe(method(pixelsHigh))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pixelsHigh(&self) -> GLsizei;
+        pub fn pixelsHigh(&self) -> GLsizei;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
         #[deprecated]
         #[unsafe(method(textureTarget))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textureTarget(&self) -> GLenum;
+        pub fn textureTarget(&self) -> GLenum;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
         #[deprecated]
         #[unsafe(method(textureInternalFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textureInternalFormat(&self) -> GLenum;
+        pub fn textureInternalFormat(&self) -> GLenum;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
         #[deprecated]
         #[unsafe(method(textureMaxMipMapLevel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textureMaxMipMapLevel(&self) -> GLint;
+        pub fn textureMaxMipMapLevel(&self) -> GLint;
     );
 }
 
@@ -399,12 +410,19 @@ impl NSOpenGLPixelBuffer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSOpenGLPixelBuffer {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// ***************
@@ -493,7 +511,7 @@ impl NSOpenGLContext {
     extern_methods!(
         #[unsafe(method(initWithFormat:shareContext:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFormat_shareContext(
+        pub fn initWithFormat_shareContext(
             this: Allocated<Self>,
             format: &NSOpenGLPixelFormat,
             share: Option<&NSOpenGLContext>,
@@ -513,13 +531,13 @@ impl NSOpenGLContext {
 
         #[unsafe(method(pixelFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pixelFormat(&self) -> Retained<NSOpenGLPixelFormat>;
+        pub fn pixelFormat(&self) -> Retained<NSOpenGLPixelFormat>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
+        pub fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`view`][Self::view].
@@ -528,12 +546,12 @@ impl NSOpenGLContext {
         #[deprecated]
         #[unsafe(method(setView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setView(&self, view: Option<&NSView>, mtm: MainThreadMarker);
+        pub fn setView(&self, view: Option<&NSView>, mtm: MainThreadMarker);
 
         #[deprecated = "Use a fullscreen NSOpenGLView instead"]
         #[unsafe(method(setFullScreen))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFullScreen(&self);
+        pub fn setFullScreen(&self);
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
@@ -553,34 +571,34 @@ impl NSOpenGLContext {
 
         #[unsafe(method(clearDrawable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clearDrawable(&self);
+        pub fn clearDrawable(&self);
 
         #[unsafe(method(update))]
         #[unsafe(method_family = none)]
-        pub unsafe fn update(&self, mtm: MainThreadMarker);
+        pub fn update(&self, mtm: MainThreadMarker);
 
         #[unsafe(method(flushBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn flushBuffer(&self);
+        pub fn flushBuffer(&self);
 
         #[unsafe(method(makeCurrentContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn makeCurrentContext(&self);
+        pub fn makeCurrentContext(&self);
 
         #[unsafe(method(clearCurrentContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clearCurrentContext();
+        pub fn clearCurrentContext();
 
         #[unsafe(method(currentContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentContext() -> Option<Retained<NSOpenGLContext>>;
+        pub fn currentContext() -> Option<Retained<NSOpenGLContext>>;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
         #[deprecated]
         #[unsafe(method(copyAttributesFromContext:withMask:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn copyAttributesFromContext_withMask(
+        pub fn copyAttributesFromContext_withMask(
             &self,
             context: &NSOpenGLContext,
             mask: GLbitfield,
@@ -616,21 +634,21 @@ impl NSOpenGLContext {
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(currentVirtualScreen))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentVirtualScreen(&self) -> GLint;
+        pub fn currentVirtualScreen(&self) -> GLint;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`currentVirtualScreen`][Self::currentVirtualScreen].
         #[unsafe(method(setCurrentVirtualScreen:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCurrentVirtualScreen(&self, current_virtual_screen: GLint);
+        pub fn setCurrentVirtualScreen(&self, current_virtual_screen: GLint);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView", feature = "objc2-open-gl"))]
         #[cfg(target_vendor = "apple")]
         #[deprecated]
         #[unsafe(method(createTexture:fromView:internalFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn createTexture_fromView_internalFormat(
+        pub fn createTexture_fromView_internalFormat(
             &self,
             target: GLenum,
             view: &NSView,
@@ -641,7 +659,7 @@ impl NSOpenGLContext {
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(CGLContextObj))]
         #[unsafe(method_family = none)]
-        pub unsafe fn CGLContextObj(&self) -> CGLContextObj;
+        pub fn CGLContextObj(&self) -> CGLContextObj;
     );
 }
 
@@ -650,12 +668,19 @@ impl NSOpenGLContext {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSOpenGLContext {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSOpenGLPixelBuffer.
@@ -666,7 +691,7 @@ impl NSOpenGLContext {
         #[deprecated]
         #[unsafe(method(setPixelBuffer:cubeMapFace:mipMapLevel:currentVirtualScreen:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPixelBuffer_cubeMapFace_mipMapLevel_currentVirtualScreen(
+        pub fn setPixelBuffer_cubeMapFace_mipMapLevel_currentVirtualScreen(
             &self,
             pixel_buffer: &NSOpenGLPixelBuffer,
             face: GLenum,
@@ -677,28 +702,28 @@ impl NSOpenGLContext {
         #[deprecated]
         #[unsafe(method(pixelBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pixelBuffer(&self) -> Option<Retained<NSOpenGLPixelBuffer>>;
+        pub fn pixelBuffer(&self) -> Option<Retained<NSOpenGLPixelBuffer>>;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
         #[deprecated]
         #[unsafe(method(pixelBufferCubeMapFace))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pixelBufferCubeMapFace(&self) -> GLenum;
+        pub fn pixelBufferCubeMapFace(&self) -> GLenum;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
         #[deprecated]
         #[unsafe(method(pixelBufferMipMapLevel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pixelBufferMipMapLevel(&self) -> GLint;
+        pub fn pixelBufferMipMapLevel(&self) -> GLint;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
         #[deprecated]
         #[unsafe(method(setTextureImageToPixelBuffer:colorBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTextureImageToPixelBuffer_colorBuffer(
+        pub fn setTextureImageToPixelBuffer_colorBuffer(
             &self,
             pixel_buffer: &NSOpenGLPixelBuffer,
             source: GLenum,

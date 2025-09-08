@@ -36,22 +36,22 @@ impl NSMenuToolbarItem {
         #[cfg(feature = "NSMenu")]
         #[unsafe(method(menu))]
         #[unsafe(method_family = none)]
-        pub unsafe fn menu(&self) -> Retained<NSMenu>;
+        pub fn menu(&self) -> Retained<NSMenu>;
 
         #[cfg(feature = "NSMenu")]
         /// Setter for [`menu`][Self::menu].
         #[unsafe(method(setMenu:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMenu(&self, menu: &NSMenu);
+        pub fn setMenu(&self, menu: &NSMenu);
 
         #[unsafe(method(showsIndicator))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsIndicator(&self) -> bool;
+        pub fn showsIndicator(&self) -> bool;
 
         /// Setter for [`showsIndicator`][Self::showsIndicator].
         #[unsafe(method(setShowsIndicator:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsIndicator(&self, shows_indicator: bool);
+        pub fn setShowsIndicator(&self, shows_indicator: bool);
     );
 }
 
@@ -63,7 +63,7 @@ impl NSMenuToolbarItem {
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
         #[unsafe(method(initWithItemIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithItemIdentifier(
+        pub fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
         ) -> Retained<Self>;
@@ -76,10 +76,10 @@ impl NSMenuToolbarItem {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

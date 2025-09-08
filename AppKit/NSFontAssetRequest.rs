@@ -51,7 +51,7 @@ impl NSFontAssetRequest {
         #[cfg(feature = "NSFontDescriptor")]
         #[unsafe(method(initWithFontDescriptors:options:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFontDescriptors_options(
+        pub fn initWithFontDescriptors_options(
             this: Allocated<Self>,
             font_descriptors: &NSArray<NSFontDescriptor>,
             options: NSFontAssetRequestOptions,
@@ -60,16 +60,16 @@ impl NSFontAssetRequest {
         #[cfg(feature = "NSFontDescriptor")]
         #[unsafe(method(downloadedFontDescriptors))]
         #[unsafe(method_family = none)]
-        pub unsafe fn downloadedFontDescriptors(&self) -> Retained<NSArray<NSFontDescriptor>>;
+        pub fn downloadedFontDescriptors(&self) -> Retained<NSArray<NSFontDescriptor>>;
 
         #[unsafe(method(progress))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progress(&self) -> Retained<NSProgress>;
+        pub fn progress(&self) -> Retained<NSProgress>;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(downloadFontAssetsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn downloadFontAssetsWithCompletionHandler(
+        pub fn downloadFontAssetsWithCompletionHandler(
             &self,
             completion_handler: &block2::DynBlock<dyn Fn(*mut NSError) -> Bool>,
         );

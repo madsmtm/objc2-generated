@@ -129,12 +129,12 @@ impl NSMatrix {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(initWithFrame:mode:prototype:numberOfRows:numberOfColumns:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
+        pub fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Allocated<Self>,
             frame_rect: NSRect,
             mode: NSMatrixMode,
@@ -177,7 +177,7 @@ impl NSMatrix {
         #[cfg(feature = "NSCell")]
         #[unsafe(method(prototype))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prototype(&self) -> Option<Retained<NSCell>>;
+        pub fn prototype(&self) -> Option<Retained<NSCell>>;
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`prototype`][Self::prototype].
@@ -185,34 +185,30 @@ impl NSMatrix {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrototype:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrototype(&self, prototype: Option<&NSCell>);
+        pub fn setPrototype(&self, prototype: Option<&NSCell>);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(makeCellAtRow:column:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn makeCellAtRow_column(
-            &self,
-            row: NSInteger,
-            col: NSInteger,
-        ) -> Retained<NSCell>;
+        pub fn makeCellAtRow_column(&self, row: NSInteger, col: NSInteger) -> Retained<NSCell>;
 
         #[unsafe(method(mode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mode(&self) -> NSMatrixMode;
+        pub fn mode(&self) -> NSMatrixMode;
 
         /// Setter for [`mode`][Self::mode].
         #[unsafe(method(setMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMode(&self, mode: NSMatrixMode);
+        pub fn setMode(&self, mode: NSMatrixMode);
 
         #[unsafe(method(allowsEmptySelection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsEmptySelection(&self) -> bool;
+        pub fn allowsEmptySelection(&self) -> bool;
 
         /// Setter for [`allowsEmptySelection`][Self::allowsEmptySelection].
         #[unsafe(method(setAllowsEmptySelection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
+        pub fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
         /// # Safety
         ///
@@ -230,7 +226,7 @@ impl NSMatrix {
         #[cfg(feature = "NSCell")]
         #[unsafe(method(cells))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cells(&self) -> Retained<NSArray<NSCell>>;
+        pub fn cells(&self) -> Retained<NSArray<NSCell>>;
 
         /// # Safety
         ///
@@ -258,33 +254,33 @@ impl NSMatrix {
         #[cfg(feature = "NSCell")]
         #[unsafe(method(selectedCell))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedCell(&self) -> Option<Retained<NSCell>>;
+        pub fn selectedCell(&self) -> Option<Retained<NSCell>>;
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(selectedCells))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedCells(&self) -> Retained<NSArray<NSCell>>;
+        pub fn selectedCells(&self) -> Retained<NSArray<NSCell>>;
 
         #[unsafe(method(selectedRow))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedRow(&self) -> NSInteger;
+        pub fn selectedRow(&self) -> NSInteger;
 
         #[unsafe(method(selectedColumn))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedColumn(&self) -> NSInteger;
+        pub fn selectedColumn(&self) -> NSInteger;
 
         #[unsafe(method(isSelectionByRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSelectionByRect(&self) -> bool;
+        pub fn isSelectionByRect(&self) -> bool;
 
         /// Setter for [`isSelectionByRect`][Self::isSelectionByRect].
         #[unsafe(method(setSelectionByRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectionByRect(&self, selection_by_rect: bool);
+        pub fn setSelectionByRect(&self, selection_by_rect: bool);
 
         #[unsafe(method(setSelectionFrom:to:anchor:highlight:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectionFrom_to_anchor_highlight(
+        pub fn setSelectionFrom_to_anchor_highlight(
             &self,
             start_pos: NSInteger,
             end_pos: NSInteger,
@@ -294,15 +290,15 @@ impl NSMatrix {
 
         #[unsafe(method(deselectSelectedCell))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deselectSelectedCell(&self);
+        pub fn deselectSelectedCell(&self);
 
         #[unsafe(method(deselectAllCells))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deselectAllCells(&self);
+        pub fn deselectAllCells(&self);
 
         #[unsafe(method(selectCellAtRow:column:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectCellAtRow_column(&self, row: NSInteger, col: NSInteger);
+        pub fn selectCellAtRow_column(&self, row: NSInteger, col: NSInteger);
 
         /// # Safety
         ///
@@ -313,34 +309,34 @@ impl NSMatrix {
 
         #[unsafe(method(selectCellWithTag:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectCellWithTag(&self, tag: NSInteger) -> bool;
+        pub fn selectCellWithTag(&self, tag: NSInteger) -> bool;
 
         #[unsafe(method(cellSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cellSize(&self) -> NSSize;
+        pub fn cellSize(&self) -> NSSize;
 
         /// Setter for [`cellSize`][Self::cellSize].
         #[unsafe(method(setCellSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCellSize(&self, cell_size: NSSize);
+        pub fn setCellSize(&self, cell_size: NSSize);
 
         #[unsafe(method(intercellSpacing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intercellSpacing(&self) -> NSSize;
+        pub fn intercellSpacing(&self) -> NSSize;
 
         /// Setter for [`intercellSpacing`][Self::intercellSpacing].
         #[unsafe(method(setIntercellSpacing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
+        pub fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
         #[unsafe(method(setScrollable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScrollable(&self, flag: bool);
+        pub fn setScrollable(&self, flag: bool);
 
         #[cfg(feature = "NSColor")]
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
+        pub fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
@@ -348,12 +344,12 @@ impl NSMatrix {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
+        pub fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "NSColor")]
         #[unsafe(method(cellBackgroundColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cellBackgroundColor(&self) -> Option<Retained<NSColor>>;
+        pub fn cellBackgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`cellBackgroundColor`][Self::cellBackgroundColor].
@@ -361,34 +357,29 @@ impl NSMatrix {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCellBackgroundColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCellBackgroundColor(&self, cell_background_color: Option<&NSColor>);
+        pub fn setCellBackgroundColor(&self, cell_background_color: Option<&NSColor>);
 
         #[unsafe(method(drawsCellBackground))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawsCellBackground(&self) -> bool;
+        pub fn drawsCellBackground(&self) -> bool;
 
         /// Setter for [`drawsCellBackground`][Self::drawsCellBackground].
         #[unsafe(method(setDrawsCellBackground:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDrawsCellBackground(&self, draws_cell_background: bool);
+        pub fn setDrawsCellBackground(&self, draws_cell_background: bool);
 
         #[unsafe(method(drawsBackground))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawsBackground(&self) -> bool;
+        pub fn drawsBackground(&self) -> bool;
 
         /// Setter for [`drawsBackground`][Self::drawsBackground].
         #[unsafe(method(setDrawsBackground:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDrawsBackground(&self, draws_background: bool);
+        pub fn setDrawsBackground(&self, draws_background: bool);
 
         #[unsafe(method(setState:atRow:column:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setState_atRow_column(
-            &self,
-            value: NSInteger,
-            row: NSInteger,
-            col: NSInteger,
-        );
+        pub fn setState_atRow_column(&self, value: NSInteger, row: NSInteger, col: NSInteger);
 
         /// # Safety
         ///
@@ -404,24 +395,20 @@ impl NSMatrix {
 
         #[unsafe(method(numberOfRows))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfRows(&self) -> NSInteger;
+        pub fn numberOfRows(&self) -> NSInteger;
 
         #[unsafe(method(numberOfColumns))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfColumns(&self) -> NSInteger;
+        pub fn numberOfColumns(&self) -> NSInteger;
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(cellAtRow:column:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cellAtRow_column(
-            &self,
-            row: NSInteger,
-            col: NSInteger,
-        ) -> Option<Retained<NSCell>>;
+        pub fn cellAtRow_column(&self, row: NSInteger, col: NSInteger) -> Option<Retained<NSCell>>;
 
         #[unsafe(method(cellFrameAtRow:column:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cellFrameAtRow_column(&self, row: NSInteger, col: NSInteger) -> NSRect;
+        pub fn cellFrameAtRow_column(&self, row: NSInteger, col: NSInteger) -> NSRect;
 
         #[cfg(feature = "NSCell")]
         /// # Safety
@@ -452,61 +439,52 @@ impl NSMatrix {
 
         #[unsafe(method(renewRows:columns:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn renewRows_columns(&self, new_rows: NSInteger, new_cols: NSInteger);
+        pub fn renewRows_columns(&self, new_rows: NSInteger, new_cols: NSInteger);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(putCell:atRow:column:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn putCell_atRow_column(
-            &self,
-            new_cell: &NSCell,
-            row: NSInteger,
-            col: NSInteger,
-        );
+        pub fn putCell_atRow_column(&self, new_cell: &NSCell, row: NSInteger, col: NSInteger);
 
         #[unsafe(method(addRow))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addRow(&self);
+        pub fn addRow(&self);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(addRowWithCells:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addRowWithCells(&self, new_cells: &NSArray<NSCell>);
+        pub fn addRowWithCells(&self, new_cells: &NSArray<NSCell>);
 
         #[unsafe(method(insertRow:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertRow(&self, row: NSInteger);
+        pub fn insertRow(&self, row: NSInteger);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(insertRow:withCells:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertRow_withCells(
-            &self,
-            row: NSInteger,
-            new_cells: Option<&NSArray<NSCell>>,
-        );
+        pub fn insertRow_withCells(&self, row: NSInteger, new_cells: Option<&NSArray<NSCell>>);
 
         #[unsafe(method(removeRow:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeRow(&self, row: NSInteger);
+        pub fn removeRow(&self, row: NSInteger);
 
         #[unsafe(method(addColumn))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addColumn(&self);
+        pub fn addColumn(&self);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(addColumnWithCells:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addColumnWithCells(&self, new_cells: &NSArray<NSCell>);
+        pub fn addColumnWithCells(&self, new_cells: &NSArray<NSCell>);
 
         #[unsafe(method(insertColumn:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertColumn(&self, column: NSInteger);
+        pub fn insertColumn(&self, column: NSInteger);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(insertColumn:withCells:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertColumn_withCells(
+        pub fn insertColumn_withCells(
             &self,
             column: NSInteger,
             new_cells: Option<&NSArray<NSCell>>,
@@ -514,16 +492,16 @@ impl NSMatrix {
 
         #[unsafe(method(removeColumn:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeColumn(&self, col: NSInteger);
+        pub fn removeColumn(&self, col: NSInteger);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(cellWithTag:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cellWithTag(&self, tag: NSInteger) -> Option<Retained<NSCell>>;
+        pub fn cellWithTag(&self, tag: NSInteger) -> Option<Retained<NSCell>>;
 
         #[unsafe(method(doubleAction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleAction(&self) -> Option<Sel>;
+        pub fn doubleAction(&self) -> Option<Sel>;
 
         /// Setter for [`doubleAction`][Self::doubleAction].
         ///
@@ -536,96 +514,96 @@ impl NSMatrix {
 
         #[unsafe(method(autosizesCells))]
         #[unsafe(method_family = none)]
-        pub unsafe fn autosizesCells(&self) -> bool;
+        pub fn autosizesCells(&self) -> bool;
 
         /// Setter for [`autosizesCells`][Self::autosizesCells].
         #[unsafe(method(setAutosizesCells:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutosizesCells(&self, autosizes_cells: bool);
+        pub fn setAutosizesCells(&self, autosizes_cells: bool);
 
         #[unsafe(method(sizeToCells))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sizeToCells(&self);
+        pub fn sizeToCells(&self);
 
         #[unsafe(method(setValidateSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setValidateSize(&self, flag: bool);
+        pub fn setValidateSize(&self, flag: bool);
 
         #[unsafe(method(drawCellAtRow:column:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawCellAtRow_column(&self, row: NSInteger, col: NSInteger);
+        pub fn drawCellAtRow_column(&self, row: NSInteger, col: NSInteger);
 
         #[unsafe(method(highlightCell:atRow:column:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn highlightCell_atRow_column(&self, flag: bool, row: NSInteger, col: NSInteger);
+        pub fn highlightCell_atRow_column(&self, flag: bool, row: NSInteger, col: NSInteger);
 
         #[unsafe(method(isAutoscroll))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isAutoscroll(&self) -> bool;
+        pub fn isAutoscroll(&self) -> bool;
 
         /// Setter for [`isAutoscroll`][Self::isAutoscroll].
         #[unsafe(method(setAutoscroll:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutoscroll(&self, autoscroll: bool);
+        pub fn setAutoscroll(&self, autoscroll: bool);
 
         #[unsafe(method(scrollCellToVisibleAtRow:column:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollCellToVisibleAtRow_column(&self, row: NSInteger, col: NSInteger);
+        pub fn scrollCellToVisibleAtRow_column(&self, row: NSInteger, col: NSInteger);
 
         #[unsafe(method(mouseDownFlags))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseDownFlags(&self) -> NSInteger;
+        pub fn mouseDownFlags(&self) -> NSInteger;
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(mouseDown:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseDown(&self, event: &NSEvent);
+        pub fn mouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(performKeyEquivalent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
+        pub fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
 
         #[unsafe(method(sendAction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sendAction(&self) -> bool;
+        pub fn sendAction(&self) -> bool;
 
         #[unsafe(method(sendDoubleAction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sendDoubleAction(&self);
+        pub fn sendDoubleAction(&self);
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSMatrixDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSMatrixDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMatrixDelegate>>);
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMatrixDelegate>>);
 
         #[cfg(feature = "NSText")]
         #[unsafe(method(textShouldBeginEditing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
+        pub fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "NSText")]
         #[unsafe(method(textShouldEndEditing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
+        pub fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
 
         #[unsafe(method(textDidBeginEditing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
+        pub fn textDidBeginEditing(&self, notification: &NSNotification);
 
         #[unsafe(method(textDidEndEditing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textDidEndEditing(&self, notification: &NSNotification);
+        pub fn textDidEndEditing(&self, notification: &NSNotification);
 
         #[unsafe(method(textDidChange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textDidChange(&self, notification: &NSNotification);
+        pub fn textDidChange(&self, notification: &NSNotification);
 
         /// # Safety
         ///
@@ -637,7 +615,7 @@ impl NSMatrix {
         #[cfg(feature = "NSCell")]
         #[unsafe(method(selectTextAtRow:column:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectTextAtRow_column(
+        pub fn selectTextAtRow_column(
             &self,
             row: NSInteger,
             col: NSInteger,
@@ -646,30 +624,30 @@ impl NSMatrix {
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(acceptsFirstMouse:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn acceptsFirstMouse(&self, event: Option<&NSEvent>) -> bool;
+        pub fn acceptsFirstMouse(&self, event: Option<&NSEvent>) -> bool;
 
         #[unsafe(method(resetCursorRects))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resetCursorRects(&self);
+        pub fn resetCursorRects(&self);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(setToolTip:forCell:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setToolTip_forCell(&self, tool_tip_string: Option<&NSString>, cell: &NSCell);
+        pub fn setToolTip_forCell(&self, tool_tip_string: Option<&NSString>, cell: &NSCell);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(toolTipForCell:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn toolTipForCell(&self, cell: &NSCell) -> Option<Retained<NSString>>;
+        pub fn toolTipForCell(&self, cell: &NSCell) -> Option<Retained<NSString>>;
 
         #[unsafe(method(autorecalculatesCellSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn autorecalculatesCellSize(&self) -> bool;
+        pub fn autorecalculatesCellSize(&self) -> bool;
 
         /// Setter for [`autorecalculatesCellSize`][Self::autorecalculatesCellSize].
         #[unsafe(method(setAutorecalculatesCellSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutorecalculatesCellSize(&self, autorecalculates_cell_size: bool);
+        pub fn setAutorecalculatesCellSize(&self, autorecalculates_cell_size: bool);
     );
 }
 
@@ -695,7 +673,7 @@ impl NSMatrix {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -705,7 +683,7 @@ impl NSMatrix {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -715,23 +693,23 @@ impl NSMatrix {
     extern_methods!(
         #[unsafe(method(tabKeyTraversesCells))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabKeyTraversesCells(&self) -> bool;
+        pub fn tabKeyTraversesCells(&self) -> bool;
 
         /// Setter for [`tabKeyTraversesCells`][Self::tabKeyTraversesCells].
         #[unsafe(method(setTabKeyTraversesCells:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTabKeyTraversesCells(&self, tab_key_traverses_cells: bool);
+        pub fn setTabKeyTraversesCells(&self, tab_key_traverses_cells: bool);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(keyCell))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyCell(&self) -> Option<Retained<NSCell>>;
+        pub fn keyCell(&self) -> Option<Retained<NSCell>>;
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`keyCell`][Self::keyCell].
         #[unsafe(method(setKeyCell:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setKeyCell(&self, key_cell: Option<&NSCell>);
+        pub fn setKeyCell(&self, key_cell: Option<&NSCell>);
     );
 }
 

@@ -489,9 +489,7 @@ impl NSApplication {
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn NSApplicationDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSApplicationDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
@@ -504,29 +502,23 @@ impl NSApplication {
         #[unsafe(method_family = none)]
         pub fn hide(&self, sender: Option<&AnyObject>);
 
-        /// # Safety
-        ///
-        /// `sender` should be of the correct type.
         #[unsafe(method(unhide:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unhide(&self, sender: Option<&AnyObject>);
+        pub fn unhide(&self, sender: Option<&AnyObject>);
 
         #[unsafe(method(unhideWithoutActivation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unhideWithoutActivation(&self);
+        pub fn unhideWithoutActivation(&self);
 
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(windowWithWindowNumber:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowWithWindowNumber(
-            &self,
-            window_num: NSInteger,
-        ) -> Option<Retained<NSWindow>>;
+        pub fn windowWithWindowNumber(&self, window_num: NSInteger) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(mainWindow))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mainWindow(&self) -> Option<Retained<NSWindow>>;
+        pub fn mainWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(keyWindow))]
@@ -535,25 +527,25 @@ impl NSApplication {
 
         #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isActive(&self) -> bool;
+        pub fn isActive(&self) -> bool;
 
         #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHidden(&self) -> bool;
+        pub fn isHidden(&self) -> bool;
 
         #[unsafe(method(isRunning))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isRunning(&self) -> bool;
+        pub fn isRunning(&self) -> bool;
 
         /// A boolean value indicating whether your application should suppress HDR content based on established policy.
         /// Built-in AppKit components such as NSImageView will automatically behave correctly with HDR content. You should use this value in conjunction with notifications (`NSApplicationShouldBeginSuppressingHighDynamicRangeContentNotification` and `NSApplicationShouldEndSuppressingHighDynamicRangeContentNotification`) to suppress HDR content in your application when signaled to do so.
         #[unsafe(method(applicationShouldSuppressHighDynamicRangeContent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applicationShouldSuppressHighDynamicRangeContent(&self) -> bool;
+        pub fn applicationShouldSuppressHighDynamicRangeContent(&self) -> bool;
 
         #[unsafe(method(deactivate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deactivate(&self);
+        pub fn deactivate(&self);
 
         /// Makes the receiver the active app.
         /// - Parameter ignoreOtherApps: If `NO`, the app is activated only if no other app is currently active. If `YES`, the app activates regardless.
@@ -576,7 +568,7 @@ impl NSApplication {
         /// cancels any pending activation yields by the receiver.
         #[unsafe(method(activate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activate(&self);
+        pub fn activate(&self);
 
         #[cfg(feature = "NSRunningApplication")]
         /// Explicitly allows another application to make itself active.
@@ -587,7 +579,7 @@ impl NSApplication {
         /// some point in the future by calling `activate` or equivalent.
         #[unsafe(method(yieldActivationToApplication:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn yieldActivationToApplication(&self, application: &NSRunningApplication);
+        pub fn yieldActivationToApplication(&self, application: &NSRunningApplication);
 
         /// Same as `-yieldActivationToApplication:`, but the provided
         /// bundle identifier does not have to correspond to a currently
@@ -599,7 +591,7 @@ impl NSApplication {
         /// `-yieldActivationToApplication:` instead.
         #[unsafe(method(yieldActivationToApplicationWithBundleIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn yieldActivationToApplicationWithBundleIdentifier(
+        pub fn yieldActivationToApplicationWithBundleIdentifier(
             &self,
             bundle_identifier: &NSString,
         );
@@ -608,16 +600,13 @@ impl NSApplication {
         #[unsafe(method_family = none)]
         pub fn hideOtherApplications(&self, sender: Option<&AnyObject>);
 
-        /// # Safety
-        ///
-        /// `sender` should be of the correct type.
         #[unsafe(method(unhideAllApplications:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unhideAllApplications(&self, sender: Option<&AnyObject>);
+        pub fn unhideAllApplications(&self, sender: Option<&AnyObject>);
 
         #[unsafe(method(finishLaunching))]
         #[unsafe(method_family = none)]
-        pub unsafe fn finishLaunching(&self);
+        pub fn finishLaunching(&self);
 
         #[unsafe(method(run))]
         #[unsafe(method_family = none)]
@@ -626,7 +615,7 @@ impl NSApplication {
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(runModalForWindow:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runModalForWindow(&self, window: &NSWindow) -> NSModalResponse;
+        pub fn runModalForWindow(&self, window: &NSWindow) -> NSModalResponse;
 
         #[unsafe(method(stop:))]
         #[unsafe(method_family = none)]
@@ -634,25 +623,25 @@ impl NSApplication {
 
         #[unsafe(method(stopModal))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stopModal(&self);
+        pub fn stopModal(&self);
 
         #[unsafe(method(stopModalWithCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stopModalWithCode(&self, return_code: NSModalResponse);
+        pub fn stopModalWithCode(&self, return_code: NSModalResponse);
 
         #[unsafe(method(abortModal))]
         #[unsafe(method_family = none)]
-        pub unsafe fn abortModal(&self);
+        pub fn abortModal(&self);
 
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(modalWindow))]
         #[unsafe(method_family = none)]
-        pub unsafe fn modalWindow(&self) -> Option<Retained<NSWindow>>;
+        pub fn modalWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(beginModalSessionForWindow:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beginModalSessionForWindow(&self, window: &NSWindow) -> NSModalSession;
+        pub fn beginModalSessionForWindow(&self, window: &NSWindow) -> NSModalSession;
 
         /// # Safety
         ///
@@ -668,12 +657,9 @@ impl NSApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn endModalSession(&self, session: NSModalSession);
 
-        /// # Safety
-        ///
-        /// `sender` should be of the correct type.
         #[unsafe(method(terminate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn terminate(&self, sender: Option<&AnyObject>);
+        pub fn terminate(&self, sender: Option<&AnyObject>);
 
         /// Inform the user that this application needs attention - call this method only if your application is not already active.
         #[unsafe(method(requestUserAttention:))]
@@ -682,13 +668,13 @@ impl NSApplication {
 
         #[unsafe(method(cancelUserAttentionRequest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancelUserAttentionRequest(&self, request: NSInteger);
+        pub fn cancelUserAttentionRequest(&self, request: NSInteger);
 
         #[cfg(all(feature = "NSWindow", feature = "block2"))]
         /// Execute a block for each of the app's windows. Set `*stop = YES` if desired, to halt the enumeration early.
         #[unsafe(method(enumerateWindowsWithOptions:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateWindowsWithOptions_usingBlock(
+        pub fn enumerateWindowsWithOptions_usingBlock(
             &self,
             options: NSWindowListOptions,
             block: &block2::DynBlock<dyn Fn(NonNull<NSWindow>, NonNull<Bool>) + '_>,
@@ -696,7 +682,7 @@ impl NSApplication {
 
         #[unsafe(method(preventWindowOrdering))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preventWindowOrdering(&self);
+        pub fn preventWindowOrdering(&self);
 
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(windows))]
@@ -705,16 +691,16 @@ impl NSApplication {
 
         #[unsafe(method(setWindowsNeedUpdate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWindowsNeedUpdate(&self, need_update: bool);
+        pub fn setWindowsNeedUpdate(&self, need_update: bool);
 
         #[unsafe(method(updateWindows))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateWindows(&self);
+        pub fn updateWindows(&self);
 
         #[cfg(feature = "NSMenu")]
         #[unsafe(method(mainMenu))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mainMenu(&self) -> Option<Retained<NSMenu>>;
+        pub fn mainMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         /// Setter for [`mainMenu`][Self::mainMenu].
@@ -727,18 +713,18 @@ impl NSApplication {
         /// `NSApplication`retains its Help menu and releases it when a different menu is set.
         #[unsafe(method(helpMenu))]
         #[unsafe(method_family = none)]
-        pub unsafe fn helpMenu(&self) -> Option<Retained<NSMenu>>;
+        pub fn helpMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         /// Setter for [`helpMenu`][Self::helpMenu].
         #[unsafe(method(setHelpMenu:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHelpMenu(&self, help_menu: Option<&NSMenu>);
+        pub fn setHelpMenu(&self, help_menu: Option<&NSMenu>);
 
         #[cfg(feature = "NSImage")]
         #[unsafe(method(applicationIconImage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applicationIconImage(&self) -> Option<Retained<NSImage>>;
+        pub fn applicationIconImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`applicationIconImage`][Self::applicationIconImage].
@@ -754,7 +740,7 @@ impl NSApplication {
         /// Returns: The activation policy of the application.
         #[unsafe(method(activationPolicy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activationPolicy(&self) -> NSApplicationActivationPolicy;
+        pub fn activationPolicy(&self) -> NSApplicationActivationPolicy;
 
         #[cfg(feature = "NSRunningApplication")]
         /// Attempts to modify the application's activation policy.  In OS X 10.9, any policy may be set; prior to 10.9, the activation policy may be changed to
@@ -771,11 +757,11 @@ impl NSApplication {
         #[cfg(feature = "NSDockTile")]
         #[unsafe(method(dockTile))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dockTile(&self) -> Retained<NSDockTile>;
+        pub fn dockTile(&self) -> Retained<NSDockTile>;
 
         #[unsafe(method(reportException:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reportException(&self, exception: &NSException);
+        pub fn reportException(&self, exception: &NSException);
 
         /// # Safety
         ///
@@ -794,7 +780,7 @@ impl NSApplication {
         /// If an application delegate returns NSTerminateLater from -applicationShouldTerminate:, -replyToApplicationShouldTerminate: must be called with YES or NO once the application decides if it can terminate.
         #[unsafe(method(replyToApplicationShouldTerminate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replyToApplicationShouldTerminate(&self, should_terminate: bool);
+        pub fn replyToApplicationShouldTerminate(&self, should_terminate: bool);
 
         /// If an application delegate encounters an error while handling `-application:openFiles:` or` -application:printFiles:`, `-replyToOpenOrPrint:` should be called with
         /// `NSApplicationDelegateReplyFailure.`If the user cancels the operation,
@@ -802,7 +788,7 @@ impl NSApplication {
         /// `NSApplicationDelegateReplySuccess`should be used .
         #[unsafe(method(replyToOpenOrPrint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replyToOpenOrPrint(&self, reply: NSApplicationDelegateReply);
+        pub fn replyToOpenOrPrint(&self, reply: NSApplicationDelegateReply);
 
         /// Opens the character palette.
         #[unsafe(method(orderFrontCharacterPalette:))]
@@ -828,15 +814,15 @@ impl NSApplication {
         /// These are the presentation options that have been put into effect by the currently active application.
         #[unsafe(method(currentSystemPresentationOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentSystemPresentationOptions(&self) -> NSApplicationPresentationOptions;
+        pub fn currentSystemPresentationOptions(&self) -> NSApplicationPresentationOptions;
 
         #[unsafe(method(occlusionState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn occlusionState(&self) -> NSApplicationOcclusionState;
+        pub fn occlusionState(&self) -> NSApplicationOcclusionState;
 
         #[unsafe(method(isProtectedDataAvailable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isProtectedDataAvailable(&self) -> bool;
+        pub fn isProtectedDataAvailable(&self) -> bool;
     );
 }
 
@@ -846,7 +832,7 @@ impl NSApplication {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -866,7 +852,7 @@ impl NSApplication {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -877,7 +863,7 @@ impl NSApplication {
         #[cfg(feature = "NSAppearance")]
         #[unsafe(method(appearance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
+        pub fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
         #[cfg(feature = "NSAppearance")]
         /// Setter for [`appearance`][Self::appearance].
@@ -904,7 +890,7 @@ impl NSApplication {
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(sendEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sendEvent(&self, event: &NSEvent);
+        pub fn sendEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(postEvent:atStart:))]
@@ -919,7 +905,7 @@ impl NSApplication {
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(nextEventMatchingMask:untilDate:inMode:dequeue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
+        pub fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
             mask: NSEventMask,
             expiration: Option<&NSDate>,
@@ -930,7 +916,7 @@ impl NSApplication {
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(discardEventsMatchingMask:beforeEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn discardEventsMatchingMask_beforeEvent(
+        pub fn discardEventsMatchingMask_beforeEvent(
             &self,
             mask: NSEventMask,
             last_event: Option<&NSEvent>,
@@ -988,7 +974,7 @@ impl NSApplication {
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(validRequestorForSendType:returnType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn validRequestorForSendType_returnType(
+        pub fn validRequestorForSendType_returnType(
             &self,
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
@@ -1003,30 +989,27 @@ impl NSApplication {
         #[cfg(feature = "NSMenu")]
         #[unsafe(method(windowsMenu))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowsMenu(&self) -> Option<Retained<NSMenu>>;
+        pub fn windowsMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         /// Setter for [`windowsMenu`][Self::windowsMenu].
         #[unsafe(method(setWindowsMenu:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWindowsMenu(&self, windows_menu: Option<&NSMenu>);
+        pub fn setWindowsMenu(&self, windows_menu: Option<&NSMenu>);
 
-        /// # Safety
-        ///
-        /// `sender` should be of the correct type.
         #[unsafe(method(arrangeInFront:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn arrangeInFront(&self, sender: Option<&AnyObject>);
+        pub fn arrangeInFront(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(removeWindowsItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeWindowsItem(&self, win: &NSWindow);
+        pub fn removeWindowsItem(&self, win: &NSWindow);
 
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(addWindowsItem:title:filename:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addWindowsItem_title_filename(
+        pub fn addWindowsItem_title_filename(
             &self,
             win: &NSWindow,
             string: &NSString,
@@ -1036,7 +1019,7 @@ impl NSApplication {
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(changeWindowsItem:title:filename:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn changeWindowsItem_title_filename(
+        pub fn changeWindowsItem_title_filename(
             &self,
             win: &NSWindow,
             string: &NSString,
@@ -1046,14 +1029,11 @@ impl NSApplication {
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(updateWindowsItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateWindowsItem(&self, win: &NSWindow);
+        pub fn updateWindowsItem(&self, win: &NSWindow);
 
-        /// # Safety
-        ///
-        /// `sender` should be of the correct type.
         #[unsafe(method(miniaturizeAll:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn miniaturizeAll(&self, sender: Option<&AnyObject>);
+        pub fn miniaturizeAll(&self, sender: Option<&AnyObject>);
     );
 }
 
@@ -1066,7 +1046,7 @@ impl NSApplication {
         /// - Note: This property’s value isn’t necessarily reflective of the separate accessibility setting named “Full Keyboard Access” in System Settings > Accessibility > Keyboard.
         #[unsafe(method(isFullKeyboardAccessEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFullKeyboardAccessEnabled(&self) -> bool;
+        pub fn isFullKeyboardAccessEnabled(&self) -> bool;
     );
 }
 
@@ -1135,10 +1115,8 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(applicationShouldTerminate:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationShouldTerminate(
-            &self,
-            sender: &NSApplication,
-        ) -> NSApplicationTerminateReply;
+        fn applicationShouldTerminate(&self, sender: &NSApplication)
+            -> NSApplicationTerminateReply;
 
         #[cfg(feature = "NSResponder")]
         /// This will be called for any URLs your application is asked to open. This includes URL types (CFBundleURLTypes) defined in your Info.plist, and Document types (
@@ -1149,45 +1127,37 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(application:openURLs:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_openURLs(&self, application: &NSApplication, urls: &NSArray<NSURL>);
+        fn application_openURLs(&self, application: &NSApplication, urls: &NSArray<NSURL>);
 
         #[cfg(feature = "NSResponder")]
         #[optional]
         #[unsafe(method(application:openFile:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_openFile(&self, sender: &NSApplication, filename: &NSString) -> bool;
+        fn application_openFile(&self, sender: &NSApplication, filename: &NSString) -> bool;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
         #[unsafe(method(application:openFiles:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_openFiles(
-            &self,
-            sender: &NSApplication,
-            filenames: &NSArray<NSString>,
-        );
+        fn application_openFiles(&self, sender: &NSApplication, filenames: &NSArray<NSString>);
 
         #[cfg(feature = "NSResponder")]
         #[optional]
         #[unsafe(method(application:openTempFile:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_openTempFile(
-            &self,
-            sender: &NSApplication,
-            filename: &NSString,
-        ) -> bool;
+        fn application_openTempFile(&self, sender: &NSApplication, filename: &NSString) -> bool;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
         #[unsafe(method(applicationShouldOpenUntitledFile:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationShouldOpenUntitledFile(&self, sender: &NSApplication) -> bool;
+        fn applicationShouldOpenUntitledFile(&self, sender: &NSApplication) -> bool;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
         #[unsafe(method(applicationOpenUntitledFile:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationOpenUntitledFile(&self, sender: &NSApplication) -> bool;
+        fn applicationOpenUntitledFile(&self, sender: &NSApplication) -> bool;
 
         /// # Safety
         ///
@@ -1205,8 +1175,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(application:printFile:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_printFile(&self, sender: &NSApplication, filename: &NSString)
-            -> bool;
+        fn application_printFile(&self, sender: &NSApplication, filename: &NSString) -> bool;
 
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder"))]
         /// # Safety
@@ -1227,16 +1196,13 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(applicationShouldTerminateAfterLastWindowClosed:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationShouldTerminateAfterLastWindowClosed(
-            &self,
-            sender: &NSApplication,
-        ) -> bool;
+        fn applicationShouldTerminateAfterLastWindowClosed(&self, sender: &NSApplication) -> bool;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
         #[unsafe(method(applicationShouldHandleReopen:hasVisibleWindows:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationShouldHandleReopen_hasVisibleWindows(
+        fn applicationShouldHandleReopen_hasVisibleWindows(
             &self,
             sender: &NSApplication,
             has_visible_windows: bool,
@@ -1246,13 +1212,13 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(applicationDockMenu:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationDockMenu(&self, sender: &NSApplication) -> Option<Retained<NSMenu>>;
+        fn applicationDockMenu(&self, sender: &NSApplication) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
         #[unsafe(method(application:willPresentError:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_willPresentError(
+        fn application_willPresentError(
             &self,
             application: &NSApplication,
             error: &NSError,
@@ -1262,7 +1228,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(application:didRegisterForRemoteNotificationsWithDeviceToken:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_didRegisterForRemoteNotificationsWithDeviceToken(
+        fn application_didRegisterForRemoteNotificationsWithDeviceToken(
             &self,
             application: &NSApplication,
             device_token: &NSData,
@@ -1272,7 +1238,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(application:didFailToRegisterForRemoteNotificationsWithError:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_didFailToRegisterForRemoteNotificationsWithError(
+        fn application_didFailToRegisterForRemoteNotificationsWithError(
             &self,
             application: &NSApplication,
             error: &NSError,
@@ -1305,7 +1271,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(applicationSupportsSecureRestorableState:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationSupportsSecureRestorableState(&self, app: &NSApplication) -> bool;
+        fn applicationSupportsSecureRestorableState(&self, app: &NSApplication) -> bool;
 
         #[cfg(feature = "NSResponder")]
         /// Method called by `-[NSApplication encodeRestorableStateWithCoder:]` to give the delegate a chance to encode any additional state into the
@@ -1345,7 +1311,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(application:willContinueUserActivityWithType:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_willContinueUserActivityWithType(
+        fn application_willContinueUserActivityWithType(
             &self,
             application: &NSApplication,
             user_activity_type: &NSString,
@@ -1373,7 +1339,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(application:continueUserActivity:restorationHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_continueUserActivity_restorationHandler(
+        fn application_continueUserActivity_restorationHandler(
             &self,
             application: &NSApplication,
             user_activity: &NSUserActivity,
@@ -1388,7 +1354,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(application:didFailToContinueUserActivityWithType:error:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_didFailToContinueUserActivityWithType_error(
+        fn application_didFailToContinueUserActivityWithType_error(
             &self,
             application: &NSApplication,
             user_activity_type: &NSString,
@@ -1401,7 +1367,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(application:didUpdateUserActivity:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_didUpdateUserActivity(
+        fn application_didUpdateUserActivity(
             &self,
             application: &NSApplication,
             user_activity: &NSUserActivity,
@@ -1420,7 +1386,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(application:userDidAcceptCloudKitShareWithMetadata:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_userDidAcceptCloudKitShareWithMetadata(
+        fn application_userDidAcceptCloudKitShareWithMetadata(
             &self,
             application: &NSApplication,
             metadata: &CKShareMetadata,
@@ -1432,11 +1398,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(application:delegateHandlesKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn application_delegateHandlesKey(
-            &self,
-            sender: &NSApplication,
-            key: &NSString,
-        ) -> bool;
+        fn application_delegateHandlesKey(&self, sender: &NSApplication, key: &NSString) -> bool;
 
         #[cfg(feature = "NSResponder")]
         /// This method will be called once during application launch at `-[NSApplication finishLaunching]`.
@@ -1447,7 +1409,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(applicationShouldAutomaticallyLocalizeKeyEquivalents:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationShouldAutomaticallyLocalizeKeyEquivalents(
+        fn applicationShouldAutomaticallyLocalizeKeyEquivalents(
             &self,
             application: &NSApplication,
         ) -> bool;
@@ -1455,90 +1417,87 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(applicationWillFinishLaunching:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationWillFinishLaunching(&self, notification: &NSNotification);
+        fn applicationWillFinishLaunching(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationDidFinishLaunching:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationDidFinishLaunching(&self, notification: &NSNotification);
+        fn applicationDidFinishLaunching(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationWillHide:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationWillHide(&self, notification: &NSNotification);
+        fn applicationWillHide(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationDidHide:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationDidHide(&self, notification: &NSNotification);
+        fn applicationDidHide(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationWillUnhide:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationWillUnhide(&self, notification: &NSNotification);
+        fn applicationWillUnhide(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationDidUnhide:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationDidUnhide(&self, notification: &NSNotification);
+        fn applicationDidUnhide(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationWillBecomeActive:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationWillBecomeActive(&self, notification: &NSNotification);
+        fn applicationWillBecomeActive(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationDidBecomeActive:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationDidBecomeActive(&self, notification: &NSNotification);
+        fn applicationDidBecomeActive(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationWillResignActive:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationWillResignActive(&self, notification: &NSNotification);
+        fn applicationWillResignActive(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationDidResignActive:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationDidResignActive(&self, notification: &NSNotification);
+        fn applicationDidResignActive(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationWillUpdate:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationWillUpdate(&self, notification: &NSNotification);
+        fn applicationWillUpdate(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationDidUpdate:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationDidUpdate(&self, notification: &NSNotification);
+        fn applicationDidUpdate(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationWillTerminate:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationWillTerminate(&self, notification: &NSNotification);
+        fn applicationWillTerminate(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationDidChangeScreenParameters:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationDidChangeScreenParameters(&self, notification: &NSNotification);
+        fn applicationDidChangeScreenParameters(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationDidChangeOcclusionState:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationDidChangeOcclusionState(&self, notification: &NSNotification);
+        fn applicationDidChangeOcclusionState(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationProtectedDataWillBecomeUnavailable:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationProtectedDataWillBecomeUnavailable(
-            &self,
-            notification: &NSNotification,
-        );
+        fn applicationProtectedDataWillBecomeUnavailable(&self, notification: &NSNotification);
 
         #[optional]
         #[unsafe(method(applicationProtectedDataDidBecomeAvailable:))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationProtectedDataDidBecomeAvailable(&self, notification: &NSNotification);
+        fn applicationProtectedDataDidBecomeAvailable(&self, notification: &NSNotification);
     }
 );
 
@@ -1549,18 +1508,18 @@ impl NSApplication {
         #[cfg(feature = "NSMenu")]
         #[unsafe(method(servicesMenu))]
         #[unsafe(method_family = none)]
-        pub unsafe fn servicesMenu(&self) -> Option<Retained<NSMenu>>;
+        pub fn servicesMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         /// Setter for [`servicesMenu`][Self::servicesMenu].
         #[unsafe(method(setServicesMenu:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setServicesMenu(&self, services_menu: Option<&NSMenu>);
+        pub fn setServicesMenu(&self, services_menu: Option<&NSMenu>);
 
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(registerServicesMenuSendTypes:returnTypes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerServicesMenuSendTypes_returnTypes(
+        pub fn registerServicesMenuSendTypes_returnTypes(
             &self,
             send_types: &NSArray<NSPasteboardType>,
             return_types: &NSArray<NSPasteboardType>,
@@ -1575,7 +1534,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(writeSelectionToPasteboard:types:))]
         #[unsafe(method_family = none)]
-        unsafe fn writeSelectionToPasteboard_types(
+        fn writeSelectionToPasteboard_types(
             &self,
             pboard: &NSPasteboard,
             types: &NSArray<NSPasteboardType>,
@@ -1585,7 +1544,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(readSelectionFromPasteboard:))]
         #[unsafe(method_family = none)]
-        unsafe fn readSelectionFromPasteboard(&self, pboard: &NSPasteboard) -> bool;
+        fn readSelectionFromPasteboard(&self, pboard: &NSPasteboard) -> bool;
     }
 );
 
@@ -1595,7 +1554,7 @@ impl NSApplication {
     extern_methods!(
         #[unsafe(method(servicesProvider))]
         #[unsafe(method_family = none)]
-        pub unsafe fn servicesProvider(&self) -> Option<Retained<AnyObject>>;
+        pub fn servicesProvider(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`servicesProvider`][Self::servicesProvider].
         ///
@@ -1656,12 +1615,9 @@ extern "C" {
 #[cfg(feature = "NSResponder")]
 impl NSApplication {
     extern_methods!(
-        /// # Safety
-        ///
-        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontStandardAboutPanel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderFrontStandardAboutPanel(&self, sender: Option<&AnyObject>);
+        pub fn orderFrontStandardAboutPanel(&self, sender: Option<&AnyObject>);
 
         /// # Safety
         ///
@@ -1682,7 +1638,7 @@ impl NSApplication {
         #[cfg(feature = "NSUserInterfaceLayout")]
         #[unsafe(method(userInterfaceLayoutDirection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
+        pub fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
     );
 }
 
@@ -1699,11 +1655,11 @@ impl NSApplication {
         /// These methods are thread safe.
         #[unsafe(method(disableRelaunchOnLogin))]
         #[unsafe(method_family = none)]
-        pub unsafe fn disableRelaunchOnLogin(&self);
+        pub fn disableRelaunchOnLogin(&self);
 
         #[unsafe(method(enableRelaunchOnLogin))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enableRelaunchOnLogin(&self);
+        pub fn enableRelaunchOnLogin(&self);
     );
 }
 
@@ -1742,26 +1698,26 @@ impl NSApplication {
     extern_methods!(
         #[unsafe(method(registerForRemoteNotifications))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerForRemoteNotifications(&self);
+        pub fn registerForRemoteNotifications(&self);
 
         #[unsafe(method(unregisterForRemoteNotifications))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unregisterForRemoteNotifications(&self);
+        pub fn unregisterForRemoteNotifications(&self);
 
         /// Returns: `YES`if the application is currently registered for remote notifications, taking into account any systemwide settings; doesn't relate to connectivity.
         #[unsafe(method(isRegisteredForRemoteNotifications))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isRegisteredForRemoteNotifications(&self) -> bool;
+        pub fn isRegisteredForRemoteNotifications(&self) -> bool;
 
         /// The following are soft deprecated.
         /// Please use the `-registerForRemoteNotifications` above and `-requestAuthorizationWithOptions:` from `UserNotifications.framework`.
         #[unsafe(method(registerForRemoteNotificationTypes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerForRemoteNotificationTypes(&self, types: NSRemoteNotificationType);
+        pub fn registerForRemoteNotificationTypes(&self, types: NSRemoteNotificationType);
 
         #[unsafe(method(enabledRemoteNotificationTypes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enabledRemoteNotificationTypes(&self) -> NSRemoteNotificationType;
+        pub fn enabledRemoteNotificationTypes(&self) -> NSRemoteNotificationType;
     );
 }
 
@@ -1785,7 +1741,7 @@ impl NSApplication {
     /// `NSApplication`and other Cocoa objects.  Redundant calls are ignored.
     #[doc(alias = "NSApplicationLoad")]
     #[inline]
-    pub unsafe fn load() -> bool {
+    pub fn load() -> bool {
         extern "C-unwind" {
             fn NSApplicationLoad() -> Bool;
         }
@@ -1796,7 +1752,7 @@ impl NSApplication {
 /// `NSShowsServicesMenuItem()`always returns
 /// `YES.`
 #[inline]
-pub unsafe extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) -> bool {
+pub extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) -> bool {
     extern "C-unwind" {
         fn NSShowsServicesMenuItem(item_name: &NSString) -> Bool;
     }
@@ -1805,7 +1761,7 @@ pub unsafe extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) ->
 
 /// `NSSetShowsServicesMenuItem()`has no effect, and always returns 0.
 #[inline]
-pub unsafe extern "C-unwind" fn NSSetShowsServicesMenuItem(
+pub extern "C-unwind" fn NSSetShowsServicesMenuItem(
     item_name: &NSString,
     enabled: bool,
 ) -> NSInteger {
@@ -1815,15 +1771,19 @@ pub unsafe extern "C-unwind" fn NSSetShowsServicesMenuItem(
     unsafe { NSSetShowsServicesMenuItem(item_name, Bool::new(enabled)) }
 }
 
-extern "C-unwind" {
-    /// `NSUpdateDynamicServices()`causes the services information for the system to be updated.
-    /// This will only be necessary if your program adds dynamic services to the system (i.e. services not found in mach-o segments of executables).
-    pub fn NSUpdateDynamicServices();
+/// `NSUpdateDynamicServices()`causes the services information for the system to be updated.
+/// This will only be necessary if your program adds dynamic services to the system (i.e. services not found in mach-o segments of executables).
+#[inline]
+pub extern "C-unwind" fn NSUpdateDynamicServices() {
+    extern "C-unwind" {
+        fn NSUpdateDynamicServices();
+    }
+    unsafe { NSUpdateDynamicServices() }
 }
 
 #[cfg(feature = "NSPasteboard")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSPerformService(
+pub extern "C-unwind" fn NSPerformService(
     item_name: &NSString,
     pboard: Option<&NSPasteboard>,
 ) -> bool {
@@ -1845,8 +1805,12 @@ extern "C-unwind" {
     pub fn NSRegisterServicesProvider(provider: Option<&AnyObject>, name: &NSServiceProviderName);
 }
 
-extern "C-unwind" {
-    pub fn NSUnregisterServicesProvider(name: &NSServiceProviderName);
+#[inline]
+pub extern "C-unwind" fn NSUnregisterServicesProvider(name: &NSServiceProviderName) {
+    extern "C-unwind" {
+        fn NSUnregisterServicesProvider(name: &NSServiceProviderName);
+    }
+    unsafe { NSUnregisterServicesProvider(name) }
 }
 
 extern "C" {
@@ -2058,13 +2022,13 @@ impl NSApplication {
         #[deprecated = "Use -[NSWindow endSheet:] instead"]
         #[unsafe(method(endSheet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endSheet(&self, sheet: &NSWindow);
+        pub fn endSheet(&self, sheet: &NSWindow);
 
         #[cfg(feature = "NSWindow")]
         #[deprecated = "Use -[NSWindow endSheet:returnCode:] instead"]
         #[unsafe(method(endSheet:returnCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endSheet_returnCode(&self, sheet: &NSWindow, return_code: NSInteger);
+        pub fn endSheet_returnCode(&self, sheet: &NSWindow, return_code: NSInteger);
 
         #[cfg(feature = "NSWindow")]
         /// # Safety
@@ -2084,7 +2048,7 @@ impl NSApplication {
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
         #[unsafe(method(context))]
         #[unsafe(method_family = none)]
-        pub unsafe fn context(&self) -> Option<Retained<NSGraphicsContext>>;
+        pub fn context(&self) -> Option<Retained<NSGraphicsContext>>;
     );
 }
 
@@ -2095,7 +2059,7 @@ extern "C-unwind" {
 
 #[deprecated = "renamed to `NSApplication::load`"]
 #[inline]
-pub unsafe extern "C-unwind" fn NSApplicationLoad() -> bool {
+pub extern "C-unwind" fn NSApplicationLoad() -> bool {
     extern "C-unwind" {
         fn NSApplicationLoad() -> Bool;
     }

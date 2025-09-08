@@ -68,42 +68,42 @@ impl NSSplitViewItemAccessoryViewController {
         /// Set through the animator object to animate it.
         #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHidden(&self) -> bool;
+        pub fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
         #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHidden(&self, hidden: bool);
+        pub fn setHidden(&self, hidden: bool);
 
         /// Whether or not standard content insets should be applied to the view.
         /// Defaults to YES.
         #[unsafe(method(automaticallyAppliesContentInsets))]
         #[unsafe(method_family = none)]
-        pub unsafe fn automaticallyAppliesContentInsets(&self) -> bool;
+        pub fn automaticallyAppliesContentInsets(&self) -> bool;
 
         /// Setter for [`automaticallyAppliesContentInsets`][Self::automaticallyAppliesContentInsets].
         #[unsafe(method(setAutomaticallyAppliesContentInsets:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutomaticallyAppliesContentInsets(
+        pub fn setAutomaticallyAppliesContentInsets(
             &self,
             automatically_applies_content_insets: bool,
         );
 
         #[unsafe(method(viewWillAppear))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewWillAppear(&self);
+        pub fn viewWillAppear(&self);
 
         #[unsafe(method(viewDidAppear))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewDidAppear(&self);
+        pub fn viewDidAppear(&self);
 
         #[unsafe(method(viewWillDisappear))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewWillDisappear(&self);
+        pub fn viewWillDisappear(&self);
 
         #[unsafe(method(viewDidDisappear))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewDidDisappear(&self);
+        pub fn viewDidDisappear(&self);
     );
 }
 
@@ -114,7 +114,7 @@ impl NSSplitViewItemAccessoryViewController {
         #[cfg(feature = "NSNib")]
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
+        pub fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
@@ -138,7 +138,7 @@ impl NSSplitViewItemAccessoryViewController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -148,6 +148,6 @@ impl NSSplitViewItemAccessoryViewController {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

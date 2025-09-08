@@ -43,13 +43,13 @@ impl NSViewLayoutRegion {
     extern_methods!(
         #[unsafe(method(safeAreaLayoutRegionWithCornerAdaptation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn safeAreaLayoutRegionWithCornerAdaptation(
+        pub fn safeAreaLayoutRegionWithCornerAdaptation(
             adaptivity_axis: NSViewLayoutRegionAdaptivityAxis,
         ) -> Retained<NSViewLayoutRegion>;
 
         #[unsafe(method(marginsLayoutRegionWithCornerAdaptation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn marginsLayoutRegionWithCornerAdaptation(
+        pub fn marginsLayoutRegionWithCornerAdaptation(
             adaptivity_axis: NSViewLayoutRegionAdaptivityAxis,
         ) -> Retained<NSViewLayoutRegion>;
 
@@ -70,20 +70,18 @@ impl NSView {
         #[cfg(feature = "NSLayoutGuide")]
         #[unsafe(method(layoutGuideForLayoutRegion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutGuideForLayoutRegion(
+        pub fn layoutGuideForLayoutRegion(
             &self,
             layout_region: &NSViewLayoutRegion,
         ) -> Retained<NSLayoutGuide>;
 
         #[unsafe(method(edgeInsetsForLayoutRegion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn edgeInsetsForLayoutRegion(
-            &self,
-            layout_region: &NSViewLayoutRegion,
-        ) -> NSEdgeInsets;
+        pub fn edgeInsetsForLayoutRegion(&self, layout_region: &NSViewLayoutRegion)
+            -> NSEdgeInsets;
 
         #[unsafe(method(rectForLayoutRegion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rectForLayoutRegion(&self, layout_region: &NSViewLayoutRegion) -> NSRect;
+        pub fn rectForLayoutRegion(&self, layout_region: &NSViewLayoutRegion) -> NSRect;
     );
 }

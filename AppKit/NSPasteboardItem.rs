@@ -33,12 +33,12 @@ impl NSPasteboardItem {
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(types))]
         #[unsafe(method_family = none)]
-        pub unsafe fn types(&self) -> Retained<NSArray<NSPasteboardType>>;
+        pub fn types(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(availableTypeFromArray:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn availableTypeFromArray(
+        pub fn availableTypeFromArray(
             &self,
             types: &NSArray<NSPasteboardType>,
         ) -> Option<Retained<NSPasteboardType>>;
@@ -46,7 +46,7 @@ impl NSPasteboardItem {
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(setDataProvider:forTypes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDataProvider_forTypes(
+        pub fn setDataProvider_forTypes(
             &self,
             data_provider: &ProtocolObject<dyn NSPasteboardItemDataProvider>,
             types: &NSArray<NSPasteboardType>,
@@ -55,16 +55,12 @@ impl NSPasteboardItem {
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(setData:forType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setData_forType(&self, data: &NSData, r#type: &NSPasteboardType) -> bool;
+        pub fn setData_forType(&self, data: &NSData, r#type: &NSPasteboardType) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(setString:forType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setString_forType(
-            &self,
-            string: &NSString,
-            r#type: &NSPasteboardType,
-        ) -> bool;
+        pub fn setString_forType(&self, string: &NSString, r#type: &NSPasteboardType) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
         /// # Safety
@@ -81,21 +77,18 @@ impl NSPasteboardItem {
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(dataForType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataForType(&self, r#type: &NSPasteboardType) -> Option<Retained<NSData>>;
+        pub fn dataForType(&self, r#type: &NSPasteboardType) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(stringForType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringForType(&self, r#type: &NSPasteboardType)
-            -> Option<Retained<NSString>>;
+        pub fn stringForType(&self, r#type: &NSPasteboardType) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(propertyListForType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn propertyListForType(
-            &self,
-            r#type: &NSPasteboardType,
-        ) -> Option<Retained<AnyObject>>;
+        pub fn propertyListForType(&self, r#type: &NSPasteboardType)
+            -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSPasteboard", feature = "block2"))]
         /// Determines whether this pasteboard item matches the specified patterns, without notifying the person using the app.
@@ -156,7 +149,7 @@ impl NSPasteboardItem {
         /// - completionHandler: A block that the system invokes after detecting patterns on the pasteboard item. The block receives either a set with the patterns the system finds on the pasteboard item or an error if detection fails.
         #[unsafe(method(detectPatternsForPatterns:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detectPatternsForPatterns_completionHandler(
+        pub fn detectPatternsForPatterns_completionHandler(
             &self,
             patterns: &NSSet<NSPasteboardDetectionPattern>,
             completion_handler: &block2::DynBlock<
@@ -229,7 +222,7 @@ impl NSPasteboardItem {
         /// - completionHandler: A block the system invokes after detecting patterns on the pasteboard item. The block returns either a dictionary with the patterns the system finds on the pasteboard item or an error if detection fails. The dictionary keys specify the matched patterns, and the values specify the corresponding content of the pasteboard.
         #[unsafe(method(detectValuesForPatterns:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detectValuesForPatterns_completionHandler(
+        pub fn detectValuesForPatterns_completionHandler(
             &self,
             patterns: &NSSet<NSPasteboardDetectionPattern>,
             completion_handler: &block2::DynBlock<
@@ -289,7 +282,7 @@ impl NSPasteboardItem {
         /// - completionHandler: A block the system invokes after detecting metadata on the pasteboard item. The block receives either a dictionary with the metadata types the system finds on the pasteboard item or an error if detection fails. The dictionary keys specify the matched metadata types, and the values specify the corresponding metadata.
         #[unsafe(method(detectMetadataForTypes:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detectMetadataForTypes_completionHandler(
+        pub fn detectMetadataForTypes_completionHandler(
             &self,
             types: &NSSet<NSPasteboardMetadataType>,
             completion_handler: &block2::DynBlock<
@@ -304,12 +297,19 @@ impl NSPasteboardItem {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSPasteboardItem {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -318,7 +318,7 @@ extern_protocol!(
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(pasteboard:item:provideDataForType:))]
         #[unsafe(method_family = none)]
-        unsafe fn pasteboard_item_provideDataForType(
+        fn pasteboard_item_provideDataForType(
             &self,
             pasteboard: Option<&NSPasteboard>,
             item: &NSPasteboardItem,
@@ -329,6 +329,6 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pasteboardFinishedWithDataProvider:))]
         #[unsafe(method_family = none)]
-        unsafe fn pasteboardFinishedWithDataProvider(&self, pasteboard: &NSPasteboard);
+        fn pasteboardFinishedWithDataProvider(&self, pasteboard: &NSPasteboard);
     }
 );

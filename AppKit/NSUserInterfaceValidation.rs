@@ -10,11 +10,11 @@ extern_protocol!(
     pub unsafe trait NSValidatedUserInterfaceItem: MainThreadOnly {
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
-        unsafe fn action(&self) -> Option<Sel>;
+        fn action(&self) -> Option<Sel>;
 
         #[unsafe(method(tag))]
         #[unsafe(method_family = none)]
-        unsafe fn tag(&self) -> NSInteger;
+        fn tag(&self) -> NSInteger;
     }
 );
 
@@ -23,7 +23,7 @@ extern_protocol!(
     pub unsafe trait NSUserInterfaceValidations: MainThreadOnly {
         #[unsafe(method(validateUserInterfaceItem:))]
         #[unsafe(method_family = none)]
-        unsafe fn validateUserInterfaceItem(
+        fn validateUserInterfaceItem(
             &self,
             item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
         ) -> bool;

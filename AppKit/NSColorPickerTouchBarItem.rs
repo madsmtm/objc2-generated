@@ -31,7 +31,7 @@ impl NSColorPickerTouchBarItem {
         /// Creates a bar item containing a button with the standard color picker icon that invokes the color picker.
         #[unsafe(method(colorPickerWithIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorPickerWithIdentifier(
+        pub fn colorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
@@ -39,7 +39,7 @@ impl NSColorPickerTouchBarItem {
         /// Creates a bar item containing a button with the standard text color picker icon that invokes the color picker. Should be used when the item is used for picking text colors.
         #[unsafe(method(textColorPickerWithIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textColorPickerWithIdentifier(
+        pub fn textColorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
@@ -47,7 +47,7 @@ impl NSColorPickerTouchBarItem {
         /// Creates a bar item containing a button with the standard stroke color picker icon that invokes the color picker. Should be used when the item is used for picking stroke colors.
         #[unsafe(method(strokeColorPickerWithIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn strokeColorPickerWithIdentifier(
+        pub fn strokeColorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
@@ -55,7 +55,7 @@ impl NSColorPickerTouchBarItem {
         #[cfg(feature = "NSImage")]
         #[unsafe(method(colorPickerWithIdentifier:buttonImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorPickerWithIdentifier_buttonImage(
+        pub fn colorPickerWithIdentifier_buttonImage(
             identifier: &NSTouchBarItemIdentifier,
             image: &NSImage,
             mtm: MainThreadMarker,
@@ -64,7 +64,7 @@ impl NSColorPickerTouchBarItem {
         #[cfg(feature = "NSColor")]
         #[unsafe(method(color))]
         #[unsafe(method_family = none)]
-        pub unsafe fn color(&self) -> Retained<NSColor>;
+        pub fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`color`][Self::color].
@@ -72,23 +72,23 @@ impl NSColorPickerTouchBarItem {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setColor(&self, color: &NSColor);
+        pub fn setColor(&self, color: &NSColor);
 
         /// Whether or not the picker should allow picking a color with non-1.0 alpha. Defaults to `!NSColor.ignoresAlpha`.
         #[unsafe(method(showsAlpha))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsAlpha(&self) -> bool;
+        pub fn showsAlpha(&self) -> bool;
 
         /// Setter for [`showsAlpha`][Self::showsAlpha].
         #[unsafe(method(setShowsAlpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsAlpha(&self, shows_alpha: bool);
+        pub fn setShowsAlpha(&self, shows_alpha: bool);
 
         #[cfg(feature = "NSColorSpace")]
         /// Controls the color spaces that the receiver is able to produce. If a color outside of the allowed spaces are displayed or selected, it will first be converted to the first color space in the array. `nil` signifies any color space is allowed. Empty array is an invalid value and will raise an exception if set. Defaults to `nil`.
         #[unsafe(method(allowedColorSpaces))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowedColorSpaces(&self) -> Option<Retained<NSArray<NSColorSpace>>>;
+        pub fn allowedColorSpaces(&self) -> Option<Retained<NSArray<NSColorSpace>>>;
 
         #[cfg(feature = "NSColorSpace")]
         /// Setter for [`allowedColorSpaces`][Self::allowedColorSpaces].
@@ -96,16 +96,13 @@ impl NSColorPickerTouchBarItem {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAllowedColorSpaces:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowedColorSpaces(
-            &self,
-            allowed_color_spaces: Option<&NSArray<NSColorSpace>>,
-        );
+        pub fn setAllowedColorSpaces(&self, allowed_color_spaces: Option<&NSArray<NSColorSpace>>);
 
         #[cfg(feature = "NSColorList")]
         /// The color list displayed in the list color picker. Defaults to the standard system color list. Setting a custom color list will disable the additional tints/shades that appear on long-press.
         #[unsafe(method(colorList))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorList(&self) -> Option<Retained<NSColorList>>;
+        pub fn colorList(&self) -> Option<Retained<NSColorList>>;
 
         #[cfg(feature = "NSColorList")]
         /// Setter for [`colorList`][Self::colorList].
@@ -120,18 +117,18 @@ impl NSColorPickerTouchBarItem {
         /// The localized string labelling this item during user customization. The default value is the localized string of "Color Picker".
         #[unsafe(method(customizationLabel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
+        pub fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizationLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
+        pub fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
-        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
+        pub fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`target`][Self::target].
         ///
@@ -146,7 +143,7 @@ impl NSColorPickerTouchBarItem {
 
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
-        pub unsafe fn action(&self) -> Option<Sel>;
+        pub fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
         ///
@@ -160,12 +157,12 @@ impl NSColorPickerTouchBarItem {
         /// Enables or disabled the color picker. If it is currently being shown in a popover, it will be dismissed.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnabled(&self) -> bool;
+        pub fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnabled(&self, enabled: bool);
+        pub fn setEnabled(&self, enabled: bool);
     );
 }
 
@@ -175,7 +172,7 @@ impl NSColorPickerTouchBarItem {
     extern_methods!(
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithIdentifier(
+        pub fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;

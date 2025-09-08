@@ -44,7 +44,7 @@ impl NSTouchBarItem {
     extern_methods!(
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithIdentifier(
+        pub fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
@@ -65,34 +65,34 @@ impl NSTouchBarItem {
 
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Retained<NSTouchBarItemIdentifier>;
+        pub fn identifier(&self) -> Retained<NSTouchBarItemIdentifier>;
 
         #[unsafe(method(visibilityPriority))]
         #[unsafe(method_family = none)]
-        pub unsafe fn visibilityPriority(&self) -> NSTouchBarItemPriority;
+        pub fn visibilityPriority(&self) -> NSTouchBarItemPriority;
 
         /// Setter for [`visibilityPriority`][Self::visibilityPriority].
         #[unsafe(method(setVisibilityPriority:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVisibilityPriority(&self, visibility_priority: NSTouchBarItemPriority);
+        pub fn setVisibilityPriority(&self, visibility_priority: NSTouchBarItemPriority);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self) -> Option<Retained<NSView>>;
+        pub fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[unsafe(method(viewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewController(&self) -> Option<Retained<NSViewController>>;
+        pub fn viewController(&self) -> Option<Retained<NSViewController>>;
 
         #[unsafe(method(customizationLabel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
+        pub fn customizationLabel(&self) -> Retained<NSString>;
 
         #[unsafe(method(isVisible))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isVisible(&self) -> bool;
+        pub fn isVisible(&self) -> bool;
     );
 }
 

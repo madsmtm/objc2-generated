@@ -28,7 +28,7 @@ impl NSNib {
     extern_methods!(
         #[unsafe(method(initWithNibNamed:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibNamed_bundle(
+        pub fn initWithNibNamed_bundle(
             this: Allocated<Self>,
             nib_name: &NSNibName,
             bundle: Option<&NSBundle>,
@@ -36,7 +36,7 @@ impl NSNib {
 
         #[unsafe(method(initWithNibData:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibData_bundle(
+        pub fn initWithNibData_bundle(
             this: Allocated<Self>,
             nib_data: &NSData,
             bundle: Option<&NSBundle>,
@@ -49,12 +49,19 @@ impl NSNib {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSNib {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSDeprecated.

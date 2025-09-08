@@ -36,7 +36,7 @@ impl NSSharingServicePickerToolbarItem {
         #[cfg(feature = "NSSharingService")]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>>>;
 
@@ -46,7 +46,7 @@ impl NSSharingServicePickerToolbarItem {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>>,
         );
@@ -61,7 +61,7 @@ impl NSSharingServicePickerToolbarItem {
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
         #[unsafe(method(initWithItemIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithItemIdentifier(
+        pub fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
         ) -> Retained<Self>;
@@ -74,11 +74,11 @@ impl NSSharingServicePickerToolbarItem {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -95,7 +95,7 @@ extern_protocol!(
         /// > protocol or be an NSItemProvider. (e.g. NSString, NSImage, NSURL, etc.).
         #[unsafe(method(itemsForSharingServicePickerToolbarItem:))]
         #[unsafe(method_family = none)]
-        unsafe fn itemsForSharingServicePickerToolbarItem(
+        fn itemsForSharingServicePickerToolbarItem(
             &self,
             picker_toolbar_item: &NSSharingServicePickerToolbarItem,
         ) -> Retained<NSArray>;

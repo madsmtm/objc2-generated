@@ -12,13 +12,13 @@ extern_protocol!(
         /// The item to be shared
         #[unsafe(method(item))]
         #[unsafe(method_family = none)]
-        unsafe fn item(&self) -> Retained<AnyObject>;
+        fn item(&self) -> Retained<AnyObject>;
 
         /// A string representing the name or title of the item to be shared
         #[optional]
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        unsafe fn title(&self) -> Option<Retained<NSString>>;
+        fn title(&self) -> Option<Retained<NSString>>;
 
         /// Provides an image appropriate to represent the item.
         ///
@@ -27,7 +27,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(imageProvider))]
         #[unsafe(method_family = none)]
-        unsafe fn imageProvider(&self) -> Option<Retained<NSItemProvider>>;
+        fn imageProvider(&self) -> Option<Retained<NSItemProvider>>;
 
         /// Provides an icon appropriate to represent the item.
         ///
@@ -36,7 +36,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(iconProvider))]
         #[unsafe(method_family = none)]
-        unsafe fn iconProvider(&self) -> Option<Retained<NSItemProvider>>;
+        fn iconProvider(&self) -> Option<Retained<NSItemProvider>>;
     }
 );
 

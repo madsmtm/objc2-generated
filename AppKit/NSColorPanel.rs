@@ -172,16 +172,16 @@ impl NSColorPanel {
     extern_methods!(
         #[unsafe(method(sharedColorPanel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedColorPanel(mtm: MainThreadMarker) -> Retained<NSColorPanel>;
+        pub fn sharedColorPanel(mtm: MainThreadMarker) -> Retained<NSColorPanel>;
 
         #[unsafe(method(sharedColorPanelExists))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedColorPanelExists(mtm: MainThreadMarker) -> bool;
+        pub fn sharedColorPanelExists(mtm: MainThreadMarker) -> bool;
 
         #[cfg(all(feature = "NSColor", feature = "NSEvent", feature = "NSView"))]
         #[unsafe(method(dragColor:withEvent:fromView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dragColor_withEvent_fromView(
+        pub fn dragColor_withEvent_fromView(
             color: &NSColor,
             event: &NSEvent,
             source_view: &NSView,
@@ -189,54 +189,54 @@ impl NSColorPanel {
 
         #[unsafe(method(setPickerMask:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPickerMask(mask: NSColorPanelOptions, mtm: MainThreadMarker);
+        pub fn setPickerMask(mask: NSColorPanelOptions, mtm: MainThreadMarker);
 
         #[unsafe(method(setPickerMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPickerMode(mode: NSColorPanelMode, mtm: MainThreadMarker);
+        pub fn setPickerMode(mode: NSColorPanelMode, mtm: MainThreadMarker);
 
         #[cfg(feature = "NSView")]
         #[unsafe(method(accessoryView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
+        pub fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
         /// Setter for [`accessoryView`][Self::accessoryView].
         #[unsafe(method(setAccessoryView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
+        pub fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[unsafe(method(isContinuous))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isContinuous(&self) -> bool;
+        pub fn isContinuous(&self) -> bool;
 
         /// Setter for [`isContinuous`][Self::isContinuous].
         #[unsafe(method(setContinuous:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContinuous(&self, continuous: bool);
+        pub fn setContinuous(&self, continuous: bool);
 
         #[unsafe(method(showsAlpha))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsAlpha(&self) -> bool;
+        pub fn showsAlpha(&self) -> bool;
 
         /// Setter for [`showsAlpha`][Self::showsAlpha].
         #[unsafe(method(setShowsAlpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsAlpha(&self, shows_alpha: bool);
+        pub fn setShowsAlpha(&self, shows_alpha: bool);
 
         #[unsafe(method(mode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mode(&self) -> NSColorPanelMode;
+        pub fn mode(&self) -> NSColorPanelMode;
 
         /// Setter for [`mode`][Self::mode].
         #[unsafe(method(setMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMode(&self, mode: NSColorPanelMode);
+        pub fn setMode(&self, mode: NSColorPanelMode);
 
         #[cfg(feature = "NSColor")]
         #[unsafe(method(color))]
         #[unsafe(method_family = none)]
-        pub unsafe fn color(&self) -> Retained<NSColor>;
+        pub fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`color`][Self::color].
@@ -244,12 +244,12 @@ impl NSColorPanel {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setColor(&self, color: &NSColor);
+        pub fn setColor(&self, color: &NSColor);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(alpha))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alpha(&self) -> CGFloat;
+        pub fn alpha(&self) -> CGFloat;
 
         /// # Safety
         ///
@@ -268,24 +268,24 @@ impl NSColorPanel {
         #[cfg(feature = "NSColorList")]
         #[unsafe(method(attachColorList:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachColorList(&self, color_list: &NSColorList);
+        pub fn attachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "NSColorList")]
         #[unsafe(method(detachColorList:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detachColorList(&self, color_list: &NSColorList);
+        pub fn detachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The maximum linear exposure that can be set on a color picked in the color panel. Defaults to 1 and ignores any value less than 1. If set to a value >= 2, the color picked by the panel may have a linear exposure applied to it.
         #[unsafe(method(maximumLinearExposure))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumLinearExposure(&self) -> CGFloat;
+        pub fn maximumLinearExposure(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumLinearExposure`][Self::maximumLinearExposure].
         #[unsafe(method(setMaximumLinearExposure:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
+        pub fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
     );
 }
 
@@ -327,7 +327,7 @@ impl NSColorPanel {
         /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
         #[unsafe(method(windowWithContentViewController:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowWithContentViewController(
+        pub fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
     );
@@ -339,7 +339,7 @@ impl NSColorPanel {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -349,7 +349,7 @@ impl NSColorPanel {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -372,7 +372,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
         #[unsafe(method(changeColor:))]
         #[unsafe(method_family = none)]
-        unsafe fn changeColor(&self, sender: Option<&NSColorPanel>);
+        fn changeColor(&self, sender: Option<&NSColorPanel>);
     }
 );
 

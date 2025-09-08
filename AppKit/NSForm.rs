@@ -140,63 +140,63 @@ impl NSForm {
     extern_methods!(
         #[unsafe(method(indexOfSelectedItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
+        pub fn indexOfSelectedItem(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setEntryWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEntryWidth(&self, width: CGFloat);
+        pub fn setEntryWidth(&self, width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setInterlineSpacing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInterlineSpacing(&self, spacing: CGFloat);
+        pub fn setInterlineSpacing(&self, spacing: CGFloat);
 
         #[unsafe(method(setBordered:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBordered(&self, flag: bool);
+        pub fn setBordered(&self, flag: bool);
 
         #[unsafe(method(setBezeled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBezeled(&self, flag: bool);
+        pub fn setBezeled(&self, flag: bool);
 
         #[cfg(feature = "NSText")]
         #[unsafe(method(setTitleAlignment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTitleAlignment(&self, mode: NSTextAlignment);
+        pub fn setTitleAlignment(&self, mode: NSTextAlignment);
 
         #[cfg(feature = "NSText")]
         #[unsafe(method(setTextAlignment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTextAlignment(&self, mode: NSTextAlignment);
+        pub fn setTextAlignment(&self, mode: NSTextAlignment);
 
         #[cfg(feature = "NSFont")]
         #[unsafe(method(setTitleFont:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTitleFont(&self, font_obj: &NSFont);
+        pub fn setTitleFont(&self, font_obj: &NSFont);
 
         #[cfg(feature = "NSFont")]
         #[unsafe(method(setTextFont:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTextFont(&self, font_obj: &NSFont);
+        pub fn setTextFont(&self, font_obj: &NSFont);
 
         #[unsafe(method(cellAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Option<Retained<AnyObject>>;
+        pub fn cellAtIndex(&self, index: NSInteger) -> Option<Retained<AnyObject>>;
 
         #[unsafe(method(drawCellAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawCellAtIndex(&self, index: NSInteger);
+        pub fn drawCellAtIndex(&self, index: NSInteger);
 
         #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSFormCell"))]
         #[unsafe(method(addEntry:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addEntry(&self, title: &NSString) -> Retained<NSFormCell>;
+        pub fn addEntry(&self, title: &NSString) -> Retained<NSFormCell>;
 
         #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSFormCell"))]
         #[unsafe(method(insertEntry:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertEntry_atIndex(
+        pub fn insertEntry_atIndex(
             &self,
             title: &NSString,
             index: NSInteger,
@@ -204,39 +204,39 @@ impl NSForm {
 
         #[unsafe(method(removeEntryAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeEntryAtIndex(&self, index: NSInteger);
+        pub fn removeEntryAtIndex(&self, index: NSInteger);
 
         #[unsafe(method(indexOfCellWithTag:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexOfCellWithTag(&self, tag: NSInteger) -> NSInteger;
+        pub fn indexOfCellWithTag(&self, tag: NSInteger) -> NSInteger;
 
         #[unsafe(method(selectTextAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectTextAtIndex(&self, index: NSInteger);
+        pub fn selectTextAtIndex(&self, index: NSInteger);
 
         #[unsafe(method(setFrameSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFrameSize(&self, new_size: NSSize);
+        pub fn setFrameSize(&self, new_size: NSSize);
 
         #[cfg(feature = "NSText")]
         #[unsafe(method(setTitleBaseWritingDirection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTitleBaseWritingDirection(&self, writing_direction: NSWritingDirection);
+        pub fn setTitleBaseWritingDirection(&self, writing_direction: NSWritingDirection);
 
         #[cfg(feature = "NSText")]
         #[unsafe(method(setTextBaseWritingDirection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTextBaseWritingDirection(&self, writing_direction: NSWritingDirection);
+        pub fn setTextBaseWritingDirection(&self, writing_direction: NSWritingDirection);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setPreferredTextFieldWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredTextFieldWidth(&self, preferred_width: CGFloat);
+        pub fn setPreferredTextFieldWidth(&self, preferred_width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(preferredTextFieldWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredTextFieldWidth(&self) -> CGFloat;
+        pub fn preferredTextFieldWidth(&self) -> CGFloat;
     );
 }
 
@@ -251,12 +251,12 @@ impl NSForm {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(initWithFrame:mode:prototype:numberOfRows:numberOfColumns:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
+        pub fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Allocated<Self>,
             frame_rect: NSRect,
             mode: NSMatrixMode,
@@ -313,7 +313,7 @@ impl NSForm {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -328,6 +328,6 @@ impl NSForm {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

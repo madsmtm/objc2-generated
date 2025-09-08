@@ -55,7 +55,7 @@ impl NSCachedImageRep {
         #[deprecated]
         #[unsafe(method(initWithSize:depth:separate:alpha:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSize_depth_separate_alpha(
+        pub fn initWithSize_depth_separate_alpha(
             this: Allocated<Self>,
             size: NSSize,
             depth: NSWindowDepth,
@@ -67,12 +67,12 @@ impl NSCachedImageRep {
         #[deprecated]
         #[unsafe(method(window))]
         #[unsafe(method_family = none)]
-        pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
+        pub fn window(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
 
         #[deprecated]
         #[unsafe(method(rect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rect(&self) -> NSRect;
+        pub fn rect(&self) -> NSRect;
     );
 }
 
@@ -82,7 +82,7 @@ impl NSCachedImageRep {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -102,6 +102,14 @@ impl NSCachedImageRep {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSImageRep")]
+impl DefaultRetained for NSCachedImageRep {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

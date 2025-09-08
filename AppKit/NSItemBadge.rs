@@ -32,7 +32,7 @@ impl NSItemBadge {
         /// Returns: A new NSItemBadge instance with the localized specified count.
         #[unsafe(method(badgeWithCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn badgeWithCount(count: NSInteger) -> Retained<NSItemBadge>;
+        pub fn badgeWithCount(count: NSInteger) -> Retained<NSItemBadge>;
 
         /// Creates a badge displaying a text.
         ///
@@ -42,7 +42,7 @@ impl NSItemBadge {
         /// Returns: A new `NSItemBadge` instance with the specified text.
         #[unsafe(method(badgeWithText:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn badgeWithText(text: &NSString) -> Retained<NSItemBadge>;
+        pub fn badgeWithText(text: &NSString) -> Retained<NSItemBadge>;
 
         /// Creates a badge styled as an indicator. In this context, an indicator is simply a badge without any text.
         ///
@@ -50,12 +50,12 @@ impl NSItemBadge {
         /// Returns: A new `NSItemBadge` instance styled as an indicator.
         #[unsafe(method(indicatorBadge))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indicatorBadge() -> Retained<NSItemBadge>;
+        pub fn indicatorBadge() -> Retained<NSItemBadge>;
 
         /// The text to be displayed within the badge.
         #[unsafe(method(text))]
         #[unsafe(method_family = none)]
-        pub unsafe fn text(&self) -> Retained<NSString>;
+        pub fn text(&self) -> Retained<NSString>;
     );
 }
 
@@ -64,10 +64,17 @@ impl NSItemBadge {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSItemBadge {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

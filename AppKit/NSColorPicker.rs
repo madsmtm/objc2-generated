@@ -34,7 +34,7 @@ impl NSColorPicker {
         ))]
         #[unsafe(method(initWithPickerMask:colorPanel:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithPickerMask_colorPanel(
+        pub fn initWithPickerMask_colorPanel(
             this: Allocated<Self>,
             mask: NSUInteger,
             owning_color_panel: &NSColorPanel,
@@ -48,12 +48,12 @@ impl NSColorPicker {
         ))]
         #[unsafe(method(colorPanel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorPanel(&self) -> Retained<NSColorPanel>;
+        pub fn colorPanel(&self) -> Retained<NSColorPanel>;
 
         #[cfg(feature = "NSImage")]
         #[unsafe(method(provideNewButtonImage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn provideNewButtonImage(&self) -> Retained<NSImage>;
+        pub fn provideNewButtonImage(&self) -> Retained<NSImage>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -63,7 +63,7 @@ impl NSColorPicker {
         ))]
         #[unsafe(method(insertNewButtonImage:in:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertNewButtonImage_in(
+        pub fn insertNewButtonImage_in(
             &self,
             new_button_image: &NSImage,
             button_cell: &NSButtonCell,
@@ -79,25 +79,25 @@ impl NSColorPicker {
         #[cfg(feature = "NSColorList")]
         #[unsafe(method(attachColorList:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachColorList(&self, color_list: &NSColorList);
+        pub fn attachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "NSColorList")]
         #[unsafe(method(detachColorList:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detachColorList(&self, color_list: &NSColorList);
+        pub fn detachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "NSColorPanel")]
         #[unsafe(method(setMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMode(&self, mode: NSColorPanelMode);
+        pub fn setMode(&self, mode: NSColorPanelMode);
 
         #[unsafe(method(buttonToolTip))]
         #[unsafe(method_family = none)]
-        pub unsafe fn buttonToolTip(&self) -> Retained<NSString>;
+        pub fn buttonToolTip(&self) -> Retained<NSString>;
 
         #[unsafe(method(minContentSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minContentSize(&self) -> NSSize;
+        pub fn minContentSize(&self) -> NSSize;
     );
 }
 
@@ -106,10 +106,10 @@ impl NSColorPicker {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

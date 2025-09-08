@@ -31,35 +31,35 @@ impl NSCustomTouchBarItem {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self) -> Retained<NSView>;
+        pub fn view(&self) -> Retained<NSView>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`view`][Self::view].
         #[unsafe(method(setView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setView(&self, view: &NSView);
+        pub fn setView(&self, view: &NSView);
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[unsafe(method(viewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewController(&self) -> Option<Retained<NSViewController>>;
+        pub fn viewController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         /// Setter for [`viewController`][Self::viewController].
         #[unsafe(method(setViewController:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setViewController(&self, view_controller: Option<&NSViewController>);
+        pub fn setViewController(&self, view_controller: Option<&NSViewController>);
 
         #[unsafe(method(customizationLabel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
+        pub fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizationLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
+        pub fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     );
 }
 
@@ -69,7 +69,7 @@ impl NSCustomTouchBarItem {
     extern_methods!(
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithIdentifier(
+        pub fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;

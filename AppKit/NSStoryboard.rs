@@ -32,18 +32,18 @@ impl NSStoryboard {
     extern_methods!(
         #[unsafe(method(mainStoryboard))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mainStoryboard() -> Option<Retained<NSStoryboard>>;
+        pub fn mainStoryboard() -> Option<Retained<NSStoryboard>>;
 
         #[unsafe(method(storyboardWithName:bundle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn storyboardWithName_bundle(
+        pub fn storyboardWithName_bundle(
             name: &NSStoryboardName,
             storyboard_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
         #[unsafe(method(instantiateInitialController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instantiateInitialController(&self) -> Option<Retained<AnyObject>>;
+        pub fn instantiateInitialController(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -58,7 +58,7 @@ impl NSStoryboard {
 
         #[unsafe(method(instantiateControllerWithIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instantiateControllerWithIdentifier(
+        pub fn instantiateControllerWithIdentifier(
             &self,
             identifier: &NSStoryboardSceneIdentifier,
         ) -> Retained<AnyObject>;
@@ -82,10 +82,17 @@ impl NSStoryboard {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSStoryboard {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

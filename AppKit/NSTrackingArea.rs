@@ -86,19 +86,19 @@ impl NSTrackingArea {
 
         #[unsafe(method(rect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rect(&self) -> NSRect;
+        pub fn rect(&self) -> NSRect;
 
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
-        pub unsafe fn options(&self) -> NSTrackingAreaOptions;
+        pub fn options(&self) -> NSTrackingAreaOptions;
 
         #[unsafe(method(owner))]
         #[unsafe(method_family = none)]
-        pub unsafe fn owner(&self) -> Option<Retained<AnyObject>>;
+        pub fn owner(&self) -> Option<Retained<AnyObject>>;
 
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary<AnyObject, AnyObject>>>;
+        pub fn userInfo(&self) -> Option<Retained<NSDictionary<AnyObject, AnyObject>>>;
     );
 }
 
@@ -107,10 +107,17 @@ impl NSTrackingArea {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSTrackingArea {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

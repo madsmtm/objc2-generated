@@ -84,7 +84,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(tokenField:representedObjectForEditingString:))]
         #[unsafe(method_family = none)]
-        unsafe fn tokenField_representedObjectForEditingString(
+        fn tokenField_representedObjectForEditingString(
             &self,
             token_field: &NSTokenField,
             editing_string: &NSString,
@@ -108,7 +108,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(tokenField:readFromPasteboard:))]
         #[unsafe(method_family = none)]
-        unsafe fn tokenField_readFromPasteboard(
+        fn tokenField_readFromPasteboard(
             &self,
             token_field: &NSTokenField,
             pboard: &NSPasteboard,
@@ -312,8 +312,7 @@ impl NSTokenField {
     extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(&self)
-            -> Option<Retained<ProtocolObject<dyn NSTokenFieldDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTokenFieldDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
@@ -328,46 +327,41 @@ impl NSTokenField {
         #[cfg(feature = "NSTokenFieldCell")]
         #[unsafe(method(tokenStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tokenStyle(&self) -> NSTokenStyle;
+        pub fn tokenStyle(&self) -> NSTokenStyle;
 
         #[cfg(feature = "NSTokenFieldCell")]
         /// Setter for [`tokenStyle`][Self::tokenStyle].
         #[unsafe(method(setTokenStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTokenStyle(&self, token_style: NSTokenStyle);
+        pub fn setTokenStyle(&self, token_style: NSTokenStyle);
 
         #[unsafe(method(completionDelay))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionDelay(&self) -> NSTimeInterval;
+        pub fn completionDelay(&self) -> NSTimeInterval;
 
         /// Setter for [`completionDelay`][Self::completionDelay].
         #[unsafe(method(setCompletionDelay:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCompletionDelay(&self, completion_delay: NSTimeInterval);
+        pub fn setCompletionDelay(&self, completion_delay: NSTimeInterval);
 
         #[unsafe(method(defaultCompletionDelay))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultCompletionDelay(mtm: MainThreadMarker) -> NSTimeInterval;
+        pub fn defaultCompletionDelay(mtm: MainThreadMarker) -> NSTimeInterval;
 
         #[unsafe(method(tokenizingCharacterSet))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tokenizingCharacterSet(&self) -> Retained<NSCharacterSet>;
+        pub fn tokenizingCharacterSet(&self) -> Retained<NSCharacterSet>;
 
         /// Setter for [`tokenizingCharacterSet`][Self::tokenizingCharacterSet].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTokenizingCharacterSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTokenizingCharacterSet(
-            &self,
-            tokenizing_character_set: Option<&NSCharacterSet>,
-        );
+        pub fn setTokenizingCharacterSet(&self, tokenizing_character_set: Option<&NSCharacterSet>);
 
         #[unsafe(method(defaultTokenizingCharacterSet))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultTokenizingCharacterSet(
-            mtm: MainThreadMarker,
-        ) -> Retained<NSCharacterSet>;
+        pub fn defaultTokenizingCharacterSet(mtm: MainThreadMarker) -> Retained<NSCharacterSet>;
     );
 }
 
@@ -382,7 +376,7 @@ impl NSTokenField {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -407,7 +401,7 @@ impl NSTokenField {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -422,6 +416,6 @@ impl NSTokenField {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

@@ -53,9 +53,7 @@ impl NSTabViewItem {
         /// Parameter `viewController`: The view controller to wrap, used to set the viewController property
         #[unsafe(method(tabViewItemWithViewController:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabViewItemWithViewController(
-            view_controller: &NSViewController,
-        ) -> Retained<Self>;
+        pub fn tabViewItemWithViewController(view_controller: &NSViewController) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -69,7 +67,7 @@ impl NSTabViewItem {
 
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Option<Retained<AnyObject>>;
+        pub fn identifier(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`identifier`][Self::identifier].
         ///
@@ -83,7 +81,7 @@ impl NSTabViewItem {
         #[cfg(feature = "NSColor")]
         #[unsafe(method(color))]
         #[unsafe(method_family = none)]
-        pub unsafe fn color(&self) -> Retained<NSColor>;
+        pub fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`color`][Self::color].
@@ -91,41 +89,41 @@ impl NSTabViewItem {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setColor(&self, color: &NSColor);
+        pub fn setColor(&self, color: &NSColor);
 
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Retained<NSString>;
+        pub fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: &NSString);
+        pub fn setLabel(&self, label: &NSString);
 
         #[cfg(feature = "NSImage")]
         /// Get and set the image for this tab view item. The image may only be used in certain tab view styles and options.  The default value is nil.
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
-        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
+        pub fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`image`][Self::image].
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImage(&self, image: Option<&NSImage>);
+        pub fn setImage(&self, image: Option<&NSImage>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
+        pub fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`view`][Self::view].
         #[unsafe(method(setView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setView(&self, view: Option<&NSView>);
+        pub fn setView(&self, view: Option<&NSView>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         /// The view controller wrapped by the tab view item. This property must be set if the tab view item will be added to an NSTabViewController, but can also be used if the tab view item is added to an NSTabView.
@@ -141,33 +139,27 @@ impl NSTabViewItem {
         /// -TabViewItem"], followed by imageName as NSStringFromClass([viewController class]).
         #[unsafe(method(viewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewController(
-            &self,
-            mtm: MainThreadMarker,
-        ) -> Option<Retained<NSViewController>>;
+        pub fn viewController(&self, mtm: MainThreadMarker) -> Option<Retained<NSViewController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         /// Setter for [`viewController`][Self::viewController].
         #[unsafe(method(setViewController:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setViewController(&self, view_controller: Option<&NSViewController>);
+        pub fn setViewController(&self, view_controller: Option<&NSViewController>);
 
         #[unsafe(method(tabState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabState(&self) -> NSTabState;
+        pub fn tabState(&self) -> NSTabState;
 
         #[cfg(all(feature = "NSResponder", feature = "NSTabView", feature = "NSView"))]
         #[unsafe(method(tabView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabView(&self, mtm: MainThreadMarker) -> Option<Retained<NSTabView>>;
+        pub fn tabView(&self, mtm: MainThreadMarker) -> Option<Retained<NSTabView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(initialFirstResponder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn initialFirstResponder(
-            &self,
-            mtm: MainThreadMarker,
-        ) -> Option<Retained<NSView>>;
+        pub fn initialFirstResponder(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`initialFirstResponder`][Self::initialFirstResponder].
@@ -175,26 +167,26 @@ impl NSTabViewItem {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setInitialFirstResponder:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
+        pub fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
         #[unsafe(method(toolTip))]
         #[unsafe(method_family = none)]
-        pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
+        pub fn toolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`toolTip`][Self::toolTip].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setToolTip:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
+        pub fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[unsafe(method(drawLabel:inRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawLabel_inRect(&self, should_truncate_label: bool, label_rect: NSRect);
+        pub fn drawLabel_inRect(&self, should_truncate_label: bool, label_rect: NSRect);
 
         #[unsafe(method(sizeOfLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sizeOfLabel(&self, compute_min: bool) -> NSSize;
+        pub fn sizeOfLabel(&self, compute_min: bool) -> NSSize;
     );
 }
 
@@ -203,10 +195,17 @@ impl NSTabViewItem {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSTabViewItem {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

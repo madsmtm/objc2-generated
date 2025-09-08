@@ -26,14 +26,12 @@ impl NSTextInputContext {
     extern_methods!(
         #[unsafe(method(currentInputContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentInputContext(
-            mtm: MainThreadMarker,
-        ) -> Option<Retained<NSTextInputContext>>;
+        pub fn currentInputContext(mtm: MainThreadMarker) -> Option<Retained<NSTextInputContext>>;
 
         #[cfg(feature = "NSTextInputClient")]
         #[unsafe(method(initWithClient:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithClient(
+        pub fn initWithClient(
             this: Allocated<Self>,
             client: &ProtocolObject<dyn NSTextInputClient>,
         ) -> Retained<Self>;
@@ -46,27 +44,27 @@ impl NSTextInputContext {
         /// ** Properties ****
         #[unsafe(method(client))]
         #[unsafe(method_family = none)]
-        pub unsafe fn client(&self) -> Retained<ProtocolObject<dyn NSTextInputClient>>;
+        pub fn client(&self) -> Retained<ProtocolObject<dyn NSTextInputClient>>;
 
         #[unsafe(method(acceptsGlyphInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn acceptsGlyphInfo(&self) -> bool;
+        pub fn acceptsGlyphInfo(&self) -> bool;
 
         /// Setter for [`acceptsGlyphInfo`][Self::acceptsGlyphInfo].
         #[unsafe(method(setAcceptsGlyphInfo:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAcceptsGlyphInfo(&self, accepts_glyph_info: bool);
+        pub fn setAcceptsGlyphInfo(&self, accepts_glyph_info: bool);
 
         #[unsafe(method(allowedInputSourceLocales))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowedInputSourceLocales(&self) -> Option<Retained<NSArray<NSString>>>;
+        pub fn allowedInputSourceLocales(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`allowedInputSourceLocales`][Self::allowedInputSourceLocales].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAllowedInputSourceLocales:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowedInputSourceLocales(
+        pub fn setAllowedInputSourceLocales(
             &self,
             allowed_input_source_locales: Option<&NSArray<NSString>>,
         );
@@ -74,17 +72,17 @@ impl NSTextInputContext {
         /// ** Activation ****
         #[unsafe(method(activate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activate(&self);
+        pub fn activate(&self);
 
         #[unsafe(method(deactivate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deactivate(&self);
+        pub fn deactivate(&self);
 
         #[cfg(feature = "NSEvent")]
         /// ** Input source interface ***
         #[unsafe(method(handleEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handleEvent(&self, event: &NSEvent) -> bool;
+        pub fn handleEvent(&self, event: &NSEvent) -> bool;
 
         #[unsafe(method(discardMarkedText))]
         #[unsafe(method_family = none)]
@@ -96,24 +94,24 @@ impl NSTextInputContext {
 
         #[unsafe(method(textInputClientWillStartScrollingOrZooming))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textInputClientWillStartScrollingOrZooming(&self);
+        pub fn textInputClientWillStartScrollingOrZooming(&self);
 
         #[unsafe(method(textInputClientDidEndScrollingOrZooming))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textInputClientDidEndScrollingOrZooming(&self);
+        pub fn textInputClientDidEndScrollingOrZooming(&self);
 
         #[unsafe(method(textInputClientDidUpdateSelection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textInputClientDidUpdateSelection(&self);
+        pub fn textInputClientDidUpdateSelection(&self);
 
         #[unsafe(method(textInputClientDidScroll))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textInputClientDidScroll(&self);
+        pub fn textInputClientDidScroll(&self);
 
         /// ** Text Input sources handling ***
         #[unsafe(method(keyboardInputSources))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyboardInputSources(
+        pub fn keyboardInputSources(
             &self,
         ) -> Option<Retained<NSArray<NSTextInputSourceIdentifier>>>;
 
@@ -126,7 +124,7 @@ impl NSTextInputContext {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedKeyboardInputSource:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectedKeyboardInputSource(
+        pub fn setSelectedKeyboardInputSource(
             &self,
             selected_keyboard_input_source: Option<&NSTextInputSourceIdentifier>,
         );
@@ -134,7 +132,7 @@ impl NSTextInputContext {
         /// ** Text Input source attributes ***
         #[unsafe(method(localizedNameForInputSource:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedNameForInputSource(
+        pub fn localizedNameForInputSource(
             input_source_identifier: &NSTextInputSourceIdentifier,
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSString>>;

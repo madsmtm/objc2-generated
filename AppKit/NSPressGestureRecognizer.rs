@@ -32,41 +32,41 @@ impl NSPressGestureRecognizer {
     extern_methods!(
         #[unsafe(method(buttonMask))]
         #[unsafe(method_family = none)]
-        pub unsafe fn buttonMask(&self) -> NSUInteger;
+        pub fn buttonMask(&self) -> NSUInteger;
 
         /// Setter for [`buttonMask`][Self::buttonMask].
         #[unsafe(method(setButtonMask:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setButtonMask(&self, button_mask: NSUInteger);
+        pub fn setButtonMask(&self, button_mask: NSUInteger);
 
         #[unsafe(method(minimumPressDuration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumPressDuration(&self) -> NSTimeInterval;
+        pub fn minimumPressDuration(&self) -> NSTimeInterval;
 
         /// Setter for [`minimumPressDuration`][Self::minimumPressDuration].
         #[unsafe(method(setMinimumPressDuration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumPressDuration(&self, minimum_press_duration: NSTimeInterval);
+        pub fn setMinimumPressDuration(&self, minimum_press_duration: NSTimeInterval);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(allowableMovement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowableMovement(&self) -> CGFloat;
+        pub fn allowableMovement(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`allowableMovement`][Self::allowableMovement].
         #[unsafe(method(setAllowableMovement:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowableMovement(&self, allowable_movement: CGFloat);
+        pub fn setAllowableMovement(&self, allowable_movement: CGFloat);
 
         #[unsafe(method(numberOfTouchesRequired))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfTouchesRequired(&self) -> NSInteger;
+        pub fn numberOfTouchesRequired(&self) -> NSInteger;
 
         /// Setter for [`numberOfTouchesRequired`][Self::numberOfTouchesRequired].
         #[unsafe(method(setNumberOfTouchesRequired:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSInteger);
+        pub fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSInteger);
     );
 }
 
@@ -104,10 +104,10 @@ impl NSPressGestureRecognizer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

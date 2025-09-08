@@ -74,7 +74,7 @@ impl NSFont {
         /// ******* Factory ********
         #[unsafe(method(fontWithName:size:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontWithName_size(
+        pub fn fontWithName_size(
             font_name: &NSString,
             font_size: CGFloat,
         ) -> Option<Retained<NSFont>>;
@@ -93,7 +93,7 @@ impl NSFont {
         #[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
         #[unsafe(method(fontWithDescriptor:size:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontWithDescriptor_size(
+        pub fn fontWithDescriptor_size(
             font_descriptor: &NSFontDescriptor,
             font_size: CGFloat,
         ) -> Option<Retained<NSFont>>;
@@ -101,7 +101,7 @@ impl NSFont {
         #[cfg(feature = "NSFontDescriptor")]
         #[unsafe(method(fontWithDescriptor:textTransform:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontWithDescriptor_textTransform(
+        pub fn fontWithDescriptor_textTransform(
             font_descriptor: &NSFontDescriptor,
             text_transform: Option<&NSAffineTransform>,
         ) -> Option<Retained<NSFont>>;
@@ -110,75 +110,75 @@ impl NSFont {
         /// ******* Meta Font ********
         #[unsafe(method(userFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userFontOfSize(font_size: CGFloat) -> Option<Retained<NSFont>>;
+        pub fn userFontOfSize(font_size: CGFloat) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(userFixedPitchFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userFixedPitchFontOfSize(font_size: CGFloat) -> Option<Retained<NSFont>>;
+        pub fn userFixedPitchFontOfSize(font_size: CGFloat) -> Option<Retained<NSFont>>;
 
         #[unsafe(method(setUserFont:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUserFont(font: Option<&NSFont>);
+        pub fn setUserFont(font: Option<&NSFont>);
 
         #[unsafe(method(setUserFixedPitchFont:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUserFixedPitchFont(font: Option<&NSFont>);
+        pub fn setUserFixedPitchFont(font: Option<&NSFont>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(systemFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
+        pub fn systemFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(boldSystemFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boldSystemFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
+        pub fn boldSystemFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(labelFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn labelFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
+        pub fn labelFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(titleBarFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn titleBarFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
+        pub fn titleBarFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(menuFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn menuFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
+        pub fn menuFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(menuBarFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn menuBarFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
+        pub fn menuBarFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(messageFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn messageFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
+        pub fn messageFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(paletteFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn paletteFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
+        pub fn paletteFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(toolTipsFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn toolTipsFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
+        pub fn toolTipsFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(controlContentFontOfSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlContentFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
+        pub fn controlContentFontOfSize(font_size: CGFloat) -> Retained<NSFont>;
 
         #[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
         #[unsafe(method(systemFontOfSize:weight:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemFontOfSize_weight(
+        pub fn systemFontOfSize_weight(
             font_size: CGFloat,
             weight: NSFontWeight,
         ) -> Retained<NSFont>;
@@ -186,7 +186,7 @@ impl NSFont {
         #[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
         #[unsafe(method(monospacedDigitSystemFontOfSize:weight:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn monospacedDigitSystemFontOfSize_weight(
+        pub fn monospacedDigitSystemFontOfSize_weight(
             font_size: CGFloat,
             weight: NSFontWeight,
         ) -> Retained<NSFont>;
@@ -194,7 +194,7 @@ impl NSFont {
         #[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
         #[unsafe(method(systemFontOfSize:weight:width:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemFontOfSize_weight_width(
+        pub fn systemFontOfSize_weight_width(
             font_size: CGFloat,
             weight: NSFontWeight,
             width: NSFontWidth,
@@ -203,7 +203,7 @@ impl NSFont {
         #[cfg(all(feature = "NSFontDescriptor", feature = "objc2-core-foundation"))]
         #[unsafe(method(monospacedSystemFontOfSize:weight:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn monospacedSystemFontOfSize_weight(
+        pub fn monospacedSystemFontOfSize_weight(
             font_size: CGFloat,
             weight: NSFontWeight,
         ) -> Retained<NSFont>;
@@ -211,124 +211,124 @@ impl NSFont {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(fontWithSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontWithSize(&self, font_size: CGFloat) -> Retained<NSFont>;
+        pub fn fontWithSize(&self, font_size: CGFloat) -> Retained<NSFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(systemFontSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemFontSize() -> CGFloat;
+        pub fn systemFontSize() -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(smallSystemFontSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn smallSystemFontSize() -> CGFloat;
+        pub fn smallSystemFontSize() -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(labelFontSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn labelFontSize() -> CGFloat;
+        pub fn labelFontSize() -> CGFloat;
 
         #[cfg(all(feature = "NSCell", feature = "objc2-core-foundation"))]
         #[unsafe(method(systemFontSizeForControlSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemFontSizeForControlSize(control_size: NSControlSize) -> CGFloat;
+        pub fn systemFontSizeForControlSize(control_size: NSControlSize) -> CGFloat;
 
         /// ******* Core font attribute ********
         #[unsafe(method(fontName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontName(&self) -> Retained<NSString>;
+        pub fn fontName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(pointSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pointSize(&self) -> CGFloat;
+        pub fn pointSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(matrix))]
         #[unsafe(method_family = none)]
-        pub unsafe fn matrix(&self) -> NonNull<CGFloat>;
+        pub fn matrix(&self) -> NonNull<CGFloat>;
 
         #[unsafe(method(familyName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn familyName(&self) -> Option<Retained<NSString>>;
+        pub fn familyName(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
+        pub fn displayName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSFontDescriptor")]
         #[unsafe(method(fontDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontDescriptor(&self) -> Retained<NSFontDescriptor>;
+        pub fn fontDescriptor(&self) -> Retained<NSFontDescriptor>;
 
         #[unsafe(method(textTransform))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textTransform(&self) -> Retained<NSAffineTransform>;
+        pub fn textTransform(&self) -> Retained<NSAffineTransform>;
 
         /// ******* Glyph coverage ********
         #[unsafe(method(numberOfGlyphs))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfGlyphs(&self) -> NSUInteger;
+        pub fn numberOfGlyphs(&self) -> NSUInteger;
 
         #[unsafe(method(mostCompatibleStringEncoding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mostCompatibleStringEncoding(&self) -> NSStringEncoding;
+        pub fn mostCompatibleStringEncoding(&self) -> NSStringEncoding;
 
         #[unsafe(method(coveredCharacterSet))]
         #[unsafe(method_family = none)]
-        pub unsafe fn coveredCharacterSet(&self) -> Retained<NSCharacterSet>;
+        pub fn coveredCharacterSet(&self) -> Retained<NSCharacterSet>;
 
         #[unsafe(method(boundingRectForFont))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundingRectForFont(&self) -> NSRect;
+        pub fn boundingRectForFont(&self) -> NSRect;
 
         #[unsafe(method(maximumAdvancement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumAdvancement(&self) -> NSSize;
+        pub fn maximumAdvancement(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(ascender))]
         #[unsafe(method_family = none)]
-        pub unsafe fn ascender(&self) -> CGFloat;
+        pub fn ascender(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(descender))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descender(&self) -> CGFloat;
+        pub fn descender(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(leading))]
         #[unsafe(method_family = none)]
-        pub unsafe fn leading(&self) -> CGFloat;
+        pub fn leading(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(underlinePosition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn underlinePosition(&self) -> CGFloat;
+        pub fn underlinePosition(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(underlineThickness))]
         #[unsafe(method_family = none)]
-        pub unsafe fn underlineThickness(&self) -> CGFloat;
+        pub fn underlineThickness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(italicAngle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn italicAngle(&self) -> CGFloat;
+        pub fn italicAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(capHeight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn capHeight(&self) -> CGFloat;
+        pub fn capHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(xHeight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn xHeight(&self) -> CGFloat;
+        pub fn xHeight(&self) -> CGFloat;
 
         #[unsafe(method(isFixedPitch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFixedPitch(&self) -> bool;
+        pub fn isFixedPitch(&self) -> bool;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
@@ -337,13 +337,13 @@ impl NSFont {
         /// ******* Glyph metrics ********
         #[unsafe(method(boundingRectForCGGlyph:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundingRectForCGGlyph(&self, glyph: CGGlyph) -> NSRect;
+        pub fn boundingRectForCGGlyph(&self, glyph: CGGlyph) -> NSRect;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(advancementForCGGlyph:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn advancementForCGGlyph(&self, glyph: CGGlyph) -> NSSize;
+        pub fn advancementForCGGlyph(&self, glyph: CGGlyph) -> NSSize;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
@@ -378,21 +378,21 @@ impl NSFont {
         /// ******* NSGraphicsContext-related ********
         #[unsafe(method(set))]
         #[unsafe(method_family = none)]
-        pub unsafe fn set(&self);
+        pub fn set(&self);
 
         #[cfg(feature = "NSGraphicsContext")]
         #[unsafe(method(setInContext:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInContext(&self, graphics_context: &NSGraphicsContext);
+        pub fn setInContext(&self, graphics_context: &NSGraphicsContext);
 
         /// ******* Vertical mode ********
         #[unsafe(method(verticalFont))]
         #[unsafe(method_family = none)]
-        pub unsafe fn verticalFont(&self) -> Retained<NSFont>;
+        pub fn verticalFont(&self) -> Retained<NSFont>;
 
         #[unsafe(method(isVertical))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isVertical(&self) -> bool;
+        pub fn isVertical(&self) -> bool;
     );
 }
 
@@ -401,12 +401,19 @@ impl NSFont {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSFont {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {
@@ -496,15 +503,15 @@ impl NSFont {
     extern_methods!(
         #[unsafe(method(glyphWithName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn glyphWithName(&self, name: &NSString) -> NSGlyph;
+        pub fn glyphWithName(&self, name: &NSString) -> NSGlyph;
 
         #[unsafe(method(boundingRectForGlyph:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundingRectForGlyph(&self, glyph: NSGlyph) -> NSRect;
+        pub fn boundingRectForGlyph(&self, glyph: NSGlyph) -> NSRect;
 
         #[unsafe(method(advancementForGlyph:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn advancementForGlyph(&self, glyph: NSGlyph) -> NSSize;
+        pub fn advancementForGlyph(&self, glyph: NSGlyph) -> NSSize;
 
         /// # Safety
         ///
@@ -548,22 +555,22 @@ impl NSFont {
         /// ******* Rendering mode ********
         #[unsafe(method(printerFont))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printerFont(&self) -> Retained<NSFont>;
+        pub fn printerFont(&self) -> Retained<NSFont>;
 
         #[unsafe(method(screenFont))]
         #[unsafe(method_family = none)]
-        pub unsafe fn screenFont(&self) -> Retained<NSFont>;
+        pub fn screenFont(&self) -> Retained<NSFont>;
 
         #[unsafe(method(screenFontWithRenderingMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn screenFontWithRenderingMode(
+        pub fn screenFontWithRenderingMode(
             &self,
             rendering_mode: NSFontRenderingMode,
         ) -> Retained<NSFont>;
 
         #[unsafe(method(renderingMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn renderingMode(&self) -> NSFontRenderingMode;
+        pub fn renderingMode(&self) -> NSFontRenderingMode;
     );
 }
 

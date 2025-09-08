@@ -11,10 +11,7 @@ extern_protocol!(
     pub unsafe trait NSTextLocation: NSObjectProtocol {
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
-        unsafe fn compare(
-            &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> NSComparisonResult;
+        fn compare(&self, location: &ProtocolObject<dyn NSTextLocation>) -> NSComparisonResult;
     }
 );
 
@@ -53,7 +50,7 @@ impl NSTextRange {
         /// - endLocation: The ending location.
         #[unsafe(method(initWithLocation:endLocation:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLocation_endLocation(
+        pub fn initWithLocation_endLocation(
             this: Allocated<Self>,
             location: &ProtocolObject<dyn NSTextLocation>,
             end_location: Option<&ProtocolObject<dyn NSTextLocation>>,
@@ -65,7 +62,7 @@ impl NSTextRange {
         /// - location: An ``NSTextLocation``.
         #[unsafe(method(initWithLocation:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLocation(
+        pub fn initWithLocation(
             this: Allocated<Self>,
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Retained<Self>;
@@ -81,17 +78,17 @@ impl NSTextRange {
         /// Returns whether the text range is empty.
         #[unsafe(method(isEmpty))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEmpty(&self) -> bool;
+        pub fn isEmpty(&self) -> bool;
 
         /// The starting location of the text range.
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
-        pub unsafe fn location(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
+        pub fn location(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
 
         /// The ending location of the text range.
         #[unsafe(method(endLocation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endLocation(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
+        pub fn endLocation(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
 
         /// Compares two text ranges.
         ///
@@ -101,7 +98,7 @@ impl NSTextRange {
         /// - Returns: Returns `true` if the ranges are equal.
         #[unsafe(method(isEqualToTextRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEqualToTextRange(&self, text_range: &NSTextRange) -> bool;
+        pub fn isEqualToTextRange(&self, text_range: &NSTextRange) -> bool;
 
         /// Determines if the text location you specify is in the current text range.
         ///
@@ -111,10 +108,7 @@ impl NSTextRange {
         /// - Returns: Returns `true` if the location is in the range otherwise `false` .
         #[unsafe(method(containsLocation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containsLocation(
-            &self,
-            location: &ProtocolObject<dyn NSTextLocation>,
-        ) -> bool;
+        pub fn containsLocation(&self, location: &ProtocolObject<dyn NSTextLocation>) -> bool;
 
         /// Determines if the text range you specify is in the current text range.
         ///
@@ -124,7 +118,7 @@ impl NSTextRange {
         /// - Returns: Returns `true` if the range you provide is in the current range; otherwise `false`.
         #[unsafe(method(containsRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containsRange(&self, text_range: &NSTextRange) -> bool;
+        pub fn containsRange(&self, text_range: &NSTextRange) -> bool;
 
         /// Determines if two ranges intersect.
         ///
@@ -134,7 +128,7 @@ impl NSTextRange {
         /// - Returns: Returns `true` if the ranges intersect.
         #[unsafe(method(intersectsWithTextRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intersectsWithTextRange(&self, text_range: &NSTextRange) -> bool;
+        pub fn intersectsWithTextRange(&self, text_range: &NSTextRange) -> bool;
 
         /// Returns the range, if any, where two text ranges intersect.
         ///
@@ -148,7 +142,7 @@ impl NSTextRange {
         /// intersect.
         #[unsafe(method(textRangeByIntersectingWithTextRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textRangeByIntersectingWithTextRange(
+        pub fn textRangeByIntersectingWithTextRange(
             &self,
             text_range: &NSTextRange,
         ) -> Option<Retained<Self>>;
@@ -161,7 +155,7 @@ impl NSTextRange {
         /// - Returns: An ``NSTextRange`` that represent the union of the two ranges.
         #[unsafe(method(textRangeByFormingUnionWithTextRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textRangeByFormingUnionWithTextRange(
+        pub fn textRangeByFormingUnionWithTextRange(
             &self,
             text_range: &NSTextRange,
         ) -> Retained<Self>;

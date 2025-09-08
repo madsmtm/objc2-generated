@@ -75,12 +75,12 @@ impl NSWindow {
     extern_methods!(
         #[unsafe(method(isRestorable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isRestorable(&self) -> bool;
+        pub fn isRestorable(&self) -> bool;
 
         /// Setter for [`isRestorable`][Self::isRestorable].
         #[unsafe(method(setRestorable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRestorable(&self, restorable: bool);
+        pub fn setRestorable(&self, restorable: bool);
 
         /// # Safety
         ///
@@ -101,11 +101,11 @@ impl NSWindow {
 
         #[unsafe(method(disableSnapshotRestoration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn disableSnapshotRestoration(&self);
+        pub fn disableSnapshotRestoration(&self);
 
         #[unsafe(method(enableSnapshotRestoration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enableSnapshotRestoration(&self);
+        pub fn enableSnapshotRestoration(&self);
     );
 }
 
@@ -141,17 +141,16 @@ impl NSResponder {
 
         #[unsafe(method(invalidateRestorableState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidateRestorableState(&self);
+        pub fn invalidateRestorableState(&self);
 
         #[unsafe(method(restorableStateKeyPaths))]
         #[unsafe(method_family = none)]
-        pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker)
-            -> Retained<NSArray<NSString>>;
+        pub fn restorableStateKeyPaths(mtm: MainThreadMarker) -> Retained<NSArray<NSString>>;
 
         /// When secure state restoration is used, values at restorableStateKeyPaths must support NSSecureCoding and this method will be consulted when restoring state. Any values not of an allowed class will not be set.
         #[unsafe(method(allowedClassesForRestorableStateKeyPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowedClassesForRestorableStateKeyPath(
+        pub fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<NSArray<AnyClass>>;
@@ -164,11 +163,11 @@ impl NSApplication {
     extern_methods!(
         #[unsafe(method(extendStateRestoration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn extendStateRestoration(&self);
+        pub fn extendStateRestoration(&self);
 
         #[unsafe(method(completeStateRestoration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completeStateRestoration(&self);
+        pub fn completeStateRestoration(&self);
     );
 }
 
@@ -222,16 +221,15 @@ impl NSDocument {
 
         #[unsafe(method(invalidateRestorableState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidateRestorableState(&self);
+        pub fn invalidateRestorableState(&self);
 
         #[unsafe(method(restorableStateKeyPaths))]
         #[unsafe(method_family = none)]
-        pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker)
-            -> Retained<NSArray<NSString>>;
+        pub fn restorableStateKeyPaths(mtm: MainThreadMarker) -> Retained<NSArray<NSString>>;
 
         #[unsafe(method(allowedClassesForRestorableStateKeyPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowedClassesForRestorableStateKeyPath(
+        pub fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<NSArray<AnyClass>>;

@@ -64,40 +64,40 @@ impl NSPrinter {
     extern_methods!(
         #[unsafe(method(printerNames))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printerNames() -> Retained<NSArray<NSString>>;
+        pub fn printerNames() -> Retained<NSArray<NSString>>;
 
         #[unsafe(method(printerTypes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printerTypes() -> Retained<NSArray<NSPrinterTypeName>>;
+        pub fn printerTypes() -> Retained<NSArray<NSPrinterTypeName>>;
 
         #[unsafe(method(printerWithName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printerWithName(name: &NSString) -> Option<Retained<NSPrinter>>;
+        pub fn printerWithName(name: &NSString) -> Option<Retained<NSPrinter>>;
 
         #[unsafe(method(printerWithType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printerWithType(r#type: &NSPrinterTypeName) -> Option<Retained<NSPrinter>>;
+        pub fn printerWithType(r#type: &NSPrinterTypeName) -> Option<Retained<NSPrinter>>;
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSString>;
+        pub fn name(&self) -> Retained<NSString>;
 
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> Retained<NSPrinterTypeName>;
+        pub fn r#type(&self) -> Retained<NSPrinterTypeName>;
 
         #[unsafe(method(languageLevel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn languageLevel(&self) -> NSInteger;
+        pub fn languageLevel(&self) -> NSInteger;
 
         #[unsafe(method(pageSizeForPaper:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pageSizeForPaper(&self, paper_name: &NSPrinterPaperName) -> NSSize;
+        pub fn pageSizeForPaper(&self, paper_name: &NSPrinterPaperName) -> NSSize;
 
         #[cfg(feature = "NSGraphics")]
         #[unsafe(method(deviceDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deviceDescription(
+        pub fn deviceDescription(
             &self,
         ) -> Retained<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
     );
@@ -108,12 +108,19 @@ impl NSPrinter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSPrinter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSDeprecated.
@@ -122,52 +129,42 @@ impl NSPrinter {
         #[deprecated]
         #[unsafe(method(statusForTable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn statusForTable(&self, table_name: &NSString) -> NSPrinterTableStatus;
+        pub fn statusForTable(&self, table_name: &NSString) -> NSPrinterTableStatus;
 
         #[deprecated]
         #[unsafe(method(isKey:inTable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> bool;
+        pub fn isKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> bool;
 
         #[deprecated]
         #[unsafe(method(booleanForKey:inTable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn booleanForKey_inTable(
-            &self,
-            key: Option<&NSString>,
-            table: &NSString,
-        ) -> bool;
+        pub fn booleanForKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> bool;
 
         #[deprecated]
         #[unsafe(method(floatForKey:inTable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn floatForKey_inTable(
-            &self,
-            key: Option<&NSString>,
-            table: &NSString,
-        ) -> c_float;
+        pub fn floatForKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> c_float;
 
         #[deprecated]
         #[unsafe(method(intForKey:inTable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intForKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> c_int;
+        pub fn intForKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> c_int;
 
         #[deprecated]
         #[unsafe(method(rectForKey:inTable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rectForKey_inTable(&self, key: Option<&NSString>, table: &NSString)
-            -> NSRect;
+        pub fn rectForKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> NSRect;
 
         #[deprecated]
         #[unsafe(method(sizeForKey:inTable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sizeForKey_inTable(&self, key: Option<&NSString>, table: &NSString)
-            -> NSSize;
+        pub fn sizeForKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> NSSize;
 
         #[deprecated]
         #[unsafe(method(stringForKey:inTable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringForKey_inTable(
+        pub fn stringForKey_inTable(
             &self,
             key: Option<&NSString>,
             table: &NSString,
@@ -176,7 +173,7 @@ impl NSPrinter {
         #[deprecated]
         #[unsafe(method(stringListForKey:inTable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringListForKey_inTable(
+        pub fn stringListForKey_inTable(
             &self,
             key: Option<&NSString>,
             table: &NSString,
@@ -185,32 +182,32 @@ impl NSPrinter {
         #[deprecated]
         #[unsafe(method(imageRectForPaper:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageRectForPaper(&self, paper_name: Option<&NSString>) -> NSRect;
+        pub fn imageRectForPaper(&self, paper_name: Option<&NSString>) -> NSRect;
 
         #[deprecated]
         #[unsafe(method(acceptsBinary))]
         #[unsafe(method_family = none)]
-        pub unsafe fn acceptsBinary(&self) -> bool;
+        pub fn acceptsBinary(&self) -> bool;
 
         #[deprecated]
         #[unsafe(method(isColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isColor(&self) -> bool;
+        pub fn isColor(&self) -> bool;
 
         #[deprecated]
         #[unsafe(method(isFontAvailable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFontAvailable(&self, face_name: Option<&NSString>) -> bool;
+        pub fn isFontAvailable(&self, face_name: Option<&NSString>) -> bool;
 
         #[deprecated]
         #[unsafe(method(isOutputStackInReverseOrder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isOutputStackInReverseOrder(&self) -> bool;
+        pub fn isOutputStackInReverseOrder(&self) -> bool;
 
         #[deprecated]
         #[unsafe(method(printerWithName:domain:includeUnavailable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printerWithName_domain_includeUnavailable(
+        pub fn printerWithName_domain_includeUnavailable(
             name: &NSString,
             domain: Option<&NSString>,
             flag: bool,
@@ -219,16 +216,16 @@ impl NSPrinter {
         #[deprecated]
         #[unsafe(method(domain))]
         #[unsafe(method_family = none)]
-        pub unsafe fn domain(&self) -> Retained<NSString>;
+        pub fn domain(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[unsafe(method(host))]
         #[unsafe(method_family = none)]
-        pub unsafe fn host(&self) -> Retained<NSString>;
+        pub fn host(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[unsafe(method(note))]
         #[unsafe(method_family = none)]
-        pub unsafe fn note(&self) -> Retained<NSString>;
+        pub fn note(&self) -> Retained<NSString>;
     );
 }

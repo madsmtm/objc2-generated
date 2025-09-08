@@ -33,7 +33,7 @@ extern_protocol!(
 
         #[unsafe(method(setIntAttribute:value:forGlyphAtIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn setIntAttribute_value_forGlyphAtIndex(
+        fn setIntAttribute_value_forGlyphAtIndex(
             &self,
             attribute_tag: NSInteger,
             val: NSInteger,
@@ -42,11 +42,11 @@ extern_protocol!(
 
         #[unsafe(method(attributedString))]
         #[unsafe(method_family = none)]
-        unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
+        fn attributedString(&self) -> Retained<NSAttributedString>;
 
         #[unsafe(method(layoutOptions))]
         #[unsafe(method_family = none)]
-        unsafe fn layoutOptions(&self) -> NSUInteger;
+        fn layoutOptions(&self) -> NSUInteger;
     }
 );
 
@@ -79,7 +79,7 @@ impl NSGlyphGenerator {
 
         #[unsafe(method(sharedGlyphGenerator))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedGlyphGenerator() -> Retained<NSGlyphGenerator>;
+        pub fn sharedGlyphGenerator() -> Retained<NSGlyphGenerator>;
     );
 }
 
@@ -88,10 +88,17 @@ impl NSGlyphGenerator {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSGlyphGenerator {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

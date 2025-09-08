@@ -26,7 +26,7 @@ impl NSNibConnector {
     extern_methods!(
         #[unsafe(method(source))]
         #[unsafe(method_family = none)]
-        pub unsafe fn source(&self) -> Option<Retained<AnyObject>>;
+        pub fn source(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`source`][Self::source].
         ///
@@ -41,7 +41,7 @@ impl NSNibConnector {
 
         #[unsafe(method(destination))]
         #[unsafe(method_family = none)]
-        pub unsafe fn destination(&self) -> Option<Retained<AnyObject>>;
+        pub fn destination(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`destination`][Self::destination].
         ///
@@ -56,14 +56,14 @@ impl NSNibConnector {
 
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Retained<NSString>;
+        pub fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: &NSString);
+        pub fn setLabel(&self, label: &NSString);
 
         /// # Safety
         ///
@@ -79,7 +79,7 @@ impl NSNibConnector {
 
         #[unsafe(method(establishConnection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn establishConnection(&self);
+        pub fn establishConnection(&self);
     );
 }
 
@@ -88,10 +88,17 @@ impl NSNibConnector {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSNibConnector {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

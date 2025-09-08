@@ -39,22 +39,19 @@ impl NSPICTImageRep {
     extern_methods!(
         #[unsafe(method(imageRepWithData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageRepWithData(pict_data: &NSData) -> Option<Retained<Self>>;
+        pub fn imageRepWithData(pict_data: &NSData) -> Option<Retained<Self>>;
 
         #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithData(
-            this: Allocated<Self>,
-            pict_data: &NSData,
-        ) -> Option<Retained<Self>>;
+        pub fn initWithData(this: Allocated<Self>, pict_data: &NSData) -> Option<Retained<Self>>;
 
         #[unsafe(method(PICTRepresentation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PICTRepresentation(&self) -> Retained<NSData>;
+        pub fn PICTRepresentation(&self) -> Retained<NSData>;
 
         #[unsafe(method(boundingBox))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundingBox(&self) -> NSRect;
+        pub fn boundingBox(&self) -> NSRect;
     );
 }
 
@@ -64,7 +61,7 @@ impl NSPICTImageRep {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -84,6 +81,14 @@ impl NSPICTImageRep {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSImageRep")]
+impl DefaultRetained for NSPICTImageRep {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

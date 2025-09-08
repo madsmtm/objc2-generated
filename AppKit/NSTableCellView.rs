@@ -72,7 +72,7 @@ impl NSTableCellView {
     extern_methods!(
         #[unsafe(method(objectValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
+        pub fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectValue`][Self::objectValue].
         ///
@@ -122,30 +122,29 @@ impl NSTableCellView {
         #[cfg(feature = "NSCell")]
         #[unsafe(method(backgroundStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundStyle(&self) -> NSBackgroundStyle;
+        pub fn backgroundStyle(&self) -> NSBackgroundStyle;
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`backgroundStyle`][Self::backgroundStyle].
         #[unsafe(method(setBackgroundStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundStyle(&self, background_style: NSBackgroundStyle);
+        pub fn setBackgroundStyle(&self, background_style: NSBackgroundStyle);
 
         #[cfg(feature = "NSTableView")]
         #[unsafe(method(rowSizeStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
+        pub fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
 
         #[cfg(feature = "NSTableView")]
         /// Setter for [`rowSizeStyle`][Self::rowSizeStyle].
         #[unsafe(method(setRowSizeStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRowSizeStyle(&self, row_size_style: NSTableViewRowSizeStyle);
+        pub fn setRowSizeStyle(&self, row_size_style: NSTableViewRowSizeStyle);
 
         #[cfg(feature = "NSDraggingItem")]
         #[unsafe(method(draggingImageComponents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn draggingImageComponents(&self)
-            -> Retained<NSArray<NSDraggingImageComponent>>;
+        pub fn draggingImageComponents(&self) -> Retained<NSArray<NSDraggingImageComponent>>;
     );
 }
 
@@ -155,7 +154,7 @@ impl NSTableCellView {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -175,7 +174,7 @@ impl NSTableCellView {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -185,6 +184,6 @@ impl NSTableCellView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

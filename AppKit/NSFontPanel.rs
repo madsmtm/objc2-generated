@@ -54,13 +54,13 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(changeFont:))]
         #[unsafe(method_family = none)]
-        unsafe fn changeFont(&self, sender: Option<&NSFontManager>);
+        fn changeFont(&self, sender: Option<&NSFontManager>);
 
         #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
         #[optional]
         #[unsafe(method(validModesForFontPanel:))]
         #[unsafe(method_family = none)]
-        unsafe fn validModesForFontPanel(&self, font_panel: &NSFontPanel) -> NSFontPanelModeMask;
+        fn validModesForFontPanel(&self, font_panel: &NSFontPanel) -> NSFontPanelModeMask;
     }
 );
 
@@ -157,54 +157,54 @@ impl NSFontPanel {
     extern_methods!(
         #[unsafe(method(sharedFontPanel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedFontPanel(mtm: MainThreadMarker) -> Retained<NSFontPanel>;
+        pub fn sharedFontPanel(mtm: MainThreadMarker) -> Retained<NSFontPanel>;
 
         #[unsafe(method(sharedFontPanelExists))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedFontPanelExists(mtm: MainThreadMarker) -> bool;
+        pub fn sharedFontPanelExists(mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "NSView")]
         #[unsafe(method(accessoryView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
+        pub fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
         /// Setter for [`accessoryView`][Self::accessoryView].
         #[unsafe(method(setAccessoryView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
+        pub fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[cfg(feature = "NSFont")]
         #[unsafe(method(setPanelFont:isMultiple:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPanelFont_isMultiple(&self, font_obj: &NSFont, flag: bool);
+        pub fn setPanelFont_isMultiple(&self, font_obj: &NSFont, flag: bool);
 
         #[cfg(feature = "NSFont")]
         #[unsafe(method(panelConvertFont:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn panelConvertFont(&self, font_obj: &NSFont) -> Retained<NSFont>;
+        pub fn panelConvertFont(&self, font_obj: &NSFont) -> Retained<NSFont>;
 
         #[unsafe(method(worksWhenModal))]
         #[unsafe(method_family = none)]
-        pub unsafe fn worksWhenModal(&self) -> bool;
+        pub fn worksWhenModal(&self) -> bool;
 
         /// Setter for [`worksWhenModal`][Self::worksWhenModal].
         #[unsafe(method(setWorksWhenModal:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWorksWhenModal(&self, works_when_modal: bool);
+        pub fn setWorksWhenModal(&self, works_when_modal: bool);
 
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnabled(&self) -> bool;
+        pub fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnabled(&self, enabled: bool);
+        pub fn setEnabled(&self, enabled: bool);
 
         #[unsafe(method(reloadDefaultFontFamilies))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reloadDefaultFontFamilies(&self);
+        pub fn reloadDefaultFontFamilies(&self);
     );
 }
 
@@ -246,7 +246,7 @@ impl NSFontPanel {
         /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
         #[unsafe(method(windowWithContentViewController:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowWithContentViewController(
+        pub fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
     );
@@ -258,7 +258,7 @@ impl NSFontPanel {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -268,7 +268,7 @@ impl NSFontPanel {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 

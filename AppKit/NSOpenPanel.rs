@@ -127,80 +127,74 @@ impl NSOpenPanel {
     extern_methods!(
         #[unsafe(method(openPanel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openPanel(mtm: MainThreadMarker) -> Retained<NSOpenPanel>;
+        pub fn openPanel(mtm: MainThreadMarker) -> Retained<NSOpenPanel>;
 
         #[unsafe(method(URLs))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLs(&self) -> Retained<NSArray<NSURL>>;
+        pub fn URLs(&self) -> Retained<NSArray<NSURL>>;
 
         #[unsafe(method(resolvesAliases))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resolvesAliases(&self) -> bool;
+        pub fn resolvesAliases(&self) -> bool;
 
         /// Setter for [`resolvesAliases`][Self::resolvesAliases].
         #[unsafe(method(setResolvesAliases:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setResolvesAliases(&self, resolves_aliases: bool);
+        pub fn setResolvesAliases(&self, resolves_aliases: bool);
 
         #[unsafe(method(canChooseDirectories))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canChooseDirectories(&self) -> bool;
+        pub fn canChooseDirectories(&self) -> bool;
 
         /// Setter for [`canChooseDirectories`][Self::canChooseDirectories].
         #[unsafe(method(setCanChooseDirectories:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCanChooseDirectories(&self, can_choose_directories: bool);
+        pub fn setCanChooseDirectories(&self, can_choose_directories: bool);
 
         #[unsafe(method(allowsMultipleSelection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsMultipleSelection(&self) -> bool;
+        pub fn allowsMultipleSelection(&self) -> bool;
 
         /// Setter for [`allowsMultipleSelection`][Self::allowsMultipleSelection].
         #[unsafe(method(setAllowsMultipleSelection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
+        pub fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[unsafe(method(canChooseFiles))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canChooseFiles(&self) -> bool;
+        pub fn canChooseFiles(&self) -> bool;
 
         /// Setter for [`canChooseFiles`][Self::canChooseFiles].
         #[unsafe(method(setCanChooseFiles:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCanChooseFiles(&self, can_choose_files: bool);
+        pub fn setCanChooseFiles(&self, can_choose_files: bool);
 
         #[unsafe(method(canResolveUbiquitousConflicts))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canResolveUbiquitousConflicts(&self) -> bool;
+        pub fn canResolveUbiquitousConflicts(&self) -> bool;
 
         /// Setter for [`canResolveUbiquitousConflicts`][Self::canResolveUbiquitousConflicts].
         #[unsafe(method(setCanResolveUbiquitousConflicts:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCanResolveUbiquitousConflicts(
-            &self,
-            can_resolve_ubiquitous_conflicts: bool,
-        );
+        pub fn setCanResolveUbiquitousConflicts(&self, can_resolve_ubiquitous_conflicts: bool);
 
         #[unsafe(method(canDownloadUbiquitousContents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canDownloadUbiquitousContents(&self) -> bool;
+        pub fn canDownloadUbiquitousContents(&self) -> bool;
 
         /// Setter for [`canDownloadUbiquitousContents`][Self::canDownloadUbiquitousContents].
         #[unsafe(method(setCanDownloadUbiquitousContents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCanDownloadUbiquitousContents(
-            &self,
-            can_download_ubiquitous_contents: bool,
-        );
+        pub fn setCanDownloadUbiquitousContents(&self, can_download_ubiquitous_contents: bool);
 
         #[unsafe(method(isAccessoryViewDisclosed))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isAccessoryViewDisclosed(&self) -> bool;
+        pub fn isAccessoryViewDisclosed(&self) -> bool;
 
         /// Setter for [`isAccessoryViewDisclosed`][Self::isAccessoryViewDisclosed].
         #[unsafe(method(setAccessoryViewDisclosed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAccessoryViewDisclosed(&self, accessory_view_disclosed: bool);
+        pub fn setAccessoryViewDisclosed(&self, accessory_view_disclosed: bool);
     );
 }
 
@@ -247,7 +241,7 @@ impl NSOpenPanel {
         /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
         #[unsafe(method(windowWithContentViewController:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowWithContentViewController(
+        pub fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
     );
@@ -264,7 +258,7 @@ impl NSOpenPanel {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -279,7 +273,7 @@ impl NSOpenPanel {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -315,7 +309,7 @@ impl NSOpenPanel {
         #[deprecated]
         #[unsafe(method(filenames))]
         #[unsafe(method_family = none)]
-        pub unsafe fn filenames(&self) -> Retained<NSArray>;
+        pub fn filenames(&self) -> Retained<NSArray>;
 
         /// # Safety
         ///

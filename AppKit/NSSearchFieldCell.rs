@@ -106,7 +106,7 @@ impl NSSearchFieldCell {
     extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
+        pub fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -126,91 +126,89 @@ impl NSSearchFieldCell {
         #[cfg(feature = "NSButtonCell")]
         #[unsafe(method(searchButtonCell))]
         #[unsafe(method_family = none)]
-        pub unsafe fn searchButtonCell(&self) -> Option<Retained<NSButtonCell>>;
+        pub fn searchButtonCell(&self) -> Option<Retained<NSButtonCell>>;
 
         #[cfg(feature = "NSButtonCell")]
         /// Setter for [`searchButtonCell`][Self::searchButtonCell].
         #[unsafe(method(setSearchButtonCell:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSearchButtonCell(&self, search_button_cell: Option<&NSButtonCell>);
+        pub fn setSearchButtonCell(&self, search_button_cell: Option<&NSButtonCell>);
 
         #[cfg(feature = "NSButtonCell")]
         #[unsafe(method(cancelButtonCell))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancelButtonCell(&self) -> Option<Retained<NSButtonCell>>;
+        pub fn cancelButtonCell(&self) -> Option<Retained<NSButtonCell>>;
 
         #[cfg(feature = "NSButtonCell")]
         /// Setter for [`cancelButtonCell`][Self::cancelButtonCell].
         #[unsafe(method(setCancelButtonCell:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCancelButtonCell(&self, cancel_button_cell: Option<&NSButtonCell>);
+        pub fn setCancelButtonCell(&self, cancel_button_cell: Option<&NSButtonCell>);
 
         #[unsafe(method(resetSearchButtonCell))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resetSearchButtonCell(&self);
+        pub fn resetSearchButtonCell(&self);
 
         #[unsafe(method(resetCancelButtonCell))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resetCancelButtonCell(&self);
+        pub fn resetCancelButtonCell(&self);
 
         #[unsafe(method(searchTextRectForBounds:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn searchTextRectForBounds(&self, rect: NSRect) -> NSRect;
+        pub fn searchTextRectForBounds(&self, rect: NSRect) -> NSRect;
 
         #[unsafe(method(searchButtonRectForBounds:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn searchButtonRectForBounds(&self, rect: NSRect) -> NSRect;
+        pub fn searchButtonRectForBounds(&self, rect: NSRect) -> NSRect;
 
         #[unsafe(method(cancelButtonRectForBounds:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancelButtonRectForBounds(&self, rect: NSRect) -> NSRect;
+        pub fn cancelButtonRectForBounds(&self, rect: NSRect) -> NSRect;
 
         #[cfg(feature = "NSMenu")]
         #[unsafe(method(searchMenuTemplate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn searchMenuTemplate(&self) -> Option<Retained<NSMenu>>;
+        pub fn searchMenuTemplate(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         /// Setter for [`searchMenuTemplate`][Self::searchMenuTemplate].
         #[unsafe(method(setSearchMenuTemplate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSearchMenuTemplate(&self, search_menu_template: Option<&NSMenu>);
+        pub fn setSearchMenuTemplate(&self, search_menu_template: Option<&NSMenu>);
 
         #[unsafe(method(sendsWholeSearchString))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sendsWholeSearchString(&self) -> bool;
+        pub fn sendsWholeSearchString(&self) -> bool;
 
         /// Setter for [`sendsWholeSearchString`][Self::sendsWholeSearchString].
         #[unsafe(method(setSendsWholeSearchString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSendsWholeSearchString(&self, sends_whole_search_string: bool);
+        pub fn setSendsWholeSearchString(&self, sends_whole_search_string: bool);
 
         #[unsafe(method(maximumRecents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumRecents(&self) -> NSInteger;
+        pub fn maximumRecents(&self) -> NSInteger;
 
         /// Setter for [`maximumRecents`][Self::maximumRecents].
         #[unsafe(method(setMaximumRecents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumRecents(&self, maximum_recents: NSInteger);
+        pub fn setMaximumRecents(&self, maximum_recents: NSInteger);
 
         #[unsafe(method(recentSearches))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recentSearches(&self) -> Retained<NSArray<NSString>>;
+        pub fn recentSearches(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`recentSearches`][Self::recentSearches].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecentSearches:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRecentSearches(&self, recent_searches: Option<&NSArray<NSString>>);
+        pub fn setRecentSearches(&self, recent_searches: Option<&NSArray<NSString>>);
 
         #[cfg(feature = "NSSearchField")]
         #[unsafe(method(recentsAutosaveName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recentsAutosaveName(
-            &self,
-        ) -> Option<Retained<NSSearchFieldRecentsAutosaveName>>;
+        pub fn recentsAutosaveName(&self) -> Option<Retained<NSSearchFieldRecentsAutosaveName>>;
 
         #[cfg(feature = "NSSearchField")]
         /// Setter for [`recentsAutosaveName`][Self::recentsAutosaveName].
@@ -218,19 +216,19 @@ impl NSSearchFieldCell {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRecentsAutosaveName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRecentsAutosaveName(
+        pub fn setRecentsAutosaveName(
             &self,
             recents_autosave_name: Option<&NSSearchFieldRecentsAutosaveName>,
         );
 
         #[unsafe(method(sendsSearchStringImmediately))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sendsSearchStringImmediately(&self) -> bool;
+        pub fn sendsSearchStringImmediately(&self) -> bool;
 
         /// Setter for [`sendsSearchStringImmediately`][Self::sendsSearchStringImmediately].
         #[unsafe(method(setSendsSearchStringImmediately:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSendsSearchStringImmediately(&self, sends_search_string_immediately: bool);
+        pub fn setSendsSearchStringImmediately(&self, sends_search_string_immediately: bool);
     );
 }
 
@@ -244,7 +242,7 @@ impl NSSearchFieldCell {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -258,6 +256,6 @@ impl NSSearchFieldCell {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

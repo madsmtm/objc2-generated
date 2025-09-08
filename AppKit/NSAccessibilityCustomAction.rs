@@ -23,7 +23,7 @@ impl NSAccessibilityCustomAction {
         #[cfg(feature = "block2")]
         #[unsafe(method(initWithName:handler:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithName_handler(
+        pub fn initWithName_handler(
             this: Allocated<Self>,
             name: &NSString,
             handler: Option<&block2::DynBlock<dyn Fn() -> Bool>>,
@@ -44,19 +44,19 @@ impl NSAccessibilityCustomAction {
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSString>;
+        pub fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: &NSString);
+        pub fn setName(&self, name: &NSString);
 
         #[cfg(feature = "block2")]
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handler(&self) -> *mut block2::DynBlock<dyn Fn() -> Bool>;
+        pub fn handler(&self) -> *mut block2::DynBlock<dyn Fn() -> Bool>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`handler`][Self::handler].
@@ -64,11 +64,11 @@ impl NSAccessibilityCustomAction {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHandler(&self, handler: Option<&block2::DynBlock<dyn Fn() -> Bool>>);
+        pub fn setHandler(&self, handler: Option<&block2::DynBlock<dyn Fn() -> Bool>>);
 
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
-        pub unsafe fn target(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
+        pub fn target(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
         /// Setter for [`target`][Self::target].
         ///
@@ -83,7 +83,7 @@ impl NSAccessibilityCustomAction {
 
         #[unsafe(method(selector))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selector(&self) -> Option<Sel>;
+        pub fn selector(&self) -> Option<Sel>;
 
         /// Setter for [`selector`][Self::selector].
         ///
@@ -101,10 +101,17 @@ impl NSAccessibilityCustomAction {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSAccessibilityCustomAction {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

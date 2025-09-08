@@ -171,7 +171,7 @@ impl NSSecureTextField {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -196,7 +196,7 @@ impl NSSecureTextField {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -211,7 +211,7 @@ impl NSSecureTextField {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -302,12 +302,12 @@ impl NSSecureTextFieldCell {
     extern_methods!(
         #[unsafe(method(echosBullets))]
         #[unsafe(method_family = none)]
-        pub unsafe fn echosBullets(&self) -> bool;
+        pub fn echosBullets(&self) -> bool;
 
         /// Setter for [`echosBullets`][Self::echosBullets].
         #[unsafe(method(setEchosBullets:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEchosBullets(&self, echos_bullets: bool);
+        pub fn setEchosBullets(&self, echos_bullets: bool);
     );
 }
 
@@ -321,7 +321,7 @@ impl NSSecureTextFieldCell {
     extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
+        pub fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -350,7 +350,7 @@ impl NSSecureTextFieldCell {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -364,6 +364,6 @@ impl NSSecureTextFieldCell {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

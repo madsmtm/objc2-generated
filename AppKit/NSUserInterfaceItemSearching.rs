@@ -13,7 +13,7 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         #[unsafe(method(searchForItemsWithSearchString:resultLimit:matchedItemHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchForItemsWithSearchString_resultLimit_matchedItemHandler(
+        fn searchForItemsWithSearchString_resultLimit_matchedItemHandler(
             &self,
             search_string: &NSString,
             result_limit: NSInteger,
@@ -38,7 +38,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(showAllHelpTopicsForSearchString:))]
         #[unsafe(method_family = none)]
-        unsafe fn showAllHelpTopicsForSearchString(&self, search_string: &NSString);
+        fn showAllHelpTopicsForSearchString(&self, search_string: &NSString);
     }
 );
 
@@ -48,14 +48,14 @@ impl NSApplication {
     extern_methods!(
         #[unsafe(method(registerUserInterfaceItemSearchHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerUserInterfaceItemSearchHandler(
+        pub fn registerUserInterfaceItemSearchHandler(
             &self,
             handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
         );
 
         #[unsafe(method(unregisterUserInterfaceItemSearchHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unregisterUserInterfaceItemSearchHandler(
+        pub fn unregisterUserInterfaceItemSearchHandler(
             &self,
             handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
         );

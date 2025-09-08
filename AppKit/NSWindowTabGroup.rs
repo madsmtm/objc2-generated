@@ -24,7 +24,7 @@ impl NSWindowTabGroup {
         #[cfg(feature = "NSWindow")]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Retained<NSWindowTabbingIdentifier>;
+        pub fn identifier(&self) -> Retained<NSWindowTabbingIdentifier>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[unsafe(method(windows))]
@@ -33,21 +33,21 @@ impl NSWindowTabGroup {
 
         #[unsafe(method(isOverviewVisible))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isOverviewVisible(&self) -> bool;
+        pub fn isOverviewVisible(&self) -> bool;
 
         /// Setter for [`isOverviewVisible`][Self::isOverviewVisible].
         #[unsafe(method(setOverviewVisible:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOverviewVisible(&self, overview_visible: bool);
+        pub fn setOverviewVisible(&self, overview_visible: bool);
 
         #[unsafe(method(isTabBarVisible))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isTabBarVisible(&self) -> bool;
+        pub fn isTabBarVisible(&self) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[unsafe(method(selectedWindow))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedWindow(&self) -> Option<Retained<NSWindow>>;
+        pub fn selectedWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         /// Setter for [`selectedWindow`][Self::selectedWindow].
@@ -60,17 +60,17 @@ impl NSWindowTabGroup {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[unsafe(method(addWindow:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addWindow(&self, window: &NSWindow);
+        pub fn addWindow(&self, window: &NSWindow);
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[unsafe(method(insertWindow:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertWindow_atIndex(&self, window: &NSWindow, index: NSInteger);
+        pub fn insertWindow_atIndex(&self, window: &NSWindow, index: NSInteger);
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[unsafe(method(removeWindow:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeWindow(&self, window: &NSWindow);
+        pub fn removeWindow(&self, window: &NSWindow);
     );
 }
 
@@ -79,10 +79,10 @@ impl NSWindowTabGroup {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

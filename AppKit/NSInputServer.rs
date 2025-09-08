@@ -67,22 +67,22 @@ extern_protocol!(
         #[deprecated]
         #[unsafe(method(canBeDisabled))]
         #[unsafe(method_family = none)]
-        unsafe fn canBeDisabled(&self) -> bool;
+        fn canBeDisabled(&self) -> bool;
 
         #[deprecated]
         #[unsafe(method(wantsToInterpretAllKeystrokes))]
         #[unsafe(method_family = none)]
-        unsafe fn wantsToInterpretAllKeystrokes(&self) -> bool;
+        fn wantsToInterpretAllKeystrokes(&self) -> bool;
 
         #[deprecated]
         #[unsafe(method(wantsToHandleMouseEvents))]
         #[unsafe(method_family = none)]
-        unsafe fn wantsToHandleMouseEvents(&self) -> bool;
+        fn wantsToHandleMouseEvents(&self) -> bool;
 
         #[deprecated]
         #[unsafe(method(wantsToDelayTextChangeNotifications))]
         #[unsafe(method_family = none)]
-        unsafe fn wantsToDelayTextChangeNotifications(&self) -> bool;
+        fn wantsToDelayTextChangeNotifications(&self) -> bool;
 
         /// # Safety
         ///
@@ -237,10 +237,17 @@ impl NSInputServer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSInputServer {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

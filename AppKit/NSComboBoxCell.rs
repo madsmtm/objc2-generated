@@ -96,104 +96,104 @@ impl NSComboBoxCell {
     extern_methods!(
         #[unsafe(method(hasVerticalScroller))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasVerticalScroller(&self) -> bool;
+        pub fn hasVerticalScroller(&self) -> bool;
 
         /// Setter for [`hasVerticalScroller`][Self::hasVerticalScroller].
         #[unsafe(method(setHasVerticalScroller:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
+        pub fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
 
         #[unsafe(method(intercellSpacing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intercellSpacing(&self) -> NSSize;
+        pub fn intercellSpacing(&self) -> NSSize;
 
         /// Setter for [`intercellSpacing`][Self::intercellSpacing].
         #[unsafe(method(setIntercellSpacing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
+        pub fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(itemHeight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemHeight(&self) -> CGFloat;
+        pub fn itemHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`itemHeight`][Self::itemHeight].
         #[unsafe(method(setItemHeight:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setItemHeight(&self, item_height: CGFloat);
+        pub fn setItemHeight(&self, item_height: CGFloat);
 
         #[unsafe(method(numberOfVisibleItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfVisibleItems(&self) -> NSInteger;
+        pub fn numberOfVisibleItems(&self) -> NSInteger;
 
         /// Setter for [`numberOfVisibleItems`][Self::numberOfVisibleItems].
         #[unsafe(method(setNumberOfVisibleItems:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNumberOfVisibleItems(&self, number_of_visible_items: NSInteger);
+        pub fn setNumberOfVisibleItems(&self, number_of_visible_items: NSInteger);
 
         #[unsafe(method(isButtonBordered))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isButtonBordered(&self) -> bool;
+        pub fn isButtonBordered(&self) -> bool;
 
         /// Setter for [`isButtonBordered`][Self::isButtonBordered].
         #[unsafe(method(setButtonBordered:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setButtonBordered(&self, button_bordered: bool);
+        pub fn setButtonBordered(&self, button_bordered: bool);
 
         #[unsafe(method(reloadData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reloadData(&self);
+        pub fn reloadData(&self);
 
         #[unsafe(method(noteNumberOfItemsChanged))]
         #[unsafe(method_family = none)]
-        pub unsafe fn noteNumberOfItemsChanged(&self);
+        pub fn noteNumberOfItemsChanged(&self);
 
         #[unsafe(method(usesDataSource))]
         #[unsafe(method_family = none)]
-        pub unsafe fn usesDataSource(&self) -> bool;
+        pub fn usesDataSource(&self) -> bool;
 
         /// Setter for [`usesDataSource`][Self::usesDataSource].
         #[unsafe(method(setUsesDataSource:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUsesDataSource(&self, uses_data_source: bool);
+        pub fn setUsesDataSource(&self, uses_data_source: bool);
 
         #[unsafe(method(scrollItemAtIndexToTop:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollItemAtIndexToTop(&self, index: NSInteger);
+        pub fn scrollItemAtIndexToTop(&self, index: NSInteger);
 
         #[unsafe(method(scrollItemAtIndexToVisible:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollItemAtIndexToVisible(&self, index: NSInteger);
+        pub fn scrollItemAtIndexToVisible(&self, index: NSInteger);
 
         #[unsafe(method(selectItemAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectItemAtIndex(&self, index: NSInteger);
+        pub fn selectItemAtIndex(&self, index: NSInteger);
 
         #[unsafe(method(deselectItemAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deselectItemAtIndex(&self, index: NSInteger);
+        pub fn deselectItemAtIndex(&self, index: NSInteger);
 
         #[unsafe(method(indexOfSelectedItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
+        pub fn indexOfSelectedItem(&self) -> NSInteger;
 
         #[unsafe(method(numberOfItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfItems(&self) -> NSInteger;
+        pub fn numberOfItems(&self) -> NSInteger;
 
         #[unsafe(method(completes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completes(&self) -> bool;
+        pub fn completes(&self) -> bool;
 
         /// Setter for [`completes`][Self::completes].
         #[unsafe(method(setCompletes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCompletes(&self, completes: bool);
+        pub fn setCompletes(&self, completes: bool);
 
         #[unsafe(method(completedString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completedString(&self, string: &NSString) -> Option<Retained<NSString>>;
+        pub fn completedString(&self, string: &NSString) -> Option<Retained<NSString>>;
 
         /// # Safety
         ///
@@ -250,11 +250,11 @@ impl NSComboBoxCell {
 
         #[unsafe(method(removeItemAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
+        pub fn removeItemAtIndex(&self, index: NSInteger);
 
         #[unsafe(method(removeAllItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeAllItems(&self);
+        pub fn removeAllItems(&self);
 
         /// # Safety
         ///
@@ -265,11 +265,11 @@ impl NSComboBoxCell {
 
         #[unsafe(method(itemObjectValueAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Retained<AnyObject>;
+        pub fn itemObjectValueAtIndex(&self, index: NSInteger) -> Retained<AnyObject>;
 
         #[unsafe(method(objectValueOfSelectedItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Retained<AnyObject>>;
+        pub fn objectValueOfSelectedItem(&self) -> Option<Retained<AnyObject>>;
 
         /// # Safety
         ///
@@ -280,7 +280,7 @@ impl NSComboBoxCell {
 
         #[unsafe(method(objectValues))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectValues(&self) -> Retained<NSArray>;
+        pub fn objectValues(&self) -> Retained<NSArray>;
     );
 }
 
@@ -294,7 +294,7 @@ impl NSComboBoxCell {
     extern_methods!(
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
+        pub fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -323,7 +323,7 @@ impl NSComboBoxCell {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -337,7 +337,7 @@ impl NSComboBoxCell {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -352,7 +352,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(numberOfItemsInComboBoxCell:))]
         #[unsafe(method_family = none)]
-        unsafe fn numberOfItemsInComboBoxCell(&self, combo_box_cell: &NSComboBoxCell) -> NSInteger;
+        fn numberOfItemsInComboBoxCell(&self, combo_box_cell: &NSComboBoxCell) -> NSInteger;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -362,7 +362,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(comboBoxCell:objectValueForItemAtIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn comboBoxCell_objectValueForItemAtIndex(
+        fn comboBoxCell_objectValueForItemAtIndex(
             &self,
             combo_box_cell: &NSComboBoxCell,
             index: NSInteger,
@@ -376,7 +376,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(comboBoxCell:indexOfItemWithStringValue:))]
         #[unsafe(method_family = none)]
-        unsafe fn comboBoxCell_indexOfItemWithStringValue(
+        fn comboBoxCell_indexOfItemWithStringValue(
             &self,
             combo_box_cell: &NSComboBoxCell,
             string: &NSString,
@@ -390,7 +390,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(comboBoxCell:completedString:))]
         #[unsafe(method_family = none)]
-        unsafe fn comboBoxCell_completedString(
+        fn comboBoxCell_completedString(
             &self,
             combo_box_cell: &NSComboBoxCell,
             uncompleted_string: &NSString,

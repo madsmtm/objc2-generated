@@ -33,13 +33,13 @@ impl NSMagnificationGestureRecognizer {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(magnification))]
         #[unsafe(method_family = none)]
-        pub unsafe fn magnification(&self) -> CGFloat;
+        pub fn magnification(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`magnification`][Self::magnification].
         #[unsafe(method(setMagnification:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMagnification(&self, magnification: CGFloat);
+        pub fn setMagnification(&self, magnification: CGFloat);
     );
 }
 
@@ -77,10 +77,10 @@ impl NSMagnificationGestureRecognizer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

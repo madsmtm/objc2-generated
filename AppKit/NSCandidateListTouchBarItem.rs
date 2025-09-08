@@ -53,7 +53,7 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
         ))]
         #[unsafe(method(client))]
         #[unsafe(method_family = none)]
-        pub unsafe fn client(&self) -> Option<Retained<NSView>>;
+        pub fn client(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(
             feature = "NSResponder",
@@ -73,7 +73,7 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>>;
 
@@ -82,45 +82,45 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>,
         );
 
         #[unsafe(method(isCollapsed))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isCollapsed(&self) -> bool;
+        pub fn isCollapsed(&self) -> bool;
 
         /// Setter for [`isCollapsed`][Self::isCollapsed].
         #[unsafe(method(setCollapsed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCollapsed(&self, collapsed: bool);
+        pub fn setCollapsed(&self, collapsed: bool);
 
         #[unsafe(method(allowsCollapsing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsCollapsing(&self) -> bool;
+        pub fn allowsCollapsing(&self) -> bool;
 
         /// Setter for [`allowsCollapsing`][Self::allowsCollapsing].
         #[unsafe(method(setAllowsCollapsing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsCollapsing(&self, allows_collapsing: bool);
+        pub fn setAllowsCollapsing(&self, allows_collapsing: bool);
 
         #[unsafe(method(isCandidateListVisible))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isCandidateListVisible(&self) -> bool;
+        pub fn isCandidateListVisible(&self) -> bool;
 
         #[unsafe(method(updateWithInsertionPointVisibility:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateWithInsertionPointVisibility(&self, is_visible: bool);
+        pub fn updateWithInsertionPointVisibility(&self, is_visible: bool);
 
         #[unsafe(method(allowsTextInputContextCandidates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsTextInputContextCandidates(&self) -> bool;
+        pub fn allowsTextInputContextCandidates(&self) -> bool;
 
         /// Setter for [`allowsTextInputContextCandidates`][Self::allowsTextInputContextCandidates].
         #[unsafe(method(setAllowsTextInputContextCandidates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsTextInputContextCandidates(
+        pub fn setAllowsTextInputContextCandidates(
             &self,
             allows_text_input_context_candidates: bool,
         );
@@ -158,11 +158,11 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
 
         #[unsafe(method(candidates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn candidates(&self) -> Retained<NSArray<CandidateType>>;
+        pub fn candidates(&self) -> Retained<NSArray<CandidateType>>;
 
         #[unsafe(method(setCandidates:forSelectedRange:inString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCandidates_forSelectedRange_inString(
+        pub fn setCandidates_forSelectedRange_inString(
             &self,
             candidates: &NSArray<CandidateType>,
             selected_range: NSRange,
@@ -171,14 +171,14 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
 
         #[unsafe(method(customizationLabel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
+        pub fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizationLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
+        pub fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     );
 }
 
@@ -188,7 +188,7 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
     extern_methods!(
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithIdentifier(
+        pub fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
@@ -286,9 +286,7 @@ impl NSView {
         #[cfg(feature = "NSTouchBarItem")]
         #[unsafe(method(candidateListTouchBarItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn candidateListTouchBarItem(
-            &self,
-        ) -> Option<Retained<NSCandidateListTouchBarItem>>;
+        pub fn candidateListTouchBarItem(&self) -> Option<Retained<NSCandidateListTouchBarItem>>;
     );
 }
 

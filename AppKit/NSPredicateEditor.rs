@@ -117,7 +117,7 @@ impl NSPredicateEditor {
         #[cfg(feature = "NSPredicateEditorRowTemplate")]
         #[unsafe(method(rowTemplates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rowTemplates(&self) -> Retained<NSArray<NSPredicateEditorRowTemplate>>;
+        pub fn rowTemplates(&self) -> Retained<NSArray<NSPredicateEditorRowTemplate>>;
 
         #[cfg(feature = "NSPredicateEditorRowTemplate")]
         /// Setter for [`rowTemplates`][Self::rowTemplates].
@@ -125,7 +125,7 @@ impl NSPredicateEditor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRowTemplates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRowTemplates(&self, row_templates: &NSArray<NSPredicateEditorRowTemplate>);
+        pub fn setRowTemplates(&self, row_templates: &NSArray<NSPredicateEditorRowTemplate>);
     );
 }
 
@@ -140,7 +140,7 @@ impl NSPredicateEditor {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -165,7 +165,7 @@ impl NSPredicateEditor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -180,6 +180,6 @@ impl NSPredicateEditor {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

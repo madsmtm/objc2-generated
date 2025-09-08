@@ -67,7 +67,7 @@ impl NSGradient {
         #[cfg(feature = "NSColor")]
         #[unsafe(method(initWithStartingColor:endingColor:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithStartingColor_endingColor(
+        pub fn initWithStartingColor_endingColor(
             this: Allocated<Self>,
             starting_color: &NSColor,
             ending_color: &NSColor,
@@ -76,7 +76,7 @@ impl NSGradient {
         #[cfg(feature = "NSColor")]
         #[unsafe(method(initWithColors:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithColors(
+        pub fn initWithColors(
             this: Allocated<Self>,
             color_array: &NSArray<NSColor>,
         ) -> Option<Retained<Self>>;
@@ -110,7 +110,7 @@ impl NSGradient {
 
         #[unsafe(method(drawFromPoint:toPoint:options:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawFromPoint_toPoint_options(
+        pub fn drawFromPoint_toPoint_options(
             &self,
             starting_point: NSPoint,
             ending_point: NSPoint,
@@ -120,17 +120,17 @@ impl NSGradient {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawInRect:angle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawInRect_angle(&self, rect: NSRect, angle: CGFloat);
+        pub fn drawInRect_angle(&self, rect: NSRect, angle: CGFloat);
 
         #[cfg(all(feature = "NSBezierPath", feature = "objc2-core-foundation"))]
         #[unsafe(method(drawInBezierPath:angle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawInBezierPath_angle(&self, path: &NSBezierPath, angle: CGFloat);
+        pub fn drawInBezierPath_angle(&self, path: &NSBezierPath, angle: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawFromCenter:radius:toCenter:radius:options:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawFromCenter_radius_toCenter_radius_options(
+        pub fn drawFromCenter_radius_toCenter_radius_options(
             &self,
             start_center: NSPoint,
             start_radius: CGFloat,
@@ -141,7 +141,7 @@ impl NSGradient {
 
         #[unsafe(method(drawInRect:relativeCenterPosition:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawInRect_relativeCenterPosition(
+        pub fn drawInRect_relativeCenterPosition(
             &self,
             rect: NSRect,
             relative_center_position: NSPoint,
@@ -150,7 +150,7 @@ impl NSGradient {
         #[cfg(feature = "NSBezierPath")]
         #[unsafe(method(drawInBezierPath:relativeCenterPosition:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawInBezierPath_relativeCenterPosition(
+        pub fn drawInBezierPath_relativeCenterPosition(
             &self,
             path: &NSBezierPath,
             relative_center_position: NSPoint,
@@ -159,11 +159,11 @@ impl NSGradient {
         #[cfg(feature = "NSColorSpace")]
         #[unsafe(method(colorSpace))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorSpace(&self) -> Retained<NSColorSpace>;
+        pub fn colorSpace(&self) -> Retained<NSColorSpace>;
 
         #[unsafe(method(numberOfColorStops))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfColorStops(&self) -> NSInteger;
+        pub fn numberOfColorStops(&self) -> NSInteger;
 
         #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
         /// # Safety
@@ -181,7 +181,7 @@ impl NSGradient {
         #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
         #[unsafe(method(interpolatedColorAtLocation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn interpolatedColorAtLocation(&self, location: CGFloat) -> Retained<NSColor>;
+        pub fn interpolatedColorAtLocation(&self, location: CGFloat) -> Retained<NSColor>;
     );
 }
 
@@ -190,10 +190,17 @@ impl NSGradient {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSGradient {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

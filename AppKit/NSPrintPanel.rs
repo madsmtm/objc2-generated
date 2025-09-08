@@ -100,14 +100,14 @@ extern_protocol!(
     pub unsafe trait NSPrintPanelAccessorizing: MainThreadOnly {
         #[unsafe(method(localizedSummaryItems))]
         #[unsafe(method_family = none)]
-        unsafe fn localizedSummaryItems(
+        fn localizedSummaryItems(
             &self,
         ) -> Retained<NSArray<NSDictionary<NSPrintPanelAccessorySummaryKey, NSString>>>;
 
         #[optional]
         #[unsafe(method(keyPathsForValuesAffectingPreview))]
         #[unsafe(method_family = none)]
-        unsafe fn keyPathsForValuesAffectingPreview(&self) -> Retained<NSSet<NSString>>;
+        fn keyPathsForValuesAffectingPreview(&self) -> Retained<NSSet<NSString>>;
     }
 );
 
@@ -127,7 +127,7 @@ impl NSPrintPanel {
     extern_methods!(
         #[unsafe(method(printPanel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printPanel(mtm: MainThreadMarker) -> Retained<NSPrintPanel>;
+        pub fn printPanel(mtm: MainThreadMarker) -> Retained<NSPrintPanel>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         /// # Safety
@@ -148,29 +148,29 @@ impl NSPrintPanel {
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[unsafe(method(accessoryControllers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn accessoryControllers(&self) -> Retained<NSArray<NSViewController>>;
+        pub fn accessoryControllers(&self) -> Retained<NSArray<NSViewController>>;
 
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
-        pub unsafe fn options(&self) -> NSPrintPanelOptions;
+        pub fn options(&self) -> NSPrintPanelOptions;
 
         /// Setter for [`options`][Self::options].
         #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOptions(&self, options: NSPrintPanelOptions);
+        pub fn setOptions(&self, options: NSPrintPanelOptions);
 
         #[unsafe(method(setDefaultButtonTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultButtonTitle(&self, default_button_title: Option<&NSString>);
+        pub fn setDefaultButtonTitle(&self, default_button_title: Option<&NSString>);
 
         #[unsafe(method(defaultButtonTitle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultButtonTitle(&self) -> Option<Retained<NSString>>;
+        pub fn defaultButtonTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSHelpManager")]
         #[unsafe(method(helpAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn helpAnchor(&self) -> Option<Retained<NSHelpAnchorName>>;
+        pub fn helpAnchor(&self) -> Option<Retained<NSHelpAnchorName>>;
 
         #[cfg(feature = "NSHelpManager")]
         /// Setter for [`helpAnchor`][Self::helpAnchor].
@@ -178,18 +178,18 @@ impl NSPrintPanel {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHelpAnchor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
+        pub fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
 
         #[unsafe(method(jobStyleHint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn jobStyleHint(&self) -> Option<Retained<NSPrintPanelJobStyleHint>>;
+        pub fn jobStyleHint(&self) -> Option<Retained<NSPrintPanelJobStyleHint>>;
 
         /// Setter for [`jobStyleHint`][Self::jobStyleHint].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJobStyleHint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setJobStyleHint(&self, job_style_hint: Option<&NSPrintPanelJobStyleHint>);
+        pub fn setJobStyleHint(&self, job_style_hint: Option<&NSPrintPanelJobStyleHint>);
 
         #[cfg(all(
             feature = "NSPrintInfo",
@@ -199,7 +199,7 @@ impl NSPrintPanel {
         ))]
         #[unsafe(method(beginSheetUsingPrintInfo:onWindow:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beginSheetUsingPrintInfo_onWindow_completionHandler(
+        pub fn beginSheetUsingPrintInfo_onWindow_completionHandler(
             &self,
             print_info: &NSPrintInfo,
             parent_window: &NSWindow,
@@ -227,16 +227,16 @@ impl NSPrintPanel {
         #[cfg(feature = "NSPrintInfo")]
         #[unsafe(method(runModalWithPrintInfo:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runModalWithPrintInfo(&self, print_info: &NSPrintInfo) -> NSInteger;
+        pub fn runModalWithPrintInfo(&self, print_info: &NSPrintInfo) -> NSInteger;
 
         #[unsafe(method(runModal))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runModal(&self) -> NSInteger;
+        pub fn runModal(&self) -> NSInteger;
 
         #[cfg(feature = "NSPrintInfo")]
         #[unsafe(method(printInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printInfo(&self) -> Retained<NSPrintInfo>;
+        pub fn printInfo(&self) -> Retained<NSPrintInfo>;
     );
 }
 
@@ -245,11 +245,11 @@ impl NSPrintPanel {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -260,22 +260,22 @@ impl NSPrintPanel {
         #[deprecated = "Use -addAccessoryController instead"]
         #[unsafe(method(setAccessoryView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
+        pub fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use -accessoryControllers instead. For compatibility this returns the view of the first accessory controller, or nil"]
         #[unsafe(method(accessoryView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
+        pub fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[deprecated]
         #[unsafe(method(updateFromPrintInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateFromPrintInfo(&self);
+        pub fn updateFromPrintInfo(&self);
 
         #[deprecated]
         #[unsafe(method(finalWritePrintInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn finalWritePrintInfo(&self);
+        pub fn finalWritePrintInfo(&self);
     );
 }

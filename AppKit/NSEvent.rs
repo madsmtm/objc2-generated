@@ -759,139 +759,139 @@ impl NSEvent {
     extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> NSEventType;
+        pub fn r#type(&self) -> NSEventType;
 
         #[unsafe(method(modifierFlags))]
         #[unsafe(method_family = none)]
-        pub unsafe fn modifierFlags(&self) -> NSEventModifierFlags;
+        pub fn modifierFlags(&self) -> NSEventModifierFlags;
 
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn timestamp(&self) -> NSTimeInterval;
+        pub fn timestamp(&self) -> NSTimeInterval;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[unsafe(method(window))]
         #[unsafe(method_family = none)]
-        pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
+        pub fn window(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
 
         #[unsafe(method(windowNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowNumber(&self) -> NSInteger;
+        pub fn windowNumber(&self) -> NSInteger;
 
         #[cfg(feature = "NSGraphicsContext")]
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
         #[unsafe(method(context))]
         #[unsafe(method_family = none)]
-        pub unsafe fn context(&self) -> Option<Retained<NSGraphicsContext>>;
+        pub fn context(&self) -> Option<Retained<NSGraphicsContext>>;
 
         #[unsafe(method(clickCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clickCount(&self) -> NSInteger;
+        pub fn clickCount(&self) -> NSInteger;
 
         #[unsafe(method(buttonNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn buttonNumber(&self) -> NSInteger;
+        pub fn buttonNumber(&self) -> NSInteger;
 
         #[unsafe(method(eventNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn eventNumber(&self) -> NSInteger;
+        pub fn eventNumber(&self) -> NSInteger;
 
         #[unsafe(method(pressure))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressure(&self) -> c_float;
+        pub fn pressure(&self) -> c_float;
 
         #[unsafe(method(locationInWindow))]
         #[unsafe(method_family = none)]
-        pub unsafe fn locationInWindow(&self) -> NSPoint;
+        pub fn locationInWindow(&self) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(deltaX))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deltaX(&self) -> CGFloat;
+        pub fn deltaX(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(deltaY))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deltaY(&self) -> CGFloat;
+        pub fn deltaY(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(deltaZ))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deltaZ(&self) -> CGFloat;
+        pub fn deltaZ(&self) -> CGFloat;
 
         #[unsafe(method(hasPreciseScrollingDeltas))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasPreciseScrollingDeltas(&self) -> bool;
+        pub fn hasPreciseScrollingDeltas(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scrollingDeltaX))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollingDeltaX(&self) -> CGFloat;
+        pub fn scrollingDeltaX(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scrollingDeltaY))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollingDeltaY(&self) -> CGFloat;
+        pub fn scrollingDeltaY(&self) -> CGFloat;
 
         #[unsafe(method(momentumPhase))]
         #[unsafe(method_family = none)]
-        pub unsafe fn momentumPhase(&self) -> NSEventPhase;
+        pub fn momentumPhase(&self) -> NSEventPhase;
 
         #[unsafe(method(isDirectionInvertedFromDevice))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDirectionInvertedFromDevice(&self) -> bool;
+        pub fn isDirectionInvertedFromDevice(&self) -> bool;
 
         #[unsafe(method(characters))]
         #[unsafe(method_family = none)]
-        pub unsafe fn characters(&self) -> Option<Retained<NSString>>;
+        pub fn characters(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(charactersIgnoringModifiers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn charactersIgnoringModifiers(&self) -> Option<Retained<NSString>>;
+        pub fn charactersIgnoringModifiers(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(charactersByApplyingModifiers:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn charactersByApplyingModifiers(
+        pub fn charactersByApplyingModifiers(
             &self,
             modifiers: NSEventModifierFlags,
         ) -> Option<Retained<NSString>>;
 
         #[unsafe(method(isARepeat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isARepeat(&self) -> bool;
+        pub fn isARepeat(&self) -> bool;
 
         #[unsafe(method(keyCode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyCode(&self) -> c_ushort;
+        pub fn keyCode(&self) -> c_ushort;
 
         #[unsafe(method(trackingNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trackingNumber(&self) -> NSInteger;
+        pub fn trackingNumber(&self) -> NSInteger;
 
         #[unsafe(method(userData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userData(&self) -> *mut c_void;
+        pub fn userData(&self) -> *mut c_void;
 
         #[cfg(feature = "NSTrackingArea")]
         #[unsafe(method(trackingArea))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trackingArea(&self) -> Option<Retained<NSTrackingArea>>;
+        pub fn trackingArea(&self) -> Option<Retained<NSTrackingArea>>;
 
         #[unsafe(method(subtype))]
         #[unsafe(method_family = none)]
-        pub unsafe fn subtype(&self) -> NSEventSubtype;
+        pub fn subtype(&self) -> NSEventSubtype;
 
         #[unsafe(method(data1))]
         #[unsafe(method_family = none)]
-        pub unsafe fn data1(&self) -> NSInteger;
+        pub fn data1(&self) -> NSInteger;
 
         #[unsafe(method(data2))]
         #[unsafe(method_family = none)]
-        pub unsafe fn data2(&self) -> NSInteger;
+        pub fn data2(&self) -> NSInteger;
 
         #[unsafe(method(eventRef))]
         #[unsafe(method_family = none)]
-        pub unsafe fn eventRef(&self) -> *const c_void;
+        pub fn eventRef(&self) -> *const c_void;
 
         /// # Safety
         ///
@@ -904,108 +904,108 @@ impl NSEvent {
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(CGEvent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn CGEvent(&self) -> Option<Retained<CGEvent>>;
+        pub fn CGEvent(&self) -> Option<Retained<CGEvent>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(eventWithCGEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn eventWithCGEvent(cg_event: &CGEvent) -> Option<Retained<NSEvent>>;
+        pub fn eventWithCGEvent(cg_event: &CGEvent) -> Option<Retained<NSEvent>>;
 
         #[unsafe(method(isMouseCoalescingEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isMouseCoalescingEnabled() -> bool;
+        pub fn isMouseCoalescingEnabled() -> bool;
 
         /// Setter for [`isMouseCoalescingEnabled`][Self::isMouseCoalescingEnabled].
         #[unsafe(method(setMouseCoalescingEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMouseCoalescingEnabled(mouse_coalescing_enabled: bool);
+        pub fn setMouseCoalescingEnabled(mouse_coalescing_enabled: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(magnification))]
         #[unsafe(method_family = none)]
-        pub unsafe fn magnification(&self) -> CGFloat;
+        pub fn magnification(&self) -> CGFloat;
 
         #[unsafe(method(deviceID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deviceID(&self) -> NSUInteger;
+        pub fn deviceID(&self) -> NSUInteger;
 
         #[unsafe(method(rotation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rotation(&self) -> c_float;
+        pub fn rotation(&self) -> c_float;
 
         #[unsafe(method(absoluteX))]
         #[unsafe(method_family = none)]
-        pub unsafe fn absoluteX(&self) -> NSInteger;
+        pub fn absoluteX(&self) -> NSInteger;
 
         #[unsafe(method(absoluteY))]
         #[unsafe(method_family = none)]
-        pub unsafe fn absoluteY(&self) -> NSInteger;
+        pub fn absoluteY(&self) -> NSInteger;
 
         #[unsafe(method(absoluteZ))]
         #[unsafe(method_family = none)]
-        pub unsafe fn absoluteZ(&self) -> NSInteger;
+        pub fn absoluteZ(&self) -> NSInteger;
 
         #[unsafe(method(buttonMask))]
         #[unsafe(method_family = none)]
-        pub unsafe fn buttonMask(&self) -> NSEventButtonMask;
+        pub fn buttonMask(&self) -> NSEventButtonMask;
 
         #[unsafe(method(tilt))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tilt(&self) -> NSPoint;
+        pub fn tilt(&self) -> NSPoint;
 
         #[unsafe(method(tangentialPressure))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tangentialPressure(&self) -> c_float;
+        pub fn tangentialPressure(&self) -> c_float;
 
         #[unsafe(method(vendorDefined))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vendorDefined(&self) -> Retained<AnyObject>;
+        pub fn vendorDefined(&self) -> Retained<AnyObject>;
 
         #[unsafe(method(vendorID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vendorID(&self) -> NSUInteger;
+        pub fn vendorID(&self) -> NSUInteger;
 
         #[unsafe(method(tabletID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabletID(&self) -> NSUInteger;
+        pub fn tabletID(&self) -> NSUInteger;
 
         #[unsafe(method(pointingDeviceID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pointingDeviceID(&self) -> NSUInteger;
+        pub fn pointingDeviceID(&self) -> NSUInteger;
 
         #[unsafe(method(systemTabletID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemTabletID(&self) -> NSUInteger;
+        pub fn systemTabletID(&self) -> NSUInteger;
 
         #[unsafe(method(vendorPointingDeviceType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vendorPointingDeviceType(&self) -> NSUInteger;
+        pub fn vendorPointingDeviceType(&self) -> NSUInteger;
 
         #[unsafe(method(pointingDeviceSerialNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pointingDeviceSerialNumber(&self) -> NSUInteger;
+        pub fn pointingDeviceSerialNumber(&self) -> NSUInteger;
 
         #[unsafe(method(uniqueID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn uniqueID(&self) -> c_ulonglong;
+        pub fn uniqueID(&self) -> c_ulonglong;
 
         #[unsafe(method(capabilityMask))]
         #[unsafe(method_family = none)]
-        pub unsafe fn capabilityMask(&self) -> NSUInteger;
+        pub fn capabilityMask(&self) -> NSUInteger;
 
         #[unsafe(method(pointingDeviceType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pointingDeviceType(&self) -> NSPointingDeviceType;
+        pub fn pointingDeviceType(&self) -> NSPointingDeviceType;
 
         #[unsafe(method(isEnteringProximity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnteringProximity(&self) -> bool;
+        pub fn isEnteringProximity(&self) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSTouch", feature = "NSView"))]
         #[unsafe(method(touchesMatchingPhase:inView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesMatchingPhase_inView(
+        pub fn touchesMatchingPhase_inView(
             &self,
             phase: NSTouchPhase,
             view: Option<&NSView>,
@@ -1014,50 +1014,47 @@ impl NSEvent {
         #[cfg(feature = "NSTouch")]
         #[unsafe(method(allTouches))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allTouches(&self) -> Retained<NSSet<NSTouch>>;
+        pub fn allTouches(&self) -> Retained<NSSet<NSTouch>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSTouch", feature = "NSView"))]
         #[unsafe(method(touchesForView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesForView(&self, view: &NSView) -> Retained<NSSet<NSTouch>>;
+        pub fn touchesForView(&self, view: &NSView) -> Retained<NSSet<NSTouch>>;
 
         #[cfg(feature = "NSTouch")]
         #[unsafe(method(coalescedTouchesForTouch:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn coalescedTouchesForTouch(
-            &self,
-            touch: &NSTouch,
-        ) -> Retained<NSArray<NSTouch>>;
+        pub fn coalescedTouchesForTouch(&self, touch: &NSTouch) -> Retained<NSArray<NSTouch>>;
 
         #[unsafe(method(phase))]
         #[unsafe(method_family = none)]
-        pub unsafe fn phase(&self) -> NSEventPhase;
+        pub fn phase(&self) -> NSEventPhase;
 
         #[unsafe(method(stage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stage(&self) -> NSInteger;
+        pub fn stage(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(stageTransition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stageTransition(&self) -> CGFloat;
+        pub fn stageTransition(&self) -> CGFloat;
 
         #[unsafe(method(associatedEventsMask))]
         #[unsafe(method_family = none)]
-        pub unsafe fn associatedEventsMask(&self) -> NSEventMask;
+        pub fn associatedEventsMask(&self) -> NSEventMask;
 
         #[unsafe(method(pressureBehavior))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressureBehavior(&self) -> NSPressureBehavior;
+        pub fn pressureBehavior(&self) -> NSPressureBehavior;
 
         #[unsafe(method(isSwipeTrackingFromScrollEventsEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSwipeTrackingFromScrollEventsEnabled() -> bool;
+        pub fn isSwipeTrackingFromScrollEventsEnabled() -> bool;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[unsafe(method(trackSwipeEventWithOptions:dampenAmountThresholdMin:max:usingHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trackSwipeEventWithOptions_dampenAmountThresholdMin_max_usingHandler(
+        pub fn trackSwipeEventWithOptions_dampenAmountThresholdMin_max_usingHandler(
             &self,
             options: NSEventSwipeTrackingOptions,
             min_dampen_threshold: CGFloat,
@@ -1067,19 +1064,19 @@ impl NSEvent {
 
         #[unsafe(method(startPeriodicEventsAfterDelay:withPeriod:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startPeriodicEventsAfterDelay_withPeriod(
+        pub fn startPeriodicEventsAfterDelay_withPeriod(
             delay: NSTimeInterval,
             period: NSTimeInterval,
         );
 
         #[unsafe(method(stopPeriodicEvents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stopPeriodicEvents();
+        pub fn stopPeriodicEvents();
 
         #[cfg(feature = "NSGraphicsContext")]
         #[unsafe(method(mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure(
+        pub fn mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure(
             r#type: NSEventType,
             location: NSPoint,
             flags: NSEventModifierFlags,
@@ -1094,7 +1091,7 @@ impl NSEvent {
         #[cfg(feature = "NSGraphicsContext")]
         #[unsafe(method(keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode(
+        pub fn keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode(
             r#type: NSEventType,
             location: NSPoint,
             flags: NSEventModifierFlags,
@@ -1128,7 +1125,7 @@ impl NSEvent {
         #[cfg(feature = "NSGraphicsContext")]
         #[unsafe(method(otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2(
+        pub fn otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2(
             r#type: NSEventType,
             location: NSPoint,
             flags: NSEventModifierFlags,
@@ -1142,32 +1139,32 @@ impl NSEvent {
 
         #[unsafe(method(mouseLocation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseLocation() -> NSPoint;
+        pub fn mouseLocation() -> NSPoint;
 
         #[unsafe(method(modifierFlags))]
         #[unsafe(method_family = none)]
-        pub unsafe fn modifierFlags_class() -> NSEventModifierFlags;
+        pub fn modifierFlags_class() -> NSEventModifierFlags;
 
         #[unsafe(method(pressedMouseButtons))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressedMouseButtons() -> NSUInteger;
+        pub fn pressedMouseButtons() -> NSUInteger;
 
         #[unsafe(method(doubleClickInterval))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleClickInterval() -> NSTimeInterval;
+        pub fn doubleClickInterval() -> NSTimeInterval;
 
         #[unsafe(method(keyRepeatDelay))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyRepeatDelay() -> NSTimeInterval;
+        pub fn keyRepeatDelay() -> NSTimeInterval;
 
         #[unsafe(method(keyRepeatInterval))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyRepeatInterval() -> NSTimeInterval;
+        pub fn keyRepeatInterval() -> NSTimeInterval;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(addGlobalMonitorForEventsMatchingMask:handler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addGlobalMonitorForEventsMatchingMask_handler(
+        pub fn addGlobalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
             block: &block2::DynBlock<dyn Fn(NonNull<NSEvent>)>,
         ) -> Option<Retained<AnyObject>>;
@@ -1197,12 +1194,19 @@ impl NSEvent {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSEvent {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuparrowfunctionkey?language=objc)

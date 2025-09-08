@@ -17,11 +17,11 @@ pub unsafe trait NSObjectNSNibAwaking:
     extern_methods!(
         #[unsafe(method(awakeFromNib))]
         #[unsafe(method_family = none)]
-        unsafe fn awakeFromNib(&self);
+        fn awakeFromNib(&self);
 
         #[unsafe(method(prepareForInterfaceBuilder))]
         #[unsafe(method_family = none)]
-        unsafe fn prepareForInterfaceBuilder(&self);
+        fn prepareForInterfaceBuilder(&self);
     );
 }
 

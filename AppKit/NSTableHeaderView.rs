@@ -80,7 +80,7 @@ impl NSTableHeaderView {
         #[cfg(all(feature = "NSControl", feature = "NSTableView"))]
         #[unsafe(method(tableView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tableView(&self) -> Option<Retained<NSTableView>>;
+        pub fn tableView(&self) -> Option<Retained<NSTableView>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSTableView"))]
         /// Setter for [`tableView`][Self::tableView].
@@ -88,28 +88,28 @@ impl NSTableHeaderView {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTableView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
+        pub fn setTableView(&self, table_view: Option<&NSTableView>);
 
         #[unsafe(method(draggedColumn))]
         #[unsafe(method_family = none)]
-        pub unsafe fn draggedColumn(&self) -> NSInteger;
+        pub fn draggedColumn(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(draggedDistance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn draggedDistance(&self) -> CGFloat;
+        pub fn draggedDistance(&self) -> CGFloat;
 
         #[unsafe(method(resizedColumn))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resizedColumn(&self) -> NSInteger;
+        pub fn resizedColumn(&self) -> NSInteger;
 
         #[unsafe(method(headerRectOfColumn:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn headerRectOfColumn(&self, column: NSInteger) -> NSRect;
+        pub fn headerRectOfColumn(&self, column: NSInteger) -> NSRect;
 
         #[unsafe(method(columnAtPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
+        pub fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
     );
 }
 
@@ -119,7 +119,7 @@ impl NSTableHeaderView {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -139,7 +139,7 @@ impl NSTableHeaderView {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -149,6 +149,6 @@ impl NSTableHeaderView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

@@ -53,13 +53,13 @@ impl NSWritingToolsCoordinatorAnimationParameters {
         /// The number of seconds it takes the system animations to run.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn duration(&self) -> CGFloat;
+        pub fn duration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The number of seconds the system waits before starting its animations.
         #[unsafe(method(delay))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delay(&self) -> CGFloat;
+        pub fn delay(&self) -> CGFloat;
 
         #[cfg(feature = "block2")]
         /// A custom block that runs at the same time as the system animations.
@@ -73,7 +73,7 @@ impl NSWritingToolsCoordinatorAnimationParameters {
         /// the course of the animations, providing an updated completion value each time.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progressHandler(&self) -> *mut block2::DynBlock<dyn Fn(c_float)>;
+        pub fn progressHandler(&self) -> *mut block2::DynBlock<dyn Fn(c_float)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
@@ -81,7 +81,7 @@ impl NSWritingToolsCoordinatorAnimationParameters {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setProgressHandler(
+        pub fn setProgressHandler(
             &self,
             progress_handler: Option<&block2::DynBlock<dyn Fn(c_float)>>,
         );
@@ -95,7 +95,7 @@ impl NSWritingToolsCoordinatorAnimationParameters {
         /// animation finish.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub fn completionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
@@ -103,10 +103,7 @@ impl NSWritingToolsCoordinatorAnimationParameters {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCompletionHandler(
-            &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn()>>,
-        );
+        pub fn setCompletionHandler(&self, completion_handler: Option<&block2::DynBlock<dyn Fn()>>);
     );
 }
 

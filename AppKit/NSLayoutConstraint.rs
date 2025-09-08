@@ -215,21 +215,21 @@ impl NSLayoutConstraint {
 
         #[unsafe(method(priority))]
         #[unsafe(method_family = none)]
-        pub unsafe fn priority(&self) -> NSLayoutPriority;
+        pub fn priority(&self) -> NSLayoutPriority;
 
         /// Setter for [`priority`][Self::priority].
         #[unsafe(method(setPriority:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPriority(&self, priority: NSLayoutPriority);
+        pub fn setPriority(&self, priority: NSLayoutPriority);
 
         #[unsafe(method(shouldBeArchived))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shouldBeArchived(&self) -> bool;
+        pub fn shouldBeArchived(&self) -> bool;
 
         /// Setter for [`shouldBeArchived`][Self::shouldBeArchived].
         #[unsafe(method(setShouldBeArchived:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShouldBeArchived(&self, should_be_archived: bool);
+        pub fn setShouldBeArchived(&self, should_be_archived: bool);
 
         /// # Safety
         ///
@@ -247,58 +247,58 @@ impl NSLayoutConstraint {
 
         #[unsafe(method(firstAttribute))]
         #[unsafe(method_family = none)]
-        pub unsafe fn firstAttribute(&self) -> NSLayoutAttribute;
+        pub fn firstAttribute(&self) -> NSLayoutAttribute;
 
         #[unsafe(method(secondAttribute))]
         #[unsafe(method_family = none)]
-        pub unsafe fn secondAttribute(&self) -> NSLayoutAttribute;
+        pub fn secondAttribute(&self) -> NSLayoutAttribute;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(firstAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn firstAnchor(&self) -> Retained<NSLayoutAnchor>;
+        pub fn firstAnchor(&self) -> Retained<NSLayoutAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(secondAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn secondAnchor(&self) -> Option<Retained<NSLayoutAnchor>>;
+        pub fn secondAnchor(&self) -> Option<Retained<NSLayoutAnchor>>;
 
         #[unsafe(method(relation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn relation(&self) -> NSLayoutRelation;
+        pub fn relation(&self) -> NSLayoutRelation;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(multiplier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn multiplier(&self) -> CGFloat;
+        pub fn multiplier(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(constant))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constant(&self) -> CGFloat;
+        pub fn constant(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`constant`][Self::constant].
         #[unsafe(method(setConstant:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConstant(&self, constant: CGFloat);
+        pub fn setConstant(&self, constant: CGFloat);
 
         #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isActive(&self) -> bool;
+        pub fn isActive(&self) -> bool;
 
         /// Setter for [`isActive`][Self::isActive].
         #[unsafe(method(setActive:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setActive(&self, active: bool);
+        pub fn setActive(&self, active: bool);
 
         #[unsafe(method(activateConstraints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activateConstraints(constraints: &NSArray<NSLayoutConstraint>);
+        pub fn activateConstraints(constraints: &NSArray<NSLayoutConstraint>);
 
         #[unsafe(method(deactivateConstraints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deactivateConstraints(constraints: &NSArray<NSLayoutConstraint>);
+        pub fn deactivateConstraints(constraints: &NSArray<NSLayoutConstraint>);
     );
 }
 
@@ -307,12 +307,19 @@ impl NSLayoutConstraint {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSLayoutConstraint {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSIdentifier.
@@ -320,14 +327,14 @@ impl NSLayoutConstraint {
     extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
+        pub fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
+        pub fn setIdentifier(&self, identifier: Option<&NSString>);
     );
 }
 
@@ -347,82 +354,82 @@ impl NSView {
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(leadingAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn leadingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
+        pub fn leadingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(trailingAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trailingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
+        pub fn trailingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(leftAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn leftAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
+        pub fn leftAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(rightAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rightAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
+        pub fn rightAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(topAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn topAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
+        pub fn topAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(bottomAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bottomAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
+        pub fn bottomAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(widthAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn widthAnchor(&self) -> Retained<NSLayoutDimension>;
+        pub fn widthAnchor(&self) -> Retained<NSLayoutDimension>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(heightAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn heightAnchor(&self) -> Retained<NSLayoutDimension>;
+        pub fn heightAnchor(&self) -> Retained<NSLayoutDimension>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(centerXAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn centerXAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
+        pub fn centerXAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(centerYAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn centerYAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
+        pub fn centerYAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(firstBaselineAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn firstBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
+        pub fn firstBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(lastBaselineAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lastBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
+        pub fn lastBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[unsafe(method(constraints))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constraints(&self) -> Retained<NSArray<NSLayoutConstraint>>;
+        pub fn constraints(&self) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[unsafe(method(addConstraint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addConstraint(&self, constraint: &NSLayoutConstraint);
+        pub fn addConstraint(&self, constraint: &NSLayoutConstraint);
 
         #[unsafe(method(addConstraints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
+        pub fn addConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
 
         #[unsafe(method(removeConstraint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeConstraint(&self, constraint: &NSLayoutConstraint);
+        pub fn removeConstraint(&self, constraint: &NSLayoutConstraint);
 
         #[unsafe(method(removeConstraints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
+        pub fn removeConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
     );
 }
 
@@ -432,11 +439,11 @@ impl NSWindow {
     extern_methods!(
         #[unsafe(method(updateConstraintsIfNeeded))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateConstraintsIfNeeded(&self);
+        pub fn updateConstraintsIfNeeded(&self);
 
         #[unsafe(method(layoutIfNeeded))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutIfNeeded(&self);
+        pub fn layoutIfNeeded(&self);
     );
 }
 
@@ -446,20 +453,20 @@ impl NSView {
     extern_methods!(
         #[unsafe(method(updateConstraintsForSubtreeIfNeeded))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateConstraintsForSubtreeIfNeeded(&self);
+        pub fn updateConstraintsForSubtreeIfNeeded(&self);
 
         #[unsafe(method(updateConstraints))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateConstraints(&self);
+        pub fn updateConstraints(&self);
 
         #[unsafe(method(needsUpdateConstraints))]
         #[unsafe(method_family = none)]
-        pub unsafe fn needsUpdateConstraints(&self) -> bool;
+        pub fn needsUpdateConstraints(&self) -> bool;
 
         /// Setter for [`needsUpdateConstraints`][Self::needsUpdateConstraints].
         #[unsafe(method(setNeedsUpdateConstraints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsUpdateConstraints(&self, needs_update_constraints: bool);
+        pub fn setNeedsUpdateConstraints(&self, needs_update_constraints: bool);
     );
 }
 
@@ -469,19 +476,19 @@ impl NSView {
     extern_methods!(
         #[unsafe(method(translatesAutoresizingMaskIntoConstraints))]
         #[unsafe(method_family = none)]
-        pub unsafe fn translatesAutoresizingMaskIntoConstraints(&self) -> bool;
+        pub fn translatesAutoresizingMaskIntoConstraints(&self) -> bool;
 
         /// Setter for [`translatesAutoresizingMaskIntoConstraints`][Self::translatesAutoresizingMaskIntoConstraints].
         #[unsafe(method(setTranslatesAutoresizingMaskIntoConstraints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTranslatesAutoresizingMaskIntoConstraints(
+        pub fn setTranslatesAutoresizingMaskIntoConstraints(
             &self,
             translates_autoresizing_mask_into_constraints: bool,
         );
 
         #[unsafe(method(requiresConstraintBasedLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requiresConstraintBasedLayout(mtm: MainThreadMarker) -> bool;
+        pub fn requiresConstraintBasedLayout(mtm: MainThreadMarker) -> bool;
     );
 }
 
@@ -504,49 +511,49 @@ impl NSView {
     extern_methods!(
         #[unsafe(method(alignmentRectForFrame:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alignmentRectForFrame(&self, frame: NSRect) -> NSRect;
+        pub fn alignmentRectForFrame(&self, frame: NSRect) -> NSRect;
 
         #[unsafe(method(frameForAlignmentRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frameForAlignmentRect(&self, alignment_rect: NSRect) -> NSRect;
+        pub fn frameForAlignmentRect(&self, alignment_rect: NSRect) -> NSRect;
 
         #[unsafe(method(alignmentRectInsets))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alignmentRectInsets(&self) -> NSEdgeInsets;
+        pub fn alignmentRectInsets(&self) -> NSEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(firstBaselineOffsetFromTop))]
         #[unsafe(method_family = none)]
-        pub unsafe fn firstBaselineOffsetFromTop(&self) -> CGFloat;
+        pub fn firstBaselineOffsetFromTop(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(lastBaselineOffsetFromBottom))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lastBaselineOffsetFromBottom(&self) -> CGFloat;
+        pub fn lastBaselineOffsetFromBottom(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(baselineOffsetFromBottom))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baselineOffsetFromBottom(&self) -> CGFloat;
+        pub fn baselineOffsetFromBottom(&self) -> CGFloat;
 
         #[unsafe(method(intrinsicContentSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intrinsicContentSize(&self) -> NSSize;
+        pub fn intrinsicContentSize(&self) -> NSSize;
 
         #[unsafe(method(invalidateIntrinsicContentSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidateIntrinsicContentSize(&self);
+        pub fn invalidateIntrinsicContentSize(&self);
 
         #[unsafe(method(contentHuggingPriorityForOrientation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentHuggingPriorityForOrientation(
+        pub fn contentHuggingPriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
         #[unsafe(method(setContentHuggingPriority:forOrientation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentHuggingPriority_forOrientation(
+        pub fn setContentHuggingPriority_forOrientation(
             &self,
             priority: NSLayoutPriority,
             orientation: NSLayoutConstraintOrientation,
@@ -554,14 +561,14 @@ impl NSView {
 
         #[unsafe(method(contentCompressionResistancePriorityForOrientation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentCompressionResistancePriorityForOrientation(
+        pub fn contentCompressionResistancePriorityForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutPriority;
 
         #[unsafe(method(setContentCompressionResistancePriority:forOrientation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentCompressionResistancePriority_forOrientation(
+        pub fn setContentCompressionResistancePriority_forOrientation(
             &self,
             priority: NSLayoutPriority,
             orientation: NSLayoutConstraintOrientation,
@@ -569,24 +576,24 @@ impl NSView {
 
         #[unsafe(method(isHorizontalContentSizeConstraintActive))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHorizontalContentSizeConstraintActive(&self) -> bool;
+        pub fn isHorizontalContentSizeConstraintActive(&self) -> bool;
 
         /// Setter for [`isHorizontalContentSizeConstraintActive`][Self::isHorizontalContentSizeConstraintActive].
         #[unsafe(method(setHorizontalContentSizeConstraintActive:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHorizontalContentSizeConstraintActive(
+        pub fn setHorizontalContentSizeConstraintActive(
             &self,
             horizontal_content_size_constraint_active: bool,
         );
 
         #[unsafe(method(isVerticalContentSizeConstraintActive))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isVerticalContentSizeConstraintActive(&self) -> bool;
+        pub fn isVerticalContentSizeConstraintActive(&self) -> bool;
 
         /// Setter for [`isVerticalContentSizeConstraintActive`][Self::isVerticalContentSizeConstraintActive].
         #[unsafe(method(setVerticalContentSizeConstraintActive:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVerticalContentSizeConstraintActive(
+        pub fn setVerticalContentSizeConstraintActive(
             &self,
             vertical_content_size_constraint_active: bool,
         );
@@ -600,7 +607,7 @@ impl NSControl {
         #[cfg(feature = "NSCell")]
         #[unsafe(method(invalidateIntrinsicContentSizeForCell:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidateIntrinsicContentSizeForCell(&self, cell: &NSCell);
+        pub fn invalidateIntrinsicContentSizeForCell(&self, cell: &NSCell);
     );
 }
 
@@ -610,14 +617,14 @@ impl NSWindow {
     extern_methods!(
         #[unsafe(method(anchorAttributeForOrientation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn anchorAttributeForOrientation(
+        pub fn anchorAttributeForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> NSLayoutAttribute;
 
         #[unsafe(method(setAnchorAttribute:forOrientation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnchorAttribute_forOrientation(
+        pub fn setAnchorAttribute_forOrientation(
             &self,
             attr: NSLayoutAttribute,
             orientation: NSLayoutConstraintOrientation,
@@ -631,7 +638,7 @@ impl NSView {
     extern_methods!(
         #[unsafe(method(fittingSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fittingSize(&self) -> NSSize;
+        pub fn fittingSize(&self) -> NSSize;
     );
 }
 
@@ -641,18 +648,18 @@ impl NSView {
     extern_methods!(
         #[unsafe(method(constraintsAffectingLayoutForOrientation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constraintsAffectingLayoutForOrientation(
+        pub fn constraintsAffectingLayoutForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,
         ) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[unsafe(method(hasAmbiguousLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasAmbiguousLayout(&self) -> bool;
+        pub fn hasAmbiguousLayout(&self) -> bool;
 
         #[unsafe(method(exerciseAmbiguityInLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn exerciseAmbiguityInLayout(&self);
+        pub fn exerciseAmbiguityInLayout(&self);
     );
 }
 
@@ -662,9 +669,6 @@ impl NSWindow {
     extern_methods!(
         #[unsafe(method(visualizeConstraints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn visualizeConstraints(
-            &self,
-            constraints: Option<&NSArray<NSLayoutConstraint>>,
-        );
+        pub fn visualizeConstraints(&self, constraints: Option<&NSArray<NSLayoutConstraint>>);
     );
 }

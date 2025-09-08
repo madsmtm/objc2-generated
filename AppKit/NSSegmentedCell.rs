@@ -69,142 +69,138 @@ impl NSSegmentedCell {
     extern_methods!(
         #[unsafe(method(segmentCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn segmentCount(&self) -> NSInteger;
+        pub fn segmentCount(&self) -> NSInteger;
 
         /// Setter for [`segmentCount`][Self::segmentCount].
         #[unsafe(method(setSegmentCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSegmentCount(&self, segment_count: NSInteger);
+        pub fn setSegmentCount(&self, segment_count: NSInteger);
 
         #[unsafe(method(selectedSegment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedSegment(&self) -> NSInteger;
+        pub fn selectedSegment(&self) -> NSInteger;
 
         /// Setter for [`selectedSegment`][Self::selectedSegment].
         #[unsafe(method(setSelectedSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectedSegment(&self, selected_segment: NSInteger);
+        pub fn setSelectedSegment(&self, selected_segment: NSInteger);
 
         #[unsafe(method(selectSegmentWithTag:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectSegmentWithTag(&self, tag: NSInteger) -> bool;
+        pub fn selectSegmentWithTag(&self, tag: NSInteger) -> bool;
 
         #[unsafe(method(makeNextSegmentKey))]
         #[unsafe(method_family = none)]
-        pub unsafe fn makeNextSegmentKey(&self);
+        pub fn makeNextSegmentKey(&self);
 
         #[unsafe(method(makePreviousSegmentKey))]
         #[unsafe(method_family = none)]
-        pub unsafe fn makePreviousSegmentKey(&self);
+        pub fn makePreviousSegmentKey(&self);
 
         #[cfg(feature = "NSSegmentedControl")]
         #[unsafe(method(trackingMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trackingMode(&self) -> NSSegmentSwitchTracking;
+        pub fn trackingMode(&self) -> NSSegmentSwitchTracking;
 
         #[cfg(feature = "NSSegmentedControl")]
         /// Setter for [`trackingMode`][Self::trackingMode].
         #[unsafe(method(setTrackingMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTrackingMode(&self, tracking_mode: NSSegmentSwitchTracking);
+        pub fn setTrackingMode(&self, tracking_mode: NSSegmentSwitchTracking);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setWidth:forSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWidth_forSegment(&self, width: CGFloat, segment: NSInteger);
+        pub fn setWidth_forSegment(&self, width: CGFloat, segment: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(widthForSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn widthForSegment(&self, segment: NSInteger) -> CGFloat;
+        pub fn widthForSegment(&self, segment: NSInteger) -> CGFloat;
 
         #[cfg(feature = "NSImage")]
         #[unsafe(method(setImage:forSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImage_forSegment(&self, image: Option<&NSImage>, segment: NSInteger);
+        pub fn setImage_forSegment(&self, image: Option<&NSImage>, segment: NSInteger);
 
         #[cfg(feature = "NSImage")]
         #[unsafe(method(imageForSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Retained<NSImage>>;
+        pub fn imageForSegment(&self, segment: NSInteger) -> Option<Retained<NSImage>>;
 
         #[unsafe(method(setImageScaling:forSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImageScaling_forSegment(
-            &self,
-            scaling: NSImageScaling,
-            segment: NSInteger,
-        );
+        pub fn setImageScaling_forSegment(&self, scaling: NSImageScaling, segment: NSInteger);
 
         #[unsafe(method(imageScalingForSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageScalingForSegment(&self, segment: NSInteger) -> NSImageScaling;
+        pub fn imageScalingForSegment(&self, segment: NSInteger) -> NSImageScaling;
 
         #[unsafe(method(setLabel:forSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel_forSegment(&self, label: &NSString, segment: NSInteger);
+        pub fn setLabel_forSegment(&self, label: &NSString, segment: NSInteger);
 
         #[unsafe(method(labelForSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
+        pub fn labelForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
 
         #[unsafe(method(setSelected:forSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelected_forSegment(&self, selected: bool, segment: NSInteger);
+        pub fn setSelected_forSegment(&self, selected: bool, segment: NSInteger);
 
         #[unsafe(method(isSelectedForSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSelectedForSegment(&self, segment: NSInteger) -> bool;
+        pub fn isSelectedForSegment(&self, segment: NSInteger) -> bool;
 
         #[unsafe(method(setEnabled:forSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnabled_forSegment(&self, enabled: bool, segment: NSInteger);
+        pub fn setEnabled_forSegment(&self, enabled: bool, segment: NSInteger);
 
         #[unsafe(method(isEnabledForSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnabledForSegment(&self, segment: NSInteger) -> bool;
+        pub fn isEnabledForSegment(&self, segment: NSInteger) -> bool;
 
         #[cfg(feature = "NSMenu")]
         #[unsafe(method(setMenu:forSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMenu_forSegment(&self, menu: Option<&NSMenu>, segment: NSInteger);
+        pub fn setMenu_forSegment(&self, menu: Option<&NSMenu>, segment: NSInteger);
 
         #[cfg(feature = "NSMenu")]
         #[unsafe(method(menuForSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Retained<NSMenu>>;
+        pub fn menuForSegment(&self, segment: NSInteger) -> Option<Retained<NSMenu>>;
 
         #[unsafe(method(setToolTip:forSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setToolTip_forSegment(&self, tool_tip: Option<&NSString>, segment: NSInteger);
+        pub fn setToolTip_forSegment(&self, tool_tip: Option<&NSString>, segment: NSInteger);
 
         #[unsafe(method(toolTipForSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
+        pub fn toolTipForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
 
         #[unsafe(method(setTag:forSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTag_forSegment(&self, tag: NSInteger, segment: NSInteger);
+        pub fn setTag_forSegment(&self, tag: NSInteger, segment: NSInteger);
 
         #[unsafe(method(tagForSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tagForSegment(&self, segment: NSInteger) -> NSInteger;
+        pub fn tagForSegment(&self, segment: NSInteger) -> NSInteger;
 
         #[cfg(feature = "NSSegmentedControl")]
         #[unsafe(method(segmentStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn segmentStyle(&self) -> NSSegmentStyle;
+        pub fn segmentStyle(&self) -> NSSegmentStyle;
 
         #[cfg(feature = "NSSegmentedControl")]
         /// Setter for [`segmentStyle`][Self::segmentStyle].
         #[unsafe(method(setSegmentStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
+        pub fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(drawSegment:inFrame:withView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawSegment_inFrame_withView(
+        pub fn drawSegment_inFrame_withView(
             &self,
             segment: NSInteger,
             frame: NSRect,
@@ -219,19 +215,16 @@ impl NSSegmentedCell {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
+        pub fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[unsafe(method(initImageCell:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initImageCell(
-            this: Allocated<Self>,
-            image: Option<&NSImage>,
-        ) -> Retained<Self>;
+        pub fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -248,7 +241,7 @@ impl NSSegmentedCell {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -258,9 +251,6 @@ impl NSSegmentedCell {
     extern_methods!(
         #[unsafe(method(interiorBackgroundStyleForSegment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn interiorBackgroundStyleForSegment(
-            &self,
-            segment: NSInteger,
-        ) -> NSBackgroundStyle;
+        pub fn interiorBackgroundStyleForSegment(&self, segment: NSInteger) -> NSBackgroundStyle;
     );
 }

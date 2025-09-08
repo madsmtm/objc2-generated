@@ -56,7 +56,7 @@ impl NSOpenGLLayer {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
+        pub fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`view`][Self::view].
@@ -64,45 +64,39 @@ impl NSOpenGLLayer {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setView(&self, view: Option<&NSView>);
+        pub fn setView(&self, view: Option<&NSView>);
 
         #[cfg(feature = "NSOpenGL")]
         #[unsafe(method(openGLPixelFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openGLPixelFormat(&self) -> Option<Retained<NSOpenGLPixelFormat>>;
+        pub fn openGLPixelFormat(&self) -> Option<Retained<NSOpenGLPixelFormat>>;
 
         #[cfg(feature = "NSOpenGL")]
         /// Setter for [`openGLPixelFormat`][Self::openGLPixelFormat].
         #[unsafe(method(setOpenGLPixelFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOpenGLPixelFormat(
-            &self,
-            open_gl_pixel_format: Option<&NSOpenGLPixelFormat>,
-        );
+        pub fn setOpenGLPixelFormat(&self, open_gl_pixel_format: Option<&NSOpenGLPixelFormat>);
 
         #[cfg(feature = "NSOpenGL")]
         #[unsafe(method(openGLContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openGLContext(&self) -> Option<Retained<NSOpenGLContext>>;
+        pub fn openGLContext(&self) -> Option<Retained<NSOpenGLContext>>;
 
         #[cfg(feature = "NSOpenGL")]
         /// Setter for [`openGLContext`][Self::openGLContext].
         #[unsafe(method(setOpenGLContext:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOpenGLContext(&self, open_gl_context: Option<&NSOpenGLContext>);
+        pub fn setOpenGLContext(&self, open_gl_context: Option<&NSOpenGLContext>);
 
         #[cfg(feature = "NSOpenGL")]
         #[unsafe(method(openGLPixelFormatForDisplayMask:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openGLPixelFormatForDisplayMask(
-            &self,
-            mask: u32,
-        ) -> Retained<NSOpenGLPixelFormat>;
+        pub fn openGLPixelFormatForDisplayMask(&self, mask: u32) -> Retained<NSOpenGLPixelFormat>;
 
         #[cfg(feature = "NSOpenGL")]
         #[unsafe(method(openGLContextForPixelFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openGLContextForPixelFormat(
+        pub fn openGLContextForPixelFormat(
             &self,
             pixel_format: &NSOpenGLPixelFormat,
         ) -> Retained<NSOpenGLContext>;
@@ -153,11 +147,11 @@ impl NSOpenGLLayer {
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layer() -> Retained<Self>;
+        pub fn layer() -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -175,6 +169,15 @@ impl NSOpenGLLayer {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(target_vendor = "apple")]
+impl DefaultRetained for NSOpenGLLayer {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

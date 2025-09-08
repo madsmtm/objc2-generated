@@ -40,35 +40,32 @@ impl NSPDFImageRep {
     extern_methods!(
         #[unsafe(method(imageRepWithData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageRepWithData(pdf_data: &NSData) -> Option<Retained<Self>>;
+        pub fn imageRepWithData(pdf_data: &NSData) -> Option<Retained<Self>>;
 
         #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithData(
-            this: Allocated<Self>,
-            pdf_data: &NSData,
-        ) -> Option<Retained<Self>>;
+        pub fn initWithData(this: Allocated<Self>, pdf_data: &NSData) -> Option<Retained<Self>>;
 
         #[unsafe(method(PDFRepresentation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PDFRepresentation(&self) -> Retained<NSData>;
+        pub fn PDFRepresentation(&self) -> Retained<NSData>;
 
         #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bounds(&self) -> NSRect;
+        pub fn bounds(&self) -> NSRect;
 
         #[unsafe(method(currentPage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentPage(&self) -> NSInteger;
+        pub fn currentPage(&self) -> NSInteger;
 
         /// Setter for [`currentPage`][Self::currentPage].
         #[unsafe(method(setCurrentPage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCurrentPage(&self, current_page: NSInteger);
+        pub fn setCurrentPage(&self, current_page: NSInteger);
 
         #[unsafe(method(pageCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pageCount(&self) -> NSInteger;
+        pub fn pageCount(&self) -> NSInteger;
     );
 }
 
@@ -78,7 +75,7 @@ impl NSPDFImageRep {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -98,6 +95,14 @@ impl NSPDFImageRep {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSImageRep")]
+impl DefaultRetained for NSPDFImageRep {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

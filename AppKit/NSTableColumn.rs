@@ -59,7 +59,7 @@ impl NSTableColumn {
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithIdentifier(
+        pub fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSUserInterfaceItemIdentifier,
         ) -> Retained<Self>;
@@ -74,7 +74,7 @@ impl NSTableColumn {
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Retained<NSUserInterfaceItemIdentifier>;
+        pub fn identifier(&self) -> Retained<NSUserInterfaceItemIdentifier>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         /// Setter for [`identifier`][Self::identifier].
@@ -82,7 +82,7 @@ impl NSTableColumn {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
+        pub fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 
         #[cfg(all(
             feature = "NSControl",
@@ -92,7 +92,7 @@ impl NSTableColumn {
         ))]
         #[unsafe(method(tableView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tableView(&self) -> Option<Retained<NSTableView>>;
+        pub fn tableView(&self) -> Option<Retained<NSTableView>>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -105,51 +105,51 @@ impl NSTableColumn {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTableView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
+        pub fn setTableView(&self, table_view: Option<&NSTableView>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(width))]
         #[unsafe(method_family = none)]
-        pub unsafe fn width(&self) -> CGFloat;
+        pub fn width(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`width`][Self::width].
         #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWidth(&self, width: CGFloat);
+        pub fn setWidth(&self, width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(minWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minWidth(&self) -> CGFloat;
+        pub fn minWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minWidth`][Self::minWidth].
         #[unsafe(method(setMinWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinWidth(&self, min_width: CGFloat);
+        pub fn setMinWidth(&self, min_width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(maxWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxWidth(&self) -> CGFloat;
+        pub fn maxWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maxWidth`][Self::maxWidth].
         #[unsafe(method(setMaxWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxWidth(&self, max_width: CGFloat);
+        pub fn setMaxWidth(&self, max_width: CGFloat);
 
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        pub unsafe fn title(&self) -> Retained<NSString>;
+        pub fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTitle(&self, title: &NSString);
+        pub fn setTitle(&self, title: &NSString);
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -159,7 +159,7 @@ impl NSTableColumn {
         ))]
         #[unsafe(method(headerCell))]
         #[unsafe(method_family = none)]
-        pub unsafe fn headerCell(&self) -> Retained<NSTableHeaderCell>;
+        pub fn headerCell(&self) -> Retained<NSTableHeaderCell>;
 
         #[cfg(all(
             feature = "NSActionCell",
@@ -170,63 +170,63 @@ impl NSTableColumn {
         /// Setter for [`headerCell`][Self::headerCell].
         #[unsafe(method(setHeaderCell:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHeaderCell(&self, header_cell: &NSTableHeaderCell);
+        pub fn setHeaderCell(&self, header_cell: &NSTableHeaderCell);
 
         #[unsafe(method(isEditable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEditable(&self) -> bool;
+        pub fn isEditable(&self) -> bool;
 
         /// Setter for [`isEditable`][Self::isEditable].
         #[unsafe(method(setEditable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEditable(&self, editable: bool);
+        pub fn setEditable(&self, editable: bool);
 
         #[unsafe(method(sizeToFit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sizeToFit(&self);
+        pub fn sizeToFit(&self);
 
         #[unsafe(method(sortDescriptorPrototype))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sortDescriptorPrototype(&self) -> Option<Retained<NSSortDescriptor>>;
+        pub fn sortDescriptorPrototype(&self) -> Option<Retained<NSSortDescriptor>>;
 
         /// Setter for [`sortDescriptorPrototype`][Self::sortDescriptorPrototype].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSortDescriptorPrototype:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSortDescriptorPrototype(
+        pub fn setSortDescriptorPrototype(
             &self,
             sort_descriptor_prototype: Option<&NSSortDescriptor>,
         );
 
         #[unsafe(method(resizingMask))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resizingMask(&self) -> NSTableColumnResizingOptions;
+        pub fn resizingMask(&self) -> NSTableColumnResizingOptions;
 
         /// Setter for [`resizingMask`][Self::resizingMask].
         #[unsafe(method(setResizingMask:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setResizingMask(&self, resizing_mask: NSTableColumnResizingOptions);
+        pub fn setResizingMask(&self, resizing_mask: NSTableColumnResizingOptions);
 
         #[unsafe(method(headerToolTip))]
         #[unsafe(method_family = none)]
-        pub unsafe fn headerToolTip(&self) -> Option<Retained<NSString>>;
+        pub fn headerToolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`headerToolTip`][Self::headerToolTip].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHeaderToolTip:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHeaderToolTip(&self, header_tool_tip: Option<&NSString>);
+        pub fn setHeaderToolTip(&self, header_tool_tip: Option<&NSString>);
 
         #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHidden(&self) -> bool;
+        pub fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
         #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHidden(&self, hidden: bool);
+        pub fn setHidden(&self, hidden: bool);
     );
 }
 
@@ -235,11 +235,11 @@ impl NSTableColumn {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -249,16 +249,16 @@ impl NSTableColumn {
         #[deprecated]
         #[unsafe(method(setResizable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setResizable(&self, flag: bool);
+        pub fn setResizable(&self, flag: bool);
 
         #[deprecated]
         #[unsafe(method(isResizable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isResizable(&self) -> bool;
+        pub fn isResizable(&self) -> bool;
 
         #[unsafe(method(dataCell))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataCell(&self) -> Retained<AnyObject>;
+        pub fn dataCell(&self) -> Retained<AnyObject>;
 
         /// Setter for [`dataCell`][Self::dataCell].
         ///
@@ -271,6 +271,6 @@ impl NSTableColumn {
 
         #[unsafe(method(dataCellForRow:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Retained<AnyObject>;
+        pub fn dataCellForRow(&self, row: NSInteger) -> Retained<AnyObject>;
     );
 }

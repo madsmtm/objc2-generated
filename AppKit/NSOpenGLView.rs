@@ -74,12 +74,12 @@ impl NSOpenGLView {
         #[cfg(feature = "NSOpenGL")]
         #[unsafe(method(defaultPixelFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultPixelFormat(mtm: MainThreadMarker) -> Retained<NSOpenGLPixelFormat>;
+        pub fn defaultPixelFormat(mtm: MainThreadMarker) -> Retained<NSOpenGLPixelFormat>;
 
         #[cfg(feature = "NSOpenGL")]
         #[unsafe(method(initWithFrame:pixelFormat:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame_pixelFormat(
+        pub fn initWithFrame_pixelFormat(
             this: Allocated<Self>,
             frame_rect: NSRect,
             format: Option<&NSOpenGLPixelFormat>,
@@ -88,51 +88,51 @@ impl NSOpenGLView {
         #[cfg(feature = "NSOpenGL")]
         #[unsafe(method(openGLContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openGLContext(&self) -> Option<Retained<NSOpenGLContext>>;
+        pub fn openGLContext(&self) -> Option<Retained<NSOpenGLContext>>;
 
         #[cfg(feature = "NSOpenGL")]
         /// Setter for [`openGLContext`][Self::openGLContext].
         #[unsafe(method(setOpenGLContext:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOpenGLContext(&self, open_gl_context: Option<&NSOpenGLContext>);
+        pub fn setOpenGLContext(&self, open_gl_context: Option<&NSOpenGLContext>);
 
         #[unsafe(method(clearGLContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clearGLContext(&self);
+        pub fn clearGLContext(&self);
 
         #[unsafe(method(update))]
         #[unsafe(method_family = none)]
-        pub unsafe fn update(&self);
+        pub fn update(&self);
 
         #[unsafe(method(reshape))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reshape(&self);
+        pub fn reshape(&self);
 
         #[cfg(feature = "NSOpenGL")]
         #[unsafe(method(pixelFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pixelFormat(&self) -> Option<Retained<NSOpenGLPixelFormat>>;
+        pub fn pixelFormat(&self) -> Option<Retained<NSOpenGLPixelFormat>>;
 
         #[cfg(feature = "NSOpenGL")]
         /// Setter for [`pixelFormat`][Self::pixelFormat].
         #[unsafe(method(setPixelFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPixelFormat(&self, pixel_format: Option<&NSOpenGLPixelFormat>);
+        pub fn setPixelFormat(&self, pixel_format: Option<&NSOpenGLPixelFormat>);
 
         #[unsafe(method(prepareOpenGL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prepareOpenGL(&self);
+        pub fn prepareOpenGL(&self);
 
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
         #[unsafe(method(wantsBestResolutionOpenGLSurface))]
         #[unsafe(method_family = none)]
-        pub unsafe fn wantsBestResolutionOpenGLSurface(&self) -> bool;
+        pub fn wantsBestResolutionOpenGLSurface(&self) -> bool;
 
         /// Setter for [`wantsBestResolutionOpenGLSurface`][Self::wantsBestResolutionOpenGLSurface].
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
         #[unsafe(method(setWantsBestResolutionOpenGLSurface:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWantsBestResolutionOpenGLSurface(
+        pub fn setWantsBestResolutionOpenGLSurface(
             &self,
             wants_best_resolution_open_gl_surface: bool,
         );
@@ -140,13 +140,13 @@ impl NSOpenGLView {
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
         #[unsafe(method(wantsExtendedDynamicRangeOpenGLSurface))]
         #[unsafe(method_family = none)]
-        pub unsafe fn wantsExtendedDynamicRangeOpenGLSurface(&self) -> bool;
+        pub fn wantsExtendedDynamicRangeOpenGLSurface(&self) -> bool;
 
         /// Setter for [`wantsExtendedDynamicRangeOpenGLSurface`][Self::wantsExtendedDynamicRangeOpenGLSurface].
         #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
         #[unsafe(method(setWantsExtendedDynamicRangeOpenGLSurface:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWantsExtendedDynamicRangeOpenGLSurface(
+        pub fn setWantsExtendedDynamicRangeOpenGLSurface(
             &self,
             wants_extended_dynamic_range_open_gl_surface: bool,
         );
@@ -159,7 +159,7 @@ impl NSOpenGLView {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -179,7 +179,7 @@ impl NSOpenGLView {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -189,7 +189,7 @@ impl NSOpenGLView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -200,7 +200,7 @@ impl NSView {
         #[deprecated = "Use NSOpenGLView instead."]
         #[unsafe(method(wantsBestResolutionOpenGLSurface))]
         #[unsafe(method_family = none)]
-        pub unsafe fn wantsBestResolutionOpenGLSurface(&self) -> bool;
+        pub fn wantsBestResolutionOpenGLSurface(&self) -> bool;
 
         /// Setter for [`wantsBestResolutionOpenGLSurface`][Self::wantsBestResolutionOpenGLSurface].
         #[deprecated = "Use NSOpenGLView instead."]
@@ -220,13 +220,13 @@ impl NSView {
         #[deprecated = "Use NSOpenGLView instead."]
         #[unsafe(method(wantsExtendedDynamicRangeOpenGLSurface))]
         #[unsafe(method_family = none)]
-        pub unsafe fn wantsExtendedDynamicRangeOpenGLSurface(&self) -> bool;
+        pub fn wantsExtendedDynamicRangeOpenGLSurface(&self) -> bool;
 
         /// Setter for [`wantsExtendedDynamicRangeOpenGLSurface`][Self::wantsExtendedDynamicRangeOpenGLSurface].
         #[deprecated = "Use NSOpenGLView instead."]
         #[unsafe(method(setWantsExtendedDynamicRangeOpenGLSurface:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWantsExtendedDynamicRangeOpenGLSurface(
+        pub fn setWantsExtendedDynamicRangeOpenGLSurface(
             &self,
             wants_extended_dynamic_range_open_gl_surface: bool,
         );

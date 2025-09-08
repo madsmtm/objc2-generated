@@ -447,7 +447,7 @@ pub unsafe extern "C-unwind" fn NSBestDepth(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn NSPlanarFromDepth(depth: NSWindowDepth) -> bool {
+pub extern "C-unwind" fn NSPlanarFromDepth(depth: NSWindowDepth) -> bool {
     extern "C-unwind" {
         fn NSPlanarFromDepth(depth: NSWindowDepth) -> Bool;
     }
@@ -455,7 +455,7 @@ pub unsafe extern "C-unwind" fn NSPlanarFromDepth(depth: NSWindowDepth) -> bool 
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn NSColorSpaceFromDepth(
+pub extern "C-unwind" fn NSColorSpaceFromDepth(
     depth: NSWindowDepth,
 ) -> Option<Retained<NSColorSpaceName>> {
     extern "C-unwind" {
@@ -465,20 +465,34 @@ pub unsafe extern "C-unwind" fn NSColorSpaceFromDepth(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    pub fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger;
-}
-
-extern "C-unwind" {
-    pub fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger;
-}
-
-extern "C-unwind" {
-    pub fn NSNumberOfColorComponents(color_space_name: &NSColorSpaceName) -> NSInteger;
+#[inline]
+pub extern "C-unwind" fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger {
+    extern "C-unwind" {
+        fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger;
+    }
+    unsafe { NSBitsPerSampleFromDepth(depth) }
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth> {
+pub extern "C-unwind" fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger {
+    extern "C-unwind" {
+        fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger;
+    }
+    unsafe { NSBitsPerPixelFromDepth(depth) }
+}
+
+#[inline]
+pub extern "C-unwind" fn NSNumberOfColorComponents(
+    color_space_name: &NSColorSpaceName,
+) -> NSInteger {
+    extern "C-unwind" {
+        fn NSNumberOfColorComponents(color_space_name: &NSColorSpaceName) -> NSInteger;
+    }
+    unsafe { NSNumberOfColorComponents(color_space_name) }
+}
+
+#[inline]
+pub extern "C-unwind" fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth> {
     extern "C-unwind" {
         fn NSAvailableWindowDepths() -> Option<NonNull<NSWindowDepth>>;
     }
@@ -564,8 +578,12 @@ extern "C" {
     pub static NSDeviceSize: &'static NSDeviceDescriptionKey;
 }
 
-extern "C-unwind" {
-    pub fn NSRectFill(rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSRectFill(rect: NSRect) {
+    extern "C-unwind" {
+        fn NSRectFill(rect: NSRect);
+    }
+    unsafe { NSRectFill(rect) }
 }
 
 extern "C-unwind" {
@@ -597,8 +615,12 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    pub fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation);
+#[inline]
+pub extern "C-unwind" fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation) {
+    extern "C-unwind" {
+        fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation);
+    }
+    unsafe { NSRectFillUsingOperation(rect, op) }
 }
 
 extern "C-unwind" {
@@ -626,26 +648,46 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    pub fn NSFrameRect(rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSFrameRect(rect: NSRect) {
+    extern "C-unwind" {
+        fn NSFrameRect(rect: NSRect);
+    }
+    unsafe { NSFrameRect(rect) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat);
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub extern "C-unwind" fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat) {
+    extern "C-unwind" {
+        fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat);
+    }
+    unsafe { NSFrameRectWithWidth(rect, frame_width) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSFrameRectWithWidthUsingOperation(
-        rect: NSRect,
-        frame_width: CGFloat,
-        op: NSCompositingOperation,
-    );
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub extern "C-unwind" fn NSFrameRectWithWidthUsingOperation(
+    rect: NSRect,
+    frame_width: CGFloat,
+    op: NSCompositingOperation,
+) {
+    extern "C-unwind" {
+        fn NSFrameRectWithWidthUsingOperation(
+            rect: NSRect,
+            frame_width: CGFloat,
+            op: NSCompositingOperation,
+        );
+    }
+    unsafe { NSFrameRectWithWidthUsingOperation(rect, frame_width, op) }
 }
 
-extern "C-unwind" {
-    pub fn NSRectClip(rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSRectClip(rect: NSRect) {
+    extern "C-unwind" {
+        fn NSRectClip(rect: NSRect);
+    }
+    unsafe { NSRectClip(rect) }
 }
 
 extern "C-unwind" {
@@ -670,30 +712,50 @@ extern "C-unwind" {
     ) -> NSRect;
 }
 
-extern "C-unwind" {
-    pub fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect) {
+    extern "C-unwind" {
+        fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect);
+    }
+    unsafe { NSDrawGrayBezel(rect, clip_rect) }
 }
 
-extern "C-unwind" {
-    pub fn NSDrawGroove(rect: NSRect, clip_rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSDrawGroove(rect: NSRect, clip_rect: NSRect) {
+    extern "C-unwind" {
+        fn NSDrawGroove(rect: NSRect, clip_rect: NSRect);
+    }
+    unsafe { NSDrawGroove(rect, clip_rect) }
 }
 
-extern "C-unwind" {
-    pub fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect) {
+    extern "C-unwind" {
+        fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect);
+    }
+    unsafe { NSDrawWhiteBezel(rect, clip_rect) }
 }
 
-extern "C-unwind" {
-    pub fn NSDrawButton(rect: NSRect, clip_rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSDrawButton(rect: NSRect, clip_rect: NSRect) {
+    extern "C-unwind" {
+        fn NSDrawButton(rect: NSRect, clip_rect: NSRect);
+    }
+    unsafe { NSDrawButton(rect, clip_rect) }
 }
 
-extern "C-unwind" {
-    pub fn NSEraseRect(rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSEraseRect(rect: NSRect) {
+    extern "C-unwind" {
+        fn NSEraseRect(rect: NSRect);
+    }
+    unsafe { NSEraseRect(rect) }
 }
 
 #[cfg(feature = "NSColor")]
 #[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
 #[inline]
-pub unsafe extern "C-unwind" fn NSReadPixel(passed_point: NSPoint) -> Option<Retained<NSColor>> {
+pub extern "C-unwind" fn NSReadPixel(passed_point: NSPoint) -> Option<Retained<NSColor>> {
     extern "C-unwind" {
         fn NSReadPixel(passed_point: NSPoint) -> *mut NSColor;
     }
@@ -701,13 +763,21 @@ pub unsafe extern "C-unwind" fn NSReadPixel(passed_point: NSPoint) -> Option<Ret
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    #[deprecated]
-    pub fn NSHighlightRect(rect: NSRect);
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NSHighlightRect(rect: NSRect) {
+    extern "C-unwind" {
+        fn NSHighlightRect(rect: NSRect);
+    }
+    unsafe { NSHighlightRect(rect) }
 }
 
-extern "C-unwind" {
-    pub fn NSBeep();
+#[inline]
+pub extern "C-unwind" fn NSBeep() {
+    extern "C-unwind" {
+        fn NSBeep();
+    }
+    unsafe { NSBeep() }
 }
 
 extern "C-unwind" {
@@ -740,34 +810,62 @@ extern "C-unwind" {
     ) -> NSRect;
 }
 
-extern "C-unwind" {
-    pub fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect) {
+    extern "C-unwind" {
+        fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect);
+    }
+    unsafe { NSDrawDarkBezel(rect, clip_rect) }
 }
 
-extern "C-unwind" {
-    pub fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect) {
+    extern "C-unwind" {
+        fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect);
+    }
+    unsafe { NSDrawLightBezel(rect, clip_rect) }
 }
 
-extern "C-unwind" {
-    pub fn NSDottedFrameRect(rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSDottedFrameRect(rect: NSRect) {
+    extern "C-unwind" {
+        fn NSDottedFrameRect(rect: NSRect);
+    }
+    unsafe { NSDottedFrameRect(rect) }
 }
 
-extern "C-unwind" {
-    pub fn NSDrawWindowBackground(rect: NSRect);
+#[inline]
+pub extern "C-unwind" fn NSDrawWindowBackground(rect: NSRect) {
+    extern "C-unwind" {
+        fn NSDrawWindowBackground(rect: NSRect);
+    }
+    unsafe { NSDrawWindowBackground(rect) }
 }
 
-extern "C-unwind" {
-    pub fn NSSetFocusRingStyle(placement: NSFocusRingPlacement);
+#[inline]
+pub extern "C-unwind" fn NSSetFocusRingStyle(placement: NSFocusRingPlacement) {
+    extern "C-unwind" {
+        fn NSSetFocusRingStyle(placement: NSFocusRingPlacement);
+    }
+    unsafe { NSSetFocusRingStyle(placement) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSDisableScreenUpdates."]
-    pub fn NSDisableScreenUpdates();
+#[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSDisableScreenUpdates."]
+#[inline]
+pub extern "C-unwind" fn NSDisableScreenUpdates() {
+    extern "C-unwind" {
+        fn NSDisableScreenUpdates();
+    }
+    unsafe { NSDisableScreenUpdates() }
 }
 
-extern "C-unwind" {
-    #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSEnableScreenUpdates."]
-    pub fn NSEnableScreenUpdates();
+#[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSEnableScreenUpdates."]
+#[inline]
+pub extern "C-unwind" fn NSEnableScreenUpdates() {
+    extern "C-unwind" {
+        fn NSEnableScreenUpdates();
+    }
+    unsafe { NSEnableScreenUpdates() }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationeffect?language=objc)
@@ -840,7 +938,11 @@ extern "C-unwind" {
     pub fn NSWindowListForContext(context: NSInteger, size: NSInteger, list: NonNull<NSInteger>);
 }
 
-extern "C-unwind" {
-    #[deprecated]
-    pub fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint);
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint) {
+    extern "C-unwind" {
+        fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint);
+    }
+    unsafe { NSCopyBits(src_g_state, src_rect, dest_point) }
 }

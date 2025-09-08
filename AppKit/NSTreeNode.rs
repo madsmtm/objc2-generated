@@ -41,38 +41,38 @@ impl NSTreeNode {
 
         #[unsafe(method(representedObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
+        pub fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         #[unsafe(method(indexPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexPath(&self) -> Retained<NSIndexPath>;
+        pub fn indexPath(&self) -> Retained<NSIndexPath>;
 
         #[unsafe(method(isLeaf))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isLeaf(&self) -> bool;
+        pub fn isLeaf(&self) -> bool;
 
         #[unsafe(method(childNodes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn childNodes(&self) -> Option<Retained<NSArray<NSTreeNode>>>;
+        pub fn childNodes(&self) -> Option<Retained<NSArray<NSTreeNode>>>;
 
         #[unsafe(method(mutableChildNodes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mutableChildNodes(&self) -> Retained<NSMutableArray<NSTreeNode>>;
+        pub fn mutableChildNodes(&self) -> Retained<NSMutableArray<NSTreeNode>>;
 
         #[unsafe(method(descendantNodeAtIndexPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descendantNodeAtIndexPath(
+        pub fn descendantNodeAtIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<NSTreeNode>>;
 
         #[unsafe(method(parentNode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn parentNode(&self) -> Option<Retained<NSTreeNode>>;
+        pub fn parentNode(&self) -> Option<Retained<NSTreeNode>>;
 
         #[unsafe(method(sortWithSortDescriptors:recursively:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sortWithSortDescriptors_recursively(
+        pub fn sortWithSortDescriptors_recursively(
             &self,
             sort_descriptors: &NSArray<NSSortDescriptor>,
             recursively: bool,
@@ -85,10 +85,17 @@ impl NSTreeNode {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSTreeNode {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

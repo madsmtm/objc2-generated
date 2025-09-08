@@ -56,35 +56,34 @@ impl NSMediaLibraryBrowserController {
     extern_methods!(
         #[unsafe(method(sharedMediaLibraryBrowserController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedMediaLibraryBrowserController(
-        ) -> Retained<NSMediaLibraryBrowserController>;
+        pub fn sharedMediaLibraryBrowserController() -> Retained<NSMediaLibraryBrowserController>;
 
         #[unsafe(method(isVisible))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isVisible(&self) -> bool;
+        pub fn isVisible(&self) -> bool;
 
         /// Setter for [`isVisible`][Self::isVisible].
         #[unsafe(method(setVisible:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVisible(&self, visible: bool);
+        pub fn setVisible(&self, visible: bool);
 
         #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frame(&self) -> NSRect;
+        pub fn frame(&self) -> NSRect;
 
         /// Setter for [`frame`][Self::frame].
         #[unsafe(method(setFrame:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFrame(&self, frame: NSRect);
+        pub fn setFrame(&self, frame: NSRect);
 
         #[unsafe(method(mediaLibraries))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mediaLibraries(&self) -> NSMediaLibrary;
+        pub fn mediaLibraries(&self) -> NSMediaLibrary;
 
         /// Setter for [`mediaLibraries`][Self::mediaLibraries].
         #[unsafe(method(setMediaLibraries:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMediaLibraries(&self, media_libraries: NSMediaLibrary);
+        pub fn setMediaLibraries(&self, media_libraries: NSMediaLibrary);
 
         /// # Safety
         ///
@@ -100,10 +99,17 @@ impl NSMediaLibraryBrowserController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSMediaLibraryBrowserController {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

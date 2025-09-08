@@ -116,38 +116,36 @@ impl NSColorWell {
     extern_methods!(
         #[unsafe(method(colorWellWithStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWellWithStyle(
-            style: NSColorWellStyle,
-            mtm: MainThreadMarker,
-        ) -> Retained<Self>;
+        pub fn colorWellWithStyle(style: NSColorWellStyle, mtm: MainThreadMarker)
+            -> Retained<Self>;
 
         /// Instantiates a well in the given style with a default configuration.
         #[unsafe(method(deactivate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deactivate(&self);
+        pub fn deactivate(&self);
 
         #[unsafe(method(activate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activate(&self, exclusive: bool);
+        pub fn activate(&self, exclusive: bool);
 
         #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isActive(&self) -> bool;
+        pub fn isActive(&self) -> bool;
 
         #[unsafe(method(drawWellInside:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawWellInside(&self, inside_rect: NSRect);
+        pub fn drawWellInside(&self, inside_rect: NSRect);
 
         #[deprecated = "This property will be deprecated in a future release."]
         #[unsafe(method(isBordered))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isBordered(&self) -> bool;
+        pub fn isBordered(&self) -> bool;
 
         /// Setter for [`isBordered`][Self::isBordered].
         #[deprecated = "This property will be deprecated in a future release."]
         #[unsafe(method(setBordered:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBordered(&self, bordered: bool);
+        pub fn setBordered(&self, bordered: bool);
 
         /// # Safety
         ///
@@ -159,7 +157,7 @@ impl NSColorWell {
         #[cfg(feature = "NSColor")]
         #[unsafe(method(color))]
         #[unsafe(method_family = none)]
-        pub unsafe fn color(&self) -> Retained<NSColor>;
+        pub fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`color`][Self::color].
@@ -167,32 +165,32 @@ impl NSColorWell {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setColor(&self, color: &NSColor);
+        pub fn setColor(&self, color: &NSColor);
 
         #[unsafe(method(colorWellStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWellStyle(&self) -> NSColorWellStyle;
+        pub fn colorWellStyle(&self) -> NSColorWellStyle;
 
         /// Setter for [`colorWellStyle`][Self::colorWellStyle].
         #[unsafe(method(setColorWellStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setColorWellStyle(&self, color_well_style: NSColorWellStyle);
+        pub fn setColorWellStyle(&self, color_well_style: NSColorWellStyle);
 
         #[cfg(feature = "NSImage")]
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
-        pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
+        pub fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`image`][Self::image].
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImage(&self, image: Option<&NSImage>);
+        pub fn setImage(&self, image: Option<&NSImage>);
 
         /// The image that appears on the button portion of the expanded control. This property only applicable when `colorWellStyle` is `NSColorWellStyleExpanded`.
         #[unsafe(method(pulldownTarget))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pulldownTarget(&self) -> Option<Retained<AnyObject>>;
+        pub fn pulldownTarget(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`pulldownTarget`][Self::pulldownTarget].
         ///
@@ -208,7 +206,7 @@ impl NSColorWell {
         /// The target which `pulldownAction` is sent to. This property only applicable when `colorWellStyle` is `NSColorWellStyleExpanded` or `NSColorWellStyleMinimal`.
         #[unsafe(method(pulldownAction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pulldownAction(&self) -> Option<Sel>;
+        pub fn pulldownAction(&self) -> Option<Sel>;
 
         /// Setter for [`pulldownAction`][Self::pulldownAction].
         ///
@@ -223,24 +221,24 @@ impl NSColorWell {
         /// When `NSColor.ignoresAlpha` (deprecated) is set to `YES`, this property will always return `NO` and alpha is not supported globally.
         #[unsafe(method(supportsAlpha))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportsAlpha(&self) -> bool;
+        pub fn supportsAlpha(&self) -> bool;
 
         /// Setter for [`supportsAlpha`][Self::supportsAlpha].
         #[unsafe(method(setSupportsAlpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportsAlpha(&self, supports_alpha: bool);
+        pub fn setSupportsAlpha(&self, supports_alpha: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The maximum linear exposure a color in this color well can be set to. Defaults to 1 and ignores any value less than 1. If set to a value >= 2, the color picked for this well may have a linear exposure applied to it.
         #[unsafe(method(maximumLinearExposure))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumLinearExposure(&self) -> CGFloat;
+        pub fn maximumLinearExposure(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumLinearExposure`][Self::maximumLinearExposure].
         #[unsafe(method(setMaximumLinearExposure:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
+        pub fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
     );
 }
 
@@ -250,7 +248,7 @@ impl NSColorWell {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -270,7 +268,7 @@ impl NSColorWell {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -280,6 +278,6 @@ impl NSColorWell {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

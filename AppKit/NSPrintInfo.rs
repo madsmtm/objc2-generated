@@ -259,12 +259,12 @@ impl NSPrintInfo {
     extern_methods!(
         #[unsafe(method(sharedPrintInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedPrintInfo() -> Retained<NSPrintInfo>;
+        pub fn sharedPrintInfo() -> Retained<NSPrintInfo>;
 
         /// Setter for [`sharedPrintInfo`][Self::sharedPrintInfo].
         #[unsafe(method(setSharedPrintInfo:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSharedPrintInfo(shared_print_info: &NSPrintInfo);
+        pub fn setSharedPrintInfo(shared_print_info: &NSPrintInfo);
 
         /// # Safety
         ///
@@ -285,7 +285,7 @@ impl NSPrintInfo {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -299,7 +299,7 @@ impl NSPrintInfo {
         #[cfg(feature = "NSPrinter")]
         #[unsafe(method(paperName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn paperName(&self) -> Option<Retained<NSPrinterPaperName>>;
+        pub fn paperName(&self) -> Option<Retained<NSPrinterPaperName>>;
 
         #[cfg(feature = "NSPrinter")]
         /// Setter for [`paperName`][Self::paperName].
@@ -307,135 +307,132 @@ impl NSPrintInfo {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPaperName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPaperName(&self, paper_name: Option<&NSPrinterPaperName>);
+        pub fn setPaperName(&self, paper_name: Option<&NSPrinterPaperName>);
 
         #[unsafe(method(paperSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn paperSize(&self) -> NSSize;
+        pub fn paperSize(&self) -> NSSize;
 
         /// Setter for [`paperSize`][Self::paperSize].
         #[unsafe(method(setPaperSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPaperSize(&self, paper_size: NSSize);
+        pub fn setPaperSize(&self, paper_size: NSSize);
 
         #[unsafe(method(orientation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orientation(&self) -> NSPaperOrientation;
+        pub fn orientation(&self) -> NSPaperOrientation;
 
         /// Setter for [`orientation`][Self::orientation].
         #[unsafe(method(setOrientation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
+        pub fn setOrientation(&self, orientation: NSPaperOrientation);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scalingFactor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scalingFactor(&self) -> CGFloat;
+        pub fn scalingFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`scalingFactor`][Self::scalingFactor].
         #[unsafe(method(setScalingFactor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScalingFactor(&self, scaling_factor: CGFloat);
+        pub fn setScalingFactor(&self, scaling_factor: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(leftMargin))]
         #[unsafe(method_family = none)]
-        pub unsafe fn leftMargin(&self) -> CGFloat;
+        pub fn leftMargin(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`leftMargin`][Self::leftMargin].
         #[unsafe(method(setLeftMargin:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLeftMargin(&self, left_margin: CGFloat);
+        pub fn setLeftMargin(&self, left_margin: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(rightMargin))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rightMargin(&self) -> CGFloat;
+        pub fn rightMargin(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rightMargin`][Self::rightMargin].
         #[unsafe(method(setRightMargin:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRightMargin(&self, right_margin: CGFloat);
+        pub fn setRightMargin(&self, right_margin: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(topMargin))]
         #[unsafe(method_family = none)]
-        pub unsafe fn topMargin(&self) -> CGFloat;
+        pub fn topMargin(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`topMargin`][Self::topMargin].
         #[unsafe(method(setTopMargin:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTopMargin(&self, top_margin: CGFloat);
+        pub fn setTopMargin(&self, top_margin: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bottomMargin))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bottomMargin(&self) -> CGFloat;
+        pub fn bottomMargin(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bottomMargin`][Self::bottomMargin].
         #[unsafe(method(setBottomMargin:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBottomMargin(&self, bottom_margin: CGFloat);
+        pub fn setBottomMargin(&self, bottom_margin: CGFloat);
 
         #[unsafe(method(isHorizontallyCentered))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHorizontallyCentered(&self) -> bool;
+        pub fn isHorizontallyCentered(&self) -> bool;
 
         /// Setter for [`isHorizontallyCentered`][Self::isHorizontallyCentered].
         #[unsafe(method(setHorizontallyCentered:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHorizontallyCentered(&self, horizontally_centered: bool);
+        pub fn setHorizontallyCentered(&self, horizontally_centered: bool);
 
         #[unsafe(method(isVerticallyCentered))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isVerticallyCentered(&self) -> bool;
+        pub fn isVerticallyCentered(&self) -> bool;
 
         /// Setter for [`isVerticallyCentered`][Self::isVerticallyCentered].
         #[unsafe(method(setVerticallyCentered:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVerticallyCentered(&self, vertically_centered: bool);
+        pub fn setVerticallyCentered(&self, vertically_centered: bool);
 
         #[unsafe(method(horizontalPagination))]
         #[unsafe(method_family = none)]
-        pub unsafe fn horizontalPagination(&self) -> NSPrintingPaginationMode;
+        pub fn horizontalPagination(&self) -> NSPrintingPaginationMode;
 
         /// Setter for [`horizontalPagination`][Self::horizontalPagination].
         #[unsafe(method(setHorizontalPagination:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHorizontalPagination(
-            &self,
-            horizontal_pagination: NSPrintingPaginationMode,
-        );
+        pub fn setHorizontalPagination(&self, horizontal_pagination: NSPrintingPaginationMode);
 
         #[unsafe(method(verticalPagination))]
         #[unsafe(method_family = none)]
-        pub unsafe fn verticalPagination(&self) -> NSPrintingPaginationMode;
+        pub fn verticalPagination(&self) -> NSPrintingPaginationMode;
 
         /// Setter for [`verticalPagination`][Self::verticalPagination].
         #[unsafe(method(setVerticalPagination:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVerticalPagination(&self, vertical_pagination: NSPrintingPaginationMode);
+        pub fn setVerticalPagination(&self, vertical_pagination: NSPrintingPaginationMode);
 
         #[unsafe(method(jobDisposition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn jobDisposition(&self) -> Retained<NSPrintJobDispositionValue>;
+        pub fn jobDisposition(&self) -> Retained<NSPrintJobDispositionValue>;
 
         /// Setter for [`jobDisposition`][Self::jobDisposition].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJobDisposition:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setJobDisposition(&self, job_disposition: &NSPrintJobDispositionValue);
+        pub fn setJobDisposition(&self, job_disposition: &NSPrintJobDispositionValue);
 
         #[cfg(feature = "NSPrinter")]
         #[unsafe(method(printer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printer(&self) -> Retained<NSPrinter>;
+        pub fn printer(&self) -> Retained<NSPrinter>;
 
         #[cfg(feature = "NSPrinter")]
         /// Setter for [`printer`][Self::printer].
@@ -443,24 +440,24 @@ impl NSPrintInfo {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrinter:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrinter(&self, printer: &NSPrinter);
+        pub fn setPrinter(&self, printer: &NSPrinter);
 
         #[unsafe(method(setUpPrintOperationDefaultValues))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUpPrintOperationDefaultValues(&self);
+        pub fn setUpPrintOperationDefaultValues(&self);
 
         #[unsafe(method(imageablePageBounds))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageablePageBounds(&self) -> NSRect;
+        pub fn imageablePageBounds(&self) -> NSRect;
 
         #[unsafe(method(localizedPaperName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedPaperName(&self) -> Option<Retained<NSString>>;
+        pub fn localizedPaperName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSPrinter")]
         #[unsafe(method(defaultPrinter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultPrinter() -> Option<Retained<NSPrinter>>;
+        pub fn defaultPrinter() -> Option<Retained<NSPrinter>>;
 
         /// # Safety
         ///
@@ -473,37 +470,37 @@ impl NSPrintInfo {
 
         #[unsafe(method(PMPrintSession))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PMPrintSession(&self) -> NonNull<c_void>;
+        pub fn PMPrintSession(&self) -> NonNull<c_void>;
 
         #[unsafe(method(PMPageFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PMPageFormat(&self) -> NonNull<c_void>;
+        pub fn PMPageFormat(&self) -> NonNull<c_void>;
 
         #[unsafe(method(PMPrintSettings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PMPrintSettings(&self) -> NonNull<c_void>;
+        pub fn PMPrintSettings(&self) -> NonNull<c_void>;
 
         #[unsafe(method(updateFromPMPageFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateFromPMPageFormat(&self);
+        pub fn updateFromPMPageFormat(&self);
 
         #[unsafe(method(updateFromPMPrintSettings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateFromPMPrintSettings(&self);
+        pub fn updateFromPMPrintSettings(&self);
 
         #[unsafe(method(isSelectionOnly))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSelectionOnly(&self) -> bool;
+        pub fn isSelectionOnly(&self) -> bool;
 
         /// Setter for [`isSelectionOnly`][Self::isSelectionOnly].
         #[unsafe(method(setSelectionOnly:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectionOnly(&self, selection_only: bool);
+        pub fn setSelectionOnly(&self, selection_only: bool);
 
         #[cfg(feature = "NSPDFInfo")]
         #[unsafe(method(takeSettingsFromPDFInfo:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn takeSettingsFromPDFInfo(&self, in_pdf_info: &NSPDFInfo);
+        pub fn takeSettingsFromPDFInfo(&self, in_pdf_info: &NSPDFInfo);
     );
 }
 
@@ -512,8 +509,15 @@ impl NSPrintInfo {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSPrintInfo {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSDeprecated.
@@ -523,13 +527,13 @@ impl NSPrintInfo {
         #[deprecated = "NSPrintInfo's implementation has no effect"]
         #[unsafe(method(setDefaultPrinter:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultPrinter(printer: Option<&NSPrinter>);
+        pub fn setDefaultPrinter(printer: Option<&NSPrinter>);
 
         #[cfg(feature = "NSPrinter")]
         #[deprecated = "Use -[NSPrinter pageSizeForPaper:] instead"]
         #[unsafe(method(sizeForPaperName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sizeForPaperName(name: Option<&NSPrinterPaperName>) -> NSSize;
+        pub fn sizeForPaperName(name: Option<&NSPrinterPaperName>) -> NSSize;
     );
 }
 

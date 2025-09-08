@@ -73,7 +73,7 @@ impl NSPrintOperation {
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(printOperationWithView:printInfo:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printOperationWithView_printInfo(
+        pub fn printOperationWithView_printInfo(
             view: &NSView,
             print_info: &NSPrintInfo,
         ) -> Retained<NSPrintOperation>;
@@ -81,7 +81,7 @@ impl NSPrintOperation {
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(PDFOperationWithView:insideRect:toData:printInfo:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PDFOperationWithView_insideRect_toData_printInfo(
+        pub fn PDFOperationWithView_insideRect_toData_printInfo(
             view: &NSView,
             rect: NSRect,
             data: &NSMutableData,
@@ -91,7 +91,7 @@ impl NSPrintOperation {
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(PDFOperationWithView:insideRect:toPath:printInfo:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PDFOperationWithView_insideRect_toPath_printInfo(
+        pub fn PDFOperationWithView_insideRect_toPath_printInfo(
             view: &NSView,
             rect: NSRect,
             path: &NSString,
@@ -101,7 +101,7 @@ impl NSPrintOperation {
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(EPSOperationWithView:insideRect:toData:printInfo:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn EPSOperationWithView_insideRect_toData_printInfo(
+        pub fn EPSOperationWithView_insideRect_toData_printInfo(
             view: &NSView,
             rect: NSRect,
             data: &NSMutableData,
@@ -111,7 +111,7 @@ impl NSPrintOperation {
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(EPSOperationWithView:insideRect:toPath:printInfo:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn EPSOperationWithView_insideRect_toPath_printInfo(
+        pub fn EPSOperationWithView_insideRect_toPath_printInfo(
             view: &NSView,
             rect: NSRect,
             path: &NSString,
@@ -121,12 +121,12 @@ impl NSPrintOperation {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(printOperationWithView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printOperationWithView(view: &NSView) -> Retained<NSPrintOperation>;
+        pub fn printOperationWithView(view: &NSView) -> Retained<NSPrintOperation>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(PDFOperationWithView:insideRect:toData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PDFOperationWithView_insideRect_toData(
+        pub fn PDFOperationWithView_insideRect_toData(
             view: &NSView,
             rect: NSRect,
             data: &NSMutableData,
@@ -135,7 +135,7 @@ impl NSPrintOperation {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(EPSOperationWithView:insideRect:toData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn EPSOperationWithView_insideRect_toData(
+        pub fn EPSOperationWithView_insideRect_toData(
             view: &NSView,
             rect: NSRect,
             data: Option<&NSMutableData>,
@@ -143,93 +143,92 @@ impl NSPrintOperation {
 
         #[unsafe(method(currentOperation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentOperation(mtm: MainThreadMarker)
-            -> Option<Retained<NSPrintOperation>>;
+        pub fn currentOperation(mtm: MainThreadMarker) -> Option<Retained<NSPrintOperation>>;
 
         /// Setter for [`currentOperation`][Self::currentOperation].
         #[unsafe(method(setCurrentOperation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCurrentOperation(
+        pub fn setCurrentOperation(
             current_operation: Option<&NSPrintOperation>,
             mtm: MainThreadMarker,
         );
 
         #[unsafe(method(isCopyingOperation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isCopyingOperation(&self) -> bool;
+        pub fn isCopyingOperation(&self) -> bool;
 
         #[unsafe(method(preferredRenderingQuality))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredRenderingQuality(&self) -> NSPrintRenderingQuality;
+        pub fn preferredRenderingQuality(&self) -> NSPrintRenderingQuality;
 
         #[unsafe(method(jobTitle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn jobTitle(&self) -> Option<Retained<NSString>>;
+        pub fn jobTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`jobTitle`][Self::jobTitle].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setJobTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setJobTitle(&self, job_title: Option<&NSString>);
+        pub fn setJobTitle(&self, job_title: Option<&NSString>);
 
         #[unsafe(method(showsPrintPanel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsPrintPanel(&self) -> bool;
+        pub fn showsPrintPanel(&self) -> bool;
 
         /// Setter for [`showsPrintPanel`][Self::showsPrintPanel].
         #[unsafe(method(setShowsPrintPanel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsPrintPanel(&self, shows_print_panel: bool);
+        pub fn setShowsPrintPanel(&self, shows_print_panel: bool);
 
         #[unsafe(method(showsProgressPanel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsProgressPanel(&self) -> bool;
+        pub fn showsProgressPanel(&self) -> bool;
 
         /// Setter for [`showsProgressPanel`][Self::showsProgressPanel].
         #[unsafe(method(setShowsProgressPanel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsProgressPanel(&self, shows_progress_panel: bool);
+        pub fn setShowsProgressPanel(&self, shows_progress_panel: bool);
 
         #[cfg(feature = "NSPrintPanel")]
         #[unsafe(method(printPanel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printPanel(&self) -> Retained<NSPrintPanel>;
+        pub fn printPanel(&self) -> Retained<NSPrintPanel>;
 
         #[cfg(feature = "NSPrintPanel")]
         /// Setter for [`printPanel`][Self::printPanel].
         #[unsafe(method(setPrintPanel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrintPanel(&self, print_panel: &NSPrintPanel);
+        pub fn setPrintPanel(&self, print_panel: &NSPrintPanel);
 
         #[cfg(feature = "NSPDFPanel")]
         #[unsafe(method(PDFPanel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PDFPanel(&self) -> Retained<NSPDFPanel>;
+        pub fn PDFPanel(&self) -> Retained<NSPDFPanel>;
 
         #[cfg(feature = "NSPDFPanel")]
         /// Setter for [`PDFPanel`][Self::PDFPanel].
         #[unsafe(method(setPDFPanel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPDFPanel(&self, pdf_panel: &NSPDFPanel);
+        pub fn setPDFPanel(&self, pdf_panel: &NSPDFPanel);
 
         #[unsafe(method(canSpawnSeparateThread))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canSpawnSeparateThread(&self) -> bool;
+        pub fn canSpawnSeparateThread(&self) -> bool;
 
         /// Setter for [`canSpawnSeparateThread`][Self::canSpawnSeparateThread].
         #[unsafe(method(setCanSpawnSeparateThread:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCanSpawnSeparateThread(&self, can_spawn_separate_thread: bool);
+        pub fn setCanSpawnSeparateThread(&self, can_spawn_separate_thread: bool);
 
         #[unsafe(method(pageOrder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pageOrder(&self) -> NSPrintingPageOrder;
+        pub fn pageOrder(&self) -> NSPrintingPageOrder;
 
         /// Setter for [`pageOrder`][Self::pageOrder].
         #[unsafe(method(setPageOrder:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPageOrder(&self, page_order: NSPrintingPageOrder);
+        pub fn setPageOrder(&self, page_order: NSPrintingPageOrder);
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         /// # Safety
@@ -249,17 +248,17 @@ impl NSPrintOperation {
 
         #[unsafe(method(runOperation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runOperation(&self) -> bool;
+        pub fn runOperation(&self) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self) -> Option<Retained<NSView>>;
+        pub fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSPrintInfo")]
         #[unsafe(method(printInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printInfo(&self) -> Retained<NSPrintInfo>;
+        pub fn printInfo(&self) -> Retained<NSPrintInfo>;
 
         #[cfg(feature = "NSPrintInfo")]
         /// Setter for [`printInfo`][Self::printInfo].
@@ -267,37 +266,37 @@ impl NSPrintOperation {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrintInfo:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);
+        pub fn setPrintInfo(&self, print_info: &NSPrintInfo);
 
         #[cfg(feature = "NSGraphicsContext")]
         #[unsafe(method(context))]
         #[unsafe(method_family = none)]
-        pub unsafe fn context(&self) -> Option<Retained<NSGraphicsContext>>;
+        pub fn context(&self) -> Option<Retained<NSGraphicsContext>>;
 
         #[unsafe(method(pageRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pageRange(&self) -> NSRange;
+        pub fn pageRange(&self) -> NSRange;
 
         #[unsafe(method(currentPage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentPage(&self) -> NSInteger;
+        pub fn currentPage(&self) -> NSInteger;
 
         #[cfg(feature = "NSGraphicsContext")]
         #[unsafe(method(createContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn createContext(&self) -> Option<Retained<NSGraphicsContext>>;
+        pub fn createContext(&self) -> Option<Retained<NSGraphicsContext>>;
 
         #[unsafe(method(destroyContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn destroyContext(&self);
+        pub fn destroyContext(&self);
 
         #[unsafe(method(deliverResult))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deliverResult(&self) -> bool;
+        pub fn deliverResult(&self) -> bool;
 
         #[unsafe(method(cleanUpOperation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cleanUpOperation(&self);
+        pub fn cleanUpOperation(&self);
     );
 }
 
@@ -306,11 +305,11 @@ impl NSPrintOperation {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -321,32 +320,32 @@ impl NSPrintOperation {
         #[deprecated = "Use -[NSPrintPanel addAccessoryController:] and -[NSPrintPanel removeAccessoryController:] instead"]
         #[unsafe(method(setAccessoryView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAccessoryView(&self, view: Option<&NSView>);
+        pub fn setAccessoryView(&self, view: Option<&NSView>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use -[NSPrintPanel accessoryControllers] instead"]
         #[unsafe(method(accessoryView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
+        pub fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[deprecated]
         #[unsafe(method(setJobStyleHint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setJobStyleHint(&self, hint: Option<&NSString>);
+        pub fn setJobStyleHint(&self, hint: Option<&NSString>);
 
         #[deprecated]
         #[unsafe(method(jobStyleHint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn jobStyleHint(&self) -> Option<Retained<NSString>>;
+        pub fn jobStyleHint(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Use -setShowsPrintPanel: and -setShowsProgressPanel: instead"]
         #[unsafe(method(setShowPanels:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowPanels(&self, flag: bool);
+        pub fn setShowPanels(&self, flag: bool);
 
         #[deprecated = "Use -showsPrintPanel and -showsProgressPanel instead"]
         #[unsafe(method(showPanels))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showPanels(&self) -> bool;
+        pub fn showPanels(&self) -> bool;
     );
 }

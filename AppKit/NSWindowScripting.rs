@@ -17,11 +17,11 @@ impl NSWindow {
 
         #[unsafe(method(hasTitleBar))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasTitleBar(&self) -> bool;
+        pub fn hasTitleBar(&self) -> bool;
 
         #[unsafe(method(isFloatingPanel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFloatingPanel(&self) -> bool;
+        pub fn isFloatingPanel(&self) -> bool;
 
         #[unsafe(method(isMiniaturizable))]
         #[unsafe(method_family = none)]
@@ -29,7 +29,7 @@ impl NSWindow {
 
         #[unsafe(method(isModalPanel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isModalPanel(&self) -> bool;
+        pub fn isModalPanel(&self) -> bool;
 
         #[unsafe(method(isResizable))]
         #[unsafe(method_family = none)]
@@ -37,46 +37,46 @@ impl NSWindow {
 
         #[unsafe(method(isZoomable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isZoomable(&self) -> bool;
+        pub fn isZoomable(&self) -> bool;
 
         #[unsafe(method(orderedIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedIndex(&self) -> NSInteger;
+        pub fn orderedIndex(&self) -> NSInteger;
 
         /// Setter for [`orderedIndex`][Self::orderedIndex].
         #[unsafe(method(setOrderedIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOrderedIndex(&self, ordered_index: NSInteger);
+        pub fn setOrderedIndex(&self, ordered_index: NSInteger);
 
         #[unsafe(method(setIsMiniaturized:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIsMiniaturized(&self, flag: bool);
+        pub fn setIsMiniaturized(&self, flag: bool);
 
         #[unsafe(method(setIsVisible:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIsVisible(&self, flag: bool);
+        pub fn setIsVisible(&self, flag: bool);
 
         #[unsafe(method(setIsZoomed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIsZoomed(&self, flag: bool);
+        pub fn setIsZoomed(&self, flag: bool);
 
         #[unsafe(method(handleCloseScriptCommand:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handleCloseScriptCommand(
+        pub fn handleCloseScriptCommand(
             &self,
             command: &NSCloseCommand,
         ) -> Option<Retained<AnyObject>>;
 
         #[unsafe(method(handlePrintScriptCommand:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handlePrintScriptCommand(
+        pub fn handlePrintScriptCommand(
             &self,
             command: &NSScriptCommand,
         ) -> Option<Retained<AnyObject>>;
 
         #[unsafe(method(handleSaveScriptCommand:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handleSaveScriptCommand(
+        pub fn handleSaveScriptCommand(
             &self,
             command: &NSScriptCommand,
         ) -> Option<Retained<AnyObject>>;

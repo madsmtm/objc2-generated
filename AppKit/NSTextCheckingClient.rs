@@ -89,134 +89,134 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(autocorrectionType))]
         #[unsafe(method_family = none)]
-        unsafe fn autocorrectionType(&self) -> NSTextInputTraitType;
+        fn autocorrectionType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`autocorrectionType`][Self::autocorrectionType].
         #[optional]
         #[unsafe(method(setAutocorrectionType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAutocorrectionType(&self, autocorrection_type: NSTextInputTraitType);
+        fn setAutocorrectionType(&self, autocorrection_type: NSTextInputTraitType);
 
         #[optional]
         #[unsafe(method(spellCheckingType))]
         #[unsafe(method_family = none)]
-        unsafe fn spellCheckingType(&self) -> NSTextInputTraitType;
+        fn spellCheckingType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`spellCheckingType`][Self::spellCheckingType].
         #[optional]
         #[unsafe(method(setSpellCheckingType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSpellCheckingType(&self, spell_checking_type: NSTextInputTraitType);
+        fn setSpellCheckingType(&self, spell_checking_type: NSTextInputTraitType);
 
         #[optional]
         #[unsafe(method(grammarCheckingType))]
         #[unsafe(method_family = none)]
-        unsafe fn grammarCheckingType(&self) -> NSTextInputTraitType;
+        fn grammarCheckingType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`grammarCheckingType`][Self::grammarCheckingType].
         #[optional]
         #[unsafe(method(setGrammarCheckingType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setGrammarCheckingType(&self, grammar_checking_type: NSTextInputTraitType);
+        fn setGrammarCheckingType(&self, grammar_checking_type: NSTextInputTraitType);
 
         #[optional]
         #[unsafe(method(smartQuotesType))]
         #[unsafe(method_family = none)]
-        unsafe fn smartQuotesType(&self) -> NSTextInputTraitType;
+        fn smartQuotesType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`smartQuotesType`][Self::smartQuotesType].
         #[optional]
         #[unsafe(method(setSmartQuotesType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSmartQuotesType(&self, smart_quotes_type: NSTextInputTraitType);
+        fn setSmartQuotesType(&self, smart_quotes_type: NSTextInputTraitType);
 
         #[optional]
         #[unsafe(method(smartDashesType))]
         #[unsafe(method_family = none)]
-        unsafe fn smartDashesType(&self) -> NSTextInputTraitType;
+        fn smartDashesType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`smartDashesType`][Self::smartDashesType].
         #[optional]
         #[unsafe(method(setSmartDashesType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSmartDashesType(&self, smart_dashes_type: NSTextInputTraitType);
+        fn setSmartDashesType(&self, smart_dashes_type: NSTextInputTraitType);
 
         #[optional]
         #[unsafe(method(smartInsertDeleteType))]
         #[unsafe(method_family = none)]
-        unsafe fn smartInsertDeleteType(&self) -> NSTextInputTraitType;
+        fn smartInsertDeleteType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`smartInsertDeleteType`][Self::smartInsertDeleteType].
         #[optional]
         #[unsafe(method(setSmartInsertDeleteType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSmartInsertDeleteType(&self, smart_insert_delete_type: NSTextInputTraitType);
+        fn setSmartInsertDeleteType(&self, smart_insert_delete_type: NSTextInputTraitType);
 
         #[optional]
         #[unsafe(method(textReplacementType))]
         #[unsafe(method_family = none)]
-        unsafe fn textReplacementType(&self) -> NSTextInputTraitType;
+        fn textReplacementType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`textReplacementType`][Self::textReplacementType].
         #[optional]
         #[unsafe(method(setTextReplacementType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTextReplacementType(&self, text_replacement_type: NSTextInputTraitType);
+        fn setTextReplacementType(&self, text_replacement_type: NSTextInputTraitType);
 
         #[optional]
         #[unsafe(method(dataDetectionType))]
         #[unsafe(method_family = none)]
-        unsafe fn dataDetectionType(&self) -> NSTextInputTraitType;
+        fn dataDetectionType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`dataDetectionType`][Self::dataDetectionType].
         #[optional]
         #[unsafe(method(setDataDetectionType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setDataDetectionType(&self, data_detection_type: NSTextInputTraitType);
+        fn setDataDetectionType(&self, data_detection_type: NSTextInputTraitType);
 
         #[optional]
         #[unsafe(method(linkDetectionType))]
         #[unsafe(method_family = none)]
-        unsafe fn linkDetectionType(&self) -> NSTextInputTraitType;
+        fn linkDetectionType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`linkDetectionType`][Self::linkDetectionType].
         #[optional]
         #[unsafe(method(setLinkDetectionType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setLinkDetectionType(&self, link_detection_type: NSTextInputTraitType);
+        fn setLinkDetectionType(&self, link_detection_type: NSTextInputTraitType);
 
         #[optional]
         #[unsafe(method(textCompletionType))]
         #[unsafe(method_family = none)]
-        unsafe fn textCompletionType(&self) -> NSTextInputTraitType;
+        fn textCompletionType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`textCompletionType`][Self::textCompletionType].
         #[optional]
         #[unsafe(method(setTextCompletionType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTextCompletionType(&self, text_completion_type: NSTextInputTraitType);
+        fn setTextCompletionType(&self, text_completion_type: NSTextInputTraitType);
 
         #[optional]
         #[unsafe(method(inlinePredictionType))]
         #[unsafe(method_family = none)]
-        unsafe fn inlinePredictionType(&self) -> NSTextInputTraitType;
+        fn inlinePredictionType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`inlinePredictionType`][Self::inlinePredictionType].
         #[optional]
         #[unsafe(method(setInlinePredictionType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setInlinePredictionType(&self, inline_prediction_type: NSTextInputTraitType);
+        fn setInlinePredictionType(&self, inline_prediction_type: NSTextInputTraitType);
 
         #[optional]
         #[unsafe(method(mathExpressionCompletionType))]
         #[unsafe(method_family = none)]
-        unsafe fn mathExpressionCompletionType(&self) -> NSTextInputTraitType;
+        fn mathExpressionCompletionType(&self) -> NSTextInputTraitType;
 
         /// Setter for [`mathExpressionCompletionType`][Self::mathExpressionCompletionType].
         #[optional]
         #[unsafe(method(setMathExpressionCompletionType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setMathExpressionCompletionType(
+        fn setMathExpressionCompletionType(
             &self,
             math_expression_completion_type: NSTextInputTraitType,
         );
@@ -224,24 +224,24 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(writingToolsBehavior))]
         #[unsafe(method_family = none)]
-        unsafe fn writingToolsBehavior(&self) -> NSWritingToolsBehavior;
+        fn writingToolsBehavior(&self) -> NSWritingToolsBehavior;
 
         /// Setter for [`writingToolsBehavior`][Self::writingToolsBehavior].
         #[optional]
         #[unsafe(method(setWritingToolsBehavior:))]
         #[unsafe(method_family = none)]
-        unsafe fn setWritingToolsBehavior(&self, writing_tools_behavior: NSWritingToolsBehavior);
+        fn setWritingToolsBehavior(&self, writing_tools_behavior: NSWritingToolsBehavior);
 
         #[optional]
         #[unsafe(method(allowedWritingToolsResultOptions))]
         #[unsafe(method_family = none)]
-        unsafe fn allowedWritingToolsResultOptions(&self) -> NSWritingToolsResultOptions;
+        fn allowedWritingToolsResultOptions(&self) -> NSWritingToolsResultOptions;
 
         /// Setter for [`allowedWritingToolsResultOptions`][Self::allowedWritingToolsResultOptions].
         #[optional]
         #[unsafe(method(setAllowedWritingToolsResultOptions:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAllowedWritingToolsResultOptions(
+        fn setAllowedWritingToolsResultOptions(
             &self,
             allowed_writing_tools_result_options: NSWritingToolsResultOptions,
         );
@@ -265,7 +265,7 @@ extern_protocol!(
 
         #[unsafe(method(setAnnotations:range:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAnnotations_range(
+        fn setAnnotations_range(
             &self,
             annotations: &NSDictionary<NSAttributedStringKey, NSString>,
             range: NSRange,
@@ -273,7 +273,7 @@ extern_protocol!(
 
         #[unsafe(method(addAnnotations:range:))]
         #[unsafe(method_family = none)]
-        unsafe fn addAnnotations_range(
+        fn addAnnotations_range(
             &self,
             annotations: &NSDictionary<NSAttributedStringKey, NSString>,
             range: NSRange,
@@ -281,15 +281,11 @@ extern_protocol!(
 
         #[unsafe(method(removeAnnotation:range:))]
         #[unsafe(method_family = none)]
-        unsafe fn removeAnnotation_range(
-            &self,
-            annotation_name: &NSAttributedStringKey,
-            range: NSRange,
-        );
+        fn removeAnnotation_range(&self, annotation_name: &NSAttributedStringKey, range: NSRange);
 
         #[unsafe(method(replaceCharactersInRange:withAnnotatedString:))]
         #[unsafe(method_family = none)]
-        unsafe fn replaceCharactersInRange_withAnnotatedString(
+        fn replaceCharactersInRange_withAnnotatedString(
             &self,
             range: NSRange,
             annotated_string: &NSAttributedString,
@@ -297,7 +293,7 @@ extern_protocol!(
 
         #[unsafe(method(selectAndShowRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn selectAndShowRange(&self, range: NSRange);
+        fn selectAndShowRange(&self, range: NSRange);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// # Safety
@@ -317,7 +313,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSCandidateListTouchBarItem", feature = "NSTouchBarItem"))]
         #[unsafe(method(candidateListTouchBarItem))]
         #[unsafe(method_family = none)]
-        unsafe fn candidateListTouchBarItem(
+        fn candidateListTouchBarItem(
             &self,
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSCandidateListTouchBarItem>>;

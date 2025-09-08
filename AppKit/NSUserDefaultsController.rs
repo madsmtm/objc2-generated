@@ -41,7 +41,7 @@ impl NSUserDefaultsController {
     extern_methods!(
         #[unsafe(method(sharedUserDefaultsController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedUserDefaultsController(
+        pub fn sharedUserDefaultsController(
             mtm: MainThreadMarker,
         ) -> Retained<NSUserDefaultsController>;
 
@@ -68,11 +68,11 @@ impl NSUserDefaultsController {
 
         #[unsafe(method(defaults))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaults(&self) -> Retained<NSUserDefaults>;
+        pub fn defaults(&self) -> Retained<NSUserDefaults>;
 
         #[unsafe(method(initialValues))]
         #[unsafe(method_family = none)]
-        pub unsafe fn initialValues(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
+        pub fn initialValues(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`initialValues`][Self::initialValues].
         ///
@@ -90,20 +90,20 @@ impl NSUserDefaultsController {
 
         #[unsafe(method(appliesImmediately))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appliesImmediately(&self) -> bool;
+        pub fn appliesImmediately(&self) -> bool;
 
         /// Setter for [`appliesImmediately`][Self::appliesImmediately].
         #[unsafe(method(setAppliesImmediately:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAppliesImmediately(&self, applies_immediately: bool);
+        pub fn setAppliesImmediately(&self, applies_immediately: bool);
 
         #[unsafe(method(hasUnappliedChanges))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasUnappliedChanges(&self) -> bool;
+        pub fn hasUnappliedChanges(&self) -> bool;
 
         #[unsafe(method(values))]
         #[unsafe(method_family = none)]
-        pub unsafe fn values(&self) -> Retained<AnyObject>;
+        pub fn values(&self) -> Retained<AnyObject>;
 
         /// # Safety
         ///
@@ -134,7 +134,7 @@ impl NSUserDefaultsController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -144,6 +144,6 @@ impl NSUserDefaultsController {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

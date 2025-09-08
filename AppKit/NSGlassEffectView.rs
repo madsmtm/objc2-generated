@@ -101,30 +101,30 @@ impl NSGlassEffectView {
         /// - Important: `NSGlassEffectView` only guarantees the `contentView` will be placed inside the glass effect; arbitrary subviews aren't guaranteed specific behavior with regard to z-order in relation to the content view or glass effect.
         #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentView(&self) -> Option<Retained<NSView>>;
+        pub fn contentView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`contentView`][Self::contentView].
         #[unsafe(method(setContentView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
+        pub fn setContentView(&self, content_view: Option<&NSView>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The amount of curvature for all corners of the glass.
         #[unsafe(method(cornerRadius))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cornerRadius(&self) -> CGFloat;
+        pub fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cornerRadius`][Self::cornerRadius].
         #[unsafe(method(setCornerRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
+        pub fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[cfg(feature = "NSColor")]
         /// The color the glass effect view uses to tint the background and glass effect toward.
         #[unsafe(method(tintColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tintColor(&self) -> Option<Retained<NSColor>>;
+        pub fn tintColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`tintColor`][Self::tintColor].
@@ -132,17 +132,17 @@ impl NSGlassEffectView {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTintColor(&self, tint_color: Option<&NSColor>);
+        pub fn setTintColor(&self, tint_color: Option<&NSColor>);
 
         /// The style of glass this view uses.
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
-        pub unsafe fn style(&self) -> NSGlassEffectViewStyle;
+        pub fn style(&self) -> NSGlassEffectViewStyle;
 
         /// Setter for [`style`][Self::style].
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStyle(&self, style: NSGlassEffectViewStyle);
+        pub fn setStyle(&self, style: NSGlassEffectViewStyle);
     );
 }
 
@@ -152,7 +152,7 @@ impl NSGlassEffectView {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -172,7 +172,7 @@ impl NSGlassEffectView {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -182,7 +182,7 @@ impl NSGlassEffectView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -261,12 +261,12 @@ impl NSGlassEffectContainerView {
         /// 3. Processes similar glass effect views as a batch to improve performance.
         #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentView(&self) -> Option<Retained<NSView>>;
+        pub fn contentView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`contentView`][Self::contentView].
         #[unsafe(method(setContentView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
+        pub fn setContentView(&self, content_view: Option<&NSView>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The proximity at which the glass effect container view begins merging eligible descendent glass effect views.
@@ -274,13 +274,13 @@ impl NSGlassEffectContainerView {
         /// The default value, zero, is sufficient for batch processing eligible glass effect views, while avoiding distortion and merging effects for other views in close proximity.
         #[unsafe(method(spacing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn spacing(&self) -> CGFloat;
+        pub fn spacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`spacing`][Self::spacing].
         #[unsafe(method(setSpacing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSpacing(&self, spacing: CGFloat);
+        pub fn setSpacing(&self, spacing: CGFloat);
     );
 }
 
@@ -290,7 +290,7 @@ impl NSGlassEffectContainerView {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -310,7 +310,7 @@ impl NSGlassEffectContainerView {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -320,6 +320,6 @@ impl NSGlassEffectContainerView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

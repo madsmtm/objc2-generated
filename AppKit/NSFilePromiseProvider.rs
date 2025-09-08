@@ -27,18 +27,18 @@ impl NSFilePromiseProvider {
     extern_methods!(
         #[unsafe(method(fileType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileType(&self) -> Retained<NSString>;
+        pub fn fileType(&self) -> Retained<NSString>;
 
         /// Setter for [`fileType`][Self::fileType].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFileType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFileType(&self, file_type: &NSString);
+        pub fn setFileType(&self, file_type: &NSString);
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFilePromiseProviderDelegate>>>;
 
@@ -47,14 +47,14 @@ impl NSFilePromiseProvider {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSFilePromiseProviderDelegate>>,
         );
 
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userInfo(&self) -> Option<Retained<AnyObject>>;
+        pub fn userInfo(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
         ///
@@ -67,7 +67,7 @@ impl NSFilePromiseProvider {
 
         #[unsafe(method(initWithFileType:delegate:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFileType_delegate(
+        pub fn initWithFileType_delegate(
             this: Allocated<Self>,
             file_type: &NSString,
             delegate: &ProtocolObject<dyn NSFilePromiseProviderDelegate>,
@@ -75,7 +75,7 @@ impl NSFilePromiseProvider {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -84,8 +84,15 @@ impl NSFilePromiseProvider {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSFilePromiseProvider {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -93,7 +100,7 @@ extern_protocol!(
     pub unsafe trait NSFilePromiseProviderDelegate: NSObjectProtocol {
         #[unsafe(method(filePromiseProvider:fileNameForType:))]
         #[unsafe(method_family = none)]
-        unsafe fn filePromiseProvider_fileNameForType(
+        fn filePromiseProvider_fileNameForType(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
             file_type: &NSString,
@@ -103,7 +110,7 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         #[unsafe(method(filePromiseProvider:writePromiseToURL:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn filePromiseProvider_writePromiseToURL_completionHandler(
+        fn filePromiseProvider_writePromiseToURL_completionHandler(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
             url: &NSURL,
@@ -113,7 +120,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(operationQueueForFilePromiseProvider:))]
         #[unsafe(method_family = none)]
-        unsafe fn operationQueueForFilePromiseProvider(
+        fn operationQueueForFilePromiseProvider(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
             mtm: MainThreadMarker,

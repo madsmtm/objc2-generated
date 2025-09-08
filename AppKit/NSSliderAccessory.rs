@@ -28,7 +28,7 @@ impl NSSliderAccessory {
         #[cfg(feature = "NSImage")]
         #[unsafe(method(accessoryWithImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn accessoryWithImage(
+        pub fn accessoryWithImage(
             image: &NSImage,
             mtm: MainThreadMarker,
         ) -> Retained<NSSliderAccessory>;
@@ -36,24 +36,24 @@ impl NSSliderAccessory {
         /// The effect on interaction with the accessory. Defaults to `automaticBehavior`
         #[unsafe(method(behavior))]
         #[unsafe(method_family = none)]
-        pub unsafe fn behavior(&self) -> Retained<NSSliderAccessoryBehavior>;
+        pub fn behavior(&self) -> Retained<NSSliderAccessoryBehavior>;
 
         /// Setter for [`behavior`][Self::behavior].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBehavior(&self, behavior: &NSSliderAccessoryBehavior);
+        pub fn setBehavior(&self, behavior: &NSSliderAccessoryBehavior);
 
         /// Whether or not the accessory is interactive and draws with an enabled appearance. Defaults to YES.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnabled(&self) -> bool;
+        pub fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnabled(&self, enabled: bool);
+        pub fn setEnabled(&self, enabled: bool);
     );
 }
 
@@ -62,11 +62,11 @@ impl NSSliderAccessory {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -113,23 +113,17 @@ impl NSSliderAccessoryBehavior {
         /// The behavior is automatically picked to be the system standard for the slider's current context, e.g. NSTouchBarItems have `.valueStep` behavior.
         #[unsafe(method(automaticBehavior))]
         #[unsafe(method_family = none)]
-        pub unsafe fn automaticBehavior(
-            mtm: MainThreadMarker,
-        ) -> Retained<NSSliderAccessoryBehavior>;
+        pub fn automaticBehavior(mtm: MainThreadMarker) -> Retained<NSSliderAccessoryBehavior>;
 
         /// The value of the slider moves towards the associated value for the accessory with by a delta of the slider's `altIncrementValue`.
         #[unsafe(method(valueStepBehavior))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueStepBehavior(
-            mtm: MainThreadMarker,
-        ) -> Retained<NSSliderAccessoryBehavior>;
+        pub fn valueStepBehavior(mtm: MainThreadMarker) -> Retained<NSSliderAccessoryBehavior>;
 
         /// The value of the slider is reset to the associated value for the accessory.
         #[unsafe(method(valueResetBehavior))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueResetBehavior(
-            mtm: MainThreadMarker,
-        ) -> Retained<NSSliderAccessoryBehavior>;
+        pub fn valueResetBehavior(mtm: MainThreadMarker) -> Retained<NSSliderAccessoryBehavior>;
 
         /// The action is sent to the target on interaction. The optional first parameter is an NSSliderAccessory.
         ///
@@ -149,7 +143,7 @@ impl NSSliderAccessoryBehavior {
         /// The handler block is invoked on interaction. This variant is not codable and will assert in `-encodeWithCoder:`.
         #[unsafe(method(behaviorWithHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn behaviorWithHandler(
+        pub fn behaviorWithHandler(
             handler: &block2::DynBlock<dyn Fn(NonNull<NSSliderAccessory>)>,
             mtm: MainThreadMarker,
         ) -> Retained<NSSliderAccessoryBehavior>;
@@ -157,7 +151,7 @@ impl NSSliderAccessoryBehavior {
         /// Override point for custom subclasses to handle interaction.
         #[unsafe(method(handleAction:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handleAction(&self, sender: &NSSliderAccessory);
+        pub fn handleAction(&self, sender: &NSSliderAccessory);
     );
 }
 
@@ -166,10 +160,10 @@ impl NSSliderAccessoryBehavior {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

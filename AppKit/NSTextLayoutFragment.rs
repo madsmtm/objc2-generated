@@ -88,7 +88,7 @@ impl NSTextLayoutFragment {
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
         #[unsafe(method(initWithTextElement:range:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTextElement_range(
+        pub fn initWithTextElement_range(
             this: Allocated<Self>,
             text_element: &NSTextElement,
             range_in_element: Option<&NSTextRange>,
@@ -111,27 +111,27 @@ impl NSTextLayoutFragment {
         #[cfg(feature = "NSTextLayoutManager")]
         #[unsafe(method(textLayoutManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
+        pub fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextElement")]
         #[unsafe(method(textElement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textElement(&self) -> Option<Retained<NSTextElement>>;
+        pub fn textElement(&self) -> Option<Retained<NSTextElement>>;
 
         #[cfg(feature = "NSTextRange")]
         #[unsafe(method(rangeInElement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rangeInElement(&self) -> Retained<NSTextRange>;
+        pub fn rangeInElement(&self) -> Retained<NSTextRange>;
 
         #[cfg(feature = "NSTextLineFragment")]
         #[unsafe(method(textLineFragments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textLineFragments(&self) -> Retained<NSArray<NSTextLineFragment>>;
+        pub fn textLineFragments(&self) -> Retained<NSArray<NSTextLineFragment>>;
 
         #[cfg(all(feature = "NSTextLineFragment", feature = "objc2-core-foundation"))]
         #[unsafe(method(textLineFragmentForVerticalOffset:requiresExactMatch:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textLineFragmentForVerticalOffset_requiresExactMatch(
+        pub fn textLineFragmentForVerticalOffset_requiresExactMatch(
             &self,
             vertical_offset: CGFloat,
             requires_exact_match: bool,
@@ -140,7 +140,7 @@ impl NSTextLayoutFragment {
         #[cfg(all(feature = "NSTextLineFragment", feature = "NSTextRange"))]
         #[unsafe(method(textLineFragmentForTextLocation:isUpstreamAffinity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textLineFragmentForTextLocation_isUpstreamAffinity(
+        pub fn textLineFragmentForTextLocation_isUpstreamAffinity(
             &self,
             text_location: &ProtocolObject<dyn NSTextLocation>,
             is_upstream_affinity: bool,
@@ -148,7 +148,7 @@ impl NSTextLayoutFragment {
 
         #[unsafe(method(layoutQueue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutQueue(&self) -> Option<Retained<NSOperationQueue>>;
+        pub fn layoutQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         /// Setter for [`layoutQueue`][Self::layoutQueue].
         ///
@@ -161,59 +161,59 @@ impl NSTextLayoutFragment {
 
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
-        pub unsafe fn state(&self) -> NSTextLayoutFragmentState;
+        pub fn state(&self) -> NSTextLayoutFragmentState;
 
         #[unsafe(method(invalidateLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidateLayout(&self);
+        pub fn invalidateLayout(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(layoutFragmentFrame))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutFragmentFrame(&self) -> CGRect;
+        pub fn layoutFragmentFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(renderingSurfaceBounds))]
         #[unsafe(method_family = none)]
-        pub unsafe fn renderingSurfaceBounds(&self) -> CGRect;
+        pub fn renderingSurfaceBounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(leadingPadding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn leadingPadding(&self) -> CGFloat;
+        pub fn leadingPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(trailingPadding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trailingPadding(&self) -> CGFloat;
+        pub fn trailingPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(topMargin))]
         #[unsafe(method_family = none)]
-        pub unsafe fn topMargin(&self) -> CGFloat;
+        pub fn topMargin(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bottomMargin))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bottomMargin(&self) -> CGFloat;
+        pub fn bottomMargin(&self) -> CGFloat;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(drawAtPoint:inContext:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawAtPoint_inContext(&self, point: CGPoint, context: &CGContext);
+        pub fn drawAtPoint_inContext(&self, point: CGPoint, context: &CGContext);
 
         #[cfg(feature = "NSTextAttachment")]
         #[unsafe(method(textAttachmentViewProviders))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textAttachmentViewProviders(
+        pub fn textAttachmentViewProviders(
             &self,
         ) -> Retained<NSArray<NSTextAttachmentViewProvider>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "objc2-core-foundation"))]
         #[unsafe(method(frameForTextAttachmentAtLocation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frameForTextAttachmentAtLocation(
+        pub fn frameForTextAttachmentAtLocation(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> CGRect;

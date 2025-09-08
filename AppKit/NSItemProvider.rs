@@ -18,15 +18,15 @@ pub unsafe trait NSItemProviderNSItemSourceInfo:
     extern_methods!(
         #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
-        unsafe fn sourceFrame(&self) -> NSRect;
+        fn sourceFrame(&self) -> NSRect;
 
         #[unsafe(method(containerFrame))]
         #[unsafe(method_family = none)]
-        unsafe fn containerFrame(&self) -> NSRect;
+        fn containerFrame(&self) -> NSRect;
 
         #[unsafe(method(preferredPresentationSize))]
         #[unsafe(method_family = none)]
-        unsafe fn preferredPresentationSize(&self) -> NSSize;
+        fn preferredPresentationSize(&self) -> NSSize;
     );
 }
 

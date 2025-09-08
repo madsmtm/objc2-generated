@@ -67,48 +67,48 @@ impl NSStepperCell {
     extern_methods!(
         #[unsafe(method(minValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minValue(&self) -> c_double;
+        pub fn minValue(&self) -> c_double;
 
         /// Setter for [`minValue`][Self::minValue].
         #[unsafe(method(setMinValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinValue(&self, min_value: c_double);
+        pub fn setMinValue(&self, min_value: c_double);
 
         #[unsafe(method(maxValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxValue(&self) -> c_double;
+        pub fn maxValue(&self) -> c_double;
 
         /// Setter for [`maxValue`][Self::maxValue].
         #[unsafe(method(setMaxValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxValue(&self, max_value: c_double);
+        pub fn setMaxValue(&self, max_value: c_double);
 
         #[unsafe(method(increment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn increment(&self) -> c_double;
+        pub fn increment(&self) -> c_double;
 
         /// Setter for [`increment`][Self::increment].
         #[unsafe(method(setIncrement:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIncrement(&self, increment: c_double);
+        pub fn setIncrement(&self, increment: c_double);
 
         #[unsafe(method(valueWraps))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueWraps(&self) -> bool;
+        pub fn valueWraps(&self) -> bool;
 
         /// Setter for [`valueWraps`][Self::valueWraps].
         #[unsafe(method(setValueWraps:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setValueWraps(&self, value_wraps: bool);
+        pub fn setValueWraps(&self, value_wraps: bool);
 
         #[unsafe(method(autorepeat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn autorepeat(&self) -> bool;
+        pub fn autorepeat(&self) -> bool;
 
         /// Setter for [`autorepeat`][Self::autorepeat].
         #[unsafe(method(setAutorepeat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutorepeat(&self, autorepeat: bool);
+        pub fn setAutorepeat(&self, autorepeat: bool);
     );
 }
 
@@ -118,19 +118,16 @@ impl NSStepperCell {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
+        pub fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
         #[unsafe(method(initImageCell:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initImageCell(
-            this: Allocated<Self>,
-            image: Option<&NSImage>,
-        ) -> Retained<Self>;
+        pub fn initImageCell(this: Allocated<Self>, image: Option<&NSImage>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -147,6 +144,6 @@ impl NSStepperCell {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

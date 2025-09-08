@@ -154,12 +154,12 @@ impl NSTextBlock {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setValue:type:forDimension:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setValue_type_forDimension(
+        pub fn setValue_type_forDimension(
             &self,
             val: CGFloat,
             r#type: NSTextBlockValueType,
@@ -169,11 +169,11 @@ impl NSTextBlock {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(valueForDimension:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueForDimension(&self, dimension: NSTextBlockDimension) -> CGFloat;
+        pub fn valueForDimension(&self, dimension: NSTextBlockDimension) -> CGFloat;
 
         #[unsafe(method(valueTypeForDimension:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueTypeForDimension(
+        pub fn valueTypeForDimension(
             &self,
             dimension: NSTextBlockDimension,
         ) -> NSTextBlockValueType;
@@ -181,21 +181,21 @@ impl NSTextBlock {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setContentWidth:type:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentWidth_type(&self, val: CGFloat, r#type: NSTextBlockValueType);
+        pub fn setContentWidth_type(&self, val: CGFloat, r#type: NSTextBlockValueType);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(contentWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentWidth(&self) -> CGFloat;
+        pub fn contentWidth(&self) -> CGFloat;
 
         #[unsafe(method(contentWidthValueType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentWidthValueType(&self) -> NSTextBlockValueType;
+        pub fn contentWidthValueType(&self) -> NSTextBlockValueType;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setWidth:type:forLayer:edge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWidth_type_forLayer_edge(
+        pub fn setWidth_type_forLayer_edge(
             &self,
             val: CGFloat,
             r#type: NSTextBlockValueType,
@@ -206,7 +206,7 @@ impl NSTextBlock {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setWidth:type:forLayer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWidth_type_forLayer(
+        pub fn setWidth_type_forLayer(
             &self,
             val: CGFloat,
             r#type: NSTextBlockValueType,
@@ -216,15 +216,11 @@ impl NSTextBlock {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(widthForLayer:edge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn widthForLayer_edge(
-            &self,
-            layer: NSTextBlockLayer,
-            edge: NSRectEdge,
-        ) -> CGFloat;
+        pub fn widthForLayer_edge(&self, layer: NSTextBlockLayer, edge: NSRectEdge) -> CGFloat;
 
         #[unsafe(method(widthValueTypeForLayer:edge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn widthValueTypeForLayer_edge(
+        pub fn widthValueTypeForLayer_edge(
             &self,
             layer: NSTextBlockLayer,
             edge: NSRectEdge,
@@ -232,17 +228,17 @@ impl NSTextBlock {
 
         #[unsafe(method(verticalAlignment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn verticalAlignment(&self) -> NSTextBlockVerticalAlignment;
+        pub fn verticalAlignment(&self) -> NSTextBlockVerticalAlignment;
 
         /// Setter for [`verticalAlignment`][Self::verticalAlignment].
         #[unsafe(method(setVerticalAlignment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVerticalAlignment(&self, vertical_alignment: NSTextBlockVerticalAlignment);
+        pub fn setVerticalAlignment(&self, vertical_alignment: NSTextBlockVerticalAlignment);
 
         #[cfg(feature = "NSColor")]
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
+        pub fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
@@ -250,27 +246,27 @@ impl NSTextBlock {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
+        pub fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[cfg(feature = "NSColor")]
         #[unsafe(method(setBorderColor:forEdge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBorderColor_forEdge(&self, color: Option<&NSColor>, edge: NSRectEdge);
+        pub fn setBorderColor_forEdge(&self, color: Option<&NSColor>, edge: NSRectEdge);
 
         #[cfg(feature = "NSColor")]
         #[unsafe(method(setBorderColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBorderColor(&self, color: Option<&NSColor>);
+        pub fn setBorderColor(&self, color: Option<&NSColor>);
 
         #[cfg(feature = "NSColor")]
         #[unsafe(method(borderColorForEdge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Retained<NSColor>>;
+        pub fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSTextContainer")]
         #[unsafe(method(rectForLayoutAtPoint:inRect:textContainer:characterRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rectForLayoutAtPoint_inRect_textContainer_characterRange(
+        pub fn rectForLayoutAtPoint_inRect_textContainer_characterRange(
             &self,
             starting_point: NSPoint,
             rect: NSRect,
@@ -281,7 +277,7 @@ impl NSTextBlock {
         #[cfg(feature = "NSTextContainer")]
         #[unsafe(method(boundsRectForContentRect:inRect:textContainer:characterRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundsRectForContentRect_inRect_textContainer_characterRange(
+        pub fn boundsRectForContentRect_inRect_textContainer_characterRange(
             &self,
             content_rect: NSRect,
             rect: NSRect,
@@ -296,7 +292,7 @@ impl NSTextBlock {
         ))]
         #[unsafe(method(drawBackgroundWithFrame:inView:characterRange:layoutManager:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawBackgroundWithFrame_inView_characterRange_layoutManager(
+        pub fn drawBackgroundWithFrame_inView_characterRange_layoutManager(
             &self,
             frame_rect: NSRect,
             control_view: &NSView,
@@ -311,8 +307,15 @@ impl NSTextBlock {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSTextBlock {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -346,7 +349,7 @@ impl NSTextTableBlock {
     extern_methods!(
         #[unsafe(method(initWithTable:startingRow:rowSpan:startingColumn:columnSpan:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTable_startingRow_rowSpan_startingColumn_columnSpan(
+        pub fn initWithTable_startingRow_rowSpan_startingColumn_columnSpan(
             this: Allocated<Self>,
             table: &NSTextTable,
             row: NSInteger,
@@ -357,23 +360,23 @@ impl NSTextTableBlock {
 
         #[unsafe(method(table))]
         #[unsafe(method_family = none)]
-        pub unsafe fn table(&self) -> Retained<NSTextTable>;
+        pub fn table(&self) -> Retained<NSTextTable>;
 
         #[unsafe(method(startingRow))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startingRow(&self) -> NSInteger;
+        pub fn startingRow(&self) -> NSInteger;
 
         #[unsafe(method(rowSpan))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rowSpan(&self) -> NSInteger;
+        pub fn rowSpan(&self) -> NSInteger;
 
         #[unsafe(method(startingColumn))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startingColumn(&self) -> NSInteger;
+        pub fn startingColumn(&self) -> NSInteger;
 
         #[unsafe(method(columnSpan))]
         #[unsafe(method_family = none)]
-        pub unsafe fn columnSpan(&self) -> NSInteger;
+        pub fn columnSpan(&self) -> NSInteger;
     );
 }
 
@@ -382,7 +385,7 @@ impl NSTextTableBlock {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -391,8 +394,15 @@ impl NSTextTableBlock {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSTextTableBlock {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -426,44 +436,44 @@ impl NSTextTable {
     extern_methods!(
         #[unsafe(method(numberOfColumns))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfColumns(&self) -> NSUInteger;
+        pub fn numberOfColumns(&self) -> NSUInteger;
 
         /// Setter for [`numberOfColumns`][Self::numberOfColumns].
         #[unsafe(method(setNumberOfColumns:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNumberOfColumns(&self, number_of_columns: NSUInteger);
+        pub fn setNumberOfColumns(&self, number_of_columns: NSUInteger);
 
         #[unsafe(method(layoutAlgorithm))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutAlgorithm(&self) -> NSTextTableLayoutAlgorithm;
+        pub fn layoutAlgorithm(&self) -> NSTextTableLayoutAlgorithm;
 
         /// Setter for [`layoutAlgorithm`][Self::layoutAlgorithm].
         #[unsafe(method(setLayoutAlgorithm:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLayoutAlgorithm(&self, layout_algorithm: NSTextTableLayoutAlgorithm);
+        pub fn setLayoutAlgorithm(&self, layout_algorithm: NSTextTableLayoutAlgorithm);
 
         #[unsafe(method(collapsesBorders))]
         #[unsafe(method_family = none)]
-        pub unsafe fn collapsesBorders(&self) -> bool;
+        pub fn collapsesBorders(&self) -> bool;
 
         /// Setter for [`collapsesBorders`][Self::collapsesBorders].
         #[unsafe(method(setCollapsesBorders:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCollapsesBorders(&self, collapses_borders: bool);
+        pub fn setCollapsesBorders(&self, collapses_borders: bool);
 
         #[unsafe(method(hidesEmptyCells))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hidesEmptyCells(&self) -> bool;
+        pub fn hidesEmptyCells(&self) -> bool;
 
         /// Setter for [`hidesEmptyCells`][Self::hidesEmptyCells].
         #[unsafe(method(setHidesEmptyCells:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHidesEmptyCells(&self, hides_empty_cells: bool);
+        pub fn setHidesEmptyCells(&self, hides_empty_cells: bool);
 
         #[cfg(feature = "NSTextContainer")]
         #[unsafe(method(rectForBlock:layoutAtPoint:inRect:textContainer:characterRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rectForBlock_layoutAtPoint_inRect_textContainer_characterRange(
+        pub fn rectForBlock_layoutAtPoint_inRect_textContainer_characterRange(
             &self,
             block: &NSTextTableBlock,
             starting_point: NSPoint,
@@ -475,7 +485,7 @@ impl NSTextTable {
         #[cfg(feature = "NSTextContainer")]
         #[unsafe(method(boundsRectForBlock:contentRect:inRect:textContainer:characterRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundsRectForBlock_contentRect_inRect_textContainer_characterRange(
+        pub fn boundsRectForBlock_contentRect_inRect_textContainer_characterRange(
             &self,
             block: &NSTextTableBlock,
             content_rect: NSRect,
@@ -491,7 +501,7 @@ impl NSTextTable {
         ))]
         #[unsafe(method(drawBackgroundForBlock:withFrame:inView:characterRange:layoutManager:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawBackgroundForBlock_withFrame_inView_characterRange_layoutManager(
+        pub fn drawBackgroundForBlock_withFrame_inView_characterRange_layoutManager(
             &self,
             block: &NSTextTableBlock,
             frame_rect: NSRect,
@@ -507,7 +517,7 @@ impl NSTextTable {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -516,6 +526,13 @@ impl NSTextTable {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSTextTable {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

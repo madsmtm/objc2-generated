@@ -19,13 +19,13 @@ pub unsafe trait NSFileWrapperNSExtensions:
         #[cfg(feature = "NSImage")]
         #[unsafe(method(icon))]
         #[unsafe(method_family = none)]
-        unsafe fn icon(&self) -> Option<Retained<NSImage>>;
+        fn icon(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`icon`][Self::icon].
         #[unsafe(method(setIcon:))]
         #[unsafe(method_family = none)]
-        unsafe fn setIcon(&self, icon: Option<&NSImage>);
+        fn setIcon(&self, icon: Option<&NSImage>);
     );
 }
 

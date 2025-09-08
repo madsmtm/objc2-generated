@@ -231,13 +231,13 @@ extern_protocol!(
     pub unsafe trait NSTextContent {
         #[unsafe(method(contentType))]
         #[unsafe(method_family = none)]
-        unsafe fn contentType(&self) -> Option<Retained<NSTextContentType>>;
+        fn contentType(&self) -> Option<Retained<NSTextContentType>>;
 
         /// Setter for [`contentType`][Self::contentType].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentType:))]
         #[unsafe(method_family = none)]
-        unsafe fn setContentType(&self, content_type: Option<&NSTextContentType>);
+        fn setContentType(&self, content_type: Option<&NSTextContentType>);
     }
 );

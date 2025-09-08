@@ -155,11 +155,11 @@ impl NSTabView {
         #[cfg(feature = "NSTabViewItem")]
         #[unsafe(method(selectTabViewItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectTabViewItem(&self, tab_view_item: Option<&NSTabViewItem>);
+        pub fn selectTabViewItem(&self, tab_view_item: Option<&NSTabViewItem>);
 
         #[unsafe(method(selectTabViewItemAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectTabViewItemAtIndex(&self, index: NSInteger);
+        pub fn selectTabViewItemAtIndex(&self, index: NSInteger);
 
         /// # Safety
         ///
@@ -206,50 +206,50 @@ impl NSTabView {
         #[cfg(feature = "NSTabViewItem")]
         #[unsafe(method(selectedTabViewItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedTabViewItem(&self) -> Option<Retained<NSTabViewItem>>;
+        pub fn selectedTabViewItem(&self) -> Option<Retained<NSTabViewItem>>;
 
         #[cfg(feature = "NSFont")]
         #[unsafe(method(font))]
         #[unsafe(method_family = none)]
-        pub unsafe fn font(&self) -> Retained<NSFont>;
+        pub fn font(&self) -> Retained<NSFont>;
 
         #[cfg(feature = "NSFont")]
         /// Setter for [`font`][Self::font].
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFont(&self, font: &NSFont);
+        pub fn setFont(&self, font: &NSFont);
 
         #[unsafe(method(tabViewType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabViewType(&self) -> NSTabViewType;
+        pub fn tabViewType(&self) -> NSTabViewType;
 
         /// Setter for [`tabViewType`][Self::tabViewType].
         #[unsafe(method(setTabViewType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTabViewType(&self, tab_view_type: NSTabViewType);
+        pub fn setTabViewType(&self, tab_view_type: NSTabViewType);
 
         #[unsafe(method(tabPosition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabPosition(&self) -> NSTabPosition;
+        pub fn tabPosition(&self) -> NSTabPosition;
 
         /// Setter for [`tabPosition`][Self::tabPosition].
         #[unsafe(method(setTabPosition:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTabPosition(&self, tab_position: NSTabPosition);
+        pub fn setTabPosition(&self, tab_position: NSTabPosition);
 
         #[unsafe(method(tabViewBorderType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabViewBorderType(&self) -> NSTabViewBorderType;
+        pub fn tabViewBorderType(&self) -> NSTabViewBorderType;
 
         /// Setter for [`tabViewBorderType`][Self::tabViewBorderType].
         #[unsafe(method(setTabViewBorderType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTabViewBorderType(&self, tab_view_border_type: NSTabViewBorderType);
+        pub fn setTabViewBorderType(&self, tab_view_border_type: NSTabViewBorderType);
 
         #[cfg(feature = "NSTabViewItem")]
         #[unsafe(method(tabViewItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabViewItems(&self) -> Retained<NSArray<NSTabViewItem>>;
+        pub fn tabViewItems(&self) -> Retained<NSArray<NSTabViewItem>>;
 
         #[cfg(feature = "NSTabViewItem")]
         /// Setter for [`tabViewItems`][Self::tabViewItems].
@@ -257,93 +257,89 @@ impl NSTabView {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTabViewItems:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTabViewItems(&self, tab_view_items: &NSArray<NSTabViewItem>);
+        pub fn setTabViewItems(&self, tab_view_items: &NSArray<NSTabViewItem>);
 
         #[unsafe(method(allowsTruncatedLabels))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsTruncatedLabels(&self) -> bool;
+        pub fn allowsTruncatedLabels(&self) -> bool;
 
         /// Setter for [`allowsTruncatedLabels`][Self::allowsTruncatedLabels].
         #[unsafe(method(setAllowsTruncatedLabels:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsTruncatedLabels(&self, allows_truncated_labels: bool);
+        pub fn setAllowsTruncatedLabels(&self, allows_truncated_labels: bool);
 
         #[unsafe(method(minimumSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumSize(&self) -> NSSize;
+        pub fn minimumSize(&self) -> NSSize;
 
         #[unsafe(method(drawsBackground))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawsBackground(&self) -> bool;
+        pub fn drawsBackground(&self) -> bool;
 
         /// Setter for [`drawsBackground`][Self::drawsBackground].
         #[unsafe(method(setDrawsBackground:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDrawsBackground(&self, draws_background: bool);
+        pub fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "NSCell")]
         #[unsafe(method(controlSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlSize(&self) -> NSControlSize;
+        pub fn controlSize(&self) -> NSControlSize;
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`controlSize`][Self::controlSize].
         #[unsafe(method(setControlSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setControlSize(&self, control_size: NSControlSize);
+        pub fn setControlSize(&self, control_size: NSControlSize);
 
         #[cfg(feature = "NSTabViewItem")]
         #[unsafe(method(addTabViewItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addTabViewItem(&self, tab_view_item: &NSTabViewItem);
+        pub fn addTabViewItem(&self, tab_view_item: &NSTabViewItem);
 
         #[cfg(feature = "NSTabViewItem")]
         #[unsafe(method(insertTabViewItem:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertTabViewItem_atIndex(
-            &self,
-            tab_view_item: &NSTabViewItem,
-            index: NSInteger,
-        );
+        pub fn insertTabViewItem_atIndex(&self, tab_view_item: &NSTabViewItem, index: NSInteger);
 
         #[cfg(feature = "NSTabViewItem")]
         #[unsafe(method(removeTabViewItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeTabViewItem(&self, tab_view_item: &NSTabViewItem);
+        pub fn removeTabViewItem(&self, tab_view_item: &NSTabViewItem);
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTabViewDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTabViewDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTabViewDelegate>>);
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTabViewDelegate>>);
 
         #[cfg(feature = "NSTabViewItem")]
         #[unsafe(method(tabViewItemAtPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabViewItemAtPoint(&self, point: NSPoint) -> Option<Retained<NSTabViewItem>>;
+        pub fn tabViewItemAtPoint(&self, point: NSPoint) -> Option<Retained<NSTabViewItem>>;
 
         #[unsafe(method(contentRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentRect(&self) -> NSRect;
+        pub fn contentRect(&self) -> NSRect;
 
         #[unsafe(method(numberOfTabViewItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfTabViewItems(&self) -> NSInteger;
+        pub fn numberOfTabViewItems(&self) -> NSInteger;
 
         #[cfg(feature = "NSTabViewItem")]
         #[unsafe(method(indexOfTabViewItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexOfTabViewItem(&self, tab_view_item: &NSTabViewItem) -> NSInteger;
+        pub fn indexOfTabViewItem(&self, tab_view_item: &NSTabViewItem) -> NSInteger;
 
         #[cfg(feature = "NSTabViewItem")]
         #[unsafe(method(tabViewItemAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabViewItemAtIndex(&self, index: NSInteger) -> Retained<NSTabViewItem>;
+        pub fn tabViewItemAtIndex(&self, index: NSInteger) -> Retained<NSTabViewItem>;
 
         /// # Safety
         ///
@@ -356,14 +352,14 @@ impl NSTabView {
         #[deprecated = "The controlTint property is not respected on 10.14 and later."]
         #[unsafe(method(controlTint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlTint(&self) -> NSControlTint;
+        pub fn controlTint(&self) -> NSControlTint;
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`controlTint`][Self::controlTint].
         #[deprecated = "The controlTint property is not respected on 10.14 and later."]
         #[unsafe(method(setControlTint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
+        pub fn setControlTint(&self, control_tint: NSControlTint);
     );
 }
 
@@ -373,7 +369,7 @@ impl NSTabView {
     extern_methods!(
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -393,7 +389,7 @@ impl NSTabView {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -403,7 +399,7 @@ impl NSTabView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -414,7 +410,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(tabView:shouldSelectTabViewItem:))]
         #[unsafe(method_family = none)]
-        unsafe fn tabView_shouldSelectTabViewItem(
+        fn tabView_shouldSelectTabViewItem(
             &self,
             tab_view: &NSTabView,
             tab_view_item: Option<&NSTabViewItem>,
@@ -424,7 +420,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(tabView:willSelectTabViewItem:))]
         #[unsafe(method_family = none)]
-        unsafe fn tabView_willSelectTabViewItem(
+        fn tabView_willSelectTabViewItem(
             &self,
             tab_view: &NSTabView,
             tab_view_item: Option<&NSTabViewItem>,
@@ -434,7 +430,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(tabView:didSelectTabViewItem:))]
         #[unsafe(method_family = none)]
-        unsafe fn tabView_didSelectTabViewItem(
+        fn tabView_didSelectTabViewItem(
             &self,
             tab_view: &NSTabView,
             tab_view_item: Option<&NSTabViewItem>,
@@ -444,6 +440,6 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(tabViewDidChangeNumberOfTabViewItems:))]
         #[unsafe(method_family = none)]
-        unsafe fn tabViewDidChangeNumberOfTabViewItems(&self, tab_view: &NSTabView);
+        fn tabViewDidChangeNumberOfTabViewItems(&self, tab_view: &NSTabView);
     }
 );

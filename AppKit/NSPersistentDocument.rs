@@ -50,14 +50,14 @@ impl NSPersistentDocument {
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(managedObjectContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn managedObjectContext(&self) -> Option<Retained<NSManagedObjectContext>>;
+        pub fn managedObjectContext(&self) -> Option<Retained<NSManagedObjectContext>>;
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`managedObjectContext`][Self::managedObjectContext].
         #[unsafe(method(setManagedObjectContext:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setManagedObjectContext(
+        pub fn setManagedObjectContext(
             &self,
             managed_object_context: Option<&NSManagedObjectContext>,
         );
@@ -66,7 +66,7 @@ impl NSPersistentDocument {
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(managedObjectModel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn managedObjectModel(&self) -> Option<Retained<NSManagedObjectModel>>;
+        pub fn managedObjectModel(&self) -> Option<Retained<NSManagedObjectModel>>;
 
         /// # Safety
         ///
@@ -83,14 +83,11 @@ impl NSPersistentDocument {
 
         #[unsafe(method(persistentStoreTypeForFileType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn persistentStoreTypeForFileType(
-            &self,
-            file_type: &NSString,
-        ) -> Retained<NSString>;
+        pub fn persistentStoreTypeForFileType(&self, file_type: &NSString) -> Retained<NSString>;
 
         #[unsafe(method(writeToURL:ofType:forSaveOperation:originalContentsURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn writeToURL_ofType_forSaveOperation_originalContentsURL_error(
+        pub fn writeToURL_ofType_forSaveOperation_originalContentsURL_error(
             &self,
             absolute_url: &NSURL,
             type_name: &NSString,
@@ -100,7 +97,7 @@ impl NSPersistentDocument {
 
         #[unsafe(method(readFromURL:ofType:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn readFromURL_ofType_error(
+        pub fn readFromURL_ofType_error(
             &self,
             absolute_url: &NSURL,
             type_name: &NSString,
@@ -108,7 +105,7 @@ impl NSPersistentDocument {
 
         #[unsafe(method(revertToContentsOfURL:ofType:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn revertToContentsOfURL_ofType_error(
+        pub fn revertToContentsOfURL_ofType_error(
             &self,
             in_absolute_url: &NSURL,
             in_type_name: &NSString,
@@ -122,18 +119,18 @@ impl NSPersistentDocument {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(initWithType:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithType_error(
+        pub fn initWithType_error(
             this: Allocated<Self>,
             type_name: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[unsafe(method(initWithContentsOfURL:ofType:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContentsOfURL_ofType_error(
+        pub fn initWithContentsOfURL_ofType_error(
             this: Allocated<Self>,
             url: &NSURL,
             type_name: &NSString,
@@ -141,7 +138,7 @@ impl NSPersistentDocument {
 
         #[unsafe(method(initForURL:withContentsOfURL:ofType:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initForURL_withContentsOfURL_ofType_error(
+        pub fn initForURL_withContentsOfURL_ofType_error(
             this: Allocated<Self>,
             url_or_nil: Option<&NSURL>,
             contents_url: &NSURL,
@@ -156,7 +153,7 @@ impl NSPersistentDocument {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 

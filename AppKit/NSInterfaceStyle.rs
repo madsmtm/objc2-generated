@@ -43,12 +43,12 @@ impl NSResponder {
         #[deprecated]
         #[unsafe(method(interfaceStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn interfaceStyle(&self) -> NSInterfaceStyle;
+        pub fn interfaceStyle(&self) -> NSInterfaceStyle;
 
         #[deprecated]
         #[unsafe(method(setInterfaceStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInterfaceStyle(&self, interface_style: NSInterfaceStyle);
+        pub fn setInterfaceStyle(&self, interface_style: NSInterfaceStyle);
     );
 }
 

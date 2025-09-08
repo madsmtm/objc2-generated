@@ -27,7 +27,7 @@ impl NSResponder {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -66,12 +66,12 @@ impl NSResponder {
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(performKeyEquivalent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
+        pub fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(validRequestorForSendType:returnType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn validRequestorForSendType_returnType(
+        pub fn validRequestorForSendType_returnType(
             &self,
             send_type: Option<&NSPasteboardType>,
             return_type: Option<&NSPasteboardType>,
@@ -80,167 +80,167 @@ impl NSResponder {
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(mouseDown:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseDown(&self, event: &NSEvent);
+        pub fn mouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(rightMouseDown:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rightMouseDown(&self, event: &NSEvent);
+        pub fn rightMouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(otherMouseDown:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn otherMouseDown(&self, event: &NSEvent);
+        pub fn otherMouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(mouseUp:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseUp(&self, event: &NSEvent);
+        pub fn mouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(rightMouseUp:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rightMouseUp(&self, event: &NSEvent);
+        pub fn rightMouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(otherMouseUp:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn otherMouseUp(&self, event: &NSEvent);
+        pub fn otherMouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(mouseMoved:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseMoved(&self, event: &NSEvent);
+        pub fn mouseMoved(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(mouseDragged:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseDragged(&self, event: &NSEvent);
+        pub fn mouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(mouseCancelled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseCancelled(&self, event: &NSEvent);
+        pub fn mouseCancelled(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(scrollWheel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollWheel(&self, event: &NSEvent);
+        pub fn scrollWheel(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(rightMouseDragged:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rightMouseDragged(&self, event: &NSEvent);
+        pub fn rightMouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(otherMouseDragged:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn otherMouseDragged(&self, event: &NSEvent);
+        pub fn otherMouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(mouseEntered:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseEntered(&self, event: &NSEvent);
+        pub fn mouseEntered(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(mouseExited:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseExited(&self, event: &NSEvent);
+        pub fn mouseExited(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(keyDown:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyDown(&self, event: &NSEvent);
+        pub fn keyDown(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(keyUp:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyUp(&self, event: &NSEvent);
+        pub fn keyUp(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(flagsChanged:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn flagsChanged(&self, event: &NSEvent);
+        pub fn flagsChanged(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(tabletPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabletPoint(&self, event: &NSEvent);
+        pub fn tabletPoint(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(tabletProximity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabletProximity(&self, event: &NSEvent);
+        pub fn tabletProximity(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(cursorUpdate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cursorUpdate(&self, event: &NSEvent);
+        pub fn cursorUpdate(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(magnifyWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn magnifyWithEvent(&self, event: &NSEvent);
+        pub fn magnifyWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(rotateWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rotateWithEvent(&self, event: &NSEvent);
+        pub fn rotateWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(swipeWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeWithEvent(&self, event: &NSEvent);
+        pub fn swipeWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(beginGestureWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beginGestureWithEvent(&self, event: &NSEvent);
+        pub fn beginGestureWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(endGestureWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endGestureWithEvent(&self, event: &NSEvent);
+        pub fn endGestureWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(smartMagnifyWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn smartMagnifyWithEvent(&self, event: &NSEvent);
+        pub fn smartMagnifyWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(changeModeWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn changeModeWithEvent(&self, event: &NSEvent);
+        pub fn changeModeWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(touchesBeganWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesBeganWithEvent(&self, event: &NSEvent);
+        pub fn touchesBeganWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(touchesMovedWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesMovedWithEvent(&self, event: &NSEvent);
+        pub fn touchesMovedWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(touchesEndedWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesEndedWithEvent(&self, event: &NSEvent);
+        pub fn touchesEndedWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(touchesCancelledWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesCancelledWithEvent(&self, event: &NSEvent);
+        pub fn touchesCancelledWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(quickLookWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn quickLookWithEvent(&self, event: &NSEvent);
+        pub fn quickLookWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(pressureChangeWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressureChangeWithEvent(&self, event: &NSEvent);
+        pub fn pressureChangeWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         /// Handle a key event that should present a context menu at the user focus.
@@ -261,7 +261,7 @@ impl NSResponder {
         /// See also: `showContextMenuForSelection:`
         #[unsafe(method(contextMenuKeyDown:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contextMenuKeyDown(&self, event: &NSEvent);
+        pub fn contextMenuKeyDown(&self, event: &NSEvent);
 
         /// # Safety
         ///
@@ -272,29 +272,29 @@ impl NSResponder {
 
         #[unsafe(method(acceptsFirstResponder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn acceptsFirstResponder(&self) -> bool;
+        pub fn acceptsFirstResponder(&self) -> bool;
 
         #[unsafe(method(becomeFirstResponder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn becomeFirstResponder(&self) -> bool;
+        pub fn becomeFirstResponder(&self) -> bool;
 
         #[unsafe(method(resignFirstResponder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resignFirstResponder(&self) -> bool;
+        pub fn resignFirstResponder(&self) -> bool;
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(interpretKeyEvents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn interpretKeyEvents(&self, event_array: &NSArray<NSEvent>);
+        pub fn interpretKeyEvents(&self, event_array: &NSArray<NSEvent>);
 
         #[unsafe(method(flushBufferedKeyEvents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn flushBufferedKeyEvents(&self);
+        pub fn flushBufferedKeyEvents(&self);
 
         #[cfg(feature = "NSMenu")]
         #[unsafe(method(menu))]
         #[unsafe(method_family = none)]
-        pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
+        pub fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         /// Setter for [`menu`][Self::menu].
@@ -312,25 +312,22 @@ impl NSResponder {
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(helpRequested:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn helpRequested(&self, event_ptr: &NSEvent);
+        pub fn helpRequested(&self, event_ptr: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(shouldBeTreatedAsInkEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shouldBeTreatedAsInkEvent(&self, event: &NSEvent) -> bool;
+        pub fn shouldBeTreatedAsInkEvent(&self, event: &NSEvent) -> bool;
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(wantsScrollEventsForSwipeTrackingOnAxis:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn wantsScrollEventsForSwipeTrackingOnAxis(
-            &self,
-            axis: NSEventGestureAxis,
-        ) -> bool;
+        pub fn wantsScrollEventsForSwipeTrackingOnAxis(&self, axis: NSEventGestureAxis) -> bool;
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(wantsForwardedScrollEventsForAxis:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn wantsForwardedScrollEventsForAxis(&self, axis: NSEventGestureAxis) -> bool;
+        pub fn wantsForwardedScrollEventsForAxis(&self, axis: NSEventGestureAxis) -> bool;
 
         /// # Safety
         ///
@@ -351,7 +348,7 @@ impl NSResponder {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -1169,7 +1166,7 @@ impl NSResponder {
     extern_methods!(
         #[unsafe(method(undoManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
+        pub fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
     );
 }
 
@@ -1179,7 +1176,7 @@ impl NSResponder {
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(validateProposedFirstResponder:forEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn validateProposedFirstResponder_forEvent(
+        pub fn validateProposedFirstResponder_forEvent(
             &self,
             responder: &NSResponder,
             event: Option<&NSEvent>,
@@ -1209,11 +1206,11 @@ impl NSResponder {
 
         #[unsafe(method(presentError:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentError(&self, error: &NSError) -> bool;
+        pub fn presentError(&self, error: &NSError) -> bool;
 
         #[unsafe(method(willPresentError:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn willPresentError(&self, error: &NSError) -> Retained<NSError>;
+        pub fn willPresentError(&self, error: &NSError) -> Retained<NSError>;
     );
 }
 
@@ -1259,6 +1256,6 @@ impl NSResponder {
         #[deprecated = "This has always returned NO and had no effect on macOS"]
         #[unsafe(method(performMnemonic:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performMnemonic(&self, string: &NSString) -> bool;
+        pub fn performMnemonic(&self, string: &NSString) -> bool;
     );
 }

@@ -23,47 +23,47 @@ impl NSDraggingSession {
         #[cfg(feature = "NSDragging")]
         #[unsafe(method(draggingFormation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn draggingFormation(&self) -> NSDraggingFormation;
+        pub fn draggingFormation(&self) -> NSDraggingFormation;
 
         #[cfg(feature = "NSDragging")]
         /// Setter for [`draggingFormation`][Self::draggingFormation].
         #[unsafe(method(setDraggingFormation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDraggingFormation(&self, dragging_formation: NSDraggingFormation);
+        pub fn setDraggingFormation(&self, dragging_formation: NSDraggingFormation);
 
         #[unsafe(method(animatesToStartingPositionsOnCancelOrFail))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animatesToStartingPositionsOnCancelOrFail(&self) -> bool;
+        pub fn animatesToStartingPositionsOnCancelOrFail(&self) -> bool;
 
         /// Setter for [`animatesToStartingPositionsOnCancelOrFail`][Self::animatesToStartingPositionsOnCancelOrFail].
         #[unsafe(method(setAnimatesToStartingPositionsOnCancelOrFail:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimatesToStartingPositionsOnCancelOrFail(
+        pub fn setAnimatesToStartingPositionsOnCancelOrFail(
             &self,
             animates_to_starting_positions_on_cancel_or_fail: bool,
         );
 
         #[unsafe(method(draggingLeaderIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn draggingLeaderIndex(&self) -> NSInteger;
+        pub fn draggingLeaderIndex(&self) -> NSInteger;
 
         /// Setter for [`draggingLeaderIndex`][Self::draggingLeaderIndex].
         #[unsafe(method(setDraggingLeaderIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDraggingLeaderIndex(&self, dragging_leader_index: NSInteger);
+        pub fn setDraggingLeaderIndex(&self, dragging_leader_index: NSInteger);
 
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(draggingPasteboard))]
         #[unsafe(method_family = none)]
-        pub unsafe fn draggingPasteboard(&self) -> Retained<NSPasteboard>;
+        pub fn draggingPasteboard(&self) -> Retained<NSPasteboard>;
 
         #[unsafe(method(draggingSequenceNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn draggingSequenceNumber(&self) -> NSInteger;
+        pub fn draggingSequenceNumber(&self) -> NSInteger;
 
         #[unsafe(method(draggingLocation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn draggingLocation(&self) -> NSPoint;
+        pub fn draggingLocation(&self) -> NSPoint;
 
         #[cfg(all(
             feature = "NSDragging",
@@ -97,10 +97,17 @@ impl NSDraggingSession {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSDraggingSession {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

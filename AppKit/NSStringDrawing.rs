@@ -25,23 +25,23 @@ impl NSStringDrawingContext {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(minimumScaleFactor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumScaleFactor(&self) -> CGFloat;
+        pub fn minimumScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumScaleFactor`][Self::minimumScaleFactor].
         #[unsafe(method(setMinimumScaleFactor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumScaleFactor(&self, minimum_scale_factor: CGFloat);
+        pub fn setMinimumScaleFactor(&self, minimum_scale_factor: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(actualScaleFactor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn actualScaleFactor(&self) -> CGFloat;
+        pub fn actualScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(totalBounds))]
         #[unsafe(method_family = none)]
-        pub unsafe fn totalBounds(&self) -> CGRect;
+        pub fn totalBounds(&self) -> CGRect;
     );
 }
 
@@ -50,12 +50,19 @@ impl NSStringDrawingContext {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSStringDrawingContext {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 mod private_NSStringDrawing {
@@ -120,17 +127,17 @@ pub unsafe trait NSAttributedStringNSStringDrawing:
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
-        unsafe fn size(&self) -> CGSize;
+        fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawAtPoint:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawAtPoint(&self, point: CGPoint);
+        fn drawAtPoint(&self, point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawInRect:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawInRect(&self, rect: CGRect);
+        fn drawInRect(&self, rect: CGRect);
     );
 }
 
@@ -236,7 +243,7 @@ pub unsafe trait NSAttributedStringNSExtendedStringDrawing:
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawWithRect:options:context:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawWithRect_options_context(
+        fn drawWithRect_options_context(
             &self,
             rect: CGRect,
             options: NSStringDrawingOptions,
@@ -246,7 +253,7 @@ pub unsafe trait NSAttributedStringNSExtendedStringDrawing:
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(boundingRectWithSize:options:context:))]
         #[unsafe(method_family = none)]
-        unsafe fn boundingRectWithSize_options_context(
+        fn boundingRectWithSize_options_context(
             &self,
             size: CGSize,
             options: NSStringDrawingOptions,
@@ -310,11 +317,11 @@ pub unsafe trait NSAttributedStringNSStringDrawingDeprecated:
     extern_methods!(
         #[unsafe(method(drawWithRect:options:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawWithRect_options(&self, rect: NSRect, options: NSStringDrawingOptions);
+        fn drawWithRect_options(&self, rect: NSRect, options: NSStringDrawingOptions);
 
         #[unsafe(method(boundingRectWithSize:options:))]
         #[unsafe(method_family = none)]
-        unsafe fn boundingRectWithSize_options(
+        fn boundingRectWithSize_options(
             &self,
             size: NSSize,
             options: NSStringDrawingOptions,

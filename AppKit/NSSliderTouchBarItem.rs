@@ -58,7 +58,7 @@ impl NSSliderTouchBarItem {
         ))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self) -> Retained<NSView>;
+        pub fn view(&self) -> Retained<NSView>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -69,7 +69,7 @@ impl NSSliderTouchBarItem {
         /// The slider displayed by the bar item. It is automatically created, but can be set to a custom subclass. doubleValue, minValue, maxValue, etc can all be read and set through the slider.
         #[unsafe(method(slider))]
         #[unsafe(method_family = none)]
-        pub unsafe fn slider(&self) -> Retained<NSSlider>;
+        pub fn slider(&self) -> Retained<NSSlider>;
 
         #[cfg(all(
             feature = "NSControl",
@@ -80,100 +80,94 @@ impl NSSliderTouchBarItem {
         /// Setter for [`slider`][Self::slider].
         #[unsafe(method(setSlider:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSlider(&self, slider: &NSSlider);
+        pub fn setSlider(&self, slider: &NSSlider);
 
         /// The double value of the control
         #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleValue(&self) -> c_double;
+        pub fn doubleValue(&self) -> c_double;
 
         /// Setter for [`doubleValue`][Self::doubleValue].
         #[unsafe(method(setDoubleValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDoubleValue(&self, double_value: c_double);
+        pub fn setDoubleValue(&self, double_value: c_double);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The width boundaries of the slider track of this item.
         /// The system defines the default minimum. The maximum defaults to MAXFLOAT
         #[unsafe(method(minimumSliderWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumSliderWidth(&self) -> CGFloat;
+        pub fn minimumSliderWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumSliderWidth`][Self::minimumSliderWidth].
         #[unsafe(method(setMinimumSliderWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumSliderWidth(&self, minimum_slider_width: CGFloat);
+        pub fn setMinimumSliderWidth(&self, minimum_slider_width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(maximumSliderWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumSliderWidth(&self) -> CGFloat;
+        pub fn maximumSliderWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumSliderWidth`][Self::maximumSliderWidth].
         #[unsafe(method(setMaximumSliderWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumSliderWidth(&self, maximum_slider_width: CGFloat);
+        pub fn setMaximumSliderWidth(&self, maximum_slider_width: CGFloat);
 
         /// The text label displayed along with the slider. If set to nil, the label will not have space reserved in the item.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "NSSliderAccessory")]
         /// The accessory that appears on the end of the slider with the minimum value
         #[unsafe(method(minimumValueAccessory))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumValueAccessory(&self) -> Option<Retained<NSSliderAccessory>>;
+        pub fn minimumValueAccessory(&self) -> Option<Retained<NSSliderAccessory>>;
 
         #[cfg(feature = "NSSliderAccessory")]
         /// Setter for [`minimumValueAccessory`][Self::minimumValueAccessory].
         #[unsafe(method(setMinimumValueAccessory:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumValueAccessory(
-            &self,
-            minimum_value_accessory: Option<&NSSliderAccessory>,
-        );
+        pub fn setMinimumValueAccessory(&self, minimum_value_accessory: Option<&NSSliderAccessory>);
 
         #[cfg(feature = "NSSliderAccessory")]
         /// The accessory that appears on the end of the slider with the maximum value
         #[unsafe(method(maximumValueAccessory))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumValueAccessory(&self) -> Option<Retained<NSSliderAccessory>>;
+        pub fn maximumValueAccessory(&self) -> Option<Retained<NSSliderAccessory>>;
 
         #[cfg(feature = "NSSliderAccessory")]
         /// Setter for [`maximumValueAccessory`][Self::maximumValueAccessory].
         #[unsafe(method(setMaximumValueAccessory:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumValueAccessory(
-            &self,
-            maximum_value_accessory: Option<&NSSliderAccessory>,
-        );
+        pub fn setMaximumValueAccessory(&self, maximum_value_accessory: Option<&NSSliderAccessory>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The width of the value accessories. Defaults to `.default`, but can be set to `.wide` or a custom value.
         #[unsafe(method(valueAccessoryWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueAccessoryWidth(&self) -> NSSliderAccessoryWidth;
+        pub fn valueAccessoryWidth(&self) -> NSSliderAccessoryWidth;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`valueAccessoryWidth`][Self::valueAccessoryWidth].
         #[unsafe(method(setValueAccessoryWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setValueAccessoryWidth(&self, value_accessory_width: NSSliderAccessoryWidth);
+        pub fn setValueAccessoryWidth(&self, value_accessory_width: NSSliderAccessoryWidth);
 
         /// The target of the item, notified when the slider or accessories receive user interaction.
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
-        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
+        pub fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`target`][Self::target].
         ///
@@ -189,7 +183,7 @@ impl NSSliderTouchBarItem {
         /// The action of the item, called when the slider or accessories receive user interaction.
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
-        pub unsafe fn action(&self) -> Option<Sel>;
+        pub fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
         ///
@@ -203,14 +197,14 @@ impl NSSliderTouchBarItem {
         /// The localized string labelling this item during user customization. The default value is empty string.
         #[unsafe(method(customizationLabel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
+        pub fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCustomizationLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
+        pub fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     );
 }
 
@@ -220,7 +214,7 @@ impl NSSliderTouchBarItem {
     extern_methods!(
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithIdentifier(
+        pub fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;

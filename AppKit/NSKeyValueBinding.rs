@@ -45,15 +45,15 @@ impl NSBindingSelectionMarker {
 
         #[unsafe(method(multipleValuesSelectionMarker))]
         #[unsafe(method_family = none)]
-        pub unsafe fn multipleValuesSelectionMarker() -> Retained<NSBindingSelectionMarker>;
+        pub fn multipleValuesSelectionMarker() -> Retained<NSBindingSelectionMarker>;
 
         #[unsafe(method(noSelectionMarker))]
         #[unsafe(method_family = none)]
-        pub unsafe fn noSelectionMarker() -> Retained<NSBindingSelectionMarker>;
+        pub fn noSelectionMarker() -> Retained<NSBindingSelectionMarker>;
 
         #[unsafe(method(notApplicableSelectionMarker))]
         #[unsafe(method_family = none)]
-        pub unsafe fn notApplicableSelectionMarker() -> Retained<NSBindingSelectionMarker>;
+        pub fn notApplicableSelectionMarker() -> Retained<NSBindingSelectionMarker>;
 
         /// # Safety
         ///
@@ -150,16 +150,15 @@ pub unsafe trait NSObjectNSKeyValueBindingCreation:
     extern_methods!(
         #[unsafe(method(exposeBinding:))]
         #[unsafe(method_family = none)]
-        unsafe fn exposeBinding(binding: &NSBindingName);
+        fn exposeBinding(binding: &NSBindingName);
 
         #[unsafe(method(exposedBindings))]
         #[unsafe(method_family = none)]
-        unsafe fn exposedBindings(&self) -> Retained<NSArray<NSBindingName>>;
+        fn exposedBindings(&self) -> Retained<NSArray<NSBindingName>>;
 
         #[unsafe(method(valueClassForBinding:))]
         #[unsafe(method_family = none)]
-        unsafe fn valueClassForBinding(&self, binding: &NSBindingName)
-            -> Option<&'static AnyClass>;
+        fn valueClassForBinding(&self, binding: &NSBindingName) -> Option<&'static AnyClass>;
 
         /// # Safety
         ///
@@ -177,11 +176,11 @@ pub unsafe trait NSObjectNSKeyValueBindingCreation:
 
         #[unsafe(method(unbind:))]
         #[unsafe(method_family = none)]
-        unsafe fn unbind(&self, binding: &NSBindingName);
+        fn unbind(&self, binding: &NSBindingName);
 
         #[unsafe(method(infoForBinding:))]
         #[unsafe(method_family = none)]
-        unsafe fn infoForBinding(
+        fn infoForBinding(
             &self,
             binding: &NSBindingName,
         ) -> Option<Retained<NSDictionary<NSBindingInfoKey, AnyObject>>>;
@@ -190,7 +189,7 @@ pub unsafe trait NSObjectNSKeyValueBindingCreation:
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(optionDescriptionsForBinding:))]
         #[unsafe(method_family = none)]
-        unsafe fn optionDescriptionsForBinding(
+        fn optionDescriptionsForBinding(
             &self,
             binding: &NSBindingName,
         ) -> Retained<NSArray<NSAttributeDescription>>;
@@ -205,11 +204,11 @@ extern_protocol!(
     pub unsafe trait NSEditor: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(discardEditing))]
         #[unsafe(method_family = none)]
-        unsafe fn discardEditing(&self);
+        fn discardEditing(&self);
 
         #[unsafe(method(commitEditing))]
         #[unsafe(method_family = none)]
-        unsafe fn commitEditing(&self) -> bool;
+        fn commitEditing(&self) -> bool;
 
         /// # Safety
         ///
@@ -227,7 +226,7 @@ extern_protocol!(
 
         #[unsafe(method(commitEditingAndReturnError:_))]
         #[unsafe(method_family = none)]
-        unsafe fn commitEditingAndReturnError(&self) -> Result<(), Retained<NSError>>;
+        fn commitEditingAndReturnError(&self) -> Result<(), Retained<NSError>>;
     }
 );
 
@@ -237,12 +236,12 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(objectDidBeginEditing:))]
         #[unsafe(method_family = none)]
-        unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
+        fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
 
         #[optional]
         #[unsafe(method(objectDidEndEditing:))]
         #[unsafe(method_family = none)]
-        unsafe fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
+        fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
     }
 );
 
